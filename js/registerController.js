@@ -7,14 +7,13 @@
 
   //
   //Controller login
-  RegisterController.$inject = ['$scope', 'networkService', 'socialNetworkService']
-  function RegisterController($scope, networkService, socialNetworkService) {
+  RegisterController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$filter']
+  function RegisterController($scope, networkService, socialNetworkService, $filter) {
     $scope.email = "";
     $scope.password = "";
     $scope.password2 = "";
     $scope.firstName = "";
     $scope.lastName = "";
-    $scope.date = new Date(year, month, day);
 
     $scope.passwordVerification = function(){
       if ($scope.password == $scope.password2){
@@ -30,7 +29,7 @@
         profile: {email: $scope.email,
                   firstName: $scope.firstName,
                   lastName: $scope.lastName,
-                  birthday: $scope.date.toString()},
+                  birthday: $filter('date')($scope.date, "yyyy-MM-dd")},
         password: $scope.password
       }
       networkService.register(formData, succesRegister, errorRegister);
