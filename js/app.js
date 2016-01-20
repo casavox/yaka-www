@@ -1,7 +1,8 @@
 angular.module('Yaka', [
   'ngRoute',
   'ui.router',
-  'ngStorage']);
+  'ngStorage',
+  'pascalprecht.translate']);
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -27,7 +28,18 @@ angular.module('Yaka', [
     .module('Yaka')
     .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
+      //
+      // Translation area
+      $translateProvider.translations('en', {
+
+      });
+      $translateProvider.translations('fr', {
+
+      });
+      $translateProvider.preferredLanguage('en');
+
+
       //
       // For any unmatched url, redirect to /state1
       $urlRouterProvider.otherwise("/Login");
