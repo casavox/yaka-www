@@ -14,7 +14,7 @@
     $scope.password2 = "";
     $scope.firstName = "";
     $scope.lastName = "";
-    $scope.date = new Date();
+    $scope.date = new Date(year, month, day);
 
     $scope.passwordVerification = function(){
       if ($scope.password == $scope.password2){
