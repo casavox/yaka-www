@@ -27,7 +27,6 @@
         password: $scope.password
       }
       socialNetworkService.login(succesFLogin, errorFLogin);
-      console.log(accessToken);
     };
 
     function succesLogin(res){
