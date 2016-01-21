@@ -16,10 +16,11 @@
           FB.api('/me', function(response) {
             console.log('Good to see you, ' + response.name + '.');
             var accessToken = FB.getAuthResponse().accessToken;
-            //networkService.loginFB();
+            return accessToken;
           });
         } else {
           console.log('User cancelled login or did not fully authorize.');
+          return null;
         }
       });
     }
