@@ -7,8 +7,8 @@
 
   //
   //Network Service Routing
-  socialNetworkService.$inject = ['networkService']
-  function socialNetworkService(networkService) {
+  socialNetworkService.$inject = ['networkService', '$q']
+  function socialNetworkService(networkService, $q) {
     function login(){
       FB.login(function(response) {
         var deferred = $q.defer();
