@@ -16,7 +16,7 @@
           FB.api('/me', function(response) {
             console.log(response);
             var accessToken = FB.getAuthResponse().accessToken;
-            var formData = {facebook_access_token: accessToken};
+            var formData = {'accessToken': accessToken};
             networkService.facebookLogin(formData, function(res){
               $localStorage.token = res.token;
               $state.go('Dashboard');
