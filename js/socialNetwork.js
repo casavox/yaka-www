@@ -23,6 +23,7 @@
           var err = {message: 'User cancelled login or did not fully authorize.'};
           deferred.reject(err);
         }
+        return deferred.promise;
       });
     }
     return {
