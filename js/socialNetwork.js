@@ -29,7 +29,7 @@
         } else {
           var err = {message: 'User cancelled login or did not fully authorize.'};
         }
-      }, {scope: 'email'});
+      }, {scope: 'email,user_birthday'});
     }
     return {
       login: login
