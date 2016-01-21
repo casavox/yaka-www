@@ -44,13 +44,10 @@
     };
 
     function succesFLogin(res){
-
         console.log(res);
-      }
     };
 
     function errorFLogin(err){
-
       console.log(err.message);
     };
 
