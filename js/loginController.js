@@ -26,11 +26,7 @@
         profile: {email: $scope.email},
         password: $scope.password
       }
-      socialNetworkService.login().then(function(res){
-        console.log(res);
-      }, function(err){
-        console.log(err);
-      });
+      socialNetworkService.login(succesFLogin, errorFLogin);
     };
 
     function succesLogin(res){
