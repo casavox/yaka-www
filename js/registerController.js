@@ -27,31 +27,26 @@
     $scope.register = function(){
       var formData = {
         profile: {email: $scope.email,
-                  firstName: $scope.firstName,
-                  lastName: $scope.lastName,
-                  birthday: $filter('date')($scope.date, "yyyy-MM-dd")},
-        password: $scope.password
-      }
-      networkService.register(formData, succesRegister, errorRegister);
-    };
+          firstName: $scope.firstName,
+          lastName: $scope.lastName,
+          birthday: $filter('date')($scope.date, "yyyy-MM-dd")},
+          password: $scope.password
+        }
+        networkService.register(formData, succesRegister, errorRegister);
+      };
 
-    function succesRegister(res){
-      if (res.status == 200){
+      function succesRegister(res){
         if (!angular.isUndefined(res.token) && res.token && res.token != ""){
           $localStorage.token = res.token;
           $state.go('Dashboard');
           console.log(res);
         }
-        // else {
-        //
-        // }
-      }
-    };
+      };
 
-    function errorRegister(err){
-      if (!angular.isUndefined(err) && err && err.message && err.message != "")
-      console.log(err.message);
-    };
+      function errorRegister(err){
+        if (!angular.isUndefined(err) && err && err.message && err.message != "")
+        console.log(err.message);
+      };
 
-  }
-})();
+    }
+  })();

@@ -21,20 +21,36 @@
       networkService.login(formData, succesLogin, errorLogin);
     };
 
+    $scope.FLogin = function(){
+      var formData = {
+        profile: {email: $scope.email},
+        password: $scope.password
+      }
+      socialNetworkService.login(succesFLogin, errorFLogin);
+    };
+
     function succesLogin(res){
-      if (res.status == 200){
-        if (!angular.isUndefined(res.token) && res.token && res.token != ""){
-          $localStorage.token = res.token;
-          $state.go('Dashboard');
-          console.log(res);
-        }
-        // else {
-        //
-        // }
+      if (!angular.isUndefined(res.token) && res.token && res.token != ""){
+        $localStorage.token = res.token;
+        $state.go('Dashboard');
+        console.log(res);
       }
     };
 
     function errorLogin(err){
+      if (!angular.isUndefined(err) && err && err.message && err.message != "")
+      console.log(err.message);
+    };
+
+    function succesFLogin(res){
+      if (!angular.isUndefined(res) && res && res != ""){
+        // $localStorage.token = res.token;
+        // $state.go('Dashboard');
+        console.log(res);
+      }
+    };
+
+    function errorFLogin(err){
       if (!angular.isUndefined(err) && err && err.message && err.message != "")
       console.log(err.message);
     };
