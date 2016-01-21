@@ -11,16 +11,17 @@
   function socialNetworkService(networkService) {
     function login(){
       FB.login(function(response) {
+        var deferred = $q.defer();
         if (response.authResponse) {
           console.log('Welcome!  Fetching your information.... ');
           FB.api('/me', function(response) {
             console.log(response);
             var accessToken = FB.getAuthResponse().accessToken;
-            return accessToken;
+            deferred.resolve(accessToken);
           });
         } else {
-          console.log('User cancelled login or did not fully authorize.');
-          return null;
+          var err = {message: 'User cancelled login or did not fully authorize.'};
+          deferred.reject(err);
         }
       });
     }
