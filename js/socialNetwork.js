@@ -16,7 +16,7 @@
           FB.api('/me', function(response) {
             console.log(response);
             var accessToken = FB.getAuthResponse().accessToken;
-            resolve(accessToken);
+            return accessToken;
           });
         } else {
           console.log('User cancelled login or did not fully authorize.');
