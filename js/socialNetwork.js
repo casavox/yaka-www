@@ -16,7 +16,14 @@
           FB.api('/me', function(response) {
             console.log(response);
             var accessToken = FB.getAuthResponse().accessToken;
-
+            var formData = {facebook_access_token: accessToken};
+            networkService.facebookLogin(formData, function(res){
+              $localStorage.token = res.token;
+              $state.go('Dashboard');
+            }, function(err){
+              if (!angular.isUndefined(err) && err && err.message && err.message != "")
+              console.log(err.message);
+            })
             console.log(accessToken);
           });
         } else {
