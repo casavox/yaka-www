@@ -22,7 +22,7 @@
         } else {
           var err = {message: 'User cancelled login or did not fully authorize.'};
         }
-      });
+      }, {scope: 'email'});
     }
     return {
       login: login
