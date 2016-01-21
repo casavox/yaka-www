@@ -26,7 +26,7 @@
         profile: {email: $scope.email},
         password: $scope.password
       }
-      var accessToken = socialNetworkService.login();
+      socialNetworkService.login(succesFLogin, errorFLogin);
       console.log(accessToken);
     };
 
@@ -40,6 +40,17 @@
 
     function errorLogin(err){
       if (!angular.isUndefined(err) && err && err.message && err.message != "")
+      console.log(err.message);
+    };
+
+    function succesFLogin(res){
+
+        console.log(res);
+      }
+    };
+
+    function errorFLogin(err){
+
       console.log(err.message);
     };
 
