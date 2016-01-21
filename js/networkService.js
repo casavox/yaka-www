@@ -15,8 +15,8 @@
         login: function(data, success, error) {
           $http.post(baseUrl + '/login', data).success(success).error(error)
         },
-        loginFB: function(data, success, error) {
-          $http.post(baseUrl + '/login/fb', data).success(success).error(error)
+        facebookLogin: function(data, success, error) {
+          $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
         },
         register: function(data, success, error) {
           $http.post(baseUrl + '/register', data).success(success).error(error)
