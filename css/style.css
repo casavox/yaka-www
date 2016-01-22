@@ -9,7 +9,7 @@
 }
 
 .header{
-  height: 60px;
+  height: 80px;
   width: 100%;
   background-color: white;
   position: fixed;
@@ -22,26 +22,48 @@
   padding: 0;
   margin-left: 22px;
 }
+
+.logo-white{
+  float: left;
+  margin: 0;
+  padding: 0;
+}
 .Flogo{
   font-weight: bold;
   display: inline-block;
   font-size: 35px;
   vertical-align: middle;
-  line-height: 60px;
+  line-height: 80px;
 }
 .Slogo{
   display: inline-block;
   font-size: 35px;
   vertical-align: middle;
-  line-height: 60px;
+  line-height: 80px;
+}
+
+.Flogo-white{
+  font-weight: bold;
+  display: inline-block;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 80px;
+  color: white;
+}
+.Slogo-white{
+  display: inline-block;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 80px;
+  color: white;
 }
 
 .page-content{
   position: absolute;
   left: 0;
-  top: 60px;
+  top: 80px;
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 80px);
 }
 
 /*--------------------------------------- LOGIN -----------------------------*/
@@ -231,3 +253,149 @@
   border: 1px solid #d0021b!important;
 }
 /*---------------------------------------------------------------------------*/
+
+/*---------------------------------MENU -------------------------------------*/
+
+.menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #2f313a;
+  z-index: 1;
+}
+.content-slide{
+  top: 80px;
+  position: fixed;
+  left:300px;
+  height: calc(100% - 80px);
+  width: calc(100% - 300px);
+  background-color: #edeff5;
+}
+
+.header-menu{
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  left: 300px;
+}
+
+.center{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.menu-content{
+  position: absolute;;
+  top: 80px;
+  height: calc(100% - 80px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.menu-content > li{
+  list-style: none;
+  height: 80px;
+  line-height: 80px;
+  color: #8f94a3;
+  vertical-align: middle;
+  width: 100%;
+  padding-left: 15px;
+}
+
+.menu-content > li > i{
+  color: #8f94a3;
+  font-size: 15px;
+  margin-right: 15px;
+}
+
+.menu-content > li:hover{
+  background-color: #222328;
+  color: white;
+  border-left: 2px solid #3ecbe2;
+  padding-left: 13px;
+}
+
+.menu-content > li:hover > i{
+  color: white;
+}
+
+/*----------------------------------------------------------------------------*/
+
+/*--------------------------------- CONTENT ----------------------------------*/
+
+@font-face {
+    font-family: "Gotham Pro Medium";
+    src: url('/fonts/GothaProMed.otf');
+}
+
+@font-face {
+    font-family: "Gotham Pro Regular";
+    src: url('/fonts/GothaProReg.otf');
+}
+
+.title{
+  /*font-family: 'Gotham Pro Medium';*/
+  font-size: 25px;
+  line-height: 80px;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+.box{
+  float: left;
+  width: 50%;
+  height: 50%;
+  min-width: 300px;
+  min-height: 300px;
+  padding: 40px;
+  border-top-left-radius: 7px 7px;
+  border-top-right-radius: 7px 7px;
+}
+.box:nth-child(1){
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+.box:nth-child(2){
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+.box:nth-child(3){
+  padding-top: 20px;
+  padding-right: 20px;
+}
+.box:nth-child(4){
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.box-content{
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 7px 7px;
+  border-top-right-radius: 7px 7px;
+}
+
+.no-margin{
+  margin:0!important;
+}
+
+.header-box{
+  padding-left: 20px;
+  height: 60px;
+  border-bottom: 1px solid #eef0f6;
+  line-height: 60px;
+  vertical-align: middle;
+  border-top-left-radius: 7px 7px;
+  border-top-right-radius: 7px 7px;
+
+}
+.header-box > p{
+  font-size: 15px;
+}

@@ -2,7 +2,8 @@ angular.module('Yaka', [
   'ngRoute',
   'ui.router',
   'ngStorage',
-  'pascalprecht.translate']);
+  'pascalprecht.translate',
+  'ap.lateralSlideMenu']);
 
   window.fbAsyncInit = function() {
     FB.init({
