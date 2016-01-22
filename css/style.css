@@ -306,6 +306,7 @@
   vertical-align: middle;
   width: 100%;
   padding-left: 15px;
+  font-family: "Gotham Pro Regular"
 }
 
 .menu-content > li > i{
@@ -319,6 +320,7 @@
   color: white;
   border-left: 2px solid #3ecbe2;
   padding-left: 13px;
+
 }
 
 .menu-content > li:hover > i{
@@ -340,7 +342,7 @@
 }
 
 .title{
-  /*font-family: 'Gotham Pro Medium';*/
+  font-family: 'Gotham Pro Medium';
   font-size: 25px;
   line-height: 80px;
   vertical-align: middle;
@@ -394,8 +396,9 @@
   vertical-align: middle;
   border-top-left-radius: 7px 7px;
   border-top-right-radius: 7px 7px;
-
+  font-family: "Gotham Pro Regular"
 }
 .header-box > p{
   font-size: 15px;
+  font-family: "Gotham Pro Regular"
 }
