@@ -191,7 +191,7 @@
 }
 
 .login-input > input {
-    outline: none;
+  outline: none;
 }
 
 .remember{
@@ -341,13 +341,13 @@
 /*--------------------------------- CONTENT ----------------------------------*/
 
 @font-face {
-    font-family: "Gotham Pro Medium";
-    src: url('/fonts/GothaProMed.otf');
+  font-family: "Gotham Pro Medium";
+  src: url('/fonts/GothaProMed.otf');
 }
 
 @font-face {
-    font-family: "Gotham Pro Regular";
-    src: url('/fonts/GothaProReg.otf');
+  font-family: "Gotham Pro Regular";
+  src: url('/fonts/GothaProReg.otf');
 }
 
 .title{
@@ -448,6 +448,23 @@
   color: red;
 }
 
+.dashboard-project{
+  height: 60px;
+  padding: 5px;
+}
+
+.dashboard-project > div > div{
+  height: 60px;
+}
+
+.dashboard-project > div > div > i{
+  color: red;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .dashboard-project > div > div > label{
   color: red;
 }
@@ -457,6 +474,7 @@
 }
 .project-date{
   color: grey;
+  display: inline-block;
 }
 .project-address{
   display: inline-block;
