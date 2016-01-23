@@ -325,6 +325,17 @@
   color: white;
 }
 
+.active-menu{
+  background-color: #222328;
+  color: white!important;
+  border-left: 2px solid #3ecbe2;
+  padding-left: 13px!important;
+}
+
+.active-menu > i{
+  color: white!important;
+}
+
 /*----------------------------------------------------------------------------*/
 
 /*--------------------------------- CONTENT ----------------------------------*/
