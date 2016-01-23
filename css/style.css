@@ -356,6 +356,7 @@
   padding: 40px;
   border-top-left-radius: 7px 7px;
   border-top-right-radius: 7px 7px;
+  position: relative;
 }
 .box:nth-child(1){
   padding-bottom: 20px;
@@ -380,6 +381,7 @@
   width: 100%;
   border-top-left-radius: 7px 7px;
   border-top-right-radius: 7px 7px;
+  position: relative;
 }
 
 .no-margin{
@@ -398,4 +400,35 @@
 }
 .header-box > p{
   font-size: 15px;
+}
+
+.is-empty{
+  position: relative;;;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.is-empty > p{
+  text-align: center;
+  font-size: 25px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+.box-body{
+  position: relative;
+  height: calc(100% - 61px);
+}
+
+.post-job-button{
+  border: none;
+  width: 50%;
+  height: 64px;
+  background-color: #00aded;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  left: 50%;
+  transform: translate(-50%);
+  position: relative;
 }

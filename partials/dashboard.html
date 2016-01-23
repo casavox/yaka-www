@@ -30,6 +30,7 @@
               INBOX
             </p>
           </div>
+
         </div>
       </div>
       <div class="box">
@@ -38,6 +39,14 @@
             <p>
               PROJECTS
             </p>
+          </div>
+          <div class="box-body">
+            <div class="is-empty" ng-show="dashboardProjects.lenght == 0">
+              <p>
+                You don't have any project yet
+              </p>
+              <button type="button" class="post-job-button">POST A JOB</button>
+            </div>
           </div>
         </div>
       </div>
@@ -48,6 +57,12 @@
               MY PLACES
             </p>
           </div>
+          <div class="is-empty" ng-show="dashboardProjects.lenght == 0">
+            <p>
+              You don't have any adress yet
+            </p>
+            <button type="button" class="post-job-button">Add an address</button>
+          </div>
         </div>
       </div>
       <div class="box">
@@ -56,6 +71,12 @@
             <p>
               FAVORITES PRO
             </p>
+          </div>
+          <div class="is-empty" ng-show="dashboardProjects.lenght == 0">
+            <p>
+              You don't have any pro yet
+            </p>
+            <button type="button" class="post-job-button">ADD A PRO</button>
           </div>
         </div>
       </div>
