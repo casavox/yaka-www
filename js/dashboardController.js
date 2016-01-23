@@ -18,7 +18,7 @@
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
 
     function succesProjectsGET(res){
-      vm.dashboardProjects = sortProjects(res;)
+      vm.dashboardProjects = sortProjects(res);
     }
 
     function errorProjectsGET(){
