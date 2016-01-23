@@ -443,3 +443,7 @@
   transform: translate(-50%);
   position: relative;
 }
+
+.EMERGENCY{
+  color: red;
+}
