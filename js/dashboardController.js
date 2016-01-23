@@ -27,7 +27,7 @@
 
     function sortProjects(tab){
       var tmp = [];
-      if (tab.lenght > 0){
+      if (tab.length > 0){
         for (var i = 0; i < tab.length; i++) {
           if (tab[i] && tab[i].type && tab[i].status == "ONGOING_RATE_PRO")
           tmp.push(tab[i]);
