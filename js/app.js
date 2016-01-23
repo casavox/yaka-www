@@ -73,7 +73,7 @@ angular.module('Yaka', [
           'request': function (config) {
             config.headers = config.headers || {};
             if (angular.isUndefined($localStorage.token) == false && $localStorage.token) {
-              config.headers.Authorization = 'Bearer ' + $localStorage.token;
+              config.headers.Authorization = $localStorage.token;
             }
             return config;
           },
