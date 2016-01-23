@@ -10,45 +10,20 @@
   DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService']
   function DashboardController($scope, networkService, socialNetworkService) {
 
-    $scope.email = "";
-    $scope.password = "";
+    var vm = this;
+    vm.dashboardProjects = [];
+    vm.dashboardAddress = [];
+    vm.dashboardPro = [];
 
-    $scope.login = function(){
-      var formData = {
-        profile: {email: $scope.email},
-        password: $scope.password
-      }
-      networkService.login(formData, succesLogin, errorLogin);
-    };
+    networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
 
-    $scope.FLogin = function(){
-      var formData = {
-        profile: {email: $scope.email},
-        password: $scope.password
-      }
-      socialNetworkService.login(succesFLogin, errorFLogin);
-    };
+    function succesProjectsGET(res){
+      vm.dashboardProjects = res;
+    }
 
-    function succesLogin(res){
-      if (!angular.isUndefined(res.token) && res.token && res.token != ""){
-        $localStorage.token = res.token;
-        $state.go('Dashboard');
-        console.log(res);
-      }
-    };
+    function errorProjectsGET(){
 
-    function errorLogin(err){
-      if (!angular.isUndefined(err) && err && err.message && err.message != "")
-      console.log(err.message);
-    };
-
-    function succesFLogin(res){
-        console.log(res);
-    };
-
-    function errorFLogin(err){
-      console.log(err.message);
-    };
+    }
 
   }
 })();
