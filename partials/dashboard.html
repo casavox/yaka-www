@@ -47,20 +47,20 @@
               </p>
               <button type="button" class="post-job-button">POST A JOB</button>
             </div>
-            <div class="dashboard-project" ng-class="" ng-repeat="p in vm.dashboardProjects track by $index">
+            <div class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index">
               <div class="row">
                 <div class="col-xs-2">
                   <i class="fa fa-circle center-middle" ng-class="p.type"></i>
                 </div>
                 <div class="col-xs-7">
                   <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
-                  <p>
+                  <p class="project-title">
                     {{p.title}}
                   </p>
-                  <p>
-                    {{p.published}}
+                  <p class="project-date">
+                    {{p.published | date:'mediumDate'}} -
                   </p>
-                  <p>
+                  <p class="project-address">
                     {{p.address.name}}
                   </p>
                 </div>

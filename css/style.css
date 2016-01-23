@@ -447,3 +447,18 @@
 .EMERGENCY{
   color: red;
 }
+
+.dashboard-project > div > div > label{
+  color: red;
+}
+.project-title{
+  display: inline-block;
+  color: grey;
+}
+.project-date{
+  color: grey;
+}
+.project-address{
+  display: inline-block;
+  color: grey;
+}
