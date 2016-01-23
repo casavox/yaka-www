@@ -22,7 +22,7 @@
           $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
         },
         projectsGET: function(data, success, error) {
-          $http.get(baseUrl + '/projects/me'+data).success(success).error(error)
+          $http.get(baseUrl + '/projects/me?status='+data).success(success).error(error)
         }
       };
 
