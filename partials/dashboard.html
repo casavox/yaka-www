@@ -1,20 +1,85 @@
 <section class="view">
-  <div class="header">
-    <div class="logo">
-      <div class="Flogo">
-        Yaka
-      </div>
-      <div class="Slogo">
-        Club
-      </div>
+  <div class="header-menu">
+    <div class="title">
+      MY DASHBOARD
     </div>
   </div>
   <div class="page-content">
     <div class="menu">
-      
+      <div class="logo-white center">
+        <div class="Flogo-white">
+          Yaka
+        </div>
+        <div class="Slogo-white">
+          Club
+        </div>
+      </div>
+      <ul class="menu-content">
+        <li class="active-menu"><i class="fa fa-tachometer"></i>OVERVIEW</li>
+        <li><i class="fa fa-inbox"></i>INBOX</li>
+        <li><i class="fa fa-archive"></i>MY PROJECTS</li>
+        <li><i class="fa fa-map-marker"></i>MY PLACES</li>
+        <li><i class="fa fa-users"></i>MY PROS</li>
+      </ul>
     </div>
-    <div class="content">
+    <div class="content-slide">
+      <div class="box">
+        <div class="box-content">
+          <div class="header-box">
+            <p>
+              INBOX
+            </p>
+          </div>
 
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-content">
+          <div class="header-box">
+            <p>
+              PROJECTS
+            </p>
+          </div>
+          <div class="box-body">
+            <div class="is-empty" ng-show="dashboardProjects.lenght == 0">
+              <p>
+                You don't have any project yet
+              </p>
+              <button type="button" class="post-job-button">POST A JOB</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-content">
+          <div class="header-box">
+            <p>
+              MY PLACES
+            </p>
+          </div>
+          <div class="is-empty" ng-show="dashboardProjects.lenght == 0">
+            <p>
+              You don't have any adress yet
+            </p>
+            <button type="button" class="post-job-button">Add an address</button>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-content">
+          <div class="header-box">
+            <p>
+              FAVORITES PRO
+            </p>
+          </div>
+          <div class="is-empty" ng-show="dashboardProjects.lenght == 0">
+            <p>
+              You don't have any pro yet
+            </p>
+            <button type="button" class="post-job-button">ADD A PRO</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
