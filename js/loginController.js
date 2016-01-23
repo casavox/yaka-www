@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService']
-  function LoginController($scope, networkService, socialNetworkService) {
+  LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage']
+  function LoginController($scope, networkService, socialNetworkService, $localStorage) {
 
     $scope.email = "";
     $scope.password = "";
