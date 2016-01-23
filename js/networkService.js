@@ -21,8 +21,8 @@
         facebookLogin: function(data, success, error) {
           $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
         },
-        register: function(data, success, error) {
-          $http.post(baseUrl + '/register', data).success(success).error(error)
+        projectsGET: function(data, success, error) {
+          $http.get(baseUrl + '/projects/me'+data).success(success).error(error)
         }
       };
 
