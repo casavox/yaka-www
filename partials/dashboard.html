@@ -57,12 +57,15 @@
                   <p class="project-title">
                     {{p.title}}
                   </p>
-                  <p class="project-date">
-                    {{p.published | date:'mediumDate'}} -
+                  <p>
+                    <p class="project-date">
+                      {{p.published | date:'mediumDate'}} -
+                    </p>
+                    <p class="project-address">
+                      {{p.address.name}}
+                    </p>
                   </p>
-                  <p class="project-address">
-                    {{p.address.name}}
-                  </p>
+
                 </div>
                 <div class="col-xs-3">
 
