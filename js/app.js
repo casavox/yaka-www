@@ -3,7 +3,8 @@ angular.module('Yaka', [
   'ui.router',
   'ngStorage',
   'pascalprecht.translate',
-  'ap.lateralSlideMenu']);
+  'ap.lateralSlideMenu',
+'vsGoogleAutocomplete']);
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -30,6 +31,11 @@ angular.module('Yaka', [
     .config(config);
 
     function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
+      //
+      // Cloudinary configuration
+      // cloudinaryProvider
+      // .set("cloud_name", "CCCCCCC")
+      // .set("upload_preset", "UUUUUUUU");
       //
       // Translation area
       $translateProvider.translations('en', {
@@ -65,6 +71,36 @@ angular.module('Yaka', [
         controller: 'DashboardController',
         controllerAs: 'vm'
       })
+      .state('Inbox', {
+        url: "/Inbox",
+        templateUrl: "partials/dashboard.html",
+        controller: 'DashboardController',
+        controllerAs: 'vm'
+      })
+      .state('My-Projects', {
+        url: "/My-Projects",
+        templateUrl: "partials/my_projects.html",
+        controller: 'MyProjectsController',
+        controllerAs: 'vm'
+      })
+      .state('New-Project', {
+        url: "/New-Project",
+        templateUrl: "partials/new_project.html",
+        controller: 'NewProjectController',
+        controllerAs: 'vm'
+      })
+      .state('My-Places', {
+        url: "/My-Places",
+        templateUrl: "partials/dashboard.html",
+        controller: 'DashboardController',
+        controllerAs: 'vm'
+      })
+      .state('My-Pros', {
+        url: "/My-Pros",
+        templateUrl: "partials/dashboard.html",
+        controller: 'DashboardController',
+        controllerAs: 'vm'
+      })
 
       //
       //Interceptor to put the token in the header for each request http
@@ -78,9 +114,9 @@ angular.module('Yaka', [
             return config;
           },
           'responseError': function(response) {
-            if(response.status === 401 || response.status === 403) {
-              $injector.get('$state').go('Login');
-            }
+            // if(response.status === 401 || response.status === 403) {
+            //   //$injector.get('$state').go('Login');
+            // }
             return $q.reject(response);
           }
         };

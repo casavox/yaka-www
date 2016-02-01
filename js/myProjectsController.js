@@ -3,34 +3,37 @@
 
   angular
   .module('Yaka')
-  .controller('DashboardController', DashboardController);
+  .controller('MyProjectsController', MyProjectscontroller);
 
   //
   //Controller login
-  DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope']
-  function DashboardController($scope, networkService, socialNetworkService, $rootScope) {
+  MyProjectscontroller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope']
+  function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope) {
 
     var vm = this;
-    vm.dashboardProjects = [];
-    vm.dashboardAddress = [];
-    vm.dashboardPro = [];
 
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
+    networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
     function succesProjectsGET(res){
       $rootScope.projects = res;
       if (res.length < 3){
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
-      vm.dashboardProjects = sortProjects(res);
+      vm.projectsOnGoing = sortProjects(res);
       console.log(res);
       }
     }
 
+    function succesProjectsCompletedGET(res){
+      vm.projectsCompleted = sortProjects(res);
+      console.log(res);
+    }
+
     function succesProjectsDraftGET(res){
-      vm.dashboardProjects.concat(res);
-      vm.dashboardProjects = sortProjects(vm.dashboardProjects);
-      console.log(vm.dashboardProjects);
+      vm.projectsOnGoing.concat(res);
+      vm.projectsOnGoing = sortProjects(vm.projectsOnGoing);
+      console.log(vm.projectsOnGoing);
     }
 
     function errorProjectsGET(){
@@ -38,6 +41,9 @@
     }
 
     function errorProjectsDraftGET(){
+
+    }
+    function errorProjectsCompletedGET(){
 
     }
 

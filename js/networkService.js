@@ -23,6 +23,12 @@
         },
         projectsGET: function(data, success, error) {
           $http.get(baseUrl + '/projects/me?status='+data).success(success).error(error)
+        },
+        stepsGET: function(data, success, error) {
+          $http.get(baseUrl + '/projects/steps?type='+data).success(success).error(error)
+        },
+        profileGET: function(success, error) {
+          $http.get(baseUrl + '/profile/me').success(success).error(error)
         }
       };
 
