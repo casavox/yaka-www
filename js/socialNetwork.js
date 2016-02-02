@@ -7,8 +7,8 @@
 
   //
   //Network Service Routing
-  socialNetworkService.$inject = ['networkService', '$q']
-  function socialNetworkService(networkService, $q) {
+  socialNetworkService.$inject = ['networkService', '$q', '$localStorage', '$state']
+  function socialNetworkService(networkService, $q, $localStorage, $state) {
     function login(){
       FB.login(function(response) {
         if (response.authResponse) {
