@@ -238,7 +238,11 @@
 
     function continueProject(){
       if (vm.material == null || vm.projectDescription.length < 3)
-      return "";
+      {
+        vm.error.description.message = "Add a description of your needs";
+        vm.error.description.flag = true;
+        return "";
+      }
       else {
         vm.continue = true;
         $timeout(function(){

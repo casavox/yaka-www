@@ -116,9 +116,9 @@ angular.module('Yaka', [
             return config;
           },
           'responseError': function(response) {
-            // if(response.status === 401 || response.status === 403) {
-            //   //$injector.get('$state').go('Login');
-            // }
+            if(response.status === 401 || response.status === 403) {
+              $injector.get('$state').go('Login');
+            }
             return $q.reject(response);
           }
         };
