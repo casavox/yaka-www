@@ -56,7 +56,7 @@
           <div class="col-xs-4 no-margin no-padding">
             <div class="status-info" ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
               <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'">
-                <i class="fa fa-circle  puce" ng-class="p.type"></i> {{p.proposals.length}} propositions
+                <i class="fa fa-circle  puce" ></i> {{p.proposals.length}} propositions
               </p>
               <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
                 <i class="fa fa-circle  puce" ng-class="[p.type, p.status]"></i> 0 propositions
