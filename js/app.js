@@ -4,8 +4,9 @@ angular.module('Yaka', [
   'ngStorage',
   'pascalprecht.translate',
   'ap.lateralSlideMenu',
-'vsGoogleAutocomplete',
-'cloudinary']);
+  'vsGoogleAutocomplete',
+  'cloudinary',
+  'ui.bootstrap']);
 
   window.fbAsyncInit = function() {
     FB.init({

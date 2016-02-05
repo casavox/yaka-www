@@ -25,10 +25,10 @@
       <h2 class="text-center">Select one professional category</h2>
       <div class="row new-project-box no-margin">
         <div class="emergency-title row">
-          <div class="col-md-7">
+          <div class="col-xs-7">
             <p class="fr">Emergency 48h</p>
           </div>
-          <div class="col-md-5">
+          <div class="col-xs-5">
             <div class="onoffswitch">
               <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" ng-model="vm.emergency">
               <label class="onoffswitch-label" for="myonoffswitch"></label>
@@ -48,255 +48,274 @@
         </div>
       </div>
     </div>
-    <div class="slide" id="slide2" ng-show="vm.type">
-      <h2 class="text-center" >What service do you need?</h2>
-      <ul class="questions-ul center">
-        <li class="question-li center" ng-class="child.selected" ng-repeat="child in vm.type.childrenSteps" ng-click="vm.selectService(child, vm.type.childrenSteps)" >
-          {{child.question}}
-        </li>
-      </ul>
-    </div>
-    <div class="slide bckg-white" id="slide3" ng-show="vm.service">
-      <h2 class="text-center">What service do you need?</h2>
-      <ul  class="questions-ul center">
-        <li class="question-li center" ng-class="child.selected" ng-repeat="child in vm.service.childrenSteps" ng-click="vm.selectSubService(child, vm.service.childrenSteps)">
-          {{child.name}}
-        </li>
-      </ul>
-    </div>
-    <div class="slide bckg-default" id="slide4" ng-show="vm.subService">
-      <div class="row center no-margin no-padding material-box">
-        <h4 class="material-title">Do you have material?</h4>
-        <div class="col-md-6">
+    <!-- <div class="slide" id="slide2" ng-show="vm.type">
+    <h2 class="text-center" >What service do you need?</h2>
+    <ul class="questions-ul center">
+    <li class="question-li center" ng-class="child.selected" ng-repeat="child in vm.type.childrenSteps" ng-click="vm.selectService(child, vm.type.childrenSteps)" >
+    {{child.question}}
+  </li>
+</ul>
+</div> -->
+<div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenSteps">
+  <h2 class="text-center">{{q.name}}</h2>
+  <ul  class="questions-ul center">
+    <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenSteps" ng-click="vm.selectSubService(child, q.childrenSteps, $parent.$index)">
+      {{child.name}}
+    </li>
+  </ul>
+</div>
+<div class="slide bckg-default" id="slide3" ng-show="vm.service">
+  <div class="row center no-margin no-padding material-box">
+    <h4 class="material-title">Do you have material?</h4>
+    <div class="col-md-6">
 
-          <div class="v-btn center" ng-click="vm.material = true" ng-class="{activate: vm.material}">
-            YES
-          </div>
-          <p class="material-sub">I have it</p>
-        </div>
-        <div class="col-md-6">
-          <div class="v-btn center" ng-click="vm.material = false" ng-class="{activate: !vm.material}">
-            NO
-          </div>
-          <p class="material-sub">I need it</p>
-        </div>
+      <div class="v-btn center" ng-click="vm.material = true" ng-class="{activate: vm.material}">
+        YES
       </div>
-      <h2 class="text-center h2-middle">Could you describe project for us?</h2>
-      <textarea class="description center" ng-model="vm.projectDescription" ng-change="vm.verif()" placeholder="describe your problem and your needs"></textarea>
-      <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()">Continue</button>
+      <p class="material-sub">I have it</p>
     </div>
-    <div class="slide bckg-white" id="slide5" ng-show="vm.continue">
-      <h2 class="text-center" >Add some photos of your project</h2>
-      <div class="row w-900 center no-margin">
-        <div class="col-md-3 no-padding">
-          <div class="add-img center">
-            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-          </div>
-        </div>
-        <div class="col-md-3 no-padding">
-          <div class="add-img center">
-            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-          </div>
-        </div>
-        <div class="col-md-3 no-padding">
-          <div class="add-img center">
-            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-          </div>
-        </div>
-        <div class="col-md-3 no-padding">
-          <div class="add-img center">
-            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-          </div>
-        </div>
+    <div class="col-md-6">
+      <div class="v-btn center" ng-click="vm.material = false" ng-class="{activate: !vm.material}">
+        NO
       </div>
-      <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>
+      <p class="material-sub">I need it</p>
     </div>
-    <div class="slide bckg-default" id="slide6" ng-show="vm.continueImg">
-      <h2 class="text-center">Where do need it?</h2>
-      <div class="row no-margin w-900 center">
-        <div class="col-md-3 no-padding">
-          <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-9 no-padding">
-          <input vs-google-autocomplete
-
-                     ng-model="address.name"
-                     vs-place="address.place"
-                     vs-place-id="address.components.placeId"
-                     vs-street-number="address.components.streetNumber"
-                     vs-street="address.components.street"
-                     vs-city="address.components.city"
-                     vs-state="address.components.state"
-                     vs-country-short="address.components.countryCode"
-                     vs-country="address.components.country"
-                     vs-post-code="address.components.postCode"
-                     vs-district="address.components.district"
-                     vs-latitude="address.components.location.lat"
-                     vs-longitude="address.components.location.long"
-
-                     type="text"
-                     name="address"
-                     id="address"
-                     placeholder="Enter address" class="input-custom" ng-change="vm.setAddressGoogle()">
-        </div>
-      </div>
-
-      <button type="button" class="new-project-continue btn" ng-click="vm.continueAddr()">Continue</button>
-    </div>
-    <div class="slide bckg-white" id="slide7" ng-show="vm.continueAddress">
-      <h2 class="text-center">Indicate your availabilities</h2>
-
-      <div ng-show="vm.emergency">
-        <div class="row center no-margin w-400">
-
-
-          <div class="col-xs-9">
-
-          </div>
-          <div class="col-xs-1">
-            L
-          </div>
-          <div class="col-xs-1">
-            M
-          </div>
-          <div class="col-xs-1">
-            M
-          </div>
-
-
-          <div class="col-xs-9">
-Toute la journée
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-
-
-
-          <div class="col-xs-9">
-            7h-9h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-
-
-
-          <div class="col-xs-9">
-            9h-12h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-
-
-
-          <div class="col-xs-9">
-12h-14h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-
-
-
-          <div class="col-xs-9">
-            14h-16h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-9">
-            16h-18h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-9">
-            18h-20h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-9">
-            Après 20h
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-          <div class="col-xs-1">
-            <input type="checkbox">
-          </div>
-
-
-        </div>
-      </div>
-      <div ng-show="!vm.emergency">
-        <ul class="questions-ul center no-padding">
-          <li class="question-li center" ng-class="child.selected" >
-            On a specific date
-          </li>
-          <li class="question-li center" ng-class="child.selected" >
-            Within a week
-          </li>
-          <li class="question-li center" ng-class="child.selected" >
-            Within a month
-          </li>
-          <li class="question-li center" ng-class="child.selected" >
-            I am a flexible on the start date
-          </li>
-        </ul>
-      </div>
-      <button type="button" class="new-project-continue btn" ng-click="vm.continuePict()">Continue</button>
-    </div>
-
   </div>
+  <h2 class="text-center h2-middle">Could you describe project for us?</h2>
+  <textarea class="description center" ng-model="vm.projectDescription" ng-change="vm.verif()" placeholder="describe your problem and your needs"></textarea>
+  <p class="error center" ng-show="vm.error.description.flag">
+    {{vm.error.description.message}}
+  </p>
+  <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()">Continue</button>
+</div>
+<div class="slide bckg-white" id="slide4" ng-show="vm.continue">
+  <h2 class="text-center" >Add some photos of your project</h2>
+  <div class="row w-900 center no-margin">
+    <div class="col-md-3 no-padding">
+      <div class="add-img center">
+        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
+      </div>
+    </div>
+    <div class="col-md-3 no-padding">
+      <div class="add-img center">
+        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
+      </div>
+    </div>
+    <div class="col-md-3 no-padding">
+      <div class="add-img center">
+        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
+      </div>
+    </div>
+    <div class="col-md-3 no-padding">
+      <div class="add-img center">
+        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
+      </div>
+    </div>
+  </div>
+  <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>
+</div>
+<div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
+  <h2 class="text-center">Where do need it?</h2>
+  <div class="row no-margin w-900 center">
+    <div class="col-md-3 no-padding">
+      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-show="vm.newAddrFlag" ng-change="vm.verifNameAddr()">
+      <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()" ng-hide="vm.newAddrFlag">
+        <option value="">Select an address</option>
+        <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-9 no-padding">
+      <input vs-google-autocomplete
+
+      ng-model="address.name"
+      vs-place="address.place"
+      vs-place-id="address.components.placeId"
+      vs-street-number="address.components.streetNumber"
+      vs-street="address.components.street"
+      vs-city="address.components.city"
+      vs-state="address.components.state"
+      vs-country-short="address.components.countryCode"
+      vs-country="address.components.country"
+      vs-post-code="address.components.postCode"
+      vs-district="address.components.district"
+      vs-latitude="address.components.location.lat"
+      vs-longitude="address.components.location.long"
+
+      type="text"
+      name="address"
+      id="address"
+      placeholder="Enter address" class="input-custom" ng-change="vm.setAddressGoogle()">
+    </div>
+  </div>
+  <p class="error center" ng-show="vm.error.address.flag">
+    {{vm.error.address.message}}
+  </p>
+  <button type="button" class="new-project-continue btn" ng-click="vm.continueAddr()">Continue</button>
+</div>
+<div class="slide bckg-white" id="slide6" ng-show="vm.continueAddressFlag">
+  <h2 class="text-center">Indicate your availabilities</h2>
+
+  <div ng-show="vm.emergency">
+    <div class="row center no-margin w-400">
+
+
+      <div class="col-xs-9">
+
+      </div>
+      <div class="col-xs-1">
+        L
+      </div>
+      <div class="col-xs-1">
+        M
+      </div>
+      <div class="col-xs-1">
+        M
+      </div>
+
+
+      <div class="col-xs-9">
+        Toute la journée
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+
+
+
+      <div class="col-xs-9">
+        7h-9h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+
+
+
+      <div class="col-xs-9">
+        9h-12h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+
+
+
+      <div class="col-xs-9">
+        12h-14h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+
+
+
+      <div class="col-xs-9">
+        14h-16h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-9">
+        16h-18h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-9">
+        18h-20h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-9">
+        Après 20h
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+      <div class="col-xs-1">
+        <input type="checkbox">
+      </div>
+
+
+    </div>
+  </div>
+  <div ng-show="!vm.emergency">
+    <ul class="questions-ul center no-padding">
+      <li class="question-li center" ng-class="vm.child0" ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
+        On a specific date
+      </li>
+      <li ng-show="vm.dateSelected" class="custom-li-date question-li center" ng-click="vm.unSelectdate()">
+        {{vm.dt | date:'dd-MM-yyyy'}}
+      </li>
+      <li ng-show="vm.dateFlag">
+        <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+          <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true" class="well well-sm custom-date" custom-class="getDayClass(date, mode)"></uib-datepicker>
+        </div>
+      </li>
+      <li class="question-li center" ng-class="vm.child1" ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
+        Within a week
+      </li>
+      <li class="question-li center" ng-class="vm.child2" ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+        Within a month
+      </li>
+      <li class="question-li center" ng-class="vm.child3" ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+        I am a flexible on the start date
+      </li>
+    </ul>
+    <p class="error center" ng-show="vm.error.date.flag">
+      {{vm.error.date.message}}
+    </p>
+  </div>
+  <button type="button" class="new-project-continue mb-10 btn" ng-click="vm.post()">POST</button>
+  <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()">DRAFT</button>
+</div>
+
+</div>
 </div>
 </section>
