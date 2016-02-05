@@ -82,7 +82,11 @@
         title: vm.title,
         description: vm.projectDescription,
         desiredDatePeriod: vm.dateType,
-        address: {}
+        address: {},
+        tags: []
+      }
+      for (var i = 0; i < vm.questions.length; i++) {
+        formData.tags.push({name: vm.questions[i].shortName});
       }
       if (vm.dateType == "SPECIFIC"){
         formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
