@@ -27,6 +27,9 @@
         projectSMALLPOST: function(data, success, error) {
           $http.post(baseUrl + '/projects/small', data).success(success).error(error)
         },
+        projectEMERGENCYPOST: function(data, success, error) {
+          $http.post(baseUrl + '/projects/emergency', data).success(success).error(error)
+        },
         stepsGET: function(data, success, error) {
           $http.get(baseUrl + '/projects/steps?type='+data).success(success).error(error)
         },

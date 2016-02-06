@@ -926,8 +926,8 @@
 .w-900{
   max-width: 900px;
 }
-.w-400{
-  max-width: 400px;
+.w-500{
+  max-width: 500px;
 }
 .select-custom{
   width: 100%;
@@ -985,13 +985,13 @@
 }
 
 .error{
-font-size:18px;
-color:#d0021b;
-letter-spacing:0.53px;
-line-height:21px;
-text-align:center;;
-margin-top: 7px;
-margin-bottom: 20px;
+  font-size:18px;
+  color:#d0021b;
+  letter-spacing:0.53px;
+  line-height:21px;
+  text-align:center;;
+  margin-top: 7px;
+  margin-bottom: 20px;
 
 }
 
@@ -999,6 +999,31 @@ margin-bottom: 20px;
   background-color: #9b9b9b!important;
 }
 
+.checkbox-style{
+  height: 15px;
+  width: 15px;
+  border: 2px solid #00aded;
+  cursor: pointer;
+}
+.checkbox-style > .check{
+  top: -4px;
+  height: 15px;
+  width: 15px;
+  font-size: 11px;
+  color: #006E96;
+}
+.checkbox-disabled{
+  border: 2px solid grey;
+  cursor: not-allowed;
+}
+.line-date{
+  height: 45px;
+}
+.line-date > div{
+  position: relative;
+  top: 30%;
+  transform: translate(0,-30%);
+}
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
   margin-top: 5px;
