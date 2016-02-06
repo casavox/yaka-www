@@ -183,6 +183,7 @@
     vm.subService = null;
     vm.projectDescription = "";
     vm.material = null;
+    vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
     if (vm.user.addresses.length > 0){
       vm.myAddress = vm.user.addresses[0].address;
       $scope.address.name = vm.myAddress;
@@ -398,6 +399,10 @@
       vm.error.description.flag = true;
     }
     else if (vm.material != null && vm.projectDescription.length >= 3){
+      vm.error.material.flag = true;
+      vm.error.material.message = "";
+      vm.error.description.message = "";
+      vm.error.description.flag = false;
       vm.continue = true;
       $timeout(function(){
         $location.hash('slide4');
