@@ -59,7 +59,7 @@
     vm.newAddr = {};
     vm.all = all;
     vm.initDate = initDate;
-    vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}};
+    vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
     $scope.options = {
       types: ['(cities)'],
       componentRestrictions: { country: 'FR' }
@@ -390,23 +390,20 @@
   function continueProject(){
     if (vm.material == null)
     {
+      vm.error.material.message = "Select YES or NO";
+      vm.error.material.flag = true;
+    }
+    if (vm.projectDescription.length < 3) {
       vm.error.description.message = "Add a description of your needs";
       vm.error.description.flag = true;
-      return "";
     }
-    else if ( || vm.projectDescription.length < 3) {
-      vm.error.description.message = "Select YES or NO";
-      vm.error.description.flag = true;
-      return "";
-    }
-    else {
+    else if (vm.material != null && vm.projectDescription.length >= 3){
       vm.continue = true;
       $timeout(function(){
         $location.hash('slide4');
         $anchorScroll();
       },0);
     }
-
   }
 
   function continueProjectImg(){

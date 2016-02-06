@@ -81,6 +81,9 @@
       <p class="material-sub">I need it</p>
     </div>
   </div>
+  <p class="error center" ng-show="vm.error.material.flag">
+    {{vm.error.material.message}}
+  </p>
   <h2 class="text-center h2-middle">Could you describe project for us?</h2>
   <textarea class="description center" ng-model="vm.projectDescription" ng-change="vm.verif()" placeholder="describe your problem and your needs"></textarea>
   <p class="error center" ng-show="vm.error.description.flag">
