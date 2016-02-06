@@ -388,9 +388,14 @@
   }
 
   function continueProject(){
-    if (vm.material == null || vm.projectDescription.length < 3)
+    if (vm.material == null)
     {
       vm.error.description.message = "Add a description of your needs";
+      vm.error.description.flag = true;
+      return "";
+    }
+    else if ( || vm.projectDescription.length < 3) {
+      vm.error.description.message = "Select YES or NO";
       vm.error.description.flag = true;
       return "";
     }
