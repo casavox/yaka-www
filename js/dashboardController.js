@@ -61,6 +61,9 @@
           if (tab[i] && tab[i].type && tab[i].status && tab[i].unreadMessages == false && tab[i].type != "EMERGENCY" && tab[i].status != "ONGOING_RATE_PRO")
           tmp.push(tab[i]);
         }
+        else if (tmp.length > 3){
+          tmp = tmp.slice(0, 3);
+        }
         return tmp;
       }
     }

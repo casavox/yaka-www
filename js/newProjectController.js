@@ -99,6 +99,8 @@
             if (file && !file.$error) {
               file.upload = $upload.upload({
                 url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+                headers: {'Content-Type': undefined},
+                skipAuthorization: true,
                 data: {
                   upload_preset: cloudinary.config().upload_preset,
                   tags: 'myphotoalbum',

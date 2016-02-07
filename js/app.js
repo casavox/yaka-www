@@ -7,7 +7,8 @@ angular.module('Yaka', [
   'vsGoogleAutocomplete',
   'cloudinary',
   'ui.bootstrap',
-  'ngFileUpload']);
+  'ngFileUpload',
+  'satellizer']);
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -33,7 +34,7 @@ angular.module('Yaka', [
     .module('Yaka')
     .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider) {
       //
       // Cloudinary configuration
       // cloudinaryProvider
@@ -41,6 +42,14 @@ angular.module('Yaka', [
       // .set("upload_preset", "UUUUUUUU");
       //
       // Translation area
+      $authProvider.facebook({
+        clientId: '847913895334564'
+      });
+
+      $authProvider.google({
+        clientId: 'Google Client ID'
+      });
+
       $translateProvider.translations('en', {
 
       });

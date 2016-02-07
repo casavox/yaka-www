@@ -98,7 +98,7 @@
         ngf-drop="uploadFiles($files)"
         ngf-drag-over-class="dragOverClass($event)"
         ng-model="files"
-        ng-multiple="false" ngf-select="uploadFiles($files, $invalidFiles)"
+        ng-multiple="false" ngf-select="uploadFiles($files, $invalidFiles, $index)"
           accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
       <div class="add-img center">
         <a cl-href="{{photo.public_id}}" format="jpg" target="_blank">

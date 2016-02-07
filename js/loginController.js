@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state']
-  function LoginController($scope, networkService, socialNetworkService, $localStorage, $state) {
+  LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state', '$rootScope', '$auth']
+  function LoginController($scope, networkService, socialNetworkService, $localStorage, $state, $rootScope, $auth) {
 
     $scope.email = "";
     $scope.password = "";
@@ -28,6 +28,11 @@
       }
       socialNetworkService.login(succesFLogin, errorFLogin);
     };
+
+
+    $scope.authenticate = function(provider) {
+     $auth.authenticate(provider);
+   };
 
     function succesLogin(res){
       if (!angular.isUndefined(res.token) && res.token && res.token != ""){
