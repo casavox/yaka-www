@@ -35,6 +35,7 @@ angular.module('Yaka', [
     .config(config);
 
     function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider) {
+      $authProvider.baseUrl = 'https://yaka-api.herokuapp.com';
       //
       // Cloudinary configuration
       // cloudinaryProvider
@@ -44,7 +45,18 @@ angular.module('Yaka', [
       // Translation area
 
       $authProvider.google({
-        clientId: 'Google Client ID'
+        clientId: "yaka-c1a86",
+        // url: '/login/google',
+        // authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+        // redirectUri: window.location.origin,
+        // requiredUrlParams: ['scope'],
+        // optionalUrlParams: ['display'],
+        // scope: ['profile', 'email'],
+        // scopePrefix: 'openid',
+        // scopeDelimiter: ' ',
+        // display: 'popup',
+        // type: '2.0',
+        // popupOptions: { width: 452, height: 633 }
       });
 
       $translateProvider.translations('en', {
