@@ -94,9 +94,17 @@
 <div class="slide bckg-white" id="slide4" ng-show="vm.continue">
   <h2 class="text-center" >Add some photos of your project</h2>
   <div class="row w-900 center no-margin">
-    <div class="col-md-3 no-padding">
+    <div class="col-md-3 no-padding"
+        ngf-drop="uploadFiles($files)"
+        ngf-drag-over-class="dragOverClass($event)"
+        ng-model="files"
+        ng-multiple="false" ngf-select="uploadFiles($files, $invalidFiles)"
+          accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
       <div class="add-img center">
-        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
+        <a cl-href="{{photo.public_id}}" format="jpg" target="_blank">
+          <cl-image public-id="{{photo.public_id}}" class="thumbnail inline" width="150" height="150" crop="fit" quality="80" format="jpg"/>
+        </a>
+        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="filse[0].public_id"/>
       </div>
     </div>
     <div class="col-md-3 no-padding">

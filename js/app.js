@@ -6,7 +6,8 @@ angular.module('Yaka', [
   'ap.lateralSlideMenu',
   'vsGoogleAutocomplete',
   'cloudinary',
-  'ui.bootstrap']);
+  'ui.bootstrap',
+  'ngFileUpload']);
 
   window.fbAsyncInit = function() {
     FB.init({

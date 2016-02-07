@@ -922,6 +922,10 @@
   background-color: #f7f7f7;
   width: 220px;
   height: 220px;
+  cursor: pointer;
+}
+.add-img:hover{
+  background-color: #BFBFBF;
 }
 .w-900{
   max-width: 900px;

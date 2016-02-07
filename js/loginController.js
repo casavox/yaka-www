@@ -32,8 +32,17 @@
     function succesLogin(res){
       if (!angular.isUndefined(res.token) && res.token && res.token != ""){
         $localStorage.token = res.token;
-        $state.go('Dashboard');
-        console.log(res);
+        if ($rootScope.newProject){
+          if ($rootScope.newProject.type == "small")
+          networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+          else {
+            networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
+          }
+        }
+        else {
+          $state.go('Dashboard');
+          console.log(res);
+        }
       }
     };
 
@@ -43,7 +52,20 @@
     };
 
     function succesFLogin(res){
-        console.log(res);
+      if (!angular.isUndefined(res.token) && res.token && res.token != ""){
+        $localStorage.token = res.token;
+        if ($rootScope.newProject){
+          if ($rootScope.newProject.type == "small")
+          networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+          else {
+            networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
+          }
+        }
+        else {
+          $state.go('Dashboard');
+          console.log(res);
+        }
+      }
     };
 
     function errorFLogin(err){
