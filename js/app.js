@@ -45,18 +45,18 @@ angular.module('Yaka', [
       // Translation area
 
       $authProvider.google({
-        clientId: "yaka-c1a86",
-        // url: '/login/google',
-        // authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
-        // redirectUri: window.location.origin,
-        // requiredUrlParams: ['scope'],
-        // optionalUrlParams: ['display'],
-        // scope: ['profile', 'email'],
-        // scopePrefix: 'openid',
-        // scopeDelimiter: ' ',
-        // display: 'popup',
-        // type: '2.0',
-        // popupOptions: { width: 452, height: 633 }
+        clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
+        url: '/login/google',
+        authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+        redirectUri: window.location.origin,
+        requiredUrlParams: ['scope'],
+        optionalUrlParams: ['display'],
+        scope: ['profile', 'email'],
+        scopePrefix: 'openid',
+        scopeDelimiter: ' ',
+        display: 'popup',
+        type: '2.0',
+        popupOptions: { width: 452, height: 633 }
       });
 
       $translateProvider.translations('en', {
