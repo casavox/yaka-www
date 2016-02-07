@@ -43,7 +43,12 @@ angular.module('Yaka', [
       //
       // Translation area
       $authProvider.facebook({
-        clientId: '847913895334564'
+        clientId: '847913895334564',
+        name: 'facebook',
+        url: 'https://yaka-api.herokuapp.com/login/facebook',
+        scope: ['email'],
+        display: 'popup',
+        popupOptions: { width: 580, height: 400 }
       });
 
       $authProvider.google({
