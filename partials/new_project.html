@@ -95,35 +95,71 @@
   <h2 class="text-center" >Add some photos of your project</h2>
   <div class="row w-900 center no-margin">
     <div class="col-md-3 no-padding"
-        ngf-drop="uploadFiles($files)"
-        ngf-drag-over-class="dragOverClass($event)"
-        ng-model="files"
-        ng-multiple="false" ngf-select="uploadFiles($files, $invalidFiles, $index)"
-          accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-      <div class="add-img center">
-        <a cl-href="{{photo.public_id}}" format="jpg" target="_blank">
-          <cl-image public-id="{{photo.public_id}}" class="thumbnail inline" width="150" height="150" crop="fit" quality="80" format="jpg"/>
-        </a>
-        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="filse[0].public_id"/>
-      </div>
-    </div>
-    <div class="col-md-3 no-padding">
-      <div class="add-img center">
-        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-      </div>
-    </div>
-    <div class="col-md-3 no-padding">
-      <div class="add-img center">
-        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-      </div>
-    </div>
-    <div class="col-md-3 no-padding">
-      <div class="add-img center">
-        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" />
-      </div>
-    </div>
+    ngf-drop="uploadFiles($files)"
+    ngf-drag-over-class="dragOverClass($event)"
+    ng-model="files"
+    ng-multiple="false" >
+    <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
+    <span class=" center img-preview-comment" ng-show="photos[0].public_id"></span>
+    <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+    accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+    <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[0].public_id">
+
+      <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png"/>
+    </a>
+    <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
   </div>
-  <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>
+</div>
+<div class="col-md-3 no-padding"
+ngf-drop="uploadFiles($files)"
+ngf-drag-over-class="dragOverClass($event)"
+ng-model="files"
+ng-multiple="false" >
+<span class=" center img-preview-remove" ng-click="photos[1] = {}" ng-show="photos[1].public_id"></span>
+<span class=" center img-preview-comment" ng-show="photos[1].public_id"></span>
+<div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
+accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+<a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[1].public_id">
+
+  <cl-image public-id="{{photos[1].public_id}}" class="img-preview center-middle" format="png"/>
+</a>
+<img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[1].public_id"/>
+</div>
+</div>
+<div class="col-md-3 no-padding"
+ngf-drop="uploadFiles($files)"
+ngf-drag-over-class="dragOverClass($event)"
+ng-model="files"
+ng-multiple="false" >
+<span class=" center img-preview-remove" ng-click="photos[2] = {}" ng-show="photos[2].public_id"></span>
+<span class=" center img-preview-comment" ng-show="photos[2].public_id"></span>
+<div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 2)"
+accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+<a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[2].public_id">
+
+  <cl-image public-id="{{photos[2].public_id}}" class="img-preview center-middle" format="png"/>
+</a>
+<img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[2].public_id"/>
+</div>
+</div>
+<div class="col-md-3 no-padding"
+ngf-drop="uploadFiles($files)"
+ngf-drag-over-class="dragOverClass($event)"
+ng-model="files"
+ng-multiple="false" >
+<span class=" center img-preview-remove" ng-click="photos[3] = {}" ng-show="photos[3].public_id"></span>
+<span class=" center img-preview-comment" ng-show="photos[3].public_id"></span>
+<div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 3)"
+accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+<a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[3].public_id">
+
+  <cl-image public-id="{{photos[3].public_id}}" class="img-preview center-middle" format="png"/>
+</a>
+<img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[3].public_id"/>
+</div>
+</div>
+</div>
+<button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>
 </div>
 <div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
   <h2 class="text-center">Where do need it?</h2>
@@ -384,4 +420,26 @@
 
 </div>
 </div>
+<div class="popUp" ng-show="vm.popupFlag">
+  <div class="popUp-container center-middle">
+    <div class="popUp-content">
+      <h4>Créer un projet sans photo ? </h4>
+      <p>
+        L’ajout de photo améliore grandement la compréhension de votre besoin : Ajouter une photo maintenant ?
+      </p>
+    </div>
+    <div class="popUp-footer">
+      <div class="row no-margin">
+        <div class="col-xs-9 fr" ng-click="vm.continueWithoutImages()">
+          PUBLIER SANS PHOTO
+        </div>
+        <div class="col-xs-3 text-center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ng-click="vm.popupFlag = false">
+        OUI
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 </section>

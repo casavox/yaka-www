@@ -17,6 +17,8 @@
     vm.child1 = "";
     vm.child2 = "";
     vm.child3 = "";
+    vm.continueWithoutImages = continueWithoutImages;
+    vm.popupFlag = false;
     vm.emergency = false;
     vm.dateFlag = false;
     vm.dt = new Date();
@@ -92,15 +94,13 @@
         $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
         $rootScope.photos = [{}, {}, {}, {}];
         //$scope.$watch('files', function() {
-        $scope.uploadFiles = function(files, index){
+        $scope.uploadFiles = function(files, invalides, index){
           $scope.files = files;
           if (!$scope.files) return;
           angular.forEach(files, function(file){
             if (file && !file.$error) {
               file.upload = $upload.upload({
                 url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-                headers: {'Content-Type': undefined},
-                skipAuthorization: true,
                 data: {
                   upload_preset: cloudinary.config().upload_preset,
                   tags: 'myphotoalbum',
@@ -278,6 +278,15 @@
             formData.address.name  = vm.newAddr.name;
             formData.address.address = vm.newAddr.address;
           }
+          for (var i = 0; i < $rootScope.photos.length; i++) {
+            if ($rootScope.photos[i].public_id){
+              var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
+              if ($rootScope.photos[i].comment) {
+                tmp.comment = $rootScope.photos[i].comment;
+              }
+              formData.images.push(tmp);
+            }
+          }
           formData.type = "small";
           $rootScope.newProject = formData;
           networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
@@ -296,6 +305,8 @@
           if (vm.continueAddress){
             for (var i = 0; i < vm.user.addresses.length; i++) {
               if (vm.user.addresses[i].address == vm.myAddress){
+                if (angular.isUndefined(formData.images))
+                formData.images = [];
                 formData.address.name  = vm.user.addresses[i].name;
                 formData.address.address = vm.myAddress;
                 break;
@@ -305,6 +316,17 @@
           else {
             formData.address.name  = vm.newAddr.name;
             formData.address.address = vm.newAddr.address;
+          }
+          for (var i = 0; i < $rootScope.photos.length; i++) {
+            if ($rootScope.photos[i].public_id){
+              if (angular.isUndefined(formData.images))
+              formData.images = [];
+              var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
+              if ($rootScope.photos[i].comment) {
+                tmp.comment = $rootScope.photos[i].comment;
+              }
+              formData.images.push(tmp);
+            }
           }
           vm.initDate(vm.J1, formData.availabilities);
           vm.initDate(vm.J2, formData.availabilities);
@@ -467,6 +489,28 @@
       }
 
       function continueProjectImg(){
+        var flag = 0;
+        for (var i = 0; i < $rootScope.photos.length; i++) {
+          if ($rootScope.photos[i].public_id){
+            flag += 1;
+          }
+        }
+        if (flag == 0){
+          vm.continueImg = false;
+          vm.popupFlag = true;
+        }
+        else {
+          vm.popupFlag = false;
+          vm.continueImg = true;
+          $timeout(function(){
+            $location.hash('slide5');
+            $anchorScroll();
+          },0);
+        }
+      }
+
+      function continueWithoutImages(){
+        vm.popupFlag = false;
         vm.continueImg = true;
         $timeout(function(){
           $location.hash('slide5');
@@ -481,6 +525,8 @@
         vm.service = false;
         vm.questions.push(item);
         vm.subService = null;
+        vm.material = null;
+        vm.projectDescription = "";
         for (var i = 0; i < items.length; i++) {
           items[i].selected = "";
         }

@@ -117,7 +117,7 @@ angular.module('Yaka', [
         return {
           'request': function (config) {
             config.headers = config.headers || {};
-            if (angular.isUndefined($localStorage.token) == false && $localStorage.token) {
+            if (angular.isUndefined($localStorage.token) == false && $localStorage.token && config.url != "https://api.cloudinary.com/v1_1/yaka/upload") {
               config.headers.Authorization = $localStorage.token;
             }
             return config;

@@ -923,6 +923,7 @@
   width: 220px;
   height: 220px;
   cursor: pointer;
+  overflow: hidden;
 }
 .add-img:hover{
   background-color: #BFBFBF;
@@ -1027,6 +1028,62 @@
   position: relative;
   top: 30%;
   transform: translate(0,-30%);
+}
+
+.img-preview{
+  height: 100%;
+}
+.img-preview-remove{
+  height: 28px;
+  width: 28px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('../icons/mdpi/remove.png');
+  z-index: 1;
+  position: absolute;
+  background-size: 28px 28px;
+  cursor: pointer;
+}
+.img-preview-comment{
+  height: 33px;
+  width: 33px;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('../icons/mdpi/comment.png');
+  z-index: 1;
+  position: absolute;
+  background-size: 33px 33px;
+  cursor: pointer;
+}
+.popUp{
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.popUp-container{
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  padding: 20px;
+}
+.popUp-footer{
+position: absolute;
+bottom: 20px;
+}
+
+.popUp-footer > div{
+  width: 360px;
+}
+.popUp-footer > div > div{
+  cursor: pointer;
+}
+.fr{
+  text-align: right;
 }
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
