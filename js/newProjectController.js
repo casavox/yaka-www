@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  NewProjectController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary']
-  function NewProjectController($scope, networkService, socialNetworkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary) {
+  NewProjectController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg']
+  function NewProjectController($scope, networkService, socialNetworkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg) {
     var vm = this;
     vm.user = $localStorage.user;
     console.log(vm.user);
