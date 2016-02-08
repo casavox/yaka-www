@@ -225,6 +225,12 @@
       }
 
       function resetProject(){
+        if (vm.emergency){
+          networkService.stepsGET("EMERGENCY", succesProjectsGET, errorProjectsGET);
+        }
+        else {
+          networkService.stepsGET("SMALL_PROJECT", succesProjectsGET, errorProjectsGET);
+        }
         vm.title = "";
         vm.type = {};
         vm.continue = false;

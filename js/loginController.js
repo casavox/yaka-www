@@ -31,7 +31,11 @@
 
 
     $scope.authenticate = function(provider) {
-     $auth.authenticate(provider);
+     $auth.authenticate(provider).then(function(res){
+       console.log("then", res);
+     }).catch(function(res){
+       console.log("catch", res);
+     });
    };
 
     function succesLogin(res){
