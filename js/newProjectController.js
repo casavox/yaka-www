@@ -95,6 +95,10 @@
         $rootScope.photos = [{}, {}, {}, {}];
         //$scope.$watch('files', function() {
         $scope.uploadFiles = function(files, invalides, index){
+          if (invalides.length > 0){
+            if (invalides[0].$error == "maxSize")
+            alertMsg.send("Error : max size 5MB.", "danger");
+          }
           $scope.files = files;
           if (!$scope.files) return;
           angular.forEach(files, function(file){

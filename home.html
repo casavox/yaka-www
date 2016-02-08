@@ -30,7 +30,8 @@
 <body ng-app="Yaka">
 
   <div ui-view></div>
-
+  <div class="alert alert-coord alert-message dark" ng-class="alertMsgStyle" ng-show="alertMsgFlag == true"><span class="glyphicon btn-circle"  ng-class="alertMsgStylIcon" aria-hidden="true"></span><a class="close" data-dismiss="alert" aria-label="close" ng-click="alertMsgFlag = false">&times;</a>{{alertMessage}}
+  </div>
   <!--  -->
   <!-- Dependencies -->
   <script type="text/javascript" src="scripts/angular-route.js"></script>

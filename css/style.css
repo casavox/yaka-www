@@ -1085,6 +1085,25 @@ bottom: 20px;
 .fr{
   text-align: right;
 }
+
+.alert-message {
+  width: 90%;
+  z-index: 9999;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  text-align: center;
+  /*font-style: bold;
+  line-height: 30px;
+  vertical-align: middle;*/
+  margin-bottom: 0!important;
+  background-image: none!important;
+}
+.alert-message > span {
+  margin-right: 5px;
+  font-size: 15px;
+}
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
   margin-top: 5px;
