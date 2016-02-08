@@ -118,7 +118,7 @@ ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[1] = {}" ng-show="photos[1].public_id"></span>
 <span class=" center img-preview-comment" ng-show="photos[1].public_id"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
-accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[1].public_id">
 
   <cl-image public-id="{{photos[1].public_id}}" class="img-preview center-middle" format="png"/>
@@ -134,7 +134,7 @@ ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[2] = {}" ng-show="photos[2].public_id"></span>
 <span class=" center img-preview-comment" ng-show="photos[2].public_id"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 2)"
-accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[2].public_id">
 
   <cl-image public-id="{{photos[2].public_id}}" class="img-preview center-middle" format="png"/>
@@ -150,7 +150,7 @@ ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[3] = {}" ng-show="photos[3].public_id"></span>
 <span class=" center img-preview-comment" ng-show="photos[3].public_id"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 3)"
-accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[3].public_id">
 
   <cl-image public-id="{{photos[3].public_id}}" class="img-preview center-middle" format="png"/>
