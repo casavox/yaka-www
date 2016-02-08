@@ -1102,10 +1102,9 @@ bottom: 20px;
 }
 .alert-danger{
   background-color: #DC5050!important;
-}
-.alert-danger > a{
   color: white!important;
 }
+
 .alert-message > span {
   margin-right: 5px;
   font-size: 15px;
