@@ -198,27 +198,27 @@
       }
 
       function initHours(){
-        if (vm.time > 9) {
+        if (vm.time >= 9) {
           vm.J1.c1Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        if (vm.time > 12) {
+        if (vm.time >= 12) {
           vm.J1.c2Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        if (vm.time > 14) {
+        if (vm.time >= 14) {
           vm.J1.c3Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        if (vm.time > 16) {
+        if (vm.time >= 16) {
           vm.J1.c4Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        if (vm.time > 18) {
+        if (vm.time >= 18) {
           vm.J1.c5Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        if (vm.time > 20) {
+        if (vm.time >= 20) {
           vm.J1.c6Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
