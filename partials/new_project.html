@@ -102,7 +102,7 @@
     <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
     <span class=" center img-preview-comment" ng-show="photos[0].public_id"></span>
     <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
-    ng-accept="'image/*'" ngf-max-height="1000" ngf-max-size="1MB">
+    ngf-accept="'image/*'" ngf-max-height="1000" ngf-max-size="1MB">
     <a cl-href="{{photo.public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
 
       <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png"/>
