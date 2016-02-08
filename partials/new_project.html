@@ -57,7 +57,7 @@
 </ul>
 </div> -->
 <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenSteps">
-  <h2 class="text-center">{{q.name}}</h2>
+  <h2 class="text-center">{{q.question}}</h2>
   <ul  class="questions-ul center">
     <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenSteps" ng-click="vm.selectSubService(child, q.childrenSteps, $parent.$index)">
       {{child.name}}
@@ -85,7 +85,7 @@
     {{vm.error.material.message}}
   </p>
   <h2 class="text-center h2-middle">Could you describe project for us?</h2>
-  <textarea class="description center" ng-model="vm.projectDescription" ng-change="vm.verif()" placeholder="describe your problem and your needs"></textarea>
+  <textarea class="description center" ng-model="vm.projectDescription" placeholder="describe your problem and your needs"></textarea>
   <p class="error center" ng-show="vm.error.description.flag">
     {{vm.error.description.message}}
   </p>
@@ -102,8 +102,8 @@
     <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
     <span class=" center img-preview-comment" ng-show="photos[0].public_id"></span>
     <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
-    accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-    <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[0].public_id">
+    ng-accept="'image/*'" ngf-max-height="1000" ngf-max-size="1MB">
+    <a cl-href="{{photo.public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
 
       <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png"/>
     </a>
