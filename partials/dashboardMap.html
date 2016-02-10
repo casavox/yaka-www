@@ -1,0 +1,12 @@
+<script type="text/ng-template" id="fakeBottomControl.tpl.html">
+    <div class="fakeBottomControl"></div>
+</script>
+<ui-gmap-google-map center='map.center' zoom='map.zoom' options="mapOptions">
+    <ui-gmap-map-control template="fakeBottomControl.tpl.html" position="right-bottom" controller="DashboardMapController"
+                         index="-1"></ui-gmap-map-control>
+</ui-gmap-google-map>
+<div class="mapFooter col-xs-12 transformableBottomView"
+     ng-class="{'big':bottomViewDisplayed, 'small':!bottomViewDisplayed}"
+     ng-click="toggleBottomView()">
+
+</div>

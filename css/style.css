@@ -1147,3 +1147,35 @@ bottom: 20px;
   background-color: #FF6074;
   box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
 }
+
+.dashboardMap {
+    height: 100%;
+    position: relative
+}
+
+.dashboardMap .angular-google-map-container {
+    height: 100%;
+}
+
+.dashboardMap .angular-google-map {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.dashboardMap .mapFooter {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0px;
+    background: lightgray;
+    opacity: 0.5;
+}
+
+.fakeBottomControl {
+    height: 100px;
+}

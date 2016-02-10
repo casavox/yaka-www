@@ -8,7 +8,8 @@ angular.module('Yaka', [
   'cloudinary',
   'ui.bootstrap',
   'ngFileUpload',
-  'satellizer']);
+  'satellizer',
+  'uiGmapgoogle-maps']);
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -120,6 +121,12 @@ angular.module('Yaka', [
         url: "/My-Pros",
         templateUrl: "partials/dashboard.html",
         controller: 'DashboardController',
+        controllerAs: 'vm'
+      })
+      .state('dashboard2', {
+        url: "/dashboard2",
+        templateUrl: "partials/dashboard2.html",
+        controller: 'Dashboard2Controller',
         controllerAs: 'vm'
       })
 
