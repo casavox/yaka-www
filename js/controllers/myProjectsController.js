@@ -11,7 +11,8 @@
   function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope) {
 
     var vm = this;
-
+    vm.projectsOnGoing = [];
+    vm.projectsCompleted = [];
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
     networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
