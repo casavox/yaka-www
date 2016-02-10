@@ -22,13 +22,13 @@
       $rootScope.projects = res;
       if (res.length < 3){
         if (!angular.isUndefined(res) && res && res.length > 0)
-        vm.projectsOnGoing = res;
+        vm.dashboardProjects = res;
         else {
-        vm.projectsOnGoing = [];
+        vm.dashboardProjects = [];
         }
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
-      vm.projectsOnGoing = sortProjects(res);
+      vm.dashboardProjects = sortProjects(res);
       }
       console.log(res)
     }
