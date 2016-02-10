@@ -51,7 +51,7 @@ angular.module('Yaka', [
         redirectUri: window.location.origin,
         requiredUrlParams: ['scope'],
         optionalUrlParams: ['display'],
-        scope: ['profile', 'email'],
+        scope: ['profile', 'email', 'https://www.googleapis.com/auth/userinfo.profile'],
         scopePrefix: 'openid',
         scopeDelimiter: ' ',
         display: 'popup',
