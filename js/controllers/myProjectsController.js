@@ -19,6 +19,11 @@
     function succesProjectsGET(res){
       $rootScope.projects = res;
       if (res.length < 3){
+        if (!angular.isUndefined(res) && res && res.length > 0)
+        vm.projectsOnGoing = res;
+        else {
+        vm.projectsOnGoing = [];
+        }
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
       vm.projectsOnGoing = sortProjects(res);
