@@ -22,8 +22,8 @@
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
       vm.projectsOnGoing = sortProjects(res);
-      console.log(res);
       }
+      console.log(res);
     }
 
     function succesProjectsCompletedGET(res){
