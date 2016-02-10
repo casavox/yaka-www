@@ -32,8 +32,8 @@
 
     $scope.authenticate = function(provider) {
      $auth.authenticate(provider).then(function(res){
-       if (!angular.isUndefined(res.token) && res.token && res.token != ""){
-         $localStorage.token = res.token;
+       if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != ""){
+         $localStorage.token = res.data.token;
          if ($rootScope.newProject){
            if ($rootScope.newProject.type == "small")
            networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
