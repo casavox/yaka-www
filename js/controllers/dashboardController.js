@@ -14,6 +14,7 @@
     vm.dashboardProjects = [];
     vm.dashboardAddress = [];
     vm.dashboardPro = [];
+    vm.count = 0;
 
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
 
@@ -29,6 +30,7 @@
 
     function succesProjectsDraftGET(res){
       vm.dashboardProjects.concat(res);
+      vm.count = vm.dashboardProjects.length;
       vm.dashboardProjects = sortProjects(vm.dashboardProjects);
       console.log(vm.dashboardProjects);
     }
