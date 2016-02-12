@@ -505,6 +505,8 @@
 
 .header-box > p {
     font-size: 15px;
+    line-height: 60px;
+    vertical-align: middle;
 }
 
 .is-empty {

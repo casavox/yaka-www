@@ -14,21 +14,28 @@
     vm.dashboardProjects = [];
     vm.dashboardAddress = [];
     vm.dashboardPro = [];
+    vm.count = 0;
 
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
 
     function succesProjectsGET(res){
       $rootScope.projects = res;
       if (res.length < 3){
+        if (!angular.isUndefined(res) && res && res.length > 0)
+        vm.dashboardProjects = res;
+        else {
+        vm.dashboardProjects = [];
+        }
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
       vm.dashboardProjects = sortProjects(res);
-      console.log(res);
       }
+      console.log(res)
     }
 
     function succesProjectsDraftGET(res){
       vm.dashboardProjects.concat(res);
+      vm.count = vm.dashboardProjects.length;
       vm.dashboardProjects = sortProjects(vm.dashboardProjects);
       console.log(vm.dashboardProjects);
     }
@@ -64,6 +71,9 @@
         else if (tmp.length > 3){
           tmp = tmp.slice(0, 3);
         }
+        return tmp;
+      }
+      else {
         return tmp;
       }
     }

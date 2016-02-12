@@ -49,7 +49,7 @@
               <p>
                 You don't have any project yet
               </p>
-              <button type="button" class="post-job-button">POST A JOB</button>
+              <a ui-sref="New-Project"><button type="button" class="post-job-button">POST A JOB</button></a>
             </div>
             <ul class="no-padding">
 
@@ -112,9 +112,9 @@
           </div>
           <div class="footer-box" ng-show="vm.dashboardProjects.length > 0">
             <a ui-sref="My-Projects" class="link-show-all">
-              show all projects ({{vm.dashboardProjects.length}})
+              show all projects ({{vm.count}})
             </a>
-            <a class="link-post-job">
+            <a ui-sref="New-Project" class="link-post-job">
               post a job
           </a>
           </div>

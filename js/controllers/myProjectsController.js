@@ -11,18 +11,24 @@
   function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope) {
 
     var vm = this;
-
+    vm.projectsOnGoing = [];
+    vm.projectsCompleted = [];
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
     networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
     function succesProjectsGET(res){
       $rootScope.projects = res;
       if (res.length < 3){
+        if (!angular.isUndefined(res) && res && res.length > 0)
+        vm.projectsOnGoing = res;
+        else {
+        vm.projectsOnGoing = [];
+        }
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
       vm.projectsOnGoing = sortProjects(res);
-      console.log(res);
       }
+      console.log(res);
     }
 
     function succesProjectsCompletedGET(res){
@@ -66,6 +72,9 @@
           if (tab[i] && tab[i].type && tab[i].status && tab[i].unreadMessages == false && tab[i].type != "EMERGENCY" && tab[i].status != "ONGOING_RATE_PRO")
           tmp.push(tab[i]);
         }
+        return tmp;
+      }
+      else {
         return tmp;
       }
     }

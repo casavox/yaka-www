@@ -32,7 +32,20 @@
 
     $scope.authenticate = function(provider) {
      $auth.authenticate(provider).then(function(res){
-       console.log("then", res);
+       if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != ""){
+         $localStorage.token = res.data.token;
+         if ($rootScope.newProject){
+           if ($rootScope.newProject.type == "small")
+           networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+           else {
+             networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
+           }
+         }
+         else {
+           $state.go('Dashboard');
+           console.log(res);
+         }
+       }
      }).catch(function(res){
        console.log("catch", res);
      });
