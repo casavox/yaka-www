@@ -1,12 +1,51 @@
+<script type="text/ng-template" id="fakeTopControl.tpl.html">
+    <div class="fakeTopControl"></div>
+</script>
+
 <script type="text/ng-template" id="fakeBottomControl.tpl.html">
     <div class="fakeBottomControl"></div>
 </script>
-<ui-gmap-google-map center='map.center' zoom='map.zoom' options="mapOptions">
-    <ui-gmap-map-control template="fakeBottomControl.tpl.html" position="right-bottom" controller="DashboardMapController"
+
+<ui-gmap-google-map center='map.center' pan='true' zoom='map.zoom' options="mapOptions" bounds="map.bounds">
+    <ui-gmap-map-control template="fakeTopControl.tpl.html" position="right-top"
+                         controller="DashboardMapController"
                          index="-1"></ui-gmap-map-control>
+    <ui-gmap-map-control template="fakeBottomControl.tpl.html" position="right-bottom"
+                         controller="DashboardMapController"
+                         index="-1"></ui-gmap-map-control>
+    <ui-gmap-markers models="emergencies" coords="'coords'" icon="'icon'" click="onMarkerClicked"></ui-gmap-markers>
 </ui-gmap-google-map>
+
 <div class="mapFooter col-xs-12 transformableBottomView"
      ng-class="{'big':bottomViewDisplayed, 'small':!bottomViewDisplayed}"
      ng-click="toggleBottomView()">
-
+    <div class="carousel-demo">
+        <ul rn-carousel rn-carousel-controls rn-carousel-index="carrouselSelectedItem.index" rn-carousel-buffered>
+            <li ng-repeat="emergency in emergencies track by emergency.id" ng-class="'id-' + emergency.id">
+                <div class="projectListItem">
+                    <div class="projectListItemLogo">
+                        LOGO
+                    </div>
+                    <div class="projectListItemTitle">
+                        {{emergency.title}}
+                    </div>
+                    <div class="projectListItemAddress">
+                        {{emergency.address.name}}
+                    </div>
+                    <div class="projectListItemDistanceLogo">
+                        logo
+                    </div>
+                    <div class="projectListItemDistance">
+                        5 km
+                    </div>
+                    <div class="projectListItemChrono">
+                        23hrs
+                    </div>
+                    <div class="projectListItemLeadType">
+                        Contact
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

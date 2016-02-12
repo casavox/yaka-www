@@ -35,6 +35,9 @@
         },
         profileGET: function(success, error) {
           $http.get(baseUrl + '/profile/me').success(success).error(error)
+        },
+        professionalGET: function(success, error) {
+          $http.get(baseUrl + '/pro/me').success(success).error(error)
         }
       };
 
