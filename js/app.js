@@ -140,7 +140,7 @@ angular.module('Yaka', [
             if (angular.isUndefined($localStorage.token) == false && $localStorage.token && config.url != "https://api.cloudinary.com/v1_1/yaka/upload") {
               config.headers.Authorization = $localStorage.token;
             }
-            else if (config.url != "https://api.cloudinary.com/v1_1/yaka/upload"){
+            else if (config.url == "https://api.cloudinary.com/v1_1/yaka/upload"){
               if (config.headers.Authorization)
               delete config.headers.Authorization;
             }
