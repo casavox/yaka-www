@@ -2,7 +2,7 @@
     <div class="header-menu">
         <ng-include src="'partials/menuHamburger.html'"></ng-include>
         <div class="title">
-            Dashboard2
+            Dashboard Pro
         </div>
         <a ui-sref="login">
             <div class="logout">
@@ -13,11 +13,11 @@
     <div class="page-content">
         <ng-include src="'partials/menu.html'"></ng-include>
         <div class="content-slide">
-            <div ng-controller="DashboardMapController" class="col-sm-8 dashboardMap">
-                <ng-include src="'partials/dashboardMap.html'"></ng-include>
+            <div ng-controller="ProDashboardMapController as vm" class="col-sm-8 dashboardMap">
+                <ng-include src="'partials/proDashboardMap.html'"></ng-include>
             </div>
-            <div ng-controller="DashboardListController" class="col-sm-4 hidden-xs">
-                <ng-include src="'partials/dashboardList.html'"></ng-include>
+            <div ng-controller="ProDashboardListController as vm" class="col-sm-4 hidden-xs">
+                <ng-include src="'partials/proDashboardList.html'"></ng-include>
             </div>
         </div>
     </div>

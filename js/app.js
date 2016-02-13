@@ -127,8 +127,8 @@ angular.module('Yaka', [
       })
       .state('prodashboard', {
         url: "/pro/dashboard",
-        templateUrl: "partials/dashboard2.html",
-        controller: 'Dashboard2Controller',
+        templateUrl: "partials/proDashboard.html",
+        controller: 'ProDashboardController',
         controllerAs: 'vm'
       })
       .state('end-project', {

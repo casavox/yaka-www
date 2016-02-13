@@ -8,9 +8,11 @@
     Dashboard2Controller.$inject = ['$scope']
     function Dashboard2Controller($scope) {
 
+        var app = this;
+
         var menuOpened = false;
 
-        $scope.menu = {
+        app.menu = {
             openMenu: function () {
                 menuOpened = true;
             },

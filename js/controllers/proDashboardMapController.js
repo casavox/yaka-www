@@ -3,30 +3,24 @@
 
     angular
         .module('Yaka')
-        .controller('DashboardMapController', DashboardMapController);
+        .controller('ProDashboardMapController', ProDashboardMapController);
 
-    DashboardMapController.$inject = ['$scope', 'networkService', 'socialNetworkService', 'uiGmapGoogleMapApi', '$rootScope']
-    function DashboardMapController($scope, networkService, socialNetworkService, uiGmapGoogleMapApi, $rootScope) {
+    ProDashboardMapController.$inject = ['$scope', 'networkService', 'uiGmapGoogleMapApi']
+    function ProDashboardMapController($scope, networkService, uiGmapGoogleMapApi) {
 
         var vm = this;
 
-        vm.geocoder = new google.maps.Geocoder();
+        var geocoder = new google.maps.Geocoder();
 
-        $scope.emergencies = [];
-        $scope.emergenciesInfinite = [];
-        $scope.carrouselSelectedItem = {index: -1};
+        vm.emergencies = [];
+        vm.carrouselSelectedItem = {index: -1};
 
-        networkService.professionalGET(succesProfessionalGET, errorProfessionalGET);
+        $scope.$on('onEmergenciesLoadedBroadcast', function (event, args) {
+            onEmergenciesLoaded(args);
+        });
 
-        function succesProfessionalGET(res) {
-            var emergencies = res.availableEmergencies;
-
-            $scope.emergencies = geocodeEmergencies(emergencies);
-
-        }
-
-        function errorProfessionalGET() {
-
+        function onEmergenciesLoaded(emergencies) {
+            vm.emergencies = geocodeEmergencies(emergencies);
         }
 
         function geocodeEmergencies(emergencies) {
@@ -34,14 +28,14 @@
             angular.forEach(emergencies, function (emergency, key) {
                 var address = emergency.address;
 
-                vm.geocoder.geocode({'address': address.address}, function (results, status) {
+                geocoder.geocode({'address': address.address}, function (results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
                         emergency.coords = {
                             latitude: results[0].geometry.location.lat(),
                             longitude: results[0].geometry.location.lng()
                         }
                         emergency.icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
-                        $scope.map.center = {
+                        vm.map.center = {
                             latitude: emergency.coords.latitude,
                             longitude: emergency.coords.longitude
                         };
@@ -53,49 +47,52 @@
         }
 
         $scope.$watch(function () {
-            return $scope.carrouselSelectedItem.index;
+            return vm.carrouselSelectedItem.index;
         }, function (newValue, oldValue) {
             if (!angular.equals(oldValue, newValue)) {
-                onEmergencySelected($scope.emergencies[newValue]);
+                if (vm.emergencies[newValue] && vm.emergencies[newValue].coords) {
+                    onEmergencySelected(vm.emergencies[newValue]);
+                }
             }
         }, true);
 
         function onEmergencySelected(emergency) {
-            $scope.map.center = {
+            vm.map.center = {
                 latitude: emergency.coords.latitude,
                 longitude: emergency.coords.longitude
             };
+            vm.map.zoom = 15;
             setDefaultIconForAllMarkers();
             emergency.icon = "http://maps.google.com/mapfiles/kml/paddle/wht-blank.png";
         }
 
         function setDefaultIconForAllMarkers() {
-            for (var i = 0; i < $scope.emergencies.length; i++) {
-                $scope.emergencies[i].icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
+            for (var i = 0; i < vm.emergencies.length; i++) {
+                vm.emergencies[i].icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
             }
         }
 
-        $scope.onMarkerClicked = function (mapMarker, event, emergency) {
+        vm.onMarkerClicked = function (mapMarker, event, emergency) {
             var carouselIndex = 0;
-            for (var i = 0; i < $scope.emergencies.length; i++) {
-                var emergencyTmp = $scope.emergencies[i];
+            for (var i = 0; i < vm.emergencies.length; i++) {
+                var emergencyTmp = vm.emergencies[i];
                 if (emergency.id == emergencyTmp.id) {
                     carouselIndex = i;
                     break;
                 }
             }
-            $scope.carrouselSelectedItem.index = carouselIndex;
+            vm.carrouselSelectedItem.index = carouselIndex;
         }
 
         uiGmapGoogleMapApi.then(function (maps) {
-            $scope.map = {
+            vm.map = {
                 center: {
                     latitude: 0, longitude: 0
                 },
                 zoom: 12,
                 bounds: {}
             };
-            $scope.mapOptions = {
+            vm.mapOptions = {
                 zoomControlOptions: {
                     style: google.maps.ZoomControlStyle.DEFAULT,
                     position: google.maps.ControlPosition.RIGHT_BOTTOM
