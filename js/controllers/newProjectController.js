@@ -463,7 +463,7 @@
     function succesProjectsPOST(res){
       console.log(res);
       $timeout(function(){
-        $state.go('My-Projects')
+        $state.go('myprojects')
       },0);
     }
 

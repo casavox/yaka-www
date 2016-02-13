@@ -4,7 +4,7 @@
     <div class="title">
       MY DASHBOARD
     </div>
-    <a ui-sref="Login"><div class="logout">
+    <a ui-sref="login"><div class="logout">
       Log Out
     </div>
     </a>
@@ -34,7 +34,7 @@
               <p>
                 You don't have any project yet
               </p>
-              <a ui-sref="New-Project"><button type="button" class="post-job-button">POST A JOB</button></a>
+              <a ui-sref="newproject"><button type="button" class="post-job-button">POST A JOB</button></a>
             </div>
             <ul class="no-padding">
 
@@ -96,10 +96,10 @@
             </ul>
           </div>
           <div class="footer-box" ng-show="vm.dashboardProjects.length > 0">
-            <a ui-sref="My-Projects" class="link-show-all">
+            <a ui-sref="myprojects" class="link-show-all">
               show all projects ({{vm.count}})
             </a>
-            <a ui-sref="New-Project" class="link-post-job">
+            <a ui-sref="newproject" class="link-post-job">
               post a job
           </a>
           </div>

@@ -38,7 +38,7 @@
       function succesRegister(res){
         if (!angular.isUndefined(res.token) && res.token && res.token != ""){
           $localStorage.token = res.token;
-          $state.go('Dashboard');
+          $state.go('dashboard');
           console.log(res);
         }
       };

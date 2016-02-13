@@ -113,6 +113,7 @@
   width: 55px;
   height: 55px;
   float: left;
+  cursor: pointer;
 }
 
 .title {
@@ -1543,6 +1544,7 @@ ul[rn-carousel-buffered] > li {
   height: 100%;
   padding-top: 10px;
   position: relative;
+  cursor: pointer;
 }
 
 .projectListItemLogo {

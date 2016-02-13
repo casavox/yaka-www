@@ -19,7 +19,7 @@
             var formData = {'accessToken': accessToken};
             networkService.facebookLogin(formData, function(res){
               $localStorage.token = res.token;
-              $state.go('Dashboard');
+              $state.go('dashboard');
             }, function(err){
               if (!angular.isUndefined(err) && err && err.message && err.message != "")
               console.log(err.message);
