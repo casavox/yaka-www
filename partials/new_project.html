@@ -100,7 +100,7 @@
     ng-model="files"
     ng-multiple="false" >
     <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
-    <span class=" center img-preview-comment" ng-show="photos[0].public_id"></span>
+    <span class=" center img-preview-comment" ng-show="photos[0].public_id" ng-click="photos[0].commentFlag = !photos[0].commentFlag " ng-init="photos[0].commentFlag = false"></span>
     <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
     ngf-accept="'image/*'" ngf-max-size="5MB">
     <a cl-href="{{photo.public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
@@ -109,6 +109,7 @@
     </a>
     <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
   </div>
+  <textarea class="comment" ng-model="photos[0].comment" ng-show="photos[0].commentFlag" placeholder="Comment this photo"></textarea>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -116,7 +117,7 @@ ngf-drag-over-class="dragOverClass($event)"
 ng-model="files"
 ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[1] = {}" ng-show="photos[1].public_id"></span>
-<span class=" center img-preview-comment" ng-show="photos[1].public_id"></span>
+<span class=" center img-preview-comment" ng-show="photos[1].public_id" ng-click="photos[1].commentFlag = !photos[1].commentFlag" ng-init="photos[1].commentFlag = false"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[1].public_id">
@@ -125,6 +126,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[1].public_id"/>
 </div>
+<textarea class="comment" ng-model="photos[1].comment" ng-show="photos[1].commentFlag" placeholder="Comment this photo"></textarea>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -132,7 +134,7 @@ ngf-drag-over-class="dragOverClass($event)"
 ng-model="files"
 ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[2] = {}" ng-show="photos[2].public_id"></span>
-<span class=" center img-preview-comment" ng-show="photos[2].public_id"></span>
+<span class=" center img-preview-comment" ng-show="photos[2].public_id" ng-click="photos[2].commentFlag = !photos[2].commentFlag" ng-init="photos[2].commentFlag = false"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 2)"
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[2].public_id">
@@ -141,6 +143,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[2].public_id"/>
 </div>
+<textarea class="comment" ng-model="photos[2].comment" ng-show="photos[2].commentFlag" placeholder="Comment this photo"></textarea>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -148,7 +151,7 @@ ngf-drag-over-class="dragOverClass($event)"
 ng-model="files"
 ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[3] = {}" ng-show="photos[3].public_id"></span>
-<span class=" center img-preview-comment" ng-show="photos[3].public_id"></span>
+<span class=" center img-preview-comment" ng-show="photos[3].public_id" ng-click="photos[3].commentFlag = !photos[3].commentFlag" ng-init="photos[3].commentFlag = false"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 3)"
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[3].public_id">
@@ -157,6 +160,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[3].public_id"/>
 </div>
+<textarea class="comment" ng-model="photos[3].comment" ng-show="photos[3].commentFlag" placeholder="Comment this photo"></textarea>
 </div>
 </div>
 <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>

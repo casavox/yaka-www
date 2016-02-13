@@ -272,7 +272,7 @@
           description: vm.projectDescription,
           desiredDatePeriod: vm.dateType,
           address: {},
-          tags: []
+          tags: [],
         }
         for (var i = 0; i < vm.questions.length; i++) {
           formData.tags.push({name: vm.questions[i].shortName});
@@ -296,9 +296,10 @@
         for (var i = 0; i < $rootScope.photos.length; i++) {
           if ($rootScope.photos[i].public_id){
             var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-            if ($rootScope.photos[i].comment) {
+            if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].comment) {
               tmp.comment = $rootScope.photos[i].comment;
             }
+            formData.images = formData.images || [];
             formData.images.push(tmp);
           }
         }
