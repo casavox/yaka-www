@@ -22,6 +22,7 @@
     vm.emergency = false;
     vm.dateFlag = false;
     vm.dt = new Date();
+    vm.default = angular.copy(vm.dt);
     vm.minDate = new Date()
     vm.J1 = {date: new Date()};
     vm.time = vm.J1.date.getHours();
@@ -267,6 +268,26 @@
 
     function post(){
       if (!vm.emergency){
+        if (!vm.dateType){
+          vm.error.date.flag = true;
+          vm.error.date.message = "At least a slot is required";
+          return
+        }
+        else if (vm.dateType == 'SPECIFIC'){
+          if (vm.dt.getTime() == vm.default.getTime()){
+            vm.error.date.flag = true;
+            vm.error.date.message = "At least a slot is required";
+            return;
+          }
+          else {
+            vm.error.date.flag = false;
+            vm.error.date.message = "At least a slot is required";
+          }
+        }
+        else {
+          vm.error.date.flag = false;
+          vm.error.date.message = "At least a slot is required";
+        }
         var formData = {
           title: vm.title,
           description: vm.projectDescription,
@@ -383,6 +404,8 @@
       if(newVal !== oldVal){
         vm.dateSelected = true;
         vm.dateFlag = false;
+        vm.error.date.flag = false;
+        vm.error.date.message = "At least a slot is required";
       }
     })
 
