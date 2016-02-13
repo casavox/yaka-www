@@ -43,7 +43,6 @@
     vm.continue = false;
     vm.questions = [];
     vm.continueAddr = continueAddr;
-    vm.setAddressGoogle = setAddressGoogle;
     vm.continueAddressFlag = false;
     vm.service = false;
     vm.continueImg = false;
@@ -496,18 +495,6 @@
       }
     })
 
-    function setAddressGoogle(){
-      vm.continueAddress = false;
-      vm.continueAddressFlag = false;
-      if ($scope.address.name.length > 0){
-        vm.newAddrFlag = true;
-        vm.myAddress = "";
-      }
-      else {
-        vm.newAddrFlag = false;
-      }
-    }
-
     function verifNameAddr(){
       vm.continueAddressFlag = false;
     }
@@ -552,28 +539,19 @@
           vm.error.address.flag = true;
         }
       }
-      // if ($scope.address.components.placeId){
-      //   for (var i = 0; i < array.length; i++) {
-      //     array[i]
-      //   }
-      //   vm.continueAdress = true;
-      //   $timeout(function(){
-      //     $location.hash('slide6');
-      //     $anchorScroll();
-      //   },0);
-      // }
-      // if (vm.myAddress == $scope.address.name) {
-      //   vm.continueAddress = true;
-      //   $timeout(function(){
-      //     $location.hash('slide6');
-      //     $anchorScroll();
-      //   },0);
-      // }
     }
 
     function setAddress(){
-      $scope.address.name = vm.myAddress;
-      vm.continueAddress = true;
+      if (vm.myAddress == "new"){
+        vm.newAddrFlag = true;
+        $scope.address.name = "";
+        vm.continueAddress = false;
+      }
+      else {
+        $scope.address.name = vm.myAddress;
+        vm.continueAddress = true;
+        vm.newAddrFlag = false;
+      }
     }
 
     function verif(){
@@ -713,7 +691,8 @@
     }
 
     function errorProjectsGET(){
-
+      alertMsg.send("Error : Impossible de charger le module de création de projet", "danger");
+      $state.go("Dashboard");
     }
 
     function succesProfileGET(res){
@@ -727,6 +706,7 @@
         else {
           vm.continueAddress = false;
           vm.newAddrFlag = true;
+          vm.myAddress = "new";
         }
       }
       else {
@@ -737,7 +717,7 @@
     }
 
     function errorProfileGET(){
-
+      alertMsg.send("Error : Impossible de charger les addresses existantes", "danger");
     }
   }
 })();

@@ -169,13 +169,15 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
   <h2 class="text-center">Where do need it?</h2>
   <div class="row no-margin w-900 center">
     <div class="col-md-3 no-padding">
-      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-show="vm.newAddrFlag" ng-change="vm.verifNameAddr()">
-      <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()" ng-hide="vm.newAddrFlag">
-        <option value="">Select an address</option>
+      <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
+        <option value="new">Create an address</option>
         <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
       </select>
     </div>
-    <div class="col-md-9 no-padding">
+    <div class="col-xs-3" ng-show="vm.newAddrFlag">
+      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="Address name">
+    </div>
+    <div class="no-padding" ng-class="{'col-xs-9': !vm.newAddrFlag, 'col-xs-6': vm.newAddrFlag}">
       <input vs-google-autocomplete
 
       ng-model="address.name"
@@ -195,7 +197,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
       type="text"
       name="address"
       id="address"
-      placeholder="Enter address" class="input-custom" ng-change="vm.setAddressGoogle()">
+      placeholder="Enter address" class="input-custom">
     </div>
   </div>
   <p class="error center" ng-show="vm.error.address.flag">
