@@ -59,6 +59,7 @@
     vm.verifNameAddr = verifNameAddr;
     vm.resetProject = resetProject;
     vm.post = post;
+    vm.draft = draft;
     vm.newAddr = {};
     vm.all = all;
     vm.initDate = initDate;
@@ -266,7 +267,73 @@
       }
     }
 
+
+    function draft(){
+      if (!vm.dateType){
+        vm.error.date.flag = true;
+        vm.error.date.message = "At least a slot is required";
+        return
+      }
+      else if (vm.dateType == 'SPECIFIC'){
+        if (vm.dt.getTime() == vm.default.getTime()){
+          vm.error.date.flag = true;
+          vm.error.date.message = "At least a slot is required";
+          return;
+        }
+        else {
+          vm.error.date.flag = false;
+          vm.error.date.message = "At least a slot is required";
+        }
+      }
+      else {
+        vm.error.date.flag = false;
+        vm.error.date.message = "At least a slot is required";
+      }
+      var formData = {
+        title: vm.title,
+        description: vm.projectDescription,
+        desiredDatePeriod: vm.dateType,
+        status: "DRAFT",
+        address: {},
+        tags: [],
+      }
+      for (var i = 0; i < vm.questions.length; i++) {
+        formData.tags.push({name: vm.questions[i].shortName});
+      }
+      if (vm.dateType == "SPECIFIC"){
+        formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
+      }
+      if (vm.continueAddress){
+        for (var i = 0; i < vm.user.addresses.length; i++) {
+          if (vm.user.addresses[i].address == vm.myAddress){
+            formData.address.name  = vm.user.addresses[i].name;
+            formData.address.address = vm.myAddress;
+            break;
+          }
+        }
+      }
+      else {
+        formData.address.name  = vm.newAddr.name;
+        formData.address.address = vm.newAddr.address;
+      }
+      for (var i = 0; i < $rootScope.photos.length; i++) {
+        if ($rootScope.photos[i].public_id){
+          var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
+          if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].comment) {
+            tmp.comment = $rootScope.photos[i].comment;
+          }
+          formData.images = formData.images || [];
+          formData.images.push(tmp);
+        }
+      }
+      formData.type = "small";
+      $rootScope.newProject = formData;
+      networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+    }
+
+
     function post(){
+
       if (!vm.emergency){
         if (!vm.dateType){
           vm.error.date.flag = true;
@@ -329,6 +396,26 @@
         networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
       }
       else {
+        if (!vm.dateType){
+          vm.error.date.flag = true;
+          vm.error.date.message = "At least a slot is required";
+          return
+        }
+        else if (vm.dateType == 'SPECIFIC'){
+          if (vm.dt.getTime() == vm.default.getTime()){
+            vm.error.date.flag = true;
+            vm.error.date.message = "At least a slot is required";
+            return;
+          }
+          else {
+            vm.error.date.flag = false;
+            vm.error.date.message = "At least a slot is required";
+          }
+        }
+        else {
+          vm.error.date.flag = false;
+          vm.error.date.message = "At least a slot is required";
+        }
         var formData = {
           title: vm.title,
           description: vm.projectDescription,
