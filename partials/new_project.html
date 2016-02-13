@@ -6,12 +6,12 @@
         <a ui-sref="dashboard"><div class="y-white">
           Y
         </div></a>
-        <div class="Flogo">
+        <a ui-sref="dashboard" class="color-none"><div class="Flogo">
           Yaka
-        </div>
-        <div class="Slogo">
+        </div></a>
+        <a ui-sref="dashboard" class="color-none"><div class="Slogo">
           Club
-        </div>
+        </div></a>
       </div>
     </div>
     <a ui-sref="login"><div class="logout">
@@ -156,7 +156,7 @@ ng-multiple="false" >
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[3].public_id">
 
-  <cl-image public-id="{{photos[3].public_id}}" class="img-preview center-middle" format="png"/>
+  <cl-image public-id="{{photos[3].public_id}}" class="img-preview center-middle" format="png" height="220" width="220"/>
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[3].public_id"/>
 </div>
@@ -423,6 +423,38 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
   <button type="button" class="new-project-continue mb-10 btn" ng-click="vm.post()">POST</button>
   <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()">DRAFT</button>
 </div>
+<div class="slide bckg-default end" id="slideEnd" ng-show="vm.end">
+  <h2 class="text-center">It’s done !</h2>
+  <p>
+    Thank you - Your enquiry has been sent.
+  </p>
+  <p>
+    Download the app to be notified in real time on new proposal :
+  </p>
+  <div class="row no-margin w-500 center mb-39">
+    <div class="col-xs-6">
+      <img class="center" src="icons/mdpi/android.png" alt="GooglePlayStore" />
+    </div>
+    <div class="col-xs-6">
+      <img class="center" src="icons/mdpi/apple.png" alt="AppleStore" />
+    </div>
+  </div>
+  <p>
+    Or check your email in the next hours.
+  </p>
+  <p>
+    You will be redirect in :
+  </p>
+  <div class="center" id="auto-start-false-timer">
+    <p class="timer text-center">
+      {{vm.countdown}}
+    </p>
+  </div>
+
+</div>
+
+
+
 
 </div>
 </div>

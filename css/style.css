@@ -467,13 +467,13 @@
 }
 
 .content-slide {
-  top: 80px;
-  position: fixed;
-  left: 220px;
-  height: calc(100% - 55px);
-  width: calc(100% - 220px);
-  background-color: #edeff5;
-  overflow: auto;
+  top: 80px!important;
+  position: fixed!important;
+  left: 220px!important;
+  height: calc(100% - 80px)!important;
+  width: calc(100% - 220px)!important;
+  background-color: #edeff5!important;
+  overflow: auto!important;
 }
 
 .content-slide-default {
@@ -1005,19 +1005,65 @@
 }
 
 .v-icon-ICON_LOCKSMITH {
-  background-image: url(../icons/mdpi/ic_locksmith_def.png)
+  background-image: url(../icons/mdpi/ic_locksmith.png)
 }
 
 .v-icon-ICON_PLUMBER {
-  background-image: url(../icons/mdpi/ic_plumber_def.png)
+  background-image: url(../icons/mdpi/ic_plumber.png)
 }
 
 .v-icon-ICON_ELECTRICITY {
-  background-image: url(../icons/mdpi/ic_electrician_def.png)
+  background-image: url(../icons/mdpi/ic_electrician.png)
 }
 
 .v-icon-ICON_CARPENTER {
-  background-image: url(../icons/mdpi/ic_carpenter_def.png)
+  background-image: url(../icons/mdpi/ic_carpenter.png)
+}
+
+.v-icon-ICON_PAINTER {
+  background-image: url(../icons/mdpi/ic_painter.png)
+}
+
+
+.type-project-box:hover > div > .v-icon-ICON_LOCKSMITH {
+  background-image: url(../icons/mdpi/ic_locksmith_highlight.png)
+}
+
+.type-project-box:hover > div > .v-icon-ICON_PLUMBER {
+  background-image: url(../icons/mdpi/ic_plumber_highlight.png)
+}
+
+.type-project-box:hover > div > .v-icon-ICON_ELECTRICITY {
+  background-image: url(../icons/mdpi/ic_electrician_highlight.png)
+}
+
+.type-project-box:hover > div > .v-icon-ICON_CARPENTER {
+  background-image: url(../icons/mdpi/ic_carpenter_highlight.png)
+}
+
+.type-project-box:hover > div > .v-icon-ICON_PAINTER {
+  background-image: url(../icons/mdpi/ic_painter_highlight.png)
+}
+
+
+.activate > div > .v-icon-ICON_LOCKSMITH {
+  background-image: url(../icons/mdpi/ic_locksmith_highlight.png)
+}
+
+.activate > div > .v-icon-ICON_PLUMBER {
+  background-image: url(../icons/mdpi/ic_plumber_highlight.png)
+}
+
+.activate > div > .v-icon-ICON_ELECTRICITY {
+  background-image: url(../icons/mdpi/ic_electrician_highlight.png)
+}
+
+.activate > div > .v-icon-ICON_CARPENTER {
+  background-image: url(../icons/mdpi/ic_carpenter_highlight.png)
+}
+
+.activate > div > .v-icon-ICON_PAINTER {
+  background-image: url(../icons/mdpi/ic_painter_highlight.png)
 }
 
 .new-project-box {
@@ -1433,6 +1479,24 @@
   height: 140px;
 }
 
+.end > p{
+  font-family:Montserrat-Regular;
+font-size:25px;
+color:#2f313a;
+line-height:30px;
+text-align:center;
+width: 100%;
+margin-bottom: 39px;
+}
+.mb-39{
+  margin-bottom: 39px!important;
+}
+.timer{
+  font-size: 30px;
+}
+.color-none{
+  color: black!important;
+}
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
   margin-top: 5px;

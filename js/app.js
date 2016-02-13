@@ -101,14 +101,14 @@ angular.module('Yaka', [
         controller: 'DashboardController',
         controllerAs: 'vm'
       })
-      .state('myprojects', {
-        url: "/myprojects",
+      .state('my-projects', {
+        url: "/my-projects",
         templateUrl: "partials/my_projects.html",
         controller: 'MyProjectsController',
         controllerAs: 'vm'
       })
-      .state('newproject', {
-        url: "/newproject",
+      .state('new-project', {
+        url: "/new-project",
         templateUrl: "partials/new_project.html",
         controller: 'NewProjectController',
         controllerAs: 'vm'
@@ -131,6 +131,12 @@ angular.module('Yaka', [
         controller: 'Dashboard2Controller',
         controllerAs: 'vm'
       })
+      .state('end-project', {
+        url: "/new-project/end-project",
+        templateUrl: "partials/end.html",
+        controller: 'EndController',
+        controllerAs: 'vm'
+      })
 
       //
       //Interceptor to put the token in the header for each request http
@@ -148,13 +154,30 @@ angular.module('Yaka', [
             return config;
           },
           'responseError': function(response) {
-            if(response.status === 401 || response.status === 403) {
-              $injector.get('$state').go('login');
-            }
+            
             return $q.reject(response);
           }
         };
       }]);
 
+    }
+  })();
+
+  (function() {
+    'use strict';
+
+    angular
+    .module('Yaka')
+    .run(runBlock);
+
+    function runBlock($rootScope, $localStorage, $injector) {
+      $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams , fromState, fromParams){
+        if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project"){
+          event.preventDefault();
+          $injector.get('$state').go('login');
+        }
+
+      })
     }
   })();

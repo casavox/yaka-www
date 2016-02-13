@@ -12,6 +12,8 @@
 
     $scope.email = "";
     $scope.password = "";
+    if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
+    delete $localStorage.token;
 
     $scope.login = function(){
       var formData = {
@@ -56,9 +58,9 @@
         $localStorage.token = res.token;
         if ($rootScope.newProject){
           if ($rootScope.newProject.type == "small")
-          networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+          networkService.projectSMALLPOST($rootScope.newProject, succesProjectsPOST, errorProjectsPOST);
           else {
-            networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
+            networkService.projectEMERGENCYPOST($rootScope.newProject, succesProjectsPOST, errorProjectsPOST);
           }
         }
         else {
@@ -66,6 +68,14 @@
           console.log(res);
         }
       }
+    };
+
+    function succesProjectsPOST(err){
+      $state.go("end-project")
+    };
+
+    function errorProjectsPOST(err){
+      $state.go("dashboard");
     };
 
     function errorLogin(err){
