@@ -421,7 +421,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
     </p>
   </div>
   <button type="button" class="new-project-continue mb-10 btn" ng-click="vm.post()">POST</button>
-  <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()">DRAFT</button>
+  <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()" ng-show="!vm.emergency">DRAFT</button>
 </div>
 <div class="slide bckg-default end" id="slideEnd" ng-show="vm.end">
   <h2 class="text-center">It’s done !</h2>
