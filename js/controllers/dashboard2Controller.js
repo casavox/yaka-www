@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('Dashboard2Controller', Dashboard2Controller);
 
-    Dashboard2Controller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope']
-    function Dashboard2Controller($scope, networkService, socialNetworkService, $rootScope) {
+    Dashboard2Controller.$inject = []
+    function Dashboard2Controller() {
         var vm = this;
 
         vm.getMenuItemClass = function (state) {
