@@ -42,7 +42,7 @@
               <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index" title="{{p.title}}">
                 <div class="row">
                   <div class="col-xs-2">
-                    <i class="fa fa-circle center-middle" ng-class="[p.type, p.status]"></i>
+                    <i class="fa fa-circle center-middle" ng-class="p.status"></i>
                   </div>
                   <div class="col-xs-7">
                     <div class="project-middle">
