@@ -10,7 +10,7 @@
         var vm = this;
 
         vm.getMenuItemClass = function (state) {
-            if (state == "dashboard2") {
+            if (state == "prodashboard") {
                 return "active-menu";
             }
             return "";

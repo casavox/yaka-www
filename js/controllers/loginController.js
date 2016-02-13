@@ -42,7 +42,7 @@
            }
          }
          else {
-           $state.go('Dashboard');
+           $state.go('dashboard');
            console.log(res);
          }
        }
@@ -62,7 +62,7 @@
           }
         }
         else {
-          $state.go('Dashboard');
+          $state.go('dashboard');
           console.log(res);
         }
       }
@@ -84,7 +84,7 @@
           }
         }
         else {
-          $state.go('Dashboard');
+          $state.go('dashboard');
           console.log(res);
         }
       }

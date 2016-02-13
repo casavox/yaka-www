@@ -17,7 +17,7 @@
     networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
     vm.getMenuItemClass = function (state) {
-      if (state == "myProjects") {
+      if (state == "myprojects") {
         return "active-menu";
       }
       return "";

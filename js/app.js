@@ -72,61 +72,61 @@ angular.module('Yaka', [
 
 
       //
-      // For any unmatched url, redirect to /state1
-      $urlRouterProvider.otherwise("/Login");
+      // For any unmatched url, redirect to /login
+      $urlRouterProvider.otherwise("/login");
       //
       // The states
       $stateProvider
-      .state('Login', {
-        url: "/Login",
+      .state('login', {
+        url: "/login",
         templateUrl: "partials/login.html",
         controller: 'LoginController',
         controllerAs: 'vm'
       })
-      .state('Register', {
-        url: "/Register",
+      .state('register', {
+        url: "/register",
         templateUrl: "partials/register.html",
         controller: 'RegisterController',
         controllerAs: 'vm'
       })
-      .state('Dashboard', {
-        url: "/Dashboard",
+      .state('dashboard', {
+        url: "/dashboard",
         templateUrl: "partials/dashboard.html",
         controller: 'DashboardController',
         controllerAs: 'vm'
       })
-      .state('Inbox', {
-        url: "/Inbox",
+      .state('inbox', {
+        url: "/inbox",
         templateUrl: "partials/dashboard.html",
         controller: 'DashboardController',
         controllerAs: 'vm'
       })
-      .state('My-Projects', {
-        url: "/My-Projects",
+      .state('myprojects', {
+        url: "/myprojects",
         templateUrl: "partials/my_projects.html",
         controller: 'MyProjectsController',
         controllerAs: 'vm'
       })
-      .state('New-Project', {
-        url: "/New-Project",
+      .state('newproject', {
+        url: "/newproject",
         templateUrl: "partials/new_project.html",
         controller: 'NewProjectController',
         controllerAs: 'vm'
       })
-      .state('My-Places', {
-        url: "/My-Places",
+      .state('myplaces', {
+        url: "/myplaces",
         templateUrl: "partials/dashboard.html",
         controller: 'DashboardController',
         controllerAs: 'vm'
       })
-      .state('My-Pros', {
-        url: "/My-Pros",
+      .state('mypros', {
+        url: "/mypros",
         templateUrl: "partials/dashboard.html",
         controller: 'DashboardController',
         controllerAs: 'vm'
       })
-      .state('dashboard2', {
-        url: "/dashboard2",
+      .state('prodashboard', {
+        url: "/pro/dashboard",
         templateUrl: "partials/dashboard2.html",
         controller: 'Dashboard2Controller',
         controllerAs: 'vm'
@@ -149,7 +149,7 @@ angular.module('Yaka', [
           },
           'responseError': function(response) {
             if(response.status === 401 || response.status === 403) {
-              $injector.get('$state').go('Login');
+              $injector.get('$state').go('login');
             }
             return $q.reject(response);
           }
