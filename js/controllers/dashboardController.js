@@ -16,6 +16,13 @@
     vm.dashboardPro = [];
     vm.count = 0;
 
+    vm.getMenuItemClass = function (state) {
+      if (state == "dashboard") {
+        return "active-menu";
+      }
+      return "";
+    }
+
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
 
     function succesProjectsGET(res){

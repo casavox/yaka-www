@@ -16,6 +16,13 @@
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
     networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
+    vm.getMenuItemClass = function (state) {
+      if (state == "myProjects") {
+        return "active-menu";
+      }
+      return "";
+    }
+    
     function succesProjectsGET(res){
       $rootScope.projects = res;
       if (res.length < 3){

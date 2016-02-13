@@ -27,7 +27,7 @@
 <script src="//cdn.auth0.com/w2/auth0-angular-4.js"> </script>
 
 </head>
-<body ng-app="Yaka">
+<body ng-app="Yaka" ng-controller="AppController">
 
   <div ui-view></div>
   <div class="alert alert-coord alert-message dark" ng-class="alertMsgStyle" ng-show="alertMsgFlag == true"><span class="glyphicon btn-circle"  ng-class="alertMsgStylIcon" aria-hidden="true"></span><a class="close" data-dismiss="alert" aria-label="close" ng-click="alertMsgFlag = false">&times;</a>{{alertMessage}}
@@ -52,6 +52,7 @@
   <script type="text/javascript" src='scripts/angular-simple-logger.min.js'></script>
   <script type="text/javascript" src='scripts/angular-google-maps.min.js'></script>
   <script type="text/javascript" src="scripts/angular-carousel.js"></script>
+  <script type="text/javascript" src="scripts/angular-ripple.js"></script>
 
   <script src="bower_components/satellizer/satellizer.js"></script>
   <!-- <script type="text/javascript" src="scripts/cloudinary.js"></script> -->
@@ -63,6 +64,7 @@
   <script src="js/animations.js"></script>
   <script type="text/javascript" src="js/services/networkService.js"></script>
   <script type="text/javascript" src="js/services/socialNetwork.js"></script>
+  <script type="text/javascript" src="js/controllers/appController.js"></script>
   <script type="text/javascript" src="js/controllers/loginController.js"></script>
   <script type="text/javascript" src="js/controllers/registerController.js"></script>
   <script type="text/javascript" src="js/controllers/dashboardController.js"></script>

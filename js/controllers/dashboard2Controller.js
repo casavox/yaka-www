@@ -7,7 +7,13 @@
 
     Dashboard2Controller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope']
     function Dashboard2Controller($scope, networkService, socialNetworkService, $rootScope) {
-
         var vm = this;
+
+        vm.getMenuItemClass = function (state) {
+            if (state == "dashboard2") {
+                return "active-menu";
+            }
+            return "";
+        }
     }
 })();

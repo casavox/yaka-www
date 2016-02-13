@@ -10,7 +10,8 @@ angular.module('Yaka', [
   'ngFileUpload',
   'satellizer',
   'uiGmapgoogle-maps',
-  'angular-carousel']);
+  'angular-carousel',
+  'angularRipple']);
 
   window.fbAsyncInit = function() {
     FB.init({
