@@ -6,22 +6,24 @@
     <div class="fakeBottomControl"></div>
 </script>
 
-<ui-gmap-google-map center='map.center' pan='true' zoom='map.zoom' options="mapOptions" bounds="map.bounds">
+<ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions" bounds="vm.map.bounds">
     <ui-gmap-map-control template="fakeTopControl.tpl.html" position="right-top"
-                         controller="DashboardMapController"
+                         controller="ProDashboardMapController"
                          index="-1"></ui-gmap-map-control>
     <ui-gmap-map-control template="fakeBottomControl.tpl.html" position="right-bottom"
-                         controller="DashboardMapController"
+                         controller="ProDashboardMapController"
                          index="-1"></ui-gmap-map-control>
-    <ui-gmap-markers models="emergencies" coords="'coords'" icon="'icon'" click="onMarkerClicked"></ui-gmap-markers>
+    <ui-gmap-markers models="vm.emergencies" coords="'coords'" icon="'icon'" click="vm.onMarkerClicked"></ui-gmap-markers>
 </ui-gmap-google-map>
+
+<div class="transparentLeftSwipe" ng-swipe-right="app.menu.openMenu()" visible-xs></div>
 
 <div class="mapFooter col-xs-12 transformableBottomView"
      ng-class="{'big':bottomViewDisplayed, 'small':!bottomViewDisplayed}"
-     ng-click="toggleBottomView()">
+     ng-click="vm.toggleBottomView()">
     <div class="carousel-demo">
-        <ul rn-carousel rn-carousel-controls rn-carousel-index="carrouselSelectedItem.index" rn-carousel-buffered>
-            <li ng-repeat="emergency in emergencies track by emergency.id" ng-class="'id-' + emergency.id">
+        <ul rn-carousel rn-carousel-controls rn-carousel-index="vm.carrouselSelectedItem.index" rn-carousel-buffered>
+            <li ng-repeat="emergency in vm.emergencies track by emergency.id" ng-class="'id-' + emergency.id">
                 <div class="projectListItem" angular-ripple>
                     <div class="projectListItemLogo">
                         LOGO

@@ -27,7 +27,7 @@
 <script src="//cdn.auth0.com/w2/auth0-angular-4.js"> </script>
 
 </head>
-<body ng-app="Yaka" ng-controller="AppController">
+<body ng-app="Yaka" ng-controller="AppController as app">
 
   <div ui-view></div>
   <div class="alert alert-coord alert-message dark" ng-class="alertMsgStyle" ng-show="alertMsgFlag == true"><span class="glyphicon btn-circle"  ng-class="alertMsgStylIcon" aria-hidden="true"></span><a class="close" data-dismiss="alert" aria-label="close" ng-click="alertMsgFlag = false">&times;</a>{{alertMessage}}
@@ -70,9 +70,9 @@
   <script type="text/javascript" src="js/controllers/dashboardController.js"></script>
   <script type="text/javascript" src="js/controllers/myProjectsController.js"></script>
   <script type="text/javascript" src="js/controllers/newProjectController.js"></script>
-  <script type="text/javascript" src="js/controllers/dashboard2Controller.js"></script>
-  <script type="text/javascript" src="js/controllers/dashboardMapController.js"></script>
-  <script type="text/javascript" src="js/controllers/dashboardListController.js"></script>
+  <script type="text/javascript" src="js/controllers/proDashboardController.js"></script>
+  <script type="text/javascript" src="js/controllers/proDashboardMapController.js"></script>
+  <script type="text/javascript" src="js/controllers/proDashboardListController.js"></script>
   <script type="text/javascript" src="js/services/serviceAlertMsg.js"></script>
 </body>
 </html>
