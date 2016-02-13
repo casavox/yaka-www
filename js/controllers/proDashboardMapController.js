@@ -15,16 +15,12 @@
         vm.emergencies = [];
         vm.carrouselSelectedItem = {index: -1};
 
-        networkService.professionalGET(succesProfessionalGET, errorProfessionalGET);
+        $scope.$on('onEmergenciesLoadedBroadcast', function (event, args) {
+            onEmergenciesLoaded(args);
+        });
 
-        function succesProfessionalGET(res) {
-            var emergencies = res.availableEmergencies;
-
+        function onEmergenciesLoaded(emergencies) {
             vm.emergencies = geocodeEmergencies(emergencies);
-        }
-
-        function errorProfessionalGET() {
-
         }
 
         function geocodeEmergencies(emergencies) {

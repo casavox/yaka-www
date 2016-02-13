@@ -16,12 +16,16 @@
             return "";
         }
 
+        $scope.$on('onEmergenciesLoadedEmit', function (event, args) {
+            $scope.$broadcast('onEmergenciesLoadedBroadcast', args);
+        });
+
         networkService.professionalGET(succesProfessionalGET, errorProfessionalGET);
 
         function succesProfessionalGET(res) {
             var emergencies = res.availableEmergencies;
 
-            $scope.emergencies = geocodeEmergencies(emergencies);
+            $scope.$emit('onEmergenciesLoadedEmit', emergencies)
         }
 
         function errorProfessionalGET() {
