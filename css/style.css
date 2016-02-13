@@ -1354,7 +1354,7 @@
 .img-preview-comment {
   height: 33px;
   width: 33px;
-  bottom: 0;
+  top: 187px;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: url('../icons/mdpi/comment.png');
@@ -1421,6 +1421,15 @@
 .alert-message > span {
   margin-right: 5px;
   font-size: 15px;
+}
+
+.comment{
+  resize: none!important;
+  width: 100%;
+  margin-top: 20px;
+  background: #f6f9fd;
+  border: 1px solid #ebf1fa;
+  height: 140px;
 }
 
 /*------------------------------------------ SWITCH ----------------------------*/
