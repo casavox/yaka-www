@@ -105,6 +105,54 @@
 
 /*--------------------------------- HEADER -----------------------------------*/
 
+.header {
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+}
+
+.Flogo {
+  font-family: 'montserrat_regular', Arial, sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 80px;
+  vertical-align: top;
+}
+
+.Slogo {
+  font-family: 'montserrat_ultra_light', Arial, sans-serif;
+  display: inline-block;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 80px;
+  vertical-align: top;
+}
+
+.Flogo-white {
+  font-family: 'montserrat_regular', Arial, sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 80px;
+  color: white;
+  vertical-align: top;
+}
+
+.Slogo-white {
+  font-family: 'montserrat_ultra_light', Arial, sans-serif;
+  display: inline-block;
+  font-size: 35px;
+  vertical-align: middle;
+  line-height: 80px;
+  color: white;
+  vertical-align: top;
+}
+
 .menu_hamburger {
   background-image: url('../icons/mdpi/menu_hamburger_icon.png');
   background-size: 26px 26px;
@@ -144,6 +192,19 @@
 }
 
 @media (max-width: 767px) {
+
+  .header {
+    height: 55px;
+  }
+
+  .Flogo {
+    line-height: 55px !important;
+  }
+
+  .Slogo {
+    line-height: 55px !important;
+  }
+
   .header-menu {
     left: 0px;
     height: 55px !important;
@@ -180,14 +241,6 @@
   overflow: auto;
 }
 
-.header {
-  height: 80px;
-  width: 100%;
-  background-color: white;
-  position: fixed;
-  z-index: 1;
-}
-
 .logo {
   float: left;
   margin: 0;
@@ -212,44 +265,6 @@
   display: inline-block;
   vertical-align: top;
 
-}
-
-.Flogo {
-  font-weight: bold;
-  display: inline-block;
-  font-size: 35px;
-  vertical-align: middle;
-  line-height: 80px;
-  vertical-align: top;
-}
-
-.Slogo {
-  display: inline-block;
-  font-size: 35px;
-  vertical-align: middle;
-  line-height: 80px;
-  vertical-align: top;
-}
-
-.Flogo-white {
-  font-family: 'montserrat_regular', Arial, sans-serif;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 35px;
-  vertical-align: middle;
-  line-height: 80px;
-  color: white;
-  vertical-align: top;
-}
-
-.Slogo-white {
-  font-family: 'montserrat_ultra_light', Arial, sans-serif;
-  display: inline-block;
-  font-size: 35px;
-  vertical-align: middle;
-  line-height: 80px;
-  color: white;
-  vertical-align: top;
 }
 
 .page-content {
@@ -1424,8 +1439,8 @@
   font-size: 15px;
 }
 
-.comment{
-  resize: none!important;
+.comment {
+  resize: none !important;
   width: 100%;
   margin-top: 20px;
   background: #f6f9fd;
