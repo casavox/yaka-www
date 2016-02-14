@@ -14,10 +14,11 @@
     <ng-include src="'partials/menu.html'"></ng-include>
     <div class="content-slide">
       <h4>IN PROGRESS</h4>
-      <div class="project" ng-repeat="p in vm.projectsOnGoing">
+      <div class="project" ng-repeat="p in vm.projectsOnGoing" ng-click="vm.selectProject(p)">
         <div class="row no-margin no-padding">
           <div class="col-xs-2 no-margin no-padding">
-
+            <div class="v-icon v-icon-{{p.icon}} center">
+            </div>
           </div>
           <div class="col-xs-4 no-margin no-padding" title="{{p.title}}">
             <div class="project-middle pl-20">
@@ -154,8 +155,8 @@
             </div>
           </div>
           <div class="col-xs-2 no-margin no-padding">
-            <img class="center-middle" src="icons/mdpi/ic_dialog_blue.png" alt="" ng-show="p.unreadMessages"/>
-            <img class="center-middle" src="icons/mdpi/ic_dialog_grey.png" alt="" ng-hide="p.unreadMessages"/>
+            <img class="center-middle" src="icons/mdpi/ic_message.png" alt="" ng-show="p.unreadMessages"/>
+            <img class="center-middle" src="icons/mdpi/ic_nomessage.png" alt="" ng-hide="p.unreadMessages"/>
 
             <p class="post-message">
               Posté depuis

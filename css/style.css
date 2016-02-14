@@ -1426,6 +1426,18 @@
   cursor: pointer;
 }
 
+.img-comment {
+  height: 33px;
+  width: 33px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('../icons/mdpi/comment.png');
+  z-index: 1;
+  position: absolute;
+  background-size: 33px 33px;
+  cursor: pointer;
+}
+
 .popUp {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
@@ -1496,21 +1508,195 @@
 
 .end > p{
   font-family:Montserrat-Regular;
-font-size:25px;
-color:#2f313a;
-line-height:30px;
-text-align:center;
-width: 100%;
-margin-bottom: 39px;
+  font-size:25px;
+  color:#2f313a;
+  line-height:30px;
+  text-align:center;
+  width: 100%;
+  margin-bottom: 39px;
 }
 .mb-39{
   margin-bottom: 39px!important;
+}
+.mb-15{
+    margin-bottom: 15px!important;
 }
 .timer{
   font-size: 30px;
 }
 .color-none{
   color: black!important;
+}
+.nav-header{
+  height: 82px;
+  padding: 15px;
+  border-bottom: 2px solid white;
+}
+
+.nav-header > div > img{
+  cursor: pointer;
+}
+
+.nav-tab{
+  height: 34px;
+  width: 100%;
+  padding-left: 32px;
+  clear: both;
+  -moz-box-shadow: 0px 2px 2px 0px #cfcfcf;
+  -webkit-box-shadow: 0px 2px 2px 0px #cfcfcf;
+  -o-box-shadow: 0px 2px 2px 0px #cfcfcf;
+  box-shadow: 0px 2px 2px 0px #cfcfcf;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=180, Strength=2);
+}
+.tab{
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  vertical-align: middle;
+  float: left;
+  padding-left: 42px;
+  padding-right: 42px;
+  cursor: pointer;
+}
+
+.tab-active{
+  border-bottom: 4px solid #00a3d3;
+}
+.min-w-44{
+  min-width: 44px;
+}
+.in-line{
+  display: inline;
+  float: left;
+}
+.in-line > h2{
+  /*font-family:Montserrat-Regular;*/
+  font-size:24px;
+  color:#2f313a;
+  line-height:29px;
+  text-align:left;
+}
+.in-line > p{
+  /*font-family:Montserrat-Light;*/
+  font-size:24px;
+  color:#2f313a;
+  line-height:29px;
+}
+.ml-20{
+  margin-left: 20px;
+}
+
+.detail-pro-title{
+  height: 24px;
+  margin: 30px;
+}
+.detail-pro-title > div{
+  margin-right: 30px;
+  /*font-family:Montserrat-Light;*/
+  font-size:20px;
+  color:#2f313a;
+  line-height:24px;
+}
+.detail-pro-title > hr{
+  border-bottom:1px solid #2f313a;
+  width:617px;
+  margin: 0;
+  padding-top: 11px;
+}
+.detail-pro-message-box{
+  width: 714px;
+  height: 100px;
+  background-color: white;
+  margin-left: 30px;
+}
+.detail-pro-message-box > p{
+  text-align: center;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 382px;
+  /*font-family:Montserrat-Light;*/
+  font-size:14px;
+  color:#444444;
+  letter-spacing:1.04px;
+  line-height:18px;
+  text-align:center;
+}
+.w-555{
+  width: 555px!important;
+}
+.project-description{
+  margin: 30px;
+  width: 714px;
+  background-color: white;
+}
+
+.project-description > div{
+  border-bottom: 1px solid #efefef;
+}
+.description-action-btn{
+  float: right;
+  /*font-family:Montserrat-Light;*/
+  font-size:14px;
+  color:#00aded;
+  letter-spacing:1.46px;
+  line-height:17px;
+  text-align:left;
+  margin-right: 20px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  cursor:pointer;
+}
+
+.description-date{
+  float: left;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  /*font-family:Montserrat-Light;*/
+  font-size:16px;
+  color:#2f313a;
+  letter-spacing:1.19px;
+  line-height:18px;
+  text-align:left;
+}
+
+.map{
+  height: 70px;
+}
+
+.description-sub-title{
+  /*font-family:Montserrat-Light;*/
+  font-size:20px;
+  color:#9b9b9b;
+  letter-spacing:2.08px;
+  line-height:24px;
+  text-align:left;
+  padding-left: 70px;
+  margin-top: 11px;
+  margin-bottom: 11px;
+}
+
+.description-sub-text{
+  /*font-family:Montserrat-Light;*/
+  font-size:16px;
+  color:#2f313a;
+  letter-spacing:1.19px;
+  line-height:18px;
+  text-align:left;
+  padding-left: 70px;
+  margin-bottom: 7px;
+}
+
+.custom-textarea{
+  background: transparent!important;
+border: none!important;
+resize: none!important;
+width: 610px!important;
+}
+
+.w-100p{
+  width: 100%!important;
 }
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {

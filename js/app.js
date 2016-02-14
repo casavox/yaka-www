@@ -11,7 +11,8 @@ angular.module('Yaka', [
   'satellizer',
   'uiGmapgoogle-maps',
   'angular-carousel',
-  'angularRipple']);
+  'angularRipple',
+  'monospaced.elastic']);
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -38,6 +39,7 @@ angular.module('Yaka', [
     .config(config);
 
     function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider) {
+
       $authProvider.baseUrl = 'https://yaka-api.herokuapp.com';
       //
       // Cloudinary configuration
@@ -137,6 +139,12 @@ angular.module('Yaka', [
         controller: 'EndController',
         controllerAs: 'vm'
       })
+      .state('project', {
+        url: "/project",
+        templateUrl: "partials/details_project.html",
+        controller: 'ProjectController',
+        controllerAs: 'vm'
+      })
 
       //
       //Interceptor to put the token in the header for each request http
@@ -154,7 +162,7 @@ angular.module('Yaka', [
             return config;
           },
           'responseError': function(response) {
-            
+
             return $q.reject(response);
           }
         };

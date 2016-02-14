@@ -1,0 +1,164 @@
+
+<style type="text/css">
+  html, body, #map_canvas {
+    height: 70px;
+    width: 100%;
+    margin: 0px;
+  }
+
+  #map_canvas {
+    position: relative;
+  }
+
+  .angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+</style>
+<section class="view">
+  <div class="header-menu">
+    <ng-include src="'partials/menuHamburger.html'"></ng-include>
+    <div class="title">
+      MY PROJECTS
+    </div>
+    <a ui-sref="new-project"><button type="button" class="post-job-projects btn">Post a job</button></a>
+    <a ui-sref="login"><div class="logout">
+      Log Out
+    </div>
+  </a>
+</div>
+<div class="page-content">
+  <ng-include src="'partials/menu.html'"></ng-include>
+  <div class="content-slide">
+    <div class="nav-header no-margin">
+      <div class="in-line min-w-44">
+        <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()"/>
+      </div>
+      <div class="in-line ml-20">
+        <h2 class="no-margin">SELECT YOUR PRO</h2>
+        <p>
+          {{vm.project.title}}
+        </p>
+      </div>
+    </div>
+    <div class="nav-tab">
+      <div class="tab" ng-class="{'tab-active': vm.pro}" ng-click="vm.pro = true">
+        Proposals
+      </div>
+      <div class="tab" ng-class="{'tab-active': !vm.pro}" ng-click="vm.pro = false">
+        Project
+      </div>
+    </div>
+    <div ng-show="vm.pro">
+      <div class="detail-pro-title">
+        <div class="in-line">
+          ORDERS
+        </div>
+        <hr>
+      </div>
+      <div class="detail-pro-message-box" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
+        <p>
+          Find all offers made by professionnals interested about your project
+        </p>
+      </div>
+      <div class="detail-pro-title">
+        <div class="in-line">
+          SUGGESTIONS
+        </div>
+        <hr class="w-555">
+      </div>
+      <div class="detail-pro-message-box" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
+        <p>
+          Suggested pro that fit your queries
+          You can contact them and ask for a quote
+        </p>
+      </div>
+    </div>
+    <div class="project-description" ng-show="!vm.pro">
+      <div class="row no-margin">
+        <div class="col-xs-12">
+          <div class="description-action-btn">
+            MODIFY
+          </div>
+          <div class="description-action-btn">
+            DELETE
+          </div>
+          <div class="description-action-btn">
+            UNPUBLISH
+          </div>
+          <div class="description-date">
+            Post {{vm.project.published | date:'dd MMMM yyyy'}}
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-12 ">
+          <div id="map_canvas">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-12 row no-margin">
+          <div class="col-xs- 12 description-sub-title">
+            Where
+          </div>
+          <div class="col-xs- 12 description-sub-text">
+            {{vm.project.address.name}}
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-12 row no-margin">
+          <div class="col-xs- 12 description-sub-title">
+            When
+          </div>
+          <div class="col-xs- 12 description-sub-text">
+            {{vm.getWhen()}}
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-12 row no-margin">
+          <div class="col-xs- 12 description-sub-title">
+            Tags
+          </div>
+          <div class="col-xs- 12 description-sub-text">
+            {{vm.getTags()}}
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-12 row no-margin">
+          <div class="col-xs- 12 description-sub-title">
+            Description
+          </div>
+          <div class="col-xs- 12 description-sub-text">
+            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.project.description"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-12 row no-margin">
+          <div class="col-xs- 12 description-sub-title">
+            Photos / Videos
+          </div>
+          <div class="col-xs- 12 description-sub-text row mb-15">
+            <div class="col-xs-3" ng-repeat="media in vm.project.images">
+              <span class=" center-middle img-comment" ng-click="media.commentFlag = !media.commentFlag " ng-init="media.commentFlag = false" ng-show="media.description"></span>
+              <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center">
+                <cl-transformation height="92" width="92" crop="fill"/>
+              </cl-image>
+              <textarea msd-elastic class="custom-textarea w-100p" disabled ng-model="media.description" ng-show="media.commentFlag"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
