@@ -42,6 +42,7 @@
     vm.J3.date.setDate(vm.J3.date.getDate() + 2);
     vm.minDate.setDate(vm.minDate.getDate() + 2);
     vm.all = all;
+    vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
     if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
     {
       networkService.projectGET($localStorage.projectGet.id, succesProjectGET, errorProjectGET);
@@ -350,92 +351,92 @@
         for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
           switch (vm.projectTmp.availabilities[i].slot) {
             case "7H_9H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c1 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c1 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c1 = true;
             }
               break;
             case "9H_12H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c2 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c2 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c2 = true;
             }
               break;
             case "12H_14H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c3 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c3 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c3 = true;
             }
               break;
             case "14H_16H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c4 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c4 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c4 = true;
             }
               break;
             case "16H_18H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c5 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c5 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c5 = true;
             }
               break;
             case "18H_20H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c6 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c6 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c6 = true;
             }
               break;
             case "AFTER_20H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c7 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c7 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c7 = true;
             }
               break;
             case "ALL_DAY":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.all = true
               vm.all(vm.J1);
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.all = true
               vm.all(vm.J2);
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.all = true
               vm.all(vm.J3);
             }
