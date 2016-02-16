@@ -1462,9 +1462,12 @@
 
 .popUp-container {
   width: 400px;
-  height: 200px;
   background-color: white;
   padding: 20px;
+}
+
+.popUp-content {
+  margin-bottom: 50px;
 }
 
 .popUp-footer {
