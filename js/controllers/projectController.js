@@ -70,7 +70,7 @@
       var tmp = "";
       if (j.all && j.allDisabled != "checkbox-disabled"){
         tmp = "ALL_DAY";
-        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"));
+        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
       }
       else {
         for (var i = 0; i < 7; i++) {
