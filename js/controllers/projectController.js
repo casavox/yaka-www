@@ -70,6 +70,15 @@
       vm.dateFlag = true;
     }
 
+    $scope.$watch("vm.dt", function(newVal, oldVal){
+      if(newVal !== oldVal){
+        vm.dateSelected = true;
+        vm.dateFlag = false;
+        vm.error.date.flag = false;
+        vm.error.date.message = "At least a slot is required";
+      }
+    })
+
     function put(){
 
       if (vm.projectTmp.type == "EMERGENCY"){

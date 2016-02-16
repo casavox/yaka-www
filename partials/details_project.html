@@ -421,7 +421,7 @@
           <li ng-show="vm.dateSelected" class="custom-li-date question-li center" ng-click="vm.unSelectdate()">
             {{vm.dt | date:'dd-MM-yyyy'}}
           </li>
-          <li ng-show="vm.dateFlag">
+          <li ng-show="vm.dateFlag" class="list-style-none">
             <div style="display:inline-block; min-height:290px;" class="center custom-picker">
               <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true" class="well well-sm custom-date" custom-class="getDayClass(date, mode)"></uib-datepicker>
             </div>
