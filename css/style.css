@@ -1519,7 +1519,7 @@
   margin-bottom: 39px!important;
 }
 .mb-15{
-    margin-bottom: 15px!important;
+  margin-bottom: 15px!important;
 }
 .timer{
   font-size: 30px;
@@ -1690,13 +1690,22 @@
 
 .custom-textarea{
   background: transparent!important;
-border: none!important;
-resize: none!important;
-width: 610px!important;
+  border: none!important;
+  resize: none!important;
+  width: 610px!important;
 }
 
 .w-100p{
   width: 100%!important;
+}
+
+.icon-pen-red{
+  background-image: url('../icons/mdpi/ic_pen_modify.png');
+  background-size: 18px 18px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  right: 39px;
 }
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
