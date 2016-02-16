@@ -11,16 +11,22 @@
   function ProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi) {
     var vm = this;
     vm.pro = true;
+    vm.editFlag = false;
     vm.project = {};
     vm.prev = prev;
     vm.getWhen = getWhen;
     vm.getTags = getTags;
+    vm.edit = edit;
     $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
     $scope.options = {scrollwheel: true};
 
     if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
     {
       networkService.projectGET($localStorage.projectGet.id, succesProjectGET, errorProjectGET);
+    }
+
+    function edit(){
+      vm.editFlag = true;
     }
 
     function getTags(){

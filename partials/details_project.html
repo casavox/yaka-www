@@ -80,7 +80,7 @@
     <div class="project-description" ng-show="!vm.pro">
       <div class="row no-margin">
         <div class="col-xs-12">
-          <div class="description-action-btn">
+          <div class="description-action-btn" ng-click="vm.edit()">
             MODIFY
           </div>
           <div class="description-action-btn">
@@ -103,50 +103,50 @@
       </div>
       <div class="row no-margin">
         <div class="col-xs-12 row no-margin">
-          <div class="col-xs- 12 description-sub-title">
+          <div class="col-xs-12 description-sub-title">
             Where
           </div>
-          <div class="col-xs- 12 description-sub-text">
+          <div class="col-xs-12 description-sub-text">
             {{vm.project.address.name}}
           </div>
         </div>
       </div>
       <div class="row no-margin">
         <div class="col-xs-12 row no-margin">
-          <div class="col-xs- 12 description-sub-title">
+          <div class="col-xs-12 description-sub-title">
             When
           </div>
-          <div class="col-xs- 12 description-sub-text">
+          <div class="col-xs-12 description-sub-text">
             {{vm.getWhen()}}
           </div>
         </div>
       </div>
       <div class="row no-margin">
         <div class="col-xs-12 row no-margin">
-          <div class="col-xs- 12 description-sub-title">
+          <div class="col-xs-12 description-sub-title">
             Tags
           </div>
-          <div class="col-xs- 12 description-sub-text">
+          <div class="col-xs-12 description-sub-text">
             {{vm.getTags()}}
           </div>
         </div>
       </div>
       <div class="row no-margin">
         <div class="col-xs-12 row no-margin">
-          <div class="col-xs- 12 description-sub-title">
+          <div class="col-xs-12 description-sub-title">
             Description
           </div>
-          <div class="col-xs- 12 description-sub-text">
+          <div class="col-xs-12 description-sub-text">
             <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.project.description"></textarea>
           </div>
         </div>
       </div>
       <div class="row no-margin">
         <div class="col-xs-12 row no-margin">
-          <div class="col-xs- 12 description-sub-title">
+          <div class="col-xs-12 description-sub-title">
             Photos / Videos
           </div>
-          <div class="col-xs- 12 description-sub-text row mb-15">
+          <div class="col-xs-12 description-sub-text row mb-15">
             <div class="col-xs-3" ng-repeat="media in vm.project.images">
               <span class=" center-middle img-comment" ng-click="media.commentFlag = !media.commentFlag " ng-init="media.commentFlag = false" ng-show="media.description"></span>
               <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center">
@@ -160,5 +160,46 @@
     </div>
 
   </div>
+</div>
+<div class="popUp" ng-show="vm.trashFlag">
+  <div class="popUp-container center-middle">
+    <div class="popUp-content">
+      <h4>Are you sure ? </h4>
+      <p>
+        It’s generally better to update or to draft a published project.
+      </p>
+    </div>
+    <div class="popUp-footer">
+      <div class="row no-margin">
+        <div class="col-xs-9 fr" ng-click="vm.deleteProject()">
+          Confirm
+        </div>
+        <div class="col-xs-3 text-center" ng-click="vm.trashFlag = false">
+        Cancel
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="popUp" ng-show="vm.draftFlag">
+  <div class="popUp-container center-middle">
+    <div class="popUp-content">
+      <h4>Are you sure ? </h4>
+      <p>
+        Your project will be visible only for you, you will not receive anymore proposal (those already received will be invalided).
+      </p>
+    </div>
+    <div class="popUp-footer">
+      <div class="row no-margin">
+        <div class="col-xs-9 fr" ng-click="vm.transformToDraft()">
+          Confirm draft
+        </div>
+        <div class="col-xs-3 text-center" ng-click="vm.draftFlag = false">
+        Keep posted
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </section>
