@@ -227,7 +227,7 @@
             else if (i == 6) {
               tmp = "AFTER_20H";
             }
-            tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"));
+            tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
           }
         }
       }
