@@ -1542,6 +1542,9 @@
 .color-none{
   color: black!important;
 }
+.color-red{
+  color: #d0021b!important;
+}
 .nav-header{
   height: 82px;
   padding: 15px;

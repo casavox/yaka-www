@@ -58,7 +58,7 @@
             vm.project.images = vm.project.images || [];
             data.context = {custom: {photo: $scope.title}};
             file.result = data;
-            vm.project.images.push({cloudinaryPublicId: data.public_id});
+            vm.projectTmp.images.push({cloudinaryPublicId: data.public_id});
           }).error(function (data, status, headers, config) {
             alertMsg.send("Error : Upload failed.", "danger");
           });
@@ -76,12 +76,12 @@
 
     function getTags(){
       var res = "";
-      if (vm.project.tags && vm.project.tags.length > 0){
-        for (var i = 0; i < vm.project.tags.length; i++) {
-          if (i <  vm.project.tags.length - 1)
-          res += vm.project.tags[i].name + " - ";
+      if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0){
+        for (var i = 0; i < vm.projectTmp.tags.length; i++) {
+          if (i <  vm.projectTmp.tags.length - 1)
+          res += vm.projectTmp.tags[i].name + " - ";
           else {
-            res += vm.project.tags[i].name
+            res += vm.projectTmp.tags[i].name
           }
         }
         return res;
@@ -93,8 +93,8 @@
 
     function getWhen(){
       var res = 0;
-      if (vm.project.availabilities && vm.project.availabilities.length > 0){
-        for (var i = 0; i < vm.project.availabilities.length; i++) {
+      if (vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
+        for (var i = 0; i < vm.projectTMp.availabilities.length; i++) {
           res += 1;
         }
         return "Emergency : " + res + " slots appointment"
@@ -111,6 +111,7 @@
 
     function succesProjectGET(res){
       vm.project = res;
+      vm.projectTmp = vm.project;
     }
 
     function errorProjectGET(res){

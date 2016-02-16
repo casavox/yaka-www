@@ -80,14 +80,20 @@
     <div class="project-description" ng-show="!vm.pro">
       <div class="row no-margin">
         <div class="col-xs-12">
-          <div class="description-action-btn" ng-click="vm.edit()">
+          <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
             MODIFY
           </div>
-          <div class="description-action-btn">
+          <div class="description-action-btn" ng-show="!vm.editFlag">
             DELETE
           </div>
-          <div class="description-action-btn">
+          <div class="description-action-btn" ng-show="!vm.editFlag">
             UNPUBLISH
+          </div>
+          <div class="description-action-btn color-red" ng-show="vm.editFlag">
+            SAVE
+          </div>
+          <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.editFlag = false">
+            CANCEL
           </div>
           <div class="description-date">
             Post {{vm.project.published | date:'dd MMMM yyyy'}}
@@ -108,7 +114,7 @@
             <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
           </div>
           <div class="col-xs-12 description-sub-text">
-            {{vm.project.address.name}}
+            {{vm.projectTmp.address.name}}
           </div>
 
         </div>
@@ -141,8 +147,8 @@
             <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editDescription()"></span>
           </div>
           <div class="col-xs-12 description-sub-text">
-            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.project.description" ng-hide="vm.editDescriptionFlag"></textarea>
-            <textarea class="form-control" ng-model="vm.project.description" ng-show="vm.editDescriptionFlag"></textarea>
+            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description" ng-hide="vm.editDescriptionFlag"></textarea>
+            <textarea class="form-control" ng-model="vm.projectTmp.description" ng-show="vm.editDescriptionFlag"></textarea>
           </div>
         </div>
       </div>
@@ -152,7 +158,7 @@
             Photos / Videos
           </div>
           <div class="col-xs-12 description-sub-text row mb-15">
-            <div class="col-xs-3" ng-repeat="media in vm.project.images">
+            <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images">
               <span class=" center-middle img-comment" ng-click="media.commentFlag = !media.commentFlag " ng-init="media.commentFlag = false" ng-show="media.description"></span>
               <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center">
                 <cl-transformation height="92" width="92" crop="fill"/>
