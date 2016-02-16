@@ -70,7 +70,7 @@
       var tmp = "";
       if (j.all && j.allDisabled != "checkbox-disabled"){
         tmp = "ALL_DAY";
-        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
+        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"));
       }
       else {
         for (var i = 0; i < 7; i++) {
@@ -95,7 +95,7 @@
             else if (i == 6) {
               tmp = "AFTER_20H";
             }
-            tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
+            tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"));
           }
         }
       }
@@ -214,92 +214,92 @@
         for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
           switch (vm.projectTmp.availabilities[i]) {
             case "7H_9H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c1 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c1 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c1 = true;
             }
               break;
             case "9H_12H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c2 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c2 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c2 = true;
             }
               break;
             case "12H_14H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c3 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c3 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c3 = true;
             }
               break;
             case "14H_16H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c4 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c4 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c4 = true;
             }
               break;
             case "16H_18H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c5 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c5 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c5 = true;
             }
               break;
             case "18H_20H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c6 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c6 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c6 = true;
             }
               break;
             case "AFTER_20H":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c7 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c7 = true;
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.c7 = true;
             }
               break;
             case "ALL_DAY":
-            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd"), slot: tmp}){
+            if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.all = true
               vm.all(vm.J1);
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.all = true
               vm.all(vm.J2);
             }
-            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd"), slot: tmp}){
+            else if(vm.projectTmp.desiredDate == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
               vm.J3.all = true
               vm.all(vm.J3);
             }
