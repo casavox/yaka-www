@@ -348,7 +348,7 @@
       }
       if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities){
         for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
-          switch (vm.projectTmp.availabilities[i]) {
+          switch (vm.projectTmp.availabilities[i].slot) {
             case "7H_9H":
             if(vm.projectTmp.desiredDate == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c1 = true;
