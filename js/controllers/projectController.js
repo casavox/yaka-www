@@ -13,6 +13,11 @@
     vm.pro = true;
     vm.editFlag = false;
     vm.editDescriptionFlag = false;
+    vm.child0 = "";
+    vm.child1 = "";
+    vm.child2 = "";
+    vm.child3 = "";
+    vm.dateSelected = false;
     vm.project = {};
     vm.projectTmp = {};
     vm.prev = prev;
@@ -454,6 +459,20 @@
 
         }
 
+      }
+      else{
+        switch (vm.projectTmp.desiredDatePeriod) {
+          case "SPECIFIC":
+          vm.child0 = "activate";
+          vm.dateSelected = true;
+          break;
+          case "WITHIN_A_WEEK":
+          vm.child1 = "activate";
+          case "WITHIN_A_MONTH":
+          vm.child2 = "activate";
+          case "NONE":
+          vm.child3 = "activate";
+        }
       }
     }
 
