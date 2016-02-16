@@ -323,7 +323,7 @@
 
     function getWhen(){
       var res = 0;
-      if (vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
+      if (!angular.isUndefined(vm.projectTmp.availabilities) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
         for (var i = 0; i < vm.projectTMp.availabilities.length; i++) {
           res += 1;
         }
