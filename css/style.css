@@ -1718,6 +1718,7 @@
   width: 18px;
   position: absolute;
   right: 39px;
+  cursor: pointer;
 }
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {

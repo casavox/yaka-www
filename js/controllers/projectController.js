@@ -12,11 +12,15 @@
     var vm = this;
     vm.pro = true;
     vm.editFlag = false;
+    vm.editDescriptionFlag = false;
     vm.project = {};
     vm.prev = prev;
     vm.getWhen = getWhen;
     vm.getTags = getTags;
+    vm.editDescription = editDescription
     vm.edit = edit;
+    vm.whenFlag = true;
+    vm.editWhen = editWhen;
     vm.uploadFiles = uploadFiles;
     $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
     $scope.options = {scrollwheel: true};
@@ -24,6 +28,10 @@
     if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
     {
       networkService.projectGET($localStorage.projectGet.id, succesProjectGET, errorProjectGET);
+    }
+
+    function editWhen(){
+      vm.whenFlag = true;
     }
 
      function uploadFiles(files, invalides, index){
@@ -57,6 +65,10 @@
         }
       });
     };
+
+    function editDescription(){
+      vm.editDescriptionFlag = true;
+    }
 
     function edit(){
       vm.editFlag = true;
