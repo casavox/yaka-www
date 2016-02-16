@@ -324,7 +324,7 @@
     function getWhen(){
       var res = 0;
       if (!angular.isUndefined(vm.projectTmp.availabilities) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
-        for (var i = 0; i < vm.projectTMp.availabilities.length; i++) {
+        for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
           res += 1;
         }
         return "Emergency : " + res + " slots appointment"
