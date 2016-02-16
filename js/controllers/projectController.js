@@ -346,7 +346,7 @@
         vm.dateType = vm.projectTmp.desiredDatePeriod;
         vm.dt = new Date(vm.projectTmp.desiredDate);
       }
-      if (vm.projectTmp.Type == "EMERGENCY" && vm.projectTmp.availabilities){
+      if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities){
         for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
           switch (vm.projectTmp.availabilities[i]) {
             case "7H_9H":
