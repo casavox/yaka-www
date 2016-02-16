@@ -1726,6 +1726,10 @@
   right: 39px;
   cursor: pointer;
 }
+
+.w-500{
+  width: 500px!important;
+}
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
   margin-top: 5px;

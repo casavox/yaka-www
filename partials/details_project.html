@@ -225,7 +225,7 @@
 </div>
 
 <div class="popUp" ng-show="vm.whenFlag">
-  <div class="popUp-container center-middle">
+  <div class="popUp-container center-middle" ng-class="{'w-500': vm.project.type != 'EMERGENCY'}">
     <div class="popUp-content">
       <h4>When ?</h4>
       <div ng-show="vm.project.type == 'EMERGENCY'">
