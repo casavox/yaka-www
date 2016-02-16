@@ -105,13 +105,13 @@
     ngf-accept="'image/*'" ngf-max-size="5MB">
     <a cl-href="{{photos[0].public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
 
-      <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png" />
-      <cl-transformation height="220" width="220" crop="fill"/>
-    </cl-image>
-  </a>
-  <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
-</div>
-<textarea class="comment" ng-model="photos[0].comment" ng-show="photos[0].commentFlag" placeholder="Comment this photo"></textarea>
+      <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png" >
+        <cl-transformation height="220" width="220" crop="fill"/>
+      </cl-image>
+    </a>
+    <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
+  </div>
+  <textarea class="comment" ng-model="photos[0].comment" ng-show="photos[0].commentFlag" placeholder="Comment this photo"></textarea>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -143,9 +143,9 @@ ng-multiple="false" >
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[2].public_id">
 
-  <cl-image public-id="{{photos[2].public_id}}" class="img-preview center-middle" format="png" />
-  <cl-transformation height="220" width="220" crop="fill"/>
-</cl-image>
+  <cl-image public-id="{{photos[2].public_id}}" class="img-preview center-middle" format="png" >
+    <cl-transformation height="220" width="220" crop="fill"/>
+  </cl-image>
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[2].public_id"/>
 </div>
@@ -162,9 +162,9 @@ ng-multiple="false" >
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[3].public_id">
 
-  <cl-image public-id="{{photos[3].public_id}}" class="img-preview center-middle" format="png"/>
-  <cl-transformation height="220" width="220" crop="fill"/>
-</cl-image>
+  <cl-image public-id="{{photos[3].public_id}}" class="img-preview center-middle" format="png">
+    <cl-transformation height="220" width="220" crop="fill"/>
+  </cl-image>
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[3].public_id"/>
 </div>

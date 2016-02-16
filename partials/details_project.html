@@ -158,6 +158,16 @@
               </cl-image>
               <textarea msd-elastic class="custom-textarea w-100p" disabled ng-model="media.description" ng-show="media.commentFlag"></textarea>
             </div>
+            <div class="col-md-3 no-padding"
+            ngf-drop="vm.uploadFiles($files)"
+            ngf-drag-over-class="dragOverClass($event)"
+            ng-model="files"
+            ng-multiple="false" >
+            <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+            ngf-accept="'image/*'" ngf-max-size="5MB">
+            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+          </div>
+        </div>
           </div>
         </div>
       </div>
