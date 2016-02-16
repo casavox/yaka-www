@@ -331,7 +331,16 @@
         return "Emergency : " + res + " slots appointment"
       }
       else {
-
+        switch (vm.projectTmp.desiredDatePeriod) {
+          case "SPECIFIC":
+          return "Le "+vm.projectTmp.desiredDate;
+          case "WITHIN_A_WEEK":
+          return "Dans la semaine";
+          case "WITHIN_A_MONTH":
+          return "Dans le mois";
+          case "NONE":
+          return "Flexible sur la date de départ";
+        }
       }
     }
 
