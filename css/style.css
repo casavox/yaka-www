@@ -1285,6 +1285,18 @@
   background-color: #BFBFBF;
 }
 
+.add-img-edit {
+  background-color: #f7f7f7;
+  width: 92px;
+  height: 92px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.add-img-edit:hover {
+  background-color: #BFBFBF;
+}
+
 .w-900 {
   max-width: 900px;
 }
