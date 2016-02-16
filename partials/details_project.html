@@ -163,7 +163,7 @@
             ngf-drag-over-class="dragOverClass($event)"
             ng-model="files"
             ng-multiple="false" ng-show="vm.editFlag">
-            <div class="add-img-edit center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+            <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
             ngf-accept="'image/*'" ngf-max-size="5MB">
             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
           </div>
