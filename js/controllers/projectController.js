@@ -18,8 +18,12 @@
     vm.prev = prev;
     vm.getWhen = getWhen;
     vm.getTags = getTags;
+    vm.selectDateType = selectDateType;
+    vm.dateType = "";
+    vm.dateFlag = false;
     vm.editDescription = editDescription
     vm.edit = edit;
+    vm.put = put;
     vm.whenFlag = false;
     vm.editWhen = editWhen;
     vm.uploadFiles = uploadFiles;
@@ -41,6 +45,134 @@
     if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
     {
       networkService.projectGET($localStorage.projectGet.id, succesProjectGET, errorProjectGET);
+    }
+
+    function selectDateType(type){
+      vm.dateSelected = false;
+      vm.dateFlag = false;
+      vm.dateType = type;
+    }
+
+    function put(){
+
+      if (vm.projectTmp.type == "EMERGENCY"){
+        if (!vm.dateType){
+          vm.error.date.flag = true;
+          vm.error.date.message = "At least a slot is required";
+          return
+        }
+        else if (vm.dateType == 'SPECIFIC'){
+          if (vm.dt.getTime() == vm.default.getTime()){
+            vm.error.date.flag = true;
+            vm.error.date.message = "At least a slot is required";
+            return;
+          }
+          else {
+            vm.error.date.flag = false;
+            vm.error.date.message = "At least a slot is required";
+          }
+        }
+        else {
+          vm.error.date.flag = false;
+          vm.error.date.message = "At least a slot is required";
+        }
+        var formData = {
+          title: vm.title,
+          description: vm.projectDescription,
+          desiredDatePeriod: vm.dateType,
+          address: {},
+          tags: [],
+        }
+        for (var i = 0; i < vm.questions.length; i++) {
+          formData.tags.push({name: vm.questions[i].shortName});
+        }
+        if (vm.dateType == "SPECIFIC"){
+          formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
+        }
+        if (vm.continueAddress){
+          for (var i = 0; i < vm.user.addresses.length; i++) {
+            if (vm.user.addresses[i].address == vm.myAddress){
+              formData.address.name  = vm.user.addresses[i].name;
+              formData.address.address = vm.myAddress;
+              break;
+            }
+          }
+        }
+        else {
+          formData.address.name  = vm.newAddr.name;
+          formData.address.address = vm.newAddr.address;
+        }
+        for (var i = 0; i < $rootScope.photos.length; i++) {
+          if ($rootScope.photos[i].public_id){
+            var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
+            if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].comment) {
+              tmp.comment = $rootScope.photos[i].comment;
+            }
+            formData.images = formData.images || [];
+            formData.images.push(tmp);
+          }
+        }
+        formData.type = "small";
+        if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
+        networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+        else {
+          $rootScope.newProject = formData;
+          $state.go("login");
+        }
+      }
+      else {
+        var formData = {
+          title: vm.title,
+          description: vm.projectDescription,
+          address: {},
+          tags: [],
+          availabilities: []
+        }
+        for (var i = 0; i < vm.questions.length; i++) {
+          formData.tags.push({name: vm.questions[i].shortName});
+        }
+        if (vm.continueAddress){
+          for (var i = 0; i < vm.user.addresses.length; i++) {
+            if (vm.user.addresses[i].address == vm.myAddress){
+              if (angular.isUndefined(formData.images))
+              formData.images = [];
+              formData.address.name  = vm.user.addresses[i].name;
+              formData.address.address = vm.myAddress;
+              break;
+            }
+          }
+        }
+        else {
+          formData.address.name  = vm.newAddr.name;
+          formData.address.address = vm.newAddr.address;
+        }
+        for (var i = 0; i < $rootScope.photos.length; i++) {
+          if ($rootScope.photos[i].public_id){
+            if (angular.isUndefined(formData.images))
+            formData.images = [];
+            var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
+            if ($rootScope.photos[i].comment) {
+              tmp.comment = $rootScope.photos[i].comment;
+            }
+            formData.images.push(tmp);
+          }
+        }
+        vm.initDate(vm.J1, formData.availabilities);
+        vm.initDate(vm.J2, formData.availabilities);
+        vm.initDate(vm.J3, formData.availabilities);
+        if (formData.availabilities.length == 0){
+          vm.error.date.flag = true;
+          vm.error.date.message = "At least a slot is required";
+          return;
+        }
+        formData.type = "emergency";
+        if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
+        networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
+        else {
+          $rootScope.newProject = formData;
+          $state.go("login");
+        }
+      }
     }
 
     function all(j){
@@ -210,7 +342,11 @@
     function succesProjectGET(res){
       vm.project = res;
       vm.projectTmp = vm.project;
-      if (vm.projectTmp.availabilities){
+      if (vm.projectTmp.type != "EMERGENCY"){
+        vm.dateType = vm.projectTmp.desiredDatePeriod;
+        vm.dt = new Date(vm.projectTmp.desiredDate);
+      }
+      if (vm.projectTmp.Type == "EMERGENCY" && vm.projectTmp.availabilities){
         for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
           switch (vm.projectTmp.availabilities[i]) {
             case "7H_9H":
