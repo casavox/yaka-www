@@ -14,6 +14,7 @@
     vm.editFlag = false;
     vm.editDescriptionFlag = false;
     vm.project = {};
+    vm.projectTmp = {};
     vm.prev = prev;
     vm.getWhen = getWhen;
     vm.getTags = getTags;
