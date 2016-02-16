@@ -24,6 +24,8 @@
     vm.getWhen = getWhen;
     vm.getTags = getTags;
     vm.selectDateType = selectDateType;
+    vm.selectDate = selectDate;
+    vm.unSelectdate = unSelectdate;
     vm.dateType = "";
     vm.dateFlag = false;
     vm.editDescription = editDescription
@@ -57,6 +59,15 @@
       vm.dateSelected = false;
       vm.dateFlag = false;
       vm.dateType = type;
+    }
+
+    function selectDate(){
+      vm.dateFlag = true;
+    }
+
+    function unSelectdate(){
+      vm.dateSelected = false;
+      vm.dateFlag = true;
     }
 
     function put(){
