@@ -1521,6 +1521,10 @@
 .mb-15{
     margin-bottom: 15px!important;
 }
+
+.mb-120{
+    margin-bottom: 120px!important;
+}
 .timer{
   font-size: 30px;
 }
@@ -1698,6 +1702,7 @@ width: 610px!important;
 .w-100p{
   width: 100%!important;
 }
+
 /*------------------------------------------ SWITCH ----------------------------*/
 .onoffswitch {
   margin-top: 5px;
@@ -1755,6 +1760,25 @@ width: 610px!important;
   background-color: #FF6074;
   box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
 }
+
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
 
 /*------------------------------------------ Pro Dashboard ----------------------------*/
 

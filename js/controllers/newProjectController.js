@@ -382,8 +382,27 @@
               break;
             }
           }
+
         }
         else {
+          if (angular.isUndefined(vm.newAddr) || !vm.newAddr.name || vm.newAddr.name.length < 3){
+            vm.error.address.flag = true;
+            vm.error.address.message = "A valid address name is required";
+            $timeout(function(){
+              $location.hash('slide5');
+              $anchorScroll();
+              redirect();
+            },0);
+          }
+          else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3){
+            vm.error.address.flag = true;
+            vm.error.address.message = "A valid address is required";
+            $timeout(function(){
+              $location.hash('slide5');
+              $anchorScroll();
+              redirect();
+            },0);
+          }
           formData.address.name  = vm.newAddr.name;
           formData.address.address = vm.newAddr.address;
         }

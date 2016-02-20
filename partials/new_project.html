@@ -174,38 +174,46 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>
 </div>
 <div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
-  <h2 class="text-center">Where do need it?</h2>
+  <h2 class="text-center mb-39">Where do need it?</h2>
+  <h3 class="text-center mb-120" ng-show="!vm.newAddrFlag">Enter your address and give it a name</h3>
+  <h3 class="text-center mb-120" ng-show="vm.newAddrFlag">Select one from your registred addresses or enter a new one</h3>
   <div class="row no-margin w-900 center">
-    <div class="col-md-3 no-padding">
+    <div class="col-xs-3" ng-show="vm.newAddrFlag">
+      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="Mom’s home">
+    </div>
+    <div class="no-padding mb-39" ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
+      <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-map-marker"></i>
+        <input vs-google-autocomplete
+
+        ng-model="address.name"
+        vs-place="address.place"
+        vs-place-id="address.components.placeId"
+        vs-street-number="address.components.streetNumber"
+        vs-street="address.components.street"
+        vs-city="address.components.city"
+        vs-state="address.components.state"
+        vs-country-short="address.components.countryCode"
+        vs-country="address.components.country"
+        vs-post-code="address.components.postCode"
+        vs-district="address.components.district"
+        vs-latitude="address.components.location.lat"
+        vs-longitude="address.components.location.long"
+
+        type="text"
+        name="address"
+        id="address"
+        placeholder="Enter address" class="input-custom">
+      </div>
+
+    </div>
+  </div>
+  <div class="row no-margin w-900 center">
+    <div class="col-md-4 no-padding center">
       <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-        <option value="new">Create an address</option>
+        <option value="new">Create new one</option>
         <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
       </select>
-    </div>
-    <div class="col-xs-3" ng-show="vm.newAddrFlag">
-      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="Address name">
-    </div>
-    <div class="no-padding" ng-class="{'col-xs-9': !vm.newAddrFlag, 'col-xs-6': vm.newAddrFlag}">
-      <input vs-google-autocomplete
-
-      ng-model="address.name"
-      vs-place="address.place"
-      vs-place-id="address.components.placeId"
-      vs-street-number="address.components.streetNumber"
-      vs-street="address.components.street"
-      vs-city="address.components.city"
-      vs-state="address.components.state"
-      vs-country-short="address.components.countryCode"
-      vs-country="address.components.country"
-      vs-post-code="address.components.postCode"
-      vs-district="address.components.district"
-      vs-latitude="address.components.location.lat"
-      vs-longitude="address.components.location.long"
-
-      type="text"
-      name="address"
-      id="address"
-      placeholder="Enter address" class="input-custom">
     </div>
   </div>
   <p class="error center" ng-show="vm.error.address.flag">
@@ -400,6 +408,9 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 
       </div>
     </div>
+    <p class="error center" ng-show="vm.error.date.flag">
+      {{vm.error.date.message}}
+    </p>
   </div>
   <div ng-show="!vm.emergency">
     <ul class="questions-ul center no-padding">
