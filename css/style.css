@@ -1285,6 +1285,18 @@
   background-color: #BFBFBF;
 }
 
+.add-img-edit {
+  background-color: #f7f7f7;
+  width: 92px;
+  height: 92px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.add-img-edit:hover {
+  background-color: #BFBFBF;
+}
+
 .w-900 {
   max-width: 900px;
 }
@@ -1450,9 +1462,12 @@
 
 .popUp-container {
   width: 400px;
-  height: 200px;
   background-color: white;
   padding: 20px;
+}
+
+.popUp-content {
+  margin-bottom: 50px;
 }
 
 .popUp-footer {
@@ -1519,7 +1534,7 @@
   margin-bottom: 39px!important;
 }
 .mb-15{
-    margin-bottom: 15px!important;
+  margin-bottom: 15px!important;
 }
 
 .mb-120{
@@ -1530,6 +1545,9 @@
 }
 .color-none{
   color: black!important;
+}
+.color-red{
+  color: #d0021b!important;
 }
 .nav-header{
   height: 82px;
@@ -1694,13 +1712,31 @@
 
 .custom-textarea{
   background: transparent!important;
-border: none!important;
-resize: none!important;
-width: 610px!important;
+  border: none!important;
+  resize: none!important;
+  width: 610px!important;
 }
 
 .w-100p{
   width: 100%!important;
+}
+
+.icon-pen-red{
+  background-image: url('../icons/mdpi/ic_pen_modify.png');
+  background-size: 18px 18px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  right: 39px;
+  cursor: pointer;
+}
+
+.w-500{
+  width: 500px!important;
+}
+
+.list-style-none{
+  list-style: none!important;
 }
 
 /*------------------------------------------ SWITCH ----------------------------*/
