@@ -327,17 +327,16 @@
       <p class="proposal-skills f-l">
         Main skills
       </p>
-      <div class="">
-
+      <div class="proposal-skill" ng-repeat="s in vm.proposal.professional.skills">
+        <div class="v-icon v-icon-{{s.name}} center">
+        </div>
+        <p class="text-center">
+          {{s.name}}
+        </p>
       </div>
     </div>
     <div class="proposal-offers">
-      <div class="line">
-        <span class="f-l proposal-offer-line-info">Price</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.lastEstimate">Need info to make a quote</span><span class="f-r proposal-offer-line-res" ng-show="vm.proposal.lastEstimate">{{vm.proposal.lastEstimate}} €</span>
-      </div>
-      <div class="line">
-        <span class="f-l proposal-offer-line-info">Available on</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.startDate">Need info to schedule</span><span class="f-r proposal-offer-line-res" ng-show="vm.proposal.startDate">{{vm.proposal.startDate}}</span>
-      </div>
+      
     </div>
   </div>
 

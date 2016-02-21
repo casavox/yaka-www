@@ -1032,6 +1032,13 @@
   border-radius: 0 !important;
 }
 
+.proposal-skill{
+  width: 100px;
+  display: inline;
+  height: 80px;
+  float: left;
+}
+
 .v-icon {
   height: 46px;
   width: 50px;
@@ -1111,6 +1118,26 @@
   margin-left: 9px;
   height: 30px;
   width: 30px;
+}
+
+.v-icon-LOCKSMITH {
+  background-image: url(../icons/mdpi/ic_locksmith.png)
+}
+
+.v-icon-PLUMBER {
+  background-image: url(../icons/mdpi/ic_plumber.png)
+}
+
+.v-icon-ELECTRICIAN {
+  background-image: url(../icons/mdpi/ic_electrician.png)
+}
+
+.v-icon-CARPENTER {
+  background-image: url(../icons/mdpi/ic_carpenter.png)
+}
+
+.v-icon-PAINTER {
+  background-image: url(../icons/mdpi/ic_painter.png)
 }
 
 .v-icon-ICON_LOCKSMITH {
