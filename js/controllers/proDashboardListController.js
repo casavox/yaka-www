@@ -9,7 +9,12 @@
     function ProDashboardListController($scope) {
 
         var vm = this;
-        vm.page = "Liste"
+
+        vm.tabIndex = 0;
+
+        vm.setTabIndex = function(newTabIndex) {
+            alert(newTabIndex);
+        }
 
         $scope.$on('onEmergenciesLoadedBroadcast', function(event, args) {
             onEmergenciesLoaded(args);
