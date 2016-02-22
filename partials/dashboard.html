@@ -42,7 +42,7 @@
               <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index" title="{{p.title}}">
                 <div class="row">
                   <div class="col-xs-2">
-                    <i class="fa fa-circle center-middle" ng-class="[p.type, p.status]"></i>
+                    <i class="fa fa-circle center-middle" ng-class="p.status"></i>
                   </div>
                   <div class="col-xs-7">
                     <div class="project-middle">
@@ -96,10 +96,10 @@
             </ul>
           </div>
           <div class="footer-box" ng-show="vm.dashboardProjects.length > 0">
-            <a ui-sref="myprojects" class="link-show-all">
+            <a ui-sref="my-projects" class="link-show-all">
               show all projects ({{vm.count}})
             </a>
-            <a ui-sref="newproject" class="link-post-job">
+            <a ui-sref="new-project" class="link-post-job">
               post a job
           </a>
           </div>

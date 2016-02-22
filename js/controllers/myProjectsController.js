@@ -7,12 +7,13 @@
 
   //
   //Controller login
-  MyProjectscontroller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope']
-  function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope) {
+  MyProjectscontroller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state']
+  function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state) {
 
     var vm = this;
     vm.projectsOnGoing = [];
     vm.projectsCompleted = [];
+    vm.selectProject = selectProject;
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
     networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
@@ -22,7 +23,27 @@
       }
       return "";
     }
-    
+
+    function selectProject(p){
+      $localStorage.projectGet = p;
+      $state.go("project");
+    }
+
+    function succesProjectGET(res){
+      $rootScope.projects = res;
+      if (res.length < 3){
+        if (!angular.isUndefined(res) && res && res.length > 0)
+        vm.projectsOnGoing = res;
+        else {
+        vm.projectsOnGoing = [];
+        }
+        networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
+      }else{
+      vm.projectsOnGoing = sortProjects(res);
+      }
+      console.log(res);
+    }
+
     function succesProjectsGET(res){
       $rootScope.projects = res;
       if (res.length < 3){

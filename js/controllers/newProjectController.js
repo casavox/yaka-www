@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  NewProjectController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg']
-  function NewProjectController($scope, networkService, socialNetworkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg) {
+  NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg']
+  function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg) {
     var vm = this;
     vm.user = $localStorage.user;
     console.log(vm.user);
@@ -17,6 +17,8 @@
     vm.child1 = "";
     vm.child2 = "";
     vm.child3 = "";
+    vm.countdown = 5;
+    vm.redirect = redirect;
     vm.continueWithoutImages = continueWithoutImages;
     vm.popupFlag = false;
     vm.emergency = false;
@@ -247,7 +249,7 @@
       vm.projectDescription = "";
       vm.material = null;
       vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
-      if (!angular.isUndefined(vm.user.addresses) && vm.user.addresses){
+      if (!angular.isUndefined(vm.user) && vm.user.addresses){
         if (vm.user.addresses.length > 0){
           vm.myAddress = vm.user.addresses[0].address;
           $scope.address.name = vm.myAddress;
@@ -259,6 +261,7 @@
         }
       }
       else {
+        vm.user = {}
         vm.user.addresses = [];
       }
       for (var i = 0; i < vm.newProject.childrenSteps.length; i++) {
@@ -326,8 +329,12 @@
         }
       }
       formData.type = "small";
-      $rootScope.newProject = formData;
+      if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
       networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+      else {
+        $rootScope.newProject = formData;
+        $state.go("login");
+      }
     }
 
 
@@ -375,8 +382,27 @@
               break;
             }
           }
+
         }
         else {
+          if (angular.isUndefined(vm.newAddr) || !vm.newAddr.name || vm.newAddr.name.length < 3){
+            vm.error.address.flag = true;
+            vm.error.address.message = "A valid address name is required";
+            $timeout(function(){
+              $location.hash('slide5');
+              $anchorScroll();
+              redirect();
+            },0);
+          }
+          else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3){
+            vm.error.address.flag = true;
+            vm.error.address.message = "A valid address is required";
+            $timeout(function(){
+              $location.hash('slide5');
+              $anchorScroll();
+              redirect();
+            },0);
+          }
           formData.address.name  = vm.newAddr.name;
           formData.address.address = vm.newAddr.address;
         }
@@ -391,30 +417,14 @@
           }
         }
         formData.type = "small";
-        $rootScope.newProject = formData;
+        if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
         networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+        else {
+          $rootScope.newProject = formData;
+          $state.go("login");
+        }
       }
       else {
-        if (!vm.dateType){
-          vm.error.date.flag = true;
-          vm.error.date.message = "At least a slot is required";
-          return
-        }
-        else if (vm.dateType == 'SPECIFIC'){
-          if (vm.dt.getTime() == vm.default.getTime()){
-            vm.error.date.flag = true;
-            vm.error.date.message = "At least a slot is required";
-            return;
-          }
-          else {
-            vm.error.date.flag = false;
-            vm.error.date.message = "At least a slot is required";
-          }
-        }
-        else {
-          vm.error.date.flag = false;
-          vm.error.date.message = "At least a slot is required";
-        }
         var formData = {
           title: vm.title,
           description: vm.projectDescription,
@@ -454,21 +464,34 @@
         vm.initDate(vm.J1, formData.availabilities);
         vm.initDate(vm.J2, formData.availabilities);
         vm.initDate(vm.J3, formData.availabilities);
+        if (formData.availabilities.length == 0){
+          vm.error.date.flag = true;
+          vm.error.date.message = "At least a slot is required";
+          return;
+        }
         formData.type = "emergency";
-        $rootScope.newProject = formData;
+        if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
         networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
+        else {
+          $rootScope.newProject = formData;
+          $state.go("login");
+        }
       }
     }
 
     function succesProjectsPOST(res){
       console.log(res);
+      vm.end = true;
       $timeout(function(){
-        $state.go('myprojects')
+        $location.hash('slideEnd');
+        $anchorScroll();
+        redirect();
       },0);
     }
 
     function errorProjectsPOST(){
-
+      vm.end = false;
+      alertMsg.send("Error : Impossible de créer le projet", "danger");
     }
 
     function selectDateType(type){
@@ -710,14 +733,30 @@
         }
       }
       else {
-        vm.user.addresses = []
+        vm.user.addresses = [];
+        vm.continueAddress = false;
+        vm.newAddrFlag = true;
+        vm.myAddress = "new";
       }
 
       console.log(res);
     }
 
     function errorProfileGET(){
-      alertMsg.send("Error : Impossible de charger les addresses existantes", "danger");
+      vm.continueAddress = false;
+      vm.newAddrFlag = true;
+      vm.myAddress = "new";
+      // alertMsg.send("Error : Impossible de charger les addresses existantes", "danger");
+    }
+    function redirect(){
+      vm.countdown -= 1;
+      if (vm.countdown == 0)
+      $state.go("dashboard");
+      else {
+        $timeout(function(){
+          redirect();
+        },1000);
+      }
     }
   }
 })();

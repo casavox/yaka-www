@@ -35,6 +35,7 @@
         }
         networkService.projectsGET("draft", succesProjectsDraftGET, errorProjectsDraftGET);
       }else{
+      vm.count = res.length;
       vm.dashboardProjects = sortProjects(res);
       }
       console.log(res)
