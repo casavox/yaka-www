@@ -332,6 +332,9 @@
     })
 
     function update(){
+      vm.projectTmp.tags = vm.projectTmp.tags || [];
+      vm.projectTmp.images = vm.projectTmp.images || [];
+      vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
       networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
     }
 
