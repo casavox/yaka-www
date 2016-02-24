@@ -179,7 +179,7 @@
     function changeWhere(){
       if (vm.myAddress == "new"){
         vm.projectTmp.address.name  = vm.newAddr.name;
-        vm.projectTmp.address.address = vm.newAddr.address;
+        vm.projectTmp.address.address = $scope.address.name;
         vm.whereFlag = false;
       }
       else {
