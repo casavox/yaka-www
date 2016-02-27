@@ -80,7 +80,7 @@
     // Google autocomplete binding
 
     $scope.options = {
-      types: ['geocode'],
+      types: ['address'],
       componentRestrictions: { country: 'fr' }
     };
 
