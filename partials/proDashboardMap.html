@@ -1,3 +1,5 @@
+<!-- Custom map controls -->
+
 <script type="text/ng-template" id="fakeTopControl.tpl.html">
     <div class="fakeTopControl"></div>
 </script>
@@ -6,21 +8,40 @@
     <div class="fakeBottomControl"></div>
 </script>
 
-<ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions" bounds="vm.map.bounds">
+<!-- End Custom map controls -->
+
+<div class="proDashboardMapTopView">
+    <div class="col-xs-4 proDashboardMapTopViewItem">
+        Jobs
+    </div>
+    <div class="col-xs-4 proDashboardMapTopViewItem">
+        Quotes
+    </div>
+    <div class="col-xs-4 proDashboardMapTopViewItem">
+        Messages
+    </div>
+</div>
+
+<div class="proDashboardMapFilters hidden-xs">
+    FILTERS
+</div>
+
+<ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions" bounds="vm.map.bounds"
+                    events="vm.map.events">
     <ui-gmap-map-control template="fakeTopControl.tpl.html" position="right-top"
                          controller="ProDashboardMapController"
                          index="-1"></ui-gmap-map-control>
     <ui-gmap-map-control template="fakeBottomControl.tpl.html" position="right-bottom"
                          controller="ProDashboardMapController"
                          index="-1"></ui-gmap-map-control>
-    <ui-gmap-markers models="vm.emergencies" coords="'coords'" icon="'icon'" click="vm.onMarkerClicked"></ui-gmap-markers>
+    <ui-gmap-markers models="vm.emergencies" coords="'coords'" icon="'icon'"
+                     click="vm.onMarkerClicked"></ui-gmap-markers>
 </ui-gmap-google-map>
 
 <div class="transparentLeftSwipe" ng-swipe-right="app.menu.openMenu()" visible-xs></div>
 
 <div class="mapFooter col-xs-12 transformableBottomView"
-     ng-class="{'big':bottomViewDisplayed, 'small':!bottomViewDisplayed}"
-     ng-click="vm.toggleBottomView()">
+     ng-class="{'mapFooterVisible':!vm.exploring}">
     <div class="carousel-demo">
         <ul rn-carousel rn-carousel-controls rn-carousel-index="vm.carrouselSelectedItem.index" rn-carousel-buffered>
             <li ng-repeat="emergency in vm.emergencies track by emergency.id" ng-class="'id-' + emergency.id">

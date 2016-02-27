@@ -11,9 +11,11 @@
         var vm = this;
 
         var geocoder = new google.maps.Geocoder();
+        var currentCenter = {};
 
         vm.emergencies = [];
         vm.carrouselSelectedItem = {index: -1};
+        vm.exploring = false;
 
         $scope.$on('onEmergenciesLoadedBroadcast', function (event, args) {
             onEmergenciesLoaded(args);
@@ -62,6 +64,7 @@
                 longitude: emergency.coords.longitude
             };
             vm.map.zoom = 15;
+            vm.exploring = false;
             setDefaultIconForAllMarkers();
             emergency.icon = "http://maps.google.com/mapfiles/kml/paddle/wht-blank.png";
         }
@@ -84,13 +87,28 @@
             vm.carrouselSelectedItem.index = carouselIndex;
         }
 
+        var resizeTimeoutId;
         uiGmapGoogleMapApi.then(function (maps) {
             vm.map = {
                 center: {
                     latitude: 0, longitude: 0
                 },
                 zoom: 12,
-                bounds: {}
+                bounds: {},
+                events: {
+                    "idle": function () {
+                        if (currentCenter.latitude != vm.map.center.latitude && currentCenter.longitude != vm.map.center.longitude) {
+                            console.log("idle");
+                            currentCenter = {
+                                latitude: vm.map.center.latitude,
+                                longitude: vm.map.center.longitude
+                            }
+                        }
+                    },
+                    "dragstart": function () {
+                        vm.exploring = true;
+                    }
+                }
             };
             vm.mapOptions = {
                 zoomControlOptions: {
@@ -103,6 +121,16 @@
                 },
                 streetViewControl: false,
             }
+            angular.element(window).on("resize", function () {
+                clearTimeout(resizeTimeoutId);
+                resizeTimeoutId = setTimeout(function () {
+                    console.log("resize");
+                    vm.map.center = {
+                        latitude: currentCenter.latitude,
+                        longitude: currentCenter.longitude
+                    }
+                }, 350);
+            });
         });
     }
 })

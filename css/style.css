@@ -103,6 +103,32 @@
 
 }
 
+/*--------------------------------- RIPPLE EFFECT -----------------------------------*/
+
+[angular-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+
+.angular-ripple {
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transform: scale(0);
+}
+
+.angular-ripple.animate {
+  animation: ripple 0.35s linear;
+}
+
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
 /*--------------------------------- HEADER -----------------------------------*/
 
 .header {
@@ -210,7 +236,6 @@
     left: 0px;
     height: 55px !important;
   }
-
   .header-menu .title {
     line-height: 55px;
     font-family: 'montserrat_light';
@@ -622,7 +647,7 @@
   opacity: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .menu {
     left: -220px;
     -webkit-transition: 0.3s ease-in-out;
@@ -639,29 +664,9 @@
     -ms-transform: translatex(220px);
     transform: translatex(220px);
   }
-}
 
-[angular-ripple] {
-  position: relative;
-  overflow: hidden;
-}
-
-.angular-ripple {
-  display: block;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  transform: scale(0);
-}
-
-.angular-ripple.animate {
-  animation: ripple 0.35s linear;
-}
-
-@keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
+  .content-slide {
+    height: calc(100% - 55px);
   }
 }
 
@@ -2345,6 +2350,8 @@
   box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
 }
 
+/*----------------------------------------------------------------------*/
+
 .inner-addon {
   position: relative;
 }
@@ -2364,34 +2371,79 @@
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 
-/*------------------------------------------ Pro Dashboard ----------------------------*/
+/*------------------------------------------ Pro Dashboard Map ----------------------------*/
 
-.dashboardMap {
+.proDashboardMap {
   height: 100%;
   position: relative;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
-.dashboardMap .angular-google-map-container {
-  height: 100%;
-}
-
-.dashboardMap .angular-google-map {
+.proDashboardMapTopView {
+  height: 80px;
   position: absolute;
-  height: 100%;
   top: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.proDashboardMapFilters {
+  height: 45px;
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  background-color: #ebebeb;
+  line-height: 45px;
+  font-family: 'montserrat_regular', Arial, sans-serif;
+  font-size: 16px;
+  color: #444444;
+  padding-left: 37px;
+}
+
+.proDashboardMapTopViewItem {
+  line-height: 80px;
+  text-align: center;
+}
+
+.proDashboardMap .angular-google-map-container {
+  height: 100%;
+}
+
+.proDashboardMap ui-gmap-google-map {
+  position: absolute;
+  height: calc(100% - 125px) !important;
+  top: 125px;
   bottom: 0;
   left: 0;
   right: 0;
 }
 
-.dashboardMap .mapFooter {
+.proDashboardMap .angular-google-map {
+  height: 100%;
+}
+
+.proDashboardMap .mapFooter {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
   padding: 0px;
   height: 90px;
   margin-bottom: 18px !important;
+  bottom: -108px;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.proDashboardMap .mapFooter.mapFooterVisible {
+  -webkit-transform: translatey(-108px);
+  -moz-transform: translatey(-108px);
+  -o-transform: translatey(-108px);
+  -ms-transform: translatey(-108px);
+  transform: translatey(-108px);
 }
 
 .transparentLeftSwipe {
@@ -2436,7 +2488,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .projectListItemTitle {
-  font-family: Montserrat-Regular;
+  font-family: 'montserrat_regular', Arial, sans-serif;
   font-size: 14px;
   color: #000000;
   line-height: 13px;
@@ -2449,7 +2501,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .projectListItemAddress {
-  font-family: 'montserrat_light';
+  font-family: 'montserrat_regular', Arial, sans-serif;
   font-size: 14px;
   color: #979797;
   line-height: 20px;
@@ -2478,7 +2530,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .projectListItemChrono {
-  font-family: 'montserrat_light';
+  font-family: 'montserrat_light', Arial, sans-serif;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.54);
   line-height: 13px;
@@ -2488,7 +2540,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .projectListItemLeadType {
-  font-family: montserrat-regular;
+  font-family: 'montserrat_regular', Arial, sans-serif;
   font-size: 10px;
   color: #ffffff;
   line-height: 12px;
@@ -2508,17 +2560,38 @@ ul[rn-carousel-buffered] > li {
 }
 
 @media (max-width: 767px) {
-  .header-menu {
-    left: 0px;
-    height: 55px !important;
+
+  ul[rn-carousel-buffered] > li {
+    padding-left: 5% !important;
+    margin-left: 5% !important;
+    width: 85% !important;
   }
+
+  .proDashboardMap ui-gmap-google-map {
+    height: calc(100% - 60px) !important;
+    top: 60px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .proDashboardMap ui-gmap-google-map {
+    height: calc(100% - 105px) !important;
+    top: 105px;
+  }
+
+}
+
+@media (max-width: 991px) {
 
   .header-menu .title {
     line-height: 55px;
-    font-family: 'montserrat_light';
+    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 22px;
     color: #2f313a;
     text-align: left;
+    margin-left: 5px;
   }
 
   .header-menu .logout {
@@ -2529,24 +2602,32 @@ ul[rn-carousel-buffered] > li {
     right: 15px;
   }
 
-  .page-content {
-    top: 55px;
-  }
-
   .content-slide {
     top: 55px;
     left: 0px;
     width: 100%;
   }
 
-  ul[rn-carousel-buffered] > li {
-    padding-left: 5% !important;
-    margin-left: 5% !important;
-    width: 85% !important;
+  .header-menu {
+    left: 0px;
+    height: 55px !important;
   }
-}
 
-@media (min-width: 768px) and (max-width: 991px) {
+  .page-content {
+    top: 55px;
+  }
+
+  .proDashboardMapTopView {
+    height: 60px;
+  }
+
+  .proDashboardMapTopViewItem {
+    line-height: 60px;
+  }
+
+  .proDashboardMapFilters {
+    top: 60px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -2555,4 +2636,66 @@ ul[rn-carousel-buffered] > li {
 
 @media (min-width: 1200px) {
 
+}
+
+/*------------------------------------------ Pro Dashboard List ----------------------------*/
+
+.proDashboardList {
+  height: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.proDashboardListTopView {
+  height: 80px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.proDashboardListTabs {
+  position: absolute;
+  top: 80px;
+  height: 45px;
+  background-color: #ebebeb;
+}
+
+.proDashboardListTabs > li {
+  padding: 0 !important;
+  float: left !important;
+  width: 33.33333333% !important;
+  cursor: pointer;
+  height: 100%;
+  line-height: 45px;
+  text-align: center;
+}
+
+.proDashboardListTabs > li.active {
+  border-bottom: 2px solid #00a3d3;
+  cursor: auto !important;
+}
+
+.proDashboardListContent {
+  background-color: white;
+  height: calc(100% - 125px);
+  top: 125px;
+  position: absolute;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+
+  .proDashboardListTopView {
+    height: 60px;
+  }
+
+  .proDashboardListTabs {
+    top: 60px;
+  }
+
+  .proDashboardListContent {
+    height: calc(100% - 105px);
+    top: 105px;
+  }
 }

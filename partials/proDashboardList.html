@@ -1,1 +1,27 @@
-{{vm.page}}
+<div class="proDashboardListTopView">
+
+</div>
+
+<ul class="nav nav-tabs nav-justified proDashboardListTabs">
+    <li class="col-xs-4" ng-class="{active: vm.tabIndex==0}" ng-click="vm.tabIndex = 0">
+        All Leads
+    </li>
+    <li class="col-xs-4" ng-class="{active: vm.tabIndex==1}" ng-click="vm.tabIndex = 1">
+        Jobs
+    </li>
+    <li class="col-xs-4" ng-class="{active: vm.tabIndex==2}" ng-click="vm.tabIndex = 2">
+        Emergencies
+    </li>
+</ul>
+
+<div class="tab-content  proDashboardListContent">
+    <div class="tab-pane" ng-class="{active: vm.tabIndex == 0}">
+        CONTENU1
+    </div>
+    <div class="tab-pane" ng-class="{active: vm.tabIndex == 1}">
+        CONTENU2
+    </div>
+    <div class="tab-pane" ng-class="{active: vm.tabIndex == 2}">
+        CONTENU3
+    </div>
+</div>
