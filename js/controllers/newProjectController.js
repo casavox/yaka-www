@@ -11,40 +11,21 @@
   function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg) {
     var vm = this;
     vm.user = $localStorage.user;
-    console.log(vm.user);
+
+
     vm.newProject = {};
     vm.child0 = "";
     vm.child1 = "";
     vm.child2 = "";
     vm.child3 = "";
     vm.countdown = 5;
-    vm.redirect = redirect;
-    vm.continueWithoutImages = continueWithoutImages;
     vm.popupFlag = false;
     vm.emergency = false;
     vm.dateFlag = false;
-    vm.dt = new Date();
-    vm.default = angular.copy(vm.dt);
-    vm.minDate = new Date()
-    vm.J1 = {date: new Date()};
-    vm.time = vm.J1.date.getHours();
-    vm.initHours = initHours;
-    vm.initHours();
-    vm.J2 = {date: new Date()};
-    vm.J3 = {date: new Date()};
-    vm.J2.date.setDate(vm.J2.date.getDate() + 1);
-    vm.J3.date.setDate(vm.J3.date.getDate() + 2);
-    vm.minDate.setDate(vm.minDate.getDate() + 2);
-    vm.selectType = selectType;
-    // vm.selectService = selectService;
-    vm.selectSubService = selectSubService;
-    vm.projectDescription = "";
-    vm.material = null;
-    vm.continueProject = continueProject;
-    vm.continueProjectImg = continueProjectImg;
     vm.continue = false;
+    vm.disabledAddr = true;
     vm.questions = [];
-    vm.continueAddr = continueAddr;
+    vm.material = null;
     vm.continueAddressFlag = false;
     vm.service = false;
     vm.continueImg = false;
@@ -52,6 +33,34 @@
     vm.dateType = "";
     vm.popUpImg = false;
     vm.newAddrFlag = false;
+    vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
+
+    vm.dt = new Date(); // date picker binding
+    vm.default = angular.copy(vm.dt);
+    vm.minDate = new Date()
+    vm.J1 = {date: new Date()};
+    vm.time = vm.J1.date.getHours();
+    vm.J2 = {date: new Date()};
+    vm.J3 = {date: new Date()};
+    vm.J2.date.setDate(vm.J2.date.getDate() + 1);
+    vm.J3.date.setDate(vm.J3.date.getDate() + 2);
+    vm.minDate.setDate(vm.minDate.getDate() + 2);
+    var d = new Date();
+    $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
+
+    $rootScope.photos = [{}, {}, {}, {}];
+
+
+    vm.redirect = redirect;
+    vm.continueWithoutImages = continueWithoutImages;
+    vm.initHours = initHours;
+    vm.selectType = selectType;
+    // vm.selectService = selectService;
+    vm.selectSubService = selectSubService;
+    vm.projectDescription = "";
+    vm.continueProject = continueProject;
+    vm.continueProjectImg = continueProjectImg;
+    vm.continueAddr = continueAddr;
     vm.verif = verif;
     vm.setAddress = setAddress;
     vm.selectDate = selectDate;
@@ -64,10 +73,15 @@
     vm.newAddr = {};
     vm.all = all;
     vm.initDate = initDate;
-    vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
+    vm.limitLength = limitLength;
+    vm.verifDescription = verifDescription
+
+
+    // Google autocomplete binding
+
     $scope.options = {
-      types: ['(cities)'],
-      componentRestrictions: { country: 'FR' }
+      types: ['geocode'],
+      componentRestrictions: { country: 'fr' }
     };
 
     $scope.address = {
@@ -90,13 +104,33 @@
       }
     };
 
+    // ---------------------------------------
+
+    vm.initHours();
     networkService.stepsGET("SMALL_PROJECT", succesProjectsGET, errorProjectsGET);
     networkService.profileGET(succesProfileGET, errorProfileGET);
 
-    var d = new Date();
-    $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
-    $rootScope.photos = [{}, {}, {}, {}];
-    //$scope.$watch('files', function() {
+
+    function limitLength(obj, token, limit){
+      if (obj[token].length >= limit){
+        obj[token] = obj[token].slice(0, limit);
+      }
+    }
+
+    function verifDescription(){
+      if (vm.projectDescription.length < 3){
+        vm.continue = false;
+        vm.continueImg = false;
+        vm.img = [];
+        vm.continueAddressFlag = false;
+        vm.error.description.flag = true;
+        vm.error.description.message = "Add a description of your needs";
+
+      }
+    }
+
+    // UPLOAD FILE
+
     $scope.uploadFiles = function(files, invalides, index){
       if (invalides.length > 0){
         if (invalides[0].$error == "maxSize")
@@ -128,9 +162,7 @@
         }
       });
     };
-    //});
 
-    /* Modify the look and fill of the dropzone when files are being dragged over it */
     $scope.dragOverClass = function($event) {
       var items = $event.dataTransfer.items;
       var hasFile = false;
@@ -147,89 +179,10 @@
       return hasFile ? "dragover" : "dragover-err";
     };
 
-    function all(j){
-      if (j.all == true){
-        j.all = true;
-        j.c1 = true;
-        j.c2 = true;
-        j.c3 = true;
-        j.c4 = true;
-        j.c5 = true;
-        j.c6 = true;
-        j.c7 = true;
-      }
-      else {
-        j.all = false;
-        j.c1 = false;
-        j.c2 = false;
-        j.c3 = false;
-        j.c4 = false;
-        j.c5 = false;
-        j.c6 = false;
-        j.c7 = false;
-      }
-    }
-    function initDate(j, tab){
-      var tmp = "";
-      if (j.all && j.allDisabled != "checkbox-disabled"){
-        tmp = "ALL_DAY";
-        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
-      }
-      else {
-        for (var i = 0; i < 7; i++) {
-          if (j["c"+(i+1)] && j["c"+(i+1)+"Disabled"] != "checkbox-disabled"){
-            if (i == 0)
-            tmp = "7H_9H";
-            else if (i == 1) {
-              tmp = "9H_12H";
-            }
-            else if (i == 2) {
-              tmp = "12H_14H";
-            }
-            else if (i == 3) {
-              tmp = "14H_16H";
-            }
-            else if (i == 4) {
-              tmp = "16H_18H";
-            }
-            else if (i == 5) {
-              tmp = "18H_20H"
-            }
-            else if (i == 6) {
-              tmp = "AFTER_20H";
-            }
-            tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
-          }
-        }
-      }
-    }
 
-    function initHours(){
-      if (vm.time >= 9) {
-        vm.J1.c1Disabled = "checkbox-disabled";
-        vm.J1.allDisabled = "checkbox-disabled";
-      }
-      if (vm.time >= 12) {
-        vm.J1.c2Disabled = "checkbox-disabled";
-        vm.J1.allDisabled = "checkbox-disabled";
-      }
-      if (vm.time >= 14) {
-        vm.J1.c3Disabled = "checkbox-disabled";
-        vm.J1.allDisabled = "checkbox-disabled";
-      }
-      if (vm.time >= 16) {
-        vm.J1.c4Disabled = "checkbox-disabled";
-        vm.J1.allDisabled = "checkbox-disabled";
-      }
-      if (vm.time >= 18) {
-        vm.J1.c5Disabled = "checkbox-disabled";
-        vm.J1.allDisabled = "checkbox-disabled";
-      }
-      if (vm.time >= 20) {
-        vm.J1.c6Disabled = "checkbox-disabled";
-        vm.J1.allDisabled = "checkbox-disabled";
-      }
-    }
+    // ------------
+
+
 
     function resetProject(){
       if (vm.emergency){
@@ -391,7 +344,6 @@
             $timeout(function(){
               $location.hash('slide5');
               $anchorScroll();
-              redirect();
             },0);
           }
           else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3){
@@ -400,7 +352,6 @@
             $timeout(function(){
               $location.hash('slide5');
               $anchorScroll();
-              redirect();
             },0);
           }
           formData.address.name  = vm.newAddr.name;
@@ -492,6 +443,23 @@
     function errorProjectsPOST(){
       vm.end = false;
       alertMsg.send("Error : Impossible de créer le projet", "danger");
+      if (vm.error.description.flag || vm.error.material.flag)
+      $timeout(function(){
+        $location.hash('slide3');
+        $anchorScroll();
+      },0);
+      else if (vm.error.address.flag) {
+        $timeout(function(){
+          $location.hash('slide5');
+          $anchorScroll();
+        },0);
+      }
+      else if (vm.error.date.flag) {
+        $timeout(function(){
+          $location.hash('slide6');
+          $anchorScroll();
+        },0);
+      }
     }
 
     function selectDateType(type){
@@ -520,12 +488,40 @@
 
     function verifNameAddr(){
       vm.continueAddressFlag = false;
+      if (vm.newAddr.name.length > 0){
+        vm.continueAddress = false
+        vm.disabledAddr = false;
+        vm.myAddress = "new";
+        $scope.address = {
+          name: '',
+          place: '',
+          components: {
+            placeId: '',
+            streetNumber: '',
+            street: '',
+            city: '',
+            state: '',
+            countryCode: '',
+            country: '',
+            postCode: '',
+            district: '',
+            location: {
+              lat: '',
+              long: ''
+            }
+          }
+        };
+      }
+      else {
+        vm.disabledAddr = true;
+      }
     }
 
     function continueAddr(){
+      console.log($scope.address);
       if (vm.continueAddress == false){
         if (vm.newAddr.name){
-          if ($scope.address.components.placeId){
+          if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR"){
             vm.newAddr.address = $scope.address.name;
             vm.continueAdress = true;
             vm.error.address.flag = false;
@@ -537,11 +533,13 @@
             },0);
           }
           else {
+            vm.continueAddressFlag = false;
             vm.error.address.flag = true;
             vm.error.address.message = "A valid address is required";
           }
         }
         else {
+          vm.continueAddressFlag = false;
           vm.error.address.message = "An address name is required";
           vm.error.address.flag = true;
         }
@@ -558,6 +556,7 @@
           },0);
         }
         else {
+          vm.continueAddressFlag = false;
           vm.error.address.message = "An address is required";
           vm.error.address.flag = true;
         }
@@ -574,7 +573,9 @@
         $scope.address.name = vm.myAddress;
         vm.continueAddress = true;
         vm.newAddrFlag = false;
+        vm.newAddr.name = "";
       }
+      vm.disabledAddr = true;
     }
 
     function verif(){
@@ -740,6 +741,95 @@
       }
 
       console.log(res);
+    }
+
+    function all(j){
+      if (j.all == true){
+        j.all = true;
+        j.c1 = true;
+        j.c2 = true;
+        j.c3 = true;
+        j.c4 = true;
+        j.c5 = true;
+        j.c6 = true;
+        j.c7 = true;
+      }
+      else {
+        j.all = false;
+        j.c1 = false;
+        j.c2 = false;
+        j.c3 = false;
+        j.c4 = false;
+        j.c5 = false;
+        j.c6 = false;
+        j.c7 = false;
+      }
+    }
+
+
+    function initDate(j, tab){
+      var tmp = "";
+      if (j.all && j.allDisabled != "checkbox-disabled"){
+        tmp = "ALL_DAY";
+        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
+      }
+      else {
+        for (var i = 0; i < 7; i++) {
+          if (j["c"+(i+1)] && j["c"+(i+1)+"Disabled"] != "checkbox-disabled"){
+            switch (i) {
+              case 0:
+              tmp = "7H_9H";
+              break;
+              case 1:
+              tmp = "9H_12H";
+              break;
+              case 2:
+              tmp = "12H_14H";
+              break;
+              case 3:
+              tmp = "14H_16H";
+              break;
+              case 4:
+              tmp = "16H_18H";
+              break;
+              case 5:
+              tmp = "18H_20H"
+              break;
+              case 6:
+                tmp = "AFTER_20H";
+              break;
+            }
+            tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
+          }
+        }
+      }
+    }
+
+    function initHours(){
+      if (vm.time >= 9) {
+        vm.J1.c1Disabled = "checkbox-disabled";
+        vm.J1.allDisabled = "checkbox-disabled";
+      }
+      if (vm.time >= 12) {
+        vm.J1.c2Disabled = "checkbox-disabled";
+        vm.J1.allDisabled = "checkbox-disabled";
+      }
+      if (vm.time >= 14) {
+        vm.J1.c3Disabled = "checkbox-disabled";
+        vm.J1.allDisabled = "checkbox-disabled";
+      }
+      if (vm.time >= 16) {
+        vm.J1.c4Disabled = "checkbox-disabled";
+        vm.J1.allDisabled = "checkbox-disabled";
+      }
+      if (vm.time >= 18) {
+        vm.J1.c5Disabled = "checkbox-disabled";
+        vm.J1.allDisabled = "checkbox-disabled";
+      }
+      if (vm.time >= 20) {
+        vm.J1.c6Disabled = "checkbox-disabled";
+        vm.J1.allDisabled = "checkbox-disabled";
+      }
     }
 
     function errorProfileGET(){

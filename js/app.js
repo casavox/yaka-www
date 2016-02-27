@@ -14,6 +14,8 @@ angular.module('Yaka', [
   'angularRipple',
   'monospaced.elastic']);
 
+
+// facebook library API
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '847913895334564',
@@ -41,12 +43,7 @@ angular.module('Yaka', [
     function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider) {
 
       $authProvider.baseUrl = 'https://yaka-api.herokuapp.com';
-      //
-      // Cloudinary configuration
-      // cloudinaryProvider
-      // .set("cloud_name", "CCCCCCC")
-      // .set("upload_preset", "UUUUUUUU");
-      //
+
       // Translation area
 
       $authProvider.google({
@@ -147,7 +144,7 @@ angular.module('Yaka', [
       })
 
       //
-      //Interceptor to put the token in the header for each request http
+      //Interceptor to put the token in the header for each http request
       $httpProvider.interceptors.push(['$q', '$injector', '$localStorage', function($q, $injector, $localStorage) {
         return {
           'request': function (config) {
@@ -170,6 +167,9 @@ angular.module('Yaka', [
 
     }
   })();
+
+
+
 
   (function() {
     'use strict';

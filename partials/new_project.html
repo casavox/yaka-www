@@ -48,14 +48,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="slide" id="slide2" ng-show="vm.type">
-    <h2 class="text-center" >What service do you need?</h2>
-    <ul class="questions-ul center">
-    <li class="question-li center" ng-class="child.selected" ng-repeat="child in vm.type.childrenSteps" ng-click="vm.selectService(child, vm.type.childrenSteps)" >
-    {{child.question}}
-  </li>
-</ul>
-</div> -->
 <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenSteps">
   <h2 class="text-center">{{q.question}}</h2>
   <ul  class="questions-ul center">
@@ -85,7 +77,7 @@
     {{vm.error.material.message}}
   </p>
   <h2 class="text-center h2-middle">Could you describe project for us?</h2>
-  <textarea class="description center" ng-model="vm.projectDescription" placeholder="describe your problem and your needs"></textarea>
+  <textarea class="description center" ng-model="vm.projectDescription" placeholder="describe your problem and your needs" ng-blur="vm.verifDescription()"></textarea>
   <p class="error center" ng-show="vm.error.description.flag">
     {{vm.error.description.message}}
   </p>
@@ -100,7 +92,6 @@
     ng-model="files"
     ng-multiple="false" >
     <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
-    <span class=" center img-preview-comment" ng-show="photos[0].public_id" ng-click="photos[0].commentFlag = !photos[0].commentFlag " ng-init="photos[0].commentFlag = false"></span>
     <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
     ngf-accept="'image/*'" ngf-max-size="5MB">
     <a cl-href="{{photos[0].public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
@@ -111,7 +102,10 @@
     </a>
     <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
   </div>
-  <textarea class="comment" ng-model="photos[0].comment" ng-show="photos[0].commentFlag" placeholder="Comment this photo"></textarea>
+  <textarea class="comment custom-comment" ng-model="photos[0].comment" ng-show="photos[0].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[0], 'comment', 140)"></textarea>
+  <div class="comment-length">
+    {{photos[0].comment.length}}/140
+  </div>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -119,7 +113,6 @@ ngf-drag-over-class="dragOverClass($event)"
 ng-model="files"
 ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[1] = {}" ng-show="photos[1].public_id"></span>
-<span class=" center img-preview-comment" ng-show="photos[1].public_id" ng-click="photos[1].commentFlag = !photos[1].commentFlag" ng-init="photos[1].commentFlag = false"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[1].public_id">
@@ -130,7 +123,10 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[1].public_id"/>
 </div>
-<textarea class="comment" ng-model="photos[1].comment" ng-show="photos[1].commentFlag" placeholder="Comment this photo"></textarea>
+<textarea class="comment custom-comment" ng-model="photos[1].comment" ng-show="photos[1].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[1], 'comment', 140)"></textarea>
+<div class="comment-length">
+  {{photos[1].comment.length}}/140
+</div>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -138,7 +134,6 @@ ngf-drag-over-class="dragOverClass($event)"
 ng-model="files"
 ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[2] = {}" ng-show="photos[2].public_id"></span>
-<span class=" center img-preview-comment" ng-show="photos[2].public_id" ng-click="photos[2].commentFlag = !photos[2].commentFlag" ng-init="photos[2].commentFlag = false"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 2)"
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[2].public_id">
@@ -149,7 +144,10 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[2].public_id"/>
 </div>
-<textarea class="comment" ng-model="photos[2].comment" ng-show="photos[2].commentFlag" placeholder="Comment this photo"></textarea>
+<textarea class="comment custom-comment" ng-model="photos[2].comment" ng-show="photos[2].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[2], 'comment', 140)"></textarea>
+<div class="comment-length">
+  {{photos[2].comment.length}}/140
+</div>
 </div>
 <div class="col-md-3 no-padding"
 ngf-drop="uploadFiles($files)"
@@ -157,7 +155,6 @@ ngf-drag-over-class="dragOverClass($event)"
 ng-model="files"
 ng-multiple="false" >
 <span class=" center img-preview-remove" ng-click="photos[3] = {}" ng-show="photos[3].public_id"></span>
-<span class=" center img-preview-comment" ng-show="photos[3].public_id" ng-click="photos[3].commentFlag = !photos[3].commentFlag" ng-init="photos[3].commentFlag = false"></span>
 <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 3)"
 ngf-accept="'image/*'" ngf-max-size="5MB">
 <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[3].public_id">
@@ -168,7 +165,10 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[3].public_id"/>
 </div>
-<textarea class="comment" ng-model="photos[3].comment" ng-show="photos[3].commentFlag" placeholder="Comment this photo"></textarea>
+<textarea class="comment custom-comment" ng-model="photos[3].comment" ng-show="photos[3].public_id" ng-change="vm.limitLength(photos[3], 'comment', 140)" placeholder="Comment this photo"></textarea>
+<div class="comment-length">
+  {{photos[3].comment.length}}/140
+</div>
 </div>
 </div>
 <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue</button>
@@ -177,15 +177,33 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
   <h2 class="text-center mb-39">Where do need it?</h2>
   <h3 class="text-center mb-120" ng-show="!vm.newAddrFlag">Enter your address and give it a name</h3>
   <h3 class="text-center mb-120" ng-show="vm.newAddrFlag">Select one from your registred addresses or enter a new one</h3>
-  <div class="row no-margin w-900 center">
+  <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
+    <div class="col-md-4 no-padding">
+      <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
+        <option value="new">Create new one</option>
+        <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-4 no-padding">
+      <p class="">
+        -   Or create a new one
+      </p>
+
+    </div>
+    <div class="col-md-4 no-padding">
+      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+    </div>
+  </div>
+  <div class="row no-margin w-900 center addr">
     <div class="col-xs-3" ng-show="vm.newAddrFlag">
-      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="Mom’s home">
+      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
     </div>
     <div class="no-padding mb-39" ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
       <div class="inner-addon right-addon">
+        <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
         <i class="glyphicon glyphicon-map-marker"></i>
-        <input vs-google-autocomplete
-
+        <input vs-google-autocomplete="options"
+        options="options"
         ng-model="address.name"
         vs-place="address.place"
         vs-place-id="address.components.placeId"
@@ -206,14 +224,6 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
         placeholder="Enter address" class="input-custom">
       </div>
 
-    </div>
-  </div>
-  <div class="row no-margin w-900 center">
-    <div class="col-md-4 no-padding center">
-      <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-        <option value="new">Create new one</option>
-        <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
-      </select>
     </div>
   </div>
   <p class="error center" ng-show="vm.error.address.flag">
@@ -439,7 +449,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
       {{vm.error.date.message}}
     </p>
   </div>
-  <button type="button" class="new-project-continue mb-10 btn" ng-click="vm.post()">POST</button>
+  <button type="button" class="new-project-continue btn" ng-click="vm.post()">POST</button>
   <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()" ng-show="!vm.emergency">DRAFT</button>
 </div>
 <div class="slide bckg-default end" id="slideEnd" ng-show="vm.end">

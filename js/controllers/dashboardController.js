@@ -49,11 +49,11 @@
     }
 
     function errorProjectsGET(){
-
+      // call service error
     }
 
     function errorProjectsDraftGET(){
-
+      // call service error
     }
 
     function sortProjects(tab){

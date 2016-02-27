@@ -81,12 +81,13 @@
     function errorLogin(err){
       if (!angular.isUndefined(err) && err && err.message && err.message != "")
       console.log(err.message);
+      // call service alertMsg error danger-theme
     };
 
     function succesFLogin(res){
       if (!angular.isUndefined(res.token) && res.token && res.token != ""){
         $localStorage.token = res.token;
-        if ($rootScope.newProject){
+        if ($rootScope.newProject){ // if create project and log just after.
           if ($rootScope.newProject.type == "small")
           networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
           else {
@@ -102,6 +103,7 @@
 
     function errorFLogin(err){
       console.log(err.message);
+      // call alertMSg error danger-theme
     };
 
   }

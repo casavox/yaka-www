@@ -336,7 +336,21 @@
       </div>
     </div>
     <div class="proposal-offers">
-      
+      <p class="proposal-qualities f-l">
+        Main qualities
+      </p>
+      <div class="proposal-quality" ng-repeat-start="q in vm.proposal.professional.qualities">
+        {{q.name}} ({{$index + 1}})
+      </div>
+      <div class="proposal-quality-separate" ng-repeat-end ng-if="$index < qualities.length">
+        -
+      </div>
+    </div>
+    <div class="proposal-offers">
+      <p class="proposal-about-me f-l">
+        About me
+      </p>
+      <textarea msd-elastic class="custom-textarea-about-me" ng-model="vm.proposal.professional.aboutMe"></textarea>
     </div>
   </div>
 

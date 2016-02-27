@@ -14,6 +14,8 @@
     vm.projectsOnGoing = [];
     vm.projectsCompleted = [];
     vm.selectProject = selectProject;
+
+    
     networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
     networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
 
