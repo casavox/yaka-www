@@ -12,15 +12,41 @@
 
     $scope.email = "";
     $scope.password = "";
+    $scope.error = {email: {flag: false, message:""}, password:{flag:false, message:""}};
     if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
     delete $localStorage.token;
 
+    $scope.pressEnter = function(event){
+      if (event.keyCode == 13)
+      $scope.login();
+    }
+
     $scope.login = function(){
+      if ($scope.email && $scope.password){
       var formData = {
         profile: {email: $scope.email},
         password: $scope.password
       }
       networkService.login(formData, succesLogin, errorLogin);
+      }
+      else {
+        if (!$scope.email){
+          $scope.error.email.flag = true;
+          $scope.error.email.message = "Please enter an email";
+        }
+        else {
+          $scope.error.email.flag = false;
+          $scope.error.email.message = "Please enter an email";
+        }
+        if (!$scope.password){
+          $scope.error.password.flag = true;
+          $scope.error.password.message = "Please enter a password";
+        }
+        else {
+          $scope.error.password.flag = false;
+          $scope.error.password.message = "Please enter a password";
+        }
+      }
     };
 
     $scope.FLogin = function(){

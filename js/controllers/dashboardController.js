@@ -7,14 +7,15 @@
 
   //
   //Controller login
-  DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope']
-  function DashboardController($scope, networkService, socialNetworkService, $rootScope) {
+  DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state']
+  function DashboardController($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state) {
 
     var vm = this;
     vm.dashboardProjects = [];
     vm.dashboardAddress = [];
     vm.dashboardPro = [];
     vm.count = 0;
+    vm.selectProject = selectProject;
 
     vm.getMenuItemClass = function (state) {
       if (state == "dashboard") {
@@ -42,7 +43,7 @@
     }
 
     function succesProjectsDraftGET(res){
-      vm.dashboardProjects.concat(res);
+      vm.dashboardProjects = vm.dashboardProjects.concat(res);
       vm.count = vm.dashboardProjects.length;
       vm.dashboardProjects = sortProjects(vm.dashboardProjects);
       console.log(vm.dashboardProjects);
@@ -54,6 +55,12 @@
 
     function errorProjectsDraftGET(){
       // call service error
+    }
+
+
+    function selectProject(p){
+      $localStorage.projectGet = p;
+      $state.go("project");
     }
 
     function sortProjects(tab){

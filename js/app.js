@@ -181,7 +181,7 @@ angular.module('Yaka', [
     function runBlock($rootScope, $localStorage, $injector) {
       $rootScope.$on('$stateChangeStart',
       function(event, toState, toParams , fromState, fromParams){
-        if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project"){
+        if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register"){
           event.preventDefault();
           $injector.get('$state').go('login');
         }

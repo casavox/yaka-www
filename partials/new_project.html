@@ -36,8 +36,8 @@
           </div>
 
         </div>
-        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenSteps" ng-click="vm.selectType(child, vm.newProject.childrenSteps)">
-          <div class="p-20">
+        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenSteps" ng-click="vm.selectType(child, vm.newProject.childrenSteps)" title="{{child.name}}">
+          <div class="type-project-box-content">
             <div class="v-icon v-icon-{{child.icon}} center">
             </div>
             <p class="type-project-title text-center">

@@ -39,23 +39,23 @@
             <ul class="no-padding">
 
 
-              <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index" title="{{p.title}}">
-                <div class="row">
-                  <div class="col-xs-2">
+              <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index" title="{{p.title}}" ng-click="vm.selectProject(p)">
+                <div class="row no-margin">
+                  <div class="col-xs-1">
                     <i class="fa fa-circle center-middle" ng-class="p.status"></i>
                   </div>
-                  <div class="col-xs-7">
-                    <div class="project-middle">
+                  <div class="col-xs-8">
+                    <div>
                       <div class="title-line">
                         <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
-                        <p class="project-title">
+                        <p class="project-title"  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
                           {{p.title}}
                         </p>
                       </div>
 
                       <div class="info-line">
                         <p class="project-date">
-                          {{p.updated | date:'mediumDate'}} -
+                          {{p.updated | date:'dd MMM yyyy'}} -
                         </p>
                         <p class="project-address">
                           {{p.address.name}}
@@ -69,16 +69,24 @@
                       <p>
                         Propositions
                       </p>
-                      <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'">
+                      <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'"  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
                         {{p.proposals.length}}
                       </p>
                       <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
                         0
                       </p>
                     </div>
-                    <div class="propositions" ng-show="p.status == 'ONGOING_PROJECT_ONGOING' || p.status == 'ONGOING_PROS_PRESELECTED'">
-                      <p>
+                    <div class="propositions" ng-show="p.status == 'ONGOING_PROS_PRESELECTED'">
+                      <p ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
                         Pro selected
+                      </p>
+                      <p  >
+                        {{p.professional.companyName}}
+                      </p>
+                    </div>
+                    <div class="propositions" ng-show="p.status == 'ONGOING_RATE_PRO'">
+                      <p  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                        Waiting end project
                       </p>
                       <p>
                         {{p.professional.companyName}}

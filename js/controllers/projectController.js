@@ -27,6 +27,8 @@
     vm.editWhere = editWhere;
     vm.newAddrFlag = false;
     vm.dateSelected = false;
+    vm.imagePreviewFlag = false;
+    vm.disabledAddr = true;
     vm.project = {};
     vm.projectTmp = {};
     vm.prev = prev;
@@ -50,9 +52,11 @@
     vm.limitLength = limitLength;
     $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
     $scope.options = {scrollwheel: true};
+    vm.getQualities = getQualities;
+
     vm.dt = new Date();
     vm.default = angular.copy(vm.dt);
-    vm.minDate = new Date()
+    vm.minDate = new Date();
     vm.J1 = {date: new Date()};
     vm.time = vm.J1.date.getHours();
     vm.initHours = initHours;
@@ -72,10 +76,13 @@
     vm.calculateExp = calculateExp;
     vm.changeWhere = changeWhere;
     vm.indexOfObject = indexOfObject;
+    vm.homeDetail = homeDetail;
+    vm.verifNameAddr = verifNameAddr;
+    vm.getSlot = getSlot;
     vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
     $scope.options = {
-      types: ['(cities)'],
-      componentRestrictions: { country: 'FR' }
+      types: ['address'],
+      componentRestrictions: { country: 'fr' }
     };
 
     $scope.address = {
@@ -100,9 +107,84 @@
 
     networkService.profileGET(succesProfileGET, errorProfileGET);
 
+    function getQualities(){
+      if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.professional) && !angular.isUndefined(vm.proposal.professional.qualities)){
+        var res = "";
+        for (var i = 0; i < vm.proposal.professional.qualities.length; i++) {
+          switch (vm.proposal.professional.qualities[i].name) {
+            case expression:
+
+              break;
+            default:
+
+          }
+        }
+      }
+    }
+
+    function getSlot(){
+      if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.availability) && !angular.isUndefined(vm.proposal.availability.slot))
+      switch (vm.proposal.availability.slot) {
+        case "7H_9H":
+        return "7h";
+        break;
+        case "9H_12H":
+        return "9h";
+        break;
+        case "12H_14H":
+        return "12h";
+        break;
+        case "14H_16H":
+        return "14h";
+        break;
+        case "16H_18H":
+        return "16h";
+        break;
+        case "18H_20H":
+        return "18h";
+        break;
+        case "AFTER_20H":
+        return "20h";
+        break;
+
+      }
+    }
+
+    function verifNameAddr(){
+      vm.continueAddressFlag = false;
+      if (vm.newAddr.name.length > 0){
+        vm.continueAddress = false
+        vm.disabledAddr = false;
+        vm.myAddress = "new";
+        $scope.address = {
+          name: '',
+          place: '',
+          components: {
+            placeId: '',
+            streetNumber: '',
+            street: '',
+            city: '',
+            state: '',
+            countryCode: '',
+            country: '',
+            postCode: '',
+            district: '',
+            location: {
+              lat: '',
+              long: ''
+            }
+          }
+        };
+      }
+      else {
+        vm.newAddr.name = "";
+        vm.disabledAddr = true;
+      }
+    }
+
     function indexOfObject(a, token, array){
+      var res = [];
       if (!angular.isUndefined(array)){
-        var res = [];
         for (var i = 0; i < array.length; i++) {
           if (array[i][token] == a){
             res.push(i);
@@ -128,6 +210,11 @@
     function succesProposalGET(res){
       vm.proposal = res;
       vm.proDetails = true;
+    }
+
+    function homeDetail(){
+      vm.proposal = {};
+      vm.proDetails = false;
     }
 
     function errorProposalGET(res){
@@ -174,6 +261,10 @@
         vm.imgTmp = media;
         vm.imageFlag = true;
       }
+      else{
+        vm.imgTmpPreview = media;
+        vm.imagePreviewFlag = true;
+      }
     }
 
     function changeWhere(){
@@ -204,7 +295,9 @@
         $scope.address.name = vm.myAddress;
         vm.continueAddress = true;
         vm.newAddrFlag = false;
+        vm.newAddr.name = "";
       }
+      vm.disabledAddr = true;
     }
 
     function succesProfileGET(res){
@@ -523,6 +616,7 @@
 
     function succesProjectGET(res){
       vm.project = res;
+      console.log(res);
       vm.projectTmp = angular.copy(vm.project);
       if (vm.projectTmp.type != "EMERGENCY"){
         vm.dateType = vm.projectTmp.desiredDatePeriod;
