@@ -36,22 +36,22 @@
           </div>
 
         </div>
-        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenActivities" ng-click="vm.selectType(child, vm.newProject.childrenActivities)" title="{{child.code}}">
+        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenActivities" ng-click="vm.selectType(child, vm.newProject.childrenActivities)" title="{{child.name}}">
           <div class="type-project-box-content">
             <div class="v-icon v-icon-{{child.icon}} center">
             </div>
             <p class="type-project-title text-center">
-              {{child.code}}
+              {{child.name}}
             </p>
           </div>
         </div>
       </div>
     </div>
 <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenActivities">
-  <h2 class="text-center">{{q.code}}</h2>
+  <h2 class="text-center">{{q.name}}</h2>
   <ul  class="questions-ul center">
     <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities" ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
-      {{child.code}}
+      {{child.name}}
     </li>
   </ul>
 </div>

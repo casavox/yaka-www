@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg', 'smoothScroll']
-  function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg, smoothScroll) {
+  NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg', 'smoothScroll', 'projectActivitiesHelperService']
+  function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg, smoothScroll, projectActivitiesHelperService) {
     var vm = this;
     vm.user = $localStorage.user;
 
@@ -670,6 +670,7 @@
 
         var childrenArray = [];
         for (var i = 0; i < item.childrenActivities.length; i++) {
+          item.childrenActivities[i].name = projectActivitiesHelperService.getNameFromCode(item.childrenActivities[i].code)
           if (vm.emergency && item.childrenActivities[i].emergency) {
             childrenArray.push(item.childrenActivities[i]);
           } else if (!vm.emergency && item.childrenActivities[i].small) {
@@ -685,6 +686,7 @@
         var otherChild = {
           code: "OTHER"
         }
+        otherChild.name = projectActivitiesHelperService.getNameFromCode(otherChild.code)
         item.childrenActivities.push(otherChild);
       }
       item.selected = "activate";
@@ -722,6 +724,7 @@
 
         var childrenArray = [];
         for (var i = 0; i < item.childrenActivities.length; i++) {
+          item.childrenActivities[i].name = projectActivitiesHelperService.getNameFromCode(item.childrenActivities[i].code)
           if (vm.emergency && item.childrenActivities[i].emergency) {
             childrenArray.push(item.childrenActivities[i]);
           } else if (!vm.emergency && item.childrenActivities[i].small) {
@@ -729,13 +732,15 @@
           }
         }
         item.childrenActivities = childrenArray;
-        
+
         for (var i = 0; i < item.childrenActivities.length; i++) {
           item.childrenActivities[i].selected = "";
-          var otherChild = {
-            code: "OTHER"
-          }
         }
+
+        var otherChild = {
+          code: "OTHER"
+        }
+        otherChild.name = projectActivitiesHelperService.getNameFromCode(otherChild.code)
         item.childrenActivities.push(otherChild);
       }
       item.selected = "activate";
@@ -758,6 +763,7 @@
 
       var childrenArray = [];
       for (var i = 0; i < res.childrenActivities.length; i++) {
+        res.childrenActivities[i].name = projectActivitiesHelperService.getNameFromCode(res.childrenActivities[i].code)
         if (vm.emergency && res.childrenActivities[i].emergency) {
           childrenArray.push(res.childrenActivities[i]);
         } else if (!vm.emergency && res.childrenActivities[i].small) {
