@@ -12,7 +12,8 @@ angular.module('Yaka', [
   'uiGmapgoogle-maps',
   'angular-carousel',
   'angularRipple',
-  'monospaced.elastic']);
+  'monospaced.elastic',
+  'smoothScroll']);
 
 
 // facebook library API

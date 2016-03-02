@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg']
-  function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg) {
+  NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg', 'smoothScroll']
+  function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg, smoothScroll) {
     var vm = this;
     vm.user = $localStorage.user;
 
@@ -27,6 +27,7 @@
     vm.questions = [];
     vm.material = null;
     vm.continueAddressFlag = false;
+    vm.selectCategory = true;
     vm.service = false;
     vm.continueImg = false;
     vm.img = [];
@@ -76,6 +77,9 @@
     vm.limitLength = limitLength;
     vm.verifDescription = verifDescription
 
+    var scrollOptions = {
+      containerId: 'main-scroll-container'
+    }
 
     // Google autocomplete binding
 
@@ -107,7 +111,7 @@
     // ---------------------------------------
 
     vm.initHours();
-    networkService.stepsGET("SMALL_PROJECT", succesProjectsGET, errorProjectsGET);
+    networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
     networkService.profileGET(succesProfileGET, errorProfileGET);
 
 
@@ -185,12 +189,7 @@
 
 
     function resetProject(){
-      if (vm.emergency){
-        networkService.stepsGET("EMERGENCY", succesProjectsGET, errorProjectsGET);
-      }
-      else {
-        networkService.stepsGET("SMALL_PROJECT", succesProjectsGET, errorProjectsGET);
-      }
+      networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
       vm.title = "";
       vm.type = {};
       vm.continue = false;
@@ -217,8 +216,8 @@
         vm.user = {}
         vm.user.addresses = [];
       }
-      for (var i = 0; i < vm.newProject.childrenSteps.length; i++) {
-        vm.newProject.childrenSteps[i].selected = "";
+      for (var i = 0; i < vm.newProject.childrenActivities.length; i++) {
+        vm.newProject.childrenActivities[i].selected = "";
       }
     }
 
@@ -250,10 +249,10 @@
         desiredDatePeriod: vm.dateType,
         status: "DRAFT",
         address: {},
-        tags: [],
+        activities: [],
       }
       for (var i = 0; i < vm.questions.length; i++) {
-        formData.tags.push({name: vm.questions[i].shortName});
+        formData.activities.push({code: vm.questions[i].code});
       }
       if (vm.dateType == "SPECIFIC"){
         formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
@@ -319,10 +318,10 @@
           description: vm.projectDescription,
           desiredDatePeriod: vm.dateType,
           address: {},
-          tags: [],
+          activities: [],
         }
         for (var i = 0; i < vm.questions.length; i++) {
-          formData.tags.push({name: vm.questions[i].shortName});
+          formData.activities.push({code: vm.questions[i].code});
         }
         if (vm.dateType == "SPECIFIC"){
           formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
@@ -342,16 +341,16 @@
             vm.error.address.flag = true;
             vm.error.address.message = "A valid address name is required";
             $timeout(function(){
-              $location.hash('slide5');
-              $anchorScroll();
+              var element = document.getElementById('slide5');
+              smoothScroll(element, scrollOptions);
             },0);
           }
           else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3){
             vm.error.address.flag = true;
             vm.error.address.message = "A valid address is required";
             $timeout(function(){
-              $location.hash('slide5');
-              $anchorScroll();
+              var element = document.getElementById('slide5');
+              smoothScroll(element, scrollOptions);
             },0);
           }
           formData.address.name  = vm.newAddr.name;
@@ -380,11 +379,11 @@
           title: vm.title,
           description: vm.projectDescription,
           address: {},
-          tags: [],
+          activities: [],
           availabilities: []
         }
         for (var i = 0; i < vm.questions.length; i++) {
-          formData.tags.push({name: vm.questions[i].shortName});
+          formData.activities.push({code: vm.questions[i].code});
         }
         if (vm.continueAddress){
           for (var i = 0; i < vm.user.addresses.length; i++) {
@@ -432,10 +431,16 @@
 
     function succesProjectsPOST(res){
       console.log(res);
+      vm.selectCategory = false;
+      vm.questions = [];
+      vm.service = false;
+      vm.continue = false;
+      vm.continueImg = false;
+      vm.continueAddressFlag = false;
       vm.end = true;
       $timeout(function(){
-        $location.hash('slideEnd');
-        $anchorScroll();
+        var element = document.getElementById('slideEnd');
+        smoothScroll(element, scrollOptions);
         redirect();
       },0);
     }
@@ -445,19 +450,19 @@
       alertMsg.send("Error : Impossible de créer le projet", "danger");
       if (vm.error.description.flag || vm.error.material.flag)
       $timeout(function(){
-        $location.hash('slide3');
-        $anchorScroll();
+        var element = document.getElementById('slide3');
+        smoothScroll(element, scrollOptions);
       },0);
       else if (vm.error.address.flag) {
         $timeout(function(){
-          $location.hash('slide5');
-          $anchorScroll();
+          var element = document.getElementById('slide5');
+          smoothScroll(element, scrollOptions);
         },0);
       }
       else if (vm.error.date.flag) {
         $timeout(function(){
-          $location.hash('slide6');
-          $anchorScroll();
+          var element = document.getElementById('slide6');
+          smoothScroll(element, scrollOptions);
         },0);
       }
     }
@@ -528,8 +533,8 @@
             vm.error.address.message = "";
             vm.continueAddressFlag = true;
             $timeout(function(){
-              $location.hash('slide6');
-              $anchorScroll();
+              var element = document.getElementById('slide6');
+              smoothScroll(element, scrollOptions);
             },0);
           }
           else {
@@ -551,8 +556,8 @@
           vm.error.address.message = "";
           vm.continueAddressFlag = true;
           $timeout(function(){
-            $location.hash('slide6');
-            $anchorScroll();
+            var element = document.getElementById('slide6');
+            smoothScroll(element, scrollOptions);
           },0);
         }
         else {
@@ -610,8 +615,8 @@
         vm.error.description.flag = false;
         vm.continue = true;
         $timeout(function(){
-          $location.hash('slide4');
-          $anchorScroll();
+          var element = document.getElementById('slide4');
+          smoothScroll(element, scrollOptions);
         },0);
       }
     }
@@ -631,8 +636,8 @@
         vm.popupFlag = false;
         vm.continueImg = true;
         $timeout(function(){
-          $location.hash('slide5');
-          $anchorScroll();
+          var element = document.getElementById('slide5');
+          smoothScroll(element, scrollOptions);
         },0);
       }
     }
@@ -641,16 +646,19 @@
       vm.popupFlag = false;
       vm.continueImg = true;
       $timeout(function(){
-        $location.hash('slide5');
-        $anchorScroll();
+        var element = document.getElementById('slide5');
+        smoothScroll(element, scrollOptions);
       },0);
     }
 
-    function selectType(item, items){
+    function selectType(item, items) {
       vm.title = item.shortName;
       vm.type = item;
       vm.questions = [];
       vm.service = false;
+      vm.continue = false;
+      vm.continueImg = false;
+      vm.continueAddressFlag = false;
       vm.questions.push(item);
       vm.subService = null;
       vm.material = null;
@@ -658,16 +666,35 @@
       for (var i = 0; i < items.length; i++) {
         items[i].selected = "";
       }
-      if (item.childrenSteps && item.childrenSteps.length > 0)
-      for (var i = 0; i < item.childrenSteps.length; i++) {
-        item.childrenSteps[i].selected = "";
+      if (item.childrenActivities && item.childrenActivities.length > 0) {
+
+        var childrenArray = [];
+        for (var i = 0; i < item.childrenActivities.length; i++) {
+          if (vm.emergency && item.childrenActivities[i].emergency) {
+            childrenArray.push(item.childrenActivities[i]);
+          } else if (!vm.emergency && item.childrenActivities[i].small) {
+            childrenArray.push(item.childrenActivities[i]);
+          }
+        }
+        item.childrenActivities = childrenArray;
+
+        for (var i = 0; i < item.childrenActivities.length; i++) {
+          item.childrenActivities[i].selected = "";
+        }
+
+        var otherChild = {
+          code: "OTHER"
+        }
+        item.childrenActivities.push(otherChild);
       }
       item.selected = "activate";
+
       $timeout(function(){
-        $location.hash('subSlide0');
-        $anchorScroll();
+        var element = document.getElementById('subSlide0');
+        smoothScroll(element, scrollOptions);
       },0);
     }
+
     // function selectService(item, items){
     //   vm.questions.push(item);
     //   for (var i = 0; i < items.length; i++) {
@@ -683,33 +710,62 @@
       if (index == 0){
         vm.title += " "+ item.name;
       }
-      vm.questions[index + 1] = item;
+      if (item.code != "OTHER") {
+        vm.questions[index + 1] = item;
+      }
       vm.service = false;
       vm.questions = vm.questions.slice(0, index + 2);
       for (var i = 0; i < items.length; i++) {
         items[i].selected = ""
       }
-      if (item.childrenSteps && item.childrenSteps.length > 0)
-      for (var i = 0; i < item.childrenSteps.length; i++) {
-        item.childrenSteps[i].selected = "";
+      if (item.childrenActivities && item.childrenActivities.length > 0) {
+
+        var childrenArray = [];
+        for (var i = 0; i < item.childrenActivities.length; i++) {
+          if (vm.emergency && item.childrenActivities[i].emergency) {
+            childrenArray.push(item.childrenActivities[i]);
+          } else if (!vm.emergency && item.childrenActivities[i].small) {
+            childrenArray.push(item.childrenActivities[i]);
+          }
+        }
+        item.childrenActivities = childrenArray;
+        
+        for (var i = 0; i < item.childrenActivities.length; i++) {
+          item.childrenActivities[i].selected = "";
+          var otherChild = {
+            code: "OTHER"
+          }
+        }
+        item.childrenActivities.push(otherChild);
       }
       item.selected = "activate";
-      if (item.childrenSteps && item.childrenSteps.length > 0){
+      if (item.childrenActivities && item.childrenActivities.length > 0){
         $timeout(function(){
-          $location.hash('subSlide'+(index + 1).toString());
-          $anchorScroll();
+          var element = document.getElementById('subSlide'+(index + 1).toString());
+          smoothScroll(element, scrollOptions);
         },0);
       }
       else {
         vm.service = true;
         $timeout(function(){
-          $location.hash('slide3');
-          $anchorScroll();
+          var element = document.getElementById('slide3');
+          smoothScroll(element, scrollOptions);
         },0);
       }
 
     }
     function succesProjectsGET(res){
+
+      var childrenArray = [];
+      for (var i = 0; i < res.childrenActivities.length; i++) {
+        if (vm.emergency && res.childrenActivities[i].emergency) {
+          childrenArray.push(res.childrenActivities[i]);
+        } else if (!vm.emergency && res.childrenActivities[i].small) {
+          childrenArray.push(res.childrenActivities[i]);
+        }
+      }
+      res.childrenActivities = childrenArray;
+
       vm.newProject = res;
       console.log(res);
     }

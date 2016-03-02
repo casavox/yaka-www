@@ -1402,7 +1402,7 @@ color: #9b9b9b!important;
 }
 
 .slide {
-  min-height: 80%;
+  min-height: 100%;
   width: 100%;
   position: relative;;
   padding-top: 35px;
@@ -1425,6 +1425,11 @@ color: #9b9b9b!important;
 
 .question-ul{
   padding-left: 0;
+}
+
+.questions-ul{
+  padding-left: 0;
+  padding-bottom: 50px;
 }
 
 .question-li {

@@ -20,8 +20,8 @@
   </a>
 </div>
 <div class="page-content">
-  <div class="content-slide-default">
-    <div class="slide" id="slide1">
+  <div class="content-slide-default" id="main-scroll-container">
+    <div class="slide" id="slide1" ng-show="vm.selectCategory">
       <h2 class="text-center">Select one professional category</h2>
       <div class="row new-project-box no-margin">
         <div class="emergency-title row">
@@ -36,23 +36,22 @@
           </div>
 
         </div>
-        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenSteps" ng-click="vm.selectType(child, vm.newProject.childrenSteps)" title="{{child.name}}">
+        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenActivities" ng-click="vm.selectType(child, vm.newProject.childrenActivities)" title="{{child.code}}">
           <div class="type-project-box-content">
             <div class="v-icon v-icon-{{child.icon}} center">
             </div>
             <p class="type-project-title text-center">
-              {{child.name}}
+              {{child.code}}
             </p>
           </div>
-
         </div>
       </div>
     </div>
-<div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenSteps">
-  <h2 class="text-center">{{q.question}}</h2>
+<div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenActivities">
+  <h2 class="text-center">{{q.code}}</h2>
   <ul  class="questions-ul center">
-    <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenSteps" ng-click="vm.selectSubService(child, q.childrenSteps, $parent.$index)">
-      {{child.name}}
+    <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities" ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
+      {{child.code}}
     </li>
   </ul>
 </div>
