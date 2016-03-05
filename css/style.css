@@ -600,6 +600,10 @@
   width: 100%;
 }
 
+.menu-content > a {
+  text-decoration: none !important;
+}
+
 .menu-content > a > li {
   list-style: none;
   height: 80px;
