@@ -41,17 +41,17 @@
             <div class="v-icon v-icon-{{child.icon}} center">
             </div>
             <p class="type-project-title text-center">
-              {{child.name}}
+              {{child.name | translate }}
             </p>
           </div>
         </div>
       </div>
     </div>
 <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenActivities">
-  <h2 class="text-center">{{q.name}}</h2>
+  <h2 class="text-center">{{q.name | translate }}</h2>
   <ul  class="questions-ul center">
     <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities" ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
-      {{child.name}}
+      {{ child.name | translate }}
     </li>
   </ul>
 </div>

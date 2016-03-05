@@ -11,4 +11,19 @@ angular.module('Yaka')
             // v: '3.20',
         });
     }])
+    .config(['$translateProvider', function (translateProvider) {
+        // Simply register translation table as object hash
+        translateProvider.useSanitizeValueStrategy('escape');
+        translateProvider.translations('en', {
+            'ACTIVITY_OTHER': "Other - I don't know",
+            'ACTIVITY_PLUMBER': "Plumber",
+            'ACTIVITY_LOCKSMITH': "Locksmith",
+            'ACTIVITY_CARPENTER': "Carpenter",
+            'ACTIVITY_ELECTRICIAN': "Electrician",
+            'ACTIVITY_PAINTER': "Painter",
+            'ACTIVITY_TILESETTER': "Tilesetter",
+            'ACTIVITY_PL_WC': "Wc",
+            'ACTIVITY_PL_SHOWER': "Shower"
+        });
+    }])
 ;

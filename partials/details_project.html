@@ -135,7 +135,9 @@
       <div class="row no-margin">
         <div class="col-xs-12 ">
           <div id="map_canvas">
-            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" dragging="false"></ui-gmap-google-map>
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions" dragging="false">
+              <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+            </ui-gmap-google-map>
           </div>
         </div>
       </div>
