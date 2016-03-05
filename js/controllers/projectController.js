@@ -50,8 +50,18 @@
     vm.editWhen = editWhen;
     vm.uploadFiles = uploadFiles;
     vm.limitLength = limitLength;
-    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
-    $scope.options = {scrollwheel: true};
+    vm.markerCoords = {}
+    $scope.map = {
+      center: {
+        latitude: 46.5945259,
+        longitude: 2.4623584
+      }, zoom: 6
+    };
+    $scope.mapOptions = {
+      draggable: false,
+      disableDoubleClickZoom: true,
+      scrollwheel: false
+    };
     vm.getQualities = getQualities;
 
     vm.dt = new Date();
@@ -615,6 +625,19 @@
     }
 
     function succesProjectGET(res){
+
+      if (res.address.latitude && res.address.longitude) {
+        $scope.map.center = {
+          latitude: res.address.latitude,
+          longitude: res.address.longitude
+        };
+        $scope.map.zoom = 15;
+        vm.markerCoords = {
+          latitude: res.address.latitude,
+          longitude: res.address.longitude
+        }
+      }
+
       vm.project = res;
       console.log(res);
       vm.projectTmp = angular.copy(vm.project);
