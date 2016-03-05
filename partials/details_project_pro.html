@@ -40,96 +40,11 @@
 </div>
 <div class="page-content">
   <ng-include src="'partials/menu.html'"></ng-include>
-  <div class="content-slide" ng-show="!vm.proDetails">
-    <div ng-show="vm.pro">
-      <div class="detail-pro-title">
-        <div class="in-line">
-          ORDERS
-        </div>
-        <hr>
-      </div>
-      <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
-        <div class="row no-margin no-padding">
-          <div class="col-xs-2 no-margin no-padding">
-            <img ng-src="{{p.professional.avatarUrl}}"class="img-circle center-middle pro-icon" ng-show="p.professional.avatarUrl"/>
-            <div class="img-default center-middle" ng-show="!p.professional.avatarUrl">
-              {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
-            </div>
-          </div>
-          <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
-            <p class="pro-title-name" ng-show="p.status == 'START'">
-              {{p.professional.firstName}} {{p.professional.lastName}}
-            </p>
-            <p class="pro-title-companyName" ng-show="p.status == 'PRESELECTED'">
-              {{p.professional.companyName}}
-            </p>
-            <p class="pro-title-desc">
-
-            </p>
-            <div class="pro-title-icon">
-              <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
-              <div class="likes">
-                {{p.professional.likes}}
-              </div>
-              <img src="icons/mdpi/ic_background_checked.png" class="icon-verification" ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
-              <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
-            </div>
-          </div>
-          <div class="col-xs-2 no-margin no-padding">
-            <img src="icons/mdpi/ic_message.png" class="icon-message" ng-show="p.unreadMessages"/>
-          </div>
-          <div class="col-xs-3 no-margin no-padding">
-            <div class="pro-price" ng-show="p.price">
-              {{p.price}} €
-            </div>
-            <p class="pro-price-desc" ng-show="p.price">
-              {{p.priceType}}
-            </p>
-            <p class="pro-price-none" ng-show="!p.price || p.price == 0">
-              Need more info
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="detail-pro-message-box" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
-        <p>
-          Find all offers made by professionnals interested about your project
-        </p>
-      </div>
-      <div class="detail-pro-title">
-        <div class="in-line">
-          SUGGESTIONS
-        </div>
-        <hr class="w-555">
-      </div>
-      <div class="detail-pro-message-box" ng-show="!vm.project.suggestions || vm.project.suggetions.length == 0">
-        <p>
-          Suggested pro that fit your queries
-          You can contact them and ask for a quote
-        </p>
-      </div>
-    </div>
+  <div class="content-slide" >
     <div class="project-description" ng-show="!vm.pro">
       <div class="row no-margin">
         <div class="col-xs-12">
-          <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
-            MODIFY
-          </div>
-          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
-            DELETE
-          </div>
-          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.draftFlag = true">
-            UNPUBLISH
-          </div>
-          <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.saveFlag = true">
-            SAVE
-          </div>
-          <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
-            CANCEL
-          </div>
-          <div class="description-date">
-            Post {{vm.project.published | date:'dd MMMM yyyy'}}
-          </div>
+          
         </div>
       </div>
       <div class="row no-margin">

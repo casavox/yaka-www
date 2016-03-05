@@ -17,6 +17,7 @@
     vm.proDetails = false;
     vm.editDescriptionFlag = false;
     vm.selectProposal = selectProposal;
+    vm.hireMessage = "Hi, I made my choice, I definitely choose you for my project.";
     vm.child0 = "";
     vm.child1 = "";
     vm.child2 = "";
@@ -36,6 +37,7 @@
     vm.updateImg = updateImg;
     vm.getWhen = getWhen;
     vm.getTags = getTags;
+    vm.hire = hire;
     vm.changeWhen = changeWhen;
     vm.selectDateType = selectDateType;
     vm.selectDate = selectDate;
@@ -106,6 +108,19 @@
     };
 
     networkService.profileGET(succesProfileGET, errorProfileGET);
+
+    function hire(){
+      networkService.proposalAcceptPOST(vm.proposal.id, succesProposalAcceptPOST, errorProposalAcceptPOST);
+    }
+
+    function succesProposalAcceptPOST(res){
+      vm.proposal = res;
+      alertMsg.send("Proposal selected", "success");
+    }
+
+    function errorProposalAcceptPOST(){
+      alertMsg.send("Error Proposal not selected", "danger");
+    }
 
     function getQualities(){
       if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.professional) && !angular.isUndefined(vm.proposal.professional.qualities)){

@@ -45,6 +45,9 @@
       proposalGET: function(data, success, error) {
         $http.get(baseUrl + '/proposals/'+data.id).success(success).error(error)
       },
+      proposalAcceptPOST: function(data, success, error) {
+        $http.post(baseUrl + '/proposals/'+data+"/accept").success(success).error(error)
+      },
       projectPUT: function(data, success, error) {
         if (data.type == "EMERGENCY")
         $http.put(baseUrl + '/projects/emergency/'+data.id, data).success(success).error(error);

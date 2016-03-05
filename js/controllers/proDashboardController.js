@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('ProDashboardController', ProDashboardController);
 
-    ProDashboardController.$inject = ['$scope', 'networkService']
-    function ProDashboardController($scope, networkService) {
+    ProDashboardController.$inject = ['$scope', 'networkService', 'alertMsg']
+    function ProDashboardController($scope, networkService, alertMsg) {
         var vm = this;
 
         vm.getMenuItemClass = function (state) {
@@ -25,10 +25,12 @@
         function succesProfessionalGET(res) {
             var emergencies = res.availableEmergencies;
 
-            $scope.$emit('onEmergenciesLoadedEmit', emergencies)
+            $scope.$emit('onEmergenciesLoadedEmit', emergencies);
+
         }
 
         function errorProfessionalGET() {
+          alertMsg.send("Pro get", "danger");
 
         }
 

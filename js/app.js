@@ -143,6 +143,12 @@ angular.module('Yaka', [
         controller: 'ProjectController',
         controllerAs: 'vm'
       })
+      .state('pro-project-proposal', {
+        url: "/pro/project/:projectId",
+        templateUrl: "partials/details_project_pro.html",
+        controller: 'ProProjectController',
+        controllerAs: 'vm'
+      })
 
       //
       //Interceptor to put the token in the header for each http request

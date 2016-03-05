@@ -200,6 +200,10 @@
       vm.subService = null;
       vm.projectDescription = "";
       vm.material = null;
+      vm.child0 = '';
+      vm.child1 = '';
+      vm.child2 = '';
+      vm.child3 = '';
       vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
       if (!angular.isUndefined(vm.user) && vm.user.addresses){
         if (vm.user.addresses.length > 0){
@@ -663,6 +667,10 @@
       vm.subService = null;
       vm.material = null;
       vm.projectDescription = "";
+      vm.child0 = "";
+      vm.child1 = "";
+      vm.child2 = "";
+      vm.child3 = "";
       for (var i = 0; i < items.length; i++) {
         items[i].selected = "";
       }
@@ -690,7 +698,21 @@
         item.childrenActivities.push(otherChild);
       }
       item.selected = "activate";
-
+      if (!angular.isUndefined(vm.user) && vm.user.addresses){
+        if (vm.user.addresses.length > 0){
+          vm.myAddress = vm.user.addresses[0].address;
+          $scope.address.name = vm.myAddress;
+          vm.continueAddress = true;
+        }
+        else {
+          vm.continueAddress = false;
+          vm.newAddrFlag = true;
+        }
+      }
+      else {
+        vm.user = {}
+        vm.user.addresses = [];
+      }
       $timeout(function(){
         var element = document.getElementById('subSlide0');
         smoothScroll(element, scrollOptions);
