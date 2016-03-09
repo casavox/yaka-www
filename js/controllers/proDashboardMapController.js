@@ -47,8 +47,8 @@
             vm.showWorkArea = true;
             $rootScope.$emit('showTopViewEmit', true);
             $rootScope.$emit('showHomeControlEmit', false);
-            angular.element('.gm-bundled-control').hide();
-            angular.element('.gm-style-mtc').hide();
+            $('.gm-bundled-control').hide();
+            $('.gm-style-mtc').hide();
         });
 
         $scope.$watch(function () {
@@ -102,10 +102,9 @@
                                 longitude: vm.map.center.longitude
                             }
                         }
-                        console.log("Idle Hide");
                         if (vm.showWorkArea) {
-                            angular.element('.gm-bundled-control').hide();
-                            angular.element('.gm-style-mtc').hide();
+                            $('.gm-bundled-control').hide();
+                            $('.gm-style-mtc').hide();
                         }
                     },
                     "dragstart": function () {
@@ -113,16 +112,16 @@
                         vm.showWorkArea = false;
                         $rootScope.$emit('showTopViewEmit', false);
                         $rootScope.$emit('showHomeControlEmit', true);
-                        angular.element('.gm-bundled-control').show();
-                        angular.element('.gm-style-mtc').show();
+                        $('.gm-bundled-control').show();
+                        $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
                         vm.showSlider = false;
                         vm.showWorkArea = false;
                         $rootScope.$emit('showTopViewEmit', false);
                         $rootScope.$emit('showHomeControlEmit', true);
-                        angular.element('.gm-bundled-control').show();
-                        angular.element('.gm-style-mtc').show();
+                        $('.gm-bundled-control').show();
+                        $('.gm-style-mtc').show();
                     }
                 }
             };
@@ -143,7 +142,7 @@
                     position: google.maps.ControlPosition.TOP_RIGHT
                 }
             }
-            angular.element(window).on("resize", function () {
+            $(window).on("resize", function () {
                 clearTimeout(resizeTimeoutId);
                 resizeTimeoutId = setTimeout(function () {
                     vm.map.center = {
@@ -156,11 +155,11 @@
         });
 
         function waitForMapControlToLoad() {
-            if (!angular.element(".gm-bundled-control").size()) {
+            if (!$(".gm-bundled-control").size()) {
                 window.requestAnimationFrame(waitForMapControlToLoad);
             } else {
-                angular.element('.gm-bundled-control').hide();
-                angular.element('.gm-style-mtc').hide();
+                $('.gm-bundled-control').hide();
+                $('.gm-style-mtc').hide();
             }
         };
     }
