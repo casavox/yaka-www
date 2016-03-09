@@ -3,87 +3,86 @@
 
     angular
         .module('Yaka')
-        .controller('ProDashboardMapController', ProDashboardMapController);
+        .controller('ProDashboardMapController', ProDashboardMapController)
+        .controller('ProDashboardMapHomeControlController', ProDashboardMapHomeControlController);
 
-    ProDashboardMapController.$inject = ['$scope', 'networkService', 'uiGmapGoogleMapApi']
-    function ProDashboardMapController($scope, networkService, uiGmapGoogleMapApi) {
+    ProDashboardMapController.$inject = ['$rootScope', '$scope', 'networkService', 'uiGmapGoogleMapApi', 'uiGmapIsReady']
+    function ProDashboardMapController($rootScope, $scope, networkService, uiGmapGoogleMapApi, uiGmapIsReady) {
 
         var vm = this;
 
-        var geocoder = new google.maps.Geocoder();
         var currentCenter = {};
 
-        vm.emergencies = [];
+        vm.leads = [];
         vm.carrouselSelectedItem = {index: -1};
-        vm.exploring = false;
+        vm.showSlider = false;
+        vm.showWorkArea = true;
 
-        $scope.$on('onEmergenciesLoadedBroadcast', function (event, args) {
-            onEmergenciesLoaded(args);
+        $rootScope.$on('showTopViewEmit', function (event, show) {
+            $rootScope.$broadcast('showTopViewBroadcast', show);
         });
 
-        function onEmergenciesLoaded(emergencies) {
-            vm.emergencies = geocodeEmergencies(emergencies);
-        }
+        $rootScope.$on('showHomeControlEmit', function (event, show) {
+            $rootScope.$broadcast('showHomeControlBroadcast', show);
+        });
 
-        function geocodeEmergencies(emergencies) {
-            var i = 0;
-            angular.forEach(emergencies, function (emergency, key) {
-                var address = emergency.address;
-
-                geocoder.geocode({'address': address.address}, function (results, status) {
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        emergency.coords = {
-                            latitude: results[0].geometry.location.lat(),
-                            longitude: results[0].geometry.location.lng()
-                        }
-                        emergency.icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
-                        vm.map.center = {
-                            latitude: emergency.coords.latitude,
-                            longitude: emergency.coords.longitude
-                        };
-                    }
-                });
-                i++;
+        $rootScope.$on('onLeadsLoadedBroadcast', function (event, args) {
+            vm.leads = args;
+            angular.forEach(vm.leads, function (lead, key) {
+                lead.icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
             });
-            return emergencies;
-        }
+
+            //TODO REMOVE THIS
+            if (vm.leads.length > 0) {
+                vm.map.center = {
+                    latitude: vm.leads[0].address.latitude,
+                    longitude: vm.leads[0].address.longitude
+                };
+            }
+            //TODO END REMOVE
+        });
+
+        $rootScope.$on('showHomeControlClickedBroadcast', function (event) {
+            vm.showSlider = false;
+            vm.showWorkArea = true;
+            $rootScope.$emit('showTopViewEmit', true);
+            $rootScope.$emit('showHomeControlEmit', false);
+            angular.element('.gm-bundled-control').hide();
+            angular.element('.gm-style-mtc').hide();
+        });
 
         $scope.$watch(function () {
             return vm.carrouselSelectedItem.index;
         }, function (newValue, oldValue) {
             if (!angular.equals(oldValue, newValue)) {
-                if (vm.emergencies[newValue] && vm.emergencies[newValue].coords) {
-                    onEmergencySelected(vm.emergencies[newValue]);
+                if (vm.leads[newValue] && vm.leads[newValue].address) {
+                    onLeadSelected(vm.leads[newValue]);
                 }
             }
         }, true);
 
-        function onEmergencySelected(emergency) {
-            vm.map.center = {
-                latitude: emergency.coords.latitude,
-                longitude: emergency.coords.longitude
-            };
-            vm.map.zoom = 15;
-            vm.exploring = false;
-            setDefaultIconForAllMarkers();
-            emergency.icon = "http://maps.google.com/mapfiles/kml/paddle/wht-blank.png";
-        }
-
-        function setDefaultIconForAllMarkers() {
-            for (var i = 0; i < vm.emergencies.length; i++) {
-                vm.emergencies[i].icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
+        function onLeadSelected(lead) {
+            for (var i = 0; i < vm.leads.length; i++) {
+                vm.leads[i].icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
             }
+            lead.icon = "http://maps.google.com/mapfiles/kml/paddle/wht-blank.png";
+            vm.showSlider = true;
         }
 
-        vm.onMarkerClicked = function (mapMarker, event, emergency) {
+        vm.onMarkerClicked = function (mapMarker, event, lead) {
             var carouselIndex = 0;
-            for (var i = 0; i < vm.emergencies.length; i++) {
-                var emergencyTmp = vm.emergencies[i];
-                if (emergency.id == emergencyTmp.id) {
+            for (var i = 0; i < vm.leads.length; i++) {
+                var leadTmp = vm.leads[i];
+                if (lead.id == leadTmp.id) {
                     carouselIndex = i;
                     break;
                 }
             }
+
+            if (carouselIndex == vm.carrouselSelectedItem.index) {
+                vm.showSlider = true;
+            }
+
             vm.carrouselSelectedItem.index = carouselIndex;
         }
 
@@ -98,39 +97,91 @@
                 events: {
                     "idle": function () {
                         if (currentCenter.latitude != vm.map.center.latitude && currentCenter.longitude != vm.map.center.longitude) {
-                            console.log("idle");
                             currentCenter = {
                                 latitude: vm.map.center.latitude,
                                 longitude: vm.map.center.longitude
                             }
                         }
+                        console.log("Idle Hide");
+                        if (vm.showWorkArea) {
+                            angular.element('.gm-bundled-control').hide();
+                            angular.element('.gm-style-mtc').hide();
+                        }
                     },
                     "dragstart": function () {
-                        vm.exploring = true;
+                        vm.showSlider = false;
+                        vm.showWorkArea = false;
+                        $rootScope.$emit('showTopViewEmit', false);
+                        $rootScope.$emit('showHomeControlEmit', true);
+                        angular.element('.gm-bundled-control').show();
+                        angular.element('.gm-style-mtc').show();
+                    },
+                    "zoom_changed": function () {
+                        vm.showSlider = false;
+                        vm.showWorkArea = false;
+                        $rootScope.$emit('showTopViewEmit', false);
+                        $rootScope.$emit('showHomeControlEmit', true);
+                        angular.element('.gm-bundled-control').show();
+                        angular.element('.gm-style-mtc').show();
                     }
                 }
             };
             vm.mapOptions = {
                 zoomControlOptions: {
                     style: google.maps.ZoomControlStyle.DEFAULT,
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                    position: google.maps.ControlPosition.TOP_RIGHT
                 },
                 mapTypeControlOptions: {
-                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                    position: google.maps.ControlPosition.RIGHT_TOP
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_LEFT,
+                    mapTypeIds: [
+                        google.maps.MapTypeId.ROADMAP,
+                        google.maps.MapTypeId.HYBRID
+                    ]
                 },
-                streetViewControl: false,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                }
             }
             angular.element(window).on("resize", function () {
                 clearTimeout(resizeTimeoutId);
                 resizeTimeoutId = setTimeout(function () {
-                    console.log("resize");
                     vm.map.center = {
                         latitude: currentCenter.latitude,
                         longitude: currentCenter.longitude
                     }
                 }, 350);
             });
+            waitForMapControlToLoad();
+        });
+
+        function waitForMapControlToLoad() {
+            if (!angular.element(".gm-bundled-control").size()) {
+                window.requestAnimationFrame(waitForMapControlToLoad);
+            } else {
+                angular.element('.gm-bundled-control').hide();
+                angular.element('.gm-style-mtc').hide();
+            }
+        };
+    }
+
+    ProDashboardMapHomeControlController.$inject = ['$rootScope', '$scope']
+    function ProDashboardMapHomeControlController($rootScope, $scope) {
+
+        var vm = this;
+
+        vm.showHomeControl = false;
+
+        $rootScope.$on('showHomeControlClickedEmit', function (event, show) {
+            $rootScope.$broadcast('showHomeControlClickedBroadcast', show);
+        });
+
+        vm.homeControlClicked = function () {
+            $rootScope.$emit('showHomeControlClickedEmit');
+        }
+
+        $rootScope.$on('showHomeControlBroadcast', function (event, bool) {
+            vm.showHomeControl = bool;
         });
     }
 })

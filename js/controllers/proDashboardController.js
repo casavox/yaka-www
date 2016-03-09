@@ -5,9 +5,14 @@
         .module('Yaka')
         .controller('ProDashboardController', ProDashboardController);
 
-    ProDashboardController.$inject = ['$scope', 'networkService', 'alertMsg']
-    function ProDashboardController($scope, networkService, alertMsg) {
+    ProDashboardController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg']
+    function ProDashboardController($rootScope, $scope, networkService, alertMsg) {
+        $scope.showList = false;
+
         var vm = this;
+
+        vm.showTopView = true;
+        vm.showFilters = false;
 
         vm.getMenuItemClass = function (state) {
             if (state == "prodashboard") {
@@ -16,23 +21,20 @@
             return "";
         }
 
-        $scope.$on('onEmergenciesLoadedEmit', function (event, args) {
-            $scope.$broadcast('onEmergenciesLoadedBroadcast', args);
+        $rootScope.$on('onLeadsLoadedEmit', function (event, args) {
+            $rootScope.$broadcast('onLeadsLoadedBroadcast', args);
         });
 
-        networkService.professionalGET(succesProfessionalGET, errorProfessionalGET);
+        $rootScope.$on('showTopViewBroadcast', function (event, show) {
+            vm.showTopView = show;
+        });
 
-        function succesProfessionalGET(res) {
-            var emergencies = res.availableEmergencies;
-
-            $scope.$emit('onEmergenciesLoadedEmit', emergencies);
-
-        }
-
-        function errorProfessionalGET() {
-          alertMsg.send("Pro get", "danger");
-
-        }
-
+        networkService.proLeadsGET('all', false,
+            function succesProLeads(res) {
+                $rootScope.$emit('onLeadsLoadedEmit', res);
+            }, function errorProLeads() {
+                alertMsg.send("Pro get", "danger");
+            }
+        );
     }
 })();

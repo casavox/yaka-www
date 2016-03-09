@@ -15,7 +15,7 @@ angular.module('Yaka')
         // Simply register translation table as object hash
         translateProvider.useSanitizeValueStrategy('escape');
         translateProvider.translations('fr', {
-            'ACTIVITY_OTHER': "Autre - Je ne sais pas"
+            'ACTIVITY_OTHER': "Autre - Je ne sais pas",
             'ACTIVITY_PLUMBER': "Plombier",
             'ACTIVITY_LOCKSMITH': "Serrurier",
             'ACTIVITY_CARPENTER': "Charpentier",
