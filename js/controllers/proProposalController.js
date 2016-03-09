@@ -3,15 +3,14 @@
 
   angular
   .module('Yaka')
-  .controller('ProProjectController', ProProjectController);
+  .controller('ProProposalController', ProProposalController);
 
   //
   //Controller login
-  ProProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams']
-  function ProProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+  ProProposalController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams']
+  function ProProposalController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
     var vm = this;
     vm.getWhen = getWhen;
-    vm.getTags = getTags;
     vm.dateDiff = dateDiff;
     vm.myPrice = myPrice;
     vm.myDate = myDate;
@@ -21,14 +20,12 @@
     vm.selectDate = selectDate;
     vm.sendOffer = sendOffer;
     vm.disabledDay = disabledDay;
-    vm.unSelectOther = unSelectOther;
     vm.imagePreviewFlag = false;
     vm.myPriceFlag = false;
     vm.myDateFlag = false;
     vm.price = 0;
     vm.offer = {};
 
-    vm.now = new Date();
     vm.dt = new Date();
     vm.default = angular.copy(vm.dt);
     vm.minDate = new Date();
@@ -57,12 +54,12 @@
     };
 
 
-    if ($stateParams.projectId){
-      var res = parseInt($stateParams.projectId);
-      if (res.toString() != $stateParams.projectId)
+    if ($stateParams.proposalId){
+      var res = parseInt($stateParams.proposalId);
+      if (res.toString() != $stateParams.proposalId)
       $state.go("prodashboard");
       else {
-        networkService.projectGET(res, succesProjectGET, errorProjectGET);
+        networkService.proposalGET(res, succesProjectGET, errorProjectGET);
       }
     }
     else {
@@ -70,35 +67,12 @@
     }
 
 
-    function unSelectOther(){
-      vm.J1.all = false;
-      vm.all(vm.J1);
-      vm.J2.all = false;
-      vm.all(vm.J2);
-      vm.J3.all = false;
-      vm.all(vm.J3);
-    }
-
-    function getTags(){
-      var res = "";
-      if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.activities){
-        if (vm.projectTmp.activities.length > 0 && vm.projectTmp.type == "EMERGENCY")
-        res += " - ";
-        for (var i = 0; i < vm.projectTmp.activities.length; i++) {
-          if (i != 0)
-          res += " - ";
-          res += vm.projectTmp.activities[i].code;
-        }
-      }
-      return res;
-    }
-
     function sendOffer(){
       vm.offer.date.date = vm.offer.date.date || null;
       vm.offer.comment = vm.offer.comment || "";
       var formData = {
         project: {id: vm.projectTmp.id},
-        price: vm.offer.price.price.toString(),
+        price: vm.offer.price.price,
         priceType: $filter('uppercase')(vm.offer.price.type),
         comment: vm.offer.comment
       }
@@ -125,16 +99,8 @@
 
     function selectDate(slot){
       vm.offer.date = {date: vm.dt};
-      if (vm.projectTmp.type == 'EMERGENCY'){
-        var tmp = [];
-        initDate(vm.J1, tmp);
-        initDate(vm.J2, tmp);
-        initDate(vm.J3, tmp);
-        if (tmp.length > 0)
-        vm.offer.date.date = $filter('date')(tmp[0].date, "yyyy-MM-dd")
-        vm.offer.date.slot = tmp[0].slot;
-      }
-      console.log(vm.offer);
+      if (vm.projectTmp.type == 'EMERGENCY')
+      vm.offer.date.slot = slot;
       vm.myDateFlag = false;
     }
 
@@ -249,142 +215,89 @@
 
     function initHours(){
       if (vm.time >= 9) {
-        if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+        if(j.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
           vm.J1.c1Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
           vm.J2.c1Disabled = "checkbox-disabled";
           vm.J2.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
           vm.J3.c1Disabled = "checkbox-disabled";
           vm.J3.allDisabled = "checkbox-disabled";
         }
       }
       if (vm.time >= 12) {
-        if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+        if(j.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
           vm.J1.c2Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
           vm.J2.c2Disabled = "checkbox-disabled";
           vm.J2.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
           vm.J3.c2Disabled = "checkbox-disabled";
           vm.J3.allDisabled = "checkbox-disabled";
         }
       }
       if (vm.time >= 14) {
-        if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+        if(j.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
           vm.J1.c3Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
           vm.J2.c3Disabled = "checkbox-disabled";
           vm.J2.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
           vm.J3.c3Disabled = "checkbox-disabled";
           vm.J3.allDisabled = "checkbox-disabled";
         }
       }
       if (vm.time >= 16) {
-        if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+        if(j.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
           vm.J1.c4Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
           vm.J2.c4Disabled = "checkbox-disabled";
           vm.J2.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
           vm.J3.c4Disabled = "checkbox-disabled";
           vm.J3.allDisabled = "checkbox-disabled";
         }
       }
       if (vm.time >= 18) {
-        if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+        if(j.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
           vm.J1.c5Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
           vm.J2.c5Disabled = "checkbox-disabled";
           vm.J2.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
           vm.J3.c5Disabled = "checkbox-disabled";
           vm.J3.allDisabled = "checkbox-disabled";
         }
       }
       if (vm.time >= 20) {
-        if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+        if(j.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
           vm.J1.c6Disabled = "checkbox-disabled";
           vm.J1.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
           vm.J2.c6Disabled = "checkbox-disabled";
           vm.J2.allDisabled = "checkbox-disabled";
         }
-        else if($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+        else if(j.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
           vm.J3.c6Disabled = "checkbox-disabled";
           vm.J3.allDisabled = "checkbox-disabled";
         }
       }
-    }
-
-    function getWhen(){
-      var res = "";
-      if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
-        var arr = $filter('orderBy')(vm.projectTmp.availabilities, "date");
-        for (var i = 0; i < arr.length; i++) {
-          if (i == 0)
-          res += $filter('date')(new Date(arr[i].date), "EEE dd/MM")+" ";
-          else if (arr[i].date != arr[i - 1].date)
-          res += "\n" +$filter('date')(new Date(arr[i].date), "EEE dd/MM")+" ";
-          switch (arr[i].slot) {
-            case "7H_9H":
-            res += "7h-9h. "
-            break;
-            case "9H_12H":
-            res += "9h-12h. "
-            break;
-            case "12H_14H":
-            res += "12h-14h. "
-            break;
-            case "14H_16H":
-            res += "14h-16h. "
-            break;
-            case "16H_18H":
-            res += "16h-18h. "
-            break;
-            case "18H_20H":
-            res += "18h-20h. ";
-            break;
-            case "AFTER_20H":
-            res += "Après 20h. ";
-            break;
-            case "ALL_DAY":
-            res += "Toute la journée. ";
-            break;
-          }
-        }
-        return res;
-      }
-      else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.type != "EMERGENCY"){
-        switch (vm.projectTmp.desiredDatePeriod) {
-          case "SPECIFIC":
-          return "Le "+vm.projectTmp.desiredDate;
-          case "WITHIN_A_WEEK":
-          return "Dans la semaine";
-          case "WITHIN_A_MONTH":
-          return "Dans le mois";
-          case "NONE":
-          return "Flexible sur la date de départ";
-        }
-      }
-      return "";
     }
 
     function selectPrice(type){
@@ -433,10 +346,10 @@
     }
 
     function succesProjectGET(res){
-      vm.project = res;
+      vm.project = res.project;
+      vm.proposal = res;
       console.log(res);
       vm.projectTmp = angular.copy(vm.project);
-      vm.whenSlot = vm.getWhen();
       if (vm.projectTmp.type != "EMERGENCY"){
         vm.dateType = vm.projectTmp.desiredDatePeriod;
         vm.dt = new Date(vm.projectTmp.desiredDate);
@@ -470,8 +383,6 @@
             }
             break;
             case "12H_14H":
-            console.log(vm.projectTmp.availabilities[i].date, $filter('date')(vm.J1.date, "yyyy-MM-dd"), $filter('date')(vm.J2.date, "yyyy-MM-dd"), $filter('date')(vm.J3.date, "yyyy-MM-dd"));
-
             if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
               vm.J1.c3Disabled ='';
             }
@@ -528,16 +439,13 @@
             break;
             case "ALL_DAY":
             if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
-              vm.J1.allDisabled ='';
-              enabledDay(vm.J1);
+              vm.J1.allDisabled =''
             }
             else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
-              vm.J2.allDisabled ='';
-              enabledDay(vm.J2);
+              vm.J2.allDisabled =''
             }
             else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
-              vm.J3.allDisabled ='';
-              enabledDay(vm.J3);
+              vm.J3.allDisabled =''
             }
             break;
           }
@@ -565,6 +473,34 @@
       }
     }
 
+    function getWhen(){
+      var res = 0;
+      if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
+        for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
+          res += 1;
+        }
+        return "Emergency : " + res + " slots appointment"
+      }
+      else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.desiredDatePeriod){
+        switch (vm.projectTmp.desiredDatePeriod) {
+          case "SPECIFIC":
+          return "Le "+vm.projectTmp.desiredDate;
+          case "WITHIN_A_WEEK":
+          var d = new Date();
+          d.setDate(d.getDate() + 7);
+          return "until "+$filter('date')(d, "yyyy-MM-dd");
+          case "WITHIN_A_MONTH":
+          var d = new Date();
+          d.setDate(d.getDate() + 30);
+          return "Until "+$filter('date')(d, "yyyy-MM-dd");
+          case "NONE":
+          return "Flexible sur la date de départ";
+        }
+      }
+      else {
+        return "";
+      }
+    }
 
     function errorProjectGET(){
       $state.go("prodashboard");

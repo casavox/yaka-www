@@ -43,10 +43,16 @@
         $http.get(baseUrl + '/pro/me').success(success).error(error)
       },
       proposalGET: function(data, success, error) {
-        $http.get(baseUrl + '/proposals/'+data.id).success(success).error(error)
+        $http.get(baseUrl + '/proposals/'+data).success(success).error(error)
       },
       proposalAcceptPOST: function(data, success, error) {
         $http.post(baseUrl + '/proposals/'+data+"/accept").success(success).error(error)
+      },
+      proposalEmergencyPOST: function(data, success, error) {
+        $http.post(baseUrl + '/proposals/emergency', data).success(success).error(error)
+      },
+      proposalSmallPOST: function(data, success, error) {
+        $http.post(baseUrl + '/proposals/small', data).success(success).error(error)
       },
       projectPUT: function(data, success, error) {
         if (data.type == "EMERGENCY")

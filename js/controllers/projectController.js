@@ -125,6 +125,7 @@
 
     function succesProposalAcceptPOST(res){
       vm.proposal = res;
+      vm.hireFlag = false;
       alertMsg.send("Proposal selected", "success");
     }
 
@@ -228,7 +229,7 @@
     }
 
     function selectProposal(p){
-      networkService.proposalGET(p, succesProposalGET, errorProposalGET);
+      networkService.proposalGET(p.id, succesProposalGET, errorProposalGET);
 
     }
 
