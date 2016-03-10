@@ -14,7 +14,7 @@ angular.module('Yaka')
     .config(['$translateProvider', function (translateProvider) {
         // Simply register translation table as object hash
         translateProvider.useSanitizeValueStrategy('escape');
-        translateProvider.translations('fr', {
+        translateProvider.translations('en', {
             'ACTIVITY_OTHER': "Autre - Je ne sais pas",
             'ACTIVITY_ELECTRICITY': "Électricité",
             'ACTIVITY_PLUMBING': "Plomberie",
@@ -682,7 +682,7 @@ angular.module('Yaka')
             'ACTIVITY_PA_OUTDOOR FLOOR_PIERRE_BAD': "Mauvais éat",
             'ACTIVITY_PA_OUTDOOR FLOOR_CONCRETE_BAD': "Mauvais éat"
         });
-        translateProvider.translations('en', {
+        translateProvider.translations('fr', {
             'ACTIVITY_OTHER': "Other - I don't know",
                 'ACTIVITY_ELECTRICITY': "Electricity",
                 'ACTIVITY_PLUMBING': "Plumbing",
