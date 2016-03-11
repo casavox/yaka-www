@@ -143,10 +143,16 @@ angular.module('Yaka', [
         controller: 'ProjectController',
         controllerAs: 'vm'
       })
-      .state('pro-project-proposal', {
-        url: "/pro/project/:projectId",
+      .state('pro-project-proposal-new', {
+        url: "/pro/project/:projectId/proposal/new",
         templateUrl: "partials/details_project_pro.html",
         controller: 'ProProjectController',
+        controllerAs: 'vm'
+      })
+      .state('pro-proposal', {
+        url: "/pro/proposal/:proposalId/edit",
+        templateUrl: "partials/details_proposal.html",
+        controller: 'ProProposalController',
         controllerAs: 'vm'
       })
 
