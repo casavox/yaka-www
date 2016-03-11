@@ -81,8 +81,8 @@
       restrict : 'E',
       transclude : false,
       require: '^clImage',
-      link : function (scope, element, attrs, clImageCtrl) {
-        clImageCtrl.addTransformation(toCloudinaryAttributes(attrs, /^[^$]/));
+      link : function (scope, element, attrs, clImage) {
+        clImage.addTransformation(toCloudinaryAttributes(attrs, /^[^$]/));
       }
     }
   }]);
