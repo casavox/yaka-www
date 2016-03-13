@@ -211,12 +211,15 @@
       <h4>My price</h4>
       <p class="info-popUp">
       </p>
-      <p class="info-popUp-comp">
+      <p class="info-popUp-comp" ng-show="vm.projectTmp.type != 'EMERGENCY'">
         Send an estimate or final price
+      </p>
+      <p class="info-popUp-comp" ng-show="vm.projectTmp.type == 'EMERGENCY'">
+        Send an hourly or flat price
       </p>
       <div class="row">
         <div class="col-xs-10">
-          <input type="number" class="custom-input-number mb-25 input-number-hide" ng-model="vm.price" ng-change="vm.verifNumber()">
+          <input type="number" class="custom-input-number mb-25 input-number-hide" ng-model="vm.price" ng-blur="vm.verifNumber()">
         </div>
         <div class="col-xs-2 sym-euro">
           €

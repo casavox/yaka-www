@@ -31,6 +31,7 @@
 
     vm.now = new Date();
     vm.dt = new Date();
+    vm.price = 10;
     vm.default = angular.copy(vm.dt);
     vm.minDate = new Date();
     vm.J1 = {date: new Date()};
@@ -70,8 +71,8 @@
     }
 
     function verifNumber(){
-      if (vm.price < 0)
-      vm.price = 0;
+      if (vm.price < 10)
+      vm.price = 10;
     }
 
 
