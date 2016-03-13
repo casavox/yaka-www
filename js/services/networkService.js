@@ -69,6 +69,24 @@
         else if (data.type == "SMALL_PROJECT")
         $http.put(baseUrl + '/proposals/small/'+data.id, data).success(success).error(error);
       },
+      proProfilePUT: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/profile', data).success(success).error(error)
+      },
+      proAboutMePUT: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/about', data).success(success).error(error)
+      },
+      proWorkAreaPUT: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/workarea', data).success(success).error(error)
+      },
+      proActivitiesPUT: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/activities', data).success(success).error(error)
+      },
+      proPortfolioPUT: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/portfolio', data).success(success).error(error)
+      },
+      proVerificationsPUT: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/verifications', data).success(success).error(error)
+      },
     };
 
   }

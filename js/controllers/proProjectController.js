@@ -22,6 +22,7 @@
     vm.sendOffer = sendOffer;
     vm.disabledDay = disabledDay;
     vm.unSelectOther = unSelectOther;
+    vm.verifNumber = verifNumber;
     vm.imagePreviewFlag = false;
     vm.myPriceFlag = false;
     vm.myDateFlag = false;
@@ -66,6 +67,11 @@
     }
     else {
       $state.go("prodashboard");
+    }
+
+    function verifNumber(){
+      if (vm.price < 0)
+      vm.price = 0;
     }
 
 

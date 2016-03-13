@@ -39,9 +39,9 @@
           <div class="row">
             <div class="col-md-3">
               <div class="img-profile">
-                <img ng-src="{{p.professional.avatarUrl}}"class="img-circle center-middle pro-icon" ng-show="p.professional.avatarUrl"/>
-                <div class="img-default center" ng-show="!p.professional.avatarUrl">
-                  {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
+                <img ng-src="{{vm.profile.avatar.cloudinaryPublicId}}"class="img-circle center-middle pro-icon" ng-show="vm.profile.avatar.cloudinaryPublicId"/>
+                <div class="img-default center" ng-show="!vm.profile.avatar.cloudinaryPublicId">
+                  {{vm.profile.firstName[0] | uppercase}} {{vm.profile.lastName[0] | uppercase}}
                 </div>
                 <div class="icon-edit">
                 </div>
@@ -49,21 +49,54 @@
 
             </div>
             <div class="col-md-9">
-              <input type="text" class="profile-input form-control" placeholder="Firstname" ng-model="vm.profile.firstName">
-              <input type="text" class="profile-input form-control" placeholder="lastname" ng-model="vm.profile.lastName">
+              <md-input-container class="md-block" flex-gt-sm="" >
+                <label>First name</label>
+                <input ng-model="vm.profileInfo.firstName" ng-class="{'border-red': !vm.profileInfo.firstName}">
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm="" >
+                <label>Last name</label>
+                <input ng-model="vm.profileInfo.lastName" ng-class="{'border-red': !vm.profileInfo.lastName}">
+              </md-input-container>
             </div>
           </div>
-
-          <input type="text" class="profile-input form-control" placeholder="Mobile phone" ng-model="vm.profile.phoneNumber">
-          <input type="text" class="profile-input form-control" placeholder="Email" ng-model="vm.profile.user.profile.email">
-          <input type="text" class="profile-input form-control" placeholder="First year of experience" ng-model="vm.profile.activityStartedYear">
-          <input type="text" class="profile-input form-control" placeholder="Company name" ng-model="vm.profile.company.name">
-          <input type="text" class="profile-input form-control" placeholder="SIRET" ng-model="vm.profile.company.siret">
-          <input type="text" class="profile-input form-control" placeholder="Company address" ng-model="vm.profile.company.phone">
-          <input type="text" class="profile-input form-control" placeholder="Company phone" ng-model="vm.profile.company.address.address">
+          <md-input-container class="md-block" flex-gt-sm="" >
+            <label>Mobile phone</label>
+            <input type="text" international-phone-number ng-model="vm.profileInfo.phoneNumber" ng-class="{'border-red': !vm.profileInfo.phoneNumber}" only-countries="pl, de, fr, en, es" default-country="fr" preferred-countries="fr, en" utilsScript="''">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="" >
+            <label>Email</label>
+            <input  ng-model="vm.profileInfo.user.profile.email" ng-class="{'border-red': !vm.profileInfo.user.profile.email}">
+          </md-input-container>
+          <md-input-container style="width:100%" >
+            <label>First year of experience</label>
+            <md-select ng-model="vm.profileInfo.activityStartedYear" ng-class="{'border-red': !vm.profileInfo.activityStartedYear}">
+              <md-option ng-repeat="year in vm.years |  orderBy:'-toString()'" value="{{year}}">
+                {{year}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="" >
+            <label>Company name</label>
+            <input ng-model="vm.profileInfo.company.name" ng-class="{'border-red': !vm.profileInfo.company.name}">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="" >
+            <label>SIRET</label>
+            <input ng-model="vm.profileInfo.company.siret" ng-class="{'border-red': !vm.profileInfo.company.siret}">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="" >
+            <label>Company address</label>
+            <input ng-model="vm.profileInfo.company.address.address" ng-class="{'border-red': !vm.profileInfo.company.address.address}">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="" >
+            <label>Company phone</label>
+            <input ng-model="vm.profileInfo.company.phone" ng-class="{'border-red': !vm.profileInfo.company.phone}">
+          </md-input-container>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
               Save
+            </div>
+            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelProfile()">
+              Cancel
             </div>
           </div>
         </div>
@@ -73,10 +106,13 @@
           <p>
             About me
           </p>
-          <textarea class="textarea-red" placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan." ng-model="vm.profile.aboutMe"></textarea>
+          <textarea class="textarea-profile" placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan." ng-model="vm.aboutMe" ng-class="{'border-red': vm.aboutMe}"></textarea>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.updateAboutMe()">
               Save
+            </div>
+            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelAboutMe()">
+              Cancel
             </div>
           </div>
         </div>
@@ -88,7 +124,7 @@
           </p>
           <div class="row">
             <div class="col-xs-2 profile-verif">
-              <input id="profile-back-verif-1" type="checkbox" >
+              <input id="profile-back-verif-1" type="checkbox" ng-model="vm.verifications.siret" ng-click="vm.setSiret()">
               <label for="profile-back-verif-1"></label>
             </div>
             <div class="col-xs-10">
@@ -102,7 +138,7 @@
           </div>
           <div class="row">
             <div class="col-xs-2 profile-verif">
-              <input id="profile-back-verif-2" type="checkbox">
+              <input id="profile-back-verif-2" type="checkbox" ng-model="vm.verifications.assurance" ng-click="vm.setAssurance()">
               <label for="profile-back-verif-2"></label>
             </div>
             <div class="col-xs-10">
@@ -116,7 +152,7 @@
           </div>
           <div class="row">
             <div class="col-xs-2 profile-verif">
-              <input id="profile-back-verif-3" type="checkbox">
+              <input id="profile-back-verif-3" type="checkbox" ng-model="vm.verifications.rge" ng-click="vm.setRge()">
               <label for="profile-back-verif-3"></label>
             </div>
             <div class="col-xs-10">
@@ -130,7 +166,7 @@
           </div>
           <div class="row">
             <div class="col-xs-2 profile-verif">
-              <input id="profile-back-verif-4" type="checkbox">
+              <input id="profile-back-verif-4" type="checkbox" ng-model="vm.verifications.partner" ng-click="vm.setPartner()">
               <label for="profile-back-verif-4"></label>
             </div>
             <div class="col-xs-10">
@@ -143,8 +179,11 @@
             </div>
           </div>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.updateVerifications()">
               Save
+            </div>
+            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelVerifications()">
+              Cancel
             </div>
           </div>
         </div>
@@ -163,8 +202,11 @@
             <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" dragging="false"></ui-gmap-google-map>
           </div>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
               Save
+            </div>
+            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelWorkArea()">
+              Cancel
             </div>
           </div>
         </div>
@@ -175,15 +217,18 @@
             Portfolio
           </p>
           <div class="row cl">
-            <div class="col-xs-3" ng-repeat="pict in vm.profile.professional.portfolio" title="{{pict.description}}">
+            <div class="col-xs-3" ng-repeat="pict in vm.portfolio" title="{{pict.description}}">
               <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
                 <cl-transformation height="92" width="92" crop="fill"/>
               </cl-image>
             </div>
           </div>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.updatePortfolio()">
               Save
+            </div>
+            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelPortfolio()">
+              Cancel
             </div>
           </div>
         </div>
@@ -193,11 +238,20 @@
           <p>
             Change password
           </p>
-          <input type="text" class="profile-input form-control" placeholder="current password">
-          <input type="text" class="profile-input form-control" placeholder="new password">
-          <input type="text" class="profile-input form-control" placeholder="confirm password">
+          <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
+            <label>Current password</label>
+            <input ng-model="vm.password.current">
+          </md-input-container>
+          <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
+            <label>New password</label>
+            <input ng-model="vm.password.new">
+          </md-input-container>
+          <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
+            <label>Confirm password</label>
+            <input ng-model="vm.password.confirm">
+          </md-input-container>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.changePassword()">
               Save
             </div>
           </div>
@@ -245,8 +299,11 @@
             </div>
           </div>
           <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr">
+            <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
               Save
+            </div>
+            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelActivities()">
+              Cancel
             </div>
           </div>
         </div>

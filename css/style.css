@@ -511,7 +511,7 @@
 }
 
 .border-red {
-  border: 1px solid #d0021b !important;
+  border-bottom: 1px solid #d0021b !important;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -2003,6 +2003,10 @@ color: #9b9b9b!important;
   padding-left: 0!important;
   padding-bottom: 0!important;
   box-shadow: none!important;
+  font-family:"montserrat_light";
+  font-size:14px;
+  color:#bfbfbf;
+  text-align:left;
 }
 
 .profile-box{
@@ -2070,6 +2074,11 @@ color: #9b9b9b!important;
   font-size:14px;
   color:#444444;
   text-align:left;
+  margin-bottom: 30px;
+}
+
+.mt-10{
+  margin-top: 10px!important;
 }
 
 /* Cachons la case à cocher */
@@ -2164,11 +2173,22 @@ color: #9b9b9b!important;
   top: 11px;
 }
 
+.cancel{
+  font-family:"montserrat_regular"!important;
+  font-size:12px!important;
+  color:#999999!important;
+  text-align:right!important;
+}
+
 .profile-area-header > p{
   font-family:'montserrat_light';
   font-size:14px;
   color:#444444;
   text-align:left;
+}
+
+.profile-box-footer{
+  height: 23px;
 }
 
 .profile-box-footer-btn-fr{
@@ -2177,6 +2197,17 @@ color: #9b9b9b!important;
   color:#00a3d3;
   text-align:right;
   margin-top: 13px;
+  float: right;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.mb-0{
+  margin-bottom: 0!important;
+}
+
+.md-input-container:not('.md-input-invalid').md-input-focused .md-input{
+  border-color: #00a3d3!important;
 }
 
 .profile-area-header-info{
@@ -2525,14 +2556,24 @@ color: #9b9b9b!important;
   border-bottom: 2px solid red !important;
 }
 
-.textarea-red{
+.textarea-profile{
   background: transparent!important;
   border: none!important;
   resize: none!important;
   width: 100%!important;
   outline: none!important;
   height: 72px!important;
-  border-bottom: 2px solid red!important;
+}
+
+.mb-25{
+  margin-bottom: 25px!important;
+}
+
+.input-number-hide::-webkit-inner-spin-button, .input-number-hide::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .w-550{

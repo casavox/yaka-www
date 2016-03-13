@@ -13,10 +13,12 @@ angular.module('Yaka', [
   'angular-carousel',
   'angularRipple',
   'monospaced.elastic',
-  'smoothScroll']);
+  'smoothScroll',
+  'ngMaterial',
+  'internationalPhoneNumber']);
 
 
-// facebook library API
+  // facebook library API
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '847913895334564',
@@ -41,10 +43,11 @@ angular.module('Yaka', [
     .module('Yaka')
     .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig) {
 
       $authProvider.baseUrl = 'https://yaka-api.herokuapp.com';
-
+      ipnConfig.defaultCountry = 'fr';
+      ipnConfig.preferredCountries = ['pl', 'de', 'fr', 'uk', 'es']
       // Translation area
 
       $authProvider.google({
