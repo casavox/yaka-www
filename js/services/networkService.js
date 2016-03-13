@@ -42,6 +42,9 @@
       professionalGET: function(success, error) {
         $http.get(baseUrl + '/pro/me').success(success).error(error)
       },
+      proLeadsGET: function(type, chrono, success, error) {
+        $http.get(baseUrl + '/pro/leads?type=' + type + '&chrono=' + chrono).success(success).error(error)
+      },
       proposalGET: function(data, success, error) {
         $http.get(baseUrl + '/proposals/'+data).success(success).error(error)
       },

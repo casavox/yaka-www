@@ -5,23 +5,16 @@
         .module('Yaka')
         .controller('ProDashboardListController', ProDashboardListController);
 
-    ProDashboardListController.$inject = ['$scope']
-    function ProDashboardListController($scope) {
+    ProDashboardListController.$inject = ['$rootScope', '$scope', 'networkService']
+    function ProDashboardListController($rootScope, $scope, networkService) {
 
         var vm = this;
 
         vm.tabIndex = 0;
+        vm.leads = [];
 
-        vm.setTabIndex = function(newTabIndex) {
-            alert(newTabIndex);
-        }
-
-        $scope.$on('onEmergenciesLoadedBroadcast', function(event, args) {
-            onEmergenciesLoaded(args);
+        $rootScope.$on('onLeadsLoadedBroadcast', function (event, args) {
+            vm.leads = args;
         });
-
-        function onEmergenciesLoaded(emergencies) {
-
-        }
     }
 })();

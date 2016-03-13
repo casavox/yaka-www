@@ -1,70 +1,48 @@
 <!-- Custom map controls -->
 
-<script type="text/ng-template" id="fakeTopControl.tpl.html">
-    <div class="fakeTopControl"></div>
-</script>
-
-<script type="text/ng-template" id="fakeBottomControl.tpl.html">
-    <div class="fakeBottomControl"></div>
+<script type="text/ng-template" id="homeControl.tpl.html">
+    <div class="mapHomeControl" ng-show="vm.showHomeControl" showHomeControl ng-click="vm.homeControlClicked()">Home</div>
 </script>
 
 <!-- End Custom map controls -->
 
-<div class="proDashboardMapTopView">
-    <div class="col-xs-4 proDashboardMapTopViewItem">
-        Jobs
-    </div>
-    <div class="col-xs-4 proDashboardMapTopViewItem">
-        Quotes
-    </div>
-    <div class="col-xs-4 proDashboardMapTopViewItem">
-        Messages
-    </div>
-</div>
-
-<div class="proDashboardMapFilters hidden-xs">
-    FILTERS
+<div class="mapWorkArea" ng-class="{'mapWorkAreaVisible':vm.showWorkArea}">
+    Work Area : {{ vm.showWorkArea }}
 </div>
 
 <ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions" bounds="vm.map.bounds"
                     events="vm.map.events">
-    <ui-gmap-map-control template="fakeTopControl.tpl.html" position="right-top"
-                         controller="ProDashboardMapController"
+    <ui-gmap-map-control template="homeControl.tpl.html" position="left-top"
+                         controller="ProDashboardMapHomeControlController as vm"
                          index="-1"></ui-gmap-map-control>
-    <ui-gmap-map-control template="fakeBottomControl.tpl.html" position="right-bottom"
-                         controller="ProDashboardMapController"
-                         index="-1"></ui-gmap-map-control>
-    <ui-gmap-markers models="vm.emergencies" coords="'coords'" icon="'icon'"
-                     click="vm.onMarkerClicked"></ui-gmap-markers>
+    <ui-gmap-markers models="vm.leads" coords="'address'" icon="'icon'" click="vm.onMarkerClicked"></ui-gmap-markers>
 </ui-gmap-google-map>
 
-<div class="transparentLeftSwipe" ng-swipe-right="app.menu.openMenu()" visible-xs></div>
-
 <div class="mapFooter col-xs-12 transformableBottomView"
-     ng-class="{'mapFooterVisible':!vm.exploring}">
+     ng-class="{'mapFooterVisible':vm.showSlider}">
     <div class="carousel-demo">
         <ul rn-carousel rn-carousel-controls rn-carousel-index="vm.carrouselSelectedItem.index" rn-carousel-buffered>
-            <li ng-repeat="emergency in vm.emergencies track by emergency.id" ng-class="'id-' + emergency.id">
-                <div class="projectListItem" angular-ripple>
-                    <div class="projectListItemLogo">
+            <li ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
+                <div class="proDashboardMapItem" angular-ripple>
+                    <div class="proDashboardMapItemLogo">
                         LOGO
                     </div>
-                    <div class="projectListItemTitle">
-                        {{emergency.title}}
+                    <div class="proDashboardMapItemTitle">
+                        {{lead.title}}
                     </div>
-                    <div class="projectListItemAddress">
-                        {{emergency.address.name}}
+                    <div class="proDashboardMapItemAddress">
+                        {{lead.address.name}}
                     </div>
-                    <div class="projectListItemDistanceLogo">
+                    <div class="proDashboardMapItemDistanceLogo">
                         logo
                     </div>
-                    <div class="projectListItemDistance">
+                    <div class="proDashboardMapItemDistance">
                         5 km
                     </div>
-                    <div class="projectListItemChrono">
+                    <div class="proDashboardMapItemChrono">
                         23hrs
                     </div>
-                    <div class="projectListItemLeadType">
+                    <div class="proDashboardMapItemLeadType">
                         Contact
                     </div>
                 </div>
