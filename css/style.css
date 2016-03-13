@@ -108,6 +108,8 @@
   border: 0;
 }
 
+
+
 /*--------------------------------- RIPPLE EFFECT -----------------------------------*/
 
 [angular-ripple] {
@@ -864,6 +866,13 @@ color: #9b9b9b!important;
   width: 22px;
 }
 
+.pro-proposal-title{
+  width: calc(100% - 160px);
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .project-icon {
   float: left;
   width: 82px;
@@ -1154,12 +1163,18 @@ color: #9b9b9b!important;
   letter-spacing:1.13px;
   text-align:left;
   margin-bottom: 2px;
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .pro-proposal-title > p:nth-child(2){
   font-family:'montserrat_regular';
   font-size:16px;
   color:#000000;
   text-align:left;
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .mt-20{

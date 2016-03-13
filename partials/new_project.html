@@ -176,7 +176,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
   <h2 class="text-center mb-39">Where do need it?</h2>
   <h3 class="text-center mb-120" ng-show="!vm.newAddrFlag">Enter your address and give it a name</h3>
   <h3 class="text-center mb-120" ng-show="vm.newAddrFlag">Select one from your registred addresses or enter a new one</h3>
-  <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
+  <div class="row no-margin w-900 center select-addr">
     <div class="col-md-4 no-padding">
       <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
         <option value="new">Create new one</option>

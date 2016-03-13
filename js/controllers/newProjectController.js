@@ -363,7 +363,7 @@
         for (var i = 0; i < $rootScope.photos.length; i++) {
           if ($rootScope.photos[i].public_id){
             var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-            if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].comment) {
+            if ($rootScope.photos[i].comment) {
               tmp.comment = $rootScope.photos[i].comment;
             }
             formData.images = formData.images || [];
