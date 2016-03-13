@@ -103,6 +103,11 @@
 
 }
 
+*:focus{
+  outline: none;
+  border: 0;
+}
+
 /*--------------------------------- RIPPLE EFFECT -----------------------------------*/
 
 [angular-ripple] {

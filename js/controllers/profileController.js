@@ -49,6 +49,38 @@
     networkService.professionalGET(succesProfileGET, errorProfileGET);
 
 
+    function uploadFiles(files, invalides, index){
+      if (invalides.length > 0){
+        if (invalides[0].$error == "maxSize")
+        alertMsg.send("Error : max size 5MB.", "danger");
+      }
+      $scope.files = files;
+      if (!$scope.files) return;
+      angular.forEach(files, function(file){
+        if (file && !file.$error) {
+          file.upload = $upload.upload({
+            url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+            data: {
+              upload_preset: cloudinary.config().upload_preset,
+              tags: 'myphotoalbum',
+              context: 'photo=' + $scope.title,
+              file: file
+            }
+          }).progress(function (e) {
+            file.progress = Math.round((e.loaded * 100.0) / e.total);
+            file.status = "Uploading... " + file.progress + "%";
+          }).success(function (data, status, headers, config) {
+            vm.project.images = vm.project.images || [];
+            data.context = {custom: {photo: $scope.title}};
+            file.result = data;
+            vm.projectTmp.images.push({cloudinaryPublicId: data.public_id});
+          }).error(function (data, status, headers, config) {
+            alertMsg.send("Error : Upload failed.", "danger");
+          });
+        }
+      });
+    };
+
     function yearsContent(){
       var res = [];
       console.log(vm.Year);
