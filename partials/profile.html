@@ -33,8 +33,8 @@
 <div class="page-content">
   <ng-include src="'partials/menu.html'"></ng-include>
   <div class="content-slide p-20">
-    <div masonry="{'gutter': 10, 'originLeft': true, 'originTop': true}">
-      <div class="masonry-brick profile-info">
+    <div class="row row-2-col">
+      <div class="menu-category profile-info">
         <div class="profile-box">
           <input type="text" class="profile-input form-control">
           <input type="text" class="profile-input form-control">
@@ -50,7 +50,101 @@
           </div>
         </div>
       </div>
-      <div class="masonry-brick profile-area">
+      <div class="menu-category profile-about">
+        <div class="profile-box">
+          <p>
+            About me
+          </p>
+          <textarea class="textarea-red" placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan."></textarea>
+          <div class="profile-box-footer">
+            <div class="profile-box-footer-btn-fr">
+              Save
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-category profile-bck-verif">
+        <div class="profile-box">
+          <p>
+            Background verification
+          </p>
+          <div class="row">
+            <div class="col-xs-2">
+              <input id="profile-back-verif-1" type="checkbox" >
+              <label for="profile-back-verif-1"></label>
+            </div>
+            <div class="col-xs-10">
+              <p>
+                Extrait KBIS / SIRET
+              </p>
+              <a ><p>
+                Add
+              </p></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-2">
+              <input id="profile-back-verif-2" type="checkbox">
+              <label for="profile-back-verif-2"></label>
+            </div>
+            <div class="col-xs-10">
+              <p>
+                Assurance
+              </p>
+              <a ><p>
+                Add
+              </p></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-2">
+              <input id="profile-back-verif-3" type="checkbox">
+              <label for="profile-back-verif-3"></label>
+            </div>
+            <div class="col-xs-10">
+              <p>
+                Attestation RGE
+              </p>
+              <a ><p>
+                Add
+              </p></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-2">
+              <input id="profile-back-verif-4" type="checkbox">
+              <label for="profile-back-verif-4"></label>
+            </div>
+            <div class="col-xs-10">
+              <p>
+                Main partner (EDF, Leroy Merlin, ...)
+              </p>
+              <a ><p>
+                Add
+              </p></a>
+            </div>
+          </div>
+          <div class="profile-box-footer">
+            <div class="profile-box-footer-btn-fr">
+              Save
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-category profile-about">
+        <div class="profile-box">
+          <p>
+            Change password
+          </p>
+          <textarea class="textarea-red" placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan."></textarea>
+          <div class="profile-box-footer">
+            <div class="profile-box-footer-btn-fr">
+              Save
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-category profile-area">
         <div class="profile-box">
           <div class="profile-area-header">
             <p>
@@ -70,12 +164,18 @@
           </div>
         </div>
       </div>
-      <div class="masonry-brick profile-about">
+      <div class="menu-category profile-about">
         <div class="profile-box">
           <p>
-            About me
+            Portfolio
           </p>
-          <textarea class="textarea-red" placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan."></textarea>
+          <div class="row cl">
+            <div class="col-xs-3" ng-repeat="pict in vm.profile.professional.portfolio" title="{{pict.description}}">
+              <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
+                <cl-transformation height="92" width="92" crop="fill"/>
+              </cl-image>
+            </div>
+          </div>
           <div class="profile-box-footer">
             <div class="profile-box-footer-btn-fr">
               Save
@@ -84,6 +184,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 </section>

@@ -47,80 +47,80 @@
         </div>
       </div>
     </div>
-<div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenActivities">
-  <h2 class="text-center">{{q.name | translate }}</h2>
-  <ul  class="questions-ul center">
-    <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities" ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
-      {{ child.name | translate }}
-    </li>
-  </ul>
-</div>
-<div class="slide bckg-default" id="slide3" ng-show="vm.service">
-  <div class="row center no-margin no-padding material-box">
-    <h4 class="material-title">Do you have material?</h4>
-    <div class="col-md-6">
+    <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]" ng-repeat="q in vm.questions track by $index" ng-if="q.childrenActivities">
+      <h2 class="text-center">{{q.name | translate }}</h2>
+      <ul  class="questions-ul center">
+        <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities" ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
+          {{ child.name | translate }}
+        </li>
+      </ul>
+    </div>
+    <div class="slide bckg-default" id="slide3" ng-show="vm.service">
+      <div class="row center no-margin no-padding material-box">
+        <h4 class="material-title">Do you have material?</h4>
+        <div class="col-md-6">
 
-      <div class="v-btn center" ng-click="vm.material = 'yes'" ng-class="{activate: vm.material == 'yes'}">
-        YES
+          <div class="v-btn center" ng-click="vm.material = 'yes'" ng-class="{activate: vm.material == 'yes'}">
+            YES
+          </div>
+          <p class="material-sub">I have it</p>
+        </div>
+        <div class="col-md-6">
+          <div class="v-btn center" ng-click="vm.material = 'no'" ng-class="{activate: vm.material == 'no'}">
+            NO
+          </div>
+          <p class="material-sub">I need it</p>
+        </div>
       </div>
-      <p class="material-sub">I have it</p>
+      <p class="error center" ng-show="vm.error.material.flag">
+        {{vm.error.material.message}}
+      </p>
+      <h2 class="text-center h2-middle">Could you describe project for us?</h2>
+      <textarea class="description center" ng-model="vm.projectDescription" placeholder="describe your problem and your needs" ng-blur="vm.verifDescription()"></textarea>
+      <p class="error center" ng-show="vm.error.description.flag">
+        {{vm.error.description.message}}
+      </p>
+      <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()">Continue</button>
     </div>
-    <div class="col-md-6">
-      <div class="v-btn center" ng-click="vm.material = 'no'" ng-class="{activate: vm.material == 'no'}">
-        NO
+    <div class="slide bckg-white" id="slide4" ng-show="vm.continue">
+      <h2 class="text-center" >Add some photos of your project</h2>
+      <div class="row w-900 center no-margin">
+        <div class="col-md-3 no-padding"
+        ngf-drop="uploadFiles($files)"
+        ngf-drag-over-class="dragOverClass($event)"
+        ng-model="files"
+        ng-multiple="false" >
+        <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
+        <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+        ngf-accept="'image/*'" ngf-max-size="5MB">
+        <a cl-href="{{photos[0].public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
+
+          <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png" >
+            <cl-transformation height="220" width="220" crop="fill"/>
+          </cl-image>
+        </a>
+        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
       </div>
-      <p class="material-sub">I need it</p>
+      <textarea class="comment custom-comment" ng-model="photos[0].comment" ng-show="photos[0].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[0], 'comment', 140)"></textarea>
+      <div class="comment-length">
+        {{photos[0].comment.length}}/140
+      </div>
     </div>
-  </div>
-  <p class="error center" ng-show="vm.error.material.flag">
-    {{vm.error.material.message}}
-  </p>
-  <h2 class="text-center h2-middle">Could you describe project for us?</h2>
-  <textarea class="description center" ng-model="vm.projectDescription" placeholder="describe your problem and your needs" ng-blur="vm.verifDescription()"></textarea>
-  <p class="error center" ng-show="vm.error.description.flag">
-    {{vm.error.description.message}}
-  </p>
-  <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()">Continue</button>
-</div>
-<div class="slide bckg-white" id="slide4" ng-show="vm.continue">
-  <h2 class="text-center" >Add some photos of your project</h2>
-  <div class="row w-900 center no-margin">
     <div class="col-md-3 no-padding"
     ngf-drop="uploadFiles($files)"
     ngf-drag-over-class="dragOverClass($event)"
     ng-model="files"
     ng-multiple="false" >
-    <span class=" center img-preview-remove" ng-click="photos[0] = {}" ng-show="photos[0].public_id"></span>
-    <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+    <span class=" center img-preview-remove" ng-click="photos[1] = {}" ng-show="photos[1].public_id"></span>
+    <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
     ngf-accept="'image/*'" ngf-max-size="5MB">
-    <a cl-href="{{photos[0].public_id}}" target="_blank" format="png" class="center-midlle" ng-show="photos[0].public_id">
+    <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[1].public_id">
 
-      <cl-image public-id="{{photos[0].public_id}}" class="img-preview center-middle" format="png" >
-        <cl-transformation height="220" width="220" crop="fill"/>
-      </cl-image>
-    </a>
-    <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
-  </div>
-  <textarea class="comment custom-comment" ng-model="photos[0].comment" ng-show="photos[0].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[0], 'comment', 140)"></textarea>
-  <div class="comment-length">
-    {{photos[0].comment.length}}/140
-  </div>
-</div>
-<div class="col-md-3 no-padding"
-ngf-drop="uploadFiles($files)"
-ngf-drag-over-class="dragOverClass($event)"
-ng-model="files"
-ng-multiple="false" >
-<span class=" center img-preview-remove" ng-click="photos[1] = {}" ng-show="photos[1].public_id"></span>
-<div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
-ngf-accept="'image/*'" ngf-max-size="5MB">
-<a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle" ng-show="photos[1].public_id">
-
-  <cl-image public-id="{{photos[1].public_id}}" class="img-preview center-middle" format="png" />
-  <cl-transformation height="220" width="220" crop="fill"/>
-</cl-image>
-</a>
-<img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[1].public_id"/>
+      <cl-image public-id="{{photos[1].public_id}}" class="img-preview center-middle" format="png" />
+      <cl-transformation height="220" width="220" crop="fill"/>
+    </cl-image>
+  </a>
+  <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[1].public_id"/>
 </div>
 <textarea class="comment custom-comment" ng-model="photos[1].comment" ng-show="photos[1].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[1], 'comment', 140)"></textarea>
 <div class="comment-length">
@@ -194,10 +194,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
     </div>
   </div>
   <div class="row no-margin w-900 center addr">
-    <div class="col-xs-3" ng-show="vm.newAddrFlag">
-      <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
-    </div>
-    <div class="no-padding mb-39" ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
+    <div class="no-padding mb-39" ng-class="col-xs-12">
       <div class="inner-addon right-addon">
         <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
         <i class="glyphicon glyphicon-map-marker"></i>

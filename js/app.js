@@ -13,8 +13,7 @@ angular.module('Yaka', [
   'angular-carousel',
   'angularRipple',
   'monospaced.elastic',
-  'smoothScroll',
-  'wu.masonry']);
+  'smoothScroll']);
 
 
 // facebook library API
