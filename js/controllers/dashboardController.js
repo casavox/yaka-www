@@ -9,7 +9,6 @@
   //Controller login
   DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state']
   function DashboardController($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state) {
-
     var vm = this;
     vm.dashboardProjects = [];
     vm.dashboardAddress = [];

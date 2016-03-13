@@ -49,16 +49,16 @@
           <p class="pro-title-post">
             Post {{vm.dateDiff(vm.projectTmp.published, vm.projectTmp.updated)}} ago
           </p>
-          <img ng-src="{{vm.projectTmp.professional.avatarUrl}}"class="img-circle pro-icon-medium mt-20 fl-l ml-15" ng-show="vm.projectTmp.professional.avatarUrl"/>
-          <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.professional.avatarUrl">
-            {{vm.projectTmp.professional.firstName[0] | uppercase}} {{vm.projectTmp.professional.lastName[0] | uppercase}}
+          <img ng-src="{{vm.projectTmp.profile.avatarUrl}}"class="img-circle pro-icon-medium mt-20 fl-l ml-15" ng-show="vm.projectTmp.profile.avatarUrl"/>
+          <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.profile.avatarUrl">
+            {{vm.projectTmp.profile.firstName[0] | uppercase}} {{vm.projectTmp.profile.lastName[0] | uppercase}}
           </div>
           <div class="pro-proposal-title">
             <p ng-class="{'red': vm.projectTmp.type == 'EMERGENCY'}">
               {{vm.project.title}}
             </p>
             <p>
-              {{vm.projectTmp.professional.firstName}} {{vm.projectTmp.professional.lastName}}
+              {{vm.projectTmp.profile.firstName}} {{vm.projectTmp.profile.lastName}}
             </p>
           </div>
         </div>
@@ -109,8 +109,7 @@
             Description
           </div>
           <div class="col-xs-12 description-sub-text">
-            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description" ng-hide="vm.editFlag"></textarea>
-            <textarea class="custom-textarea-red" ng-model="vm.projectTmp.description" ng-show="vm.editFlag"></textarea>
+            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description"></textarea>
           </div>
         </div>
       </div>
@@ -177,6 +176,9 @@
         My message to the client
       </p>
       <textarea class="custom-textarea-red w-100p placeholder-xs mb-10" placeholder="Explain why you are the best for this particular job, what material you use ..." ng-model="vm.offer.comment"></textarea>
+      <p class="error center" ng-show="vm.error.comment.flag">
+        {{vm.error.comment.message}}
+      </p>
     </div>
     <div class="col-xs-12">
       <button type="button" class="button btn" ng-click="vm.sendOffer()">Send offer</button>

@@ -35,7 +35,6 @@
     vm.J1 = {date: new Date()};
     vm.time = vm.J1.date.getHours();
     vm.initHours = initHours;
-    vm.initHours();
     vm.J2 = {date: new Date()};
     vm.J3 = {date: new Date()};
     vm.J2.date.setDate(vm.J2.date.getDate() + 1);
@@ -94,33 +93,44 @@
     }
 
     function sendOffer(){
-      vm.offer.date.date = vm.offer.date.date || null;
-      vm.offer.comment = vm.offer.comment || "";
-      var formData = {
-        project: {id: vm.projectTmp.id},
-        price: vm.offer.price.price.toString(),
-        priceType: $filter('uppercase')(vm.offer.price.type),
-        comment: vm.offer.comment
+      if (vm.offer.comment && vm.offer.comment.length > 0 && vm.offer.comment.indexOf(' ') > -1 && ((vm.projectTmp.type == "EMERGENCY" &&  vm.offer.price && vm.offer.price.price && vm.offer.date && vm.offer.date.date) || (vm.projectTmp.type != "EMERGENCY"))){
+        vm.offer.date.date = vm.offer.date.date || null;
+        vm.offer.comment = vm.offer.comment || "";
+        var formData = {
+          project: {id: vm.projectTmp.id},
+          price: parseInt(vm.offer.price.price),
+          priceType: $filter('uppercase')(vm.offer.price.type),
+          comment: vm.offer.comment
+        }
+        if (vm.projectTmp.type == 'EMERGENCY'){
+          formData.availability = {date: $filter('date')(vm.offer.date.date, "yyyy-MM-dd"), slot: vm.offer.date.slot};
+          networkService.proposalEmergencyPOST(formData, function(res){
+            console.log(res);
+            alertMsg.send("Proposal sent.", "success");
+            $state.go('prodashboard');
+          },function(res){
+            alertMsg.send("Error : proposal not sent", "danger");
+          } );
+        }
+        else {
+          formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
+          networkService.proposalSmallPOST(formData, function(res){
+            console.log(res);
+            alertMsg.send("Proposal sent.", "success");
+            $state.go('prodashboard');
+          },function(res){
+            alertMsg.send("Error : proposal not sent", "danger");
+          } );
+        }
+      }else {
+        vm.error = {comment: {}};
+        if (vm.projectTmp.type != "EMERGENCY")
+        vm.error.comment.message = "The comment is mandatory"
+        else {
+          vm.error.comment.message = "Price, Start date and Comment are mandatory"
+        }
+        vm.error.comment.flag = true;
       }
-      if (vm.projectTmp.type == 'EMERGENCY'){
-        formData.availability = {date: $filter('date')(vm.offer.date.date, "yyyy-MM-dd"), slot: vm.offer.date.slot};
-        networkService.proposalEmergencyPOST(formData, function(res){
-          console.log(res);
-          alertMsg.send("Proposal sent.", "success");
-        },function(res){
-          alertMsg.send("Error : proposal not sent", "danger");
-        } );
-      }
-      else {
-        formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
-        networkService.proposalSmallPOST(formData, function(res){
-          console.log(res);
-          alertMsg.send("Proposal sent.", "success");
-        },function(res){
-          alertMsg.send("Error : proposal not sent", "danger");
-        } );
-      }
-
     }
 
     function selectDate(slot){
@@ -449,7 +459,7 @@
           switch (vm.projectTmp.availabilities[i].slot) {
             case "7H_9H":
             if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
-              vm.J1.c1Disabled = true;
+              vm.J1.c1Disabled = '';
             }
             else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
               vm.J2.c1Disabled ='';
@@ -541,6 +551,7 @@
             }
             break;
           }
+          vm.initHours();
         }
       }
       else{

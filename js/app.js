@@ -13,7 +13,8 @@ angular.module('Yaka', [
   'angular-carousel',
   'angularRipple',
   'monospaced.elastic',
-  'smoothScroll']);
+  'smoothScroll',
+  'wu.masonry']);
 
 
 // facebook library API
@@ -155,7 +156,12 @@ angular.module('Yaka', [
         controller: 'ProProposalController',
         controllerAs: 'vm'
       })
-
+      .state('profile', {
+        url: "/profile/:profileId",
+        templateUrl: "partials/profile.html",
+        controller: 'ProfileController',
+        controllerAs: 'vm'
+      })
       //
       //Interceptor to put the token in the header for each http request
       $httpProvider.interceptors.push(['$q', '$injector', '$localStorage', function($q, $injector, $localStorage) {

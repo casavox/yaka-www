@@ -1,0 +1,89 @@
+<style type="text/css">
+  #map_canvas {
+    height: 327px;
+    width: calc(100% + 30px);
+    margin-left:-15px;
+    margin-right:-15px;
+  }
+
+  #map_canvas {
+    position: relative;
+  }
+
+  .angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+</style>
+<section class="view">
+  <div class="header-menu">
+    <ng-include src="'partials/menuHamburger.html'"></ng-include>
+    <div class="title">
+      PROFILE
+    </div>
+
+    <a ui-sref="login"><div class="logout">
+      Log Out
+    </div>
+  </a>
+</div>
+<div class="page-content">
+  <ng-include src="'partials/menu.html'"></ng-include>
+  <div class="content-slide p-20">
+    <div masonry="{'gutter': 10, 'originLeft': true, 'originTop': true}">
+      <div class="masonry-brick profile-info">
+        <div class="profile-box">
+          <input type="text" class="profile-input form-control">
+          <input type="text" class="profile-input form-control">
+          <input type="text" class="profile-input form-control">
+          <input type="text" class="profile-input form-control">
+          <input type="text" class="profile-input form-control">
+          <input type="text" class="profile-input form-control">
+          <input type="text" class="profile-input form-control">
+          <div class="profile-box-footer">
+            <div class="profile-box-footer-btn-fr">
+              Save
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="masonry-brick profile-area">
+        <div class="profile-box">
+          <div class="profile-area-header">
+            <p>
+              Work area
+            </p>
+            <p class="profile-area-header-info">
+              Zoom and center the map to define your work area : you will be notified of all works in this area.
+            </p>
+          </div>
+          <div id="map_canvas">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" dragging="false"></ui-gmap-google-map>
+          </div>
+          <div class="profile-box-footer">
+            <div class="profile-box-footer-btn-fr">
+              Save
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="masonry-brick profile-about">
+        <div class="profile-box">
+          <p>
+            About me
+          </p>
+          <textarea class="textarea-red" placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan."></textarea>
+          <div class="profile-box-footer">
+            <div class="profile-box-footer-btn-fr">
+              Save
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

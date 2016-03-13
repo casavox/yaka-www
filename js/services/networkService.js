@@ -59,7 +59,13 @@
         $http.put(baseUrl + '/projects/emergency/'+data.id, data).success(success).error(error);
         else if (data.type == "SMALL_PROJECT")
         $http.put(baseUrl + '/projects/small/'+data.id, data).success(success).error(error);
-      }
+      },
+      proposalPUT: function(data, success, error) {
+        if (data.type == "EMERGENCY")
+        $http.put(baseUrl + '/proposals/emergency/'+data.id, data).success(success).error(error);
+        else if (data.type == "SMALL_PROJECT")
+        $http.put(baseUrl + '/proposals/small/'+data.id, data).success(success).error(error);
+      },
     };
 
   }
