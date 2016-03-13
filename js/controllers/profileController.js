@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  ProfileController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state']
-  function ProfileController($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state) {
+  ProfileController.$inject = ['$scope', 'networkService', '$localStorage', '$state', 'alertMsg']
+  function ProfileController($scope, networkService, $localStorage, $state, alertMsg) {
 
     var vm = this;
     $scope.map = {
@@ -22,5 +22,18 @@
       disableDoubleClickZoom: true,
       scrollwheel: false
     };
+
+    networkService.professionalGET(succesProfileGET, errorProfileGET);
+
+    function succesProfileGET(res){
+      vm.profile = res;
+      $scope.map.center.latitude = vm.profile.workArea.latitude;
+      $scope.map.center.longitude = vm.profile.workArea.longitude;
+      console.log(res);
+    }
+
+    function errorProfileGET(res){
+      alertMsg.send("Error to get the profile informations.", "danger");
+    }
   }
 })();

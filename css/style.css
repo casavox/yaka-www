@@ -1999,7 +1999,9 @@ color: #9b9b9b!important;
   border-radius: 0!important;
   margin-top: 5px;
   margin-bottom: 5px;
-  border-bottom: 1px solid red!important;
+  border-bottom: 1px solid #bfbfbf!important;
+  padding-left: 0!important;
+  padding-bottom: 0!important;
   box-shadow: none!important;
 }
 
@@ -2010,6 +2012,59 @@ color: #9b9b9b!important;
   padding-bottom: 13px;
 }
 
+.profile-activities-check{
+  background-color:   #00a3d3;
+  color: white;
+  min-width: 25px;
+  height: 35px;
+  line-height: 35px;
+  vertical-align: middle;
+}
+
+.profile-activities-check > span{
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.icon-edit{
+  height: 30px;
+  width: 30px;
+  background-color: #00a3d3;
+  border-radius: 50%;
+  background-image: url('../icons/mdpi/ic_pen.png');
+  background-size: 15px 15px;
+  background-position: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+}
+
+.mb-15{
+  margin-bottom: 15px;
+}
+
+.profile-activities > .col-xs-9{
+  background-color:   #ebebeb;
+  height: 35px;
+  line-height: 35px;
+  vertical-align: middle;
+  padding-left: 10px!important;
+  font-family:"montserrat_regular";
+  font-size:12px;
+  color:#444444;
+}
+
+.profile-activities > .col-xs-3{
+  background-color:   #999999;
+  height: 35px;
+  line-height: 35px;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+}
+
 .profile-box > p{
   font-family:'montserrat_light';
   font-size:14px;
@@ -2018,15 +2073,15 @@ color: #9b9b9b!important;
 }
 
 /* Cachons la case à cocher */
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
+.profile-verif > [type="checkbox"]:not(:checked),
+.profile-verif > [type="checkbox"]:checked {
   position: absolute;
   left: -9999px;
 }
 
 /* on prépare le label */
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
+.profile-verif > [type="checkbox"]:not(:checked) + label,
+.profile-verif > [type="checkbox"]:checked + label {
   position: relative; /* permet de positionner les pseudo-éléments */
   padding-left: 25px; /* fait un peu d'espace pour notre case à venir */
   cursor: pointer;    /* affiche un curseur adapté */
@@ -2034,8 +2089,8 @@ color: #9b9b9b!important;
 
 /* Aspect des checkboxes */
 /* :before sert à créer la case à cocher */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
+.profile-verif > [type="checkbox"]:not(:checked) + label:before,
+.profile-verif > [type="checkbox"]:checked + label:before {
   content: '';
   position: absolute;
   left:0; top: 2px;
@@ -2047,8 +2102,8 @@ color: #9b9b9b!important;
 }
 
 /* Aspect général de la coche */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
+.profile-verif > [type="checkbox"]:not(:checked) + label:after,
+.profile-verif > [type="checkbox"]:checked + label:after {
   content: '✔';
   position: absolute;
   top: 0; left: 4px;
@@ -2057,35 +2112,41 @@ color: #9b9b9b!important;
   transition: all .2s; /* on prévoit une animation */
 }
 /* Aspect si "pas cochée" */
-[type="checkbox"]:not(:checked) + label:after {
+.profile-verif > [type="checkbox"]:not(:checked) + label:after {
   opacity: 0; /* coche invisible */
   transform: scale(0); /* mise à l'échelle à 0 */
 }
 /* Aspect si "cochée" */
-[type="checkbox"]:checked + label:after {
+.profile-verif > [type="checkbox"]:checked + label:after {
   opacity: 1; /* coche opaque */
   transform: scale(1); /* mise à l'échelle 1:1 */
 }
 
 /* aspect désactivée */
-[type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before {
+.profile-verif > [type="checkbox"]:disabled:not(:checked) + label:before,
+.profile-verif > [type="checkbox"]:disabled:checked + label:before {
   box-shadow: none;
   border-color: #bbb;
   background-color: #ddd;
 }
 /* styles de la coche (si cochée/désactivée) */
-[type="checkbox"]:disabled:checked + label:after {
+.profile-verif > [type="checkbox"]:disabled:checked + label:after {
   color: #999;
 }
 /* on style aussi le label quand désactivé */
-[type="checkbox"]:disabled + label {
+.profile-verif > [type="checkbox"]:disabled + label {
   color: #aaa;
 }
 
+.img-profile{
+  height: 70px;
+  width: 70px;
+  position: relative;
+}
+
 /* aspect au focus de l'élément */
-[type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before {
+.profile-verif > [type="checkbox"]:checked:focus + label:before,
+.profile-verif > [type="checkbox"]:not(:checked):focus + label:before {
   border: 2px solid #00a3d3;
 }
 
@@ -2098,9 +2159,9 @@ color: #9b9b9b!important;
 }
 
 .profile-bck-verif  > div > div > div > label{
-position: absolute!important;
-right: 0;
-top: 11px;
+  position: absolute!important;
+  right: 0;
+  top: 11px;
 }
 
 .profile-area-header > p{
@@ -2622,6 +2683,10 @@ top: 11px;
 .hover-border:hover {
   border: 1px solid red;
   cursor: pointer !important;
+}
+
+.bb-red{
+  border: 1px solid red!important;
 }
 
 .pro-icon {

@@ -156,7 +156,7 @@ angular.module('Yaka', [
         controllerAs: 'vm'
       })
       .state('profile', {
-        url: "/profile/:profileId",
+        url: "/profile/me",
         templateUrl: "partials/profile.html",
         controller: 'ProfileController',
         controllerAs: 'vm'
