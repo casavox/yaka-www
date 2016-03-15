@@ -101,9 +101,9 @@
         </a>
         <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[0].public_id"/>
       </div>
-      <textarea class="comment custom-comment" ng-model="photos[0].comment" ng-show="photos[0].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[0], 'comment', 140)"></textarea>
+      <textarea class="comment custom-comment" ng-model="photos[0].description" ng-show="photos[0].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[0], 'description', 140)"></textarea>
       <div class="comment-length">
-        {{photos[0].comment.length}}/140
+        {{photos[0].description.length}}/140
       </div>
     </div>
     <div class="col-md-3 no-padding"
@@ -122,9 +122,9 @@
   </a>
   <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[1].public_id"/>
 </div>
-<textarea class="comment custom-comment" ng-model="photos[1].comment" ng-show="photos[1].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[1], 'comment', 140)"></textarea>
+<textarea class="comment custom-comment" ng-model="photos[1].description" ng-show="photos[1].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[1], 'description', 140)"></textarea>
 <div class="comment-length">
-  {{photos[1].comment.length}}/140
+  {{photos[1].description.length}}/140
 </div>
 </div>
 <div class="col-md-3 no-padding"
@@ -143,9 +143,9 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[2].public_id"/>
 </div>
-<textarea class="comment custom-comment" ng-model="photos[2].comment" ng-show="photos[2].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[2], 'comment', 140)"></textarea>
+<textarea class="comment custom-comment" ng-model="photos[2].description" ng-show="photos[2].public_id" placeholder="Comment this photo" ng-change="vm.limitLength(photos[2], 'description', 140)"></textarea>
 <div class="comment-length">
-  {{photos[2].comment.length}}/140
+  {{photos[2].description.length}}/140
 </div>
 </div>
 <div class="col-md-3 no-padding"
@@ -164,9 +164,9 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
 </a>
 <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt="" ng-hide="photos[3].public_id"/>
 </div>
-<textarea class="comment custom-comment" ng-model="photos[3].comment" ng-show="photos[3].public_id" ng-change="vm.limitLength(photos[3], 'comment', 140)" placeholder="Comment this photo"></textarea>
+<textarea class="comment custom-comment" ng-model="photos[3].description" ng-show="photos[3].public_id" ng-change="vm.limitLength(photos[3], 'description', 140)" placeholder="Comment this photo"></textarea>
 <div class="comment-length">
-  {{photos[3].comment.length}}/140
+  {{photos[3].description.length}}/140
 </div>
 </div>
 </div>
@@ -492,15 +492,13 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
       </p>
     </div>
     <div class="popUp-footer">
-      <div class="row no-margin">
-        <div class="col-xs-9 fr" ng-click="vm.continueWithoutImages()">
+        <div ng-click="vm.continueWithoutImages()">
           PUBLIER SANS PHOTO
         </div>
-        <div class="col-xs-3 text-center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+        <div  ngf-select="uploadFiles($files, $invalidFiles, 0)"
         accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ng-click="vm.popupFlag = false">
         OUI
       </div>
-    </div>
   </div>
 </div>
 </div>

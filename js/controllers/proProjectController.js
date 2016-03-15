@@ -22,12 +22,12 @@
     vm.sendOffer = sendOffer;
     vm.disabledDay = disabledDay;
     vm.unSelectOther = unSelectOther;
-    vm.verifNumber = verifNumber;
     vm.imagePreviewFlag = false;
     vm.myPriceFlag = false;
     vm.myDateFlag = false;
     vm.price = 0;
     vm.offer = {};
+    vm.error = {};
 
     vm.now = new Date();
     vm.dt = new Date();
@@ -69,12 +69,6 @@
     else {
       $state.go("prodashboard");
     }
-
-    function verifNumber(){
-      if (vm.price < 10)
-      vm.price = 10;
-    }
-
 
     function unSelectOther(){
       vm.J1.all = false;
@@ -405,8 +399,18 @@
     }
 
     function selectPrice(type){
-      vm.offer.price = {type: type, price: vm.price};
-      vm.myPriceFlag = false;
+      vm.error.price = {message: "At least 10 Euro", flag: false};
+      if (vm.price < 10){
+        vm.error.price.message = "At least 10 Euro";
+        vm.error.price.flag = true;
+        vm.price = 10;
+      }
+      else {
+        vm.offer.price = {type: type, price: vm.price};
+        vm.myPriceFlag = false;
+        vm.error.price.flag = false;
+      }
+
     }
 
     function myPrice(){
@@ -418,8 +422,14 @@
     }
 
     function selectImagePreview(media){
-      vm.imgTmpPreview = media;
-      vm.imagePreviewFlag = true;
+      $timeout(function(){
+        vm.imgTmpPreview = {};
+        $timeout(function(){
+          vm.imgTmpPreview = media;
+          vm.imagePreviewFlag = true;
+        }, 0)
+      }, 0)
+
     }
 
     function dateDiff(d1, d2){

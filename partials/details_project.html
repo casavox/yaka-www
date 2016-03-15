@@ -232,7 +232,7 @@
     </div>
     <div class="proposal-offers">
       <div class="line">
-        <span class="f-l proposal-offer-line-info" ng-show="!vm.proposal.price">Price</span><span class="f-l proposal-offer-line-info" ng-show="vm.proposal.price">{{vm.proposal.priceType}}</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.price">Need info to make a quote</span><span class="f-r proposal-offer-line-res" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
+        <span class="f-l proposal-offer-line-info" ng-show="!vm.proposal.price">Price</span><span class="f-l proposal-offer-line-info" ng-show="vm.proposal.price">{{vm.proposal.priceType}}</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.price">Need info to make a quote</span><span class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
       </div>
       <div class="line mt-21" ng-show="vm.projectTmp.type != 'EMERGENCY'">
         <span class="f-l proposal-offer-line-info">Available on</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.startDate">Need info to schedule</span><span class="f-r proposal-offer-line-res" ng-show="vm.proposal.startDate">{{vm.proposal.startDate | date:'EEEE dd MMMM'}}</span>
@@ -243,8 +243,8 @@
     </div>
     <div class="proposal-offers-expend">
       <img ng-src="{{vm.proposal.professional.avatarUrl}}" class="f-l proposal-icon img-circle"  ng-show="vm.proposal.professional.avatarUrl"/>
-      <div class="img-default center-middle" ng-show="!vm.proposal.professional.avatarUrl">
-        {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
+      <div class="img-default fl" ng-show="!vm.proposal.professional.avatarUrl">
+        {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] | uppercase}}
       </div>
       <div class="proposal-tel">
         <div class="icon-tel"></div>
@@ -253,7 +253,7 @@
         </div>
 
       </div>
-      <div class="f-l">
+      <div class="ml-50 f-l">
         <p class="proposal-company" ng-show="vm.projectTmp.status == 'START'">
           {{vm.proposal.professional.companyName}}
         </p>
@@ -262,7 +262,7 @@
            {{vm.proposal.professional.firstName}}
         </p>
         <p class="proposal-place" >
-          Base in {{vm.proposal.professional.address.administrativeAreaLevel2}}
+          Base in {{vm.proposal.professional.company.address.administrativeAreaLevel1}}
         </p>
       </div>
       <div class="proposal-likes">
@@ -324,13 +324,13 @@
       </div>
     </div>
     <div class="proposal-offers">
-      <p class="proposal-qualities f-l">
+      <p class="proposal-skills f-l">
         Main qualities
       </p>
-      <p class="proposal-quality proposal-qualities" ng-repeat-start="q in vm.proposal.professional.qualities">
+      <p class="proposal-quality proposal-qual" ng-repeat-start="q in vm.proposal.professional.qualities">
         {{q.name}} ({{q.number  }})
       </p>
-      <p class="proposal-quality proposal-qualities" ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end >
+      <p class="proposal-quality proposal-qual" ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end >
         -
       </p>
     </div>
@@ -339,7 +339,7 @@
         About me
       </p>
       <textarea msd-elastic class="custom-textarea-about-me" ng-model="vm.proposal.professional.aboutMe"></textarea>
-      <p class="proposal-about-me f-l">
+      <p class="proposal-about-me">
         Portfolio
       </p>
       <div class="row cl">

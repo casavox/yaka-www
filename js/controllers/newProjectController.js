@@ -259,7 +259,7 @@
         formData.activities.push({code: vm.questions[i].code});
       }
       if (vm.dateType == "SPECIFIC"){
-        formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
+        formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
       }
       if (vm.continueAddress){
         for (var i = 0; i < vm.user.addresses.length; i++) {
@@ -277,8 +277,8 @@
       for (var i = 0; i < $rootScope.photos.length; i++) {
         if ($rootScope.photos[i].public_id){
           var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-          if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].comment) {
-            tmp.comment = $rootScope.photos[i].comment;
+          if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].description) {
+            tmp.description = $rootScope.photos[i].description;
           }
           formData.images = formData.images || [];
           formData.images.push(tmp);
@@ -328,7 +328,7 @@
           formData.activities.push({code: vm.questions[i].code});
         }
         if (vm.dateType == "SPECIFIC"){
-          formData.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
+          formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
         }
         if (vm.continueAddress){
           for (var i = 0; i < vm.user.addresses.length; i++) {
@@ -348,6 +348,7 @@
               var element = document.getElementById('slide5');
               smoothScroll(element, scrollOptions);
             },0);
+
           }
           else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3){
             vm.error.address.flag = true;
@@ -356,6 +357,7 @@
               var element = document.getElementById('slide5');
               smoothScroll(element, scrollOptions);
             },0);
+
           }
           formData.address.name  = vm.newAddr.name;
           formData.address.address = vm.newAddr.address;
@@ -363,8 +365,8 @@
         for (var i = 0; i < $rootScope.photos.length; i++) {
           if ($rootScope.photos[i].public_id){
             var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-            if ($rootScope.photos[i].comment) {
-              tmp.comment = $rootScope.photos[i].comment;
+            if ($rootScope.photos[i].description) {
+              tmp.description = $rootScope.photos[i].description;
             }
             formData.images = formData.images || [];
             formData.images.push(tmp);
@@ -409,8 +411,8 @@
             if (angular.isUndefined(formData.images))
             formData.images = [];
             var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-            if ($rootScope.photos[i].comment) {
-              tmp.comment = $rootScope.photos[i].comment;
+            if ($rootScope.photos[i].description) {
+              tmp.description = $rootScope.photos[i].description;
             }
             formData.images.push(tmp);
           }
@@ -574,6 +576,7 @@
 
     function setAddress(){
       if (vm.myAddress == "new"){
+        vm.continueAddressFlag = false;
         vm.newAddrFlag = true;
         $scope.address.name = "";
         vm.continueAddress = false;

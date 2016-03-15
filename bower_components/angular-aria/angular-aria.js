@@ -102,7 +102,7 @@ function $AriaProvider() {
     ariaValue: true,
     tabindex: true,
     bindKeypress: true,
-    bindRoleForClick: true
+    bindRoleForClick: false
   };
 
   /**

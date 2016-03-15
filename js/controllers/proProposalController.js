@@ -51,6 +51,7 @@
     vm.minDate.setDate(vm.minDate.getDate() + 2);
     vm.all = all;
     vm.getSlot = getSlot;
+    vm.error = {};
 
     $scope.map = {
       center: {
@@ -78,7 +79,7 @@
     }
 
     function declineProposal(){
-      
+
     }
 
     function decline(){
@@ -87,6 +88,7 @@
 
     function save(){
       vm.proposalTmp.type = vm.project.type;
+      vm.proposalTmp.priceType = $filter('uppercase')(vm.proposalTmp.priceType);
       networkService.proposalPUT(vm.proposalTmp, function(res){
         alertMsg.send("Proposal updated.", "success");
       }, function(res){
@@ -401,7 +403,7 @@
     }
 
     function selectDate(){
-      vm.proposalTmp.startDate = vm.dt;
+      vm.proposalTmp.startDate = $filter('date')(vm.dt, 'yyyy-MM-dd');
       if (vm.projectTmp.type == 'EMERGENCY'){
         var tmp = [];
         initDate(vm.J1, tmp);
@@ -621,8 +623,17 @@
     }
 
     function selectPrice(type){
-      vm.proposalTmp.price = vm.myPrice;
-      vm.myPriceFlag = false;
+      vm.error.price = vm.error.price || {};
+      if (vm.myPrice > 1){
+        vm.proposalTmp.price = vm.myPrice;
+        vm.proposalTmp.priceType = type;
+        vm.myPriceFlag = false;
+        vm.error.price.flag = false;
+      }
+      else {
+        vm.error.price.message = "At least 1 Euro";
+        vm.error.price.flag = true;
+      }
     }
 
     function selectImagePreview(media){

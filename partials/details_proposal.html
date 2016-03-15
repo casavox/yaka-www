@@ -29,8 +29,11 @@
     <div class="in-line min-w-44 arrow-nav" ng-show="vm.proDetails">
       <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
     </div>
-    <div class="title" ng-show="!vm.proDetails">
+    <div class="title no-line" ng-show="!vm.proDetails">
       {{vm.project.title}}
+      <p class="sub-title-proposal">
+        Make a quote
+      </p>
     </div>
     <div class="title" ng-show="vm.proDetails">
       Proposal's details
@@ -90,7 +93,7 @@
         </div>
       </div>
       <div class="row no-margin">
-        <div class="col-xs-12 row no-margin" ng-class="{'cursor-pointer': vm.editFlag}" ng-click="vm.editPrice()">
+        <div class="col-xs-12 row no-margin" ng-class="{'cursor-pointer': vm.editFlag}" ng-click="vm.editPrice()" role="grid">
           <div class="col-xs-12 description-sub-title" >
             My Price
             <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
@@ -104,7 +107,7 @@
         </div>
       </div>
       <div class="row no-margin">
-        <div class="col-xs-12 row no-margin" ng-class="{'cursor-pointer': vm.editFlag}" ng-click="vm.editDate()">
+        <div class="col-xs-12 row no-margin" ng-class="{'cursor-pointer': vm.editFlag}" ng-click="vm.editDate()" role="grid">
           <div class="col-xs-12 description-sub-title">
             My start date
             <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
@@ -166,9 +169,9 @@
   <div class="menu-r" ng-class="{'top-120': !vm.pro}" ng-show="vm.proposal.status != 'SELECTED'">
 
     <div class="row">
-      <div class="col-xs-12 cursor-pointer">
+      <div class="col-xs-12">
         <p class="pro-menu-title">
-          Chat with
+          Chat with {{vm.proposal.project.profile.firstName}} {{vm.proposal.project.profile.lastName}}
         </p>
         <p class="pro-menu-subTitle"  ng-show="!vm.offer.price.price">
 
@@ -229,7 +232,7 @@
 <div class="popUp" ng-show="vm.myPriceFlag">
   <div class="popUp-container center-middle">
     <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.myPriceFlag = false"></span>
+      <span class="boxclose" ng-click="vm.myPriceFlag = false; vm.error.price.flag = false"></span>
       <h4>My price</h4>
       <p class="info-popUp">
       </p>
@@ -238,40 +241,33 @@
       </p>
       <div class="row">
         <div class="col-xs-10">
-          <input type="number" class="custom-input-number" ng-model="vm.myPrice">
+          <input type="number" class="custom-input-number input-number-hide" ng-model="vm.myPrice" decimal-places>
         </div>
         <div class="col-xs-2 sym-euro">
           €
         </div>
       </div>
+      <p class="error center my-price-error" ng-show="vm.error.price.flag">
+        {{vm.error.price.message}}
+      </p>
 
     </div>
-    <div class="row mt-50" ng-show="vm.projectTmp.type != 'EMERGENCY'">
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Estimate')">
+    <div class="clearfix mt-50" ng-show="vm.projectTmp.type != 'EMERGENCY'">
+        <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">
           ESTIMATE
         </div>
-      </div>
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Final')">
+        <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">
           FINAL
         </div>
-      </div>
-
     </div>
-    <div class="row mt-50" ng-show="vm.projectTmp.type == 'EMERGENCY'">
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Hourly rate')">
+    <div class="clearfix mt-50" ng-show="vm.projectTmp.type == 'EMERGENCY'">
+        <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Hourly rate')">
           HOURLY
         </div>
-      </div>
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Flat rate')">
+        <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Flat rate')">
           FLAT
         </div>
       </div>
-
-    </div>
   </div>
 </div>
 

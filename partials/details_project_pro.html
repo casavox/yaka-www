@@ -29,8 +29,11 @@
     <div class="in-line min-w-44 arrow-nav" ng-show="vm.proDetails">
       <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
     </div>
-    <div class="title" ng-show="!vm.proDetails">
+    <div class="title no-line" ng-show="!vm.proDetails">
       {{vm.project.title}}
+      <p class="sub-title-proposal">
+        Make an offer
+      </p>
     </div>
     <div class="title" ng-show="vm.proDetails">
       Proposal's details
@@ -149,26 +152,24 @@
     <div class="col-xs-12 cursor-pointer" ng-click="vm.myPrice()">
       <span class="icon-pen-red-pro"></span>
       <span class="price-area" ng-show="!vm.offer.price.price">---</span>
+      <span class="price-area" ng-show="vm.offer.price.price">{{vm.offer.price.type}}. {{vm.offer.price.price}} €</span>
       <p class="pro-menu-title">
         My price
       </p>
-      <p class="pro-menu-subTitle"  ng-show="!vm.offer.price.price">
+      <p class="pro-menu-subTitle">
         Tell your price condition
       </p>
-      <p class="pro-menu-subTitle" ng-show="vm.offer.price.price">{{vm.offer.price.type}}. {{vm.offer.price.price}} €</p>
     </div>
     <div class="col-xs-12 cursor-pointer" ng-click="vm.myDate()">
       <span class="icon-pen-red-pro"></span>
       <span class="price-area" ng-show="!vm.offer.date.date">---</span>
+      <span class="price-area" ng-show="vm.offer.date.date">{{vm.offer.date.date | date:'dd MMM yyyy'}} {{vm.getSlot(vm.offer.date.slot)}}</span>
       <p class="pro-menu-title">
         My start date
       </p>
-      <p class="pro-menu-subTitle" ng-show="!vm.offer.date.date">
+      <p class="pro-menu-subTitle">
         Tell your customer when you
         can start this job
-      </p>
-      <p class="pro-menu-subTitle" ng-show="vm.offer.date.date">
-        {{vm.offer.date.date | date:'dd MMM yyyy'}} {{vm.getSlot(vm.offer.date.slot)}}
       </p>
     </div>
     <div class="col-xs-12">
@@ -181,7 +182,7 @@
       </p>
     </div>
     <div class="col-xs-12">
-      <button type="button" class="button btn" ng-click="vm.sendOffer()">Send offer</button>
+      <button type="button" class="button btn send-offer" ng-click="vm.sendOffer()">SEND OFFER</button>
     </div>
 
   </div>
@@ -205,7 +206,7 @@
 
 
 <div class="popUp" ng-show="vm.myPriceFlag">
-  <div class="popUp-container center-middle">
+  <div class="popUp-container center-middle w-330">
     <div class="popUp-content">
       <span class="boxclose" ng-click="vm.myPriceFlag = false"></span>
       <h4>My price</h4>
@@ -219,40 +220,33 @@
       </p>
       <div class="row">
         <div class="col-xs-10">
-          <input type="number" class="custom-input-number mb-25 input-number-hide" ng-model="vm.price" ng-blur="vm.verifNumber()">
+          <input type="number" class="custom-input-number input-number-hide" ng-model="vm.price" ng-class="{'border-red': vm.projectTmp.type == 'EMERGENCY', 'mb-25': !vm.error.price.flag}" decimal-places>
         </div>
-        <div class="col-xs-2 sym-euro">
+        <div class="col-xs-2 sym-euro no-padding h-0">
           €
         </div>
       </div>
-
+      <p class="error center my-price-error" ng-show="vm.error.price.flag">
+        {{vm.error.price.message}}
+      </p>
     </div>
-    
-    <div class="row" ng-show="vm.projectTmp.type != 'EMERGENCY'">
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Estimate')">
+
+    <div class="clearfix" ng-show="vm.projectTmp.type != 'EMERGENCY'">
+        <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">
           ESTIMATE
         </div>
-      </div>
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Final')">
+        <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">
           FINAL
         </div>
-      </div>
 
     </div>
-    <div class="row" ng-show="vm.projectTmp.type == 'EMERGENCY'">
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Hourly')">
+    <div class="clearfix" ng-show="vm.projectTmp.type == 'EMERGENCY'">
+        <div class="pro-popUp-choice  fl" ng-click="vm.selectPrice('Hourly')">
           HOURLY
         </div>
-      </div>
-      <div  class="col-xs-6">
-        <div class="pro-popUp-choice center" ng-click="vm.selectPrice('Flat')">
+        <div class="pro-popUp-choice  fr" ng-click="vm.selectPrice('Flat')">
           FLAT
         </div>
-      </div>
-
     </div>
   </div>
 </div>
@@ -442,7 +436,6 @@
       <div  ng-click="vm.selectDate()">
         CONFIRM
       </div>
-
     </div>
   </div>
 </div>
