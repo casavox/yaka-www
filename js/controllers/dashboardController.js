@@ -23,12 +23,12 @@
       return "";
     }
 
-    networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
+    networkService.projectsGET("ongoing", 1, 3, succesProjectsGET, errorProjectsGET);
 
     function succesProjectsGET(res){
-      $rootScope.projects = res;
-      vm.count = res.length;
-      vm.dashboardProjects = sortProjects(res);
+      $rootScope.projects = res.items;
+      vm.count = res.totalItemNumber;
+      vm.dashboardProjects = sortProjects(res.items);
       console.log(res)
     }
 

@@ -12,9 +12,10 @@
     var baseUrl = "https://yaka-api.herokuapp.com";
 
     return {
+      /*
       register: function(data, success, error) {
         $http.post(baseUrl + '/projects/me?status='+data).success(success).error(error)
-      },
+      },*/
       login: function(data, success, error) {
         $http.post(baseUrl + '/login', data).success(success).error(error)
       },
@@ -24,8 +25,8 @@
       projectGET: function(data, success, error) {
         $http.get(baseUrl + '/projects/'+data).success(success).error(error)
       },
-      projectsGET: function(data, success, error) {
-        $http.get(baseUrl + '/projects/me?status='+data).success(success).error(error)
+      projectsGET: function(status, page, limit, success, error) {
+        $http.get(baseUrl + '/projects/me?page=' + page + '&limit=' + limit + '&status='+status).success(success).error(error)
       },
       projectSMALLPOST: function(data, success, error) {
         $http.post(baseUrl + '/projects/small', data).success(success).error(error)

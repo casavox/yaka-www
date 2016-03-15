@@ -17,8 +17,8 @@
     vm.dateDiff = dateDiff;
 
 
-    networkService.projectsGET("ongoing", succesProjectsGET, errorProjectsGET);
-    networkService.projectsGET("completed", succesProjectsCompletedGET, errorProjectsCompletedGET);
+    networkService.projectsGET("ongoing", 1, 2147483647, succesProjectsGET, errorProjectsGET);
+    networkService.projectsGET("completed", 1, 2147483647, succesProjectsCompletedGET, errorProjectsCompletedGET);
 
     vm.getMenuItemClass = function (state) {
       if (state == "myprojects") {
@@ -79,16 +79,16 @@
     // }
 
     function succesProjectsGET(res){
-      $rootScope.projects = res;
-      if (!angular.isUndefined(res) && res && res.length > 0)
-      vm.projectsOnGoing = res;
+      $rootScope.projects = res.items;
+      if (!angular.isUndefined(res.items) && res.items && res.items.length > 0)
+      vm.projectsOnGoing = res.items;
       else {
         vm.projectsOnGoing = [];
       }
     }
 
     function succesProjectsCompletedGET(res){
-      vm.projectsCompleted = res;
+      vm.projectsCompleted = res.items;
       console.log(res);
     }
 
