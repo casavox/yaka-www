@@ -1327,10 +1327,11 @@ color:#ffffff!important;
   cursor: pointer;
   border-radius: 4px;
   border: 2px solid white;
+  transition: box-shadow 0.2s;
 }
 
 .project:hover {
-  border: 2px solid #00ADED;
+  box-shadow: 1px 1px 12px #555;
 }
 
 .proposal > div {
