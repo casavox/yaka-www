@@ -7,8 +7,8 @@
 
   //
   //Controller login
-  LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state', '$rootScope', '$auth']
-  function LoginController($scope, networkService, socialNetworkService, $localStorage, $state, $rootScope, $auth) {
+  LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state', '$rootScope', '$auth', 'alertMsg']
+  function LoginController($scope, networkService, socialNetworkService, $localStorage, $state, $rootScope, $auth, alertMsg) {
 
     $scope.email = "";
     $scope.password = "";
@@ -105,9 +105,7 @@
     };
 
     function errorLogin(err){
-      if (!angular.isUndefined(err) && err && err.message && err.message != "")
-      console.log(err.message);
-      // call service alertMsg error danger-theme
+      alertMsg.send("La combinaison login/mot de passe n'existe pas.", 'danger');
     };
 
     function succesFLogin(res){

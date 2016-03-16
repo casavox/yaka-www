@@ -33,182 +33,69 @@
 <div class="page-content">
   <ng-include src="'partials/menu.html'"></ng-include>
   <div class="content-slide p-20">
-    <div class="row row-2-col">
-      <div class="menu-category profile-info">
-        <div class="profile-box">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="img-profile">
-                <img ng-src="{{vm.profile.avatar.cloudinaryPublicId}}"class="img-circle center-middle pro-icon" ng-show="vm.profile.avatar.cloudinaryPublicId"/>
-                <div class="img-default center" ng-show="!vm.profile.avatar.cloudinaryPublicId">
-                  {{vm.profile.firstName[0] | uppercase}} {{vm.profile.lastName[0] | uppercase}}
-                </div>
-                <div class="icon-edit">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-category profile-info">
+          <div class="profile-box">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="img-profile">
+                  <img ng-src="{{vm.profile.avatar.cloudinaryPublicId}}"class="img-circle center-middle pro-icon" ng-show="vm.profile.avatar.cloudinaryPublicId"/>
+                  <div class="img-default center" ng-show="!vm.profile.avatar.cloudinaryPublicId">
+                    {{vm.profile.firstName[0] | uppercase}} {{vm.profile.lastName[0] | uppercase}}
+                  </div>
+                  <div class="icon-edit">
+                  </div>
                 </div>
               </div>
-
+              <div class="col-md-9">
+                <md-input-container class="md-block" flex-gt-sm="" >
+                  <label>First name</label>
+                  <input ng-model="vm.profileInfo.firstName" ng-class="{'border-red': !vm.profileInfo.firstName}">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="" >
+                  <label>Last name</label>
+                  <input ng-model="vm.profileInfo.lastName" ng-class="{'border-red': !vm.profileInfo.lastName}">
+                </md-input-container>
+              </div>
             </div>
-            <div class="col-md-9">
-              <md-input-container class="md-block" flex-gt-sm="" >
-                <label>First name</label>
-                <input ng-model="vm.profileInfo.firstName" ng-class="{'border-red': !vm.profileInfo.firstName}">
-              </md-input-container>
-              <md-input-container class="md-block" flex-gt-sm="" >
-                <label>Last name</label>
-                <input ng-model="vm.profileInfo.lastName" ng-class="{'border-red': !vm.profileInfo.lastName}">
-              </md-input-container>
-            </div>
-          </div>
-          <md-input-container class="md-block" flex-gt-sm="" >
-            <label>Mobile phone</label>
-            <input type="text" international-phone-number ng-model="vm.profileInfo.phoneNumber" ng-class="{'border-red': !vm.profileInfo.phoneNumber}" only-countries="pl, de, fr, en, es" default-country="fr" preferred-countries="fr, en" utilsScript="''">
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm="" >
-            <label>Email</label>
-            <input  ng-model="vm.profileInfo.user.profile.email" ng-class="{'border-red': !vm.profileInfo.user.profile.email}">
-          </md-input-container>
-          <md-input-container style="width:100%" >
-            <label>First year of experience</label>
-            <md-select ng-model="vm.profileInfo.activityStartedYear" ng-class="{'border-red': !vm.profileInfo.activityStartedYear}">
-              <md-option ng-repeat="year in vm.years |  orderBy:'-toString()'" value="{{year}}">
-                {{year}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm="" >
-            <label>Company name</label>
-            <input ng-model="vm.profileInfo.company.name" ng-class="{'border-red': !vm.profileInfo.company.name}">
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm="" >
-            <label>SIRET</label>
-            <input ng-model="vm.profileInfo.company.siret" ng-class="{'border-red': !vm.profileInfo.company.siret}">
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm="" >
-            <label>Company address</label>
-            <input ng-model="vm.profileInfo.company.address.address" ng-class="{'border-red': !vm.profileInfo.company.address.address}">
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm="" >
-            <label>Company phone</label>
-            <input ng-model="vm.profileInfo.company.phone" ng-class="{'border-red': !vm.profileInfo.company.phone}">
-          </md-input-container>
-          <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
-              Save
-            </div>
-            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelProfile()">
-              Cancel
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-category profile-about">
-        <div class="profile-box">
-          <p>
-            About me
-          </p>
-          <md-input-container class="md-block">
-            <labelslabel>
-              <textarea placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan." ng-model="vm.aboutMe" ng-class="{'border-red': !vm.aboutMe}" md-select-on-focus></textarea>
+            <md-input-container class="md-block" flex-gt-sm="" >
+              <label>Mobile phone</label>
+              <input type="text" international-phone-number ng-model="vm.profileInfo.phoneNumber" ng-class="{'border-red': !vm.profileInfo.phoneNumber}" only-countries="pl, de, fr, en, es" default-country="fr" preferred-countries="fr, en" utilsScript="''">
             </md-input-container>
-            <div class="profile-box-footer">
-              <div class="profile-box-footer-btn-fr" ng-click="vm.updateAboutMe()">
-                Save
-              </div>
-              <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelAboutMe()">
-                Cancel
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="menu-category profile-bck-verif">
-          <div class="profile-box">
-            <p>
-              Background verification
-            </p>
-            <div class="row">
-              <div class="col-xs-2 profile-verif">
-                <input id="profile-back-verif-1" type="checkbox" ng-model="vm.verifications.siret" ng-click="vm.setSiret()">
-                <label for="profile-back-verif-1"></label>
-              </div>
-              <div class="col-xs-10">
-                <p>
-                  Extrait KBIS / SIRET
-                </p>
-                <a ><p>
-                  Add
-                </p></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-2 profile-verif">
-                <input id="profile-back-verif-2" type="checkbox" ng-model="vm.verifications.assurance" ng-click="vm.setAssurance()">
-                <label for="profile-back-verif-2"></label>
-              </div>
-              <div class="col-xs-10">
-                <p>
-                  Assurance
-                </p>
-                <a ><p>
-                  Add
-                </p></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-2 profile-verif">
-                <input id="profile-back-verif-3" type="checkbox" ng-model="vm.verifications.rge" ng-click="vm.setRge()">
-                <label for="profile-back-verif-3"></label>
-              </div>
-              <div class="col-xs-10">
-                <p>
-                  Attestation RGE
-                </p>
-                <a ><p>
-                  Add
-                </p></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-2 profile-verif">
-                <input id="profile-back-verif-4" type="checkbox" ng-model="vm.verifications.partner" ng-click="vm.setPartner()">
-                <label for="profile-back-verif-4"></label>
-              </div>
-              <div class="col-xs-10">
-                <p>
-                  Main partner (EDF, Leroy Merlin, ...)
-                </p>
-                <a ><p>
-                  Add
-                </p></a>
-              </div>
-            </div>
-            <div class="profile-box-footer">
-              <div class="profile-box-footer-btn-fr" ng-click="vm.updateVerifications()">
-                Save
-              </div>
-              <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelVerifications()">
-                Cancel
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="menu-category profile-area">
-          <div class="profile-box">
-            <div class="profile-area-header">
-              <p>
-                Work area
-              </p>
-              <p class="profile-area-header-info">
-                Zoom and center the map to define your work area : you will be notified of all works in this area.
-              </p>
-            </div>
-            <div id="map_canvas">
-              <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" dragging="false"></ui-gmap-google-map>
-            </div>
+            <md-input-container class="md-block" flex-gt-sm="" >
+              <label>Email</label>
+              <input  ng-model="vm.profileInfo.user.profile.email" ng-class="{'border-red': !vm.profileInfo.user.profile.email}">
+            </md-input-container>
+            <md-input-container style="width:100%" >
+              <label>First year of experience</label>
+              <md-select ng-model="vm.profileInfo.activityStartedYear" ng-class="{'border-red': !vm.profileInfo.activityStartedYear}">
+                <md-option ng-repeat="year in vm.years |  orderBy:'-toString()'" value="{{year}}">
+                  {{year}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="" >
+              <label>Company name</label>
+              <input ng-model="vm.profileInfo.company.name" ng-class="{'border-red': !vm.profileInfo.company.name}">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="" >
+              <label>SIRET</label>
+              <input ng-model="vm.profileInfo.company.siret" ng-class="{'border-red': !vm.profileInfo.company.siret}">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="" >
+              <label>Company address</label>
+              <input ng-model="vm.profileInfo.company.address.address" ng-class="{'border-red': !vm.profileInfo.company.address.address}">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="" >
+              <label>Company phone</label>
+              <input ng-model="vm.profileInfo.company.phone" ng-class="{'border-red': !vm.profileInfo.company.phone}">
+            </md-input-container>
             <div class="profile-box-footer">
               <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
                 Save
               </div>
-              <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelWorkArea()">
+              <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelProfile()">
                 Cancel
               </div>
             </div>
@@ -217,111 +104,228 @@
         <div class="menu-category profile-about">
           <div class="profile-box">
             <p>
-              Portfolio
+              About me
             </p>
-            <div class="row cl">
-              <div class="col-xs-3" ng-repeat="pict in vm.portfolio" title="{{pict.description}}">
-                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
-                  <cl-transformation height="92" width="92" crop="fill"/>
-                </cl-image>
-              </div>
-              <div class="col-md-3 no-padding"
-              ngf-drop="vm.uploadFiles($files)"
-              ngf-drag-over-class="dragOverClass($event)"
-              ng-model="files"
-              ng-multiple="false" ng-show="vm.editFlag">
-              <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)" ngf-accept="'image/*'" ngf-max-size="5MB">
-                <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+            <md-input-container class="md-block">
+              <labelslabel>
+                <textarea placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan." ng-model="vm.aboutMe" ng-class="{'border-red': !vm.aboutMe}" md-select-on-focus></textarea>
+              </md-input-container>
+              <div class="profile-box-footer">
+                <div class="profile-box-footer-btn-fr" ng-click="vm.updateAboutMe()">
+                  Save
+                </div>
+                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelAboutMe()">
+                  Cancel
+                </div>
               </div>
             </div>
           </div>
-          <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr" ng-click="vm.updatePortfolio()">
-              Save
+          <div class="menu-category profile-bck-verif">
+            <div class="profile-box">
+              <p>
+                Background verification
+              </p>
+              <div class="row">
+                <div class="col-xs-2 profile-verif">
+                  <input id="profile-back-verif-1" type="checkbox" ng-model="vm.verifications.siret" ng-click="vm.setSiret()">
+                  <label for="profile-back-verif-1"></label>
+                </div>
+                <div class="col-xs-10">
+                  <p>
+                    Extrait KBIS / SIRET
+                  </p>
+                  <a ><p>
+                    Add
+                  </p></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-2 profile-verif">
+                  <input id="profile-back-verif-2" type="checkbox" ng-model="vm.verifications.assurance" ng-click="vm.setAssurance()">
+                  <label for="profile-back-verif-2"></label>
+                </div>
+                <div class="col-xs-10">
+                  <p>
+                    Assurance
+                  </p>
+                  <a ><p>
+                    Add
+                  </p></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-2 profile-verif">
+                  <input id="profile-back-verif-3" type="checkbox" ng-model="vm.verifications.rge" ng-click="vm.setRge()">
+                  <label for="profile-back-verif-3"></label>
+                </div>
+                <div class="col-xs-10">
+                  <p>
+                    Attestation RGE
+                  </p>
+                  <a ><p>
+                    Add
+                  </p></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-2 profile-verif">
+                  <input id="profile-back-verif-4" type="checkbox" ng-model="vm.verifications.partner" ng-click="vm.setPartner()">
+                  <label for="profile-back-verif-4"></label>
+                </div>
+                <div class="col-xs-10">
+                  <p>
+                    Main partner (EDF, Leroy Merlin, ...)
+                  </p>
+                  <a ><p>
+                    Add
+                  </p></a>
+                </div>
+              </div>
+              <div class="profile-box-footer">
+                <div class="profile-box-footer-btn-fr" ng-click="vm.updateVerifications()">
+                  Save
+                </div>
+                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelVerifications()">
+                  Cancel
+                </div>
+              </div>
             </div>
-            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelPortfolio()">
-              Cancel
+          </div>
+          <div class="menu-category profile-about">
+            <div class="profile-box">
+              <p>
+                Change password
+              </p>
+              <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
+                <label>Current password</label>
+                <input ng-model="vm.password.current">
+              </md-input-container>
+              <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
+                <label>New password</label>
+                <input ng-model="vm.password.new">
+              </md-input-container>
+              <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
+                <label>Confirm password</label>
+                <input ng-model="vm.password.confirm">
+              </md-input-container>
+              <div class="profile-box-footer">
+                <div class="profile-box-footer-btn-fr" ng-click="vm.changePassword()">
+                  Save
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="menu-category profile-about">
-        <div class="profile-box">
-          <p>
-            Change password
-          </p>
-          <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
-            <label>Current password</label>
-            <input ng-model="vm.password.current">
-          </md-input-container>
-          <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
-            <label>New password</label>
-            <input ng-model="vm.password.new">
-          </md-input-container>
-          <md-input-container class="md-block mb-0 mt-10" flex-gt-sm="">
-            <label>Confirm password</label>
-            <input ng-model="vm.password.confirm">
-          </md-input-container>
-          <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr" ng-click="vm.changePassword()">
-              Save
+
+
+        <div class="col-md-6">
+
+          <div class="menu-category profile-area">
+            <div class="profile-box">
+              <div class="profile-area-header">
+                <p>
+                  Work area
+                </p>
+                <p class="profile-area-header-info">
+                  Zoom and center the map to define your work area : you will be notified of all works in this area.
+                </p>
+              </div>
+              <div id="map_canvas">
+                <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" dragging="false"></ui-gmap-google-map>
+              </div>
+              <div class="profile-box-footer">
+                <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
+                  Save
+                </div>
+                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelWorkArea()">
+                  Cancel
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-category profile-about">
+            <div class="profile-box">
+              <p>
+                Portfolio
+              </p>
+              <div class="row cl">
+                <div class="col-xs-3" ng-repeat="pict in vm.portfolio" title="{{pict.description}}">
+                  <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
+                    <cl-transformation height="92" width="92" crop="fill"/>
+                  </cl-image>
+                </div>
+                <div class="col-md-3 no-padding"
+                ngf-drop="vm.uploadFiles($files)"
+                ngf-drag-over-class="dragOverClass($event)"
+                ng-model="files"
+                ng-multiple="false" ng-show="vm.editFlag">
+                <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)" ngf-accept="'image/*'" ngf-max-size="5MB">
+                  <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+                </div>
+              </div>
+            </div>
+            <div class="profile-box-footer">
+              <div class="profile-box-footer-btn-fr" ng-click="vm.updatePortfolio()">
+                Save
+              </div>
+              <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelPortfolio()">
+                Cancel
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="menu-category profile-about">
-        <div class="profile-box">
-          <p>
-            Jobs categories & skills
-          </p>
-          <div class="row">
-            <div class="col-xs-6 mb-15 cursor-pointer" >
-              <div class="row profile-activities no-margin">
-                <div class="col-xs-3 no-padding">
-                  <div class="profile-activities-check">
-                    <span class="glyphicon glyphicon-ok"></span>
+        <div class="menu-category profile-about">
+          <div class="profile-box">
+            <p>
+              Jobs categories & skills
+            </p>
+            <div class="row">
+              <div class="col-xs-6 mb-15 cursor-pointer" >
+                <div class="row profile-activities no-margin">
+                  <div class="col-xs-3 no-padding">
+                    <div class="profile-activities-check">
+                      <span class="glyphicon glyphicon-ok"></span>
+                    </div>
+                  </div>
+                  <div class="col-xs-9 no-padding">
+                    Painting
                   </div>
                 </div>
-                <div class="col-xs-9 no-padding">
-                  Painting
-                </div>
               </div>
-            </div>
-            <div class="col-xs-6 mb-15 cursor-pointer" >
-              <div class="row profile-activities no-margin">
-                <div class="col-xs-3 no-padding">
-                  <div class="profile-activities-check">
-                    <span class="glyphicon glyphicon-ok"></span>
+              <div class="col-xs-6 mb-15 cursor-pointer" >
+                <div class="row profile-activities no-margin">
+                  <div class="col-xs-3 no-padding">
+                    <div class="profile-activities-check">
+                      <span class="glyphicon glyphicon-ok"></span>
+                    </div>
+                  </div>
+                  <div class="col-xs-9 no-padding">
+                    Painting
                   </div>
                 </div>
-                <div class="col-xs-9 no-padding">
-                  Painting
+              </div>
+              <div class="col-xs-6 mb-15 cursor-pointer" >
+                <div class="row profile-activities no-margin">
+                  <div class="col-xs-3 no-padding">
+                    <span>-</span>
+                  </div>
+                  <div class="col-xs-9 no-padding">
+                    Painting
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-xs-6 mb-15 cursor-pointer" >
-              <div class="row profile-activities no-margin">
-                <div class="col-xs-3 no-padding">
-                  <span>-</span>
-                </div>
-                <div class="col-xs-9 no-padding">
-                  Painting
-                </div>
+            <div class="profile-box-footer">
+              <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
+                Save
               </div>
-            </div>
-          </div>
-          <div class="profile-box-footer">
-            <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
-              Save
-            </div>
-            <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelActivities()">
-              Cancel
+              <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelActivities()">
+                Cancel
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-</div>
 </section>
