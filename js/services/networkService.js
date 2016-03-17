@@ -25,6 +25,9 @@
       projectGET: function(data, success, error) {
         $http.get(baseUrl + '/projects/'+data).success(success).error(error)
       },
+      proProjectGET: function(data, success, error) {
+        $http.get(baseUrl + '/pro/projects/'+data).success(success).error(error)
+      },
       projectsGET: function(status, page, limit, success, error) {
         $http.get(baseUrl + '/projects/me?page=' + page + '&limit=' + limit + '&status='+status).success(success).error(error)
       },

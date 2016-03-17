@@ -63,7 +63,7 @@
       if (res.toString() != $stateParams.projectId)
       $state.go("prodashboard");
       else {
-        networkService.projectGET(res, succesProjectGET, errorProjectGET);
+        networkService.proProjectGET(res, succesProjectGET, errorProjectGET);
       }
     }
     else {
