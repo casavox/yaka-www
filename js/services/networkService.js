@@ -53,10 +53,10 @@
         $http.post(baseUrl + '/proposals/'+data+"/accept").success(success).error(error)
       },
       proposalEmergencyPOST: function(data, success, error) {
-        $http.post(baseUrl + '/proposals/emergency', data).success(success).error(error)
+        $http.post(baseUrl + '/pro/proposals/emergency', data).success(success).error(error)
       },
       proposalSmallPOST: function(data, success, error) {
-        $http.post(baseUrl + '/proposals/small', data).success(success).error(error)
+        $http.post(baseUrl + '/pro/proposals/small', data).success(success).error(error)
       },
       projectPUT: function(data, success, error) {
         if (data.type == "EMERGENCY")
@@ -66,9 +66,9 @@
       },
       proposalPUT: function(data, success, error) {
         if (data.type == "EMERGENCY")
-        $http.put(baseUrl + '/proposals/emergency/'+data.id, data).success(success).error(error);
+        $http.put(baseUrl + '/pro/proposals/emergency/'+data.id, data).success(success).error(error);
         else if (data.type == "SMALL_PROJECT")
-        $http.put(baseUrl + '/proposals/small/'+data.id, data).success(success).error(error);
+        $http.put(baseUrl + '/pro/proposals/small/'+data.id, data).success(success).error(error);
       },
       proProfilePUT: function(data, success, error) {
         $http.put(baseUrl + '/pro/me/profile', data).success(success).error(error)
