@@ -115,10 +115,10 @@
           <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
             MODIFY
           </div>
-          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
+          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.deleteProject()">
             DELETE
           </div>
-          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.draftFlag = true">
+          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()">
             UNPUBLISH
           </div>
           <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.saveFlag = true">

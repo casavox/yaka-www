@@ -13,7 +13,6 @@
     vm.pro = true;
     vm.saveFlag = false;
     vm.editFlag = false;
-    vm.draftFlag = false;
     vm.proDetails = false;
     vm.editDescriptionFlag = false;
     vm.selectProposal = selectProposal;
@@ -23,7 +22,6 @@
     vm.child2 = "";
     vm.child3 = "";
     vm.deleteProject = deleteProject;
-    vm.trashFlag = false;
     vm.editImage = editImage;
     vm.editWhere = editWhere;
     vm.newAddrFlag = false;
@@ -116,6 +114,38 @@
         }
       }
     };
+
+    vm.deleteProject = function() {
+      if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
+      {
+        networkService.deleteProject($localStorage.projectGet.id,
+            function () {
+              alertMsg.send("Your project has been deleted", "success");
+              delete $localStorage.projectGet;
+              $state.go("my-projects");
+            },
+            function () {
+              alertMsg.send("Error : project can't be deleted", "danger");
+            }
+        );
+      }
+    }
+
+    vm.unpublishProject = function() {
+      if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
+      {
+        networkService.unpublishProject($localStorage.projectGet.id,
+            function () {
+              alertMsg.send("Your project has been unpublished", "success");
+              delete $localStorage.projectGet;
+              $state.go("my-projects");
+            },
+            function () {
+              alertMsg.send("Error : project can't be unpublished", "danger");
+            }
+        );
+      }
+    }
 
     networkService.profileGET(succesProfileGET, errorProfileGET);
 
@@ -422,7 +452,6 @@
       vm.editFlag = false;
       vm.whereFlag = false;
       vm.saveFlag = false;
-      vm.trashFlag = false;
     }
 
     function selectDateType(type){

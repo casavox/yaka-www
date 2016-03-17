@@ -58,6 +58,12 @@
       proposalSmallPOST: function(data, success, error) {
         $http.post(baseUrl + '/pro/proposals/small', data).success(success).error(error)
       },
+      deleteProject: function(id, success, error) {
+        $http.delete(baseUrl + '/projects/' + id).success(success).error(error)
+      },
+      unpublishProject: function(id, success, error) {
+        $http.post(baseUrl + '/projects/' + id + '/unpublish').success(success).error(error)
+      },
       projectPUT: function(data, success, error) {
         if (data.type == "EMERGENCY")
         $http.put(baseUrl + '/projects/emergency/'+data.id, data).success(success).error(error);
