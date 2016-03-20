@@ -36,9 +36,9 @@
           </div>
 
         </div>
-        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenActivities" ng-click="vm.selectType(child, vm.newProject.childrenActivities)" title="{{child.name}}">
+        <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected" ng-repeat="child in vm.newProject.childrenActivities" ng-click="vm.selectType(child, vm.newProject.childrenActivities)" title="{{child.name | translate}}">
           <div class="type-project-box-content">
-            <div class="v-icon v-icon-{{child.icon}} center">
+            <div class="v-icon v-icon-{{child.code}} center">
             </div>
             <p class="type-project-title text-center">
               {{child.name | translate }}
@@ -185,7 +185,7 @@ ngf-accept="'image/*'" ngf-max-size="5MB">
     </div>
     <div class="col-md-4 no-padding">
       <p class="">
-        -   Or create a new one
+        -   Or create a new one  -
       </p>
 
     </div>

@@ -15,6 +15,7 @@
     vm.projectsCompleted = [];
     vm.selectProject = selectProject;
     vm.dateDiff = dateDiff;
+    vm.now = new Date();
 
 
     networkService.projectsGET("ongoing", 1, 2147483647, succesProjectsGET, errorProjectsGET);
@@ -80,8 +81,10 @@
 
     function succesProjectsGET(res){
       $rootScope.projects = res.items;
-      if (!angular.isUndefined(res.items) && res.items && res.items.length > 0)
-      vm.projectsOnGoing = res.items;
+      if (!angular.isUndefined(res.items) && res.items && res.items.length > 0){
+        vm.projectsOnGoing = res.items;
+        console.log(res.items);
+      }
       else {
         vm.projectsOnGoing = [];
       }

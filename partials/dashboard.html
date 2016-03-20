@@ -43,20 +43,23 @@
               <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index" title="{{p.title}}" ng-click="vm.selectProject(p)">
                 <div class="row no-margin">
                   <div class="col-xs-1">
-                    <i class="fa fa-circle center-middle" ng-class="p.status"></i>
+                    <i class="fa fa-circle" ng-class="p.status"></i>
                   </div>
                   <div class="col-xs-8">
                     <div>
                       <div class="title-line">
-                        <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
+                        <label ng-show="p.type == 'EMERGENCY'" ng-click="vm.selectProject(p)" class="cursor-pointer">Emergency - </label>
                         <p class="project-title"  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
                           {{p.title}}
                         </p>
                       </div>
 
                       <div class="info-line">
-                        <p class="project-date">
-                          {{p.updated | date:'dd MMM yyyy'}} -
+                        <p class="project-date" ng-if="p.desiredDatePeriod != 'NONE'">
+                          {{p.desiredDate | date:'dd MMM yyyy'}} -
+                        </p>
+                        <p class="project-date" ng-if="p.desiredDatePeriod == 'NONE'">
+                          I am flexible -
                         </p>
                         <p class="project-address">
                           {{p.address.name}}

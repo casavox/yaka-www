@@ -15,7 +15,8 @@ angular.module('Yaka', [
   'monospaced.elastic',
   'smoothScroll',
   'ngMaterial',
-  'internationalPhoneNumber']);
+  'internationalPhoneNumber',
+  'bootstrapLightbox']);
 
 
   // facebook library API
@@ -47,7 +48,6 @@ angular.module('Yaka', [
 
       $authProvider.baseUrl = 'https://yaka-api.herokuapp.com';
       ipnConfig.defaultCountry = 'fr';
-      ipnConfig.preferredCountries = ['pl', 'de', 'fr', 'uk', 'es']
       // Translation area
 
       $authProvider.google({

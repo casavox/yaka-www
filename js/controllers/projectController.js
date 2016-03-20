@@ -150,7 +150,11 @@
     networkService.profileGET(succesProfileGET, errorProfileGET);
 
     function hire(){
-      networkService.proposalAcceptPOST(vm.proposal.id, succesProposalAcceptPOST, errorProposalAcceptPOST);
+      var formData = {
+        id: vm.proposal.id,
+        text: vm.hireMessage
+      }
+      networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
     }
 
     function succesProposalAcceptPOST(res){
@@ -266,10 +270,13 @@
     function succesProposalGET(res){
       vm.proposal = res;
       vm.proDetails = true;
+      vm.pro = false;
+      console.log(res);
     }
 
     function homeDetail(){
       vm.proposal = {};
+      vm.pro = true;
       vm.proDetails = false;
     }
 

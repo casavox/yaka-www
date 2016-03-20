@@ -25,6 +25,9 @@
       projectGET: function(data, success, error) {
         $http.get(baseUrl + '/projects/'+data).success(success).error(error)
       },
+      skillsGET: function(success, error) {
+        $http.get(baseUrl + '/pro/availableactivities').success(success).error(error)
+      },
       proProjectGET: function(data, success, error) {
         $http.get(baseUrl + '/pro/projects/'+data).success(success).error(error)
       },
@@ -33,6 +36,9 @@
       },
       projectSMALLPOST: function(data, success, error) {
         $http.post(baseUrl + '/projects/small', data).success(success).error(error)
+      },
+      changePassword: function(data, success, error) {
+        $http.put(baseUrl + '/pro/me/password', data).success(success).error(error)
       },
       projectEMERGENCYPOST: function(data, success, error) {
         $http.post(baseUrl + '/projects/emergency', data).success(success).error(error)
@@ -53,7 +59,7 @@
         $http.get(baseUrl + '/proposals/'+data).success(success).error(error)
       },
       proposalAcceptPOST: function(data, success, error) {
-        $http.post(baseUrl + '/proposals/'+data+"/accept").success(success).error(error)
+        $http.post(baseUrl + '/proposals/'+data.id+"/accept", data).success(success).error(error)
       },
       proposalEmergencyPOST: function(data, success, error) {
         $http.post(baseUrl + '/pro/proposals/emergency', data).success(success).error(error)

@@ -659,7 +659,7 @@
     }
 
     function selectType(item, items) {
-      vm.title = item.shortName;
+      vm.title = item.name;
       vm.type = item;
       vm.questions = [];
       vm.service = false;
@@ -803,7 +803,7 @@
 
     function errorProjectsGET(){
       alertMsg.send("Error : Impossible de charger le module de création de projet", "danger");
-      $state.go("Dashboard");
+      $state.go("dashboard");
     }
 
     function succesProfileGET(res){
