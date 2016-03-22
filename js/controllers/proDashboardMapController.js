@@ -26,20 +26,16 @@
             $rootScope.$broadcast('showHomeControlBroadcast', show);
         });
 
+        $rootScope.$on('reloadLeadsEmit', function (event, args) {
+            $rootScope.$broadcast('reloadLeadsBroadcast', args);
+        });
+
         $rootScope.$on('onLeadsLoadedBroadcast', function (event, args) {
-            vm.leads = args;
-            angular.forEach(vm.leads, function (lead, key) {
+            angular.forEach(args, function (lead, key) {
                 lead.icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
             });
-
-            //TODO REMOVE THIS
-            if (vm.leads.length > 0) {
-                vm.map.center = {
-                    latitude: vm.leads[0].address.latitude,
-                    longitude: vm.leads[0].address.longitude
-                };
-            }
-            //TODO END REMOVE
+            vm.leads = args;
+            console.log(vm.leads);
         });
 
         $rootScope.$on('showHomeControlClickedBroadcast', function (event) {
@@ -87,6 +83,7 @@
         }
 
         var resizeTimeoutId;
+        var boundsChangedTimeoutId;
         uiGmapGoogleMapApi.then(function (maps) {
             vm.map = {
                 center: {
@@ -122,6 +119,22 @@
                         $rootScope.$emit('showHomeControlEmit', true);
                         $('.gm-bundled-control').show();
                         $('.gm-style-mtc').show();
+                    },
+                    "bounds_changed": function () {
+                        clearTimeout(boundsChangedTimeoutId);
+                        boundsChangedTimeoutId = setTimeout(function () {
+                            if (vm.map.bounds.southwest && vm.map.bounds.northeast) {
+                                console.log(vm.map.bounds);
+                                console.log("B " + vm.map.bounds.southwest.longitude);
+                                $rootScope.$emit('reloadLeadsEmit', {
+                                        'sw_lat': vm.map.bounds.southwest.latitude,
+                                        'sw_lng': vm.map.bounds.southwest.longitude,
+                                        'ne_lat': vm.map.bounds.northeast.latitude,
+                                        'ne_lng': vm.map.bounds.northeast.longitude
+                                    }
+                                );
+                            }
+                        }, 350);
                     }
                 }
             };

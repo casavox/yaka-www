@@ -29,7 +29,18 @@
             vm.showTopView = show;
         });
 
-        networkService.proLeadsGET('all', false,
+        $rootScope.$on('reloadLeadsBroadcast', function (event, args) {
+            console.log(args.sw_lng);
+            networkService.proLeadsGET('all', false, args.sw_lat, args.sw_lng, args.ne_lat, args.ne_lng,
+                function succesProLeads(res) {
+                    $rootScope.$emit('onLeadsLoadedEmit', res);
+                }, function errorProLeads() {
+                    alertMsg.send("Pro get", "danger");
+                }
+            );
+        });
+
+        networkService.proLeadsGET('all', false, 0, 0, 90, 90,
             function succesProLeads(res) {
                 $rootScope.$emit('onLeadsLoadedEmit', res);
             }, function errorProLeads() {
