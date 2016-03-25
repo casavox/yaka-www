@@ -487,7 +487,7 @@
     })
 
     function update(){
-      vm.projectTmp.tags = vm.projectTmp.tags || [];
+      vm.projectTmp.activities = vm.projectTmp.activities || [];
       vm.projectTmp.images = vm.projectTmp.images || [];
       vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
       networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
@@ -634,12 +634,12 @@
 
     function getTags(){
       var res = "";
-      if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0){
-        for (var i = 0; i < vm.projectTmp.tags.length; i++) {
-          if (i <  vm.projectTmp.tags.length - 1)
-          res += vm.projectTmp.tags[i].name + " - ";
+        if (vm.projectTmp.activities && vm.projectTmp.activities.length > 0){
+        for (var i = 0; i < vm.projectTmp.activities.length; i++) {
+          if (i <  vm.projectTmp.activities.length - 1)
+          res += vm.projectTmp.activities[i].name + " - ";
           else {
-            res += vm.projectTmp.tags[i].name
+            res += vm.projectTmp.activities[i].name
           }
         }
         return res;
