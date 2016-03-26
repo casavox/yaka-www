@@ -9,18 +9,24 @@
     ProDashboardMapController.$inject = ['$rootScope', '$scope', 'networkService', 'uiGmapGoogleMapApi', 'uiGmapIsReady']
     function ProDashboardMapController($rootScope, $scope, networkService, uiGmapGoogleMapApi, uiGmapIsReady) {
 
+        var homeBounds = {};
+
+        var lastBounds = {};
+
         var vm = this;
 
         var currentCenter = {};
+
+        var loadingLeads = false;
+
+        var disableExploringMode = true;
+
+        var type = "all";
 
         vm.leads = [];
         vm.carrouselSelectedItem = {index: -1};
         vm.showSlider = false;
         vm.showWorkArea = true;
-
-        $rootScope.$on('showTopViewEmit', function (event, show) {
-            $rootScope.$broadcast('showTopViewBroadcast', show);
-        });
 
         $rootScope.$on('showHomeControlEmit', function (event, show) {
             $rootScope.$broadcast('showHomeControlBroadcast', show);
@@ -35,16 +41,58 @@
                 lead.icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
             });
             vm.leads = args;
-            console.log(vm.leads);
+
+            loadingLeads = false;
+            console.log(vm.leads.length);
         });
 
         $rootScope.$on('showHomeControlClickedBroadcast', function (event) {
             vm.showSlider = false;
             vm.showWorkArea = true;
-            $rootScope.$emit('showTopViewEmit', true);
             $rootScope.$emit('showHomeControlEmit', false);
             $('.gm-bundled-control').hide();
             $('.gm-style-mtc').hide();
+            disableExploringMode = true;
+            vm.map.bounds = angular.copy(homeBounds);
+        });
+
+        $rootScope.$on('changedTypeBroadcast', function (event, newType) {
+            type = newType;
+            lastBounds.type = type;
+            $rootScope.$emit('reloadLeadsEmit', lastBounds);
+        });
+
+        $rootScope.$on('addCircleBroadcast', function (event, args) {
+            vm.circle =
+            {
+                id: 1,
+                center: {
+                    latitude: args.latitude,
+                    longitude: args.longitude
+                },
+                radius: args.radius,
+                stroke: {
+                    color: '#00aded',
+                    weight: 2,
+                    opacity: 1
+                },
+                fill: {
+                    color: '#00aded',
+                    opacity: 0.15
+                },
+                control: {}
+            };
+            homeBounds = {
+                'southwest': {
+                    'latitude': args.swLatitude,
+                    'longitude': args.swLongitude
+                },
+                'northeast': {
+                    'latitude': args.neLatitude,
+                    'longitude': args.neLongitude
+                }
+            };
+            vm.map.bounds = angular.copy(homeBounds);
         });
 
         $scope.$watch(function () {
@@ -83,7 +131,6 @@
         }
 
         var resizeTimeoutId;
-        var boundsChangedTimeoutId;
         uiGmapGoogleMapApi.then(function (maps) {
             vm.map = {
                 center: {
@@ -103,42 +150,45 @@
                             $('.gm-bundled-control').hide();
                             $('.gm-style-mtc').hide();
                         }
+                        if (!loadingLeads) {
+                            loadingLeads = true;
+                            setTimeout(function () {
+                                if (vm.map.bounds.southwest && vm.map.bounds.northeast) {
+                                    var bnds = {
+                                        'sw_lat': vm.map.bounds.southwest.latitude,
+                                        'sw_lng': vm.map.bounds.southwest.longitude,
+                                        'ne_lat': vm.map.bounds.northeast.latitude,
+                                        'ne_lng': vm.map.bounds.northeast.longitude
+                                    };
+                                    lastBounds = angular.copy(bnds);
+                                    bnds.type = type;
+                                    $rootScope.$emit('reloadLeadsEmit', bnds);
+                                }
+                            }, 50);
+                        }
                     },
                     "dragstart": function () {
                         vm.showSlider = false;
                         vm.showWorkArea = false;
-                        $rootScope.$emit('showTopViewEmit', false);
                         $rootScope.$emit('showHomeControlEmit', true);
                         $('.gm-bundled-control').show();
                         $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
-                        vm.showSlider = false;
-                        vm.showWorkArea = false;
-                        $rootScope.$emit('showTopViewEmit', false);
-                        $rootScope.$emit('showHomeControlEmit', true);
-                        $('.gm-bundled-control').show();
-                        $('.gm-style-mtc').show();
-                    },
-                    "bounds_changed": function () {
-                        clearTimeout(boundsChangedTimeoutId);
-                        boundsChangedTimeoutId = setTimeout(function () {
-                            if (vm.map.bounds.southwest && vm.map.bounds.northeast) {
-                                console.log(vm.map.bounds);
-                                console.log("B " + vm.map.bounds.southwest.longitude);
-                                $rootScope.$emit('reloadLeadsEmit', {
-                                        'sw_lat': vm.map.bounds.southwest.latitude,
-                                        'sw_lng': vm.map.bounds.southwest.longitude,
-                                        'ne_lat': vm.map.bounds.northeast.latitude,
-                                        'ne_lng': vm.map.bounds.northeast.longitude
-                                    }
-                                );
-                            }
-                        }, 350);
+                        if (!disableExploringMode) {
+                            vm.showSlider = false;
+                            vm.showWorkArea = false;
+                            $rootScope.$emit('showHomeControlEmit', true);
+                            $('.gm-bundled-control').show();
+                            $('.gm-style-mtc').show();
+                        } else {
+                            disableExploringMode = false;
+                        }
                     }
                 }
             };
             vm.mapOptions = {
+                minZoom: 6,
                 zoomControlOptions: {
                     style: google.maps.ZoomControlStyle.DEFAULT,
                     position: google.maps.ControlPosition.TOP_RIGHT

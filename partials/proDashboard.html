@@ -17,18 +17,6 @@
         <ng-include src="'partials/menu.html'"></ng-include>
         <div class="content-slide proDashboard">
 
-            <div class="col-xs 12 proDashboardTopView" ng-class="{'proDashboardTopViewVisible':vm.showTopView}">
-                <div class="col-xs-4 proDashboardTopViewItem">
-                    Jobs
-                </div>
-                <div class="col-xs-4 proDashboardTopViewItem">
-                    Quotes
-                </div>
-                <div class="col-xs-4 proDashboardTopViewItem">
-                    Messages
-                </div>
-            </div>
-
             <div class="col-xs-6 col-xs-offset-6 col-sm-12 col-sm-offset-0 proDashboardFilters"
                  ng-class="{'proDashboardFiltersVisible':vm.showFilters}">
                 <div class="proDashboardFilterHeader visible-xs">
@@ -36,26 +24,14 @@
                     <span class="text">Project Type</span>
                 </div>
 
-                <div class="proDashboardFilterChoice visible-xs">
+                <div class="proDashboardFilterChoice visible-xs" ng-class="{'selected': vm.type == 'all'}" ng-click="vm.changedType('all')" angular-ripple>
                     All
                 </div>
-                <div class="proDashboardFilterChoice visible-xs">
+                <div class="proDashboardFilterChoice visible-xs" ng-class="{'selected': vm.type == 'emergency'}" ng-click="vm.changedType('emergency')" angular-ripple>
                     Emergencies
                 </div>
-                <div class="proDashboardFilterChoice visible-xs">
+                <div class="proDashboardFilterChoice visible-xs" ng-class="{'selected': vm.type == 'small'}" ng-click="vm.changedType('small')" angular-ripple>
                     Jobs
-                </div>
-
-                <div class="proDashboardFilterHeader visible-xs">
-                    <div class="line"></div>
-                    <span class="text">Sort by</span>
-                </div>
-
-                <div class="proDashboardFilterChoice visible-xs">
-                    Relevance
-                </div>
-                <div class="proDashboardFilterChoice visible-xs">
-                    Date
                 </div>
             </div>
 

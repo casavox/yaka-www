@@ -3425,18 +3425,6 @@ color: #9b9b9b!important;
   color: white;
 }
 
-.proDashboardTopView {
-  height: 80px;
-  width: 100%;
-  transition: margin-top 0.3s ease-in-out;
-  margin-top: -80px;
-  background-color: white;
-}
-
-.proDashboardTopView.proDashboardTopViewVisible {
-  margin-top: 0px;
-}
-
 .filters {
   float: right;
   padding: 10px;
@@ -3487,7 +3475,7 @@ color: #9b9b9b!important;
   .proDashboardFilters {
     position: fixed !important;
     top: 0;
-    height: 200px;
+    height: 120px;
     margin-top: -145px;
     transition: top 0.3s ease-in-out;
     z-index: 10;
@@ -3504,6 +3492,7 @@ color: #9b9b9b!important;
     position: relative;
     height: 30px;
     line-height: 30px;
+    margin-top: 8px;
   }
 
   .proDashboardFilterHeader .text {
@@ -3530,6 +3519,11 @@ color: #9b9b9b!important;
     padding-right: 10px !important;
     height: 25px;
     line-height: 25px;
+    cursor: pointer;
+  }
+
+  .proDashboardFilterChoice.selected {
+    background-color: #EEEEEE;
   }
 
 }
@@ -3540,12 +3534,7 @@ color: #9b9b9b!important;
   height: calc(100% - 45px);
   padding-left: 0 !important;
   padding-right: 0 !important;
-  transition: height 0.3s ease-in-out;
   z-index: -1;
-}
-
-.proDashboardMap.proDashboardMapWithTopView {
-  height: calc(100% - 125px) !important;
 }
 
 .mapWorkArea {
@@ -3561,12 +3550,7 @@ color: #9b9b9b!important;
 }
 
 .mapWorkArea.mapWorkAreaVisible {
-  top: 220px;
-}
-
-.proDashboardTopViewItem {
-  line-height: 80px;
-  text-align: center;
+  top: 145px;
 }
 
 .proDashboardMap .angular-google-map-container {
@@ -3833,7 +3817,7 @@ ul[rn-carousel-buffered] > li {
   }
 
   .mapWorkArea.mapWorkAreaVisible {
-    top: 125px;
+    top: 80px;
   }
 
   .rn-carousel-control {
@@ -3849,10 +3833,6 @@ ul[rn-carousel-buffered] > li {
   .proDashboardMap {
     height: calc(100% - 50px) !important;
   }
-
-  .proDashboardMap.proDashboardMapWithTopView {
-    height: calc(100% - 105px) !important;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -3866,15 +3846,11 @@ ul[rn-carousel-buffered] > li {
   }
 
   .mapWorkArea.mapWorkAreaVisible {
-    top: 170px;
+    top: 120px;
   }
 
   .proDashboardMap {
     height: calc(100% - 125px);
-  }
-
-  .proDashboardMap.proDashboardMapWithTopView {
-    height: calc(100% - 100px) !important;
   }
 
 }
@@ -3925,14 +3901,6 @@ ul[rn-carousel-buffered] > li {
     top: 55px;
   }
 
-  .proDashboardTopView {
-    height: 55px;
-    margin-top: -55px;
-  }
-
-  .proDashboardTopViewItem {
-    line-height: 55px;
-  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -3965,10 +3933,6 @@ ul[rn-carousel-buffered] > li {
   height: calc(100% - 45px) !important;
 }
 
-.proDashboardList.proDashboardListWithTopView {
-  height: calc(100% - 125px) !important;
-}
-
 .proDashboardList::-webkit-scrollbar {
   width: 8px;
 }
@@ -3987,18 +3951,4 @@ ul[rn-carousel-buffered] > li {
     height: calc(100% - 50px) !important;
     margin-top: 0px;
   }
-
-  .proDashboardList.proDashboardListWithTopView {
-    margin-top: -55px;
-    height: calc(100% - 50px) !important;
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-  .proDashboardList.proDashboardListWithTopView {
-    height: calc(100% - 100px) !important;
-  }
-
 }

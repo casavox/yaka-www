@@ -7,7 +7,7 @@
 <!-- End Custom map controls -->
 
 <div class="mapWorkArea" ng-class="{'mapWorkAreaVisible':vm.showWorkArea}">
-    Work Area : {{ vm.showWorkArea }}
+    My Work Area
 </div>
 
 <ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions" bounds="vm.map.bounds"
@@ -16,6 +16,8 @@
                          controller="ProDashboardMapHomeControlController as vm"
                          index="-1"></ui-gmap-map-control>
     <ui-gmap-markers models="vm.leads" coords="'address'" icon="'icon'" click="vm.onMarkerClicked"></ui-gmap-markers>
+    <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke" fill="vm.circle.fill" radius="vm.circle.radius"
+                    visible="true" geodesic="true" editable="false" draggable="false" clickable="true" control="vm.circle.control" events="vm.circle.events"></ui-gmap-circle>
 </ui-gmap-google-map>
 
 <div class="mapFooter col-xs-12 transformableBottomView"
@@ -23,7 +25,7 @@
     <div class="carousel-demo">
         <ul rn-carousel rn-carousel-controls rn-carousel-index="vm.carrouselSelectedItem.index" rn-carousel-buffered>
             <li ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
-                <div class="proDashboardMapItem" angular-ripple>
+                <div class="proDashboardMapItem"  ui-sref="pro-project-proposal-new({projectId: lead.id})"  angular-ripple>
                     <div class="proDashboardMapItemLogo">
                         LOGO
                     </div>

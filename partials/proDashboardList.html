@@ -1,4 +1,4 @@
-<div class="proDashboardListItem" ng-repeat="lead in vm.leads track by lead.id" angular-ripple>
+<div class="proDashboardListItem" ng-repeat="lead in vm.leads track by lead.id" ui-sref="pro-project-proposal-new({projectId: lead.id})" angular-ripple>
     <div class="proDashboardListItemLogo">
         LOGO
     </div>
