@@ -204,7 +204,6 @@
   margin-left: 20px;
   float: left;
   font-family: 'montserrat_light';
-  margin-top: 5px;
 }
 
 .logout {
@@ -3435,9 +3434,52 @@ color: #9b9b9b!important;
 .proDashboardFilters {
   height: 45px;
   width: 100%;
-  background-color: #EBEBEB;
   padding-left: 0px !important;
   padding-right: 0px !important;
+  background-color: white;
+}
+
+.proDashboardFilterHeader {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 8px;
+  float: left;
+}
+
+.proDashboardFilterHeader .text {
+  font-size: 16px;
+  color: #444444;
+  background-color: white;
+  padding-right: 8px;
+}
+
+.proDashboardFilterHeader .line {
+  width: calc(100% - 20px);
+  height: 2px;
+  background-color: #2f313a;
+  position: absolute;
+  top: 16px;
+  z-index: -1;
+  right: 10px;
+}
+
+.proDashboardFilterChoice {
+  font-size: 14px;
+  color: #444444;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  height: 25px;
+  line-height: 25px;
+  cursor: pointer;
+  float: left;
+  margin-top: 10px;
+}
+
+.proDashboardFilterChoice.selected {
+  background-color: #EEEEEE;
 }
 
 .proDashboardOverlay {
@@ -3479,7 +3521,6 @@ color: #9b9b9b!important;
     margin-top: -145px;
     transition: top 0.3s ease-in-out;
     z-index: 10;
-    background-color: white;
   }
 
   .proDashboardFilters.proDashboardFiltersVisible {
@@ -3487,45 +3528,12 @@ color: #9b9b9b!important;
   }
 
   .proDashboardFilterHeader {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    position: relative;
-    height: 30px;
-    line-height: 30px;
-    margin-top: 8px;
+    float: none;
   }
-
-  .proDashboardFilterHeader .text {
-    font-size: 16px;
-    color: #444444;
-    background-color: white;
-    padding-right: 8px;
-  }
-
-  .proDashboardFilterHeader .line {
-    width: calc(100% - 20px);
-    height: 2px;
-    background-color: #2f313a;
-    position: absolute;
-    top: 16px;
-    z-index: -1;
-    right: 10px;
-  }
-
   .proDashboardFilterChoice {
-    font-size: 14px;
-    color: #444444;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    height: 25px;
-    line-height: 25px;
-    cursor: pointer;
+    float: none;
+    margin-top: 0px;
   }
-
-  .proDashboardFilterChoice.selected {
-    background-color: #EEEEEE;
-  }
-
 }
 
 /*------------------------------------------ Pro Dashboard Map ----------------------------*/
@@ -3538,15 +3546,25 @@ color: #9b9b9b!important;
 }
 
 .mapWorkArea {
+  cursor: pointer;
+  font-size:14px;
+  line-height: 45px;
+  color:#009688;
   height: 45px;
-  width: calc(66.66666667% - 196px);
   margin-left: 25px;
+  padding-left: 12px;
+  padding-right: 12px;
   position: fixed;
   top: 0px;
   z-index: 1;
   background-color: white;
   border-radius: 2px;
   transition: top 0.3s ease-in-out;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .mapWorkArea.mapWorkAreaVisible {
@@ -3648,15 +3666,19 @@ ul[rn-carousel-buffered] > li {
 .proDashboardMapItem {
   background-color: white;
   height: 100%;
-  padding-top: 10px;
   position: relative;
   cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .proDashboardMapItemLogo {
   position: absolute;
-  top: 15px;
-  left: 13px;
+  top: 30px;
+  left: 8px;
   width: 32px;
   height: 32px;
 }
@@ -3668,10 +3690,14 @@ ul[rn-carousel-buffered] > li {
   line-height: 13px;
   text-align: left;
   position: absolute;
-  top: 10px;
+  top: 22px;
   left: 50px;
+  right: 90px;
   padding-top: 2px;
   padding-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .proDashboardMapItemAddress {
@@ -3681,60 +3707,51 @@ ul[rn-carousel-buffered] > li {
   line-height: 20px;
   text-align: left;
   position: absolute;
-  top: 34px;
+  top: 50px;
   left: 49px;
+  right: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.proDashboardMapItemDistanceLogo {
+.proDashboardMapItemChronoLogo {
   position: absolute;
-  top: 57px;
-  left: 47px;
+  top: 36px;
+  right: 65px;
   width: 20px;
   height: 20px;
 }
 
-.proDashboardMapItemDistance {
-  font-family: 'montserrat_light';
-  font-size: 12px;
-  color: #979797;
-  line-height: 20px;
-  position: absolute;
-  top: 59px;
-  left: 71px;
-}
-
 .proDashboardMapItemChrono {
   font-family: 'montserrat_light', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.54);
-  line-height: 13px;
-  position: absolute;
-  top: 23px;
-  right: 17px;
-}
-
-.proDashboardMapItemLeadType {
-  font-family: 'montserrat_regular', Arial, sans-serif;
-  font-size: 10px;
-  color: #ffffff;
   line-height: 12px;
   position: absolute;
-  top: 52px;
-  right: 21px;
+  top: 34px;
+  right: 10px;
+  width: 50px;
+  text-align: justify;
 }
 
 .proDashboardListItem {
   background-color: white;
-  height: 105px;
-  padding-top: 10px;
+  height: 92px;
   position: relative;
   cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-bottom: 1px solid #9b9b9b;
 }
 
 .proDashboardListItemLogo {
   position: absolute;
-  top: 15px;
-  left: 13px;
+  top: 30px;
+  left: 8px;
   width: 32px;
   height: 32px;
 }
@@ -3746,10 +3763,14 @@ ul[rn-carousel-buffered] > li {
   line-height: 13px;
   text-align: left;
   position: absolute;
-  top: 10px;
+  top: 22px;
   left: 50px;
+  right: 90px;
   padding-top: 2px;
   padding-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .proDashboardListItemAddress {
@@ -3759,45 +3780,32 @@ ul[rn-carousel-buffered] > li {
   line-height: 20px;
   text-align: left;
   position: absolute;
-  top: 34px;
+  top: 50px;
   left: 49px;
+  right: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.proDashboardListItemDistanceLogo {
+.proDashboardListItemChronoLogo {
   position: absolute;
-  top: 57px;
-  left: 47px;
+  top: 36px;
+  right: 65px;
   width: 20px;
   height: 20px;
 }
 
-.proDashboardListItemDistance {
-  font-family: 'montserrat_light';
-  font-size: 12px;
-  color: #979797;
-  line-height: 20px;
-  position: absolute;
-  top: 59px;
-  left: 71px;
-}
-
 .proDashboardListItemChrono {
   font-family: 'montserrat_light', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.54);
-  line-height: 13px;
-  position: absolute;
-  top: 23px;
-  right: 17px;
-}
-
-.proDashboardListItemLeadType {
-  font-family: 'montserrat_regular', Arial, sans-serif;
-  font-size: 10px;
   line-height: 12px;
   position: absolute;
-  top: 52px;
-  right: 21px;
+  top: 34px;
+  right: 10px;
+  width: 50px;
+  text-align: justify;
 }
 
 .smallDivider {
@@ -3811,10 +3819,6 @@ ul[rn-carousel-buffered] > li {
 }
 
 @media (max-width: 767px) {
-
-  .mapWorkArea {
-    width: calc(100% - 50px);
-  }
 
   .mapWorkArea.mapWorkAreaVisible {
     top: 80px;
@@ -3839,10 +3843,6 @@ ul[rn-carousel-buffered] > li {
 
   .proDashboardMap {
     height: calc(100% - 45px) !important;
-  }
-
-  .mapWorkArea {
-    width: calc(66.66666667% - 50px);
   }
 
   .mapWorkArea.mapWorkAreaVisible {

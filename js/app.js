@@ -16,7 +16,8 @@ angular.module('Yaka', [
   'smoothScroll',
   'ngMaterial',
   'internationalPhoneNumber',
-  'bootstrapLightbox']);
+  'bootstrapLightbox',
+  'angularMoment']);
 
 
   // facebook library API
@@ -185,7 +186,6 @@ angular.module('Yaka', [
           }
         };
       }]);
-
     }
   })();
 
@@ -199,14 +199,15 @@ angular.module('Yaka', [
     .module('Yaka')
     .run(runBlock);
 
-    function runBlock($rootScope, $localStorage, $injector) {
+    function runBlock($rootScope, $localStorage, $injector, amMoment) {
       $rootScope.$on('$stateChangeStart',
       function(event, toState, toParams , fromState, fromParams){
         if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register"){
           event.preventDefault();
           $injector.get('$state').go('login');
         }
-
       })
+
+      amMoment.changeLocale('fr');
     }
   })();
