@@ -6,8 +6,8 @@
         .controller('ProDashboardController', ProDashboardController)
         .controller('ProDashboardMapHomeControlController', ProDashboardMapHomeControlController);
 
-    ProDashboardController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi'];
-    function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
+    ProDashboardController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', '$translate'];
+    function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $translate) {
         $scope.showList = false;
 
         var vm = this;
@@ -105,12 +105,26 @@
         });
 
         function onLeadsLoaded(args) {
-            angular.forEach(args, function (lead, key) {
-                lead.icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
+            angular.forEach(args, function (lead) {
+                if (lead.type == 'EMERGENCY') {
+                    lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinEmergencyProject.png";
+                } else {
+                    lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
+                }
+                lead.translatedTitle = translateLeadTitle(lead);
             });
             vm.leads = args;
 
             loadingLeads = false;
+        }
+
+        function translateLeadTitle(lead) {
+            var titleArray = lead.title.split(' ');
+            for(var i = 0; i < titleArray.length; i++) {
+                titleArray[i] = $translate.instant(titleArray[i]);
+            }
+            console.log(titleArray.join(' '));
+            return titleArray.join(' ');
         }
 
         function addCircle(args) {
@@ -168,9 +182,13 @@
 
         function onLeadSelected(lead) {
             for (var i = 0; i < vm.leads.length; i++) {
-                vm.leads[i].icon = "http://maps.google.com/mapfiles/kml/paddle/red-blank.png";
+                if (vm.leads[i].type == 'EMERGENCY') {
+                    vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinEmergencyProject.png";
+                } else {
+                    vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
+                }
             }
-            lead.icon = "http://maps.google.com/mapfiles/kml/paddle/wht-blank.png";
+            lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459254146/yakaclub/pinSelectedProject.png";
             vm.showSlider = true;
         }
 
@@ -197,10 +215,12 @@
                 center: {
                     latitude: 0, longitude: 0
                 },
-                zoom: 12,
+                zoom: 6,
                 bounds: {},
                 events: {
                     "idle": function () {
+                        console.log("Idle !");
+                        console.log(vm.map.control);
                         if (currentCenter.latitude != vm.map.center.latitude && currentCenter.longitude != vm.map.center.longitude) {
                             currentCenter = {
                                 latitude: vm.map.center.latitude,
@@ -236,6 +256,7 @@
                         $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
+                        console.log("zoom_changed");
                         if (!disableExploringMode) {
                             vm.showSlider = false;
                             vm.showWorkArea = false;
@@ -246,7 +267,8 @@
                             disableExploringMode = false;
                         }
                     }
-                }
+                },
+                control: {}
             };
             vm.mapOptions = {
                 minZoom: 6,
@@ -265,7 +287,7 @@
                 streetViewControlOptions: {
                     position: google.maps.ControlPosition.TOP_RIGHT
                 }
-            }
+            };
             $(window).on("resize", function () {
                 clearTimeout(resizeTimeoutId);
                 resizeTimeoutId = setTimeout(function () {
@@ -297,14 +319,13 @@
                 };
                 bounds.type = "all";
                 addCircle(res);
-                vm.workareaDiameter = Math.round((res.radius * 2) / 1000);
+                vm.workareaDiameter = Math.ceil((res.radius * 2) / 1000);
                 loadLeads(bounds);
             }, function errorProLeads() {
                 alertMsg.send("Pro get", "danger");
             }
         );
     }
-
 
     ProDashboardMapHomeControlController.$inject = ['$rootScope']
     function ProDashboardMapHomeControlController($rootScope) {

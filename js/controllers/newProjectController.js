@@ -148,7 +148,7 @@
             url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
             data: {
               upload_preset: cloudinary.config().upload_preset,
-              tags: 'myphotoalbum',
+              tags: 'project',
               context: 'photo=' + $scope.title,
               file: file
             }

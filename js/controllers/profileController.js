@@ -50,6 +50,7 @@
 
         vm.mapShowMinimumZoomMessage = false;
         vm.mapEditing = false;
+        vm.workareaDiameter = 0;
 
         function rad(x) {
             return x * Math.PI / 180;
@@ -125,10 +126,12 @@
                                 vm.workArea.radius = circleRadius;
                                 vm.workArea.latitude = vm.map.center.latitude;
                                 vm.workArea.longitude = vm.map.center.longitude;
-                                vm.workArea.swLatitude = vm.map.control.getGMap().getBounds().getSouthWest().lat();
-                                vm.workArea.swLongitude = vm.map.control.getGMap().getBounds().getSouthWest().lng();
-                                vm.workArea.neLatitude = vm.map.control.getGMap().getBounds().getNorthEast().lat();
-                                vm.workArea.neLongitude = vm.map.control.getGMap().getBounds().getNorthEast().lng();
+                                var bnds = vm.circle.control.getCircle().getBounds();
+                                vm.workArea.swLatitude = bnds.getSouthWest().lat();
+                                vm.workArea.swLongitude = bnds.getSouthWest().lng();
+                                vm.workArea.neLatitude = bnds.getNorthEast().lat();
+                                vm.workArea.neLongitude = bnds.getNorthEast().lng();
+                                vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
                             }, 0);
                         }
                     },
@@ -166,7 +169,8 @@
                     opacity: 0.15
                 },
                 visible: false,
-                control: {}
+                control: {},
+                bounds: {}
             };
             vm.mapOptions = {
                 minZoom: 6,
@@ -206,6 +210,16 @@
                     }
                 }
             );
+            vm.map.bounds = {
+                'southwest': {
+                    'latitude': vm.workArea.swLatitude,
+                    'longitude': vm.workArea.swLongitude
+                },
+                'northeast': {
+                    'latitude': vm.workArea.neLatitude,
+                    'longitude': vm.workArea.neLongitude
+                }
+            };
             if (vm.mapEditing) {
                 if (vm.map.zoom < 9) {
                     vm.mapShowMinimumZoomMessage = true;
@@ -236,6 +250,7 @@
                 longitude: vm.workArea.longitude
             };
             vm.circle.radius = vm.workArea.radius;
+            vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
         };
 
         networkService.professionalGET(succesProfileGET, errorProfileGET);
@@ -329,7 +344,7 @@
                     });
                 }
             });
-        };
+        }
 
         function setVerif(name) {
             vm.verifTmp = {name: name};
@@ -348,7 +363,7 @@
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
-                            tags: 'verificaions',
+                            tags: 'verifications',
                             context: 'file=' + $scope.title,
                             file: file
                         }
@@ -385,7 +400,7 @@
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
-                            tags: 'verificaions',
+                            tags: 'verifications',
                             context: 'file=' + $scope.title,
                             file: file
                         }

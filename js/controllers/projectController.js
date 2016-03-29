@@ -605,7 +605,7 @@
             url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
             data: {
               upload_preset: cloudinary.config().upload_preset,
-              tags: 'myphotoalbum',
+              tags: 'project',
               context: 'photo=' + $scope.title,
               file: file
             }
@@ -637,9 +637,9 @@
         if (vm.projectTmp.activities && vm.projectTmp.activities.length > 0){
         for (var i = 0; i < vm.projectTmp.activities.length; i++) {
           if (i <  vm.projectTmp.activities.length - 1)
-          res += vm.projectTmp.activities[i].name + " - ";
+          res += vm.projectTmp.activities[i].code + " - ";
           else {
-            res += vm.projectTmp.activities[i].name
+            res += vm.projectTmp.activities[i].code
           }
         }
         return res;
