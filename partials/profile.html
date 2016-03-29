@@ -276,10 +276,16 @@
                 </p>
               </div>
               <div id="map_canvas">
-                <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" dragging="false"></ui-gmap-google-map>
+                <ui-gmap-google-map center="vm.map.center" control="vm.map.control" bounds="vm.map.bounds" zoom="vm.map.zoom" options="vm.mapOptions" events="vm.map.events">
+                  <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke" fill="vm.circle.fill" radius="vm.circle.radius"
+                                  visible="vm.circle.visible" geodesic="true" editable="false" draggable="false" clickable="true" control="vm.circle.control" events="vm.circle.events"></ui-gmap-circle>
+                </ui-gmap-google-map>
+                <div class="mapMinimumZoomMessage" ng-show="vm.mapShowMinimumZoomMessage">
+                  Please zoom in to choose your work area
+                </div>
               </div>
               <div class="profile-box-footer">
-                <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
+                <div class="profile-box-footer-btn-fr" ng-click="vm.updateWorkArea()">
                   Save
                 </div>
                 <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelWorkArea()">
