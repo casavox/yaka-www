@@ -7,7 +7,7 @@
 
   //
   //Controller login
-  ProfileController.$inject = ['$scope', 'networkService', '$localStorage', '$state', 'alertMsg', 'Upload', 'cloudinary']
+  ProfileController.$inject = ['$scope', 'networkService', '$localStorage', '$state', 'alertMsg', 'Upload', 'cloudinary'];
   function ProfileController($scope, networkService, $localStorage, $state, alertMsg, $upload, cloudinary) {
 
     var vm = this;
@@ -19,7 +19,7 @@
     vm.verifications = {};
     vm.activities = {};
     vm.now = new Date();
-    vm.Year = vm.now.getFullYear()
+    vm.Year = vm.now.getFullYear();
     vm.error= {password:{flag: false, message:""}, activities:{flag: false, message:""}, verif: {flag: false, message:""}, profile: {flag: false, message:""}};
 
     vm.years = yearsContent();
@@ -69,7 +69,7 @@
         var formData = {
           currentPassword: vm.pwdCurrent,
           newPassword: vm.pwd1
-        }
+        };
         if (vm.pwd2 === vm.pwd1)
         networkService.changePassword(formData, function(res){
           alertMsg.send("Password updated.", "success");
@@ -146,7 +146,7 @@
             });
           }
         });
-      };
+      }
 
       function setVerif(name){
         vm.verifTmp = {name: name};
@@ -187,7 +187,7 @@
             });
           }
         });
-      };
+      }
 
       function uploadProfile(files, invalides, index){
         if (invalides.length > 0){
@@ -220,7 +220,7 @@
             });
           }
         });
-      };
+      }
 
       function yearsContent(){
         var res = [];
@@ -237,11 +237,11 @@
         angular.forEach(vm.profileInfo, function(value, key){
           if (angular.isUndefined(value) || !value)
           f = true;
-        })
+        });
         angular.forEach(vm.profileInfo.company, function(value, key){
           if (angular.isUndefined(value) || !value)
           f = true;
-        })
+        });
         if (!f){
           vm.error.profile.flag = false;
           networkService.proProfilePUT(vm.profileInfo, function(res){
@@ -273,7 +273,7 @@
       function updateVerifications(){
         vm.verifications = vm.verifications || [];
         if (vm.verifications.length < 4){
-          vm.error.verif.message = "All is mandatory."
+          vm.error.verif.message = "All is mandatory.";
           vm.error.verif.flag = true;
         }
         else {
@@ -294,7 +294,7 @@
         }
         else
         {
-          vm.error.activities.message = "Select at least one category or skill."
+          vm.error.activities.message = "Select at least one category or skill.";
           vm.error.activities.flag = true;
         }
       }

@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProDashboardListController', ProDashboardListController);
 
-    ProDashboardListController.$inject = ['$rootScope', '$scope', 'networkService']
+    ProDashboardListController.$inject = ['$rootScope', '$scope', 'networkService'];
     function ProDashboardListController($rootScope, $scope, networkService) {
 
         var vm = this;

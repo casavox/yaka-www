@@ -7,7 +7,7 @@
 
   //
   //Controller login
-  ProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter']
+  ProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter'];
   function ProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter) {
     var vm = this;
     vm.pro = true;
@@ -43,14 +43,14 @@
     vm.dateType = "";
     vm.dateFlag = false;
     vm.initDate = initDate;
-    vm.editDescription = editDescription
+    vm.editDescription = editDescription;
     vm.edit = edit;
     vm.update = update;
     vm.whenFlag = false;
     vm.editWhen = editWhen;
     vm.uploadFiles = uploadFiles;
     vm.limitLength = limitLength;
-    vm.markerCoords = {}
+    vm.markerCoords = {};
     $scope.map = {
       center: {
         latitude: 46.5945259,
@@ -89,6 +89,7 @@
     vm.homeDetail = homeDetail;
     vm.verifNameAddr = verifNameAddr;
     vm.getSlot = getSlot;
+    vm.closeProject = closeProject;
     vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
     $scope.options = {
       types: ['address'],
@@ -129,7 +130,7 @@
             }
         );
       }
-    }
+    };
 
     vm.unpublishProject = function() {
       if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet)
@@ -145,6 +146,15 @@
             }
         );
       }
+    };
+
+    function closeProject(){
+      networkService.closeProject(vm.project.proposal.id, function(res){
+        vm.project.status = "ONGOING_RATE_PRO";
+        vm.closeFlag = false;
+      }, function(res){
+        alertMsg.send("Error : project can't be close", "danger");
+      });
     }
 
     networkService.profileGET(succesProfileGET, errorProfileGET);
@@ -153,7 +163,7 @@
       var formData = {
         id: vm.proposal.id,
         text: vm.hireMessage
-      }
+      };
       networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
     }
 
@@ -213,7 +223,7 @@
     function verifNameAddr(){
       vm.continueAddressFlag = false;
       if (vm.newAddr.name.length > 0){
-        vm.continueAddress = false
+        vm.continueAddress = false;
         vm.disabledAddr = false;
         vm.myAddress = "new";
         $scope.address = {
@@ -484,7 +494,7 @@
         vm.error.date.flag = false;
         vm.error.date.message = "At least a slot is required";
       }
-    })
+    });
 
     function update(){
       vm.projectTmp.tags = vm.projectTmp.tags || [];
@@ -622,7 +632,7 @@
           });
         }
       });
-    };
+    }
 
     function editDescription(){
       vm.editDescriptionFlag = true;
@@ -677,7 +687,6 @@
     }
 
     function succesProjectGET(res){
-
       if (res.address.latitude && res.address.longitude) {
         $scope.map.center = {
           latitude: res.address.latitude,
@@ -787,15 +796,15 @@
             break;
             case "ALL_DAY":
             if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
-              vm.J1.all = true
+              vm.J1.all = true;
               vm.all(vm.J1);
             }
             else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
-              vm.J2.all = true
+              vm.J2.all = true;
               vm.all(vm.J2);
             }
             else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
-              vm.J3.all = true
+              vm.J3.all = true;
               vm.all(vm.J3);
             }
             break;

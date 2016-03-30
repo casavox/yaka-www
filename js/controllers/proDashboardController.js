@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProDashboardController', ProDashboardController);
 
-    ProDashboardController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg']
+    ProDashboardController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg'];
     function ProDashboardController($rootScope, $scope, networkService, alertMsg) {
         $scope.showList = false;
 
@@ -19,7 +19,7 @@
                 return "active-menu";
             }
             return "";
-        }
+        };
 
         $rootScope.$on('onLeadsLoadedEmit', function (event, args) {
             $rootScope.$broadcast('onLeadsLoadedBroadcast', args);

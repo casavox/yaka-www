@@ -6,7 +6,7 @@
         .controller('ProDashboardMapController', ProDashboardMapController)
         .controller('ProDashboardMapHomeControlController', ProDashboardMapHomeControlController);
 
-    ProDashboardMapController.$inject = ['$rootScope', '$scope', 'networkService', 'uiGmapGoogleMapApi', 'uiGmapIsReady']
+    ProDashboardMapController.$inject = ['$rootScope', '$scope', 'networkService', 'uiGmapGoogleMapApi', 'uiGmapIsReady'];
     function ProDashboardMapController($rootScope, $scope, networkService, uiGmapGoogleMapApi, uiGmapIsReady) {
 
         var vm = this;
@@ -84,7 +84,7 @@
             }
 
             vm.carrouselSelectedItem.index = carouselIndex;
-        }
+        };
 
         var resizeTimeoutId;
         uiGmapGoogleMapApi.then(function (maps) {
@@ -141,7 +141,7 @@
                 streetViewControlOptions: {
                     position: google.maps.ControlPosition.TOP_RIGHT
                 }
-            }
+            };
             $(window).on("resize", function () {
                 clearTimeout(resizeTimeoutId);
                 resizeTimeoutId = setTimeout(function () {
@@ -161,10 +161,10 @@
                 $('.gm-bundled-control').hide();
                 $('.gm-style-mtc').hide();
             }
-        };
+        }
     }
 
-    ProDashboardMapHomeControlController.$inject = ['$rootScope', '$scope']
+    ProDashboardMapHomeControlController.$inject = ['$rootScope', '$scope'];
     function ProDashboardMapHomeControlController($rootScope, $scope) {
 
         var vm = this;
@@ -177,7 +177,7 @@
 
         vm.homeControlClicked = function () {
             $rootScope.$emit('showHomeControlClickedEmit');
-        }
+        };
 
         $rootScope.$on('showHomeControlBroadcast', function (event, bool) {
             vm.showHomeControl = bool;
