@@ -8,60 +8,77 @@
     <a ui-sref="login"><div class="logout">
       Log Out
     </div>
-  </a>
-</div>
-<div class="page-content">
-  <div class="content-slide">
-    <div class="inbox-content" scroll-glue="vm.glue">
-      <button type="button" class="form-control" ng-click="vm.loadMore()">Load more</button>
+    </a>
+  </div>
+  <div class="page-content">
+    <div class="content-slide">
+      <div class="inbox-content" scroll-glue="vm.glue">
+        <button type="button" class="form-control" ng-click="vm.loadMore()" ng-hide="vm.messages.items.length < 20">Load more</button>
+        <div class="inbox-message" ng-repeat="message in vm.messages.items | orderBy : 'created'  | unique: 'id'">
+          <div class="inbox-pict-profile" ng-class="{'inbox-pict-profile-right': message.author == vm.me}">
+            <cl-image public-id="{{vm.pro.avatar.cloudinaryPublicId}}" format="png" class="img-circle" ng-if="message.author == 'PRO' && vm.pro.avatar.cloudinaryPublicId" class="inbox-pict">
+              <cl-transformation height="40" width="40" crop="fill"/>
+            </cl-image>
 
-      <div class="inbox-message" ng-repeat="message in vm.messages.items | orderBy : '-message.created' track by $index">
-        <div class="inbox-pict-profile" ng-class="{'inbox-pict-profile-right': message.author == 'ME'}">
-          <cl-image public-id="{{pro.cloudinaryPublicId}}" format="png" class="img-circle ng-hide" ng-if="message.author == 'PRO'" class="inbox-pict">
-            <cl-transformation height="40" width="40" crop="fill"/>
-          </cl-image>
-          <img ng-src="icons/mdpi/yaka.png" class="img-circle hw-40 inbox-pict" ng-if="message.author == 'AUTO' || message.author == 'YAKA'" />
-          <cl-image public-id="{{pro.cloudinaryPublicId}}" format="png" class="img-circle ng-hide" ng-if="message.author == 'ME'" class="inbox-pict">
-            <cl-transformation height="40" width="40" crop="fill"/>
-          </cl-image>
-          <div class="img-back img-circle inbox-pict" ng-if="message.author != 'YAKA' && message.author != 'AUTO'">
-
+            <img ng-src="icons/mdpi/yaka.png" class="img-circle hw-40 inbox-pict" ng-if="message.author == 'AUTO' || message.author == 'YAKA'" />
+            <div class="img-back img-circle" ng-if="(message.author == 'PRO' && !vm.pro.avatar.cloudinaryPublicId) || (message.author ==  'CUSTOMER' && !vm.me.avatar.cloudinaryPublicId)"></div>
+          </div>
+          <div class="corner" ng-class="{'corner-right': message.author == vm.me}" ng-if="message.author != 'AUTO'">
+          </div>
+          <div class="inbox-message-content" ng-class="{'inbox-message-content-me': message.author == vm.me, 'inbox-message-content-yaka': message.author == 'YAKA', 'inbox-message-content-auto': message.author == 'AUTO'}" >
+            <cl-image public-id="{{message.cloudinaryPublicId}}" format="png" ng-if="message.cloudinaryPublicId">
+              <cl-transformation height="70" width="70" crop="fill"/>
+            </cl-image>
+            <textarea class="inbox-message-textarea" disabled="disabled" ng-model="message.text" msd-elastic></textarea>
+          </div>
+          <div class="inbox-date" ng-class="{'inbox-date-right': message.author == vm.me}">
+            {{message.created | date:'dd-MM-yyyy hh:mm'}}
           </div>
         </div>
-        <div class="corner" ng-class="{'corner-right': message.author == 'ME'}" ng-if="message.author != 'AUTO'">
-        </div>
-        <div class="inbox-message-content" ng-class="{'inbox-message-content-me': message.author == 'ME', 'inbox-message-content-yaka': message.author == 'YAKA', 'inbox-message-content-auto': message.author == 'AUTO'}" >
-          <cl-image public-id="{{message.cloudinaryPublicId}}" format="png" ng-if="message.cloudinaryPublicId">
+      </div>
+      <div class="inbox-text">
+        <div class="inbox-join-preview" ng-show="vm.msg.cloudinaryPublicId">
+          <span class="glyphicon glyphicon-remove-circle inbox-remove-img cursor-pointer" ng-show="vm.msg.cloudinaryPublicId" ng-click="vm.deleteImg()"></span>
+          <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" format="png" class="inbox-img-join">
             <cl-transformation height="70" width="70" crop="fill"/>
           </cl-image>
-          <textarea class="inbox-message-textarea" disabled="disabled" ng-model="message.text" msd-elastic></textarea>
         </div>
-        <div class="inbox-date" ng-class="{'inbox-date-right': message.author == 'ME'}">
-          {{message.created | date:'dd-MM-yyyy hh:mm'}}
+        <div class="row">
+          <div class="col-xs-1">
+            <img src="icons/mdpi/join.png" class="inbox-join cursor-pointer" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                 ngf-accept="'image/*'" ngf-max-size="5MB"/>
+          </div>
+          <div class="col-xs-9">
+            <textarea class="inbox-textarea" Placeholder="Type your message here..." ng-model="vm.msg.text"></textarea>
+          </div>
+          <div class="col-xs-2">
+            <div class="inbox-send cursor-pointer" ng-click="vm.sendMessage()">
+              SEND
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="inbox-text">
-      <div class="inbox-join-preview" ng-show="vm.msg.cloudinaryPublicId">
-        <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" format="png" class="inbox-img-join">
-          <cl-transformation height="70" width="70" crop="fill"/>
-        </cl-image>
-      </div>
-      <div class="row">
-        <div class="col-xs-1">
-          <img src="icons/mdpi/join.png" class="inbox-join cursor-pointer" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
-          ngf-accept="'image/*'" ngf-max-size="5MB"/>
-        </div>
-        <div class="col-xs-9">
-          <textarea class="inbox-textarea" Placeholder="Type your message here..." ng-model="vm.msg.text"></textarea>
-        </div>
-        <div class="col-xs-2">
-          <div class="inbox-send cursor-pointer" ng-click="vm.sendMessage()">
-            SEND
+    <div class="menu-r top-120" ng-if="vm.proposal.project.status != 'SELECTED'">
+      <div>
+        <div>
+          <div>
+            <h4 class="menu-r-title">My Project</h4>
+            <p class="hire mb-10 text-align-left">
+              {{vm.project.address.address}} <br>
+              Date :
+            </p>
+            <button type="button" class="button btn btn-menu-sel center  mb-10" >SHOW DETAILS</button>
+            <button type="button" class="button btn btn-menu-sel center  mb-39" ng-click="vm.hireFlag = true">SHOW OFFERS</button>
+
+            <p class="hire mb-10 text-align-left">
+              You want to work whith {{vm.pro.firstName}} {{vm.pro.lastName}}
+            </p>
+            <button type="button" class="button btn btn-menu-sel center btn-blue" ng-click="vm.hireFlag = true">HIRE</button>
           </div>
+
         </div>
       </div>
     </div>
   </div>
-</div>
 </section>

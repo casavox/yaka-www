@@ -165,6 +165,12 @@ window.fbAsyncInit = function() {
                 templateUrl: "partials/inbox.html",
                 controller: 'InboxController',
                 controllerAs: 'vm'
+            })
+            .state('pro-inbox', {
+                url: "/pro/inbox/:proposalId",
+                templateUrl: "partials/inbox.html",
+                controller: 'InboxController',
+                controllerAs: 'vm'
             });
 
         //
@@ -207,6 +213,7 @@ window.fbAsyncInit = function() {
             function(event, toState, toParams , fromState, fromParams){
                 $rootScope.menu = false;
                 $rootScope.from = fromState;
+                $rootScope.state = toState;
                 if ($rootScope.rate_pro && toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = false;
                 if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register"){
