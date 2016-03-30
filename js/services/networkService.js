@@ -53,8 +53,8 @@
             professionalGET: function (success, error) {
                 $http.get(baseUrl + '/pro/me').success(success).error(error)
             },
-            proLeadsGET: function (type, chrono, sw_lat, sw_lng, ne_lat, ne_lng, success, error) {
-                $http.get(baseUrl + '/pro/leads?type=' + type + '&chrono=' + chrono + "&sw_lat=" + sw_lat + "&sw_lng=" + sw_lng + "&ne_lat=" + ne_lat + "&ne_lng=" + ne_lng).success(success).error(error)
+            proLeadsGET: function (type, sw_lat, sw_lng, ne_lat, ne_lng, success, error) {
+                $http.get(baseUrl + '/pro/leads?type=' + type + "&sw_lat=" + sw_lat + "&sw_lng=" + sw_lng + "&ne_lat=" + ne_lat + "&ne_lng=" + ne_lng).success(success).error(error)
             },
             proposalGET: function (data, success, error) {
                 $http.get(baseUrl + '/proposals/' + data).success(success).error(error)

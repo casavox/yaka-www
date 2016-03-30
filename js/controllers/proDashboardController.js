@@ -161,7 +161,7 @@
         };
 
         function loadLeads(args) {
-            networkService.proLeadsGET(args.type, false, args.sw_lat, args.sw_lng, args.ne_lat, args.ne_lng,
+            networkService.proLeadsGET(args.type, args.sw_lat, args.sw_lng, args.ne_lat, args.ne_lng,
                 function succesProLeads(res) {
                     onLeadsLoaded(res);
                 }, function errorProLeads() {
