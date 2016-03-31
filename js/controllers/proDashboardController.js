@@ -120,7 +120,7 @@
 
         function translateLeadTitle(lead) {
             var titleArray = lead.title.split(' ');
-            for(var i = 0; i < titleArray.length; i++) {
+            for (var i = 0; i < titleArray.length; i++) {
                 titleArray[i] = $translate.instant(titleArray[i]);
             }
             console.log(titleArray.join(' '));

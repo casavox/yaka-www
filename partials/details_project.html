@@ -1,1105 +1,1159 @@
-
 <style type="text/css">
-  html, body, #map_canvas {
-    height: 70px;
-    margin: 0px;
-    margin-left: -15px;
-    margin-right: -15px;
-  }
+    html, body, #map_canvas {
+        height: 70px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
 
-  #map_canvas {
-    position: relative;
-  }
+    #map_canvas {
+        position: relative;
+    }
 
-  .angular-google-map-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
 </style>
 <section class="view">
 
 
-
-
-
-  <div class="header-menu">
-    <ng-include src="'partials/menuHamburger.html'"></ng-include>
-    <div class="in-line min-w-44 arrow-nav" ng-show="!vm.proDetails && vm.pro">
-      <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()" class="center-middle"/>
-    </div>
-    <div class="in-line min-w-44 arrow-nav" ng-show="!vm.pro">
-      <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
-    </div>
-    <div class="title no-line" ng-show="!vm.proDetails">
-      {{vm.project.title}}
-      <p class="sub-title-proposal">
-        Proposals
-      </p>
-    </div>
-    <div class="title" ng-show="vm.proDetails">
-      Proposal's details
-    </div>
-    <a ui-sref="login"><div class="logout">
-      Log Out
-    </div>
-  </a>
-</div>
-
-
-
-
-
-
-
-
-
-<div class="page-content">
-
-  <ng-include src="'partials/menu.html'"></ng-include>
-
-
-
-  <div class="content-slide" ng-show="!vm.proDetails && !vm.project.proposal">
-
-
-    <div ng-show="vm.pro">
-      <div class="detail-pro-title">
-        <div class="in-line">
-          ORDERS
+    <div class="header-menu">
+        <ng-include src="'partials/menuHamburger.html'"></ng-include>
+        <div class="in-line min-w-44 arrow-nav" ng-show="!vm.proDetails && vm.pro">
+            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()" class="center-middle"/>
         </div>
-        <hr>
-      </div>
-      <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
-        <div class="row no-margin no-padding">
-          <div class="col-xs-2 no-margin no-padding">
-            <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}" class="img-circle" format="png" >
-              <cl-transformation height="70" width="70" crop="fill"/>
-            </cl-image>
-            <div class="img-default-preview" ng-if="!p.professional.avatar.cloudinaryPublicId">
-              {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
-            </div>
-          </div>
-          <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
-            <p class="pro-title-name" ng-show="p.status == 'START'">
-              {{p.professional.firstName}} {{p.professional.lastName}}
+        <div class="in-line min-w-44 arrow-nav" ng-show="!vm.pro">
+            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
+        </div>
+        <div class="title no-line" ng-show="!vm.proDetails">
+            {{vm.project.title}}
+            <p class="sub-title-proposal">
+                Proposals
             </p>
-            <p class="pro-title-companyName" ng-show="p.status == 'PRESELECTED'">
-              {{p.professional.companyName}}
-            </p>
-            <p class="pro-title-desc">
-
-            </p>
-            <div class="pro-title-icon">
-              <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
-              <div class="likes">
-                {{p.professional.likes}}
-              </div>
-              <img src="icons/mdpi/ic_background_checked.png" class="icon-verification" ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
-              <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
+        </div>
+        <div class="title" ng-show="vm.proDetails">
+            Proposal's details
+        </div>
+        <a ui-sref="login">
+            <div class="logout">
+                Log Out
             </div>
-          </div>
-          <div class="col-xs-2 no-margin no-padding">
-            <img src="icons/mdpi/ic_message.png" class="icon-message" ng-show="p.unreadMessages"/>
-          </div>
-          <div class="col-xs-3 no-margin no-padding">
-            <div class="pro-price" ng-show="p.price">
-              {{p.price}} €
+        </a>
+    </div>
+
+
+    <div class="page-content">
+
+        <ng-include src="'partials/menu.html'"></ng-include>
+
+
+        <div class="content-slide" ng-show="!vm.proDetails && !vm.project.proposal">
+
+
+            <div ng-show="vm.pro">
+                <div class="detail-pro-title">
+                    <div class="in-line">
+                        ORDERS
+                    </div>
+                    <hr>
+                </div>
+                <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
+                    <div class="row no-margin no-padding">
+                        <div class="col-xs-2 no-margin no-padding">
+                            <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}" class="img-circle"
+                                      format="png">
+                                <cl-transformation height="70" width="70" crop="fill"/>
+                            </cl-image>
+                            <div class="img-default-preview" ng-if="!p.professional.avatar.cloudinaryPublicId">
+                                {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
+                            </div>
+                        </div>
+                        <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
+                            <p class="pro-title-name" ng-show="p.status == 'START'">
+                                {{p.professional.firstName}} {{p.professional.lastName}}
+                            </p>
+
+                            <p class="pro-title-companyName" ng-show="p.status == 'PRESELECTED'">
+                                {{p.professional.companyName}}
+                            </p>
+
+                            <p class="pro-title-desc">
+
+                            </p>
+
+                            <div class="pro-title-icon">
+                                <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
+
+                                <div class="likes">
+                                    {{p.professional.likes}}
+                                </div>
+                                <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
+                                     ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
+                                <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-2 no-margin no-padding">
+                            <img src="icons/mdpi/ic_message.png" class="icon-message" ng-show="p.unreadMessages"/>
+                        </div>
+                        <div class="col-xs-3 no-margin no-padding">
+                            <div class="pro-price" ng-show="p.price">
+                                {{p.price}} €
+                            </div>
+                            <p class="pro-price-desc" ng-show="p.price">
+                                {{p.priceType}}
+                            </p>
+
+                            <p class="pro-price-none" ng-show="!p.price || p.price == 0">
+                                Need more info
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-pro-message-box" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
+                    <p>
+                        Find all offers made by professionnals interested about your project
+                    </p>
+                </div>
+                <div class="detail-pro-title">
+                    <div class="in-line">
+                        SUGGESTIONS
+                    </div>
+                    <hr class="w-555">
+                </div>
+                <div class="detail-pro-message-box"
+                     ng-show="!vm.project.suggestions || vm.project.suggetions.length == 0">
+                    <p>
+                        Suggested pro that fit your queries
+                        You can contact them and ask for a quote
+                    </p>
+                </div>
             </div>
-            <p class="pro-price-desc" ng-show="p.price">
-              {{p.priceType}}
-            </p>
-            <p class="pro-price-none" ng-show="!p.price || p.price == 0">
-              Need more info
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="detail-pro-message-box" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
-        <p>
-          Find all offers made by professionnals interested about your project
-        </p>
-      </div>
-      <div class="detail-pro-title">
-        <div class="in-line">
-          SUGGESTIONS
-        </div>
-        <hr class="w-555">
-      </div>
-      <div class="detail-pro-message-box" ng-show="!vm.project.suggestions || vm.project.suggetions.length == 0">
-        <p>
-          Suggested pro that fit your queries
-          You can contact them and ask for a quote
-        </p>
-      </div>
-    </div>
 
 
+            <div class="project-description" ng-show="!vm.pro">
+                <div class="row no-margin">
+                    <div class="col-xs-12">
+                        <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
+                            MODIFY
+                        </div>
+                        <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
+                            DELETE
+                        </div>
+                        <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()">
+                            UNPUBLISH
+                        </div>
+                        <div class="description-action-btn color-red" ng-show="vm.editFlag"
+                             ng-click="vm.saveFlag = true">
+                            SAVE
+                        </div>
+                        <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
+                            CANCEL
+                        </div>
+                        <div class="description-date">
+                            Post {{vm.project.updated | date:'dd MMMM yyyy'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 ">
+                        <div id="map_canvas">
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                dragging="false">
+                                <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                            </ui-gmap-google-map>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Where
+                            <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.projectTmp.address.name}}
+                        </div>
 
-
-
-    <div class="project-description" ng-show="!vm.pro">
-      <div class="row no-margin">
-        <div class="col-xs-12">
-          <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
-            MODIFY
-          </div>
-          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
-            DELETE
-          </div>
-          <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()">
-            UNPUBLISH
-          </div>
-          <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.saveFlag = true">
-            SAVE
-          </div>
-          <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
-            CANCEL
-          </div>
-          <div class="description-date">
-            Post {{vm.project.updated | date:'dd MMMM yyyy'}}
-          </div>
-        </div>
-      </div>
-      <div class="row no-margin">
-        <div class="col-xs-12 ">
-          <div id="map_canvas">
-            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions" dragging="false">
-              <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
-            </ui-gmap-google-map>
-          </div>
-        </div>
-      </div>
-      <div class="row no-margin">
-        <div class="col-xs-12 row no-margin">
-          <div class="col-xs-12 description-sub-title">
-            Where
-            <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
-          </div>
-          <div class="col-xs-12 description-sub-text">
-            {{vm.projectTmp.address.name}}
-          </div>
-
-        </div>
-      </div>
-      <div class="row no-margin">
-        <div class="col-xs-12 row no-margin">
-          <div class="col-xs-12 description-sub-title">
-            When
-            <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
-          </div>
-          <div class="col-xs-12 description-sub-text">
-            {{vm.getWhen()}}
-          </div>
-        </div>
-      </div>
-      <div class="row no-margin">
-        <div class="col-xs-12 row no-margin">
-          <div class="col-xs-12 description-sub-title">
-            Tags
-          </div>
-          <div class="col-xs-12 description-sub-text">
-            {{vm.getTags()}}
-          </div>
-        </div>
-      </div>
-      <div class="row no-margin">
-        <div class="col-xs-12 row no-margin">
-          <div class="col-xs-12 description-sub-title">
-            Description
-          </div>
-          <div class="col-xs-12 description-sub-text">
-            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description" ng-hide="vm.editFlag"></textarea>
-            <textarea class="custom-textarea-red" ng-model="vm.projectTmp.description" ng-show="vm.editFlag"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="row no-margin">
-        <div class="col-xs-12 row no-margin">
-          <div class="col-xs-12 description-sub-title">
-            Photos / Videos
-          </div>
-          <div class="col-xs-12 description-sub-text row mb-15">
-            <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images" title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
-              <span class="center-middle img-comment" ng-show="media.description" ng-click="vm.editImage(media)"></span>
-              <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center" ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
-                <cl-transformation height="92" width="92" crop="fill"/>
-              </cl-image>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            When
+                            <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.getWhen()}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Tags
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.getTags()}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Description
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description"
+                                      ng-hide="vm.editFlag"></textarea>
+                            <textarea class="custom-textarea-red" ng-model="vm.projectTmp.description"
+                                      ng-show="vm.editFlag"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Photos / Videos
+                        </div>
+                        <div class="col-xs-12 description-sub-text row mb-15">
+                            <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images"
+                                 title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
+                                <span class="center-middle img-comment" ng-show="media.description"
+                                      ng-click="vm.editImage(media)"></span>
+                                <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
+                                          ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
+                                    <cl-transformation height="92" width="92" crop="fill"/>
+                                </cl-image>
+                            </div>
+                            <div class="col-md-3 no-padding"
+                                 ngf-drop="vm.uploadFiles($files)"
+                                 ngf-drag-over-class="dragOverClass($event)"
+                                 ng-model="files"
+                                 ng-multiple="false" ng-show="vm.editFlag">
+                                <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                                     ngf-accept="'image/*'" ngf-max-size="5MB">
+                                    <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 no-padding"
-            ngf-drop="vm.uploadFiles($files)"
-            ngf-drag-over-class="dragOverClass($event)"
-            ng-model="files"
-            ng-multiple="false" ng-show="vm.editFlag">
-            <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
-            ngf-accept="'image/*'" ngf-max-size="5MB">
-            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-</div>
-
-
-
-
-
-
-
-
-
-<div class="content-slide" ng-show="vm.proDetails && !vm.project.proposal">
-  <div>
-    <div class="detail-pro-title">
-      <div class="in-line">
-        OFFER
-      </div>
-      <hr>
-    </div>
-    <div class="proposal-offers">
-      <div class="line">
-        <span class="f-l proposal-offer-line-info" ng-show="!vm.proposal.price">Price</span><span class="f-l proposal-offer-line-info" ng-show="vm.proposal.price">{{vm.proposal.priceType}}</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.price">Need info to make a quote</span><span class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
-      </div>
-      <div class="line mt-21" ng-show="vm.projectTmp.type != 'EMERGENCY'">
-        <span class="f-l proposal-offer-line-info">Available on</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.startDate">Need info to schedule</span><span class="f-r proposal-offer-line-res" ng-show="vm.proposal.startDate">{{vm.proposal.startDate | date:'EEEE dd MMMM'}}</span>
-      </div>
-      <div class="line mt-21" ng-show="vm.projectTmp.type == 'EMERGENCY'">
-        <span class="f-l proposal-offer-line-info">Available on</span><span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.availability.date">Need info to schedule</span><span class="f-r proposal-offer-line-res" ng-show="vm.proposal.availability.date">{{vm.proposal.availability.date | date:'EEEE dd MMMM'}} <span>at </span> {{vm.getSlot()}}</span>
-      </div>
-    </div>
-    <div class="proposal-offers-expend">
-      <img ng-src="{{vm.proposal.professional.avatarUrl}}" class="f-l proposal-icon img-circle"  ng-show="vm.proposal.professional.avatarUrl"/>
-      <div class="img-default fl" ng-show="!vm.proposal.professional.avatarUrl">
-        {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] | uppercase}}
-      </div>
-
-      <!-- <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}" class="img-circle fcenter proposal-icon" format="png" ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
-      <cl-transformation height="70" width="70" crop="fill"/>
-    </cl-image>
-    <img class="img-circle avatar-pro" ng-src="{{p.proposals[3].professional.avatarUrl}}" ng-show="p.proposals[3].professional.avatarUrl"/>
-    <div class="img-default-preview center" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
-    {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] | uppercase}}
-  </div> -->
-  <div class="proposal-tel">
-    <div class="icon-tel"></div>
-    <div>
-      {{vm.proposal.professional.phoneNumber}}
-    </div>
-
-  </div>
-  <div class="ml-50 f-l">
-    <p class="proposal-company" ng-show="vm.projectTmp.status == 'START'">
-      {{vm.proposal.professional.companyName}}
-    </p>
-    <p class="proposal-name">
-      <span ng-if="vm.projectTmp.status == 'PRESELECTED' || vm.projectTmp.status == 'SELECTED'">{{vm.proposal.professional.lastName}} </span>
-      {{vm.proposal.professional.firstName}}
-    </p>
-    <p class="proposal-place" >
-      Base in {{vm.proposal.professional.company.address.administrativeAreaLevel1}}
-    </p>
-  </div>
-  <div class="proposal-likes">
-    <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
-    <div class="likes">
-      {{vm.proposal.professional.likes}}
-    </div>
-  </div>
-  <div class="proposal-qualities">
-    {{vm.proposal.professional.qualities[0].name}} <span ng-if="vm.proposal.professional.qualities.length > 1"> - </span> {{vm.proposal.professional.qualities[1].name}}
-  </div>
-
-
-</div>
-<div class="detail-pro-title">
-  <div class="in-line">
-    DETAIL PROFILE
-  </div>
-  <hr class="w-525">
-</div>
-<div class="proposal-offers-expend">
-  <p class="proposal-my-background f-l">
-    My background
-  </p>
-  <div class="proposal-checked" ng-show="vm.indexOfObject('COMPANY_STATUS_OK', 'name', vm.proposal.professional.verifications).length > 0">
-    <img src="icons/mdpi/ic_launcher.png" class="center"/>
-    <p>
-      Background Checked
-    </p>
-  </div>
-  <div class="proposal-exp" ng-show="vm.proposal.professional.activityStartedDate">
-    <p>+{{vm.calculateExp(vm.proposal.professional.activityStartedDate)}}</p>
-    <span>Years experience</span>
-  </div>
-  <div class="proposal-projects" ng-show="vm.proposal.professional.yakaProjectNumber > 0">
-    <p>{{vm.proposal.professional.yakaProjectNumber}}</p>
-    <span>Project Yaka completed</span>
-  </div>
-  <div class="proposal-rge" ng-show="vm.proposal.professional.certificationImage">
-    <img src="http://www.excelbaie.com/img-pub/rge.png" class="center-middle"/>
-  </div>
-  <div class="proposal-partner" ng-show="vm.proposal.professional.partner">
-    <img ng-src="{{vm.proposal.professional.partner.imageUrl}}" class="proposal-img-partner center"/>
-    <p>
-      {{vm.proposal.professional.partner.name}}
-    </p>
-  </div>
-</div>
-<div class="proposal-offers-expend">
-  <p class="proposal-skills f-l">
-    Main skills
-  </p>
-  <div class="proposal-skill" ng-repeat="s in vm.proposal.professional.skills">
-    <div class="v-icon v-icon-{{s.name}} center">
-    </div>
-    <p class="text-center">
-      {{s.name}}
-    </p>
-  </div>
-</div>
-<div class="proposal-offers">
-  <p class="proposal-skills f-l">
-    Main qualities
-  </p>
-  <p class="proposal-quality proposal-qual" ng-repeat-start="q in vm.proposal.professional.qualities">
-    {{q.name}} ({{q.number  }})
-  </p>
-  <p class="proposal-quality proposal-qual" ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end >
-    -
-  </p>
-</div>
-<div class="proposal-offers-expend">
-  <p class="proposal-about-me f-l">
-    About me
-  </p>
-  <textarea msd-elastic class="custom-textarea-about-me" ng-model="vm.proposal.professional.aboutMe"></textarea>
-  <p class="proposal-about-me">
-    Portfolio
-  </p>
-  <div class="row cl">
-    <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio" title="{{pict.description}}">
-      <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
-        <cl-transformation height="92" width="92" crop="fill"/>
-      </cl-image>
-    </div>
-  </div>
-</div>
-</div>
-
-</div>
-
-
-<div class="content-slide" ng-show="vm.project.proposal">
-  <div class="project-description">
-    <div class="proposal-offers-expend no-m-lb">
-
-      <cl-image public-id="{{vm.project.proposal.professional.avatar.cloudinaryPublicId}}" class="f-l proposal-icon img-circle" format="png" ng-if="vm.project.proposal.professional.avatar.cloudinaryPublicId">
-        <cl-transformation height="70" width="70" crop="fill"/>
-      </cl-image>
-      <div class="img-default-preview" ng-if="!vm.project.proposal.professional.avatar.cloudinaryPublicId">
-        {{vm.project.proposal.professional.firstName[0] | uppercase}} {{vm.project.proposal.professional.lastName[0] | uppercase}}
-      </div>
-      <div class="proposal-tel">
-        <div class="icon-tel"></div>
-        <div>
-          {{vm.project.proposal.professional.phoneNumber}}
         </div>
 
-      </div>
-      <div class="ml-50 f-l">
-        <p class="proposal-company" ng-show="vm.project.proposal.professional.company.name">
-          {{vm.project.proposal.professional.company.name}}
-        </p>
-        <p class="proposal-name">
-          <span>{{vm.project.proposal.professional.lastName}} </span>
-          {{vm.project.proposal.professional.firstName}}
-        </p>
-        <p class="proposal-place" >
-          Base in {{vm.project.proposal.professional.company.address.administrativeAreaLevel1}}
-        </p>
-      </div>
-    </div>
+
+        <div class="content-slide" ng-show="vm.proDetails && !vm.project.proposal">
+            <div>
+                <div class="detail-pro-title">
+                    <div class="in-line">
+                        OFFER
+                    </div>
+                    <hr>
+                </div>
+                <div class="proposal-offers">
+                    <div class="line">
+                        <span class="f-l proposal-offer-line-info" ng-show="!vm.proposal.price">Price</span><span
+                        class="f-l proposal-offer-line-info"
+                        ng-show="vm.proposal.price">{{vm.proposal.priceType}}</span><span
+                        class="f-r proposal-offer-line-res"
+                        ng-show="!vm.proposal.price">Need info to make a quote</span><span
+                        class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
+                    </div>
+                    <div class="line mt-21" ng-show="vm.projectTmp.type != 'EMERGENCY'">
+                        <span class="f-l proposal-offer-line-info">Available on</span><span
+                        class="f-r proposal-offer-line-res"
+                        ng-show="!vm.proposal.startDate">Need info to schedule</span><span
+                        class="f-r proposal-offer-line-res" ng-show="vm.proposal.startDate">{{vm.proposal.startDate | date:'EEEE dd MMMM'}}</span>
+                    </div>
+                    <div class="line mt-21" ng-show="vm.projectTmp.type == 'EMERGENCY'">
+                        <span class="f-l proposal-offer-line-info">Available on</span><span
+                        class="f-r proposal-offer-line-res" ng-show="!vm.proposal.availability.date">Need info to schedule</span><span
+                        class="f-r proposal-offer-line-res" ng-show="vm.proposal.availability.date">{{vm.proposal.availability.date | date:'EEEE dd MMMM'}} <span>at </span> {{vm.getSlot()}}</span>
+                    </div>
+                </div>
+                <div class="proposal-offers-expend">
+                    <img ng-src="{{vm.proposal.professional.avatarUrl}}" class="f-l proposal-icon img-circle"
+                         ng-show="vm.proposal.professional.avatarUrl"/>
+
+                    <div class="img-default fl" ng-show="!vm.proposal.professional.avatarUrl">
+                        {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] |
+                        uppercase}}
+                    </div>
+
+                    <!-- <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}" class="img-circle fcenter proposal-icon" format="png" ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
+                    <cl-transformation height="70" width="70" crop="fill"/>
+                  </cl-image>
+                  <img class="img-circle avatar-pro" ng-src="{{p.proposals[3].professional.avatarUrl}}" ng-show="p.proposals[3].professional.avatarUrl"/>
+                  <div class="img-default-preview center" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
+                  {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] | uppercase}}
+                </div> -->
+                    <div class="proposal-tel">
+                        <div class="icon-tel"></div>
+                        <div>
+                            {{vm.proposal.professional.phoneNumber}}
+                        </div>
+
+                    </div>
+                    <div class="ml-50 f-l">
+                        <p class="proposal-company" ng-show="vm.projectTmp.status == 'START'">
+                            {{vm.proposal.professional.companyName}}
+                        </p>
+
+                        <p class="proposal-name">
+                            <span ng-if="vm.projectTmp.status == 'PRESELECTED' || vm.projectTmp.status == 'SELECTED'">{{vm.proposal.professional.lastName}} </span>
+                            {{vm.proposal.professional.firstName}}
+                        </p>
+
+                        <p class="proposal-place">
+                            Base in {{vm.proposal.professional.company.address.administrativeAreaLevel1}}
+                        </p>
+                    </div>
+                    <div class="proposal-likes">
+                        <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
+
+                        <div class="likes">
+                            {{vm.proposal.professional.likes}}
+                        </div>
+                    </div>
+                    <div class="proposal-qualities">
+                        {{vm.proposal.professional.qualities[0].name}} <span
+                        ng-if="vm.proposal.professional.qualities.length > 1"> - </span>
+                        {{vm.proposal.professional.qualities[1].name}}
+                    </div>
 
 
-    <div class="row no-margin">
-      <div class="col-xs-12 ">
-        <div id="map_canvas">
-          <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions" dragging="false">
-            <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
-          </ui-gmap-google-map>
-        </div>
-      </div>
-    </div>
-    <div class="proposal-offers no-m-lb">
-      <div class="line">
-        <span class="f-l proposal-offer-line-info" ng-show="!vm.project.proposal.price">Price</span><span class="f-l proposal-offer-line-info" ng-show="vm.project.proposal.price">{{vm.project.proposal.priceType}}</span><span class="f-r proposal-offer-line-res" ng-show="!vm.project.proposal.price">Need info to make a quote</span><span class="f-r proposal-offer-line-res proposal-price" ng-show="vm.project.proposal.price">{{vm.project.proposal.price}} €</span>
-      </div>
-      <div class="line mt-21" ng-show="vm.project.type != 'EMERGENCY'">
-        <span class="f-l proposal-offer-line-info">Available on</span><span class="f-r proposal-offer-line-res" ng-show="!vm.project.proposal.startDate">Need info to schedule</span><span class="f-r proposal-offer-line-res" ng-show="vm.project.proposal.startDate">{{vm.project.proposal.startDate | date:'EEEE dd MMMM'}}</span>
-      </div>
-      <div class="line mt-21" ng-show="vm.projectTmp.type == 'EMERGENCY'">
-        <span class="f-l proposal-offer-line-info">Available on</span><span class="f-r proposal-offer-line-res" ng-show="!vm.project.proposal.availability.date">Need info to schedule</span><span class="f-r proposal-offer-line-res" ng-show="vm.project.proposal.availability.date">{{vm.proposal.availability.date | date:'EEEE dd MMMM'}} <span>at </span> {{vm.getSlot()}}</span>
-      </div>
-    </div>
-    <div class="row no-margin">
-      <div class="col-xs-12 row no-margin">
-        <div class="col-xs-12 description-sub-title">
-          Where
-          <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
-        </div>
-        <div class="col-xs-12 description-sub-text">
-          {{vm.projectTmp.address.name}}
-        </div>
+                </div>
+                <div class="detail-pro-title">
+                    <div class="in-line">
+                        DETAIL PROFILE
+                    </div>
+                    <hr class="w-525">
+                </div>
+                <div class="proposal-offers-expend">
+                    <p class="proposal-my-background f-l">
+                        My background
+                    </p>
 
-      </div>
-    </div>
-    <div class="row no-margin">
-      <div class="col-xs-12 row no-margin">
-        <div class="col-xs-12 description-sub-title">
-          When
-          <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
-        </div>
-        <div class="col-xs-12 description-sub-text">
-          {{vm.getWhen()}}
-        </div>
-      </div>
-    </div>
-    <div class="row no-margin">
-      <div class="col-xs-12 row no-margin">
-        <div class="col-xs-12 description-sub-title">
-          Tags
-        </div>
-        <div class="col-xs-12 description-sub-text">
-          {{vm.getTags()}}
-        </div>
-      </div>
-    </div>
-    <div class="row no-margin">
-      <div class="col-xs-12 row no-margin">
-        <div class="col-xs-12 description-sub-title">
-          Description
-        </div>
-        <div class="col-xs-12 description-sub-text">
-          <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description" ng-hide="vm.editFlag"></textarea>
-          <textarea class="custom-textarea-red" ng-model="vm.projectTmp.description" ng-show="vm.editFlag"></textarea>
-        </div>
-      </div>
-    </div>
-    <div class="row no-margin">
-      <div class="col-xs-12 row no-margin">
-        <div class="col-xs-12 description-sub-title">
-          Photos / Videos
-        </div>
-        <div class="col-xs-12 description-sub-text row mb-15">
-          <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images" title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
-            <span class="center-middle img-comment" ng-show="media.description" ng-click="vm.editImage(media)"></span>
-            <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center" ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
-              <cl-transformation height="92" width="92" crop="fill"/>
-            </cl-image>
-          </div>
-          <div class="col-md-3 no-padding" ngf-drop="vm.uploadFiles($files)" ngf-drag-over-class="dragOverClass($event)" ng-model="files" ng-multiple="false" ng-show="vm.editFlag">
-            <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)" ngf-accept="'image/*'" ngf-max-size="5MB">
-              <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+                    <div class="proposal-checked"
+                         ng-show="vm.indexOfObject('COMPANY_STATUS_OK', 'name', vm.proposal.professional.verifications).length > 0">
+                        <img src="icons/mdpi/ic_launcher.png" class="center"/>
+
+                        <p>
+                            Background Checked
+                        </p>
+                    </div>
+                    <div class="proposal-exp" ng-show="vm.proposal.professional.activityStartedDate">
+                        <p>+{{vm.calculateExp(vm.proposal.professional.activityStartedDate)}}</p>
+                        <span>Years experience</span>
+                    </div>
+                    <div class="proposal-projects" ng-show="vm.proposal.professional.yakaProjectNumber > 0">
+                        <p>{{vm.proposal.professional.yakaProjectNumber}}</p>
+                        <span>Project Yaka completed</span>
+                    </div>
+                    <div class="proposal-rge" ng-show="vm.proposal.professional.certificationImage">
+                        <img src="http://www.excelbaie.com/img-pub/rge.png" class="center-middle"/>
+                    </div>
+                    <div class="proposal-partner" ng-show="vm.proposal.professional.partner">
+                        <img ng-src="{{vm.proposal.professional.partner.imageUrl}}"
+                             class="proposal-img-partner center"/>
+
+                        <p>
+                            {{vm.proposal.professional.partner.name}}
+                        </p>
+                    </div>
+                </div>
+                <div class="proposal-offers-expend">
+                    <p class="proposal-skills f-l">
+                        Main skills
+                    </p>
+
+                    <div class="proposal-skill" ng-repeat="s in vm.proposal.professional.skills">
+                        <div class="v-icon v-icon-{{s.name}} center">
+                        </div>
+                        <p class="text-center">
+                            {{s.name}}
+                        </p>
+                    </div>
+                </div>
+                <div class="proposal-offers">
+                    <p class="proposal-skills f-l">
+                        Main qualities
+                    </p>
+
+                    <p class="proposal-quality proposal-qual" ng-repeat-start="q in vm.proposal.professional.qualities">
+                        {{q.name}} ({{q.number }})
+                    </p>
+
+                    <p class="proposal-quality proposal-qual"
+                       ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end>
+                        -
+                    </p>
+                </div>
+                <div class="proposal-offers-expend">
+                    <p class="proposal-about-me f-l">
+                        About me
+                    </p>
+                    <textarea msd-elastic class="custom-textarea-about-me"
+                              ng-model="vm.proposal.professional.aboutMe"></textarea>
+
+                    <p class="proposal-about-me">
+                        Portfolio
+                    </p>
+
+                    <div class="row cl">
+                        <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
+                             title="{{pict.description}}">
+                            <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
+                                <cl-transformation height="92" width="92" crop="fill"/>
+                            </cl-image>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="menu-r" ng-class="{'top-120': !vm.pro}" ng-show="vm.proposal.status != 'SELECTED'">
-  <div ng-show="!vm.proDetails">
-    <div ng-show="vm.pro">
-      <p>
-        {{vm.projectTmp.address.name}}
-      </p>
-      <p>
-        {{vm.getWhen()}}
-      </p>
-      <p>
-        Post {{vm.projectTmp.published | date:'dd MMM yyyy'}}
-      </p>
-
-      <button type="button" class="button btn" ng-click="vm.pro = false">PROJECT DETAILS</button>
-    </div>
-    <div ng-show="!vm.pro">
-      <p>
-        {{vm.projectTmp.proposals.length}} propositions
-      </p>
-
-      <button type="button" class="button btn" ng-click="vm.pro = true">ORDERS</button>
-    </div>
-  </div>
-  <div ng-show="vm.proDetails">
-    <div >
-      <p class="hire">
-        Hire this pro for your need
-      </p>
-      <button type="button" class="button btn" ng-click="vm.hireFlag = true">HIRE</button>
-      <button type="button" class="button btn" ng-click="vm.rateFlag = true" ng-init="vm.rateFlag = false">RATE</button>
-    </div>
-
-  </div>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="popUp" ng-show="vm.rateFlag">
-  <div class="popUp-container center-middle">
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.rateFlag = false"></span>
-      <h4>Rate your pro </h4>
-      <p class="text-center">
-        Merci d'avoir choisi YakaClub pour vos travaux
-      </p>
-      <div class="rate-box">
-        <p class="rate-project-title text-center">
-          {{vm.project.title}}
-        </p>
-        <p class="rate-link text-center">
-          <a >View details</a>
-        </p>
-        <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}" class="img-circle center" format="png" ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
-          <cl-transformation height="80" width="80" crop="fill"/>
-        </cl-image>
-        <!-- <img class="img-circle avatar-pro" ng-src="{{p.proposals[3].professional.avatarUrl}}" ng-show="p.proposals[3].professional.avatarUrl"/> -->
-        <div class="img-default-preview center" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
-          {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] | uppercase}}
-        </div>
-        <p class="rate-info">
-          Would yo recommend {{vm.proposal.professional.company.name}} to your friends ?
-        </p>
-        <div class="rate-btn center">
-          <div class=" img-circle f-l">
-            <img src="icons/mdpi/ic_like_empty.png" class="rate-like" />
-          </div>
-          <div class="img-circle f-r">
-            <img src="icons/mdpi/ic_pen_edit.png" class="rate-dislike " />
-          </div>
-        </div>
-      </div>
-      <p class="rate-cat-info">
-        Selectionnez 3 crtières qui définissent cet artisan
-      </p>
-      <div class="row">
-        <div class="col-md-6" ng-repeat="c in criteria">
-          <div class="criteria">
-            {{c.name}}
-          </div>
-        </div>
-      </div>
-      <md-input-container class="md-block">
-        <label></label>
-        <textarea placeholder="Ajoutez un commentaire" ng-model="vm.rateComment" md-select-on-focus></textarea>
-      </md-input-container>
-      <button type="button" class="button btn btn-popUp">SEND</button>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="popUp" ng-show="vm.trashFlag">
-  <div class="popUp-container center-middle">
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.trashFlag = false"></span>
-      <h4>Are you sure ? </h4>
-      <p>
-        It’s generally better to update or to draft a published project.
-      </p>
-    </div>
-    <div class="popUp-footer">
-      <div  ng-click="vm.trashFlag = false">
-        CANCEL
-      </div>
-      <div  ng-click="vm.deleteProject()">
-        DELETE
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-<div class="popUp" ng-show="vm.hireFlag">
-  <div class="popUp-container center-middle">
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.hireFlag = false"></span>
-      <h4>Hire this Pro ?</h4>
-      <p class="info-popUp">
-        The others Pro will be notified of your choice, then you can no longer continue to chat with them for this project.
-      </p>
-      <p class="info-popUp-comp">
-        Send this message to your Pro :
-      </p>
-      <textarea class="custom-textarea-popUp" ng-model="vm.hireMessage"></textarea>
-    </div>
-    <div class="popUp-footer">
-      <div  ng-click="vm.hireFlag = false">
-        CANCEL
-      </div>
-      <div  ng-click="vm.hire(vm.proposal.id)">
-        CONFIRME
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-<div class="popUp" ng-show="vm.saveFlag">
-  <div class="popUp-container center-middle">
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.saveFlag = false"></span>
-      <h4>Are you sure ? </h4>
-      <p>
-        Updating a published project will send a notification to the Pro concerned,
-        if you already have offers, they could cancel them.
-      </p>
-    </div>
-    <div class="popUp-footer">
-      <div  ng-click="vm.cancel()">
-        CANCEL
-      </div>
-      <div  ng-click="vm.update()">
-        UPDATE
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<div class="popUp img-preview-size" ng-show="vm.imageFlag" ng-click="vm.imageFlag = false">
-  <div class="popUp-container center-middle w-90p h-90p" ng-click="$event.stopPropagation()">
-    <div class="popUp-content img-preview-popUp">
-      <span class="boxclose" ng-click="vm.imageFlag = false"></span>
-      <h4>Delete or Update description</h4>
-      <cl-image public-id="{{vm.imgTmp.cloudinaryPublicId}}" format="png" class="center mb-39">
-      </cl-image>
-      <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmp.description" ng-change="vm.limitLength(vm.imgTmp, 'description', 140)"></textarea>
-      <div class="img-desc-length">
-        {{vm.imgTmp.description.length}}/140
-      </div>
-    </div>
-    <div class="popUp-footer">
-      <div  ng-click="vm.deleteImg()">
-        DELETE
-      </div>
-      <div  ng-click="vm.updateImg()">
-        UPDATE
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
-  <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
-    <div class="popUp-content no-margin img-preview-popUp">
-      <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
-      <h4>Preview</h4>
-      <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
-      </cl-image>
-      <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description" disabled></textarea>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="popUp" ng-show="vm.draftFlag">
-  <div class="popUp-container center-middle">
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.draftFlag = false"></span>
-      <h4>Are you sure ? </h4>
-      <p>
-        Your project will be visible only for you, you will not receive anymore proposal (those already received will be invalided).
-      </p>
-    </div>
-    <div class="popUp-footer">
-      <div  ng-click="vm.draftFlag = false">
-        KEEP POSTED
-      </div>
-      <div  ng-click="vm.draft()">
-        CONFIRM DRAFT
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="popUp" ng-show="vm.whereFlag">
-  <div class="popUp-container center-middle w-550" >
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.whereFlag = false"></span>
-      <h4>Where do need it?</h4>
-      <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
-        <div class="col-md-4 no-padding">
-          <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-            <option value="new">Create new one</option>
-            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-4 no-padding">
-          <p class="">
-            -   Or create a new one
-          </p>
 
         </div>
-        <div class="col-md-4 no-padding">
-          <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+
+
+        <div class="content-slide" ng-show="vm.project.proposal">
+            <div class="project-description">
+                <div class="proposal-offers-expend no-m-lb">
+
+                    <cl-image public-id="{{vm.project.proposal.professional.avatar.cloudinaryPublicId}}"
+                              class="f-l proposal-icon img-circle" format="png"
+                              ng-if="vm.project.proposal.professional.avatar.cloudinaryPublicId">
+                        <cl-transformation height="70" width="70" crop="fill"/>
+                    </cl-image>
+                    <div class="img-default-preview"
+                         ng-if="!vm.project.proposal.professional.avatar.cloudinaryPublicId">
+                        {{vm.project.proposal.professional.firstName[0] | uppercase}}
+                        {{vm.project.proposal.professional.lastName[0] | uppercase}}
+                    </div>
+                    <div class="proposal-tel">
+                        <div class="icon-tel"></div>
+                        <div>
+                            {{vm.project.proposal.professional.phoneNumber}}
+                        </div>
+
+                    </div>
+                    <div class="ml-50 f-l">
+                        <p class="proposal-company" ng-show="vm.project.proposal.professional.company.name">
+                            {{vm.project.proposal.professional.company.name}}
+                        </p>
+
+                        <p class="proposal-name">
+                            <span>{{vm.project.proposal.professional.lastName}} </span>
+                            {{vm.project.proposal.professional.firstName}}
+                        </p>
+
+                        <p class="proposal-place">
+                            Base in {{vm.project.proposal.professional.company.address.administrativeAreaLevel1}}
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="row no-margin">
+                    <div class="col-xs-12 ">
+                        <div id="map_canvas">
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                dragging="false">
+                                <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                            </ui-gmap-google-map>
+                        </div>
+                    </div>
+                </div>
+                <div class="proposal-offers no-m-lb">
+                    <div class="line">
+                        <span class="f-l proposal-offer-line-info"
+                              ng-show="!vm.project.proposal.price">Price</span><span
+                        class="f-l proposal-offer-line-info" ng-show="vm.project.proposal.price">{{vm.project.proposal.priceType}}</span><span
+                        class="f-r proposal-offer-line-res" ng-show="!vm.project.proposal.price">Need info to make a quote</span><span
+                        class="f-r proposal-offer-line-res proposal-price" ng-show="vm.project.proposal.price">{{vm.project.proposal.price}} €</span>
+                    </div>
+                    <div class="line mt-21" ng-show="vm.project.type != 'EMERGENCY'">
+                        <span class="f-l proposal-offer-line-info">Available on</span><span
+                        class="f-r proposal-offer-line-res" ng-show="!vm.project.proposal.startDate">Need info to schedule</span><span
+                        class="f-r proposal-offer-line-res" ng-show="vm.project.proposal.startDate">{{vm.project.proposal.startDate | date:'EEEE dd MMMM'}}</span>
+                    </div>
+                    <div class="line mt-21" ng-show="vm.projectTmp.type == 'EMERGENCY'">
+                        <span class="f-l proposal-offer-line-info">Available on</span><span
+                        class="f-r proposal-offer-line-res" ng-show="!vm.project.proposal.availability.date">Need info to schedule</span><span
+                        class="f-r proposal-offer-line-res" ng-show="vm.project.proposal.availability.date">{{vm.proposal.availability.date | date:'EEEE dd MMMM'}} <span>at </span> {{vm.getSlot()}}</span>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Where
+                            <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.projectTmp.address.name}}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            When
+                            <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.getWhen()}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Tags
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.getTags()}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Description
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description"
+                                      ng-hide="vm.editFlag"></textarea>
+                            <textarea class="custom-textarea-red" ng-model="vm.projectTmp.description"
+                                      ng-show="vm.editFlag"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Photos / Videos
+                        </div>
+                        <div class="col-xs-12 description-sub-text row mb-15">
+                            <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images"
+                                 title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
+                                <span class="center-middle img-comment" ng-show="media.description"
+                                      ng-click="vm.editImage(media)"></span>
+                                <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
+                                          ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
+                                    <cl-transformation height="92" width="92" crop="fill"/>
+                                </cl-image>
+                            </div>
+                            <div class="col-md-3 no-padding" ngf-drop="vm.uploadFiles($files)"
+                                 ngf-drag-over-class="dragOverClass($event)" ng-model="files" ng-multiple="false"
+                                 ng-show="vm.editFlag">
+                                <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                                     ngf-accept="'image/*'" ngf-max-size="5MB">
+                                    <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row no-margin w-900 center addr">
-        <div class="col-xs-3" ng-show="vm.newAddrFlag">
-          <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+
+
+        <div class="menu-r" ng-class="{'top-120': !vm.pro}" ng-show="vm.proposal.status != 'SELECTED'">
+            <div ng-show="!vm.proDetails">
+                <div ng-show="vm.pro">
+                    <p>
+                        {{vm.projectTmp.address.name}}
+                    </p>
+
+                    <p>
+                        {{vm.getWhen()}}
+                    </p>
+
+                    <p>
+                        Post {{vm.projectTmp.published | date:'dd MMM yyyy'}}
+                    </p>
+
+                    <button type="button" class="button btn" ng-click="vm.pro = false">PROJECT DETAILS</button>
+                </div>
+                <div ng-show="!vm.pro">
+                    <p>
+                        {{vm.projectTmp.proposals.length}} propositions
+                    </p>
+
+                    <button type="button" class="button btn" ng-click="vm.pro = true">ORDERS</button>
+                </div>
+            </div>
+            <div ng-show="vm.proDetails">
+                <div>
+                    <p class="hire">
+                        Hire this pro for your need
+                    </p>
+                    <button type="button" class="button btn" ng-click="vm.hireFlag = true">HIRE</button>
+                    <button type="button" class="button btn" ng-click="vm.rateFlag = true"
+                            ng-init="vm.rateFlag = false">RATE
+                    </button>
+                </div>
+
+            </div>
+
+
         </div>
-        <div class="no-padding mb-39" ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
-          <div class="inner-addon right-addon">
-            <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
-            <i class="glyphicon glyphicon-map-marker"></i>
-            <input vs-google-autocomplete="options"
-            options="options"
-            ng-model="address.name"
-            vs-place="address.place"
-            vs-place-id="address.components.placeId"
-            vs-street-number="address.components.streetNumber"
-            vs-street="address.components.street"
-            vs-city="address.components.city"
-            vs-state="address.components.state"
-            vs-country-short="address.components.countryCode"
-            vs-country="address.components.country"
-            vs-post-code="address.components.postCode"
-            vs-district="address.components.district"
-            vs-latitude="address.components.location.lat"
-            vs-longitude="address.components.location.long"
 
-            type="text"
-            name="address"
-            id="address"
-            placeholder="Enter address" class="input-custom">
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <div class="popUp-footer">
-
-      <div  ng-click="vm.whereFlag = fasssslse">
-        CANCEL
-      </div>
-      <div  ng-click="vm.changeWhere()">
-        CONFIRM
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="popUp" ng-show="vm.whenFlag">
-  <div class="popUp-container center-middle w-500" >
-    <div class="popUp-content">
-      <span class="boxclose" ng-click="vm.whenFlag = false"></span>
-      <h4>When ?</h4>
-      <div ng-show="vm.project.type == 'EMERGENCY'">
-        <div class="row center no-margin w-500">
-          <div class="col-xs-12 row line-date">
-
-
-            <div class="col-xs-3">
-
-            </div>
-            <div class="col-xs-3">
-              {{vm.J1.date | date:"EEE"}}
-            </div>
-            <div class="col-xs-3">
-              {{vm.J2.date | date:"EEE"}}
-            </div>
-            <div class="col-xs-3">
-              {{vm.J3.date | date:"EEE"}}
-            </div>
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              Toute la journée
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.all = !vm.J1.all; vm.all(vm.J1)" ng-init="vm.J1.all = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.all"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.all = !vm.J2.all; vm.all(vm.J2)" ng-init="vm.J2.all = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.all"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.all = !vm.J3.all; vm.all(vm.J3)" ng-init="vm.J3.all = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.all"></span>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              7h-9h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c1 = !vm.J1.c1; vm.J1.all = false" ng-class="vm.J1.c1Disabled" ng-init="vm.J1.c1 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c1 && vm.J1.c1Disabled != 'checkbox-disabled'"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c1 = !vm.J2.c1; vm.J2.all = false" ng-init="vm.J2.c1 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c1"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c1 = !vm.J3.c1; vm.J3.all = false" ng-init="vm.J3.c1 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c1"></span>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              9h-12h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c2 = !vm.J1.c2; vm.J1.all = false" ng-class="vm.J1.c2Disabled" ng-init="vm.J1.c2 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c2 && vm.J1.c2Disabled != 'checkbox-disabled'"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c2 = !vm.J2.c2; vm.J2.all = false" ng-init="vm.J2.c2 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c2"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c2 = !vm.J3.c2; vm.J3.all = false" ng-init="vm.J3.c2 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c2"></span>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              12h-14h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c3 = !vm.J1.c3; vm.J1.all = false" ng-class="vm.J1.c3Disabled" ng-init="vm.J1.c3 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c3 && vm.J1.c3Disabled != 'checkbox-disabled'"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c3 = !vm.J2.c3; vm.J2.all = false" ng-init="vm.J2.c3 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c3"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c3 = !vm.J3.c3; vm.J3.all = false" ng-init="vm.J3.c3 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c3"></span>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              14h-16h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c4 = !vm.J1.c4; vm.J1.all = false" ng-class="vm.J1.c4Disabled" ng-init="vm.J1.c4 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c4 && vm.J1.c4Disabled != 'checkbox-disabled'"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c4 = !vm.J2.c4; vm.J2.all = false" ng-init="vm.J2.c4 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c4"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c4 = !vm.J3.c4; vm.J3.all = false" ng-init="vm.J3.c4 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c4"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              16h-18h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c5 = !vm.J1.c5; vm.J1.all = false" ng-class="vm.J1.c5Disabled" ng-init="vm.J1.c5 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c5 && vm.J1.c5Disabled != 'checkbox-disabled'"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c5 = !vm.J2.c5; vm.J2.all = false" ng-init="vm.J2.c5 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c5"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c5 = !vm.J3.c5; vm.J3.all = false" ng-init="vm.J3.c5 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c5"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              18h-20h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c6 = !vm.J1.c6; vm.J1.all = false" ng-class="vm.J1.c6Disabled" ng-init="vm.J1.c6 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c6 && vm.J1.c6Disabled != 'checkbox-disabled'"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c6 = !vm.J2.c6; vm.J2.all = false" ng-init="vm.J2.c6 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c6"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c6 = !vm.J3.c6; vm.J3.all = false" ng-init="vm.J3.c6 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c6"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 row line-date">
-            <div class="col-xs-3">
-              Après 20h
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J1.c7 = !vm.J1.c7; vm.J1.all = false" ng-init="vm.J1.c7 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c7"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J2.c7 = !vm.J2.c7; vm.J2.all = false" ng-init="vm.J2.c7 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c7"></span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="checkbox-style center-middle" ng-click="vm.J3.c7 = !vm.J3.c7; vm.J3.all = false" ng-init="vm.J3.c7 = false">
-                <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c7"></span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div ng-show="vm.project.type != 'EMERGENCY'">
-        <ul class="questions-ul center no-padding">
-          <li class="question-li center" ng-class="vm.child0" ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
-            On a specific date
-          </li>
-          <li ng-show="vm.dateSelected" class="custom-li-date question-li center" ng-click="vm.unSelectdate()">
-            {{vm.dt | date:'dd-MM-yyyy'}}
-          </li>
-          <li ng-show="vm.dateFlag" class="list-style-none">
-            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
-              <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true" class="well well-sm custom-date" custom-class="getDayClass(date, mode)"></uib-datepicker>
-            </div>
-          </li>
-          <li class="question-li center" ng-class="vm.child1" ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
-            Within a week
-          </li>
-          <li class="question-li center" ng-class="vm.child2" ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
-            Within a month
-          </li>
-          <li class="question-li center" ng-class="vm.child3" ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
-            I am a flexible on the start date
-          </li>
-        </ul>
-        <p class="error center" ng-show="vm.error.date.flag">
-          {{vm.error.date.message}}
-        </p>
-      </div>
-    </div>
-    <div class="popUp-footer">
-      <div  ng-click="vm.whenFlag = false">
-        CANCEL
-      </div>
-      <div  ng-click="vm.changeWhen()">
-        CONFIRM
-      </div>
 
     </div>
-  </div>
-</div>
+
+
+    <div class="popUp" ng-show="vm.rateFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.rateFlag = false"></span>
+                <h4>Rate your pro </h4>
+
+                <p class="text-center">
+                    Merci d'avoir choisi YakaClub pour vos travaux
+                </p>
+
+                <div class="rate-box">
+                    <p class="rate-project-title text-center">
+                        {{vm.project.title}}
+                    </p>
+
+                    <p class="rate-link text-center">
+                        <a>View details</a>
+                    </p>
+                    <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}"
+                              class="img-circle center" format="png"
+                              ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
+                        <cl-transformation height="80" width="80" crop="fill"/>
+                    </cl-image>
+                    <!-- <img class="img-circle avatar-pro" ng-src="{{p.proposals[3].professional.avatarUrl}}" ng-show="p.proposals[3].professional.avatarUrl"/> -->
+                    <div class="img-default-preview center" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
+                        {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] |
+                        uppercase}}
+                    </div>
+                    <p class="rate-info">
+                        Would yo recommend {{vm.proposal.professional.company.name}} to your friends ?
+                    </p>
+
+                    <div class="rate-btn center">
+                        <div class=" img-circle f-l">
+                            <img src="icons/mdpi/ic_like_empty.png" class="rate-like"/>
+                        </div>
+                        <div class="img-circle f-r">
+                            <img src="icons/mdpi/ic_pen_edit.png" class="rate-dislike "/>
+                        </div>
+                    </div>
+                </div>
+                <p class="rate-cat-info">
+                    Selectionnez 3 crtières qui définissent cet artisan
+                </p>
+
+                <div class="row">
+                    <div class="col-md-6" ng-repeat="c in criteria">
+                        <div class="criteria">
+                            {{c.name}}
+                        </div>
+                    </div>
+                </div>
+                <md-input-container class="md-block">
+                    <label></label>
+                    <textarea placeholder="Ajoutez un commentaire" ng-model="vm.rateComment"
+                              md-select-on-focus></textarea>
+                </md-input-container>
+                <button type="button" class="button btn btn-popUp">SEND</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp" ng-show="vm.trashFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.trashFlag = false"></span>
+                <h4>Are you sure ? </h4>
+
+                <p>
+                    It’s generally better to update or to draft a published project.
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.trashFlag = false">
+                    CANCEL
+                </div>
+                <div ng-click="vm.deleteProject()">
+                    DELETE
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp" ng-show="vm.hireFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.hireFlag = false"></span>
+                <h4>Hire this Pro ?</h4>
+
+                <p class="info-popUp">
+                    The others Pro will be notified of your choice, then you can no longer continue to chat with them
+                    for this project.
+                </p>
+
+                <p class="info-popUp-comp">
+                    Send this message to your Pro :
+                </p>
+                <textarea class="custom-textarea-popUp" ng-model="vm.hireMessage"></textarea>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.hireFlag = false">
+                    CANCEL
+                </div>
+                <div ng-click="vm.hire(vm.proposal.id)">
+                    CONFIRME
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp" ng-show="vm.saveFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.saveFlag = false"></span>
+                <h4>Are you sure ? </h4>
+
+                <p>
+                    Updating a published project will send a notification to the Pro concerned,
+                    if you already have offers, they could cancel them.
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.cancel()">
+                    CANCEL
+                </div>
+                <div ng-click="vm.update()">
+                    UPDATE
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp img-preview-size" ng-show="vm.imageFlag" ng-click="vm.imageFlag = false">
+        <div class="popUp-container center-middle w-90p h-90p" ng-click="$event.stopPropagation()">
+            <div class="popUp-content img-preview-popUp">
+                <span class="boxclose" ng-click="vm.imageFlag = false"></span>
+                <h4>Delete or Update description</h4>
+                <cl-image public-id="{{vm.imgTmp.cloudinaryPublicId}}" format="png" class="center mb-39">
+                </cl-image>
+                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmp.description"
+                          ng-change="vm.limitLength(vm.imgTmp, 'description', 140)"></textarea>
+
+                <div class="img-desc-length">
+                    {{vm.imgTmp.description.length}}/140
+                </div>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.deleteImg()">
+                    DELETE
+                </div>
+                <div ng-click="vm.updateImg()">
+                    UPDATE
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
+        <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
+            <div class="popUp-content no-margin img-preview-popUp">
+                <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
+                <h4>Preview</h4>
+                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
+                </cl-image>
+                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
+                          disabled></textarea>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp" ng-show="vm.draftFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.draftFlag = false"></span>
+                <h4>Are you sure ? </h4>
+
+                <p>
+                    Your project will be visible only for you, you will not receive anymore proposal (those already
+                    received will be invalided).
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.draftFlag = false">
+                    KEEP POSTED
+                </div>
+                <div ng-click="vm.draft()">
+                    CONFIRM DRAFT
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp" ng-show="vm.whereFlag">
+        <div class="popUp-container center-middle w-550">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.whereFlag = false"></span>
+                <h4>Where do need it?</h4>
+
+                <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
+                    <div class="col-md-4 no-padding">
+                        <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
+                            <option value="new">Create new one</option>
+                            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}"
+                                    ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 no-padding">
+                        <p class="">
+                            - Or create a new one
+                        </p>
+
+                    </div>
+                    <div class="col-md-4 no-padding">
+                        <input type="text" class="select-custom" ng-model="vm.newAddr.name"
+                               ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+                    </div>
+                </div>
+                <div class="row no-margin w-900 center addr">
+                    <div class="col-xs-3" ng-show="vm.newAddrFlag">
+                        <input type="text" class="select-custom" ng-model="vm.newAddr.name"
+                               ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+                    </div>
+                    <div class="no-padding mb-39" ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
+                        <div class="inner-addon right-addon">
+                            <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <input vs-google-autocomplete="options"
+                                   options="options"
+                                   ng-model="address.name"
+                                   vs-place="address.place"
+                                   vs-place-id="address.components.placeId"
+                                   vs-street-number="address.components.streetNumber"
+                                   vs-street="address.components.street"
+                                   vs-city="address.components.city"
+                                   vs-state="address.components.state"
+                                   vs-country-short="address.components.countryCode"
+                                   vs-country="address.components.country"
+                                   vs-post-code="address.components.postCode"
+                                   vs-district="address.components.district"
+                                   vs-latitude="address.components.location.lat"
+                                   vs-longitude="address.components.location.long"
+
+                                   type="text"
+                                   name="address"
+                                   id="address"
+                                   placeholder="Enter address" class="input-custom">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="popUp-footer">
+
+                <div ng-click="vm.whereFlag = fasssslse">
+                    CANCEL
+                </div>
+                <div ng-click="vm.changeWhere()">
+                    CONFIRM
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popUp" ng-show="vm.whenFlag">
+        <div class="popUp-container center-middle w-500">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.whenFlag = false"></span>
+                <h4>When ?</h4>
+
+                <div ng-show="vm.project.type == 'EMERGENCY'">
+                    <div class="row center no-margin w-500">
+                        <div class="col-xs-12 row line-date">
+
+
+                            <div class="col-xs-3">
+
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J1.date | date:"EEE"}}
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J2.date | date:"EEE"}}
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J3.date | date:"EEE"}}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                Toute la journée
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.all = !vm.J1.all; vm.all(vm.J1)" ng-init="vm.J1.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.all"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.all = !vm.J2.all; vm.all(vm.J2)" ng-init="vm.J2.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.all"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.all = !vm.J3.all; vm.all(vm.J3)" ng-init="vm.J3.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.all"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                7h-9h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c1 = !vm.J1.c1; vm.J1.all = false" ng-class="vm.J1.c1Disabled"
+                                     ng-init="vm.J1.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c1 && vm.J1.c1Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c1 = !vm.J2.c1; vm.J2.all = false" ng-init="vm.J2.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c1"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c1 = !vm.J3.c1; vm.J3.all = false" ng-init="vm.J3.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c1"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                9h-12h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c2 = !vm.J1.c2; vm.J1.all = false" ng-class="vm.J1.c2Disabled"
+                                     ng-init="vm.J1.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c2 && vm.J1.c2Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c2 = !vm.J2.c2; vm.J2.all = false" ng-init="vm.J2.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c2"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c2 = !vm.J3.c2; vm.J3.all = false" ng-init="vm.J3.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c2"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                12h-14h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c3 = !vm.J1.c3; vm.J1.all = false" ng-class="vm.J1.c3Disabled"
+                                     ng-init="vm.J1.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c3 && vm.J1.c3Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c3 = !vm.J2.c3; vm.J2.all = false" ng-init="vm.J2.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c3"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c3 = !vm.J3.c3; vm.J3.all = false" ng-init="vm.J3.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c3"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                14h-16h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c4 = !vm.J1.c4; vm.J1.all = false" ng-class="vm.J1.c4Disabled"
+                                     ng-init="vm.J1.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c4 && vm.J1.c4Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c4 = !vm.J2.c4; vm.J2.all = false" ng-init="vm.J2.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c4"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c4 = !vm.J3.c4; vm.J3.all = false" ng-init="vm.J3.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c4"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                16h-18h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c5 = !vm.J1.c5; vm.J1.all = false" ng-class="vm.J1.c5Disabled"
+                                     ng-init="vm.J1.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c5 && vm.J1.c5Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c5 = !vm.J2.c5; vm.J2.all = false" ng-init="vm.J2.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c5"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c5 = !vm.J3.c5; vm.J3.all = false" ng-init="vm.J3.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c5"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                18h-20h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c6 = !vm.J1.c6; vm.J1.all = false" ng-class="vm.J1.c6Disabled"
+                                     ng-init="vm.J1.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c6 && vm.J1.c6Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c6 = !vm.J2.c6; vm.J2.all = false" ng-init="vm.J2.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c6"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c6 = !vm.J3.c6; vm.J3.all = false" ng-init="vm.J3.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c6"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                Après 20h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c7 = !vm.J1.c7; vm.J1.all = false" ng-init="vm.J1.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c7"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c7 = !vm.J2.c7; vm.J2.all = false" ng-init="vm.J2.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c7"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c7 = !vm.J3.c7; vm.J3.all = false" ng-init="vm.J3.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c7"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.project.type != 'EMERGENCY'">
+                    <ul class="questions-ul center no-padding">
+                        <li class="question-li center" ng-class="vm.child0"
+                            ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
+                            On a specific date
+                        </li>
+                        <li ng-show="vm.dateSelected" class="custom-li-date question-li center"
+                            ng-click="vm.unSelectdate()">
+                            {{vm.dt | date:'dd-MM-yyyy'}}
+                        </li>
+                        <li ng-show="vm.dateFlag" class="list-style-none">
+                            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                                <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true"
+                                                class="well well-sm custom-date"
+                                                custom-class="getDayClass(date, mode)"></uib-datepicker>
+                            </div>
+                        </li>
+                        <li class="question-li center" ng-class="vm.child1"
+                            ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
+                            Within a week
+                        </li>
+                        <li class="question-li center" ng-class="vm.child2"
+                            ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+                            Within a month
+                        </li>
+                        <li class="question-li center" ng-class="vm.child3"
+                            ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+                            I am a flexible on the start date
+                        </li>
+                    </ul>
+                    <p class="error center" ng-show="vm.error.date.flag">
+                        {{vm.error.date.message}}
+                    </p>
+                </div>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.whenFlag = false">
+                    CANCEL
+                </div>
+                <div ng-click="vm.changeWhen()">
+                    CONFIRM
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
