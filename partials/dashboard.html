@@ -1,152 +1,167 @@
 <section class="view">
-  <div class="header-menu">
-    <ng-include src="'partials/menuHamburger.html'"></ng-include>
-    <div class="title">
-      MY DASHBOARD
-    </div>
-
-    <a ui-sref="login"><div class="logout">
-      Log Out
-    </div>
-    </a>
-  </div>
-  <div class="page-content">
-    
-    <div class="content-slide p-20">
-      <div class="box">
-        <div class="box-content">
-          <div class="header-box">
-            <p>
-              INBOX
-            </p>
-          </div>
-
+    <div class="header-menu">
+        <ng-include src="'partials/menuHamburger.html'"></ng-include>
+        <div class="title">
+            MY DASHBOARD
         </div>
-      </div>
-      <div class="box">
-        <div class="box-content">
-          <div class="header-box">
-            <p>
-              PROJECTS
-            </p>
-          </div>
-          <div class="box-body">
-            <div class="is-empty" ng-show="vm.dashboardProjects.length == 0">
-              <p>
-                You don't have any project yet
-              </p>
-              <a ui-sref="new-project"><button type="button" class="post-job-button">POST A JOB</button></a>
+
+        <a ui-sref="login">
+            <div class="logout">
+                Log Out
             </div>
-            <ul class="no-padding">
-
-
-              <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index" title="{{p.title}}" ng-click="vm.selectProject(p)">
-                <div class="row no-margin">
-                  <div class="col-xs-1">
-                    <i class="fa fa-circle" ng-class="p.status"></i>
-                  </div>
-                  <div class="col-xs-8">
-                    <div>
-                      <div class="title-line">
-                        <label ng-show="p.type == 'EMERGENCY'" ng-click="vm.selectProject(p)" class="cursor-pointer">Emergency - </label>
-                        <p class="project-title"  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                          {{p.title}}
-                        </p>
-                      </div>
-
-                      <div class="info-line">
-                        <p class="project-date" ng-if="p.desiredDatePeriod != 'NONE'">
-                          {{p.desiredDate | date:'dd MMM yyyy'}} -
-                        </p>
-                        <p class="project-date" ng-if="p.desiredDatePeriod == 'NONE'">
-                          I am flexible -
-                        </p>
-                        <p class="project-address">
-                          {{p.address.name}}
-                        </p>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-xs-3">
-                    <div class="propositions" ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
-                      <p>
-                        Propositions
-                      </p>
-                      <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'"  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                        {{p.proposals.length}}
-                      </p>
-                      <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
-                        0
-                      </p>
-                    </div>
-                    <div class="propositions" ng-show="p.status == 'ONGOING_PROS_PRESELECTED'">
-                      <p ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                        Pro selected
-                      </p>
-                      <p  >
-                        {{p.professional.companyName}}
-                      </p>
-                    </div>
-                    <div class="propositions" ng-show="p.status == 'ONGOING_RATE_PRO'">
-                      <p  ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                        Waiting end project
-                      </p>
-                      <p>
-                        {{p.professional.companyName}}
-                      </p>
-                    </div>
-                    <div class="propositions" ng-show="p.status == 'DRAFT'">
-                      <p>
-                        {{p.status}}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </li>
-            </ul>
-          </div>
-          <div class="footer-box" ng-show="vm.dashboardProjects.length > 0">
-            <a ui-sref="my-projects" class="link-show-all">
-              show all projects ({{vm.count}})
-            </a>
-            <a ui-sref="new-project" class="link-post-job">
-              post a job
-          </a>
-          </div>
-        </div>
-      </div>
-      <div class="box">
-        <div class="box-content">
-          <div class="header-box">
-            <p>
-              MY PLACES
-            </p>
-          </div>
-          <div class="is-empty" ng-show="vm.dashboardAddress.length == 0">
-            <p>
-              You don't have any adress yet
-            </p>
-            <button type="button" class="post-job-button">Add an address</button>
-          </div>
-        </div>
-      </div>
-      <div class="box">
-        <div class="box-content">
-          <div class="header-box">
-            <p>
-              FAVORITES PRO
-            </p>
-          </div>
-          <div class="is-empty" ng-show="vm.dashboardPro.length == 0">
-            <p>
-              You don't have any pro yet
-            </p>
-            <button type="button" class="post-job-button">ADD A PRO</button>
-          </div>
-        </div>
-      </div>
+        </a>
     </div>
-  </div>
+    <div class="page-content">
+
+        <div class="content-slide p-20">
+            <div class="box">
+                <div class="box-content">
+                    <div class="header-box">
+                        <p>
+                            INBOX
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-content">
+                    <div class="header-box">
+                        <p>
+                            PROJECTS
+                        </p>
+                    </div>
+                    <div class="box-body">
+                        <div class="is-empty" ng-show="vm.dashboardProjects.length == 0">
+                            <p>
+                                You don't have any project yet
+                            </p>
+                            <a ui-sref="new-project">
+                                <button type="button" class="post-job-button">POST A JOB</button>
+                            </a>
+                        </div>
+                        <ul class="no-padding">
+
+
+                            <li class="dashboard-project" ng-repeat="p in vm.dashboardProjects track by $index"
+                                title="{{p.title}}" ng-click="vm.selectProject(p)">
+                                <div class="row no-margin">
+                                    <div class="col-xs-1">
+                                        <i class="fa fa-circle" ng-class="p.status"></i>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div>
+                                            <div class="title-line">
+                                                <label ng-show="p.type == 'EMERGENCY'" ng-click="vm.selectProject(p)"
+                                                       class="cursor-pointer">Emergency - </label>
+
+                                                <p class="project-title"
+                                                   ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                                                    {{p.title}}
+                                                </p>
+                                            </div>
+
+                                            <div class="info-line">
+                                                <p class="project-date" ng-if="p.desiredDatePeriod != 'NONE'">
+                                                    {{p.desiredDate | date:'dd MMM yyyy'}} -
+                                                </p>
+
+                                                <p class="project-date" ng-if="p.desiredDatePeriod == 'NONE'">
+                                                    I am flexible -
+                                                </p>
+
+                                                <p class="project-address">
+                                                    {{p.address.name}}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="propositions"
+                                             ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
+                                            <p>
+                                                Propositions
+                                            </p>
+
+                                            <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'"
+                                               ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                                                {{p.proposals.length}}
+                                            </p>
+
+                                            <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
+                                                0
+                                            </p>
+                                        </div>
+                                        <div class="propositions" ng-show="p.status == 'ONGOING_PROS_PRESELECTED'">
+                                            <p ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                                                Pro selected
+                                            </p>
+
+                                            <p>
+                                                {{p.professional.companyName}}
+                                            </p>
+                                        </div>
+                                        <div class="propositions" ng-show="p.status == 'ONGOING_RATE_PRO'">
+                                            <p ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                                                Waiting end project
+                                            </p>
+
+                                            <p>
+                                                {{p.professional.companyName}}
+                                            </p>
+                                        </div>
+                                        <div class="propositions" ng-show="p.status == 'DRAFT'">
+                                            <p>
+                                                {{p.status}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-box" ng-show="vm.dashboardProjects.length > 0">
+                        <a ui-sref="my-projects" class="link-show-all">
+                            show all projects ({{vm.count}})
+                        </a>
+                        <a ui-sref="new-project" class="link-post-job">
+                            post a job
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-content">
+                    <div class="header-box">
+                        <p>
+                            MY PLACES
+                        </p>
+                    </div>
+                    <div class="is-empty" ng-show="vm.dashboardAddress.length == 0">
+                        <p>
+                            You don't have any adress yet
+                        </p>
+                        <button type="button" class="post-job-button">Add an address</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-content">
+                    <div class="header-box">
+                        <p>
+                            FAVORITES PRO
+                        </p>
+                    </div>
+                    <div class="is-empty" ng-show="vm.dashboardPro.length == 0">
+                        <p>
+                            You don't have any pro yet
+                        </p>
+                        <button type="button" class="post-job-button">ADD A PRO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

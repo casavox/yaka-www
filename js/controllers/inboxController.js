@@ -18,39 +18,39 @@
         vm.sendMessage = sendMessage;
         vm.loadMore = loadMore;
         var limit = 20;
-        var connectHeaders = {token:$localStorage.token};
+        var connectHeaders = {token: $localStorage.token};
         console.log($rootScope.state);
-        if ($rootScope.state.name == "inbox"){
+        if ($rootScope.state.name == "inbox") {
             vm.me = "CUSTOMER";
-            networkService.proposalGET($stateParams.proposalId, function(res){
+            networkService.proposalGET($stateParams.proposalId, function (res) {
                 console.log(res);
                 vm.proposal = res;
                 vm.pro = vm.proposal.professional;
                 vm.project = vm.proposal.project;
-                networkService.messagesGET($stateParams.proposalId, 1, limit, function(res){
+                networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
                     vm.messages = res;
                     console.log(res);
-                }, function(){
+                }, function () {
                     alertMsg.send("Error to get the messages historic", "warning");
                 });
-            }, function(){
+            }, function () {
                 alertMsg.send("Error to get the proposal's conversation", "warning");
             });
         }
-        else{
+        else {
             vm.me = "PRO";
-            networkService.proposalProGET($stateParams.proposalId, function(res){
+            networkService.proposalProGET($stateParams.proposalId, function (res) {
                 console.log(res);
                 vm.proposal = res;
                 vm.pro = vm.proposal.professional;
                 vm.project = vm.proposal.project;
-                networkService.messagesProGET($stateParams.proposalId, 1, limit, function(res){
+                networkService.messagesProGET($stateParams.proposalId, 1, limit, function (res) {
                     vm.messages = res;
                     console.log(res);
-                }, function(){
+                }, function () {
                     alertMsg.send("Error to get the messages historic", "warning");
                 });
-            }, function(){
+            }, function () {
                 alertMsg.send("Error to get the proposal's conversation", "warning");
             });
         }
@@ -59,13 +59,12 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                var subscription = $stomp.subscribe('/chat/'+$stateParams.proposalId, function (payload, headers, res) {
+                var subscription = $stomp.subscribe('/chat/' + $stateParams.proposalId, function (payload, headers, res) {
                     vm.messages.items.push(payload);
                 }, {
                     'token': $localStorage.token
                 });
             });
-
 
 
         function deleteImg() {
@@ -74,22 +73,22 @@
 
         function loadMore() {
             var page = Math.ceil(vm.messages.items.length / limit);
-            networkService.messagesGET($stateParams.proposalId, 1, limit, function(res){
+            networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
                 vm.messages = res;
                 console.log(res);
-            }, function(res){
+            }, function (res) {
                 alertMsg.send("Error to get the messages", "warning");
             });
         }
 
-        function uploadFiles(files, invalides){
-            if (invalides.length > 0){
+        function uploadFiles(files, invalides) {
+            if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Error : max size 5MB.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
-            angular.forEach(files, function(file){
+            angular.forEach(files, function (file) {
                 if (file && !file.$error) {
                     file.upload = $upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
@@ -116,28 +115,27 @@
         }
 
 
-
-        function sendMessage(){
-            if (vm.msg.text && vm.msg.text.length > 0 || vm.msg.cloudinaryPublicId){
-                if (vm.send == false){
+        function sendMessage() {
+            if (vm.msg.text && vm.msg.text.length > 0 || vm.msg.cloudinaryPublicId) {
+                if (vm.send == false) {
                     vm.send = true;
                     console.log(vm.msg);
-                    if (vm.me == "CUSTOMER"){
-                        networkService.sendMessage($stateParams.proposalId, vm.msg, function(res){
+                    if (vm.me == "CUSTOMER") {
+                        networkService.sendMessage($stateParams.proposalId, vm.msg, function (res) {
                             vm.glue = true;
                             vm.send = false;
                             vm.msg = {};
-                        }, function(res){
+                        }, function (res) {
                             vm.send = false;
                             alertMsg.send("Error to send message", "warning");
                         })
                     }
                     else {
-                        networkService.sendMessagePro($stateParams.proposalId, vm.msg, function(res){
+                        networkService.sendMessagePro($stateParams.proposalId, vm.msg, function (res) {
                             vm.glue = true;
                             vm.send = false;
                             vm.msg = {};
-                        }, function(){
+                        }, function () {
                             vm.send = false;
                             alertMsg.send("Error to send message", "warning");
                         })

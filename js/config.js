@@ -343,8 +343,8 @@ angular.module('Yaka')
             'ACTIVITY_CON_SWIMMINGPOOL_14080': "Piscine"
         });
         translateProvider.translations('fr', {
-'ACTIVITY_INSTALLATION': "Installation",
-                        'ACTIVITY_INSTALLATION': "Installation",
+            'ACTIVITY_INSTALLATION': "Installation",
+            'ACTIVITY_INSTALLATION': "Installation",
             'ACTIVITY_REPLACEMENT': "Remplacement",
             'ACTIVITY_REPAIR': "Réparation",
             'ACTIVITY_MAINTENANCE': "Maintenance",

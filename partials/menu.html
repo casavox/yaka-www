@@ -9,16 +9,20 @@
     </div>
     <ul class="menu-content">
         <a ui-sref="dashboard" ng-click="app.menu.closeMenu()">
-            <li ng-class="vm.getMenuItemClass('dashboard')" angular-ripple><i class="fa fa-tachometer"></i>DASHBOARD</li>
+            <li ng-class="vm.getMenuItemClass('dashboard')" angular-ripple><i class="fa fa-tachometer"></i>DASHBOARD
+            </li>
         </a>
         <a ui-sref="prodashboard" ng-click="app.menu.closeMenu()">
-            <li ng-class="vm.getMenuItemClass('prodashboard')" angular-ripple><i class="fa fa-tachometer"></i>DASHBOARD2 PRO</li>
+            <li ng-class="vm.getMenuItemClass('prodashboard')" angular-ripple><i class="fa fa-tachometer"></i>DASHBOARD2
+                PRO
+            </li>
         </a>
         <a ui-sref="inbox" ng-click="app.menu.closeMenu()">
             <li ng-class="vm.getMenuItemClass('inbox')" angular-ripple><i class="fa fa-inbox"></i>INBOX</li>
         </a>
         <a ui-sref="my-projects" ng-click="app.menu.closeMenu()">
-            <li ng-class="vm.getMenuItemClass('myprojects')" angular-ripple><i class="fa fa-archive"></i>MY PROJECTS</li>
+            <li ng-class="vm.getMenuItemClass('myprojects')" angular-ripple><i class="fa fa-archive"></i>MY PROJECTS
+            </li>
         </a>
         <a ui-sref="myplaces" ng-click="app.menu.closeMenu()">
             <li ng-class="vm.getMenuItemClass('myplaces')" angular-ripple><i class="fa fa-map-marker"></i>MY PLACES</li>
@@ -28,6 +32,7 @@
         </a>
     </ul>
 </div>
-<div class="contentOverlay col-xs-12 visible-xs visible-sm" ng-click="app.menu.closeMenu()" ng-class="app.menu.getOverlayClass()"
+<div class="contentOverlay col-xs-12 visible-xs visible-sm" ng-click="app.menu.closeMenu()"
+     ng-class="app.menu.getOverlayClass()"
      ng-swipe-left="app.menu.closeMenu()">
 </div>

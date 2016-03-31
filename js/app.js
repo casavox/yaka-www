@@ -22,24 +22,27 @@ angular.module('Yaka', [
 
 
 // facebook library API
-window.fbAsyncInit = function() {
+window.fbAsyncInit = function () {
     FB.init({
-        appId      : '847913895334564',
-        xfbml      : true,
-        version    : 'v2.5'
+        appId: '847913895334564',
+        xfbml: true,
+        version: 'v2.5'
     });
 };
 
-(function(d, s, id){
+(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -64,15 +67,11 @@ window.fbAsyncInit = function() {
             scopeDelimiter: ' ',
             display: 'popup',
             type: '2.0',
-            popupOptions: { width: 452, height: 633 }
+            popupOptions: {width: 452, height: 633}
         });
 
-        $translateProvider.translations('en', {
-
-        });
-        $translateProvider.translations('fr', {
-
-        });
+        $translateProvider.translations('en', {});
+        $translateProvider.translations('fr', {});
         $translateProvider.preferredLanguage('en');
 
 
@@ -175,20 +174,20 @@ window.fbAsyncInit = function() {
 
         //
         //Interceptor to put the token in the header for each http request
-        $httpProvider.interceptors.push(['$q', '$injector', '$localStorage', function($q, $injector, $localStorage) {
+        $httpProvider.interceptors.push(['$q', '$injector', '$localStorage', function ($q, $injector, $localStorage) {
             return {
                 'request': function (config) {
                     config.headers = config.headers || {};
                     if (angular.isUndefined($localStorage.token) == false && $localStorage.token && config.url != "https://api.cloudinary.com/v1_1/yaka/upload") {
                         config.headers.Authorization = $localStorage.token;
                     }
-                    else if (config.url == "https://api.cloudinary.com/v1_1/yaka/upload"){
+                    else if (config.url == "https://api.cloudinary.com/v1_1/yaka/upload") {
                         if (config.headers.Authorization)
                             delete config.headers.Authorization;
                     }
                     return config;
                 },
-                'responseError': function(response) {
+                'responseError': function (response) {
 
                     return $q.reject(response);
                 }
@@ -199,9 +198,7 @@ window.fbAsyncInit = function() {
 })();
 
 
-
-
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -210,13 +207,13 @@ window.fbAsyncInit = function() {
 
     function runBlock($rootScope, $localStorage, $injector) {
         $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams , fromState, fromParams){
+            function (event, toState, toParams, fromState, fromParams) {
                 $rootScope.menu = false;
                 $rootScope.from = fromState;
                 $rootScope.state = toState;
                 if ($rootScope.rate_pro && toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = false;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register"){
+                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
                     event.preventDefault();
                     $injector.get('$state').go('login');
                 }
