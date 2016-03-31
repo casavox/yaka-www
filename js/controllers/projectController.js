@@ -499,7 +499,7 @@
         });
 
         function update() {
-            vm.projectTmp.tags = vm.projectTmp.tags || [];
+            vm.projectTmp.activities = vm.projectTmp.activities || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
             networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
@@ -618,7 +618,7 @@
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
-                            tags: 'myphotoalbum',
+                            tags: 'project',
                             context: 'photo=' + $scope.title,
                             file: file
                         }
@@ -647,12 +647,12 @@
 
         function getTags() {
             var res = "";
-            if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0) {
-                for (var i = 0; i < vm.projectTmp.tags.length; i++) {
-                    if (i < vm.projectTmp.tags.length - 1)
-                        res += vm.projectTmp.tags[i].name + " - ";
+            if (vm.projectTmp.activities && vm.projectTmp.activities.length > 0) {
+                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
+                    if (i < vm.projectTmp.activities.length - 1)
+                        res += vm.projectTmp.activities[i].code + " - ";
                     else {
-                        res += vm.projectTmp.tags[i].name
+                        res += vm.projectTmp.activities[i].code
                     }
                 }
                 return res;
@@ -799,15 +799,15 @@
                             break;
                         case "ALL_DAY":
                             if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.all = true;
+                                vm.J1.all = true
                                 vm.all(vm.J1);
                             }
                             else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.all = true;
+                                vm.J2.all = true
                                 vm.all(vm.J2);
                             }
                             else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.all = true;
+                                vm.J3.all = true
                                 vm.all(vm.J3);
                             }
                             break;

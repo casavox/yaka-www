@@ -53,4 +53,5 @@ angular.module('Yaka')
                 $rootScope.msgQueu = [];
             }
         };
-    }]);
+    }]
+);

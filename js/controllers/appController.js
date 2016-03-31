@@ -89,7 +89,6 @@
             }
         };
 
-
         app.menu = {
             openMenu: function () {
                 menuOpened = true;

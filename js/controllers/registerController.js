@@ -79,6 +79,7 @@
             }
         };
 
+
         function succesRegister(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.token = res.token;

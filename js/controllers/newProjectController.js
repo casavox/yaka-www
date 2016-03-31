@@ -120,6 +120,7 @@
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
 
+
         function limitLength(obj, token, limit) {
             if (obj[token].length >= limit) {
                 obj[token] = obj[token].slice(0, limit);
@@ -153,7 +154,7 @@
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
-                            tags: 'myphotoalbum',
+                            tags: 'project',
                             context: 'photo=' + $scope.title,
                             file: file
                         }

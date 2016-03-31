@@ -17,8 +17,7 @@ angular.module('Yaka', [
     'ngMaterial',
     'internationalPhoneNumber',
     'bootstrapLightbox',
-    'luegg.directives',
-    'ngStomp']);
+    'angularMoment']);
 
 
 // facebook library API
@@ -95,6 +94,12 @@ window.fbAsyncInit = function () {
             })
             .state('dashboard', {
                 url: "/dashboard",
+                templateUrl: "partials/dashboard.html",
+                controller: 'DashboardController',
+                controllerAs: 'vm'
+            })
+            .state('inbox', {
+                url: "/inbox",
                 templateUrl: "partials/dashboard.html",
                 controller: 'DashboardController',
                 controllerAs: 'vm'
@@ -193,7 +198,6 @@ window.fbAsyncInit = function () {
                 }
             };
         }]);
-
     }
 })();
 
@@ -205,7 +209,7 @@ window.fbAsyncInit = function () {
         .module('Yaka')
         .run(runBlock);
 
-    function runBlock($rootScope, $localStorage, $injector) {
+    function runBlock($rootScope, $localStorage, $injector, amMoment) {
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
                 $rootScope.menu = false;
@@ -217,7 +221,8 @@ window.fbAsyncInit = function () {
                     event.preventDefault();
                     $injector.get('$state').go('login');
                 }
-
             })
+
+        amMoment.changeLocale('fr');
     }
 })();

@@ -7,9 +7,10 @@
 
     //
     //Network Service Routing
-    NetworkService.$inject = ['$http'];
+    NetworkService.$inject = ['$http']
     function NetworkService($http) {
         var baseUrl = "https://yaka-api.herokuapp.com";
+        //var baseUrl = "http://localhost:8080";
 
         return {
             /*
@@ -64,8 +65,8 @@
             professionalGET: function (success, error) {
                 $http.get(baseUrl + '/pro/me').success(success).error(error)
             },
-            proLeadsGET: function (type, chrono, success, error) {
-                $http.get(baseUrl + '/pro/leads?type=' + type + '&chrono=' + chrono).success(success).error(error)
+            proLeadsGET: function (type, sw_lat, sw_lng, ne_lat, ne_lng, success, error) {
+                $http.get(baseUrl + '/pro/leads?type=' + type + "&sw_lat=" + sw_lat + "&sw_lng=" + sw_lng + "&ne_lat=" + ne_lat + "&ne_lng=" + ne_lng).success(success).error(error)
             },
             proposalGET: function (data, success, error) {
                 $http.get(baseUrl + '/proposals/' + data).success(success).error(error)
@@ -105,6 +106,9 @@
             },
             proAboutMePUT: function (data, success, error) {
                 $http.put(baseUrl + '/pro/me/about', data).success(success).error(error)
+            },
+            proWorkAreaGET: function (success, error) {
+                $http.get(baseUrl + '/pro/me/workarea').success(success).error(error)
             },
             proWorkAreaPUT: function (data, success, error) {
                 $http.put(baseUrl + '/pro/me/workarea', data).success(success).error(error)

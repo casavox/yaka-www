@@ -20,7 +20,6 @@
 </style>
 <section class="view" ng-cloak>
 
-
     <div class="header-menu">
         <ng-include src="'partials/menuHamburger.html'"></ng-include>
         <div class="in-line min-w-44 arrow-nav" ng-show="!vm.proDetails && vm.pro">
@@ -725,6 +724,11 @@
         </div>
     </div>
 
+    <div class="popUp" ng-show="vm.hireFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.hireFlag = false"></span>
+                <h4>Hire this Pro ?</h4>
 
     <div class="popUp" ng-show="vm.saveFlag">
         <div class="popUp-container center-middle">
@@ -812,7 +816,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="popUp" ng-show="vm.whereFlag">
         <div class="popUp-container center-middle w-550">

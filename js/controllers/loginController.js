@@ -55,8 +55,8 @@
                 password: $scope.password
             };
             socialNetworkService.login(succesFLogin, errorFLogin);
-        };
 
+        };
 
         $scope.authenticate = function (provider) {
             $auth.authenticate(provider).then(function (res) {
