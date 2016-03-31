@@ -769,26 +769,26 @@ md-input-container{
     margin-bottom: 15px;
 }
 
-.corner{
-    height: 15px;
-    width: 15px;
-    transform: rotate(45deg);
+.corner {
+    height: 12px;
+    width: 12px;
+    transform: scaleY(0.5) rotate(45deg);
     background: white;
     float: left;
-    margin-left: 11px;
-    margin-right: -15px;
-    margin-top: 32px;
+    margin-left: 12px;
+    margin-right: -12px;
+    margin-top: 35px;
 }
 
-.corner-right{
-    height: 15px;
-    width: 15px;
-    transform: rotate(45deg);
+.corner-right {
+    height: 12px;
+    width: 12px;
+    transform: scaleY(0.5) rotate(45deg);
     background: #444444;
     float: right;
-    margin-left: -15px;
-    margin-right: -7px;
-    margin-top: 32px;
+    margin-left: -6px;
+    margin-right: -6px;
+    margin-top: 35px;
 }
 
 .inbox-message-content{
