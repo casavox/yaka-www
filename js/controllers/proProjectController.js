@@ -95,15 +95,15 @@
 
         function sendOffer() {
             if (vm.offer.comment && vm.offer.comment.length > 0 && vm.offer.comment.indexOf(' ') > -1 && ((vm.projectTmp.type == "EMERGENCY" && vm.offer.price && vm.offer.price.price && vm.offer.date && vm.offer.date.date) || (vm.projectTmp.type != "EMERGENCY"))) {
-                vm.offer.date.date = vm.offer.date.date || null;
-                vm.offer.comment = vm.offer.comment || "";
-                var formData = {
-                    project: {id: vm.projectTmp.id},
-                    price: parseInt(vm.offer.price.price),
-                    priceType: $filter('uppercase')(vm.offer.price.type),
-                    comment: vm.offer.comment
-                }
                 if (vm.projectTmp.type == 'EMERGENCY') {
+                    vm.offer.date.date = vm.offer.date.date || null;
+                    vm.offer.comment = vm.offer.comment || "";
+                    var formData = {
+                        project: {id: vm.projectTmp.id},
+                        price: parseInt(vm.offer.price.price),
+                        priceType: $filter('uppercase')(vm.offer.price.type),
+                        comment: vm.offer.comment
+                    }
                     formData.availability = {
                         date: $filter('date')(vm.offer.date.date, "yyyy-MM-dd"),
                         slot: vm.offer.date.slot
@@ -117,7 +117,18 @@
                     });
                 }
                 else {
-                    formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
+                    vm.offer.comment = vm.offer.comment || "";
+                    var formData = {
+                        project: {id: vm.projectTmp.id},
+                        comment: vm.offer.comment
+                    }
+                    if (vm.offer.price && vm.offer.price.price) {
+                        formData.price = parseInt(vm.offer.price.price);
+                        formData.priceType = $filter('uppercase')(vm.offer.price.type);
+                    }
+                    if (vm.offer.date && vm.offer.date.date) {
+                        formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
+                    }
                     networkService.proposalSmallPOST(formData, function (res) {
                         console.log(res);
                         alertMsg.send("Proposal sent.", "success");
