@@ -3,27 +3,23 @@
 
     angular
         .module('Yaka')
-        .controller('ProjectController', ProjectController);
+        .controller('ProposalController', ProposalController);
 
     //
     //Controller login
-    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams) {
+    ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope'];
+    function ProposalController($scope, $state, networkService, alertMsg,  $filter, $stateParams, $rootScope) {
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
         vm.editFlag = false;
         vm.proDetails = false;
         vm.editDescriptionFlag = false;
-        vm.selectProposal = selectProposal;
         vm.hireMessage = "Hi, I made my choice, I definitely choose you for my project.";
         vm.child0 = "";
         vm.child1 = "";
         vm.child2 = "";
         vm.child3 = "";
-        vm.deleteProject = deleteProject;
-        vm.editImage = editImage;
-        vm.editWhere = editWhere;
         vm.newAddrFlag = false;
         vm.dateSelected = false;
         vm.imagePreviewFlag = false;
@@ -31,24 +27,14 @@
         vm.project = {};
         vm.projectTmp = {};
         vm.prev = prev;
-        vm.deleteImg = deleteImg;
-        vm.updateImg = updateImg;
         vm.getWhen = getWhen;
         vm.getTags = getTags;
+        vm.closeProject = closeProject;
         vm.hire = hire;
-        vm.changeWhen = changeWhen;
-        vm.selectDateType = selectDateType;
-        vm.selectDate = selectDate;
-        vm.unSelectdate = unSelectdate;
         vm.dateType = "";
         vm.dateFlag = false;
         vm.initDate = initDate;
-        vm.editDescription = editDescription;
-        vm.edit = edit;
-        vm.update = update;
         vm.whenFlag = false;
-        vm.editWhen = editWhen;
-        vm.uploadFiles = uploadFiles;
         vm.limitLength = limitLength;
         vm.markerCoords = {};
         $scope.map = {
@@ -78,18 +64,12 @@
         vm.minDate.setDate(vm.minDate.getDate() + 2);
         vm.all = all;
         vm.whereFlag = false;
-        vm.cancel = cancel;
         vm.imageFlag = false;
-        vm.setAddress = setAddress;
         vm.newAddr = {};
-        vm.draft = draft;
         vm.calculateExp = calculateExp;
-        vm.changeWhere = changeWhere;
         vm.indexOfObject = indexOfObject;
-        vm.homeDetail = homeDetail;
         vm.verifNameAddr = verifNameAddr;
         vm.getSlot = getSlot;
-        vm.closeProject = closeProject;
         vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
         $scope.options = {
             types: ['address'],
@@ -116,43 +96,10 @@
             }
         };
 
-        vm.deleteProject = function() {
-            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId)
-            {
-                networkService.deleteProject($stateParams.projectId,
-                    function () {
-                        alertMsg.send("Your project has been deleted", "success");
-                        $state.go("my-projects");
-                    },
-                    function () {
-                        alertMsg.send("Error : project can't be deleted", "danger");
-                    }
-                );
-            }
-        };
 
-        vm.unpublishProject = function() {
-            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId)
-            {
-                networkService.unpublishProject($stateParams.projectId,
-                    function () {
-                        alertMsg.send("Your project has been unpublished", "success");
-                        $state.go("my-projects");
-                    },
-                    function () {
-                        alertMsg.send("Error : project can't be unpublished", "danger");
-                    }
-                );
-            }
-        };
-
-        function closeProject(){
-            networkService.closeProject(vm.project.proposal.id, function(res){
-                vm.project.status = "ONGOING_RATE_PRO";
-                vm.closeFlag = false;
-            }, function(res){
-                alertMsg.send("Error : project can't be close", "danger");
-            });
+        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId)
+        {
+            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
 
         networkService.profileGET(succesProfileGET, errorProfileGET);
@@ -166,8 +113,9 @@
         }
 
         function succesProposalAcceptPOST(res){
-            vm.proposal = res;
             vm.hireFlag = false;
+            if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
+                networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
             alertMsg.send("Proposal selected", "success");
         }
 
@@ -269,11 +217,8 @@
             var ageDate = new Date(ageDifMs);
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         }
-
-        function selectProposal(p){
-            networkService.proposalGET(p.id, succesProposalGET, errorProposalGET);
-
-        }
+        if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
+            networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
 
         function succesProposalGET(res){
             vm.proposal = res;
@@ -282,24 +227,11 @@
             console.log(res);
         }
 
-        function homeDetail(){
-            vm.proposal = {};
-            vm.pro = true;
-            vm.proDetails = false;
-        }
-
         function errorProposalGET(res){
             alertMsg.send("Error. Can't get this proposal", "danger");
         }
 
-        function draft(){
-            vm.projectTmp.status = "DRAFT";
-            update();
-        }
 
-        function deleteProject(){
-
-        }
 
         function limitLength(obj, token, limit){
             if (obj[token].length >= limit){
@@ -307,69 +239,10 @@
             }
         }
 
-        function updateImg(){
-            for (var i = 0; i < vm.projectTmp.images.length; i++) {
-                if (vm.projectTmp.images[i].cloudinaryPublicId == vm.imgTmp.cloudinaryPublicId){
-                    vm.projectTmp.images[i].description == vm.imgTmp.description;
-                    vm.imageFlag = false;
-                    break;
-                }
-            }
-        }
 
-        function deleteImg(){
-            for (var i = 0; i < vm.projectTmp.images.length; i++) {
-                if (vm.projectTmp.images[i].cloudinaryPublicId == vm.imgTmp.cloudinaryPublicId){
-                    vm.projectTmp.images.splice(i, 1);
-                    vm.imageFlag = false;
-                    break;
-                }
-            }
-        }
 
-        function editImage(media){
-            if (vm.editFlag){
-                vm.imgTmp = media;
-                vm.imageFlag = true;
-            }
-            else{
-                vm.imgTmpPreview = media;
-                vm.imagePreviewFlag = true;
-            }
-        }
 
-        function changeWhere(){
-            if (vm.myAddress == "new"){
-                vm.projectTmp.address.name  = vm.newAddr.name;
-                vm.projectTmp.address.address = $scope.address.name;
-                vm.whereFlag = false;
-            }
-            else {
-                for (var i = 0; i < vm.user.addresses.length; i++) {
-                    if (vm.user.addresses[i].address == vm.myAddress){
-                        vm.projectTmp.address.name  = vm.user.addresses[i].name;
-                        vm.projectTmp.address.address = vm.myAddress;
-                        vm.whereFlag = false;
-                        break;
-                    }
-                }
-            }
-        }
 
-        function setAddress(){
-            if (vm.myAddress == "new"){
-                vm.newAddrFlag = true;
-                $scope.address.name = "";
-                vm.continueAddress = false;
-            }
-            else {
-                $scope.address.name = vm.myAddress;
-                vm.continueAddress = true;
-                vm.newAddrFlag = false;
-                vm.newAddr.name = "";
-            }
-            vm.disabledAddr = true;
-        }
 
         function succesProfileGET(res){
             vm.user = res;
@@ -382,135 +255,8 @@
             vm.continueAddress = false;
             vm.newAddrFlag = true;
             vm.myAddress = "new";
-            // alertMsg.send("Error : Impossible de charger les addresses existantes", "danger");
         }
 
-        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId)
-        {
-            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
-        }
-
-        function editWhere(){
-            vm.whereFlag = true;
-        }
-
-        function initDate(j, tab){
-            var tmp = "";
-            if (j.all && j.allDisabled != "checkbox-disabled"){
-                tmp = "ALL_DAY";
-                tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
-            }
-            else {
-                for (var i = 0; i < 7; i++) {
-                    if (j["c"+(i+1)] && j["c"+(i+1)+"Disabled"] != "checkbox-disabled"){
-                        if (i == 0)
-                            tmp = "7H_9H";
-                        else if (i == 1) {
-                            tmp = "9H_12H";
-                        }
-                        else if (i == 2) {
-                            tmp = "12H_14H";
-                        }
-                        else if (i == 3) {
-                            tmp = "14H_16H";
-                        }
-                        else if (i == 4) {
-                            tmp = "16H_18H";
-                        }
-                        else if (i == 5) {
-                            tmp = "18H_20H"
-                        }
-                        else if (i == 6) {
-                            tmp = "AFTER_20H";
-                        }
-                        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
-                    }
-                }
-            }
-        }
-
-        function changeWhen(){
-            if (vm.projectTmp.type == "EMERGENCY"){
-                var formData = [];
-                vm.initDate(vm.J1, formData);
-                vm.initDate(vm.J2, formData);
-                vm.initDate(vm.J3, formData);
-                if (formData.length > 0){
-                    vm.projectTmp.availabilities = formData;
-                    vm.whenFlag = false;
-                }
-                else {
-                    vm.error.date.flag = true;
-                    vm.error.date.message = "At least a slot is required";
-                    return
-                }
-            }
-            else {
-                if (vm.dateType){
-                    vm.projectTmp.desiredDatePeriod = vm.dateType;
-                    if (vm.dateType == "SPECIFIC"){
-                        vm.projectTmp.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
-                    }
-                    vm.whenFlag = false;
-                }
-                else {
-                    vm.error.date.flag = true;
-                    vm.error.date.message = "At least a slot is required";
-                    return
-                }
-            }
-        }
-
-        function cancel(){
-            vm.projectTmp = angular.copy(vm.project);
-            vm.editDescriptionFlag = false;
-            vm.editFlag = false;
-            vm.whereFlag = false;
-            vm.saveFlag = false;
-        }
-
-        function selectDateType(type){
-            vm.dateSelected = false;
-            vm.dateFlag = false;
-            vm.dateType = type;
-        }
-
-        function selectDate(){
-            vm.dateFlag = true;
-        }
-
-        function unSelectdate(){
-            vm.dateSelected = false;
-            vm.dateFlag = true;
-        }
-
-        $scope.$watch("vm.dt", function(newVal, oldVal){
-            if(newVal !== oldVal){
-                if (vm.dateFlag)
-                    vm.dateSelected = true;
-                vm.dateFlag = false;
-                vm.error.date.flag = false;
-                vm.error.date.message = "At least a slot is required";
-            }
-        });
-
-        function update(){
-            vm.projectTmp.tags = vm.projectTmp.tags || [];
-            vm.projectTmp.images = vm.projectTmp.images || [];
-            vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
-        }
-
-        function succesProfilePUT(res){
-            vm.cancel();
-            alertMsg.send("Project updated.", "success");
-            succesProjectGET(res);
-        }
-
-        function errorProfilePUT(){
-            vm.cancel();
-            alertMsg.send("Error. the server can't update the project.", "danger");
-        }
         function all(j){
             if (j.all == true){
                 j.all = true;
@@ -596,50 +342,6 @@
             }
         }
 
-        function editWhen(){
-            vm.whenFlag = true;
-        }
-
-        function uploadFiles(files, invalides, index){
-            if (invalides.length > 0){
-                if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
-            }
-            $scope.files = files;
-            if (!$scope.files) return;
-            angular.forEach(files, function(file){
-                if (file && !file.$error) {
-                    file.upload = $upload.upload({
-                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-                        data: {
-                            upload_preset: cloudinary.config().upload_preset,
-                            tags: 'myphotoalbum',
-                            context: 'photo=' + $scope.title,
-                            file: file
-                        }
-                    }).progress(function (e) {
-                        file.progress = Math.round((e.loaded * 100.0) / e.total);
-                        file.status = "Uploading... " + file.progress + "%";
-                    }).success(function (data, status, headers, config) {
-                        vm.project.images = vm.project.images || [];
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        vm.projectTmp.images.push({cloudinaryPublicId: data.public_id});
-                    }).error(function (data, status, headers, config) {
-                        alertMsg.send("Error : Upload failed.", "danger");
-                    });
-                }
-            });
-        }
-
-        function editDescription(){
-            vm.editDescriptionFlag = true;
-        }
-
-        function edit(){
-            vm.editFlag = true;
-        }
-
         function getTags(){
             var res = "";
             if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0){
@@ -680,7 +382,20 @@
         }
 
         function prev(){
-            $state.go("proposals", {projectId: $stateParams.projectId});
+            if (vm.proposal.project.status == "ONGOING_PROJECT_ONGOING")
+                $state.go('my-projects');
+            else
+                $state.go("proposals", {projectId: vm.proposal.project.id});
+        }
+
+        function closeProject(){
+            networkService.closeProject(vm.proposal.id, function(res){
+                vm.proposal.project.status = "ONGOING_RATE_PRO";
+                vm.project.status = "ONGOING_RATE_PRO";
+                vm.closeFlag = false;
+            }, function(){
+                alertMsg.send("Error : project can't be close", "danger");
+            });
         }
 
         function succesProjectGET(res){

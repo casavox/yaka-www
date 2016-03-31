@@ -1,0 +1,563 @@
+
+<style type="text/css">
+    #map_canvas {
+        height: 70px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+</style>
+<section class="view" ng-cloak>
+
+    <div class="header-menu">
+        <ng-include src="'partials/menuHamburger.html'"></ng-include>
+        <div class="in-line min-w-44 arrow-nav">
+            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()" class="center-middle"/>
+        </div>
+        <div class="title no-line" >
+            {{vm.project.title}}
+            <p class="sub-title-proposal">
+                Project Details
+            </p>
+        </div>
+        <a ui-sref="login"><div class="logout">
+            Log Out
+        </div>
+        </a>
+    </div>
+
+    <div class="page-content">
+
+        <div class="content-slide" >
+            <div>
+                <div class="project-description" >
+                    <div class="row no-margin">
+                        <div class="col-xs-12">
+                            <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
+                                MODIFY
+                            </div>
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
+                                DELETE
+                            </div>
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()">
+                                UNPUBLISH
+                            </div>
+                            <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.saveFlag = true">
+                                SAVE
+                            </div>
+                            <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
+                                CANCEL
+                            </div>
+                            <div class="description-date">
+                                Post {{vm.project.updated | date:'dd MMMM yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 ">
+                            <div id="map_canvas">
+                                <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions" dragging="false">
+                                    <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                                </ui-gmap-google-map>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 row no-margin">
+                            <div class="col-xs-12 description-sub-title">
+                                Where
+                                <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
+                            </div>
+                            <div class="col-xs-12 description-sub-text">
+                                {{vm.projectTmp.address.name}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 row no-margin">
+                            <div class="col-xs-12 description-sub-title">
+                                When
+                                <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
+                            </div>
+                            <div class="col-xs-12 description-sub-text">
+                                {{vm.getWhen()}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 row no-margin">
+                            <div class="col-xs-12 description-sub-title">
+                                Tags
+                            </div>
+                            <div class="col-xs-12 description-sub-text">
+                                {{vm.getTags()}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 row no-margin">
+                            <div class="col-xs-12 description-sub-title">
+                                Description
+                            </div>
+                            <div class="col-xs-12 description-sub-text">
+                                <textarea msd-elastic class="custom-textarea" disabled ng-model="vm.projectTmp.description" ng-hide="vm.editFlag"></textarea>
+                                <textarea class="custom-textarea-red" ng-model="vm.projectTmp.description" ng-show="vm.editFlag"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-xs-12 row no-margin">
+                            <div class="col-xs-12 description-sub-title">
+                                Photos / Videos
+                            </div>
+                            <div class="col-xs-12 description-sub-text row mb-15">
+                                <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images" title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
+                                    <span class="center-middle img-comment" ng-show="media.description" ng-click="vm.editImage(media)"></span>
+                                    <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center" ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
+                                        <cl-transformation height="92" width="92" crop="fill"/>
+                                    </cl-image>
+                                </div>
+                                <div class="col-md-3 no-padding"
+                                     ngf-drop="vm.uploadFiles($files)"
+                                     ngf-drag-over-class="dragOverClass($event)"
+                                     ng-model="files"
+                                     ng-multiple="false" ng-show="vm.editFlag">
+                                    <div class="add-img-edit center" ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                                         ngf-accept="'image/*'" ngf-max-size="5MB">
+                                        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="menu-r top-120">
+            <div>
+                <div>
+                    <div>
+                        <p ng-if="vm.project.status != 'ONGOING_PROJECT_ONGOING'">
+                            {{vm.projectTmp.proposals.length}} propositions
+                        </p>
+                        <button type="button" class="button btn btn-menu-sel center" ng-click="vm.prev()" ng-if="vm.project.status != 'ONGOING_PROJECT_ONGOING'">OFFERS</button>
+                        <p ng-if="vm.project.status == 'ONGOING_PROJECT_ONGOING'">
+                            1 pro selected
+                        </p>
+                        <button type="button" class="button btn btn-menu-sel center" ui-sref="proposal({proposalId:vm.project.proposal.id})" ng-if="vm.project.status == 'ONGOING_PROJECT_ONGOING'">PRO SELECTED</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.trashFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.trashFlag = false"></span>
+                <h4>Are you sure ? </h4>
+                <p>
+                    It’s generally better to update or to draft a published project.
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.trashFlag = false">
+                    CANCEL
+                </div>
+                <div  ng-click="vm.deleteProject()">
+                    DELETE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.closeFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.closeFlag = false"></span>
+                <h4>Close my project</h4>
+                <p>
+                    My project is ended and payed.
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.trashFlag = false">
+                    CANCEL
+                </div>
+                <div  ng-click="vm.closeProject()">
+                    CONFIRM
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.saveFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.saveFlag = false"></span>
+                <h4>Are you sure ? </h4>
+                <p>
+                    Updating a published project will send a notification to the Pro concerned,
+                    if you already have offers, they could cancel them.
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.cancel()">
+                    CANCEL
+                </div>
+                <div  ng-click="vm.update()">
+                    UPDATE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp img-preview-size" ng-show="vm.imageFlag" ng-click="vm.imageFlag = false">
+        <div class="popUp-container center-middle w-90p h-90p" ng-click="$event.stopPropagation()">
+            <div class="popUp-content img-preview-popUp">
+                <span class="boxclose" ng-click="vm.imageFlag = false"></span>
+                <h4>Delete or Update description</h4>
+                <cl-image public-id="{{vm.imgTmp.cloudinaryPublicId}}" format="png" class="center mb-39">
+                </cl-image>
+                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmp.description" ng-change="vm.limitLength(vm.imgTmp, 'description', 140)"></textarea>
+                <div class="img-desc-length">
+                    {{vm.imgTmp.description.length}}/140
+                </div>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.deleteImg()">
+                    DELETE
+                </div>
+                <div  ng-click="vm.updateImg()">
+                    UPDATE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
+        <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
+            <div class="popUp-content no-margin img-preview-popUp">
+                <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
+                <h4>Preview</h4>
+                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
+                </cl-image>
+                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description" disabled></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.draftFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.draftFlag = false"></span>
+                <h4>Are you sure ? </h4>
+                <p>
+                    Your project will be visible only for you, you will not receive anymore proposal (those already received will be invalided).
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.draftFlag = false">
+                    KEEP POSTED
+                </div>
+                <div  ng-click="vm.draft()">
+                    CONFIRM DRAFT
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.whereFlag">
+        <div class="popUp-container center-middle w-550" >
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.whereFlag = false"></span>
+                <h4>Where do need it?</h4>
+                <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
+                    <div class="col-md-4 no-padding">
+                        <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
+                            <option value="new">Create new one</option>
+                            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}" ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 no-padding">
+                        <p class="">
+                            -   Or create a new one
+                        </p>
+                    </div>
+                    <div class="col-md-4 no-padding">
+                        <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+                    </div>
+                </div>
+                <div class="row no-margin w-900 center addr">
+                    <div class="col-xs-3" ng-show="vm.newAddrFlag">
+                        <input type="text" class="select-custom" ng-model="vm.newAddr.name" ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+                    </div>
+                    <div class="no-padding mb-39" ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
+                        <div class="inner-addon right-addon">
+                            <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <input vs-google-autocomplete="options"
+                                   options="options"
+                                   ng-model="address.name"
+                                   vs-place="address.place"
+                                   vs-place-id="address.components.placeId"
+                                   vs-street-number="address.components.streetNumber"
+                                   vs-street="address.components.street"
+                                   vs-city="address.components.city"
+                                   vs-state="address.components.state"
+                                   vs-country-short="address.components.countryCode"
+                                   vs-country="address.components.country"
+                                   vs-post-code="address.components.postCode"
+                                   vs-district="address.components.district"
+                                   vs-latitude="address.components.location.lat"
+                                   vs-longitude="address.components.location.long"
+
+                                   type="text"
+                                   name="address"
+                                   id="address"
+                                   placeholder="Enter address" class="input-custom">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.whereFlag = fasssslse">
+                    CANCEL
+                </div>
+                <div  ng-click="vm.changeWhere()">
+                    CONFIRM
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.whenFlag">
+        <div class="popUp-container center-middle w-500" >
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.whenFlag = false"></span>
+                <h4>When ?</h4>
+                <div ng-show="vm.project.type == 'EMERGENCY'">
+                    <div class="row center no-margin w-500">
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J1.date | date:"EEE"}}
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J2.date | date:"EEE"}}
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J3.date | date:"EEE"}}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                Toute la journée
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.all = !vm.J1.all; vm.all(vm.J1)" ng-init="vm.J1.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.all"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.all = !vm.J2.all; vm.all(vm.J2)" ng-init="vm.J2.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.all"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.all = !vm.J3.all; vm.all(vm.J3)" ng-init="vm.J3.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.all"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                7h-9h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c1 = !vm.J1.c1; vm.J1.all = false" ng-class="vm.J1.c1Disabled" ng-init="vm.J1.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c1 && vm.J1.c1Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c1 = !vm.J2.c1; vm.J2.all = false" ng-init="vm.J2.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c1"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c1 = !vm.J3.c1; vm.J3.all = false" ng-init="vm.J3.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c1"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                9h-12h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c2 = !vm.J1.c2; vm.J1.all = false" ng-class="vm.J1.c2Disabled" ng-init="vm.J1.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c2 && vm.J1.c2Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c2 = !vm.J2.c2; vm.J2.all = false" ng-init="vm.J2.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c2"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c2 = !vm.J3.c2; vm.J3.all = false" ng-init="vm.J3.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c2"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                12h-14h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c3 = !vm.J1.c3; vm.J1.all = false" ng-class="vm.J1.c3Disabled" ng-init="vm.J1.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c3 && vm.J1.c3Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c3 = !vm.J2.c3; vm.J2.all = false" ng-init="vm.J2.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c3"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c3 = !vm.J3.c3; vm.J3.all = false" ng-init="vm.J3.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c3"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                14h-16h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c4 = !vm.J1.c4; vm.J1.all = false" ng-class="vm.J1.c4Disabled" ng-init="vm.J1.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c4 && vm.J1.c4Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c4 = !vm.J2.c4; vm.J2.all = false" ng-init="vm.J2.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c4"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c4 = !vm.J3.c4; vm.J3.all = false" ng-init="vm.J3.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c4"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                16h-18h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c5 = !vm.J1.c5; vm.J1.all = false" ng-class="vm.J1.c5Disabled" ng-init="vm.J1.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c5 && vm.J1.c5Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c5 = !vm.J2.c5; vm.J2.all = false" ng-init="vm.J2.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c5"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c5 = !vm.J3.c5; vm.J3.all = false" ng-init="vm.J3.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c5"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                18h-20h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c6 = !vm.J1.c6; vm.J1.all = false" ng-class="vm.J1.c6Disabled" ng-init="vm.J1.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c6 && vm.J1.c6Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c6 = !vm.J2.c6; vm.J2.all = false" ng-init="vm.J2.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c6"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c6 = !vm.J3.c6; vm.J3.all = false" ng-init="vm.J3.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c6"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                Après 20h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J1.c7 = !vm.J1.c7; vm.J1.all = false" ng-init="vm.J1.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c7"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J2.c7 = !vm.J2.c7; vm.J2.all = false" ng-init="vm.J2.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c7"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle" ng-click="vm.J3.c7 = !vm.J3.c7; vm.J3.all = false" ng-init="vm.J3.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c7"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.project.type != 'EMERGENCY'">
+                    <ul class="questions-ul center no-padding">
+                        <li class="question-li center" ng-class="vm.child0" ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
+                            On a specific date
+                        </li>
+                        <li ng-show="vm.dateSelected" class="custom-li-date question-li center" ng-click="vm.unSelectdate()">
+                            {{vm.dt | date:'dd-MM-yyyy'}}
+                        </li>
+                        <li ng-show="vm.dateFlag" class="list-style-none">
+                            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                                <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true" class="well well-sm custom-date" custom-class="getDayClass(date, mode)"></uib-datepicker>
+                            </div>
+                        </li>
+                        <li class="question-li center" ng-class="vm.child1" ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
+                            Within a week
+                        </li>
+                        <li class="question-li center" ng-class="vm.child2" ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+                            Within a month
+                        </li>
+                        <li class="question-li center" ng-class="vm.child3" ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+                            I am a flexible on the start date
+                        </li>
+                    </ul>
+                    <p class="error center" ng-show="vm.error.date.flag">
+                        {{vm.error.date.message}}
+                    </p>
+                </div>
+            </div>
+            <div class="popUp-footer">
+                <div  ng-click="vm.whenFlag = false">
+                    CANCEL
+                </div>
+                <div  ng-click="vm.changeWhen()">
+                    CONFIRM
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
