@@ -120,7 +120,6 @@
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
 
-
         function limitLength(obj, token, limit) {
             if (obj[token].length >= limit) {
                 obj[token] = obj[token].slice(0, limit);

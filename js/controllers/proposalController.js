@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,7 +8,7 @@
     //
     //Controller login
     ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope'];
-    function ProposalController($scope, $state, networkService, alertMsg,  $filter, $stateParams, $rootScope) {
+    function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope) {
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
@@ -70,10 +70,15 @@
         vm.indexOfObject = indexOfObject;
         vm.verifNameAddr = verifNameAddr;
         vm.getSlot = getSlot;
-        vm.error = {description: {flag: false, message: ""}, address: {flag: false, message: ""}, date: {flag: false, message: ""}, material: {flag: false, message: ""}};
+        vm.error = {
+            description: {flag: false, message: ""},
+            address: {flag: false, message: ""},
+            date: {flag: false, message: ""},
+            material: {flag: false, message: ""}
+        };
         $scope.options = {
             types: ['address'],
-            componentRestrictions: { country: 'fr' }
+            componentRestrictions: {country: 'fr'}
         };
 
         $scope.address = {
@@ -97,14 +102,13 @@
         };
 
 
-        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId)
-        {
+        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
 
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
-        function hire(){
+        function hire() {
             var formData = {
                 id: vm.proposal.id,
                 text: vm.hireMessage
@@ -112,19 +116,19 @@
             networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
         }
 
-        function succesProposalAcceptPOST(res){
+        function succesProposalAcceptPOST(res) {
             vm.hireFlag = false;
             if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
                 networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
             alertMsg.send("Proposal selected", "success");
         }
 
-        function errorProposalAcceptPOST(){
+        function errorProposalAcceptPOST() {
             alertMsg.send("Error Proposal not selected", "danger");
         }
 
-        function getQualities(){
-            if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.professional) && !angular.isUndefined(vm.proposal.professional.qualities)){
+        function getQualities() {
+            if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.professional) && !angular.isUndefined(vm.proposal.professional.qualities)) {
                 var res = "";
                 for (var i = 0; i < vm.proposal.professional.qualities.length; i++) {
                     switch (vm.proposal.professional.qualities[i].name) {
@@ -138,7 +142,7 @@
             }
         }
 
-        function getSlot(){
+        function getSlot() {
             if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.availability) && !angular.isUndefined(vm.proposal.availability.slot))
                 switch (vm.proposal.availability.slot) {
                     case "7H_9H":
@@ -166,9 +170,9 @@
                 }
         }
 
-        function verifNameAddr(){
+        function verifNameAddr() {
             vm.continueAddressFlag = false;
-            if (vm.newAddr.name.length > 0){
+            if (vm.newAddr.name.length > 0) {
                 vm.continueAddress = false;
                 vm.disabledAddr = false;
                 vm.myAddress = "new";
@@ -198,11 +202,11 @@
             }
         }
 
-        function indexOfObject(a, token, array){
+        function indexOfObject(a, token, array) {
             var res = [];
-            if (!angular.isUndefined(array)){
+            if (!angular.isUndefined(array)) {
                 for (var i = 0; i < array.length; i++) {
-                    if (array[i][token] == a){
+                    if (array[i][token] == a) {
                         res.push(i);
                     }
                 }
@@ -211,54 +215,50 @@
             return res;
         }
 
-        function calculateExp(d){
+        function calculateExp(d) {
             var tmp = new Date(d);
             var ageDifMs = Date.now() - tmp.getTime();
             var ageDate = new Date(ageDifMs);
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         }
+
         if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
             networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
 
-        function succesProposalGET(res){
+        function succesProposalGET(res) {
             vm.proposal = res;
             vm.proDetails = true;
             vm.pro = false;
             console.log(res);
         }
 
-        function errorProposalGET(res){
+        function errorProposalGET(res) {
             alertMsg.send("Error. Can't get this proposal", "danger");
         }
 
 
-
-        function limitLength(obj, token, limit){
-            if (obj[token].length >= limit){
+        function limitLength(obj, token, limit) {
+            if (obj[token].length >= limit) {
                 obj[token] = obj[token].slice(0, limit);
             }
         }
 
 
-
-
-
-
-        function succesProfileGET(res){
+        function succesProfileGET(res) {
             vm.user = res;
 
 
             console.log(res, vm.projectTmp);
         }
 
-        function errorProfileGET(){
+        function errorProfileGET() {
             vm.continueAddress = false;
             vm.newAddrFlag = true;
             vm.myAddress = "new";
         }
 
-        function all(j){
-            if (j.all == true){
+        function all(j) {
+            if (j.all == true) {
                 j.all = true;
                 j.c1 = true;
                 j.c2 = true;
@@ -280,15 +280,15 @@
             }
         }
 
-        function initDate(j, tab){
+        function initDate(j, tab) {
             var tmp = "";
-            if (j.all && j.allDisabled != "checkbox-disabled"){
+            if (j.all && j.allDisabled != "checkbox-disabled") {
                 tmp = "ALL_DAY";
                 tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
             }
             else {
                 for (var i = 0; i < 7; i++) {
-                    if (j["c"+(i+1)] && j["c"+(i+1)+"Disabled"] != "checkbox-disabled"){
+                    if (j["c" + (i + 1)] && j["c" + (i + 1) + "Disabled"] != "checkbox-disabled") {
                         if (i == 0)
                             tmp = "7H_9H";
                         else if (i == 1) {
@@ -315,7 +315,7 @@
             }
         }
 
-        function initHours(){
+        function initHours() {
             if (vm.time >= 9) {
                 vm.J1.c1Disabled = "checkbox-disabled";
                 vm.J1.allDisabled = "checkbox-disabled";
@@ -342,11 +342,11 @@
             }
         }
 
-        function getTags(){
+        function getTags() {
             var res = "";
-            if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0){
+            if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0) {
                 for (var i = 0; i < vm.projectTmp.tags.length; i++) {
-                    if (i <  vm.projectTmp.tags.length - 1)
+                    if (i < vm.projectTmp.tags.length - 1)
                         res += vm.projectTmp.tags[i].name + " - ";
                     else {
                         res += vm.projectTmp.tags[i].name
@@ -359,9 +359,9 @@
             }
         }
 
-        function getWhen(){
+        function getWhen() {
             var res = 0;
-            if (!angular.isUndefined(vm.projectTmp.availabilities) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0){
+            if (!angular.isUndefined(vm.projectTmp.availabilities) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0) {
                 for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
                     res += 1;
                 }
@@ -370,7 +370,7 @@
             else {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "Le "+vm.projectTmp.desiredDate;
+                        return "Le " + vm.projectTmp.desiredDate;
                     case "WITHIN_A_WEEK":
                         return "Dans la semaine";
                     case "WITHIN_A_MONTH":
@@ -381,24 +381,24 @@
             }
         }
 
-        function prev(){
+        function prev() {
             if (vm.proposal.project.status == "ONGOING_PROJECT_ONGOING")
                 $state.go('my-projects');
             else
                 $state.go("proposals", {projectId: vm.proposal.project.id});
         }
 
-        function closeProject(){
-            networkService.closeProject(vm.proposal.id, function(res){
+        function closeProject() {
+            networkService.closeProject(vm.proposal.id, function (res) {
                 vm.proposal.project.status = "ONGOING_RATE_PRO";
                 vm.project.status = "ONGOING_RATE_PRO";
                 vm.closeFlag = false;
-            }, function(){
+            }, function () {
                 alertMsg.send("Error : project can't be close", "danger");
             });
         }
 
-        function succesProjectGET(res){
+        function succesProjectGET(res) {
             if (res.address.latitude && res.address.longitude) {
                 $scope.map.center = {
                     latitude: res.address.latitude,
@@ -414,11 +414,11 @@
             vm.project = res;
             console.log(res);
             vm.projectTmp = angular.copy(vm.project);
-            if (vm.projectTmp.type != "EMERGENCY"){
+            if (vm.projectTmp.type != "EMERGENCY") {
                 vm.dateType = vm.projectTmp.desiredDatePeriod;
                 vm.dt = new Date(vm.projectTmp.desiredDate);
             }
-            if (!angular.isUndefined(vm.projectTmp.address) && vm.projectTmp.address){
+            if (!angular.isUndefined(vm.projectTmp.address) && vm.projectTmp.address) {
                 vm.myAddress = vm.projectTmp.address.address;
                 $scope.address.name = vm.projectTmp.address.address;
             }
@@ -426,96 +426,96 @@
                 vm.newAddrFlag = true;
                 vm.myAddress = "new";
             }
-            if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities){
+            if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities) {
                 for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
                     switch (vm.projectTmp.availabilities[i].slot) {
                         case "7H_9H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c1 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c1 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c1 = true;
                             }
                             break;
                         case "9H_12H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c2 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c2 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c2 = true;
                             }
                             break;
                         case "12H_14H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c3 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c3 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c3 = true;
                             }
                             break;
                         case "14H_16H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c4 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c4 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c4 = true;
                             }
                             break;
                         case "16H_18H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c5 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c5 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c5 = true;
                             }
                             break;
                         case "18H_20H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c6 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c6 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c6 = true;
                             }
                             break;
                         case "AFTER_20H":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c7 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.c7 = true;
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.c7 = true;
                             }
                             break;
                         case "ALL_DAY":
-                            if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")){
+                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.all = true;
                                 vm.all(vm.J1);
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
                                 vm.J2.all = true;
                                 vm.all(vm.J2);
                             }
-                            else if(vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")){
+                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
                                 vm.J3.all = true;
                                 vm.all(vm.J3);
                             }
@@ -524,7 +524,7 @@
 
                 }
             }
-            else{
+            else {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
                         vm.child0 = "activate";
@@ -546,7 +546,7 @@
             }
         }
 
-        function errorProjectGET(res){
+        function errorProjectGET(res) {
             alertMsg.send("Error : Impossible to get the mission.", "danger");
             $state.go("my-projects");
         }

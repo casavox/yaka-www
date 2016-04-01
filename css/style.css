@@ -1637,11 +1637,11 @@ color: #9b9b9b!important;
 
 .hire {
     margin-bottom: 10px;
-    font-family:'montserrat_light';
-    font-size:14px;
-    color:#444444;
-    line-height:17px;
-    text-align:center;
+    font-family: 'montserrat_light';
+    font-size: 14px;
+    color: #444444;
+    line-height: 17px;
+    text-align: center;
 }
 
 .top-120 {
@@ -1879,7 +1879,7 @@ color: #9b9b9b!important;
     height: 30px;
     font-weight: bold;
     font-family: 'montserrat_regular', Arial, sans-serif;
-    font-size : 18px;
+    font-size: 18px;
     color: #444444;
     text-align: center;
     line-height: 30px;
@@ -2146,7 +2146,7 @@ color: #9b9b9b!important;
 .material-title {
     font-family: 'montserrat_regular';
     font-weight: bold;
-    font-size : 18px;
+    font-size: 18px;
     color: #2f313a;
     letter-spacing: 1.88px;
     line-height: 21px;
@@ -2838,7 +2838,7 @@ color: #9b9b9b!important;
 .end > p {
     font-family: 'montserrat_regular';
     font-weight: bold;
-    font-size : 25px;
+    font-size: 25px;
     color: #2f313a;
     line-height: 30px;
     text-align: center;

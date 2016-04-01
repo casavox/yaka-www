@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -17,15 +17,15 @@
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
 
         function selectProposal(p) {
-            $state.go('proposal',  {proposalId: p.id});
+            $state.go('proposal', {proposalId: p.id});
         }
 
-        function succesProjectGET(res){
+        function succesProjectGET(res) {
             vm.project = res;
             console.log(res);
         }
 
-        function errorProjectGET(){
+        function errorProjectGET() {
             alertMsg.send("Error. Can't get the proposals", "danger");
         }
 
@@ -33,18 +33,18 @@
             $state.go('project', {projectId: $stateParams.projectId});
         }
 
-        function getWhen(){
+        function getWhen() {
             var res = 0;
-            if (!angular.isUndefined(vm.project) && vm.project.availabilities && vm.project.availabilities.length > 0){
+            if (!angular.isUndefined(vm.project) && vm.project.availabilities && vm.project.availabilities.length > 0) {
                 for (var i = 0; i < vm.project.availabilities.length; i++) {
                     res += 1;
                 }
                 return "Emergency : " + res + " slots appointment"
             }
-            else if (angular.isDefined(vm.project) && vm.project.desiredDatePeriod){
+            else if (angular.isDefined(vm.project) && vm.project.desiredDatePeriod) {
                 switch (vm.project.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "Le "+vm.project.desiredDate;
+                        return "Le " + vm.project.desiredDate;
                     case "WITHIN_A_WEEK":
                         return "Dans la semaine";
                     case "WITHIN_A_MONTH":

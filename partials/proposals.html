@@ -1,4 +1,3 @@
-
 <style type="text/css">
     #map_canvas {
         height: 70px;
@@ -31,9 +30,10 @@
                 Proposals
             </p>
         </div>
-        <a ui-sref="login"><div class="logout">
-            Log Out
-        </div>
+        <a ui-sref="login">
+            <div class="logout">
+                Log Out
+            </div>
         </a>
     </div>
 
@@ -41,7 +41,7 @@
         <div class="content-slide">
             <div>
 
-                <div >
+                <div>
                     <div class="detail-pro-title">
                         <div class="in-line">
                             OFFERS
@@ -51,29 +51,36 @@
                     <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
                         <div class="row no-margin no-padding">
                             <div class="col-xs-2 no-margin no-padding">
-                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}" class="img-circle center-middle" format="png" >
+                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                          class="img-circle center-middle" format="png">
                                     <cl-transformation height="70" width="70" crop="fill"/>
                                 </cl-image>
                                 <div class="img-default-preview" ng-if="!p.professional.avatar.cloudinaryPublicId">
-                                    {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
+                                    {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] |
+                                    uppercase}}
                                 </div>
                             </div>
                             <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
                                 <p class="pro-title-name" ng-show="p.status == 'START'">
                                     {{p.professional.firstName}} {{p.professional.lastName}}
                                 </p>
+
                                 <p class="pro-title-companyName" ng-show="p.status == 'PRESELECTED'">
                                     {{p.professional.companyName}}
                                 </p>
+
                                 <p class="pro-title-desc">
 
                                 </p>
+
                                 <div class="pro-title-icon">
                                     <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
+
                                     <div class="likes">
                                         {{p.professional.likes}}
                                     </div>
-                                    <img src="icons/mdpi/ic_background_checked.png" class="icon-verification" ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
+                                    <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
+                                         ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
                                     <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
                                 </div>
                             </div>
@@ -87,13 +94,15 @@
                                 <p class="pro-price-desc" ng-show="p.price">
                                     {{p.priceType}}
                                 </p>
+
                                 <p class="pro-price-none" ng-show="!p.price || p.price == 0">
                                     Need more info
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="detail-pro-message-box" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
+                    <div class="detail-pro-message-box"
+                         ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
                         <p>
                             Find all offers made by professionnals interested about your project
                         </p>
@@ -104,7 +113,8 @@
                         </div>
                         <hr class="w-555">
                     </div>
-                    <div class="detail-pro-message-box" ng-show="!vm.project.suggestions || vm.project.suggetions.length == 0">
+                    <div class="detail-pro-message-box"
+                         ng-show="!vm.project.suggestions || vm.project.suggetions.length == 0">
                         <p>
                             Suggested pro that fit your queries
                             You can contact them and ask for a quote
@@ -113,20 +123,25 @@
                 </div>
             </div>
         </div>
-        <div class="menu-r" ng-class="{'top-120': vm.project.proposal || !vm.pro}" ng-if="vm.proposal.status != 'SELECTED'">
-            <div >
-                <div >
-                    <div >
+        <div class="menu-r" ng-class="{'top-120': vm.project.proposal || !vm.pro}"
+             ng-if="vm.proposal.status != 'SELECTED'">
+            <div>
+                <div>
+                    <div>
                         <p>
                             {{vm.project.address.name}}
                         </p>
+
                         <p>
                             {{vm.getWhen()}}
                         </p>
+
                         <p>
                             Post {{vm.project.published | date:'dd MMM yyyy'}}
                         </p>
-                        <button type="button" class="button btn btn-menu-sel center" ng-click="vm.projectDetails()">PROJECT DETAILS</button>
+                        <button type="button" class="button btn btn-menu-sel center" ng-click="vm.projectDetails()">
+                            PROJECT DETAILS
+                        </button>
                     </div>
                 </div>
             </div>
