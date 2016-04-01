@@ -98,12 +98,6 @@ window.fbAsyncInit = function () {
                 controller: 'DashboardController',
                 controllerAs: 'vm'
             })
-            .state('inbox', {
-                url: "/inbox",
-                templateUrl: "partials/dashboard.html",
-                controller: 'DashboardController',
-                controllerAs: 'vm'
-            })
             .state('my-projects', {
                 url: "/my-projects",
                 templateUrl: "partials/my_projects.html",
