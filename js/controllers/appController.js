@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$localStorage', '$rootScope'];
-    function AppController($scope, networkService, alertMsg, $localStorage, $rootScope) {
+    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$rootScope', '$state'];
+    function AppController($scope, networkService, alertMsg, $rootScope, $state) {
 
         var app = this;
         var vm = this;
@@ -16,31 +16,51 @@
         $scope.project = null;
         $scope.error = {criteria: {message: "", flag: true}};
         $scope.rating = {positive: true, comment: "", criteria: []};
-        networkService.proToRate(function (res) {
-            if (res) {
-                $scope.project = res;
-                $rootScope.rate_pro = true;
-                console.log(res);
-                $localStorage.projectGet = res;
-                networkService.criteriaGET(function (res) {
-                    $scope.criteria = res;
-                    $scope.projectFlag = true;
-                }, function (res) {
-                    alertMsg.send("Error impossible to rate the pro.", "danger");
-                })
+        var can = true;
+
+        $scope.viewProposal = function () {
+            $rootScope.rating = true;
+            $scope.projectFlag = false;
+            if ($rootScope.state.name == 'proposal')
+                $state.reload();
+            else
+                $state.go('proposal', {proposalId: $scope.project.proposal.id});
+        };
+
+        function check() {
+            if (!$rootScope.rating) {
+                if (can) {
+                    can = false;
+                    networkService.proToRate(function (res) {
+                        can = true;
+                        if (res) {
+                            $scope.project = res;
+                            console.log(res);
+                            networkService.criteriaGET(function (res) {
+                                $scope.criteria = res;
+                                $scope.projectFlag = true;
+                            }, function (res) {
+
+                                alertMsg.send("Error impossible to rate the pro.", "danger");
+                            })
+                        }
+                    }, function (res) {
+                        can = true;
+                    });
+                }
+
             }
-        }, function (res) {
-        });
+
+        }
+
+        check();
 
         $scope.$watch(function () {
             return $rootScope.rate_watcher;
         }, function (newVal, oldVal) {
             if (newVal === oldVal)
                 return;
-            if (!$rootScope.rate_watcher) {
-                $scope.projectFlag = true;
-                $rootScope.rate_watcher = true;
-            }
+            check();
         });
 
         $scope.selectCriteria = function (index) {
@@ -88,6 +108,7 @@
                 $scope.error.criteria.flag = true;
             }
         };
+
 
         app.menu = {
             openMenu: function () {

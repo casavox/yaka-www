@@ -77,31 +77,44 @@
                 </div>
             </div>
         </div>
-        <div class="menu-r top-120" ng-if="vm.proposal.project.status != 'SELECTED'">
+    </div>
+    </div>
+    <div class="menu-r top-120">
+        <div>
             <div>
                 <div>
-                    <div>
-                        <h4 class="menu-r-title">My Project</h4>
+                    <h4 class="menu-r-title">My Project</h4>
 
-                        <p class="hire mb-10 text-align-left">
-                            {{vm.project.address.address}} <br>
-                            Date :
-                        </p>
-                        <button type="button" class="button btn btn-menu-sel center  mb-10">SHOW DETAILS</button>
-                        <button type="button" class="button btn btn-menu-sel center  mb-39"
-                                ng-click="vm.hireFlag = true">SHOW OFFERS
-                        </button>
+                    <p class="hire mb-10 text-align-left">
+                        {{vm.project.address.address}} <br>
+                        Date :
+                    </p>
+                    <button type="button" class="button btn btn-menu-sel center  mb-10"
+                            ui-sref="project({projectId: vm.proposal.project.id})">SHOW DETAILS
+                    </button>
+                    <button type="button" class="button btn btn-menu-sel center  mb-39"
+                            ui-sref="proposal({proposalId: vm.proposal.id})">SHOW OFFER
+                    </button>
 
-                        <p class="hire mb-10 text-align-left">
-                            You want to work whith {{vm.pro.firstName}} {{vm.pro.lastName}}
-                        </p>
-                        <button type="button" class="button btn btn-menu-sel center btn-blue"
-                                ng-click="vm.hireFlag = true">HIRE
-                        </button>
-                    </div>
+                    <p class="hire mb-10 text-align-left">
+                        {{vm.project.address.address}} <br>
+                        Date :
+                    </p>
+                    <button type="button" class="button btn btn-menu-sel center  mb-10">SHOW DETAILS</button>
+                    <button type="button" class="button btn btn-menu-sel center  mb-39"
+                            ng-click="vm.hireFlag = true">SHOW OFFERS
+                    </button>
 
+                    <p class="hire mb-10 text-align-left">
+                        You want to work whith {{vm.pro.firstName}} {{vm.pro.lastName}}
+                    </p>
+                    <button type="button" class="button btn btn-menu-sel center btn-blue"
+                            ng-click="vm.hireFlag = true">HIRE
+                    </button>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 </section>

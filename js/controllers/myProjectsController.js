@@ -60,8 +60,11 @@
         }
 
         function selectProject(p) {
-            $localStorage.projectGet = p;
-            $state.go("project");
+            if (p.status == 'ONGOING_PROJECT_ONGOING')
+                $state.go("proposal", {proposalId: p.proposals[0].id});
+            else
+                $state.go("proposals", {projectId: p.id});
+
         }
 
         // function succesProjectGET(res){

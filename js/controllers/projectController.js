@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter'];
-    function ProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter) {
+    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams) {
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
@@ -122,11 +122,10 @@
         };
 
         vm.deleteProject = function () {
-            if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet) {
-                networkService.deleteProject($localStorage.projectGet.id,
+            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+                networkService.deleteProject($stateParams.projectId,
                     function () {
                         alertMsg.send("Your project has been deleted", "success");
-                        delete $localStorage.projectGet;
                         $state.go("my-projects");
                     },
                     function () {
@@ -137,11 +136,10 @@
         };
 
         vm.unpublishProject = function () {
-            if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet) {
-                networkService.unpublishProject($localStorage.projectGet.id,
+            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+                networkService.unpublishProject($stateParams.projectId,
                     function () {
                         alertMsg.send("Your project has been unpublished", "success");
-                        delete $localStorage.projectGet;
                         $state.go("my-projects");
                     },
                     function () {
@@ -390,8 +388,8 @@
             // alertMsg.send("Error : Impossible de charger les addresses existantes", "danger");
         }
 
-        if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet) {
-            networkService.projectGET($localStorage.projectGet.id, succesProjectGET, errorProjectGET);
+        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
 
         function editWhere() {
@@ -499,7 +497,7 @@
         });
 
         function update() {
-            vm.projectTmp.activities = vm.projectTmp.activities || [];
+            vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
             networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
@@ -647,12 +645,12 @@
 
         function getTags() {
             var res = "";
-            if (vm.projectTmp.activities && vm.projectTmp.activities.length > 0) {
-                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
-                    if (i < vm.projectTmp.activities.length - 1)
-                        res += vm.projectTmp.activities[i].code + " - ";
+            if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0) {
+                for (var i = 0; i < vm.projectTmp.tags.length; i++) {
+                    if (i < vm.projectTmp.tags.length - 1)
+                        res += vm.projectTmp.tags[i].name + " - ";
                     else {
-                        res += vm.projectTmp.activities[i].code
+                        res += vm.projectTmp.tags[i].name
                     }
                 }
                 return res;
@@ -685,8 +683,7 @@
         }
 
         function prev() {
-            delete $localStorage.projectGet;
-            $state.go("my-projects");
+            $state.go("proposals", {projectId: $stateParams.projectId});
         }
 
         function succesProjectGET(res) {

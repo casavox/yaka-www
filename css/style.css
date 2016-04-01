@@ -1636,12 +1636,12 @@ color: #9b9b9b!important;
 }
 
 .hire {
-    margin-bottom: 43px;
-    font-family: 'montserrat_light';
-    font-size: 14px;
-    color: #444444;
-    line-height: 17px;
-    text-align: center;
+    margin-bottom: 10px;
+    font-family:'montserrat_light';
+    font-size:14px;
+    color:#444444;
+    line-height:17px;
+    text-align:center;
 }
 
 .top-120 {
@@ -3995,11 +3995,6 @@ ul[rn-carousel-buffered] > li {
 
 .gm-bundled-control {
     right: 28px !important;
-}
-
-.btn-red {
-    color: #ff6074 !important;
-    border-color: #ff6074 !important;
 }
 
 .proDashboardMapItem {
