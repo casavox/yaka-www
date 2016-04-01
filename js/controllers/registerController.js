@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    RegisterController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$filter', '$localStorage', '$state']
+    RegisterController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$filter', '$localStorage', '$state'];
     function RegisterController($scope, networkService, socialNetworkService, $filter, $localStorage, $state) {
         $scope.email = "";
         $scope.password = "";
@@ -29,7 +29,7 @@
             else {
                 $scope.verification = "border-red";
             }
-        }
+        };
 
         $scope.register = function () {
             if ($scope.email && $scope.password && $scope.firstName && $scope.lastName) {
@@ -41,7 +41,7 @@
                         birthday: $filter('date')($scope.date, "yyyy-MM-dd")
                     },
                     password: $scope.password
-                }
+                };
                 networkService.register(formData, succesRegister, errorRegister);
             }
             else {
@@ -79,18 +79,19 @@
             }
         };
 
+
         function succesRegister(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.token = res.token;
                 $state.go('dashboard');
                 console.log(res);
             }
-        };
+        }
 
         function errorRegister(err) {
             if (!angular.isUndefined(err) && err && err.message && err.message != "")
                 console.log(err.message);
-        };
+        }
 
     }
 })();

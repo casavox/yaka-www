@@ -19,7 +19,7 @@
         vm.verifications = {};
         vm.activities = {};
         vm.now = new Date();
-        vm.Year = vm.now.getFullYear()
+        vm.Year = vm.now.getFullYear();
         vm.error = {
             password: {flag: false, message: ""},
             activities: {flag: false, message: ""},
@@ -268,7 +268,7 @@
                 var formData = {
                     currentPassword: vm.pwdCurrent,
                     newPassword: vm.pwd1
-                }
+                };
                 if (vm.pwd2 === vm.pwd1)
                     networkService.changePassword(formData, function (res) {
                         alertMsg.send("Password updated.", "success");
@@ -475,7 +475,7 @@
         function updateVerifications() {
             vm.verifications = vm.verifications || [];
             if (vm.verifications.length < 4) {
-                vm.error.verif.message = "All is mandatory."
+                vm.error.verif.message = "All is mandatory.";
                 vm.error.verif.flag = true;
             }
             else {
@@ -496,7 +496,7 @@
                 }, errorProfilePUT);
             }
             else {
-                vm.error.activities.message = "Select at least one category or skill."
+                vm.error.activities.message = "Select at least one category or skill.";
                 vm.error.activities.flag = true;
             }
         }

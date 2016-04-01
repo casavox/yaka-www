@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    ProProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams']
+    ProProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
     function ProProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
         var vm = this;
         vm.getWhen = getWhen;
@@ -16,7 +16,7 @@
         vm.myPrice = myPrice;
         vm.myDate = myDate;
         vm.selectImagePreview = selectImagePreview;
-        vm.markerCoords = {}
+        vm.markerCoords = {};
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.sendOffer = sendOffer;
@@ -140,7 +140,7 @@
             } else {
                 vm.error = {comment: {}};
                 if (vm.projectTmp.type != "EMERGENCY")
-                    vm.error.comment.message = "The comment is mandatory"
+                    vm.error.comment.message = "The comment is mandatory";
                 else {
                     vm.error.comment.message = "Price, Start date and Comment are mandatory"
                 }
@@ -156,7 +156,7 @@
                 initDate(vm.J2, tmp);
                 initDate(vm.J3, tmp);
                 if (tmp.length > 0)
-                    vm.offer.date.date = $filter('date')(tmp[0].date, "yyyy-MM-dd")
+                    vm.offer.date.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
                 vm.offer.date.slot = tmp[0].slot;
             }
             console.log(vm.offer);
@@ -370,19 +370,19 @@
                         res += "\n" + $filter('date')(new Date(arr[i].date), "EEE dd/MM") + " ";
                     switch (arr[i].slot) {
                         case "7H_9H":
-                            res += "7h-9h. "
+                            res += "7h-9h. ";
                             break;
                         case "9H_12H":
-                            res += "9h-12h. "
+                            res += "9h-12h. ";
                             break;
                         case "12H_14H":
-                            res += "12h-14h. "
+                            res += "12h-14h. ";
                             break;
                         case "14H_16H":
-                            res += "14h-16h. "
+                            res += "14h-16h. ";
                             break;
                         case "16H_18H":
-                            res += "16h-18h. "
+                            res += "16h-18h. ";
                             break;
                         case "18H_20H":
                             res += "18h-20h. ";
@@ -453,7 +453,7 @@
             var min = 0;
             d1 = new Date(d1).getTime() / 60000;
             d2 = new Date(d2).getTime() / 60000;
-            var min = new Number(d2 - d1).toFixed(0)
+            var min = new Number(d2 - d1).toFixed(0);
             if (min > 60) {
                 h = min / 60;
                 if (h > 24) {

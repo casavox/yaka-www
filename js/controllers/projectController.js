@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter']
-    function ProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter) {
+    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams) {
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
@@ -43,14 +43,14 @@
         vm.dateType = "";
         vm.dateFlag = false;
         vm.initDate = initDate;
-        vm.editDescription = editDescription
+        vm.editDescription = editDescription;
         vm.edit = edit;
         vm.update = update;
         vm.whenFlag = false;
         vm.editWhen = editWhen;
         vm.uploadFiles = uploadFiles;
         vm.limitLength = limitLength;
-        vm.markerCoords = {}
+        vm.markerCoords = {};
         $scope.map = {
             center: {
                 latitude: 46.5945259,
@@ -89,6 +89,7 @@
         vm.homeDetail = homeDetail;
         vm.verifNameAddr = verifNameAddr;
         vm.getSlot = getSlot;
+        vm.closeProject = closeProject;
         vm.error = {
             description: {flag: false, message: ""},
             address: {flag: false, message: ""},
@@ -121,11 +122,10 @@
         };
 
         vm.deleteProject = function () {
-            if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet) {
-                networkService.deleteProject($localStorage.projectGet.id,
+            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+                networkService.deleteProject($stateParams.projectId,
                     function () {
                         alertMsg.send("Your project has been deleted", "success");
-                        delete $localStorage.projectGet;
                         $state.go("my-projects");
                     },
                     function () {
@@ -133,14 +133,13 @@
                     }
                 );
             }
-        }
+        };
 
         vm.unpublishProject = function () {
-            if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet) {
-                networkService.unpublishProject($localStorage.projectGet.id,
+            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+                networkService.unpublishProject($stateParams.projectId,
                     function () {
                         alertMsg.send("Your project has been unpublished", "success");
-                        delete $localStorage.projectGet;
                         $state.go("my-projects");
                     },
                     function () {
@@ -148,6 +147,15 @@
                     }
                 );
             }
+        };
+
+        function closeProject() {
+            networkService.closeProject(vm.project.proposal.id, function (res) {
+                vm.project.status = "ONGOING_RATE_PRO";
+                vm.closeFlag = false;
+            }, function (res) {
+                alertMsg.send("Error : project can't be close", "danger");
+            });
         }
 
         networkService.profileGET(succesProfileGET, errorProfileGET);
@@ -156,7 +164,7 @@
             var formData = {
                 id: vm.proposal.id,
                 text: vm.hireMessage
-            }
+            };
             networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
         }
 
@@ -216,7 +224,7 @@
         function verifNameAddr() {
             vm.continueAddressFlag = false;
             if (vm.newAddr.name.length > 0) {
-                vm.continueAddress = false
+                vm.continueAddress = false;
                 vm.disabledAddr = false;
                 vm.myAddress = "new";
                 $scope.address = {
@@ -380,8 +388,8 @@
             // alertMsg.send("Error : Impossible de charger les addresses existantes", "danger");
         }
 
-        if (!angular.isUndefined($localStorage.projectGet) && $localStorage.projectGet) {
-            networkService.projectGET($localStorage.projectGet.id, succesProjectGET, errorProjectGET);
+        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
 
         function editWhere() {
@@ -486,10 +494,10 @@
                 vm.error.date.flag = false;
                 vm.error.date.message = "At least a slot is required";
             }
-        })
+        });
 
         function update() {
-            vm.projectTmp.activities = vm.projectTmp.activities || [];
+            vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
             networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
@@ -625,7 +633,7 @@
                     });
                 }
             });
-        };
+        }
 
         function editDescription() {
             vm.editDescriptionFlag = true;
@@ -637,12 +645,12 @@
 
         function getTags() {
             var res = "";
-            if (vm.projectTmp.activities && vm.projectTmp.activities.length > 0) {
-                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
-                    if (i < vm.projectTmp.activities.length - 1)
-                        res += vm.projectTmp.activities[i].code + " - ";
+            if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0) {
+                for (var i = 0; i < vm.projectTmp.tags.length; i++) {
+                    if (i < vm.projectTmp.tags.length - 1)
+                        res += vm.projectTmp.tags[i].name + " - ";
                     else {
-                        res += vm.projectTmp.activities[i].code
+                        res += vm.projectTmp.tags[i].name
                     }
                 }
                 return res;
@@ -675,12 +683,10 @@
         }
 
         function prev() {
-            delete $localStorage.projectGet;
-            $state.go("my-projects");
+            $state.go("proposals", {projectId: $stateParams.projectId});
         }
 
         function succesProjectGET(res) {
-
             if (res.address.latitude && res.address.longitude) {
                 $scope.map.center = {
                     latitude: res.address.latitude,

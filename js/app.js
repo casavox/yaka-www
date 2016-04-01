@@ -140,12 +140,6 @@ window.fbAsyncInit = function () {
                 controller: 'EndController',
                 controllerAs: 'vm'
             })
-            .state('project', {
-                url: "/project",
-                templateUrl: "partials/details_project.html",
-                controller: 'ProjectController',
-                controllerAs: 'vm'
-            })
             .state('pro-project-proposal-new', {
                 url: "/pro/project/:projectId/proposal/new",
                 templateUrl: "partials/details_project_pro.html",
@@ -164,6 +158,37 @@ window.fbAsyncInit = function () {
                 controller: 'ProfileController',
                 controllerAs: 'vm'
             })
+            .state('inbox', {
+                url: "/inbox/:proposalId",
+                templateUrl: "partials/inbox.html",
+                controller: 'InboxController',
+                controllerAs: 'vm'
+            })
+            .state('pro-inbox', {
+                url: "/pro/inbox/:proposalId",
+                templateUrl: "partials/inbox.html",
+                controller: 'InboxController',
+                controllerAs: 'vm'
+            })
+            .state('proposal', {
+                url: "/proposal/:proposalId",
+                templateUrl: "partials/proposal.html",
+                controller: 'ProposalController',
+                controllerAs: 'vm'
+            })
+            .state('project', {
+                url: "/project/:projectId",
+                templateUrl: "partials/project.html",
+                controller: 'ProjectController',
+                controllerAs: 'vm'
+            })
+            .state('proposals', {
+                url: "/proposals/:projectId",
+                templateUrl: "partials/proposals.html",
+                controller: 'ProposalsController',
+                controllerAs: 'vm'
+            });
+
         //
         //Interceptor to put the token in the header for each http request
         $httpProvider.interceptors.push(['$q', '$injector', '$localStorage', function ($q, $injector, $localStorage) {
@@ -199,6 +224,21 @@ window.fbAsyncInit = function () {
     function runBlock($rootScope, $localStorage, $injector, amMoment) {
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
+                $rootScope.menu = false;
+                $rootScope.from = fromState;
+                $rootScope.state = toState;
+                if ($rootScope.rating && $rootScope.rate_counter) {
+                    $rootScope.rating = false;
+                    $rootScope.rate_counter = false;
+                }
+                else if ($rootScope.rating && !$rootScope.rate_counter)
+                    $rootScope.rate_counter = true;
+                else {
+                    $rootScope.rating = false;
+                    $rootScope.rate_counter = false;
+                }
+                if (toState.name != "login" && toState.name != "new-project")
+                    $rootScope.rate_watcher = !$rootScope.rate_watcher;
                 if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
                     event.preventDefault();
                     $injector.get('$state').go('login');

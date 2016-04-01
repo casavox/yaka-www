@@ -723,6 +723,216 @@ md-input-container {
 
 /*--------------------------------- CONTENT ----------------------------------*/
 
+.inbox-content {
+    width: 700px;
+    background: #dfdfdf;
+    height: calc(100% - 110px);
+    margin-left: 30px;
+    margin-top: 30px;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.inbox-text {
+    min-height: 60px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 30px;
+    background: white;
+    width: 700px;
+}
+
+.inbox-join {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20px;
+}
+
+.inbox-send {
+    font-family: "montserrat_regular";
+    font-size: 14px;
+    color: #00a3d3;
+    line-height: 18px;
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+.inbox-message {
+    width: 100%;
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.corner {
+    height: 12px;
+    width: 12px;
+    transform: scaleY(0.5) rotate(45deg);
+    background: white;
+    float: left;
+    margin-left: 12px;
+    margin-right: -12px;
+    margin-top: 35px;
+}
+
+.corner-right {
+    height: 12px;
+    width: 12px;
+    transform: scaleY(0.5) rotate(45deg);
+    background: #444444;
+    float: right;
+    margin-left: -6px;
+    margin-right: -6px;
+    margin-top: 35px;
+}
+
+.inbox-message-content {
+    float: left;
+    background: white;
+    width: 70%;
+    margin-left: 7px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.inbox-message-content > img {
+    float: left;
+    margin: 15px;
+}
+
+.inbox-date {
+    margin-bottom: 10px;
+    float: left;
+    clear: both;
+    margin-left: 80px;
+    margin-top: 0;
+    font-size: 12px;
+}
+
+.inbox-date-right {
+    float: right;
+    clear: both;
+    margin-right: 80px;
+    margin-top: 0;
+    font-size: 12px;
+}
+
+.inbox-pict-profile {
+    float: left;
+    clear: both;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.inbox-pict-profile-right {
+    float: right;
+    clear: both;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.inbox-pict-profile-right > .img-back {
+    height: 40px;
+    width: 40px;
+    background: #444444;
+}
+
+.inbox-remove-img {
+    position: absolute !important;
+    top: 10px !important;
+    left: 77px;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.inbox-pict {
+    margin-top: 15px;
+}
+
+.img-back {
+    height: 40px;
+    width: 40px;
+    background: #444444;
+}
+
+.inbox-message-content-me {
+    background: #444444;
+    float: right !important;
+    margin-right: 0px;
+    margin-left: auto !important;
+}
+
+.inbox-message-content-me > img {
+    float: right;
+    z-index: 9;
+    margin: 15px;
+}
+
+.inbox-message-content-yaka > textarea {
+    text-align: left !important;
+    color: #00a3d3 !important;
+}
+
+.inbox-img-join {
+    margin: 15px;
+}
+
+.inbox-message-content-auto {
+    background: #dfdfdf !important;
+    border: 1px solid #bdbdbd !important;
+    margin-left: 17px;
+}
+
+.inbox-message-content-auto > textarea {
+    text-align: left !important;
+    color: #444444 !important;
+}
+
+.hw-40 {
+    height: 40px;
+    width: 40px;
+}
+
+.menu-r-title {
+    font-family: "montserrat_light";
+    margin-top: 0;
+    font-size: 16px;
+    color: #2f313a;
+    letter-spacing: 1.19px;
+    line-height: 18px;
+    text-align: left;
+}
+
+.inbox-message-content-me > textarea {
+    text-align: right !important;
+    color: white !important;
+}
+
+.inbox-message-textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px;
+    color: black;
+    font-size: 15px;
+    background: transparent !important;
+    border: none !important;
+    resize: none !important;
+}
+
+.inbox-textarea {
+    width: 100%;
+    height: 100%;
+    padding-top: 18px;
+    color: black;
+    font-size: 15px;
+    background: transparent !important;
+    border: none !important;
+    resize: none !important;
+}
+
 .my-price-proposal, .start-date-proposal {
     float: right;
     font-family: "montserrat_regular";
@@ -752,10 +962,19 @@ md-input-container {
     text-align: center;
     margin-bottom: 0;
     margin-top: 5px;
+    max-width: 348px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 18px;
 }
 
-.h-70 {
-    height: 70px;
+.h-80 {
+    height: 80px !important;
+}
+
+.w-80 {
+    width: 80px !important;
 }
 
 .rate-btn {
@@ -770,6 +989,14 @@ md-input-container {
     margin-bottom: 30px;
 }
 
+.select-pos {
+    background: #00aded !important;
+}
+
+.select-neg {
+    background: #ff6074 !important;
+}
+
 .mt-12 {
     margin-top: 12px;
 }
@@ -779,6 +1006,29 @@ md-input-container {
     margin-bottom: 0 !important;
 }
 
+.criteria-selected-pos {
+    background: #00aded !important;
+    color: white !important;
+    border-color: #00aded !important;
+}
+
+.textarea-rating {
+    width: 100%;
+    background: transparent !important;
+    border: none !important;
+    resize: none !important;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #00aded !important;
+    margin-top: 15px;
+    min-height: 26px;
+}
+
+.criteria-selected-neg {
+    background: #ff6074 !important;
+    color: white !important;
+    border-color: #ff6074 !important;
+}
+
 .criteria {
     background: #ffffff;
     border: 1px solid #bfbfbf;
@@ -786,6 +1036,10 @@ md-input-container {
     text-align: center;
     font-size: 12px;
     color: #999999;
+    height: 26px;
+    line-height: 26px;
+    margin: 5px;
+    cursor: pointer;
 }
 
 .btn-popUp {
@@ -1165,6 +1419,7 @@ color: #9b9b9b!important;
 }
 
 .img-default {
+    margin-right: 47px;
     background-color: rgba(0, 0, 0, 0.5);
     height: 70px;
     width: 70px;
@@ -1381,7 +1636,7 @@ color: #9b9b9b!important;
 }
 
 .hire {
-    margin-bottom: 43px;
+    margin-bottom: 10px;
     font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
@@ -1404,7 +1659,7 @@ color: #9b9b9b!important;
     min-width: 325px;
 }
 
-.menu-r > div > div > .button {
+.menu-r > div > div > div > .button {
     width: 100%;
     height: 50px;
     background-color: #00aded;
@@ -1623,12 +1878,9 @@ color: #9b9b9b!important;
     margin-left: 9px;
     height: 30px;
     font-weight: bold;
-    text-align: left;
-    font-family: 'montserrat_regular';
-    font-weight: bold;
-    font-weight: bold;
-' font-size : 18 px; color : #444444;
-    line-height: 21px;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 18px;
+    color: #444444;
     text-align: center;
     line-height: 30px;
     vertical-align: middle;
@@ -1894,8 +2146,8 @@ color: #9b9b9b!important;
 .material-title {
     font-family: 'montserrat_regular';
     font-weight: bold;
-    font-weight: bold;
-' font-size : 18 px; color : #2f313a;
+    font-size: 18px;
+    color: #2f313a;
     letter-spacing: 1.88px;
     line-height: 21px;
     text-align: center;
@@ -2053,6 +2305,35 @@ color: #9b9b9b!important;
 
 .h-a {
     height: auto !important;
+}
+
+.btn-menu-sel {
+    background: #ffffff !important;
+    border: 1px solid #444444 !important;
+    width: 165px !important;
+    height: 37px !important;
+    color: #444444 !important;
+}
+
+.mt-40 {
+    margin-top: 40px !important;
+}
+
+.menu-title {
+    font-family: "montserrat_light";
+    font-size: 16px;
+    color: #2f313a;
+    letter-spacing: 1.19px;
+    line-height: 18px;
+    text-align: left;
+}
+
+.unread-message {
+    font-family: "montserrat_light";
+    font-size: 12px;
+    color: #ff6074;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 .intl-tel-input {
@@ -2557,8 +2838,8 @@ color: #9b9b9b!important;
 .end > p {
     font-family: 'montserrat_regular';
     font-weight: bold;
-    font-weight: bold;
-' font-size : 25 px; color : #2f313a;
+    font-size: 25px;
+    color: #2f313a;
     line-height: 30px;
     text-align: center;
     width: 100%;
@@ -3264,7 +3545,7 @@ color: #9b9b9b!important;
 
 .proposal-company {
     display: block;
-    font-family: 'montserrat_light';
+    font-family: 'montserrat_regular';
     font-size: 20px;
     color: #444444;
     text-align: left;
@@ -3816,14 +4097,10 @@ ul[rn-carousel-buffered] > li {
     line-height: 13px;
     text-align: left;
     position: absolute;
-    top: 22px;
+    top: 10px;
     left: 50px;
-    right: 90px;
     padding-top: 2px;
     padding-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .proDashboardListItemAddress {
@@ -3970,6 +4247,15 @@ ul[rn-carousel-buffered] > li {
     left: 0;
 }
 
+.btn-blue {
+    color: #00a3d3 !important;
+    border-color: #00a3d3 !important;
+}
+
+.text-align-left {
+    text-align: left !important;
+}
+
 /*------------------------------------------ Pro Dashboard List ----------------------------*/
 
 .proDashboardList {
@@ -4004,4 +4290,22 @@ ul[rn-carousel-buffered] > li {
         height: calc(100% - 50px) !important;
         margin-top: 0px;
     }
+
+    .proDashboardList.proDashboardListWithTopView {
+        margin-top: -55px;
+        height: calc(100% - 50px) !important;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .proDashboardList.proDashboardListWithTopView {
+        height: calc(100% - 100px) !important;
+    }
+
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }

@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    MyProjectscontroller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state', '$filter']
+    MyProjectscontroller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state', '$filter'];
     function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state, $filter) {
 
         var vm = this;
@@ -26,7 +26,7 @@
                 return "active-menu";
             }
             return "";
-        }
+        };
 
         function dateDiff(d1, d2) {
             var h = 0;
@@ -35,7 +35,7 @@
             var min = 0;
             d1 = new Date(d1).getTime() / 60000;
             d2 = new Date(d2).getTime() / 60000;
-            var min = new Number(d2 - d1).toFixed(0)
+            var min = new Number(d2 - d1).toFixed(0);
             if (min > 60) {
                 h = min / 60;
                 if (h > 24) {
@@ -60,8 +60,11 @@
         }
 
         function selectProject(p) {
-            $localStorage.projectGet = p;
-            $state.go("project");
+            if (p.status == 'ONGOING_PROJECT_ONGOING')
+                $state.go("proposal", {proposalId: p.proposals[0].id});
+            else
+                $state.go("proposals", {projectId: p.id});
+
         }
 
         // function succesProjectGET(res){

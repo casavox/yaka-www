@@ -7,9 +7,9 @@
 
     //
     //Controller login
-    LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state', '$rootScope', '$auth', 'alertMsg']
+    LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state', '$rootScope', '$auth', 'alertMsg'];
     function LoginController($scope, networkService, socialNetworkService, $localStorage, $state, $rootScope, $auth, alertMsg) {
-
+        $rootScope.menu = true;
         $scope.email = "";
         $scope.password = "";
         $scope.error = {email: {flag: false, message: ""}, password: {flag: false, message: ""}};
@@ -19,14 +19,14 @@
         $scope.pressEnter = function (event) {
             if (event.keyCode == 13)
                 $scope.login();
-        }
+        };
 
         $scope.login = function () {
             if ($scope.email && $scope.password) {
                 var formData = {
                     profile: {email: $scope.email},
                     password: $scope.password
-                }
+                };
                 networkService.login(formData, succesLogin, errorLogin);
             }
             else {
@@ -53,10 +53,10 @@
             var formData = {
                 profile: {email: $scope.email},
                 password: $scope.password
-            }
+            };
             socialNetworkService.login(succesFLogin, errorFLogin);
-        };
 
+        };
 
         $scope.authenticate = function (provider) {
             $auth.authenticate(provider).then(function (res) {
@@ -94,19 +94,19 @@
                     console.log(res);
                 }
             }
-        };
+        }
 
         function succesProjectsPOST(err) {
             $state.go("end-project")
-        };
+        }
 
         function errorProjectsPOST(err) {
             $state.go("dashboard");
-        };
+        }
 
         function errorLogin(err) {
             alertMsg.send("La combinaison login/mot de passe n'existe pas.", 'danger');
-        };
+        }
 
         function succesFLogin(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
@@ -123,12 +123,12 @@
                     console.log(res);
                 }
             }
-        };
+        }
 
         function errorFLogin(err) {
             console.log(err.message);
             // call alertMSg error danger-theme
-        };
+        }
 
     }
 })();

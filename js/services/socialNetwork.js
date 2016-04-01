@@ -7,7 +7,7 @@
 
     //
     //Network Service Routing
-    socialNetworkService.$inject = ['networkService', '$q', '$localStorage', '$state']
+    socialNetworkService.$inject = ['networkService', '$q', '$localStorage', '$state'];
     function socialNetworkService(networkService, $q, $localStorage, $state) {
         function login() {
             FB.login(function (response) {
@@ -23,7 +23,7 @@
                         }, function (err) {
                             if (!angular.isUndefined(err) && err && err.message && err.message != "")
                                 console.log(err.message);
-                        })
+                        });
                         console.log(accessToken);
                     });
                 } else {

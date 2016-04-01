@@ -7,12 +7,12 @@
 
     //
     //Controller login
-    NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg', 'smoothScroll']
+    NewProjectController.$inject = ['$scope', 'networkService', '$rootScope', '$location', '$anchorScroll', '$timeout', '$localStorage', '$filter', '$state', 'Upload', 'cloudinary', 'alertMsg', 'smoothScroll'];
     function NewProjectController($scope, networkService, $rootScope, $location, $anchorScroll, $timeout, $localStorage, $filter, $state, $upload, cloudinary, alertMsg, smoothScroll) {
         var vm = this;
         vm.user = $localStorage.user;
 
-
+        $rootScope.menu = true;
         vm.newProject = {};
         vm.child0 = "";
         vm.child1 = "";
@@ -43,7 +43,7 @@
 
         vm.dt = new Date(); // date picker binding
         vm.default = angular.copy(vm.dt);
-        vm.minDate = new Date()
+        vm.minDate = new Date();
         vm.J1 = {date: new Date()};
         vm.time = vm.J1.date.getHours();
         vm.J2 = {date: new Date()};
@@ -80,11 +80,11 @@
         vm.all = all;
         vm.initDate = initDate;
         vm.limitLength = limitLength;
-        vm.verifDescription = verifDescription
+        vm.verifDescription = verifDescription;
 
         var scrollOptions = {
             containerId: 'main-scroll-container'
-        }
+        };
 
         // Google autocomplete binding
 
@@ -226,7 +226,7 @@
                 }
             }
             else {
-                vm.user = {}
+                vm.user = {};
                 vm.user.addresses = [];
             }
             for (var i = 0; i < vm.newProject.childrenActivities.length; i++) {
@@ -263,7 +263,7 @@
                 status: "DRAFT",
                 address: {},
                 activities: [],
-            }
+            };
             for (var i = 0; i < vm.questions.length; i++) {
                 formData.activities.push({code: vm.questions[i].code});
             }
@@ -332,7 +332,7 @@
                     desiredDatePeriod: vm.dateType,
                     address: {},
                     activities: [],
-                }
+                };
                 for (var i = 0; i < vm.questions.length; i++) {
                     formData.activities.push({code: vm.questions[i].code});
                 }
@@ -396,7 +396,7 @@
                     address: {},
                     activities: [],
                     availabilities: []
-                }
+                };
                 for (var i = 0; i < vm.questions.length; i++) {
                     formData.activities.push({code: vm.questions[i].code});
                 }
@@ -504,12 +504,12 @@
                 vm.error.date.flag = false;
                 vm.error.date.message = "At least a slot is required";
             }
-        })
+        });
 
         function verifNameAddr() {
             vm.continueAddressFlag = false;
             if (vm.newAddr.name.length > 0) {
-                vm.continueAddress = false
+                vm.continueAddress = false;
                 vm.disabledAddr = false;
                 vm.myAddress = "new";
                 $scope.address = {
@@ -704,7 +704,7 @@
 
                 var otherChild = {
                     code: "OTHER"
-                }
+                };
                 otherChild.name = 'ACTIVITY_' + otherChild.code;
                 item.childrenActivities.push(otherChild);
             }
@@ -721,7 +721,7 @@
                 }
             }
             else {
-                vm.user = {}
+                vm.user = {};
                 vm.user.addresses = [];
             }
             $timeout(function () {
@@ -772,7 +772,7 @@
 
                 var otherChild = {
                     code: "OTHER"
-                }
+                };
                 otherChild.name = 'ACTIVITY_' + otherChild.code;
                 item.childrenActivities.push(otherChild);
             }
@@ -889,7 +889,7 @@
                                 tmp = "16H_18H";
                                 break;
                             case 5:
-                                tmp = "18H_20H"
+                                tmp = "18H_20H";
                                 break;
                             case 6:
                                 tmp = "AFTER_20H";

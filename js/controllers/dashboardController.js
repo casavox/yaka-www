@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state']
-    function DashboardController($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state) {
+    DashboardController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state', 'alertMsg'];
+    function DashboardController($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state, alertMsg) {
         var vm = this;
         vm.dashboardProjects = [];
         vm.dashboardAddress = [];
@@ -21,7 +21,7 @@
                 return "active-menu";
             }
             return "";
-        }
+        };
 
         networkService.projectsGET("ongoing", 1, 3, succesProjectsGET, errorProjectsGET);
 

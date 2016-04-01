@@ -35,8 +35,20 @@
             projectsGET: function (status, page, limit, success, error) {
                 $http.get(baseUrl + '/projects/me?page=' + page + '&limit=' + limit + '&status=' + status).success(success).error(error)
             },
+            criteriaGET: function (success, error) {
+                $http.get(baseUrl + '/proposals/rate/availablecritera').success(success).error(error)
+            },
+            proToRate: function (success, error) {
+                $http.get(baseUrl + '/projects/torate').success(success).error(error)
+            },
+            ratePro: function (data, success, error) {
+                $http.post(baseUrl + '/proposals/' + data.id + "/rate", data).success(success).error(error)
+            },
             projectSMALLPOST: function (data, success, error) {
                 $http.post(baseUrl + '/projects/small', data).success(success).error(error)
+            },
+            closeProject: function (data, success, error) {
+                $http.post(baseUrl + '/proposals/' + data + '/complete').success(success).error(error)
             },
             changePassword: function (data, success, error) {
                 $http.put(baseUrl + '/pro/me/password', data).success(success).error(error)
@@ -58,6 +70,9 @@
             },
             proposalGET: function (data, success, error) {
                 $http.get(baseUrl + '/proposals/' + data).success(success).error(error)
+            },
+            proposalProGET: function (data, success, error) {
+                $http.get(baseUrl + '/pro/proposals/' + data).success(success).error(error)
             },
             proposalAcceptPOST: function (data, success, error) {
                 $http.post(baseUrl + '/proposals/' + data.id + "/accept", data).success(success).error(error)
@@ -107,6 +122,18 @@
             proVerificationsPUT: function (data, success, error) {
                 $http.put(baseUrl + '/pro/me/verifications', data).success(success).error(error)
             },
+            messagesGET: function (id, page, limit, success, error) {
+                $http.get(baseUrl + '/proposals/' + id + "/messages?page=" + page + "&limit=" + limit).success(success).error(error)
+            },
+            sendMessage: function (id, data, success, error) {
+                $http.post(baseUrl + '/proposals/' + id + "/message", data).success(success).error(error)
+            },
+            messagesProGET: function (id, page, limit, success, error) {
+                $http.get(baseUrl + '/pro/proposals/' + id + "/messages?page=" + page + "&limit=" + limit).success(success).error(error)
+            },
+            sendMessagePro: function (id, data, success, error) {
+                $http.post(baseUrl + '/pro/proposals/' + id + "/message", data).success(success).error(error)
+            }
         };
 
     }
