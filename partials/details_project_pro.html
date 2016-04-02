@@ -175,7 +175,7 @@
                 <div class="col-xs-12 cursor-pointer" ng-click="vm.myDate()">
                     <span class="icon-pen-red-pro"></span>
                     <span class="price-area" ng-show="!vm.offer.date.date">---</span>
-                    <span class="price-area" ng-show="vm.offer.date.date">{{vm.offer.date.date | date:'dd MMM yyyy'}} {{vm.getSlot(vm.offer.date.slot)}}</span>
+                    <span class="price-area" ng-show="vm.offer.date.date"><span ng-if="vm.projectTmp.type != 'EMERGENCY'">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span> <span ng-if="vm.projectTmp.type == 'EMERGENCY'">{{vm.getSlot(vm.offer.date.slot)}}</span></span>
 
                     <p class="pro-menu-title">
                         My start date

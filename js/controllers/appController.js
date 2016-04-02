@@ -15,7 +15,7 @@
         $scope.projectFlag = false;
         $scope.project = null;
         $scope.error = {criteria: {message: "", flag: true}};
-        $scope.rating = {positive: true, comment: "", criteria: []};
+        $scope.rating = {positive: "", comment: "", criteria: []};
         var can = true;
 
         $scope.viewProposal = function () {
@@ -65,6 +65,7 @@
 
         $scope.selectCriteria = function (index) {
             var flag = false;
+
             for (var i = 0; i < $scope.rating.criteria.length; i++) {
                 if ($scope.rating.criteria[i].name == $scope.criteria[index]) {
                     $scope.rating.criteria.splice(i, 1);
@@ -72,8 +73,10 @@
                     break;
                 }
             }
-            if (!flag)
-                $scope.rating.criteria.push({name: $scope.criteria[index]});
+            if ($scope.rating.criteria.length < 3 && ($scope.rating.positive == 'true' || $scope.rating.positive == 'false')) {
+                if (!flag)
+                    $scope.rating.criteria.push({name: $scope.criteria[index]});
+            }
         };
 
         $scope.indexOfObject = function (a, token, array) {
@@ -90,22 +93,31 @@
         };
 
         $scope.send = function () {
-            if ($scope.rating.criteria.length > 2 && $scope.rating.positive || ($scope.rating.positive == false && $scope.rating.comment.length > 10)) {
+            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && ($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10)) {
+                $scope.disable = true;
                 $scope.error.criteria.flag = false;
                 $scope.rating.id = $scope.project.proposal.id;
                 networkService.ratePro($scope.rating, function (res) {
                     $scope.projectFlag = false;
                     $rootScope.rate_pro = false;
+                    $scope.disable = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
                 }, function (res) {
                     alertMsg.send("Error : impossible to rate the pro", "danger");
                     $scope.projectFlag = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
+                    $scope.disable = false;
                 })
+            }
+            else if ($scope.rating.positive == 'false' && $scope.rating.comment.length < 10) {
+                $scope.error.criteria.message = "Please select at least 3 criteria and say why.";
+                $scope.error.criteria.flag = true;
+                $scope.disable = false;
             }
             else {
                 $scope.error.criteria.message = "Please select at least 3 criteria";
                 $scope.error.criteria.flag = true;
+                $scope.disable = false;
             }
         };
 

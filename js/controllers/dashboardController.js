@@ -38,8 +38,7 @@
         }
 
         function selectProject(p) {
-            $localStorage.projectGet = p;
-            $state.go("project");
+            $state.go("project", {projectId: p.id});
         }
 
 

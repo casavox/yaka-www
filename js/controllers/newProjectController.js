@@ -19,6 +19,7 @@
         vm.child2 = "";
         vm.child3 = "";
         vm.countdown = 5;
+        vm.wait = false;
         vm.popupFlag = false;
         vm.emergency = false;
         vm.dateFlag = false;
@@ -44,6 +45,8 @@
         vm.dt = new Date(); // date picker binding
         vm.default = angular.copy(vm.dt);
         vm.minDate = new Date();
+        vm.maxDate = new Date();
+        vm.maxDate.setDate(vm.minDate.getDate() + 180);
         vm.J1 = {date: new Date()};
         vm.time = vm.J1.date.getHours();
         vm.J2 = {date: new Date()};
@@ -745,14 +748,17 @@
             if (index == 0) {
                 vm.title += " " + item.name;
             }
-            if (item.code != "OTHER") {
-                vm.questions[index + 1] = item;
-            }
+            vm.questions[index + 1] = item;
             vm.service = false;
-            vm.questions = vm.questions.slice(0, index + 2);
             for (var i = 0; i < items.length; i++) {
-                items[i].selected = ""
+                items[i].selected = "";
             }
+            item.selected = "activate";
+            var tmp = angular.copy(vm.questions.slice(0, index + 2));
+            vm.questions = tmp;
+            console.log(vm.questions);
+
+            item.selected = "activate";
             if (item.childrenActivities && item.childrenActivities.length > 0) {
 
                 var childrenArray = [];
@@ -776,7 +782,6 @@
                 otherChild.name = 'ACTIVITY_' + otherChild.code;
                 item.childrenActivities.push(otherChild);
             }
-            item.selected = "activate";
             if (item.childrenActivities && item.childrenActivities.length > 0) {
                 $timeout(function () {
                     var element = document.getElementById('subSlide' + (index + 1).toString());
@@ -790,7 +795,6 @@
                     smoothScroll(element, scrollOptions);
                 }, 0);
             }
-
         }
 
         function succesProjectsGET(res) {
@@ -805,8 +809,8 @@
                 }
             }
             res.childrenActivities = childrenArray;
-
             vm.newProject = res;
+            vm.wait = true;
             console.log(res);
         }
 

@@ -52,7 +52,10 @@
                             <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
                                 DELETE
                             </div>
-                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()">
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishProject()" ng-if="vm.project.status == 'DRAFT'">
+                                PUBLISH
+                            </div>
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()" ng-if="vm.project.status != 'DRAFT'">
                                 UNPUBLISH
                             </div>
                             <div class="description-action-btn color-red" ng-show="vm.editFlag"

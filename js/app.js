@@ -17,7 +17,9 @@ angular.module('Yaka', [
     'ngMaterial',
     'internationalPhoneNumber',
     'bootstrapLightbox',
-    'angularMoment']);
+    'angularMoment',
+    'ngStomp',
+    'luegg.directives']);
 
 
 // facebook library API

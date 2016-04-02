@@ -30,6 +30,7 @@
                 networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
                     vm.messages = res;
                     console.log(res);
+                    vm.glue = true;
                 }, function () {
                     alertMsg.send("Error to get the messages historic", "warning");
                 });
@@ -47,6 +48,7 @@
                 networkService.messagesProGET($stateParams.proposalId, 1, limit, function (res) {
                     vm.messages = res;
                     console.log(res);
+                    vm.glue = true;
                 }, function () {
                     alertMsg.send("Error to get the messages historic", "warning");
                 });
@@ -61,6 +63,7 @@
             .then(function (frame) {
                 var subscription = $stomp.subscribe('/chat/' + $stateParams.proposalId, function (payload, headers, res) {
                     vm.messages.items.push(payload);
+                    vm.glue = true;
                 }, {
                     'token': $localStorage.token
                 });
@@ -73,10 +76,10 @@
 
         function loadMore() {
             var page = Math.ceil(vm.messages.items.length / limit);
-            networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
-                vm.messages = res;
+            networkService.messagesGET($stateParams.proposalId, page, limit, function (res) {
+                vm.messages = vm.messages.concat(res);
                 console.log(res);
-            }, function (res) {
+            }, function () {
                 alertMsg.send("Error to get the messages", "warning");
             });
         }

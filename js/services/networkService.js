@@ -89,6 +89,9 @@
             unpublishProject: function (id, success, error) {
                 $http.post(baseUrl + '/projects/' + id + '/unpublish').success(success).error(error)
             },
+            publishProject: function (id, success, error) {
+                $http.post(baseUrl + '/projects/' + id + '/publish').success(success).error(error)
+            },
             projectPUT: function (data, success, error) {
                 if (data.type == "EMERGENCY")
                     $http.put(baseUrl + '/projects/emergency/' + data.id, data).success(success).error(error);

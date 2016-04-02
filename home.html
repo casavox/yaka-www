@@ -27,14 +27,15 @@
     <link href="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css"/>
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css"/>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome-4.5.0/font-awesome-4.5.0/css/font-awesome.css" rel="stylesheet">
     <link href="bower_components/intl-tel-input/build/css/intlTelInput.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <script src="bower_components/components-font-awesome/css/font-awesome.min.css"></script>
     <link href="css/angular-carousel.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
 
-
+    <script src="bower_components/sockjs/sockjs.min.js"></script>
+    <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
     <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
     <script src="bower_components/ev-emitter/ev-emitter.js"></script>
     <script src="bower_components/desandro-matches-selector/matches-selector.js"></script>
@@ -47,15 +48,14 @@
     <script src="bower_components/intl-tel-input/src/js/intlTelInput.js"></script>
 
     <script type="text/javascript" src="scripts/angular.min.js"></script>
+    <script src="bower_components/ng-stomp/dist/ng-stomp.min.js"></script>
     <script src="bower_components/intl-tel-input/src/js/data.js"></script>
     <script src="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
     <script src="bower_components/international-phone-number/releases/international-phone-number.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.js"></script>
     <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
-    <script src="bower_components/sockjs/sockjs.min.js"></script>
-    <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
-    <script src="bower_components/ng-stomp/dist/ng-stomp.min.js"></script>
+
 
     <!-- We use client cookies to save the user credentials -->
     <script src="//code.angularjs.org/1.2.16/angular-cookies.min.js"></script>
@@ -125,7 +125,7 @@
         <div class="popUp-content">
             <h4>Rate your pro </h4>
 
-            <p class="text-center">
+            <p class="rate-message-thx">
                 Merci d'avoir choisi YakaClub pour vos travaux
             </p>
 
@@ -135,7 +135,7 @@
                 </p>
 
                 <p class="rate-link text-center">
-                    <a ng-click="viewProposal()">View details</a>
+                    <a ng-click="viewProposal()" class="cursor-pointer">View details</a>
                 </p>
                 <cl-image public-id="{{project.professional.avatar.cloudinaryPublicId}}" class="img-circle center"
                           format="png" ng-if="project.professional.avatar.cloudinaryPublicId">
@@ -147,17 +147,17 @@
                     {{project.professional.firstName[0] | uppercase}} {{project.professional.lastName[0] | uppercase}}
                 </div>
                 <p class="rate-info">
-                    Would you recommend {{project.professional.company.name}} to your friends ?
+                    Would you recommend  <b>{{project.professional.firstName}}</b> to your friends ?
                 </p>
 
                 <div class="rate-btn center">
-                    <div class=" img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive}"
-                         ng-click="rating.positive = true">
-                        <img src="icons/mdpi/ic_like_empty.png" class="rate-like"/>
+                    <div class=" img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive == 'true'}"
+                         ng-click="rating.positive = 'true'">
+                        <img src="icons/mdpi/ic_thumb_up_defult.png" class="rate-like"/>
                     </div>
-                    <div class="img-circle f-r cursor-pointer" ng-class="{'select-neg': !rating.positive}"
-                         ng-click="rating.positive = false">
-                        <img src="icons/mdpi/ic_pen_edit.png" class="rate-dislike "/>
+                    <div class="img-circle f-r cursor-pointer" ng-class="{'select-neg': rating.positive == 'false'}"
+                         ng-click="rating.positive = 'false'">
+                        <img src="icons/mdpi/ic_thumb_down_defult.png" class="rate-dislike "/>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
             <div class="row">
                 <div class="col-md-6" ng-repeat="c in criteria">
                     <div class="criteria"
-                         ng-class="{'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive, 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && !rating.positive}"
+                         ng-class="{'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
                          ng-click="selectCriteria($index)">
                         {{c}}
                     </div>
@@ -177,8 +177,8 @@
             <p class="error center my-price-error" ng-show="error.criteria.flag">
                 {{error.criteria.message}}
             </p>
-            <textarea class="textarea-rating" placeholder="Commentaire" ng-model="rating.comment"></textarea>
-            <button type="button" class="button btn btn-popUp" ng-click="send()">SEND</button>
+            <textarea class="textarea-rating" placeholder="Ajouter un commentaire" ng-model="rating.comment"></textarea>
+            <button type="button" class="button btn btn-popUp" ng-click="send()" ng-disabled="disable">SEND</button>
         </div>
     </div>
 </div>

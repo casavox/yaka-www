@@ -41,23 +41,23 @@
                          ng-class="{'inbox-message-content-me': message.author == vm.me, 'inbox-message-content-yaka': message.author == 'YAKA', 'inbox-message-content-auto': message.author == 'AUTO'}">
                         <cl-image public-id="{{message.cloudinaryPublicId}}" format="png"
                                   ng-if="message.cloudinaryPublicId">
-                            <cl-transformation height="70" width="70" crop="fill"/>
+                            <cl-transformation height="200" width="200" crop="fit"/>
                         </cl-image>
-                        <textarea class="inbox-message-textarea" disabled="disabled" ng-model="message.text"
+                        <textarea class="inbox-message-textarea" disabled="disabled"  ng-if="message.text" ng-model="message.text"
                                   msd-elastic></textarea>
                     </div>
-                    <div class="inbox-date" ng-class="{'inbox-date-right': message.author == vm.me}">
-                        {{message.created | date:'dd-MM-yyyy hh:mm'}}
+                    <div class="inbox-date" ng-class="{'inbox-date-right': message.author == vm.me}" am-time-ago="message.created">
                     </div>
                 </div>
             </div>
             <div class="inbox-text">
                 <div class="inbox-join-preview" ng-show="vm.msg.cloudinaryPublicId">
-                    <span class="glyphicon glyphicon-remove-circle inbox-remove-img cursor-pointer"
-                          ng-show="vm.msg.cloudinaryPublicId" ng-click="vm.deleteImg()"></span>
-                    <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" format="png" class="inbox-img-join">
-                        <cl-transformation height="70" width="70" crop="fill"/>
-                    </cl-image>
+                    <div><span class="glyphicon glyphicon-remove-circle inbox-remove-img cursor-pointer"
+                               ng-show="vm.msg.cloudinaryPublicId" ng-click="vm.deleteImg()"></span>
+                        <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" format="png" class="inbox-img-join center">
+                            <cl-transformation height="200" width="200" crop="fit"/>
+                        </cl-image></div>
+
                 </div>
                 <div class="row">
                     <div class="col-xs-1">

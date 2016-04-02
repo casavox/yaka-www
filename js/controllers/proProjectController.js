@@ -148,19 +148,21 @@
             }
         }
 
-        function selectDate(slot) {
+        function selectDate() {
             vm.offer.date = {date: vm.dt};
             if (vm.projectTmp.type == 'EMERGENCY') {
                 var tmp = [];
                 initDate(vm.J1, tmp);
                 initDate(vm.J2, tmp);
                 initDate(vm.J3, tmp);
-                if (tmp.length > 0)
-                    vm.offer.date.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
-                vm.offer.date.slot = tmp[0].slot;
+                if (tmp.length > 0){
+                    vm.proposalTmp.availability.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
+                    vm.proposalTmp.availability.slot = tmp[0].slot;
+                    vm.myDateFlag = false;
+                }
             }
-            console.log(vm.offer);
-            vm.myDateFlag = false;
+            else if (vm.projectTmp.type != 'EMERGENCY')
+                vm.myDateFlag = false;
         }
 
         function getSlot(slot) {

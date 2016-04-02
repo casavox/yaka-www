@@ -61,11 +61,11 @@
                                 </div>
                             </div>
                             <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
-                                <p class="pro-title-name" ng-show="p.status == 'START'">
+                                <p class="pro-title-name" ng-if="vm.project.status == 'START'">
                                     {{p.professional.firstName}} {{p.professional.lastName}}
                                 </p>
 
-                                <p class="pro-title-companyName" ng-show="p.status == 'PRESELECTED'">
+                                <p class="pro-title-companyName" ng-show="vm.project.status == 'PRESELECTED'">
                                     {{p.professional.companyName}}
                                 </p>
 

@@ -149,6 +149,20 @@
             }
         };
 
+        vm.publishProject = function () {
+            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+                networkService.publishProject($stateParams.projectId,
+                    function () {
+                        alertMsg.send("Your project has been published", "success");
+                    },
+                    function () {
+                        alertMsg.send("Error : project can't be published", "danger");
+                    }
+                );
+            }
+        };
+
+
         function closeProject() {
             networkService.closeProject(vm.project.proposal.id, function (res) {
                 vm.project.status = "ONGOING_RATE_PRO";

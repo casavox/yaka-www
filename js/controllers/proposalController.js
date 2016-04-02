@@ -142,6 +142,11 @@
             }
         }
 
+        vm.ratePro = function () {
+            $rootScope.rating = false;
+            $rootScope.rate_watcher = !$rootScope.rate_watcher;
+        };
+
         function getSlot() {
             if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.availability) && !angular.isUndefined(vm.proposal.availability.slot))
                 switch (vm.proposal.availability.slot) {
