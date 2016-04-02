@@ -645,19 +645,14 @@
 
         function getTags() {
             var res = "";
-            if (vm.projectTmp.tags && vm.projectTmp.tags.length > 0) {
-                for (var i = 0; i < vm.projectTmp.tags.length; i++) {
-                    if (i < vm.projectTmp.tags.length - 1)
-                        res += vm.projectTmp.tags[i].name + " - ";
-                    else {
-                        res += vm.projectTmp.tags[i].name
-                    }
+            if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.activities) {
+                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
+                    if (i != 0)
+                        res += " - ";
+                    res += vm.projectTmp.activities[i].code;
                 }
-                return res;
             }
-            else {
-
-            }
+            return res;
         }
 
         function getWhen() {
