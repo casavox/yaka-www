@@ -39,7 +39,8 @@
                         <div class="col-xs-5">
                             <div class="onoffswitch">
                                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                       id="myonoffswitch" ng-model="vm.emergency" ng-change="vm.resetProject()" ng-click="vm.wait = false">
+                                       id="myonoffswitch" ng-model="vm.emergency" ng-change="vm.resetProject()"
+                                       ng-click="vm.wait = false">
                                 <label class="onoffswitch-label" for="myonoffswitch"></label>
                             </div>
                         </div>
@@ -48,12 +49,12 @@
                     <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected"
                          ng-repeat="child in vm.newProject.childrenActivities"
                          ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
-                         title="{{child.name | translate}}" ng-show="vm.wait">
+                         title="{{'ACTIVITY_' + child.code | translate}}" ng-show="vm.wait">
                         <div class="type-project-box-content">
                             <div class="v-icon v-icon-{{child.code}} center">
                             </div>
                             <p class="type-project-title text-center">
-                                {{child.name | translate }}
+                                {{'ACTIVITY_' + child.code | translate }}
                             </p>
                         </div>
                     </div>
@@ -61,11 +62,11 @@
             </div>
             <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]"
                  ng-repeat="q in vm.questions" ng-if="q.childrenActivities">
-                <h2 class="text-center">{{q.name | translate }}</h2>
+                <h2 class="text-center">{{'ACTIVITY_' + q.code | translate }}</h2>
                 <ul class="questions-ul center">
                     <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities"
                         ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
-                        {{ child.code | translate }}
+                        {{ 'ACTIVITY_' + child.code | translate }}
                     </li>
                 </ul>
             </div>
@@ -528,7 +529,8 @@
                         </li>
                         <li ng-show="vm.dateFlag">
                             <div style="display:inline-block; min-height:290px;" class="center custom-picker">
-                                <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true" max-date="vm.maxDate"
+                                <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true"
+                                                max-date="vm.maxDate"
                                                 class="well well-sm custom-date"
                                                 custom-class="getDayClass(date, mode)"></uib-datepicker>
                             </div>

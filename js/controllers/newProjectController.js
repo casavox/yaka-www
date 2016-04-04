@@ -692,7 +692,6 @@
 
                 var childrenArray = [];
                 for (var i = 0; i < item.childrenActivities.length; i++) {
-                    item.childrenActivities[i].name = 'ACTIVITY_' + item.childrenActivities[i].code;
                     if (vm.emergency && item.childrenActivities[i].emergency) {
                         childrenArray.push(item.childrenActivities[i]);
                     } else if (!vm.emergency && item.childrenActivities[i].small) {
@@ -708,7 +707,6 @@
                 var otherChild = {
                     code: "OTHER"
                 };
-                otherChild.name = 'ACTIVITY_' + otherChild.code;
                 item.childrenActivities.push(otherChild);
             }
             item.selected = "activate";
@@ -763,7 +761,6 @@
 
                 var childrenArray = [];
                 for (var i = 0; i < item.childrenActivities.length; i++) {
-                    item.childrenActivities[i].name = 'ACTIVITY_' + item.childrenActivities[i].code;
                     if (vm.emergency && item.childrenActivities[i].emergency) {
                         childrenArray.push(item.childrenActivities[i]);
                     } else if (!vm.emergency && item.childrenActivities[i].small) {
@@ -779,8 +776,10 @@
                 var otherChild = {
                     code: "OTHER"
                 };
-                otherChild.name = 'ACTIVITY_' + otherChild.code;
+                console.log(item.childrenActivities.length);
                 item.childrenActivities.push(otherChild);
+                console.log(item.childrenActivities.length);
+                console.log(item.childrenActivities);
             }
             if (item.childrenActivities && item.childrenActivities.length > 0) {
                 $timeout(function () {
@@ -801,7 +800,6 @@
 
             var childrenArray = [];
             for (var i = 0; i < res.childrenActivities.length; i++) {
-                res.childrenActivities[i].name = 'ACTIVITY_' + res.childrenActivities[i].code;
                 if (vm.emergency && res.childrenActivities[i].emergency) {
                     childrenArray.push(res.childrenActivities[i]);
                 } else if (!vm.emergency && res.childrenActivities[i].small) {
