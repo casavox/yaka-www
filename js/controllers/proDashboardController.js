@@ -123,7 +123,6 @@
             for (var i = 0; i < titleArray.length; i++) {
                 titleArray[i] = $translate.instant(titleArray[i]);
             }
-            console.log(titleArray.join(' '));
             return titleArray.join(' ');
         }
 
