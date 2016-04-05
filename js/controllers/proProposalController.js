@@ -53,6 +53,24 @@
         vm.getSlot = getSlot;
         vm.error = {};
 
+        vm.circle =
+        {
+            id: 1,
+            center: {
+                latitude: 0,
+                longitude: 0
+            },
+            radius: 200,
+            stroke: {
+                color: '#00aded',
+                weight: 2,
+                opacity: 1
+            },
+            visible: false,
+            control: {},
+            bounds: {}
+        };
+
         $scope.map = {
             center: {
                 latitude: 46.5945259,
@@ -65,13 +83,12 @@
             scrollwheel: false
         };
 
-
         if ($stateParams.proposalId) {
             var res = parseInt($stateParams.proposalId);
             if (res.toString() != $stateParams.proposalId)
                 $state.go("prodashboard");
             else {
-                networkService.proposalGET(res, succesProjectGET, errorProjectGET);
+                networkService.proposalProGET(res, succesProjectGET, errorProjectGET);
             }
         }
         else {
@@ -673,6 +690,18 @@
         }
 
         function succesProjectGET(res) {
+            $scope.map.center = {
+                latitude: res.project.address.latitude,
+                longitude: res.project.address.longitude
+            };
+            $scope.map.zoom = 14;
+
+            vm.circle.center = {
+                latitude: res.project.address.latitude,
+                longitude: res.project.address.longitude
+            };
+            vm.circle.visible = true;
+
             vm.project = res.project;
             vm.proposal = res;
             vm.proposalTmp = angular.copy(vm.proposal);

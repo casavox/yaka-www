@@ -86,9 +86,6 @@
             deleteProject: function (id, success, error) {
                 $http.delete(baseUrl + '/projects/' + id).success(success).error(error)
             },
-            unpublishProject: function (id, success, error) {
-                $http.post(baseUrl + '/projects/' + id + '/unpublish').success(success).error(error)
-            },
             publishProject: function (id, success, error) {
                 $http.post(baseUrl + '/projects/' + id + '/publish').success(success).error(error)
             },

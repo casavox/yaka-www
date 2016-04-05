@@ -1,8 +1,9 @@
 <style type="text/css">
-    html, body, #map_canvas {
-        height: 70px;
-        width: 100%;
+    #map_canvas {
+        height: 120px;
         margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
     }
 
     #map_canvas {
@@ -73,8 +74,15 @@
                 <div class="row no-margin">
                     <div class="col-xs-12 ">
                         <div id="map_canvas">
-                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"
-                                                dragging="false"></ui-gmap-google-map>
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                dragging="false">
+                                <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
+                                                fill="vm.circle.fill" radius="vm.circle.radius"
+                                                bounds="vm.circle.bounds"
+                                                visible="vm.circle.visible" geodesic="true" editable="false"
+                                                draggable="false" clickable="true" control="vm.circle.control"
+                                                events="vm.circle.events"></ui-gmap-circle>
+                            </ui-gmap-google-map>
                         </div>
                     </div>
                 </div>
@@ -85,9 +93,8 @@
                             <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
                         </div>
                         <div class="col-xs-12 description-sub-text">
-                            {{vm.projectTmp.address.name}}
+                            {{vm.projectTmp.address.locality}} {{vm.projectTmp.address.postalCode}}
                         </div>
-
                     </div>
                 </div>
                 <div class="row no-margin">
@@ -175,7 +182,9 @@
                 <div class="col-xs-12 cursor-pointer" ng-click="vm.myDate()">
                     <span class="icon-pen-red-pro"></span>
                     <span class="price-area" ng-show="!vm.offer.date.date">---</span>
-                    <span class="price-area" ng-show="vm.offer.date.date"><span ng-if="vm.projectTmp.type != 'EMERGENCY'">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span> <span ng-if="vm.projectTmp.type == 'EMERGENCY'">{{vm.getSlot(vm.offer.date.slot)}}</span></span>
+                    <span class="price-area" ng-show="vm.offer.date.date"><span
+                        ng-if="vm.projectTmp.type != 'EMERGENCY'">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span> <span
+                        ng-if="vm.projectTmp.type == 'EMERGENCY'">{{vm.getSlot(vm.offer.date.slot)}}</span></span>
 
                     <p class="pro-menu-title">
                         My start date
