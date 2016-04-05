@@ -61,16 +61,16 @@
                                 </div>
                             </div>
                             <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
-                                <p class="pro-title-name" ng-if="vm.project.status == 'START'">
+                                <p class="pro-title-name">
                                     {{p.professional.firstName}} {{p.professional.lastName}}
                                 </p>
 
-                                <p class="pro-title-companyName" ng-show="vm.project.status == 'PRESELECTED'">
+                                <p class="pro-title-companyName">
                                     {{p.professional.companyName}}
                                 </p>
 
                                 <p class="pro-title-desc">
-
+                                    <span ng-repeat="quality in p.professional.qualities | limitTo:2">{{ $first ? '' : ', '}}{{quality.name | translate}}</span>
                                 </p>
 
                                 <div class="pro-title-icon">
@@ -81,7 +81,7 @@
                                     </div>
                                     <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
                                          ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
-                                    <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
+                                    <img src="icons/mdpi/suggestion.png" class="icon-suggestion" ng-show="false"/>
                                 </div>
                             </div>
                             <div class="col-xs-2 no-margin no-padding">
