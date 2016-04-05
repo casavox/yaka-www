@@ -13,7 +13,10 @@
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
         vm.selectImagePreview = selectImagePreview;
-        vm.markerCoords = {};
+        vm.marker = {
+            coords : {},
+            visible: false
+        };
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.sendOffer = sendOffer;
@@ -63,7 +66,7 @@
             radius: 200,
             stroke: {
                 color: '#00aded',
-                weight: 2,
+                weight: 1,
                 opacity: 1
             },
             visible: false,
@@ -701,6 +704,12 @@
                 longitude: res.project.address.longitude
             };
             vm.circle.visible = true;
+
+            vm.marker.coords = {
+                latitude: res.project.address.latitude,
+                longitude: res.project.address.longitude
+            };
+            vm.marker.visible = true;
 
             vm.project = res.project;
             vm.proposal = res;

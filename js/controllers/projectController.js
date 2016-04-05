@@ -140,6 +140,9 @@
                 networkService.publishProject($stateParams.projectId,
                     function () {
                         alertMsg.send("Your project has been published", "success");
+                        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+                            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
+                        }
                     },
                     function () {
                         alertMsg.send("Error : project can't be published", "danger");

@@ -95,12 +95,17 @@
                         <div id="map_canvas">
                             <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
                                                 dragging="false">
-                                <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
-                                                fill="vm.circle.fill" radius="vm.circle.radius"
-                                                bounds="vm.circle.bounds"
-                                                visible="vm.circle.visible" geodesic="true" editable="false"
-                                                draggable="false" clickable="true" control="vm.circle.control"
-                                                events="vm.circle.events"></ui-gmap-circle>
+                                <ui-gmap-circle
+                                    ng-if="vm.proposalTmp.status != 'SELECTED' && vm.proposalTmp.status != 'RATE_PRO' && vm.proposalTmp.status != 'COMPLETED'"
+                                    center="vm.circle.center" stroke="vm.circle.stroke"
+                                    fill="vm.circle.fill" radius="vm.circle.radius"
+                                    bounds="vm.circle.bounds"
+                                    visible="vm.circle.visible" geodesic="true" editable="false"
+                                    draggable="false" clickable="true" control="vm.circle.control"
+                                    events="vm.circle.events"></ui-gmap-circle>
+                                <ui-gmap-marker
+                                    ng-if="vm.proposalTmp.status == 'SELECTED' || vm.proposalTmp.status == 'RATE_PRO' || vm.proposalTmp.status == 'COMPLETED'"
+                                    idKey='1' coords='vm.marker.coords' visible="vm.marker.visible"></ui-gmap-marker>
                             </ui-gmap-google-map>
                         </div>
                     </div>
