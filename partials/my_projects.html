@@ -85,7 +85,8 @@
 
                         <div class="row avatar-display " ng-if="p.proposals.length > 0">
                             <div class="col-xs-3">
-                                <cl-image public-id="{{p.proposals[0].professional.avatar.cloudinaryPublicId}}"
+                                <cl-image ng-if="p.proposals[0].professional.avatar.cloudinaryPublicId"
+                                          public-id="{{p.proposals[0].professional.avatar.cloudinaryPublicId}}"
                                           class="img-circle avatar-pro" format="png">
                                     <cl-transformation height="29" width="29" crop="fill"/>
                                 </cl-image>
@@ -97,7 +98,8 @@
                                 </div>
                             </div>
                             <div class="col-xs-3" ng-if="p.proposals.length > 1">
-                                <cl-image public-id="{{p.proposals[1].professional.avatar.cloudinaryPublicId}}"
+                                <cl-image ng-if="p.proposals[1].professional.avatar.cloudinaryPublicId"
+                                          public-id="{{p.proposals[1].professional.avatar.cloudinaryPublicId}}"
                                           class="img-circle avatar-pro" format="png">
                                     <cl-transformation height="29" width="29" crop="fill"/>
                                 </cl-image>
@@ -109,7 +111,8 @@
                                 </div>
                             </div>
                             <div class="col-xs-3" ng-if="p.proposals.length > 2">
-                                <cl-image public-id="{{p.proposals[2].professional.avatar.cloudinaryPublicId}}"
+                                <cl-image ng-if="p.proposals[1].professional.avatar.cloudinaryPublicId"
+                                          public-id="{{p.proposals[2].professional.avatar.cloudinaryPublicId}}"
                                           class="img-circle avatar-pro" format="png">
                                     <cl-transformation height="29" width="29" crop="fill"/>
                                 </cl-image>
@@ -121,7 +124,8 @@
                                 </div>
                             </div>
                             <div class="col-xs-3" ng-if="p.proposals.length > 3">
-                                <cl-image public-id="{{p.proposals[3].professional.avatar.cloudinaryPublicId}}"
+                                <cl-image ng-if="p.proposals[1].professional.avatar.cloudinaryPublicId"
+                                          public-id="{{p.proposals[3].professional.avatar.cloudinaryPublicId}}"
                                           class="img-circle avatar-pro" format="png">
                                     <cl-transformation height="29" width="29" crop="fill"/>
                                 </cl-image>
@@ -141,10 +145,16 @@
 
                         <div class="row avatar-display">
                             <div class="col-xs-12">
-                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                <cl-image ng-if="p.proposals[0].professional.avatar.cloudinaryPublicId"
+                                          public-id="{{p.professional.avatar.cloudinaryPublicId}}"
                                           class="img-circle avatar-pro" format="png">
                                     <cl-transformation height="29" width="29" crop="fill"/>
                                 </cl-image>
+                                <div class="img-default-preview"
+                                     ng-if="!p.proposals[0].professional.avatar.cloudinaryPublicId">
+                                    {{p.proposals[0].professional.firstName[0] | uppercase}}
+                                    {{p.proposals[0].professional.lastName[0] | uppercase}}
+                                </div>
                                 {{p.professional.firstName}} {{p.professional.lastName}}
                             </div>
                         </div>
