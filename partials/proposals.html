@@ -53,11 +53,13 @@
                             <div class="col-xs-2 no-margin no-padding">
                                 <cl-image ng-if="p.professional.avatar.cloudinaryPublicId"
                                           public-id="{{p.professional.avatar.cloudinaryPublicId}}"
-                                          class="img-circle center-middle" format="png">
+                                          class="img-circle center-middle" format="png"
+                                          title="{{p.professional.firstName}} {{p.professional.lastName}}">
                                     <cl-transformation height="70" width="70" crop="fill"/>
                                 </cl-image>
                                 <div class="img-default center-middle"
-                                     ng-if="!p.professional.avatar.cloudinaryPublicId">
+                                     ng-if="!p.professional.avatar.cloudinaryPublicId"
+                                     title="{{p.professional.firstName}} {{p.professional.lastName}}">
                                     {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] |
                                     uppercase}}
                                 </div>
