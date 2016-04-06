@@ -1,3 +1,4 @@
+/* Buttons */
 
 .yakaButton {
     font-family: 'montserrat_regular', Arial, sans-serif;
@@ -55,4 +56,18 @@
 
 .yakaButton.yakaOrange.yakaDisabled {
     background: #ffe8b9;
+}
+
+/* Link */
+
+.yakaLinkWhite {
+    color: white;
+}
+
+.yakaLinkWhite:hover {
+    color: #FFCB55;
+}
+
+.yakaLinkWhite:active {
+    color: #FDAF00;
 }
