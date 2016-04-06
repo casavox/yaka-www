@@ -122,6 +122,7 @@
                 }
                 else {
                     $state.go('dashboard');
+                    $rootScope.logmail = $scope.email;
                     console.log(res);
                 }
             }
