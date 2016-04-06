@@ -13,6 +13,7 @@
         $scope.email = "";
         $scope.password = "";
         $scope.error = {email: {flag: false, message: ""}, password: {flag: false, message: ""}};
+        $rootScope.logmail = "";
         if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
             delete $localStorage.token;
 
