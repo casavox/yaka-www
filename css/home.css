@@ -92,8 +92,9 @@
     margin-top: 4px;
     font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
-    color: #FDC805;
+    color: #FDAF00;
     text-align: justify;
+    text-shadow: 1px 1px 1px #414141;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -197,4 +198,36 @@
 .homeSection5 {
     height: 80px;
     background: #1A2939;
+    color: white;
+}
+
+.homeSection5FooterLeft {
+    float: left;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.homeSection5FooterRegister {
+    margin-top: 20px;
+    margin-right: 30px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterLogin {
+    margin-top: 20px;
+    margin-right: 30px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterGotop {
+    margin-top: 20px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
 }
