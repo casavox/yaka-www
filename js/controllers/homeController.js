@@ -12,5 +12,7 @@
         var vm = this;
 
         $rootScope.menu = true;
+
+        vm.currentYear = new Date().getFullYear();
     }
 })();
