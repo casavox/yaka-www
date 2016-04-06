@@ -1,0 +1,117 @@
+.homeSection {
+}
+
+.homeSection1 {
+    height: 700px;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../img/homeBackground.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+}
+
+.homeSection1Header {
+    margin-top: 30px;
+    height: 40px;
+}
+
+.homeSection1YakaClub {
+    font-size: 24px;
+    float: left;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1Yaka {
+    font-family: 'raleway_black', Arial, sans-serif;
+}
+
+.homeSection1Club {
+    font-family: 'raleway_regular', Arial, sans-serif;
+}
+
+.homeSection1Register {
+    float: right;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 27px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1Login {
+    float: right;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 17px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1ProLink {
+    float: right;
+    height: 40px;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 13px;
+    border: solid white 1px;
+    border-radius: 4px;
+    padding-top: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+}
+
+.homeSection1Title {
+    margin-top: 140px;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 50px;
+    line-height: 1.2;
+    text-align: justify;
+}
+
+.homeSection1SubTitle {
+    margin-top: 45px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 33px;
+    text-align: justify;
+}
+
+.homeSection1SubSubTitle {
+    margin-top: 4px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    color: #FDC805;
+    text-align: justify;
+}
+
+.homeSection2 {
+    height: 500px;
+    color: black;
+    background-color: white;
+    text-align: center;
+}
+
+.homeSection2Title {
+    font-family: 'raleway_light', Arial, sans-serif;
+    font-size: 32px;
+    line-height: 58px;
+    margin-top: 57px;
+}
+
+.homeSection2SubTitle {
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    color: #8D8D8D;
+}
+
+.homeSection3 {
+    height: 320px;
+    background: url('../img/homeWork.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.homeSection4 {
+    height: 170px;
+}
+
+.homeSection5 {
+    height: 80px;
+}

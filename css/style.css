@@ -1,107 +1,3 @@
-/*--------------------------------- FONTS ----------------------------------*/
-
-@font-face {
-    font-family: 'montserrat_black';
-    src: url('../fonts/Montserrat/montserrat_black-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_black-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_black-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_black-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_black-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_black-webfont.svg#montserrat_black') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'montserrat_bold';
-    src: url('../fonts/Montserrat/montserrat_bold-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_bold-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_bold-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_bold-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_bold-webfont.svg#montserrat_bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'montserrat_extra_bold';
-    src: url('../fonts/Montserrat/montserrat_extrabold-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_extrabold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_extrabold-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_extrabold-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_extrabold-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_extrabold-webfont.svg#montserrat_extra_bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'montserrat_hairline';
-    src: url('../fonts/Montserrat/montserrat_hairline-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_hairline-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_hairline-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_hairline-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_hairline-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_hairline-webfont.svg#montserrat_hairline') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'montserrat_light';
-    src: url('../fonts/Montserrat/montserrat_light-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_light-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_light-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_light-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_light-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_light-webfont.svg#montserrat_light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'montserrat_regular';
-    src: url('../fonts/Montserrat/montserrat_regular-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_regular-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_regular-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_regular-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_regular-webfont.svg#montserrat_regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'montserrat_semi_bold';
-    src: url('../fonts/Montserrat/montserrat_semibold-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_semibold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_semibold-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_semibold-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_semibold-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_semibold-webfont.svg#montserrat_semi_bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'montserrat_ultra_light';
-    src: url('../fonts/Montserrat/montserrat_ultralight-webfont.eot');
-    src: url('../fonts/Montserrat/montserrat_ultralight-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Montserrat/montserrat_ultralight-webfont.woff2') format('woff2'),
-    url('../fonts/Montserrat/montserrat_ultralight-webfont.woff') format('woff'),
-    url('../fonts/Montserrat/montserrat_ultralight-webfont.ttf') format('truetype'),
-    url('../fonts/Montserrat/montserrat_ultralight-webfont.svg#montserrat_ultra_light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
 
 *:focus {
     outline: none;
@@ -248,7 +144,7 @@
 
     .header-menu .title {
         line-height: 55px;
-        font-family: 'montserrat_light';
+        font-family: 'montserrat_light', Arial, sans-serif;
         font-size: 22px;
         color: #2f313a;
         text-align: left;

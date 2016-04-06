@@ -82,6 +82,12 @@ window.fbAsyncInit = function () {
         //
         // The states
         $stateProvider
+            .state('home', {
+                url: "/",
+                templateUrl: "partials/home.html",
+                controller: 'HomeController',
+                controllerAs: 'vm'
+            })
             .state('login', {
                 url: "/login",
                 templateUrl: "partials/login.html",
@@ -235,9 +241,9 @@ window.fbAsyncInit = function () {
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
+                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "home" && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
                     event.preventDefault();
-                    $injector.get('$state').go('login');
+                    $injector.get('$state').go('home');
                 }
             })
 
