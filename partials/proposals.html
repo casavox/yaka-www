@@ -51,11 +51,13 @@
                     <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
                         <div class="row no-margin no-padding">
                             <div class="col-xs-2 no-margin no-padding">
-                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                <cl-image ng-if="p.professional.avatar.cloudinaryPublicId"
+                                          public-id="{{p.professional.avatar.cloudinaryPublicId}}"
                                           class="img-circle center-middle" format="png">
                                     <cl-transformation height="70" width="70" crop="fill"/>
                                 </cl-image>
-                                <div class="img-default-preview" ng-if="!p.professional.avatar.cloudinaryPublicId">
+                                <div class="img-default center-middle"
+                                     ng-if="!p.professional.avatar.cloudinaryPublicId">
                                     {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] |
                                     uppercase}}
                                 </div>
