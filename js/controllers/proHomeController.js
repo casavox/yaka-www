@@ -14,8 +14,8 @@
         vm.currentYear = new Date().getFullYear();
 
 
-        vm.authenticate = function (provider) {
-            $auth.authenticate(provider).then(function (res) {
+        vm.googlePreRegister = function () {
+            $auth.authenticate('googlePreRegister').then(function (res) {
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
                     $localStorage.token = res.data.token;
                     //$state.go('dashboard');
@@ -26,5 +26,16 @@
             });
         };
 
+        vm.facebookPreRegister = function () {
+            $auth.authenticate('facebookPreRegister').then(function (res) {
+                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
+                    $localStorage.token = res.data.token;
+                    //$state.go('dashboard');
+                    console.log(res);
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+            });
+        };
     }
 })();

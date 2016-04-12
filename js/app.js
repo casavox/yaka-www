@@ -72,7 +72,7 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.oauth2({
-            name: "googleProRegister",
+            name: "googlePreRegister",
             clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
             url: '/pro/register/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
@@ -85,6 +85,21 @@ window.fbAsyncInit = function () {
             display: 'popup',
             type: '2.0',
             popupOptions: {width: 452, height: 633}
+        });
+
+        $authProvider.oauth2({
+            name: 'facebookPreRegister',
+            clientId: "847913895334564",
+            url: '/pro/register/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email', 'user_birthday'],
+            scopeDelimiter: ',',
+            responseType: "token",
+            display: 'popup',
+            type: '2.0',
+            popupOptions: { width: 580, height: 400 }
         });
 
         $translateProvider.translations('en', {});
