@@ -1,0 +1,13 @@
+<div class="modal-body" ng-controller="LightBoxController">
+
+    <!-- image -->
+    <div class="lightbox-image-container">
+        <img lightbox-src="http://res.cloudinary.com/yaka/image/upload/{{ url}}.png">
+    </div>
+    <p class="modal-description" ng-if="!simplePreview">
+        Description :
+    </p>
+    <textarea class="custom-textarea-image" ng-model="media.description"
+              disabled ng-if="media.description""></textarea>
+    <p class="modal-no-description" ng-if="!media.description && !simplePreview">Aucune description</p>
+</div>

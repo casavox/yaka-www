@@ -1,9 +1,8 @@
 <style type="text/css">
-    #map_canvas {
-        height: 120px;
+    html, body, #map_canvas {
+        height: 70px;
+        width: 100%;
         margin: 0px;
-        margin-left: -15px;
-        margin-right: -15px;
     }
 
     #map_canvas {
@@ -32,7 +31,7 @@
         <div class="title no-line" ng-show="!vm.proDetails">
             {{vm.project.title}}
             <p class="sub-title-proposal">
-                Make a quote
+                My Job
             </p>
         </div>
         <div class="title" ng-show="vm.proDetails">
@@ -49,10 +48,10 @@
             <div class="project-description" ng-show="!vm.pro">
                 <div class="row no-margin">
                     <div class="col-xs-12">
-                        <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'">
+                        <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag && (vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED')">
                             MODIFY
                         </div>
-                        <div class="description-action-btn" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'" ng-click="vm.decline()">
+                        <div class="description-action-btn" ng-show="!vm.editFlag && (vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED')" ng-click="vm.decline()">
                             DECLINE
                         </div>
                         <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.save()">
@@ -93,20 +92,8 @@
                 <div class="row no-margin">
                     <div class="col-xs-12 ">
                         <div id="map_canvas">
-                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
-                                                dragging="false">
-                                <ui-gmap-circle
-                                    ng-if="vm.proposalTmp.status != 'SELECTED' && vm.proposalTmp.status != 'RATE_PRO' && vm.proposalTmp.status != 'COMPLETED'"
-                                    center="vm.circle.center" stroke="vm.circle.stroke"
-                                    fill="vm.circle.fill" radius="vm.circle.radius"
-                                    bounds="vm.circle.bounds"
-                                    visible="vm.circle.visible" geodesic="true" editable="false"
-                                    draggable="false" clickable="true" control="vm.circle.control"
-                                    events="vm.circle.events"></ui-gmap-circle>
-                                <ui-gmap-marker
-                                    ng-if="vm.proposalTmp.status == 'SELECTED' || vm.proposalTmp.status == 'RATE_PRO' || vm.proposalTmp.status == 'COMPLETED'"
-                                    idKey='1' coords='vm.marker.coords' visible="vm.marker.visible"></ui-gmap-marker>
-                            </ui-gmap-google-map>
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"
+                                                dragging="false"></ui-gmap-google-map>
                         </div>
                     </div>
                 </div>
@@ -148,20 +135,7 @@
                             Where
                         </div>
                         <div class="col-xs-12 description-sub-text">
-                            <div ng-switch on="vm.proposal.status">
-                                <div ng-switch-when="SELECTED">
-                                    {{vm.projectTmp.address.address}}
-                                </div>
-                                <div ng-switch-when="RATE_PRO">
-                                    {{vm.projectTmp.address.address}}
-                                </div>
-                                <div ng-switch-when="COMPLETED">
-                                    {{vm.projectTmp.address.address}}
-                                </div>
-                                <div ng-switch-default>
-                                    {{vm.projectTmp.address.locality}} {{vm.projectTmp.address.postalCode}}
-                                </div>
-                            </div>
+                            {{vm.projectTmp.address.address}}
                         </div>
 
                     </div>

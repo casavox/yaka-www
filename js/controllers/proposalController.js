@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope'];
-    function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope) {
+    ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope', 'Lightbox'];
+    function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox) {
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
@@ -206,6 +206,12 @@
                 vm.disabledAddr = true;
             }
         }
+
+        vm.selectImagePreview = function(index){
+            var data = [{url: vm.proposal.professional.portfolio[index].cloudinaryPublicId}];
+            $rootScope.media = vm.proposal.professional.portfolio[index];
+            Lightbox.openModal(data, 0);
+        };
 
         function indexOfObject(a, token, array) {
             var res = [];

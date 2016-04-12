@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams) {
+    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams', 'Lightbox', '$rootScope'];
+    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope) {
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
@@ -71,6 +71,7 @@
         vm.time = vm.J1.date.getHours();
         vm.initHours = initHours;
         vm.initHours();
+        vm.now = new Date();
         vm.J2 = {date: new Date()};
         vm.J3 = {date: new Date()};
         vm.J2.date.setDate(vm.J2.date.getDate() + 1);
@@ -323,6 +324,12 @@
             }
         }
 
+        vm.selectImagePreview = function(index){
+            var data = [{url: vm.projectTmp.images[index].cloudinaryPublicId}];
+            $rootScope.media = vm.projectTmp.images[index];
+            Lightbox.openModal(data, 0);
+        };
+
         function deleteImg() {
             for (var i = 0; i < vm.projectTmp.images.length; i++) {
                 if (vm.projectTmp.images[i].cloudinaryPublicId == vm.imgTmp.cloudinaryPublicId) {
@@ -454,7 +461,7 @@
                 if (vm.dateType) {
                     vm.projectTmp.desiredDatePeriod = vm.dateType;
                     if (vm.dateType == "SPECIFIC") {
-                        vm.projectTmp.desiredDate = $filter('date')(vm.dt, "yyyy-mm-dd");
+                        vm.projectTmp.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
                     }
                     vm.whenFlag = false;
                 }
@@ -627,7 +634,7 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.project.images = vm.project.images || [];
+                        vm.projectTmp.images = vm.projectTmp.images || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         vm.projectTmp.images.push({cloudinaryPublicId: data.public_id});
@@ -702,7 +709,7 @@
             vm.projectTmp = angular.copy(vm.project);
             if (vm.projectTmp.type != "EMERGENCY") {
                 vm.dateType = vm.projectTmp.desiredDatePeriod;
-                vm.dt = new Date(vm.projectTmp.desiredDate);
+                vm.dt = angular.copy(vm.now);
             }
             if (!angular.isUndefined(vm.projectTmp.address) && vm.projectTmp.address) {
                 vm.myAddress = vm.projectTmp.address.address;

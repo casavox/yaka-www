@@ -3,20 +3,17 @@
 
     angular
         .module('Yaka')
-        .controller('ProProposalController', ProProposalController);
+        .controller('ProJobController', ProJobController);
 
     //
     //Controller login
-    ProProposalController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProProposalController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProJobController.$inject = ['$scope', '$state','networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProJobController($scope, $state,networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
         var vm = this;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
         vm.selectImagePreview = selectImagePreview;
-        vm.marker = {
-            coords : {},
-            visible: false
-        };
+        vm.markerCoords = {};
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.sendOffer = sendOffer;
@@ -56,24 +53,6 @@
         vm.getSlot = getSlot;
         vm.error = {};
 
-        vm.circle =
-        {
-            id: 1,
-            center: {
-                latitude: 0,
-                longitude: 0
-            },
-            radius: 200,
-            stroke: {
-                color: '#00aded',
-                weight: 1,
-                opacity: 1
-            },
-            visible: false,
-            control: {},
-            bounds: {}
-        };
-
         $scope.map = {
             center: {
                 latitude: 46.5945259,
@@ -92,7 +71,7 @@
             if (res.toString() != $stateParams.proposalId)
                 $state.go("prodashboard");
             else {
-                networkService.proProposalGET(res, succesProjectGET, errorProjectGET);
+                networkService.proposalGET(res, succesProjectGET, errorProjectGET);
             }
         }
         else {
@@ -956,7 +935,7 @@
         }
 
         function errorProjectGET() {
-            $state.go("prodashboard");
+            // $state.go("prodashboard");
         }
     }
 })();
