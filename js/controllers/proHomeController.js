@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth'];
-    function ProHomeController($scope, $rootScope, networkService, $auth) {
+    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg'];
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg) {
         var vm = this;
 
         $rootScope.menu = true;
@@ -30,7 +30,7 @@
             $auth.authenticate('facebook').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.accessToken) && res.accessToken && res.accessToken != "") {
-                    networkService.facebookPreRegister(res, onFacebookRegisterOk, onFacebookRegisterFail);
+                    //networkService.facebookPreRegister(res, onFacebookRegisterOk, onFacebookRegisterFail);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
