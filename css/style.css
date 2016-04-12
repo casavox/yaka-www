@@ -910,11 +910,11 @@ md-input-container {
     max-width:350px;
     background-color: white;
     margin:15px;
-    -moz-box-shadow: 0px 2px 5px 0px #656565;
-    -webkit-box-shadow: 0px 2px 5px 0px #656565;
-    -o-box-shadow: 0px 2px 5px 0px #656565;
-    box-shadow: 0px 2px 5px 0px #656565;
-    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+    -moz-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -webkit-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -o-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    box-shadow: 1px 1px 1px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=1);
     cursor: pointer;
 }
 
@@ -1876,11 +1876,11 @@ color: #9b9b9b!important;
     padding: 10px 15px 15px 15px;
     max-width: 325px;
     min-width: 325px;
-    -moz-box-shadow: 0px 2px 5px 0px #656565;
-    -webkit-box-shadow: 0px 2px 5px 0px #656565;
-    -o-box-shadow: 0px 2px 5px 0px #656565;
-    box-shadow: 0px 2px 5px 0px #656565;
-    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+    -moz-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -webkit-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -o-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    box-shadow: 1px 1px 1px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=1);
 }
 
 .meu-r-title{
@@ -1920,11 +1920,11 @@ color: #9b9b9b!important;
     cursor: pointer;
     width: 714px;
     border: 2px solid white;
-    -moz-box-shadow: 0px 2px 5px 0px #656565;
-    -webkit-box-shadow: 0px 2px 5px 0px #656565;
-    -o-box-shadow: 0px 2px 5px 0px #656565;
-    box-shadow: 0px 2px 5px 0px #656565;
-    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+    -moz-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -webkit-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -o-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    box-shadow: 1px 1px 1px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=1);
     cursor: pointer;
 }
 
@@ -1956,10 +1956,19 @@ color: #9b9b9b!important;
     border-radius: 4px;
     border: 2px solid white;
     transition: box-shadow 0.2s;
+    -moz-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -webkit-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -o-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    box-shadow: 1px 1px 1px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=1);
 }
 
 .project:hover {
-    box-shadow: 1px 1px 12px #555;
+    -moz-box-shadow: 0px 2px 10px 0px #656565;
+    -webkit-box-shadow: 0px 2px 10px 0px #656565;
+    -o-box-shadow: 0px 2px 10px 0px #656565;
+    box-shadow: 0px 2px 10px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
 
 .proposal > div {

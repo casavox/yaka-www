@@ -77,6 +77,9 @@
             proProposalsGET: function (status, success, error) {
                 $http.get(baseUrl + '/pro/proposals?status=' + status).success(success).error(error)
             },
+            proProposalGET: function (id, success, error) {
+                $http.get(baseUrl + '/pro/proposals/' + id).success(success).error(error)
+            },
             proProposalsArchiveGET: function (id, success, error) {
                 $http.get(baseUrl + '/pro/proposals/'+id+'/archive').success(success).error(error)
             },
