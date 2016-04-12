@@ -87,8 +87,8 @@ window.fbAsyncInit = function () {
             popupOptions: {width: 452, height: 633}
         });
 
-        $authProvider.oauth2({
-            name: 'facebookPreRegister',
+        $authProvider.facebook({
+            name: 'facebook',
             clientId: "847913895334564",
             url: '/pro/register/facebook',
             authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
@@ -96,6 +96,7 @@ window.fbAsyncInit = function () {
             requiredUrlParams: ['display', 'scope'],
             scope: ['email', 'user_birthday'],
             scopeDelimiter: ',',
+            responseType: 'token',
             display: 'popup',
             type: '2.0',
             popupOptions: { width: 580, height: 400 }

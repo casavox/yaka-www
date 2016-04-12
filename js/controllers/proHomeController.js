@@ -27,7 +27,7 @@
         };
 
         vm.facebookPreRegister = function () {
-            $auth.authenticate('facebookPreRegister').then(function (res) {
+            $auth.authenticate('facebook').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
                     $localStorage.token = res.data.token;
