@@ -29,58 +29,50 @@
                             <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
 
                             <p class="project-title"
-                               ng-class="{'unread': p.unreadMessages, 'unread': p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                               ng-class="{'draft': p.status == 'DRAFT'}">
                                 {{p.title}}
                             </p>
                         </div>
 
                         <div class="info-line">
-                            <p class="project-date">
+                            <p class="project-date" ng-class="{'draft': p.status == 'DRAFT'}">
                                 {{p.updated | date:'dd MMM yyyy'}} -
                             </p>
 
-                            <p class="project-address">
+                            <p class="project-address" ng-class="{'draft': p.status == 'DRAFT'}">
                                 {{p.address.name}}
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="project-message no-margin no-padding">
-                    <img class="center img-message" src="icons/mdpi/ic_message.png" alt="" ng-show="p.unreadMessages"/>
+                    <img class="center-middle img-message" src="icons/mdpi/ic_message.png" alt="" ng-show="p.unreadMessages"/>
 
                     <p class="no-message" ng-hide="p.unreadMessages">
                         No message
                     </p>
 
-                    <p class="post-message" ng-show="p.unreadMessages">
-                        Posté depuis
-                    </p>
-
                     <p class="post-message">
-                        {{vm.dateDiff(p.updated, vm.now)}}
+                        Posté depuis {{vm.dateDiff(p.updated, vm.now)}}
                     </p>
                 </div>
                 <div class=" project-proposals no-margin no-padding">
                     <div class="status-info"
                          ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS' || p.status == 'DRAFT'">
-                        <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'"
-                           ng-class="{'unread': p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
+                        <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'">
                             <i class="fa fa-circle  puce"></i> {{p.proposals.length}} propositions
                         </p>
 
-                        <p ng-show="p.status == 'ONGOING_RATE_PRO'"
-                           ng-class="{'unread': p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                            <i class="fa fa-circle  puce" ng-class="[p.status]"></i>
+                        <p ng-show="p.status == 'ONGOING_RATE_PRO'">
+                            <i class="fa fa-circle  puce-green" ng-class="[p.status]"></i>
                         </p>
 
-                        <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="color-9b"
-                           ng-class="{'unread': p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                            <i class="fa fa-circle  puce" ng-class="[p.type, p.status]"></i> Waiting for proposals
+                        <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="">
+                            <i class="fa fa-circle color-9b"></i> Waiting for proposals
                         </p>
 
-                        <p ng-show="p.status == 'DRAFT'" class="color-9b"
-                           ng-class="{'unread': p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                            <i class="fa fa-circle  puce" ng-class="[p.type, p.status]"></i> Draft
+                        <p ng-show="p.status == 'DRAFT'" class="color-9b draft">
+                            <i class="fa fa-circle  color-9b"></i> Draft
                         </p>
 
                         <div class="row avatar-display " ng-if="p.proposals.length > 0">
@@ -148,7 +140,7 @@
                     </div>
                     <div class="status-info" ng-show="p.status == 'ONGOING_PROJECT_ONGOING'">
                         <p>
-                            <i class="fa fa-circle  puce" ng-class="[p.status]"></i>Pro selected
+                            <i class="fa fa-circle puce-green" ng-class="[p.status]"></i>Pro selected
                         </p>
 
                         <div class="row avatar-display">

@@ -1307,9 +1307,13 @@ md-input-container {
     position: relative;
 }
 
-/*.color-9b{
+.pruce-green{
+    color: #7ED321!important;
+}
+
+.color-9b{
 color: #9b9b9b!important;
-}*/
+}
 
 .icon-pen-blue {
     float: right;
@@ -1322,16 +1326,14 @@ color: #9b9b9b!important;
 }
 
 .no-message {
-    line-height: 36px;
     vertical-align: middle;
     text-align: center;
-    color: #9b9b9b;
+    opacity:0.8;
+    font-family:'montserrat_light';
+    font-size:13px;
+    color:#9b9b9b;
+    line-height:100px;
 }
-
-.DRAFT {
-    color: #9B9B9B !important;
-}
-
 .unread {
     font-weight: bold !important;
 }
@@ -1368,6 +1370,10 @@ color: #9b9b9b!important;
     border-right: 1px solid #edeff5;
 }
 
+.draft{
+    color:#a3a7ab!important;
+}
+
 .project-info-middle {
     float: left;
     max-width: calc(100% - 454px)
@@ -1387,7 +1393,6 @@ color: #9b9b9b!important;
 .project-message {
     float: right;
     width: 158px;
-    padding-top: 27px !important;
 }
 
 .dashboard-project {
@@ -1951,8 +1956,18 @@ color: #9b9b9b!important;
 .post-message {
     margin: 0;
     width: 100%;
+    opacity:0.8;
+    font-family:'montserrat_light';
+    font-size:13px;
+    color:#9b9b9b;
+    line-height:15px;
     text-align: center;
-    color: grey;
+    position: absolute;
+    bottom: 5px;
+}
+
+.project-message{
+    position: relative;
 }
 
 .fw-norm {
