@@ -6,6 +6,7 @@
     padding: 16px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24), inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
     border-radius: 4px;
+    text-align: center;
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -28,6 +29,7 @@
 
 .yakaButton.yakaBlue {
     background: #2bbde9;
+    color: white;
 }
 
 .yakaButton.yakaBlue:hover {
@@ -44,6 +46,7 @@
 
 .yakaButton.yakaOrange {
     background: #fdaf00;
+    color: white;
 }
 
 .yakaButton.yakaOrange:hover {
@@ -56,6 +59,18 @@
 
 .yakaButton.yakaOrange.yakaDisabled {
     background: #ffe8b9;
+}
+
+.yakaButton.yakaBorderWhite {
+    border: solid white 1px;
+}
+
+.yakaButton.yakaBorderWhite:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.yakaButton.yakaBorderWhite:active {
+    background: rgba(255, 255, 255, 0.16);
 }
 
 /* Link */

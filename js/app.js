@@ -78,7 +78,7 @@ window.fbAsyncInit = function () {
 
         //
         // For any unmatched url, redirect to /login
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise("/");
         //
         // The states
         $stateProvider
@@ -86,6 +86,12 @@ window.fbAsyncInit = function () {
                 url: "/",
                 templateUrl: "partials/home.html",
                 controller: 'HomeController',
+                controllerAs: 'vm'
+            })
+            .state('pro-home', {
+                url: "/pro",
+                templateUrl: "partials/pro_home.html",
+                controller: 'ProHomeController',
                 controllerAs: 'vm'
             })
             .state('login', {
@@ -241,7 +247,7 @@ window.fbAsyncInit = function () {
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "home" && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
+                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "home" && toState.name != "pro-home" && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
                     event.preventDefault();
                     $injector.get('$state').go('home');
                 }
