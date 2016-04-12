@@ -40,7 +40,7 @@
                     <div class="inbox-message-content"
                          ng-class="{'inbox-message-content-me': message.author == vm.me, 'inbox-message-content-yaka': message.author == 'YAKA', 'inbox-message-content-auto': message.author == 'AUTO'}">
                         <cl-image public-id="{{message.cloudinaryPublicId}}" format="png"
-                                  ng-if="message.cloudinaryPublicId">
+                                  ng-if="message.cloudinaryPublicId" ng-click="vm.selectImagePreview(message)">
                             <cl-transformation height="200" width="200" crop="fit"/>
                         </cl-image>
                         <textarea class="inbox-message-textarea" disabled="disabled"  ng-if="message.text" ng-model="message.text"
@@ -59,7 +59,7 @@
                         </cl-image></div>
 
                 </div>
-                <div class="row">
+                <div class="row" ng-if="vm.proposal.status != 'COMPLETED' && vm.proposal.status != 'DECLINED'">
                     <div class="col-xs-1">
                         <img src="icons/mdpi/join.png" class="inbox-join cursor-pointer"
                              ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
@@ -94,15 +94,6 @@
                     </button>
                     <button type="button" class="button btn btn-menu-sel center  mb-39"
                             ui-sref="proposal({proposalId: vm.proposal.id})">SHOW OFFER
-                    </button>
-
-                    <p class="hire mb-10 text-align-left">
-                        {{vm.project.address.address}} <br>
-                        Date :
-                    </p>
-                    <button type="button" class="button btn btn-menu-sel center  mb-10">SHOW DETAILS</button>
-                    <button type="button" class="button btn btn-menu-sel center  mb-39"
-                            ng-click="vm.hireFlag = true">SHOW OFFERS
                     </button>
 
                     <p class="hire mb-10 text-align-left">

@@ -52,10 +52,12 @@
                             <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
                                 DELETE
                             </div>
-                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishProject()" ng-if="vm.project.status == 'DRAFT'">
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishProject()"
+                                 ng-if="vm.project.status == 'DRAFT'">
                                 PUBLISH
                             </div>
-                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()" ng-if="vm.project.status != 'DRAFT'">
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.unpublishProject()"
+                                 ng-if="vm.project.status != 'DRAFT'">
                                 UNPUBLISH
                             </div>
                             <div class="description-action-btn color-red" ng-show="vm.editFlag"
@@ -133,9 +135,8 @@
                             </div>
                             <div class="col-xs-12 description-sub-text row mb-15">
                                 <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images"
-                                     title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
-                                    <span class="center-middle img-comment" ng-show="media.description"
-                                          ng-click="vm.editImage(media)"></span>
+                                     title="{{media.description}}" ng-click="vm.selectImagePreview($index)">
+                                    <span class="center-middle img-comment" ng-show="media.description"></span>
                                     <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
                                               ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
                                         <cl-transformation height="92" width="92" crop="fill"/>
@@ -272,18 +273,19 @@
         </div>
     </div>
 
-    <div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
-        <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
-            <div class="popUp-content no-margin img-preview-popUp">
-                <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
-                <h4>Preview</h4>
-                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
-                </cl-image>
-                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
-                          disabled></textarea>
-            </div>
-        </div>
-    </div>
+    <!--<div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">-->
+        <!--<div class="popUp-container" ng-click="$event.stopPropagation()">-->
+            <!--<div class="popUp-content no-margin img-preview-popUp">-->
+                <!--<span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>-->
+                <!--<h4>Preview</h4>-->
+                <!--<cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">-->
+                <!--</cl-image>-->
+                <!--<textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"-->
+                          <!--disabled></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="bckg-popUp-preview" ng-show="vm.imagePreviewFlag"></div>-->
 
     <div class="popUp" ng-show="vm.draftFlag">
         <div class="popUp-container center-middle">

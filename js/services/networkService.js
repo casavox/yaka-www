@@ -74,6 +74,12 @@
             proposalProGET: function (data, success, error) {
                 $http.get(baseUrl + '/pro/proposals/' + data).success(success).error(error)
             },
+            proProposalsGET: function (status, success, error) {
+                $http.get(baseUrl + '/pro/proposals?status=' + status).success(success).error(error)
+            },
+            proProposalsArchiveGET: function (id, success, error) {
+                $http.get(baseUrl + '/pro/proposals/'+id+'/archive').success(success).error(error)
+            },
             proposalAcceptPOST: function (data, success, error) {
                 $http.post(baseUrl + '/proposals/' + data.id + "/accept", data).success(success).error(error)
             },
@@ -136,7 +142,13 @@
             },
             sendMessagePro: function (id, data, success, error) {
                 $http.post(baseUrl + '/pro/proposals/' + id + "/message", data).success(success).error(error)
-            }
+            },
+            proProposalsInProgressGET: function (success, error) {
+                $http.get(baseUrl + '/pro/proposals/inprogress').success(success).error(error)
+            },
+            proProposalsDeclinedGET: function (success, error) {
+                $http.get(baseUrl + '/pro/proposals/declined').success(success).error(error)
+            },
         };
 
     }

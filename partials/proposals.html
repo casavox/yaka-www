@@ -50,55 +50,64 @@
                     </div>
                     <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
                         <div class="row no-margin no-padding">
-                            <div class="col-xs-2 no-margin no-padding">
-                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
-                                          class="img-circle center-middle" format="png">
-                                    <cl-transformation height="70" width="70" crop="fill"/>
-                                </cl-image>
-                                <div class="img-default-preview" ng-if="!p.professional.avatar.cloudinaryPublicId">
-                                    {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] |
-                                    uppercase}}
-                                </div>
-                            </div>
-                            <div class="col-xs-5 no-margin no-padding" title="{{p.title}}">
-                                <p class="pro-title-name" ng-if="vm.project.status == 'START'">
-                                    {{p.professional.firstName}} {{p.professional.lastName}}
-                                </p>
-
-                                <p class="pro-title-companyName" ng-show="vm.project.status == 'PRESELECTED'">
-                                    {{p.professional.companyName}}
-                                </p>
-
-                                <p class="pro-title-desc">
-
-                                </p>
-
-                                <div class="pro-title-icon">
-                                    <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
-
-                                    <div class="likes">
-                                        {{p.professional.likes}}
+                            <div class="col-xs-12 row">
+                                <div class="proposals-profile-pict">
+                                    <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                              class="img-circle" format="png">
+                                        <cl-transformation height="70" width="70" crop="fill"/>
+                                    </cl-image>
+                                    <div class="img-default" ng-if="!p.professional.avatar.cloudinaryPublicId">
+                                        {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
                                     </div>
-                                    <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
-                                         ng-show="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
-                                    <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
                                 </div>
-                            </div>
-                            <div class="col-xs-2 no-margin no-padding">
-                                <img src="icons/mdpi/ic_message.png" class="icon-message" ng-show="p.unreadMessages"/>
-                            </div>
-                            <div class="col-xs-3 no-margin no-padding">
-                                <div class="pro-price" ng-show="p.price">
-                                    {{p.price}} €
-                                </div>
-                                <p class="pro-price-desc" ng-show="p.price">
-                                    {{p.priceType}}
-                                </p>
+                                <div class="proposals-info">
+                                    <div class="proposals-name">
+                                        <span ng-if="!p.status || p.status == 'START'">{{p.professional.firstName}} {{p.professional.lastName}}</span><span ng-if="p.status == 'PRESELECTED'">{{p.professional.company.name}}</span>
+                                    </div>
+                                    <div class="proposals-qualities"><span ng-repeat="q in p.professional.qualities">{{ q.name }} <span ng-if="!$last"> - </span></span></div>
+                                    <div class="pro-title-icon">
+                                        <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
 
-                                <p class="pro-price-none" ng-show="!p.price || p.price == 0">
-                                    Need more info
-                                </p>
+                                        <div class="likes">
+                                            {{p.professional.likes}} <span ng-if="!p.professional.likes || p.professional.likes == 0"> - </span>
+                                        </div>
+                                        <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
+                                             ng-if="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
+                                        <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
+                                    </div>
+                                </div>
+                                <div class="proposals-message-price">
+                                    <img src="icons/mdpi/ic_message.png" class="proposals-unread" ng-if="p.unreadMessages"/>
+                                    <div class="proposals-price" ng-if="p.price">
+                                        {{p.price}} €
+                                    </div>
+                                    <div class="proposals-price-type" ng-if="p.price">
+                                        {{p.priceType}}
+                                    </div>
+                                    <div ng-if="!p.price" class="proposals-more-info">
+                                        Need more info
+                                    </div>
+                                </div>
+
+
+                                <!--<div class="col-xs-2 no-margin no-padding">-->
+                                    <!--<img src="icons/mdpi/ic_message.png" class="icon-message"-->
+                                         <!--ng-show="p.unreadMessages"/>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-3 no-margin no-padding">-->
+                                    <!--<div class="pro-price" ng-show="p.price">-->
+                                        <!--{{p.price}} €-->
+                                    <!--</div>-->
+                                    <!--<p class="pro-price-desc" ng-show="p.price">-->
+                                        <!--{{p.priceType}}-->
+                                    <!--</p>-->
+
+                                    <!--<p class="pro-price-none" ng-show="!p.price || p.price == 0">-->
+                                        <!--Need more info-->
+                                    <!--</p>-->
+                                <!--</div>-->
                             </div>
+
                         </div>
                     </div>
                     <div class="detail-pro-message-box"
@@ -128,16 +137,13 @@
             <div>
                 <div>
                     <div>
-                        <p>
-                            {{vm.project.address.name}}
+                        <h4 class="menu-r-title">My Project</h4>
+                        <p class="menu-r-text">
+                            {{vm.project.address.name}} - {{vm.project.address.administrativeAreaLevel2 }}
                         </p>
 
-                        <p>
-                            {{vm.getWhen()}}
-                        </p>
-
-                        <p>
-                            Post {{vm.project.published | date:'dd MMM yyyy'}}
+                        <p class="menu-r-text">
+                            Echéance : {{vm.getWhen()}}
                         </p>
                         <button type="button" class="button btn btn-menu-sel center" ng-click="vm.projectDetails()">
                             PROJECT DETAILS
