@@ -88,7 +88,12 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.facebook({
-            name: 'facebook',
+            clientId: '847913895334564',
+            responseType: 'token'
+        });
+
+        $authProvider.oauth2({
+            name: 'facebookPreRegister',
             clientId: "847913895334564",
             url: '/pro/register/facebook',
             authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
