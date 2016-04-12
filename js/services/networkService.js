@@ -23,6 +23,9 @@
             facebookLogin: function (data, success, error) {
                 $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
             },
+            facebookProRegister: function (data, success, error) {
+                $http.post(baseUrl + '/pro/register/facebook', data).success(success).error(error)
+            },
             projectGET: function (data, success, error) {
                 $http.get(baseUrl + '/projects/' + data).success(success).error(error)
             },
@@ -94,9 +97,6 @@
             },
             deleteProject: function (id, success, error) {
                 $http.delete(baseUrl + '/projects/' + id).success(success).error(error)
-            },
-            unpublishProject: function (id, success, error) {
-                $http.post(baseUrl + '/projects/' + id + '/unpublish').success(success).error(error)
             },
             publishProject: function (id, success, error) {
                 $http.post(baseUrl + '/projects/' + id + '/publish').success(success).error(error)

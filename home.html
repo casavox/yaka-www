@@ -24,6 +24,11 @@
     <meta name="theme-color" content="#ffffff">
 
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/ui_kit.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+    <link href="css/proHome.css" rel="stylesheet">
+
     <link href="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css"/>
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css"/>
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -104,12 +109,11 @@
 
     </script>
     <!-- Google Analytics END -->
-
 </head>
 <body ng-app="Yaka" ng-controller="AppController as app">
 
 <div ng-include src="'partials/menu.html'" ng-if="!menu" ng-controller="AppController"></div>
-{{menu}}
+
 <div ui-view></div>
 
 <div class="transparentLeftSwipe" ng-swipe-right="app.menu.openMenu()" visible-xs></div>
@@ -225,6 +229,8 @@
 <script src="js/config.js"></script>
 <script src="js/animations.js"></script>
 <script type="text/javascript" src="js/controllers/appController.js"></script>
+<script type="text/javascript" src="js/controllers/homeController.js"></script>
+<script type="text/javascript" src="js/controllers/proHomeController.js"></script>
 <script type="text/javascript" src="js/controllers/loginController.js"></script>
 <script type="text/javascript" src="js/controllers/registerController.js"></script>
 <script type="text/javascript" src="js/controllers/dashboardController.js"></script>

@@ -84,6 +84,27 @@ window.fbAsyncInit = function () {
             popupOptions: {width: 452, height: 633}
         });
 
+        $authProvider.oauth2({
+            name: "googlePreRegister",
+            clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
+            url: '/pro/register/google',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+            redirectUri: window.location.origin,
+            requiredUrlParams: ['scope'],
+            optionalUrlParams: ['display'],
+            scope: ['profile', 'email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            scopePrefix: 'openid',
+            scopeDelimiter: ' ',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 452, height: 633}
+        });
+
+        $authProvider.facebook({
+            clientId: '847913895334564',
+            url: '/pro/register/facebook'
+        });
+
         $translateProvider.translations('en', {});
         $translateProvider.translations('fr', {});
         $translateProvider.preferredLanguage('en');
@@ -91,10 +112,22 @@ window.fbAsyncInit = function () {
 
         //
         // For any unmatched url, redirect to /login
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise("/");
         //
         // The states
         $stateProvider
+            .state('home', {
+                url: "/",
+                templateUrl: "partials/home.html",
+                controller: 'HomeController',
+                controllerAs: 'vm'
+            })
+            .state('pro-home', {
+                url: "/pro",
+                templateUrl: "partials/pro_home.html",
+                controller: 'ProHomeController',
+                controllerAs: 'vm'
+            })
             .state('login', {
                 url: "/login",
                 templateUrl: "partials/login.html",
@@ -266,9 +299,9 @@ window.fbAsyncInit = function () {
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
+                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "home" && toState.name != "pro-home" && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
                     event.preventDefault();
-                    $injector.get('$state').go('login');
+                    $injector.get('$state').go('home');
                 }
             })
 

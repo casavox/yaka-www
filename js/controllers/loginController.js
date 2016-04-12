@@ -13,6 +13,7 @@
         $scope.email = "";
         $scope.password = "";
         $scope.error = {email: {flag: false, message: ""}, password: {flag: false, message: ""}};
+        $rootScope.logmail = "";
         if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
             delete $localStorage.token;
 
@@ -91,6 +92,7 @@
                 }
                 else {
                     $state.go('dashboard');
+                    $rootScope.logmail = $scope.email;
                     console.log(res);
                 }
             }
@@ -120,6 +122,7 @@
                 }
                 else {
                     $state.go('dashboard');
+                    $rootScope.logmail = $scope.email;
                     console.log(res);
                 }
             }

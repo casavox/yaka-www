@@ -15,6 +15,7 @@
         vm.dashboardPro = [];
         vm.count = 0;
         vm.selectProject = selectProject;
+        vm.logmail = $rootScope.logmail;
 
         vm.getMenuItemClass = function (state) {
             if (state == "dashboard") {

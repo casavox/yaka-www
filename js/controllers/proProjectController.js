@@ -16,7 +16,6 @@
         vm.myPrice = myPrice;
         vm.myDate = myDate;
         vm.selectImagePreview = selectImagePreview;
-        vm.markerCoords = {};
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.sendOffer = sendOffer;
@@ -31,7 +30,7 @@
 
         vm.now = new Date();
         vm.dt = new Date();
-        vm.price = 10;
+        vm.price = "";
         vm.default = angular.copy(vm.dt);
         vm.minDate = new Date();
         vm.J1 = {date: new Date()};
@@ -45,6 +44,24 @@
         vm.all = all;
         vm.getSlot = getSlot;
 
+        vm.circle =
+        {
+            id: 1,
+            center: {
+                latitude: 0,
+                longitude: 0
+            },
+            radius: 200,
+            stroke: {
+                color: '#00aded',
+                weight: 2,
+                opacity: 1
+            },
+            visible: false,
+            control: {},
+            bounds: {}
+        };
+
         $scope.map = {
             center: {
                 latitude: 46.5945259,
@@ -56,7 +73,6 @@
             disableDoubleClickZoom: true,
             scrollwheel: false
         };
-
 
         if ($stateParams.projectId) {
             var res = parseInt($stateParams.projectId);
@@ -155,7 +171,7 @@
                 initDate(vm.J1, tmp);
                 initDate(vm.J2, tmp);
                 initDate(vm.J3, tmp);
-                if (tmp.length > 0){
+                if (tmp.length > 0) {
                     vm.proposalTmp.availability.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
                     vm.proposalTmp.availability.slot = tmp[0].slot;
                     vm.myDateFlag = false;
@@ -476,6 +492,19 @@
         }
 
         function succesProjectGET(res) {
+
+            $scope.map.center = {
+                latitude: res.address.latitude,
+                longitude: res.address.longitude
+            };
+            $scope.map.zoom = 14;
+
+            vm.circle.center = {
+                latitude: res.address.latitude,
+                longitude: res.address.longitude
+            };
+            vm.circle.visible = true;
+
             vm.project = res;
             console.log(res);
             vm.projectTmp = angular.copy(vm.project);

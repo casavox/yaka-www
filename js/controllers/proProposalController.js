@@ -13,7 +13,10 @@
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
         vm.selectImagePreview = selectImagePreview;
-        vm.markerCoords = {};
+        vm.marker = {
+            coords : {},
+            visible: false
+        };
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.sendOffer = sendOffer;
@@ -52,6 +55,24 @@
         vm.all = all;
         vm.getSlot = getSlot;
         vm.error = {};
+
+        vm.circle =
+        {
+            id: 1,
+            center: {
+                latitude: 0,
+                longitude: 0
+            },
+            radius: 200,
+            stroke: {
+                color: '#00aded',
+                weight: 1,
+                opacity: 1
+            },
+            visible: false,
+            control: {},
+            bounds: {}
+        };
 
         $scope.map = {
             center: {

@@ -344,7 +344,6 @@ angular.module('Yaka')
         });
         translateProvider.translations('fr', {
             'ACTIVITY_INSTALLATION': "Installation",
-            'ACTIVITY_INSTALLATION': "Installation",
             'ACTIVITY_REPLACEMENT': "Remplacement",
             'ACTIVITY_REPAIR': "Réparation",
             'ACTIVITY_MAINTENANCE': "Maintenance",
