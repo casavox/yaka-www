@@ -89,22 +89,6 @@ window.fbAsyncInit = function () {
 
         $authProvider.facebook({
             clientId: '847913895334564',
-            responseType: 'token'
-        });
-
-        $authProvider.oauth2({
-            name: 'facebookPreRegister',
-            clientId: "847913895334564",
-            url: '/pro/register/facebook',
-            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
-            redirectUri: window.location.origin + '/',
-            requiredUrlParams: ['display', 'scope'],
-            scope: ['email', 'user_birthday'],
-            scopeDelimiter: ',',
-            responseType: 'token',
-            display: 'popup',
-            type: '2.0',
-            popupOptions: { width: 580, height: 400 }
         });
 
         $translateProvider.translations('en', {});
