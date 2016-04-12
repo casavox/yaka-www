@@ -130,11 +130,10 @@
                             </div>
                             <div class="col-xs-12 description-sub-text row mb-15">
                                 <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images"
-                                     title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
-                                    <span class="center-middle img-comment" ng-show="media.description"
-                                          ng-click="vm.editImage(media)"></span>
+                                     title="{{media.description}}" ng-click="vm.selectImagePreview($index)">
+                                    <span class="center-middle img-comment" ng-show="media.description"></span>
                                     <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
-                                              ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
+                                              ng-class="{'hover-border': vm.editFlag}">
                                         <cl-transformation height="92" width="92" crop="fill"/>
                                     </cl-image>
                                 </div>
