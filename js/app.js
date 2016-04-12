@@ -89,8 +89,7 @@ window.fbAsyncInit = function () {
 
         $authProvider.facebook({
             clientId: '847913895334564',
-            url: '/pro/register/facebook',
-            responseType: 'token'
+            url: '/pro/register/facebook'
         });
 
         $translateProvider.translations('en', {});
