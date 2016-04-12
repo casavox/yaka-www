@@ -96,7 +96,6 @@ window.fbAsyncInit = function () {
             requiredUrlParams: ['display', 'scope'],
             scope: ['email', 'user_birthday'],
             scopeDelimiter: ',',
-            responseType: "token",
             display: 'popup',
             type: '2.0',
             popupOptions: { width: 580, height: 400 }
