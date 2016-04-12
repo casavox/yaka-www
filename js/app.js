@@ -71,6 +71,22 @@ window.fbAsyncInit = function () {
             popupOptions: {width: 452, height: 633}
         });
 
+        $authProvider.oauth2({
+            name: "googleProRegister",
+            clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
+            url: '/pro/register/google',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+            redirectUri: window.location.origin,
+            requiredUrlParams: ['scope'],
+            optionalUrlParams: ['display'],
+            scope: ['profile', 'email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            scopePrefix: 'openid',
+            scopeDelimiter: ' ',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 452, height: 633}
+        });
+
         $translateProvider.translations('en', {});
         $translateProvider.translations('fr', {});
         $translateProvider.preferredLanguage('en');

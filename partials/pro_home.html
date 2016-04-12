@@ -2,7 +2,7 @@
     <div class="proHomeSection proHomeSection1">
         <div class="container proHomeSection1Container">
             <div class="col-xs-12 proHomeSection1Header">
-                <div class="proHomeSection1YakaClub" ui-sref="proHome">
+                <div class="proHomeSection1YakaClub" ui-sref="pro-Home">
                     <span class="proHomeSection1Yaka">YAKA</span><span class="proHomeSection1Club">CLUB</span>
                 </div>
                 <div class="proHomeSection1CustomerLink" angular-ripple ui-sref="home">
@@ -155,6 +155,10 @@
 
                 <div class="col-xs-12 proHomeSection2RegisterFormTitle">
                     Inscription gratuite
+                </div>
+
+                <div class="col-xs-12" ng-click="vm.authenticate('googleProRegister')">
+                    Google
                 </div>
 
                 <input class="form-control halfInput" placeholder="Prénom"/>
