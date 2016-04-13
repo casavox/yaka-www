@@ -73,8 +73,8 @@
         function onPreRegisterOK(user) {
             vm.newUser.professional.firstName = user.firstName;
             vm.newUser.professional.lastName = user.lastName;
-            vm.newUser.professional.googleId = user.googleId;
-            vm.newUser.professional.facebookId = user.facebookId;
+            vm.newUser.googleId = user.googleId;
+            vm.newUser.facebookId = user.facebookId;
         }
 
         vm.registerUser = function() {
