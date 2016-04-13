@@ -49,14 +49,12 @@ window.fbAsyncInit = function () {
     angular
         .module('Yaka')
         .constant('CONFIG', {
-            'API_BASE_URL' : 'http://localhost:8080',
-            //'API_BASE_URL' : 'https://yaka-api.herokuapp.com',
-            'FACEBOOK_CLIENT_ID' : '847913895334564',
-            'GOOGLE_CLIENT_ID' : "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com"
+            'API_BASE_URL' : 'http://localhost:8080'
+            //'API_BASE_URL' : 'https://yaka-api.herokuapp.com'
         })
         .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig, LightboxProvider, CONFIG) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig, LightboxProvider) {
 
         ipnConfig.defaultCountry = 'fr';
         // Translation area
@@ -75,7 +73,7 @@ window.fbAsyncInit = function () {
             };
         };
         $authProvider.google({
-            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
             url: '/login/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
             redirectUri: window.location.origin,
@@ -91,7 +89,7 @@ window.fbAsyncInit = function () {
 
         $authProvider.oauth2({
             name: "googlePreRegister",
-            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
             url: '/pro/register/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
             redirectUri: window.location.origin,
@@ -106,7 +104,7 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.facebook({
-            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            clientId: '847913895334564',
             url: '/pro/register/facebook'
         });
 
