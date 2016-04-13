@@ -169,14 +169,14 @@
                     Inscription gratuite
                 </div>
 
-                <div class="col-xs-12 proHomeSection2RegisterFacebookGoogle">
+                <div class="col-xs-12 proHomeSection2RegisterFacebookGoogle" ng-if="!vm.isSocialRegister()">
                     Inscription via Facebook ou Google
                 </div>
 
-                <div class="col-xs-6 proHomeSection2RegisterFacebook" ng-click="vm.facebookPreRegister()">
+                <div class="col-xs-6 proHomeSection2RegisterFacebook" ng-click="vm.facebookPreRegister()" ng-if="!vm.isSocialRegister()">
                     Facebook
                 </div>
-                <div class="col-xs-6 proHomeSection2RegisterGoogle" ng-click="vm.googlePreRegister()">
+                <div class="col-xs-6 proHomeSection2RegisterGoogle" ng-click="vm.googlePreRegister()" ng-if="!vm.isSocialRegister()">
                     Google
                 </div>
 
@@ -196,9 +196,6 @@
                 <input class="form-control" placeholder="Confirmation de mot de passe" ng-model="vm.passwordConfirm"/>
                 <input class="form-control" placeholder="Domaine d'intervention" ng-model="vm.activities"/>
                 <input class="form-control" placeholder="Code postal" ng-model="vm.newUser.company.address.postalCode"/>
-
-                {{vm.newUser.googleId}}<br/>
-                {{vm.newUser.facebookId}}
 
                 <div class="col-xs-12 yakaButton yakaOrange" ng-click="vm.registerUser()" angular-ripple>
                     S'INSCRIRE

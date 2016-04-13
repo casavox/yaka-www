@@ -50,11 +50,13 @@ window.fbAsyncInit = function () {
         .module('Yaka')
         .constant('CONFIG', {
             //'API_BASE_URL' : 'http://localhost:8080'
-            'API_BASE_URL' : 'https://yaka-api.herokuapp.com'
+            'API_BASE_URL': 'https://yaka-api.herokuapp.com',
+            'GOOGLE_CLIENT_ID': '554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com',
+            'FACEBOOK_CLIENT_ID': '847913895334564'
         })
         .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig, LightboxProvider) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig, LightboxProvider, CONFIG) {
 
         ipnConfig.defaultCountry = 'fr';
         // Translation area
@@ -73,8 +75,8 @@ window.fbAsyncInit = function () {
             };
         };
         $authProvider.google({
-            clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
-            url: '/login/google',
+            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/login/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
             redirectUri: window.location.origin,
             requiredUrlParams: ['scope'],
@@ -89,8 +91,8 @@ window.fbAsyncInit = function () {
 
         $authProvider.oauth2({
             name: "googlePreRegister",
-            clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
-            url: '/pro/register/google',
+            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/pro/register/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
             redirectUri: window.location.origin,
             requiredUrlParams: ['scope'],
@@ -104,8 +106,8 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.facebook({
-            clientId: '847913895334564',
-            url: '/pro/register/facebook'
+            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/pro/register/facebook'
         });
 
         $translateProvider.translations('en', {});

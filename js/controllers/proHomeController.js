@@ -37,6 +37,14 @@
 
         vm.activities = "";
 
+        vm.isSocialRegister = function () {
+            if ((!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") ||
+                (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "")) {
+                return true;
+            }
+            return false;
+        };
+
         vm.googlePreRegister = function () {
             $auth.authenticate('googlePreRegister').then(function (res) {
                 console.log(res);
