@@ -198,11 +198,11 @@
                 </div>
 
                 <input class="form-control halfInput" placeholder="Prénom"
-                       ng-model="vm.newUser.professional.firstName"/>
+                       ng-model="vm.newUser.professional.firstName" ng-if="!vm.isSocialRegister() && (vm.newUser.professional.firstName != '')"/>
                 <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                       ng-model="vm.newUser.professional.lastName"/>
+                       ng-model="vm.newUser.professional.lastName" ng-if="!vm.isSocialRegister() && (vm.newUser.professional.lastName != '')"/>
                 <input class="form-control" placeholder="Mobile" ng-model="vm.newUser.professional.phoneNumber"/>
-                <input class="form-control" placeholder="Email" ng-model="vm.newUser.profile.email"/>
+                <input class="form-control" placeholder="Email" ng-model="vm.newUser.profile.email" ng-if="!vm.isSocialRegister() && (vm.newUser.profile.email != '')"/>
                 <input class="form-control" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
                 <input class="form-control" placeholder="Confirmation de mot de passe" ng-model="vm.passwordConfirm"/>
                 <input class="form-control" placeholder="Domaine d'intervention" ng-model="vm.activities"/>
