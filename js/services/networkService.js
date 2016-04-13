@@ -7,10 +7,9 @@
 
     //
     //Network Service Routing
-    NetworkService.$inject = ['$http']
-    function NetworkService($http) {
-        var baseUrl = "https://yaka-api.herokuapp.com";
-        //var baseUrl = "http://localhost:8080";
+    NetworkService.$inject = ['$http', 'CONFIG']
+    function NetworkService($http, CONFIG) {
+        var baseUrl = CONFIG.API_BASE_URL;
 
         return {
             /*
