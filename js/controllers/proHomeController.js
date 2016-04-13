@@ -74,6 +74,7 @@
             console.log("onPreRegisterOK");
             vm.newUser.professional.firstName = user.profile.firstName;
             vm.newUser.professional.lastName = user.profile.lastName;
+            vm.newUser.profile.email = user.profile.email;
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
         }
