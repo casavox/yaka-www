@@ -39,8 +39,8 @@
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googlePreRegister').then(function (res) {
+                console.log(res);
                 if (!angular.isUndefined(res.googleId) && res.googleId && res.googleId != "") {
-                    console.log(res);
                     onPreRegisterOK(res);
                 }
             }).catch(function (res) {
@@ -51,8 +51,8 @@
 
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebook').then(function (res) {
+                console.log(res);
                 if (!angular.isUndefined(res.facebookId) && res.facebookId && res.facebookId != "") {
-                    console.log(res);
                     onPreRegisterOK(res);
                 }
             }).catch(function (res) {
@@ -71,6 +71,7 @@
         }
 
         function onPreRegisterOK(user) {
+            console.log("onPreRegisterOK");
             vm.newUser.professional.firstName = user.firstName;
             vm.newUser.professional.lastName = user.lastName;
             vm.newUser.googleId = user.googleId;
