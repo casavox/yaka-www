@@ -40,7 +40,7 @@
         vm.googlePreRegister = function () {
             $auth.authenticate('googlePreRegister').then(function (res) {
                 console.log(res);
-                if (!angular.isUndefined(res.googleId) && res.googleId && res.googleId != "") {
+                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -52,7 +52,7 @@
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebook').then(function (res) {
                 console.log(res);
-                if (!angular.isUndefined(res.facebookId) && res.facebookId && res.facebookId != "") {
+                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
