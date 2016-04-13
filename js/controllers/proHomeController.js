@@ -13,12 +13,35 @@
 
         vm.currentYear = new Date().getFullYear();
 
+        vm.newUser = {
+            password: "",
+            profile: {
+                email: ""
+            },
+            professional: {
+                firstName: "",
+                lastName: "",
+                phoneNumber: "",
+                activities: []
+            },
+            company: {
+                address: {
+                    postalCode: ""
+                }
+            },
+            googleId: "",
+            facebookId: ""
+        };
+
+        vm.passwordConfirm = "";
+
+        vm.activities = "";
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googlePreRegister').then(function (res) {
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
-                    //$state.go('dashboard');
                     console.log(res);
+                    onPreRegisterOK(res);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
@@ -28,9 +51,9 @@
 
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebook').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.accessToken) && res.accessToken && res.accessToken != "") {
-                    //networkService.facebookPreRegister(res, onFacebookRegisterOk, onFacebookRegisterFail);
+                    console.log(res);
+                    onPreRegisterOK(res);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
@@ -46,5 +69,17 @@
         function onFacebookRegisterFail() {
             alertMsg.send("Impossible de se connecter via Facebook", 'danger');
         }
+
+        function onPreRegisterOK(user) {
+            vm.newUser.professional.firstName = user.firstName;
+            vm.newUser.professional.lastName = user.lastName;
+            vm.newUser.professional.googleId = user.googleId;
+            vm.newUser.professional.facebookId = user.facebookId;
+        }
+
+        vm.registerUser = function() {
+            console.log(vm.newUser);
+        }
+
     }
 })();
