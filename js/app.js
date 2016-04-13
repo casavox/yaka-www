@@ -49,8 +49,8 @@ window.fbAsyncInit = function () {
     angular
         .module('Yaka')
         .constant('CONFIG', {
-            'API_BASE_URL' : 'http://localhost:8080'
-            //'API_BASE_URL' : 'https://yaka-api.herokuapp.com'
+            //'API_BASE_URL' : 'http://localhost:8080'
+            'API_BASE_URL' : 'https://yaka-api.herokuapp.com'
         })
         .config(config);
 
