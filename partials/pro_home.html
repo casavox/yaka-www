@@ -122,31 +122,43 @@
                 Comment ça marche ?
             </div>
             <div class="col-xs-6 proHomeSection2RegisterExplain">
-                <div class="proHomeSection2RegisterExplainTitle">
+                <div class="col-xs-1">
+                    <img class="proHomeSection2RegisterImg" src="icons/mdpi/ic_homeOne.png" alt=""/>
+                </div>
+                <div class="col-xs-11 proHomeSection2RegisterExplainTitle">
                     Inscrivez-vous en 5 minutes
                 </div>
-                <div class="proHomeSection2RegisterExplainDesc">
+                <div class="col-xs-11 col-xs-offset-1 proHomeSection2RegisterExplainDesc">
                     Complétez votre profil, dites nous qui vous êtes, ce que vous faites et le secteur où vous cherchez
                     des chantiers. Vous allez rapidement pouvoir recevoir des offres et développer votre réseau.
                 </div>
-                <div class="proHomeSection2RegisterExplainTitle">
+                <div class="col-xs-1">
+                    <img class="proHomeSection2RegisterImg" src="icons/mdpi/ic_homeTwo.png" alt=""/>
+                </div>
+                <div class="col-xs-11 proHomeSection2RegisterExplainTitle">
                     Consultez les offres de chantiers et les demandes de dépannages
                 </div>
-                <div class="proHomeSection2RegisterExplainDesc">
+                <div class="col-xs-11 col-xs-offset-1 proHomeSection2RegisterExplainDesc">
                     Parcourez les offres et répondez aux chantiers qui vous intéressent. Recevez des alertes quand une
                     demande de dépannage ou un chantier de vos contacts nécessite vos compétences.
                 </div>
-                <div class="proHomeSection2RegisterExplainTitle">
+                <div class="col-xs-1">
+                    <img class="proHomeSection2RegisterImg" src="icons/mdpi/ic_homeThree.png" alt=""/>
+                </div>
+                <div class="col-xs-11 proHomeSection2RegisterExplainTitle">
                     Discutez, proposez un devis et remportez le chantier
                 </div>
-                <div class="proHomeSection2RegisterExplainDesc">
+                <div class="col-xs-11 col-xs-offset-1 proHomeSection2RegisterExplainDesc">
                     Des questions sur un chantier ? Discutez facilement avec vos clients via notre chat et transmettez
                     votre devis. A vous de jouer pour remporter le contrat.
                 </div>
-                <div class="proHomeSection2RegisterExplainTitle">
+                <div class="col-xs-1">
+                    <img class="proHomeSection2RegisterImg" src="icons/mdpi/ic_homeFour.png" alt=""/>
+                </div>
+                <div class="col-xs-11 proHomeSection2RegisterExplainTitle">
                     Développez votre réseau et obtenez de nouveaux chantiers
                 </div>
-                <div class="proHomeSection2RegisterExplainDesc">
+                <div class="col-xs-11 col-xs-offset-1 proHomeSection2RegisterExplainDesc">
                     De la qualité de votre travail dépendra le développement de votre réseau. Chaque client satisfait
                     vous recommande à ses amis pour leurs futurs travaux
                 </div>
@@ -157,15 +169,25 @@
                     Inscription gratuite
                 </div>
 
-                <div class="col-xs-6" ng-click="vm.facebookPreRegister()">
+                <div class="col-xs-12 proHomeSection2RegisterFacebookGoogle">
+                    Inscription via Facebook ou Google
+                </div>
+
+                <div class="col-xs-6 proHomeSection2RegisterFacebook" ng-click="vm.facebookPreRegister()">
                     Facebook
                 </div>
-                <div class="col-xs-6" ng-click="vm.googlePreRegister()">
+                <div class="col-xs-6 proHomeSection2RegisterGoogle" ng-click="vm.googlePreRegister()">
                     Google
                 </div>
 
+                <div class="col-xs-4 col-xs-offset-4 proHomeSection2RegisterSeparator"/>
+
+                <div class="col-xs-12 proHomeSection2RegisterMail">
+                    Inscription par email
+                </div>
+
                 <input class="form-control halfInput" placeholder="Prénom"/>
-                <input class="form-control halfInput" placeholder="Nom"/>
+                <input class="form-control halfInput halfInputRight" placeholder="Nom"/>
                 <input class="form-control" placeholder="Mobile"/>
                 <input class="form-control" placeholder="Email"/>
                 <input class="form-control" placeholder="Mot de passe"/>

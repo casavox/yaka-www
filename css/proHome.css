@@ -196,7 +196,37 @@
 .proHomeSection2RegisterFormTitle {
     font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 25px;
-    margin-bottom: 125px;
+}
+
+.proHomeSection2RegisterFacebookGoogle {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 14px;
+}
+
+.proHomeSection2RegisterFacebook {
+    margin-top: 8px;
+}
+
+.proHomeSection2RegisterGoogle {
+    margin-top: 8px;
+}
+
+.proHomeSection2RegisterSeparator {
+    height: 1px;
+    background: #E6E6E6;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.proHomeSection2RegisterMail {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 12px;
+    margin-bottom: 13px;
+}
+
+.proHomeSection2RegisterImg {
+    margin-top: 17px;
 }
 
 .proHomeSection3 {
@@ -350,8 +380,12 @@
 }
 
 .halfInput {
-    width: 50% !important;
+    width: 48% !important;
     float: left !important;
+}
+
+.halfInput.halfInputRight {
+    float: right !important;
 }
 
 .form-control {
