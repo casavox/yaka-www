@@ -66,7 +66,7 @@
                     <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
                         <div class="row no-margin no-padding">
                             <div class="col-xs-2 no-margin no-padding">
-                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}" secure="true"
                                           class="img-circle center-middle" format="png">
                                     <cl-transformation height="70" width="70" crop="fill"/>
                                 </cl-image>
@@ -228,8 +228,9 @@
                                      title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
                                     <span class="center-middle img-comment" ng-show="media.description"
                                           ng-click="vm.editImage(media)"></span>
-                                    <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
-                                              ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
+                                    <cl-image public-id="{{media.cloudinaryPublicId}}" secure="true" format="png"
+                                              class="center" ng-click="vm.editImage(media)"
+                                              ng-class="{'hover-border': vm.editFlag}">
                                         <cl-transformation height="92" width="92" crop="fill"/>
                                     </cl-image>
                                 </div>
@@ -415,7 +416,8 @@
                         <div class="row cl">
                             <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
-                                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
+                                <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png"
+                                          class="center">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
                             </div>
@@ -430,7 +432,7 @@
             <div class="project-description">
                 <div class="proposal-offers-expend no-m-lb">
 
-                    <cl-image public-id="{{vm.project.proposal.professional.avatar.cloudinaryPublicId}}"
+                    <cl-image public-id="{{vm.project.proposal.professional.avatar.cloudinaryPublicId}}" secure="true"
                               class="f-l proposal-icon img-circle" format="png"
                               ng-if="vm.project.proposal.professional.avatar.cloudinaryPublicId">
                         <cl-transformation height="70" width="70" crop="fill"/>
@@ -549,7 +551,8 @@
                                  title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
                                 <span class="center-middle img-comment" ng-show="media.description"
                                       ng-click="vm.editImage(media)"></span>
-                                <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
+                                <cl-image public-id="{{media.cloudinaryPublicId}}" secure="true" format="png"
+                                          class="center"
                                           ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
@@ -759,7 +762,8 @@
                         <div class="popUp-content img-preview-popUp">
                             <span class="boxclose" ng-click="vm.imageFlag = false"></span>
                             <h4>Delete or Update description</h4>
-                            <cl-image public-id="{{vm.imgTmp.cloudinaryPublicId}}" format="png" class="center mb-39">
+                            <cl-image public-id="{{vm.imgTmp.cloudinaryPublicId}}" secure="true" format="png"
+                                      class="center mb-39">
                             </cl-image>
                 <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmp.description"
                           ng-change="vm.limitLength(vm.imgTmp, 'description', 140)"></textarea>
@@ -786,7 +790,8 @@
                         <div class="popUp-content no-margin img-preview-popUp">
                             <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
                             <h4>Preview</h4>
-                            <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
+                            <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" secure="true" format="png"
+                                      class="center">
                             </cl-image>
                 <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
                           disabled></textarea>
