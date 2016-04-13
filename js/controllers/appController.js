@@ -107,7 +107,7 @@
         };
 
         $scope.send = function () {
-            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10)|| $scope.rating.positive == 'true')) {
+            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10) || $scope.rating.positive == 'true')) {
                 $scope.disable = true;
                 $scope.error.criteria.flag = false;
                 $scope.rating.id = $scope.project.proposal.id;

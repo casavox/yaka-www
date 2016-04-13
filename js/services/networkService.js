@@ -84,7 +84,7 @@
                 $http.get(baseUrl + '/pro/proposals/' + id).success(success).error(error)
             },
             proProposalsArchiveGET: function (id, success, error) {
-                $http.get(baseUrl + '/pro/proposals/'+id+'/archive').success(success).error(error)
+                $http.get(baseUrl + '/pro/proposals/' + id + '/archive').success(success).error(error)
             },
             proposalAcceptPOST: function (data, success, error) {
                 $http.post(baseUrl + '/proposals/' + data.id + "/accept", data).success(success).error(error)

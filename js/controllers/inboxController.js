@@ -90,7 +90,7 @@
             });
         }
 
-        vm.selectImagePreview = function(media){
+        vm.selectImagePreview = function (media) {
             $rootScope.simplePreview = true;
             var data = [{url: media.cloudinaryPublicId}];
             $rootScope.media = media;

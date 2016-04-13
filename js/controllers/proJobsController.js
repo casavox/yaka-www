@@ -29,12 +29,12 @@
             console.log("Error");
         });
 
-        vm.selectProposal = function(index){
+        vm.selectProposal = function (index) {
             vm.index = index;
             vm.delete = true;
         };
 
-        vm.deleteProposal = function(){
+        vm.deleteProposal = function () {
             networkService.proProposalsArchiveGET(vm.decline[vm.index].id, function (res) {
                 console.log(res);
                 vm.delete = false;

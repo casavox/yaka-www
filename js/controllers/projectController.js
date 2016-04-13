@@ -324,7 +324,7 @@
             }
         }
 
-        vm.selectImagePreview = function(index){
+        vm.selectImagePreview = function (index) {
             var data = [{url: vm.projectTmp.images[index].cloudinaryPublicId}];
             $rootScope.media = vm.projectTmp.images[index];
             Lightbox.openModal(data, 0);

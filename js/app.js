@@ -243,11 +243,11 @@ window.fbAsyncInit = function () {
                 controllerAs: 'vm'
             })
             .state('pro-jobs', {
-            url: "/pro/proposals/jobs",
-            templateUrl: "partials/pro-jobs.html",
-            controller: 'ProJobsController',
-            controllerAs: 'vm'
-        });
+                url: "/pro/proposals/jobs",
+                templateUrl: "partials/pro-jobs.html",
+                controller: 'ProJobsController',
+                controllerAs: 'vm'
+            });
 
         //
         //Interceptor to put the token in the header for each http request

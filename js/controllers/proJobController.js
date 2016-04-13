@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProJobController.$inject = ['$scope', '$state','networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProJobController($scope, $state,networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProJobController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProJobController($scope, $state, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
         var vm = this;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
@@ -412,7 +412,7 @@
                 initDate(vm.J1, tmp);
                 initDate(vm.J2, tmp);
                 initDate(vm.J3, tmp);
-                if (tmp.length > 0){
+                if (tmp.length > 0) {
                     vm.proposalTmp.availability.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
                     vm.proposalTmp.availability.slot = tmp[0].slot;
                     vm.myDateFlag = false;

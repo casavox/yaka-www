@@ -57,19 +57,23 @@
                                         <cl-transformation height="70" width="70" crop="fill"/>
                                     </cl-image>
                                     <div class="img-default" ng-if="!p.professional.avatar.cloudinaryPublicId">
-                                        {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] | uppercase}}
+                                        {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] |
+                                        uppercase}}
                                     </div>
                                 </div>
                                 <div class="proposals-info">
                                     <div class="proposals-name">
-                                        <span ng-if="p.status == 'START'">{{p.professional.firstName}} {{p.professional.lastName}}</span><span ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
+                                        <span ng-if="p.status == 'START'">{{p.professional.firstName}} {{p.professional.lastName}}</span><span
+                                        ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
                                     </div>
-                                    <div class="proposals-qualities"><span ng-repeat="q in p.professional.qualities">{{ q.name }} <span ng-if="!$last"> - </span></span></div>
+                                    <div class="proposals-qualities"><span ng-repeat="q in p.professional.qualities">{{ q.name }} <span
+                                        ng-if="!$last"> - </span></span></div>
                                     <div class="pro-title-icon">
                                         <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
 
                                         <div class="likes">
-                                            {{p.professional.likes}} <span ng-if="!p.professional.likes || p.professional.likes == 0"> - </span>
+                                            {{p.professional.likes}} <span
+                                            ng-if="!p.professional.likes || p.professional.likes == 0"> - </span>
                                         </div>
                                         <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
                                              ng-if="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
@@ -77,7 +81,9 @@
                                     </div>
                                 </div>
                                 <div class="proposals-message-price">
-                                    <img src="icons/mdpi/ic_message.png" class="proposals-unread" ng-if="p.unreadMessages"/>
+                                    <img src="icons/mdpi/ic_message.png" class="proposals-unread"
+                                         ng-if="p.unreadMessages"/>
+
                                     <div class="proposals-price" ng-if="p.price">
                                         {{p.price}} €
                                     </div>
@@ -91,20 +97,20 @@
 
 
                                 <!--<div class="col-xs-2 no-margin no-padding">-->
-                                    <!--<img src="icons/mdpi/ic_message.png" class="icon-message"-->
-                                         <!--ng-show="p.unreadMessages"/>-->
+                                <!--<img src="icons/mdpi/ic_message.png" class="icon-message"-->
+                                <!--ng-show="p.unreadMessages"/>-->
                                 <!--</div>-->
                                 <!--<div class="col-xs-3 no-margin no-padding">-->
-                                    <!--<div class="pro-price" ng-show="p.price">-->
-                                        <!--{{p.price}} €-->
-                                    <!--</div>-->
-                                    <!--<p class="pro-price-desc" ng-show="p.price">-->
-                                        <!--{{p.priceType}}-->
-                                    <!--</p>-->
+                                <!--<div class="pro-price" ng-show="p.price">-->
+                                <!--{{p.price}} €-->
+                                <!--</div>-->
+                                <!--<p class="pro-price-desc" ng-show="p.price">-->
+                                <!--{{p.priceType}}-->
+                                <!--</p>-->
 
-                                    <!--<p class="pro-price-none" ng-show="!p.price || p.price == 0">-->
-                                        <!--Need more info-->
-                                    <!--</p>-->
+                                <!--<p class="pro-price-none" ng-show="!p.price || p.price == 0">-->
+                                <!--Need more info-->
+                                <!--</p>-->
                                 <!--</div>-->
                             </div>
 
@@ -138,6 +144,7 @@
                 <div>
                     <div>
                         <h4 class="menu-r-title">My Project</h4>
+
                         <p class="menu-r-text">
                             {{vm.project.address.name}} - {{vm.project.address.administrativeAreaLevel2 }}
                         </p>
