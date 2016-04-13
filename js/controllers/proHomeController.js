@@ -45,6 +45,16 @@
             return false;
         };
 
+        vm.getSocialServiceName = function () {
+            if (!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") {
+                return "Google";
+            } else if (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "") {
+                return "Facebook";
+            } else {
+                return "";
+            }
+        }
+
         vm.googlePreRegister = function () {
             $auth.authenticate('googlePreRegister').then(function (res) {
                 console.log(res);

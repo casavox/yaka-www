@@ -170,7 +170,13 @@
                 </div>
 
                 <div class="col-xs-12 proHomeSection2RegisterFacebookGoogle" ng-if="!vm.isSocialRegister()">
-                    Inscription via Facebook ou Google
+                    <span ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
+                    <div ng-if="vm.isSocialRegister()">
+                        <div class="proHomeSection2RegisterSocialConfirm">
+                            Votre compte {{vm.getSocialServiceName}} sera associé
+                        </div>
+                        {{vm.newUser.profile.email}}
+                    </div>
                 </div>
 
                 <div class="col-xs-6 proHomeSection2RegisterFacebook" ng-click="vm.facebookPreRegister()" ng-if="!vm.isSocialRegister()">
