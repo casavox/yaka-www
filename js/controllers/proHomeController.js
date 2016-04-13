@@ -13,12 +13,35 @@
 
         vm.currentYear = new Date().getFullYear();
 
+        vm.newUser = {
+            password: "",
+            profile: {
+                email: ""
+            },
+            professional: {
+                firstName: "",
+                lastName: "",
+                phoneNumber: "",
+                activities: []
+            },
+            company: {
+                address: {
+                    postalCode: ""
+                }
+            },
+            googleId: "",
+            facebookId: ""
+        };
+
+        vm.passwordConfirm = "";
+
+        vm.activities = "";
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googlePreRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
-                    //$state.go('dashboard');
-                    console.log(res);
+                console.log(res);
+                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                    onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
@@ -29,8 +52,8 @@
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebook').then(function (res) {
                 console.log(res);
-                if (!angular.isUndefined(res.accessToken) && res.accessToken && res.accessToken != "") {
-                    //networkService.facebookPreRegister(res, onFacebookRegisterOk, onFacebookRegisterFail);
+                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                    onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
@@ -46,5 +69,19 @@
         function onFacebookRegisterFail() {
             alertMsg.send("Impossible de se connecter via Facebook", 'danger');
         }
+
+        function onPreRegisterOK(user) {
+            console.log("onPreRegisterOK");
+            vm.newUser.professional.firstName = user.profile.firstName;
+            vm.newUser.professional.lastName = user.profile.lastName;
+            vm.newUser.profile.email = user.profile.email;
+            vm.newUser.googleId = user.googleId;
+            vm.newUser.facebookId = user.facebookId;
+        }
+
+        vm.registerUser = function () {
+            console.log(vm.newUser);
+        }
+
     }
 })();

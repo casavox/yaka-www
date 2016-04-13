@@ -186,16 +186,21 @@
                     Inscription par email
                 </div>
 
-                <input class="form-control halfInput" placeholder="Prénom"/>
-                <input class="form-control halfInput halfInputRight" placeholder="Nom"/>
-                <input class="form-control" placeholder="Mobile"/>
-                <input class="form-control" placeholder="Email"/>
-                <input class="form-control" placeholder="Mot de passe"/>
-                <input class="form-control" placeholder="Confirmation de mot de passe"/>
-                <input class="form-control" placeholder="Domaine d'intervention"/>
-                <input class="form-control" placeholder="Code postal"/>
+                <input class="form-control halfInput" placeholder="Prénom"
+                       ng-model="vm.newUser.professional.firstName"/>
+                <input class="form-control halfInput halfInputRight" placeholder="Nom"
+                       ng-model="vm.newUser.professional.lastName"/>
+                <input class="form-control" placeholder="Mobile" ng-model="vm.newUser.professional.phoneNumber"/>
+                <input class="form-control" placeholder="Email" ng-model="vm.newUser.profile.email"/>
+                <input class="form-control" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
+                <input class="form-control" placeholder="Confirmation de mot de passe" ng-model="vm.passwordConfirm"/>
+                <input class="form-control" placeholder="Domaine d'intervention" ng-model="vm.activities"/>
+                <input class="form-control" placeholder="Code postal" ng-model="vm.newUser.company.address.postalCode"/>
 
-                <div class="col-xs-12 yakaButton yakaOrange" angular-ripple>
+                {{vm.newUser.googleId}}<br/>
+                {{vm.newUser.facebookId}}
+
+                <div class="col-xs-12 yakaButton yakaOrange" ng-click="vm.registerUser()" angular-ripple>
                     S'INSCRIRE
                 </div>
             </div>
