@@ -48,10 +48,9 @@ window.fbAsyncInit = function () {
 
     angular
         .module('Yaka')
-        //.constant('BASE_URL', 'https://yaka-api.herokuapp.com')
         .constant('CONFIG', {
-            //'API_BASE_URL' : 'http://localhost:8080',
-            'API_BASE_URL' : 'https://yaka-api.herokuapp.com',
+            'API_BASE_URL' : 'http://localhost:8080',
+            //'API_BASE_URL' : 'https://yaka-api.herokuapp.com',
             'FACEBOOK_CLIENT_ID' : '847913895334564',
             'GOOGLE_CLIENT_ID' : "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com"
         })
