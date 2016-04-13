@@ -38,8 +38,8 @@
         vm.activities = "";
 
         vm.isSocialRegister = function () {
-            if ((!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") ||
-                (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "")) {
+            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
                 return true;
             }
             return false;
