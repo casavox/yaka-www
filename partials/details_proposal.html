@@ -49,10 +49,12 @@
             <div class="project-description" ng-show="!vm.pro">
                 <div class="row no-margin">
                     <div class="col-xs-12">
-                        <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'">
+                        <div class="description-action-btn" ng-click="vm.edit()"
+                             ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'">
                             MODIFY
                         </div>
-                        <div class="description-action-btn" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'" ng-click="vm.decline()">
+                        <div class="description-action-btn" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'"
+                             ng-click="vm.decline()">
                             DECLINE
                         </div>
                         <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.save()">

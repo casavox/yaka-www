@@ -52,7 +52,8 @@
                             <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
                                 DELETE
                             </div>
-                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishProject()" ng-if="vm.project.status == 'DRAFT'">
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishProject()"
+                                 ng-if="vm.project.status == 'DRAFT'">
                                 PUBLISH
                             </div>
                             <div class="description-action-btn color-red" ng-show="vm.editFlag"
@@ -84,7 +85,8 @@
                                 <span class="icon-pen-red" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
                             </div>
                             <div class="col-xs-12 description-sub-text">
-                                {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.streetNumber}} {{vm.projectTmp.address.route}}, {{vm.projectTmp.address.postalCode}}
+                                {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.streetNumber}}
+                                {{vm.projectTmp.address.route}}, {{vm.projectTmp.address.postalCode}}
                             </div>
 
                         </div>
@@ -123,7 +125,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row no-margin" ng-if="(vm.projectTmp.images && vm.projectTmp.images.length > 0) || vm.editFlag">
+                    <div class="row no-margin"
+                         ng-if="(vm.projectTmp.images && vm.projectTmp.images.length > 0) || vm.editFlag">
                         <div class="col-xs-12 row no-margin">
                             <div class="col-xs-12 description-sub-title">
                                 Photos / Videos

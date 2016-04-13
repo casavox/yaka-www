@@ -49,14 +49,15 @@
                         </div>
                         <hr>
                     </div>
-                    <div class="proposal-offers">
+                    <div class="proposal-offers p-25">
                         <div class="line">
-                            <span class="f-l proposal-offer-line-info">Price</span><span
-                            class="f-r proposal-offer-line-res"
-                            ng-show="!vm.proposal.price">Need info to make a quote</span><span
-                            class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
+                            <span class="f-l proposal-offer-line-info">Price</span>
+                            <span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.price">Need info to make a quote</span>
+                            <span class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
+                            <span class="f-r proposal-offer-line-price-type">{{ vm.proposal.priceType }}</span>
+
                         </div>
-                        <div class="line mt-21" ng-show="vm.projectTmp.type != 'EMERGENCY'">
+                        <div class="line mt-23" ng-show="vm.projectTmp.type != 'EMERGENCY'">
                             <span class="f-l proposal-offer-line-info">Available on</span><span
                             class="f-r proposal-offer-line-res"
                             ng-show="!vm.proposal.startDate">Need info to schedule</span><span
@@ -69,36 +70,29 @@
                         </div>
                     </div>
                     <div class="proposal-offers-expend">
-                        <img ng-src="{{vm.proposal.professional.avatarUrl}}" class="f-l proposal-icon img-circle"
-                             ng-show="vm.proposal.professional.avatarUrl"/>
-
-                        <div class="img-default fl" ng-show="!vm.proposal.professional.avatarUrl">
+                        <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}"
+                                  class="f-l proposal-icon img-circle" format="png"
+                                  ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
+                            <cl-transformation height="70" width="70" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default fl" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
                             {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0]
                             | uppercase}}
                         </div>
-
-                        <!-- <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}" class="img-circle fcenter proposal-icon" format="png" ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
-                        <cl-transformation height="70" width="70" crop="fill"/>
-                      </cl-image>
-                      <img class="img-circle avatar-pro" ng-src="{{p.proposals[3].professional.avatarUrl}}" ng-show="p.proposals[3].professional.avatarUrl"/>
-                      <div class="img-default-preview center" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
-                      {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0] | uppercase}}
-                    </div> -->
                         <div class="proposal-tel">
-                            <div class="icon-tel"></div>
+                            <div class="icon-tel" ng-if="vm.proposal.professional.phoneNumber"></div>
                             <div>
                                 {{vm.proposal.professional.phoneNumber}}
                             </div>
 
                         </div>
                         <div class="f-l">
-                            <p class="proposal-company" ng-show="vm.projectTmp.status == 'START'">
-                                {{vm.proposal.professional.companyName}}
+                            <p class="proposal-company" ng-if="vm.proposal.status == 'SELECTED'">
+                                {{vm.proposal.professional.company.name}}
                             </p>
 
-                            <p class="proposal-name">
-                                <span
-                                    ng-if="vm.projectTmp.status == 'PRESELECTED' || vm.projectTmp.status == 'SELECTED'">{{vm.proposal.professional.lastName}} </span>
+                            <p class="proposal-name" ng-if="vm.proposal.status == 'START'">
+                                <!--<span >{{vm.proposal.professional.lastName}} </span>-->
                                 {{vm.proposal.professional.firstName}}
                             </p>
 
@@ -121,72 +115,80 @@
                     </div>
                     <div class="detail-pro-title">
                         <div class="in-line">
-                            DETAIL PROFILE
+                            DETAIL PROFIL
                         </div>
                         <hr class="w-525">
                     </div>
                     <div class="proposal-offers-expend">
-                        <p class="proposal-my-background f-l">
+                        <p class="proposal-box-title">
                             My background
                         </p>
+                        <div class="proposal-box-content">
 
-                        <div class="proposal-checked"
-                             ng-show="vm.indexOfObject('COMPANY_STATUS_OK', 'name', vm.proposal.professional.verifications).length > 0">
-                            <img src="icons/mdpi/ic_launcher.png" class="center"/>
 
-                            <p>
-                                Background Checked
-                            </p>
-                        </div>
-                        <div class="proposal-exp" ng-show="vm.proposal.professional.activityStartedDate">
-                            <p>+{{vm.calculateExp(vm.proposal.professional.activityStartedDate)}}</p>
-                            <span>Years experience</span>
-                        </div>
-                        <div class="proposal-projects" ng-show="vm.proposal.professional.yakaProjectNumber > 0">
-                            <p>{{vm.proposal.professional.yakaProjectNumber}}</p>
-                            <span>Project Yaka completed</span>
-                        </div>
-                        <div class="proposal-rge"
-                             ng-show="vm.indexOfObject('RGE', 'name', vm.proposal.professional.verifications).length > 0">
-                            <img src="http://www.excelbaie.com/img-pub/rge.png" class="center-middle"/>
-                        </div>
-                        <div class="proposal-partner"
-                             ng-show="vm.indexOfObject('PARTNER', 'name', vm.proposal.professional.verifications).length > 0">
-                            <img ng-src="{{vm.proposal.professional.partner.imageUrl}}"
-                                 class="proposal-img-partner center"/>
+                            <div class="proposal-checked"
+                                 ng-show="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.proposal.professional.verifications).length > 0">
+                                <img src="icons/mdpi/ic_launcher.png" class="center"/>
 
-                            <p>
-                                {{vm.proposal.professional.partner.name}}
-                            </p>
+                                <p>
+                                    Background Checked
+                                </p>
+                            </div>
+                            <div class="proposal-exp" ng-show="vm.proposal.professional.activityStartedYear">
+                                <p>+{{vm.calculateExp(vm.proposal.professional.activityStartedYear)}}</p>
+                                <span>Years experience</span>
+                            </div>
+                            <div class="proposal-projects" ng-show="vm.proposal.professional.yakaProjectNumber > 0">
+                                <p>{{vm.proposal.professional.yakaProjectNumber}}</p>
+                                <span>Project Yaka completed</span>
+                            </div>
+                            <div class="proposal-rge"
+                                 ng-show="vm.indexOfObject('RGE', 'name', vm.proposal.professional.verifications).length > 0">
+                                <img src="http://www.excelbaie.com/img-pub/rge.png" class="center-middle"/>
+                            </div>
+                            <div class="proposal-partner"
+                                 ng-show="vm.indexOfObject('PARTNER', 'name', vm.proposal.professional.verifications).length > 0">
+                                <cl-image public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                          class="proposal-img-partner center" format="png"
+                                          ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                    <cl-transformation height="48" width="48" crop="fill"/>
+                                </cl-image>
+                                <p>
+                                    {{vm.proposal.professional.mainPartner.name}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="proposal-offers-expend">
-                        <p class="proposal-skills f-l">
+                        <p class="proposal-box-title">
                             Main skills
                         </p>
-
-                        <div class="proposal-skill" ng-repeat="s in vm.proposal.professional.skills">
-                            <div class="v-icon v-icon-{{s.name}} center">
+                        <div class="proposal-box-content">
+                            <div class="proposal-skill" ng-repeat="s in vm.proposal.professional.activities">
+                                <div class="v-icon v-icon-{{s.code}} center">
+                                </div>
+                                <p class="text-center">
+                                    {{s.code}}
+                                </p>
                             </div>
-                            <p class="text-center">
-                                {{s.name}}
-                            </p>
                         </div>
                     </div>
                     <div class="proposal-offers-expend">
-                        <p class="proposal-skills f-l">
+                        <p class="proposal-box-title">
                             Main qualities
                         </p>
+                        <div class="proposal-box-content">
 
-                        <p class="proposal-quality proposal-qual"
-                           ng-repeat-start="q in vm.proposal.professional.qualities">
-                            {{q.name}} ({{q.number }})
-                        </p>
+                            <p class="proposal-quality proposal-qual"
+                               ng-repeat-start="q in vm.proposal.professional.qualities">
+                                {{q.name}} <span ng-if="q.number">({{q.number }})</span>
+                            </p>
 
-                        <p class="proposal-quality proposal-qual"
-                           ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end>
-                            -
-                        </p>
+                            <p class="proposal-quality proposal-qual"
+                               ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end>
+                                -
+                            </p>
+                        </div>
                     </div>
                     <div class="proposal-offers-expend">
                         <p class="proposal-about-me f-l">
@@ -195,14 +197,15 @@
                         <textarea msd-elastic class="custom-textarea-about-me mb-10"
                                   ng-model="vm.proposal.professional.aboutMe"></textarea>
 
-                        <p class="proposal-about-me">
+                        <p class="proposal-about-me" ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                             Portfolio
                         </p>
 
-                        <div class="row cl">
+                        <div class="row cl" ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                             <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
-                                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center" ng-click="vm.selectImagePreview($index)">
+                                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center"
+                                          ng-click="vm.selectImagePreview($index)">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
                             </div>

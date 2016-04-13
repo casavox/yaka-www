@@ -36,7 +36,7 @@
 
                         <div class="info-line">
                             <p class="project-date" ng-class="{'draft': p.status == 'DRAFT'}">
-                                {{p.updated | date:'dd MMM yyyy'}} -
+                                {{ vm.getDesiredPedriod(p)}} -
                             </p>
 
                             <p class="project-address" ng-class="{'draft': p.status == 'DRAFT'}">
@@ -46,7 +46,8 @@
                     </div>
                 </div>
                 <div class="project-message no-margin no-padding">
-                    <img class="center-middle img-message" src="icons/mdpi/ic_message.png" alt="" ng-show="p.unreadMessages"/>
+                    <img class="center-middle img-message" src="icons/mdpi/ic_message.png" alt=""
+                         ng-show="p.unreadMessages"/>
 
                     <p class="no-message" ng-hide="p.unreadMessages">
                         No message

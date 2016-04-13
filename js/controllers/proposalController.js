@@ -227,10 +227,7 @@
         }
 
         function calculateExp(d) {
-            var tmp = new Date(d);
-            var ageDifMs = Date.now() - tmp.getTime();
-            var ageDate = new Date(ageDifMs);
-            return Math.abs(ageDate.getUTCFullYear() - 1970);
+            return Math.abs(d - (new Date()).getFullYear());
         }
 
         if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)

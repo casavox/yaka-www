@@ -799,7 +799,7 @@ md-input-container {
     margin-top: 10px;
     float: right;
     height:20px;
-    widows:23px;
+    width:23px;
 }
 
 .pro-proposal-vignette{
@@ -1539,6 +1539,7 @@ color: #9b9b9b!important;
 }
 
 .img-default {
+    letter-spacing: -3px;
     margin-right: 47px;
     background-color: rgba(0, 0, 0, 0.5);
     height: 70px;
@@ -2089,8 +2090,20 @@ color: #9b9b9b!important;
     background-image: url(../icons/mdpi/ic_locksmith.png)
 }
 
+.v-icon-LOC_5000 {
+    background-image: url(../icons/mdpi/ic_locksmith.png)
+}
+
+.v-icon-PLU_2000 {
+    background-image: url(../icons/mdpi/ic_plumber.png)
+}
+
 .v-icon-PLUMBER {
     background-image: url(../icons/mdpi/ic_plumber.png)
+}
+
+.v-icon-ELE_1000 {
+    background-image: url(../icons/mdpi/ic_electrician.png)
 }
 
 .v-icon-ELECTRICIAN {
@@ -2760,7 +2773,6 @@ color: #9b9b9b!important;
     border: 2px solid #00a3d3;
     background: #f8f8f8;
     /*box-shadow: inset 0 1px 3px rgba(0,0,0,.3) /* légère ombre interne */
-    */
 }
 
 /* Aspect général de la coche */
@@ -2980,7 +2992,7 @@ color: #9b9b9b!important;
     transform: translate(-50%);
     bottom: 0;
     text-align: center;
-    font-style: bold;
+    font-weight: bold;
     /*line-height: 30px;
     vertical-align: middle;*/
     margin-bottom: 0 !important;
@@ -3267,13 +3279,14 @@ color: #9b9b9b!important;
     background: transparent !important;
     border: none !important;
     resize: none !important;
-    width: 100% !important;
+    width: calc(100% - 46px)!important;
     font-family: 'montserrat_light';
     font-size: 13.41px;
     color: #444444;
     letter-spacing: 0.99px;
     line-height: 16px;
     text-align: left;
+    margin-left: 46px;
 }
 
 .custom-textarea-red {
@@ -3504,9 +3517,12 @@ color: #9b9b9b!important;
     text-align: left;
 }
 
+.p-25{
+    padding: 25px!important;
+}
+
 .proposal-offers {
     width: 714px;
-    height: 100px;
     background-color: white;
     margin-bottom: 10px;
     padding: 9px 18px;
@@ -3542,14 +3558,14 @@ color: #9b9b9b!important;
 .proposal-checked {
     height: 80px;
     width: 110px;
-    margin-top: -12px;
+    /*margin-top: -12px;*/
     float: left;
 }
 
 .proposal-partner {
     height: 80px;
     width: 90px;
-    margin-top: -12px;
+    /*margin-top: -12px;*/
     float: left;
 }
 
@@ -3570,7 +3586,7 @@ color: #9b9b9b!important;
 .proposal-rge {
     height: 80px;
     width: 90px;
-    margin-top: -12px;
+    /*margin-top: -12px;*/
     float: left;
 }
 
@@ -3600,15 +3616,17 @@ color: #9b9b9b!important;
     height: auto;
     background-color: white;
     margin-bottom: 10px;
-    padding: 13px 18px;
+    padding: 20px 18px;
     margin-left: 30px;
     overflow: auto;
+    padding-bottom: 30px;
+    position: relative;
 }
 
 .proposal-projects {
     height: 80px;
-    width: 90px;
-    margin-top: -12px;
+    width: 83px;
+    margin-top: -13px;
     float: left;
     text-align: center;
     margin-left: 6px;
@@ -3647,24 +3665,35 @@ color: #9b9b9b!important;
     text-align: left;
 }
 
-.proposal-skills {
-    width: 50px;
-    height: 56px;
-    margin-top: 8px;
-    margin-right: 47px;
+.proposal-box-content{
+    margin-left: 140px;
+}
+
+.proposal-box-title {
+    width: 90px;
     font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     letter-spacing: 1.29px;
     line-height: 28px;
     text-align: left;
-    vertical-align: middle;
+    position: absolute;
+    left:30px;
+    top:30px;
+
+}
+
+.proposal-skill p{
+    font-family:montserrat_light;
+    font-size:12px;
+    color:#999999;
+    letter-spacing:0.89px;
 }
 
 .proposal-exp {
     height: 80px;
     width: 90px;
-    margin-top: -12px;
+    margin-top: -1px;
     float: left;
     text-align: center;
     margin-left: 6px;
@@ -3715,9 +3744,11 @@ color: #9b9b9b!important;
     letter-spacing: 1.29px;
     text-align: left;
     margin-bottom: 0 !important;
+    height: 25px;
 }
 
 .proposal-company {
+    height: 28px;
     display: block;
     font-family: 'montserrat_regular';
     font-size: 20px;
@@ -3765,6 +3796,19 @@ color: #9b9b9b!important;
     margin-top: 21px;
 }
 
+.mt-23{
+    margin-top:23px;
+}
+
+.proposal-offer-line-price-type{
+    clear: right;
+    font-family:'montserrat_light';
+    font-size:14px;
+    color:#444444;
+    text-align:right;
+    margin-top:2px;
+}
+
 .proposal-offer-line-res {
     font-family: 'montserrat_light';
     font-size: 18px;
@@ -3793,11 +3837,10 @@ color: #9b9b9b!important;
 .proposal-offer-line-info {
     position: relative;
     font-family: 'montserrat_light';
-    font-size: 18px;
-    color: #979797;
-    letter-spacing: 1.6px;
-    line-height: 21px;
-    text-align: left;
+    font-size:16px;
+    color:#979797;
+    letter-spacing:1.42px;
+    text-align:left;
 }
 
 /*------------------------------------------ SWITCH ----------------------------*/
