@@ -50,12 +50,25 @@ window.fbAsyncInit = function () {
         .module('Yaka')
         .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $authProvider, ipnConfig, LightboxProvider) {
 
         $authProvider.baseUrl = 'https://yaka-api.herokuapp.com';
         ipnConfig.defaultCountry = 'fr';
         // Translation area
 
+        LightboxProvider.templateUrl = 'partials/template-lightbox.html';
+        LightboxProvider.calculateModalDimensions = function (dimensions) {
+            var width = Math.max(400, dimensions.imageDisplayWidth + 32);
+
+            if (width >= dimensions.windowWidth - 20 || dimensions.windowWidth < 768) {
+                width = 'auto';
+            }
+
+            return {
+                'width': width,                             // default
+                'height': 'auto'                            // custom
+            };
+        };
         $authProvider.google({
             clientId: "554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com",
             url: '/login/google',
@@ -181,6 +194,12 @@ window.fbAsyncInit = function () {
                 controller: 'ProProposalController',
                 controllerAs: 'vm'
             })
+            .state('pro-job', {
+                url: "/pro/proposals/:proposalId/edit",
+                templateUrl: "partials/proposalEditJob.html",
+                controller: 'ProJobController',
+                controllerAs: 'vm'
+            })
             .state('profile', {
                 url: "/profile/me",
                 templateUrl: "partials/profile.html",
@@ -216,7 +235,19 @@ window.fbAsyncInit = function () {
                 templateUrl: "partials/proposals.html",
                 controller: 'ProposalsController',
                 controllerAs: 'vm'
-            });
+            })
+            .state('pro-proposals', {
+                url: "/pro/proposals/quotes",
+                templateUrl: "partials/pro-proposals.html",
+                controller: 'ProProposalsController',
+                controllerAs: 'vm'
+            })
+            .state('pro-jobs', {
+            url: "/pro/proposals/jobs",
+            templateUrl: "partials/pro-jobs.html",
+            controller: 'ProJobsController',
+            controllerAs: 'vm'
+        });
 
         //
         //Interceptor to put the token in the header for each http request

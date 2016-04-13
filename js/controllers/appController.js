@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$rootScope', '$state'];
-    function AppController($scope, networkService, alertMsg, $rootScope, $state) {
+    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$rootScope', '$state', '$stomp', '$localStorage'];
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage) {
 
         var app = this;
         var vm = this;
@@ -17,6 +17,20 @@
         $scope.error = {criteria: {message: "", flag: true}};
         $scope.rating = {positive: "", comment: "", criteria: []};
         var can = true;
+        var connectHeaders = {token: $localStorage.token};
+
+        $stomp
+            .connect('https://yaka-api.herokuapp.com/connect', connectHeaders)
+
+            // frame = CONNECTED headers
+            .then(function (frame) {
+                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                    vm.messages.items.push(payload);
+                    vm.glue = true;
+                }, {
+                    'token': $localStorage.token
+                });
+            });
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;

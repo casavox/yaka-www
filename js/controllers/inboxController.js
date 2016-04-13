@@ -5,11 +5,66 @@
         .module('Yaka')
         .controller('InboxController', InboxController);
 
-    InboxController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$stomp', '$stateParams', "$localStorage"];
-    function InboxController($rootScope, $scope, networkService, alertMsg, $upload, cloudinary, $stomp, $stateParams, $localStorage) {
-        if (angular.isUndefined($stateParams) && !$stateParams.proposalId)
-            $state.go($rootScope.from);
+    InboxController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$stomp', '$stateParams', "$localStorage", '$state', 'Lightbox'];
+    function InboxController($rootScope, $scope, networkService, alertMsg, $upload, cloudinary, $stomp, $stateParams, $localStorage, $state, Lightbox) {
         var vm = this;
+        if (angular.isUndefined($stateParams) && !$stateParams.proposalId || $stateParams.proposalId == '') {
+            $state.go("my-projects");
+            alertMsg.send("Erreur de connection au chat. Redirection...", "danger");
+        } else {
+            if ($rootScope.state.name == "inbox") {
+                vm.me = "CUSTOMER";
+                networkService.proposalGET($stateParams.proposalId, function (res) {
+                    console.log(res);
+                    vm.proposal = res;
+                    vm.pro = vm.proposal.professional;
+                    vm.project = vm.proposal.project;
+                    networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
+                        vm.messages = res;
+                        console.log(res);
+                        vm.glue = true;
+                    }, function () {
+                        alertMsg.send("Error to get the messages historic", "warning");
+                    });
+                }, function () {
+                    alertMsg.send("Error to get the proposal's conversation", "warning");
+                });
+            }
+            else {
+                var connectHeaders = {token: $localStorage.token};
+                vm.me = "PRO";
+                networkService.proposalProGET($stateParams.proposalId, function (res) {
+                    console.log(res);
+                    vm.proposal = res;
+                    vm.pro = vm.proposal.professional;
+                    vm.project = vm.proposal.project;
+                    networkService.messagesProGET($stateParams.proposalId, 1, limit, function (res) {
+                        vm.messages = res;
+                        console.log(res);
+                        vm.glue = true;
+                    }, function () {
+                        alertMsg.send("Error to get the messages historic", "warning");
+                    });
+                }, function () {
+                    alertMsg.send("Error to get the proposal's conversation", "warning");
+                });
+            }
+            $stomp
+                .connect('https://yaka-api.herokuapp.com/connect', connectHeaders)
+
+                // frame = CONNECTED headers
+                .then(function (frame) {
+                    var subscription = $stomp.subscribe('/chat/' + $stateParams.proposalId, function (payload, headers, res) {
+                        vm.messages.items.push(payload);
+                        vm.glue = true;
+                    }, {
+                        'token': $localStorage.token
+                    });
+                }, function () {
+                    alertMsg.send("Erreur de connection au chat.", "warning")
+                });
+        }
+
         vm.glue = true;
         vm.msg = {};
         vm.send = false;
@@ -18,57 +73,8 @@
         vm.sendMessage = sendMessage;
         vm.loadMore = loadMore;
         var limit = 20;
-        var connectHeaders = {token: $localStorage.token};
+
         console.log($rootScope.state);
-        if ($rootScope.state.name == "inbox") {
-            vm.me = "CUSTOMER";
-            networkService.proposalGET($stateParams.proposalId, function (res) {
-                console.log(res);
-                vm.proposal = res;
-                vm.pro = vm.proposal.professional;
-                vm.project = vm.proposal.project;
-                networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
-                    vm.messages = res;
-                    console.log(res);
-                    vm.glue = true;
-                }, function () {
-                    alertMsg.send("Error to get the messages historic", "warning");
-                });
-            }, function () {
-                alertMsg.send("Error to get the proposal's conversation", "warning");
-            });
-        }
-        else {
-            vm.me = "PRO";
-            networkService.proposalProGET($stateParams.proposalId, function (res) {
-                console.log(res);
-                vm.proposal = res;
-                vm.pro = vm.proposal.professional;
-                vm.project = vm.proposal.project;
-                networkService.messagesProGET($stateParams.proposalId, 1, limit, function (res) {
-                    vm.messages = res;
-                    console.log(res);
-                    vm.glue = true;
-                }, function () {
-                    alertMsg.send("Error to get the messages historic", "warning");
-                });
-            }, function () {
-                alertMsg.send("Error to get the proposal's conversation", "warning");
-            });
-        }
-        $stomp
-            .connect('https://yaka-api.herokuapp.com/connect', connectHeaders)
-
-            // frame = CONNECTED headers
-            .then(function (frame) {
-                var subscription = $stomp.subscribe('/chat/' + $stateParams.proposalId, function (payload, headers, res) {
-                    vm.messages.items.push(payload);
-                    vm.glue = true;
-                }, {
-                    'token': $localStorage.token
-                });
-            });
-
 
         function deleteImg() {
             delete vm.msg.cloudinaryPublicId;
@@ -83,6 +89,13 @@
                 alertMsg.send("Error to get the messages", "warning");
             });
         }
+
+        vm.selectImagePreview = function(media){
+            $rootScope.simplePreview = true;
+            var data = [{url: media.cloudinaryPublicId}];
+            $rootScope.media = media;
+            Lightbox.openModal(data, 0);
+        };
 
         function uploadFiles(files, invalides) {
             if (invalides.length > 0) {

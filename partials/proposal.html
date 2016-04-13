@@ -51,9 +51,7 @@
                     </div>
                     <div class="proposal-offers">
                         <div class="line">
-                            <span class="f-l proposal-offer-line-info" ng-show="!vm.proposal.price">Price</span><span
-                            class="f-l proposal-offer-line-info"
-                            ng-show="vm.proposal.price">{{vm.proposal.priceType}}</span><span
+                            <span class="f-l proposal-offer-line-info">Price</span><span
                             class="f-r proposal-offer-line-res"
                             ng-show="!vm.proposal.price">Need info to make a quote</span><span
                             class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
@@ -105,7 +103,7 @@
                             </p>
 
                             <p class="proposal-place">
-                                Base in {{vm.proposal.professional.company.address.administrativeAreaLevel1}}
+                                Base in {{vm.proposal.professional.company.address.administrativeAreaLevel2}}
                             </p>
                         </div>
                         <div class="proposal-likes">
@@ -204,7 +202,7 @@
                         <div class="row cl">
                             <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
-                                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
+                                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center" ng-click="vm.selectImagePreview($index)">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
                             </div>
