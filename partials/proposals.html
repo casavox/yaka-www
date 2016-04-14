@@ -83,6 +83,7 @@
                                 <div class="proposals-message-price">
                                     <img src="icons/mdpi/ic_message.png" class="proposals-unread"
                                          ng-if="p.unreadMessages"/>
+
                                     <div class="proposals-price" ng-if="p.price">
                                         {{p.price}} €
                                     </div>
@@ -143,6 +144,7 @@
                 <div>
                     <div>
                         <h4 class="menu-r-title">My Project</h4>
+
                         <p class="menu-r-text">
                             {{vm.project.address.name}} - {{vm.project.address.administrativeAreaLevel2 }}
                         </p>

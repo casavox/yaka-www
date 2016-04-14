@@ -17,6 +17,7 @@
     <div class="page-content">
         <div class="content-slide">
             <h4 class="inprogress">IN PROGRESS</h4>
+
             <div class="row no-margin">
                 <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
                      ui-sref="pro-proposal({proposalId: proposal.id})">
@@ -34,9 +35,11 @@
                     <div class="pro-proposal-bloc-info">
                         <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
                              ng-if="proposal.unreadMessages">
+
                         <p class="pro-proposals-title" title="{{ proposal.project.title }}">
                             {{ proposal.project.title }}
                         </p>
+
                         <p class="pro-proposals-info"
                            title="{{ proposal.project.profile.firstName }} {{proposal.project.profile.lastName}} - {{proposal.project.address.locality}}">
                             {{ proposal.project.profile.firstName }} {{proposal.project.profile.lastName}} -
@@ -46,6 +49,7 @@
                         <p class="pro-proposals-price">
                             <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
                         </p>
+
                         <p class="pro-proposals-date" ng-if="proposal.startDate">
                             My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
                         </p>
@@ -53,6 +57,7 @@
                 </div>
             </div>
             <h4 class="inprogress">DECLINED</h4>
+
             <div class="row no-margin">
                 <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
                     <div class="pro-proposal-bloc-pict">
@@ -72,6 +77,7 @@
                         <p class="pro-proposals-title">
                             {{ proposal.project.title }}
                         </p>
+
                         <p class="pro-proposals-info">
                             {{ proposal.project.profile.firstName }} {{proposal.project.profile.lastName}} -
                             {{proposal.project.address.locality}}

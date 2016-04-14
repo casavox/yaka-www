@@ -229,10 +229,12 @@
             <div class="popUp-content">
                 <span class="boxclose" ng-click="vm.saveFlag = false"></span>
                 <h4>Are you sure ?</h4>
+
                 <p ng-if="vm.project.status != 'DRAFT'">
                     Updating a published project will send a notification to the Pro concerned,
                     if you already have offers, they could cancel them.
                 </p>
+
                 <p ng-if="vm.project.status == 'DRAFT'">
                     You have modified a draft project.
                 </p>
