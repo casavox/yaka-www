@@ -255,6 +255,8 @@
 
         function successProRegister(res) {
             console.log(res);
+            $localStorage.token = res.token;
+            $state.go('dashboard');
         }
 
         function failProRegister(err) {

@@ -213,20 +213,26 @@
     margin-top: 8px;
     background: #6076ba;
     color: white;
-    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
     margin-right: 2%;
     width: 48% !important;
     cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
 }
 
 .proHomeSection2RegisterGoogle {
     margin-top: 8px;
     background: #d24922;
     color: white;
-    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
     margin-left: 2%;
     width: 48% !important;
     cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
 }
 
 .proHomeSection2RegisterSeparator {
