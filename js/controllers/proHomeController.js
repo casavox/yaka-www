@@ -145,6 +145,18 @@
             return false;
         };
 
+        vm.needToHideEmail = function () {
+            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
+                if (vm.newUser.profile.email == '') {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            return false;
+        };
+
         vm.getSocialServiceName = function () {
             if (!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") {
                 return "Google";
