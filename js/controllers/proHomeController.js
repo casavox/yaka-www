@@ -179,11 +179,11 @@
                 if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
-            }).catch(function (err) {
-                console.log("catch", err);
+            }).catch(function (res) {
+                console.log("catch", res);
 
-                if (err.error != undefined && err.error != "ERROR") {
-                    alertMsg.send($translate.instant(err.error), 'danger');
+                if (err.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
                     alertMsg.send("Impossible de se connecter via Google", 'danger');
                 }
@@ -196,10 +196,10 @@
                 if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
-            }).catch(function (err) {
-                console.log("catch", err);
-                if (err.error != undefined && err.error != "ERROR") {
-                    alertMsg.send($translate.instant(err.error), 'danger');
+            }).catch(function (res) {
+                console.log("catch", res);
+                if (err.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
                     alertMsg.send("Impossible de se connecter via Facebook", 'danger');
                 }
