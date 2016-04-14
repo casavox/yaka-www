@@ -62,7 +62,7 @@
                 $http.get(baseUrl + '/projects/activities').success(success).error(error)
             },
             profileGET: function (success, error) {
-                $http.get(baseUrl + '/profile/me').success(success).error(error)
+                $http.get(baseUrl + '/me').success(success).error(error)
             },
             professionalGET: function (success, error) {
                 $http.get(baseUrl + '/pro/me').success(success).error(error)
