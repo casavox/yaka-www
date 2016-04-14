@@ -80,6 +80,7 @@
                             <div class="col-xs-3">
                                 <cl-image ng-if="p.proposals[0].professional.avatar.cloudinaryPublicId"
                                           public-id="{{p.proposals[0].professional.avatar.cloudinaryPublicId}}"
+                                          secure="true"
                                           class="img-circle avatar-pro" format="png"
                                           title="{{p.proposals[0].professional.firstName}} {{p.proposals[0].professional.lastName}}">
                                     <cl-transformation height="29" width="29" crop="fill"/>
@@ -95,6 +96,7 @@
                             <div class="col-xs-3" ng-if="p.proposals.length > 1">
                                 <cl-image ng-if="p.proposals[1].professional.avatar.cloudinaryPublicId"
                                           public-id="{{p.proposals[1].professional.avatar.cloudinaryPublicId}}"
+                                          secure="true"
                                           class="img-circle avatar-pro" format="png"
                                           title="{{p.proposals[0].professional.firstName}} {{p.proposals[0].professional.lastName}}">
                                     <cl-transformation height="29" width="29" crop="fill"/>
@@ -110,6 +112,7 @@
                             <div class="col-xs-3" ng-if="p.proposals.length > 2">
                                 <cl-image ng-if="p.proposals[1].professional.avatar.cloudinaryPublicId"
                                           public-id="{{p.proposals[2].professional.avatar.cloudinaryPublicId}}"
+                                          secure="true"
                                           class="img-circle avatar-pro" format="png"
                                           title="{{p.proposals[0].professional.firstName}} {{p.proposals[0].professional.lastName}}">
                                     <cl-transformation height="29" width="29" crop="fill"/>
@@ -125,6 +128,7 @@
                             <div class="col-xs-3" ng-if="p.proposals.length > 3">
                                 <cl-image ng-if="p.proposals[1].professional.avatar.cloudinaryPublicId"
                                           public-id="{{p.proposals[3].professional.avatar.cloudinaryPublicId}}"
+                                          secure="true"
                                           class="img-circle avatar-pro" format="png"
                                           title="{{p.proposals[0].professional.firstName}} {{p.proposals[0].professional.lastName}}">
                                     <cl-transformation height="29" width="29" crop="fill"/>
@@ -148,6 +152,7 @@
                             <div class="col-xs-12">
                                 <cl-image ng-if="p.proposals[0].professional.avatar.cloudinaryPublicId"
                                           public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                          secure="true"
                                           class="img-circle avatar-pro" format="png"
                                           title="{{p.proposals[0].professional.firstName}} {{p.proposals[0].professional.lastName}}">
                                     <cl-transformation height="29" width="29" crop="fill"/>

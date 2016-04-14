@@ -23,6 +23,7 @@
                      ui-sref="pro-proposal({proposalId: proposal.id})">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
+                                  secure="true"
                                   class="img-circle center-middle" format="png"
                                   ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
@@ -62,6 +63,7 @@
                 <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
+                                  secure="true"
                                   class="img-circle center-middle" format="png"
                                   ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>

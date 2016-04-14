@@ -23,6 +23,7 @@
                      ui-sref="pro-job({proposalId: proposal.id})">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
+                                  secure="true"
                                   class="img-circle center-middle" format="png"
                                   ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
@@ -63,6 +64,7 @@
                      ui-sref="pro-job({proposalId: proposal.id})">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
+                                  secure="true"
                                   class="img-circle center-middle" format="png"
                                   ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
@@ -103,9 +105,10 @@
                      ui-sref="pro-job({proposalId: proposal.id})">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
-                                  class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
-                            <cl-transformation height="40" width="40" crop="fill"/>
+                        secure="true"
+                        class="img-circle center-middle" format="png"
+                        ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
+                        <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
                         <div class="img-default-preview-40" ng-if="!proposal.project.profie.avatar.cloudinaryPublicId">
                             {{proposal.project.profile.firstName[0] | uppercase}} {{proposal.project.profile.lastName[0]

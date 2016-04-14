@@ -196,7 +196,92 @@
 .proHomeSection2RegisterFormTitle {
     font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 25px;
-    margin-bottom: 125px;
+}
+
+.proHomeSection2RegisterFacebookGoogle {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 14px;
+}
+
+.proHomeSection2RegisterSocialConfirm {
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.proHomeSection2RegisterFacebook {
+    margin-top: 8px;
+    background: #6076ba;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-right: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+}
+
+.proHomeSection2RegisterGoogle {
+    margin-top: 8px;
+    background: #d24922;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-left: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+}
+
+.proHomeSection2RegisterSeparator {
+    height: 1px;
+    background: #E6E6E6;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.proHomeSection2RegisterMail {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 12px;
+}
+
+.proHomeSection2RegisterImg {
+    margin-top: 17px;
+}
+
+.proHomeSection2ActivitiesInput {
+    width: 100%;
+    margin-top: 10px !important;
+    height: 40px !important;
+    float: left;
+}
+
+.proHomeSection2ActivitiesInput .dropdown-multiselect {
+    width: 100%;
+    height: 40px !important;
+}
+
+.proHomeSection2ActivitiesInput .dropdown-menu {
+    width: 100%;
+}
+
+.proHomeSection2ActivitiesInput .dropdown-multiselect .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    height: 40px !important;
+}
+
+.proHomeSection2Button {
+    margin-top: 15px;
+}
+
+.proHomeSection2InputError {
+    color: #FDAF00;
+    float: left;
+    text-align: left;
+    width: 100%;
 }
 
 .proHomeSection3 {
@@ -350,11 +435,37 @@
 }
 
 .halfInput {
-    width: 50% !important;
+    width: 48% !important;
     float: left !important;
 }
 
+.halfInput.halfInputRight {
+    float: right !important;
+}
+
 .form-control {
-    margin-bottom: 15px !important;
+    margin-top: 15px !important;
     height: 40px !important;
+    float: left;
+}
+
+.intl-tel-input {
+    margin-top: 15px !important;
+}
+
+.intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel] {
+    padding-left: 30px !important;
+}
+
+.flag-container {
+    top: 20px !important;
+    left: 0 !important;
+    cursor: pointer;
+}
+
+.intl-tel-input .country-list {
+    right: 0;
+    width: 362px;
+    max-height: 285px !important;
+    top: 23px;
 }

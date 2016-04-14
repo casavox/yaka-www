@@ -7,10 +7,9 @@
 
     //
     //Network Service Routing
-    NetworkService.$inject = ['$http']
-    function NetworkService($http) {
-        var baseUrl = "https://yaka-api.herokuapp.com";
-        //var baseUrl = "http://localhost:8080";
+    NetworkService.$inject = ['$http', 'CONFIG']
+    function NetworkService($http, CONFIG) {
+        var baseUrl = CONFIG.API_BASE_URL;
 
         return {
             /*
@@ -23,8 +22,8 @@
             facebookLogin: function (data, success, error) {
                 $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
             },
-            facebookProRegister: function (data, success, error) {
-                $http.post(baseUrl + '/pro/register/facebook', data).success(success).error(error)
+            proRegister: function (data, success, error) {
+                $http.post(baseUrl + '/pro/register', data).success(success).error(error)
             },
             projectGET: function (data, success, error) {
                 $http.get(baseUrl + '/projects/' + data).success(success).error(error)
@@ -63,7 +62,7 @@
                 $http.get(baseUrl + '/projects/activities').success(success).error(error)
             },
             profileGET: function (success, error) {
-                $http.get(baseUrl + '/profile/me').success(success).error(error)
+                $http.get(baseUrl + '/me').success(success).error(error)
             },
             professionalGET: function (success, error) {
                 $http.get(baseUrl + '/pro/me').success(success).error(error)
@@ -84,7 +83,7 @@
                 $http.get(baseUrl + '/pro/proposals/' + id).success(success).error(error)
             },
             proProposalsArchiveGET: function (id, success, error) {
-                $http.get(baseUrl + '/pro/proposals/'+id+'/archive').success(success).error(error)
+                $http.get(baseUrl + '/pro/proposals/' + id + '/archive').success(success).error(error)
             },
             proposalAcceptPOST: function (data, success, error) {
                 $http.post(baseUrl + '/proposals/' + data.id + "/accept", data).success(success).error(error)

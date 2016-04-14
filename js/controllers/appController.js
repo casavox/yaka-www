@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$rootScope', '$state', '$stomp', '$localStorage'];
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage) {
+    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$rootScope', '$state', '$stomp', '$localStorage', 'CONFIG'];
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -20,7 +20,7 @@
         var connectHeaders = {token: $localStorage.token};
 
         $stomp
-            .connect('https://yaka-api.herokuapp.com/connect', connectHeaders)
+            .connect(CONFIG.API_BASE_URL + '/connect', connectHeaders)
 
             // frame = CONNECTED headers
             .then(function (frame) {
@@ -107,7 +107,7 @@
         };
 
         $scope.send = function () {
-            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10)|| $scope.rating.positive == 'true')) {
+            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10) || $scope.rating.positive == 'true')) {
                 $scope.disable = true;
                 $scope.error.criteria.flag = false;
                 $scope.rating.id = $scope.project.proposal.id;

@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('InboxController', InboxController);
 
-    InboxController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$stomp', '$stateParams', "$localStorage", '$state', 'Lightbox'];
-    function InboxController($rootScope, $scope, networkService, alertMsg, $upload, cloudinary, $stomp, $stateParams, $localStorage, $state, Lightbox) {
+    InboxController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$stomp', '$stateParams', "$localStorage", '$state', 'Lightbox', 'CONFIG'];
+    function InboxController($rootScope, $scope, networkService, alertMsg, $upload, cloudinary, $stomp, $stateParams, $localStorage, $state, Lightbox, CONFIG) {
         var vm = this;
         if (angular.isUndefined($stateParams) && !$stateParams.proposalId || $stateParams.proposalId == '') {
             $state.go("my-projects");
@@ -50,7 +50,7 @@
                 });
             }
             $stomp
-                .connect('https://yaka-api.herokuapp.com/connect', connectHeaders)
+                .connect(CONFIG.API_BASE_URL + '/connect', connectHeaders)
 
                 // frame = CONNECTED headers
                 .then(function (frame) {
@@ -90,7 +90,7 @@
             });
         }
 
-        vm.selectImagePreview = function(media){
+        vm.selectImagePreview = function (media) {
             $rootScope.simplePreview = true;
             var data = [{url: media.cloudinaryPublicId}];
             $rootScope.media = media;

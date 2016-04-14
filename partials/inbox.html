@@ -22,7 +22,8 @@
                 <div class="inbox-message"
                      ng-repeat="message in vm.messages.items | orderBy : 'created'  | unique: 'id'">
                     <div class="inbox-pict-profile" ng-class="{'inbox-pict-profile-right': message.author == vm.me}">
-                        <cl-image public-id="{{vm.pro.avatar.cloudinaryPublicId}}" format="png" class="img-circle"
+                        <cl-image public-id="{{vm.pro.avatar.cloudinaryPublicId}}" secure="true" format="png"
+                                  class="img-circle"
                                   ng-if="message.author == 'PRO' && vm.pro.avatar.cloudinaryPublicId"
                                   class="inbox-pict">
                             <cl-transformation height="40" width="40" crop="fill"/>
@@ -39,7 +40,7 @@
                     </div>
                     <div class="inbox-message-content"
                          ng-class="{'inbox-message-content-me': message.author == vm.me, 'inbox-message-content-yaka': message.author == 'YAKA', 'inbox-message-content-auto': message.author == 'AUTO'}">
-                        <cl-image public-id="{{message.cloudinaryPublicId}}" format="png"
+                        <cl-image public-id="{{message.cloudinaryPublicId}}" secure="true" format="png"
                                   ng-if="message.cloudinaryPublicId" ng-click="vm.selectImagePreview(message)">
                             <cl-transformation height="200" width="200" crop="fit"/>
                         </cl-image>
@@ -56,7 +57,8 @@
                 <div class="inbox-join-preview" ng-show="vm.msg.cloudinaryPublicId">
                     <div><span class="glyphicon glyphicon-remove-circle inbox-remove-img cursor-pointer"
                                ng-show="vm.msg.cloudinaryPublicId" ng-click="vm.deleteImg()"></span>
-                        <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" format="png" class="inbox-img-join center">
+                        <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" secure="true" format="png"
+                                  class="inbox-img-join center">
                             <cl-transformation height="200" width="200" crop="fit"/>
                         </cl-image>
                     </div>

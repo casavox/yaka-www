@@ -324,7 +324,7 @@
             }
         }
 
-        vm.selectImagePreview = function(index){
+        vm.selectImagePreview = function (index) {
             var data = [{url: vm.projectTmp.images[index].cloudinaryPublicId}];
             $rootScope.media = vm.projectTmp.images[index];
             Lightbox.openModal(data, 0);
@@ -358,9 +358,9 @@
                 vm.whereFlag = false;
             }
             else {
-                for (var i = 0; i < vm.user.addresses.length; i++) {
-                    if (vm.user.addresses[i].address == vm.myAddress) {
-                        vm.projectTmp.address.name = vm.user.addresses[i].name;
+                for (var i = 0; i < vm.user.profile.addresses.length; i++) {
+                    if (vm.user.profile.addresses[i].address == vm.myAddress) {
+                        vm.projectTmp.address.name = vm.user.profile.addresses[i].name;
                         vm.projectTmp.address.address = vm.myAddress;
                         vm.whereFlag = false;
                         break;

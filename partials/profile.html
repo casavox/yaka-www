@@ -56,7 +56,8 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="img-profile">
-                                        <cl-image public-id="{{vm.profileInfo.avatar.cloudinaryPublicId}}" format="png"
+                                        <cl-image public-id="{{vm.profileInfo.avatar.cloudinaryPublicId}}"
+                                                  secure="true" format="png"
                                                   class="img-circle center-middle pro-icon"
                                                   ng-show="vm.profileInfo.avatar.cloudinaryPublicId">
                                             <cl-transformation height="92" width="92" crop="fill"/>
@@ -321,11 +322,11 @@
                         <div class="profile-box">
                             <div class="profile-area-header">
                                 <p>
-                                    Work area
+                                    Notification area
                                 </p>
 
                                 <p class="profile-area-header-info">
-                                    Zoom and center the map to define your work area : you will be notified of all works
+                                    Zoom and center the map to define your notification area : you will be notified of all works
                                     in this area.
                                 </p>
                             </div>
@@ -341,7 +342,7 @@
                                                     events="vm.circle.events"></ui-gmap-circle>
                                 </ui-gmap-google-map>
                                 <div class="mapMinimumZoomMessage" ng-show="vm.mapShowMinimumZoomMessage">
-                                    Please zoom in to choose your work area
+                                    Please zoom in to define your notification area
                                 </div>
                                 <div class="workareaDiameter"
                                      ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
@@ -366,7 +367,8 @@
 
                             <div class="row cl">
                                 <div class="col-md-3" ng-repeat="pict in vm.portfolio" title="{{pict.description}}">
-                                    <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center">
+                                    <cl-image public-id="{{pict.cloudinaryPublicId}}"
+                                              secure="true" format="png" class="center">
                                         <cl-transformation height="92" width="92" crop="fill"/>
                                     </cl-image>
                                 </div>

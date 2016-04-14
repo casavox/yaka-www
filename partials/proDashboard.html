@@ -54,9 +54,9 @@
 
                 <!-- End Custom map controls -->
 
-                <span class="mapWorkArea" title="Go to your profile to change your notification area"
+                <span class="mapWorkArea" title="Click to change your notification area"
                       ng-class="{'mapWorkAreaVisible':vm.showWorkArea}" ui-sref="profile">
-                    Defined Work Area : {{vm.workareaDiameter}} km
+                    Notification area {{vm.workareaDiameter}}km
                 </span>
 
                 <ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions"

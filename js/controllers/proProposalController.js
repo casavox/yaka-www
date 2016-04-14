@@ -14,7 +14,7 @@
         vm.dateDiff = dateDiff;
         vm.selectImagePreview = selectImagePreview;
         vm.marker = {
-            coords : {},
+            coords: {},
             visible: false
         };
         vm.selectPrice = selectPrice;
@@ -433,7 +433,7 @@
                 initDate(vm.J1, tmp);
                 initDate(vm.J2, tmp);
                 initDate(vm.J3, tmp);
-                if (tmp.length > 0){
+                if (tmp.length > 0) {
                     vm.proposalTmp.availability.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
                     vm.proposalTmp.availability.slot = tmp[0].slot;
                     vm.myDateFlag = false;

@@ -140,7 +140,8 @@
                                  title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
                                 <span class="center-middle img-comment" ng-show="media.description"
                                       ng-click="vm.editImage(media)"></span>
-                                <cl-image public-id="{{media.cloudinaryPublicId}}" format="png" class="center"
+                                <cl-image public-id="{{media.cloudinaryPublicId}}" secure="true" format="png"
+                                          class="center"
                                           ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
@@ -531,7 +532,7 @@
             <div class="popUp-content no-margin img-preview-popUp">
                 <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
                 <h4>Preview</h4>
-                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
+                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" secure="true" format="png" class="center">
                 </cl-image>
                 <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
                           disabled></textarea>

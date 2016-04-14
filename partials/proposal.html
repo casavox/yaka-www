@@ -209,7 +209,8 @@
                              ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                             <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
-                                <cl-image public-id="{{pict.cloudinaryPublicId}}" format="png" class="center"
+                                <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png"
+                                          class="center"
                                           ng-click="vm.selectImagePreview($index)">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
@@ -328,7 +329,7 @@
             <div class="popUp-content no-margin img-preview-popUp">
                 <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
                 <h4>Preview</h4>
-                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" format="png" class="center">
+                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" secure="true" format="png" class="center">
                 </cl-image>
                 <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
                           disabled></textarea>

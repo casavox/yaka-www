@@ -217,9 +217,9 @@
                 date: {flag: false, message: ""},
                 material: {flag: false, message: ""}
             };
-            if (!angular.isUndefined(vm.user) && vm.user.addresses) {
-                if (vm.user.addresses.length > 0) {
-                    vm.myAddress = vm.user.addresses[0].address;
+            if (!angular.isUndefined(vm.user) && !angular.isUndefined(vm.user.profile) && vm.user.profile.addresses) {
+                if (vm.user.profile.addresses.length > 0) {
+                    vm.myAddress = vm.user.profile.addresses[0].address;
                     $scope.address.name = vm.myAddress;
                     vm.continueAddress = true;
                 }
@@ -230,7 +230,8 @@
             }
             else {
                 vm.user = {};
-                vm.user.addresses = [];
+                vm.user.profile = {};
+                vm.user.profile.addresses = [];
             }
             for (var i = 0; i < vm.newProject.childrenActivities.length; i++) {
                 vm.newProject.childrenActivities[i].selected = "";
@@ -274,9 +275,9 @@
                 formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
             }
             if (vm.continueAddress) {
-                for (var i = 0; i < vm.user.addresses.length; i++) {
-                    if (vm.user.addresses[i].address == vm.myAddress) {
-                        formData.address.name = vm.user.addresses[i].name;
+                for (var i = 0; i < vm.user.profile.addresses.length; i++) {
+                    if (vm.user.profile.addresses[i].address == vm.myAddress) {
+                        formData.address.name = vm.user.profile.addresses[i].name;
                         formData.address.address = vm.myAddress;
                         break;
                     }
@@ -343,9 +344,9 @@
                     formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
                 }
                 if (vm.continueAddress) {
-                    for (var i = 0; i < vm.user.addresses.length; i++) {
-                        if (vm.user.addresses[i].address == vm.myAddress) {
-                            formData.address.name = vm.user.addresses[i].name;
+                    for (var i = 0; i < vm.user.profile.addresses.length; i++) {
+                        if (vm.user.profile.addresses[i].address == vm.myAddress) {
+                            formData.address.name = vm.user.profile.addresses[i].name;
                             formData.address.address = vm.myAddress;
                             break;
                         }
@@ -404,11 +405,11 @@
                     formData.activities.push({code: vm.questions[i].code});
                 }
                 if (vm.continueAddress) {
-                    for (var i = 0; i < vm.user.addresses.length; i++) {
-                        if (vm.user.addresses[i].address == vm.myAddress) {
+                    for (var i = 0; i < vm.user.profile.addresses.length; i++) {
+                        if (vm.user.profile.addresses[i].address == vm.myAddress) {
                             if (angular.isUndefined(formData.images))
                                 formData.images = [];
-                            formData.address.name = vm.user.addresses[i].name;
+                            formData.address.name = vm.user.profile.addresses[i].name;
                             formData.address.address = vm.myAddress;
                             break;
                         }
@@ -710,9 +711,9 @@
                 item.childrenActivities.push(otherChild);
             }
             item.selected = "activate";
-            if (!angular.isUndefined(vm.user) && vm.user.addresses) {
-                if (vm.user.addresses.length > 0) {
-                    vm.myAddress = vm.user.addresses[0].address;
+            if (!angular.isUndefined(vm.user) && !angular.isUndefined(vm.user.profile) && vm.user.profile.addresses) {
+                if (vm.user.profile.addresses.length > 0) {
+                    vm.myAddress = vm.user.profile.addresses[0].address;
                     $scope.address.name = vm.myAddress;
                     vm.continueAddress = true;
                 }
@@ -723,7 +724,8 @@
             }
             else {
                 vm.user = {};
-                vm.user.addresses = [];
+                vm.user.profile = {};
+                vm.user.profile.addresses = [];
             }
             $timeout(function () {
                 var element = document.getElementById('subSlide0');
@@ -832,7 +834,7 @@
                 }
             }
             else {
-                vm.user.addresses = [];
+                vm.user.profile.addresses = [];
                 vm.continueAddress = false;
                 vm.newAddrFlag = true;
                 vm.myAddress = "new";
