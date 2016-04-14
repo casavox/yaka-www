@@ -19,7 +19,8 @@ angular.module('Yaka', [
     'bootstrapLightbox',
     'angularMoment',
     'ngStomp',
-    'luegg.directives']);
+    'luegg.directives',
+    'angularjs-dropdown-multiselect']);
 
 
 // facebook library API
