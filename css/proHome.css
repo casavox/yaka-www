@@ -206,6 +206,7 @@
 
 .proHomeSection2RegisterSocialConfirm {
     margin-bottom: 6px;
+    font-size: 15px;
 }
 
 .proHomeSection2RegisterFacebook {
@@ -246,7 +247,7 @@
 
 .proHomeSection2ActivitiesInput {
     width: 100%;
-    margin-top: 15px !important;
+    margin-top: 10px !important;
     height: 40px !important;
     float: left;
 }
@@ -430,7 +431,6 @@
 .halfInput {
     width: 48% !important;
     float: left !important;
-    margin-bottom: 15px !important;
 }
 
 .halfInput.halfInputRight {
@@ -441,6 +441,10 @@
     margin-top: 15px !important;
     height: 40px !important;
     float: left;
+}
+
+.intl-tel-input {
+    margin-top: 15px !important;
 }
 
 .intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel] {

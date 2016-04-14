@@ -214,14 +214,6 @@
                     Ce nom n'est pas valide
                 </div>
 
-                <input id="proRegisterPhone" class="form-control" placeholder="Mobile"
-                       ng-model="vm.phoneNumber"/>
-
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.phoneNumber == '' || vm.isPhoneNumberValid">
-                    Cet numéro de téléphone n'est pas valide
-                </div>
-
                 <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
                        ng-disabled="vm.needToHideEmail()"/>
 
@@ -243,6 +235,14 @@
                 <div class="proHomeSection2InputError"
                      ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
                     Les mots de passe ne correspondent pas
+                </div>
+
+                <input id="proRegisterPhone" class="form-control proHomeSection2RegisterPhone" placeholder="Mobile"
+                       ng-model="vm.phoneNumber"/>
+
+                <div class="proHomeSection2InputError"
+                     ng-hide="vm.phoneNumber == '' || vm.isPhoneNumberValid">
+                    Cet numéro de téléphone n'est pas valide
                 </div>
 
                 <div class="proHomeSection2ActivitiesInput" ng-dropdown-multiselect=""
