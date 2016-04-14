@@ -53,7 +53,7 @@
                 selectionCount: "choisis",
                 searchPlaceholder: "Rechercher...",
                 buttonDefaultText: "Domaines d'intervention",
-                dynamicButtonTextSuffix: "choisis"
+                dynamicButtonTextSuffix: "domaines d'intervention"
             },
             options: [
                 {id: 0, label: "ELE_1000"},

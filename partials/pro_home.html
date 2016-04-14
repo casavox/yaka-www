@@ -224,11 +224,11 @@
                 </div>
 
                 <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
-                       ng-hide="vm.isSocialRegister() && (vm.newUser.profile.email != '')"/>
+                       ng-hide="vm.isSocialRegister() && vm.newUser.profile.email != ''"/>
 
                 <div class="proHomeSection2InputError"
                      ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
-                    Cet email n'est pas valide
+                    Cet email n'est pas valide ({{vm.newUser.profile.email}})
                 </div>
 
                 <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
