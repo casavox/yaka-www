@@ -221,7 +221,7 @@
         };
 
         vm.isNameValid = function (name) {
-            if (name.length < 2 || !isNaN(name)) {
+            if (name == undefined || name.length < 2 || !isNaN(name)) {
                 return false;
             }
             return true;
