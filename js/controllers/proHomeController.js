@@ -53,7 +53,7 @@
                 selectionCount: "choisis",
                 searchPlaceholder: "Rechercher...",
                 buttonDefaultText: "Domaines d'intervention",
-                dynamicButtonTextSuffix: "domaines d'intervention"
+                dynamicButtonTextSuffix: "domaine(s) d'intervention"
             },
             options: [
                 {id: 0, label: "ELE_1000"},
@@ -191,7 +191,9 @@
         function onPreRegisterOK(user) {
             vm.newUser.professional.firstName = user.profile.firstName;
             vm.newUser.professional.lastName = user.profile.lastName;
-            vm.newUser.profile.email = user.profile.email;
+            if (user.profile.email != undefined) {
+                vm.newUser.profile.email = user.profile.email;
+            }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
         }
