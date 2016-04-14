@@ -179,8 +179,8 @@
                 if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
-            }).catch(function (res) {
-                console.log("catch", res);
+            }).catch(function (err) {
+                console.log("catch", err);
 
                 if (err.error != undefined && err.error != "ERROR") {
                     alertMsg.send($translate.instant(err.error), 'danger');
@@ -196,8 +196,8 @@
                 if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
-            }).catch(function (res) {
-                console.log("catch", res);
+            }).catch(function (err) {
+                console.log("catch", err);
                 if (err.error != undefined && err.error != "ERROR") {
                     alertMsg.send($translate.instant(err.error), 'danger');
                 } else {
