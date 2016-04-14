@@ -260,11 +260,14 @@
         }
 
         function failProRegister(err) {
-            alertMsg.send("Impossible de créer le compte", 'danger');
             console.log("KO");
             console.log(err);
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de créer le compte", 'danger');
+            }
         }
-
     }
 })
 ();
