@@ -174,9 +174,8 @@
 
                     <div ng-if="vm.isSocialRegister()">
                         <div class="proHomeSection2RegisterSocialConfirm">
-                            Votre compte {{vm.getSocialServiceName()}} sera associé
+                            Inscription via {{vm.getSocialServiceName()}}
                         </div>
-                        {{vm.newUser.profile.email}}
                     </div>
                 </div>
 
@@ -199,11 +198,11 @@
 
                 <input class="form-control halfInput" placeholder="Prénom"
                        ng-model="vm.newUser.professional.firstName"
-                       ng-hide="vm.isSocialRegister()"/>
+                       ng-disabled="vm.isSocialRegister()"/>
 
                 <input class="form-control halfInput halfInputRight" placeholder="Nom"
                        ng-model="vm.newUser.professional.lastName"
-                       ng-hide="vm.isSocialRegister()"/>
+                       ng-disabled="vm.isSocialRegister()"/>
 
                 <div class="proHomeSection2InputError"
                      ng-hide="vm.newUser.professional.firstName == '' || vm.isNameValid(vm.newUser.professional.firstName)">
@@ -224,7 +223,7 @@
                 </div>
 
                 <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
-                       ng-hide="vm.needToHideEmail()"/>
+                       ng-disabled="vm.needToHideEmail()"/>
 
                 <div class="proHomeSection2InputError"
                      ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
