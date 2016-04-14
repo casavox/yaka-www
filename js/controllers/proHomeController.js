@@ -182,7 +182,7 @@
             }).catch(function (res) {
                 console.log("catch", res);
 
-                if (err.error != undefined && res.data.error != "ERROR") {
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
                     alertMsg.send("Impossible de se connecter via Google", 'danger');
@@ -198,7 +198,7 @@
                 }
             }).catch(function (res) {
                 console.log("catch", res);
-                if (err.error != undefined && res.data.error != "ERROR") {
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
                     alertMsg.send("Impossible de se connecter via Facebook", 'danger');
