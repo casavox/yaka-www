@@ -181,7 +181,12 @@
                 }
             }).catch(function (res) {
                 console.log("catch", res);
-                alertMsg.send("Impossible de se connecter via Google", 'danger');
+
+                if (err.error != undefined && err.error != "ERROR") {
+                    alertMsg.send($translate.instant(err.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Google", 'danger');
+                }
             });
         };
 
@@ -193,18 +198,13 @@
                 }
             }).catch(function (res) {
                 console.log("catch", res);
-                alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                if (err.error != undefined && err.error != "ERROR") {
+                    alertMsg.send($translate.instant(err.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                }
             });
         };
-
-        function onFacebookRegisterOk() {
-            //$state.go('dashboard');
-            console.log(res);
-        }
-
-        function onFacebookRegisterFail() {
-            alertMsg.send("Impossible de se connecter via Facebook", 'danger');
-        }
 
         function onPreRegisterOK(user) {
             vm.newUser.professional.firstName = user.profile.firstName;
