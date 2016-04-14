@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg', '$translate'];
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate) {
+    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg', '$translate', '$localStorage'];
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage) {
         var vm = this;
 
         $rootScope.menu = true;

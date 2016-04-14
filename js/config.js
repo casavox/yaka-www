@@ -340,7 +340,15 @@ angular.module('Yaka')
             'ACTIVITY_CON_EXTENSIONBRICK_14065': "Extension en brique",
             'ACTIVITY_CON_TIMBERFRAMEEXTENSION_14070': "Extension ossature bois",
             'ACTIVITY_CON_FOUNDATIONS_14075': "Fondations",
-            'ACTIVITY_CON_SWIMMINGPOOL_14080': "Piscine"
+            'ACTIVITY_CON_SWIMMINGPOOL_14080': "Piscine",
+            'ERROR_USER_ALREADY_EXISTS': "Un compte existe déjà avec cet email",
+            'ERROR_REQUIRED_DATA_MISSING': "Vous n'avez pas envoyé toutes les informations nécessaires pour effectuer cette action",
+            'ERROR_BAD_CREDENTIALS': "Veuillez vérifier votre email et votre mot de passe",
+            'ERROR_UNAUTHORIZED': "Vous n'êtes pas connecté",
+            'ERROR_FORBIDDEN': "Vous n'avez pas les autorisations nécessaires pour accéder à cette resource",
+            'ERROR_NOT_FOUND': "Element non trouvé",
+            'ERROR_BAD_DATA': "Veuillez vérifier les informations envoyées",
+            'ERROR_BAD_SLOT': "Le créneau choisi n'est pas valide"
         });
         translateProvider.translations('fr', {
             'ACTIVITY_INSTALLATION': "Installation",
