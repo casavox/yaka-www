@@ -145,10 +145,16 @@
             return false;
         };
 
+        var doNotHide = false;
+
         vm.needToHideEmail = function () {
+            if (doNotHide) {
+                return false;
+            }
             if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
                 (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
                 if (vm.newUser.profile.email == '') {
+                    doNotHide = true;
                     return false;
                 } else {
                     return true;
