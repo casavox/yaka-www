@@ -10,6 +10,14 @@
     ProProposalsController.$inject = ['networkService', 'alertMsg', '$filter'];
     function ProProposalsController(networkService, alertMsg, $filter) {
         var vm = this;
+
+        vm.getMenuItemClass = function (state) {
+            if (state == "pro-proposals") {
+                return "active-menu";
+            }
+            return "";
+        };
+
         networkService.proProposalsGET('proposal_sent', function (res) {
             console.log(res);
             vm.proposals = res;
