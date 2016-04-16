@@ -54,15 +54,17 @@
                 </div>
             </div>
             <div class="inbox-text">
-                <div class="inbox-join-preview" ng-show="vm.msg.cloudinaryPublicId">
-                    <div><span class="glyphicon glyphicon-remove-circle inbox-remove-img cursor-pointer"
-                               ng-show="vm.msg.cloudinaryPublicId" ng-click="vm.deleteImg()"></span>
-                        <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" secure="true" format="png"
-                                  class="inbox-img-join center">
-                            <cl-transformation height="200" width="200" crop="fit"/>
-                        </cl-image>
+                <div class="inbox-join-preview row" ng-show="vm.msg.cloudinaryPublicId">
+                    <div class="inbox-preview col-md-12">
+                        <a>
+                            <span class="glyphicon glyphicon-remove-circle inbox-remove-img cursor-pointer"
+                                  ng-show="vm.msg.cloudinaryPublicId" ng-click="vm.deleteImg()"></span>
+                            <cl-image public-id="{{vm.msg.cloudinaryPublicId}}" secure="true" format="png"
+                                      class="inbox-img-join center">
+                                <cl-transformation height="200" width="200" crop="fit"/>
+                            </cl-image>
+                        </a>
                     </div>
-
                 </div>
                 <div class="row" ng-if="vm.proposal.status != 'COMPLETED' && vm.proposal.status != 'DECLINED'">
                     <div class="col-xs-1">
@@ -114,3 +116,31 @@
     </div>
     </div>
 </section>
+
+<div class="popUp" ng-show="vm.hireFlag">
+    <div class="popUp-container center-middle">
+        <div class="popUp-content">
+            <span class="boxclose" ng-click="vm.hireFlag = false"></span>
+            <h4>Hire this Pro ?</h4>
+
+            <p class="info-popUp">
+                The others Pro will be notified of your choice, then you can no longer continue to chat with them
+                for this project.
+            </p>
+
+            <p class="info-popUp-comp">
+                Send this message to your Pro :
+            </p>
+            <textarea class="custom-textarea-popUp" ng-model="vm.hireMessage"></textarea>
+        </div>
+        <div class="popUp-footer">
+            <div ng-click="vm.hireFlag = false">
+                CANCEL
+            </div>
+            <div ng-click="vm.hire(vm.proposal.id)">
+                CONFIRME
+            </div>
+
+        </div>
+    </div>
+</div>

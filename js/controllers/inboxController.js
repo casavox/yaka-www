@@ -72,12 +72,32 @@
         vm.uploadFiles = uploadFiles;
         vm.sendMessage = sendMessage;
         vm.loadMore = loadMore;
+        vm.hire = hire;
         var limit = 20;
 
         console.log($rootScope.state);
 
         function deleteImg() {
             delete vm.msg.cloudinaryPublicId;
+        }
+
+        function hire() {
+            var formData = {
+                id: vm.proposal.id,
+                text: vm.hireMessage
+            };
+            networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
+        }
+
+        function succesProposalAcceptPOST(res) {
+            vm.hireFlag = false;
+            if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
+                networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
+            alertMsg.send("Proposal selected", "success");
+        }
+
+        function errorProposalAcceptPOST() {
+            alertMsg.send("Error Proposal not selected", "danger");
         }
 
         function loadMore() {

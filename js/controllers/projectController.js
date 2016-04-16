@@ -13,6 +13,7 @@
         vm.pro = true;
         vm.saveFlag = false;
         vm.editFlag = false;
+        $rootScope.editMode = false;
         vm.proDetails = false;
         vm.editDescriptionFlag = false;
         vm.selectProposal = selectProposal;
@@ -140,6 +141,7 @@
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                 networkService.publishProject($stateParams.projectId,
                     function () {
+                        vm.publishFlag = false;
                         alertMsg.send("Your project has been published", "success");
                         if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
@@ -327,12 +329,14 @@
         vm.selectImagePreview = function (index) {
             var data = [{url: vm.projectTmp.images[index].cloudinaryPublicId}];
             $rootScope.media = vm.projectTmp.images[index];
+            $rootScope.deleteImg = deleteImg;
+            $rootScope.updateImg = updateImg;
             Lightbox.openModal(data, 0);
         };
 
         function deleteImg() {
             for (var i = 0; i < vm.projectTmp.images.length; i++) {
-                if (vm.projectTmp.images[i].cloudinaryPublicId == vm.imgTmp.cloudinaryPublicId) {
+                if (vm.projectTmp.images[i].cloudinaryPublicId == $rootScope.media.cloudinaryPublicId) {
                     vm.projectTmp.images.splice(i, 1);
                     vm.imageFlag = false;
                     break;
@@ -477,6 +481,7 @@
             vm.projectTmp = angular.copy(vm.project);
             vm.editDescriptionFlag = false;
             vm.editFlag = false;
+            $rootScope.editMode = false;
             vm.whereFlag = false;
             vm.saveFlag = false;
         }
@@ -651,6 +656,7 @@
 
         function edit() {
             vm.editFlag = true;
+            $rootScope.editMode = true;
         }
 
         function getTags() {

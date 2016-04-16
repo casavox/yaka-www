@@ -52,7 +52,7 @@
                             <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
                                 DELETE
                             </div>
-                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishProject()"
+                            <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.publishFlag = true;"
                                  ng-if="vm.project.status == 'DRAFT'">
                                 PUBLISH
                             </div>
@@ -313,6 +313,23 @@
         </div>
     </div>
 
+    <div class="popUp" ng-show="vm.publishFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.publishFlag = false"></span>
+                <h4>Publish this project ? </h4>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.publishFlag = false">
+                    KEEP DRAFTED
+                </div>
+                <div ng-click="vm.publishProject()">
+                    PUBLISH
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="popUp" ng-show="vm.whereFlag">
         <div class="popUp-container center-middle w-550">
             <div class="popUp-content">
@@ -381,6 +398,8 @@
             </div>
         </div>
     </div>
+
+
 
     <div class="popUp" ng-show="vm.whenFlag">
         <div class="popUp-container center-middle w-500">

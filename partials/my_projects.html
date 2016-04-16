@@ -20,7 +20,7 @@
             <div class="project" ng-repeat="p in vm.projectsOnGoing" ng-click="vm.selectProject(p)" ng-ripple
                  ng-class="{'emergency-border': p.type == 'EMERGENCY' && (p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'), 'alert-border': p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
                 <div class="project-icon no-margin no-padding">
-                    <div class="v-icon v-icon-{{p.icon}} center">
+                    <div class="v-icon v-icon-{{p.mainActivity.code}} center-middle">
                     </div>
                 </div>
                 <div class="project-info-middle no-margin no-padding" title="{{p.title}}">

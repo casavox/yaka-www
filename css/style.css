@@ -831,6 +831,11 @@ md-input-container {
     filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
 
+.inbox-preview{
+    display: block;
+    position: relative;
+}
+
 .inbox-content {
     width: 700px;
     background: #dfdfdf;
@@ -3345,6 +3350,8 @@ md-input-container {
     letter-spacing: 1.67px;
     text-align: left;
     padding-top: 9px;
+    outline: none !important;
+    border-bottom: 2px solid red !important;
 }
 
 .modal-content {
@@ -3377,7 +3384,7 @@ md-input-container {
     border-bottom: 2px solid #00aded !important;
 }
 
-.custom-textarea-image:focus ~ .img-desc-length {
+.custom-textarea-image:focus ~ .row > .col-md-12 > .img-desc-length {
     display: block;
 }
 
@@ -3385,9 +3392,8 @@ md-input-container {
     color: red;
     float: right;
     display: none;
-    bottom: 60px;
-    position: absolute;
-    right: 20px;
+    margin-bottom: 20px;
+
 }
 
 .select-addr {
