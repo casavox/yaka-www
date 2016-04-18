@@ -107,9 +107,18 @@ window.fbAsyncInit = function () {
             popupOptions: {width: 452, height: 633}
         });
 
-        $authProvider.facebook({
+        $authProvider.oauth2({
+            name: 'facebookPreRegister',
             clientId: CONFIG.FACEBOOK_CLIENT_ID,
-            url: CONFIG.API_BASE_URL + '/pro/register/facebook'
+            url: CONFIG.API_BASE_URL + '/pro/register/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
         });
 
         //

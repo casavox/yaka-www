@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    HomeController.$inject = ['$scope', '$rootScope', 'networkService', 'alertMsg', '$localStorage', '$state'];
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state) {
+    HomeController.$inject = ['$scope', '$rootScope', 'networkService', 'alertMsg', '$localStorage', '$state', '$translate'];
+    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate) {
         var vm = this;
 
         $rootScope.showMenu = false;
@@ -125,9 +125,9 @@
             }
         }
 
-        function errorLogin(res) {
-            if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                alertMsg.send($translate.instant(res.data.error), 'danger');
+        function errorLogin(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
             } else {
                 alertMsg.send("Impossible de se connecter", 'danger');
             }
