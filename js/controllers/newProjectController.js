@@ -306,7 +306,6 @@
             }
         }
 
-
         function post() {
 
             if (!vm.emergency) {

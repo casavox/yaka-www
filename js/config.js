@@ -11,10 +11,10 @@ angular.module('Yaka')
             // v: '3.20',
         });
     }])
-    .config(['$translateProvider', function (translateProvider) {
+    .config(['$translateProvider', function ($translateProvider) {
         // Simply register translation table as object hash
-        translateProvider.useSanitizeValueStrategy('escape');
-        translateProvider.translations('en', {
+        $translateProvider.useSanitizeValueStrategy('escape');
+        $translateProvider.translations('en', {
             'ACTIVITY_INSTALLATION': "Installation",
             'ACTIVITY_REPLACEMENT': "Remplacement",
             'ACTIVITY_REPAIR': "Réparation",
@@ -350,7 +350,7 @@ angular.module('Yaka')
             'ERROR_BAD_DATA': "Veuillez vérifier les informations envoyées",
             'ERROR_BAD_SLOT': "Le créneau choisi n'est pas valide"
         });
-        translateProvider.translations('fr', {
+        $translateProvider.translations('fr', {
             'ACTIVITY_INSTALLATION': "Installation",
             'ACTIVITY_REPLACEMENT': "Remplacement",
             'ACTIVITY_REPAIR': "Réparation",
@@ -686,5 +686,6 @@ angular.module('Yaka')
             'ERROR_BAD_DATA': "Veuillez vérifier les informations envoyées",
             'ERROR_BAD_SLOT': "Le créneau choisi n'est pas valide"
         });
+        $translateProvider.preferredLanguage('fr');
     }])
 ;

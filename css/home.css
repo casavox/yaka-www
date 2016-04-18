@@ -230,3 +230,64 @@
     float: right;
     cursor: pointer;
 }
+
+/* Login Popup */
+
+.loginPopupTabItem {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 16px;
+    color: #9B9B9B;
+    border-bottom: solid 1px #C6C6C6;
+    height: 35px;
+    cursor: pointer;
+}
+
+.loginPopupTabItemActive {
+    border-bottom: solid 3px #FBB832;
+    cursor: default;
+    color: black;
+}
+
+.loginPopupFacebook {
+    margin-top: 34px;
+    margin-bottom: 15px;
+    background: #6076ba;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-right: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupGoogle {
+    margin-top: 34px;
+    margin-bottom: 15px;
+    background: #d24922;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-left: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupInputError {
+    color: #FDAF00;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.loginPopupButton {
+    margin-top: 15px;
+}

@@ -86,3 +86,27 @@
 .yakaLinkWhite:active {
     color: #FDAF00;
 }
+
+/* Popups */
+
+.yakaPopup {
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-x: scroll;
+    background-color: rgba(11, 16, 23, .5);
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+}
+
+.yakaPopupWindow {
+    width: 450px !important;
+    margin-left: -225px !important;
+    left: 50% !important;
+    background: white;
+    border-radius: 4px;
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
+    padding-left: 55px !important;
+    padding-right: 55px !important;
+}

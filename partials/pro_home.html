@@ -215,7 +215,7 @@
 
                 <div class="proHomeSection2InputError"
                      ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
-                    Cet email n'est pas valide ({{vm.newUser.profile.email}})
+                    Cet email n'est pas valide
                 </div>
 
                 <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
@@ -349,3 +349,5 @@
         </div>
     </div>
 </section>
+
+<div class="yakaPopup" ng-include src="'partials/loginPopup.html'"></div>

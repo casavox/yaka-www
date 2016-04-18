@@ -20,7 +20,8 @@ angular.module('Yaka', [
     'angularMoment',
     'ngStomp',
     'luegg.directives',
-    'angularjs-dropdown-multiselect']);
+    'angularjs-dropdown-multiselect',
+    'angular-click-outside']);
 
 
 // facebook library API
@@ -110,11 +111,6 @@ window.fbAsyncInit = function () {
             clientId: CONFIG.FACEBOOK_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/pro/register/facebook'
         });
-
-        $translateProvider.translations('en', {});
-        $translateProvider.translations('fr', {});
-        $translateProvider.preferredLanguage('en');
-
 
         //
         // For any unmatched url, redirect to /login
