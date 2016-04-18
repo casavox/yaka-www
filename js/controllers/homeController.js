@@ -132,5 +132,38 @@
                 alertMsg.send("Impossible de se connecter", 'danger');
             }
         }
+
+        vm.googleLogin = function () {
+            $auth.authenticate('googleLogin').then(function (res) {
+                console.log(res);
+                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                    //onPreRegisterOK(res.data);
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Google", 'danger');
+                }
+            });
+        };
+
+        vm.facebookLogin = function () {
+            $auth.authenticate('facebookLogin').then(function (res) {
+                console.log(res);
+                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                    //onPreRegisterOK(res.data);
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                }
+            });
+        };
     }
 })();

@@ -174,7 +174,7 @@
         }
 
         vm.googlePreRegister = function () {
-            $auth.authenticate('googlePreRegister').then(function (res) {
+            $auth.authenticate('googleProRegister').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
@@ -191,7 +191,7 @@
         };
 
         vm.facebookPreRegister = function () {
-            $auth.authenticate('facebookPreRegister').then(function (res) {
+            $auth.authenticate('facebookProRegister').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);

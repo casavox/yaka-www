@@ -76,7 +76,9 @@ window.fbAsyncInit = function () {
                 'height': 'auto'                            // custom
             };
         };
-        $authProvider.google({
+
+        $authProvider.oauth2({
+            name: "googleLogin",
             clientId: CONFIG.GOOGLE_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/login/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
@@ -92,7 +94,23 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.oauth2({
-            name: "googlePreRegister",
+            name: 'facebookLogin',
+            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/login/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
+        });
+
+        // Pro Auth
+
+        $authProvider.oauth2({
+            name: "googleProRegister",
             clientId: CONFIG.GOOGLE_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/pro/register/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
@@ -108,7 +126,7 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.oauth2({
-            name: 'facebookPreRegister',
+            name: 'facebookProRegister',
             clientId: CONFIG.FACEBOOK_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/pro/register/facebook',
             authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
