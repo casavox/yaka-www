@@ -9,7 +9,7 @@
     function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll) {
         var vm = this;
 
-        $rootScope.menu = true;
+        $rootScope.showMenu = false;
 
         vm.currentYear = new Date().getFullYear();
 

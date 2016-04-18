@@ -7,6 +7,9 @@
 
     InboxController.$inject = ['$rootScope', '$scope', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$stomp', '$stateParams', "$localStorage", '$state', 'Lightbox', 'CONFIG'];
     function InboxController($rootScope, $scope, networkService, alertMsg, $upload, cloudinary, $stomp, $stateParams, $localStorage, $state, Lightbox, CONFIG) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         if (angular.isUndefined($stateParams) && !$stateParams.proposalId || $stateParams.proposalId == '') {
             $state.go("my-projects");

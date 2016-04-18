@@ -12,7 +12,7 @@
         var vm = this;
         vm.user = $localStorage.user;
 
-        $rootScope.menu = true;
+        $rootScope.showMenu = false;
         vm.newProject = {};
         vm.child0 = "";
         vm.child1 = "";

@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProProposalController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProProposalController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProProposalController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProProposalController($rootScope, $scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;

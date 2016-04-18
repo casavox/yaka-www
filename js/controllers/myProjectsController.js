@@ -10,6 +10,8 @@
     MyProjectscontroller.$inject = ['$scope', 'networkService', 'socialNetworkService', '$rootScope', '$localStorage', '$state', '$filter'];
     function MyProjectscontroller($scope, networkService, socialNetworkService, $rootScope, $localStorage, $state, $filter) {
 
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.projectsOnGoing = [];
         vm.projectsCompleted = [];

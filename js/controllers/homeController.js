@@ -11,7 +11,7 @@
     function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state) {
         var vm = this;
 
-        $rootScope.menu = true;
+        $rootScope.showMenu = false;
 
         vm.showLoginPopup = false;
 

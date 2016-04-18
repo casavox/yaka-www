@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    RegisterController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$filter', '$localStorage', '$state'];
-    function RegisterController($scope, networkService, socialNetworkService, $filter, $localStorage, $state) {
+    RegisterController.$inject = ['$rootScope', '$scope', 'networkService', 'socialNetworkService', '$filter', '$localStorage', '$state'];
+    function RegisterController($rootScope, $scope, networkService, socialNetworkService, $filter, $localStorage, $state) {
+
+        $rootScope.showMenu = false;
+
         $scope.email = "";
         $scope.password = "";
         $scope.password2 = "";

@@ -114,7 +114,7 @@
 </head>
 <body ng-app="Yaka" ng-controller="AppController as app">
 
-<div ng-include src="'partials/menu.html'" ng-if="!menu" ng-controller="AppController"></div>
+<div ng-include src="'partials/menu.html'" ng-show="showMenu" ng-controller="AppController"></div>
 
 <div ui-view></div>
 

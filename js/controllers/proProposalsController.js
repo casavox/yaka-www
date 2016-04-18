@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProProposalsController.$inject = ['networkService', 'alertMsg', '$filter'];
-    function ProProposalsController(networkService, alertMsg, $filter) {
+    ProProposalsController.$inject = ['networkService', 'alertMsg', '$filter', '$rootScope'];
+    function ProProposalsController(networkService, alertMsg, $filter, $rootScope) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
 
         vm.getMenuItemClass = function (state) {

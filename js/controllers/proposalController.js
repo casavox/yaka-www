@@ -9,6 +9,9 @@
     //Controller login
     ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope', 'Lightbox'];
     function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;

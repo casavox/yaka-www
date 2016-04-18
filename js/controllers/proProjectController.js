@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProProjectController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProProjectController($rootScope, $scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.getWhen = getWhen;
         vm.getTags = getTags;

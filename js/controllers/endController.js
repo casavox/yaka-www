@@ -9,6 +9,7 @@
     //Controller login
     EndController.$inject = ['$state', '$timeout'];
     function EndController($state, $timeout) {
+
         var vm = this;
         vm.countdown = 5;
         redirect();

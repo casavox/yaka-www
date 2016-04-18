@@ -9,7 +9,7 @@
     //Controller login
     LoginController.$inject = ['$scope', 'networkService', 'socialNetworkService', '$localStorage', '$state', '$rootScope', '$auth', 'alertMsg'];
     function LoginController($scope, networkService, socialNetworkService, $localStorage, $state, $rootScope, $auth, alertMsg) {
-        $rootScope.menu = true;
+        $rootScope.showMenu = false;
         $scope.email = "";
         $scope.password = "";
         $scope.error = {email: {flag: false, message: ""}, password: {flag: false, message: ""}};
