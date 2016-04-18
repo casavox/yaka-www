@@ -248,12 +248,16 @@
         };
 
         var scrollOptions = {
-            containerId: 'main-scroll-container',
-            offset: 50
+            containerId: 'main-scroll-container'
         };
 
         vm.smoothScrollRegister = function () {
             var element = document.getElementById('registerForm');
+            smoothScroll(element, scrollOptions);
+        };
+
+        vm.smoothScrollAbout = function () {
+            var element = document.getElementById('about');
             smoothScroll(element, scrollOptions);
         };
 
