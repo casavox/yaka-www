@@ -7,7 +7,7 @@
         <div class="filters visible-xs" ng-click="vm.showFilters = !vm.showFilters" angular-ripple>
             Filter
         </div>
-        <a class="hidden-xs" ui-sref="login">
+        <a ng-click="app.logout()">
             <div class="logout">
                 Log Out
             </div>

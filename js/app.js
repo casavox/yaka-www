@@ -130,18 +130,6 @@ window.fbAsyncInit = function () {
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
             })
-            .state('login', {
-                url: "/login",
-                templateUrl: "partials/login.html",
-                controller: 'LoginController',
-                controllerAs: 'vm'
-            })
-            .state('register', {
-                url: "/register",
-                templateUrl: "partials/register.html",
-                controller: 'RegisterController',
-                controllerAs: 'vm'
-            })
             .state('dashboard', {
                 url: "/dashboard",
                 templateUrl: "partials/dashboard.html",
