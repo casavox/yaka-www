@@ -111,7 +111,7 @@ window.fbAsyncInit = function () {
             name: 'facebookPreRegister',
             clientId: CONFIG.FACEBOOK_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/pro/register/facebook',
-            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth?client_id=' + CONFIG.FACEBOOK_CLIENT_ID,
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
             redirectUri: window.location.origin + '/',
             requiredUrlParams: ['display', 'scope'],
             scope: ['email'],

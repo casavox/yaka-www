@@ -191,7 +191,7 @@
         };
 
         vm.facebookPreRegister = function () {
-            $auth.authenticate('facebook').then(function (res) {
+            $auth.authenticate('facebookPreRegister').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
