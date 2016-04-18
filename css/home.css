@@ -34,7 +34,7 @@
     float: right;
     font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
-    margin-right: 27px;
+    margin-right: 25px;
     line-height: 40px;
     cursor: pointer;
 }
@@ -43,7 +43,7 @@
     float: right;
     font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
-    margin-right: 17px;
+    margin-right: 25px;
     line-height: 40px;
     cursor: pointer;
 }
@@ -211,7 +211,6 @@
 
 .homeSection5FooterRegister {
     margin-top: 20px;
-    margin-right: 30px;
     line-height: 40px;
     float: right;
     cursor: pointer;
@@ -220,6 +219,7 @@
 .homeSection5FooterLogin {
     margin-top: 20px;
     line-height: 40px;
+    margin-right: 25px;
     float: right;
     cursor: pointer;
 }
