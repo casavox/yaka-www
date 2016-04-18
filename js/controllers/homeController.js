@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    HomeController.$inject = ['$scope', '$rootScope', 'networkService', 'alertMsg', '$localStorage', '$state', '$translate'];
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate) {
+    HomeController.$inject = ['$scope', '$rootScope', 'networkService', 'alertMsg', '$localStorage', '$state', '$translate', '$auth'];
+    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth) {
         var vm = this;
 
         $rootScope.showMenu = false;
