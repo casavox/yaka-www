@@ -5,8 +5,8 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg', '$translate', '$localStorage', '$state'];
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state) {
+    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg', '$translate', '$localStorage', '$state', 'smoothScroll'];
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll) {
         var vm = this;
 
         $rootScope.menu = true;
@@ -245,6 +245,16 @@
                 return false;
             }
             return true;
+        };
+
+        var scrollOptions = {
+            containerId: 'main-scroll-container',
+            offset: 50
+        };
+
+        vm.smoothScrollRegister = function () {
+            var element = document.getElementById('registerForm');
+            smoothScroll(element, scrollOptions);
         };
 
         vm.registerUser = function () {

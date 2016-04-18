@@ -1,4 +1,4 @@
-<section class="view">
+<section id="main-scroll-container" class="view">
     <div class="proHomeSection proHomeSection1">
         <div class="container proHomeSection1Container">
             <div class="col-xs-12 proHomeSection1Header">
@@ -11,7 +11,8 @@
                 <div class="proHomeSection1Login yakaLinkWhite" ui-sref="login">
                     Se connecter
                 </div>
-                <div class="proHomeSection1Register yakaLinkWhite" ui-sref="login">
+                <div class="proHomeSection1Register yakaLinkWhite" ng-click="vm.smoothScrollRegister()"
+                     ng-click="vm.smoothScrollRegister()">
                     S'inscrire
                 </div>
             </div>
@@ -24,7 +25,8 @@
                 à un artisan qui leur est recommandé.
             </div>
             <div class="col-xs-12 proHomeSection1Buttons">
-                <div class="col-xs-3 proHomeSection1RegisterButton yakaButton yakaOrange" angular-ripple>
+                <div class="col-xs-3 proHomeSection1RegisterButton yakaButton yakaOrange"
+                     ng-click="vm.smoothScrollRegister()" angular-ripple>
                     S'INSCRIRE
                 </div>
                 <div class="col-xs-3 proHomeSection1AboutButton yakaButton yakaBorderWhite" angular-ripple>
@@ -163,7 +165,7 @@
                     vous recommande à ses amis pour leurs futurs travaux
                 </div>
             </div>
-            <div class="col-xs-5 col-xs-offset-1 proHomeSection2RegisterForm">
+            <div id="registerForm" class="col-xs-5 col-xs-offset-1 proHomeSection2RegisterForm">
 
                 <div class="col-xs-12 proHomeSection2RegisterFormTitle">
                     Inscription gratuite
@@ -306,7 +308,8 @@
                 <div class="col-xs-12 proHomeSection3bTitle">
                     Vite ! Inscrivez-vous maintenant et essayez YakaClub
                 </div>
-                <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange" angular-ripple>
+                <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange" ng-click="vm.smoothScrollRegister()"
+                     angular-ripple>
                     S’INSCRIRE GRATUITEMENT
                 </div>
                 <div class="col-xs-12 proHomeSection3bSmallText">
@@ -353,7 +356,7 @@
             <div class="proHomeSection5FooterLogin yakaLinkWhite" ui-sref="login">
                 Se connecter
             </div>
-            <div class="proHomeSection5FooterRegister yakaLinkWhite" ui-sref="login">
+            <div class="proHomeSection5FooterRegister yakaLinkWhite" ng-click="vm.smoothScrollRegister()">
                 S'inscrire
             </div>
         </div>
