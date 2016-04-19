@@ -145,10 +145,9 @@
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showLoginPopup">
+<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()">
     <div class="container">
-        <div id="loginPopup" class="yakaPopupWindow col-xs-12"
-             click-outside="vm.closePopup()">
+        <div id="loginPopup" class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <div ng-if="!vm.noSocialAccountMessage">
                 <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: vm.loginTab}"
                      ng-click="vm.loginTab = true">
