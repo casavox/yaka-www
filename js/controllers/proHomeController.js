@@ -281,6 +281,97 @@
                 alertMsg.send("Impossible de créer le compte", 'danger');
             }
         }
+
+        /* Login */
+
+        vm.loginUser = {
+            password: "",
+            profile: {
+                email: ""
+            }
+        };
+
+        vm.showLoginPopup = false;
+
+        vm.openPopup = function () {
+            vm.showLoginPopup = true;
+        };
+
+        vm.closePopup = function () {
+            vm.showLoginPopup = false;
+        };
+
+        vm.loginFormIsValid = function () {
+            if (vm.loginUser.profile.email == '' || vm.loginUser.password == '') {
+                return false;
+            }
+            return true;
+        };
+
+        vm.login = function () {
+            console.log(vm.loginUser);
+            networkService.login(vm.loginUser, succesLogin, errorLogin);
+        };
+
+        function succesLogin(res) {
+            if (!angular.isUndefined(res.token) && res.token && res.token != "") {
+                $localStorage.token = res.token;
+                $state.go('dashboard');
+                $rootScope.logmail = $scope.email;
+                console.log(res);
+            }
+        }
+
+        function errorLogin(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de se connecter", 'danger');
+            }
+        }
+
+        vm.googleLogin = function () {
+            vm.socialNetwork = "Google";
+            $auth.authenticate('googleLogin').then(function (res) {
+                console.log(res);
+                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
+                    $localStorage.token = res.data.token;
+                    $state.go('dashboard');
+                    $rootScope.logmail = $scope.email;
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+
+                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
+                    vm.noSocialAccountMessage = true;
+                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Google", 'danger');
+                }
+            });
+        };
+
+        vm.facebookLogin = function () {
+            vm.socialNetwork = "Facebook";
+            $auth.authenticate('facebookLogin').then(function (res) {
+                console.log(res);
+                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
+                    $localStorage.token = res.data.token;
+                    $state.go('dashboard');
+                    $rootScope.logmail = $scope.email;
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
+                    vm.noSocialAccountMessage = true;
+                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                }
+            });
+        };
     }
 })
 ();
