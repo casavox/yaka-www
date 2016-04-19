@@ -32,7 +32,7 @@
             vm.showLoginPopup = false;
         };
 
-        vm.user = {
+        vm.newUser = {
             password: "",
             profile: {
                 email: "",
@@ -69,9 +69,9 @@
             if (doNotHide) {
                 return false;
             }
-            if ((!angular.isUndefined(vm.user.googleId) && vm.user.googleId && vm.user.googleId != "") ||
-                (!angular.isUndefined(vm.user.facebookId) && vm.user.facebookId && vm.user.facebookId != "")) {
-                if (vm.user.profile.email == '') {
+            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
+                if (vm.newUser.profile.email == '') {
                     doNotHide = true;
                     return false;
                 } else {
@@ -82,19 +82,19 @@
         };
 
         vm.isSocialRegister = function () {
-            if ((!angular.isUndefined(vm.user.googleId) && vm.user.googleId && vm.user.googleId != "") ||
-                (!angular.isUndefined(vm.user.facebookId) && vm.user.facebookId && vm.user.facebookId != "")) {
+            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
                 return true;
             }
             return false;
         };
 
         vm.registerFormIsValid = function () {
-            if (vm.user.profile.firstName == '' || !vm.isNameValid(vm.user.profile.firstName) ||
-                vm.user.profile.lastName == '' || !vm.isNameValid(vm.user.profile.lastName) ||
-                vm.user.profile.email == '' || !vm.isEmailValid(vm.user.profile.email) ||
-                vm.user.password == '' || vm.user.password < 6 ||
-                vm.passwordConfirm == '' || vm.user.password != vm.passwordConfirm
+            if (vm.newUser.profile.firstName == '' || !vm.isNameValid(vm.newUser.profile.firstName) ||
+                vm.newUser.profile.lastName == '' || !vm.isNameValid(vm.newUser.profile.lastName) ||
+                vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
+                vm.newUser.password == '' || vm.newUser.password < 6 ||
+                vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm
             ) {
                 return false;
             }
@@ -172,5 +172,48 @@
                 }
             });
         };
+
+        vm.googlePreRegister = function () {
+            $auth.authenticate('googleRegister').then(function (res) {
+                console.log(res);
+                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                    onPreRegisterOK(res.data);
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Google", 'danger');
+                }
+            });
+        };
+
+        vm.facebookPreRegister = function () {
+            $auth.authenticate('facebookRegister').then(function (res) {
+                console.log(res);
+                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                    onPreRegisterOK(res.data);
+                }
+            }).catch(function (res) {
+                console.log("catch", res);
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                }
+            });
+        };
+
+        function onPreRegisterOK(user) {
+            vm.newUser.professional.firstName = user.profile.firstName;
+            vm.newUser.professional.lastName = user.profile.lastName;
+            if (user.profile.email != undefined) {
+                vm.newUser.profile.email = user.profile.email;
+            }
+            vm.newUser.googleId = user.googleId;
+            vm.newUser.facebookId = user.facebookId;
+        }
     }
 })();

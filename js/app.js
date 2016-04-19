@@ -107,6 +107,36 @@ window.fbAsyncInit = function () {
             popupOptions: {width: 580, height: 400}
         });
 
+        $authProvider.oauth2({
+            name: "googleRegister",
+            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/register/google',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+            redirectUri: window.location.origin,
+            requiredUrlParams: ['scope'],
+            optionalUrlParams: ['display'],
+            scope: ['profile', 'email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            scopePrefix: 'openid',
+            scopeDelimiter: ' ',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 452, height: 633}
+        });
+
+        $authProvider.oauth2({
+            name: 'facebookRegister',
+            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/register/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
+        });
+
         // Pro Auth
 
         $authProvider.oauth2({
