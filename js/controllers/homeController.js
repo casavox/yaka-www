@@ -218,7 +218,7 @@
 
         vm.register = function () {
             if (vm.registerFormIsValid) {
-                networkService.proRegister(vm.newUser, successRegister, failRegister);
+                networkService.register(vm.newUser, successRegister, failRegister);
             }
         };
 
