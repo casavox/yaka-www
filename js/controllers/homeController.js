@@ -125,7 +125,9 @@
         }
 
         vm.googleLogin = function () {
-            $auth.authenticate('googleLogin').then(succesLogin).catch(function (res) {
+            $auth.authenticate('googleLogin').then(function (res) {
+                succesLogin(res);
+            }).catch(function (res) {
                 console.log("catch", res);
 
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
@@ -137,7 +139,9 @@
         };
 
         vm.facebookLogin = function () {
-            $auth.authenticate('facebookLogin').then(succesLogin).catch(function (res) {
+            $auth.authenticate('facebookLogin').then(function (res) {
+                succesLogin(res);
+            }).catch(function (res) {
                 console.log("catch", res);
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
