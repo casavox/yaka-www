@@ -30,6 +30,8 @@
         var canCloseMenu = false;
 
         vm.closePopup = function () {
+            console.log("closePopup");
+            console.log("canCloseMenu : " + canCloseMenu);
             if (canCloseMenu) {
                 vm.showLoginPopup = false;
             } else {
