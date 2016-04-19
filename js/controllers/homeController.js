@@ -21,6 +21,8 @@
 
         vm.loginTab = true;
 
+        vm.socialNetwork = "";
+
         vm.openPopup = function (showLoginTab) {
             vm.loginTab = showLoginTab;
             vm.showLoginPopup = true;
@@ -129,6 +131,7 @@
         }
 
         vm.googleLogin = function () {
+            vm.socialNetwork = "Google";
             $auth.authenticate('googleLogin').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
@@ -150,6 +153,7 @@
         };
 
         vm.facebookLogin = function () {
+            vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
                 console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {

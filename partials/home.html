@@ -238,6 +238,11 @@
                 </div>
             </div>
             <div ng-if="vm.noSocialAccountMessage">
+                <div class="noSocialAccountMessage">
+                    Ce compte {{vm.socialNetwork}} nous est inconnu. Essayez de :
+                    - vous connecter avec votre email et votre mot de passe
+                    - créer un compte avec en cliquant sur "Inscription" puis "{{vm.socialNetwork}}"
+                </div>
                 <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
                      ng-click="vm.noSocialAccountMessage = false"
                      angular-ripple>
