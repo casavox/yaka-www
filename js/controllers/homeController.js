@@ -116,15 +116,6 @@
             networkService.login(vm.loginUser, succesLogin, errorLogin);
         };
 
-        function succesLogin(res) {
-            if (!angular.isUndefined(res.token) && res.token && res.token != "") {
-                $localStorage.token = res.token;
-                $state.go('dashboard');
-                $rootScope.logmail = $scope.email;
-                console.log(res);
-            }
-        }
-
         function errorLogin(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
@@ -134,12 +125,7 @@
         }
 
         vm.googleLogin = function () {
-            $auth.authenticate('googleLogin').then(function (res) {
-                console.log(res);
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
-                    //onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
+            $auth.authenticate('googleLogin').then(succesLogin).catch(function (res) {
                 console.log("catch", res);
 
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
@@ -151,12 +137,7 @@
         };
 
         vm.facebookLogin = function () {
-            $auth.authenticate('facebookLogin').then(function (res) {
-                console.log(res);
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
-                    //onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
+            $auth.authenticate('facebookLogin').then(succesLogin).catch(function (res) {
                 console.log("catch", res);
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
@@ -165,5 +146,14 @@
                 }
             });
         };
+
+        function succesLogin(res) {
+            if (!angular.isUndefined(res.token) && res.token && res.token != "") {
+                $localStorage.token = res.token;
+                $state.go('dashboard');
+                $rootScope.logmail = $scope.email;
+                console.log(res);
+            }
+        }
     }
 })();
