@@ -146,10 +146,10 @@
             }).catch(function (res) {
                 console.log("catch", res);
 
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else if (res.data.error == "ERROR_BAD_CREDENTIALS") {
+                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
+                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
                     alertMsg.send("Impossible de se connecter via Google", 'danger');
                 }
@@ -166,10 +166,10 @@
                 }
             }).catch(function (res) {
                 console.log("catch", res);
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else if (res.data.error == "ERROR_BAD_CREDENTIALS") {
+                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
+                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
                     alertMsg.send("Impossible de se connecter via Facebook", 'danger');
                 }
