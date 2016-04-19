@@ -17,6 +17,8 @@
 
         vm.currentYear = new Date().getFullYear();
 
+        vm.noSocialAccountMessage = false;
+
         vm.loginTab = true;
 
         vm.openPopup = function (showLoginTab) {
@@ -146,6 +148,8 @@
 
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else if (res.data.error != "ERROR_BAD_CREDENTIALS") {
+                    vm.noSocialAccountMessage = true;
                 } else {
                     alertMsg.send("Impossible de se connecter via Google", 'danger');
                 }
@@ -164,6 +168,8 @@
                 console.log("catch", res);
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else if (res.data.error != "ERROR_BAD_CREDENTIALS") {
+                    vm.noSocialAccountMessage = true;
                 } else {
                     alertMsg.send("Impossible de se connecter via Facebook", 'danger');
                 }

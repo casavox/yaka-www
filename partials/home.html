@@ -149,90 +149,100 @@
     <div class="container">
         <div id="loginPopup" class="yakaPopupWindow col-xs-12"
              click-outside="vm.closePopup()">
-            <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: vm.loginTab}"
-                 ng-click="vm.loginTab = true">
-                CONNEXION
-            </div>
-            <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: !vm.loginTab}"
-                 ng-click="vm.loginTab = false">
-                INSCRIPTION
-            </div>
-
-            <div ng-if="vm.loginTab">
-                <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookLogin()" angular-ripple>
-                    Facebook
+            <div ng-if="!vm.noSocialAccountMessage">
+                <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: vm.loginTab}"
+                     ng-click="vm.loginTab = true">
+                    CONNEXION
                 </div>
-                <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googleLogin()" angular-ripple>
-                    Google
+                <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: !vm.loginTab}"
+                     ng-click="vm.loginTab = false">
+                    INSCRIPTION
                 </div>
 
-                <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.profile.email"/>
+                <div ng-if="vm.loginTab">
+                    <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookLogin()" angular-ripple>
+                        Facebook
+                    </div>
+                    <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googleLogin()" angular-ripple>
+                        Google
+                    </div>
 
-                <input class="form-control" type="password" placeholder="Mot de passe"
-                       ng-model="vm.loginUser.password"/>
+                    <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.profile.email"/>
 
+                    <input class="form-control" type="password" placeholder="Mot de passe"
+                           ng-model="vm.loginUser.password"
+                           ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+
+                    <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                         ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
+                         angular-ripple>
+                        SE CONNECTER
+                    </div>
+                </div>
+
+                <div ng-if="!vm.loginTab">
+                    <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookPreRegister()"
+                         ng-if="!vm.isSocialRegister()" angular-ripple>
+                        Facebook
+                    </div>
+                    <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googlePreRegister()"
+                         ng-if="!vm.isSocialRegister()" angular-ripple>
+                        Google
+                    </div>
+
+                    <input class="form-control halfInput" placeholder="Prénom"
+                           ng-model="vm.user.profile.firstName"
+                           ng-disabled="vm.isSocialRegister()"/>
+
+                    <input class="form-control halfInput halfInputRight" placeholder="Nom"
+                           ng-model="vm.user.profile.lastName"
+                           ng-disabled="vm.isSocialRegister()"/>
+
+                    <div class="loginPopupInputError"
+                         ng-hide="vm.user.profile.firstName == '' || vm.isNameValid(vm.user.profile.firstName)">
+                        Ce prénom n'est pas valide
+                    </div>
+
+                    <div class="loginPopupInputError"
+                         ng-hide="vm.user.profile.lastName == '' || vm.isNameValid(vm.user.profile.lastName)">
+                        Ce nom n'est pas valide
+                    </div>
+
+                    <input class="form-control" type="email" placeholder="Email" ng-model="vm.user.profile.email"
+                           ng-disabled="vm.needToHideEmail()"/>
+
+                    <div class="loginPopupInputError"
+                         ng-hide="vm.user.profile.email == '' || vm.isEmailValid(vm.user.profile.email)">
+                        Cet email n'est pas valide
+                    </div>
+
+                    <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.user.password"/>
+
+                    <div class="loginPopupInputError"
+                         ng-hide="vm.user.password.length == '' ||vm.user.password.length >= 6">
+                        Trop court : 6 caractères minimum
+                    </div>
+
+                    <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
+                           ng-model="vm.passwordConfirm"/>
+
+                    <div class="loginPopupInputError"
+                         ng-hide="vm.passwordConfirm == '' || vm.user.password == vm.passwordConfirm">
+                        Les mots de passe ne correspondent pas
+                    </div>
+
+                    <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                         ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.loginUser()"
+                         angular-ripple>
+                        S'INSCRIRE
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.noSocialAccountMessage">
                 <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                     ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
+                     ng-click="vm.noSocialAccountMessage = false"
                      angular-ripple>
-                    SE CONNECTER
-                </div>
-            </div>
-
-            <div ng-if="!vm.loginTab">
-                <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookPreRegister()"
-                     ng-if="!vm.isSocialRegister()" angular-ripple>
-                    Facebook
-                </div>
-                <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googlePreRegister()"
-                     ng-if="!vm.isSocialRegister()" angular-ripple>
-                    Google
-                </div>
-
-                <input class="form-control halfInput" placeholder="Prénom"
-                       ng-model="vm.user.profile.firstName"
-                       ng-disabled="vm.isSocialRegister()"/>
-
-                <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                       ng-model="vm.user.profile.lastName"
-                       ng-disabled="vm.isSocialRegister()"/>
-
-                <div class="loginPopupInputError"
-                     ng-hide="vm.user.profile.firstName == '' || vm.isNameValid(vm.user.profile.firstName)">
-                    Ce prénom n'est pas valide
-                </div>
-
-                <div class="loginPopupInputError"
-                     ng-hide="vm.user.profile.lastName == '' || vm.isNameValid(vm.user.profile.lastName)">
-                    Ce nom n'est pas valide
-                </div>
-
-                <input class="form-control" type="email" placeholder="Email" ng-model="vm.user.profile.email"
-                       ng-disabled="vm.needToHideEmail()"/>
-
-                <div class="loginPopupInputError"
-                     ng-hide="vm.user.profile.email == '' || vm.isEmailValid(vm.user.profile.email)">
-                    Cet email n'est pas valide
-                </div>
-
-                <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.user.password"/>
-
-                <div class="loginPopupInputError"
-                     ng-hide="vm.user.password.length == '' ||vm.user.password.length >= 6">
-                    Trop court : 6 caractères minimum
-                </div>
-
-                <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
-                       ng-model="vm.passwordConfirm"/>
-
-                <div class="loginPopupInputError"
-                     ng-hide="vm.passwordConfirm == '' || vm.user.password == vm.passwordConfirm">
-                    Les mots de passe ne correspondent pas
-                </div>
-
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                     ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.loginUser()"
-                     angular-ripple>
-                    S'INSCRIRE
+                    OK
                 </div>
             </div>
         </div>
