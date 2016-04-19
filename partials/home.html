@@ -190,35 +190,35 @@
                     </div>
 
                     <input class="form-control halfInput" placeholder="Prénom"
-                           ng-model="vm.user.profile.firstName"
+                           ng-model="vm.newUser.profile.firstName"
                            ng-disabled="vm.isSocialRegister()"/>
 
                     <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                           ng-model="vm.user.profile.lastName"
+                           ng-model="vm.newUser.profile.lastName"
                            ng-disabled="vm.isSocialRegister()"/>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.user.profile.firstName == '' || vm.isNameValid(vm.user.profile.firstName)">
+                         ng-hide="vm.newUser.profile.firstName == '' || vm.isNameValid(vm.newUser.profile.firstName)">
                         Ce prénom n'est pas valide
                     </div>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.user.profile.lastName == '' || vm.isNameValid(vm.user.profile.lastName)">
+                         ng-hide="vm.newUser.profile.lastName == '' || vm.isNameValid(vm.newUser.profile.lastName)">
                         Ce nom n'est pas valide
                     </div>
 
-                    <input class="form-control" type="email" placeholder="Email" ng-model="vm.user.profile.email"
+                    <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
                            ng-disabled="vm.needToHideEmail()"/>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.user.profile.email == '' || vm.isEmailValid(vm.user.profile.email)">
+                         ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
                         Cet email n'est pas valide
                     </div>
 
-                    <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.user.password"/>
+                    <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.user.password.length == '' ||vm.user.password.length >= 6">
+                         ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
                         Trop court : 6 caractères minimum
                     </div>
 
@@ -226,7 +226,7 @@
                            ng-model="vm.passwordConfirm"/>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.passwordConfirm == '' || vm.user.password == vm.passwordConfirm">
+                         ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
                         Les mots de passe ne correspondent pas
                     </div>
 
