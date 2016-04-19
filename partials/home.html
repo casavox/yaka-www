@@ -189,6 +189,12 @@
                         Google
                     </div>
 
+                    <div ng-if="vm.isSocialRegister()">
+                        <div class="registerSocialConfirm">
+                            Inscription via {{vm.socialNetwork}}
+                        </div>
+                    </div>
+
                     <input class="form-control halfInput" placeholder="Prénom"
                            ng-model="vm.newUser.profile.firstName"
                            ng-disabled="vm.isSocialRegister()"/>

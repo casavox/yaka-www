@@ -349,3 +349,46 @@
         </div>
     </div>
 </section>
+
+<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()">
+    <div class="container">
+        <div id="loginPopup" class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <div ng-if="!vm.noSocialAccountMessage">
+                <div class="loginPopupTabItem loginPopupTabItemActive col-xs-12">
+                    CONNEXION
+                </div>
+
+                <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookLogin()" angular-ripple>
+                    Facebook
+                </div>
+                <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googleLogin()" angular-ripple>
+                    Google
+                </div>
+
+                <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.profile.email"/>
+
+                <input class="form-control" type="password" placeholder="Mot de passe"
+                       ng-model="vm.loginUser.password"
+                       ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+
+                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                     ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
+                     angular-ripple>
+                    SE CONNECTER
+                </div>
+            </div>
+            <div ng-if="vm.noSocialAccountMessage">
+                <div class="noSocialAccountMessage">
+                    Ce compte {{vm.socialNetwork}} nous est inconnu.<br/>
+                    Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
+                    sur "Inscription" puis "{{vm.socialNetwork}}".
+                </div>
+                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                     ng-click="vm.noSocialAccountMessage = false"
+                     angular-ripple>
+                    OK
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
