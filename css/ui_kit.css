@@ -110,3 +110,9 @@
     padding-left: 55px !important;
     padding-right: 55px !important;
 }
+
+.popupCloseButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

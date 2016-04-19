@@ -146,6 +146,8 @@
 </section>
 
 <div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()">
+    <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_homeTrust.png" ng-click="vm.closePopup()" alt=""/>
+
     <div class="container">
         <div id="loginPopup" class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <div ng-if="!vm.noSocialAccountMessage">
