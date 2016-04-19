@@ -243,6 +243,7 @@
     border-bottom: solid 1px #C6C6C6;
     height: 35px;
     cursor: pointer;
+    margin-bottom: 34px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -257,7 +258,6 @@
 }
 
 .loginPopupFacebook {
-    margin-top: 34px;
     margin-bottom: 15px;
     background: #6076ba;
     color: white;
@@ -272,7 +272,6 @@
 }
 
 .loginPopupGoogle {
-    margin-top: 34px;
     margin-bottom: 15px;
     background: #d24922;
     color: white;
@@ -309,3 +308,24 @@
     text-align: center;
 }
 
+.registerFacebookGoogle {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: center;
+    width: 100% !important;
+    margin-top: -10px;
+}
+
+.registerSeparator {
+    height: 1px;
+    background: #E6E6E6;
+    margin-bottom: 25px;
+}
+
+.registerMail {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 12px;
+    margin-top: -15px;
+    text-align: center;
+}

@@ -183,6 +183,17 @@
                 </div>
 
                 <div ng-if="!vm.loginTab">
+
+                    <div class="col-xs-12 registerFacebookGoogle">
+                        <span ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
+
+                        <div ng-if="vm.isSocialRegister()">
+                            <div class="registerSocialConfirm">
+                                Inscription via {{vm.getSocialServiceName()}}
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookPreRegister()"
                          ng-if="!vm.isSocialRegister()" angular-ripple>
                         Facebook
@@ -192,8 +203,11 @@
                         Google
                     </div>
 
-                    <div class="col-xs-12 registerSocialConfirm" ng-if="vm.isSocialRegister()">
-                        Inscription via {{vm.socialNetwork}}
+                    <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
+
+                    <div class="col-xs-12 registerMail">
+                        <span ng-if="!vm.isSocialRegister()">Inscription par email</span>
+                        <span ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                     </div>
 
                     <input class="form-control halfInput" placeholder="Prénom"
