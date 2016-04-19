@@ -291,3 +291,8 @@
 .loginPopupButton {
     margin-top: 15px;
 }
+
+.noSocialAccountMessage {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+}
