@@ -215,5 +215,26 @@
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
         }
+
+        vm.register = function () {
+            if (vm.formIsValid) {
+                networkService.proRegister(vm.newUser, successRegister, failRegister);
+            }
+        };
+
+        function successRegister(res) {
+            console.log(res);
+            $localStorage.token = res.token;
+            $state.go('dashboard');
+        }
+
+        function failRegister(err) {
+            console.log(err);
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de créer le compte", 'danger');
+            }
+        }
     }
 })();

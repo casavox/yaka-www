@@ -215,7 +215,8 @@
                         Cet email n'est pas valide
                     </div>
 
-                    <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
+                    <input class="form-control" type="password" placeholder="Mot de passe"
+                           ng-model="vm.newUser.password"/>
 
                     <div class="loginPopupInputError"
                          ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
@@ -231,7 +232,7 @@
                     </div>
 
                     <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                         ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.loginUser()"
+                         ng-class="{yakaDisabled: !vm.formIsValid()}" ng-click="vm.register()"
                          angular-ripple>
                         S'INSCRIRE
                     </div>

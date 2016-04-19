@@ -274,7 +274,6 @@
         }
 
         function failProRegister(err) {
-            console.log("KO");
             console.log(err);
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
