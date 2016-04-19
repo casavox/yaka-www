@@ -207,8 +207,8 @@
         };
 
         function onPreRegisterOK(user) {
-            vm.newUser.professional.firstName = user.profile.firstName;
-            vm.newUser.professional.lastName = user.profile.lastName;
+            vm.newUser.profile.firstName = user.profile.firstName;
+            vm.newUser.profile.lastName = user.profile.lastName;
             if (user.profile.email != undefined) {
                 vm.newUser.profile.email = user.profile.email;
             }
