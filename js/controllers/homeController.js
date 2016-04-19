@@ -136,11 +136,10 @@
         vm.googleLogin = function () {
             $auth.authenticate('googleLogin').then(function (res) {
                 console.log(res);
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
-                    $localStorage.token = res.token;
+                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
+                    $localStorage.token = res.data.token;
                     $state.go('dashboard');
                     $rootScope.logmail = $scope.email;
-                    console.log(res);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
@@ -156,11 +155,10 @@
         vm.facebookLogin = function () {
             $auth.authenticate('facebookLogin').then(function (res) {
                 console.log(res);
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
-                    $localStorage.token = res.token;
+                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
+                    $localStorage.token = res.data.token;
                     $state.go('dashboard');
                     $rootScope.logmail = $scope.email;
-                    console.log(res);
                 }
             }).catch(function (res) {
                 console.log("catch", res);
