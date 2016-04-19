@@ -13,6 +13,44 @@
 
         $rootScope.showMenu = false;
 
+        vm.jobs = [
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon",
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon",
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon",
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon",
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon",
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon",
+            "plombier",
+            "électricien",
+            "maçon",
+            "couvreur",
+            "maçon"
+        ];
+
         vm.showLoginPopup = false;
 
         vm.currentYear = new Date().getFullYear();

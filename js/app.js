@@ -21,7 +21,8 @@ angular.module('Yaka', [
     'ngStomp',
     'luegg.directives',
     'angularjs-dropdown-multiselect',
-    'angular-click-outside']);
+    'angular-click-outside',
+    'angularTypewrite']);
 
 
 // facebook library API
