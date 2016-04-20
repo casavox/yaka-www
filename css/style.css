@@ -1699,12 +1699,32 @@ md-input-container {
     width: 100% !important;
 }
 
+.color-blue{
+    color: #00a3d3!important;
+}
+
+.make-menu-unread{
+    font-family:'montserrat_light';
+    font-size:14px;
+    color:#f34359;
+    text-align:left;
+    margin-bottom:8px;
+    text-align: center;
+}
+
+.make-menu-desc{
+    font-family:'montserrat_light';
+    font-size:11.76px;
+    color:#444444;
+    text-align:center;
+}
+
 .pro-proposal-title > p:nth-child(1) {
     font-family: 'montserrat_regular';
     font-size: 16px;
     letter-spacing: 1.13px;
     text-align: left;
-    margin-bottom: 2px;
+    margin-bottom: 0px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -3354,6 +3374,23 @@ md-input-container {
     border-bottom: 2px solid red !important;
 }
 
+.custom-textarea-image-blue {
+    background: transparent !important;
+    border: none !important;
+    resize: none !important;
+    width: 100% !important;
+    height: 100px;
+    padding: 15px;
+    font-family: 'montserrat_light';
+    font-size: 13px;
+    color: #5A5A5A;
+    letter-spacing: 1.67px;
+    text-align: left;
+    padding-top: 9px;
+    outline: none !important;
+    border-bottom: 2px solid #00a3d3 !important;
+}
+
 .modal-content {
     border-radius: 0px !important;
 }
@@ -3474,10 +3511,13 @@ md-input-container {
     display: inline-block;
     line-height: 0px;
     padding: 11px 3px;
+    margin-bottom:4px;
 }
 
 .boxclose:before {
-    content: "×";
+    content: 'x';
+    font-weight: 300;
+    font-family: Arial, sans-serif;
 }
 
 .no-cursor {
@@ -4515,6 +4555,12 @@ ul[rn-carousel-buffered] > li {
     position: absolute;
     bottom: 80px;
     left: 0;
+}
+
+.bckg-blue{
+    background-color: #00a3d3!important;
+    color: white!important;
+    border-color: #00a3d3!important;
 }
 
 .btn-blue {

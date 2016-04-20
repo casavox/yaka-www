@@ -373,13 +373,11 @@
 
         function getTags() {
             var res = "";
-            if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.activities) {
-                if (vm.projectTmp.activities.length > 0 && vm.projectTmp.type == "EMERGENCY")
-                    res += " - ";
-                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
+            if (!angular.isUndefined(vm.project) && vm.project.activities) {
+                for (var i = 0; i < vm.project.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += vm.projectTmp.activities[i].code;
+                    res += vm.project.activities[i].code;
                 }
             }
             return res;

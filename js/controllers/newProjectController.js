@@ -760,30 +760,25 @@
 
             item.selected = "activate";
             if (item.childrenActivities && item.childrenActivities.length > 0) {
-
+                var otherChild = {
+                    code: "OTHER",
+                    emergency: true,
+                    small: true
+                };
+                vm.questions[index + 1].childrenActivities.push(otherChild);
                 var childrenArray = [];
-                for (var i = 0; i < item.childrenActivities.length; i++) {
-                    if (vm.emergency && item.childrenActivities[i].emergency) {
-                        childrenArray.push(item.childrenActivities[i]);
-                    } else if (!vm.emergency && item.childrenActivities[i].small) {
-                        childrenArray.push(item.childrenActivities[i]);
+                for (var i = 0; i < vm.questions[index + 1].childrenActivities.length; i++) {
+                    if (vm.emergency && vm.questions[index + 1].childrenActivities[i].emergency) {
+                        childrenArray.push(vm.questions[index + 1].childrenActivities[i]);
+                    } else if (!vm.emergency && vm.questions[index + 1].childrenActivities[i].small) {
+                        childrenArray.push(vm.questions[index + 1].childrenActivities[i]);
                     }
                 }
                 item.childrenActivities = childrenArray;
 
-                for (var i = 0; i < item.childrenActivities.length; i++) {
-                    item.childrenActivities[i].selected = "";
+                for (var i = 0; i < vm.questions[index + 1].childrenActivities.length; i++) {
+                    vm.questions[index + 1].childrenActivities[i].selected = "";
                 }
-
-                var otherChild = {
-                    code: "OTHER"
-                };
-                console.log(item.childrenActivities.length);
-                item.childrenActivities.push(otherChild);
-                console.log(item.childrenActivities.length);
-                console.log(item.childrenActivities);
-            }
-            if (item.childrenActivities && item.childrenActivities.length > 0) {
                 $timeout(function () {
                     var element = document.getElementById('subSlide' + (index + 1).toString());
                     smoothScroll(element, scrollOptions);
@@ -796,6 +791,7 @@
                     smoothScroll(element, scrollOptions);
                 }, 0);
             }
+
         }
 
         function succesProjectsGET(res) {

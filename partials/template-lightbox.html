@@ -7,10 +7,10 @@
     <p class="modal-description" ng-if="!simplePreview">
         Description :
     </p>
-    <textarea class="custom-textarea-image" ng-model="media.description"
+    <textarea class="custom-textarea-image-blue" ng-model="media.description"
               disabled ng-if="media.description && !simplePreview && !editMode"></textarea>
     <p class="modal-no-description" ng-if="!media.description && !simplePreview && !editMode">Aucune description</p>
-    <textarea class="custom-textarea-image" ng-model="media.description" placeholder="Your description ...."
+    <textarea class="custom-textarea-image-blue" ng-model="media.description" placeholder="Your description ...."
               ng-change="limitLength(media, 'description', 140)" ng-if="editMode"></textarea>
     <div class="row">
         <div class="col-md-12">

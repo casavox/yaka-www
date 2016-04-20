@@ -208,6 +208,12 @@ window.fbAsyncInit = function () {
             })
             .state('profile', {
                 url: "/profile/me",
+                templateUrl: "partials/profile-customer.html",
+                controller: 'ProfileCustomerController',
+                controllerAs: 'vm'
+            })
+            .state('pro-profile', {
+                url: "/pro/profile/me",
                 templateUrl: "partials/profile.html",
                 controller: 'ProfileController',
                 controllerAs: 'vm'
