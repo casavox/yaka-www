@@ -9,9 +9,11 @@
     </p>
     <textarea class="custom-textarea-image-blue" ng-model="media.description"
               disabled ng-if="media.description && !simplePreview && !editMode"></textarea>
+
     <p class="modal-no-description" ng-if="!media.description && !simplePreview && !editMode">Aucune description</p>
     <textarea class="custom-textarea-image-blue" ng-model="media.description" placeholder="Your description ...."
               ng-change="limitLength(media, 'description', 140)" ng-if="editMode"></textarea>
+
     <div class="row">
         <div class="col-md-12">
             <div class="img-desc-length" ng-if="editMode">

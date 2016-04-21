@@ -70,7 +70,7 @@
                 </div>
                 <div class="row no-margin">
                     <div class="col-xs-12">
-                        <p class="pro-title-post" >
+                        <p class="pro-title-post">
                             Post <span am-time-ago="vm.project.updated"></span>
                         </p>
                         <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}"
@@ -78,7 +78,8 @@
                                   ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
                             <cl-transformation height="70" width="70" crop="fill"/>
                         </cl-image>
-                        <div class="img-default-medium mt-20 fl-l ml-15" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
+                        <div class="img-default-medium mt-20 fl-l ml-15"
+                             ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
                             {{vm.proposal.professional.firstName[0] | uppercase}} {{vm.proposal.professional.lastName[0]
                             | uppercase}}
                         </div>
@@ -213,8 +214,11 @@
                         <p ng-show="vm.proposal.unreadMessages" class="make-menu-unread">
                             unread messages
                         </p>
-                        <p class="make-menu-desc">Chat with {{ vm.proposal.professional.firstName }} {{vm.proposal.professional.lastName}}</p>
-                        <button type="button" class="button btn btn-menu-sel center bckg-blue" ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
+
+                        <p class="make-menu-desc">Chat with {{ vm.proposal.professional.firstName }}
+                            {{vm.proposal.professional.lastName}}</p>
+                        <button type="button" class="button btn btn-menu-sel center bckg-blue"
+                                ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
                         </button>
                     </div>
                 </div>

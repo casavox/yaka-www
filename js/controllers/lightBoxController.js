@@ -18,7 +18,7 @@
         $scope.deleteImg = $rootScope.deleteImg;
         $scope.updateImg = $rootScope.updateImg;
 
-        $scope.limitLength = function(obj, token, limit) {
+        $scope.limitLength = function (obj, token, limit) {
             if (obj[token].length >= limit) {
                 obj[token] = obj[token].slice(0, limit);
             }

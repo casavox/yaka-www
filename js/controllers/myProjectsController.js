@@ -59,11 +59,11 @@
 
         }
 
-        vm.getDesiredPedriod = function(project){
-            if (!_.isNil(project.desiredDatePeriod) && project.desiredDatePeriod == 'NONE'){
+        vm.getDesiredPedriod = function (project) {
+            if (!_.isNil(project.desiredDatePeriod) && project.desiredDatePeriod == 'NONE') {
                 return 'I am flexible';
             }
-            else if (!_.isNil(project.desiredDate)){
+            else if (!_.isNil(project.desiredDate)) {
                 return $filter('date')(new Date(project.desiredDate), 'dd MMM yyyy');
             }
             return '';
