@@ -34,7 +34,7 @@
     float: right;
     font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
-    margin-right: 27px;
+    margin-right: 25px;
     line-height: 40px;
     cursor: pointer;
 }
@@ -43,7 +43,7 @@
     float: right;
     font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
-    margin-right: 17px;
+    margin-right: 25px;
     line-height: 40px;
     cursor: pointer;
 }
@@ -86,6 +86,7 @@
     text-align: justify;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    margin-bottom: 60px;
 }
 
 .homeSection1SubSubTitle {
@@ -211,7 +212,6 @@
 
 .homeSection5FooterRegister {
     margin-top: 20px;
-    margin-right: 30px;
     line-height: 40px;
     float: right;
     cursor: pointer;
@@ -219,8 +219,8 @@
 
 .homeSection5FooterLogin {
     margin-top: 20px;
-    margin-right: 30px;
     line-height: 40px;
+    margin-right: 25px;
     float: right;
     cursor: pointer;
 }
@@ -230,4 +230,103 @@
     line-height: 40px;
     float: right;
     cursor: pointer;
+}
+
+/* Login Popup */
+
+.loginPopupTabItem {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 16px;
+    color: #9B9B9B;
+    border-bottom: solid 1px #C6C6C6;
+    height: 35px;
+    cursor: pointer;
+    margin-bottom: 34px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.loginPopupTabItemActive {
+    border-bottom: solid 3px #FBB832;
+    cursor: default;
+    color: black;
+}
+
+.loginPopupFacebook {
+    margin-bottom: 15px;
+    background: #6076ba;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-right: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupGoogle {
+    margin-bottom: 15px;
+    background: #d24922;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-left: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupInputError {
+    color: #FDAF00;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.loginPopupButton {
+    margin-top: 15px;
+}
+
+.noSocialAccountMessage {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.registerSocialConfirm {
+    margin-bottom: 6px;
+    margin-top: 20px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.registerFacebookGoogle {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: center;
+    width: 100% !important;
+    margin-top: -10px;
+}
+
+.registerSeparator {
+    height: 1px;
+    background: #E6E6E6;
+    margin-bottom: 25px;
+}
+
+.registerMail {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 12px;
+    margin-top: -15px;
+    text-align: center;
 }

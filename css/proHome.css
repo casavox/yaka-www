@@ -50,7 +50,6 @@
     float: right;
     font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
-    margin-right: 17px;
     line-height: 40px;
     cursor: pointer;
 }
@@ -198,7 +197,7 @@
     font-size: 25px;
 }
 
-.proHomeSection2RegisterFacebookGoogle {
+.proHomeSection2RegisterSeparator {
     font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 12px;
     margin-top: 14px;
@@ -421,7 +420,6 @@
 
 .proHomeSection5FooterLogin {
     margin-top: 20px;
-    margin-right: 30px;
     line-height: 40px;
     float: right;
     cursor: pointer;

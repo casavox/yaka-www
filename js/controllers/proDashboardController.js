@@ -10,6 +10,8 @@
     function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $translate) {
         $scope.showList = false;
 
+        $rootScope.showMenu = true;
+
         var vm = this;
 
         var homeBounds = {};

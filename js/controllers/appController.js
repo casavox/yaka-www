@@ -161,5 +161,10 @@
                 return "";
             }
         }
+
+        app.logout = function () {
+            $localStorage.token = "";
+            $state.go('home');
+        }
     }
 })();

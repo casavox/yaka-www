@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProposalsController.$inject = ['networkService', 'alertMsg', '$stateParams', '$state'];
-    function ProposalsController(networkService, alertMsg, $stateParams, $state) {
+    ProposalsController.$inject = ['networkService', 'alertMsg', '$stateParams', '$state', '$rootScope'];
+    function ProposalsController(networkService, alertMsg, $stateParams, $state, $rootScope) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.getWhen = getWhen;
         vm.projectDetails = projectDetails;

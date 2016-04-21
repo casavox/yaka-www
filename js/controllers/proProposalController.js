@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProProposalController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProProposalController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProProposalController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams', '$translate'];
+    function ProProposalController($rootScope, $scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams, $translate) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
@@ -377,7 +380,7 @@
                 for (var i = 0; i < vm.project.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += vm.project.activities[i].code;
+                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
                 }
             }
             return res;

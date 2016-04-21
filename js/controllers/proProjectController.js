@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProProjectController.$inject = ['$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProProjectController($scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProProjectController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams', '$translate'];
+    function ProProjectController($rootScope, $scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams, $translate) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.getWhen = getWhen;
         vm.getTags = getTags;
@@ -103,7 +106,7 @@
                 for (var i = 0; i < vm.projectTmp.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += vm.projectTmp.activities[i].code;
+                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
                 }
             }
             return res;

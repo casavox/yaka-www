@@ -33,7 +33,7 @@
         <div class="title" ng-show="vm.proDetails">
             Proposal's details
         </div>
-        <a ui-sref="login">
+        <a ng-click="app.logout()">
             <div class="logout">
                 Log Out
             </div>
@@ -207,7 +207,7 @@
 
                         <div class="row cl"
                              ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
-                            <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
+                            <div class="col-xs-3 clickable" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
                                 <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png"
                                           class="center"

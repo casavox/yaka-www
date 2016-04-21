@@ -12,7 +12,7 @@
         var vm = this;
         vm.user = $localStorage.user;
 
-        $rootScope.menu = true;
+        $rootScope.showMenu = false;
         vm.newProject = {};
         vm.child0 = "";
         vm.child1 = "";
@@ -56,6 +56,13 @@
         vm.minDate.setDate(vm.minDate.getDate() + 2);
         var d = new Date();
         $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
+
+        vm.imageLoading = {
+            0: false,
+            1: false,
+            2: false,
+            3: false
+        }
 
         $rootScope.photos = [{}, {}, {}, {}];
 
@@ -152,6 +159,7 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    vm.imageLoading[index] = true;
                     file.upload = $upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -164,11 +172,13 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
+                        vm.imageLoading[index] = false;
                         $rootScope.photos = $rootScope.photos || [{}, {}, {}, {}];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         $rootScope.photos[index] = data;
                     }).error(function (data, status, headers, config) {
+                        vm.imageLoading[index] = false;
                         file.result = data;
                     });
                 }
@@ -305,7 +315,6 @@
                 $state.go("login");
             }
         }
-
 
         function post() {
 

@@ -7,9 +7,20 @@
 
     //
     //Controller login
-    ProJobsController.$inject = ['networkService', 'alertMsg', '$filter'];
-    function ProJobsController(networkService, alertMsg, $filter) {
+    ProJobsController.$inject = ['networkService', 'alertMsg', '$filter', '$rootScope'];
+    function ProJobsController(networkService, alertMsg, $filter, $rootScope) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
+
+        vm.getMenuItemClass = function (state) {
+            if (state == "pro-jobs") {
+                return "active-menu";
+            }
+            return "";
+        };
+
         networkService.proProposalsGET('ongoing', function (res) {
             console.log(res);
             vm.ongoing = res;

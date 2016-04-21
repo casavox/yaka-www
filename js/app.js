@@ -20,7 +20,9 @@ angular.module('Yaka', [
     'angularMoment',
     'ngStomp',
     'luegg.directives',
-    'angularjs-dropdown-multiselect']);
+    'angularjs-dropdown-multiselect',
+    'angular-click-outside',
+    'angularTypewrite']);
 
 
 // facebook library API
@@ -50,7 +52,7 @@ window.fbAsyncInit = function () {
     angular
         .module('Yaka')
         .constant('CONFIG', {
-            //'API_BASE_URL' : 'http://localhost:8080'
+            //'API_BASE_URL' : 'http://localhost:8080',
             'API_BASE_URL': 'https://yaka-api.herokuapp.com',
             'GOOGLE_CLIENT_ID': '554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com',
             'FACEBOOK_CLIENT_ID': '847913895334564'
@@ -75,7 +77,9 @@ window.fbAsyncInit = function () {
                 'height': 'auto'                            // custom
             };
         };
-        $authProvider.google({
+
+        $authProvider.oauth2({
+            name: "googleLogin",
             clientId: CONFIG.GOOGLE_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/login/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
@@ -91,7 +95,53 @@ window.fbAsyncInit = function () {
         });
 
         $authProvider.oauth2({
-            name: "googlePreRegister",
+            name: 'facebookLogin',
+            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/login/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
+        });
+
+        $authProvider.oauth2({
+            name: "googleRegister",
+            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/register/google',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+            redirectUri: window.location.origin,
+            requiredUrlParams: ['scope'],
+            optionalUrlParams: ['display'],
+            scope: ['profile', 'email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            scopePrefix: 'openid',
+            scopeDelimiter: ' ',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 452, height: 633}
+        });
+
+        $authProvider.oauth2({
+            name: 'facebookRegister',
+            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/register/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
+        });
+
+        // Pro Auth
+
+        $authProvider.oauth2({
+            name: "googleProRegister",
             clientId: CONFIG.GOOGLE_CLIENT_ID,
             url: CONFIG.API_BASE_URL + '/pro/register/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
@@ -106,15 +156,19 @@ window.fbAsyncInit = function () {
             popupOptions: {width: 452, height: 633}
         });
 
-        $authProvider.facebook({
+        $authProvider.oauth2({
+            name: 'facebookProRegister',
             clientId: CONFIG.FACEBOOK_CLIENT_ID,
-            url: CONFIG.API_BASE_URL + '/pro/register/facebook'
+            url: CONFIG.API_BASE_URL + '/pro/register/facebook',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
         });
-
-        $translateProvider.translations('en', {});
-        $translateProvider.translations('fr', {});
-        $translateProvider.preferredLanguage('en');
-
 
         //
         // For any unmatched url, redirect to /login
@@ -132,18 +186,6 @@ window.fbAsyncInit = function () {
                 url: "/pro",
                 templateUrl: "partials/pro_home.html",
                 controller: 'ProHomeController',
-                controllerAs: 'vm'
-            })
-            .state('login', {
-                url: "/login",
-                templateUrl: "partials/login.html",
-                controller: 'LoginController',
-                controllerAs: 'vm'
-            })
-            .state('register', {
-                url: "/register",
-                templateUrl: "partials/register.html",
-                controller: 'RegisterController',
                 controllerAs: 'vm'
             })
             .state('dashboard', {

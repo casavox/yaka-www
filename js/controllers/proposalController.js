@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope', 'Lightbox'];
-    function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox) {
+    ProposalController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', '$filter', '$stateParams', '$rootScope', 'Lightbox', '$translate'];
+    function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox, $translate) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.pro = true;
         vm.saveFlag = false;
@@ -356,7 +359,7 @@
                 for (var i = 0; i < vm.projectTmp.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += vm.projectTmp.activities[i].code;
+                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
                 }
             }
             return res;

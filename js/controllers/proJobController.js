@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    ProJobController.$inject = ['$scope', '$state', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
-    function ProJobController($scope, $state, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+    ProJobController.$inject = ['$rootScope', '$scope', '$state', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams'];
+    function ProJobController($rootScope, $scope, $state, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams) {
+
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
