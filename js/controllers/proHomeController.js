@@ -207,8 +207,8 @@
         };
 
         function onPreRegisterOK(user) {
-            vm.newUser.firstName = user.firstName;
-            vm.newUser.lastName = user.lastName;
+            vm.newUser.professional.firstName = user.profile.firstName;
+            vm.newUser.professional.lastName = user.profile.lastName;
             if (user.profile.email != undefined) {
                 vm.newUser.profile.email = user.profile.email;
             }
@@ -234,8 +234,8 @@
                 delete activity.id;
             });
 
-            if (vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
-                vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
+            if (vm.newUser.profile.firstName == '' || !vm.isNameValid(vm.newUser.professional.firstName) ||
+                vm.newUser.profile.lastName == '' || !vm.isNameValid(vm.newUser.professional.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
                 vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
                 vm.newUser.password == '' || vm.newUser.password < 6 ||
                 vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||

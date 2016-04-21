@@ -58,13 +58,13 @@
                                         <cl-transformation height="70" width="70" crop="fill"/>
                                     </cl-image>
                                     <div class="img-default" ng-if="!p.professional.avatar.cloudinaryPublicId">
-                                        {{p.professional.user.firstName[0] | uppercase}} {{p.professional.user.lastName[0] |
+                                        {{p.professional.firstName[0] | uppercase}} {{p.professional.lastName[0] |
                                         uppercase}}
                                     </div>
                                 </div>
                                 <div class="proposals-info">
                                     <div class="proposals-name">
-                                        <span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
+                                        <span ng-if="p.status == 'START'">{{p.professional.firstName}} {{p.professional.lastName}}</span><span
                                         ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
                                     </div>
                                     <div class="proposals-qualities"><span ng-repeat="q in p.professional.qualities">{{ q.name }} <span

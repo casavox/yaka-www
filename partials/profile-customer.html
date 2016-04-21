@@ -35,7 +35,7 @@
         <div class="content-slide p-20">
             <div class="row">
                 <div class="col-md-12"
-                     ng-show="!vm.profileInfo.user.firstName || !vm.profileInfo.user.lastName || !vm.profileInfo.phoneNumber || !vm.profileInfo.user.profile.email || !vm.profileInfo.company.name || !vm.profileInfo.company.siret || !vm.profileInfo.company.address.address || !vm.profileInfo.company.phone || !vm.about.aboutMe || vm.indexOfObject('RGE', 'name', vm.verifications).length == 0 || vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0 || vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
+                     ng-show="!vm.profileInfo.firstName || !vm.profileInfo.lastName || !vm.profileInfo.phoneNumber || !vm.profileInfo.user.profile.email || !vm.profileInfo.company.name || !vm.profileInfo.company.siret || !vm.profileInfo.company.address.address || !vm.profileInfo.company.phone || !vm.about.aboutMe || vm.indexOfObject('RGE', 'name', vm.verifications).length == 0 || vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0 || vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
                     <div class="profile-info-warning">
                         <p>
                             Informations underlined in red are missing to answer a job.
@@ -64,7 +64,7 @@
                                         </cl-image>
                                         <div class="img-default center"
                                              ng-show="!vm.profileInfo.avatar.cloudinaryPublicId">
-                                            {{vm.profileInfo.user.firstName[0] | uppercase}} {{vm.profileInfo.user.lastName[0] |
+                                            {{vm.profileInfo.firstName[0] | uppercase}} {{vm.profileInfo.lastName[0] |
                                             uppercase}}
                                         </div>
                                         <div class="icon-edit cursor-pointer"
@@ -76,13 +76,13 @@
                                 <div class="col-md-9">
                                     <md-input-container class="md-block" flex-gt-sm="">
                                         <label>First name</label>
-                                        <input ng-model="vm.profileInfo.user.firstName"
-                                               ng-class="{'border-red': !vm.profileInfo.user.firstName}">
+                                        <input ng-model="vm.profileInfo.firstName"
+                                               ng-class="{'border-red': !vm.profileInfo.firstName}">
                                     </md-input-container>
                                     <md-input-container class="md-block" flex-gt-sm="">
                                         <label>Last name</label>
-                                        <input ng-model="vm.profileInfo.user.lastName"
-                                               ng-class="{'border-red': !vm.profileInfo.user.lastName}">
+                                        <input ng-model="vm.profileInfo.lastName"
+                                               ng-class="{'border-red': !vm.profileInfo.lastName}">
                                     </md-input-container>
                                 </div>
                             </div>
