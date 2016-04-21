@@ -2180,6 +2180,7 @@ color: #9b9b9b!important;
     position: relative;
     left: 50%;
     transform: translate(-50%);
+    margin-bottom: 70px !important;
 }
 
 .p-20 {
