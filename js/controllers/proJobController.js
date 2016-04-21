@@ -74,7 +74,7 @@
             if (res.toString() != $stateParams.proposalId)
                 $state.go("prodashboard");
             else {
-                networkService.proposalGET(res, succesProjectGET, errorProjectGET);
+                networkService.proposalProGET(res, succesProjectGET, errorProjectGET);
             }
         }
         else {
