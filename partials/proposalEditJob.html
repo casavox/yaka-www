@@ -22,11 +22,8 @@
 <section class="view">
     <div class="header-menu">
         <ng-include src="'partials/menuHamburger.html'"></ng-include>
-        <div class="in-line min-w-44 arrow-nav" ng-show="!vm.proDetails">
-            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()" class="center-middle"/>
-        </div>
-        <div class="in-line min-w-44 arrow-nav" ng-show="vm.proDetails">
-            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
+        <div class="in-line min-w-44 arrow-nav">
+            <img src="icons/mdpi/arrow-left.png" alt="" ui-sref="pro-jobs" class="center-middle"/>
         </div>
         <div class="title no-line" ng-show="!vm.proDetails">
             {{vm.project.title}}

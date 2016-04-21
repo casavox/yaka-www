@@ -1,11 +1,11 @@
 <section class="view" ng-cloak>
     <div class="header-menu">
         <ng-include src="'partials/menuHamburger.html'"></ng-include>
-        <div class="in-line min-w-44 arrow-nav" ui-sref="my-projects">
-            <img src="icons/mdpi/arrow-left.png" class="center-middle"/>
-        </div>
+        <!--<div class="in-line min-w-44 arrow-nav" ui-sref="my-projects">-->
+            <!--<img src="icons/mdpi/arrow-left.png" class="center-middle"/>-->
+        <!--</div>-->
         <div class="title no-line middle">
-            MY QUOTES
+            MY JOBS
         </div>
         <a ng-click="app.logout()">
             <div class="logout">
@@ -20,7 +20,7 @@
 
             <div class="row no-margin">
                 <div class="col-xs-6 pro-proposal-vignette" ng-repeat="proposal in vm.ongoing"
-                     ui-sref="pro-job({proposalId: proposal.id})">
+                     ui-sref="pro-proposal({proposalId: proposal.id})">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
                                   secure="true"

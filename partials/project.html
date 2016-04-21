@@ -160,7 +160,7 @@
         </div>
 
 
-        <div class="menu-r top-120">
+        <div class="menu-r top-120" ng-if="vm.projectTmp.proposals.length > 0">
             <div>
                 <div>
                     <div>
@@ -168,7 +168,7 @@
                             {{vm.projectTmp.proposals.length}} propositions
                         </p>
                         <button type="button" class="button btn btn-menu-sel center" ng-click="vm.prev()"
-                                ng-if="vm.project.status != 'ONGOING_PROJECT_ONGOING'">OFFERS
+                                ng-if="vm.project.status != 'ONGOING_PROJECT_ONGOING'">SHOW OFFERS
                         </button>
                         <p ng-if="vm.project.status == 'ONGOING_PROJECT_ONGOING'">
                             1 pro selected

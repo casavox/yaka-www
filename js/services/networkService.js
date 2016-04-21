@@ -124,6 +124,9 @@
             proWorkAreaGET: function (success, error) {
                 $http.get(baseUrl + '/pro/me/workarea').success(success).error(error)
             },
+            me: function (success, error) {
+                $http.get(baseUrl + '/me').success(success).error(error)
+            },
             proWorkAreaPUT: function (data, success, error) {
                 $http.put(baseUrl + '/pro/me/workarea', data).success(success).error(error)
             },

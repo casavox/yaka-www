@@ -23,16 +23,21 @@
 <section class="view">
     <div class="header-menu">
         <ng-include src="'partials/menuHamburger.html'"></ng-include>
-        <div class="in-line min-w-44 arrow-nav" ng-show="!vm.proDetails">
-            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()" class="center-middle"/>
+        <div class="in-line min-w-44 arrow-nav" ui-sref="pro-proposals"
+             ng-if="vm.proposal.status == 'START' || vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'DECLINED'">
+            <img src="icons/mdpi/arrow-left.png" class="center-middle"/>
         </div>
-        <div class="in-line min-w-44 arrow-nav" ng-show="vm.proDetails">
-            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
+        <div class="in-line min-w-44 arrow-nav" ui-sref="pro-jobs"
+             ng-if="vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'RATE_PRO' ||  vm.proposal.status == 'SELECTED'">
+            <img src="icons/mdpi/arrow-left.png" class="center-middle"/>
         </div>
         <div class="title no-line" ng-show="!vm.proDetails">
             {{vm.project.title}}
-            <p class="sub-title-proposal">
-                Make a quote
+            <p class="sub-title-proposal" ng-if="vm.proposal.status == 'START' || vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'DECLINED'">
+                My Quote
+            </p>
+            <p class="sub-title-proposal" ng-if="vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'RATE_PRO' ||  vm.proposal.status == 'SELECTED'">
+                My Job
             </p>
         </div>
         <div class="title" ng-show="vm.proDetails">
@@ -50,10 +55,10 @@
                 <div class="row no-margin">
                     <div class="col-xs-12">
                         <div class="description-action-btn" ng-click="vm.edit()"
-                             ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'">
+                             ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'">
                             MODIFY
                         </div>
-                        <div class="description-action-btn" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED'"
+                        <div class="description-action-btn" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'"
                              ng-click="vm.decline()">
                             DECLINE
                         </div>
@@ -80,7 +85,8 @@
                         </cl-image>
                         <div class="img-default-medium mt-20 fl-l ml-15"
                              ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
-                            {{vm.proposal.professional.user.firstName[0] | uppercase}} {{vm.proposal.professional.user.lastName[0]
+                            {{vm.proposal.professional.user.firstName[0] | uppercase}}
+                            {{vm.proposal.professional.user.lastName[0]
                             | uppercase}}
                         </div>
                         <div class="pro-proposal-title">
@@ -206,26 +212,24 @@
 
         </div>
 
-
         <div class="menu-r top-120">
             <div>
                 <div>
                     <div>
-                        <p ng-show="vm.proposal.unreadMessages" class="make-menu-unread">
+                        <p ng-if="vm.proposal.unreadMessages" class="make-menu-unread">
                             unread messages
                         </p>
 
-                        <p class="make-menu-desc">Chat with {{ vm.proposal.professional.user.firstName }}
-                            {{vm.proposal.professional.lastName}}</p>
+                        <p class="make-menu-desc">Chat with {{ vm.proposal.project.profile.user.firstName }}
+                            {{vm.proposal.project.profile.user.lastName}}</p>
                         <button type="button" class="button btn btn-menu-sel center bckg-blue"
                                 ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
