@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProfileController.$inject = ['$scope', 'networkService', '$localStorage', '$state', 'alertMsg', 'Upload', 'cloudinary', 'uiGmapGoogleMapApi']
-    function ProfileController($scope, networkService, $localStorage, $state, alertMsg, $upload, cloudinary, uiGmapGoogleMapApi) {
+    ProfileController.$inject = ['$rootScope', '$scope', 'networkService', '$localStorage', '$state', 'alertMsg', 'Upload', 'cloudinary', 'uiGmapGoogleMapApi']
+    function ProfileController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $upload, cloudinary, uiGmapGoogleMapApi) {
 
         $rootScope.showMenu = true;
 

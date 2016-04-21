@@ -200,7 +200,7 @@
                         </p>
 
                         <div class="row cl">
-                            <div class="col-xs-3" ng-repeat="pict in vm.proposal.professional.portfolio"
+                            <div class="col-xs-3 clickable" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
                                 <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png" class="center"
                                           ng-click="vm.selectImagePreview($index)">
