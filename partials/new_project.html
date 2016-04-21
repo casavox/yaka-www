@@ -126,8 +126,11 @@
                                     <cl-transformation height="220" width="220" crop="fill"/>
                                 </cl-image>
                             </a>
+
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
-                                 ng-hide="photos[0].public_id"/>
+                                 ng-hide="photos[0].public_id || vm.imageLoading[0]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[0]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[0].description"
                                   ng-show="photos[0].public_id" placeholder="Comment this photo"
@@ -157,7 +160,9 @@
                                 </cl-image>
                             </a>
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
-                                 ng-hide="photos[1].public_id"/>
+                                 ng-hide="photos[1].public_id || vm.imageLoading[1]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[1]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[1].description"
                                   ng-show="photos[1].public_id" placeholder="Comment this photo"
@@ -187,7 +192,9 @@
                                 </cl-image>
                             </a>
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
-                                 ng-hide="photos[2].public_id"/>
+                                 ng-hide="photos[2].public_id || vm.imageLoading[2]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[2]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[2].description"
                                   ng-show="photos[2].public_id" placeholder="Comment this photo"
@@ -217,7 +224,9 @@
                                 </cl-image>
                             </a>
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
-                                 ng-hide="photos[3].public_id"/>
+                                 ng-hide="photos[3].public_id || vm.imageLoading[3]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[3]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[3].description"
                                   ng-show="photos[3].public_id"
