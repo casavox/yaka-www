@@ -29,7 +29,7 @@
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
                         <div class="img-default-preview-40" ng-if="!proposal.project.profie.avatar.cloudinaryPublicId">
-                            {{proposal.project.profile.firstName[0] | uppercase}} {{proposal.project.profile.lastName[0]
+                            {{proposal.project.profile.user.firstName[0] | uppercase}} {{proposal.project.profile.user.lastName[0]
                             | uppercase}}
                         </div>
                     </div>
@@ -42,8 +42,8 @@
                         </p>
 
                         <p class="pro-proposals-info"
-                           title="{{ proposal.project.profile.firstName }} {{proposal.project.profile.lastName}} - {{proposal.project.address.locality}}">
-                            {{ proposal.project.profile.firstName }} {{proposal.project.profile.lastName}} -
+                           title="{{ proposal.project.profile.user.firstName }} {{proposal.project.profile.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.profile.user.firstName }} {{proposal.project.profile.user.lastName}} -
                             {{proposal.project.address.locality}}
                         </p>
                         <hr class="pro-proposals-hr">
@@ -69,7 +69,7 @@
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
                         <div class="img-default-preview-40" ng-if="!proposal.project.profie.avatar.cloudinaryPublicId">
-                            {{proposal.project.profile.firstName[0] | uppercase}} {{proposal.project.profile.lastName[0]
+                            {{proposal.project.profile.user.firstName[0] | uppercase}} {{proposal.project.profile.user.lastName[0]
                             | uppercase}}
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         </p>
 
                         <p class="pro-proposals-info">
-                            {{ proposal.project.profile.firstName }} {{proposal.project.profile.lastName}} -
+                            {{ proposal.project.profile.user.firstName }} {{proposal.project.profile.user.lastName}} -
                             {{proposal.project.address.locality}}
                         </p>
                         <hr class="pro-proposals-hr">

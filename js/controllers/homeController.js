@@ -72,10 +72,10 @@
 
         vm.newUser = {
             password: "",
+            firstName: "",
+            lastName: "",
             profile: {
-                email: "",
-                firstName: "",
-                lastName: ""
+                email: ""
             },
             googleId: "",
             facebookId: ""
@@ -128,8 +128,8 @@
         };
 
         vm.registerFormIsValid = function () {
-            if (vm.newUser.profile.firstName == '' || !vm.isNameValid(vm.newUser.profile.firstName) ||
-                vm.newUser.profile.lastName == '' || !vm.isNameValid(vm.newUser.profile.lastName) ||
+            if (vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
+                vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
                 vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
                 vm.newUser.password == '' || vm.newUser.password < 6 ||
                 vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm
@@ -247,8 +247,8 @@
         };
 
         function onPreRegisterOK(user) {
-            vm.newUser.profile.firstName = user.profile.firstName;
-            vm.newUser.profile.lastName = user.profile.lastName;
+            vm.newUser.firstName = user.firstName;
+            vm.newUser.lastName = user.lastName;
             if (user.profile.email != undefined) {
                 vm.newUser.profile.email = user.profile.email;
             }
