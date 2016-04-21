@@ -7,8 +7,8 @@
 
     //
     //Controller login
-    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams', 'Lightbox', '$rootScope'];
-    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope) {
+    ProjectController.$inject = ['$scope', '$state', '$localStorage', 'networkService', 'alertMsg', 'uiGmapGoogleMapApi', 'Upload', 'cloudinary', '$filter', '$stateParams', 'Lightbox', '$rootScope', '$translate'];
+    function ProjectController($scope, $state, $localStorage, networkService, alertMsg, uiGmapGoogleMapApi, $upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate) {
 
         $rootScope.showMenu = true;
 
@@ -662,7 +662,7 @@
                 for (var i = 0; i < vm.projectTmp.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += vm.projectTmp.activities[i].code;
+                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
                 }
             }
             return res;
