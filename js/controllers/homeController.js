@@ -129,7 +129,6 @@
             vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm);
-
         };
 
         vm.loginFormIsValid = function () {
@@ -148,10 +147,10 @@
                 networkService.me(function (res) {
                     $localStorage.user = res;
                     console.log(res);
-                    if (angular.isUndefined(res.professional)){
+                    if (angular.isUndefined(res.professional)) {
                         $localStorage.user.type = 'customer';
                         $state.go('dashboard');
-                    }else if (angular.isDefined(res.professional)){
+                    } else if (angular.isDefined(res.professional)) {
                         $localStorage.user.type = 'pro';
                         $state.go('prodashboard');
                     }

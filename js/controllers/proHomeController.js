@@ -237,7 +237,6 @@
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
             vm.newUser.professional.activities.length == 0 ||
             vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == '');
-
         };
 
         var scrollOptions = {

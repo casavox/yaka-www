@@ -33,10 +33,13 @@
         </div>
         <div class="title no-line" ng-show="!vm.proDetails">
             {{vm.project.title}}
-            <p class="sub-title-proposal" ng-if="vm.proposal.status == 'START' || vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'DECLINED'">
+            <p class="sub-title-proposal"
+               ng-if="vm.proposal.status == 'START' || vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'DECLINED'">
                 My Quote
             </p>
-            <p class="sub-title-proposal" ng-if="vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'RATE_PRO' ||  vm.proposal.status == 'SELECTED'">
+
+            <p class="sub-title-proposal"
+               ng-if="vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'RATE_PRO' ||  vm.proposal.status == 'SELECTED'">
                 My Job
             </p>
         </div>
@@ -58,7 +61,8 @@
                              ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'">
                             MODIFY
                         </div>
-                        <div class="description-action-btn" ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'"
+                        <div class="description-action-btn"
+                             ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'"
                              ng-click="vm.decline()">
                             DECLINE
                         </div>
@@ -86,8 +90,7 @@
                         <div class="img-default-medium mt-20 fl-l ml-15"
                              ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
                             {{vm.proposal.professional.user.firstName[0] | uppercase}}
-                            {{vm.proposal.professional.user.lastName[0]
-                            | uppercase}}
+                            {{vm.proposal.professional.user.lastName[0] | uppercase}}
                         </div>
                         <div class="pro-proposal-title">
                             <p ng-class="{'red': vm.project.type == 'EMERGENCY'}">
