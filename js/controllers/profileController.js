@@ -506,8 +506,6 @@
         function cancelProfile() {
             vm.error.profile.flag = false;
             vm.profileInfo = {
-                firstName: angular.copy(vm.profile.firstName),
-                lastName: angular.copy(vm.profile.lastName),
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
@@ -559,8 +557,6 @@
         function succesProfileGET(res) {
             vm.profile = res;
             vm.profileInfo = {
-                firstName: angular.copy(vm.profile.firstName),
-                lastName: angular.copy(vm.profile.lastName),
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),

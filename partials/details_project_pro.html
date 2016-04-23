@@ -57,7 +57,7 @@
                              ng-show="vm.projectTmp.profile.avatarUrl"/>
 
                         <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.profile.avatarUrl">
-                            {{vm.projectTmp.profile.firstName[0] | uppercase}} {{vm.projectTmp.profile.lastName[0] |
+                            {{vm.projectTmp.profile.user.firstName[0] | uppercase}} {{vm.projectTmp.profile.user.lastName[0] |
                             uppercase}}
                         </div>
                         <div class="pro-proposal-title">
@@ -66,7 +66,7 @@
                             </p>
 
                             <p>
-                                {{vm.projectTmp.profile.firstName}} {{vm.projectTmp.profile.lastName}}
+                                {{vm.projectTmp.profile.user.firstName}} {{vm.projectTmp.profile.user.lastName}}
                             </p>
                         </div>
                     </div>

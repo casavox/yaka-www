@@ -213,20 +213,20 @@
                     </div>
 
                     <input class="form-control halfInput" placeholder="Prénom"
-                           ng-model="vm.newUser.profile.firstName"
+                           ng-model="vm.newUser.firstName"
                            ng-disabled="vm.isSocialRegister()"/>
 
                     <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                           ng-model="vm.newUser.profile.lastName"
+                           ng-model="vm.newUser.lastName"
                            ng-disabled="vm.isSocialRegister()"/>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.newUser.profile.firstName == '' || vm.isNameValid(vm.newUser.profile.firstName)">
+                         ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
                         Ce prénom n'est pas valide
                     </div>
 
                     <div class="loginPopupInputError"
-                         ng-hide="vm.newUser.profile.lastName == '' || vm.isNameValid(vm.newUser.profile.lastName)">
+                         ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
                         Ce nom n'est pas valide
                     </div>
 
