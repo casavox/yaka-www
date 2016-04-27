@@ -1,0 +1,143 @@
+.contactsHeader {
+    padding-top: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.contactsHeaderLeft {
+    width: calc(50% - 10px) !important;
+    background: white;
+    height: 233px;
+    margin-right: 10px !important;
+}
+
+.contactsHeaderRight {
+    width: calc(50% - 10px) !important;
+    background: white;
+    height: 233px;
+    margin-left: 10px !important;
+}
+
+.contactsMain {
+    width: calc(100% - 40px) !important;
+    height: calc(100% - 293px) !important;
+    background: white;
+    margin: 20px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsMenu {
+    background: #FCFCFC;
+    height: 100%;
+    overflow-y: scroll;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 60px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsList {
+    height: 100%;
+    overflow-y: scroll;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsMenuTitle {
+    height: 60px;
+    color: #757373;
+    padding-left: 22px !important;
+    padding-right: 0 !important;
+}
+
+.contactsMenuItem {
+    height: 60px;
+    padding-left: 41px !important;
+    padding-right: 58px !important;
+    cursor: pointer;
+}
+
+.contactsMenuItemActive {
+    background: #F9F9F9;
+    cursor: default;
+}
+
+.contactsMenuBlueCircle {
+    position: absolute;
+    top: 26px;
+    left: 17px;
+}
+
+.contactsContacts {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsItemNumber {
+    position: absolute;
+    height: 28px;
+    background: #B8B8B8;
+    border-radius: 1000000px;
+    top: 16px !important;
+    right: 16px !important;
+    line-height: 28px;
+    color: white;
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+}
+
+.contactsItemNumberActive {
+    background: #00A3D3;
+}
+
+.contactItem {
+    height: 55px;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 16px;
+    color: #626262;
+    line-height: 55px;
+    border-bottom: solid 1px #F9F9F9;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactItemPro {
+    color: #FDAF00;
+    font-family: 'raleway_bold', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.contactItemCity {
+    margin-left: 30px;
+    opacity: 0.6;
+}
+
+.contactItemInitials {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    margin-top: 7px;
+    margin-right: 20px !important;
+    margin-left: 39px !important;
+}
+
+.contactItemAvatar {
+    width: 40px;
+    height: 40px;
+    margin-top: 7px;
+    margin-right: 20px !important;
+    margin-left: 39px !important;
+}
+
+@media (min-width: 992px) {
+
+    .contacts {
+        left: 220px;
+        width: calc(100% - 220px);
+    }
+
+}

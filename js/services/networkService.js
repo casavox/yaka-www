@@ -154,6 +154,9 @@
             proProposalsDeclinedGET: function (success, error) {
                 $http.get(baseUrl + '/pro/proposals/declined').success(success).error(error)
             },
+            contactsGET: function (success, error) {
+                $http.get(baseUrl + '/contacts').success(success).error(error)
+            }
         };
 
     }

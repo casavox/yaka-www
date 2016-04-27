@@ -1,0 +1,113 @@
+<section class="view">
+    <div class="header-menu">
+        <ng-include src="'partials/menuHamburger.html'"></ng-include>
+        <div class="title">
+            Contacts
+        </div>
+        <a ng-click="app.logout()">
+            <div class="logout">
+                Log Out
+            </div>
+        </a>
+    </div>
+    <div class="page-content contacts">
+        <ng-include src="'partials/menu.html'"></ng-include>
+        <div class="col-xs-12 contactsHeader">
+            <div class="col-xs-6 contactsHeaderLeft">
+
+            </div>
+            <div class="col-xs-6 contactsHeaderRight">
+
+            </div>
+        </div>
+        <div class="col-xs-12 contactsMain">
+            <div class="col-xs-4 contactsMenu">
+                <div class="col-xs-12 contactsMenuTitle">
+                    CONTACTS
+                </div>
+                <div class="col-xs-12 contactsMenuItem"
+                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_ALL}"
+                     ng-click="vm.currentMenuItem = vm.MENU_ALL">
+                    <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
+                         ng-if="vm.currentMenuItem == vm.MENU_ALL">
+                    TOUS
+                    <div class="contactsItemNumber"
+                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_ALL}">
+                        {{vm.contacts.length}}
+                    </div>
+                </div>
+                <div class="col-xs-12 contactsMenuItem"
+                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_PROS}"
+                     ng-click="vm.currentMenuItem = vm.MENU_PROS">
+                    <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
+                         ng-if="vm.currentMenuItem == vm.MENU_PROS">
+                    ARTISANS
+                    <div class="contactsItemNumber"
+                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_PROS}">
+                        {{vm.prosNumber}}
+                    </div>
+                </div>
+                <div class="col-xs-12 contactsMenuItem"
+                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_FRIENDS}"
+                     ng-click="vm.currentMenuItem = vm.MENU_FRIENDS">
+                    <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
+                         ng-if="vm.currentMenuItem == vm.MENU_FRIENDS">
+                    AMIS
+                    <div class="contactsItemNumber"
+                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_FRIENDS}">
+                        {{vm.friendsNumber}}
+                    </div>
+                </div>
+                <div class="col-xs-12 contactsMenuTitle">
+                    INVITATIONS
+                </div>
+                <div class="col-xs-12 contactsMenuItem"
+                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}"
+                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_RECEIVED">
+                    <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
+                         ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
+                    RECUES
+                    <div class="contactsItemNumber"
+                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}">
+                        42
+                    </div>
+                </div>
+                <div class="col-xs-12 contactsMenuItem"
+                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}"
+                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_SENT">
+                    <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
+                         ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
+                    ENVOYÉES
+                    <div class="contactsItemNumber"
+                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}">
+                        42
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8 contactsContacts">
+                <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts" ng-if="vm.showContactOrNot(contact)">
+
+                    <cl-image public-id="{{contact.user.profile.avatar.cloudinaryPublicId}}"
+                              class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                              ng-if="contact.user.profile.avatar.cloudinaryPublicId">
+                        <cl-transformation height="40" width="40" crop="fill"/>
+                    </cl-image>
+                    <div class="img-default fl contactItemInitials"
+                         ng-if="!contact.user.profile.avatar.cloudinaryPublicId">
+                        {{contact.user.firstName[0] | uppercase}}.
+                        {{contact.user.lastName[0]| uppercase}}.
+                    </div>
+
+                    {{contact.user.firstName}} {{contact.user.lastName}}
+                    <span class="contactItemPro" ng-if="contact.user.professional">
+                        PRO
+                    </span>
+                    <span class="contactItemCity"
+                          ng-if="contact.user.profile && contact.user.profile.defaultAddress && contact.user.profile.defaultAddress.locality">
+                        {{contact.user.profile.defaultAddress.locality}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
