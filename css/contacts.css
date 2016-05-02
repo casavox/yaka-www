@@ -16,6 +16,41 @@
     background: white;
     height: 233px;
     margin-left: 10px !important;
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsHeaderRightTitle {
+    color: #1A2939;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    margin-top: 28px;
+}
+
+.contactsHeaderRightSubTitle {
+    color: #626262;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 28px;
+}
+
+.contactsHeaderRightButtons {
+    margin-left: calc((100% - 360px) / 2);
+    margin-top: 26px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsHeaderRightButton {
+    height: 40px !important;
+    width: 160px !important;
+    padding-top: 12px !important;
+    font-size: 13px;
+}
+
+.contactsHeaderRightButtonLeft {
+    margin-right: 40px;
 }
 
 .contactsMain {
@@ -119,7 +154,7 @@
     height: 40px;
     font-size: 14px;
     line-height: 40px;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     margin-top: 7px;
     margin-right: 20px !important;
     margin-left: 39px !important;
@@ -131,6 +166,25 @@
     margin-top: 7px;
     margin-right: 20px !important;
     margin-left: 39px !important;
+}
+
+.yakaPopupInvitTitle {
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1A2939;
+}
+
+.yakaPopupInvitSubTitle {
+    font-family: 'raleway_light', Arial, sans-serif;
+    font-size: 13px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    color: #424753;
+    opacity: 0.5;
+    margin-top: 8px;
+    margin-bottom: 20px;
 }
 
 @media (min-width: 992px) {

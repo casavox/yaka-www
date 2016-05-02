@@ -156,6 +156,12 @@
             },
             contactsGET: function (success, error) {
                 $http.get(baseUrl + '/contacts').success(success).error(error)
+            },
+            inviteCustomerPOST: function (data, success, error) {
+                $http.post(baseUrl + '/invite/customer', data).success(success).error(error)
+            },
+            inviteProPOST: function (data, success, error) {
+                $http.post(baseUrl + '/invite/pro', data).success(success).error(error)
             }
         };
 

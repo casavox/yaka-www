@@ -28,16 +28,16 @@
 }
 
 .yakaButton.yakaBlue {
-    background: #2bbde9;
+    background: #00A3D3;
     color: white;
 }
 
 .yakaButton.yakaBlue:hover {
-    background: #4dd4fb;
+    background: #2bbde9;
 }
 
 .yakaButton.yakaBlue:active {
-    background: #2bbde9;
+    background: #00A3D3;
 }
 
 .yakaButton.yakaBlue.yakaDisabled {
@@ -97,6 +97,7 @@
     background-color: rgba(11, 16, 23, .5);
     padding-top: 90px !important;
     padding-bottom: 90px !important;
+    z-index: 20;
 }
 
 .yakaPopupWindow {

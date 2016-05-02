@@ -17,7 +17,23 @@
 
             </div>
             <div class="col-xs-6 contactsHeaderRight">
-
+                <div class="col-xs-12 contactsHeaderRightTitle">
+                    You want to invite
+                </div>
+                <div class="col-xs-12 contactsHeaderRightSubTitle">
+                    Invite Friends and Pros to start sharing and getting some
+                    good contractors, helping your friends and making money !
+                </div>
+                <div class="col-xs-12 contactsHeaderRightButtons">
+                    <div class="col-xs-3 yakaButton yakaBlue contactsHeaderRightButton contactsHeaderRightButtonLeft"
+                         ng-click="vm.openFriendPopup()">
+                        INVITER UN AMI
+                    </div>
+                    <div class="col-xs-3 yakaButton yakaBlue contactsHeaderRightButton"
+                         ng-click="vm.openProPopup()">
+                        INVITER UN PRO
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-xs-12 contactsMain">
@@ -85,7 +101,8 @@
                 </div>
             </div>
             <div class="col-xs-8 contactsContacts">
-                <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts" ng-if="vm.showContactOrNot(contact)">
+                <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts"
+                     ng-if="vm.showContactOrNot(contact)">
 
                     <cl-image public-id="{{contact.user.profile.avatar.cloudinaryPublicId}}"
                               class="f-l proposal-icon img-circle contactItemAvatar" format="png"
@@ -111,3 +128,35 @@
         </div>
     </div>
 </section>
+
+<div class="yakaPopup" ng-show="vm.showInvitFriendPopup" ng-click="vm.closeFriendPopup()">
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" ng-click="vm.closeFriendPopup()" alt=""/>
+
+            <div class="col-xs-12 yakaPopupInvitTitle">
+                Invitez vos amis
+            </div>
+
+            <textarea class="col-xs-12 form-control" ng-model="vm.invitCustomer"/>
+
+            <div class="col-xs-12 yakaPopupInvitSubTitle">
+                Vous pouvez ajouter plusieurs emails en les séparant par une virgule.
+            </div>
+
+            <div class="col-xs-12 yakaButton yakaOrange" ng-click="vm.sendCustomerInvit()">
+                INVITER
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" ng-show="vm.showInvitProPopup" ng-click="vm.closeProPopup()">
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" ng-click="vm.closeProPopup()" alt=""/>
+
+            Coucou Pro
+        </div>
+    </div>
+</div>

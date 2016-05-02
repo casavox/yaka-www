@@ -68,7 +68,81 @@
                     return true;
                 }
             }
+        };
+
+        vm.showInvitFriendPopup = false;
+
+        vm.openFriendPopup = function () {
+            vm.showInvitFriendPopup = true;
+        };
+
+        vm.closeFriendPopup = function () {
+            vm.showInvitFriendPopup = false;
+        };
+
+        vm.showInvitProPopup = false;
+
+        vm.openProPopup = function () {
+            vm.showInvitProPopup = true;
+        };
+
+        vm.closeProPopup = function () {
+            vm.showInvitProPopup = false;
+        };
+
+        vm.invitCustomer = "";
+
+        vm.invitPro = {
+            email: "",
+            firstName: "",
+            lastName: "",
+            phone: "",
+            activities: [],
+            address: {}
+        };
+
+        vm.sendCustomerInvit = function () {
+            var invits = vm.invitCustomer.split(",");
+            for (var i = 0; i < invits.length; i++) {
+                invits[i] = invits[i].trim();
+                if (!isEmailValid(invits[i])) {
+                    alertMsg.send(invits[i] + " n'est pas un email valide", "warning");
+                    return;
+                }
+            }
+
+            networkService.inviteCustomerPOST(invits, succesinviteCustomerPOST, errorinviteCustomerPOST);
+        };
+
+        function succesinviteCustomerPOST(res) {
+            console.log(res);
+            vm.invitCustomer = "";
+            vm.closeFriendPopup();
+            alertMsg.send("Invitation effectuée", "success");
         }
+
+        function errorinviteCustomerPOST() {
+            alertMsg.send("Impossible d'effectuer l'invitation", "warning");
+        }
+
+        vm.sendProInvit = function () {
+            networkService.inviteProPOST(vm.invitePro, succesinviteProPOST, errorinviteProPOST);
+        };
+
+        function succesinviteProPOST(res) {
+            console.log(res);
+            vm.closeProPopup();
+            alertMsg.send("Invitation effectuée", "success");
+        }
+
+        function errorinviteProPOST() {
+            alertMsg.send("Impossible d'effectuer l'invitation", "warning");
+        }
+
+        var isEmailValid = function (email) {
+            return new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").test(email);
+        };
+
     }
 })
 ();
