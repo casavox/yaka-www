@@ -257,7 +257,7 @@
     float: left;
 }
 
-.proHomeSection2ActivitiesInput .dropdown-multiselect {
+.proHomeSection2InputError .dropdown-multiselect {
     width: 100%;
     height: 40px !important;
 }
