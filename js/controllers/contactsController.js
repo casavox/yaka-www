@@ -14,6 +14,13 @@
 
         var vm = this;
 
+        vm.getMenuItemClass = function (state) {
+            if (state == "contacts") {
+                return "active-menu";
+            }
+            return "";
+        };
+
         vm.MENU_ALL = "ALL";
         vm.MENU_PROS = "PROS";
         vm.MENU_FRIENDS = "FRIENDS";
@@ -48,6 +55,33 @@
 
         function errorContactsGET() {
             alertMsg.send("Impossible de récupérer les contacts", "warning");
+        }
+
+        vm.invitationsReceived = [];
+        vm.invitationsSent = [];
+
+        networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
+
+        function succesInvitationsReceivedGET(res) {
+            console.log(res);
+
+            vm.invitationsReceived = res;
+        }
+
+        function errorInvitationsReceivedGET() {
+            alertMsg.send("Impossible de récupérer les invitations", "warning");
+        }
+
+        networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
+
+        function succesInvitationsSentGET(res) {
+            console.log(res);
+
+            vm.invitationsSent = res;
+        }
+
+        function errorInvitationsSentGET() {
+            alertMsg.send("Impossible de récupérer les invitations", "warning");
         }
 
         vm.showContactOrNot = function (contact) {
@@ -109,11 +143,11 @@
             console.log(res);
             vm.invitCustomer = "";
             vm.closeFriendPopup();
-            alertMsg.send("Invitation(s) effectuée(s)", "success");
+            alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
 
         function errorInviteCustomerPOST() {
-            alertMsg.send("Impossible d'effectuer l'invitation", "warning");
+            alertMsg.send("Impossible d'envoyer l'invitation", "warning");
         }
 
         vm.invitPro = {
@@ -132,11 +166,20 @@
         function succesInviteProPOST(res) {
             console.log(res);
             vm.closeProPopup();
-            alertMsg.send("Invitation effectuée", "success");
+            vm.invitPro = {
+                email: "",
+                firstName: "",
+                lastName: "",
+                phone: "",
+                activities: [],
+                address: {}
+            };
+            vm.phoneNumber = "";
+            alertMsg.send("Invitation envoyée", "success");
         }
 
         function errorInviteProPOST() {
-            alertMsg.send("Impossible d'effectuer l'invitation", "warning");
+            alertMsg.send("Impossible d'envoyer l'invitation", "warning");
         }
 
         vm.autocomplete = {
@@ -269,6 +312,32 @@
             }
             return true;
         };
+
+        vm.refuseInvitation = function (invitationId) {
+            networkService.refuseInvitationPOST(invitationId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
+        };
+
+        function succesRefuseInvitationPOST(res) {
+            console.log(res);
+            alertMsg.send("Invitation refusée avec succes", "success");
+        }
+
+        function errorRefuseInvitationPOST() {
+            alertMsg.send("Impossible de refuser l'invitation", "warning");
+        }
+
+        vm.acceptInvitation = function (invitationId) {
+            networkService.acceptInvitationPOST(invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+        };
+
+        function succesAcceptInvitationPOST(res) {
+            console.log(res);
+            alertMsg.send("Invitation acceptée avec succes", "success");
+        }
+
+        function errorAcceptInvitationPOST() {
+            alertMsg.send("Impossible d'accepter l'invitation", "warning");
+        }
 
     }
 })

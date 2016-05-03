@@ -85,7 +85,7 @@
                     RECUES
                     <div class="contactsItemNumber"
                          ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}">
-                        42
+                        {{vm.invitationsReceived.length}}
                     </div>
                 </div>
                 <div class="col-xs-12 contactsMenuItem"
@@ -96,7 +96,7 @@
                     ENVOYÉES
                     <div class="contactsItemNumber"
                          ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}">
-                        42
+                        {{vm.invitationsSent.length}}
                     </div>
                 </div>
             </div>
@@ -122,6 +122,52 @@
                     <span class="contactItemCity"
                           ng-if="contact.user.profile && contact.user.profile.defaultAddress && contact.user.profile.defaultAddress.locality">
                         {{contact.user.profile.defaultAddress.locality}}
+                    </span>
+                </div>
+                <div class="col-xs-12 contactItem"
+                     ng-repeat="invit in vm.invitationsReceived"
+                     ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
+
+                    <cl-image public-id="{{invit.inviter.profile.avatar.cloudinaryPublicId}}"
+                              class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                              ng-if="invit.inviter.profile.avatar.cloudinaryPublicId">
+                        <cl-transformation height="40" width="40" crop="fill"/>
+                    </cl-image>
+                    <div class="img-default fl contactItemInitials"
+                         ng-if="!invit.inviter.profile.avatar.cloudinaryPublicId">
+                        {{invit.inviter.firstName[0] | uppercase}}.
+                        {{invit.inviter.lastName[0]| uppercase}}.
+                    </div>
+
+                    {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                    <span class="contactItemPro" ng-if="contact.user.professional">
+                        PRO
+                    </span>
+                    <span class="contactItemCity"
+                          ng-if="invit.inviter.profile && invit.inviter.profile.defaultAddress && invit.inviter.profile.defaultAddress.locality">
+                        {{invit.inviter.profile.defaultAddress.locality}}
+                    </span>
+
+                    <img class="invitRefuse"
+                         src="icons/mdpi/ic_refuse_invitation.png"
+                         ng-click="vm.refuseInvitation(invit.id)"/>
+
+                    <img class="invitAccept"
+                         src="icons/mdpi/ic_accept_invitation.png"
+                         ng-click="vm.acceptInvitation(invit.id)"/>
+                </div>
+                <div class="col-xs-12 contactItem contactItemInvitation"
+                     ng-repeat="invit in vm.invitationsSent"
+                     ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
+
+                    <span ng-if="invit.firstName && invit.lastName">
+                        {{invit.firstName}} {{invit.lastName}}
+                    </span>
+                    <span ng-if="!invit.firstName || !invit.lastName">
+                        {{invit.email}}
+                    </span>
+                    <span class="contactItemPro" ng-if="invit.isPro">
+                        PRO
                     </span>
                 </div>
             </div>

@@ -220,6 +220,24 @@
     width: 100%;
 }
 
+.contactItemInvitation {
+    padding-left: 20px !important;
+}
+
+.invitAccept {
+    float: right;
+    margin-top: 18px;
+    margin-right: 34px;
+    cursor: pointer;
+}
+
+.invitRefuse {
+    float: right;
+    margin-top: 16px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
 @media (min-width: 992px) {
 
     .contacts {

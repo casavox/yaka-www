@@ -162,6 +162,18 @@
             },
             inviteProPOST: function (data, success, error) {
                 $http.post(baseUrl + '/invite/pro', data).success(success).error(error)
+            },
+            invitationsReceivedGET: function (success, error) {
+                $http.get(baseUrl + '/invitations/received').success(success).error(error)
+            },
+            invitationsSentGET: function (success, error) {
+                $http.get(baseUrl + '/invitations/sent').success(success).error(error)
+            },
+            refuseInvitationPOST: function (id, success, error) {
+                $http.post(baseUrl + '/invitations/' + id + '/refuse').success(success).error(error)
+            },
+            acceptInvitationPOST: function (id, success, error) {
+                $http.post(baseUrl + '/invitations/' + id + '/accept').success(success).error(error)
             }
         };
 

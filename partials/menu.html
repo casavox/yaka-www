@@ -8,12 +8,19 @@
         </div>
     </div>
     <ul class="menu-content">
+        <a ui-sref="contacts" ng-click="app.menu.closeMenu()">
+            <li ng-class="vm.getMenuItemClass('contacts')" angular-ripple><i class="fa fa-tachometer"></i>
+                CONTACTS
+            </li>
+        </a>
         <a ui-sref="dashboard" ng-click="app.menu.closeMenu()">
-            <li ng-class="vm.getMenuItemClass('dashboard')" angular-ripple><i class="fa fa-tachometer"></i>DASHBOARD
+            <li ng-class="vm.getMenuItemClass('dashboard')" angular-ripple><i class="fa fa-tachometer"></i>
+                DASHBOARD
             </li>
         </a>
         <a ui-sref="prodashboard" ng-click="app.menu.closeMenu()">
-            <li ng-class="vm.getMenuItemClass('prodashboard')" angular-ripple><i class="fa fa-tachometer"></i>BROWSE
+            <li ng-class="vm.getMenuItemClass('prodashboard')" angular-ripple><i class="fa fa-tachometer"></i>
+                BROWSE
                 LEADS
             </li>
         </a>
@@ -28,17 +35,17 @@
             </li>
         </a>
         <!--<a ui-sref="inbox" ng-click="app.menu.closeMenu()">-->
-            <!--<li ng-class="vm.getMenuItemClass('inbox')" angular-ripple><i class="fa fa-inbox"></i>INBOX</li>-->
+        <!--<li ng-class="vm.getMenuItemClass('inbox')" angular-ripple><i class="fa fa-inbox"></i>INBOX</li>-->
         <!--</a>-->
         <a ui-sref="my-projects" ng-click="app.menu.closeMenu()">
             <li ng-class="vm.getMenuItemClass('myprojects')" angular-ripple><i class="fa fa-archive"></i>MY PROJECTS
             </li>
         </a>
         <!--<a ui-sref="myplaces" ng-click="app.menu.closeMenu()">-->
-            <!--<li ng-class="vm.getMenuItemClass('myplaces')" angular-ripple><i class="fa fa-map-marker"></i>MY PLACES</li>-->
+        <!--<li ng-class="vm.getMenuItemClass('myplaces')" angular-ripple><i class="fa fa-map-marker"></i>MY PLACES</li>-->
         <!--</a>-->
         <!--<a ui-sref="mypros" ng-click="app.menu.closeMenu()">-->
-            <!--<li ng-class="vm.getMenuItemClass('mypros')" angular-ripple><i class="fa fa-users"></i>MY PROS</li>-->
+        <!--<li ng-class="vm.getMenuItemClass('mypros')" angular-ripple><i class="fa fa-users"></i>MY PROS</li>-->
         <!--</a>-->
     </ul>
 </div>
