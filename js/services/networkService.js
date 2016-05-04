@@ -22,9 +22,6 @@
             register: function (data, success, error) {
                 $http.post(baseUrl + '/register', data).success(success).error(error)
             },
-            facebookLogin: function (data, success, error) {
-                $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
-            },
             proRegister: function (data, success, error) {
                 $http.post(baseUrl + '/pro/register', data).success(success).error(error)
             },

@@ -7,8 +7,14 @@
 
     //
     //Controller login
-    HomeController.$inject = ['$scope', '$rootScope', 'networkService', 'alertMsg', '$localStorage', '$state', '$translate', '$auth'];
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth) {
+    HomeController.$inject = ['$scope', '$rootScope', 'networkService', 'alertMsg', '$localStorage', '$state', '$translate', '$auth', '$stateParams'];
+    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
+
+        console.log("invitationId : " + $stateParams.invitationId);
+        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
+            $localStorage.invitationId = $stateParams.invitationId;
+        }
+
         var vm = this;
 
         $rootScope.showMenu = false;
@@ -258,6 +264,11 @@
 
         vm.register = function () {
             if (vm.registerFormIsValid) {
+
+                if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+                    vm.newUser.invitationId = $localStorage.invitationId;
+                }
+
                 networkService.register(vm.newUser, successRegister, failRegister);
             }
         };
@@ -265,6 +276,7 @@
         function successRegister(res) {
             console.log(res);
             $localStorage.token = res.token;
+            $localStorage.invitationId = '';
             $state.go('dashboard');
         }
 

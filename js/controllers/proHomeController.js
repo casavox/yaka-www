@@ -5,8 +5,14 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg', '$translate', '$localStorage', '$state', 'smoothScroll'];
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll) {
+    ProHomeController.$inject = ['$scope', '$rootScope', 'networkService', '$auth', 'alertMsg', '$translate', '$localStorage', '$state', 'smoothScroll', '$stateParams'];
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
+
+        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
+            console.log("invitationId : " + $stateParams.invitationId);
+            $localStorage.invitationId = $stateParams.invitationId;
+        }
+
         var vm = this;
 
         $rootScope.showMenu = false;
@@ -263,6 +269,11 @@
 
         vm.registerUser = function () {
             if (vm.formIsValid) {
+
+                if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+                    vm.newUser.invitationId = $localStorage.invitationId;
+                }
+
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister);
             }
         };
@@ -270,6 +281,7 @@
         function successProRegister(res) {
             console.log(res);
             $localStorage.token = res.token;
+            $localStorage.invitationId = '';
             $state.go('dashboard');
         }
 

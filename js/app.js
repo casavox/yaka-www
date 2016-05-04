@@ -189,13 +189,16 @@ window.fbAsyncInit = function () {
         // The states
         $stateProvider
             .state('home', {
-                url: "/",
+                url: "/?invitationId",
                 templateUrl: "partials/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
             .state('pro-home', {
-                url: "/pro",
+                url: "/pro?invitationId",
+                params: {
+                    invitationId: null
+                },
                 templateUrl: "partials/pro_home.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
