@@ -826,10 +826,11 @@
 
         function succesProfileGET(res) {
             vm.user = res;
-            if (!angular.isUndefined(res.addresses) && res.addresses) {
-                if (res.addresses.length > 0) {
-                    vm.myAddress = res.addresses[0].address;
-                    $scope.address.name = vm.myAddress;
+            if (!angular.isUndefined(res.profile.addresses) && res.profile.addresses) {
+                if (res.profile.addresses.length > 0) {
+                    vm.myAddress = res.profile.addresses[0];
+
+                    $scope.address.name = vm.myAddress.name;
                     vm.continueAddress = true;
                 }
                 else {
@@ -844,7 +845,6 @@
                 vm.newAddrFlag = true;
                 vm.myAddress = "new";
             }
-
             console.log(res);
         }
 
