@@ -30,7 +30,7 @@
             <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
         </div>
         <div class="title no-line" ng-show="!vm.proDetails">
-            {{vm.project.title}}
+            {{vm.project.translatedTitle}}
             <p class="sub-title-proposal">
                 Make an offer
             </p>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="pro-proposal-title">
                             <p ng-class="{'red': vm.projectTmp.type == 'EMERGENCY'}">
-                                {{vm.project.title}}
+                                vm.project.translatedTitle
                             </p>
 
                             <p>

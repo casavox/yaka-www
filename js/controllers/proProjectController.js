@@ -10,8 +10,6 @@
     ProProjectController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams', '$translate'];
     function ProProjectController($rootScope, $scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams, $translate) {
 
-        console.log("----ProProjectController----");
-
         $rootScope.showMenu = true;
 
         var vm = this;
@@ -506,6 +504,7 @@
             vm.circle.visible = true;
 
             vm.project = res;
+            vm.project.translatedTitle = translateProjectTitle(vm.project);
             console.log(res);
             vm.projectTmp = angular.copy(vm.project);
             vm.whenSlot = vm.getWhen();
@@ -638,6 +637,13 @@
             }
         }
 
+        function translateProjectTitle(proj) {
+            var titleArray = proj.title.split(' ');
+            for (var i = 0; i < titleArray.length; i++) {
+                titleArray[i] = $translate.instant(titleArray[i]);
+            }
+            return titleArray.join(' ');
+        }
 
         function errorProjectGET() {
             $state.go("prodashboard");
