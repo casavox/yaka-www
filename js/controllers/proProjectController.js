@@ -10,6 +10,8 @@
     ProProjectController.$inject = ['$rootScope', '$scope', '$state', '$timeout', '$localStorage', 'networkService', 'alertMsg', 'Upload', 'cloudinary', '$filter', '$stateParams', '$translate'];
     function ProProjectController($rootScope, $scope, $state, $timeout, $localStorage, networkService, alertMsg, $upload, cloudinary, $filter, $stateParams, $translate) {
 
+        console.log("----ProProjectController----");
+
         $rootScope.showMenu = true;
 
         var vm = this;
