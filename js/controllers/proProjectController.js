@@ -80,12 +80,7 @@
         };
 
         if ($stateParams.projectId) {
-            var res = parseInt($stateParams.projectId);
-            if (res.toString() != $stateParams.projectId)
-                $state.go("prodashboard");
-            else {
-                networkService.proProjectGET(res, succesProjectGET, errorProjectGET);
-            }
+            networkService.proProjectGET(res, succesProjectGET, errorProjectGET);
         }
         else {
             $state.go("prodashboard");
