@@ -91,12 +91,7 @@
 
 
         if ($stateParams.proposalId) {
-            var res = parseInt($stateParams.proposalId);
-            if (res.toString() != $stateParams.proposalId)
-                $state.go("prodashboard");
-            else {
-                networkService.proProposalGET(res, succesProjectGET, errorProjectGET);
-            }
+            networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         }
         else {
             $state.go("prodashboard");
