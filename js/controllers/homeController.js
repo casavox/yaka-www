@@ -97,7 +97,7 @@
         vm.passwordConfirm = "";
 
         vm.isEmailValid = function (email) {
-            return new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").test(email);
+            return new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}").test(email);
         };
 
         vm.isNameValid = function (name) {
