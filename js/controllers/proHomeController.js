@@ -134,7 +134,7 @@
             }
 
             return ret.join(char);
-        };
+        }
 
         vm.autocomplete = {
             options: {
@@ -144,11 +144,9 @@
         };
 
         vm.isSocialRegister = function () {
-            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                return true;
-            }
-            return false;
+            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
+
         };
 
         var doNotHide = false;
@@ -177,7 +175,7 @@
             } else {
                 return "";
             }
-        }
+        };
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googleProRegister').then(function (res) {
@@ -227,10 +225,8 @@
         };
 
         vm.isNameValid = function (name) {
-            if (name == undefined || name.length < 2 || !isNaN(name)) {
-                return false;
-            }
-            return true;
+            return !(name == undefined || name.length < 2 || !isNaN(name));
+
         };
 
         vm.formIsValid = function () {
@@ -240,17 +236,13 @@
                 delete activity.id;
             });
 
-            if (vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
-                vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
-                vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
-                vm.newUser.password == '' || vm.newUser.password < 6 ||
-                vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
-                vm.newUser.professional.activities.length == 0 ||
-                vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == ''
-            ) {
-                return false;
-            }
-            return true;
+            return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
+            vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
+            vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
+            vm.newUser.password == '' || vm.newUser.password < 6 ||
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
+            vm.newUser.professional.activities.length == 0 ||
+            vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == '');
         };
 
         var scrollOptions = {
@@ -314,10 +306,8 @@
         };
 
         vm.loginFormIsValid = function () {
-            if (vm.loginUser.profile.email == '' || vm.loginUser.password == '') {
-                return false;
-            }
-            return true;
+            return !(vm.loginUser.profile.email == '' || vm.loginUser.password == '');
+
         };
 
         vm.login = function () {
@@ -328,7 +318,13 @@
         function succesLogin(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.token = res.token;
-                $state.go('dashboard');
+                networkService.me(function (res) {
+                    $localStorage.user = res;
+                    $localStorage.user.type = 'pro';
+                    $state.go('prodashboard');
+                }, function (res) {
+                    alertMsg.send('Error: impossilbe to get your profile');
+                });
                 $rootScope.logmail = $scope.email;
                 console.log(res);
             }

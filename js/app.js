@@ -90,6 +90,8 @@ window.fbAsyncInit = function () {
             };
         };
 
+        
+
         $authProvider.oauth2({
             name: "googleLogin",
             clientId: CONFIG.GOOGLE_CLIENT_ID,
@@ -252,7 +254,7 @@ window.fbAsyncInit = function () {
                 controllerAs: 'vm'
             })
             .state('pro-proposal', {
-                url: "/pro/proposal/:proposalId/edit",
+                url: "/pro/proposal/:proposalId",
                 templateUrl: "partials/details_proposal.html",
                 controller: 'ProProposalController',
                 controllerAs: 'vm'

@@ -253,7 +253,7 @@
             vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
         };
 
-        networkService.professionalGET(succesProfileGET, errorProfileGET);
+        networkService.profileGET(succesProfileGET, errorProfileGET);
         networkService.skillsGET(succeSkillsGET, errorSkillsGET);
 
         function changePassword() {
@@ -566,7 +566,7 @@
             vm.portfolio = angular.copy(vm.profile.portfolio);
             vm.verifications = angular.copy(vm.profile.verifications);
             vm.activities = angular.copy(vm.profile.activities);
-            displayWorkArea();
+            // displayWorkArea();
             console.log(res);
         }
 

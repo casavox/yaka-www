@@ -101,10 +101,8 @@
         };
 
         vm.isNameValid = function (name) {
-            if (name == undefined || name.length < 2 || !isNaN(name)) {
-                return false;
-            }
-            return true;
+            return !(name == undefined || name.length < 2 || !isNaN(name));
+
         };
 
         var doNotHide = false;
@@ -126,30 +124,22 @@
         };
 
         vm.isSocialRegister = function () {
-            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                return true;
-            }
-            return false;
+            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
+
         };
 
         vm.registerFormIsValid = function () {
-            if (vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
-                vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
-                vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
-                vm.newUser.password == '' || vm.newUser.password < 6 ||
-                vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm
-            ) {
-                return false;
-            }
-            return true;
+            return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
+            vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
+            vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
+            vm.newUser.password == '' || vm.newUser.password < 6 ||
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm);
         };
 
         vm.loginFormIsValid = function () {
-            if (vm.loginUser.profile.email == '' || vm.loginUser.password == '') {
-                return false;
-            }
-            return true;
+            return !(vm.loginUser.profile.email == '' || vm.loginUser.password == '');
+
         };
 
         vm.login = function () {
@@ -160,7 +150,20 @@
         function succesLogin(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.token = res.token;
-                $state.go('dashboard');
+                networkService.me(function (res) {
+                    $localStorage.user = res;
+                    console.log(res);
+                    if (angular.isUndefined(res.professional)) {
+                        $localStorage.user.type = 'customer';
+                        $state.go('dashboard');
+                    } else if (angular.isDefined(res.professional)) {
+                        $localStorage.user.type = 'pro';
+                        $state.go('prodashboard');
+                    }
+
+                }, function (res) {
+                    alertMsg.send('Error: impossilbe to get your profile');
+                });
                 $rootScope.logmail = $scope.email;
                 console.log(res);
             }

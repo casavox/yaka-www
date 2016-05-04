@@ -10,6 +10,7 @@
 
         var app = this;
         var vm = this;
+        $scope.user = $localStorage.user;
         var menuOpened = false;
         $rootScope.rate_watcher = true;
         $scope.projectFlag = false;
@@ -32,6 +33,14 @@
                 });
             });
 
+        $scope.$watch(function () {
+            return $localStorage.user;
+        }, function (newVal, oldVal) {
+            if (newVal === oldVal)
+                return;
+            $scope.user = $localStorage.user;
+        });
+
         $scope.viewProposal = function () {
             $rootScope.rating = true;
             $scope.projectFlag = false;
@@ -43,7 +52,7 @@
 
         function check() {
             if (!$rootScope.rating) {
-                if (can) {
+                if (can && $localStorage.token && $localStorage.user) {
                     can = false;
                     networkService.proToRate(function (res) {
                         can = true;
