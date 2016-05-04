@@ -161,7 +161,7 @@
                      ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
 
                     <span ng-if="invit.firstName && invit.lastName">
-                        {{invit.firstName}} {{invit.lastName}}
+                        {{invit.firstName}} {{invit.lastName}} ({{invit.email}})
                     </span>
                     <span ng-if="!invit.firstName || !invit.lastName">
                         {{invit.email}}
