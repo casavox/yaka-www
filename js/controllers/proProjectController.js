@@ -80,7 +80,7 @@
         };
 
         if ($stateParams.projectId) {
-            networkService.proProjectGET(res, succesProjectGET, errorProjectGET);
+            networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
         else {
             $state.go("prodashboard");
