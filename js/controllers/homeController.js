@@ -81,7 +81,10 @@
             firstName: "",
             lastName: "",
             profile: {
-                email: ""
+                email: "",
+                defaultAddress: {
+                    address: ""
+                }
             },
             googleId: "",
             facebookId: ""
@@ -95,6 +98,13 @@
         };
 
         vm.passwordConfirm = "";
+
+        vm.autocomplete = {
+            options: {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
+            }
+        };
 
         vm.isEmailValid = function (email) {
             return new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}").test(email);
