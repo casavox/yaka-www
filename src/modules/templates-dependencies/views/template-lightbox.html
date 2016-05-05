@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="modal-body" ng-controller="LightBoxController">
+    <div class="boxclose" ng-click="$dismiss()"></div>
+    <!-- image -->
+    <div class="lightbox-image-container">
+        <img lightbox-src="http://res.cloudinary.com/yaka/image/upload/{{ url}}.png" ng-click="$dismiss()">
+    </div>
+    <p class="modal-description" ng-if="!simplePreview">
+        Description :
+    </p>
+    <textarea class="custom-textarea-image-blue" ng-model="media.description"
+              disabled ng-if="media.description && !simplePreview && !editMode"></textarea>
 
-</body>
-</html>
+    <p class="modal-no-description" ng-if="!media.description && !simplePreview && !editMode">Aucune description</p>
+    <textarea class="custom-textarea-image-blue" ng-model="media.description" placeholder="Your description ...."
+              ng-change="limitLength(media, 'description', 140)" ng-if="editMode"></textarea>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-desc-length" ng-if="editMode">
+                {{media.description.length}}/140
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp-footer" ng-if="editMode">
+        <div ng-click="deleteImg(); $dismiss()">
+            DELETE
+        </div>
+        <div ng-click="updateImg(); $dismiss()">
+            UPDATE
+        </div>
+    </div>
+</div>

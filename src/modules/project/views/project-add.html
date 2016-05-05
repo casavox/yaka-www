@@ -1,0 +1,633 @@
+<section class="view">
+    <div class="header-menu-default">
+
+        <div class="title no-margin">
+            <div class="logo-black center">
+                <a ui-sref="dashboard">
+                    <div class="y-white">
+                        Y
+                    </div>
+                </a>
+                <a ui-sref="dashboard" class="color-none">
+                    <div class="Flogo">
+                        Yaka
+                    </div>
+                </a>
+                <a ui-sref="dashboard" class="color-none">
+                    <div class="Slogo">
+                        Club
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a ng-click="app.logout()">
+            <div class="logout">
+                Log Out
+            </div>
+        </a>
+    </div>
+    <div class="page-content">
+        <div class="content-slide-default" id="main-scroll-container">
+            <div class="slide" id="slide1" ng-show="vm.selectCategory">
+                <h2 class="text-center">Select one professional category</h2>
+
+                <div class="row new-project-box no-margin">
+                    <div class="emergency-title row">
+                        <div class="col-xs-7">
+                            <p class="fr">Emergency 48h</p>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                       id="myonoffswitch" ng-model="vm.emergency" ng-change="vm.resetProject()"
+                                       ng-click="vm.wait = false">
+                                <label class="onoffswitch-label" for="myonoffswitch"></label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected"
+                         ng-repeat="child in vm.newProject.childrenActivities"
+                         ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
+                         title="{{'ACTIVITY_' + child.code | translate}}" ng-show="vm.wait">
+                        <div class="type-project-box-content">
+                            <div class="v-icon v-icon-{{child.code}} center">
+                            </div>
+                            <p class="type-project-title text-center">
+                                {{'ACTIVITY_' + child.code | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide bckg-white" id="subSlide{{$index}}" ng-show="vm.questions[$index]"
+                 ng-repeat="q in vm.questions" ng-if="q.childrenActivities">
+                <h2 class="text-center">{{'ACTIVITY_' + q.code | translate }}</h2>
+                <ul class="questions-ul center">
+                    <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities"
+                        ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
+                        {{ 'ACTIVITY_' + child.code | translate }}
+                    </li>
+                </ul>
+            </div>
+            <div class="slide bckg-default" id="slide3" ng-show="vm.service">
+                <div class="row center no-margin no-padding material-box">
+                    <h4 class="material-title">Do you have material?</h4>
+
+                    <div class="col-md-6">
+
+                        <div class="v-btn center" ng-click="vm.material = 'yes'"
+                             ng-class="{activate: vm.material == 'yes'}">
+                            YES
+                        </div>
+                        <p class="material-sub">I have it</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="v-btn center" ng-click="vm.material = 'no'"
+                             ng-class="{activate: vm.material == 'no'}">
+                            NO
+                        </div>
+                        <p class="material-sub">I need it</p>
+                    </div>
+                </div>
+                <p class="error center" ng-show="vm.error.material.flag">
+                    {{vm.error.material.message}}
+                </p>
+
+                <h2 class="text-center h2-middle">Could you describe project for us?</h2>
+                <textarea class="description center" ng-model="vm.projectDescription"
+                          placeholder="describe your problem and your needs" ng-blur="vm.verifDescription()"></textarea>
+
+                <p class="error center" ng-show="vm.error.description.flag">
+                    {{vm.error.description.message}}
+                </p>
+                <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()">Continue</button>
+            </div>
+            <div class="slide bckg-white" id="slide4" ng-show="vm.continue">
+                <h2 class="text-center">Add some photos of your project</h2>
+
+                <div class="row w-900 center no-margin">
+                    <div class="col-md-3 no-padding"
+                         ngf-drop="uploadFiles($files)"
+                         ngf-drag-over-class="dragOverClass($event)"
+                         ng-model="files"
+                         ng-multiple="false">
+                        <span class=" center img-preview-remove" ng-click="photos[0] = {}"
+                              ng-show="photos[0].public_id"></span>
+
+                        <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+                             ngf-accept="'image/*'" ngf-max-size="5MB">
+                            <a cl-href="{{photos[0].public_id}}" target="_blank" format="png" class="center-midlle"
+                               ng-show="photos[0].public_id">
+
+                                <cl-image public-id="{{photos[0].public_id}}" secure="true"
+                                          class="img-preview center-middle"
+                                          format="png">
+                                    <cl-transformation height="220" width="220" crop="fill"/>
+                                </cl-image>
+                            </a>
+
+                            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
+                                 ng-hide="photos[0].public_id || vm.imageLoading[0]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[0]"/>
+                        </div>
+                        <textarea class="comment custom-comment" ng-model="photos[0].description"
+                                  ng-show="photos[0].public_id" placeholder="Comment this photo"
+                                  ng-change="vm.limitLength(photos[0], 'description', 140)"></textarea>
+
+                        <div class="comment-length">
+                            {{photos[0].description.length}}/140
+                        </div>
+                    </div>
+                    <div class="col-md-3 no-padding"
+                         ngf-drop="uploadFiles($files)"
+                         ngf-drag-over-class="dragOverClass($event)"
+                         ng-model="files"
+                         ng-multiple="false">
+                        <span class=" center img-preview-remove" ng-click="photos[1] = {}"
+                              ng-show="photos[1].public_id"></span>
+
+                        <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 1)"
+                             ngf-accept="'image/*'" ngf-max-size="5MB">
+                            <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle"
+                               ng-show="photos[1].public_id">
+
+                                <cl-image public-id="{{photos[1].public_id}}" secure="true"
+                                          class="img-preview center-middle"
+                                          format="png"/>
+                                <cl-transformation height="220" width="220" crop="fill"/>
+                                </cl-image>
+                            </a>
+                            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
+                                 ng-hide="photos[1].public_id || vm.imageLoading[1]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[1]"/>
+                        </div>
+                        <textarea class="comment custom-comment" ng-model="photos[1].description"
+                                  ng-show="photos[1].public_id" placeholder="Comment this photo"
+                                  ng-change="vm.limitLength(photos[1], 'description', 140)"></textarea>
+
+                        <div class="comment-length">
+                            {{photos[1].description.length}}/140
+                        </div>
+                    </div>
+                    <div class="col-md-3 no-padding"
+                         ngf-drop="uploadFiles($files)"
+                         ngf-drag-over-class="dragOverClass($event)"
+                         ng-model="files"
+                         ng-multiple="false">
+                        <span class=" center img-preview-remove" ng-click="photos[2] = {}"
+                              ng-show="photos[2].public_id"></span>
+
+                        <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 2)"
+                             ngf-accept="'image/*'" ngf-max-size="5MB">
+                            <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle"
+                               ng-show="photos[2].public_id">
+
+                                <cl-image public-id="{{photos[2].public_id}}" secure="true"
+                                          class="img-preview center-middle"
+                                          format="png">
+                                    <cl-transformation height="220" width="220" crop="fill"/>
+                                </cl-image>
+                            </a>
+                            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
+                                 ng-hide="photos[2].public_id || vm.imageLoading[2]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[2]"/>
+                        </div>
+                        <textarea class="comment custom-comment" ng-model="photos[2].description"
+                                  ng-show="photos[2].public_id" placeholder="Comment this photo"
+                                  ng-change="vm.limitLength(photos[2], 'description', 140)"></textarea>
+
+                        <div class="comment-length">
+                            {{photos[2].description.length}}/140
+                        </div>
+                    </div>
+                    <div class="col-md-3 no-padding"
+                         ngf-drop="uploadFiles($files)"
+                         ngf-drag-over-class="dragOverClass($event)"
+                         ng-model="files"
+                         ng-multiple="false">
+                        <span class=" center img-preview-remove" ng-click="photos[3] = {}"
+                              ng-show="photos[3].public_id"></span>
+
+                        <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 3)"
+                             ngf-accept="'image/*'" ngf-max-size="5MB">
+                            <a cl-href="{{photo.public_id}}" format="png" target="_blank" class="center-midlle"
+                               ng-show="photos[3].public_id">
+
+                                <cl-image public-id="{{photos[3].public_id}}" secure="true"
+                                          class="img-preview center-middle"
+                                          format="png">
+                                    <cl-transformation height="220" width="220" crop="fill"/>
+                                </cl-image>
+                            </a>
+                            <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
+                                 ng-hide="photos[3].public_id || vm.imageLoading[3]"/>
+
+                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[3]"/>
+                        </div>
+                        <textarea class="comment custom-comment" ng-model="photos[3].description"
+                                  ng-show="photos[3].public_id"
+                                  ng-change="vm.limitLength(photos[3], 'description', 140)"
+                                  placeholder="Comment this photo"></textarea>
+
+                        <div class="comment-length">
+                            {{photos[3].description.length}}/140
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue
+                </button>
+            </div>
+            <div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
+                <h2 class="text-center mb-39">Where do need it?</h2>
+
+                <h3 class="text-center mb-120" ng-show="!vm.newAddrFlag">Enter your address and give it a name</h3>
+
+                <h3 class="text-center mb-120" ng-show="vm.newAddrFlag">Select one from your registred addresses or
+                    enter a new one</h3>
+
+                <div class="row no-margin w-900 center select-addr">
+                    <div class="col-md-4 no-padding">
+                        <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
+                            <option value="new">Create new one</option>
+                            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}"
+                                    ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 no-padding">
+                        <p class="">
+                            - Or create a new one -
+                        </p>
+
+                    </div>
+                    <div class="col-md-4 no-padding">
+                        <input type="text" class="select-custom" ng-model="vm.newAddr.name"
+                               ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+                    </div>
+                </div>
+                <div class="row no-margin w-900 center addr">
+                    <div class="no-padding mb-39" ng-class="col-xs-12">
+                        <div class="inner-addon right-addon">
+                            <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <input vs-google-autocomplete="options"
+                                   options="options"
+                                   ng-model="address.name"
+                                   vs-place="address.place"
+                                   vs-place-id="address.components.placeId"
+                                   vs-street-number="address.components.streetNumber"
+                                   vs-street="address.components.street"
+                                   vs-city="address.components.city"
+                                   vs-state="address.components.state"
+                                   vs-country-short="address.components.countryCode"
+                                   vs-country="address.components.country"
+                                   vs-post-code="address.components.postCode"
+                                   vs-district="address.components.district"
+                                   vs-latitude="address.components.location.lat"
+                                   vs-longitude="address.components.location.long"
+
+                                   type="text"
+                                   name="address"
+                                   id="address"
+                                   placeholder="Enter address" class="input-custom">
+                        </div>
+
+                    </div>
+                </div>
+                <p class="error center" ng-show="vm.error.address.flag">
+                    {{vm.error.address.message}}
+                </p>
+                <button type="button" class="new-project-continue btn" ng-click="vm.continueAddr()">Continue</button>
+            </div>
+            <div class="slide bckg-white" id="slide6" ng-show="vm.continueAddressFlag">
+                <h2 class="text-center">Indicate your availabilities</h2>
+
+                <div ng-show="vm.emergency">
+                    <div class="row center no-margin w-500">
+                        <div class="col-xs-12 row line-date">
+
+
+                            <div class="col-xs-3">
+
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J1.date | date:"EEE"}}
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J2.date | date:"EEE"}}
+                            </div>
+                            <div class="col-xs-3">
+                                {{vm.J3.date | date:"EEE"}}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                Toute la journée
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.all = !vm.J1.all; vm.all(vm.J1)" ng-init="vm.J1.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.all"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.all = !vm.J2.all; vm.all(vm.J2)" ng-init="vm.J2.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.all"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.all = !vm.J3.all; vm.all(vm.J3)" ng-init="vm.J3.all = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.all"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                7h-9h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c1 = !vm.J1.c1; vm.J1.all = false" ng-class="vm.J1.c1Disabled"
+                                     ng-init="vm.J1.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c1 && vm.J1.c1Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c1 = !vm.J2.c1; vm.J2.all = false" ng-init="vm.J2.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c1"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c1 = !vm.J3.c1; vm.J3.all = false" ng-init="vm.J3.c1 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c1"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                9h-12h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c2 = !vm.J1.c2; vm.J1.all = false" ng-class="vm.J1.c2Disabled"
+                                     ng-init="vm.J1.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c2 && vm.J1.c2Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c2 = !vm.J2.c2; vm.J2.all = false" ng-init="vm.J2.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c2"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c2 = !vm.J3.c2; vm.J3.all = false" ng-init="vm.J3.c2 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c2"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                12h-14h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c3 = !vm.J1.c3; vm.J1.all = false" ng-class="vm.J1.c3Disabled"
+                                     ng-init="vm.J1.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c3 && vm.J1.c3Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c3 = !vm.J2.c3; vm.J2.all = false" ng-init="vm.J2.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c3"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c3 = !vm.J3.c3; vm.J3.all = false" ng-init="vm.J3.c3 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c3"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                14h-16h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c4 = !vm.J1.c4; vm.J1.all = false" ng-class="vm.J1.c4Disabled"
+                                     ng-init="vm.J1.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c4 && vm.J1.c4Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c4 = !vm.J2.c4; vm.J2.all = false" ng-init="vm.J2.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c4"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c4 = !vm.J3.c4; vm.J3.all = false" ng-init="vm.J3.c4 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c4"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                16h-18h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c5 = !vm.J1.c5; vm.J1.all = false" ng-class="vm.J1.c5Disabled"
+                                     ng-init="vm.J1.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c5 && vm.J1.c5Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c5 = !vm.J2.c5; vm.J2.all = false" ng-init="vm.J2.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c5"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c5 = !vm.J3.c5; vm.J3.all = false" ng-init="vm.J3.c5 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c5"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                18h-20h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c6 = !vm.J1.c6; vm.J1.all = false" ng-class="vm.J1.c6Disabled"
+                                     ng-init="vm.J1.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check"
+                                          ng-show="vm.J1.c6 && vm.J1.c6Disabled != 'checkbox-disabled'"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c6 = !vm.J2.c6; vm.J2.all = false" ng-init="vm.J2.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c6"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c6 = !vm.J3.c6; vm.J3.all = false" ng-init="vm.J3.c6 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c6"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 row line-date">
+                            <div class="col-xs-3">
+                                Après 20h
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J1.c7 = !vm.J1.c7; vm.J1.all = false" ng-init="vm.J1.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J1.c7"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J2.c7 = !vm.J2.c7; vm.J2.all = false" ng-init="vm.J2.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J2.c7"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="checkbox-style center-middle"
+                                     ng-click="vm.J3.c7 = !vm.J3.c7; vm.J3.all = false" ng-init="vm.J3.c7 = false">
+                                    <span class="glyphicon glyphicon-ok check" ng-show="vm.J3.c7"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="error center" ng-show="vm.error.date.flag">
+                        {{vm.error.date.message}}
+                    </p>
+                </div>
+                <div ng-show="!vm.emergency">
+                    <ul class="questions-ul center no-padding">
+                        <li class="question-li center" ng-class="vm.child0"
+                            ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
+                            On a specific date
+                        </li>
+                        <li ng-show="vm.dateSelected" class="custom-li-date question-li center"
+                            ng-click="vm.unSelectdate()">
+                            {{vm.dt | date:'dd-MM-yyyy'}}
+                        </li>
+                        <li ng-show="vm.dateFlag">
+                            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                                <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true"
+                                                max-date="vm.maxDate"
+                                                class="well well-sm custom-date"
+                                                custom-class="getDayClass(date, mode)"></uib-datepicker>
+                            </div>
+                        </li>
+                        <li class="question-li center" ng-class="vm.child1"
+                            ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
+                            Within a week
+                        </li>
+                        <li class="question-li center" ng-class="vm.child2"
+                            ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+                            Within a month
+                        </li>
+                        <li class="question-li center" ng-class="vm.child3"
+                            ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+                            I am a flexible on the start date
+                        </li>
+                    </ul>
+                    <p class="error center" ng-show="vm.error.date.flag">
+                        {{vm.error.date.message}}
+                    </p>
+                </div>
+                <button type="button" class="new-project-continue btn" ng-click="vm.post()">POST</button>
+                <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()"
+                        ng-show="!vm.emergency">DRAFT
+                </button>
+            </div>
+            <div class="slide bckg-default end" id="slideEnd" ng-show="vm.end">
+                <h2 class="text-center">It’s done !</h2>
+
+                <p>
+                    Thank you - Your enquiry has been sent.
+                </p>
+
+                <p>
+                    Download the app to be notified in real time on new proposal :
+                </p>
+
+                <div class="row no-margin w-500 center mb-39">
+                    <div class="col-xs-6">
+                        <img class="center" src="icons/mdpi/android.png" alt="GooglePlayStore"/>
+                    </div>
+                    <div class="col-xs-6">
+                        <img class="center" src="icons/mdpi/apple.png" alt="AppleStore"/>
+                    </div>
+                </div>
+                <p>
+                    Or check your email in the next hours.
+                </p>
+
+                <p>
+                    You will be redirect in :
+                </p>
+
+                <div class="center" id="auto-start-false-timer">
+                    <p class="timer text-center">
+                        {{vm.countdown}}
+                    </p>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="popUp" ng-show="vm.popupFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <h4>Créer un projet sans photo ? </h4>
+
+                <p>
+                    L’ajout de photo améliore grandement la compréhension de votre besoin : Ajouter une photo maintenant
+                    ?
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.continueWithoutImages()">
+                    PUBLIER SANS PHOTO
+                </div>
+                <div ngf-select="uploadFiles($files, $invalidFiles, 0)"
+                     accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ng-click="vm.popupFlag = false">
+                    OUI
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
