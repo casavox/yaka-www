@@ -47,20 +47,22 @@ window.fbAsyncInit = function () {
 
 (function () {
     'use strict';
-
+    console.log("window.location.hostname = '" + window.location.hostname +"'");
     angular
         .module('Yaka')
         .constant('CONFIG', {
-            //'API_BASE_URL' : 'http://localhost:8080',
             'API_BASE_URL': (function () {
+                console.log("window.location.hostname = '" + window.location.hostname +"'");
                 if (window.location.hostname == 'yaka-frontend-development.herokuapp.com') {
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-frontend-staging.herokuapp.com') {
                     return 'https://yaka-backend-staging.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-frontend-production.herokuapp.com') {
                     return 'https://yaka-backend-production.herokuapp.com';
+                } else if (window.location.hostname == 'www.yakaclub.com') {
+                    return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-development.local') {
-                    return 'https://yaka-backend-development.herokuapp.com'
+                    return 'https://yaka-backend-development.herokuapp.com';
                 } else {
                     return 'http://localhost:8080';
                 }
@@ -89,7 +91,7 @@ window.fbAsyncInit = function () {
             };
         };
 
-        
+
 
         $authProvider.oauth2({
             name: "googleLogin",

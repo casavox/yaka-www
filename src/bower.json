@@ -1,12 +1,10 @@
 {
   "name": "src",
-  "homepage": "https://github.com/yakateam/yaka-www",
   "authors": [
     "vincent gonod"
   ],
   "description": "",
   "main": "",
-  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
