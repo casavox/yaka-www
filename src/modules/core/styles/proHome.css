@@ -3,13 +3,13 @@
 
 .proHomeSection1 {
     height: 700px;
-    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../img/homeBackground.jpg') no-repeat center;
+    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
     background-size: cover;
     color: white;
 }
 
 .proHomeSection1Container {
-    background-image: url('../img/contractor.png');
+    background-image: url('../../../img/contractor.png');
     background-repeat: no-repeat;
     background-position: right bottom;
     height: 100%;
@@ -257,7 +257,7 @@
     float: left;
 }
 
-.proHomeSection2ActivitiesInput .dropdown-multiselect {
+.proHomeSection2InputError .dropdown-multiselect {
     width: 100%;
     height: 40px !important;
 }

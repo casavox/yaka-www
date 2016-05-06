@@ -3,7 +3,7 @@
 
 .homeSection1 {
     height: 700px;
-    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../img/homeBackground.jpg') no-repeat center;
+    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
     background-size: cover;
     color: white;
 }
@@ -145,7 +145,7 @@
 
 .homeSection3 {
     height: 320px;
-    background: linear-gradient(rgba(11, 1, 81, 0.41), rgba(11, 1, 81, 0.41)), url('../img/homeWork.jpg') no-repeat center;
+    background: linear-gradient(rgba(11, 1, 81, 0.41), rgba(11, 1, 81, 0.41)), url('../../../img/homeWork.jpg') no-repeat center;
     background-size: cover;
     color: white;
     text-align: center;

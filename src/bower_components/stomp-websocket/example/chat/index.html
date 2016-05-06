@@ -6,7 +6,7 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/src/modules/core/styles/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap.min.responsive.css" rel="stylesheet">
     <style type="text/css">
       body { padding-top: 40px; }
@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    
+
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -103,7 +103,7 @@
           client.debug = function(str) {
             $("#debug").append(str + "\n");
           };
-          
+
           // the client is notified when it is connected to the server.
           client.connect(login, passcode, function(frame) {
             client.debug("connected to Stomp");
@@ -115,7 +115,7 @@
           });
           return false;
         });
-  
+
         $('#disconnect').click(function() {
           client.disconnect(function() {
             $('#connected').fadeOut({ duration: 'fast' });
@@ -124,7 +124,7 @@
           });
           return false;
         });
-   
+
         $('#send_form').submit(function() {
           var text = $('#send_form_input').val();
           if (text) {

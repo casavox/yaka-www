@@ -7,7 +7,13 @@
 
     //
     //Controller login
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth) {
+    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
+
+        console.log("invitationId : " + $stateParams.invitationId);
+        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
+            $localStorage.invitationId = $stateParams.invitationId;
+        }
+
         var vm = this;
 
         $rootScope.showMenu = false;
@@ -74,7 +80,10 @@
             firstName: "",
             lastName: "",
             profile: {
-                email: ""
+                email: "",
+                defaultAddress: {
+                    address: ""
+                }
             },
             googleId: "",
             facebookId: ""
@@ -89,8 +98,15 @@
 
         vm.passwordConfirm = "";
 
+        vm.autocomplete = {
+            options: {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
+            }
+        };
+
         vm.isEmailValid = function (email) {
-            return new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").test(email);
+            return new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}").test(email);
         };
 
         vm.isNameValid = function (name) {
@@ -153,7 +169,8 @@
                         $localStorage.user.type = 'pro';
                         $state.go('prodashboard');
                     }
-                }, function () {
+
+                }, function (res) {
                     alertMsg.send('Error: impossilbe to get your profile');
                 });
                 $rootScope.logmail = $scope.email;
@@ -259,6 +276,11 @@
 
         vm.register = function () {
             if (vm.registerFormIsValid) {
+
+                if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+                    vm.newUser.invitationId = $localStorage.invitationId;
+                }
+
                 networkService.register(vm.newUser, successRegister, failRegister);
             }
         };
@@ -266,7 +288,8 @@
         function successRegister(res) {
             console.log(res);
             $localStorage.token = res.token;
-            // $state.go('dashboard');
+            $localStorage.invitationId = '';
+            $state.go('dashboard');
         }
 
         function failRegister(err) {

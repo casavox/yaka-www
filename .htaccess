@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+
+RewriteCond %{HTTP_HOST} ^yakaclub.com$
+
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]

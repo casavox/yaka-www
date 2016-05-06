@@ -52,7 +52,19 @@ window.fbAsyncInit = function () {
         .module('Yaka')
         .constant('CONFIG', {
             //'API_BASE_URL' : 'http://localhost:8080',
-            'API_BASE_URL': 'https://yaka-backend-production.herokuapp.com',
+            'API_BASE_URL': (function () {
+                if (window.location.hostname == 'yaka-frontend-development.herokuapp.com') {
+                    return 'https://yaka-backend-development.herokuapp.com';
+                } else if (window.location.hostname == 'yaka-frontend-staging.herokuapp.com') {
+                    return 'https://yaka-backend-staging.herokuapp.com';
+                } else if (window.location.hostname == 'yaka-frontend-production.herokuapp.com') {
+                    return 'https://yaka-backend-production.herokuapp.com';
+                } else if (window.location.hostname == 'yaka-development.local') {
+                    return 'https://yaka-backend-development.herokuapp.com'
+                } else {
+                    return 'http://localhost:8080';
+                }
+            }()),
             'GOOGLE_CLIENT_ID': '554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com',
             'FACEBOOK_CLIENT_ID': '847913895334564'
         })
@@ -77,6 +89,7 @@ window.fbAsyncInit = function () {
             };
         };
 
+        
 
         $authProvider.oauth2({
             name: "googleLogin",
@@ -229,7 +242,7 @@ window.fbAsyncInit = function () {
                     event.preventDefault();
                     $injector.get('$state').go('home');
                 }
-            });
+            })
 
         amMoment.changeLocale('fr');
     }

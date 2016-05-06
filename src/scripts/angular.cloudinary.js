@@ -4,7 +4,7 @@
         // Register as an anonymous AMD module:
         define([
             'cloudinary',
-            'angular'
+            '../bower_components/angular/angular'
         ], factory);
     } else {
         // Browser globals:

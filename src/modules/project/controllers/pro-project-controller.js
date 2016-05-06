@@ -77,12 +77,7 @@
         };
 
         if ($stateParams.projectId) {
-            var res = parseInt($stateParams.projectId);
-            if (res.toString() != $stateParams.projectId)
-                $state.go("prodashboard");
-            else {
-                networkService.proProjectGET(res, succesProjectGET, errorProjectGET);
-            }
+            networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
         else {
             $state.go("prodashboard");
@@ -508,6 +503,7 @@
             vm.circle.visible = true;
 
             vm.project = res;
+            vm.project.translatedTitle = translateProjectTitle(vm.project);
             console.log(res);
             vm.projectTmp = angular.copy(vm.project);
             vm.whenSlot = vm.getWhen();
@@ -640,6 +636,13 @@
             }
         }
 
+        function translateProjectTitle(proj) {
+            var titleArray = proj.title.split(' ');
+            for (var i = 0; i < titleArray.length; i++) {
+                titleArray[i] = $translate.instant(titleArray[i]);
+            }
+            return titleArray.join(' ');
+        }
 
         function errorProjectGET() {
             $state.go("prodashboard");

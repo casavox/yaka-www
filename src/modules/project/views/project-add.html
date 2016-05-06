@@ -252,9 +252,9 @@
                 <div class="row no-margin w-900 center select-addr">
                     <div class="col-md-4 no-padding">
                         <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-                            <option value="new">Create new one</option>
-                            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}"
-                                    ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
+                            <option value="new">- Create new one -</option>
+                            <option ng-repeat="a in vm.user.profile.addresses" value="{{a.address}}"
+                                    ng-selected="a.address.toString() == vm.myAddress.toString()">{{a.name}}
                             </option>
                         </select>
                     </div>

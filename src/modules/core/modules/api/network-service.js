@@ -21,9 +21,6 @@
             register: function (data, success, error) {
                 $http.post(baseUrl + '/register', data).success(success).error(error)
             },
-            facebookLogin: function (data, success, error) {
-                $http.post(baseUrl + '/login/facebook', data).success(success).error(error)
-            },
             proRegister: function (data, success, error) {
                 $http.post(baseUrl + '/pro/register', data).success(success).error(error)
             },
@@ -156,6 +153,27 @@
             proProposalsDeclinedGET: function (success, error) {
                 $http.get(baseUrl + '/pro/proposals/declined').success(success).error(error)
             },
+            contactsGET: function (success, error) {
+                $http.get(baseUrl + '/contacts').success(success).error(error)
+            },
+            inviteCustomerPOST: function (data, success, error) {
+                $http.post(baseUrl + '/invite/customer', data).success(success).error(error)
+            },
+            inviteProPOST: function (data, success, error) {
+                $http.post(baseUrl + '/invite/pro', data).success(success).error(error)
+            },
+            invitationsReceivedGET: function (success, error) {
+                $http.get(baseUrl + '/invitations/received').success(success).error(error)
+            },
+            invitationsSentGET: function (success, error) {
+                $http.get(baseUrl + '/invitations/sent').success(success).error(error)
+            },
+            refuseInvitationPOST: function (id, success, error) {
+                $http.post(baseUrl + '/invitations/' + id + '/refuse').success(success).error(error)
+            },
+            acceptInvitationPOST: function (id, success, error) {
+                $http.post(baseUrl + '/invitations/' + id + '/accept').success(success).error(error)
+            }
         };
 
     }

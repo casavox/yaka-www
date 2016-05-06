@@ -5,6 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
+    AppController.$inject = ['$scope', 'networkService', 'alertMsg', '$rootScope', '$state', '$stomp', '$localStorage', 'CONFIG'];
     function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, CONFIG) {
 
         var app = this;
@@ -168,7 +169,7 @@
             getMenuItemClass: function () {
                 return "";
             }
-        };
+        }
 
         app.logout = function () {
             $localStorage.token = "";

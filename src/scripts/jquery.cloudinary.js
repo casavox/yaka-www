@@ -9,7 +9,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(root, factory) {
   if ((typeof define === 'function') && define.amd) {
-    return define(['jquery.cloudinary'], factory);
+    return define(['jquery.cloudinary.js'], factory);
   } else if (typeof exports === 'object') {
     return module.exports = factory(require('jquery'));
   } else {
