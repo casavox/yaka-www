@@ -52,8 +52,8 @@ window.fbAsyncInit = function () {
     angular
         .module('Yaka')
         .constant('CONFIG', {
-            //'API_BASE_URL' : 'http://localhost:8080',
             'API_BASE_URL': (function () {
+                console.log("window.location.hostname = '" + window.location.hostname +"'");
                 if (window.location.hostname == 'yaka-frontend-development.herokuapp.com') {
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-frontend-staging.herokuapp.com') {
