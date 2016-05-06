@@ -61,9 +61,9 @@ window.fbAsyncInit = function () {
                 } else if (window.location.hostname == 'yaka-frontend-production.herokuapp.com') {
                     return 'https://yaka-backend-production.herokuapp.com';
                 } else if (window.location.hostname == 'www.yakaclub.com') {
-                    return 'https://yaka-backend-development.herokuapp.com'
+                    return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-development.local') {
-                    return 'https://yaka-backend-development.herokuapp.com'
+                    return 'https://yaka-backend-development.herokuapp.com';
                 } else {
                     return 'http://localhost:8080';
                 }
