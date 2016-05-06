@@ -1,0 +1,332 @@
+.homeSection {
+}
+
+.homeSection1 {
+    height: 700px;
+    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+}
+
+.homeSection1Header {
+    margin-top: 30px;
+    height: 40px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection1YakaClub {
+    font-size: 24px;
+    float: left;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1Yaka {
+    font-family: 'raleway_black', Arial, sans-serif;
+}
+
+.homeSection1Club {
+    font-family: 'raleway_regular', Arial, sans-serif;
+}
+
+.homeSection1Register {
+    float: right;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 25px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1Login {
+    float: right;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 25px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1ProLink {
+    float: right;
+    height: 40px;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 13px;
+    border: solid white 1px;
+    border-radius: 4px;
+    padding-top: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+}
+
+.homeSection1ProLink:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.homeSection1ProLink:active {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.homeSection1Title {
+    margin-top: 140px;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 50px;
+    line-height: 1.2;
+    text-align: justify;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection1SubTitle {
+    margin-top: 45px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 33px;
+    text-align: justify;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 60px;
+}
+
+.homeSection1SubSubTitle {
+    margin-top: 4px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    color: #FDAF00;
+    text-align: justify;
+    text-shadow: 1px 1px 1px #414141;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2 {
+    height: 500px;
+    color: black;
+    background-color: white;
+    text-align: center;
+}
+
+.homeSection2Title {
+    font-family: 'raleway_light', Arial, sans-serif;
+    font-size: 32px;
+    line-height: 58px;
+    margin-top: 57px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2SubTitle {
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    color: #8D8D8D;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2Items {
+    margin-top: 59px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2ItemTitle {
+    margin-top: 36px;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 16px;
+}
+
+.homeSection2ItemDescription {
+    margin-top: 36px;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 14px;
+    color: #9B9B9B;
+}
+
+.homeSection3 {
+    height: 320px;
+    background: linear-gradient(rgba(11, 1, 81, 0.41), rgba(11, 1, 81, 0.41)), url('../../../img/homeWork.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.homeSection3Items {
+    margin-top: 79px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3ItemTitle {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3ItemDescription {
+    margin-top: 11px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3ItemButton {
+    margin-top: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection4 {
+    height: 170px;
+    background: #1E2E40;
+    color: white;
+    text-align: center;
+}
+
+.homeSection4Title {
+    margin-top: 23px;
+    line-height: 53px;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.homeSection4Item {
+    cursor: pointer;
+}
+
+.homeSection5 {
+    height: 80px;
+    background: #1A2939;
+    color: white;
+}
+
+.homeSection5FooterLeft {
+    float: left;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.homeSection5FooterRegister {
+    margin-top: 20px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterLogin {
+    margin-top: 20px;
+    line-height: 40px;
+    margin-right: 25px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterGotop {
+    margin-top: 20px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+/* Login Popup */
+
+.loginPopupTabItem {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 16px;
+    color: #9B9B9B;
+    border-bottom: solid 1px #C6C6C6;
+    height: 35px;
+    cursor: pointer;
+    margin-bottom: 34px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.loginPopupTabItemActive {
+    border-bottom: solid 3px #FBB832;
+    cursor: default;
+    color: black;
+}
+
+.loginPopupFacebook {
+    margin-bottom: 15px;
+    background: #6076ba;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-right: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupGoogle {
+    margin-bottom: 15px;
+    background: #d24922;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-left: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupInputError {
+    color: #FDAF00;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.loginPopupButton {
+    margin-top: 15px;
+}
+
+.noSocialAccountMessage {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.registerSocialConfirm {
+    margin-bottom: 6px;
+    margin-top: 20px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.registerFacebookGoogle {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: center;
+    width: 100% !important;
+    margin-top: -10px;
+}
+
+.registerSeparator {
+    height: 1px;
+    background: #E6E6E6;
+    margin-bottom: 25px;
+}
+
+.registerMail {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 12px;
+    margin-top: -15px;
+    text-align: center;
+}
