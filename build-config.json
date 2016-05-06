@@ -80,7 +80,8 @@
         "assets": [
             "img/**/*",
             "icons/**/*",
-            "fonts/**/*"
+            "fonts/**/*",
+            "favicon/**/*"
         ],
         "vendorAssets": [
         ]
