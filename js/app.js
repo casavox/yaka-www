@@ -60,6 +60,8 @@ window.fbAsyncInit = function () {
                     return 'https://yaka-backend-staging.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-frontend-production.herokuapp.com') {
                     return 'https://yaka-backend-production.herokuapp.com';
+                } else if (window.location.hostname == 'www.yakaclub.com') {
+                    return 'https://yaka-backend-development.herokuapp.com'
                 } else if (window.location.hostname == 'yaka-development.local') {
                     return 'https://yaka-backend-development.herokuapp.com'
                 } else {
@@ -90,7 +92,7 @@ window.fbAsyncInit = function () {
             };
         };
 
-        
+
 
         $authProvider.oauth2({
             name: "googleLogin",
