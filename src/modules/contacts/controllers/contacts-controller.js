@@ -10,7 +10,7 @@
     ContactsController.$inject = ['$rootScope', '$scope', 'networkService', '$localStorage', '$state', 'alertMsg', '$translate']
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
-        $rootScope.showMenu = true;
+        $rootScope.showMenu = false;
 
         var vm = this;
 
@@ -195,7 +195,8 @@
                 showUncheckAll: false,
                 scrollable: true,
                 scrollableHeight: 265,
-                displayProp: "labelTranslated"
+                displayProp: "labelTranslated",
+                closeOnBlur: true
             },
             translation: {
                 checkAll: "Tout sélectionner",

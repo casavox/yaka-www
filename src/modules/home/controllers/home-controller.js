@@ -164,14 +164,14 @@
                     console.log(res);
                     if (angular.isUndefined(res.professional)) {
                         $localStorage.user.type = 'customer';
-                        $state.go('dashboard');
+                        $state.go('contacts');
                     } else if (angular.isDefined(res.professional)) {
                         $localStorage.user.type = 'pro';
-                        $state.go('prodashboard');
+                        $state.go('contacts');
                     }
 
                 }, function (res) {
-                    alertMsg.send('Error: impossilbe to get your profile');
+                    alertMsg.send('Error: impossible de récupérer votre profil');
                 });
                 $rootScope.logmail = $scope.email;
                 console.log(res);

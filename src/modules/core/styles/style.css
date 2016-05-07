@@ -47,7 +47,7 @@
 /*--------------------------------- HEADER -----------------------------------*/
 
 .header {
-    height: 80px;
+    height: 55px;
     width: 100%;
     background-color: white;
     position: fixed;
@@ -60,7 +60,7 @@
     display: inline-block;
     font-size: 35px;
     vertical-align: middle;
-    line-height: 80px;
+    line-height: 55px !important;
     vertical-align: top;
 }
 
@@ -69,7 +69,7 @@
     display: inline-block;
     font-size: 35px;
     vertical-align: middle;
-    line-height: 80px;
+    line-height: 55px !important;
     vertical-align: top;
 }
 
@@ -110,28 +110,33 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 25px;
-    line-height: 80px;
+    font-size: 22px;
+    line-height: 55px;
     vertical-align: middle;
-    margin-left: 20px;
+    margin-left: 5px;
     float: left;
-    font-family: 'montserrat_light';
+    font-family: 'montserrat_light', Arial, sans-serif;
     margin-top: 10px;
+    color: #2f313a;
+    text-align: left;
 }
 
 .logout {
     color: #2f313a;
-    letter-spacing: 1.19px;
     font-size: 16px;
-    line-height: 50px;
     vertical-align: middle;
     position: fixed;
-    right: 5px;
-    top: 15px;
-    height: 50px;
-    padding-left: 20px;
+    right: 20px;
+    top: 3px;
     cursor: pointer;
-    width: 106px;
+    text-align: right;
+    padding: 5px;
+    line-height: 0.9;
+    margin-top: 6px;
+}
+
+.logoutExplain {
+    font-size: 11px;
 }
 
 .logout:hover {
@@ -140,39 +145,6 @@
 
 @media (max-width: 767px) {
 
-    .header {
-        height: 55px;
-    }
-
-    .Flogo {
-        line-height: 55px !important;
-    }
-
-    .Slogo {
-        line-height: 55px !important;
-    }
-
-    .header-menu {
-        left: 0px;
-        height: 55px !important;
-    }
-
-    .header-menu .title {
-        line-height: 55px;
-        font-family: 'montserrat_light', Arial, sans-serif;
-        font-size: 22px;
-        color: #2f313a;
-        text-align: left;
-        margin-left: 5px;
-    }
-
-    .header-menu .logout {
-        top: 3px;
-        font-size: 13px;
-        text-align: right;
-        padding: 0;
-        right: 15px;
-    }
 }
 
 /*----------------------------------------------------------------------------*/
@@ -217,9 +189,9 @@
 .page-content {
     position: absolute;
     left: 0;
-    top: 80px;
+    top: 55px;
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 55px);
 }
 
 /*--------------------------------------- LOGIN -----------------------------*/
@@ -466,11 +438,11 @@ md-input-container {
 }
 
 .content-slide {
-    top: 80px !important;
+    top: 55px !important;
     position: fixed !important;
-    left: 220px !important;
-    height: calc(100% - 80px) !important;
-    width: calc(100% - 220px) !important;
+    left: 0px !important;
+    height: calc(100% - 55px) !important;
+    width: 100% !important;
     background-color: #edeff5 !important;
     overflow: auto !important;
 }
@@ -485,7 +457,7 @@ md-input-container {
 }
 
 .content-slide > h4 {
-    font-family: 'montserrat_light';
+    font-family: 'montserrat_light', Arial, sans-serif;;
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.04px;
@@ -495,12 +467,12 @@ md-input-container {
 }
 
 .header-menu {
-    height: 80px;
+    height: 55px !important;
     width: 100%;
     background-color: white;
     position: fixed;
     z-index: 1;
-    left: 220px;
+    left: 0px;
     -moz-box-shadow: 2px 2px 10px 0px #cfcfcf;
     -webkit-box-shadow: 2px 2px 10px 0px #cfcfcf;
     -o-box-shadow: 2px 2px 10px 0px #cfcfcf;
@@ -542,26 +514,28 @@ md-input-container {
 }
 
 .menu-content > a > li {
-     list-style: none;
-     height: 80px;
-     line-height: 80px;
-     color: white;
-     vertical-align: middle;
-     width: 100%;
-     padding-left: 15px;
- }
+    list-style: none;
+    height: 80px;
+    line-height: 80px;
+    color: white;
+    vertical-align: middle;
+    width: 100%;
+    padding-left: 15px;
+}
 
-.menu-active  > li{
+.menu-active > li {
     background-color: white;
     color: #00a3d3 !important;
-    -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.38);
-    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.38);
-    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.38);
+    -webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.38);
+    box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.38);
     z-index: 1;
 }
+
 .menu-active li > i {
-    color: #00a3d3!important;
+    color: #00a3d3 !important;
 }
+
 .menu-content > a > li > i {
     color: white;
     font-size: 15px;
@@ -638,10 +612,6 @@ md-input-container {
         -o-transform: translatex(220px);
         -ms-transform: translatex(220px);
         transform: translatex(220px);
-    }
-
-    .content-slide {
-        height: calc(100% - 55px) !important;
     }
 }
 
@@ -4524,38 +4494,6 @@ ul[rn-carousel-buffered] > li {
 }
 
 @media (max-width: 991px) {
-
-    .header-menu .title {
-        line-height: 55px;
-        font-family: 'montserrat_light', Arial, sans-serif;
-        font-size: 22px;
-        color: #2f313a;
-        text-align: left;
-        margin-left: 5px;
-    }
-
-    .header-menu .logout {
-        top: 3px;
-        font-size: 13px;
-        text-align: right;
-        padding: 0;
-        right: 15px;
-    }
-
-    .content-slide {
-        top: 55px !important;
-        left: 0px !important;
-        width: 100% !important;
-    }
-
-    .header-menu {
-        left: 0px;
-        height: 55px !important;
-    }
-
-    .page-content {
-        top: 55px;
-    }
 
 }
 

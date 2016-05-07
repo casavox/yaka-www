@@ -1,3 +1,27 @@
+
+.titleYakaClub {
+    font-size: 24px;
+    float: left;
+    cursor: pointer;
+    color: black;
+    line-height: 55px;
+    margin-left: 20px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.titleYaka {
+    font-family: 'raleway_black', Arial, sans-serif;
+}
+
+.titleClub {
+    font-family: 'raleway_regular', Arial, sans-serif;
+}
+
+
 .contactsHeader {
     padding-top: 20px !important;
     padding-left: 20px !important;
@@ -236,13 +260,4 @@
     margin-top: 16px;
     margin-right: 25px;
     cursor: pointer;
-}
-
-@media (min-width: 992px) {
-
-    .contacts {
-        left: 220px;
-        width: calc(100% - 220px);
-    }
-
 }

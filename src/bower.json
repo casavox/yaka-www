@@ -17,7 +17,6 @@
     "angular-bootstrap-lightbox": "~0.10.0",
     "angular-material": "~1.0.6",
     "angular-scroll-glue": "~2.0.6",
-    "international-phone-number": "~0.0.16",
     "lodash": "~4.11.2",
     "ng-stomp": "~0.2.0",
     "ui-bootstrap": "~1.3.2"

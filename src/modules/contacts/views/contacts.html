@@ -1,12 +1,15 @@
 <section class="view">
     <div class="header-menu">
         <ng-include src="'partials/menuHamburger.html'"></ng-include>
-        <div class="title">
-            Contacts
+
+        <div class="titleYakaClub" ui-sref="contacts">
+            <span class="titleYaka">YAKA</span><span class="titleClub">CLUB</span>
         </div>
+
         <a ng-click="app.logout()">
             <div class="logout">
-                Log Out
+                Déconnexion<br/>
+                <span class="logoutExplain">(Revenir à l'accueil)</span>
             </div>
         </a>
     </div>

@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -121,13 +121,10 @@
 <script src="/bower_components/outlayer/outlayer.js"></script>
 <script src="/bower_components/masonry/masonry.js"></script>
 <script src="/bower_components/imagesloaded/imagesloaded.js"></script>
-<script src="/bower_components/intl-tel-input/src/js/intlTelInput.js"></script>
 <script src="/bower_components/angular/angular.min.js"></script>
 <script src="/bower_components/angular-material/angular-material.js"></script>
 <script src="/scripts/ui-bootstrap.min.js"></script>
 <script src="/bower_components/ng-stomp/dist/ng-stomp.min.js"></script>
-<script src="/bower_components/intl-tel-input/src/js/data.js"></script>
-<script src="/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
 <script src="/bower_components/international-phone-number/releases/international-phone-number.min.js"></script>
 <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="/bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.js"></script>
@@ -159,6 +156,7 @@
 <script src="/scripts/angular-moment.js"></script>
 <script src="/scripts/angularjs-dropdown-multiselect.min.js"></script>
 <script src="/scripts/intlTelInput.js"></script>
+<script src="/scripts/intlTelInputUtils.js"></script>
 <script src="/scripts/angular-typewrite.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
@@ -199,5 +197,10 @@
 <script src="/modules/core/modules/siret/directives/siret.js"></script>
 <script src="/modules/core/modules/unique-filter/filters/unique.js"></script>
 <script src="/i18n/translations.js"></script>
+
+<script>
+    _.contains = _.includes;
+</script>
+
 </body>
 </html>

@@ -181,7 +181,7 @@ gulp.task("serve", ["build"], function () {
         var watchJS = gulp.watch(["src/**/*.js"], ["inject-dev"]);
         var watchViews = gulp.watch("src/**/*.html", ["copy-views"]);
         var watchAssets = gulp.watch("src/assets/**/*.*", ["copy-assets"]);
-        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["sass"]);
+        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["inject-dev"]);
 
         watchTranslate.on("change", function (evt) {
             console.log("JSON File " + evt.path + " was " + evt.type);

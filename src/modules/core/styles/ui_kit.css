@@ -101,6 +101,7 @@
 }
 
 .yakaPopupWindow {
+    cursor: default !important;
     width: 450px !important;
     margin-left: -225px !important;
     left: 50% !important;

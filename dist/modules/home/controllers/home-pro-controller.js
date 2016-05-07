@@ -319,8 +319,14 @@
                 $localStorage.token = res.token;
                 networkService.me(function (res) {
                     $localStorage.user = res;
-                    $localStorage.user.type = 'pro';
-                    $state.go('prodashboard');
+                    console.log(res);
+                    if (angular.isUndefined(res.professional)) {
+                        $localStorage.user.type = 'customer';
+                        $state.go('contacts');
+                    } else if (angular.isDefined(res.professional)) {
+                        $localStorage.user.type = 'pro';
+                        $state.go('contacts');
+                    }
                 }, function (res) {
                     alertMsg.send('Error: impossilbe to get your profile');
                 });
