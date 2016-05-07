@@ -324,7 +324,6 @@
         );
     }
 
-    ProDashboardMapHomeControlController.$inject = ['$rootScope']
     function ProDashboardMapHomeControlController($rootScope) {
 
         var vm = this;

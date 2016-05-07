@@ -62,6 +62,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "file-exists": "^1.0.0",
+    "gulp-git": "^1.7.1",
     "merge2": "^1.0.2"
   }
 }
