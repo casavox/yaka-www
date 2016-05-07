@@ -106,20 +106,19 @@
     cursor: pointer;
 }
 
-.title {
-    max-width: 600px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 22px;
-    line-height: 55px;
-    vertical-align: middle;
+.titleBeta {
+    text-align: right;
+    background: #00A3D3;
     margin-left: 5px;
-    float: left;
-    font-family: 'montserrat_light', Arial, sans-serif;
-    margin-top: 10px;
-    color: #2f313a;
-    text-align: left;
+    font-size: 16px;
+    line-height: 18px;
+    position: absolute;
+    top: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    left: 125px;
 }
 
 .logout {
@@ -5043,6 +5042,22 @@ ul[rn-carousel-buffered] > li {
     font-weight: normal;
     font-style: normal;
 
+}
+
+.titleContactsBeta {
+    text-align: right;
+    background: #00A3D3;
+    margin-left: 5px;
+    font-size: 16px;
+    line-height: 18px;
+    position: absolute;
+    top: 18px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    left: 145px;
 }
 
 .homeSection {

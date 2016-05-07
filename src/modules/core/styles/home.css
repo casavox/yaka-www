@@ -1,3 +1,19 @@
+.titleContactsBeta {
+    text-align: right;
+    background: #00A3D3;
+    margin-left: 5px;
+    font-size: 16px;
+    line-height: 18px;
+    position: absolute;
+    top: 18px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    left: 145px;
+}
+
 .homeSection {
 }
 
