@@ -47,12 +47,12 @@ window.fbAsyncInit = function () {
 
 (function () {
     'use strict';
-    console.log("window.location.hostname = '" + window.location.hostname +"'");
+    console.log("window.location.hostname = '" + window.location.hostname + "'");
     angular
         .module('Yaka')
         .constant('CONFIG', {
             'API_BASE_URL': (function () {
-                console.log("window.location.hostname = '" + window.location.hostname +"'");
+                console.log("window.location.hostname = '" + window.location.hostname + "'");
                 if (window.location.hostname == 'yaka-frontend-development.herokuapp.com') {
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-frontend-staging.herokuapp.com') {
@@ -62,6 +62,9 @@ window.fbAsyncInit = function () {
                 } else if (window.location.hostname == 'www.yakaclub.com') {
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'www.yaka.local') {
+                    // This allow to use the heroku backend from your computer (localhost http server)
+                    // To use it, you need to add this line in your hosts file : "127.0.0.1   www.yaka.local"
+                    // Then you can access the site here : http://www.yaka.local:8000
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else {
                     return 'http://localhost:8080';
@@ -90,7 +93,6 @@ window.fbAsyncInit = function () {
                 'height': 'auto'                            // custom
             };
         };
-
 
 
         $authProvider.oauth2({
