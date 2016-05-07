@@ -219,8 +219,6 @@
                 bounds: {},
                 events: {
                     "idle": function () {
-                        console.log("Idle !");
-                        console.log(vm.map.control);
                         if (currentCenter.latitude != vm.map.center.latitude && currentCenter.longitude != vm.map.center.longitude) {
                             currentCenter = {
                                 latitude: vm.map.center.latitude,
@@ -256,7 +254,6 @@
                         $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
-                        console.log("zoom_changed");
                         if (!disableExploringMode) {
                             vm.showSlider = false;
                             vm.showWorkArea = false;

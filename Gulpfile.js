@@ -1,32 +1,32 @@
-var gulp          = require("gulp");
-var _             = require('lodash');
-var argv          = require("yargs").argv;
-var rimraf        = require("rimraf");
-var flatten       = require("gulp-flatten");
-var inject        = require("gulp-inject");
-var sass          = require("gulp-sass");
-var runSequence   = require("run-sequence");
-var concat        = require("gulp-concat");
-var uglify        = require("gulp-uglify");
-var rename        = require("gulp-rename");
-var file          = require("gulp-file");
-var minifyCss     = require("gulp-minify-css");
+var gulp = require("gulp");
+var _ = require('lodash');
+var argv = require("yargs").argv;
+var rimraf = require("rimraf");
+var flatten = require("gulp-flatten");
+var inject = require("gulp-inject");
+var sass = require("gulp-sass");
+var runSequence = require("run-sequence");
+var concat = require("gulp-concat");
+var uglify = require("gulp-uglify");
+var rename = require("gulp-rename");
+var file = require("gulp-file");
+var minifyCss = require("gulp-minify-css");
 var templateCache = require("gulp-angular-templatecache");
-var ngAnnotate    = require("gulp-ng-annotate");
-var rev           = require("gulp-rev");
-var fs            = require("fs");
-var server        = require("gulp-server-livereload");
-var coffee        = require("gulp-coffee");
-var karma         = require("karma").Server;
-var debug         = require("gulp-debug");
-var intercept     = require("gulp-intercept");
-var merge         = require("merge-stream");
-var merge2        = require("merge2");
-var del           = require("del");
-var gulpif        = require("gulp-if");
-var translate     = require("gulp-angular-translate");
-var gutil         = require("gulp-util");
-var mkdirp        = require("mkdirp");
+var ngAnnotate = require("gulp-ng-annotate");
+var rev = require("gulp-rev");
+var fs = require("fs");
+var server = require("gulp-server-livereload");
+var coffee = require("gulp-coffee");
+var karma = require("karma").Server;
+var debug = require("gulp-debug");
+var intercept = require("gulp-intercept");
+var merge = require("merge-stream");
+var merge2 = require("merge2");
+var del = require("del");
+var gulpif = require("gulp-if");
+var translate = require("gulp-angular-translate");
+var gutil = require("gulp-util");
+var mkdirp = require("mkdirp");
 
 
 var buildConfig = require("./build-config.json");
@@ -116,9 +116,9 @@ gulp.task("inject-dev", ["copy-js", "sass"], function () {
     });
 
     return target.pipe(inject(sources, {
-            addRootSlash: true,
-            removeTags: true
-        }))
+        addRootSlash: true,
+        removeTags: true
+    }))
         .pipe(inject(css, {
             addRootSlash: true,
             removeTags: true
@@ -127,19 +127,19 @@ gulp.task("inject-dev", ["copy-js", "sass"], function () {
 });
 
 gulp.task("inject-prod", ["compile-js"], function () {
-    var target  = gulp.src("src/index.html");
+    var target = gulp.src("src/index.html");
     var sources = gulp.src("*.js", {
         cwd: "dist/"
     });
-    var css     = gulp.src("*.css", {
+    var css = gulp.src("*.css", {
         read: false,
         cwd: "dist/"
     });
 
     return target.pipe(inject(sources, {
-            addRootSlash: true,
-            removeTags: true
-        }))
+        addRootSlash: true,
+        removeTags: true
+    }))
         .pipe(inject(css, {
             addRootSlash: true,
             removeTags: true
@@ -147,7 +147,7 @@ gulp.task("inject-prod", ["compile-js"], function () {
         .pipe(gulp.dest("dist"));
 });
 
-gulp.task("rev-sass", ["sass"],  function () {
+gulp.task("rev-sass", ["sass"], function () {
     return gulp.src("dist/styles.css")
         .pipe(rev())
         .pipe(gulp.dest("dist"));
@@ -166,9 +166,9 @@ gulp.task("sass", function () {
 
     return merge2(
         target.pipe(inject(sourcesScss, {
-                relative: true,
-                removeTags: true
-            })),
+            relative: true,
+            removeTags: true
+        })),
         sourceCss
     ).pipe(concat("styles.css"))
         .pipe(gulpif(argv.production, minifyCss()))
@@ -178,10 +178,10 @@ gulp.task("sass", function () {
 gulp.task("serve", ["build"], function () {
     if (!argv.production) {
         var watchTranslate = gulp.watch(["src/i18n/**/*.json"], ["inject-dev"]);
-        var watchJS        = gulp.watch(["src/**/*.js"], ["inject-dev"]);
-        var watchViews     = gulp.watch("src/**/*.html", ["copy-views"]);
-        var watchAssets    = gulp.watch("src/assets/**/*.*", ["copy-assets"]);
-        var watchSASS      = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["sass"]);
+        var watchJS = gulp.watch(["src/**/*.js"], ["inject-dev"]);
+        var watchViews = gulp.watch("src/**/*.html", ["copy-views"]);
+        var watchAssets = gulp.watch("src/assets/**/*.*", ["copy-assets"]);
+        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["sass"]);
 
         watchTranslate.on("change", function (evt) {
             console.log("JSON File " + evt.path + " was " + evt.type);
@@ -222,24 +222,28 @@ gulp.task("create-module", function (cb) {
     if (!argv.module) {
         gutil.log(gutil.colors.red("ERROR : This task need the module parameter"));
         cb();
-    } else {if (argv.parent) {
+    } else {
+        if (argv.parent) {
             path = "src/modules/" + argv.parent + "/modules/" + argv.module;
         } else {
             path = "src/modules/" + argv.module;
         }
-        fs.stat(path, function(err, stat) {
-            if(err == null) {
+        fs.stat(path, function (err, stat) {
+            if (err == null) {
                 gutil.log(gutil.colors.red("ERROR : the module already exist"));
             } else {
                 var modules = _.template(buildConfig.fileContent.modules);
-                var js =  _.template(buildConfig.fileContent.js);
-                file('modules.js', modules({'module': argv.module, 'templatePath': path.substring(3, path.length)+'/views/'+argv.module+'-view.html'}), { src: true }).pipe(gulp.dest(path+'/'));
+                var js = _.template(buildConfig.fileContent.js);
+                file('modules.js', modules({
+                    'module': argv.module,
+                    'templatePath': path.substring(3, path.length) + '/views/' + argv.module + '-view.html'
+                }), {src: true}).pipe(gulp.dest(path + '/'));
                 mkdirp(path + "/controllers");
-                file(argv.module+'-controller.js', js({'module': argv.module}), { src: true }).pipe(gulp.dest(path+'/controllers'));
+                file(argv.module + '-controller.js', js({'module': argv.module}), {src: true}).pipe(gulp.dest(path + '/controllers'));
                 mkdirp(path + "/styles");
-                file(argv.module+'.scss', '', { src: true }).pipe(gulp.dest(path+'/styles'));
+                file(argv.module + '.scss', '', {src: true}).pipe(gulp.dest(path + '/styles'));
                 mkdirp(path + "/views");
-                file(argv.module+'-view.html', '', { src: true }).pipe(gulp.dest(path+'/views'));
+                file(argv.module + '-view.html', '', {src: true}).pipe(gulp.dest(path + '/views'));
             }
         });
 
@@ -251,12 +255,12 @@ gulp.task("create-service", function (cb) {
         gutil.log(gutil.colors.red("ERROR : This task need the service parameter"));
         cb();
     } else {
-        fs.stat('src/modules/core/modules/api/'+argv.service+'-service.js', function(err, stat) {
-            if(err == null) {
+        fs.stat('src/modules/core/modules/api/' + argv.service + '-service.js', function (err, stat) {
+            if (err == null) {
                 gutil.log(gutil.colors.red("ERROR : the service already exist"));
             } else {
                 var service = _.template(buildConfig.fileContent.service);
-                file(argv.service+'-service.js', service({'service': argv.service}), { src: true }).pipe(gulp.dest('src/modules/core/modules/api/'));
+                file(argv.service + '-service.js', service({'service': argv.service}), {src: true}).pipe(gulp.dest('src/modules/core/modules/api/'));
             }
         });
 
