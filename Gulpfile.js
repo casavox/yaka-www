@@ -222,11 +222,17 @@ gulp.task("serve", ["build"], function () {
         });
     }
 
-    gulp.src("dist").pipe(server({
-        livereload: true,
-        fallback: "index.html"
-    }))
-
+    if (!argv.production) {
+        gulp.src("dist").pipe(server({
+            livereload: true,
+            fallback: "index.html"
+        }))
+    } else {
+        gulp.src("dist").pipe(server({
+            livereload: false,
+            fallback: "index.html"
+        }))
+    }
 });
 
 gulp.task("test", ["config-test"], function () {
