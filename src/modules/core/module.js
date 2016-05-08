@@ -47,7 +47,7 @@ window.fbAsyncInit = function () {
 
 (function () {
     'use strict';
-    console.log("window.location.hostname = '" + window.location.hostname + "'");
+
     angular
         .module('Yaka')
         .constant('CONFIG', {
@@ -93,6 +93,7 @@ window.fbAsyncInit = function () {
                 'height': 'auto'                            // custom
             };
         };
+
 
 
         $authProvider.oauth2({

@@ -1,4 +1,5 @@
 var gulp = require("gulp");
+var git = require('gulp-git');
 var _ = require('lodash');
 var argv = require("yargs").argv;
 var rimraf = require("rimraf");
@@ -30,6 +31,23 @@ var mkdirp = require("mkdirp");
 
 
 var buildConfig = require("./build-config.json");
+
+gulp.task("git", function (cb) {
+    return gulp.src('dist/*')
+        .pipe(git.add())
+        .pipe(git.commit('deploy in prod'))
+        .pipe(git.push('origin', 'development', {args: " -f"}, function (err) {
+            if (err) throw err;
+        }));
+});
+
+gulp.task("deploy", function (cb) {
+    if (argv.production) {
+        runSequence("clean", "build-prod", "git", cb);
+    } else {
+        runSequence("clean", "build-dev", cb);
+    }
+});
 
 gulp.task("build", function (cb) {
     if (argv.production) {

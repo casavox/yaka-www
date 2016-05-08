@@ -13,13 +13,13 @@
         $stateProvider
             .state('profile', {
                 url: "/profile/me",
-                templateUrl: "modules/profile/views/profile.html",
+                templateUrl: "/modules/profile/views/profile.html",
                 controller: 'ProfileCustomerController',
                 controllerAs: 'vm'
             })
             .state('pro-profile', {
                 url: "/pro/profile/me",
-                templateUrl: "modules/profile/views/profile-pro.html",
+                templateUrl: "/modules/profile/views/profile-pro.html",
                 controller: 'ProfileController',
                 controllerAs: 'vm'
             });

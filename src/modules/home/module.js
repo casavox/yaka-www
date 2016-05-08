@@ -13,13 +13,13 @@
         $stateProvider
             .state('home', {
                 url: "/",
-                templateUrl: "modules/home/views/home.html",
+                templateUrl: "/modules/home/views/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
             .state('pro-home', {
                 url: "/pro",
-                templateUrl: "modules/home/views/home-pro.html",
+                templateUrl: "/modules/home/views/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
             })

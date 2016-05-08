@@ -13,13 +13,13 @@
         $stateProvider
             .state('inbox', {
                 url: "/inbox/:proposalId",
-                templateUrl: "modules/inbox/views/inbox.html",
+                templateUrl: "/modules/inbox/views/inbox.html",
                 controller: 'InboxController',
                 controllerAs: 'vm'
             })
             .state('pro-inbox', {
                 url: "/pro/inbox/:proposalId",
-                templateUrl: "modules/inbox/views/inbox.html",
+                templateUrl: "/modules/inbox/views/inbox.html",
                 controller: 'InboxController',
                 controllerAs: 'vm'
             });

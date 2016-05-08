@@ -7,7 +7,6 @@
 
     //
     //Controller login
-    ContactsController.$inject = ['$rootScope', '$scope', 'networkService', '$localStorage', '$state', 'alertMsg', '$translate']
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
         $rootScope.showMenu = false;
