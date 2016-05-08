@@ -53,7 +53,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "gulp serve --production"
+        "postinstall": "gulp build --production"
     },
     "repository": {
         "type": "git",

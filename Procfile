@@ -1,1 +1,1 @@
-web: node node_modules/gulp/bin/gulp serve --production
+web: vendor/bin/heroku-php-apache2 -C apache_app.conf dist/

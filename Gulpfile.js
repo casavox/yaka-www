@@ -222,18 +222,10 @@ gulp.task("serve", ["build"], function () {
         });
     }
 
-    if (!argv.production) {
-        gulp.src("dist").pipe(server({
-            livereload: true,
-            fallback: "index.html"
-        }))
-    } else {
-        gulp.src("dist").pipe(server({
-            livereload: false,
-            port: process.env.PORT || 8000, // localhost:8000
-            fallback: "index.html"
-        }))
-    }
+    gulp.src("dist").pipe(server({
+        livereload: true,
+        fallback: "index.html"
+    }))
 });
 
 gulp.task("test", ["config-test"], function () {
