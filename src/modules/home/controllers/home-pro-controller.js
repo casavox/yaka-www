@@ -84,7 +84,7 @@
         });
 
         $('#proRegisterPhone').intlTelInput({
-            utilsScript: "scripts/intlTelInputUtils.js",
+            utilsScript: "https://raw.githubusercontent.com/jackocnr/intl-tel-input/master/build/js/utils.js",
             initialCountry: "fr",
             onlyCountries: ["fr"]
             //DOM-TOM : onlyCountries: ["fr", "mq", "gf", "re", "yt", "pm", "bl", "mf", "tf", "wf", "pf", "nc"]

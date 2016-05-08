@@ -6,7 +6,6 @@
             "bower_components/jquery/dist/jquery.js",
             "bower_components/lodash/lodash.js",
             "scripts/intlTelInput.js",
-            "scripts/intlTelInputUtils.js",
             "bower_components/sockjs/sockjs.js",
             "bower_components/stomp-websocket/lib/stomp.js",
             "bower_components/jquery-bridget/jquery-bridget.js",
