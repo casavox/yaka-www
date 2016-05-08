@@ -2,3 +2,4 @@
 node_modules/
 dist/
 !/src/bower_components/jquery/dist
+!/src/bower_components/angular-bootstrap-lightbox/dist/
