@@ -17,7 +17,6 @@
         "gulp-concat": "^2.6.0",
         "gulp-debug": "^2.1.2",
         "gulp-file": "^0.2.0",
-        "gulp-flatten": "^0.2.0",
         "gulp-if": "^2.0.0",
         "gulp-inject": "^3.0.0",
         "gulp-intercept": "^0.1.0",
@@ -63,6 +62,7 @@
     "license": "UNLICENSED",
     "dependencies": {
         "gulp": "^3.9.1",
+        "gulp-flatten": "^0.2.0",
         "file-exists": "^1.0.0",
         "gulp-git": "^1.7.1",
         "merge2": "^1.0.2",
