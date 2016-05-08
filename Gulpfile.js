@@ -230,6 +230,7 @@ gulp.task("serve", ["build"], function () {
     } else {
         gulp.src("dist").pipe(server({
             livereload: false,
+            port: process.env.PORT || 8000, // localhost:8000
             fallback: "index.html"
         }))
     }
