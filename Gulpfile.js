@@ -1,4 +1,5 @@
 var gulp = require("gulp");
+var git = require('gulp-git');
 var _ = require('lodash');
 var argv = require("yargs").argv;
 var rimraf = require("rimraf");
@@ -30,6 +31,32 @@ var mkdirp = require("mkdirp");
 
 
 var buildConfig = require("./build-config.json");
+
+// Archi dev
+//- assets
+//- src
+//  - modules
+//
+//
+// Archi prod
+//- assets
+//- index.html      : index.html with library include and css
+//- app-xxxx.js     : all library, all app files, all html views as templateCache
+//- style-xxx.css   : all library css, all app css
+//
+//
+
+//gulp build -> build for dev environment
+
+//gulp build --production -> build for production environment
+
+//gulp serve -> create a server at port 8000 with dev environment
+
+// gulp serve --production -> create a server with prod environment
+
+//build-config.json -> respect the order in the list.
+// /**/* = recursive
+
 
 gulp.task("build", function (cb) {
     if (argv.production) {
@@ -208,6 +235,7 @@ gulp.task("serve", ["build"], function () {
         livereload: true,
         fallback: "index.html"
     }))
+
 });
 
 gulp.task("test", ["config-test"], function () {
