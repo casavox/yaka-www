@@ -52,7 +52,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "ls -la dist && bower install && ls -la dist && ls -la dist && gulp build"
+        "postinstall": "ls -la src && bower install && ls -la src && ls -la src && gulp build"
     },
     "repository": {
         "type": "git",
