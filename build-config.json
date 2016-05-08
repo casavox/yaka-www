@@ -55,7 +55,8 @@
             "bower_components/angular-aria/angular-aria.js",
             "bower_components/angular-animate/angular-animate.js",
             "modules/core/module.js",
-            "modules/**/*.js"
+            "modules/**/*.js",
+            "scripts/customer-support.js"
         ],
         "css": [
             "modules/core/styles/style.css",
