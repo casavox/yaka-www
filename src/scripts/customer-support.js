@@ -19,5 +19,4 @@ window.smartsupp || (function (d) {
     s.parentNode.insertBefore(c, s);
     _smartsupp.alignX = "right";
     _smartsupp.alignY = "side";
-    _smartsupp.offsetY = 200;    // offset from top by, default value :  100
 })(document);
