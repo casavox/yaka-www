@@ -1,5 +1,4 @@
 var gulp = require("gulp");
-var git = require('gulp-git');
 var _ = require('lodash');
 var argv = require("yargs").argv;
 var rimraf = require("rimraf");
