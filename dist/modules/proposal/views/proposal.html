@@ -1,0 +1,339 @@
+<style type="text/css">
+    #map_canvas {
+        height: 70px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+<section class="view" ng-cloak>
+    <div class="header-menu">
+        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
+        <div class="in-line min-w-44 arrow-nav">
+            <img src="icons/mdpi/arrow-left.png" ng-click="vm.prev()" class="center-middle"/>
+        </div>
+        <div class="title no-line" ng-show="!vm.proDetails">
+            {{vm.project.title}}
+            <p class="sub-title-proposal">
+                Proposals
+            </p>
+        </div>
+        <div class="title" ng-show="vm.proDetails">
+            Proposal's details
+        </div>
+        <a ng-click="app.logout()">
+            <div class="logout">
+                Log Out
+            </div>
+        </a>
+    </div>
+    <div class="page-content">
+        <div class="content-slide">
+            <div class="content-slide">
+                <div>
+                    <div class="detail-pro-title">
+                        <div class="in-line">
+                            OFFER
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="proposal-offers p-25">
+                        <div class="line">
+                            <span class="f-l proposal-offer-line-info">Price</span>
+                            <span class="f-r proposal-offer-line-res" ng-show="!vm.proposal.price">Need info to make a quote</span>
+                            <span class="f-r proposal-offer-line-res proposal-price" ng-show="vm.proposal.price">{{vm.proposal.price}} €</span>
+                            <span class="f-r proposal-offer-line-price-type">{{ vm.proposal.priceType }}</span>
+
+                        </div>
+                        <div class="line mt-23" ng-show="vm.projectTmp.type != 'EMERGENCY'">
+                            <span class="f-l proposal-offer-line-info">Available on</span><span
+                            class="f-r proposal-offer-line-res"
+                            ng-show="!vm.proposal.startDate">Need info to schedule</span><span
+                            class="f-r proposal-offer-line-res" ng-show="vm.proposal.startDate">{{vm.proposal.startDate | date:'EEEE dd MMMM'}}</span>
+                        </div>
+                        <div class="line mt-21" ng-show="vm.projectTmp.type == 'EMERGENCY'">
+                            <span class="f-l proposal-offer-line-info">Available on</span><span
+                            class="f-r proposal-offer-line-res" ng-show="!vm.proposal.availability.date">Need info to schedule</span><span
+                            class="f-r proposal-offer-line-res" ng-show="vm.proposal.availability.date">{{vm.proposal.availability.date | date:'EEEE dd MMMM'}} <span>at </span> {{vm.getSlot()}}</span>
+                        </div>
+                    </div>
+                    <div class="proposal-offers-expend">
+                        <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}"
+                                  class="f-l proposal-icon img-circle" format="png"
+                                  ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
+                            <cl-transformation height="70" width="70" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default fl" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
+                            {{vm.proposal.professional.user.firstName[0] | uppercase}} {{vm.proposal.professional.user.lastName[0]
+                            | uppercase}}
+                        </div>
+                        <div class="proposal-tel">
+                            <div class="icon-tel" ng-if="vm.proposal.professional.phoneNumber"></div>
+                            <div>
+                                {{vm.proposal.professional.phoneNumber}}
+                            </div>
+
+                        </div>
+                        <div class="f-l">
+                            <p class="proposal-company" ng-if="vm.proposal.status == 'SELECTED'">
+                                {{vm.proposal.professional.company.name}}
+                            </p>
+
+                            <p class="proposal-name" ng-if="vm.proposal.status == 'START'">
+                                <!--<span >{{vm.proposal.professional.user.lastName}} </span>-->
+                                {{vm.proposal.professional.user.firstName}}
+                            </p>
+
+                            <p class="proposal-place">
+                                Base in {{vm.proposal.professional.company.address.administrativeAreaLevel2}}
+                            </p>
+                        </div>
+                        <div class="proposal-likes">
+                            <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
+
+                            <div class="likes">
+                                {{vm.proposal.professional.likes}}
+                            </div>
+                        </div>
+                        <div class="proposal-qualities">
+                            {{vm.proposal.professional.qualities[0].name}} <span
+                            ng-if="vm.proposal.professional.qualities.length > 1"> - </span>
+                            {{vm.proposal.professional.qualities[1].name}}
+                        </div>
+                    </div>
+                    <div class="detail-pro-title">
+                        <div class="in-line">
+                            DETAIL PROFIL
+                        </div>
+                        <hr class="w-525">
+                    </div>
+                    <div class="proposal-offers-expend">
+                        <p class="proposal-box-title">
+                            My background
+                        </p>
+
+                        <div class="proposal-box-content">
+
+
+                            <div class="proposal-checked"
+                                 ng-show="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.proposal.professional.verifications).length > 0">
+                                <img src="icons/mdpi/ic_launcher.png" class="center"/>
+
+                                <p>
+                                    Background Checked
+                                </p>
+                            </div>
+                            <div class="proposal-exp" ng-show="vm.proposal.professional.activityStartedYear">
+                                <p>+{{vm.calculateExp(vm.proposal.professional.activityStartedYear)}}</p>
+                                <span>Years experience</span>
+                            </div>
+                            <div class="proposal-projects" ng-show="vm.proposal.professional.yakaProjectNumber > 0">
+                                <p>{{vm.proposal.professional.yakaProjectNumber}}</p>
+                                <span>Project Yaka completed</span>
+                            </div>
+                            <div class="proposal-rge"
+                                 ng-show="vm.indexOfObject('RGE', 'name', vm.proposal.professional.verifications).length > 0">
+                                <img src="http://www.excelbaie.com/img-pub/rge.png" class="center-middle"/>
+                            </div>
+                            <div class="proposal-partner"
+                                 ng-show="vm.indexOfObject('PARTNER', 'name', vm.proposal.professional.verifications).length > 0">
+                                <cl-image public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                          class="proposal-img-partner center" format="png"
+                                          ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                    <cl-transformation height="48" width="48" crop="fill"/>
+                                </cl-image>
+                                <p>
+                                    {{vm.proposal.professional.mainPartner.name}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proposal-offers-expend">
+                        <p class="proposal-box-title">
+                            Main skills
+                        </p>
+
+                        <div class="proposal-box-content">
+                            <div class="proposal-skill" ng-repeat="s in vm.proposal.professional.activities">
+                                <div class="v-icon v-icon-{{s.code}} center">
+                                </div>
+                                <p class="text-center">
+                                    {{s.code}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proposal-offers-expend">
+                        <p class="proposal-box-title">
+                            Main qualities
+                        </p>
+
+                        <div class="proposal-box-content">
+
+                            <p class="proposal-quality proposal-qual"
+                               ng-repeat-start="q in vm.proposal.professional.qualities">
+                                {{q.name}} <span ng-if="q.number">({{q.number }})</span>
+                            </p>
+
+                            <p class="proposal-quality proposal-qual"
+                               ng-if="$index < vm.proposal.professional.qualities.length - 1" ng-repeat-end>
+                                -
+                            </p>
+                        </div>
+                    </div>
+                    <div class="proposal-offers-expend">
+                        <p class="proposal-about-me f-l">
+                            About me
+                        </p>
+                        <textarea msd-elastic class="custom-textarea-about-me mb-10"
+                                  ng-model="vm.proposal.professional.aboutMe"></textarea>
+
+                        <p class="proposal-about-me"
+                           ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
+                            Portfolio
+                        </p>
+
+                        <div class="row cl"
+                             ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
+                            <div class="col-xs-3 clickable" ng-repeat="pict in vm.proposal.professional.portfolio"
+                                 title="{{pict.description}}">
+                                <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png"
+                                          class="center"
+                                          ng-click="vm.selectImagePreview($index)">
+                                    <cl-transformation height="92" width="92" crop="fill"/>
+                                </cl-image>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="menu-r top-120">
+            <div>
+                <div>
+                    <div>
+                        <h4 class="menu-r-title">My Project</h4>
+
+                        <p class="hire mb-10 text-align-left">
+                            {{vm.project.address.address}} <br>
+                            Date :
+                        </p>
+                        <button type="button" class="button btn btn-menu-sel center  mb-10"
+                                ng-if="vm.proposal.project.status != 'ONGOING_PROJECT_ONGOING'"
+                                ui-sref="proposals({projectId:vm.proposal.project.id})">SHOW OFFERS
+                        </button>
+                        <button type="button" class="button btn btn-menu-sel center  mb-10"
+                                ng-if="vm.proposal.project.status == 'ONGOING_PROJECT_ONGOING'"
+                                ui-sref="project({projectId:vm.proposal.project.id})">SHOW PROJECT
+                        </button>
+                        <button type="button" class="button btn btn-menu-sel center  mb-39"
+                                ui-sref="inbox({proposalId:vm.proposal.id})">CHAT
+                        </button>
+
+                        <p class="hire mb-10 text-align-left"
+                           ng-if="vm.proposal.project.status == 'ONGOING_PROJECT_ONGOING'">
+                            Your project is ended, say it
+                        </p>
+                        <button type="button" class="button btn btn-menu-sel center btn-red"
+                                ng-click="vm.closeFlag = true"
+                                ng-if="vm.proposal.project.status == 'ONGOING_PROJECT_ONGOING'">CLOSE PROJECT
+                        </button>
+                        <p class="hire mb-10 text-align-left" ng-if="vm.proposal.project.status == 'ONGOING_RATE_PRO'">
+                            Your project is closed, rate it
+                        </p>
+                        <button type="button" class="button btn btn-menu-sel center btn-red"
+                                ng-click="vm.ratePro()" ng-if="vm.proposal.project.status == 'ONGOING_RATE_PRO'">
+                            RATE PROJECT
+                        </button>
+                        <p class="hire mb-10 text-align-left"
+                           ng-if="vm.proposal.project.status != 'ONGOING_PROJECT_ONGOING' && vm.proposal.project.status != 'ONGOING_RATE_PRO'">
+                            You want to work whith {{vm.pro.user.firstName}} {{vm.pro.user.lastName}}
+                        </p>
+                        <button type="button" class="button btn btn-menu-sel center btn-blue"
+                                ng-click="vm.hireFlag = true"
+                                ng-if="vm.proposal.project.status != 'ONGOING_PROJECT_ONGOING' && vm.proposal.project.status != 'ONGOING_RATE_PRO'">
+                            HIRE
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.closeFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.closeFlag = false"></span>
+                <h4>Close my project</h4>
+
+                <p>
+                    My project is ended and payed.
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.trashFlag = false">
+                    CANCEL
+                </div>
+                <div ng-click="vm.closeProject()">
+                    CONFIRM
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.hireFlag">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.hireFlag = false"></span>
+                <h4>Hire this Pro ?</h4>
+
+                <p class="info-popUp">
+                    The others Pro will be notified of your choice, then you can no longer continue to chat with them
+                    for this project.
+                </p>
+
+                <p class="info-popUp-comp">
+                    Send this message to your Pro :
+                </p>
+                <textarea class="custom-textarea-popUp" ng-model="vm.hireMessage"></textarea>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.hireFlag = false">
+                    CANCEL
+                </div>
+                <div ng-click="vm.hire(vm.proposal.id)">
+                    CONFIRME
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
+        <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
+            <div class="popUp-content no-margin img-preview-popUp">
+                <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
+                <h4>Preview</h4>
+                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" secure="true" format="png" class="center">
+                </cl-image>
+                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
+                          disabled></textarea>
+            </div>
+        </div>
+    </div>
+</section>

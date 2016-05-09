@@ -1,0 +1,57 @@
+<div class="menu" ng-class="app.menu.getMenuClass()" ng-swipe-left="app.menu.closeMenu()">
+    <div class="logo-white center">
+        <div class="Flogo-white">
+            Yaka
+        </div>
+        <div class="Slogo-white">
+            Club
+        </div>
+    </div>
+    <ul class="menu-content">
+        <a ui-sref="contacts" ng-click="app.menu.closeMenu()">
+            <li ng-class="vm.getMenuItemClass('contacts')" angular-ripple><i class="fa fa-tachometer"></i>
+                CONTACTS
+            </li>
+        </a>
+        <a ui-sref="dashboard" ng-click="app.menu.closeMenu()">
+            <li ng-class="vm.getMenuItemClass('dashboard')" angular-ripple><i class="fa fa-tachometer"></i>
+                DASHBOARD
+            </li>
+        </a>
+        <a ui-sref="prodashboard" ng-click="app.menu.closeMenu()">
+            <li ng-class="vm.getMenuItemClass('prodashboard')" angular-ripple><i class="fa fa-tachometer"></i>
+                BROWSE
+                LEADS
+            </li>
+        </a>
+        <a ui-sref="pro-jobs" ng-click="app.menu.closeMenu()" ng-if="user.type == 'pro'" ui-sref-active="menu-active">
+            <li ng-class="vm.getMenuItemClass('pro-jobs')" angular-ripple><i class="fa fa-tachometer"></i>MY
+                JOBS
+            </li>
+        </a>
+        <a ui-sref="pro-proposals" ng-click="app.menu.closeMenu()" ng-if="user.type == 'pro'"
+           ui-sref-active="menu-active">
+            <li ng-class="vm.getMenuItemClass('pro-proposals')" angular-ripple><i class="fa fa-tachometer"></i>MY
+                QUOTES
+            </li>
+        </a>
+        <!--<a ui-sref="inbox" ng-click="app.menu.closeMenu()">-->
+        <!--<li ng-class="vm.getMenuItemClass('inbox')" angular-ripple><i class="fa fa-inbox"></i>INBOX</li>-->
+        <!--</a>-->
+        <a ui-sref="my-projects" ng-click="app.menu.closeMenu()" ng-if="user.type == 'customer'"
+           ui-sref-active="menu-active">
+            <li ng-class="vm.getMenuItemClass('myprojects')" angular-ripple><i class="fa fa-archive"></i>MY PROJECTS
+            </li>
+        </a>
+        <!--<a ui-sref="myplaces" ng-click="app.menu.closeMenu()">-->
+        <!--<li ng-class="vm.getMenuItemClass('myplaces')" angular-ripple><i class="fa fa-map-marker"></i>MY PLACES</li>-->
+        <!--</a>-->
+        <!--<a ui-sref="mypros" ng-click="app.menu.closeMenu()">-->
+        <!--<li ng-class="vm.getMenuItemClass('mypros')" angular-ripple><i class="fa fa-users"></i>MY PROS</li>-->
+        <!--</a>-->
+    </ul>
+</div>
+<div class="contentOverlay col-xs-12 visible-xs visible-sm" ng-click="app.menu.closeMenu()"
+     ng-class="app.menu.getOverlayClass()"
+     ng-swipe-left="app.menu.closeMenu()">
+</div>
