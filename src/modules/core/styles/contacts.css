@@ -6,6 +6,9 @@
     color: black;
     line-height: 55px;
     margin-left: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -260,4 +263,11 @@
     margin-top: 16px;
     margin-right: 25px;
     cursor: pointer;
+}
+
+@media (max-width: 549px) {
+
+    .titleYakaClub {
+        font-size: 20px;
+    }
 }
