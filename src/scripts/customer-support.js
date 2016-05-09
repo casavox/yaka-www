@@ -17,8 +17,7 @@ window.smartsupp || (function (d) {
     c.async = true;
     c.src = '//www.smartsuppchat.com/loader.js?';
     s.parentNode.insertBefore(c, s);
-    _smartsupp.alignX = "right"; // or "left"
-    _smartsupp.alignY = "side";  // default value : bottom
-    //_smartsupp.offsetX = 20;     // offset from left or right, default value : 10
-    //_smartsupp.offsetY = 120;    // offset from top by, default value :  100
+    _smartsupp.alignX = "right";
+    _smartsupp.alignY = "side";
+    _smartsupp.offsetY = 200;    // offset from top by, default value :  100
 })(document);
