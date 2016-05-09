@@ -227,8 +227,58 @@
     font-size: 20px;
 }
 
-.homeSection4Item {
+.homeSection4ItemSocial {
+    float: left;
     cursor: pointer;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.homeSection4ItemFacebook {
+    margin-left: calc(50% - (48px * 3 + 33px * 2) / 2);
+    margin-right: 33px;
+}
+
+.homeSection4ItemGoogle {
+    margin-right: 33px;
+}
+
+.homeSection4ItemFacebook {
+    background-image: url('/icons/mdpi/ic_facebook_default.png');
+}
+
+.homeSection4ItemFacebook:hover {
+    background-image: url('/icons/mdpi/ic_facebook_hover.png');
+}
+
+.homeSection4ItemFacebook:active {
+    background-image: url('/icons/mdpi/ic_facebook_active.png');
+}
+
+.homeSection4ItemGoogle {
+    background-image: url('/icons/mdpi/ic_google_default.png');
+}
+
+.homeSection4ItemGoogle:hover {
+    background-image: url('/icons/mdpi/ic_google_hover.png');
+}
+
+.homeSection4ItemGoogle:active {
+    background-image: url('/icons/mdpi/ic_google_active.png');
+}
+
+.homeSection4ItemTwitter {
+    background-image: url('/icons/mdpi/ic_twitter_default.png');
+}
+
+.homeSection4ItemTwitter:hover {
+    background-image: url('/icons/mdpi/ic_twitter_hover.png');
+}
+
+.homeSection4ItemTwitter:active {
+    background-image: url('/icons/mdpi/ic_twitter_active.png');
 }
 
 .homeSection5 {
@@ -472,10 +522,6 @@
         font-size: 17px;
     }
 
-    .homeSection4Item img {
-        width: 55px;
-    }
-
     .homeSection5FooterLeft {
         margin-top: 17px;
         margin-bottom: 17px;
@@ -571,6 +617,34 @@
     .homeSection2 {
         padding-bottom: 15px !important;
     }
+
+    .homeSection4ItemFacebook {
+        margin-left: calc(50% - (35px * 3 + 20px * 2) / 2);
+        margin-right: 20px;
+    }
+
+    .homeSection4ItemGoogle {
+        margin-right: 20px;
+    }
+
+    .homeSection4ItemFacebook {
+        background-size: 35px 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .homeSection4ItemGoogle {
+        background-size: 35px 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .homeSection4ItemTwitter {
+        background-size: 35px 35px;
+        width: 35px;
+        height: 35px;
+    }
+
 }
 
 @media (max-width: 580px) {
