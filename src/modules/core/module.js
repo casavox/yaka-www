@@ -60,7 +60,7 @@ window.fbAsyncInit = function () {
                 } else if (window.location.hostname == 'yaka-frontend-production.herokuapp.com') {
                     return 'https://yaka-backend-production.herokuapp.com';
                 } else if (window.location.hostname == 'www.yakaclub.com') {
-                    return 'https://yaka-backend-development.herokuapp.com';
+                    return 'https://yaka-backend-production.herokuapp.com';
                 } else if (window.location.hostname == 'www.yaka.local') {
                     // This allow to use the heroku backend from your computer (localhost http server)
                     // To use it, you need to add this line in your hosts file : "127.0.0.1   www.yaka.local"
