@@ -512,6 +512,7 @@
     .homeSection2ItemDescription {
         padding-left: 15px !important;
         padding-right: 0 !important;
+        text-align: left;
     }
 
     .homeSection2ItemDescriptionRight {
