@@ -19,4 +19,5 @@ window.smartsupp || (function (d) {
     s.parentNode.insertBefore(c, s);
     _smartsupp.alignX = "right";
     _smartsupp.alignY = "side";
+    _smartsupp.hideMobileWidget = true; // hide chat box on mobile devices
 })(document);
