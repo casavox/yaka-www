@@ -148,12 +148,6 @@
 
 /*----------------------------------------------------------------------------*/
 
-@media (max-width: 640px) {
-    #chat-application {
-        display: none !important;
-    }
-}
-
 .view {
     font-family: 'montserrat_light', Arial, sans-serif;
     background-color: #f2f4f9;
