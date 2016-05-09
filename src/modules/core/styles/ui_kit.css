@@ -120,3 +120,18 @@
     padding: 10px;
     cursor: pointer;
 }
+
+@media (max-width: 459px) {
+    .yakaPopupWindow {
+        width: 100% !important;
+        margin-left: 0 !important;
+        left: 0 !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .yakaPopup .container {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

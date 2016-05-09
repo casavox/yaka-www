@@ -532,7 +532,7 @@
     }
 
     .homeSection2ItemIconTitle img {
-        width: 30px;
+        width: 44px;
     }
 
     .homeSection3Item {
@@ -725,7 +725,7 @@
     }
 
     .homeSection2ItemIconTitleRight {
-        left : calc(65% - 10px) !important;
+        left: calc(65% - 10px) !important;
     }
 
     .homeSection2ItemIconTitle {
@@ -754,7 +754,6 @@
         width: calc(65% - 10px) !important;
     }
 }
-
 
 @media (max-width: 374px) {
 
