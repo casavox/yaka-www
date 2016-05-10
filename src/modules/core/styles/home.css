@@ -166,7 +166,7 @@
     margin-top: 36px;
     font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 14px;
-    color: #9B9B9B;
+    color: #626262;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -474,6 +474,7 @@
 
     .homeSection2SubTitle {
         font-size: 16px;
+        color: #626262;
     }
 
     .homeSection2Items {
@@ -645,6 +646,9 @@
         height: 35px;
     }
 
+    .proHomeSection3aSubSubTitle {
+        font-size: 15px !important;
+    }
 }
 
 @media (max-width: 580px) {
@@ -780,7 +784,7 @@
     }
 
     .homeSection1SubTitle {
-        font-size: 16px;
+        font-size: 13px;
     }
 
     .homeSection1Button {
@@ -800,10 +804,6 @@
 
     .homeSection2ItemIconTitleRight {
         left: calc(65% - 10px) !important;
-    }
-
-    .homeSection2ItemIconTitle {
-        margin-top: 12px;
     }
 
     .homeSection3ItemTitle {

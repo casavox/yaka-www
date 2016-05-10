@@ -204,10 +204,10 @@ gulp.task("sass", function () {
 gulp.task("serve", ["build"], function () {
     if (!argv.production) {
         var watchTranslate = gulp.watch(["src/i18n/**/*.json"], ["inject-dev"]);
-        var watchJS = gulp.watch(["src/**/*.js"], ["inject-dev"]);
+        var watchJS = gulp.watch(["src/**/*.js"], ["copy-js"]);
         var watchViews = gulp.watch("src/**/*.html", ["copy-views"]);
         var watchAssets = gulp.watch("src/assets/**/*.*", ["copy-assets"]);
-        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["inject-dev"]);
+        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["sass"]);
 
         watchTranslate.on("change", function (evt) {
             console.log("JSON File " + evt.path + " was " + evt.type);

@@ -130,8 +130,54 @@
         padding-right: 20px !important;
     }
 
+    .yakaPopup {
+        padding: 0 !important;
+    }
+
     .yakaPopup .container {
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+
+    input.form-control {
+        margin-top: 7px !important;
+        height: 36px !important;
+    }
+
+    .loginPopupButton {
+        height: 40px;
+        padding-top: 11px;
+    }
+
+    .customerRegisterProLink {
+        font-size: 12px !important;
+    }
+
+    .loginPopupTabItem {
+        font-size: 13px !important;
+        height: 25px !important;
+        margin-bottom: 19px !important;
+    }
+
+    .registerFacebookGoogle {
+        font-size: 12px !important;
+    }
+
+    .loginPopupFacebook {
+        height: 30px !important;
+        font-size: 15px !important;
+        padding-top: 5px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .loginPopupGoogle {
+        height: 30px !important;
+        font-size: 15px !important;
+        padding-top: 5px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .registerSeparator {
+        margin-bottom: 20px !important;
     }
 }
