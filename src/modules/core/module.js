@@ -247,7 +247,7 @@ window.fbAsyncInit = function () {
                     event.preventDefault();
                     $injector.get('$state').go('home');
                 }
-            })
+            });
 
         amMoment.changeLocale('fr');
     }
