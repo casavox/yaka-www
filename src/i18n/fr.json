@@ -326,7 +326,7 @@
     "ACTIVITY_CON_FOUNDATIONS_14075": "Fondations",
     "ACTIVITY_CON_SWIMMINGPOOL_14080": "Piscine",
     "ERROR_USER_ALREADY_EXISTS": "Un compte existe déjà avec cet email",
-    "ERROR_REQUIRED_DATA_MISSING": "Vous n'avez pas envoyé toutes les informations nécessaires pour effectuer cette action",
+    "ERROR_REQUIRED_DATA_MISSING": "Vous n'avez pas saisi toutes les informations nécessaires pour effectuer cette action",
     "ERROR_BAD_CREDENTIALS": "Veuillez vérifier votre email et votre mot de passe",
     "ERROR_UNAUTHORIZED": "Vous n' êtes pas connecté",
     "ERROR_FORBIDDEN": "Vous n' avez pas les autorisations nécessaires pour accéder à cette resource",
