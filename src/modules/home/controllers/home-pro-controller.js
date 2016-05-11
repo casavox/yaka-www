@@ -235,8 +235,6 @@
                 delete activity.id;
             });
 
-            console.log(vm.newUser);
-
             return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
             vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
