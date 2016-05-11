@@ -332,5 +332,7 @@
     "ERROR_FORBIDDEN": "Vous n' avez pas les autorisations nécessaires pour accéder à cette resource",
     "ERROR_NOT_FOUND": "Element non trouvé",
     "ERROR_BAD_DATA": "Veuillez vérifier les informations envoyées",
-    "ERROR_BAD_SLOT": "Le créneau choisi n' est pas valide"
+    "ERROR_BAD_SLOT": "Le créneau choisi n' est pas valide",
+    "ERROR_ALREADY_INVITED": "Vous avez déjà invité cette personne",
+    "ERROR_ALREADY_IN_CONTACTS": "Cette personne est déjà dans vos contacts"
 }

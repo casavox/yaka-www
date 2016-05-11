@@ -75,7 +75,11 @@
         }
 
         function errorContactsGET() {
-            alertMsg.send("Impossible de récupérer les contacts", "warning");
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de récupérer les contacts", 'danger');
+            }
         }
 
         vm.invitationsReceived = [];
@@ -90,7 +94,11 @@
         }
 
         function errorInvitationsReceivedGET() {
-            alertMsg.send("Impossible de récupérer les invitations", "warning");
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de récupérer les invitations", 'danger');
+            }
         }
 
         networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
@@ -102,7 +110,11 @@
         }
 
         function errorInvitationsSentGET() {
-            alertMsg.send("Impossible de récupérer les invitations", "warning");
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de récupérer les invitations", 'danger');
+            }
         }
 
         vm.showContactOrNot = function (contact) {
@@ -169,7 +181,11 @@
         }
 
         function errorInviteCustomerPOST() {
-            alertMsg.send("Impossible d'envoyer l'invitation", "warning");
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+            }
         }
 
         vm.invitPro = {
@@ -202,7 +218,11 @@
         }
 
         function errorInviteProPOST() {
-            alertMsg.send("Impossible d'envoyer l'invitation", "warning");
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+            }
         }
 
         vm.autocomplete = {
@@ -348,7 +368,11 @@
         }
 
         function errorRefuseInvitationPOST() {
-            alertMsg.send("Impossible de refuser l'invitation", "warning");
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de refuser l'invitation", 'danger');
+            }
         }
 
         vm.acceptInvitation = function (invitationId) {
@@ -362,9 +386,13 @@
         }
 
         function errorAcceptInvitationPOST() {
-            alertMsg.send("Impossible d'accepter l'invitation", "warning");
+            console.log(err);
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible d'accepter l'invitation", 'danger');
+            }
         }
-
     }
 })
 ();
