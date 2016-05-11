@@ -1,7 +1,5 @@
 <section class="view">
     <div class="header-menu">
-        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
-
         <div class="titleYakaClub" ui-sref="contacts">
             <span class="titleYaka">YAKA</span><span class="titleClub">CLUB</span>
             <span class="titleContactsBeta">Beta</span>
@@ -15,17 +13,27 @@
         </a>
     </div>
     <div class="page-content contacts">
-        <!--<ng-include src="'/modules/core/modules/menu/views/menu.html'"></ng-include>-->
         <div class="col-xs-12 contactsHeader">
-            <div class="col-xs-6 contactsHeaderLeft">
-
-            </div>
-            <div class="col-xs-6 contactsHeaderRight">
-                <div class="col-xs-12 contactsHeaderRightTitle">
-                    Développez votre réseau
+            <div class="col-sm-6 hidden-xs contactsHeaderLeft">
+                <div class="col-xs-12 contactsHeaderLeftTitle">
+                    Bienvenue sur YakaClub
                 </div>
-                <div class="col-xs-12 contactsHeaderRightSubTitle">
-                    Invitez vos amis et vos artisans...
+                <div class="col-xs-12 contactsHeaderLeftSubtitle">
+                    et merci de rejoindre notre commuanuté !
+                </div>
+                <div class="col-xs-12 contactsHeaderLeftDesc">
+                    Dès aujourd’hui, commencez à constituer votre réseau de confiance.
+                    Dans les prochaines semaines, vous pourrez accéder à de nouveaux services vous permettant de créer
+                    vos projets et recommander vos meilleurs artisans à la communauté.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 contactsHeaderRight">
+                <div class="col-xs-12 contactsHeaderRightTitle">
+                    DÉVELOPPEZ VOTRE RÉSEAU
+                </div>
+                <div class="col-xs-12 hidden-xs contactsHeaderRightSubTitle">
+                    Invitez vos amis et vos artisans à vous rejoindre.
+                    Développons ensemble une communauté basée sur la qualité de nos artisans et la confiance.
                 </div>
                 <div class="col-xs-12 contactsHeaderRightButtons">
                     <div class="col-xs-3 yakaButton yakaBlue contactsHeaderRightButton contactsHeaderRightButtonLeft"
@@ -40,13 +48,13 @@
             </div>
         </div>
         <div class="col-xs-12 contactsMain">
-            <div class="col-xs-4 contactsMenu">
-                <div class="col-xs-12 contactsMenuTitle">
+            <div class="col-xs-4 contactsMenu" ng-class="{'opened': vm.contactsMenuOpened}">
+                <div class="col-sm-12 contactsMenuTitle">
                     CONTACTS
                 </div>
                 <div class="col-xs-12 contactsMenuItem"
                      ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_ALL}"
-                     ng-click="vm.currentMenuItem = vm.MENU_ALL">
+                     ng-click="vm.currentMenuItem = vm.MENU_ALL; vm.contactsMenuOpened = false">
                     <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
                          ng-if="vm.currentMenuItem == vm.MENU_ALL">
                     TOUS
@@ -57,7 +65,7 @@
                 </div>
                 <div class="col-xs-12 contactsMenuItem"
                      ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_PROS}"
-                     ng-click="vm.currentMenuItem = vm.MENU_PROS">
+                     ng-click="vm.currentMenuItem = vm.MENU_PROS; vm.contactsMenuOpened = false">
                     <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
                          ng-if="vm.currentMenuItem == vm.MENU_PROS">
                     ARTISANS
@@ -68,7 +76,7 @@
                 </div>
                 <div class="col-xs-12 contactsMenuItem"
                      ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_FRIENDS}"
-                     ng-click="vm.currentMenuItem = vm.MENU_FRIENDS">
+                     ng-click="vm.currentMenuItem = vm.MENU_FRIENDS; vm.contactsMenuOpened = false">
                     <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
                          ng-if="vm.currentMenuItem == vm.MENU_FRIENDS">
                     AMIS
@@ -77,12 +85,13 @@
                         {{vm.friendsNumber}}
                     </div>
                 </div>
+                <div class="col-xs-12 contactsMenuSeparator"></div>
                 <div class="col-xs-12 contactsMenuTitle">
                     INVITATIONS
                 </div>
                 <div class="col-xs-12 contactsMenuItem"
                      ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}"
-                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_RECEIVED">
+                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_RECEIVED; vm.contactsMenuOpened = false">
                     <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
                          ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
                     RECUES
@@ -93,7 +102,7 @@
                 </div>
                 <div class="col-xs-12 contactsMenuItem"
                      ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}"
-                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_SENT">
+                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_SENT; vm.contactsMenuOpened = false">
                     <img class="contactsMenuBlueCircle" src="img/contactsMenuBlueCircle.png"
                          ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
                     ENVOYÉES
@@ -104,6 +113,11 @@
                 </div>
             </div>
             <div class="col-xs-8 contactsContacts">
+                <div class="col-xs-12 visible-xs contactsMenuItemMain">
+                    <img class="contactsContactsMenuItemIcon" ng-src="icons/mdpi/ic_filter_contacts.png"
+                         ng-click="vm.contactsMenuOpened = true"/>
+                    <span class="contactsContactsMenuItemTitle">{{vm.getHumanReadableMenuItem()}}</span>
+                </div>
                 <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts"
                      ng-if="vm.showContactOrNot(contact)">
 
@@ -118,7 +132,9 @@
                         {{contact.user.lastName[0]| uppercase}}.
                     </div>
 
-                    {{contact.user.firstName}} {{contact.user.lastName}}
+                    <span class="contactItemName">
+                        {{contact.user.firstName}} {{contact.user.lastName}}
+                    </span>
                     <span class="contactItemPro" ng-if="contact.user.professional">
                         PRO
                     </span>
@@ -141,23 +157,27 @@
                         {{invit.inviter.firstName[0] | uppercase}}.
                         {{invit.inviter.lastName[0]| uppercase}}.
                     </div>
-
-                    {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                    <span class="contactItemName contactItemNameInvitReceived">
+                        {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                    </span>
                     <span class="contactItemPro" ng-if="contact.user.professional">
                         PRO
                     </span>
-                    <span class="contactItemCity"
+                    <span class="contactItemCity contactItemCityInvitReceived"
                           ng-if="invit.inviter.profile && invit.inviter.profile.defaultAddress && invit.inviter.profile.defaultAddress.locality">
                         {{invit.inviter.profile.defaultAddress.locality}}
                     </span>
 
-                    <img class="invitRefuse"
-                         src="icons/mdpi/ic_refuse_invitation.png"
-                         ng-click="vm.refuseInvitation(invit.id)"/>
-
-                    <img class="invitAccept"
-                         src="icons/mdpi/ic_accept_invitation.png"
-                         ng-click="vm.acceptInvitation(invit.id)"/>
+                    <span angular-ripple>
+                        <img class="invitRefuse"
+                             src="icons/mdpi/ic_refuse_invitation.png"
+                             ng-click="vm.refuseInvitation(invit.id)"/>
+                    </span>
+                    <span angular-ripple>
+                        <img class="invitAccept"
+                             src="icons/mdpi/ic_accept_invitation.png"
+                             ng-click="vm.acceptInvitation(invit.id)"/>
+                    </span>
                 </div>
                 <div class="col-xs-12 contactItem contactItemInvitation"
                      ng-repeat="invit in vm.invitationsSent"

@@ -192,7 +192,7 @@
                 console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
                     $localStorage.token = res.data.token;
-                    $state.go('dashboard');
+                    $state.go('contacts');
                     $rootScope.logmail = $scope.email;
                 }
             }).catch(function (res) {
@@ -214,7 +214,7 @@
                 console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
                     $localStorage.token = res.data.token;
-                    $state.go('dashboard');
+                    $state.go('contacts');
                     $rootScope.logmail = $scope.email;
                 }
             }).catch(function (res) {
@@ -289,7 +289,7 @@
             console.log(res);
             $localStorage.token = res.token;
             $localStorage.invitationId = '';
-            $state.go('dashboard');
+            $state.go('contacts');
         }
 
         function failRegister(err) {
