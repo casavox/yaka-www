@@ -179,28 +179,30 @@
         // @todo : @victor do it better (around enhancement of the top bar)
         console.log("$scope.user");
         console.log($scope.user);
-        if ($scope.user.profile.email != undefined) {
-            smartsupp('email', $scope.user.profile.email);
-        }
-        var fullName = null;
-        if ($scope.user.firstName != undefined) {
-            fullName = $scope.user.firstName;
-        }
-        if ($scope.user.lastName != undefined) {
-            fullName = fullName + " " + $scope.user.lastName;
-        }
-        if (fullName) {
-            console.log("ok : " + fullName);
-            smartsupp('name', fullName);
-        }
-        if ($scope.user.type != undefined) {
+        if (($scope.user != undefined) && ($scope.user.profile != undefined)) {
+            if ($scope.user.profile.email != undefined) {
+                smartsupp('email', $scope.user.profile.email);
+            }
+            var fullName = null;
+            if ($scope.user.firstName != undefined) {
+                fullName = $scope.user.firstName;
+            }
+            if ($scope.user.lastName != undefined) {
+                fullName = fullName + " " + $scope.user.lastName;
+            }
+            if (fullName) {
+                console.log("ok : " + fullName);
+                smartsupp('name', fullName);
+            }
+            if ($scope.user.type != undefined) {
+                smartsupp('variables', {
+                    userType: {label: 'User Type', value: $scope.user.type}
+                });
+            }
             smartsupp('variables', {
-                userType: { label: 'User Type', value: $scope.user.type }
+                version: {label: 'YakaClub Version', value: 'beta 0'}
             });
         }
-        smartsupp('variables', {
-            version: { label: 'YakaClub Version', value: 'beta 0' }
-        });
 
     }
 })();
