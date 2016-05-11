@@ -74,7 +74,7 @@
             vm.friendsNumber = friendsNum;
         }
 
-        function errorContactsGET() {
+        function errorContactsGET(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -93,7 +93,7 @@
             vm.invitationsReceived = res;
         }
 
-        function errorInvitationsReceivedGET() {
+        function errorInvitationsReceivedGET(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -109,7 +109,7 @@
             vm.invitationsSent = res;
         }
 
-        function errorInvitationsSentGET() {
+        function errorInvitationsSentGET(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -180,7 +180,7 @@
             alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
 
-        function errorInviteCustomerPOST() {
+        function errorInviteCustomerPOST(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -217,7 +217,7 @@
             alertMsg.send("Invitation envoyée", "success");
         }
 
-        function errorInviteProPOST() {
+        function errorInviteProPOST(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -367,7 +367,7 @@
             alertMsg.send("Invitation refusée avec succes", "success");
         }
 
-        function errorRefuseInvitationPOST() {
+        function errorRefuseInvitationPOST(err) {
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -385,7 +385,7 @@
             alertMsg.send("Invitation acceptée avec succes", "success");
         }
 
-        function errorAcceptInvitationPOST() {
+        function errorAcceptInvitationPOST(err) {
             console.log(err);
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
