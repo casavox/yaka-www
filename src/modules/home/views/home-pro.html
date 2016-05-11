@@ -191,20 +191,20 @@
                 </div>
 
                 <input class="form-control halfInput" placeholder="Prénom"
-                       ng-model="vm.newUser.professional.firstName"
+                       ng-model="vm.newUser.firstName"
                        ng-disabled="vm.isSocialRegister()"/>
 
                 <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                       ng-model="vm.newUser.professional.lastName"
+                       ng-model="vm.newUser.lastName"
                        ng-disabled="vm.isSocialRegister()"/>
 
                 <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.professional.firstName == '' || vm.isNameValid(vm.newUser.professional.firstName)">
+                     ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
                     Ce prénom n'est pas valide
                 </div>
 
                 <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.professional.lastName == '' || vm.isNameValid(vm.newUser.professional.lastName)">
+                     ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
                     Ce nom n'est pas valide
                 </div>
 
@@ -301,7 +301,8 @@
                 <div class="col-xs-12 proHomeSection3bTitle">
                     Inscrivez-vous dès maintenant et développez votre réseau
                 </div>
-                <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange proHomeSection3bButton" ng-click="vm.smoothScrollRegister()"
+                <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange proHomeSection3bButton"
+                     ng-click="vm.smoothScrollRegister()"
                      angular-ripple>
                     S’INSCRIRE GRATUITEMENT
                 </div>
