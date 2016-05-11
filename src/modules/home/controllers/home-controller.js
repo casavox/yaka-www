@@ -148,12 +148,13 @@
 
         vm.loginFormIsValid = function () {
             return !(vm.loginUser.profile.email == '' || vm.loginUser.password == '');
-
         };
 
         vm.login = function () {
-            console.log(vm.loginUser);
-            networkService.login(vm.loginUser, succesLogin, errorLogin);
+            if (vm.loginFormIsValid()) {
+                console.log(vm.loginUser);
+                networkService.login(vm.loginUser, succesLogin, errorLogin);
+            }
         };
 
         function succesLogin(res) {
@@ -275,7 +276,7 @@
         }
 
         vm.register = function () {
-            if (vm.registerFormIsValid) {
+            if (vm.registerFormIsValid()) {
 
                 if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
                     vm.newUser.invitationId = $localStorage.invitationId;
