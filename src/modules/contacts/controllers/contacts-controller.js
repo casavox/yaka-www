@@ -28,9 +28,31 @@
 
         vm.currentMenuItem = vm.MENU_ALL;
 
+        vm.contactsMenuOpened = false;
+
         vm.contacts = [];
         vm.prosNumber = 0;
         vm.friendsNumber = 0;
+
+        vm.getHumanReadableMenuItem = function () {
+            if (vm.currentMenuItem == vm.MENU_ALL) {
+                return "Tous mes Contacts";
+            } else if (vm.currentMenuItem == vm.MENU_PROS) {
+                return "Mes Pros";
+            } else if (vm.currentMenuItem == vm.MENU_FRIENDS) {
+                return "Mes Amis";
+            } else if (vm.currentMenuItem == vm.MENU_INVIT_RECEIVED) {
+                return "Invitations reçues";
+            } else if (vm.currentMenuItem == vm.MENU_INVIT_SENT) {
+                return "Invitations envoyées";
+            }
+        };
+
+        function reloadContactsAndInvitations() {
+            networkService.contactsGET(succesContactsGET, errorContactsGET);
+            networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
+            networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
+        }
 
         networkService.contactsGET(succesContactsGET, errorContactsGET);
 
@@ -142,6 +164,7 @@
             console.log(res);
             vm.invitCustomer = "";
             vm.closeFriendPopup();
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
 
@@ -174,6 +197,7 @@
                 address: {}
             };
             vm.phoneNumber = "";
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation envoyée", "success");
         }
 
@@ -293,7 +317,7 @@
             }
 
             return ret.join(char);
-        };
+        }
 
         vm.formIsValid = function () {
             vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
@@ -319,6 +343,7 @@
 
         function succesRefuseInvitationPOST(res) {
             console.log(res);
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation refusée avec succes", "success");
         }
 
@@ -332,6 +357,7 @@
 
         function succesAcceptInvitationPOST(res) {
             console.log(res);
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation acceptée avec succes", "success");
         }
 

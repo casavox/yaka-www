@@ -108,7 +108,7 @@
     margin-top: 45px;
     font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 33px;
-    text-align: justify;
+    text-align: left;
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin-bottom: 60px;
@@ -243,6 +243,11 @@
 
 .homeSection4ItemGoogle {
     margin-right: 33px;
+}
+
+body:after {
+    display: none;
+    content: url('/icons/mdpi/ic_facebook_active.png') url('/icons/mdpi/ic_facebook_hover.png') url('/icons/mdpi/ic_facebook_default.png') url('/icons/mdpi/ic_google_active.png') url('/icons/mdpi/ic_google_hover.png') url('/icons/mdpi/ic_google_default.png') url('/icons/mdpi/ic_twitter_active.png') url('/icons/mdpi/ic_twitter_hover.png') url('/icons/mdpi/ic_twitter_default.png');
 }
 
 .homeSection4ItemFacebook {

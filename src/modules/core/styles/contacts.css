@@ -24,7 +24,6 @@
     font-family: 'raleway_regular', Arial, sans-serif;
 }
 
-
 .contactsHeader {
     padding-top: 20px !important;
     padding-left: 20px !important;
@@ -169,10 +168,13 @@
     color: #FDAF00;
     font-family: 'raleway_bold', Arial, sans-serif;
     font-size: 14px;
+    position: absolute;
+    right: 25px;
+    top: 0;
 }
 
 .contactItemCity {
-    margin-left: 30px;
+    margin-left: 20px;
     opacity: 0.6;
 }
 
@@ -184,7 +186,7 @@
     letter-spacing: 0;
     margin-top: 7px;
     margin-right: 20px !important;
-    margin-left: 39px !important;
+    margin-left: 20px !important;
 }
 
 .contactItemAvatar {
@@ -192,7 +194,7 @@
     height: 40px;
     margin-top: 7px;
     margin-right: 20px !important;
-    margin-left: 39px !important;
+    margin-left: 20px !important;
 }
 
 .yakaPopupInvitTitle {
@@ -253,16 +255,312 @@
 
 .invitAccept {
     float: right;
-    margin-top: 18px;
-    margin-right: 34px;
+    margin-top: 14px;
+    margin-right: 10px;
     cursor: pointer;
+    width: 38px;
+    padding: 5px;
 }
 
 .invitRefuse {
     float: right;
-    margin-top: 16px;
-    margin-right: 25px;
+    margin-top: 13px;
+    margin-right: 20px;
     cursor: pointer;
+    width: 30px;
+    padding: 5px;
+}
+
+.contactsHeaderLeft {
+    text-align: center;
+}
+
+.contactsHeaderLeftTitle {
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 34px;
+    color: #00A3D3;
+    margin-top: 25px;
+}
+
+.contactsHeaderLeftSubtitle {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 18px;
+    color: #3E404B;
+}
+
+.contactsHeaderLeftDesc {
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 15px;
+    color: #2F313A;
+    margin-top: 10px;
+    line-height: 26px;
+}
+
+.titleContactsBeta {
+    left: 130px !important;
+}
+
+.contactsMenuSeparator {
+    background: #E6E5E5;
+    height: 1px;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+@media (max-width: 1064px) {
+
+    .contactsHeaderLeftTitle {
+        margin-top: 10px;
+    }
+
+    .contactsHeaderLeftDesc {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 949px) {
+    .contactsHeaderLeftTitle {
+        font-size: 29px;
+    }
+
+    .contactsHeaderLeftTitle {
+        font-size: 25px;
+    }
+
+    .contactsHeaderLeftSubtitle {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 849px) {
+
+    .contactsHeaderLeftDesc {
+        line-height: 23px;
+    }
+
+    .contactsHeaderRightSubTitle {
+        margin-top: 12px;
+    }
+
+    .contactsHeaderRightButton {
+        width: 140px !important;
+        font-size: 11px;
+    }
+
+    .contactsHeaderRightButtons {
+        margin-left: calc((100% - 300px) / 2);
+    }
+
+    .contactsHeaderRightButtonLeft {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .contactsMain {
+        height: calc(100% - 96px) !important;
+        width: calc(100% - 20px) !important;
+        margin: 10px !important;
+    }
+
+    .contactsHeaderLeft {
+        height: 92px !important;
+    }
+
+    .contactsHeaderRight {
+        height: 66px !important;
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .contactsHeaderRightTitle {
+        margin-top: 6px;
+        font-size: 16px;
+    }
+
+    .contactsHeaderRightButtons {
+        margin-top: 3px;
+    }
+
+    .contactsHeaderRightButton {
+        width: 110px !important;
+        font-size: 11px !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        height: 25px !important;
+        padding-top: 6px !important;
+    }
+
+    .contactsHeaderRightButtons {
+        margin-left: calc((100% - 240px) / 2);
+    }
+
+    .contactsHeaderRightButtonLeft {
+        margin-right: 20px;
+    }
+
+    .contactsMenu {
+        width: 220px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .contactsContacts {
+        width: 100%;
+    }
+
+    .contactsMenu {
+        left: -240px;
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out;
+        -ms-transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out;
+    }
+
+    .contactsMenu.opened {
+        -webkit-transform: translatex(240px);
+        -moz-transform: translatex(240px);
+        -o-transform: translatex(240px);
+        -ms-transform: translatex(240px);
+        transform: translatex(240px);
+    }
+
+    .contactsContactsMenuItemTitle {
+        font-family: 'raleway_medium', Arial, sans-serif;
+        font-size: 15px;
+        position: absolute;
+        top: 8px;
+    }
+
+    .contactsContactsMenuItemIcon {
+        padding: 10px;
+    }
+
+    .contactsMenuItemMain {
+        border-bottom: solid 1px #F9F9F9;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .contactsMenuTitle {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .contactsMenuItem {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .contactsMenuBlueCircle {
+        top: 16px;
+    }
+
+    .contactsItemNumber {
+        height: 23px;
+        top: 7px !important;
+        line-height: 23px;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .contactItem {
+        height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+    }
+
+    .contactItemAvatar {
+        width: 30px;
+        height: 30px;
+        margin-top: 5px;
+        margin-right: 0 !important;
+        margin-left: 5px !important;
+    }
+
+    .contactItemInitials {
+        width: 30px;
+        height: 30px;
+        margin-top: 5px;
+        margin-right: 0 !important;
+        margin-left: 5px !important;
+        font-size: 12px;
+        line-height: 30px;
+        letter-spacing: -0.6px;
+    }
+
+    .contactItemName {
+        position: absolute;
+        line-height: normal !important;
+        top: 5px;
+        left: 45px;
+        width: calc(100% - 49px) !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .contactItemCity {
+        position: absolute;
+        line-height: normal !important;
+        top: 20px;
+        left: 45px;
+        margin-left: 0;
+        width: calc(100% - 49px) !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .invitRefuse {
+        float: right;
+        margin-top: 7px;
+        margin-right: 7px;
+        cursor: pointer;
+        width: 25px;
+    }
+
+    .invitAccept {
+        float: right;
+        margin-top: 8px;
+        margin-right: 5px;
+        cursor: pointer;
+        width: 30px;
+    }
+
+    .contactItemNameInvitReceived {
+        width: calc(100% - 115px) !important;
+    }
+
+    .contactItemCityInvitReceived {
+        width: calc(100% - 115px) !important;
+    }
+
+    .contactItemPro {
+        right: 6px;
+        top: 13px;
+        line-height: normal;
+        font-size: 12px;
+    }
+
+    .contactsHeader {
+        padding-top: 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .logout {
+        font-size: 13px;
+        top: 6px;
+    }
+
+    .logoutExplain {
+        font-size: 9px;
+    }
 }
 
 @media (max-width: 549px) {
@@ -270,4 +568,12 @@
     .titleYakaClub {
         font-size: 20px;
     }
+
+    .titleContactsBeta {
+        font-size: 14px;
+        line-height: 16px;
+        top: 18px;
+        left: 104px !important;
+    }
+
 }
