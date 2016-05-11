@@ -168,12 +168,12 @@
             getMenuItemClass: function () {
                 return "";
             }
-        }
+        };
 
         app.logout = function () {
-            $localStorage.token = "";
+            $localStorage.$reset();
             $state.go('home');
-        }
+        };
 
         // Get profile date useful for smartsupp mail
         // @todo : @victor do it better (around enhancement of the top bar)

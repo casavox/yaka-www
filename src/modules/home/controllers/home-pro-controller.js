@@ -7,6 +7,10 @@
 
     function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
 
+        if ($localStorage.token && $localStorage.token != '') {
+            $state.go('contacts');
+        }
+
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
             console.log("invitationId : " + $stateParams.invitationId);
             $localStorage.invitationId = $stateParams.invitationId;

@@ -9,6 +9,10 @@
     //Controller login
     function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
 
+        if ($localStorage.token && $localStorage.token != '') {
+            $state.go('contacts');
+        }
+
         console.log("invitationId : " + $stateParams.invitationId);
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
             $localStorage.invitationId = $stateParams.invitationId;
