@@ -259,7 +259,7 @@
         };
 
         vm.registerUser = function () {
-            if (vm.formIsValid) {
+            if (vm.formIsValid()) {
 
                 if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
                     vm.newUser.invitationId = $localStorage.invitationId;
