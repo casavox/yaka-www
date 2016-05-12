@@ -313,5 +313,21 @@
                 alertMsg.send("Impossible de créer le compte", 'danger');
             }
         }
+
+        vm.forgottenPassword = function () {
+            if (vm.isEmailValid(vm.forgottenPasswordEmail)) {
+                networkService.passwordForgottenPOST(successPasswordForgotten, failPasswordForgotten);
+            }
+        };
+
+        function successPasswordForgotten(res) {
+            console.log(res);
+            vm.passwordForgottenMessageSent = true;
+        }
+
+        function failPasswordForgotten(err) {
+            console.log(err);
+            alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
+        }
     }
 })();

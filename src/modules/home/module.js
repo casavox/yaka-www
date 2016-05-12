@@ -18,7 +18,7 @@
                 controllerAs: 'vm'
             })
             .state('pro-home', {
-                url: "/pro?invitationId",
+                url: "/pro/?invitationId",
                 templateUrl: "/modules/home/views/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
