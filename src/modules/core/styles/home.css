@@ -470,6 +470,30 @@ body:after {
     color: #00A3D3;
 }
 
+.passwordForgotten {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+    color: #00A3D3;
+}
+
+.passwordForgotten span {
+    cursor: pointer;
+}
+
+.passwordForgottenMessageSent {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.passwordForgottenButton {
+    font-size: 13px;
+    height: auto;
+    padding-bottom: 13px;
+}
+
 @media (max-width: 991px) {
 
     .homeSection3ItemTitle {
@@ -795,6 +819,17 @@ body:after {
         font-size: 11px;
     }
 
+    .showRegisterFields.showRegisterFieldsVisible {
+        height: 270px;
+    }
+}
+
+@media (max-width: 459px) {
+
+    .passwordForgottenButton {
+        font-size: 13px;
+        padding-bottom: 9px;
+    }
 }
 
 @media (max-width: 439px) {
@@ -877,5 +912,4 @@ body:after {
     .homeSection1Title {
         font-size: 19px;
     }
-
 }

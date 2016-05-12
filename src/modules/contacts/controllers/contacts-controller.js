@@ -164,7 +164,7 @@
             for (var i = 0; i < invits.length; i++) {
                 invits[i] = invits[i].trim();
                 if (!vm.isEmailValid(invits[i])) {
-                    alertMsg.send(invits[i] + " n'est pas un email valide", "warning");
+                    alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
                     return;
                 }
             }

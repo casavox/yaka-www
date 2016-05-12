@@ -62,6 +62,12 @@
 
         vm.showLoginPopup = false;
 
+        vm.showForgottenPasswordPopup = false;
+
+        vm.passwordForgottenMessageSent = false;
+
+        vm.forgottenPasswordEmail = "";
+
         vm.currentYear = new Date().getFullYear();
 
         vm.noSocialAccountMessage = false;

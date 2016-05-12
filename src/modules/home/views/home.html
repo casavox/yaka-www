@@ -192,6 +192,11 @@
                          angular-ripple>
                         SE CONNECTER
                     </div>
+                    <div class="col-xs-12 passwordForgotten">
+                        <span ng-click="vm.closePopup();
+                         vm.forgottenPasswordEmail = vm.loginUser.profile.email;
+                         vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
+                    </div>
                 </div>
 
                 <div ng-if="!vm.loginTab">
@@ -295,6 +300,38 @@
                      angular-ripple>
                     OK
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup" ng-click="vm.showForgottenPasswordPopup = false">
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.showForgottenPasswordPopup = false" alt=""/>
+
+            <div ng-if="!vm.passwordForgottenMessageSent">
+
+                <input class="form-control" type="email" placeholder="Email du compte à récupérer"
+                       ng-model="vm.forgottenPasswordEmail"/>
+
+                <div class="loginPopupInputError"
+                     ng-hide="vm.forgottenPasswordEmail == '' || vm.isEmailValid(vm.forgottenPasswordEmail)">
+                    Cet email n'est pas valide
+                </div>
+
+                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton"
+                     ng-class="{yakaDisabled: !vm.isEmailValid(vm.forgottenPasswordEmail)}"
+                     ng-click="vm.passwordForgottenMessageSent = true"
+                     angular-ripple>
+                    RÉINITIALISER MON MOT DE PASSE
+                </div>
+
+            </div>
+            <div class="passwordForgottenMessageSent" ng-if="vm.passwordForgottenMessageSent">
+                Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
+                passe.
             </div>
         </div>
     </div>

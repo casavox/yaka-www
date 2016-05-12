@@ -28,7 +28,7 @@
 
 <body ng-app="Yaka" ng-controller="AppController as app">
 
-<div ng-include src="'/modules/core/modules/menu/views/menu.html'" ng-show="showMenu"
+<div ng-include src="'/modules/core/modules/menu/views/menu.html'" ng-if="showMenu"
      ng-controller="AppController"></div>
 
 <div ui-view></div>

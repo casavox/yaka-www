@@ -22,8 +22,6 @@
 
         vm.currentYear = new Date().getFullYear();
 
-        vm.showRegisterProFields = false;
-
         vm.newUser = {
             password: "",
             profile: {

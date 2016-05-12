@@ -482,31 +482,6 @@
     margin-top: 45px;
 }
 
-.showRegisterProFields {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    height: 0;
-    overflow: hidden;
-    -webkit-transition: height 0.3s linear;
-    -moz-transition: height 0.3s linear;
-    -o-transition: height 0.3s linear;
-    -ms-transition: height 0.3s linear;
-    transition: height 0.3s linear;
-}
-
-.showRegisterProFields.showRegisterProFieldsVisible {
-    height: 452px;
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    -o-transition-delay: 0s;
-    -ms-transition-delay: 0s;
-    transition-delay: 0s;
-}
-
-.registerWithEmailMessagePro {
-    color: #fdaf00;
-}
-
 @media (max-width: 991px) {
     .proHomeSection1 {
         height: auto;
@@ -865,6 +840,13 @@
     .proHomeSection3bButton {
         width: 70% !important;
         margin-left: 15% !important;
+    }
+}
+
+@media (max-width: 459px) {
+
+    .showRegisterProFields.showRegisterProFieldsVisible {
+        height: 388px;
     }
 }
 
