@@ -118,7 +118,7 @@
     margin-top: 4px;
     font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
-    color: #FDAF00;
+    color: #00A3D3;
     text-align: justify;
     text-shadow: 1px 1px 1px #414141;
     padding-left: 0 !important;
@@ -350,6 +350,12 @@ body:after {
 }
 
 .loginPopupTabItemActive {
+    border-bottom: solid 3px #00A3D3;
+    cursor: default;
+    color: black;
+}
+
+.loginPopupTabItemActivePro {
     border-bottom: solid 3px #FBB832;
     cursor: default;
     color: black;
@@ -439,33 +445,6 @@ body:after {
     padding-right: 0 !important;
 }
 
-/*
-.contentOverlay {
-    position: fixed !important;
-    top: 0;
-    background-color: black;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    padding: 0 !important;
-    -webkit-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
-    -moz-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
-    -o-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
-    -ms-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
-    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
-}
-
-.contentOverlay.overlayVisible {
-    visibility: visible;
-    opacity: 0.3;
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    -o-transition-delay: 0s;
-    -ms-transition-delay: 0s;
-    transition-delay: 0s;
-}
-*/
-
 .showRegisterFields {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -488,7 +467,7 @@ body:after {
 }
 
 .registerWithEmailMessage {
-    opacity: 0.5;
+    color: #00A3D3;
 }
 
 @media (max-width: 991px) {
@@ -739,6 +718,10 @@ body:after {
         left: 104px;
     }
 
+    .titleBetaPro {
+        left: 145px;
+    }
+
     .homeSection1ProLink {
         height: 28px;
         padding-top: 6px;
@@ -816,22 +799,6 @@ body:after {
 
 @media (max-width: 439px) {
 
-    .homeSection1ProLink {
-        margin-top: 35px;
-    }
-
-    .homeSection1Register {
-        margin-top: 35px;
-    }
-
-    .homeSection1Login {
-        margin-top: 35px;
-    }
-
-    .homeSection1Title {
-        margin-top: 60px;
-    }
-
     .homeSection1Title {
         font-size: 24px;
     }
@@ -883,6 +850,25 @@ body:after {
 
     .homeSection2ItemDescription {
         width: calc(65% - 10px) !important;
+    }
+}
+
+@media (max-width: 434px) {
+
+    .homeSection1Title {
+        margin-top: 60px;
+    }
+
+    .homeSection1ProLink {
+        margin-top: 35px;
+    }
+
+    .homeSection1Register {
+        margin-top: 35px;
+    }
+
+    .homeSection1Login {
+        margin-top: 35px;
     }
 }
 

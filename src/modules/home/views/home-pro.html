@@ -3,8 +3,9 @@
         <div class="container proHomeSection1Container">
             <div class="col-xs-12 homeSection1Header">
                 <div class="homeSection1YakaClub" ui-sref="home">
-                    <span class="homeSection1Yaka">YAKA</span><span class="homeSection1Club">CLUB</span>
-                    <span class="titleBeta">Beta</span>
+                    <span class="homeSection1Yaka">YAKA</span><span class="homeSection1Club">CLUB</span><span
+                    class="homeSection1Yaka">PRO</span>
+                    <span class="titleBeta titleBetaPro">Beta</span>
                 </div>
                 <div class="homeSection1ProLink proTopLink" angular-ripple ui-sref="home">
                     ACCES CLIENT
@@ -185,77 +186,82 @@
                 <div class="col-xs-4 col-xs-offset-4 proHomeSection2RegisterSeparator"/>
 
                 <div class="col-xs-12 proHomeSection2RegisterMail">
-                    <span ng-if="!vm.isSocialRegister()">Inscription par email</span>
+                    <span class="registerWithEmailMessagePro" ng-if="!vm.isSocialRegister()"
+                          ng-click="vm.showRegisterProFields = true">Inscription par email</span>
                     <span
                         ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                 </div>
 
-                <input class="form-control halfInput" placeholder="Prénom"
-                       ng-model="vm.newUser.firstName"
-                       ng-disabled="vm.isSocialRegister()"/>
+                <div class="col-xs-12 showRegisterProFields"
+                     ng-class="{showRegisterProFieldsVisible: vm.isSocialRegister() || vm.showRegisterProFields}">
+                    <input class="form-control halfInput" placeholder="Prénom"
+                           ng-model="vm.newUser.firstName"
+                           ng-disabled="vm.isSocialRegister()"/>
 
-                <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                       ng-model="vm.newUser.lastName"
-                       ng-disabled="vm.isSocialRegister()"/>
+                    <input class="form-control halfInput halfInputRight" placeholder="Nom"
+                           ng-model="vm.newUser.lastName"
+                           ng-disabled="vm.isSocialRegister()"/>
 
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
-                    Ce prénom n'est pas valide
-                </div>
+                    <div class="proHomeSection2InputError"
+                         ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
+                        Ce prénom n'est pas valide
+                    </div>
 
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
-                    Ce nom n'est pas valide
-                </div>
+                    <div class="proHomeSection2InputError"
+                         ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
+                        Ce nom n'est pas valide
+                    </div>
 
-                <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
-                       ng-disabled="vm.needToHideEmail()"/>
+                    <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
+                           ng-disabled="vm.needToHideEmail()"/>
 
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
-                    Cet email n'est pas valide
-                </div>
+                    <div class="proHomeSection2InputError"
+                         ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
+                        Cet email n'est pas valide
+                    </div>
 
-                <input class="form-control" type="password" placeholder="Mot de passe" ng-model="vm.newUser.password"/>
+                    <input class="form-control" type="password" placeholder="Mot de passe"
+                           ng-model="vm.newUser.password"/>
 
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
-                    Trop court : 6 caractères minimum
-                </div>
+                    <div class="proHomeSection2InputError"
+                         ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
+                        Trop court : 6 caractères minimum
+                    </div>
 
-                <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
-                       ng-model="vm.passwordConfirm"/>
+                    <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
+                           ng-model="vm.passwordConfirm"/>
 
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
-                    Les mots de passe ne correspondent pas
-                </div>
+                    <div class="proHomeSection2InputError"
+                         ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
+                        Les mots de passe ne correspondent pas
+                    </div>
 
-                <input id="proRegisterPhone" class="form-control proHomeSection2RegisterPhone" placeholder="Mobile"
-                       ng-model="vm.phoneNumber"/>
+                    <input id="proRegisterPhone" class="form-control proHomeSection2RegisterPhone" placeholder="Mobile"
+                           ng-model="vm.phoneNumber"/>
 
-                <div class="proHomeSection2InputError"
-                     ng-hide="vm.phoneNumber == '' || vm.isPhoneNumberValid">
-                    Cet numéro de téléphone n'est pas valide
-                </div>
+                    <div class="proHomeSection2InputError"
+                         ng-hide="vm.phoneNumber == '' || vm.isPhoneNumberValid">
+                        Cet numéro de téléphone n'est pas valide
+                    </div>
 
-                <div class="proHomeSection2ActivitiesInput" ng-dropdown-multiselect=""
-                     options="vm.multiChoiceInput.options"
-                     selected-model="vm.multiChoiceInput.selected"
-                     extra-settings="vm.multiChoiceInput.settings"
-                     translation-texts="vm.multiChoiceInput.translation"
-                     checkboxes="true"></div>
+                    <div class="proHomeSection2ActivitiesInput" ng-dropdown-multiselect=""
+                         options="vm.multiChoiceInput.options"
+                         selected-model="vm.multiChoiceInput.selected"
+                         extra-settings="vm.multiChoiceInput.settings"
+                         translation-texts="vm.multiChoiceInput.translation"
+                         checkboxes="true"></div>
 
-                <input
-                    vs-google-autocomplete="vm.autocomplete.options"
-                    vs-autocomplete-validator class="form-control"
-                    placeholder="Ville"
-                    ng-model="vm.newUser.professional.company.address.address"/>
+                    <input
+                        vs-google-autocomplete="vm.autocomplete.options"
+                        vs-autocomplete-validator class="form-control"
+                        placeholder="Ville"
+                        ng-model="vm.newUser.professional.company.address.address"/>
 
-                <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button"
-                     ng-class="{yakaDisabled: !vm.formIsValid()}" ng-click="vm.registerUser()"
-                     angular-ripple>
-                    S'INSCRIRE
+                    <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button"
+                         ng-class="{yakaDisabled: !vm.formIsValid()}" ng-click="vm.registerUser()"
+                         angular-ripple>
+                        S'INSCRIRE
+                    </div>
                 </div>
             </div>
         </div>

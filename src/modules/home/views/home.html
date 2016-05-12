@@ -27,7 +27,7 @@
             <div class="col-xs-12 homeSection1SubTitle">
                 Rejoignez la 1ère plateforme de recommandation d’artisans entre particuliers.
             </div>
-            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange homeSection1Button" ng-click="vm.openPopup(true)"
+            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button" ng-click="vm.openPopup(false)"
                  angular-ripple>
                 CREER MON RESEAU
             </div>
@@ -44,7 +44,7 @@
             <div class="col-xs-12 homeSection2Items">
                 <div class="col-xs-12 col-sm-4 homeSection2Item">
                     <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeTrust.png" alt=""/>
+                        <img src="icons/mdpi/ic_homeTrustBlue.png" alt=""/>
 
                         <div class="homeSection2ItemTitle">
                             CONFIANCE
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 homeSection2Item">
                     <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeConfidentiality.png" alt=""/>
+                        <img src="icons/mdpi/ic_homeConfidentialityBlue.png" alt=""/>
 
                         <div class="homeSection2ItemTitle">
                             CONFIDENTIALITÉ
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 homeSection2Item">
                     <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeShare.png" alt=""/>
+                        <img src="icons/mdpi/ic_homeShareBlue.png" alt=""/>
 
                         <div class="homeSection2ItemTitle">
                             PARTAGE
@@ -109,7 +109,7 @@
                     </div>
                     <div
                         class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue"
-                        ng-click="vm.openPopup(true)"
+                        ng-click="vm.openPopup(false)"
                         angular-ripple>
                         INVITEZ VOS AMIS ET VOS ARTISANS
                     </div>
@@ -187,7 +187,7 @@
                            ng-model="vm.loginUser.password"
                            ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
                          ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
                          angular-ripple>
                         SE CONNECTER
@@ -218,7 +218,8 @@
                     <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
 
                     <div class="col-xs-12 registerMail">
-                        <span class="registerWithEmailMessage" ng-if="!vm.isSocialRegister()" ng-click="vm.showRegisterFields = true">Inscription par email</span>
+                        <span class="registerWithEmailMessage" ng-if="!vm.isSocialRegister()"
+                              ng-click="vm.showRegisterFields = true">Inscription par email</span>
                         <span ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                     </div>
 
@@ -272,7 +273,7 @@
                             Les mots de passe ne correspondent pas
                         </div>
 
-                        <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                        <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
                              ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()"
                              angular-ripple>
                             S'INSCRIRE
