@@ -194,7 +194,7 @@
                     </div>
                     <div class="col-xs-12 passwordForgotten">
                         <span ng-click="vm.closePopup();
-                         vm.forgottenPasswordEmail = vm.loginUser.profile.email;
+                         vm.forgottenPasswordUser.email = vm.loginUser.profile.email;
                          vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
                     </div>
                 </div>
@@ -314,15 +314,15 @@
             <div ng-if="!vm.passwordForgottenMessageSent">
 
                 <input class="form-control" type="email" placeholder="Email du compte à récupérer"
-                       ng-model="vm.forgottenPasswordEmail"/>
+                       ng-model="vm.forgottenPasswordUser.email"/>
 
                 <div class="loginPopupInputError"
-                     ng-hide="vm.forgottenPasswordEmail == '' || vm.isEmailValid(vm.forgottenPasswordEmail)">
+                     ng-hide="vm.forgottenPasswordUser.email == '' || vm.isEmailValid(vm.forgottenPasswordUser.email)">
                     Cet email n'est pas valide
                 </div>
 
                 <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton"
-                     ng-class="{yakaDisabled: !vm.isEmailValid(vm.forgottenPasswordEmail)}"
+                     ng-class="{yakaDisabled: !vm.isEmailValid(vm.forgottenPasswordUser.email)}"
                      ng-click="vm.forgottenPassword()"
                      angular-ripple>
                     RÉINITIALISER MON MOT DE PASSE

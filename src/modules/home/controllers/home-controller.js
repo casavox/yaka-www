@@ -66,8 +66,6 @@
 
         vm.passwordForgottenMessageSent = false;
 
-        vm.forgottenPasswordEmail = "";
-
         vm.currentYear = new Date().getFullYear();
 
         vm.noSocialAccountMessage = false;
@@ -314,9 +312,13 @@
             }
         }
 
+        vm.forgottenPasswordUser = {
+            email: ""
+        };
+
         vm.forgottenPassword = function () {
-            if (vm.isEmailValid(vm.forgottenPasswordEmail)) {
-                networkService.passwordForgottenPOST(successPasswordForgotten, failPasswordForgotten);
+            if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
             }
         };
 
