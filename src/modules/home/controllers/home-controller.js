@@ -70,6 +70,8 @@
 
         vm.socialNetwork = "";
 
+        vm.showRegisterFields = false;
+
         vm.openPopup = function (showLoginTab) {
             vm.loginTab = showLoginTab;
             vm.showLoginPopup = true;
