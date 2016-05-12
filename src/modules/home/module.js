@@ -12,17 +12,16 @@
 
         $stateProvider
             .state('home', {
-                url: "/",
+                url: "/?invitationId",
                 templateUrl: "/modules/home/views/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
             .state('pro-home', {
-                url: "/pro",
+                url: "/pro?invitationId",
                 templateUrl: "/modules/home/views/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
             })
-
     }
 })();
