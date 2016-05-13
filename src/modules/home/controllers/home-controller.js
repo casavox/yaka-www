@@ -9,6 +9,7 @@
     //Controller login
     function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
 
+        $state.go('recoverpassword');
         if ($localStorage.token && $localStorage.token != '') {
             $state.go('contacts');
         }

@@ -305,11 +305,12 @@
     </div>
 </div>
 
-<div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup" ng-click="vm.showForgottenPasswordPopup = false">
+<div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup"
+     ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false">
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
-                 ng-click="vm.showForgottenPasswordPopup = false" alt=""/>
+                 ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
 
             <div ng-if="!vm.passwordForgottenMessageSent">
 
