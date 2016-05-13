@@ -95,7 +95,6 @@ window.fbAsyncInit = function () {
         };
 
 
-
         $authProvider.oauth2({
             name: "googleLogin",
             clientId: CONFIG.GOOGLE_CLIENT_ID,
@@ -243,7 +242,14 @@ window.fbAsyncInit = function () {
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "home" && toState.name != "pro-home" && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
+                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) &&
+                    toState.name != "home" &&
+                    toState.name != "pro-home" &&
+                    toState.name != "login" &&
+                    toState.name != "new-project" &&
+                    toState.name != "register" &&
+                    toState.name != "recoverpassword"
+                ) {
                     event.preventDefault();
                     $injector.get('$state').go('home');
                 }

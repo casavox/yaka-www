@@ -20,11 +20,16 @@
 }
 
 .yakaButton:active {
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12), 0px 8px 8px 0px rgba(0, 0, 0, 0.24), inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.12), 0px 4px 4px 0px rgba(0, 0, 0, 0.24), inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
 }
 
 .yakaButton.yakaDisabled {
     box-shadow: inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
+    cursor: default;
+}
+
+.yakaButton.yakaDisabled .angular-ripple.animate {
+    animation: none !important;
 }
 
 .yakaButton.yakaBlue {
