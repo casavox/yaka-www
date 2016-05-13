@@ -118,6 +118,11 @@
     padding-right: 55px !important;
 }
 
+.yakaPopupWindowCustomerService {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
 .popupCloseButton {
     position: absolute;
     top: 0;

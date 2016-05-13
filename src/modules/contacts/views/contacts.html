@@ -1,3 +1,9 @@
+<style ng-if="app.getUserType() == 'pro'">
+    .customerSupportWidget {
+        background: #fdaf00;
+    }
+</style>
+
 <section class="view">
     <div class="header-menu">
         <div class="titleYakaClub" ui-sref="contacts">
@@ -48,7 +54,8 @@
             </div>
         </div>
         <div class="col-xs-12 contactsMain">
-            <div class="col-xs-4 contactsMenu" ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}">
+            <div class="col-xs-4 contactsMenu"
+                 ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}">
                 <div class="col-sm-12 contactsMenuTitle">
                     CONTACTS
                 </div>

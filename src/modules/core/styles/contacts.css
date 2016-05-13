@@ -31,7 +31,7 @@
 .contactsHeader {
     padding-top: 20px !important;
     padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-right: 30px !important;
 }
 
 .contactsHeaderLeft {
@@ -70,6 +70,7 @@
     margin-top: 26px;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    width: auto !important;
 }
 
 .contactsHeaderRightButton {
@@ -84,9 +85,12 @@
 }
 
 .contactsMain {
-    width: calc(100% - 40px) !important;
+    width: calc(100% - 50px) !important;
     height: auto !important;
-    margin: 20px !important;
+    margin-left: 20px !important;
+    margin-right: 30px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     background: #f2f4f9;

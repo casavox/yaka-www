@@ -13,6 +13,8 @@
 
         var vm = this;
 
+        console.log("INVITATION ID CONTACTS : ");
+        console.log($localStorage.invitationId);
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
             networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
             $localStorage.invitationId = '';

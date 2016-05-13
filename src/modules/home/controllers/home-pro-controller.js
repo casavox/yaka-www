@@ -11,6 +11,8 @@
             $state.go('contacts');
         }
 
+        console.log("INVITATION ID PRO : ");
+        console.log($localStorage.invitationId);
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
             $localStorage.invitationId = $stateParams.invitationId;
         }

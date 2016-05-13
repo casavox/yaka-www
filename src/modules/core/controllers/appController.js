@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, CONFIG) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -172,37 +172,86 @@
 
         app.logout = function () {
             $localStorage.$reset();
+            $cookies.remove('ssupp.barclicked');
+            $cookies.remove('ssupp.geoloc');
+            $cookies.remove('ssupp.opened');
+            $cookies.remove('ssupp.vid');
             $state.go('home');
         };
 
-        // Get profile date useful for smartsupp mail
-        // @todo : @victor do it better (around enhancement of the top bar)
-        console.log("$scope.user");
-        console.log($scope.user);
-        if (($scope.user != undefined) && ($scope.user.profile != undefined)) {
-            if ($scope.user.profile.email != undefined) {
-                smartsupp('email', $scope.user.profile.email);
+        app.getUserType = function () {
+            if ($scope.user == undefined ||
+                $scope.user.type == undefined) {
+                return "";
+            } else {
+                return $scope.user.type;
             }
-            var fullName = null;
-            if ($scope.user.firstName != undefined) {
-                fullName = $scope.user.firstName;
-            }
-            if ($scope.user.lastName != undefined) {
-                fullName = fullName + " " + $scope.user.lastName;
-            }
-            if (fullName) {
-                console.log("ok : " + fullName);
-                smartsupp('name', fullName);
-            }
-            if ($scope.user.type != undefined) {
-                smartsupp('variables', {
-                    userType: {label: 'User Type', value: $scope.user.type}
-                });
-            }
-            smartsupp('variables', {
-                version: {label: 'YakaClub Version', value: 'beta 0'}
-            });
-        }
+        };
 
+        app.getFirstName = function () {
+            if ($scope.user == undefined) {
+                return "";
+            }
+            return $scope.user.firstName;
+        };
+
+        app.getLastName = function () {
+            if ($scope.user == undefined) {
+                return "";
+            }
+            return $scope.user.lastName;
+        };
+
+        app.getFullName = function () {
+            var firstName = app.getFirstName();
+            var lastName = app.getLastName();
+            if (firstName == "" && lastName == "") {
+                return "";
+            }
+            return firstName + " " + lastName;
+        };
+
+        app.getEmail = function () {
+            if ($scope.user == undefined ||
+                $scope.user.profile == undefined) {
+                return "";
+            }
+            return $scope.user.profile.email;
+        };
+
+        app.showCustomerSupport = false;
+
+        app.closeCustomerSupport = function () {
+            app.showCustomerSupport = false;
+            smartsupp('chat:close');
+        };
+
+        app.openCustomerSupport = function () {
+            app.showCustomerSupport = true;
+            console.log("Name : " + app.getFullName());
+            console.log("Email : " + app.getEmail());
+            smartsupp('name', app.getFullName());
+            smartsupp('email', app.getEmail());
+            smartsupp('variables',
+                {
+                    name: {
+                        label: 'Name',
+                        value: app.getFullName()
+                    },
+                    email: {
+                        label: 'Email',
+                        value: app.getEmail()
+                    },
+                    userType: {
+                        label: 'User Type',
+                        value: app.getUserType()
+                    },
+                    version: {
+                        label: 'YakaClub Version',
+                        value: 'beta 0'
+                    }
+                });
+            smartsupp('chat:open');
+        };
     }
 })();

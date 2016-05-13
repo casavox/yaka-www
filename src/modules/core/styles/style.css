@@ -44,6 +44,43 @@
     }
 }
 
+#customerService {
+    width: 100%;
+    height: 375px;
+}
+
+.customerSupportWidget {
+    position: fixed;
+    right: 0;
+    top: calc(50% - (30px / 2));
+    background: #00A3D3;
+    height: 30px;
+    width: 164px;
+    transform: rotate(270deg) translateY(67px);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: white;
+    cursor: pointer;
+}
+
+.customerSupportWidgetIcon {
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    transform: rotate(90deg);
+}
+
+.customerSupportWidgetText {
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    font-size: 15px;
+}
+
 /*--------------------------------- HEADER -----------------------------------*/
 
 .header {

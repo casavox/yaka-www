@@ -5,6 +5,7 @@
 
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = 'a1d543cb8d25d242881a7392bb96f16066127f3c';
+_smartsupp.renderTo = 'customerService';
 window.smartsupp || (function (d) {
     var s, c, o = smartsupp = function () {
         o._.push(arguments)
@@ -17,7 +18,5 @@ window.smartsupp || (function (d) {
     c.async = true;
     c.src = '//www.smartsuppchat.com/loader.js?';
     s.parentNode.insertBefore(c, s);
-    _smartsupp.alignX = "right";
-    _smartsupp.alignY = "side";
-    _smartsupp.hideMobileWidget = true; // hide chat box on mobile devices
+    _smartsupp.hideWidget = true;
 })(document);

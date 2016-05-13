@@ -21,7 +21,8 @@ angular.module('Yaka', [
     'ngStomp',
     'luegg.directives',
     'angularjs-dropdown-multiselect',
-    'angularTypewrite']);
+    'angularTypewrite',
+    'ngCookies']);
 
 
 // facebook library API
