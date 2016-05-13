@@ -359,7 +359,7 @@
                  ng-click="vm.closePopup()" alt=""/>
 
             <div ng-if="!vm.noSocialAccountMessage">
-                <div class="loginPopupTabItem loginPopupTabItemActive col-xs-12">
+                <div class="loginPopupTabItem loginPopupTabItemActivePro col-xs-12">
                     CONNEXION
                 </div>
 
@@ -381,6 +381,11 @@
                      angular-ripple>
                     SE CONNECTER
                 </div>
+                <div class="col-xs-12 passwordForgotten passwordForgottenPro">
+                        <span ng-click="vm.closePopup();
+                         vm.forgottenPasswordUser.email = vm.loginUser.profile.email;
+                         vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
+                </div>
             </div>
             <div ng-if="vm.noSocialAccountMessage">
                 <div class="noSocialAccountMessage">
@@ -393,6 +398,39 @@
                      angular-ripple>
                     OK
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup"
+     ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false">
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
+
+            <div ng-if="!vm.passwordForgottenMessageSent">
+
+                <input class="form-control" type="email" placeholder="Email du compte à récupérer"
+                       ng-model="vm.forgottenPasswordUser.email"/>
+
+                <div class="loginPopupInputError"
+                     ng-hide="vm.forgottenPasswordUser.email == '' || vm.isEmailValid(vm.forgottenPasswordUser.email)">
+                    Cet email n'est pas valide
+                </div>
+
+                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton"
+                     ng-class="{yakaDisabled: !vm.isEmailValid(vm.forgottenPasswordUser.email)}"
+                     ng-click="vm.forgottenPassword()"
+                     angular-ripple>
+                    RÉINITIALISER MON MOT DE PASSE
+                </div>
+
+            </div>
+            <div class="passwordForgottenMessageSent" ng-if="vm.passwordForgottenMessageSent">
+                Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
+                passe.
             </div>
         </div>
     </div>

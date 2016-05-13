@@ -478,6 +478,10 @@ body:after {
     color: #00A3D3;
 }
 
+.passwordForgottenPro {
+    color: #fdaf00;
+}
+
 .passwordForgotten span {
     cursor: pointer;
 }

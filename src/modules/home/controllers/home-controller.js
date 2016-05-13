@@ -62,10 +62,6 @@
 
         vm.showLoginPopup = false;
 
-        vm.showForgottenPasswordPopup = false;
-
-        vm.passwordForgottenMessageSent = false;
-
         vm.currentYear = new Date().getFullYear();
 
         vm.noSocialAccountMessage = false;
@@ -311,6 +307,10 @@
                 alertMsg.send("Impossible de créer le compte", 'danger');
             }
         }
+
+        vm.showForgottenPasswordPopup = false;
+
+        vm.passwordForgottenMessageSent = false;
 
         vm.forgottenPasswordUser = {
             email: ""

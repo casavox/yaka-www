@@ -389,6 +389,29 @@
                 }
             });
         };
+
+        vm.showForgottenPasswordPopup = false;
+
+        vm.passwordForgottenMessageSent = false;
+
+        vm.forgottenPasswordUser = {
+            email: ""
+        };
+
+        vm.forgottenPassword = function () {
+            if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
+            }
+        };
+
+        function successPasswordForgotten(res) {
+            vm.passwordForgottenMessageSent = true;
+        }
+
+        function failPasswordForgotten(err) {
+            console.log(err);
+            alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
+        }
     }
 })
 ();
