@@ -13,7 +13,6 @@
             $state.go('contacts');
         }
 
-        console.log("invitationId : " + $stateParams.invitationId);
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
             $localStorage.invitationId = $stateParams.invitationId;
         }
@@ -283,11 +282,6 @@
 
         vm.register = function () {
             if (vm.registerFormIsValid()) {
-
-                if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-                    vm.newUser.invitationId = $localStorage.invitationId;
-                }
-
                 networkService.register(vm.newUser, successRegister, failRegister);
             }
         };
@@ -295,7 +289,6 @@
         function successRegister(res) {
             console.log(res);
             $localStorage.token = res.token;
-            $localStorage.invitationId = '';
             $state.go('contacts');
         }
 

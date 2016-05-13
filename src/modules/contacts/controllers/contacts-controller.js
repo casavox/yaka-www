@@ -13,6 +13,11 @@
 
         var vm = this;
 
+        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+            networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            $localStorage.invitationId = '';
+        }
+
         vm.getMenuItemClass = function (state) {
             if (state == "contacts") {
                 return "active-menu";
