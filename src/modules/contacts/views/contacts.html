@@ -19,7 +19,7 @@
                     Bienvenue sur YakaClub
                 </div>
                 <div class="col-xs-12 contactsHeaderLeftSubtitle">
-                    et merci de rejoindre notre commuanuté !
+                    et merci de rejoindre notre communauté !
                 </div>
                 <div class="col-xs-12 contactsHeaderLeftDesc">
                     Dès aujourd’hui, commencez à constituer votre réseau de confiance.
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="col-xs-12 contactsMain">
-            <div class="col-xs-4 contactsMenu" ng-class="{'opened': vm.contactsMenuOpened}">
+            <div class="col-xs-4 contactsMenu" ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}">
                 <div class="col-sm-12 contactsMenuTitle">
                     CONTACTS
                 </div>
@@ -133,14 +133,18 @@
                     </div>
 
                     <span class="contactItemName">
-                        {{contact.user.firstName}} {{contact.user.lastName}}
+                        {{contact.user.firstName}} {{contact.user.lastName}} ({{contact.user.profile.email}})
                     </span>
                     <span class="contactItemPro" ng-if="contact.user.professional">
                         PRO
                     </span>
                     <span class="contactItemCity"
-                          ng-if="contact.user.profile && contact.user.profile.defaultAddress && contact.user.profile.defaultAddress.locality">
+                          ng-if="!contact.user.professional && contact.user.profile && contact.user.profile.defaultAddress && contact.user.profile.defaultAddress.locality">
                         {{contact.user.profile.defaultAddress.locality}}
+                    </span>
+                    <span class="contactItemCity contactItemCityInvitReceived"
+                          ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                        {{contact.user.professional.company.address.locality}}
                     </span>
                 </div>
                 <div class="col-xs-12 contactItem"
@@ -158,14 +162,18 @@
                         {{invit.inviter.lastName[0]| uppercase}}.
                     </div>
                     <span class="contactItemName contactItemNameInvitReceived">
-                        {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                        {{invit.inviter.firstName}} {{invit.inviter.lastName}} ({{invit.inviter.profile.email}})
                     </span>
-                    <span class="contactItemPro" ng-if="contact.user.professional">
+                    <span class="contactItemPro contactItemInvitReceivedPro" ng-if="invit.inviter.professional">
                         PRO
                     </span>
                     <span class="contactItemCity contactItemCityInvitReceived"
-                          ng-if="invit.inviter.profile && invit.inviter.profile.defaultAddress && invit.inviter.profile.defaultAddress.locality">
+                          ng-if="!invit.inviter.professional && invit.inviter.profile && invit.inviter.profile.defaultAddress && invit.inviter.profile.defaultAddress.locality">
                         {{invit.inviter.profile.defaultAddress.locality}}
+                    </span>
+                    <span class="contactItemCity contactItemCityInvitReceived"
+                          ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
+                        {{invit.inviter.professional.company.address.locality}}
                     </span>
 
                     <span angular-ripple>

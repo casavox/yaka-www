@@ -24,6 +24,10 @@
     font-family: 'raleway_regular', Arial, sans-serif;
 }
 
+.contacts {
+    height: auto;
+}
+
 .contactsHeader {
     padding-top: 20px !important;
     padding-left: 20px !important;
@@ -81,22 +85,21 @@
 
 .contactsMain {
     width: calc(100% - 40px) !important;
-    height: calc(100% - 293px) !important;
-    background: white;
+    height: auto !important;
     margin: 20px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    background: #f2f4f9;
 }
 
 .contactsMenu {
     background: #FCFCFC;
-    height: 100%;
-    overflow-y: scroll;
     font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     line-height: 60px;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    height: auto;
 }
 
 .contactsList {
@@ -134,6 +137,7 @@
 .contactsContacts {
     padding-left: 0 !important;
     padding-right: 0 !important;
+    background: white;
 }
 
 .contactsItemNumber {
@@ -171,6 +175,10 @@
     position: absolute;
     right: 25px;
     top: 0;
+}
+
+.contactItemInvitReceivedPro {
+    right: 110px;
 }
 
 .contactItemCity {
@@ -394,6 +402,7 @@
 
     .contactsHeaderRightButtons {
         margin-left: calc((100% - 240px) / 2);
+        width: auto;
     }
 
     .contactsHeaderRightButtonLeft {
@@ -469,36 +478,36 @@
     }
 
     .contactItem {
-        height: 40px;
-        line-height: 40px;
-        font-size: 12px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 13px;
     }
 
     .contactItemAvatar {
-        width: 30px;
-        height: 30px;
-        margin-top: 5px;
+        width: 36px;
+        height: 36px;
+        margin-top: 6px;
         margin-right: 0 !important;
-        margin-left: 5px !important;
+        margin-left: 9px !important;
     }
 
     .contactItemInitials {
-        width: 30px;
-        height: 30px;
-        margin-top: 5px;
+        width: 36px;
+        height: 36px;
+        margin-top: 6px;
         margin-right: 0 !important;
-        margin-left: 5px !important;
-        font-size: 12px;
-        line-height: 30px;
+        margin-left: 9px !important;
+        font-size: 14px;
+        line-height: 36px;
         letter-spacing: -0.6px;
     }
 
     .contactItemName {
         position: absolute;
         line-height: normal !important;
-        top: 5px;
-        left: 45px;
-        width: calc(100% - 49px) !important;
+        top: 8px;
+        left: 50px;
+        width: calc(100% - 60px) !important;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -507,10 +516,10 @@
     .contactItemCity {
         position: absolute;
         line-height: normal !important;
-        top: 20px;
-        left: 45px;
+        top: 25px;
+        left: 50px;
         margin-left: 0;
-        width: calc(100% - 49px) !important;
+        width: calc(100% - 60px) !important;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -518,31 +527,44 @@
 
     .invitRefuse {
         float: right;
-        margin-top: 7px;
+        margin-top: 9px;
         margin-right: 7px;
         cursor: pointer;
-        width: 25px;
     }
 
     .invitAccept {
         float: right;
-        margin-top: 8px;
+        margin-top: 10px;
         margin-right: 5px;
         cursor: pointer;
-        width: 30px;
+    }
+
+    .invitAccept:hover {
+        background: #F6F6F6;
+    }
+
+    .invitRefuse:hover {
+        background: #F6F6F6;
     }
 
     .contactItemNameInvitReceived {
-        width: calc(100% - 115px) !important;
+        width: calc(100% - 130px) !important;
     }
 
     .contactItemCityInvitReceived {
-        width: calc(100% - 115px) !important;
+        width: calc(100% - 130px) !important;
     }
 
     .contactItemPro {
         right: 6px;
-        top: 13px;
+        top: 18px;
+        line-height: normal;
+        font-size: 12px;
+    }
+
+    .contactItemInvitReceivedPro {
+        right: 88px;
+        top: 18px;
         line-height: normal;
         font-size: 12px;
     }
@@ -574,6 +596,21 @@
         line-height: 16px;
         top: 18px;
         left: 104px !important;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .contactsContacts.menuFixed {
+        margin-left: 33.33333333%;
+    }
+
+    .contactsMenu.fixed {
+        position: fixed;
+        top: 58px;
+        left: 20px;
+        width: calc((100% - 40px) * 0.33333333);
     }
 
 }

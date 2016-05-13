@@ -393,6 +393,23 @@
                 alertMsg.send("Impossible d'accepter l'invitation", 'danger');
             }
         }
+
+        vm.contactsMenuFixed = false;
+
+        $('.view').scroll(function () {
+            var scroll = $('.view').scrollTop();
+            if (scroll >= 270) {
+                vm.contactsMenuFixed = true;
+                console.log(true);
+                $('.contactsMenu').addClass("fixed");
+                $('.contactsContacts').addClass("menuFixed");
+            } else {
+                vm.contactsMenuFixed = false;
+                console.log(false);
+                $('.contactsMenu').removeClass("fixed");
+                $('.contactsContacts').removeClass("menuFixed");
+            }
+        });
     }
 })
 ();

@@ -818,10 +818,6 @@ body:after {
         margin-bottom: 10px;
         font-size: 11px;
     }
-
-    .showRegisterFields.showRegisterFieldsVisible {
-        height: 270px;
-    }
 }
 
 @media (max-width: 459px) {
@@ -829,6 +825,10 @@ body:after {
     .passwordForgottenButton {
         font-size: 13px;
         padding-bottom: 9px;
+    }
+
+    .showRegisterFields.showRegisterFieldsVisible {
+        height: 270px;
     }
 }
 
