@@ -30,7 +30,6 @@
             $rootScope.projects = res.items;
             vm.count = res.totalItemNumber;
             vm.dashboardProjects = res.items;
-            console.log(res)
         }
 
 

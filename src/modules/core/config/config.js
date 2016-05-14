@@ -3,7 +3,6 @@ angular.module('Yaka')
         var service = this;
 
         service.responseError = function (response) {
-            console.log("Interceptor : " + response.status);
             if (response.status == 401) {
                 $injector.get('$localStorage').$reset();
                 $injector.get('$state').go("home");

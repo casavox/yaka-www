@@ -214,7 +214,6 @@
                 else {
                     formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
                     networkService.proposalSmallPOST(formData, function (res) {
-                        console.log(res);
                         alertMsg.send("Proposal sent.", "success");
                     }, function (res) {
                         alertMsg.send("Error : proposal not sent", "danger");
@@ -359,7 +358,6 @@
             vm.project = res.project;
             vm.proposal = res;
             vm.proposalTmp = angular.copy(vm.proposal);
-            console.log(res);
             vm.projectTmp = angular.copy(vm.project);
             if (vm.projectTmp.type != "EMERGENCY") {
                 vm.dateType = vm.projectTmp.desiredDatePeriod;

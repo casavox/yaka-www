@@ -21,16 +21,12 @@
         };
 
         networkService.proProposalsGET('proposal_sent', function (res) {
-            console.log(res);
             vm.proposals = res;
         }, function () {
-            console.log("Error");
         });
         networkService.proProposalsGET('declined', function (res) {
-            console.log(res);
             vm.decline = res;
         }, function () {
-            console.log("Error");
         });
 
         vm.selectProposal = function (index) {
@@ -40,7 +36,6 @@
 
         vm.deleteProposal = function () {
             networkService.proProposalsArchiveGET(vm.decline[vm.index].id, function (res) {
-                console.log(res);
                 vm.delete = false;
                 alertMsg.send('Proposal deleted', "success");
             }, function () {

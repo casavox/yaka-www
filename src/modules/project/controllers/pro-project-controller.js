@@ -122,7 +122,6 @@
                         slot: vm.offer.date.slot
                     };
                     networkService.proposalEmergencyPOST(formData, function (res) {
-                        console.log(res);
                         alertMsg.send("Proposal sent.", "success");
                         $state.go('prodashboard');
                     }, function (res) {
@@ -143,7 +142,6 @@
                         formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
                     }
                     networkService.proposalSmallPOST(formData, function (res) {
-                        console.log(res);
                         alertMsg.send("Proposal sent.", "success");
                         $state.go('prodashboard');
                     }, function (res) {
@@ -504,7 +502,6 @@
 
             vm.project = res;
             vm.project.translatedTitle = translateProjectTitle(vm.project);
-            console.log(res);
             vm.projectTmp = angular.copy(vm.project);
             vm.whenSlot = vm.getWhen();
             if (vm.projectTmp.type != "EMERGENCY") {
@@ -540,8 +537,6 @@
                             }
                             break;
                         case "12H_14H":
-                            console.log(vm.projectTmp.availabilities[i].date, $filter('date')(vm.J1.date, "yyyy-MM-dd"), $filter('date')(vm.J2.date, "yyyy-MM-dd"), $filter('date')(vm.J3.date, "yyyy-MM-dd"));
-
                             if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
                                 vm.J1.c3Disabled = '';
                             }

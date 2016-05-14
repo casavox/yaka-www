@@ -17,13 +17,11 @@
             if ($rootScope.state.name == "inbox") {
                 vm.me = "CUSTOMER";
                 networkService.proposalGET($stateParams.proposalId, function (res) {
-                    console.log(res);
                     vm.proposal = res;
                     vm.pro = vm.proposal.professional;
                     vm.project = vm.proposal.project;
                     networkService.messagesGET($stateParams.proposalId, 1, limit, function (res) {
                         vm.messages = res;
-                        console.log(res);
                         vm.glue = true;
                     }, function () {
                         alertMsg.send("Error to get the messages historic", "warning");
@@ -36,13 +34,11 @@
                 var connectHeaders = {token: $localStorage.token};
                 vm.me = "PRO";
                 networkService.proposalProGET($stateParams.proposalId, function (res) {
-                    console.log(res);
                     vm.proposal = res;
                     vm.pro = vm.proposal.professional;
                     vm.project = vm.proposal.project;
                     networkService.messagesProGET($stateParams.proposalId, 1, limit, function (res) {
                         vm.messages = res;
-                        console.log(res);
                         vm.glue = true;
                     }, function () {
                         alertMsg.send("Error to get the messages historic", "warning");
@@ -77,8 +73,6 @@
         vm.hire = hire;
         var limit = 20;
 
-        console.log($rootScope.state);
-
         function deleteImg() {
             delete vm.msg.cloudinaryPublicId;
         }
@@ -106,7 +100,6 @@
             var page = Math.ceil(vm.messages.items.length / limit);
             networkService.messagesGET($stateParams.proposalId, page, limit, function (res) {
                 vm.messages = vm.messages.concat(res);
-                console.log(res);
             }, function () {
                 alertMsg.send("Error to get the messages", "warning");
             });
@@ -144,7 +137,6 @@
                         file.result = data;
                         vm.msg = vm.msg || {};
                         vm.msg.cloudinaryPublicId = data.public_id;
-                        console.log(vm.msg);
                     }).error(function (data, status, headers, config) {
                         file.result = data;
                     });
@@ -157,7 +149,6 @@
             if (vm.msg.text && vm.msg.text.length > 0 || vm.msg.cloudinaryPublicId) {
                 if (vm.send == false) {
                     vm.send = true;
-                    console.log(vm.msg);
                     if (vm.me == "CUSTOMER") {
                         networkService.sendMessage($stateParams.proposalId, vm.msg, function (res) {
                             vm.glue = true;

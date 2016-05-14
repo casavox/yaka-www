@@ -13,8 +13,6 @@
 
         var vm = this;
 
-        console.log("INVITATION ID CONTACTS : ");
-        console.log($localStorage.invitationId);
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
             networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
             $localStorage.invitationId = '';
@@ -64,7 +62,6 @@
         networkService.contactsGET(succesContactsGET, errorContactsGET);
 
         function succesContactsGET(res) {
-            console.log(res);
 
             var prosNum = 0;
             var friendsNum = 0;
@@ -95,7 +92,6 @@
         networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
 
         function succesInvitationsReceivedGET(res) {
-            console.log(res);
 
             vm.invitationsReceived = res;
         }
@@ -111,8 +107,6 @@
         networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
 
         function succesInvitationsSentGET(res) {
-            console.log(res);
-
             vm.invitationsSent = res;
         }
 
@@ -180,7 +174,6 @@
         };
 
         function succesInviteCustomerPOST(res) {
-            console.log(res);
             vm.invitCustomer = "";
             vm.closeFriendPopup();
             reloadContactsAndInvitations();
@@ -209,7 +202,6 @@
         };
 
         function succesInviteProPOST(res) {
-            console.log(res);
             vm.closeProPopup();
             vm.invitPro = {
                 email: "",
@@ -304,9 +296,6 @@
             if ($.trim($('#proInvitePhone').val())) {
                 if ($('#proInvitePhone').intlTelInput("isValidNumber")) {
                     vm.invitPro.phone = $('#proInvitePhone').intlTelInput("getNumber");
-                    console.log("VALID");
-                } else {
-                    console.log("INVALID");
                 }
             }
         });
@@ -369,7 +358,6 @@
         };
 
         function succesRefuseInvitationPOST(res) {
-            console.log(res);
             reloadContactsAndInvitations();
             alertMsg.send("Invitation refusée avec succes", "success");
         }
@@ -387,13 +375,11 @@
         };
 
         function succesAcceptInvitationPOST(res) {
-            console.log(res);
             reloadContactsAndInvitations();
             alertMsg.send("Invitation acceptée avec succes", "success");
         }
 
         function errorAcceptInvitationPOST(err) {
-            console.log(err);
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -407,12 +393,10 @@
             var scroll = $('.view').scrollTop();
             if (scroll >= 270) {
                 vm.contactsMenuFixed = true;
-                console.log(true);
                 $('.contactsMenu').addClass("fixed");
                 $('.contactsContacts').addClass("menuFixed");
             } else {
                 vm.contactsMenuFixed = false;
-                console.log(false);
                 $('.contactsMenu').removeClass("fixed");
                 $('.contactsContacts').removeClass("menuFixed");
             }

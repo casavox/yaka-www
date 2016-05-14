@@ -62,11 +62,9 @@
         }
 
         function errorProjectsGET(res) {
-            console.log(res);
         }
 
         function errorProjectsCompletedGET(res) {
-            console.log(res);
         }
     }
 })();

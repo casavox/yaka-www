@@ -398,7 +398,6 @@
         };
 
         function succesProjectsPOST(res) {
-            console.log(res);
             vm.continueAddressFlag = vm.continueImg = vm.continue = vm.service = vm.selectCategory = false;
             vm.questions = [];
             vm.end = true;
@@ -466,7 +465,6 @@
         };
 
         vm.continueAddr = function () {
-            console.log($scope.address);
             if (vm.continueAddress == false) {
                 if (vm.newAddr.name) {
                     if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR") {

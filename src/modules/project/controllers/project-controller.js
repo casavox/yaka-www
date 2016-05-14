@@ -198,7 +198,6 @@
             vm.proposal = res;
             vm.proDetails = true;
             vm.pro = false;
-            console.log(res);
         }
 
         vm.homeDetail = function () {
@@ -296,9 +295,6 @@
 
         function succesProfileGET(res) {
             vm.user = res;
-
-
-            console.log(res, vm.projectTmp);
         }
 
         function errorProfileGET() {
@@ -407,7 +403,7 @@
                     j[key] = false;
             });
         };
-        
+
         vm.initDate = function (j, tab) {
             var array = ["7H_9H", "9H_12H", "12H_14H", "14H_16H", "16H_18H", "18H_20H", "AFTER_20H"];
             if (j.all && j.allDisabled != "checkbox-disabled")

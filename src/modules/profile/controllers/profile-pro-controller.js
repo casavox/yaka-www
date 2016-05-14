@@ -140,9 +140,6 @@
                         vm.mapEditing = true;
                     },
                     "zoom_changed": function () {
-                        console.log("zoom_changed !");
-                        console.log(canStartEditionWithZoom);
-                        console.log(firstZoom);
                         if (canStartEditionWithZoom && firstZoom) {
                             firstZoom = false;
                         } else if (canStartEditionWithZoom && !firstZoom) {
@@ -192,7 +189,6 @@
                     return vm.map.zoom;
                 },
                 function (newValue, oldValue) {
-                    console.log("old : " + oldValue + ", new : " + newValue);
                     if (vm.mapEditing) {
                         if (newValue < 9) {
                             vm.mapShowMinimumZoomMessage = true;
@@ -308,11 +304,9 @@
 
         function succeSkillsGET(res) {
             vm.cat = res;
-            console.log(res);
         }
 
         function errorSkillsGET(res) {
-            console.log(res);
         }
 
         function uploadPortfolio(files, invalides, index) {
@@ -423,8 +417,6 @@
 
         function yearsContent() {
             var res = [];
-            console.log(vm.Year);
-            console.log(parseInt(vm.Year) - 1949);
             for (var i = 0; i < (parseInt(vm.Year) - 1949); i++) {
                 res.push(1950 + i);
             }
@@ -568,7 +560,6 @@
             vm.verifications = angular.copy(vm.profile.verifications);
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
-            console.log(res);
         }
 
         function errorProfileGET(res) {

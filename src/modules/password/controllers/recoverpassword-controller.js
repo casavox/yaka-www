@@ -41,7 +41,6 @@
         }
 
         function failPasswordNew(err) {
-            console.log(err);
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
 

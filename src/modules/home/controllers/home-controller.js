@@ -13,8 +13,6 @@
             $state.go('contacts');
         }
 
-        console.log("INVITATION ID CUSTOMER : ");
-        console.log($localStorage.invitationId);
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
             $localStorage.invitationId = $stateParams.invitationId;
         }
@@ -159,7 +157,6 @@
 
         vm.login = function () {
             if (vm.loginFormIsValid()) {
-                console.log(vm.loginUser);
                 networkService.login(vm.loginUser, succesLogin, errorLogin);
             }
         };
@@ -169,7 +166,6 @@
                 $localStorage.token = res.token;
                 networkService.me(function (res) {
                     $localStorage.user = res;
-                    console.log(res);
                     if (angular.isUndefined(res.professional)) {
                         $localStorage.user.type = 'customer';
                         $state.go('contacts');
@@ -182,7 +178,6 @@
                     alertMsg.send('Error: impossible de récupérer votre profil');
                 });
                 $rootScope.logmail = $scope.email;
-                console.log(res);
             }
         }
 
@@ -197,15 +192,12 @@
         vm.googleLogin = function () {
             vm.socialNetwork = "Google";
             $auth.authenticate('googleLogin').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
                     $localStorage.token = res.data.token;
                     $state.go('contacts');
                     $rootScope.logmail = $scope.email;
                 }
             }).catch(function (res) {
-                console.log("catch", res);
-
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
@@ -219,14 +211,12 @@
         vm.facebookLogin = function () {
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
                     $localStorage.token = res.data.token;
                     $state.go('contacts');
                     $rootScope.logmail = $scope.email;
                 }
             }).catch(function (res) {
-                console.log("catch", res);
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
@@ -240,13 +230,10 @@
         vm.googlePreRegister = function () {
             vm.socialNetwork = "Google";
             $auth.authenticate('googleRegister').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
-                console.log("catch", res);
-
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
@@ -258,12 +245,10 @@
         vm.facebookPreRegister = function () {
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookRegister').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
-                console.log("catch", res);
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
@@ -289,13 +274,11 @@
         };
 
         function successRegister(res) {
-            console.log(res);
             $localStorage.token = res.token;
             $state.go('contacts');
         }
 
         function failRegister(err) {
-            console.log(err);
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -322,7 +305,6 @@
         }
 
         function failPasswordForgotten(err) {
-            console.log(err);
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
     }

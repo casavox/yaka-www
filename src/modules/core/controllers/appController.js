@@ -57,7 +57,6 @@
                         can = true;
                         if (res) {
                             $scope.project = res;
-                            console.log(res);
                             networkService.criteriaGET(function (res) {
                                 $scope.criteria = res;
                                 $scope.projectFlag = true;
@@ -184,6 +183,10 @@
             }
         };
 
+        app.isPro = function () {
+            return app.getUserType() == "pro";
+        };
+
         app.getFirstName = function () {
             if ($scope.user == undefined) {
                 return "";
@@ -224,8 +227,6 @@
 
         app.openCustomerSupport = function () {
             app.showCustomerSupport = true;
-            console.log("Name : " + app.getFullName());
-            console.log("Email : " + app.getEmail());
             smartsupp('name', app.getFullName());
             smartsupp('email', app.getEmail());
             smartsupp('variables',
