@@ -11,10 +11,6 @@
         var baseUrl = CONFIG.API_BASE_URL;
 
         return {
-            /*
-             register: function(data, success, error) {
-             $http.post(baseUrl + '/projects/me?status='+data).success(success).error(error)
-             },*/
             login: function (data, success, error) {
                 $http.post(baseUrl + '/login', data).success(success).error(error)
             },

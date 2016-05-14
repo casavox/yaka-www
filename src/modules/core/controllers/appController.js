@@ -172,10 +172,6 @@
 
         app.logout = function () {
             $localStorage.$reset();
-            $cookies.remove('ssupp.barclicked');
-            $cookies.remove('ssupp.geoloc');
-            $cookies.remove('ssupp.opened');
-            $cookies.remove('ssupp.vid');
             $state.go('home');
         };
 
