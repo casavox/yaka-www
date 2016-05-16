@@ -148,7 +148,7 @@
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
             vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm);
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering);
         };
 
         vm.loginFormIsValid = function () {
@@ -267,18 +267,23 @@
             vm.newUser.facebookId = user.facebookId;
         }
 
+        vm.registering = false;
+
         vm.register = function () {
             if (vm.registerFormIsValid()) {
+                vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister);
             }
         };
 
         function successRegister(res) {
+            vm.registering = false;
             $localStorage.token = res.token;
             $state.go('contacts');
         }
 
         function failRegister(err) {
+            vm.registering = false;
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {

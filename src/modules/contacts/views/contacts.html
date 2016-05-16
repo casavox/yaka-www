@@ -83,7 +83,13 @@
                     <img class="contactsMenuBlueCircle"
                          ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
                          ng-if="vm.currentMenuItem == vm.MENU_PROS">
-                    ARTISANS
+                    <span ng-if="!app.isPro()">
+                        ARTISANS
+                    </span>
+                    <span ng-if="app.isPro()">
+                        COLLÈGUES
+                    </span>
+
                     <div class="contactsItemNumber"
                          ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_PROS}">
                         {{vm.prosNumber}}
@@ -160,7 +166,12 @@
                         {{contact.user.firstName}} {{contact.user.lastName}} ({{contact.user.profile.email}})
                     </span>
                     <span class="contactItemPro" ng-if="contact.user.professional">
-                        PRO
+                        <span ng-if="!app.isPro()">
+                            PRO
+                        </span>
+                        <span ng-if="app.isPro()">
+                            COLLÈGUE
+                        </span>
                     </span>
                     <span class="contactItemCity"
                           ng-if="!contact.user.professional && contact.user.profile && contact.user.profile.defaultAddress && contact.user.profile.defaultAddress.locality">
@@ -189,7 +200,12 @@
                         {{invit.inviter.firstName}} {{invit.inviter.lastName}} ({{invit.inviter.profile.email}})
                     </span>
                     <span class="contactItemPro contactItemInvitReceivedPro" ng-if="invit.inviter.professional">
-                        PRO
+                        <span ng-if="!app.isPro()">
+                            PRO
+                        </span>
+                        <span ng-if="app.isPro()">
+                            COLLÈGUE
+                        </span>
                     </span>
                     <span class="contactItemCity contactItemCityInvitReceived"
                           ng-if="!invit.inviter.professional && invit.inviter.profile && invit.inviter.profile.defaultAddress && invit.inviter.profile.defaultAddress.locality">
@@ -222,7 +238,12 @@
                         {{invit.email}}
                     </span>
                     <span class="contactItemPro" ng-if="invit.isPro">
-                        PRO
+                        <span ng-if="!app.isPro()">
+                            PRO
+                        </span>
+                        <span ng-if="app.isPro()">
+                            COLLÈGUE
+                        </span>
                     </span>
                 </div>
             </div>
