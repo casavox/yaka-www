@@ -401,6 +401,14 @@
                 $('.contactsContacts').removeClass("menuFixed");
             }
         });
+
+        vm.getOverlayClass = function () {
+            if (vm.contactsMenuOpened) {
+                return "overlayVisible";
+            } else {
+                return "overlayInvisible";
+            }
+        };
     }
 })
 ();

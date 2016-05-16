@@ -60,7 +60,8 @@
         </div>
         <div class="col-xs-12 contactsMain">
             <div class="col-xs-4 contactsMenu"
-                 ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}">
+                 ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
+                 ng-swipe-left="vm.contactsMenuOpened = false">
                 <div class="col-sm-12 contactsMenuTitle">
                     CONTACTS
                 </div>
@@ -130,10 +131,16 @@
                 </div>
             </div>
             <div class="col-xs-8 contactsContacts">
+                <div class="contentOverlay col-xs-12 visible-xs" ng-click="vm.contactsMenuOpened = false"
+                     ng-class="vm.getOverlayClass()"
+                     ng-swipe-left="vm.contactsMenuOpened = false">
+                </div>
                 <div class="col-xs-12 visible-xs contactsMenuItemMain">
-                    <img class="contactsContactsMenuItemIcon" ng-src="icons/mdpi/ic_filter_contacts.png"
-                         ng-click="vm.contactsMenuOpened = true"/>
-                    <span class="contactsContactsMenuItemTitle">{{vm.getHumanReadableMenuItem()}}</span>
+                    <div class="contactsMenuItemMainClick"
+                         ng-click="vm.contactsMenuOpened = true">
+                        <img class="contactsContactsMenuItemIcon" ng-src="icons/mdpi/ic_filter_contacts.png"/>
+                        <span class="contactsContactsMenuItemTitle">{{vm.getHumanReadableMenuItem()}}</span>
+                    </div>
                 </div>
                 <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts"
                      ng-if="vm.showContactOrNot(contact)">

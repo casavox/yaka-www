@@ -430,7 +430,7 @@
     }
 
     .contactsMenu {
-        left: -240px;
+        left: -250px;
         -webkit-transition: 0.3s ease-in-out;
         -moz-transition: 0.3s ease-in-out;
         -o-transition: 0.3s ease-in-out;
@@ -461,6 +461,15 @@
         border-bottom: solid 1px #F9F9F9;
         padding-left: 0 !important;
         padding-right: 0 !important;
+    }
+
+    .contactsMenuItemMainClick {
+        cursor: pointer;
+        width: 184px;
+    }
+
+    .contactsMenuItemMainClick:hover {
+        background: #F6F6F6;
     }
 
     .contactsMenuTitle {
