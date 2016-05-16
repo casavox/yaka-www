@@ -15,6 +15,21 @@
             <span class="titleContactsBeta" ng-class="{'titleBetaPro': app.isPro()}">Beta</span>
         </div>
 
+        <div class="headerFirstname hidden-xs">
+            {{app.getUser().firstName}}
+        </div>
+
+        <cl-image public-id="{{app.getUser().profile.avatar.cloudinaryPublicId}}"
+                  class="f-l proposal-icon img-circle avatarCloudinary hidden-xs" format="png"
+                  ng-if="app.getUser().profile.avatar.cloudinaryPublicId">
+            <cl-transformation height="40" width="40" crop="fill"/>
+        </cl-image>
+        <div class="img-default fl avatarInitials hidden-xs"
+             ng-if="!app.getUser().profile.avatar.cloudinaryPublicId">
+            {{app.getUser().firstName[0] | uppercase}}.
+            {{app.getUser().lastName[0]| uppercase}}.
+        </div>
+
         <a ng-click="app.logout()">
             <div class="logout">
                 Déconnexion<br/>

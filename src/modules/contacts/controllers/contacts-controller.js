@@ -9,6 +9,8 @@
     //Controller login
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
+        console.log($localStorage.user);
+
         $rootScope.showMenu = false;
 
         var vm = this;
@@ -169,9 +171,25 @@
                     return;
                 }
             }
+            if (hasDuplicates(invits)) {
+                alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
+                return;
+            }
 
             networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
         };
+
+        function hasDuplicates(array) {
+            var valuesSoFar = Object.create(null);
+            for (var i = 0; i < array.length; ++i) {
+                var value = array[i];
+                if (value in valuesSoFar) {
+                    return true;
+                }
+                valuesSoFar[value] = true;
+            }
+            return false;
+        }
 
         function succesInviteCustomerPOST(res) {
             vm.invitCustomer = "";

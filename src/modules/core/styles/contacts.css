@@ -1,3 +1,32 @@
+.headerFirstname {
+    position: absolute;
+    right: 190px;
+    top: 13px;
+    font-size: 20px;
+    text-align: right;
+    float: right;
+}
+
+.avatarCloudinary {
+    width: 40px;
+    height: 40px;
+    right: 142px;
+    top: 7px;
+    position: absolute;
+    margin: 0;
+}
+
+.avatarInitials {
+    width: 40px;
+    height: 40px;
+    right: 142px;
+    top: 7px;
+    position: absolute;
+    margin: 0;
+    font-size: 21px;
+    line-height: 40px;
+    letter-spacing: -2.2px;
+}
 
 .titleYakaClub {
     font-size: 24px;

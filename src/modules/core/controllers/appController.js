@@ -169,6 +169,14 @@
             }
         };
 
+        app.getUser = function () {
+            if ($scope.user == undefined) {
+                return {};
+            } else {
+                return $scope.user;
+            }
+        };
+
         app.logout = function () {
             $localStorage.$reset();
             $state.go('home');
