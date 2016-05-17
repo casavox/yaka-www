@@ -223,7 +223,7 @@
                 $scope.user.profile == undefined) {
                 return "";
             }
-            return $scope.user.profile.email;
+            return $scope.user.email;
         };
 
         app.showCustomerSupport = false;

@@ -181,7 +181,7 @@
                         Google
                     </div>
 
-                    <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.profile.email"/>
+                    <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.email"/>
 
                     <input class="form-control" type="password" placeholder="Mot de passe"
                            ng-model="vm.loginUser.password"
@@ -194,7 +194,7 @@
                     </div>
                     <div class="col-xs-12 passwordForgotten">
                         <span ng-click="vm.closePopup();
-                         vm.forgottenPasswordUser.email = vm.loginUser.profile.email;
+                         vm.forgottenPasswordUser.email = vm.loginUser.email;
                          vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
                     </div>
                 </div>
@@ -254,11 +254,11 @@
                             placeholder="Ville"
                             ng-model="vm.newUser.profile.defaultAddress.address"/>
 
-                        <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
+                        <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.email"
                                ng-disabled="vm.needToHideEmail()"/>
 
                         <div class="loginPopupInputError"
-                             ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
+                             ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
                             Cet email n'est pas valide
                         </div>
 

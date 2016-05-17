@@ -23,9 +23,7 @@
 
         vm.newUser = {
             password: "",
-            profile: {
-                email: ""
-            },
+            email: "",
             professional: {
                 company: {
                     address: {
@@ -156,7 +154,7 @@
             }
             if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
                 (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                if (vm.newUser.profile.email == '') {
+                if (vm.newUser.email == '') {
                     doNotHide = true;
                     return false;
                 } else {
@@ -207,8 +205,8 @@
         function onPreRegisterOK(user) {
             vm.newUser.firstName = user.firstName;
             vm.newUser.lastName = user.lastName;
-            if (user.profile.email != undefined) {
-                vm.newUser.profile.email = user.profile.email;
+            if (user.email != undefined) {
+                vm.newUser.email = user.email;
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
@@ -232,7 +230,7 @@
 
             return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
-            vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
+            vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
             vm.newUser.professional.activities.length == 0 ||
@@ -277,9 +275,7 @@
 
         vm.loginUser = {
             password: "",
-            profile: {
-                email: ""
-            }
+            email: ""
         };
 
         vm.showLoginPopup = false;
@@ -293,7 +289,7 @@
         };
 
         vm.loginFormIsValid = function () {
-            return !(vm.loginUser.profile.email == '' || vm.loginUser.password == '');
+            return !(vm.loginUser.email == '' || vm.loginUser.password == '');
 
         };
 

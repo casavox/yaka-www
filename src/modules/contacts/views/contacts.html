@@ -178,7 +178,7 @@
                     </div>
 
                     <span class="contactItemName">
-                        {{contact.user.firstName}} {{contact.user.lastName}} ({{contact.user.profile.email}})
+                        {{contact.user.firstName}} {{contact.user.lastName}} ({{contact.user.email}})
                     </span>
                     <span class="contactItemPro" ng-if="contact.user.professional">
                         <span ng-if="!app.isPro()">
@@ -212,7 +212,7 @@
                         {{invit.inviter.lastName[0]| uppercase}}.
                     </div>
                     <span class="contactItemName contactItemNameInvitReceived">
-                        {{invit.inviter.firstName}} {{invit.inviter.lastName}} ({{invit.inviter.profile.email}})
+                        {{invit.inviter.firstName}} {{invit.inviter.lastName}} ({{invit.inviter.email}})
                     </span>
                     <span class="contactItemPro contactItemInvitReceivedPro" ng-if="invit.inviter.professional">
                         <span ng-if="!app.isPro()">

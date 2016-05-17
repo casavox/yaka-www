@@ -35,7 +35,7 @@
         <div class="content-slide p-20">
             <div class="row">
                 <div class="col-md-12"
-                     ng-show="!vm.profileInfo.user.firstName || !vm.profileInfo.user.lastName || !vm.profileInfo.phoneNumber || !vm.profileInfo.user.profile.email || !vm.profileInfo.company.name || !vm.profileInfo.company.siret || !vm.profileInfo.company.address.address || !vm.profileInfo.company.phone || !vm.about.aboutMe || vm.indexOfObject('RGE', 'name', vm.verifications).length == 0 || vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0 || vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
+                     ng-show="!vm.profileInfo.user.firstName || !vm.profileInfo.user.lastName || !vm.profileInfo.phoneNumber || !vm.profileInfo.user.email || !vm.profileInfo.company.name || !vm.profileInfo.company.siret || !vm.profileInfo.company.address.address || !vm.profileInfo.company.phone || !vm.about.aboutMe || vm.indexOfObject('RGE', 'name', vm.verifications).length == 0 || vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0 || vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
                     <div class="profile-info-warning">
                         <p>
                             Informations underlined in red are missing to post a job.
@@ -102,8 +102,8 @@
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Email</label>
-                                <input ng-model="vm.profileInfo.user.profile.email"
-                                       ng-class="{'border-red': !vm.profileInfo.profile.email}">
+                                <input ng-model="vm.profileInfo.user.email"
+                                       ng-class="{'border-red': !vm.profileInfo.email}">
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Address</label>

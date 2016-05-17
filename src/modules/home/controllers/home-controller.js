@@ -84,8 +84,8 @@
             password: "",
             firstName: "",
             lastName: "",
+            email: "",
             profile: {
-                email: "",
                 defaultAddress: {
                     address: ""
                 }
@@ -96,9 +96,7 @@
 
         vm.loginUser = {
             password: "",
-            profile: {
-                email: ""
-            }
+            email: ""
         };
 
         vm.passwordConfirm = "";
@@ -127,7 +125,7 @@
             }
             if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
                 (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                if (vm.newUser.profile.email == '') {
+                if (vm.newUser.email == '') {
                     doNotHide = true;
                     return false;
                 } else {
@@ -146,13 +144,13 @@
         vm.registerFormIsValid = function () {
             return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
-            vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
+            vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering);
         };
 
         vm.loginFormIsValid = function () {
-            return !(vm.loginUser.profile.email == '' || vm.loginUser.password == '');
+            return !(vm.loginUser.email == '' || vm.loginUser.password == '');
         };
 
         vm.login = function () {
@@ -260,8 +258,8 @@
         function onPreRegisterOK(user) {
             vm.newUser.firstName = user.firstName;
             vm.newUser.lastName = user.lastName;
-            if (user.profile.email != undefined) {
-                vm.newUser.profile.email = user.profile.email;
+            if (user.email != undefined) {
+                vm.newUser.email = user.email;
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
