@@ -9,8 +9,6 @@
     //Controller login
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
-        console.log($localStorage.user);
-
         $rootScope.showMenu = false;
 
         var vm = this;

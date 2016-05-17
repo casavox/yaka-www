@@ -497,6 +497,10 @@
                     res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
                 }
             }
+            console.log(vm.project);
+            if (vm.project.hasMaterial) {
+                res += " - Matériel fourni";
+            }
             return res;
         };
 
@@ -616,6 +620,7 @@
             alertMsg.send("Error : Impossible to get the mission.", "danger");
             $state.go("my-projects");
         }
+
         vm.initHours();
     }
 })();
