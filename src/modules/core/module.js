@@ -22,7 +22,9 @@ angular.module('Yaka', [
         'luegg.directives',
         'angularjs-dropdown-multiselect',
         'angularTypewrite',
-        'ngCookies'
+        'ngCookies',
+        'angulartics',
+        'angulartics.google.analytics'
     ]
 );
 

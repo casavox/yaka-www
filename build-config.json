@@ -25,6 +25,8 @@
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
             "bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js",
             "bower_components/angular-scroll-glue/src/scrollglue.js",
+            "bower_components/angulartics/dist/angulartics.min.js",
+            "bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js",
             "scripts/jquery.cloudinary.js",
             "scripts/angular.cloudinary.js",
             "scripts/angular-route.js",
