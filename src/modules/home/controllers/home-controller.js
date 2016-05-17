@@ -85,13 +85,11 @@
             firstName: "",
             lastName: "",
             email: "",
-            profile: {
-                defaultAddress: {
-                    address: ""
-                }
-            },
             googleId: "",
-            facebookId: ""
+            facebookId: "",
+            defaultAddress: {
+                address: ""
+            }
         };
 
         vm.loginUser = {

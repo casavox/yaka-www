@@ -267,9 +267,9 @@
                 vm.whereFlag = false;
             }
             else {
-                for (var i = 0; i < vm.user.profile.addresses.length; i++) {
-                    if (vm.user.profile.addresses[i].address == vm.myAddress) {
-                        vm.projectTmp.address.name = vm.user.profile.addresses[i].name;
+                for (var i = 0; i < vm.user.addresses.length; i++) {
+                    if (vm.user.addresses[i].address == vm.myAddress) {
+                        vm.projectTmp.address.name = vm.user.addresses[i].name;
                         vm.projectTmp.address.address = vm.myAddress;
                         vm.whereFlag = false;
                         break;

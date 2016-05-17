@@ -189,8 +189,8 @@
                         </span>
                     </span>
                     <span class="contactItemCity"
-                          ng-if="!contact.user.professional && contact.user.profile && contact.user.profile.defaultAddress && contact.user.profile.defaultAddress.locality">
-                        {{contact.user.profile.defaultAddress.locality}}
+                          ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                        {{contact.user.defaultAddress.locality}}
                     </span>
                     <span class="contactItemCity contactItemCityInvitReceived"
                           ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
@@ -223,8 +223,8 @@
                         </span>
                     </span>
                     <span class="contactItemCity contactItemCityInvitReceived"
-                          ng-if="!invit.inviter.professional && invit.inviter.profile && invit.inviter.profile.defaultAddress && invit.inviter.profile.defaultAddress.locality">
-                        {{invit.inviter.profile.defaultAddress.locality}}
+                          ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
+                        {{invit.inviter.defaultAddress.locality}}
                     </span>
                     <span class="contactItemCity contactItemCityInvitReceived"
                           ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">

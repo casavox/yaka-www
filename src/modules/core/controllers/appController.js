@@ -219,8 +219,7 @@
         };
 
         app.getEmail = function () {
-            if ($scope.user == undefined ||
-                $scope.user.profile == undefined) {
+            if ($scope.user == undefined) {
                 return "";
             }
             return $scope.user.email;

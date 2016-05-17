@@ -135,7 +135,6 @@
             vm.error.profile.flag = false;
             vm.profileInfo = {
                 phoneNumber: angular.copy(vm.phoneNumber),
-                profile: angular.copy(vm.profile.profile),
                 firstName: angular.copy(vm.profile.firstName),
                 lastName: angular.copy(vm.profile.lastName),
                 avatar: angular.copy(vm.profile.avatar),
@@ -171,7 +170,6 @@
             vm.profile = res;
             vm.profileInfo = {
                 phoneNumber: angular.copy(vm.phoneNumber),
-                profile: angular.copy(vm.profile.profile),
                 firstName: angular.copy(vm.profile.firstName),
                 lastName: angular.copy(vm.profile.lastName),
                 avatar: angular.copy(vm.profile.avatar),
