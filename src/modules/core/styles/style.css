@@ -4413,6 +4413,16 @@ ul[rn-carousel-buffered] > li {
     text-align: justify;
 }
 
+.proDashboardListEmptyMessage {
+    width: 230px;
+    height: 80px;
+    text-align: justify;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: calc(50% - 115px);
+    margin-top: calc(50vh - 326px);
+}
+
 .proDashboardListItem {
     background-color: white;
     height: 92px;

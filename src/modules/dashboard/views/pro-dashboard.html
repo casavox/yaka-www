@@ -130,6 +130,11 @@
                         </div>
                     </div>
                 </a>
+
+                <div class="col-xs-12 proDashboardListEmptyMessage" ng-if="vm.leads.length == 0">
+                    Il y n'a aucune offre pour le moment dans cette zone, déplacez vous dans la carte ou dézoomez pour
+                    voir plus d'offres.
+                </div>
             </div>
             <div class="col-xs-12 proDashboardBottomButton visible-xs" ng-click="showList = !showList" angular-ripple>
                 {{ showList ? "Show Map" : "Show List" }}
