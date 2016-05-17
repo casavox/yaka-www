@@ -98,7 +98,7 @@
                             </p>
 
                             <p>
-                                {{vm.project.profile.user.firstName}} {{vm.project.profile.user.lastName}}
+                                {{vm.project.user.firstName}} {{vm.project.user.lastName}}
                             </p>
                         </div>
                     </div>
@@ -223,8 +223,8 @@
                             unread messages
                         </p>
 
-                        <p class="make-menu-desc">Chat with {{ vm.proposal.project.profile.user.firstName }}
-                            {{vm.proposal.project.profile.user.lastName}}</p>
+                        <p class="make-menu-desc">Chat with {{ vm.proposal.project.user.firstName }}
+                            {{vm.proposal.project.user.lastName}}</p>
                         <button type="button" class="button btn btn-menu-sel center bckg-blue"
                                 ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
                         </button>

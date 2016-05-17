@@ -52,12 +52,14 @@
                         <p class="pro-title-post">
                             Post {{vm.dateDiff(vm.projectTmp.published, vm.projectTmp.updated)}} ago
                         </p>
-                        <img ng-src="{{vm.projectTmp.profile.avatarUrl}}"
+                        <!-- TODO AvatarURL does not exists anymore -->
+                        <img ng-src="{{vm.projectTmp.avatarUrl}}"
                              class="img-circle pro-icon-medium mt-20 fl-l ml-15"
-                             ng-show="vm.projectTmp.profile.avatarUrl"/>
+                             ng-show="vm.projectTmp.avatarUrl"/>
 
-                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.profile.avatarUrl">
-                            {{vm.projectTmp.profile.user.firstName[0] | uppercase}} {{vm.projectTmp.profile.user.lastName[0] |
+                        <!-- TODO AvatarURL does not exists anymore -->
+                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.avatarUrl">
+                            {{vm.projectTmp.user.firstName[0] | uppercase}} {{vm.projectTmp.user.lastName[0] |
                             uppercase}}
                         </div>
                         <div class="pro-proposal-title">
@@ -66,7 +68,7 @@
                             </p>
 
                             <p>
-                                {{vm.projectTmp.profile.user.firstName}} {{vm.projectTmp.profile.user.lastName}}
+                                {{vm.projectTmp.user.firstName}} {{vm.projectTmp.user.lastName}}
                             </p>
                         </div>
                     </div>
