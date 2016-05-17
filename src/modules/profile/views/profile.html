@@ -64,7 +64,8 @@
                                         </cl-image>
                                         <div class="img-default center"
                                              ng-show="!vm.profileInfo.avatar.cloudinaryPublicId">
-                                            {{vm.profileInfo.user.firstName[0] | uppercase}} {{vm.profileInfo.user.lastName[0] |
+                                            {{vm.profileInfo.user.firstName[0] | uppercase}}
+                                            {{vm.profileInfo.user.lastName[0] |
                                             uppercase}}
                                         </div>
                                         <div class="icon-edit cursor-pointer"
@@ -78,8 +79,8 @@
                                         <label>Gender</label>
                                         <md-select ng-model="vm.profileInfo.gender"
                                                    ng-class="{'border-red': !vm.profileInfo.gender}">
-                                            <md-option  value="madame">{{"Madame" | translate}}</md-option>
-                                            <md-option  value="sir">{{"Sir" | translate}}</md-option>
+                                            <md-option value="madame">{{"Madame" | translate}}</md-option>
+                                            <md-option value="sir">{{"Sir" | translate}}</md-option>
                                         </md-select>
                                     </md-input-container>
                                     <md-input-container class="md-block" flex-gt-sm="">
@@ -197,7 +198,7 @@
                             </div>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
 </section>
