@@ -19,13 +19,13 @@
             {{app.getUser().firstName}}
         </div>
 
-        <cl-image public-id="{{app.getUser().profile.avatar.cloudinaryPublicId}}"
+        <cl-image public-id="{{app.getUser().avatar.cloudinaryPublicId}}"
                   class="f-l proposal-icon img-circle avatarCloudinary hidden-xs" format="png"
-                  ng-if="app.getUser().profile.avatar.cloudinaryPublicId">
+                  ng-if="app.getUser().avatar.cloudinaryPublicId">
             <cl-transformation height="40" width="40" crop="fill"/>
         </cl-image>
         <div class="img-default fl avatarInitials hidden-xs"
-             ng-if="!app.getUser().profile.avatar.cloudinaryPublicId">
+             ng-if="!app.getUser().avatar.cloudinaryPublicId">
             {{app.getUser().firstName[0] | uppercase}}.
             {{app.getUser().lastName[0]| uppercase}}.
         </div>
@@ -166,13 +166,13 @@
                 <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts"
                      ng-if="vm.showContactOrNot(contact)">
 
-                    <cl-image public-id="{{contact.user.profile.avatar.cloudinaryPublicId}}"
+                    <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
                               class="f-l proposal-icon img-circle contactItemAvatar" format="png"
-                              ng-if="contact.user.profile.avatar.cloudinaryPublicId">
+                              ng-if="contact.user.avatar.cloudinaryPublicId">
                         <cl-transformation height="40" width="40" crop="fill"/>
                     </cl-image>
                     <div class="img-default fl contactItemInitials"
-                         ng-if="!contact.user.profile.avatar.cloudinaryPublicId">
+                         ng-if="!contact.user.avatar.cloudinaryPublicId">
                         {{contact.user.firstName[0] | uppercase}}.
                         {{contact.user.lastName[0]| uppercase}}.
                     </div>
@@ -201,13 +201,13 @@
                      ng-repeat="invit in vm.invitationsReceived"
                      ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
 
-                    <cl-image public-id="{{invit.inviter.profile.avatar.cloudinaryPublicId}}"
+                    <cl-image public-id="{{invit.inviter.avatar.cloudinaryPublicId}}"
                               class="f-l proposal-icon img-circle contactItemAvatar" format="png"
-                              ng-if="invit.inviter.profile.avatar.cloudinaryPublicId">
+                              ng-if="invit.inviter.avatar.cloudinaryPublicId">
                         <cl-transformation height="40" width="40" crop="fill"/>
                     </cl-image>
                     <div class="img-default fl contactItemInitials"
-                         ng-if="!invit.inviter.profile.avatar.cloudinaryPublicId">
+                         ng-if="!invit.inviter.avatar.cloudinaryPublicId">
                         {{invit.inviter.firstName[0] | uppercase}}.
                         {{invit.inviter.lastName[0]| uppercase}}.
                     </div>
