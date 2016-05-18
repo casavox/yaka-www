@@ -43,10 +43,10 @@ angular.module('Yaka', [
                     return 'https://yaka-backend-production.herokuapp.com';
                 } else if (window.location.hostname == 'www.yakaclub.com') {
                     return 'https://yaka-backend-production.herokuapp.com';
-                } else if (window.location.hostname == 'www.yaka.local') {
+                } else if (window.location.hostname == 'www.yaka-local.com') {
                     // This allow to use the heroku backend from your computer (localhost http server)
-                    // To use it, you need to add this line in your hosts file : "127.0.0.1   www.yaka.local"
-                    // Then you can access the site here : http://www.yaka.local:8000
+                    // To use it, you need to add this line in your hosts file : "127.0.0.1   www.yaka-local.com"
+                    // Then you can access the site here : http://www.yaka-local.com:8000
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else {
                     return 'http://localhost:8080';
