@@ -777,7 +777,7 @@
                 $state.go("dashboard");
             else {
                 $timeout(function () {
-                    redirect();
+                    vm.redirect();
                 }, 1000);
             }
         };
