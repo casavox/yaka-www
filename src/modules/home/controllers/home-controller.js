@@ -159,21 +159,15 @@
 
         function succesLogin(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
+                $localStorage.user = res;
                 $localStorage.token = res.token;
-                networkService.me(function (res) {
-                    $localStorage.user = res;
-                    if (angular.isUndefined(res.professional)) {
-                        $localStorage.user.type = 'customer';
-                        $state.go('contacts');
-                    } else if (angular.isDefined(res.professional)) {
-                        $localStorage.user.type = 'pro';
-                        $state.go('contacts');
-                    }
-
-                }, function (res) {
-                    alertMsg.send('Error: impossible de récupérer votre profil');
-                });
-                $rootScope.logmail = $scope.email;
+                if (angular.isUndefined(res.professional)) {
+                    $localStorage.user.type = 'customer';
+                    $state.go('contacts');
+                } else if (angular.isDefined(res.professional)) {
+                    $localStorage.user.type = 'pro';
+                    $state.go('contacts');
+                }
             }
         }
 
@@ -188,11 +182,7 @@
         vm.googleLogin = function () {
             vm.socialNetwork = "Google";
             $auth.authenticate('googleLogin').then(function (res) {
-                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
-                    $localStorage.token = res.data.token;
-                    $state.go('contacts');
-                    $rootScope.logmail = $scope.email;
-                }
+                succesLogin(res.data);
             }).catch(function (res) {
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
@@ -207,11 +197,7 @@
         vm.facebookLogin = function () {
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
-                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
-                    $localStorage.token = res.data.token;
-                    $state.go('contacts');
-                    $rootScope.logmail = $scope.email;
-                }
+                succesLogin(res.data);
             }).catch(function (res) {
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;

@@ -2,7 +2,7 @@
     <div class="header-menu">
         <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
         <div class="title">
-            MY DASHBOARD <i>{{vm.logmail}}</i>
+            MY DASHBOARD <i>{{app.getEmail()}}</i>
         </div>
         <a ng-click="app.logout()">
             <div class="logout">
