@@ -157,7 +157,7 @@
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()">
+<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()" ng-cloak>
     <div class="container">
         <div id="loginPopup" class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
@@ -306,7 +306,7 @@
 </div>
 
 <div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup"
-     ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false">
+     ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"

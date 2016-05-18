@@ -266,7 +266,7 @@
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showInvitFriendPopup" ng-click="vm.closeFriendPopup()">
+<div class="yakaPopup" ng-show="vm.showInvitFriendPopup" ng-click="vm.closeFriendPopup()" ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" ng-click="vm.closeFriendPopup()" alt=""/>
@@ -290,7 +290,7 @@
     </div>
 </div>
 
-<div class="yakaPopup" ng-show="vm.showInvitProPopup" ng-click="vm.closeProPopup()">
+<div class="yakaPopup" ng-show="vm.showInvitProPopup" ng-click="vm.closeProPopup()" ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <img class="popupCloseButton"
