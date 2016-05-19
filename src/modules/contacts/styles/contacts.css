@@ -69,6 +69,8 @@
     background: white;
     height: 233px;
     margin-right: 10px !important;
+    padding-right: 6px !important;
+    padding-left: 6px !important;
 }
 
 .contactsHeaderRight {
@@ -363,6 +365,8 @@
     color: #2F313A;
     margin-top: 10px;
     line-height: 26px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .titleContactsBeta {
