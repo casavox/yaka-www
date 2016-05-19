@@ -565,5 +565,24 @@
         function errorProfileGET(res) {
             alertMsg.send("Error to get the profile informations.", "danger");
         }
+
+        vm.showProfileEditPopup = false;
+        vm.showVerificationsEditPopup = false;
+
+        vm.validatePopup = function () {
+            if (vm.showProfileEditPopup) {
+                vm.updateProfile();
+            } else if (vm.showVerificationsEditPopup) {
+                vm.updateVerifications();
+            }
+            vm.showProfileEditPopup = false;
+            vm.showVerificationsEditPopup = false;
+        };
+
+        vm.closePopup = function () {
+            vm.showProfileEditPopup = false;
+            vm.showVerificationsEditPopup = false;
+        }
+
     }
 })();
