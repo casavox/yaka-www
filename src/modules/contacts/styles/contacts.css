@@ -201,15 +201,29 @@
     border-bottom: solid 1px #F9F9F9;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.invitReceivedSpanHolder {
+    width: calc(100% - 190px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
 }
 
 .contactItemPro {
     color: #FDAF00;
     font-family: 'raleway_bold', Arial, sans-serif;
     font-size: 14px;
-    position: absolute;
-    right: 25px;
-    top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.contactItemEmail {
+    opacity: 0.6;
 }
 
 .contactItemInvitReceivedPro {
@@ -312,6 +326,14 @@
     cursor: pointer;
     width: 30px;
     padding: 5px;
+}
+
+.invitAccept:hover {
+    background-color: #F2F2F2;
+}
+
+.invitRefuse:hover {
+    background-color: #F2F2F2;
 }
 
 .contactsHeaderLeft {
@@ -489,15 +511,15 @@
     }
 
     .contactsMenu {
-        width: 220px;
-        position: absolute;
+        width: 220px !important;
+        position: absolute !important;
         top: 0;
         left: 0;
         z-index: 10;
     }
 
     .contactsContacts {
-        width: 100%;
+        width: 100% !important;
     }
 
     .contactsMenu {
@@ -644,10 +666,9 @@
     }
 
     .contactItemPro {
-        right: 6px;
-        top: 18px;
-        line-height: normal;
         font-size: 12px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     .contactItemInvitReceivedPro {

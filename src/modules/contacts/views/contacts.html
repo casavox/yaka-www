@@ -178,16 +178,20 @@
                     </div>
 
                     <span class="contactItemName">
-                        {{contact.user.firstName}} {{contact.user.lastName}} ({{contact.user.email}})
-                    </span>
-                    <span class="contactItemPro" ng-if="contact.user.professional">
-                        <span ng-if="!app.isPro()">
-                            PRO
+                        {{contact.user.firstName}} {{contact.user.lastName}}
+                        <span class="contactItemPro" ng-if="contact.user.professional">
+                            <span ng-if="!app.isPro()">
+                                PRO
+                            </span>
+                            <span ng-if="app.isPro()">
+                                COLLÈGUE
+                            </span>
                         </span>
-                        <span ng-if="app.isPro()">
-                            COLLÈGUE
+                        <span class="contactItemEmail">
+                            ({{contact.user.email}})
                         </span>
                     </span>
+
                     <span class="contactItemCity"
                           ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
                         {{contact.user.defaultAddress.locality}}
@@ -211,25 +215,30 @@
                         {{invit.inviter.firstName[0] | uppercase}}.
                         {{invit.inviter.lastName[0]| uppercase}}.
                     </div>
-                    <span class="contactItemName contactItemNameInvitReceived">
-                        {{invit.inviter.firstName}} {{invit.inviter.lastName}} ({{invit.inviter.email}})
-                    </span>
-                    <span class="contactItemPro contactItemInvitReceivedPro" ng-if="invit.inviter.professional">
-                        <span ng-if="!app.isPro()">
-                            PRO
+                    <div class="invitReceivedSpanHolder">
+                        <span class="contactItemName contactItemNameInvitReceived">
+                            {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                            <span class="contactItemPro" ng-if="invit.inviter.professional">
+                                <span ng-if="!app.isPro()">
+                                    PRO
+                                </span>
+                                <span ng-if="app.isPro()">
+                                    COLLÈGUE
+                                </span>
+                            </span>
+                            <span class="contactItemEmail">
+                                ({{invit.inviter.email}})
+                            </span>
                         </span>
-                        <span ng-if="app.isPro()">
-                            COLLÈGUE
+                        <span class="contactItemCity contactItemCityInvitReceived"
+                              ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
+                            {{invit.inviter.defaultAddress.locality}}
                         </span>
-                    </span>
-                    <span class="contactItemCity contactItemCityInvitReceived"
-                          ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
-                        {{invit.inviter.defaultAddress.locality}}
-                    </span>
-                    <span class="contactItemCity contactItemCityInvitReceived"
-                          ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
-                        {{invit.inviter.professional.company.address.locality}}
-                    </span>
+                        <span class="contactItemCity contactItemCityInvitReceived"
+                              ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
+                            {{invit.inviter.professional.company.address.locality}}
+                        </span>
+                    </div>
 
                     <span angular-ripple>
                         <img class="invitRefuse"
@@ -247,19 +256,31 @@
                      ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
 
                     <span ng-if="invit.firstName && invit.lastName">
-                        {{invit.firstName}} {{invit.lastName}} ({{invit.email}})
+                        {{invit.firstName}} {{invit.lastName}}
+                        <span class="contactItemPro" ng-if="invit.isPro">
+                            <span ng-if="!app.isPro()">
+                                PRO
+                            </span>
+                            <span ng-if="app.isPro()">
+                                COLLÈGUE
+                            </span>
+                        </span>
+                        <span class="contactItemEmail">
+                            ({{invit.email}})
+                        </span>
                     </span>
                     <span ng-if="!invit.firstName || !invit.lastName">
                         {{invit.email}}
-                    </span>
-                    <span class="contactItemPro" ng-if="invit.isPro">
-                        <span ng-if="!app.isPro()">
-                            PRO
+                        <span class="contactItemPro" ng-if="invit.isPro">
+                            <span ng-if="!app.isPro()">
+                                PRO
+                            </span>
+                            <span ng-if="app.isPro()">
+                                COLLÈGUE
+                            </span>
                         </span>
-                        <span ng-if="app.isPro()">
-                            COLLÈGUE
-                        </span>
                     </span>
+
                 </div>
                 <div class="col-xs-12 contactsEmpty"
                      ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
