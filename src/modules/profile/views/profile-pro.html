@@ -34,15 +34,29 @@
     <div class="page-content">
         <div class="content-slide p-20">
             <div class="row">
-                <div class="col-md-12"
-                     ng-show="!vm.profileInfo.user.firstName || !vm.profileInfo.user.lastName || !vm.profileInfo.phoneNumber || !vm.profileInfo.user.email || !vm.profileInfo.company.name || !vm.profileInfo.company.siret || !vm.profileInfo.company.address.address || !vm.profileInfo.company.phone || !vm.about.aboutMe || vm.indexOfObject('RGE', 'name', vm.verifications).length == 0 || vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0 || vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
+                <div class="col-md-12" ng-show="vm.profile.status != 'COMPLETED'">
                     <div class="profile-info-warning">
                         <p>
-                            Informations underlined in red are missing to answer a job.
+                            <span ng-if="vm.profile.status == 'REGISTERED'">
+                                Votre profil est incomplet, vous devez compléter toutes les informations soulignées en
+                                rouge pour pouvoir répondre à une offre
+                            </span>
+                            <span ng-if="vm.profile.status == 'WAITING'">
+                                Votre profil est en cours de validation, vous recevrez un mail dès qu'il aura été
+                                vérifié
+                            </span>
+                            <span ng-if="vm.profile.status == 'REFUSED'">
+                                Nous n'avons pas pu vérifier votre profil
+                            </span>
+                            <span ng-if="vm.profile.status == 'VALIDATED'">
+                                Compléter votre profil augmente votre visibilité et vos chances d'être sélectionné
+                            </span>
                         </p>
 
                         <p>
-                            A complete profile increases the chances of being selected.
+                            <span ng-if="vm.profile.status == 'REFUSED' && vm.profile.refusedReason != ''">
+                                Raison : {{vm.profile.refusedReason}}
+                            </span>
                         </p>
                     </div>
                 </div>
