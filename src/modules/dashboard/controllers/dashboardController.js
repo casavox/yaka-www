@@ -14,6 +14,7 @@
         vm.dashboardPro = [];
         vm.count = 0;
         vm.selectProject = selectProject;
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         vm.getMenuItemClass = function (state) {

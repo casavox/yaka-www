@@ -9,6 +9,7 @@
     //Controller login
     function ProProjectController($rootScope, $scope, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;

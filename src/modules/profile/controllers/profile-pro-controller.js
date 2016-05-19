@@ -9,6 +9,7 @@
     //Controller login
     function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;

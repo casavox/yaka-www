@@ -9,6 +9,7 @@
     //Controller login
     function MyProjectscontroller(networkService, $rootScope, $state, $filter) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;

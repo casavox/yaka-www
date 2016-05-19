@@ -11,6 +11,7 @@
         var vm = this;
         vm.user = $localStorage.user;
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = false;
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";

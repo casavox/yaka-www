@@ -9,6 +9,7 @@
     //Controller login
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = false;
 
         var vm = this;

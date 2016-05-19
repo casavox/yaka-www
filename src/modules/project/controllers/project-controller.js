@@ -8,6 +8,8 @@
     //
     //Controller login
     function ProjectController($scope, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate) {
+
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
         var vm = this;
         vm.pro = vm.disabledAddr = true;

@@ -7,7 +7,10 @@
 
     //
     //Controller login
-    function ProfileController($scope, networkService, alertMsg, Upload, cloudinary) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary) {
+
+        $rootScope.updateProfile();
+
         var vm = this;
         vm.profileInfo = {};
         vm.workArea = {};

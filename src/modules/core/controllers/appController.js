@@ -7,6 +7,7 @@
 
     function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
 
+        $rootScope.updateProfile();
         var app = this;
         var vm = this;
         $scope.user = $localStorage.user;
@@ -142,7 +143,6 @@
             }
         };
 
-
         app.menu = {
             openMenu: function () {
                 menuOpened = true;
@@ -256,6 +256,15 @@
                     }
                 });
             smartsupp('chat:open');
+        };
+
+        $rootScope.updateProfile = function () {
+            networkService.me(function (res) {
+                $localStorage.user = res;
+                $scope.user = $localStorage.user;
+            }, function () {
+                app.logout();
+            });
         };
     }
 })();
