@@ -261,7 +261,9 @@
                         </span>
                     </span>
                 </div>
-                <div class="col-xs-12 contactsEmpty" ng-if="vm.getCurrentContactListNumber() == 0">
+                <div class="col-xs-12 contactsEmpty"
+                     ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
+
                     <img class="contactsEmptyIcon" src="icons/mdpi/ic_person_add.png"/>
 
                     <div class="contactsEmptyTitle">
