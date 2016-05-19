@@ -7,7 +7,6 @@
 
     function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
 
-        $rootScope.updateProfile();
         var app = this;
         var vm = this;
         $scope.user = $localStorage.user;
@@ -19,6 +18,16 @@
         $scope.rating = {positive: "", comment: "", criteria: []};
         var can = true;
         var connectHeaders = {token: $localStorage.token};
+
+        $rootScope.updateProfile = function () {
+            networkService.me(function (res) {
+                $localStorage.user = res;
+                $scope.user = $localStorage.user;
+            }, function () {
+                app.logout();
+            });
+        };
+        $rootScope.updateProfile();
 
         $stomp
             .connect(CONFIG.API_BASE_URL + '/connect', connectHeaders)
@@ -256,15 +265,6 @@
                     }
                 });
             smartsupp('chat:open');
-        };
-
-        $rootScope.updateProfile = function () {
-            networkService.me(function (res) {
-                $localStorage.user = res;
-                $scope.user = $localStorage.user;
-            }, function () {
-                app.logout();
-            });
         };
     }
 })();

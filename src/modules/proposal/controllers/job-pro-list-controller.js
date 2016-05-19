@@ -9,6 +9,7 @@
     //Controller login
     function ProJobsController(networkService, alertMsg, $rootScope) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;

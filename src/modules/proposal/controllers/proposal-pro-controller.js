@@ -9,6 +9,7 @@
     //Controller login
     function ProProposalController($rootScope, $scope, $state,networkService, alertMsg, $filter, $stateParams, $translate) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;

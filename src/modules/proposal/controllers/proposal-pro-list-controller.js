@@ -9,6 +9,7 @@
     //Controller login
     function ProProposalsController(networkService, alertMsg, $rootScope, $state, $localStorage) {
 
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;
