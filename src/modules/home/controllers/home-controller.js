@@ -163,9 +163,13 @@
                 $localStorage.token = res.token;
                 if (angular.isUndefined(res.professional)) {
                     $localStorage.user.type = 'customer';
-                    $state.go('contacts');
                 } else if (angular.isDefined(res.professional)) {
                     $localStorage.user.type = 'pro';
+                }
+                if ($localStorage.urlRedirect != undefined) {
+                    window.location.href = $localStorage.urlRedirect;
+                    delete $localStorage.urlRedirect;
+                } else {
                     $state.go('contacts');
                 }
             }
@@ -261,7 +265,12 @@
         function successRegister(res) {
             vm.registering = false;
             $localStorage.token = res.token;
-            $state.go('contacts');
+            if ($localStorage.urlRedirect != undefined) {
+                window.location.href = $localStorage.urlRedirect;
+                delete $localStorage.urlRedirect;
+            } else {
+                $state.go('contacts');
+            }
         }
 
         function failRegister(err) {
