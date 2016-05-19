@@ -23,7 +23,6 @@
 
         networkService.proProposalsGET('proposal_sent', function (res) {
             vm.proposals = res;
-            console.log(vm.proposals);
         }, function () {
         });
         networkService.proProposalsGET('declined', function (res) {

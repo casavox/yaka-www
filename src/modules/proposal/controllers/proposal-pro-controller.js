@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $state,networkService, alertMsg, $filter, $stateParams, $translate) {
+    function ProProposalController($rootScope, $scope, $state, networkService, alertMsg, $filter, $stateParams, $translate) {
 
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
@@ -90,16 +90,8 @@
         };
 
 
-        if ($stateParams.proposalId) {
-            var res = parseInt($stateParams.proposalId);
-            if (res.toString() != $stateParams.proposalId)
-                $state.go("prodashboard");
-            else {
-                networkService.proProposalGET(res, succesProjectGET, errorProjectGET);
-            }
-        }
-        else {
-            $state.go("prodashboard");
+        if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
+            networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         }
 
         function declineProposal() {
