@@ -17,7 +17,7 @@
 
             <div class="row no-margin">
                 <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
-                     ui-sref="pro-proposal({proposalId: proposal.id})">
+                     ng-click="vm.quoteClicked(proposal.id)">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
                                   secure="true"
@@ -113,3 +113,30 @@
     </div>
 
 </section>
+
+<div class="yakaPopup" ng-show="vm.showProNotValidatedPopup" ng-click="vm.closePopup()" ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton"
+                 src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.closePopup()"
+                 alt=""/>
+
+            <div class="col-xs-12 proErrorMessage"
+                 ng-if="app.getUser().professional.status == 'REGISTERED'">
+                Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
+            </div>
+
+            <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange"
+                 ng-if="app.getUser().professional.status == 'REGISTERED'"
+                 ui-sref="pro-profile">
+                COMPLÉTER MON PROFIL
+            </div>
+
+            <div class="col-xs-12 proErrorMessage" ng-if="app.getUser().professional.status == 'WAITING'">
+                Vous ne pouvez pas encore faire d'offre car votre profil est en cours de validation. Il sera
+                mis-à-jour sous peu, vous en serez notifié par mail
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProposalsController(networkService, alertMsg, $rootScope) {
+    function ProProposalsController(networkService, alertMsg, $rootScope, $state, $localStorage) {
 
         $rootScope.showMenu = true;
 
@@ -43,6 +43,25 @@
                 vm.delete = false;
                 alertMsg.send("Erro : Proposal can't be deleted", "danger");
             });
-        }
+        };
+
+        vm.quoteClicked = function (proposalId) {
+            var user = $localStorage.user;
+            if (user.professional &&
+                user.professional.status &&
+                (user.professional.status == 'REGISTERED' || user.professional.status == 'WAITING' || user.professional.status == 'REFUSED')) {
+                vm.showProNotValidatedPopup = true;
+            } else {
+                $state.go('pro-proposal', {
+                    proposalId: proposalId
+                });
+            }
+        };
+
+        vm.showProNotValidatedPopup = false;
+
+        vm.closePopup = function () {
+            vm.showProNotValidatedPopup = false;
+        };
     }
 })();
