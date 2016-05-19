@@ -354,6 +354,46 @@
     margin-left: 10px;
 }
 
+.contactsEmpty {
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.contactsEmptyIcon {
+    margin-top: 45px;
+}
+
+.contactsEmptyTitle {
+    margin-top: 15px;
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 24px;
+    color: #9B9B9B;
+}
+
+.contactsEmptySubtitle {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 14px;
+    color: #9B9B9B;
+    margin-bottom: 15px;
+}
+
+.contactsEmptyLinks {
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+.contactsEmptyLinkOr {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.contactsEmptyLink {
+    color: #00A3D3;
+    cursor: pointer;
+}
+
 @media (max-width: 1064px) {
 
     .contactsHeaderLeftTitle {
@@ -631,6 +671,39 @@
     .logoutExplain {
         font-size: 9px;
     }
+
+    .contactsEmpty {
+        margin-bottom: 20px;
+    }
+
+    .contactsEmptyIcon {
+        width: 45px;
+        margin-top: 20px;
+    }
+
+    .contactsEmptyTitle {
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    .contactsEmptySubtitle {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .contactsEmptyLinks {
+
+    }
+
+    .contactsEmptyLinkOr {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .contactsEmptyLink {
+        display: block;
+    }
+
 }
 
 @media (max-width: 549px) {

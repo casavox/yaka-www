@@ -53,6 +53,16 @@
             }
         };
 
+        vm.getCurrentContactListNumber = function () {
+            var count = 0;
+            angular.forEach(vm.contacts, function (contact) {
+                if (vm.showContactOrNot(contact)) {
+                    count++;
+                }
+            });
+            return count;
+        };
+
         function reloadContactsAndInvitations() {
             networkService.contactsGET(succesContactsGET, errorContactsGET);
             networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);

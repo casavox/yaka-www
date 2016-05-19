@@ -33,7 +33,9 @@
                              ng-if="message.author == 'AUTO' || message.author == 'YAKA'"/>
 
                         <div class="img-back img-circle"
-                             ng-if="(message.author == 'PRO' && !vm.pro.avatar.cloudinaryPublicId) || (message.author ==  'CUSTOMER' && !vm.me.avatar.cloudinaryPublicId)"></div>
+                             ng-if="(message.author == 'PRO' && !vm.pro.avatar.cloudinaryPublicId) || (message.author ==  'CUSTOMER' && !vm.me.avatar.cloudinaryPublicId)">
+
+                        </div>
                     </div>
                     <div class="corner" ng-class="{'corner-right': message.author == vm.me}"
                          ng-if="message.author != 'AUTO'">

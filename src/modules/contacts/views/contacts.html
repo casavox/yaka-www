@@ -261,6 +261,27 @@
                         </span>
                     </span>
                 </div>
+                <div class="col-xs-12 contactsEmpty" ng-if="vm.getCurrentContactListNumber() == 0">
+                    <img class="contactsEmptyIcon" src="icons/mdpi/ic_person_add.png"/>
+
+                    <div class="contactsEmptyTitle">
+                        Vous n’avez pas encore de contacts.
+                    </div>
+                    <div class="contactsEmptySubtitle">
+                        Développez votre réseau en invitant vos contacts
+                    </div>
+                    <div class="contactsEmptyLinks">
+                        <span class="contactsEmptyLink" ng-click="vm.openFriendPopup()">
+                            Inviter des amis
+                        </span>
+                        <span class="contactsEmptyLinkOr">
+                            ou
+                        </span>
+                        <span class="contactsEmptyLink" ng-click="vm.openProPopup()">
+                            Invitez des professionnels
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
