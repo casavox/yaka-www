@@ -639,7 +639,7 @@
             return titleArray.join(' ');
         }
 
-        function errorProjectGET() {
+        function errorProjectGET(err) {
             $state.go("prodashboard");
         }
     }
