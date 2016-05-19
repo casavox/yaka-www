@@ -123,7 +123,7 @@
                  alt=""/>
 
             <div class="col-xs-12 proErrorMessage"
-                 ng-if="app.getUser().professional.status == 'REGISTERED'">
+                 ng-if="app.getUser().professional.status == 'REGISTERED' || app.getUser().professional.status == 'REFUSED'">
                 Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
             </div>
 

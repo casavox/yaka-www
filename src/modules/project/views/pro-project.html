@@ -216,7 +216,7 @@
             </div>
             <div class="row" ng-if="vm.project.error">
                 <div class="col-xs-12 proErrorMessage"
-                     ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'">
+                     ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                     Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
                 </div>
 
