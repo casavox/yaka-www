@@ -53,7 +53,15 @@ angular.module('Yaka', [
                 }
             }()),
             'GOOGLE_CLIENT_ID': '554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com',
-            'FACEBOOK_CLIENT_ID': '847913895334564'
+            'FACEBOOK_CLIENT_ID': (function () {
+                if (window.location.hostname == 'yaka-frontend-development.herokuapp.com') {
+                    return '921341561325130'; // Development
+                } else if (window.location.hostname == 'yaka-frontend-staging.herokuapp.com') {
+                    return '921338621325424'; // Staging
+                } else {
+                    return '847913895334564'; // Production
+                }
+            }())
         })
         .config(config);
 
