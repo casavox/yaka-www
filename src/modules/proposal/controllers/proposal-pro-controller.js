@@ -7,8 +7,11 @@
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $state,networkService, alertMsg, $filter, $stateParams, $translate) {
+    function ProProposalController($rootScope, $scope, $state, networkService, alertMsg, $filter, $stateParams, $translate) {
 
+        //TODO
+        $rootScope.pageName = "";
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;
@@ -89,16 +92,8 @@
         };
 
 
-        if ($stateParams.proposalId) {
-            var res = parseInt($stateParams.proposalId);
-            if (res.toString() != $stateParams.proposalId)
-                $state.go("prodashboard");
-            else {
-                networkService.proProposalGET(res, succesProjectGET, errorProjectGET);
-            }
-        }
-        else {
-            $state.go("prodashboard");
+        if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
+            networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         }
 
         function declineProposal() {
@@ -401,7 +396,6 @@
                         slot: vm.offer.date.slot
                     };
                     networkService.proposalEmergencyPOST(formData, function (res) {
-                        console.log(res);
                         alertMsg.send("Proposal sent.", "success");
                     }, function (res) {
                         alertMsg.send("Error : proposal not sent", "danger");
@@ -410,7 +404,6 @@
                 else {
                     formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
                     networkService.proposalSmallPOST(formData, function (res) {
-                        console.log(res);
                         alertMsg.send("Proposal sent.", "success");
                     }, function (res) {
                         alertMsg.send("Error : proposal not sent", "danger");
@@ -439,7 +432,6 @@
                     vm.myDateFlag = false;
                 }
             }
-            console.log(vm.offer);
         }
 
         function getSlot(slot) {
@@ -697,7 +689,6 @@
             vm.project = res.project;
             vm.proposal = res;
             vm.proposalTmp = angular.copy(vm.proposal);
-            console.log(res);
             vm.projectTmp = angular.copy(vm.project);
             if (vm.projectTmp.type != "EMERGENCY") {
                 vm.dateType = vm.projectTmp.desiredDatePeriod;

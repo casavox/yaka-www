@@ -9,9 +9,16 @@
     //Controller login
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
+        $rootScope.pageName = "Contacts";
+        $rootScope.updateProfile();
         $rootScope.showMenu = false;
 
         var vm = this;
+
+        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+            networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            $localStorage.invitationId = '';
+        }
 
         vm.getMenuItemClass = function (state) {
             if (state == "contacts") {
@@ -28,14 +35,45 @@
 
         vm.currentMenuItem = vm.MENU_ALL;
 
+        vm.contactsMenuOpened = false;
+
         vm.contacts = [];
         vm.prosNumber = 0;
         vm.friendsNumber = 0;
 
+        vm.getHumanReadableMenuItem = function () {
+            if (vm.currentMenuItem == vm.MENU_ALL) {
+                return "Tous mes Contacts";
+            } else if (vm.currentMenuItem == vm.MENU_PROS) {
+                return "Mes Pros";
+            } else if (vm.currentMenuItem == vm.MENU_FRIENDS) {
+                return "Mes Amis";
+            } else if (vm.currentMenuItem == vm.MENU_INVIT_RECEIVED) {
+                return "Invitations reçues";
+            } else if (vm.currentMenuItem == vm.MENU_INVIT_SENT) {
+                return "Invitations envoyées";
+            }
+        };
+
+        vm.getCurrentContactListNumber = function () {
+            var count = 0;
+            angular.forEach(vm.contacts, function (contact) {
+                if (vm.showContactOrNot(contact)) {
+                    count++;
+                }
+            });
+            return count;
+        };
+
+        function reloadContactsAndInvitations() {
+            networkService.contactsGET(succesContactsGET, errorContactsGET);
+            networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
+            networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
+        }
+
         networkService.contactsGET(succesContactsGET, errorContactsGET);
 
         function succesContactsGET(res) {
-            console.log(res);
 
             var prosNum = 0;
             var friendsNum = 0;
@@ -52,8 +90,12 @@
             vm.friendsNumber = friendsNum;
         }
 
-        function errorContactsGET() {
-            alertMsg.send("Impossible de récupérer les contacts", "warning");
+        function errorContactsGET(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de récupérer les contacts", 'danger');
+            }
         }
 
         vm.invitationsReceived = [];
@@ -62,25 +104,30 @@
         networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
 
         function succesInvitationsReceivedGET(res) {
-            console.log(res);
 
             vm.invitationsReceived = res;
         }
 
-        function errorInvitationsReceivedGET() {
-            alertMsg.send("Impossible de récupérer les invitations", "warning");
+        function errorInvitationsReceivedGET(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de récupérer les invitations", 'danger');
+            }
         }
 
         networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
 
         function succesInvitationsSentGET(res) {
-            console.log(res);
-
             vm.invitationsSent = res;
         }
 
-        function errorInvitationsSentGET() {
-            alertMsg.send("Impossible de récupérer les invitations", "warning");
+        function errorInvitationsSentGET(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de récupérer les invitations", 'danger');
+            }
         }
 
         vm.showContactOrNot = function (contact) {
@@ -130,23 +177,43 @@
             for (var i = 0; i < invits.length; i++) {
                 invits[i] = invits[i].trim();
                 if (!vm.isEmailValid(invits[i])) {
-                    alertMsg.send(invits[i] + " n'est pas un email valide", "warning");
+                    alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
                     return;
                 }
+            }
+            if (hasDuplicates(invits)) {
+                alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
+                return;
             }
 
             networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
         };
 
+        function hasDuplicates(array) {
+            var valuesSoFar = Object.create(null);
+            for (var i = 0; i < array.length; ++i) {
+                var value = array[i];
+                if (value in valuesSoFar) {
+                    return true;
+                }
+                valuesSoFar[value] = true;
+            }
+            return false;
+        }
+
         function succesInviteCustomerPOST(res) {
-            console.log(res);
             vm.invitCustomer = "";
             vm.closeFriendPopup();
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
 
-        function errorInviteCustomerPOST() {
-            alertMsg.send("Impossible d'envoyer l'invitation", "warning");
+        function errorInviteCustomerPOST(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+            }
         }
 
         vm.invitPro = {
@@ -163,7 +230,6 @@
         };
 
         function succesInviteProPOST(res) {
-            console.log(res);
             vm.closeProPopup();
             vm.invitPro = {
                 email: "",
@@ -174,11 +240,16 @@
                 address: {}
             };
             vm.phoneNumber = "";
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation envoyée", "success");
         }
 
-        function errorInviteProPOST() {
-            alertMsg.send("Impossible d'envoyer l'invitation", "warning");
+        function errorInviteProPOST(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+            }
         }
 
         vm.autocomplete = {
@@ -229,7 +300,7 @@
         });
 
         vm.isEmailValid = function (email) {
-            return new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}").test(email);
+            return new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}$").test(email);
         };
 
         vm.isNameValid = function (name) {
@@ -244,7 +315,7 @@
         vm.isPhoneNumberValid = false;
 
         $('#proInvitePhone').intlTelInput({
-            utilsScript: "scripts/intlTelInputUtils.js",
+            utilsScript: "https://cdn.rawgit.com/jackocnr/intl-tel-input/master/build/js/utils.js",
             initialCountry: "fr",
             onlyCountries: ["fr"]
             //DOM-TOM : onlyCountries: ["fr", "mq", "gf", "re", "yt", "pm", "bl", "mf", "tf", "wf", "pf", "nc"]
@@ -253,9 +324,6 @@
             if ($.trim($('#proInvitePhone').val())) {
                 if ($('#proInvitePhone').intlTelInput("isValidNumber")) {
                     vm.invitPro.phone = $('#proInvitePhone').intlTelInput("getNumber");
-                    console.log("VALID");
-                } else {
-                    console.log("INVALID");
                 }
             }
         });
@@ -293,7 +361,7 @@
             }
 
             return ret.join(char);
-        };
+        }
 
         vm.formIsValid = function () {
             vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
@@ -318,12 +386,16 @@
         };
 
         function succesRefuseInvitationPOST(res) {
-            console.log(res);
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation refusée avec succes", "success");
         }
 
-        function errorRefuseInvitationPOST() {
-            alertMsg.send("Impossible de refuser l'invitation", "warning");
+        function errorRefuseInvitationPOST(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de refuser l'invitation", 'danger');
+            }
         }
 
         vm.acceptInvitation = function (invitationId) {
@@ -331,14 +403,40 @@
         };
 
         function succesAcceptInvitationPOST(res) {
-            console.log(res);
+            reloadContactsAndInvitations();
             alertMsg.send("Invitation acceptée avec succes", "success");
         }
 
-        function errorAcceptInvitationPOST() {
-            alertMsg.send("Impossible d'accepter l'invitation", "warning");
+        function errorAcceptInvitationPOST(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible d'accepter l'invitation", 'danger');
+            }
         }
 
+        vm.contactsMenuFixed = false;
+
+        $('.view').scroll(function () {
+            var scroll = $('.view').scrollTop();
+            if (scroll >= 270) {
+                vm.contactsMenuFixed = true;
+                $('.contactsMenu').addClass("fixed");
+                $('.contactsContacts').addClass("menuFixed");
+            } else {
+                vm.contactsMenuFixed = false;
+                $('.contactsMenu').removeClass("fixed");
+                $('.contactsContacts').removeClass("menuFixed");
+            }
+        });
+
+        vm.getOverlayClass = function () {
+            if (vm.contactsMenuOpened) {
+                return "overlayVisible";
+            } else {
+                return "overlayInvisible";
+            }
+        };
     }
 })
 ();

@@ -9,6 +9,9 @@
     //Controller login
     function ProJobController($rootScope, $scope, $state, networkService, alertMsg, $filter, $stateParams) {
 
+        //TODO
+        $rootScope.pageName = "";
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;
@@ -40,15 +43,9 @@
             disableDoubleClickZoom: true,
             scrollwheel: false
         };
-        if ($stateParams.proposalId) {
-            var res = parseInt($stateParams.proposalId);
-            if (res.toString() != $stateParams.proposalId)
-                $state.go("prodashboard");
-            else
-                networkService.proposalProGET(res, succesProjectGET, errorProjectGET);
+        if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
+            networkService.proposalProGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         }
-        else
-            $state.go("prodashboard");
 
         vm.declineProposal = function () {
 
@@ -214,7 +211,6 @@
                 else {
                     formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
                     networkService.proposalSmallPOST(formData, function (res) {
-                        console.log(res);
                         alertMsg.send("Proposal sent.", "success");
                     }, function (res) {
                         alertMsg.send("Error : proposal not sent", "danger");
@@ -359,7 +355,6 @@
             vm.project = res.project;
             vm.proposal = res;
             vm.proposalTmp = angular.copy(vm.proposal);
-            console.log(res);
             vm.projectTmp = angular.copy(vm.project);
             if (vm.projectTmp.type != "EMERGENCY") {
                 vm.dateType = vm.projectTmp.desiredDatePeriod;

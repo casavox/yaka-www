@@ -9,6 +9,8 @@
     //Controller login
     function ProJobsController(networkService, alertMsg, $rootScope) {
 
+        $rootScope.pageName = "Mes projets";
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;
@@ -21,22 +23,16 @@
         };
 
         networkService.proProposalsGET('ongoing', function (res) {
-            console.log(res);
             vm.ongoing = res;
         }, function () {
-            console.log("Error");
         });
         networkService.proProposalsGET('scheduled', function (res) {
-            console.log(res);
             vm.scheduled = res;
         }, function () {
-            console.log("Error");
         });
         networkService.proProposalsGET('completed', function (res) {
-            console.log(res);
             vm.completed = res;
         }, function () {
-            console.log("Error");
         });
 
         vm.selectProposal = function (index) {
@@ -46,7 +42,6 @@
 
         vm.deleteProposal = function () {
             networkService.proProposalsArchiveGET(vm.decline[vm.index].id, function (res) {
-                console.log(res);
                 vm.delete = false;
                 alertMsg.send('Proposal deleted', "success");
             }, function () {

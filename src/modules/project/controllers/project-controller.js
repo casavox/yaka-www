@@ -8,6 +8,10 @@
     //
     //Controller login
     function ProjectController($scope, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate) {
+
+        //TODO
+        $rootScope.pageName = "";
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
         var vm = this;
         vm.pro = vm.disabledAddr = true;
@@ -198,7 +202,6 @@
             vm.proposal = res;
             vm.proDetails = true;
             vm.pro = false;
-            console.log(res);
         }
 
         vm.homeDetail = function () {
@@ -268,9 +271,9 @@
                 vm.whereFlag = false;
             }
             else {
-                for (var i = 0; i < vm.user.profile.addresses.length; i++) {
-                    if (vm.user.profile.addresses[i].address == vm.myAddress) {
-                        vm.projectTmp.address.name = vm.user.profile.addresses[i].name;
+                for (var i = 0; i < vm.user.addresses.length; i++) {
+                    if (vm.user.addresses[i].address == vm.myAddress) {
+                        vm.projectTmp.address.name = vm.user.addresses[i].name;
                         vm.projectTmp.address.address = vm.myAddress;
                         vm.whereFlag = false;
                         break;
@@ -296,9 +299,6 @@
 
         function succesProfileGET(res) {
             vm.user = res;
-
-
-            console.log(res, vm.projectTmp);
         }
 
         function errorProfileGET() {
@@ -407,7 +407,7 @@
                     j[key] = false;
             });
         };
-        
+
         vm.initDate = function (j, tab) {
             var array = ["7H_9H", "9H_12H", "12H_14H", "14H_16H", "16H_18H", "18H_20H", "AFTER_20H"];
             if (j.all && j.allDisabled != "checkbox-disabled")
@@ -500,6 +500,9 @@
                         res += " - ";
                     res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
                 }
+            }
+            if (vm.project.hasMaterial) {
+                res += " - Matériel fourni";
             }
             return res;
         };
@@ -620,6 +623,7 @@
             alertMsg.send("Error : Impossible to get the mission.", "danger");
             $state.go("my-projects");
         }
+
         vm.initHours();
     }
 })();

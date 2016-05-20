@@ -20,11 +20,16 @@
 }
 
 .yakaButton:active {
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12), 0px 8px 8px 0px rgba(0, 0, 0, 0.24), inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.12), 0px 4px 4px 0px rgba(0, 0, 0, 0.24), inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
 }
 
 .yakaButton.yakaDisabled {
     box-shadow: inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
+    cursor: default;
+}
+
+.yakaButton.yakaDisabled .angular-ripple.animate {
+    animation: none !important;
 }
 
 .yakaButton.yakaBlue {
@@ -113,10 +118,76 @@
     padding-right: 55px !important;
 }
 
+.yakaPopupWindowCustomerService {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
 .popupCloseButton {
     position: absolute;
     top: 0;
     right: 0;
     padding: 10px;
     cursor: pointer;
+}
+
+@media (max-width: 459px) {
+    .yakaPopupWindow {
+        width: 100% !important;
+        margin-left: 0 !important;
+        left: 0 !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .yakaPopup {
+        padding: 0 !important;
+    }
+
+    .yakaPopup .container {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    input.form-control {
+        margin-top: 7px !important;
+        height: 36px !important;
+    }
+
+    .loginPopupButton {
+        height: 40px;
+        padding-top: 11px;
+    }
+
+    .customerRegisterProLink {
+        font-size: 12px !important;
+    }
+
+    .loginPopupTabItem {
+        font-size: 13px !important;
+        height: 25px !important;
+        margin-bottom: 19px !important;
+    }
+
+    .registerFacebookGoogle {
+        font-size: 12px !important;
+    }
+
+    .loginPopupFacebook {
+        height: 30px !important;
+        font-size: 15px !important;
+        padding-top: 5px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .loginPopupGoogle {
+        height: 30px !important;
+        font-size: 15px !important;
+        padding-top: 5px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .registerSeparator {
+        margin-bottom: 20px !important;
+    }
 }

@@ -27,7 +27,8 @@
             <div class="col-xs-12 homeSection1SubTitle">
                 Rejoignez la 1ère plateforme de recommandation d’artisans entre particuliers.
             </div>
-            <div class="col-xs-4 col-xs-offset-4 yakaButton yakaOrange" ng-click="vm.openPopup(true)" angular-ripple>
+            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button" ng-click="vm.openPopup(false)"
+                 angular-ripple>
                 CREER MON RESEAU
             </div>
         </div>
@@ -41,35 +42,41 @@
                 Parce que le bouche à oreille reste le meilleur moyen de trouver de bons artisans.
             </div>
             <div class="col-xs-12 homeSection2Items">
-                <div class="col-xs-4">
-                    <img src="icons/mdpi/ic_homeTrust.png" alt=""/>
+                <div class="col-xs-12 col-sm-4 homeSection2Item">
+                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
+                        <img src="icons/mdpi/ic_homeTrustBlue.png" alt=""/>
 
-                    <div class="homeSection2ItemTitle">
-                        CONFIANCE
+                        <div class="homeSection2ItemTitle">
+                            CONFIANCE
+                        </div>
                     </div>
-                    <div class="homeSection2ItemDescription">
+                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
                         Réalisez vos travaux en toute sérénité grâce aux artisans recommandés par votre entourage
                         (voisins, amis, collégues...).
                     </div>
                 </div>
-                <div class="col-xs-4">
-                    <img src="icons/mdpi/ic_homeConfidentiality.png" alt=""/>
+                <div class="col-xs-12 col-sm-4 homeSection2Item">
+                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
+                        <img src="icons/mdpi/ic_homeConfidentialityBlue.png" alt=""/>
 
-                    <div class="homeSection2ItemTitle">
-                        CONFIDENTIALITÉ
+                        <div class="homeSection2ItemTitle">
+                            CONFIDENTIALITÉ
+                        </div>
                     </div>
-                    <div class="homeSection2ItemDescription">
+                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
                         Préservez votre vie privée. Vos échanges se font via une messagerie sécurisée. Vous choississez
                         qui peut vous contacter.
                     </div>
                 </div>
-                <div class="col-xs-4">
-                    <img src="icons/mdpi/ic_homeCooption.png" alt=""/>
+                <div class="col-xs-12 col-sm-4 homeSection2Item">
+                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
+                        <img src="icons/mdpi/ic_homeShareBlue.png" alt=""/>
 
-                    <div class="homeSection2ItemTitle">
-                        PARTAGE
+                        <div class="homeSection2ItemTitle">
+                            PARTAGE
+                        </div>
                     </div>
-                    <div class="homeSection2ItemDescription">
+                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
                         Partagez en un clic votre projet avec vos amis et la communauté YakaClub, ils vous recommandent
                         leurs meilleurs artisans pour vos travaux.
                     </div>
@@ -80,28 +87,30 @@
     <div class="homeSection homeSection3">
         <div class="container">
             <div class="col-xs-12 homeSection3Items">
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6 homeSection3Item">
                     <div class="col-xs-12 homeSection3ItemTitle">
                         Vous êtes un professionnel ?
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Trouvez de nouveaux clients et passez moins de temps à prospecter.
                     </div>
-                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemButton yakaButton yakaOrange"
-                         ui-sref="pro-home" angular-ripple>
+                    <div
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaOrange"
+                        ui-sref="pro-home" angular-ripple>
                         DECOUVREZ NOS SERVICES
                     </div>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6 homeSection3Item">
                     <div class="col-xs-12 homeSection3ItemTitle">
                         Faites découvrir YakaClub à vos amis
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Augmentez vos chances de trouver de bons artisans et aidez vos amis.
                     </div>
-                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemButton yakaButton yakaBlue"
-                         ng-click="vm.openPopup(true)"
-                         angular-ripple>
+                    <div
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue"
+                        ng-click="vm.openPopup(false)"
+                        angular-ripple>
                         INVITEZ VOS AMIS ET VOS ARTISANS
                     </div>
                 </div>
@@ -114,15 +123,15 @@
                 Suivez-nous !
             </div>
             <div class="homeSection4Items">
-                <span class="homeSection4Item">
-                    <img src="icons/mdpi/ic_homeFacebook.png" alt=""/>
-                </span>
-                <span class="homeSection4Item">
-                    <img src="icons/mdpi/ic_homeLinkedin.png" alt=""/>
-                </span>
-                <span class="homeSection4Item">
-                    <img src="icons/mdpi/ic_homeTwitter.png" alt=""/>
-                </span>
+                <a target="_blank" ng-href="https://www.facebook.com/yakaclub">
+                    <div class="homeSection4ItemSocial homeSection4ItemFacebook"></div>
+                </a>
+                <a target="_blank" ng-href="https://plus.google.com/117693956496667116327">
+                    <div class="homeSection4ItemSocial homeSection4ItemGoogle"></div>
+                </a>
+                <a target="_blank" ng-href="https://twitter.com/yakaclub">
+                    <div class="homeSection4ItemSocial homeSection4ItemTwitter"></div>
+                </a>
             </div>
         </div>
     </div>
@@ -136,19 +145,19 @@
                     Tous droits réservés
                 </div>
             </div>
-            <div class="homeSection5FooterRegister yakaLinkWhite"
-                 ng-click="vm.openPopup(false)">
-                S'inscrire
+            <div class="homeSection5FooterContactUs yakaLinkWhite" ng-click="app.openCustomerSupport()">
+                Contactez-nous
             </div>
-            <div class="homeSection5FooterLogin yakaLinkWhite"
-                 ng-click="vm.openPopup(true)">
-                Se connecter
-            </div>
+            <a href="http://res.cloudinary.com/yaka/image/upload/v1462777348/yakaclub/cgu.pdf" target="_blank">
+                <div class="homeSection5FooterLogin yakaLinkWhite">
+                    CGU
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()">
+<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()" ng-cloak>
     <div class="container">
         <div id="loginPopup" class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
@@ -172,16 +181,21 @@
                         Google
                     </div>
 
-                    <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.profile.email"/>
+                    <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.email"/>
 
                     <input class="form-control" type="password" placeholder="Mot de passe"
                            ng-model="vm.loginUser.password"
                            ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
+                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
                          ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
                          angular-ripple>
                         SE CONNECTER
+                    </div>
+                    <div class="col-xs-12 passwordForgotten">
+                        <span ng-click="vm.closePopup();
+                         vm.forgottenPasswordUser.email = vm.loginUser.email;
+                         vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
                     </div>
                 </div>
 
@@ -209,62 +223,69 @@
                     <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
 
                     <div class="col-xs-12 registerMail">
-                        <span ng-if="!vm.isSocialRegister()">Inscription par email</span>
+                        <span class="registerWithEmailMessage" ng-if="!vm.isSocialRegister()"
+                              ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
                         <span ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                     </div>
 
-                    <input class="form-control halfInput" placeholder="Prénom"
-                           ng-model="vm.newUser.firstName"
-                           ng-disabled="vm.isSocialRegister()"/>
+                    <div class="col-xs-12 showRegisterFields"
+                         ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
+                        <input class="form-control halfInput" placeholder="Prénom"
+                               ng-model="vm.newUser.firstName"
+                               ng-disabled="vm.isSocialRegister()"/>
 
-                    <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                           ng-model="vm.newUser.lastName"
-                           ng-disabled="vm.isSocialRegister()"/>
+                        <input class="form-control halfInput halfInputRight" placeholder="Nom"
+                               ng-model="vm.newUser.lastName"
+                               ng-disabled="vm.isSocialRegister()"/>
 
-                    <div class="loginPopupInputError"
-                         ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
-                        Ce prénom n'est pas valide
+                        <div class="loginPopupInputError"
+                             ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
+                            Ce prénom n'est pas valide
+                        </div>
+
+                        <div class="loginPopupInputError"
+                             ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
+                            Ce nom n'est pas valide
+                        </div>
+
+                        <input
+                            vs-google-autocomplete="vm.autocomplete.options"
+                            vs-autocomplete-validator class="form-control"
+                            placeholder="Ville"
+                            ng-model="vm.newUser.defaultAddress.address"/>
+
+                        <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.email"
+                               ng-disabled="vm.needToHideEmail()"/>
+
+                        <div class="loginPopupInputError"
+                             ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
+                            Cet email n'est pas valide
+                        </div>
+
+                        <input class="form-control" type="password" placeholder="Mot de passe"
+                               ng-model="vm.newUser.password"/>
+
+                        <div class="loginPopupInputError"
+                             ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
+                            Trop court : 6 caractères minimum
+                        </div>
+
+                        <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
+                               ng-model="vm.passwordConfirm"/>
+
+                        <div class="loginPopupInputError"
+                             ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
+                            Les mots de passe ne correspondent pas
+                        </div>
+
+                        <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
+                             ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()"
+                             angular-ripple>
+                            S'INSCRIRE
+                        </div>
                     </div>
-
-                    <div class="loginPopupInputError"
-                         ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
-                        Ce nom n'est pas valide
-                    </div>
-
-                    <input
-                        vs-google-autocomplete="vm.autocomplete.options"
-                        vs-autocomplete-validator class="form-control"
-                        placeholder="Ville"
-                        ng-model="vm.newUser.profile.defaultAddress.address"/>
-
-                    <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.profile.email"
-                           ng-disabled="vm.needToHideEmail()"/>
-
-                    <div class="loginPopupInputError"
-                         ng-hide="vm.newUser.profile.email == '' || vm.isEmailValid(vm.newUser.profile.email)">
-                        Cet email n'est pas valide
-                    </div>
-
-                    <input class="form-control" type="password" placeholder="Mot de passe"
-                           ng-model="vm.newUser.password"/>
-
-                    <div class="loginPopupInputError"
-                         ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
-                        Trop court : 6 caractères minimum
-                    </div>
-
-                    <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
-                           ng-model="vm.passwordConfirm"/>
-
-                    <div class="loginPopupInputError"
-                         ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
-                        Les mots de passe ne correspondent pas
-                    </div>
-
-                    <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                         ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()"
-                         angular-ripple>
-                        S'INSCRIRE
+                    <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
+                        Vous êtes Pro ? Cliquez ici pour vous inscrire
                     </div>
                 </div>
             </div>
@@ -279,6 +300,39 @@
                      angular-ripple>
                     OK
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup"
+     ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
+
+            <div ng-if="!vm.passwordForgottenMessageSent">
+
+                <input class="form-control" type="email" placeholder="Email du compte à récupérer"
+                       ng-model="vm.forgottenPasswordUser.email"/>
+
+                <div class="loginPopupInputError"
+                     ng-hide="vm.forgottenPasswordUser.email == '' || vm.isEmailValid(vm.forgottenPasswordUser.email)">
+                    Cet email n'est pas valide
+                </div>
+
+                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton"
+                     ng-class="{yakaDisabled: !vm.isEmailValid(vm.forgottenPasswordUser.email)}"
+                     ng-click="vm.forgottenPassword()"
+                     angular-ripple>
+                    RÉINITIALISER MON MOT DE PASSE
+                </div>
+
+            </div>
+            <div class="passwordForgottenMessageSent" ng-if="vm.passwordForgottenMessageSent">
+                Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
+                passe.
             </div>
         </div>
     </div>

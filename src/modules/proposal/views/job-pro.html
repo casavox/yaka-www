@@ -70,12 +70,14 @@
                         <p class="pro-title-post">
                             Post {{vm.dateDiff(vm.project.published, vm.project.updated)}} ago
                         </p>
-                        <img ng-src="{{vm.project.profile.avatarUrl}}"
+                        <!-- TODO AvatarURL does not exists anymore -->
+                        <img ng-src="{{vm.project.user.avatarUrl}}"
                              class="img-circle pro-icon-medium mt-20 fl-l ml-15"
-                             ng-show="vm.project.profile.avatarUrl"/>
+                             ng-show="vm.project.user.avatarUrl"/>
 
-                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.project.profile.avatarUrl">
-                            {{vm.project.profile.user.firstName[0] | uppercase}} {{vm.project.profile.user.lastName[0] |
+                        <!-- TODO AvatarURL does not exists anymore -->
+                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.project.user.avatarUrl">
+                            {{vm.project.user.firstName[0] | uppercase}} {{vm.project.user.lastName[0] |
                             uppercase}}
                         </div>
                         <div class="pro-proposal-title">
@@ -84,7 +86,7 @@
                             </p>
 
                             <p>
-                                {{vm.project.profile.user.firstName}} {{vm.project.profile.user.lastName}}
+                                {{vm.project.user.firstName}} {{vm.project.user.lastName}}
                             </p>
                         </div>
                     </div>
@@ -182,7 +184,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p class="pro-menu-title">
-                        Chat with {{vm.proposal.project.profile.user.firstName}} {{vm.proposal.project.profile.user.lastName}}
+                        Chat with {{vm.proposal.project.user.firstName}} {{vm.proposal.project.user.lastName}}
                     </p>
 
                     <p class="pro-menu-subTitle" ng-show="!vm.offer.price.price">

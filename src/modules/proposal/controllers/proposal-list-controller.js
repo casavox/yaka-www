@@ -9,6 +9,9 @@
     //Controller login
     function ProposalsController(networkService, alertMsg, $stateParams, $state, $rootScope) {
 
+        //TODO
+        $rootScope.pageName = "";
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;

@@ -11,10 +11,6 @@
         var baseUrl = CONFIG.API_BASE_URL;
 
         return {
-            /*
-             register: function(data, success, error) {
-             $http.post(baseUrl + '/projects/me?status='+data).success(success).error(error)
-             },*/
             login: function (data, success, error) {
                 $http.post(baseUrl + '/login', data).success(success).error(error)
             },
@@ -173,8 +169,13 @@
             },
             acceptInvitationPOST: function (id, success, error) {
                 $http.post(baseUrl + '/invitations/' + id + '/accept').success(success).error(error)
+            },
+            passwordForgottenPOST: function (data, success, error) {
+                $http.post(baseUrl + '/password/forgotten', data).success(success).error(error)
+            },
+            passwordNewPOST: function (data, success, error) {
+                $http.post(baseUrl + '/password/new', data).success(success).error(error)
             }
         };
-
     }
 })();

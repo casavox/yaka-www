@@ -11,6 +11,8 @@
         var vm = this;
         vm.user = $localStorage.user;
 
+        $rootScope.pageName = "Nouveau projet";
+        $rootScope.updateProfile();
         $rootScope.showMenu = false;
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
@@ -169,9 +171,9 @@
                 date: {flag: false, message: ""},
                 material: {flag: false, message: ""}
             };
-            if (!angular.isUndefined(vm.user) && !angular.isUndefined(vm.user.profile) && vm.user.profile.addresses) {
-                if (vm.user.profile.addresses.length > 0) {
-                    vm.myAddress = vm.user.profile.addresses[0].address;
+            if (!angular.isUndefined(vm.user) && vm.user.addresses) {
+                if (vm.user.addresses.length > 0) {
+                    vm.myAddress = vm.user.addresses[0].address;
                     $scope.address.name = vm.myAddress;
                     vm.continueAddress = true;
                 }
@@ -182,8 +184,7 @@
             }
             else {
                 vm.user = {};
-                vm.user.profile = {};
-                vm.user.profile.addresses = [];
+                vm.user.addresses = [];
             }
             for (var i = 0; i < vm.newProject.childrenActivities.length; i++) {
                 vm.newProject.childrenActivities[i].selected = "";
@@ -227,9 +228,9 @@
                 formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
             }
             if (vm.continueAddress) {
-                for (var i = 0; i < vm.user.profile.addresses.length; i++) {
-                    if (vm.user.profile.addresses[i].address == vm.myAddress) {
-                        formData.address.name = vm.user.profile.addresses[i].name;
+                for (var i = 0; i < vm.user.addresses.length; i++) {
+                    if (vm.user.addresses[i].address == vm.myAddress) {
+                        formData.address.name = vm.user.addresses[i].name;
                         formData.address.address = vm.myAddress;
                         break;
                     }
@@ -294,9 +295,9 @@
                     formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
                 }
                 if (vm.continueAddress) {
-                    for (var i = 0; i < vm.user.profile.addresses.length; i++) {
-                        if (vm.user.profile.addresses[i].address == vm.myAddress) {
-                            formData.address.name = vm.user.profile.addresses[i].name;
+                    for (var i = 0; i < vm.user.addresses.length; i++) {
+                        if (vm.user.addresses[i].address == vm.myAddress) {
+                            formData.address.name = vm.user.addresses[i].name;
                             formData.address.address = vm.myAddress;
                             break;
                         }
@@ -354,11 +355,11 @@
                     formData.activities.push({code: vm.questions[i].code});
                 }
                 if (vm.continueAddress) {
-                    for (var i = 0; i < vm.user.profile.addresses.length; i++) {
-                        if (vm.user.profile.addresses[i].address == vm.myAddress) {
+                    for (var i = 0; i < vm.user.addresses.length; i++) {
+                        if (vm.user.addresses[i].address == vm.myAddress) {
                             if (angular.isUndefined(formData.images))
                                 formData.images = [];
-                            formData.address.name = vm.user.profile.addresses[i].name;
+                            formData.address.name = vm.user.addresses[i].name;
                             formData.address.address = vm.myAddress;
                             break;
                         }
@@ -398,7 +399,6 @@
         };
 
         function succesProjectsPOST(res) {
-            console.log(res);
             vm.continueAddressFlag = vm.continueImg = vm.continue = vm.service = vm.selectCategory = false;
             vm.questions = [];
             vm.end = true;
@@ -466,7 +466,6 @@
         };
 
         vm.continueAddr = function () {
-            console.log($scope.address);
             if (vm.continueAddress == false) {
                 if (vm.newAddr.name) {
                     if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR") {
@@ -614,9 +613,9 @@
                 item.childrenActivities.push(otherChild);
             }
             item.selected = "activate";
-            if (!angular.isUndefined(vm.user) && !angular.isUndefined(vm.user.profile) && vm.user.profile.addresses) {
-                if (vm.user.profile.addresses.length > 0) {
-                    vm.myAddress = vm.user.profile.addresses[0].address;
+            if (!angular.isUndefined(vm.user) && vm.user.addresses) {
+                if (vm.user.addresses.length > 0) {
+                    vm.myAddress = vm.user.addresses[0].address;
                     $scope.address.name = vm.myAddress;
                     vm.continueAddress = true;
                 }
@@ -627,8 +626,7 @@
             }
             else {
                 vm.user = {};
-                vm.user.profile = {};
-                vm.user.profile.addresses = [];
+                vm.user.addresses = [];
             }
             $timeout(function () {
                 var element = document.getElementById('subSlide0');
@@ -713,7 +711,7 @@
                 }
             }
             else {
-                vm.user.profile.addresses = [];
+                vm.user.addresses = [];
                 vm.continueAddress = false;
                 vm.newAddrFlag = true;
                 vm.myAddress = "new";
@@ -781,7 +779,7 @@
                 $state.go("dashboard");
             else {
                 $timeout(function () {
-                    redirect();
+                    vm.redirect();
                 }, 1000);
             }
         };

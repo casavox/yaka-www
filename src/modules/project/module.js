@@ -30,7 +30,7 @@
                 controllerAs: 'vm'
             })
             .state('pro-project-proposal-new', {
-                url: "/pro/project/:projectId/proposal/new",
+                url: "/pro/project/:projectId",
                 templateUrl: "/modules/project/views/pro-project.html",
                 controller: 'ProProjectController',
                 controllerAs: 'vm'
@@ -40,7 +40,7 @@
                 templateUrl: "/modules/project/views/project.html",
                 controller: 'ProjectController',
                 controllerAs: 'vm'
-            })
-
+            }
+        )
     }
 })();

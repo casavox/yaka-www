@@ -17,16 +17,16 @@
 
             <div class="row no-margin">
                 <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
-                     ui-sref="pro-proposal({proposalId: proposal.id})">
+                     ng-click="vm.quoteClicked(proposal.id)">
                     <div class="pro-proposal-bloc-pict">
-                        <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
                                   secure="true"
                                   class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
-                        <div class="img-default-preview-40" ng-if="!proposal.project.profie.avatar.cloudinaryPublicId">
-                            {{proposal.project.profile.user.firstName[0] | uppercase}} {{proposal.project.profile.user.lastName[0]
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
                             | uppercase}}
                         </div>
                     </div>
@@ -39,8 +39,8 @@
                         </p>
 
                         <p class="pro-proposals-info"
-                           title="{{ proposal.project.profile.user.firstName }} {{proposal.project.profile.user.lastName}} - {{proposal.project.address.locality}}">
-                            {{ proposal.project.profile.user.firstName }} {{proposal.project.profile.user.lastName}} -
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
                             {{proposal.project.address.locality}}
                         </p>
                         <hr class="pro-proposals-hr">
@@ -59,14 +59,14 @@
             <div class="row no-margin">
                 <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
                     <div class="pro-proposal-bloc-pict">
-                        <cl-image public-id="{{proposal.project.profie.avatar.cloudinaryPublicId}}"
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
                                   secure="true"
                                   class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.profie.avatar.cloudinaryPublicId">
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
-                        <div class="img-default-preview-40" ng-if="!proposal.project.profie.avatar.cloudinaryPublicId">
-                            {{proposal.project.profile.user.firstName[0] | uppercase}} {{proposal.project.profile.user.lastName[0]
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
                             | uppercase}}
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         </p>
 
                         <p class="pro-proposals-info">
-                            {{ proposal.project.profile.user.firstName }} {{proposal.project.profile.user.lastName}} -
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
                             {{proposal.project.address.locality}}
                         </p>
                         <hr class="pro-proposals-hr">
@@ -113,3 +113,30 @@
     </div>
 
 </section>
+
+<div class="yakaPopup" ng-show="vm.showProNotValidatedPopup" ng-click="vm.closePopup()" ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton"
+                 src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.closePopup()"
+                 alt=""/>
+
+            <div class="col-xs-12 proErrorMessage"
+                 ng-if="app.getUser().professional.status == 'REGISTERED' || app.getUser().professional.status == 'REFUSED'">
+                Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
+            </div>
+
+            <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange"
+                 ng-if="app.getUser().professional.status == 'REGISTERED'"
+                 ui-sref="pro-profile">
+                COMPLÉTER MON PROFIL
+            </div>
+
+            <div class="col-xs-12 proErrorMessage" ng-if="app.getUser().professional.status == 'WAITING'">
+                Vous ne pouvez pas encore faire d'offre car votre profil est en cours de validation. Il sera
+                mis-à-jour sous peu, vous en serez notifié par mail
+            </div>
+        </div>
+    </div>
+</div>

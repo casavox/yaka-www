@@ -1,49 +1,32 @@
 angular.module('Yaka', [
-    'ngRoute',
-    'ui.router',
-    'ngStorage',
-    'pascalprecht.translate',
-    'ap.lateralSlideMenu',
-    'vsGoogleAutocomplete',
-    'cloudinary',
-    'ui.bootstrap',
-    'ngFileUpload',
-    'satellizer',
-    'uiGmapgoogle-maps',
-    'angular-carousel',
-    'angularRipple',
-    'monospaced.elastic',
-    'smoothScroll',
-    'ngMaterial',
-    'internationalPhoneNumber',
-    'bootstrapLightbox',
-    'angularMoment',
-    'ngStomp',
-    'luegg.directives',
-    'angularjs-dropdown-multiselect',
-    'angularTypewrite']);
-
-
-// facebook library API
-window.fbAsyncInit = function () {
-    FB.init({
-        appId: '847913895334564',
-        xfbml: true,
-        version: 'v2.5'
-    });
-};
-
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
+        'ngRoute',
+        'ui.router',
+        'ngStorage',
+        'pascalprecht.translate',
+        'ap.lateralSlideMenu',
+        'vsGoogleAutocomplete',
+        'cloudinary',
+        'ui.bootstrap',
+        'ngFileUpload',
+        'satellizer',
+        'uiGmapgoogle-maps',
+        'angular-carousel',
+        'angularRipple',
+        'monospaced.elastic',
+        'smoothScroll',
+        'ngMaterial',
+        'internationalPhoneNumber',
+        'bootstrapLightbox',
+        'angularMoment',
+        'ngStomp',
+        'luegg.directives',
+        'angularjs-dropdown-multiselect',
+        'angularTypewrite',
+        'ngCookies',
+        'angulartics',
+        'angulartics.google.analytics'
+    ]
+);
 
 (function () {
     'use strict';
@@ -52,7 +35,6 @@ window.fbAsyncInit = function () {
         .module('Yaka')
         .constant('CONFIG', {
             'API_BASE_URL': (function () {
-                console.log("window.location.hostname = '" + window.location.hostname + "'");
                 if (window.location.hostname == 'yaka-frontend-development.herokuapp.com') {
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else if (window.location.hostname == 'yaka-frontend-staging.herokuapp.com') {
@@ -60,11 +42,11 @@ window.fbAsyncInit = function () {
                 } else if (window.location.hostname == 'yaka-frontend-production.herokuapp.com') {
                     return 'https://yaka-backend-production.herokuapp.com';
                 } else if (window.location.hostname == 'www.yakaclub.com') {
-                    return 'https://yaka-backend-development.herokuapp.com';
-                } else if (window.location.hostname == 'www.yaka.local') {
+                    return 'https://yaka-backend-production.herokuapp.com';
+                } else if (window.location.hostname == 'www.yaka-local.com') {
                     // This allow to use the heroku backend from your computer (localhost http server)
-                    // To use it, you need to add this line in your hosts file : "127.0.0.1   www.yaka.local"
-                    // Then you can access the site here : http://www.yaka.local:8000
+                    // To use it, you need to add this line in your hosts file : "127.0.0.1   www.yaka-local.com"
+                    // Then you can access the site here : http://www.yaka-local.com:8000
                     return 'https://yaka-backend-development.herokuapp.com';
                 } else {
                     return 'http://localhost:8080';
@@ -93,7 +75,6 @@ window.fbAsyncInit = function () {
                 'height': 'auto'                            // custom
             };
         };
-
 
 
         $authProvider.oauth2({
@@ -243,11 +224,18 @@ window.fbAsyncInit = function () {
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) && toState.name != "home" && toState.name != "pro-home" && toState.name != "login" && toState.name != "new-project" && toState.name != "register") {
+                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) &&
+                    toState.name != "home" &&
+                    toState.name != "pro-home" &&
+                    toState.name != "login" &&
+                    toState.name != "new-project" &&
+                    toState.name != "register" &&
+                    toState.name != "recoverpassword"
+                ) {
                     event.preventDefault();
                     $injector.get('$state').go('home');
                 }
-            })
+            });
 
         amMoment.changeLocale('fr');
     }

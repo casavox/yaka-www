@@ -76,7 +76,8 @@
                             <cl-transformation height="70" width="70" crop="fill"/>
                         </cl-image>
                         <div class="img-default fl" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
-                            {{vm.proposal.professional.user.firstName[0] | uppercase}} {{vm.proposal.professional.user.lastName[0]
+                            {{vm.proposal.professional.user.firstName[0] | uppercase}}
+                            {{vm.proposal.professional.user.lastName[0]
                             | uppercase}}
                         </div>
                         <div class="proposal-tel">
@@ -84,7 +85,6 @@
                             <div>
                                 {{vm.proposal.professional.phoneNumber}}
                             </div>
-
                         </div>
                         <div class="f-l">
                             <p class="proposal-company" ng-if="vm.proposal.status == 'SELECTED'">

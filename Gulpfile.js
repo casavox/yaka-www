@@ -1,5 +1,4 @@
 var gulp = require("gulp");
-var git = require('gulp-git');
 var _ = require('lodash');
 var argv = require("yargs").argv;
 var rimraf = require("rimraf");
@@ -32,22 +31,31 @@ var mkdirp = require("mkdirp");
 
 var buildConfig = require("./build-config.json");
 
-gulp.task("git", function (cb) {
-    return gulp.src('dist/*')
-        .pipe(git.add())
-        .pipe(git.commit('deploy in prod'))
-        .pipe(git.push('origin', 'development', {args: " -f"}, function (err) {
-            if (err) throw err;
-        }));
-});
+// Archi dev
+//- assets
+//- src
+//  - modules
+//
+//
+// Archi prod
+//- assets
+//- index.html      : index.html with library include and css
+//- app-xxxx.js     : all library, all app files, all html views as templateCache
+//- style-xxx.css   : all library css, all app css
+//
+//
 
-gulp.task("deploy", function (cb) {
-    if (argv.production) {
-        runSequence("clean", "build-prod", "git", cb);
-    } else {
-        runSequence("clean", "build-dev", cb);
-    }
-});
+//gulp build -> build for dev environment
+
+//gulp build --production -> build for production environment
+
+//gulp serve -> create a server at port 8000 with dev environment
+
+// gulp serve --production -> create a server with prod environment
+
+//build-config.json -> respect the order in the list.
+// /**/* = recursive
+
 
 gulp.task("build", function (cb) {
     if (argv.production) {
@@ -196,10 +204,10 @@ gulp.task("sass", function () {
 gulp.task("serve", ["build"], function () {
     if (!argv.production) {
         var watchTranslate = gulp.watch(["src/i18n/**/*.json"], ["inject-dev"]);
-        var watchJS = gulp.watch(["src/**/*.js"], ["inject-dev"]);
+        var watchJS = gulp.watch(["src/**/*.js"], ["copy-js"]);
         var watchViews = gulp.watch("src/**/*.html", ["copy-views"]);
         var watchAssets = gulp.watch("src/assets/**/*.*", ["copy-assets"]);
-        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["inject-dev"]);
+        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["sass"]);
 
         watchTranslate.on("change", function (evt) {
             console.log("JSON File " + evt.path + " was " + evt.type);

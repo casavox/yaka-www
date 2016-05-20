@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, CONFIG) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -18,6 +18,26 @@
         $scope.rating = {positive: "", comment: "", criteria: []};
         var can = true;
         var connectHeaders = {token: $localStorage.token};
+
+        $rootScope.pageName = "";
+
+        app.getPageName = function () {
+            if ($rootScope.pageName == "") {
+                return "YakaClub : Trouvez et recommandez vos artisans pour vos travaux";
+            } else {
+                return $rootScope.pageName + " - YakaClub : Trouvez et recommandez vos artisans pour vos travaux"
+            }
+        };
+
+        $rootScope.updateProfile = function () {
+            networkService.me(function (res) {
+                $localStorage.user = res;
+                $scope.user = $localStorage.user;
+            }, function () {
+                app.logout();
+            });
+        };
+        $rootScope.updateProfile();
 
         $stomp
             .connect(CONFIG.API_BASE_URL + '/connect', connectHeaders)
@@ -57,7 +77,6 @@
                         can = true;
                         if (res) {
                             $scope.project = res;
-                            console.log(res);
                             networkService.criteriaGET(function (res) {
                                 $scope.criteria = res;
                                 $scope.projectFlag = true;
@@ -143,7 +162,6 @@
             }
         };
 
-
         app.menu = {
             openMenu: function () {
                 menuOpened = true;
@@ -168,11 +186,95 @@
             getMenuItemClass: function () {
                 return "";
             }
-        }
+        };
+
+        app.getUser = function () {
+            if ($scope.user == undefined) {
+                return {};
+            } else {
+                return $scope.user;
+            }
+        };
 
         app.logout = function () {
-            $localStorage.token = "";
+            $localStorage.$reset();
             $state.go('home');
-        }
+        };
+
+        app.getUserType = function () {
+            if ($scope.user == undefined ||
+                $scope.user.type == undefined) {
+                return "";
+            } else {
+                return $scope.user.type;
+            }
+        };
+
+        app.isPro = function () {
+            return app.getUserType() == "pro";
+        };
+
+        app.getFirstName = function () {
+            if ($scope.user == undefined) {
+                return "";
+            }
+            return $scope.user.firstName;
+        };
+
+        app.getLastName = function () {
+            if ($scope.user == undefined) {
+                return "";
+            }
+            return $scope.user.lastName;
+        };
+
+        app.getFullName = function () {
+            var firstName = app.getFirstName();
+            var lastName = app.getLastName();
+            if (firstName == "" && lastName == "") {
+                return "";
+            }
+            return firstName + " " + lastName;
+        };
+
+        app.getEmail = function () {
+            if ($scope.user == undefined) {
+                return "";
+            }
+            return $scope.user.email;
+        };
+
+        app.showCustomerSupport = false;
+
+        app.closeCustomerSupport = function () {
+            app.showCustomerSupport = false;
+            smartsupp('chat:close');
+        };
+
+        app.openCustomerSupport = function () {
+            app.showCustomerSupport = true;
+            smartsupp('name', app.getFullName());
+            smartsupp('email', app.getEmail());
+            smartsupp('variables',
+                {
+                    name: {
+                        label: 'Name',
+                        value: app.getFullName()
+                    },
+                    email: {
+                        label: 'Email',
+                        value: app.getEmail()
+                    },
+                    userType: {
+                        label: 'User Type',
+                        value: app.getUserType()
+                    },
+                    version: {
+                        label: 'YakaClub Version',
+                        value: 'beta 0'
+                    }
+                });
+            smartsupp('chat:open');
+        };
     }
 })();

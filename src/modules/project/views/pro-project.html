@@ -52,12 +52,14 @@
                         <p class="pro-title-post">
                             Post {{vm.dateDiff(vm.projectTmp.published, vm.projectTmp.updated)}} ago
                         </p>
-                        <img ng-src="{{vm.projectTmp.profile.avatarUrl}}"
+                        <!-- TODO AvatarURL does not exists anymore -->
+                        <img ng-src="{{vm.projectTmp.avatarUrl}}"
                              class="img-circle pro-icon-medium mt-20 fl-l ml-15"
-                             ng-show="vm.projectTmp.profile.avatarUrl"/>
+                             ng-show="vm.projectTmp.avatarUrl"/>
 
-                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.profile.avatarUrl">
-                            {{vm.projectTmp.profile.user.firstName[0] | uppercase}} {{vm.projectTmp.profile.user.lastName[0] |
+                        <!-- TODO AvatarURL does not exists anymore -->
+                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.avatarUrl">
+                            {{vm.projectTmp.user.firstName[0] | uppercase}} {{vm.projectTmp.user.lastName[0] |
                             uppercase}}
                         </div>
                         <div class="pro-proposal-title">
@@ -66,7 +68,7 @@
                             </p>
 
                             <p>
-                                {{vm.projectTmp.profile.user.firstName}} {{vm.projectTmp.profile.user.lastName}}
+                                {{vm.projectTmp.user.firstName}} {{vm.projectTmp.user.lastName}}
                             </p>
                         </div>
                     </div>
@@ -166,7 +168,7 @@
 
         <div class="menu-r" ng-class="{'top-120': !vm.pro}" ng-show="vm.proposal.status != 'SELECTED'">
 
-            <div class="row">
+            <div class="row" ng-if="!vm.project.error">
                 <div class="col-xs-12 cursor-pointer" ng-click="vm.myPrice()">
                     <span class="icon-pen-red-pro"></span>
                     <span class="price-area" ng-show="!vm.offer.price.price">---</span>
@@ -211,17 +213,28 @@
                 <div class="col-xs-12">
                     <button type="button" class="button btn send-offer" ng-click="vm.sendOffer()">SEND OFFER</button>
                 </div>
-
             </div>
+            <div class="row" ng-if="vm.project.error">
+                <div class="col-xs-12 proErrorMessage"
+                     ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                    Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
+                </div>
 
+                <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange"
+                     ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'"
+                     ui-sref="pro-profile">
+                    COMPLÉTER MON PROFIL
+                </div>
 
+                <div class="col-xs-12 proErrorMessage" ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
+                    Vous ne pouvez pas encore faire d'offre car votre profil est en cours de validation. Il sera
+                    mis-à-jour sous peu, vous en serez notifié par mail
+                </div>
+            </div>
         </div>
-
-
     </div>
 
-
-    <div class="popUp" ng-show="vm.myPriceFlag">
+    <div class="popUp" ng-show="vm.myPriceFlag" ng-cloak>
         <div class="popUp-container center-middle w-330">
             <div class="popUp-content">
                 <span class="boxclose" ng-click="vm.myPriceFlag = false"></span>

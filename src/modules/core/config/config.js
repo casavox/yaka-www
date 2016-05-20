@@ -1,4 +1,19 @@
 angular.module('Yaka')
+    .service('apiInterceptor', function ($q, $injector) {
+        var service = this;
+
+        service.responseError = function (response) {
+            if (response.status == 401) {
+                $injector.get('$localStorage').$reset();
+                $injector.get('$localStorage').urlRedirect = window.location.href;
+                $injector.get('$state').go("home");
+            }
+            return $q.reject(response);
+        };
+    })
+    .config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('apiInterceptor');
+    }])
     .config(['cloudinaryProvider', function (cloudinaryProvider) {
         cloudinaryProvider
             .set("cloud_name", "yaka")
@@ -8,11 +23,9 @@ angular.module('Yaka')
         GoogleMapApi.configure({
             key: 'AIzaSyDtq1oFK_ku6rSm9OHM8Q0MlHeOYzOWgr8',
             libraries: 'weather,geometry,visualization'
-            // v: '3.20',
         });
     }])
     .config(['$translateProvider', function ($translateProvider) {
-        // Simply register translation table as object hash
         $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.preferredLanguage('fr');
     }])

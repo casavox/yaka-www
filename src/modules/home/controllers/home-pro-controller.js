@@ -7,33 +7,35 @@
 
     function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
 
+        if ($localStorage.token && $localStorage.token != '') {
+            $state.go('contacts');
+        }
+
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
-            console.log("invitationId : " + $stateParams.invitationId);
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
         var vm = this;
 
+        $rootScope.pageName = "Accès Pro";
         $rootScope.showMenu = false;
 
         vm.currentYear = new Date().getFullYear();
 
         vm.newUser = {
             password: "",
-            profile: {
-                email: ""
-            },
+            email: "",
             professional: {
                 company: {
                     address: {
                         address: ""
                     }
                 },
-                firstName: "",
-                lastName: "",
                 phoneNumber: "",
                 activities: []
             },
+            firstName: "",
+            lastName: "",
             googleId: "",
             facebookId: ""
         };
@@ -84,7 +86,7 @@
         });
 
         $('#proRegisterPhone').intlTelInput({
-            utilsScript: "scripts/intlTelInputUtils.js",
+            utilsScript: "https://cdn.rawgit.com/jackocnr/intl-tel-input/master/build/js/utils.js",
             initialCountry: "fr",
             onlyCountries: ["fr"]
             //DOM-TOM : onlyCountries: ["fr", "mq", "gf", "re", "yt", "pm", "bl", "mf", "tf", "wf", "pf", "nc"]
@@ -93,9 +95,6 @@
             if ($.trim($('#proRegisterPhone').val())) {
                 if ($('#proRegisterPhone').intlTelInput("isValidNumber")) {
                     vm.newUser.professional.phoneNumber = $('#proRegisterPhone').intlTelInput("getNumber");
-                    console.log("VALID");
-                } else {
-                    console.log("INVALID");
                 }
             }
         });
@@ -156,7 +155,7 @@
             }
             if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
                 (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                if (vm.newUser.profile.email == '') {
+                if (vm.newUser.email == '') {
                     doNotHide = true;
                     return false;
                 } else {
@@ -178,13 +177,10 @@
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googleProRegister').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
-                console.log("catch", res);
-
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
@@ -195,12 +191,10 @@
 
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebookProRegister').then(function (res) {
-                console.log(res);
                 if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
-                console.log("catch", res);
                 if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
@@ -212,8 +206,8 @@
         function onPreRegisterOK(user) {
             vm.newUser.firstName = user.firstName;
             vm.newUser.lastName = user.lastName;
-            if (user.profile.email != undefined) {
-                vm.newUser.profile.email = user.profile.email;
+            if (user.email != undefined) {
+                vm.newUser.email = user.email;
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
@@ -237,7 +231,7 @@
 
             return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
-            vm.newUser.profile.email == '' || !vm.isEmailValid(vm.newUser.profile.email) ||
+            vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
             vm.newUser.professional.activities.length == 0 ||
@@ -259,25 +253,18 @@
         };
 
         vm.registerUser = function () {
-            if (vm.formIsValid) {
-
-                if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-                    vm.newUser.invitationId = $localStorage.invitationId;
-                }
+            if (vm.formIsValid()) {
 
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister);
             }
         };
 
         function successProRegister(res) {
-            console.log(res);
             $localStorage.token = res.token;
-            $localStorage.invitationId = '';
-            $state.go('dashboard');
+            $state.go('contacts');
         }
 
         function failProRegister(err) {
-            console.log(err);
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -289,9 +276,7 @@
 
         vm.loginUser = {
             password: "",
-            profile: {
-                email: ""
-            }
+            email: ""
         };
 
         vm.showLoginPopup = false;
@@ -305,33 +290,25 @@
         };
 
         vm.loginFormIsValid = function () {
-            return !(vm.loginUser.profile.email == '' || vm.loginUser.password == '');
+            return !(vm.loginUser.email == '' || vm.loginUser.password == '');
 
         };
 
         vm.login = function () {
-            console.log(vm.loginUser);
             networkService.login(vm.loginUser, succesLogin, errorLogin);
         };
 
         function succesLogin(res) {
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
+                $localStorage.user = res;
                 $localStorage.token = res.token;
-                networkService.me(function (res) {
-                    $localStorage.user = res;
-                    console.log(res);
-                    if (angular.isUndefined(res.professional)) {
-                        $localStorage.user.type = 'customer';
-                        $state.go('contacts');
-                    } else if (angular.isDefined(res.professional)) {
-                        $localStorage.user.type = 'pro';
-                        $state.go('contacts');
-                    }
-                }, function (res) {
-                    alertMsg.send('Error: impossilbe to get your profile');
-                });
-                $rootScope.logmail = $scope.email;
-                console.log(res);
+                if (angular.isUndefined(res.professional)) {
+                    $localStorage.user.type = 'customer';
+                    $state.go('contacts');
+                } else if (angular.isDefined(res.professional)) {
+                    $localStorage.user.type = 'pro';
+                    $state.go('contacts');
+                }
             }
         }
 
@@ -346,15 +323,8 @@
         vm.googleLogin = function () {
             vm.socialNetwork = "Google";
             $auth.authenticate('googleLogin').then(function (res) {
-                console.log(res);
-                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
-                    $localStorage.token = res.data.token;
-                    $state.go('dashboard');
-                    $rootScope.logmail = $scope.email;
-                }
+                succesLogin(res.data);
             }).catch(function (res) {
-                console.log("catch", res);
-
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
@@ -368,14 +338,8 @@
         vm.facebookLogin = function () {
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
-                console.log(res);
-                if (!angular.isUndefined(res.data.token) && res.data.token && res.data.token != "") {
-                    $localStorage.token = res.data.token;
-                    $state.go('dashboard');
-                    $rootScope.logmail = $scope.email;
-                }
+                succesLogin(res.data);
             }).catch(function (res) {
-                console.log("catch", res);
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
@@ -385,6 +349,28 @@
                 }
             });
         };
+
+        vm.showForgottenPasswordPopup = false;
+
+        vm.passwordForgottenMessageSent = false;
+
+        vm.forgottenPasswordUser = {
+            email: ""
+        };
+
+        vm.forgottenPassword = function () {
+            if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
+            }
+        };
+
+        function successPasswordForgotten(res) {
+            vm.passwordForgottenMessageSent = true;
+        }
+
+        function failPasswordForgotten(err) {
+            alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
+        }
     }
 })
 ();

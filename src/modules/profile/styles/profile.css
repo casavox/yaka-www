@@ -1,0 +1,12 @@
+
+.profilePopupMessage {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.profilePopupButton {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(50% - 20px) !important;
+}

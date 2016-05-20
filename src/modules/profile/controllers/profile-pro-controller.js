@@ -9,6 +9,8 @@
     //Controller login
     function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi) {
 
+        $rootScope.pageName = "Mon profil Pro";
+        $rootScope.updateProfile();
         $rootScope.showMenu = true;
 
         var vm = this;
@@ -140,9 +142,6 @@
                         vm.mapEditing = true;
                     },
                     "zoom_changed": function () {
-                        console.log("zoom_changed !");
-                        console.log(canStartEditionWithZoom);
-                        console.log(firstZoom);
                         if (canStartEditionWithZoom && firstZoom) {
                             firstZoom = false;
                         } else if (canStartEditionWithZoom && !firstZoom) {
@@ -192,7 +191,6 @@
                     return vm.map.zoom;
                 },
                 function (newValue, oldValue) {
-                    console.log("old : " + oldValue + ", new : " + newValue);
                     if (vm.mapEditing) {
                         if (newValue < 9) {
                             vm.mapShowMinimumZoomMessage = true;
@@ -308,11 +306,9 @@
 
         function succeSkillsGET(res) {
             vm.cat = res;
-            console.log(res);
         }
 
         function errorSkillsGET(res) {
-            console.log(res);
         }
 
         function uploadPortfolio(files, invalides, index) {
@@ -423,8 +419,6 @@
 
         function yearsContent() {
             var res = [];
-            console.log(vm.Year);
-            console.log(parseInt(vm.Year) - 1949);
             for (var i = 0; i < (parseInt(vm.Year) - 1949); i++) {
                 res.push(1950 + i);
             }
@@ -505,7 +499,7 @@
         function cancelProfile() {
             vm.error.profile.flag = false;
             vm.profileInfo = {
-                phoneNumber: angular.copy(vm.profile.phoneNumber),
+                phoneNumber: angular.copy(vm.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
                 company: angular.copy(vm.profile.company),
@@ -556,7 +550,7 @@
         function succesProfileGET(res) {
             vm.profile = res;
             vm.profileInfo = {
-                phoneNumber: angular.copy(vm.profile.phoneNumber),
+                phoneNumber: angular.copy(vm.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
                 company: angular.copy(vm.profile.company),
@@ -568,11 +562,29 @@
             vm.verifications = angular.copy(vm.profile.verifications);
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
-            console.log(res);
         }
 
         function errorProfileGET(res) {
             alertMsg.send("Error to get the profile informations.", "danger");
         }
+
+        vm.showProfileEditPopup = false;
+        vm.showVerificationsEditPopup = false;
+
+        vm.validatePopup = function () {
+            if (vm.showProfileEditPopup) {
+                vm.updateProfile();
+            } else if (vm.showVerificationsEditPopup) {
+                vm.updateVerifications();
+            }
+            vm.showProfileEditPopup = false;
+            vm.showVerificationsEditPopup = false;
+        };
+
+        vm.closePopup = function () {
+            vm.showProfileEditPopup = false;
+            vm.showVerificationsEditPopup = false;
+        }
+
     }
 })();
