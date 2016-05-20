@@ -1,0 +1,144 @@
+<section class="view">
+    <div class="header-menu">
+        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
+        <div class="title">
+            Dashboard Pro
+        </div>
+        <div class="filters visible-xs" ng-click="vm.showFilters = !vm.showFilters" angular-ripple>
+            Filter
+        </div>
+        <a ng-click="app.logout()">
+            <div class="logout">
+                Log Out
+            </div>
+        </a>
+    </div>
+    <div class="page-content">
+        <ng-include src="'/modules/core/modules/menu/views/menu.html'"></ng-include>
+        <div class="content-slide proDashboard">
+
+            <div class="col-xs-6 col-xs-offset-6 col-sm-12 col-sm-offset-0 proDashboardFilters"
+                 ng-class="{'proDashboardFiltersVisible':vm.showFilters}">
+                <div class="proDashboardFilterHeader">
+                    <div class="line"></div>
+                    <span class="text">Project Type</span>
+                </div>
+
+                <div class="proDashboardFilterChoice" ng-class="{'selected': vm.type == 'all'}"
+                     ng-click="vm.changeType('all'); vm.showFilters = false" angular-ripple>
+                    All
+                </div>
+                <div class="proDashboardFilterChoice" ng-class="{'selected': vm.type == 'emergency'}"
+                     ng-click="vm.changeType('emergency'); vm.showFilters = false" angular-ripple>
+                    Emergencies
+                </div>
+                <div class="proDashboardFilterChoice" ng-class="{'selected': vm.type == 'small'}"
+                     ng-click="vm.changeType('small'); vm.showFilters = false" angular-ripple>
+                    Jobs
+                </div>
+            </div>
+
+            <div class="proDashboardOverlay visible-xs" ng-click="vm.showFilters = false"
+                 ng-class="vm.showFilters ? 'overlayVisible' : 'overlayInvisible'"></div>
+
+            <div class="col-xs-12 col-sm-8 proDashboardMap"
+                 ng-class="{'proDashboardMapWithTopView':$parent.vm.showTopView}"
+                 ng-show="!showList">
+                <!-- Custom map controls -->
+
+                <script type="text/ng-template" id="homeControl.tpl.html">
+                    <div class="mapHomeControl" ng-show="vm.showHomeControl" showHomeControl
+                         ng-click="vm.homeControlClicked()">Home
+                    </div>
+                </script>
+
+                <!-- End Custom map controls -->
+
+                <span class="mapWorkArea" title="Click to change your notification area"
+                      ng-class="{'mapWorkAreaVisible':vm.showWorkArea}" ui-sref="pro-profile">
+                    Notification area {{vm.workareaDiameter}}km
+                </span>
+
+                <ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions"
+                                    bounds="vm.map.bounds"
+                                    events="vm.map.events">
+                    <ui-gmap-map-control template="homeControl.tpl.html" position="left-top"
+                                         controller="ProDashboardMapHomeControlController as vm"
+                                         index="-1"></ui-gmap-map-control>
+                    <ui-gmap-markers models="vm.leads" coords="'address'" icon="'icon'"
+                                     click="vm.onMarkerClicked"></ui-gmap-markers>
+                    <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke" fill="vm.circle.fill"
+                                    radius="vm.circle.radius" control="vm.map.control"
+                                    visible="true" geodesic="true" editable="false" draggable="false" clickable="true"
+                                    control="vm.circle.control" events="vm.circle.events"></ui-gmap-circle>
+                </ui-gmap-google-map>
+
+                <div class="mapFooter col-xs-12 transformableBottomView"
+                     ng-class="{'mapFooterVisible':vm.showSlider}">
+                    <div class="carousel-demo">
+                        <ul rn-carousel rn-carousel-controls rn-carousel-index="vm.carrouselSelectedItem.index"
+                            rn-carousel-buffered>
+                            <li ng-repeat="lead in vm.leads track by lead.id"
+                                ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
+                                <a title="{{lead.translatedTitle}}">
+                                    <div class="proDashboardMapItem"
+                                         ui-sref="pro-project-proposal-new({projectId: lead.id})"
+                                         angular-ripple>
+                                        <div class="proDashboardMapItemLogo">
+                                            <img width="32" height="32" ng-src="{{vm.getIcon(lead)}}"/>
+                                        </div>
+                                        <div class="proDashboardMapItemTitle">
+                                            {{lead.translatedTitle}}
+                                        </div>
+                                        <div class="proDashboardMapItemAddress">
+                                            {{lead.address.postalCode + ' ' + lead.address.locality}}
+                                        </div>
+                                        <div class="proDashboardMapItemChronoLogo">
+                                            <img width="20" height="20" ng-src="icons/mdpi/ic_time_default.png"/>
+                                        </div>
+                                        <div class="proDashboardMapItemChrono">
+                                            <span am-time-ago="lead.published"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 proDashboardList"
+                 ng-class="{'proDashboardListWithTopView':$parent.vm.showTopView}"
+                 ng-show="showList">
+                <a ng-repeat="lead in vm.leads track by lead.id" title="{{lead.translatedTitle}}">
+                    <div class="proDashboardListItem"
+                         ui-sref="pro-project-proposal-new({projectId: lead.id})"
+                         angular-ripple>
+                        <div class="proDashboardListItemLogo">
+                            <img width="32" height="32" ng-src="{{vm.getIcon(lead)}}"/>
+                        </div>
+                        <div class="proDashboardListItemTitle">
+                            {{lead.translatedTitle}}
+                        </div>
+                        <div class="proDashboardListItemAddress">
+                            {{lead.address.postalCode + ' ' + lead.address.locality}}
+                        </div>
+                        <div class="proDashboardListItemChronoLogo">
+                            <img width="20" height="20" ng-src="icons/mdpi/ic_time_default.png"/>
+                        </div>
+                        <div class="proDashboardListItemChrono">
+                            <span am-time-ago="lead.published"></span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="col-xs-12 proDashboardListEmptyMessage" ng-if="vm.leads.length == 0">
+                    Il y n'a aucune offre pour le moment dans cette zone, déplacez vous dans la carte ou dézoomez pour
+                    voir plus d'offres.
+                </div>
+            </div>
+            <div class="col-xs-12 proDashboardBottomButton visible-xs" ng-click="showList = !showList" angular-ripple>
+                {{ showList ? "Show Map" : "Show List" }}
+            </div>
+        </div>
+    </div>
+</section>

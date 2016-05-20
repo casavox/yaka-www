@@ -1,0 +1,166 @@
+<section class="view" ng-cloak>
+    <div class="header-menu">
+        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
+        <!--<div class="in-line min-w-44 arrow-nav" ui-sref="my-projects">-->
+            <!--<img src="icons/mdpi/arrow-left.png" class="center-middle"/>-->
+        <!--</div>-->
+        <div class="title no-line middle">
+            MY JOBS
+        </div>
+        <a ng-click="app.logout()">
+            <div class="logout">
+                Log Out
+            </div>
+        </a>
+    </div>
+
+    <div class="page-content">
+        <div class="content-slide">
+            <h4 class="inprogress">IN PROGRESS</h4>
+
+            <div class="row no-margin">
+                <div class="col-xs-6 pro-proposal-vignette" ng-repeat="proposal in vm.ongoing"
+                     ui-sref="pro-proposal({proposalId: proposal.id})">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
+                    </div>
+                    <div class="pro-proposal-bloc-info">
+                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
+                             ng-if="proposal.unreadMessages">
+
+                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
+                            {{ proposal.project.title }}
+                        </p>
+
+                        <p class="pro-proposals-info"
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-price">
+                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                        </p>
+
+                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                            My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <h4 class="inprogress">SCHEDULED</h4>
+
+            <div class="row no-margin">
+                <div class="col-xs-6 pro-proposal-vignette" ng-repeat="proposal in vm.scheduled"
+                     ui-sref="pro-job({proposalId: proposal.id})">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
+                    </div>
+                    <div class="pro-proposal-bloc-info">
+                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
+                             ng-if="proposal.unreadMessages">
+
+                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
+                            {{ proposal.project.title }}
+                        </p>
+
+                        <p class="pro-proposals-info"
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-price">
+                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                        </p>
+
+                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                            My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <h4 class="inprogress">COMPLETED</h4>
+
+            <div class="row no-margin">
+                <div class="col-xs-6 pro-proposal-vignette" ng-repeat="proposal in vm.completed"
+                     ui-sref="pro-job({proposalId: proposal.id})">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
+                    </div>
+                    <div class="pro-proposal-bloc-info">
+                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
+                             ng-if="proposal.unreadMessages">
+
+                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
+                            {{ proposal.project.title }}
+                        </p>
+
+                        <p class="pro-proposals-info"
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-price">
+                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                        </p>
+
+                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                            My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp" ng-show="vm.delete">
+        <div class="popUp-container center-middle">
+            <div class="popUp-content">
+                <span class="boxclose" ng-click="vm.delete = false"></span>
+                <h4>Are you sure ? </h4>
+
+                <p>
+                    Quote rejected by customer
+                </p>
+            </div>
+            <div class="popUp-footer">
+                <div ng-click="vm.delete = false">
+                    CANCEL
+                </div>
+                <div ng-click="vm.deleteProposal()">
+                    DELETE
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

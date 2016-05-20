@@ -1,0 +1,133 @@
+{
+    "src": "src",
+    "dist": "dist",
+    "dependencies": {
+        "js": [
+            "bower_components/jquery/dist/jquery.js",
+            "bower_components/lodash/lodash.js",
+            "scripts/intlTelInput.js",
+            "bower_components/sockjs/sockjs.js",
+            "bower_components/stomp-websocket/lib/stomp.js",
+            "bower_components/jquery-bridget/jquery-bridget.js",
+            "bower_components/ev-emitter/ev-emitter.js",
+            "bower_components/desandro-matches-selector/matches-selector.js",
+            "bower_components/fizzy-ui-utils/utils.js",
+            "bower_components/get-size/get-size.js",
+            "bower_components/outlayer/item.js",
+            "bower_components/outlayer/outlayer.js",
+            "bower_components/masonry/masonry.js",
+            "bower_components/imagesloaded/imagesloaded.js",
+            "bower_components/angular/angular.min.js",
+            "bower_components/angular-material/angular-material.js",
+            "scripts/ui-bootstrap.min.js",
+            "bower_components/international-phone-number/releases/international-phone-number.js",
+            "bower_components/ng-stomp/src/ng-stomp.js",
+            "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+            "bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js",
+            "bower_components/angular-scroll-glue/src/scrollglue.js",
+            "bower_components/angulartics/dist/angulartics.min.js",
+            "bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js",
+            "scripts/jquery.cloudinary.js",
+            "scripts/angular.cloudinary.js",
+            "scripts/angular-route.js",
+            "scripts/angular-storage.js",
+            "scripts/angular-ui-router.js",
+            "scripts/bootstrap.js",
+            "scripts/angular-translate.js",
+            "scripts/angular-sanitize.js",
+            "scripts/angular-animate.js",
+            "scripts/angular-touch.js",
+            "scripts/angular-smooth-scroll.js",
+            "scripts/angular-ap-lateral-slide-menu.js",
+            "scripts/vs-autocomplete.js",
+            "scripts/vs-autocomplete-validator.js",
+            "scripts/ng-file-upload-shim.js",
+            "scripts/ng-file-upload.js",
+            "scripts/angular-simple-logger.min.js",
+            "scripts/angular-google-maps.min.js",
+            "scripts/angular-carousel.js",
+            "scripts/angular-ripple.js",
+            "scripts/satellizer.js",
+            "scripts/elastic.js",
+            "scripts/moment-with-locales.js",
+            "scripts/angular-moment.js",
+            "scripts/angularjs-dropdown-multiselect.min.js",
+            "scripts/angular-typewrite.js",
+            "scripts/angular-cookies.js",
+            "bower_components/angular-aria/angular-aria.js",
+            "bower_components/angular-animate/angular-animate.js",
+            "modules/core/module.js",
+            "modules/**/*.js",
+            "scripts/customer-support.js"
+        ],
+        "css": [
+            "modules/core/styles/style.css",
+            "modules/core/styles/ui_kit.css",
+            "modules/core/styles/fonts.css",
+            "modules/core/styles/home.css",
+            "modules/core/styles/proHome.css",
+            "bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css",
+            "bower_components/angular-bootstrap/ui-bootstrap-csp.css",
+            "css/bootstrap.min.css",
+            "bower_components/font-awesome-4.5.0/font-awesome-4.5.0/css/font-awesome.css",
+            "modules/core/styles/bootstrap-theme.min.css",
+            "modules/core/styles/angular-carousel.min.css",
+            "modules/core/styles/intlTelInput.css",
+            "bower_components/angular-material/angular-material.min.css",
+            "modules/**/*.css"
+        ],
+        "scss": [],
+        "assets": [
+            "img/**/*",
+            "icons/**/*",
+            "fonts/**/*",
+            "favicon/**/*"
+        ],
+        "vendorAssets": [
+        ]
+    },
+    "karmaConf": {
+        "files": [
+            "bower_components/angular/angular.min.js",
+            "scripts/angular-ui-router.js",
+            "src/modules/core/module.js",
+            "src/modules/**/*.js"
+        ],
+        "basePath": ".",
+        "frameworks": [
+            "mocha",
+            "chai"
+        ],
+        "plugins": [
+            "karma-coffee-preprocessor",
+            "karma-mocha",
+            "karma-chai",
+            "karma-phantomjs-launcher",
+            "karma-junit-reporter"
+        ],
+        "browsers": [
+            "PhantomJS"
+        ],
+        "preprocessors": {
+            "**/*.coffee": "coffee"
+        },
+        "reporters": [
+            "progress"
+        ],
+        "junitReporter": {
+            "outputFile": "test-results.xml",
+            "useBrowserName": false
+        },
+        "port": 9876,
+        "colors": true,
+        "autoWatch": false,
+        "singleRun": true,
+        "concurrency": "Infinity"
+    },
+    "fileContent": {
+        "js": "(function () {\n'use strict';\n\nangular\n.module('Yaka')\n.controller('<%= module %>Controller', <%= module %>Controller);\n\nfunction <%= module %>Controller() {\n\n// SCOPE\nvar vm = this;\n}\n})();",
+        "modules": "(function () {\n'use strict';\n\nangular\n.module('Yaka')\n.config(config);\n\nfunction config($stateProvider, menuProvider) {\n$stateProvider\n.state('<%= module %>', {\nurl: '/<%= module %>',\ntemplateUrl: '<%= templatePath %>',\ncontroller: '<%= module %>Controller',\ncontrollerAs: 'vm'\n})\n}\n})();",
+        "service": "(function () {\n'use strict';\n\nangular\n.module('Yaka')\n.service('<%= service %>', function (abstractApiService) {\nvar root = '/api/<%= service %>/';\n\nvar filters = {limit: 40,\noffset:0\n};\n\nvar defaultFields = '';\n\nvar self = abstractApiService.getInstance(root, filters, defaultFields);\n\nreturn self;\n});\n})();"
+    }
+}
+
