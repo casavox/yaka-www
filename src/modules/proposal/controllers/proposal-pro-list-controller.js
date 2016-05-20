@@ -9,6 +9,7 @@
     //Controller login
     function ProProposalsController(networkService, alertMsg, $rootScope, $state, $localStorage) {
 
+        $rootScope.pageName = "Mes devis";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

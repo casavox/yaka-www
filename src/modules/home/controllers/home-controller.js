@@ -19,6 +19,7 @@
 
         var vm = this;
 
+        $rootScope.pageName = "";
         $rootScope.showMenu = false;
 
         vm.jobs = [

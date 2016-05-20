@@ -9,6 +9,7 @@
     //Controller login
     function ProJobsController(networkService, alertMsg, $rootScope) {
 
+        $rootScope.pageName = "Mes projets";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

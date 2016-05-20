@@ -9,6 +9,7 @@
     function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $translate) {
         $scope.showList = false;
 
+        $rootScope.pageName = "Tableau de bord Pro";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

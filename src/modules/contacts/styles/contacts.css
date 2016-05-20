@@ -55,7 +55,7 @@
 }
 
 .contacts {
-    height: auto;
+    height: calc(100% - 55px);
 }
 
 .contactsHeader {
@@ -126,6 +126,7 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     background: #f2f4f9;
+    min-height: calc(100% - 293px) !important;
 }
 
 .contactsMenu {
@@ -174,7 +175,7 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     background: white;
-    min-height: calc(100vh - 348px);
+    min-height: 421px !important;
 }
 
 .contactsItemNumber {

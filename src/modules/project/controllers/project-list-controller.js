@@ -9,6 +9,7 @@
     //Controller login
     function MyProjectscontroller(networkService, $rootScope, $state, $filter) {
 
+        $rootScope.pageName = "Mes projets";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

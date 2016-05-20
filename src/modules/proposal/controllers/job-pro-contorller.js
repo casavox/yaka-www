@@ -9,6 +9,8 @@
     //Controller login
     function ProJobController($rootScope, $scope, $state, networkService, alertMsg, $filter, $stateParams) {
 
+        //TODO
+        $rootScope.pageName = "";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

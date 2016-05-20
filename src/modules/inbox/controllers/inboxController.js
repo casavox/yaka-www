@@ -7,6 +7,7 @@
 
     function InboxController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, $stomp, $stateParams, $localStorage, $state, Lightbox, CONFIG) {
 
+        $rootScope.pageName = "Chat";
         $rootScope.showMenu = true;
 
         var vm = this;
