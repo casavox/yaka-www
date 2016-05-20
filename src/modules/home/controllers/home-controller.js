@@ -19,6 +19,7 @@
 
         var vm = this;
 
+        $rootScope.pageName = "";
         $rootScope.showMenu = false;
 
         vm.jobs = [
@@ -89,6 +90,9 @@
             facebookId: "",
             defaultAddress: {
                 address: ""
+            },
+            avatar: {
+                cloudinaryPublicId: ""
             }
         };
 
@@ -251,6 +255,7 @@
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
+            vm.newUser.avatar = user.avatar;
         }
 
         vm.registering = false;

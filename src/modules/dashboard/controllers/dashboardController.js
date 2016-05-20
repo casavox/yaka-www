@@ -8,14 +8,17 @@
     //
     //Controller login
     function DashboardController(networkService, $rootScope, $state, alertMsg) {
+
+        $rootScope.pageName = "Tableau de bord";
+        $rootScope.updateProfile();
+        $rootScope.showMenu = true;
+
         var vm = this;
         vm.dashboardProjects = [];
         vm.dashboardAddress = [];
         vm.dashboardPro = [];
         vm.count = 0;
         vm.selectProject = selectProject;
-        $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         vm.getMenuItemClass = function (state) {
             if (state == "dashboard") {

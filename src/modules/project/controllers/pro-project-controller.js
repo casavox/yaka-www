@@ -9,6 +9,8 @@
     //Controller login
     function ProProjectController($rootScope, $scope, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate) {
 
+        //TODO
+        $rootScope.pageName = "";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

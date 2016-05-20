@@ -9,6 +9,7 @@
     //Controller login
     function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary) {
 
+        $rootScope.pageName = "Mon profil";
         $rootScope.updateProfile();
 
         var vm = this;

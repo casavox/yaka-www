@@ -19,6 +19,16 @@
         var can = true;
         var connectHeaders = {token: $localStorage.token};
 
+        $rootScope.pageName = "";
+
+        app.getPageName = function () {
+            if ($rootScope.pageName == "") {
+                return "YakaClub : Trouvez et recommandez vos artisans pour vos travaux";
+            } else {
+                return $rootScope.pageName + " - YakaClub : Trouvez et recommandez vos artisans pour vos travaux"
+            }
+        };
+
         $rootScope.updateProfile = function () {
             networkService.me(function (res) {
                 $localStorage.user = res;
@@ -27,7 +37,6 @@
                 app.logout();
             });
         };
-        $rootScope.updateProfile();
 
         $stomp
             .connect(CONFIG.API_BASE_URL + '/connect', connectHeaders)

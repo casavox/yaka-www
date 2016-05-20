@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Yaka" ng-controller="AppController as app">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>YakaClub</title>
+    <title ng-bind="app.getPageName()">YakaClub : Trouvez et recommandez vos artisans pour vos travaux</title>
     <!-- inject:css -->
     <!-- endinject -->
 
@@ -26,7 +26,7 @@
     <meta name="theme-color" content="#222f45">
 </head>
 
-<body ng-app="Yaka" ng-controller="AppController as app">
+<body>
 
 <!--<div ng-include src="'/modules/core/modules/menu/views/menu.html'" ng-show="showMenu"
      ng-controller="AppController"></div>-->
