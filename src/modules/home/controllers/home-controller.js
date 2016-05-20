@@ -90,6 +90,9 @@
             facebookId: "",
             defaultAddress: {
                 address: ""
+            },
+            avatar: {
+                cloudinaryPublicId: ""
             }
         };
 
@@ -252,6 +255,7 @@
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
+            vm.newUser.avatar = user.avatar;
         }
 
         vm.registering = false;

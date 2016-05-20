@@ -37,7 +37,6 @@
                 app.logout();
             });
         };
-        $rootScope.updateProfile();
 
         $stomp
             .connect(CONFIG.API_BASE_URL + '/connect', connectHeaders)

@@ -37,7 +37,10 @@
             firstName: "",
             lastName: "",
             googleId: "",
-            facebookId: ""
+            facebookId: "",
+            avatar: {
+                cloudinaryPublicId: ""
+            }
         };
 
         vm.passwordConfirm = "";
@@ -211,6 +214,7 @@
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
+            vm.newUser.avatar = user.avatar;
         }
 
         vm.isEmailValid = function (email) {
@@ -349,6 +353,8 @@
                 }
             });
         };
+
+        /* Forgot password */
 
         vm.showForgottenPasswordPopup = false;
 
