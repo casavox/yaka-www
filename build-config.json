@@ -61,7 +61,6 @@
             "bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js",
             "bower_components/Waves/dist/waves.js",
             "bower_components/bootstrap-growl/bootstrap-growl.js",
-            "bower_components/ng-table/dist/ng-table.min.js",
             "bower_components/jquery-placeholder/jquery.placeholder.min.js",
             "bower_components/ng-table/dist/ng-table.js",
             "bower_components/flot/jquery.flot.js",

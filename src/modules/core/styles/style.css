@@ -1803,7 +1803,7 @@ md-input-container {
     color: white;
     line-height: 40px;
     text-align: center;
-    font -webkit-user-select: none; /* Chrome/Safari */
+    -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
 

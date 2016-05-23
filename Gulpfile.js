@@ -9,8 +9,10 @@ var runSequence = require("run-sequence");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 var rename = require("gulp-rename");
+var flatten = require('gulp-flatten');
 var file = require("gulp-file");
-var minifyCss = require("gulp-minify-css");
+var bless = require('gulp-bless');
+var cleanCss = require("gulp-clean-css");
 var templateCache = require("gulp-angular-templatecache");
 var ngAnnotate = require("gulp-ng-annotate");
 var rev = require("gulp-rev");
@@ -22,11 +24,13 @@ var debug = require("gulp-debug");
 var intercept = require("gulp-intercept");
 var merge = require("merge-stream");
 var merge2 = require("merge2");
-var del = require("del");
 var gulpif = require("gulp-if");
 var translate = require("gulp-angular-translate");
 var gutil = require("gulp-util");
 var mkdirp = require("mkdirp");
+var through = require('through2');
+var log = gutil.log;
+var colors = gutil.colors;
 
 
 var buildConfig = require("./build-config.json");
@@ -78,7 +82,6 @@ gulp.task("clean", function (cb) {
 });
 
 gulp.task("compile-js", ["rev-sass"], function () {
-    del(["dist/styles.css"]);
     return merge2(
         gulp.src(buildConfig.dependencies.js, {cwd: "src", base: "src"}),
         gulp.src("src/modules/**/*.html")
@@ -137,7 +140,7 @@ gulp.task("inject-dev", ["copy-js", "sass"], function () {
         cwd: "dist"
     });
 
-    var css = gulp.src("styles.css", {
+    var css = gulp.src("*.css", {
         cwd: "dist/"
     });
 
@@ -145,7 +148,7 @@ gulp.task("inject-dev", ["copy-js", "sass"], function () {
         addRootSlash: true,
         removeTags: true
     }))
-        .pipe(inject(css, {
+        .pipe(inject(css.pipe(flatten()), {
             addRootSlash: true,
             removeTags: true
         }))
@@ -173,10 +176,26 @@ gulp.task("inject-prod", ["compile-js"], function () {
         .pipe(gulp.dest("dist"));
 });
 
+var rmOrig = function () {
+    return through.obj(function (file, enc, cb) {
+
+        if (file.revOrigPath) {
+            log(colors.green('DELETING'), file.revOrigPath);
+            fs.unlink(file.revOrigPath, function (err) {
+            });
+        }
+
+        this.push(file); // Pass file when you're done
+        return cb(); // notify through2 you're done
+    });
+};
+
 gulp.task("rev-sass", ["sass"], function () {
-    return gulp.src("dist/styles.css")
+    return gulp.src("dist/**/*.css")
         .pipe(rev())
-        .pipe(gulp.dest("dist"));
+        .pipe(rmOrig())
+        .pipe(gulp.dest("dist")
+    );
 });
 
 gulp.task("sass", function () {
@@ -190,15 +209,18 @@ gulp.task("sass", function () {
         cwd: "src"
     });
 
-    return merge2(
-        target.pipe(inject(sourcesScss, {
+    return merge2(target.pipe(inject(sourcesScss, {
             relative: true,
             removeTags: true
-        })),
-        sourceCss
-    ).pipe(concat("styles.css"))
-        .pipe(gulpif(argv.production, minifyCss()))
-        .pipe(gulp.dest("dist"));
+        })), sourceCss
+    )
+        .pipe(gulpif(argv.production, concat("styles.css")))
+        .pipe(gulpif(argv.production, bless({
+            imports: false
+        })))
+        .pipe(gulpif(argv.production, cleanCss()))
+        .pipe(flatten())
+        .pipe(gulp.dest("dist"))
 });
 
 gulp.task("serve", ["build"], function () {
