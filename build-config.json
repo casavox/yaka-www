@@ -5,7 +5,7 @@
         "js": [
             "bower_components/jquery/dist/jquery.js",
             "bower_components/lodash/lodash.js",
-            "scripts/intlTelInput.js",
+            "bower_components/intl-tel-input/build/js/intlTelInput.js",
             "bower_components/sockjs/sockjs.js",
             "bower_components/stomp-websocket/lib/stomp.js",
             "bower_components/jquery-bridget/jquery-bridget.js",
@@ -19,7 +19,6 @@
             "bower_components/imagesloaded/imagesloaded.js",
             "bower_components/angular/angular.min.js",
             "bower_components/angular-material/angular-material.js",
-            "scripts/ui-bootstrap.min.js",
             "bower_components/international-phone-number/releases/international-phone-number.js",
             "bower_components/ng-stomp/src/ng-stomp.js",
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
@@ -70,6 +69,7 @@
             "bower_components/angular-bootstrap/ui-bootstrap-csp.css",
             "css/bootstrap.min.css",
             "bower_components/font-awesome-4.5.0/font-awesome-4.5.0/css/font-awesome.css",
+            "bower_components/intl-tel-input/build/css/intlTelInput.css",
             "modules/core/styles/bootstrap-theme.min.css",
             "modules/core/styles/angular-carousel.min.css",
             "modules/core/styles/intlTelInput.css",
@@ -130,4 +130,3 @@
         "service": "(function () {\n'use strict';\n\nangular\n.module('Yaka')\n.service('<%= service %>', function (abstractApiService) {\nvar root = '/api/<%= service %>/';\n\nvar filters = {limit: 40,\noffset:0\n};\n\nvar defaultFields = '';\n\nvar self = abstractApiService.getInstance(root, filters, defaultFields);\n\nreturn self;\n});\n})();"
     }
 }
-
