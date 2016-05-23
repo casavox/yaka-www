@@ -33,8 +33,6 @@ export function configFromStringAndFormat(config) {
     for (i = 0; i < tokens.length; i++) {
         token = tokens[i];
         parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
-        // console.log('token', token, 'parsedInput', parsedInput,
-        //         'regex', getParseRegexForToken(token, config));
         if (parsedInput) {
             skipped = string.substr(0, string.indexOf(parsedInput));
             if (skipped.length > 0) {
@@ -70,9 +68,6 @@ export function configFromStringAndFormat(config) {
             config._a[HOUR] > 0) {
         getParsingFlags(config).bigHour = undefined;
     }
-
-    getParsingFlags(config).parsedDateParts = config._a.slice(0);
-    getParsingFlags(config).meridiem = config._meridiem;
     // handle meridiem
     config._a[HOUR] = meridiemFixWrap(config._locale, config._a[HOUR], config._meridiem);
 

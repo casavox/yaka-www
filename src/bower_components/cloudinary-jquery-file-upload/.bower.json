@@ -67,6 +67,5 @@
   },
   "_source": "https://github.com/cloudinary/pkg-cloudinary-jquery-file-upload.git",
   "_target": "^2.0.8",
-  "_originalSource": "cloudinary-jquery-file-upload",
-  "_direct": true
+  "_originalSource": "cloudinary-jquery-file-upload"
 }
