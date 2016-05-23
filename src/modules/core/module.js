@@ -1,6 +1,7 @@
 angular.module('Yaka', [
         'ngRoute',
         'ui.router',
+        'materialAdmin',
         'ngStorage',
         'pascalprecht.translate',
         'ap.lateralSlideMenu',

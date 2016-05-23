@@ -1,3 +1,21 @@
+@media (min-width: 768px) {
+    .container {
+        width: 750px !important;;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px !important;;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px !important;
+    }
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -8,14 +26,7 @@
 }
 
 .iti-flag {
-    background-image: url("/img/phoneNumber/flags.png");
-
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-    .iti-flag {
-        background-image: url("/img/phoneNumber/flags@2x.png");
-    }
+    background-image: url("/img/phoneNumber/flags.png") !important;
 }
 
 /*--------------------------------- RIPPLE EFFECT -----------------------------------*/
