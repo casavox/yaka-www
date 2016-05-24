@@ -3,12 +3,12 @@ module.exports = function(grunt) {
     src: [
       'src/js/data.js',
       'build/js/intlTelInput.min.js',
-      'lib/libphonenumber/build/utils.js'
+      'build/js/utils.js'
     ],
     options: {
       vendor: [
-        'lib/jquery/jquery.js',
-        'lib/jasmine-jquery/jasmine-jquery.js'
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
       ],
       helpers: [
         'src/spec/helpers/**/*.js'
@@ -16,6 +16,7 @@ module.exports = function(grunt) {
       specs: [
         'src/spec/tests/**/*.js'
       ],
+      styles: "build/css/intlTelInput.css", // required so adding "hide" class actually works etc.
       outfile: 'spec.html',
       keepRunner: true
     }

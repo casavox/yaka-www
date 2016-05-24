@@ -16,7 +16,6 @@ angular.module('Yaka', [
         'monospaced.elastic',
         'smoothScroll',
         'ngMaterial',
-        'internationalPhoneNumber',
         'bootstrapLightbox',
         'angularMoment',
         'ngStomp',
@@ -66,10 +65,7 @@ angular.module('Yaka', [
         })
         .config(config);
 
-    function config($urlRouterProvider, $httpProvider, $authProvider, ipnConfig, LightboxProvider, CONFIG) {
-
-        ipnConfig.defaultCountry = 'fr';
-        // Translation area
+    function config($urlRouterProvider, $httpProvider, $authProvider, LightboxProvider, CONFIG) {
 
         LightboxProvider.templateUrl = '/modules/templates-dependencies/views/template-lightbox.html';
         LightboxProvider.calculateModalDimensions = function (dimensions) {

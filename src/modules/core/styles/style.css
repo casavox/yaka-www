@@ -16,6 +16,18 @@
     }
 }
 
+.multiselect-parent .dropdown-menu {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.multiselect-parent input.checkboxInput {
+    opacity: 1;
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -26,7 +38,14 @@
 }
 
 .iti-flag {
-    background-image: url("/img/phoneNumber/flags.png") !important;
+    background-image: url("/img/phoneNumber/flags.png");
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .iti-flag {
+        background-image: url("/img/phoneNumber/flags@2x.png");
+    }
 }
 
 /*--------------------------------- RIPPLE EFFECT -----------------------------------*/
@@ -437,10 +456,6 @@ img {
     position: absolute;
     top: 15px;
     right: 0;
-}
-
-.intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel] {
-    padding-left: 0 !important;
 }
 
 md-input-container {
