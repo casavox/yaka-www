@@ -205,7 +205,7 @@
                             Portfolio
                         </p>
 
-                        <div class="row cl"
+                        <!--<div class="row cl"
                              ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                             <div class="col-xs-3 clickable" ng-repeat="pict in vm.proposal.professional.portfolio"
                                  title="{{pict.description}}">
@@ -214,6 +214,20 @@
                                           ng-click="vm.selectImagePreview($index)">
                                     <cl-transformation height="92" width="92" crop="fill"/>
                                 </cl-image>
+                            </div>
+                        </div-->
+                        <div class="lightbox photos">
+
+                            <div data-src="http://template-materialadmin.herokuapp.com/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="lightbox-item p-item">
+                                    <img src="http://template-materialadmin.herokuapp.com/media/gallery/thumbs/1.jpg" alt=""/>
+                                </div>
+                            </div>
+
+                            <div data-src="http://template-materialadmin.herokuapp.com/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="lightbox-item p-item">
+                                    <img src="http://template-materialadmin.herokuapp.com/media/gallery/thumbs/1.jpg" alt=""/>
+                                </div>
                             </div>
                         </div>
                     </div>

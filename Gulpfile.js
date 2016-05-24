@@ -9,7 +9,6 @@ var runSequence = require("run-sequence");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 var rename = require("gulp-rename");
-var flatten = require('gulp-flatten');
 var file = require("gulp-file");
 var bless = require('gulp-bless');
 var cleanCss = require("gulp-clean-css");
@@ -29,6 +28,7 @@ var translate = require("gulp-angular-translate");
 var gutil = require("gulp-util");
 var mkdirp = require("mkdirp");
 var through = require('through2');
+var sort = require('gulp-sort');
 var log = gutil.log;
 var colors = gutil.colors;
 
@@ -132,7 +132,7 @@ gulp.task("copy-views", [], function () {
         .pipe(gulp.dest("dist"))
 });
 
-gulp.task("inject-dev", ["copy-js", "sass"], function () {
+gulp.task("inject-dev", ["copy-js"], function () {
     var target = gulp.src("src/index.html");
 
     var sources = gulp.src(buildConfig.dependencies.js.concat("i18n/translations.js"), {
@@ -140,17 +140,21 @@ gulp.task("inject-dev", ["copy-js", "sass"], function () {
         cwd: "dist"
     });
 
-    var css = gulp.src("*.css", {
-        cwd: "dist/"
-    });
+    var css = getCleanedCssSources();
 
     return target.pipe(inject(sources, {
         addRootSlash: true,
         removeTags: true
     }))
-        .pipe(inject(css.pipe(flatten()), {
+        .pipe(inject(css, {
             addRootSlash: true,
-            removeTags: true
+            removeTags: true,
+            transform: function (filepath) {
+                console.log("FilePath : " + filepath);
+                return "<link rel=\"stylesheet\" href=\"/" +
+                    filepath.substring(filepath.indexOf("/", 1) + 1) +
+                    "\">";
+            }
         }))
         .pipe(gulp.dest("dist"));
 });
@@ -160,10 +164,8 @@ gulp.task("inject-prod", ["compile-js"], function () {
     var sources = gulp.src("*.js", {
         cwd: "dist/"
     });
-    var css = gulp.src("*.css", {
-        read: false,
-        cwd: "dist/"
-    });
+
+    var css = getCleanedCssSources();
 
     return target.pipe(inject(sources, {
         addRootSlash: true,
@@ -171,7 +173,13 @@ gulp.task("inject-prod", ["compile-js"], function () {
     }))
         .pipe(inject(css, {
             addRootSlash: true,
-            removeTags: true
+            removeTags: true,
+            transform: function (filepath) {
+                console.log("FilePath : " + filepath);
+                return "<link rel=\"stylesheet\" href=\"/" +
+                    filepath.substring(filepath.indexOf("/", 1) + 1) +
+                    "\">";
+            }
         }))
         .pipe(gulp.dest("dist"));
 });
@@ -190,38 +198,52 @@ var rmOrig = function () {
     });
 };
 
-gulp.task("rev-sass", ["sass"], function () {
-    return gulp.src("dist/**/*.css")
+gulp.task("rev-sass", function () {
+    return gulp.src("dist/*.css")
         .pipe(rev())
         .pipe(rmOrig())
         .pipe(gulp.dest("dist")
     );
 });
 
-gulp.task("sass", function () {
-    var target = file("styles.scss", "/* inject:css *//* endinject *//* inject:scss *//* endinject */", {src: true});
-    var sourcesScss = gulp.src(buildConfig.dependencies.scss, {
+var getTarget = function () {
+    return file("styles.scss", "/* inject:css *//* endinject *//* inject:scss *//* endinject */", {src: true});
+};
+
+var getSourcesScss = function () {
+    return gulp.src(buildConfig.dependencies.scss, {
         read: false,
         cwd: "src"
     });
+};
 
-    var sourceCss = gulp.src(buildConfig.dependencies.css, {
+var getSourcesCss = function () {
+    return gulp.src(buildConfig.dependencies.css, {
         cwd: "src"
     });
+};
 
-    return merge2(target.pipe(inject(sourcesScss, {
-            relative: true,
-            removeTags: true
-        })), sourceCss
-    )
+var getCleanedCssSources = function () {
+    return merge2(
+        getTarget().pipe(inject(getSourcesScss(), {relative: true, removeTags: true})), getSourcesCss())
+        .pipe(debug())
         .pipe(gulpif(argv.production, concat("styles.css")))
-        .pipe(gulpif(argv.production, bless({
-            imports: false
-        })))
+        .pipe(gulpif(argv.production, bless({imports: false})))
+        .pipe(sort(function (file1, file2) {
+            console.log(file1.path.substring(file1.path.lastIndexOf("/") + 1));
+            console.log("---");
+            console.log(file2.path.substring(file2.path.lastIndexOf("/") + 1));
+            console.log("");
+            if (file1.path.substring(file1.path.lastIndexOf("/") + 1) == "styles.css") {
+                console.log("!!!!!");
+                return 1;
+            }
+            return file1.path.substring(file1.path.lastIndexOf("/") + 1) < file2.path.substring(file2.path.lastIndexOf("/") + 1);
+        }))
         .pipe(gulpif(argv.production, cleanCss()))
         .pipe(flatten())
         .pipe(gulp.dest("dist"))
-});
+};
 
 gulp.task("serve", ["build"], function () {
     if (!argv.production) {
