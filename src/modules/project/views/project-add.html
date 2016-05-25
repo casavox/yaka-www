@@ -95,7 +95,8 @@
 
                 <h2 class="text-center h2-middle">Could you describe project for us?</h2>
                 <textarea class="description center" ng-model="vm.projectDescription"
-                          placeholder="describe your problem and your needs" ng-blur="vm.verifDescription()"></textarea>
+                          placeholder="Décrivez-nous votre projet, indiquez-nous si vous avez des contraintes ou souhaits particuliers"
+                          ng-blur="vm.verifDescription()"></textarea>
 
                 <p class="error center" ng-show="vm.error.description.flag">
                     {{vm.error.description.message}}
@@ -243,29 +244,28 @@
             <div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
                 <h2 class="text-center mb-39">Where do need it?</h2>
 
-                <h3 class="text-center mb-120" ng-show="!vm.newAddrFlag">Enter your address and give it a name</h3>
+                <h3 class="text-center mb-60" ng-show="!vm.newAddrFlag">Choisissez une de vos adresses ou indiquez-en
+                    une nouvelle</h3>
 
-                <h3 class="text-center mb-120" ng-show="vm.newAddrFlag">Select one from your registred addresses or
-                    enter a new one</h3>
+                <h3 class="text-center mb-60" ng-show="vm.newAddrFlag">Indiquez un nom puis précisez votre adresse</h3>
 
                 <div class="row no-margin w-900 center select-addr">
-                    <div class="col-md-4 no-padding">
+                    <div class="col-md-4 no-padding" ng-if="vm.user.addresses.length>0">
                         <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-                            <option value="new">- Create new one -</option>
+                            <option value="new">- Nouvelle adresse -</option>
                             <option ng-repeat="a in vm.user.addresses" value="{{a.address}}"
                                     ng-selected="a.address.toString() == vm.myAddress.toString()">{{a.name}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-4 no-padding">
+                    <div class="col-md-4 no-padding" ng-if="vm.user.addresses.length>0">
                         <p class="">
-                            - Or create a new one -
+                            - Ou ajouter une nouvelle adresse :
                         </p>
-
                     </div>
                     <div class="col-md-4 no-padding">
                         <input type="text" class="select-custom" ng-model="vm.newAddr.name"
-                               ng-change="vm.verifNameAddr()" placeholder="I Give a name">
+                               ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse">
                     </div>
                 </div>
                 <div class="row no-margin w-900 center addr">
@@ -288,11 +288,11 @@
                                    vs-district="address.components.district"
                                    vs-latitude="address.components.location.lat"
                                    vs-longitude="address.components.location.long"
-
                                    type="text"
                                    name="address"
                                    id="address"
-                                   placeholder="Enter address" class="input-custom">
+                                   placeholder="Précisez votre adresse (vous seul décidez quand et par qui elle sera visible)"
+                                   class="input-custom">
                         </div>
 
                     </div>

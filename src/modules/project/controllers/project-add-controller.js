@@ -82,7 +82,6 @@
         networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
-
         vm.limitLength = function (obj, token, limit) {
             if (obj[token].length >= limit) {
                 obj[token] = obj[token].slice(0, limit);
@@ -90,14 +89,13 @@
         };
 
         vm.verifDescription = function () {
-            if (vm.projectDescription.length < 3) {
+            if (vm.projectDescription.length < 10) {
                 vm.continue = false;
                 vm.continueImg = false;
                 vm.img = [];
                 vm.continueAddressFlag = false;
                 vm.error.description.flag = true;
-                vm.error.description.message = "Add a description of your needs";
-
+                vm.error.description.message = "Merci de décrire votre besoin et éventuelles contrainte (au moins 10 caractères)";
             }
         };
 
@@ -524,10 +522,10 @@
         };
 
         vm.verif = function () {
-            if (vm.projectDescription.length < 3) {
+            if (vm.projectDescription.length < 10) {
                 vm.continueImg = vm.continueAddressFlag = vm.continue = false;
                 vm.img = [];
-                vm.error.description.message = "Add a description of your needs";
+                vm.error.description.message = "Merci de décrire votre besoin et éventuelles contraintes";
                 vm.error.description.flag = true;
             }
             else {
@@ -541,8 +539,8 @@
                 vm.error.material.message = "Select YES or NO";
                 vm.error.material.flag = true;
             }
-            if (vm.projectDescription.length < 3) {
-                vm.error.description.message = "Add a description of your needs";
+            if (vm.projectDescription.length < 10) {
+                vm.error.description.message = "Merci de décrire votre besoin et éventuelles contraintes";
                 vm.error.description.flag = true;
             }
             else if (vm.material != null && vm.projectDescription.length >= 3) {
