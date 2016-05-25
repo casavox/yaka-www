@@ -28,9 +28,8 @@
     </div>
     <div class="page-content">
         <div class="content-slide-default" id="main-scroll-container">
-            <div class="slide" id="slide1" ng-show="vm.selectCategory">
+            <div class="slide-main" id="slide1" ng-show="vm.selectCategory">
                 <h2 class="text-center">Select one professional category</h2>
-
                 <div class="row new-project-box no-margin">
                     <div class="emergency-title row">
                         <div class="col-xs-7">
@@ -156,7 +155,7 @@
                                 <cl-image public-id="{{photos[1].public_id}}" secure="true"
                                           class="img-preview center-middle"
                                           format="png">
-                                <cl-transformation height="220" width="220" crop="fill"/>
+                                    <cl-transformation height="220" width="220" crop="fill"/>
                                 </cl-image>
                             </a>
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""

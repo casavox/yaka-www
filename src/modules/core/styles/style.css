@@ -2325,13 +2325,23 @@ md-input-container {
     font-weight: bold;
 }
 
-.slide {
+.slide-main {
     min-height: 100%;
     width: 100%;
-    position: relative;;
+    position: relative;
     padding-top: 35px;
     vertical-align: top;
     display: inline-block;
+}
+
+.slide {
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    padding-top: 35px;
+    vertical-align: top;
+    display: inline-block;
+    transform: translate3d(0, 60px, 0);
 }
 
 .slide:nth-child(2n) {
