@@ -251,7 +251,7 @@
             vm.newUser.firstName = user.firstName;
             vm.newUser.lastName = user.lastName;
             if (user.email != undefined) {
-                vm.newUser.email = user.email;
+                vm.newUser.email = user.email.toLowerCase();
             }
             vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
