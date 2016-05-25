@@ -240,7 +240,7 @@
             if ($scope.user == undefined) {
                 return "";
             }
-            return $scope.user.email;
+            return $scope.user.email.toLowerCase();
         };
 
         app.showCustomerSupport = false;
@@ -253,7 +253,7 @@
         app.openCustomerSupport = function () {
             app.showCustomerSupport = true;
             smartsupp('name', app.getFullName());
-            smartsupp('email', app.getEmail());
+            smartsupp('email', app.getEmail().toLowerCase());
             smartsupp('variables',
                 {
                     name: {
@@ -262,7 +262,7 @@
                     },
                     email: {
                         label: 'Email',
-                        value: app.getEmail()
+                        value: app.getEmail().toLowerCase()
                     },
                     userType: {
                         label: 'User Type',
