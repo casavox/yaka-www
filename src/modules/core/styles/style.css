@@ -2069,10 +2069,10 @@ md-input-container {
 }
 
 .v-icon {
-    height: 46px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
 }
 
 .pro-price {
@@ -2154,61 +2154,79 @@ md-input-container {
     color: #7ED321 !important;
 }
 
-.v-icon-LOCKSMITH {
-    background-image: url('/icons/mdpi/ic_locksmith.png')
-}
-
-.v-icon-LOC_5000 {
-    background-image: url('/icons/mdpi/ic_locksmith.png')
+.v-icon-ELE_1000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_electrician_blue.png')
 }
 
 .v-icon-PLU_2000 {
-    background-image: url('/icons/mdpi/ic_plumber.png')
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_plumber_blue.png')
 }
 
-.v-icon-PLUMBER {
-    background-image: url('/icons/mdpi/ic_plumber.png')
+.v-icon-HEA_3000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_heater_blue.png')
 }
 
-.v-icon-ELE_1000 {
-    background-image: url('/icons/mdpi/ic_electrician.png')
+.v-icon-CAR_4000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_carpenter_blue.png')
 }
 
-.v-icon-ELECTRICIAN {
-    background-image: url('/icons/mdpi/ic_electrician.png')
+.v-icon-LOC_5000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_locksmith_blue.png')
 }
 
-.v-icon-CARPENTER {
-    background-image: url('/icons/mdpi/ic_carpenter.png')
+.v-icon-PAI_6000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_painter_blue.png')
 }
 
-.v-icon-PAINTER {
-    background-image: url('/icons/mdpi/ic_painter.png')
+.v-icon-WAL_7000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_walling_blue.png')
 }
 
-.v-icon-ICON_LOCKSMITH {
-    background-image: url('/icons/mdpi/ic_locksmith.png')
+.v-icon-INS_8000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_insulation_blue.png')
 }
 
-.v-icon-ICON_PLUMBER {
-    background-image: url('/icons/mdpi/ic_plumber.png')
+.v-icon-COU_9000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_architect_blue.png')
 }
 
-.v-icon-ICON_ELECTRICITY {
-    background-image: url('/icons/mdpi/ic_electrician.png')
+.v-icon-KIT_10000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_kitchen_bathroom_blue.png')
 }
 
-.v-icon-ICON_CARPENTER {
-    background-image: url('/icons/mdpi/ic_carpenter.png')
+.v-icon-ROO_11000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_roofer_blue.png')
 }
 
-.v-icon-ICON_PAINTER {
-    background-image: url('/icons/mdpi/ic_painter.png')
+.v-icon-GAT_12000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_garage_blue.png')
+}
+
+.v-icon-GAR_13000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_landscaping_blue.png')
+}
+
+.v-icon-CON_14000 {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_construction_blue.png')
 }
 
 .type-project-box-content {
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 10px;
     height: 110px;
 }
 
@@ -2221,44 +2239,60 @@ md-input-container {
     -webkit-box-orient: vertical;
 }
 
-.type-project-box:hover > div > .v-icon-ICON_LOCKSMITH {
-    background-image: url('/icons/mdpi/ic_locksmith_highlight.png')
+.type-project-box:hover > div > .v-icon-ELE_1000 {
+    background-image: url('/icons/mdpi/ic_electrician_white.png')
 }
 
-.type-project-box:hover > div > .v-icon-ICON_PLUMBER {
-    background-image: url('/icons/mdpi/ic_plumber_highlight.png')
+.type-project-box:hover > div > .v-icon-PLU_2000 {
+    background-image: url('/icons/mdpi/ic_plumber_white.png')
 }
 
-.type-project-box:hover > div > .v-icon-ICON_ELECTRICITY {
-    background-image: url('/icons/mdpi/ic_electrician_highlight.png')
+.type-project-box:hover > div > .v-icon-HEA_3000 {
+    background-image: url('/icons/mdpi/ic_heater_white.png')
 }
 
-.type-project-box:hover > div > .v-icon-ICON_CARPENTER {
-    background-image: url('/icons/mdpi/ic_carpenter_highlight.png')
+.type-project-box:hover > div > .v-icon-CAR_4000 {
+    background-image: url('/icons/mdpi/ic_carpenter_white.png')
 }
 
-.type-project-box:hover > div > .v-icon-ICON_PAINTER {
-    background-image: url('/icons/mdpi/ic_painter_highlight.png')
+.type-project-box:hover > div > .v-icon-LOC_5000 {
+    background-image: url('/icons/mdpi/ic_locksmith_white.png')
 }
 
-.activate > div > .v-icon-ICON_LOCKSMITH {
-    background-image: url('/icons/mdpi/ic_locksmith_highlight.png')
+.type-project-box:hover > div > .v-icon-PAI_6000 {
+    background-image: url('/icons/mdpi/ic_painter_white.png')
 }
 
-.activate > div > .v-icon-ICON_PLUMBER {
-    background-image: url('/icons/mdpi/ic_plumber_highlight.png')
+.type-project-box:hover > div > .v-icon-WAL_7000 {
+    background-image: url('/icons/mdpi/ic_walling_white.png')
 }
 
-.activate > div > .v-icon-ICON_ELECTRICITY {
-    background-image: url('/icons/mdpi/ic_electrician_highlight.png')
+.type-project-box:hover > div > .v-icon-INS_8000 {
+    background-image: url('/icons/mdpi/ic_insulation_white.png')
 }
 
-.activate > div > .v-icon-ICON_CARPENTER {
-    background-image: url('/icons/mdpi/ic_carpenter_highlight.png')
+.type-project-box:hover > div > .v-icon-COU_9000 {
+    background-image: url('/icons/mdpi/ic_architect_white.png')
 }
 
-.activate > div > .v-icon-ICON_PAINTER {
-    background-image: url('/icons/mdpi/ic_painter_highlight.png')
+.type-project-box:hover > div > .v-icon-KIT_10000 {
+    background-image: url('/icons/mdpi/ic_kitchen_bathroom_white.png')
+}
+
+.type-project-box:hover > div > .v-icon-ROO_11000 {
+    background-image: url('/icons/mdpi/ic_roofer_white.png')
+}
+
+.type-project-box:hover > div > .v-icon-GAT_12000 {
+    background-image: url('/icons/mdpi/ic_garage_white.png')
+}
+
+.type-project-box:hover > div > .v-icon-GAR_13000 {
+    background-image: url('/icons/mdpi/ic_landscaping_white.png')
+}
+
+.type-project-box:hover > div > .v-icon-CON_14000 {
+    background-image: url('/icons/mdpi/ic_construction_white.png')
 }
 
 .new-project-box {
@@ -2436,7 +2470,7 @@ md-input-container {
 
 .description {
     width: 662px;
-    height: 272px;
+    height: 187px
 }
 
 .h2-middle {

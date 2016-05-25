@@ -315,7 +315,7 @@
                 vm.error.price.flag = vm.myPriceFlag = false;
             }
             else {
-                vm.error.price.message = "At least 1 Euro";
+                vm.error.price.message = "Vous devez mettre un tarif réaliste (au moins 10 euros)";
                 vm.error.price.flag = true;
             }
         };
