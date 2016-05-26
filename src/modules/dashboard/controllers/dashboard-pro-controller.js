@@ -59,28 +59,40 @@
                         icon = "plumber";
                         break;
                     case "HEA_3000":
+                        icon = "heater";
                         break;
                     case "CAR_4000":
+                        icon = "carpenter";
                         break;
                     case "LOC_5000":
+                        icon = "locksmith";
                         break;
                     case "PAI_6000":
+                        icon = "painter";
                         break;
                     case "WAL_7000":
+                        icon = "walling";
                         break;
                     case "INS_8000":
+                        icon = "insulation";
                         break;
                     case "COU_9000":
+                        icon = "architect";
                         break;
                     case "KIT_10000":
+                        icon = "kitchen_bathroom";
                         break;
                     case "ROO_11000":
+                        icon = "roofer";
                         break;
                     case "GAT_12000":
+                        icon = "garage";
                         break;
                     case "GAR_13000":
+                        icon = "landscaping";
                         break;
-                    case "CON_15000":
+                    case "CON_14000":
+                        icon = "construction";
                         break;
                     default:
                         break;
@@ -89,7 +101,7 @@
             if (lead.type == 'EMERGENCY') {
                 return "icons/mdpi/ic_" + icon + "_emergency.png";
             } else {
-                return "icons/mdpi/ic_" + icon + ".png";
+                return "icons/mdpi/ic_" + icon + "_blue.png";
             }
         };
 

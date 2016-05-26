@@ -4310,8 +4310,8 @@ md-input-container {
     left: 0;
     right: 0;
     padding: 0px;
-    height: 90px;
-    margin-bottom: 18px !important;
+    height: 80px;
+    margin-bottom: 15px !important;
     bottom: -108px;
     -webkit-transition: 0.3s ease-in-out;
     -moz-transition: 0.3s ease-in-out;
@@ -4389,6 +4389,7 @@ ul[rn-carousel-buffered] > li {
     right: 28px !important;
 }
 
+/* proDashboardMapItem no more used, use proDashboardListItem instead
 .proDashboardMapItem {
     background-color: white;
     height: 100%;
@@ -4460,6 +4461,7 @@ ul[rn-carousel-buffered] > li {
     width: 50px;
     text-align: justify;
 }
+*/
 
 .proDashboardListEmptyMessage {
     width: 230px !important;
@@ -4472,8 +4474,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .proDashboardListItem {
-    background-color: white;
-    height: 92px;
+    height: 80px;
     position: relative;
     cursor: pointer;
     -webkit-touch-callout: none;
@@ -4482,14 +4483,22 @@ ul[rn-carousel-buffered] > li {
     -ms-user-select: none;
     user-select: none;
     border-bottom: 1px solid #9b9b9b;
+    background: white;
+    -webkit-transition: background 0.3s linear;
+    -moz-transition: background 0.3s linear;
+    -o-transition: background 0.3s linear;
+    -ms-transition: background 0.3s linear;
+    transition: background 0.3s linear;
+}
+
+.proDashboardListItem:hover {
+    background: #EFEFEF;
 }
 
 .proDashboardListItemLogo {
     position: absolute;
-    top: 30px;
+    top: calc(10%);
     left: 8px;
-    width: 32px;
-    height: 32px;
 }
 
 .proDashboardListItemTitle {
@@ -4499,8 +4508,8 @@ ul[rn-carousel-buffered] > li {
     line-height: 13px;
     text-align: left;
     position: absolute;
-    top: 10px;
-    left: 50px;
+    top: 15px;
+    left: 60px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
@@ -4512,32 +4521,24 @@ ul[rn-carousel-buffered] > li {
     line-height: 20px;
     text-align: left;
     position: absolute;
-    top: 50px;
-    left: 49px;
+    top: 40px;
+    left: 60px;
     right: 90px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.proDashboardListItemChronoLogo {
-    position: absolute;
-    top: 36px;
-    right: 65px;
-    width: 20px;
-    height: 20px;
-}
-
 .proDashboardListItemChrono {
     font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.54);
-    line-height: 12px;
-    position: absolute;
-    top: 34px;
-    right: 10px;
-    width: 50px;
+    line-height: 20px;
     text-align: justify;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    height: 20px;
 }
 
 .smallDivider {

@@ -14,7 +14,7 @@
         </a>
     </div>
     <div class="page-content">
-        <ng-include src="'/modules/core/modules/menu/views/menu.html'"></ng-include>
+        <!--<ng-include src="'/modules/core/modules/menu/views/menu.html'"></ng-include>-->
         <div class="content-slide proDashboard">
 
             <div class="col-xs-6 col-xs-offset-6 col-sm-12 col-sm-offset-0 proDashboardFilters"
@@ -81,22 +81,20 @@
                             <li ng-repeat="lead in vm.leads track by lead.id"
                                 ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
                                 <a title="{{lead.translatedTitle}}">
-                                    <div class="proDashboardMapItem"
+                                    <div class="proDashboardListItem"
                                          ui-sref="pro-project-proposal-new({projectId: lead.id})"
                                          angular-ripple>
-                                        <div class="proDashboardMapItemLogo">
-                                            <img width="32" height="32" ng-src="{{vm.getIcon(lead)}}"/>
+                                        <div class="proDashboardListItemLogo">
+                                            <img width="50" height="50" ng-src="{{vm.getIcon(lead)}}"/>
                                         </div>
-                                        <div class="proDashboardMapItemTitle">
+                                        <div class="proDashboardListItemTitle">
                                             {{lead.translatedTitle}}
                                         </div>
-                                        <div class="proDashboardMapItemAddress">
+                                        <div class="proDashboardListItemAddress">
                                             {{lead.address.postalCode + ' ' + lead.address.locality}}
                                         </div>
-                                        <div class="proDashboardMapItemChronoLogo">
+                                        <div class="proDashboardListItemChrono">
                                             <img width="20" height="20" ng-src="icons/mdpi/ic_time_default.png"/>
-                                        </div>
-                                        <div class="proDashboardMapItemChrono">
                                             <span am-time-ago="lead.published"></span>
                                         </div>
                                     </div>
@@ -114,7 +112,7 @@
                          ui-sref="pro-project-proposal-new({projectId: lead.id})"
                          angular-ripple>
                         <div class="proDashboardListItemLogo">
-                            <img width="32" height="32" ng-src="{{vm.getIcon(lead)}}"/>
+                            <img width="50" height="50" ng-src="{{vm.getIcon(lead)}}"/>
                         </div>
                         <div class="proDashboardListItemTitle">
                             {{lead.translatedTitle}}
@@ -122,10 +120,8 @@
                         <div class="proDashboardListItemAddress">
                             {{lead.address.postalCode + ' ' + lead.address.locality}}
                         </div>
-                        <div class="proDashboardListItemChronoLogo">
-                            <img width="20" height="20" ng-src="icons/mdpi/ic_time_default.png"/>
-                        </div>
                         <div class="proDashboardListItemChrono">
+                            <img width="20" height="20" ng-src="icons/mdpi/ic_time_default.png"/>
                             <span am-time-ago="lead.published"></span>
                         </div>
                     </div>
