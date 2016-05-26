@@ -659,7 +659,7 @@
             }, function (isConfirm) {
                 if (isConfirm) {
                     vm.projectTmp.images.splice(imageIndex, 1);
-                    $scope.$apply();
+                    $scope.$applyAsync();
                 }
             });
         };

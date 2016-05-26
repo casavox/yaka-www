@@ -47,7 +47,6 @@ materialAdmin
 
                 if (element[0]) {
                     autosize(element);
-                    console.log("Launched !!!");
                 }
             }
         }
