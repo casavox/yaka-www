@@ -4497,7 +4497,7 @@ ul[rn-carousel-buffered] > li {
 
 .proDashboardListItemLogo {
     position: absolute;
-    top: calc(10%);
+    top: calc(15%);
     left: 8px;
 }
 
@@ -4521,7 +4521,7 @@ ul[rn-carousel-buffered] > li {
     line-height: 20px;
     text-align: left;
     position: absolute;
-    top: 40px;
+    top: 45px;
     left: 60px;
     right: 90px;
     white-space: nowrap;
@@ -4536,7 +4536,7 @@ ul[rn-carousel-buffered] > li {
     line-height: 20px;
     text-align: justify;
     position: absolute;
-    top: 40px;
+    top: 45px;
     right: 10px;
     height: 20px;
 }
