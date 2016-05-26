@@ -16,7 +16,6 @@ angular.module('Yaka', [
         'monospaced.elastic',
         'smoothScroll',
         'ngMaterial',
-        'bootstrapLightbox',
         'angularMoment',
         'ngStomp',
         'luegg.directives',
@@ -24,7 +23,8 @@ angular.module('Yaka', [
         'angularTypewrite',
         'ngCookies',
         'angulartics',
-        'angulartics.google.analytics'
+        'angulartics.google.analytics',
+        'bootstrapLightbox'
     ]
 );
 
@@ -65,22 +65,7 @@ angular.module('Yaka', [
         })
         .config(config);
 
-    function config($urlRouterProvider, $httpProvider, $authProvider, LightboxProvider, CONFIG) {
-
-        LightboxProvider.templateUrl = '/modules/templates-dependencies/views/template-lightbox.html';
-        LightboxProvider.calculateModalDimensions = function (dimensions) {
-            var width = Math.max(400, dimensions.imageDisplayWidth + 32);
-
-            if (width >= dimensions.windowWidth - 20 || dimensions.windowWidth < 768) {
-                width = 'auto';
-            }
-
-            return {
-                'width': width,                             // default
-                'height': 'auto'                            // custom
-            };
-        };
-
+    function config($urlRouterProvider, $httpProvider, $authProvider, CONFIG) {
 
         $authProvider.oauth2({
             name: "googleLogin",
@@ -229,17 +214,6 @@ angular.module('Yaka', [
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) &&
-                    toState.name != "home" &&
-                    toState.name != "pro-home" &&
-                    toState.name != "login" &&
-                    toState.name != "new-project" &&
-                    toState.name != "register" &&
-                    toState.name != "recoverpassword"
-                ) {
-                    event.preventDefault();
-                    $injector.get('$state').go('home');
-                }
             });
 
         amMoment.changeLocale('fr');

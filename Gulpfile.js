@@ -16,7 +16,8 @@ var templateCache = require("gulp-angular-templatecache");
 var ngAnnotate = require("gulp-ng-annotate");
 var rev = require("gulp-rev");
 var fs = require("fs");
-var server = require("gulp-server-livereload");
+var connect = require('gulp-connect');
+var connect = require('gulp-connect');
 var coffee = require("gulp-coffee");
 var karma = require("karma").Server;
 var debug = require("gulp-debug");
@@ -112,7 +113,8 @@ gulp.task("copy-assets", function () {
     var vendorAssets = gulp.src(buildConfig.dependencies.vendorAssets, {cwd: ".", base: "."})
         .pipe(gulp.dest("dist"));
 
-    return merge(assets, vendorAssets);
+    return merge(assets, vendorAssets)
+        .pipe(connect.reload());
 });
 
 gulp.task("copy-js", function () {
@@ -124,12 +126,14 @@ gulp.task("copy-js", function () {
                 filename: "i18n/translations.js",
                 standalone: false
             }))
-    ).pipe(gulp.dest("dist"));
+    ).pipe(gulp.dest("dist"))
+        .pipe(connect.reload());
 });
 
 gulp.task("copy-views", [], function () {
     return gulp.src("modules/**/*.html", {cwd: "src", base: "src"})
         .pipe(gulp.dest("dist"))
+        .pipe(connect.reload());
 });
 
 gulp.task("inject-dev", ["copy-js"], function () {
@@ -150,7 +154,6 @@ gulp.task("inject-dev", ["copy-js"], function () {
             addRootSlash: true,
             removeTags: true,
             transform: function (filepath) {
-                console.log("FilePath : " + filepath);
                 return "<link rel=\"stylesheet\" href=\"/" +
                     filepath.substring(filepath.indexOf("/", 1) + 1) +
                     "\">";
@@ -226,16 +229,10 @@ var getSourcesCss = function () {
 var getCleanedCssSources = function () {
     return merge2(
         getTarget().pipe(inject(getSourcesScss(), {relative: true, removeTags: true})), getSourcesCss())
-        .pipe(debug())
         .pipe(gulpif(argv.production, concat("styles.css")))
         .pipe(gulpif(argv.production, bless({imports: false})))
         .pipe(sort(function (file1, file2) {
-            console.log(file1.path.substring(file1.path.lastIndexOf("/") + 1));
-            console.log("---");
-            console.log(file2.path.substring(file2.path.lastIndexOf("/") + 1));
-            console.log("");
             if (file1.path.substring(file1.path.lastIndexOf("/") + 1) == "styles.css") {
-                console.log("!!!!!");
                 return 1;
             }
             return file1.path.substring(file1.path.lastIndexOf("/") + 1) < file2.path.substring(file2.path.lastIndexOf("/") + 1);
@@ -245,13 +242,18 @@ var getCleanedCssSources = function () {
         .pipe(gulp.dest("dist"))
 };
 
+gulp.task("css", function () {
+    getCleanedCssSources()
+        .pipe(connect.reload());
+});
+
 gulp.task("serve", ["build"], function () {
     if (!argv.production) {
         var watchTranslate = gulp.watch(["src/i18n/**/*.json"], ["inject-dev"]);
         var watchJS = gulp.watch(["src/**/*.js"], ["copy-js"]);
         var watchViews = gulp.watch("src/**/*.html", ["copy-views"]);
         var watchAssets = gulp.watch("src/assets/**/*.*", ["copy-assets"]);
-        var watchSASS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["sass"]);
+        var watchCSS = gulp.watch(["src/**/*.scss", "src/**/*.css"], ["css"]);
 
         watchTranslate.on("change", function (evt) {
             console.log("JSON File " + evt.path + " was " + evt.type);
@@ -269,16 +271,16 @@ gulp.task("serve", ["build"], function () {
             console.log("Asset File " + evt.path + " was " + evt.type);
         });
 
-        watchSASS.on("change", function (evt) {
-            console.log("SCSS File " + evt.path + " was " + evt.type);
+        watchCSS.on("change", function (evt) {
+            console.log("CSS File " + evt.path + " was " + evt.type);
         });
     }
 
-    gulp.src("dist").pipe(server({
-        livereload: true,
-        fallback: "index.html"
-    }))
-
+    connect.server({
+        root: 'dist',
+        port: 8000,
+        livereload: !argv.production
+    });
 });
 
 gulp.task("test", ["config-test"], function () {

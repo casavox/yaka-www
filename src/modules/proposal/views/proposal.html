@@ -205,28 +205,17 @@
                             Portfolio
                         </p>
 
-                        <!--<div class="row cl"
-                             ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
-                            <div class="col-xs-3 clickable" ng-repeat="pict in vm.proposal.professional.portfolio"
-                                 title="{{pict.description}}">
-                                <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png"
-                                          class="center"
-                                          ng-click="vm.selectImagePreview($index)">
-                                    <cl-transformation height="92" width="92" crop="fill"/>
-                                </cl-image>
-                            </div>
-                        </div-->
                         <div class="lightbox photos">
 
-                            <div data-src="http://template-materialadmin.herokuapp.com/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
+                            <!--data-sub-html="<p class='galleryCaptionPortfolio'>Hello, this is a caption</p>"-->
+                            <div
+                                data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
+                                class="lightboxItemAngular col-md-3 col-sm-4 col-xs-6"
+                                ng-repeat="image in vm.proposal.professional.portfolio">
                                 <div class="lightbox-item p-item">
-                                    <img src="http://template-materialadmin.herokuapp.com/media/gallery/thumbs/1.jpg" alt=""/>
-                                </div>
-                            </div>
-
-                            <div data-src="http://template-materialadmin.herokuapp.com/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="lightbox-item p-item">
-                                    <img src="http://template-materialadmin.herokuapp.com/media/gallery/thumbs/1.jpg" alt=""/>
+                                    <img
+                                        src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                        alt=""/>
                                 </div>
                             </div>
                         </div>
