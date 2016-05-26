@@ -1,3 +1,33 @@
+@media (min-width: 768px) {
+    .container {
+        width: 750px !important;;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px !important;;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px !important;
+    }
+}
+
+.multiselect-parent .dropdown-menu {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.multiselect-parent input.checkboxInput {
+    opacity: 1;
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -426,10 +456,6 @@ img {
     position: absolute;
     top: 15px;
     right: 0;
-}
-
-.intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel] {
-    padding-left: 0 !important;
 }
 
 md-input-container {
@@ -1792,7 +1818,7 @@ md-input-container {
     color: white;
     line-height: 40px;
     text-align: center;
-    font -webkit-user-select: none; /* Chrome/Safari */
+    -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
 

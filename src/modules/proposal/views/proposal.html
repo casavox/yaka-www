@@ -205,15 +205,18 @@
                             Portfolio
                         </p>
 
-                        <div class="row cl"
-                             ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
-                            <div class="col-xs-3 clickable" ng-repeat="pict in vm.proposal.professional.portfolio"
-                                 title="{{pict.description}}">
-                                <cl-image public-id="{{pict.cloudinaryPublicId}}" secure="true" format="png"
-                                          class="center"
-                                          ng-click="vm.selectImagePreview($index)">
-                                    <cl-transformation height="92" width="92" crop="fill"/>
-                                </cl-image>
+                        <div class="lightbox photos">
+
+                            <!--data-sub-html="<p class='galleryCaptionPortfolio'>Hello, this is a caption</p>"-->
+                            <div
+                                data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
+                                class="lightboxItemAngular col-md-3 col-sm-4 col-xs-6"
+                                ng-repeat="image in vm.proposal.professional.portfolio">
+                                <div class="lightbox-item p-item">
+                                    <img
+                                        src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                        alt=""/>
+                                </div>
                             </div>
                         </div>
                     </div>

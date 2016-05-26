@@ -625,5 +625,50 @@
         }
 
         vm.initHours();
+
+
+        vm.getClUrlThumbnail = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true, width: 200, height: 200, crop: 'fill'});
+        };
+
+        vm.getClUrl = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true});
+        };
+
+        vm.saveComment = function () {
+            console.log("saveComment");
+            $('html').trigger('click');
+        };
+
+        vm.descriptionChanged = function (image) {
+            image.description = image.description.replace(/\n/g, ' ');
+            if (image.length > 140) {
+                image = image.substring(0, 140);
+            }
+        };
+
+        vm.removeImage = function (imageIndex) {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Voulez-vous vraiment supprimer cette image ?",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui, je veux la supprimer",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    vm.projectTmp.images.splice(imageIndex, 1);
+                    $scope.$apply();
+                }
+            });
+        };
+
+        vm.getStringLength = function (str) {
+            if (!str) {
+                return 0;
+            }
+            return str.length;
+        };
     }
 })();

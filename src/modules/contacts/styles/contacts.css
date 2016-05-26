@@ -8,12 +8,12 @@
 }
 
 .avatarCloudinary {
-    width: 40px;
-    height: 40px;
-    right: 142px;
-    top: 7px;
-    position: absolute;
-    margin: 0;
+    width: 40px !important;
+    height: 40px !important;
+    right: 142px !important;
+    top: 7px !important;
+    position: absolute !important;
+    margin: 0 !important;
 }
 
 .avatarInitials {
@@ -109,7 +109,7 @@
     height: 40px !important;
     width: 160px !important;
     padding-top: 12px !important;
-    font-size: 13px;
+    font-size: 13px !important;
 }
 
 .contactsHeaderRightButtonLeft {

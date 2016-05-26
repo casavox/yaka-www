@@ -1,0 +1,15 @@
+.proErrorMessage {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.projectImageTooltip .tooltip-inner {
+    background: #03a9f4 !important;
+    color: white !important;
+    word-wrap: break-word !important;
+}
+
+.projectImageTooltip .tooltip-arrow {
+    border-top-color: #03a9f4 !important;
+}

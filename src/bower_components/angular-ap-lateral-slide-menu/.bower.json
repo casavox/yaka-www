@@ -1,0 +1,43 @@
+{
+  "name": "angular-ap-lateral-slide-menu",
+  "description": "AngularJS Lateral slide Menu",
+  "homepage": "https://github.com/autreplanete/angular-ap-lateral-slide-menu",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-animate": "~1.2.x",
+    "angular-touch": "~1.2.x",
+    "angular-sanitize": "~1.2.x"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.2.x"
+  },
+  "authors": [
+    "Thierry Charbonnel <thierry@creationflux.com>"
+  ],
+  "main": "build/angular-ap-lateral-slide-menu.js",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "autrePlanete",
+    "menu",
+    "slide",
+    "lateral"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0aa84601ea",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0aa84601eaf106b54f887a1dd0b5a7fa139c690d"
+  },
+  "_source": "https://github.com/autreplanete/angular-ap-lateral-slide-menu.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/autreplanete/angular-ap-lateral-slide-menu.git"
+}

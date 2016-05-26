@@ -385,5 +385,14 @@
         vm.initHours();
         if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
             networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
+
+        vm.getClUrlThumbnail = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true, width: 200, height: 200, crop: 'fill'});
+        };
+
+        vm.getClUrl = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true});
+        };
+
     }
 })();
