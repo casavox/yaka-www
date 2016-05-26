@@ -469,16 +469,23 @@
 
         function updateVerifications() {
             vm.verifications = vm.verifications || [];
-            if (vm.verifications.length < 4) {
-                vm.error.verif.message = "All is mandatory.";
-                vm.error.verif.flag = true;
-            }
-            else {
+            if (vm.verifications.filter(function (obj) {
+                    return obj.name === 'BUSINESS_REGISTRATION';
+                })[0]
+                &&
+                vm.verifications.filter(function (obj) {
+                    return obj.name === 'INSURANCE';
+                })[0]
+            ) {
                 vm.error.verif.flag = false;
                 networkService.proVerificationsPUT(vm.verifications, function (res) {
                     vm.verifications = res;
                     alertMsg.send("Verifications updated.", "success");
                 }, errorProfilePUT);
+            } else {
+                vm.error.verif.message = "Merci de fournir un scan de votre KBIS et certificat d'assurance, " +
+                    "une fois que nous les aurons vérifié, vous répondre à toutes les offres.";
+                vm.error.verif.flag = true;
             }
         }
 

@@ -214,7 +214,7 @@
                                         Extrait KBIS / SIRET
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*, pdf'" ngf-max-size="5MB"
+                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
                                        ng-click="vm.setVerif('BUSINESS_REGISTRATION')"><p>
                                         <span
                                             ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">Add</span>
@@ -235,7 +235,7 @@
                                         Assurance
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*, pdf'" ngf-max-size="5MB"
+                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
                                        ng-click="vm.setVerif('INSURANCE')"><p>
                                         <span
                                             ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">Add</span>
@@ -257,7 +257,7 @@
                                         Attestation RGE
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*, pdf'" ngf-max-size="5MB" ng-click="vm.setVerif('RGE')"><p>
+                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB" ng-click="vm.setVerif('RGE')"><p>
                                         <span
                                             ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
                                         <span ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
@@ -276,7 +276,7 @@
                                         Main partner (EDF, Leroy Merlin, ...)
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*, pdf'" ngf-max-size="5MB" ng-click="vm.setVerif('PARTNER')">
+                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB" ng-click="vm.setVerif('PARTNER')">
                                         <p>
                                             <span
                                                 ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Add</span>
