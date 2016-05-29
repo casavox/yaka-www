@@ -10,10 +10,11 @@ materialAdmin
         return {
             restrict: 'C',
             link: function (scope, element) {
+
                 if ($('.fg-line')[0]) {
                     $('body').on('focus', '.form-control', function () {
                         $(this).closest('.fg-line').addClass('fg-toggled');
-                    })
+                    });
 
                     $('body').on('blur', '.form-control', function () {
                         var p = $(this).closest('.form-group');
@@ -30,9 +31,17 @@ materialAdmin
                     });
                 }
 
+                scope.$watch(function () {
+                    return element.closest('.form-group').find('.form-control').val();
+                }, function (newValue, oldValue) {
+                    if (newValue) {
+                        element.closest('.fg-line').addClass('fg-toggled');
+                    } else {
+                        element.closest('.fg-line').removeClass('fg-toggled');
+                    }
+                });
             }
         }
-
     })
 
 

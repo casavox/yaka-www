@@ -164,7 +164,7 @@
                     vous recommande à ses amis pour leurs futurs travaux
                 </div>
             </div>
-            <div id="registerForm" class="col-xs-12 col-sm-6 col-md-5 proHomeSection2RegisterForm">
+            <div id="registerForm" class="col-xs-12 col-sm-6 col-md-5 proHomeSection2RegisterForm oldFormControl">
 
                 <div class="col-xs-12 proHomeSection2RegisterFormTitle">
                     Inscription gratuite
@@ -364,7 +364,7 @@
             <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
                  ng-click="vm.closePopup()" alt=""/>
 
-            <div ng-if="!vm.noSocialAccountMessage">
+            <div class="oldFormControl" ng-if="!vm.noSocialAccountMessage">
                 <div class="loginPopupTabItem loginPopupTabItemActivePro col-xs-12">
                     CONNEXION
                 </div>
@@ -416,7 +416,7 @@
             <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
                  ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
 
-            <div ng-if="!vm.passwordForgottenMessageSent">
+            <div class="oldFormControl" ng-if="!vm.passwordForgottenMessageSent">
 
                 <input class="form-control" type="email" placeholder="Email du compte à récupérer"
                        ng-model="vm.forgottenPasswordUser.email"/>

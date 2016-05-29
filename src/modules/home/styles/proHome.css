@@ -447,7 +447,7 @@
     float: right !important;
 }
 
-.form-control {
+.oldFormControl .form-control {
     margin-top: 15px !important;
     height: 40px !important;
     float: left;

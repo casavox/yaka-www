@@ -89,77 +89,104 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <md-input-container class="md-block" flex-gt-sm="">
-                                        <label>First name</label>
-                                        <input ng-model="vm.profileInfo.user.firstName"
-                                               ng-class="{'border-red': !vm.profileInfo.user.firstName}">
-                                    </md-input-container>
-                                    <md-input-container class="md-block" flex-gt-sm="">
-                                        <label>Last name</label>
-                                        <input ng-model="vm.profileInfo.user.lastName"
-                                               ng-class="{'border-red': !vm.profileInfo.user.lastName}">
-                                    </md-input-container>
+
+                                    <div class="form-group fg-float m-b-30"
+                                         ng-class="{'has-error': !vm.profileInfo.user.firstName}">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control fg-input"
+                                                   ng-model="vm.profileInfo.user.firstName">
+                                            <label class="fg-label">Prénom</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group fg-float m-b-30"
+                                         ng-class="{'has-error': !vm.profileInfo.user.lastName}">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control fg-input"
+                                                   ng-model="vm.profileInfo.user.lastName">
+                                            <label class="fg-label">Nom</label>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Mobile phone</label>
-                                <input type="text" international-phone-number ng-model="vm.profileInfo.phoneNumber"
-                                       ng-class="{'border-red': !vm.profileInfo.phoneNumber}" default-country="fr"
-                                       preferred-countries="fr, en" utilsScript="''" autoFormat="true">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Email</label>
-                                <input ng-model="vm.profileInfo.user.email"
-                                       ng-class="{'border-red': !vm.profileInfo.user.email}">
-                            </md-input-container>
-                            <md-input-container style="width:100%">
-                                <label>First year of experience</label>
-                                <md-select ng-model="vm.profileInfo.activityStartedYear"
-                                           ng-class="{'border-red': !vm.profileInfo.activityStartedYear}">
-                                    <md-option ng-repeat="year in vm.years |  orderBy:'-toString()'" value="{{year}}">
-                                        {{year}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Company name</label>
-                                <input ng-model="vm.profileInfo.company.name"
-                                       ng-class="{'border-red': !vm.profileInfo.company.name}">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>SIRET</label>
-                                <input siret-validate ng-model="vm.profileInfo.company.siret"
-                                       ng-class="{'border-red': !vm.profileInfo.company.siret}">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Company address</label>
-                                <input vs-google-autocomplete="options"
-                                       options="options"
-                                       ng-model="vm.profileInfo.company.address.address"
-                                       vs-place="address.place"
-                                       vs-place-id="address.components.placeId"
-                                       vs-street-number="address.components.streetNumber"
-                                       vs-street="address.components.street"
-                                       vs-city="address.components.city"
-                                       vs-state="address.components.state"
-                                       vs-country-short="address.components.countryCode"
-                                       vs-country="address.components.country"
-                                       vs-post-code="address.components.postCode"
-                                       vs-district="address.components.district"
-                                       vs-latitude="address.components.location.lat"
-                                       vs-longitude="address.components.location.long"
 
-                                       type="text"
-                                       name="address"
-                                       id="address"
-                                       ng-class="{'border-red': !vm.profileInfo.company.address.address}">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Company phone</label>
-                                <input type="text" international-phone-number ng-model="vm.profileInfo.company.phone"
-                                       ng-class="{'border-red': !vm.profileInfo.company.phone}" default-country="fr"
-                                       preferred-countries="fr, en">
-                            </md-input-container>
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                                <div class="fg-line">
+                                    <input international-phone-number default-country="fr"
+                                           preferred-countries="fr" type="text" class="form-control fg-input"
+                                           ng-model="vm.profileInfo.phoneNumber">
+                                    <label class="fg-label">Téléphone</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float"
+                                 ng-class="{'has-error': !vm.profileInfo.user.email}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input"
+                                           ng-model="vm.profileInfo.user.email">
+                                    <label class="fg-label">Email</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
+                                <div class="fg-line">
+                                    <div class="select">
+                                        <select ng-model="vm.profileInfo.activityStartedYear"
+                                                class="form-control">
+                                            <option value="" disabled selected>Première année d'expérience</option>
+                                            <option ng-repeat="year in vm.years | orderBy:'-toString()'"
+                                                    value="{{year}}">
+                                                {{year}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.company.name}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input"
+                                           ng-model="vm.profileInfo.company.name">
+                                    <label class="fg-label">Nom de l'entreprise</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.company.siret}">
+                                <div class="fg-line">
+                                    <input siret-validate type="text" class="form-control fg-input"
+                                           ng-model="vm.profileInfo.company.siret">
+                                    <label class="fg-label">SIRET</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.company.address.address}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input"
+                                           vs-google-autocomplete="options"
+                                           ng-model="vm.profileInfo.company.address.address"
+                                           type="text"
+                                           name="address"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Addresse de l'entreprise</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.company.phone}">
+                                <div class="fg-line">
+                                    <input international-phone-number default-country="fr"
+                                           preferred-countries="fr" type="text" class="form-control fg-input"
+                                           ng-model="vm.profileInfo.company.phone">
+                                    <label class="fg-label">Téléphone</label>
+                                </div>
+                            </div>
+
                             <p class="error center" ng-show="vm.error.profile.flag">
                                 {{vm.error.profile.message}}
                             </p>
@@ -257,7 +284,8 @@
                                         Attestation RGE
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB" ng-click="vm.setVerif('RGE')"><p>
+                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                                       ng-click="vm.setVerif('RGE')"><p>
                                         <span
                                             ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
                                         <span ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
@@ -276,7 +304,8 @@
                                         Main partner (EDF, Leroy Merlin, ...)
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB" ng-click="vm.setVerif('PARTNER')">
+                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                                       ng-click="vm.setVerif('PARTNER')">
                                         <p>
                                             <span
                                                 ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Add</span>

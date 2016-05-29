@@ -430,11 +430,11 @@
             angular.forEach(vm.profileInfo, function (value, key) {
                 if (angular.isUndefined(value) || !value)
                     f = true;
-            })
+            });
             angular.forEach(vm.profileInfo.company, function (value, key) {
                 if (angular.isUndefined(value) || !value)
                     f = true;
-            })
+            });
             if (!f) {
                 vm.error.profile.flag = false;
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
@@ -446,7 +446,6 @@
                 vm.error.profile.message = "All is mandatory.";
                 vm.error.profile.flag = true;
             }
-
         }
 
         function updatePortfolio() {
@@ -555,9 +554,10 @@
         }
 
         function succesProfileGET(res) {
+            console.log(res);
             vm.profile = res;
             vm.profileInfo = {
-                phoneNumber: angular.copy(vm.phoneNumber),
+                phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
                 company: angular.copy(vm.profile.company),

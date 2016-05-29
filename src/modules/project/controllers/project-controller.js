@@ -636,7 +636,6 @@
         };
 
         vm.saveComment = function () {
-            console.log("saveComment");
             $('html').trigger('click');
         };
 

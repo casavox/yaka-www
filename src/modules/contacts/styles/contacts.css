@@ -18,15 +18,18 @@
 
 .avatarInitials {
     font-family: 'raleway_medium', Arial, sans-serif;
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     right: 142px;
     top: 7px;
     position: absolute;
-    margin: 0;
-    font-size: 14px;
-    line-height: 40px;
-    letter-spacing: -0.4px;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px !important;
+    line-height: 40px !important;
+    margin-right: 0 !important;
+    letter-spacing: -0.4px !important;
 }
 
 .titleYakaClub {
