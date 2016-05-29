@@ -371,11 +371,12 @@
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
-                        var res = null;
-                        if ((res = indexOfObject(vm.verifTmp, 'name', vm.verifications)).length > 0)
-                            for (var i = 0; i < res.length; i++) {
-                                vm.verifications.slice(res[i], 1);
-                            }
+                        if (vm.verifications.length > 0 && vm.verifTmp.name) {
+                            var removeExistingVerificationIndex = vm.verifications.map(function (v) {
+                                return v.name;
+                            }).indexOf(vm.verifTmp.name);
+                            ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
+                        }
                         vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         alertMsg.send("Error : Upload failed.", "danger");
