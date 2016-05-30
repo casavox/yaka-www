@@ -145,7 +145,7 @@
                                          ng-repeat="image in vm.projectTmp.images">
                                         <div class="lightbox-item p-item">
                                             <img
-                                                src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
                                                 alt=""/>
                                         </div>
                                         <div id="caption{{$index}}" style="display:none">
@@ -165,7 +165,7 @@
                                             <img
                                                 tooltip-placement="top"
                                                 uib-tooltip="{{image.description}}"
-                                                src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
                                                 alt=""/>
                                         </div>
 

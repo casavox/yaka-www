@@ -15,6 +15,8 @@
 
         var vm = this;
 
+        vm.updating = false;
+
         vm.profileInfo = {};
         vm.workArea = {};
         vm.aboutMe = "";
@@ -250,7 +252,7 @@
             };
             vm.circle.radius = vm.workArea.radius;
             vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
-        };
+        }
 
         networkService.professionalGET(succesProfileGET, errorProfileGET);
         networkService.skillsGET(succeSkillsGET, errorSkillsGET);
@@ -268,12 +270,16 @@
                     currentPassword: vm.pwdCurrent,
                     newPassword: vm.pwd1
                 };
-                if (vm.pwd2 === vm.pwd1)
+                if (vm.pwd2 === vm.pwd1) {
+                    vm.updating = true;
                     networkService.changePassword(formData, function (res) {
                         alertMsg.send("Password updated.", "success");
+                        vm.updating = false;
                     }, function (res) {
+                        vm.updating = false;
                         alertMsg.send("Error password not changed", "danger");
                     });
+                }
                 else {
                     vm.error.password.message = "Password not confirmed.";
                     vm.error.password.flag = true;
@@ -320,6 +326,7 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -332,11 +339,13 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
+                        vm.updating = false;
                         vm.portfolio = vm.portfolio || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         vm.portfolio.push({cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
+                        vm.updating = false;
                         alertMsg.send("Error : Upload failed.", "danger");
                     });
                 }
@@ -356,6 +365,7 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -368,6 +378,7 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
+                        vm.updating = false;
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
@@ -379,11 +390,12 @@
                         }
                         vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
+                        vm.updating = false;
                         alertMsg.send("Error : Upload failed.", "danger");
                     });
                 }
             });
-        };
+        }
 
         function uploadProfile(files, invalides, index) {
             if (invalides.length > 0) {
@@ -394,6 +406,7 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    vm.updating = false;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -406,12 +419,14 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
+                        vm.updating = true;
                         vm.profileInfo.avatar = vm.profileInfo.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         var res = null;
                         vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
                     }).error(function (data, status, headers, config) {
+                        vm.updating = false;
                         alertMsg.send("Error : Upload failed.", "danger");
                     });
                 }
@@ -442,37 +457,52 @@
             }
             if (!f) {
                 vm.error.profile.flag = false;
+                vm.updating = true;
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
+                    vm.updating = false;
                     vm.profileInfo = res;
-                    vm.profile = res;
-                    alertMsg.send("Profile updated.", "success");
+                    vm.profile.user.firstName = res.user.firstName;
+                    vm.profile.user.lastName = res.user.lastName;
+                    vm.profile.phoneNumber = res.phoneNumber;
+                    vm.profile.user.email = res.user.email;
+                    vm.profile.activityStartedYear = res.activityStartedYear;
+                    vm.profile.company.name = res.company.name;
+                    vm.profile.company.siret = res.company.siret;
+                    vm.profile.company.address = angular.copy(res.company.address);
+                    vm.profile.company.phone = res.company.phone;
+                    alertMsg.send("Profil mis à jour avec succès", "success");
                 }, errorProfilePUT);
             }
             else {
-                vm.error.profile.message = "Vous devez remplir tous les champs";
-                vm.error.profile.flag = true;
+                alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
             }
         }
 
         function updatePortfolio() {
+            vm.updating = true;
             networkService.proPortfolioPUT(vm.portfolio, function (res) {
                 vm.portfolio = res;
                 vm.profile.portfolio = res;
                 vm.editFlag = false;
+                vm.updating = false;
                 alertMsg.send("Portfolio updated.", "success");
             }, errorProfilePUT);
         }
 
         function updateWorkArea() {
+            vm.updating = true;
             networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT);
         }
 
         function updateAboutMe() {
+            vm.updating = true;
             networkService.proAboutMePUT(vm.about, function (res) {
                 vm.about = angular.copy(res);
                 vm.profile.aboutMe = res.aboutMe;
+                vm.updating = false;
                 alertMsg.send("Description enregistrée avec succès", "success");
             }, function () {
+                vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
             });
         }
@@ -488,9 +518,11 @@
                 })[0]
             ) {
                 vm.error.verif.flag = false;
+                vm.updating = true;
                 networkService.proVerificationsPUT(vm.verifications, function (res) {
                     vm.verifications = res;
                     vm.profile.verifications = res;
+                    vm.updating = false;
                     alertMsg.send("Verifications updated.", "success");
                 }, errorProfilePUT);
             } else {
@@ -503,9 +535,11 @@
         function updateActivities() {
             if (vm.activities.length > 0) {
                 vm.error.activities.flag = false;
+                vm.updating = true;
                 networkService.proActivitiesPUT(vm.activities, function (res) {
                     vm.activities = res;
                     vm.profile.activities = res;
+                    vm.updating = false;
                     alertMsg.send("Activities updated.", "success");
                 }, errorProfilePUT);
             }
@@ -551,19 +585,23 @@
 
         function succesProfilePUT(res) {
             succesProfileGET(res);
+            vm.updating = false;
             alertMsg.send("Profile updated.", "success");
         }
 
         function errorProfilePUT() {
+            vm.updating = false;
             alertMsg.send("Profile not updated.", "danger");
         }
 
         function succesWorkareaPUT(res) {
             vm.mapEditing = false;
+            vm.updating = false;
             alertMsg.send("Profile updated.", "success");
         }
 
         function errorWorkareaPUT() {
+            vm.updating = false;
             alertMsg.send("Profile not updated.", "danger");
         }
 
@@ -673,7 +711,7 @@
         };
 
         vm.showButtonsWorkArea = function () {
-            return false;
+            return vm.mapEditing;
         };
 
         vm.showButtonsPortfolio = function () {

@@ -1,8 +1,9 @@
 ###global _:true, angular:true, google:true ###
-do ->
-  capitalize = (s) ->
-    return s[0].toUpperCase() + s.slice(1)
+capitalize = (s) ->
+  return s[0].toUpperCase() + s.slice(1)
 
+angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
+.factory('GoogleApiMock', ->
   class MapObject
     getMap: =>
       @map
@@ -478,10 +479,5 @@ do ->
     getPolyline: getPolyline
     getMVCArray: getMVCArray
     getLatLng: getLatLng
-
-  (new GoogleApiMock()).initAll()
-  
-  angular.module('uiGmapgoogle-maps.mocks', ['uiGmapgoogle-maps'])
-  .factory('GoogleApiMock', ->
-    GoogleApiMock
-  )
+  GoogleApiMock
+)

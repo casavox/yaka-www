@@ -196,7 +196,7 @@
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.showProfileEditPopup = true"
-                                        ng-disabled="!vm.showButtonsProfile()">
+                                        ng-disabled="vm.updating || !vm.showButtonsProfile()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
@@ -225,7 +225,7 @@
                             <div class="profile-box-footer">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect" ng-click="vm.updateAboutMe()"
-                                        ng-disabled="!vm.showButtonsAbout()">
+                                        ng-disabled="vm.updating || !vm.showButtonsAbout()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect" ng-click="vm.cancelAboutMe()"
@@ -336,7 +336,7 @@
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.showVerificationsEditPopup = true"
-                                        ng-disabled="!vm.showButtonsVerifications()">
+                                        ng-disabled="vm.updating || !vm.showButtonsVerifications()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect" ng-click="vm.cancelVerifications()"
@@ -386,7 +386,7 @@
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.changePassword()"
-                                        ng-disabled="!vm.showButtonsNewPassword()">
+                                        ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                                     Enregistrer
                                 </button>
 
@@ -430,11 +430,11 @@
                                     Area diameter : {{vm.workareaDiameter}} km
                                 </div>
                             </div>
-                            <div class="profile-box-footer">
+                            <div class="profile-box-footer m-t-15">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.updateWorkArea()"
-                                        ng-disabled="!vm.showButtonsWorkArea()">
+                                        ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect" ng-click="vm.cancelWorkArea()"
@@ -463,7 +463,7 @@
                                          ng-repeat="image in vm.portfolio">
                                         <div class="lightbox-item p-item">
                                             <img
-                                                src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
                                                 alt=""/>
                                         </div>
                                         <div id="caption{{$index}}" style="display:none">
@@ -483,7 +483,7 @@
                                             <img
                                                 tooltip-placement="top"
                                                 uib-tooltip="{{image.description}}"
-                                                src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
                                                 alt=""/>
                                         </div>
 
@@ -539,7 +539,8 @@
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.updatePortfolio()"
-                                        ng-if="vm.editFlag && vm.showButtonsPortfolio()">
+                                        ng-if="vm.editFlag && vm.showButtonsPortfolio()"
+                                        ng-disabled="vm.updating">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect"
@@ -592,7 +593,7 @@
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.updateActivities()"
-                                        ng-disabled="!vm.showButtonsActivities()">
+                                        ng-disabled="vm.updating || !vm.showButtonsActivities()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect"
