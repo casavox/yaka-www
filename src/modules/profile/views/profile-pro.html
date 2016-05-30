@@ -452,31 +452,109 @@
                             </p>
 
                             <div class="row cl">
-                                <div class="col-md-3" ng-repeat="pict in vm.portfolio" title="{{pict.description}}">
-                                    <cl-image public-id="{{pict.cloudinaryPublicId}}"
-                                              secure="true" format="png" class="center">
-                                        <cl-transformation height="92" width="92" crop="fill"/>
-                                    </cl-image>
+
+
+                                <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                                    <div data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
+                                         data-sub-html="#caption{{$index}}"
+                                         class="lightboxItemAngular col-xs-6 col-sm-3 col-md-3"
+                                         tooltip-placement="top"
+                                         uib-tooltip="{{image.description}}"
+                                         ng-repeat="image in vm.portfolio">
+                                        <div class="lightbox-item p-item">
+                                            <img
+                                                src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                alt=""/>
+                                        </div>
+                                        <div id="caption{{$index}}" style="display:none">
+                                            <div class="galleryCaption">
+                                                <p>{{image.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-3 no-padding"
+
+                                <!--Editing mode-->
+
+                                <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
+                                    <div class="galleryEditingItem col-xs-6 col-sm-3 col-md-3"
+                                         ng-repeat="image in vm.portfolio">
+                                        <div class="lightbox-item p-item projectImageTooltip">
+                                            <img
+                                                tooltip-placement="top"
+                                                uib-tooltip="{{image.description}}"
+                                                src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                alt=""/>
+                                        </div>
+
+                                        <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                                            <button uib-dropdown-toggle class="btn bgm-lightblue btn-float">
+                                                <i class="zmdi zmdi-comment-text-alt"></i>
+                                            </button>
+
+                                            <div class="dropdown-menu stop-propagate">
+                                                <textarea placeholder="Ajouter un commentaire"
+                                                          ng-model="image.description"
+                                                          ng-maxlength="140"
+                                                          maxlength="140"
+                                                          data-auto-size
+                                                          ng-trim="false"
+                                                          ng-change="vm.descriptionChanged(image)"></textarea>
+
+                                                <div class="descriptionCounter">
+                                                    {{vm.getStringLength(image.description)}} / 140 caractères
+                                                </div>
+
+                                                <button class="btn bgm-lightblue btn-float"
+                                                        data-tl-action="save"
+                                                        ng-click="vm.saveComment();">
+                                                    <i class="zmdi zmdi-check"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <button class="floatingButton btn btn-danger btn-float"
+                                                ng-click="vm.removeImage($index)">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 no-padding"
                                      ngf-drop="vm.uploadPortfolio($files)"
                                      ngf-drag-over-class="dragOverClass($event)"
                                      ng-model="files"
-                                     ng-multiple="false" ng-if="vm.portfolio.length < 10 || !vm.portfolio">
-                                    <div class="add-img-edit center "
+                                     ng-multiple="false" ng-if="vm.portfolio.length < 10 && vm.editFlag">
+                                    <div class="galleryUpload lightbox-item p-item"
                                          ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
                                          ngf-accept="'image/*'" ngf-max-size="5MB">
-                                        <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""/>
+                                        <div class="content">
+                                            <i class="zmdi zmdi-plus-circle-o"></i>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.updatePortfolio()">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelPortfolio()">
-                                    Cancel
-                                </div>
+                            <div class="profile-box-footer m-t-15">
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.updatePortfolio()"
+                                        ng-if="vm.editFlag && vm.showButtonsPortfolio()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect"
+                                        ng-click="vm.cancelPortfolio()"
+                                        ng-if="vm.editFlag">
+                                    Annuler
+                                </button>
+
+                                <button class="btn btn-info bgm-lightblue btn-icon-text waves-effect"
+                                        ng-if="!vm.editFlag"
+                                        ng-click="vm.editFlag = true">
+                                    <i class="zmdi zmdi-edit"></i>
+                                    Modifier
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -511,12 +589,18 @@
                             </p>
 
                             <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.updateActivities()">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelActivities()">
-                                    Cancel
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.updateActivities()"
+                                        ng-disabled="!vm.showButtonsActivities()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect"
+                                        ng-click="vm.cancelActivities()"
+                                        ng-disabled="!vm.showButtonsActivities()">
+                                    Annuler
+                                </button>
+
                             </div>
                         </div>
                     </div>

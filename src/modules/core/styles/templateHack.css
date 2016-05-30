@@ -48,7 +48,7 @@
     position: absolute;
     width: calc(100% - 6px);
     height: calc(100% - 6px);
-    padding-top: calc(50% - 25px);
+    padding-top: calc(50% - 35px);
 }
 
 .galleryUpload::before {

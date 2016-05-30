@@ -457,6 +457,8 @@
         function updatePortfolio() {
             networkService.proPortfolioPUT(vm.portfolio, function (res) {
                 vm.portfolio = res;
+                vm.profile.portfolio = res;
+                vm.editFlag = false;
                 alertMsg.send("Portfolio updated.", "success");
             }, errorProfilePUT);
         }
@@ -493,7 +495,7 @@
                 }, errorProfilePUT);
             } else {
                 vm.error.verif.message = "Merci de fournir un scan de votre KBIS et certificat d'assurance, " +
-                    "une fois que nous les aurons vérifié, vous répondre à toutes les offres.";
+                    "une fois que nous les aurons vérifié, vous pourrez répondre à toutes les offres.";
                 vm.error.verif.flag = true;
             }
         }
@@ -503,6 +505,7 @@
                 vm.error.activities.flag = false;
                 networkService.proActivitiesPUT(vm.activities, function (res) {
                     vm.activities = res;
+                    vm.profile.activities = res;
                     alertMsg.send("Activities updated.", "success");
                 }, errorProfilePUT);
             }
@@ -525,6 +528,7 @@
 
         function cancelPortfolio() {
             vm.portfolio = angular.copy(vm.profile.portfolio);
+            vm.editFlag = false;
         }
 
         function cancelWorkArea() {
@@ -669,7 +673,117 @@
         };
 
         vm.showButtonsWorkArea = function () {
+            return false;
+        };
 
+        vm.showButtonsPortfolio = function () {
+            if (!vm.profile) {
+                return false;
+            }
+
+            if (!vm.portfolio) {
+                vm.portfolio = [];
+            }
+
+            if (!vm.profile.portfolio) {
+                vm.profile.portfolio = [];
+            }
+
+            if (vm.portfolio.length != vm.profile.portfolio.length) {
+                return true;
+            }
+
+            for (var i = 0; i < vm.portfolio.length; i++) {
+                if (!vm.portfolio[i].description) {
+                    vm.portfolio[i].description = "";
+                }
+                if (!vm.profile.portfolio[i].description) {
+                    vm.profile.portfolio[i].description = "";
+                }
+                if (vm.portfolio[i].description != vm.profile.portfolio[i].description ||
+                    vm.portfolio[i].cloudinaryPublicId != vm.profile.portfolio[i].cloudinaryPublicId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        vm.editFlag = false;
+
+        vm.getClUrlThumbnail = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true, width: 200, height: 200, crop: 'fill'});
+        };
+
+        vm.getClUrl = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true});
+        };
+
+        vm.saveComment = function () {
+            $('html').trigger('click');
+        };
+
+        vm.descriptionChanged = function (image) {
+            image.description = image.description.replace(/\n/g, ' ');
+            if (image.length > 140) {
+                image = image.substring(0, 140);
+            }
+        };
+
+        vm.removeImage = function (imageIndex) {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Voulez-vous vraiment supprimer cette image ?",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui, je veux la supprimer",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    vm.portfolio.splice(imageIndex, 1);
+                    $scope.$applyAsync();
+                }
+            });
+        };
+
+        vm.getStringLength = function (str) {
+            if (!str) {
+                return 0;
+            }
+            return str.length;
+        };
+
+        vm.showButtonsActivities = function () {
+
+            if (!vm.profile) {
+                return false;
+            }
+
+            if (!vm.activities) {
+                vm.activities = [];
+            }
+
+            if (!vm.profile.activities) {
+                vm.profile.activities = [];
+            }
+
+            if (vm.activities.length != vm.profile.activities.length) {
+                return true;
+            }
+
+            for (var i = 0; i < vm.activities.length; i++) {
+                if (!vm.portfolio[i].description) {
+                    vm.portfolio[i].description = "";
+                }
+                if (!vm.profile.portfolio[i].description) {
+                    vm.profile.portfolio[i].description = "";
+                }
+                if (vm.portfolio[i].description != vm.profile.portfolio[i].description ||
+                    vm.portfolio[i].cloudinaryPublicId != vm.profile.portfolio[i].cloudinaryPublicId) {
+                    return true;
+                }
+            }
+            return false;
         };
 
     }
