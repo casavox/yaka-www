@@ -82,13 +82,13 @@
                         <p class="pro-title-post">
                             Post <span am-time-ago="vm.project.updated"></span>
                         </p>
-                        <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}"
+                        <cl-image public-id="{{vm.proposal.professional.user.avatar.cloudinaryPublicId}}"
                                   class="img-circle pro-icon-medium mt-20 fl-l ml-15" format="png"
-                                  ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
+                                  ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId">
                             <cl-transformation height="70" width="70" crop="fill"/>
                         </cl-image>
                         <div class="img-default-medium mt-20 fl-l ml-15"
-                             ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
+                             ng-if="!vm.proposal.professional.user.avatar.cloudinaryPublicId">
                             {{vm.proposal.professional.user.firstName[0] | uppercase}}
                             {{vm.proposal.professional.user.lastName[0] | uppercase}}
                         </div>

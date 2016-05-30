@@ -22,9 +22,9 @@
                 <div class="inbox-message"
                      ng-repeat="message in vm.messages.items | orderBy : 'created'  | unique: 'id'">
                     <div class="inbox-pict-profile" ng-class="{'inbox-pict-profile-right': message.author == vm.me}">
-                        <cl-image public-id="{{vm.pro.avatar.cloudinaryPublicId}}" secure="true" format="png"
+                        <cl-image public-id="{{vm.pro.user.avatar.cloudinaryPublicId}}" secure="true" format="png"
                                   class="img-circle"
-                                  ng-if="message.author == 'PRO' && vm.pro.avatar.cloudinaryPublicId"
+                                  ng-if="message.author == 'PRO' && vm.pro.user.avatar.cloudinaryPublicId"
                                   class="inbox-pict">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
@@ -33,7 +33,7 @@
                              ng-if="message.author == 'AUTO' || message.author == 'YAKA'"/>
 
                         <div class="img-back img-circle"
-                             ng-if="(message.author == 'PRO' && !vm.pro.avatar.cloudinaryPublicId) || (message.author ==  'CUSTOMER' && !vm.me.avatar.cloudinaryPublicId)">
+                             ng-if="(message.author == 'PRO' && !vm.pro.user.avatar.cloudinaryPublicId) || (message.author ==  'CUSTOMER' && !vm.me.avatar.cloudinaryPublicId)">
 
                         </div>
                     </div>

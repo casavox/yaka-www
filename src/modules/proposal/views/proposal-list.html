@@ -52,12 +52,12 @@
                         <div class="row no-margin no-padding">
                             <div class="col-xs-12 row">
                                 <div class="proposals-profile-pict">
-                                    <cl-image public-id="{{p.professional.avatar.cloudinaryPublicId}}"
+                                    <cl-image public-id="{{p.professional.user.avatar.cloudinaryPublicId}}"
                                               secure="true"
                                               class="img-circle" format="png">
                                         <cl-transformation height="70" width="70" crop="fill"/>
                                     </cl-image>
-                                    <div class="img-default" ng-if="!p.professional.avatar.cloudinaryPublicId">
+                                    <div class="img-default" ng-if="!p.professional.user.avatar.cloudinaryPublicId">
                                         {{p.professional.user.firstName[0] | uppercase}} {{p.professional.user.lastName[0] |
                                         uppercase}}
                                     </div>

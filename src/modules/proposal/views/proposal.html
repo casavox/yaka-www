@@ -70,12 +70,12 @@
                         </div>
                     </div>
                     <div class="proposal-offers-expend">
-                        <cl-image public-id="{{vm.proposal.professional.avatar.cloudinaryPublicId}}"
+                        <cl-image public-id="{{vm.proposal.professional.user.avatar.cloudinaryPublicId}}"
                                   class="f-l proposal-icon img-circle" format="png"
-                                  ng-if="vm.proposal.professional.avatar.cloudinaryPublicId">
+                                  ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId">
                             <cl-transformation height="70" width="70" crop="fill"/>
                         </cl-image>
-                        <div class="img-default fl" ng-if="!vm.proposal.professional.avatar.cloudinaryPublicId">
+                        <div class="img-default fl" ng-if="!vm.proposal.professional.user.avatar.cloudinaryPublicId">
                             {{vm.proposal.professional.user.firstName[0] | uppercase}}
                             {{vm.proposal.professional.user.lastName[0]
                             | uppercase}}

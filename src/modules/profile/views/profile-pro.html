@@ -68,16 +68,16 @@
                             </p>
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-xs-3">
                                     <div class="img-profile">
-                                        <cl-image public-id="{{vm.profileInfo.avatar.cloudinaryPublicId}}"
+                                        <cl-image public-id="{{vm.profileInfo.user.avatar.cloudinaryPublicId}}"
                                                   secure="true" format="png"
                                                   class="img-circle center-middle pro-icon"
-                                                  ng-show="vm.profileInfo.avatar.cloudinaryPublicId">
+                                                  ng-show="vm.profileInfo.user.avatar.cloudinaryPublicId">
                                             <cl-transformation height="92" width="92" crop="fill"/>
                                         </cl-image>
                                         <div class="img-default center"
-                                             ng-show="!vm.profileInfo.avatar.cloudinaryPublicId">
+                                             ng-show="!vm.profileInfo.user.avatar.cloudinaryPublicId">
                                             {{vm.profileInfo.user.firstName[0] | uppercase}}
                                             {{vm.profileInfo.user.lastName[0] |
                                             uppercase}}
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-xs-9">
 
                                     <div class="form-group fg-float m-b-30"
                                          ng-class="{'has-error': !vm.profileInfo.user.firstName}">
@@ -524,7 +524,7 @@
                                      ngf-drop="vm.uploadPortfolio($files)"
                                      ngf-drag-over-class="dragOverClass($event)"
                                      ng-model="files"
-                                     ng-multiple="false" ng-if="vm.portfolio.length < 10 && vm.editFlag">
+                                     ng-multiple="false" ng-if="vm.portfolio.length < 8 && vm.editFlag">
                                     <div class="galleryUpload lightbox-item p-item"
                                          ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
                                          ngf-accept="'image/*'" ngf-max-size="5MB">

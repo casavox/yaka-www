@@ -63,12 +63,12 @@
                 <p class="rate-link text-center">
                     <a ng-click="viewProposal()" class="cursor-pointer">View details</a>
                 </p>
-                <cl-image public-id="{{project.professional.avatar.cloudinaryPublicId}}" class="img-circle center"
-                          format="png" ng-if="project.professional.avatar.cloudinaryPublicId">
+                <cl-image public-id="{{project.professional.user.avatar.cloudinaryPublicId}}" class="img-circle center"
+                          format="png" ng-if="project.professional.user.avatar.cloudinaryPublicId">
                     <cl-transformation height="80" width="80" crop="fill"/>
                 </cl-image>
                 <div class="img-default-preview center h-80 w-80"
-                     ng-if="!project.professional.avatar.cloudinaryPublicId">
+                     ng-if="!project.professional.user.avatar.cloudinaryPublicId">
                     {{project.professional.firstName[0] | uppercase}} {{project.professional.lastName[0] | uppercase}}
                 </div>
                 <p class="rate-info">

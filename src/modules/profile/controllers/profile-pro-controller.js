@@ -420,11 +420,11 @@
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
                         vm.updating = true;
-                        vm.profileInfo.avatar = vm.profileInfo.avatar || {};
+                        vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         var res = null;
-                        vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
+                        vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
                         alertMsg.send("Error : Upload failed.", "danger");
@@ -555,8 +555,7 @@
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
-                company: angular.copy(vm.profile.company),
-                avatar: angular.copy(vm.profile.avatar)
+                company: angular.copy(vm.profile.company)
             };
         }
 
@@ -611,8 +610,7 @@
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
-                company: angular.copy(vm.profile.company),
-                avatar: angular.copy(vm.profile.avatar)
+                company: angular.copy(vm.profile.company)
             };
             vm.workArea = angular.copy(vm.profile.workArea);
             vm.about = {aboutMe: angular.copy(vm.profile.aboutMe)};
