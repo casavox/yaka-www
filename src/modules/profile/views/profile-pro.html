@@ -137,6 +137,7 @@
                                                 class="form-control">
                                             <option value="" disabled selected>Première année d'expérience</option>
                                             <option ng-repeat="year in vm.years | orderBy:'-toString()'"
+                                                    ng-selected="vm.profileInfo.activityStartedYear == year"
                                                     value="{{year}}">
                                                 {{year}}
                                             </option>
@@ -192,12 +193,17 @@
                             </p>
 
                             <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.showProfileEditPopup = true">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelProfile()">
-                                    Cancel
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.showProfileEditPopup = true"
+                                        ng-disabled="!vm.showButtonsProfile()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
+                                        ng-disabled="!vm.showButtonsProfile()">
+                                    Annuler
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -206,20 +212,27 @@
                             <p>
                                 About me
                             </p>
-                            <md-input-container class="md-block h-a mb-0">
-                                <label></label>
-                                <textarea
-                                    placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan."
-                                    ng-model="vm.about.aboutMe" ng-class="{'border-red': !vm.about.aboutMe}"
-                                    md-select-on-focus></textarea>
-                            </md-input-container>
+
+                            <div class="form-group"
+                                 ng-class="{'has-error': !vm.about.aboutMe}">
+                                <div class="fg-line">
+                                    <textarea class="form-control" rows="5"
+                                              ng-model="vm.about.aboutMe"
+                                              placeholder="Décrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan."></textarea>
+                                </div>
+                            </div>
+
                             <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.updateAboutMe()">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelAboutMe()">
-                                    Cancel
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect" ng-click="vm.updateAboutMe()"
+                                        ng-disabled="!vm.showButtonsAbout()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect" ng-click="vm.cancelAboutMe()"
+                                        ng-disabled="!vm.showButtonsAbout()">
+                                    Annuler
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -288,7 +301,8 @@
                                        ng-click="vm.setVerif('RGE')"><p>
                                         <span
                                             ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
-                                        <span ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
+                                    <span
+                                        ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
                                     </p></a>
                                 </div>
                             </div>
@@ -319,12 +333,17 @@
                             </p>
 
                             <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.showVerificationsEditPopup = true">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelVerifications()">
-                                    Cancel
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.showVerificationsEditPopup = true"
+                                        ng-disabled="!vm.showButtonsVerifications()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect" ng-click="vm.cancelVerifications()"
+                                        ng-disabled="!vm.showButtonsVerifications()">
+                                    Annuler
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -333,26 +352,44 @@
                             <p>
                                 Change password
                             </p>
-                            <md-input-container class="md-block mt-10" flex-gt-sm="">
-                                <label>Current password</label>
-                                <input type="password" ng-model="vm.pwdCurrent">
-                            </md-input-container>
-                            <md-input-container class="md-block mt-10" flex-gt-sm="">
-                                <label>New password</label>
-                                <input type="password" ng-model="vm.pwd1">
-                            </md-input-container>
-                            <md-input-container class="md-block mt-10" flex-gt-sm="">
-                                <label>Confirm password</label>
-                                <input type="password" ng-model="vm.pwd2" ng-class="{'border-red': vm.pwd1 != vm.pwd2}">
-                            </md-input-container>
+
+                            <div class="form-group fg-float m-b-30">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input"
+                                           ng-model="vm.pwdCurrent">
+                                    <label class="fg-label">Mot de passe actuel</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input"
+                                           ng-model="vm.pwd1">
+                                    <label class="fg-label">Nouveau mot de passe</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': vm.pwd1 != vm.pwd2}">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input"
+                                           ng-model="vm.pwd2">
+                                    <label class="fg-label">Confirmation</label>
+                                </div>
+                            </div>
+
                             <p class="error center" ng-show="vm.error.password.flag">
                                 {{vm.error.password.message}}
                             </p>
 
                             <div class="profile-box-footer mt-12">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.changePassword()">
-                                    Save
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.changePassword()"
+                                        ng-disabled="!vm.showButtonsNewPassword()">
+                                    Enregistrer
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -394,12 +431,17 @@
                                 </div>
                             </div>
                             <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.updateWorkArea()">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelWorkArea()">
-                                    Cancel
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.updateWorkArea()"
+                                        ng-disabled="!vm.showButtonsWorkArea()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect" ng-click="vm.cancelWorkArea()"
+                                        ng-disabled="!vm.showButtonsWorkArea()">
+                                    Annuler
+                                </button>
+
                             </div>
                         </div>
                     </div>

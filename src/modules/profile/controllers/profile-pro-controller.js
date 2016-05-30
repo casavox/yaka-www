@@ -428,23 +428,28 @@
 
         function updateProfile() {
             var f = false;
-            angular.forEach(vm.profileInfo, function (value, key) {
-                if (angular.isUndefined(value) || !value)
-                    f = true;
-            });
-            angular.forEach(vm.profileInfo.company, function (value, key) {
-                if (angular.isUndefined(value) || !value)
-                    f = true;
-            });
+            if (!vm.profileInfo.user.firstName || //
+                !vm.profileInfo.user.lastName || //
+                !vm.profileInfo.phoneNumber || //
+                !vm.profileInfo.user.email || //
+                !vm.profileInfo.activityStartedYear || //
+                !vm.profileInfo.company.name || //
+                !vm.profileInfo.company.siret || //
+                !vm.profileInfo.company.address.address || //
+                !vm.profileInfo.company.phone) {
+
+                f = true;
+            }
             if (!f) {
                 vm.error.profile.flag = false;
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
                     vm.profileInfo = res;
+                    vm.profile = res;
                     alertMsg.send("Profile updated.", "success");
                 }, errorProfilePUT);
             }
             else {
-                vm.error.profile.message = "All is mandatory.";
+                vm.error.profile.message = "Vous devez remplir tous les champs";
                 vm.error.profile.flag = true;
             }
         }
@@ -463,8 +468,11 @@
         function updateAboutMe() {
             networkService.proAboutMePUT(vm.about, function (res) {
                 vm.about = angular.copy(res);
-                alertMsg.send("Description updated.", "success");
-            }, errorProfilePUT);
+                vm.profile.aboutMe = res.aboutMe;
+                alertMsg.send("Description enregistrée avec succès", "success");
+            }, function () {
+                alertMsg.send("Votre description est trop courte", "danger");
+            });
         }
 
         function updateVerifications() {
@@ -480,6 +488,7 @@
                 vm.error.verif.flag = false;
                 networkService.proVerificationsPUT(vm.verifications, function (res) {
                     vm.verifications = res;
+                    vm.profile.verifications = res;
                     alertMsg.send("Verifications updated.", "success");
                 }, errorProfilePUT);
             } else {
@@ -506,7 +515,7 @@
         function cancelProfile() {
             vm.error.profile.flag = false;
             vm.profileInfo = {
-                phoneNumber: angular.copy(vm.phoneNumber),
+                phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
                 company: angular.copy(vm.profile.company),
@@ -555,7 +564,6 @@
         }
 
         function succesProfileGET(res) {
-            console.log(res);
             vm.profile = res;
             vm.profileInfo = {
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
@@ -592,7 +600,77 @@
         vm.closePopup = function () {
             vm.showProfileEditPopup = false;
             vm.showVerificationsEditPopup = false;
-        }
+        };
+
+        vm.showButtonsAbout = function () {
+            if (!vm.about || !vm.profile) {
+                return false;
+            }
+            return vm.about.aboutMe != vm.profile.aboutMe;
+        };
+
+        vm.showButtonsProfile = function () {
+            if (!vm.profileInfo || //
+                !vm.profile || //
+                !vm.profile.user || //
+                !vm.profileInfo.company || //
+                !vm.profile.company || //
+                !vm.profileInfo.user || //
+                !vm.profile.user || //
+                !vm.profileInfo.company.address || //
+                !vm.profile.company.address) {
+                return false;
+            }
+
+            return (vm.profileInfo.user.firstName != vm.profile.user.firstName ||
+                vm.profileInfo.user.lastName != vm.profile.user.lastName ||
+                vm.profileInfo.phoneNumber != vm.profile.phoneNumber ||
+                vm.profileInfo.user.email != vm.profile.user.email ||
+                vm.profileInfo.activityStartedYear != vm.profile.activityStartedYear ||
+                vm.profileInfo.company.name != vm.profile.company.name ||
+                vm.profileInfo.company.siret != vm.profile.company.siret ||
+                vm.profileInfo.company.address.address != vm.profile.company.address.address ||
+                vm.profileInfo.company.phone != vm.profile.company.phone
+            );
+        };
+
+        vm.showButtonsVerifications = function () {
+            if (!vm.profile) {
+                return false;
+            }
+
+            if (!vm.verifications) {
+                vm.verifications = [];
+            }
+
+            if (!vm.profile.verifications) {
+                vm.profile.verifications = [];
+            }
+
+            if (vm.verifications.length != vm.profile.verifications.length) {
+                return true;
+            }
+
+            for (var i = 0; i < vm.verifications.length; i++) {
+                if (vm.verifications[i].name != vm.profile.verifications[i].name ||
+                    vm.verifications[i].cloudinaryPublicId != vm.profile.verifications[i].cloudinaryPublicId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        vm.showButtonsNewPassword = function () {
+            if (!vm.pwdCurrent || !vm.pwd1 || !vm.pwd2) {
+                return false;
+            }
+
+            return (vm.pwd1 == vm.pwd2);
+        };
+
+        vm.showButtonsWorkArea = function () {
+
+        };
 
     }
 })();
