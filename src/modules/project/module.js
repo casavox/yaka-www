@@ -40,6 +40,18 @@
                 templateUrl: "/modules/project/views/project.html",
                 controller: 'ProjectController',
                 controllerAs: 'vm'
+            })
+            .state('maintenance', {
+                url: "/maintenance",
+                templateUrl: "/modules/tech/views/maintenance.html",
+                controller: 'MaintenanceController',
+                controllerAs: 'vm'
+            })
+            .state('maintenance-pro', {
+                url: "/maintenance-pro",
+                templateUrl: "/modules/tech/views/maintenance-pro.html",
+                controller: 'MaintenanceProController',
+                controllerAs: 'vm'
             }
         )
     }
