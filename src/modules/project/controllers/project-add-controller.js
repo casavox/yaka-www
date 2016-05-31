@@ -17,7 +17,7 @@
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
         vm.countdown = 5;
-        vm.service = vm.continueAddressFlag = vm.continue = vm.dateFlag = vm.emergency = vm.popupFlag = vm.wait = false;
+        vm.service = vm.continueAddressFlag = vm.continue = vm.dateFlag = vm.emergency = vm.wait = false;
         vm.newAddrFlag = vm.continueImg = vm.popUpImg = false;
         vm.selectCategory = vm.disabledAddr = true;
         vm.questions = [];
@@ -563,25 +563,33 @@
             }
             if (flag == 0) {
                 vm.continueImg = false;
-                vm.popupFlag = true;
+                swal({
+                    title: "Continuer votre projet sans ajouter de photos ?",
+                    text: "Nous vous conseillons de joindre des images pour améliorer la compréhension de votre projet !",
+                    type: "warning",
+                    confirmButtonColor: "#f44336",
+                    confirmButtonText: "Ajouter une photo",
+                    showCancelButton: true,
+                    cancelButtonText: "Continuer sans photo"
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        $('input[type=file]').first().click();
+                    } else {
+                        vm.continueImg = true;
+                        $timeout(function () {
+                            var element = document.getElementById('slide5');
+                            smoothScroll(element, scrollOptions);
+                        }, 0);
+                    }
+                });
             }
             else {
-                vm.popupFlag = false;
                 vm.continueImg = true;
                 $timeout(function () {
                     var element = document.getElementById('slide5');
                     smoothScroll(element, scrollOptions);
                 }, 0);
             }
-        };
-
-        vm.continueWithoutImages = function () {
-            vm.popupFlag = false;
-            vm.continueImg = true;
-            $timeout(function () {
-                var element = document.getElementById('slide5');
-                smoothScroll(element, scrollOptions);
-            }, 0);
         };
 
         vm.selectType = function (item, items) {
