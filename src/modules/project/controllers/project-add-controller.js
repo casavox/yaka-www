@@ -287,7 +287,9 @@
                     activities: []
                 };
                 for (var i = 0; i < vm.questions.length; i++) {
-                    formData.activities.push({code: vm.questions[i].code});
+                    if (vm.questions[i].code != "OTHER") {
+                        formData.activities.push({code: vm.questions[i].code});
+                    }
                 }
                 if (vm.dateType == "SPECIFIC") {
                     formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
@@ -350,7 +352,9 @@
                     availabilities: []
                 };
                 for (var i = 0; i < vm.questions.length; i++) {
-                    formData.activities.push({code: vm.questions[i].code});
+                    if (vm.questions[i].code != "OTHER") {
+                        formData.activities.push({code: vm.questions[i].code});
+                    }
                 }
                 if (vm.continueAddress) {
                     for (var i = 0; i < vm.user.addresses.length; i++) {
