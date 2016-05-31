@@ -406,7 +406,7 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
-                    vm.updating = false;
+                    vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -419,7 +419,7 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.updating = true;
+                        vm.updating = false;
                         vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
@@ -463,6 +463,7 @@
                     vm.profileInfo = res;
                     vm.profile.user.firstName = res.user.firstName;
                     vm.profile.user.lastName = res.user.lastName;
+                    vm.profile.user.avatar = angular.copy(res.user.avatar);
                     vm.profile.phoneNumber = res.phoneNumber;
                     vm.profile.user.email = res.user.email;
                     vm.profile.activityStartedYear = res.activityStartedYear;
@@ -650,22 +651,31 @@
         };
 
         vm.showButtonsProfile = function () {
+
             if (!vm.profileInfo || //
                 !vm.profile || //
                 !vm.profile.user || //
                 !vm.profileInfo.company || //
                 !vm.profile.company || //
                 !vm.profileInfo.user || //
-                !vm.profile.user || //
                 !vm.profileInfo.company.address || //
                 !vm.profile.company.address) {
                 return false;
+            }
+
+            if (!vm.profileInfo.user.avatar) {
+                vm.profileInfo.user.avatar = {};
+            }
+
+            if (!vm.profile.user.avatar) {
+                vm.profile.user.avatar = {};
             }
 
             return (vm.profileInfo.user.firstName != vm.profile.user.firstName ||
                 vm.profileInfo.user.lastName != vm.profile.user.lastName ||
                 vm.profileInfo.phoneNumber != vm.profile.phoneNumber ||
                 vm.profileInfo.user.email != vm.profile.user.email ||
+                vm.profileInfo.user.avatar.cloudinaryPublicId != vm.profile.user.avatar.cloudinaryPublicId ||
                 vm.profileInfo.activityStartedYear != vm.profile.activityStartedYear ||
                 vm.profileInfo.company.name != vm.profile.company.name ||
                 vm.profileInfo.company.siret != vm.profile.company.siret ||
@@ -808,14 +818,13 @@
             }
 
             for (var i = 0; i < vm.activities.length; i++) {
-                if (!vm.portfolio[i].description) {
-                    vm.portfolio[i].description = "";
+                if (!vm.activities[i].code) {
+                    vm.activities[i].code = "";
                 }
-                if (!vm.profile.portfolio[i].description) {
-                    vm.profile.portfolio[i].description = "";
+                if (!vm.profile.activities[i].code) {
+                    vm.profile.activities[i].code = "";
                 }
-                if (vm.portfolio[i].description != vm.profile.portfolio[i].description ||
-                    vm.portfolio[i].cloudinaryPublicId != vm.profile.portfolio[i].cloudinaryPublicId) {
+                if (vm.activities[i].code != vm.profile.activities[i].code) {
                     return true;
                 }
             }

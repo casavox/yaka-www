@@ -118,15 +118,22 @@
                                            ng-model="vm.profileInfo.phoneNumber">
                                     <label class="fg-label">Téléphone</label>
                                 </div>
+                                <small class="help-block">Ce téléphone n'est pas valide</small>
                             </div>
 
                             <div class="form-group fg-float"
                                  ng-class="{'has-error': !vm.profileInfo.user.email}">
                                 <div class="fg-line">
                                     <input type="text" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.user.email">
+                                           ng-model="vm.profileInfo.user.email" yaka-input-email>
                                     <label class="fg-label">Email</label>
                                 </div>
+                                <div ng-messages="vm.profileInfo.user.email.$error">
+                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas valide
+                                    </small>
+                                </div>
+
                             </div>
 
                             <div class="form-group m-b-30"
@@ -184,7 +191,7 @@
                                     <input international-phone-number default-country="fr"
                                            preferred-countries="fr" type="text" class="form-control fg-input"
                                            ng-model="vm.profileInfo.company.phone">
-                                    <label class="fg-label">Téléphone</label>
+                                    <label class="fg-label">Téléphone de l'entreprise</label>
                                 </div>
                             </div>
 
