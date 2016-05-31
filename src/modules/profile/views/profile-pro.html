@@ -134,10 +134,17 @@
                                 <div class="form-group fg-float m-b-30"
                                      ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
                                     <div class="fg-line">
-                                        <input international-phone-number default-country="fr"
-                                               preferred-countries="fr" type="text" class="form-control fg-input"
-                                               ng-model="vm.profileInfo.phoneNumber">
-                                        <label class="fg-label">Téléphone</label>
+                                        <input type="text" name="phoneNumber"
+                                               required="required" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                                        <label class="fg-label fg-label-phone">Téléphone</label>
+                                    </div>
+                                    <div ng-messages="profileForm.phoneNumber.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis
+                                        </small>
+                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                            pas valide
+                                        </small>
                                     </div>
                                 </div>
 
@@ -229,12 +236,21 @@
 
                                 <div class="form-group fg-float m-b-30"
                                      ng-class="{'has-error': !vm.profileInfo.company.phone}">
+                                    
                                     <div class="fg-line">
-                                        <input international-phone-number default-country="fr"
-                                               preferred-countries="fr" type="text" class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.phone">
-                                        <label class="fg-label">Téléphone de l'entreprise</label>
+                                        <input type="text" name="companyPhoneNumber"
+                                               class="form-control fg-input"
+                                               ng-model="vm.profileInfo.company.phone" yaka-input-phone>
+                                        <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
                                     </div>
+                                    <div ng-messages="profileForm.companyPhoneNumber.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis
+                                        </small>
+                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                            pas valide
+                                        </small>
+                                    </div>
+
                                 </div>
 
                                 <p class="error center" ng-show="vm.error.profile.flag">

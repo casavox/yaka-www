@@ -4712,3 +4712,11 @@ ul[rn-carousel-buffered] > li {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
+.fg-float .fg-toggled .fg-label.fg-label-phone {
+    left: 0 !important;
+}
+
+.fg-float .fg-label.fg-label-phone {
+    left: 50px !important;
+}
