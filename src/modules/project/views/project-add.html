@@ -607,26 +607,4 @@
 
         </div>
     </div>
-    <div class="popUp" ng-show="vm.popupFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <h4>Créer un projet sans photo ? </h4>
-
-                <p>
-                    L’ajout de photo améliore grandement la compréhension de votre besoin : Ajouter une photo maintenant
-                    ?
-                </p>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.continueWithoutImages()">
-                    PUBLIER SANS PHOTO
-                </div>
-                <div ngf-select="uploadFiles($files, $invalidFiles, 0)"
-                     accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ng-click="vm.popupFlag = false">
-                    OUI
-                </div>
-            </div>
-        </div>
-    </div>
-
 </section>
