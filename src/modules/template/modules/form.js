@@ -14,7 +14,7 @@ materialAdmin
                 if ($('.fg-line')[0]) {
                     $('body').on('focus', '.form-control', function () {
                         $(this).closest('.fg-line').addClass('fg-toggled');
-                        $(this).parent().parent().find('.help-block').addClass('hidden')
+                        $(this).parent().parent().find('[ng-messages]').addClass('hidden')
                     });
 
                     $('body').on('blur', '.form-control', function () {
@@ -29,7 +29,7 @@ materialAdmin
                         else {
                             $(this).closest('.fg-line').removeClass('fg-toggled');
                         }
-                        $(this).parent().parent().find('.help-block').removeClass('hidden')
+                        $(this).parent().parent().find('[ng-messages]').removeClass('hidden')
                     });
                 }
 

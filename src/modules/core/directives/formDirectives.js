@@ -6,22 +6,95 @@ angular.module('Yaka')
             require: 'ngModel',
             link: function (scope, element, attr, ngModel) {
 
-                console.log("HELLO !!!!");
-
                 ngModel.$asyncValidators.invalidEmail = function (modelValue, viewValue) {
                     var email = viewValue;
                     var deferred = $q.defer();
 
-                    if (!email ||
-                        email == '' ||
-                        email.length < 10) {
-                        console.log("REJECT");
-                        deferred.reject();
-                    } else {
-                        console.log("ACCEPT");
-                        deferred.resolve();
+                    if (email || email != '') {
+                        if (!new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}").test(email)) {
+                            deferred.reject();
+                        }
                     }
+
+                    deferred.resolve();
                     return deferred.promise;
+                }
+            }
+        }
+    })
+
+    .directive('yakaInputName', function ($q) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModel) {
+
+                ngModel.$asyncValidators.invalidName = function (modelValue, viewValue) {
+                    var name = viewValue;
+                    var deferred = $q.defer();
+
+                    if (name || name != '') {
+                        if (name.length < 2) {
+                            deferred.reject();
+                        }
+                    }
+
+                    deferred.resolve();
+                    return deferred.promise;
+                }
+            }
+        }
+    })
+
+    .directive('yakaInputSiret', function ($q) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModel) {
+
+                ngModel.$asyncValidators.invalidSiret = function (modelValue, viewValue) {
+                    var siret = viewValue;
+                    var deferred = $q.defer();
+
+                    if (siret || siret != '') {
+                        if (!isSiretValid(siret)) {
+                            deferred.reject();
+                        }
+                    }
+
+                    deferred.resolve();
+                    return deferred.promise;
+                };
+
+                function isSiretValid(siret) {
+                    var estValide;
+                    if ((siret.length != 14) || (isNaN(siret)))
+                        estValide = false;
+                    else {
+                        //~ Donc le SIRET est un numérique à 14 chiffres
+                        //~ Les 9 premiers chiffres sont ceux du SIREN (ou RCS), les 4 suivants
+                        //~ correspondent au numéro d'établissement
+                        //~ et enfin le dernier chiffre est une clef de LUHN.
+                        var somme = 0;
+                        var tmp;
+                        for (var cpt = 0; cpt < siret.length; cpt++) {
+                            if ((cpt % 2) == 0) { //~ Les positions impaires : 1er, 3è, 5è, etc...
+                                tmp = siret.charAt(cpt) * 2; //~ On le multiplie par 2
+                                if (tmp > 9)
+                                    tmp -= 9;	//~ Si le résultat est supérieur à 9, on lui soustrait 9
+                            }
+                            else
+                                tmp = siret.charAt(cpt);
+
+                            somme += parseInt(tmp);
+                        }
+
+                        if ((somme % 10) == 0)
+                            estValide = true; //~ Si la somme est un multiple de 10 alors le SIRET est valide
+                        else
+                            estValide = false;
+                    }
+                    return estValide;
                 }
             }
         }

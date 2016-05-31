@@ -24,7 +24,8 @@ angular.module('Yaka', [
         'ngCookies',
         'angulartics',
         'angulartics.google.analytics',
-        'bootstrapLightbox'
+        'bootstrapLightbox',
+        'ngMessages'
     ]
 );
 
