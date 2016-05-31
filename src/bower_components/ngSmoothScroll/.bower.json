@@ -1,6 +1,5 @@
 {
   "name": "ngSmoothScroll",
-  "version": "2.0.0",
   "homepage": "https://github.com/d-oliveros/ngSmoothScroll",
   "authors": [
     "David Oliveros <dato.oliveros@gmail.com>"
@@ -27,14 +26,13 @@
     "test",
     "tests"
   ],
-  "_release": "2.0.0",
+  "_release": "48c3ee60c9",
   "_resolution": {
-    "type": "version",
-    "tag": "v2.0.0",
-    "commit": "0af06cec6ffb30f21ed2dcae85bdbd934a6b75d4"
+    "type": "branch",
+    "branch": "master",
+    "commit": "48c3ee60c93af14bcdf9b6da82640a6e9d662c17"
   },
-  "_source": "https://github.com/d-oliveros/angular-smooth-scroll.git",
-  "_target": "^2.0.0",
-  "_originalSource": "ngSmoothScroll",
-  "_direct": true
+  "_source": "git://github.com/victorleduc/ngSmoothScroll.git",
+  "_target": "master",
+  "_originalSource": "victorleduc/ngSmoothScroll"
 }

@@ -464,6 +464,7 @@
 .flag-container {
     top: 0px !important;
     left: 0px !important;
+    right: 0px !important;
     cursor: pointer;
 }
 

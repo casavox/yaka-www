@@ -37,7 +37,7 @@
         "angular-elastic": "^2.5.1",
         "angular-moment": "^0.10.3",
         "ngstorage": "^0.3.10",
-        "ngSmoothScroll": "^2.0.0",
+        "ngSmoothScroll": "victorleduc/ngSmoothScroll#master",
         "angular-translate": "^2.11.0",
         "bootstrap": "^3.3.6",
         "angular-sanitize": "^1.5.x",

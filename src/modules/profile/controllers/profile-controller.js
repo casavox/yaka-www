@@ -5,185 +5,146 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    //
-    //Controller login
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary) {
+    function ProfileController($rootScope, networkService, alertMsg) {
 
         $rootScope.pageName = "Mon profil";
         $rootScope.updateProfile();
+        $rootScope.showMenu = true;
 
         var vm = this;
+
+        vm.updating = false;
+
         vm.profileInfo = {};
-        vm.workArea = {};
-        vm.aboutMe = "";
-        vm.portfolio = {};
-        vm.verifications = {};
-        vm.activities = {};
         vm.now = new Date();
-        vm.Year = vm.now.getFullYear();
-        vm.error = {
-            password: {flag: false, message: ""},
-            activities: {flag: false, message: ""},
-            verif: {flag: false, message: ""},
-            profile: {flag: false, message: ""}
-        };
+
+        vm.updateProfile = updateProfile;
+        vm.cancelProfile = cancelProfile;
+        vm.changePassword = changePassword;
 
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
-        vm.changePassword = function () {
+        function changePassword() {
             vm.pwd1 = vm.pwd1 || "";
             vm.pwd2 = vm.pwd2 || "";
-            if (vm.pwd1.length < 6) {
-                vm.error.password.message = "Password min length 6.";
-                vm.error.password.flag = true;
+            var formData = {
+                currentPassword: vm.pwdCurrent,
+                newPassword: vm.pwd1
+            };
+            if (vm.pwd2 === vm.pwd1) {
+                vm.updating = true;
+                networkService.changePassword(formData, function (res) {
+                    alertMsg.send("Password updated.", "success");
+                    vm.updating = false;
+                }, function (res) {
+                    vm.updating = false;
+                    alertMsg.send("Error password not changed", "danger");
+                });
             }
-            else {
-                vm.error.password.flag = false;
-                var formData = {
-                    currentPassword: vm.pwdCurrent,
-                    newPassword: vm.pwd1
-                };
-                if (vm.pwd2 === vm.pwd1)
-                    networkService.changePassword(formData, function (res) {
-                        alertMsg.send("Password updated.", "success");
-                    }, function (res) {
-                        alertMsg.send("Error password not changed", "danger");
-                    });
-                else {
-                    vm.error.password.message = "Password not confirmed.";
-                    vm.error.password.flag = true;
-                }
-            }
-        };
+        }
 
-
-
-        vm.indexOfObject = function (a, token, tab) {
-            var res = [];
-            if (angular.isDefined(tab)) {
-                for (var i = 0; i < tab.length; i++) {
-                    if (tab[i][token] == a)
-                        res.push(i);
-                }
-            }
-            return res;
-        };
-
-
-        vm.setVerif = function (name) {
-            vm.verifTmp = {name: name};
-        };
-
-        vm.uploadProfile = function (files, invalides, index) {
-            if (invalides.length > 0) {
-                if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
-            }
-            $scope.files = files;
-            if (!$scope.files) return;
-            angular.forEach(files, function (file) {
-                if (file && !file.$error) {
-                    file.upload = Upload.upload({
-                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-                        data: {
-                            upload_preset: cloudinary.config().upload_preset,
-                            tags: 'verifications',
-                            context: 'file=' + $scope.title,
-                            file: file
-                        }
-                    }).progress(function (e) {
-                        file.progress = Math.round((e.loaded * 100.0) / e.total);
-                        file.status = "Uploading... " + file.progress + "%";
-                    }).success(function (data, status, headers, config) {
-                        vm.profileInfo.avatar = vm.profileInfo.avatar || {};
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        var res = null;
-                        vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
-                    }).error(function (data, status, headers, config) {
-                        alertMsg.send("Error : Upload failed.", "danger");
-                    });
-                }
-            });
-        };
-
-
-        vm.updateProfile = function () {
+        function updateProfile() {
             var f = false;
-            angular.forEach(vm.profileInfo, function (value, key) {
-                if (angular.isUndefined(value) || !value)
-                    f = true;
-            });
+            if (!vm.profileInfo.firstName || //
+                !vm.profileInfo.lastName || //
+                !vm.profileInfo.gender || //
+                !vm.profileInfo.email) {
+
+                f = true;
+            }
             if (!f) {
-                vm.error.profile.flag = false;
+                vm.updating = true;
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
+                    vm.updating = false;
                     vm.profileInfo = res;
-                    alertMsg.send("Profile updated.", "success");
+                    vm.profile.firstName = res.firstName;
+                    vm.profile.lastName = res.lastName;
+                    vm.profile.avatar = angular.copy(res.avatar);
+                    vm.profile.phoneNumber = res.phoneNumber;
+                    vm.profile.gender = res.gender;
+                    vm.profile.email = res.email;
+                    alertMsg.send("Profil mis à jour avec succès", "success");
                 }, errorProfilePUT);
             }
             else {
-                vm.error.profile.message = "All is mandatory.";
-                vm.error.profile.flag = true;
+                alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
             }
+        }
 
-        };
-
-        vm.updateAboutMe = function () {
-            networkService.proAboutMePUT(vm.about, function (res) {
-                vm.about = angular.copy(res);
-                alertMsg.send("Description updated.", "success");
-            }, errorProfilePUT);
-        };
-
-        vm.cancelProfile = function () {
-            vm.error.profile.flag = false;
-            vm.profileInfo = {
-                phoneNumber: angular.copy(vm.phoneNumber),
-                firstName: angular.copy(vm.profile.firstName),
-                lastName: angular.copy(vm.profile.lastName),
-                avatar: angular.copy(vm.profile.avatar),
-                defaultAddress: angular.copy(vm.profile.defaultAddress),
-                addresses: angular.copy(vm.profile.addresses)
-            };
-        };
-
-        vm.cancelAboutMe = function () {
-            vm.about = {aboutMe: angular.copy(vm.profile.aboutMe)};
-        };
-
-
-        function succesProfilePUT(res) {
-            succesProfileGET(res);
-            alertMsg.send("Profile updated.", "success");
+        function cancelProfile() {
+            vm.profileInfo = angular.copy(vm.profile);
         }
 
         function errorProfilePUT() {
-            alertMsg.send("Profile not updated.", "danger");
-        }
-
-        function succesWorkareaPUT(res) {
-            vm.mapEditing = false;
-            alertMsg.send("Profile updated.", "success");
-        }
-
-        function errorWorkareaPUT() {
-            alertMsg.send("Profile not updated.", "danger");
+            vm.updating = false;
+            alertMsg.send("Impossible de modifier le profil", "danger");
         }
 
         function succesProfileGET(res) {
-            vm.profile = res;
-            vm.profileInfo = {
-                phoneNumber: angular.copy(vm.phoneNumber),
-                firstName: angular.copy(vm.profile.firstName),
-                lastName: angular.copy(vm.profile.lastName),
-                avatar: angular.copy(vm.profile.avatar),
-                defaultAddress: angular.copy(vm.profile.defaultAddress),
-                addresses: angular.copy(vm.profile.addresses)
-            };
+            vm.profile = angular.copy(res);
+            vm.profileInfo = angular.copy(res);
         }
 
         function errorProfileGET(res) {
-            alertMsg.send("Error to get the profile informations.", "danger");
+            alertMsg.send("Impossible de récupérer le profil", "danger");
         }
+
+        vm.showButtonsProfile = function () {
+
+            if (!vm.profileInfo || //
+                !vm.profile) {
+                return false;
+            }
+
+            if (
+                !vm.profileInfo.firstName || //
+                !vm.profileInfo.lastName || //
+                !vm.profileInfo.gender || //
+                !vm.profileInfo.email) {
+                return false;
+            }
+
+            if (!vm.profileInfo.avatar) {
+                vm.profileInfo.avatar = {};
+            }
+
+            if (!vm.profile.avatar) {
+                vm.profile.avatar = {};
+            }
+
+            console.log(vm.profileInfo);
+
+            console.log(vm.profile);
+
+            return (vm.profileInfo.firstName != vm.profile.firstName ||
+                vm.profileInfo.lastName != vm.profile.lastName ||
+                vm.profileInfo.gender != vm.profile.gender ||
+                vm.profileInfo.email != vm.profile.email ||
+                vm.profileInfo.avatar.cloudinaryPublicId != vm.profile.avatar.cloudinaryPublicId
+            );
+        };
+
+        vm.showButtonsNewPassword = function () {
+            if (!vm.pwdCurrent || !vm.pwd1 || !vm.pwd2) {
+                return false;
+            }
+
+            return (vm.pwd1 == vm.pwd2);
+        };
+
+        vm.descriptionChanged = function (image) {
+            image.description = image.description.replace(/\n/g, ' ');
+            if (image.length > 140) {
+                image = image.substring(0, 140);
+            }
+        };
+
+        vm.getStringLength = function (str) {
+            if (!str) {
+                return 0;
+            }
+            return str.length;
+        };
+
     }
 })();

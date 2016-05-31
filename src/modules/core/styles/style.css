@@ -17,15 +17,15 @@
 }
 
 .multiselect-parent .dropdown-menu {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
+    -webkit-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+    transform: scale(1) !important;
+    opacity: 1 !important;
 }
 
 .multiselect-parent input.checkboxInput {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .clickable {
