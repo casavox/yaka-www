@@ -278,16 +278,25 @@
                                 About me
                             </p>
 
-                            <div class="form-group"
-                                 ng-class="{'has-error': !vm.about.aboutMe}">
-                                <div class="fg-line">
+                            <form name="aboutMeForm">
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': !vm.about.aboutMe}">
+                                    <div class="fg-line">
                                     <textarea class="form-control" rows="2"
+                                              name="aboutMe"
                                               ng-model="vm.about.aboutMe"
+                                              required="required"
                                               data-auto-size
-                                                  data-autosize-on="true"
+                                              data-autosize-on="true"
                                               placeholder="Décrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan."></textarea>
+                                    </div>
+                                    <div ng-messages="aboutMeForm.aboutMe.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    </div>
                                 </div>
-                            </div>
+
+                            </form>
 
                             <div class="profile-box-footer">
 
@@ -437,17 +446,16 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': vm.pwd1 != vm.pwd2}">
+                                 ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input"
                                            ng-model="vm.pwd2">
                                     <label class="fg-label">Confirmation</label>
                                 </div>
+                                <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
+                                    Les deux mots de passe ne correspondent pas
+                                </small>
                             </div>
-
-                            <p class="error center" ng-show="vm.error.password.flag">
-                                {{vm.error.password.message}}
-                            </p>
 
                             <div class="profile-box-footer mt-12">
 

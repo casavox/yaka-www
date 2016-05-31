@@ -14,7 +14,7 @@ materialAdmin
                 if ($('.fg-line')[0]) {
                     $('body').on('focus', '.form-control, .intl-tel-input', function () {
                         $(this).closest('.fg-line').addClass('fg-toggled');
-                        $(this).parent().parent().find('[ng-messages]').addClass('hidden')
+                        $(this).parent().parent().find("[ng-messages], .help-block").addClass('hidden')
                     });
 
                     $('body').on('blur', '.form-control, .intl-tel-input', function () {
@@ -29,7 +29,7 @@ materialAdmin
                         else {
                             $(this).closest('.fg-line').removeClass('fg-toggled');
                         }
-                        $(this).parent().parent().find('[ng-messages]').removeClass('hidden')
+                        $(this).parent().parent().find("[ng-messages], .help-block").removeClass('hidden')
                     });
                 }
 
