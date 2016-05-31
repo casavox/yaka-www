@@ -663,6 +663,18 @@
                 return false;
             }
 
+            if (
+                !vm.profileInfo.user.firstName || //
+                !vm.profileInfo.user.lastName || //
+                !vm.profileInfo.phoneNumber || //
+                !vm.profileInfo.user.email || //
+                !vm.profileInfo.activityStartedYear || //
+                !vm.profileInfo.company.name || //
+                !vm.profileInfo.company.siret || //
+                !vm.profileInfo.company.address.address) {
+                return false;
+            }
+
             if (!vm.profileInfo.user.avatar) {
                 vm.profileInfo.user.avatar = {};
             }

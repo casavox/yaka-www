@@ -10,7 +10,7 @@ angular.module('Yaka')
                     var email = viewValue;
                     var deferred = $q.defer();
 
-                    if (email || email != '') {
+                    if (email && email != '') {
                         if (!new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}").test(email)) {
                             deferred.reject();
                         }
@@ -33,7 +33,7 @@ angular.module('Yaka')
                     var name = viewValue;
                     var deferred = $q.defer();
 
-                    if (name || name != '') {
+                    if (name && name != '') {
                         if (name.length < 2) {
                             deferred.reject();
                         }
@@ -42,6 +42,65 @@ angular.module('Yaka')
                     deferred.resolve();
                     return deferred.promise;
                 }
+            }
+        }
+    })
+
+    .directive('yakaInputPhone', function ($q) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModel) {
+
+                ngModel.$asyncValidators.invalidPhone = function (modelValue, viewValue) {
+                    var phone = viewValue;
+                    var deferred = $q.defer();
+
+                    if (phone && phone != '') {
+                        if (phone.length != 14 || !element.intlTelInput("isValidNumber")) {
+                            deferred.reject();
+                        }
+                    }
+
+                    deferred.resolve();
+                    return deferred.promise;
+                };
+
+                element.attr('maxlength', '14');
+
+                element.intlTelInput({
+                    utilsScript: "https://cdn.rawgit.com/jackocnr/intl-tel-input/master/build/js/utils.js",
+                    initialCountry: "fr",
+                    onlyCountries: ["fr"]
+                });
+
+                element.keypress(function (e) {
+                    var code = (e.keyCode || e.which);
+
+                    if (code == 37 || code == 38 || code == 39 || code == 40) {
+                        return;
+                    }
+
+                    if ($.trim(element.val())) {
+                        var phoneNumber = element.val();
+                        phoneNumber = phoneNumber.replace(/\D/g, '');
+                        phoneNumber = addCharEveryNChar(phoneNumber, 2, ' ');
+                        element.val(phoneNumber);
+                    }
+                });
+
+                function addCharEveryNChar(str, n, char) {
+                    var ret = [];
+                    var i;
+                    var len;
+
+                    for (i = 0, len = str.length; i < len; i += n) {
+                        ret.push(str.substr(i, n));
+                    }
+
+                    return ret.join(char);
+                }
+
             }
         }
     })
@@ -56,7 +115,7 @@ angular.module('Yaka')
                     var siret = viewValue;
                     var deferred = $q.defer();
 
-                    if (siret || siret != '') {
+                    if (siret && siret != '') {
                         if (!isSiretValid(siret)) {
                             deferred.reject();
                         }
