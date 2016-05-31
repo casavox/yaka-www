@@ -130,7 +130,7 @@
                 httpService.post(baseUrl + '/proposals/' + data + '/complete').success(success).error(error)
             },
             changePassword: function (data, success, error) {
-                httpService.put(baseUrl + '/pro/me/password', data).success(success).error(error)
+                httpService.put(baseUrl + '/me/password', data).success(success).error(error)
             },
             projectEMERGENCYPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/projects/emergency', data).success(success).error(error)

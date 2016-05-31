@@ -25,7 +25,7 @@
             PROFILE
         </div>
 
-        <a ui-sref="login">
+        <a ng-click="app.logout()">
             <div class="logout">
                 Log Out
             </div>
@@ -34,18 +34,6 @@
     <div class="page-content">
         <div class="content-slide p-20">
             <div class="row">
-                <div class="col-md-12"
-                     ng-show="!vm.profileInfo.user.firstName || !vm.profileInfo.user.lastName || !vm.profileInfo.phoneNumber || !vm.profileInfo.user.email || !vm.profileInfo.company.name || !vm.profileInfo.company.siret || !vm.profileInfo.company.address.address || !vm.profileInfo.company.phone || !vm.about.aboutMe || vm.indexOfObject('RGE', 'name', vm.verifications).length == 0 || vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0 || vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
-                    <div class="profile-info-warning">
-                        <p>
-                            Informations underlined in red are missing to post a job.
-                        </p>
-
-                        <p>
-                            A complete profile increases the chances of being answered.
-                        </p>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="menu-category profile-info">
                         <div class="profile-box">
@@ -53,151 +41,237 @@
                                 Informations générales
                             </p>
 
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="img-profile">
-                                        <cl-image public-id="{{vm.profileInfo.avatar.cloudinaryPublicId}}"
-                                                  secure="true" format="png"
-                                                  class="img-circle center-middle pro-icon"
-                                                  ng-show="vm.profileInfo.avatar.cloudinaryPublicId">
-                                            <cl-transformation height="92" width="92" crop="fill"/>
-                                        </cl-image>
-                                        <div class="img-default center"
-                                             ng-show="!vm.profileInfo.avatar.cloudinaryPublicId">
-                                            {{vm.profileInfo.user.firstName[0] | uppercase}}
-                                            {{vm.profileInfo.user.lastName[0] |
-                                            uppercase}}
-                                        </div>
-                                        <div class="icon-edit cursor-pointer"
-                                             ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
-                                             ngf-accept="'image/*'" ngf-max-size="5MB">
+                            <form name="profileForm">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <div class="img-profile">
+                                            <cl-image public-id="{{vm.profileInfo.avatar.cloudinaryPublicId}}"
+                                                      secure="true" format="png"
+                                                      class="img-circle center-middle pro-icon"
+                                                      ng-show="vm.profileInfo.avatar.cloudinaryPublicId">
+                                                <cl-transformation height="92" width="92" crop="fill"/>
+                                            </cl-image>
+                                            <div class="img-default center"
+                                                 ng-show="!vm.profileInfo.avatar.cloudinaryPublicId">
+                                                {{vm.profileInfo.firstName[0] | uppercase}}
+                                                {{vm.profileInfo.lastName[0] |
+                                                uppercase}}
+                                            </div>
+                                            <div class="icon-edit cursor-pointer"
+                                                 ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
+                                                 ngf-accept="'image/*'" ngf-max-size="5MB">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <md-input-container style="width:100%">
-                                        <label>Gender</label>
-                                        <md-select ng-model="vm.profileInfo.gender"
-                                                   ng-class="{'border-red': !vm.profileInfo.gender}">
-                                            <md-option value="madame">{{"Madame" | translate}}</md-option>
-                                            <md-option value="sir">{{"Sir" | translate}}</md-option>
-                                        </md-select>
-                                    </md-input-container>
-                                    <md-input-container class="md-block" flex-gt-sm="">
-                                        <label>First name</label>
-                                        <input ng-model="vm.profileInfo.user.firstName"
-                                               ng-class="{'border-red': !vm.profileInfo.firstName}">
-                                    </md-input-container>
-                                    <md-input-container class="md-block" flex-gt-sm="">
-                                        <label>Last name</label>
-                                        <input ng-model="vm.profileInfo.user.lastName"
-                                               ng-class="{'border-red': !vm.profileInfo.lastName}">
-                                    </md-input-container>
-                                </div>
-                            </div>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Mobile phone</label>
-                                <input type="text" international-phone-number ng-model="vm.profileInfo.phoneNumber"
-                                       ng-class="{'border-red': !vm.profileInfo.phoneNumber}" default-country="fr"
-                                       preferred-countries="fr, en" utilsScript="''" autoFormat="true">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Email</label>
-                                <input ng-model="vm.profileInfo.user.email"
-                                       ng-class="{'border-red': !vm.profileInfo.email}">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm="">
-                                <label>Address</label>
-                                <input vs-google-autocomplete="options"
-                                       options="options"
-                                       ng-model="vm.profileInfo.company.address.address"
-                                       vs-place="address.place"
-                                       vs-place-id="address.components.placeId"
-                                       vs-street-number="address.components.streetNumber"
-                                       vs-street="address.components.street"
-                                       vs-city="address.components.city"
-                                       vs-state="address.components.state"
-                                       vs-country-short="address.components.countryCode"
-                                       vs-country="address.components.country"
-                                       vs-post-code="address.components.postCode"
-                                       vs-district="address.components.district"
-                                       vs-latitude="address.components.location.lat"
-                                       vs-longitude="address.components.location.long"
-                                       type="text"
-                                       name="address"
-                                       id="address"
-                                       ng-class="{'border-red': !vm.profileInfo.address.address}">
-                            </md-input-container>
-                            <p class="error center" ng-show="vm.error.profile.flag">
-                                {{vm.error.profile.message}}
-                            </p>
+                                    <div class="col-xs-9">
 
-                            <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.updateProfile()">
-                                    Save
+                                        <div class="form-group m-b-30"
+                                             ng-class="{'has-error': !vm.profileInfo.gender}">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select name="gender"
+                                                            required="required"
+                                                            ng-model="vm.profileInfo.gender"
+                                                            class="form-control">
+                                                        <option value="" disabled selected>Civilité
+                                                        </option>
+                                                        <option ng-selected="vm.profileInfo.gender == 'MR'" value="MR">
+                                                            M.
+                                                        </option>
+                                                        <option ng-selected="vm.profileInfo.gender == 'MRS'"
+                                                                value="MRS">
+                                                            Mme.
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div ng-messages="profileForm.gender.$error">
+                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group fg-float m-b-30"
+                                             ng-class="{'has-error': !vm.profileInfo.firstName}">
+
+                                            <div class="fg-line">
+                                                <input type="text" name="firstName" class="form-control fg-input"
+                                                       ng-model="vm.profileInfo.firstName"
+                                                       required="required" yaka-input-name>
+                                                <label class="fg-label">Prénom</label>
+                                            </div>
+                                            <div ng-messages="profileForm.firstName.$error">
+                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                                </small>
+                                                <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
+                                                    valide
+                                                </small>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group fg-float m-b-30"
+                                             ng-class="{'has-error': !vm.profileInfo.lastName}">
+
+                                            <div class="fg-line">
+                                                <input type="text" name="lastName" class="form-control fg-input"
+                                                       ng-model="vm.profileInfo.lastName"
+                                                       required="required" yaka-input-name>
+                                                <label class="fg-label">Nom</label>
+                                            </div>
+                                            <div ng-messages="profileForm.lastName.$error">
+                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                                </small>
+                                                <small class="help-block" ng-message="invalidName">Ce nom n'est pas
+                                                    valide
+                                                </small>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelProfile()">
-                                    Cancel
+
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                                    <div class="fg-line">
+                                        <input type="text" name="phoneNumber"
+                                               class="form-control fg-input"
+                                               ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                                        <label class="fg-label fg-label-phone">Téléphone</label>
+                                    </div>
+                                    <div ng-messages="profileForm.phoneNumber.$error">
+                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                            pas valide
+                                        </small>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.email}">
+                                    <div class="fg-line">
+                                        <input type="text" name="email" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.email"
+                                               required="required" yaka-input-email>
+                                        <label class="fg-label">Email</label>
+                                    </div>
+                                    <div ng-messages="profileForm.email.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                        <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                            valide
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.defaultAddress.address}">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control fg-input"
+                                               vs-google-autocomplete="options"
+                                               vs-autocomplete-validator
+                                               ng-model="vm.profileInfo.defaultAddress.address"
+                                               type="text"
+                                               name="address"
+                                               required="required"
+                                               placeholder=""
+                                               id="address">
+                                        <label class="fg-label">Addresse principale</label>
+                                    </div>
+                                    <div ng-messages="profileForm.address.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    </div>
+                                </div>
+
+                                <div class="profile-box-footer">
+
+                                    <button class="btn btn-info bgm-lightblue waves-effect"
+                                            ng-click="vm.updateProfile()"
+                                            ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                        Enregistrer
+                                    </button>
+                                    <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
+                                            ng-disabled="!vm.showButtonsProfile()">
+                                        Annuler
+                                    </button>
+
+                                </div>
+
+                            </form>
                         </div>
                     </div>
-
                 </div>
-
-
                 <div class="col-md-6">
-                    <div class="menu-category profile-about">
-                        <div class="profile-box">
-                            <p>
-                                About me
-                            </p>
-                            <md-input-container class="md-block h-a mb-0">
-                                <label></label>
-                                <textarea
-                                    placeholder="Dévrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embuacher plutôt qu’un autre artisan."
-                                    ng-model="vm.about.aboutMe" ng-class="{'border-red': !vm.about.aboutMe}"
-                                    md-select-on-focus></textarea>
-                            </md-input-container>
-                            <div class="profile-box-footer">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.updateAboutMe()">
-                                    Save
-                                </div>
-                                <div class="profile-box-footer-btn-fr cancel" ng-click="vm.cancelAboutMe()">
-                                    Cancel
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="menu-category profile-about">
                         <div class="profile-box">
                             <p>
                                 Change password
                             </p>
-                            <md-input-container class="md-block mt-10" flex-gt-sm="">
-                                <label>Current password</label>
-                                <input type="password" ng-model="vm.pwdCurrent">
-                            </md-input-container>
-                            <md-input-container class="md-block mt-10" flex-gt-sm="">
-                                <label>New password</label>
-                                <input type="password" ng-model="vm.pwd1">
-                            </md-input-container>
-                            <md-input-container class="md-block mt-10" flex-gt-sm="">
-                                <label>Confirm password</label>
-                                <input type="password" ng-model="vm.pwd2" ng-class="{'border-red': vm.pwd1 != vm.pwd2}">
-                            </md-input-container>
-                            <p class="error center" ng-show="vm.error.password.flag">
-                                {{vm.error.password.message}}
-                            </p>
+
+                            <div class="form-group fg-float m-b-30">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input"
+                                           ng-model="vm.pwdCurrent">
+                                    <label class="fg-label">Mot de passe actuel</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input"
+                                           ng-model="vm.pwd1">
+                                    <label class="fg-label">Nouveau mot de passe</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input"
+                                           ng-model="vm.pwd2">
+                                    <label class="fg-label">Confirmation</label>
+                                </div>
+                                <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
+                                    Les deux mots de passe ne correspondent pas
+                                </small>
+                            </div>
 
                             <div class="profile-box-footer mt-12">
-                                <div class="profile-box-footer-btn-fr" ng-click="vm.changePassword()">
-                                    Save
-                                </div>
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.changePassword()"
+                                        ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                                    Enregistrer
+                                </button>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
 </section>
+
+<div class="yakaPopup" ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" ng-click="vm.closePopup()"
+     ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton"
+                 src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.closePopup()"
+                 alt=""/>
+
+            <div class="profilePopupMessage">
+                Vous allez modifier des éléments importants de votre profil Pro, vous ne pourrez plus répondre à de
+                nouvelles offres tant qu'il n'aura pas été revalidé par l'équipe YakaClub (vous recevrez un mail
+                rapidement pour vous en tenir informé).
+            </div>
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.closePopup()">
+                ANNULER
+            </div>
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.validatePopup()">
+                VALIDER
+            </div>
+        </div>
+    </div>
+</div>

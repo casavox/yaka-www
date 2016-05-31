@@ -5,8 +5,6 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    //
-    //Controller login
     function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi) {
 
         $rootScope.pageName = "Mon profil Pro";
