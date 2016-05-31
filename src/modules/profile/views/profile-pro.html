@@ -236,7 +236,7 @@
 
                                 <div class="form-group fg-float m-b-30"
                                      ng-class="{'has-error': !vm.profileInfo.company.phone}">
-                                    
+
                                     <div class="fg-line">
                                         <input type="text" name="companyPhoneNumber"
                                                class="form-control fg-input"
@@ -244,8 +244,6 @@
                                         <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
                                     </div>
                                     <div ng-messages="profileForm.companyPhoneNumber.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis
-                                        </small>
                                         <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
                                             pas valide
                                         </small>
