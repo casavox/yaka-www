@@ -98,10 +98,12 @@
                           placeholder="Décrivez-nous votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez-nous si vous avez des contraintes ou souhaits particuliers"
                           ng-blur="vm.verifDescription()"></textarea>
 
-                <p class="error center" ng-show="vm.error.description.flag">
+                <p class="error center" ng-show="vm.error.description.flag ">
                     {{vm.error.description.message}}
                 </p>
-                <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()">Continue</button>
+                <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()"
+                        ng-if="vm.material && (vm.projectDescription.length >= 30)">Continue
+                </button>
             </div>
             <div class="slide bckg-white" id="slide4" ng-show="vm.continue">
                 <h2 class="text-center">Add some photos of your project</h2>
@@ -582,9 +584,12 @@
                         {{vm.error.date.message}}
                     </p>
                 </div>
-                <button type="button" class="new-project-continue btn" ng-click="vm.post()">POST</button>
+                <button type="button" class="new-project-continue btn" ng-click="vm.post()"
+                        ng-disabled="!vm.dateType && !vm.emergency">
+                    POST
+                </button>
                 <button type="button" class="new-project-continue grey mt-0 btn" ng-click="vm.draft()"
-                        ng-show="!vm.emergency">DRAFT
+                        ng-show="!vm.emergency" ng-disabled="!vm.dateType">DRAFT
                 </button>
             </div>
             <div class="slide bckg-default end" id="slideEnd" ng-show="vm.end">
