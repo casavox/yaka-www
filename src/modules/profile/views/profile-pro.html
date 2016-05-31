@@ -67,151 +67,195 @@
                                 Informations générales
                             </p>
 
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <div class="img-profile">
-                                        <cl-image public-id="{{vm.profileInfo.user.avatar.cloudinaryPublicId}}"
-                                                  secure="true" format="png"
-                                                  class="img-circle center-middle pro-icon"
-                                                  ng-show="vm.profileInfo.user.avatar.cloudinaryPublicId">
-                                            <cl-transformation height="92" width="92" crop="fill"/>
-                                        </cl-image>
-                                        <div class="img-default center"
-                                             ng-show="!vm.profileInfo.user.avatar.cloudinaryPublicId">
-                                            {{vm.profileInfo.user.firstName[0] | uppercase}}
-                                            {{vm.profileInfo.user.lastName[0] |
-                                            uppercase}}
-                                        </div>
-                                        <div class="icon-edit cursor-pointer"
-                                             ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
-                                             ngf-accept="'image/*'" ngf-max-size="5MB">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-9">
-
-                                    <div class="form-group fg-float m-b-30"
-                                         ng-class="{'has-error': !vm.profileInfo.user.firstName}">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control fg-input"
-                                                   ng-model="vm.profileInfo.user.firstName">
-                                            <label class="fg-label">Prénom</label>
+                            <form name="profileForm">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <div class="img-profile">
+                                            <cl-image public-id="{{vm.profileInfo.user.avatar.cloudinaryPublicId}}"
+                                                      secure="true" format="png"
+                                                      class="img-circle center-middle pro-icon"
+                                                      ng-show="vm.profileInfo.user.avatar.cloudinaryPublicId">
+                                                <cl-transformation height="92" width="92" crop="fill"/>
+                                            </cl-image>
+                                            <div class="img-default center"
+                                                 ng-show="!vm.profileInfo.user.avatar.cloudinaryPublicId">
+                                                {{vm.profileInfo.user.firstName[0] | uppercase}}
+                                                {{vm.profileInfo.user.lastName[0] |
+                                                uppercase}}
+                                            </div>
+                                            <div class="icon-edit cursor-pointer"
+                                                 ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
+                                                 ngf-accept="'image/*'" ngf-max-size="5MB">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group fg-float m-b-30"
-                                         ng-class="{'has-error': !vm.profileInfo.user.lastName}">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control fg-input"
-                                                   ng-model="vm.profileInfo.user.lastName">
-                                            <label class="fg-label">Nom</label>
+                                    <div class="col-xs-9">
+
+                                        <div class="form-group fg-float m-b-30"
+                                             ng-class="{'has-error': !vm.profileInfo.user.firstName}">
+
+                                            <div class="fg-line">
+                                                <input type="text" name="firstName" class="form-control fg-input"
+                                                       ng-model="vm.profileInfo.user.firstName"
+                                                       required="required" yaka-input-name>
+                                                <label class="fg-label">Prénom</label>
+                                            </div>
+                                            <div ng-messages="profileForm.firstName.$error">
+                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                                </small>
+                                                <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
+                                                    valide
+                                                </small>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group fg-float m-b-30"
+                                             ng-class="{'has-error': !vm.profileInfo.user.lastName}">
+
+                                            <div class="fg-line">
+                                                <input type="text" name="lastName" class="form-control fg-input"
+                                                       ng-model="vm.profileInfo.user.lastName"
+                                                       required="required" yaka-input-name>
+                                                <label class="fg-label">Nom</label>
+                                            </div>
+                                            <div ng-messages="profileForm.lastName.$error">
+                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                                </small>
+                                                <small class="help-block" ng-message="invalidName">Ce nom n'est pas
+                                                    valide
+                                                </small>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                                    <div class="fg-line">
+                                        <input international-phone-number default-country="fr"
+                                               preferred-countries="fr" type="text" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.phoneNumber">
+                                        <label class="fg-label">Téléphone</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group fg-float"
+                                     ng-class="{'has-error': !vm.profileInfo.user.email}">
+                                    <div class="fg-line">
+                                        <input type="text" name="email" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.user.email"
+                                               required="required" yaka-input-email>
+                                        <label class="fg-label">Email</label>
+                                    </div>
+                                    <div ng-messages="profileForm.email.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                        <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                            valide
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select name="activityStartedYear"
+                                                    required="required"
+                                                    ng-model="vm.profileInfo.activityStartedYear"
+                                                    class="form-control">
+                                                <option value="" disabled selected>Première année d'expérience</option>
+                                                <option ng-repeat="year in vm.years | orderBy:'-toString()'"
+                                                        ng-selected="vm.profileInfo.activityStartedYear == year"
+                                                        value="{{year}}">
+                                                    {{year}}
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
-                                <div class="fg-line">
-                                    <input international-phone-number default-country="fr"
-                                           preferred-countries="fr" type="text" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.phoneNumber">
-                                    <label class="fg-label">Téléphone</label>
-                                </div>
-                                <small class="help-block">Ce téléphone n'est pas valide</small>
-                            </div>
-
-                            <div class="form-group fg-float"
-                                 ng-class="{'has-error': !vm.profileInfo.user.email}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.user.email" yaka-input-email>
-                                    <label class="fg-label">Email</label>
-                                </div>
-                                <div ng-messages="vm.profileInfo.user.email.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas valide
-                                    </small>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
-                                <div class="fg-line">
-                                    <div class="select">
-                                        <select ng-model="vm.profileInfo.activityStartedYear"
-                                                class="form-control">
-                                            <option value="" disabled selected>Première année d'expérience</option>
-                                            <option ng-repeat="year in vm.years | orderBy:'-toString()'"
-                                                    ng-selected="vm.profileInfo.activityStartedYear == year"
-                                                    value="{{year}}">
-                                                {{year}}
-                                            </option>
-                                        </select>
+                                    <div ng-messages="profileForm.activityStartedYear.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.name}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.company.name">
-                                    <label class="fg-label">Nom de l'entreprise</label>
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.company.name}">
+                                    <div class="fg-line">
+                                        <input type="text" name="companyName" required="required"
+                                               class="form-control fg-input"
+                                               ng-model="vm.profileInfo.company.name">
+                                        <label class="fg-label">Nom de l'entreprise</label>
+                                    </div>
+                                    <div ng-messages="profileForm.companyName.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.siret}">
-                                <div class="fg-line">
-                                    <input siret-validate type="text" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.company.siret">
-                                    <label class="fg-label">SIRET</label>
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.company.siret}">
+                                    <div class="fg-line">
+                                        <input name="siret" type="text" required="required"
+                                               class="form-control fg-input"
+                                               ng-model="vm.profileInfo.company.siret" yaka-input-siret>
+                                        <label class="fg-label">SIRET</label>
+                                    </div>
+                                    <div ng-messages="profileForm.siret.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                        <small class="help-block" ng-message="invalidSiret">Ce SIRET n'est pas
+                                            valide
+                                        </small>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.address.address}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input"
-                                           vs-google-autocomplete="options"
-                                           ng-model="vm.profileInfo.company.address.address"
-                                           type="text"
-                                           name="address"
-                                           placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Addresse de l'entreprise</label>
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.company.address.address}">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control fg-input"
+                                               vs-google-autocomplete="options"
+                                               vs-autocomplete-validator
+                                               ng-model="vm.profileInfo.company.address.address"
+                                               type="text"
+                                               name="address"
+                                               required="required"
+                                               placeholder=""
+                                               id="address">
+                                        <label class="fg-label">Addresse de l'entreprise</label>
+                                    </div>
+                                    <div ng-messages="profileForm.address.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.phone}">
-                                <div class="fg-line">
-                                    <input international-phone-number default-country="fr"
-                                           preferred-countries="fr" type="text" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.company.phone">
-                                    <label class="fg-label">Téléphone de l'entreprise</label>
+                                <div class="form-group fg-float m-b-30"
+                                     ng-class="{'has-error': !vm.profileInfo.company.phone}">
+                                    <div class="fg-line">
+                                        <input international-phone-number default-country="fr"
+                                               preferred-countries="fr" type="text" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.company.phone">
+                                        <label class="fg-label">Téléphone de l'entreprise</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <p class="error center" ng-show="vm.error.profile.flag">
-                                {{vm.error.profile.message}}
-                            </p>
+                                <p class="error center" ng-show="vm.error.profile.flag">
+                                    {{vm.error.profile.message}}
+                                </p>
 
-                            <div class="profile-box-footer">
+                                <div class="profile-box-footer">
 
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.showProfileEditPopup = true"
-                                        ng-disabled="vm.updating || !vm.showButtonsProfile()">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
-                                        ng-disabled="!vm.showButtonsProfile()">
-                                    Annuler
-                                </button>
+                                    <button class="btn btn-info bgm-lightblue waves-effect"
+                                            ng-click="vm.showProfileEditPopup = true"
+                                            ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                        Enregistrer
+                                    </button>
+                                    <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
+                                            ng-disabled="!vm.showButtonsProfile()">
+                                        Annuler
+                                    </button>
 
-                            </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                     <div class="menu-category profile-about">
