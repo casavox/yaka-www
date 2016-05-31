@@ -559,8 +559,12 @@
             for (var i = 0; i < $rootScope.photos.length; i++) {
                 if ($rootScope.photos[i].public_id) {
                     flag += 1;
+                } else {
+                    $rootScope.photos.splice(flag, 1);
+                    i += 1;
                 }
             }
+
             if (flag == 0) {
                 vm.continueImg = false;
                 swal({

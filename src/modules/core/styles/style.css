@@ -2535,12 +2535,26 @@ md-input-container {
     color: white;
 }
 
+.add-img-disabled {
+    background-color: #f7f7f7;
+    width: 220px;
+    height: 220px;
+    cursor: not-allowed;
+    overflow: hidden;
+}
+
 .add-img {
     background-color: #f7f7f7;
     width: 220px;
     height: 220px;
     cursor: pointer;
     overflow: hidden;
+}
+
+.lg-slide img {
+    background: white;
+    min-width: 70px;
+    min-height: 70px;
 }
 
 .add-img:hover {
