@@ -4,7 +4,7 @@
     "dependencies": {
         "js": [
             "bower_components/jquery/dist/jquery.js",
-            "bower_components/lodash/lodash.js",
+            "bower_components/lodash/dist/lodash.js",
             "bower_components/intl-tel-input/build/js/intlTelInput.js",
             "bower_components/intl-tel-input/build/js/utils.js",
             "bower_components/sockjs/sockjs.js",
