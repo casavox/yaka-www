@@ -146,5 +146,16 @@
             return str.length;
         };
 
+        $scope.$on('$stateChangeStart', function (event) {
+
+            if (vm.showButtonsNewPassword() ||
+                vm.showButtonsProfile()) {
+                if (confirm("Vous avez des modification en cours non sauvegardées. Voulez-vous vraiment quiter cette page ?\nCliquez sur Annuler pour rester sur cette page ou sur OK pour la quitter.")) {
+                    return;
+                }
+                event.preventDefault();
+            }
+        });
+
     }
 })();

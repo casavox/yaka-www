@@ -174,6 +174,13 @@
             }
         }
 
+        vm.getClUrlThumbnail = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true, width: 200, height: 200, crop: 'fill'});
+        };
+
+        vm.getClUrl = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true});
+        };
 
     }
 })();

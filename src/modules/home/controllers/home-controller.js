@@ -148,7 +148,7 @@
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
             vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering);
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address);
         };
 
         vm.loginFormIsValid = function () {

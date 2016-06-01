@@ -841,5 +841,20 @@
             return false;
         };
 
+        $scope.$on('$stateChangeStart', function (event) {
+
+            if (vm.showButtonsAbout() ||
+                vm.showButtonsProfile() ||
+                vm.showButtonsPortfolio() ||
+                vm.showButtonsActivities() ||
+                vm.showButtonsNewPassword() ||
+                vm.showButtonsVerifications() ||
+                vm.showButtonsWorkArea()) {
+                if (confirm("Vous avez des modification en cours non sauvegardées. Voulez-vous vraiment quiter cette page ?\nCliquez sur Annuler pour rester sur cette page ou sur OK pour la quitter.")) {
+                    return;
+                }
+                event.preventDefault();
+            }
+        });
     }
 })();
