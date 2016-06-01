@@ -89,13 +89,13 @@
         };
 
         vm.verifDescription = function () {
-            if (vm.projectDescription.length < 10) {
+            if (vm.projectDescription.length < 30) {
                 vm.continue = false;
                 vm.continueImg = false;
                 vm.img = [];
                 vm.continueAddressFlag = false;
                 vm.error.description.flag = true;
-                vm.error.description.message = "Merci de décrire votre besoin et éventuelles contrainte (au moins 10 caractères)";
+                vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
             }
         };
 
@@ -526,10 +526,10 @@
         };
 
         vm.verif = function () {
-            if (vm.projectDescription.length < 10) {
+            if (vm.projectDescription.length < 30) {
                 vm.continueImg = vm.continueAddressFlag = vm.continue = false;
                 vm.img = [];
-                vm.error.description.message = "Merci de décrire votre besoin et éventuelles contraintes";
+                vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
                 vm.error.description.flag = true;
             }
             else {
@@ -543,8 +543,8 @@
                 vm.error.material.message = "Select YES or NO";
                 vm.error.material.flag = true;
             }
-            if (vm.projectDescription.length < 10) {
-                vm.error.description.message = "Merci de décrire votre besoin et éventuelles contraintes";
+            if (vm.projectDescription.length < 30) {
+                vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
                 vm.error.description.flag = true;
             }
             else if (vm.material != null && vm.projectDescription.length >= 3) {
