@@ -308,9 +308,13 @@
                 $localStorage.token = res.token;
                 if (angular.isUndefined(res.professional)) {
                     $localStorage.user.type = 'customer';
-                    $state.go('contacts');
                 } else if (angular.isDefined(res.professional)) {
                     $localStorage.user.type = 'pro';
+                }
+                if (window.yakaRedirectUrl != undefined) {
+                    window.location.href = window.yakaRedirectUrl;
+                    delete window.yakaRedirectUrl;
+                } else {
                     $state.go('contacts');
                 }
             }

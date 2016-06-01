@@ -4,12 +4,10 @@ angular.module('Yaka')
 
         service.responseError = function (response) {
             if (response.status == 401) {
-                console.log("Current URL : " + window.location.href);
-
                 $injector.get('$localStorage').$reset();
-                $injector.get('$localStorage').urlRedirect = window.location.href;
                 $injector.get('pendingRequests').cancelAll();
                 $injector.get('$state').go("home");
+                window.yakaRedirectUrl = window.location.href;
             }
             return $q.reject(response);
         };

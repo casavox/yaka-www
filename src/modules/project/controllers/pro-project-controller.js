@@ -494,8 +494,6 @@
 
         function succesProjectGET(res) {
 
-            console.log(res);
-
             $scope.map.center = {
                 latitude: res.address.latitude,
                 longitude: res.address.longitude

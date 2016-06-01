@@ -170,11 +170,9 @@
                 } else if (angular.isDefined(res.professional)) {
                     $localStorage.user.type = 'pro';
                 }
-                console.log("succesLogin - $localStorage.urlRedirect");
-                console.log($localStorage.urlRedirect);
-                if ($localStorage.urlRedirect != undefined) {
-                    window.location.href = $localStorage.urlRedirect;
-                    delete $localStorage.urlRedirect;
+                if (window.yakaRedirectUrl != undefined) {
+                    window.location.href = window.yakaRedirectUrl;
+                    delete window.yakaRedirectUrl;
                 } else {
                     $state.go('contacts');
                 }

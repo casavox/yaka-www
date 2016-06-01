@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    function ProfileController($rootScope, networkService, alertMsg) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg) {
 
         $rootScope.pageName = "Mon profil";
         $rootScope.updateProfile();
@@ -111,10 +111,6 @@
             if (!vm.profile.avatar) {
                 vm.profile.avatar = {};
             }
-
-            console.log(vm.profileInfo);
-
-            console.log(vm.profile);
 
             return (vm.profileInfo.firstName != vm.profile.firstName ||
                 vm.profileInfo.lastName != vm.profile.lastName ||
