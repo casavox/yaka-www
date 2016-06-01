@@ -125,10 +125,10 @@
                         slot: vm.offer.date.slot
                     };
                     networkService.proposalEmergencyPOST(formData, function (res) {
-                        alertMsg.send("Proposal sent.", "success");
+                        alertMsg.send("Proposition envoyée avec succès", "success");
                         $state.go('prodashboard');
                     }, function (res) {
-                        alertMsg.send("Error : proposal not sent", "danger");
+                        alertMsg.send("Impossible d'envoyer la proposition", "danger");
                     });
                 }
                 else {
@@ -145,10 +145,10 @@
                         formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
                     }
                     networkService.proposalSmallPOST(formData, function (res) {
-                        alertMsg.send("Proposal sent.", "success");
+                        alertMsg.send("Proposition envoyée avec succès", "success");
                         $state.go('prodashboard');
                     }, function (res) {
-                        alertMsg.send("Error : proposal not sent", "danger");
+                        alertMsg.send("Impossible d'envoyer la proposition", "danger");
                     });
                 }
             } else {

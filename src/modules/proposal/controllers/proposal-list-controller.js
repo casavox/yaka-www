@@ -30,7 +30,7 @@
         }
 
         function errorProjectGET() {
-            alertMsg.send("Error. Can't get the proposals", "danger");
+            alertMsg.send("Impossible de récupérer les propositions", "danger");
         }
 
         function projectDetails() {

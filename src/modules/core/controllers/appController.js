@@ -81,7 +81,7 @@
                                 $scope.projectFlag = true;
                             }, function (res) {
 
-                                alertMsg.send("Error impossible to rate the pro.", "danger");
+                                alertMsg.send("Impossible d'effectuer la notation", "danger");
                             })
                         }
                     }, function (res) {
@@ -143,7 +143,7 @@
                     $scope.disable = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
                 }, function (res) {
-                    alertMsg.send("Error : impossible to rate the pro", "danger");
+                    alertMsg.send("Impossible d'effectuer la notation", "danger");
                     $scope.projectFlag = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
                     $scope.disable = false;

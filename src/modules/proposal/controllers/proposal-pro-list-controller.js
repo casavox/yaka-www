@@ -39,10 +39,10 @@
         vm.deleteProposal = function () {
             networkService.proProposalsArchiveGET(vm.decline[vm.index].id, function (res) {
                 vm.delete = false;
-                alertMsg.send('Proposal deleted', "success");
+                alertMsg.send('Proposition supprimée avec succès', "success");
             }, function () {
                 vm.delete = false;
-                alertMsg.send("Erro : Proposal can't be deleted", "danger");
+                alertMsg.send("Impossible de supprimer la proposition", "danger");
             });
         };
 

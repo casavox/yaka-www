@@ -34,11 +34,11 @@
             if (vm.pwd2 === vm.pwd1) {
                 vm.updating = true;
                 networkService.changePassword(formData, function (res) {
-                    alertMsg.send("Password updated.", "success");
+                    alertMsg.send("Mot de passe modifié avec succès", "success");
                     vm.updating = false;
                 }, function (res) {
                     vm.updating = false;
-                    alertMsg.send("Error password not changed", "danger");
+                    alertMsg.send("Impossible de modifier le mot de passe", "danger");
                 });
             }
         }

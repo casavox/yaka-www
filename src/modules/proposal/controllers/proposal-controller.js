@@ -94,11 +94,11 @@
             vm.hireFlag = false;
             if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
                 networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
-            alertMsg.send("Proposal selected", "success");
+            alertMsg.send("Proposition acceptée avec succès", "success");
         }
 
         function errorProposalAcceptPOST() {
-            alertMsg.send("Error Proposal not selected", "danger");
+            alertMsg.send("Impossible d'accepter cette proposition", "danger");
         }
 
         // vm.getQualities = function () {
@@ -171,7 +171,7 @@
         }
 
         function errorProposalGET(res) {
-            alertMsg.send("Error. Can't get this proposal", "danger");
+            alertMsg.send("Impossible de récupérer la proposition", "danger");
         }
 
 
@@ -286,7 +286,7 @@
                 vm.project.status = "ONGOING_RATE_PRO";
                 vm.closeFlag = false;
             }, function () {
-                alertMsg.send("Error : project can't be close", "danger");
+                alertMsg.send("Impossible de fermer le projet", "danger");
             });
         };
 
@@ -378,7 +378,7 @@
         }
 
         function errorProjectGET(res) {
-            alertMsg.send("Error : Impossible to get the mission.", "danger");
+            alertMsg.send("Impossible de récupérer le projet", "danger");
             $state.go("my-projects");
         }
 
