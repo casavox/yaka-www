@@ -165,7 +165,7 @@
             if (vm.newAddr.name.length > 0) {
                 vm.disabledAddr = vm.continueAddress = false;
                 vm.myAddress = "new";
-                $scope.address = angular.copy(cleanAddress);
+                $scope.address = angular.copy(vm.cleanAddress);
             }
             else {
                 vm.newAddr.name = "";
@@ -268,6 +268,10 @@
             if (vm.myAddress == "new") {
                 vm.projectTmp.address.name = vm.newAddr.name;
                 vm.projectTmp.address.address = $scope.address.name;
+                vm.projectTmp.address.streetNumber = $scope.address.components.streetNumber;
+                vm.projectTmp.address.route = $scope.address.components.street;
+                vm.projectTmp.address.postalCode = $scope.address.components.postCode;
+
                 vm.whereFlag = false;
             }
             else {

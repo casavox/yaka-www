@@ -170,8 +170,11 @@
                 initDate(vm.J2, tmp);
                 initDate(vm.J3, tmp);
                 if (tmp.length > 0) {
-                    vm.proposalTmp.availability.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
-                    vm.proposalTmp.availability.slot = tmp[0].slot;
+                    if (!vm.offer.date) {
+                        vm.offer.date = {};
+                    }
+                    vm.offer.date.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
+                    vm.offer.date.slot = tmp[0].slot;
                     vm.myDateFlag = false;
                 }
             }
@@ -462,13 +465,13 @@
 
         }
 
-        function dateDiff(d1, d2) {
+        function dateDiff(d1) {
             var h = 0;
             var d = 0;
             var m = 0;
             var min = 0;
             d1 = new Date(d1).getTime() / 60000;
-            d2 = new Date(d2).getTime() / 60000;
+            var d2 = new Date() / 60000;
             var min = new Number(d2 - d1).toFixed(0);
             if (min > 60) {
                 h = min / 60;
@@ -490,6 +493,8 @@
         }
 
         function succesProjectGET(res) {
+
+            console.log(res);
 
             $scope.map.center = {
                 latitude: res.address.latitude,
@@ -645,5 +650,13 @@
         function errorProjectGET(err) {
             $state.go("prodashboard");
         }
+
+        vm.getStringLength = function (str) {
+            if (!str) {
+                return 0;
+            }
+            return str.length;
+        };
+
     }
 })();

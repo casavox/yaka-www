@@ -23,11 +23,8 @@
 <section class="view">
     <div class="header-menu">
         <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
-        <div class="in-line min-w-44 arrow-nav" ng-show="!vm.proDetails">
-            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.prev()" class="center-middle"/>
-        </div>
-        <div class="in-line min-w-44 arrow-nav" ng-show="vm.proDetails">
-            <img src="icons/mdpi/arrow-left.png" alt="" ng-click="vm.homeDetail()" class="center-middle"/>
+        <div class="in-line min-w-44 arrow-nav">
+            <img src="icons/mdpi/arrow-left.png" alt="" ui-sref="prodashboard" class="center-middle"/>
         </div>
         <div class="title no-line" ng-show="!vm.proDetails">
             {{vm.project.translatedTitle}}
@@ -50,18 +47,21 @@
                 <div class="row no-margin">
                     <div class="col-xs-12">
                         <p class="pro-title-post">
-                            Post {{vm.dateDiff(vm.projectTmp.published, vm.projectTmp.updated)}} ago
+                            Mis à jour il y a {{vm.dateDiff(vm.projectTmp.updated)}}
                         </p>
-                        <!-- TODO AvatarURL does not exists anymore -->
-                        <img ng-src="{{vm.projectTmp.avatarUrl}}"
-                             class="img-circle pro-icon-medium mt-20 fl-l ml-15"
-                             ng-show="vm.projectTmp.avatarUrl"/>
 
-                        <!-- TODO AvatarURL does not exists anymore -->
-                        <div class="img-default-medium mt-20 fl-l ml-15" ng-show="!vm.projectTmp.avatarUrl">
-                            {{vm.projectTmp.user.firstName[0] | uppercase}} {{vm.projectTmp.user.lastName[0] |
-                            uppercase}}
+
+                        <cl-image public-id="{{vm.projectTmp.user.avatar.cloudinaryPublicId}}"
+                                  class="img-circle pro-icon-medium mt-20 fl-l ml-15" format="png"
+                                  ng-if="vm.projectTmp.user.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-medium mt-20 fl-l ml-15"
+                             ng-if="!vm.projectTmp.user.avatar.cloudinaryPublicId">
+                            {{vm.projectTmp.user.firstName[0] | uppercase}}.
+                            {{vm.projectTmp.user.lastName[0]| uppercase}}.
                         </div>
+
                         <div class="pro-proposal-title">
                             <p ng-class="{'red': vm.projectTmp.type == 'EMERGENCY'}">
                                 {{vm.project.translatedTitle}}
@@ -203,8 +203,16 @@
                         My message to the client
                     </p>
                     <textarea class="custom-textarea-red w-100p placeholder-xs mb-10"
-                              placeholder="Explain why you are the best for this particular job, what material you use ..."
+                              ng-maxlength="140"
+                              maxlength="140"
+                              placeholder="Commentaire"
+                              data-auto-size
+                              ng-trim="false"
                               ng-model="vm.offer.comment"></textarea>
+
+                    <div class="proCommentCounter">
+                        {{vm.getStringLength(vm.offer.comment)}} / 140 caractères
+                    </div>
 
                     <p class="error center" ng-show="vm.error.comment.flag">
                         {{vm.error.comment.message}}
@@ -253,9 +261,10 @@
 
                 <div class="row">
                     <div class="col-xs-10">
-                        <input type="number" class="custom-input-number input-number-hide" ng-model="vm.price"
+                        <input type="text" class="custom-input-number" min="0" step="1"
+                               ng-model="vm.price"
                                ng-class="{'border-red': vm.projectTmp.type == 'EMERGENCY', 'mb-25': !vm.error.price.flag}"
-                               decimal-places>
+                               yaka-input-numbers-only>
                     </div>
                     <div class="col-xs-2 sym-euro no-padding h-0">
                         €

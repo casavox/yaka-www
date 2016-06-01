@@ -3457,6 +3457,7 @@ md-input-container {
     width: 610px !important;
     outline: none !important;
     border-bottom: 2px solid red !important;
+    color: #444444;
 }
 
 .textarea-profile {

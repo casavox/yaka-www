@@ -23,14 +23,14 @@
                     <div class="v-icon v-icon-{{p.mainActivity.code}} center-middle">
                     </div>
                 </div>
-                <div class="project-info-middle no-margin no-padding" title="{{p.title}}">
+                <div class="project-info-middle no-margin no-padding" title="{{p.translatedTitle}}">
                     <div class="project-middle pl-20">
                         <div class="title-line">
                             <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
 
                             <p class="project-title"
                                ng-class="{'draft': p.status == 'DRAFT'}">
-                                {{p.title}}
+                                {{p.translatedTitle}}
                             </p>
                         </div>
 
@@ -173,13 +173,13 @@
                     <div class="col-xs-2 no-margin no-padding">
 
                     </div>
-                    <div class="col-xs-4 no-margin no-padding" title="{{p.title}}">
+                    <div class="col-xs-4 no-margin no-padding" title="{{p.translatedTitle}}">
                         <div class="project-middle pl-20">
                             <div class="title-line">
                                 <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
 
                                 <p class="project-title">
-                                    {{p.title}}
+                                    {{p.translatedTitle}}
                                 </p>
                             </div>
 
