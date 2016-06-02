@@ -4828,14 +4828,37 @@ ul[rn-carousel-buffered] > li {
 }
 
 .titleYakaClubWhite {
-    color: white;
+    color: white !important;
     line-height: normal !important;
     margin-left: 0 !important;
     position: absolute !important;
-    top: 19px !important;
+    top: 21px !important;
     left: auto !important;
 }
 
 .titleYakaClubBetaHeader {
-    top: 7px !important;
+    top: 5px !important;
+}
+
+.yakaHeaderAvatar {
+    margin-left: 5px;
+}
+
+.yakaHeaderFirstname {
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-left: 5px;
+}
+
+.yakaHeaderFirstname i {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.yakaHeaderAvatarDropdown {
+    top: -5px;
+    height: 45px;
+    padding-top: 4px;
 }

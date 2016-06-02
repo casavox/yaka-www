@@ -169,3 +169,14 @@
 .dropdown-toggle:hover {
     text-decoration: none;
 }
+
+.dropdown-toggle:focus {
+    text-decoration: none;
+}
+
+.header-inner {
+    padding-top: 17px !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

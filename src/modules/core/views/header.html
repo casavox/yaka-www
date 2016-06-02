@@ -45,9 +45,13 @@
                 </div>
             </li>
 
-            <li class="dropdown" uib-dropdown>
+            <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
-                    <yaka-avatar size="40" user="app.getUser()"></yaka-avatar>
+                    <yaka-avatar class="yakaHeaderAvatar" size="35" user="app.getUser()"></yaka-avatar>
+                    <span class="yakaHeaderFirstname">
+                        {{app.getFirstName()}}
+                        <i class="zmdi zmdi-caret-down"></i>
+                    </span>
                 </a>
                 <ul class="dropdown-menu dm-icon pull-right">
                     <li ng-if="!app.isPro()">
