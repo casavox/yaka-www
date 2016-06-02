@@ -1,0 +1,21 @@
+.proposalIconBackground {
+    background-color: #03A9F4;
+    border-radius: 50%;
+}
+
+.projectCreated .pti-header {
+    padding: 30px 10px 60px !important;
+}
+
+.projectCreated h2 {
+    font-size: 30px !important;
+}
+
+.projectCreated h4 {
+    margin: auto;
+    width: 90%;
+}
+.projectCreated li {
+    text-align: justify !important;
+}
+

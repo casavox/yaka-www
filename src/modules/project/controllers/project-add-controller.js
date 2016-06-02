@@ -401,14 +401,21 @@
         };
 
         function succesProjectsPOST(res) {
+            console.log(res)
             vm.continueAddressFlag = vm.continueImg = vm.continue = vm.service = vm.selectCategory = false;
             vm.questions = [];
             vm.end = true;
-            $timeout(function () {
-                var element = document.getElementById('slideEnd');
-                smoothScroll(element, scrollOptions);
-                vm.redirect();
-            }, 0);
+            swal({
+                title: 'Félicitations, votre projet vient d’être créé !',
+                text: 'Suivez son avancement dans le menu "Projets" !',
+                type: 'success',
+                confirmButtonColor: '#03A9F4',
+                confirmButtonText: 'Continuer !',
+                confirmButtonClass: 'btn btn-success'
+            }, function (isConfirm) {
+                $state.go("proposals", {projectId: res});
+            });
+            vm.redirect();
         }
 
         function errorProjectsPOST() {
@@ -790,11 +797,11 @@
         vm.redirect = function () {
             vm.countdown -= 1;
             if (vm.countdown == 0)
-                $state.go("dashboard");
+                $state.go("my-projects");
             else {
                 $timeout(function () {
                     vm.redirect();
-                }, 1000);
+                }, 500);
             }
         };
         vm.initHours();

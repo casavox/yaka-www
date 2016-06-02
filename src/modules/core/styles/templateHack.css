@@ -1,4 +1,30 @@
 
+.blue-card-hover:before {
+    -webkit-transition: width;
+    -o-transition: width;
+    transition: width;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    content: "";
+    width: 3px;
+    height: 100%;
+    background: rgba(3, 164, 244, 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.blue-card-hover:hover {
+    opacity: 0.85;
+    filter: alpha(opacity=85);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+.blue-card-hover:hover:before {
+    width: 100%;
+}
+
 .galleryCaption {
     margin-top: 20px;
     margin-right: 20%;

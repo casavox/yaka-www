@@ -1863,6 +1863,24 @@ md-input-container {
     top: 110px !important;
 }
 
+/****************** project-card START ************************/
+.project-card {
+    margin-left: 30px;
+    top: 100px;
+    width: calc(100% - 30px);
+    max-width: 325px;
+    min-width: 325px;
+    background-color: white;
+    padding: 10px 15px 15px 15px;
+    -moz-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -webkit-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    -o-box-shadow: 1px 1px 1px 0px #9b9b9b;
+    box-shadow: 1px 1px 1px 0px #9b9b9b;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=1);
+}
+
+/****************** project-card END ************************/
+
 .menu-r {
     position: fixed;
     top: 164px;
@@ -2248,6 +2266,76 @@ md-input-container {
 .v-icon-CON_14000 {
     background-size: contain;
     background-image: url('/icons/mdpi/ic_construction_blue.png')
+}
+
+.v-icon-ELE_1000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_electrician_white.png')
+}
+
+.v-icon-PLU_2000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_plumber_white.png')
+}
+
+.v-icon-HEA_3000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_heater_white.png')
+}
+
+.v-icon-CAR_4000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_carpenter_white.png')
+}
+
+.v-icon-LOC_5000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_locksmith_white.png')
+}
+
+.v-icon-PAI_6000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_painter_white.png')
+}
+
+.v-icon-WAL_7000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_walling_white.png')
+}
+
+.v-icon-INS_8000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_insulation_white.png')
+}
+
+.v-icon-COU_9000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_architect_white.png')
+}
+
+.v-icon-KIT_10000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_kitchen_bathroom_white.png')
+}
+
+.v-icon-ROO_11000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_roofer_white.png')
+}
+
+.v-icon-GAT_12000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_garage_white.png')
+}
+
+.v-icon-GAR_13000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_landscaping_white.png')
+}
+
+.v-icon-CON_14000-white {
+    background-size: contain;
+    background-image: url('/icons/mdpi/ic_construction_white.png')
 }
 
 .type-project-box-content {
@@ -3344,13 +3432,14 @@ md-input-container {
 
 .detail-pro-message-box {
     width: 714px;
-    height: 100px;
+    height: auto;
     background-color: white;
     margin-left: 30px;
 }
 
 .detail-pro-message-box > p {
     text-align: center;
+    vertical-align: middle;
     position: relative;
     left: 50%;
     top: 50%;
@@ -3361,7 +3450,6 @@ md-input-container {
     color: #444444;
     letter-spacing: 1.04px;
     line-height: 18px;
-    text-align: center;
 }
 
 .w-555 {
