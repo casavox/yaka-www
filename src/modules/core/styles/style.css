@@ -4760,7 +4760,7 @@ ul[rn-carousel-buffered] > li {
     font-size: 18px;
     display: inline-block;
     position: relative;
-    top: 4px;
+    top: 3px;
     margin-left: 5px;
 }
 
@@ -4770,7 +4770,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .yakaHeaderAvatarDropdown {
-    top: -5px;
-    height: 45px;
-    padding-top: 4px;
+    top: -10px;
+    height: 55px;
+    padding-top: 7px;
 }
