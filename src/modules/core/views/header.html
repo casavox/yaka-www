@@ -18,7 +18,7 @@
     </li>
     <li class="pull-right">
         <ul class="top-menu">
-            <li class="dropdown" uib-dropdown>
+            <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
                     <i class="tm-icon zmdi zmdi-email"></i>
                     <i class="tmn-counts">6</i>
@@ -49,7 +49,7 @@
                 <a uib-dropdown-toggle href="">
                     <yaka-avatar class="yakaHeaderAvatar" size="40" user="app.getUser()"></yaka-avatar>
                     <span class="yakaHeaderFirstname">
-                        {{app.getFirstName()}}
+                        <span class="hidden-xs">{{app.getFirstName()}}</span>
                         <i class="zmdi zmdi-caret-down"></i>
                     </span>
                 </a>

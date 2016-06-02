@@ -4774,3 +4774,22 @@ ul[rn-carousel-buffered] > li {
     height: 55px;
     padding-top: 7px;
 }
+
+@media (max-width: 767px) {
+
+    .titleYakaClubWhite {
+        font-size: 15px !important;
+        position: relative !important;
+        left: -8px !important;
+        top: -7px !important;
+        width: 81px !important;
+    }
+
+    .titleYakaClubBetaHeader {
+        position: relative !important;
+        left: -4px !important;
+        top: 0px !important;
+        font-size: 12px !important;
+    }
+
+}
