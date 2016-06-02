@@ -4848,7 +4848,7 @@ ul[rn-carousel-buffered] > li {
     font-size: 18px;
     display: inline-block;
     position: relative;
-    top: 4px;
+    top: 3px;
     margin-left: 5px;
 }
 
@@ -4858,7 +4858,26 @@ ul[rn-carousel-buffered] > li {
 }
 
 .yakaHeaderAvatarDropdown {
-    top: -5px;
-    height: 45px;
-    padding-top: 4px;
+    top: -10px;
+    height: 55px;
+    padding-top: 7px;
+}
+
+@media (max-width: 767px) {
+
+    .titleYakaClubWhite {
+        font-size: 15px !important;
+        position: relative !important;
+        left: -8px !important;
+        top: -7px !important;
+        width: 81px !important;
+    }
+
+    .titleYakaClubBetaHeader {
+        position: relative !important;
+        left: -4px !important;
+        top: 0px !important;
+        font-size: 12px !important;
+    }
+
 }
