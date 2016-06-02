@@ -9,7 +9,6 @@
 
         var app = this;
         var vm = this;
-        $scope.user = $localStorage.user;
         $rootScope.rate_watcher = true;
         $scope.projectFlag = false;
         $scope.project = null;
@@ -30,8 +29,7 @@
 
         $rootScope.updateProfile = function () {
             networkService.me(function (res) {
-                $localStorage.user = res;
-                $scope.user = $localStorage.user;
+                app.setUser(res);
             }, function () {
                 app.logout();
             });
@@ -48,15 +46,8 @@
                 }, {
                     'token': $localStorage.token
                 });
-            });
-
-        $scope.$watch(function () {
-            return $localStorage.user;
-        }, function (newVal, oldVal) {
-            if (newVal === oldVal)
-                return;
-            $scope.user = $localStorage.user;
-        });
+            }
+        );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -160,11 +151,15 @@
             }
         };
 
+        app.setUser = function (user) {
+            $localStorage.user = user;
+        };
+
         app.getUser = function () {
-            if ($scope.user == undefined) {
-                return {};
+            if ($localStorage.user) {
+                return $localStorage.user;
             } else {
-                return $scope.user;
+                return {};
             }
         };
 
@@ -189,17 +184,17 @@
         };
 
         app.getFirstName = function () {
-            if ($scope.user == undefined) {
-                return "";
+            if (app.getUser) {
+                return app.getUser().firstName;
             }
-            return $scope.user.firstName;
+            return "";
         };
 
         app.getLastName = function () {
-            if ($scope.user == undefined) {
-                return "";
+            if (app.getUser) {
+                return app.getUser().firstName;
             }
-            return $scope.user.lastName;
+            return "";
         };
 
         app.getFullName = function () {
@@ -212,10 +207,10 @@
         };
 
         app.getEmail = function () {
-            if ($scope.user == undefined) {
-                return "";
+            if (app.getUser) {
+                return app.getUser().firstName.toLowerCase();
             }
-            return $scope.user.email.toLowerCase();
+            return "";
         };
 
         app.showCustomerSupport = false;
