@@ -104,66 +104,43 @@
             </div>
         </div>
     </section>
-    <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
-        <div class="detail-pro-title">
-            <div class="in-line">
-                OFFRES RECUES
+    <div class="container">
+        <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
+        <div class="card">
+            <div class="card-header bgm-orange">
+                <h2>Offres reçues<small>Liste des réponses de professionnels</small></h2>
             </div>
-            <hr>
-        </div>
-        <div class="proposal" ng-repeat="p in vm.project.proposals" ng-click="vm.selectProposal(p)">
-            <div class="row no-margin no-padding">
-                <div class="col-xs-12 row">
-                    <div class="proposals-profile-pict">
-                        <cl-image public-id="{{p.professional.user.avatar.cloudinaryPublicId}}"
-                                  secure="true"
-                                  class="img-circle" format="png">
-                            <cl-transformation height="70" width="70" crop="fill"/>
-                        </cl-image>
-                        <div class="img-default" ng-if="!p.professional.user.avatar.cloudinaryPublicId">
-                            {{p.professional.user.firstName[0] | uppercase}} {{p.professional.user.lastName[0] |
-                            uppercase}}
-                        </div>
-                    </div>
-                    <div class="proposals-info">
-                        <div class="proposals-name">
-                    <span
-                        ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
-                            ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
-                        </div>
-                        <div class="proposals-qualities"><span
-                            ng-repeat="q in p.professional.qualities">{{ q.name }} <span
-                            ng-if="!$last"> - </span></span></div>
-                        <div class="pro-title-icon">
-                            <img src="icons/mdpi/ic_like_empty.png" class="icon-like"/>
 
-                            <div class="likes">
-                                {{p.professional.likes}} <span
-                                ng-if="!p.professional.likes || p.professional.likes == 0"> - </span>
+            <div class="card-body">
+                <div class="listview">
+
+                    <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"  ng-click="vm.selectProposal(p)">
+                        <div class="media">
+                            <div class="pull-left">
+                                <!--<img class="lv-img-sm" data-ng-src="img/profile-pics/{{ w.img }}" alt="">-->
+                                <cl-image public-id="{{p.professional.user.avatar.cloudinaryPublicId}}"
+                                          secure="true"
+                                          class="img-circle" format="png">
+                                    <cl-transformation height="70" width="70" crop="fill"/>
+                                </cl-image>
+                                <div class="img-default" ng-if="!p.professional.user.avatar.cloudinaryPublicId">
+                                    {{p.professional.user.firstName[0] | uppercase}} {{p.professional.user.lastName[0] |
+                                    uppercase}}
+                                </div>
                             </div>
-                            <img src="icons/mdpi/ic_background_checked.png" class="icon-verification"
-                                 ng-if="vm.indexOfObject('BACKGROUND_CHECK', 'name', p.professional.verifications).length > 0"/>
-                            <img src="icons/mdpi/suggestion.png" class="icon-suggestion"/>
+                            <div class="media-body">
+                                <div class="lv-title">{{ p.professional.user.firstName }}</div>
+                                <small class="lv-small">{{ p.professional.user.lastName }}</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="proposals-message-price">
-                        <img src="icons/mdpi/ic_message.png" class="proposals-unread"
-                             ng-if="p.unreadMessages"/>
+                    </a>
 
-                        <div class="proposals-price" ng-if="p.price">
-                            {{p.price}} €
-                        </div>
-                        <div class="proposals-price-type" ng-if="p.price">
-                            {{p.priceType}}
-                        </div>
-                        <div ng-if="!p.price" class="proposals-more-info">
-                            Need more info
-                        </div>
-                    </div>
+                    <div class="clearfix"></div>
+
+                    <a class="lv-footer" href="">View All</a>
                 </div>
             </div>
-        </div>
-    </div>
+            </div>
 </section>
 
 
