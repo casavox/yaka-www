@@ -70,7 +70,7 @@
             },
             radius: 200,
             stroke: {
-                color: '#00aded',
+                color: '#03A9F4',
                 weight: 1,
                 opacity: 1
             },

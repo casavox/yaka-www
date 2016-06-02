@@ -151,12 +151,12 @@
                 },
                 radius: args.radius,
                 stroke: {
-                    color: '#00aded',
+                    color: '#03A9F4',
                     weight: 2,
                     opacity: 1
                 },
                 fill: {
-                    color: '#00aded',
+                    color: '#03A9F4',
                     opacity: 0.15
                 },
                 control: {}

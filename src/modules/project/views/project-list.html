@@ -1,19 +1,12 @@
+<header id="header" data-current-skin='lightblue' ng-include="'/modules/core/views/header.html'"
+    ></header>
+
 <section class="view">
-    <div class="header-menu">
-        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
-        <div class="title">
-            MY PROJECTS
-        </div>
-        <a ui-sref="new-project">
-            <button type="button" class="post-job-projects btn">Post a job</button>
-        </a>
-        <a ng-click="app.logout()">
-            <div class="logout">
-                Log Out
-            </div>
-        </a>
-    </div>
-    <div class="page-content">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="page-content">
         <div class="content-slide">
             <h4>IN PROGRESS</h4>
 

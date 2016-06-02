@@ -10,7 +10,6 @@
         var app = this;
         var vm = this;
         $scope.user = $localStorage.user;
-        var menuOpened = false;
         $rootScope.rate_watcher = true;
         $scope.projectFlag = false;
         $scope.project = null;
@@ -161,32 +160,6 @@
             }
         };
 
-        app.menu = {
-            openMenu: function () {
-                menuOpened = true;
-            },
-            closeMenu: function () {
-                menuOpened = false;
-            },
-            getMenuClass: function () {
-                if (menuOpened) {
-                    return "opened";
-                } else {
-                    return "closed";
-                }
-            },
-            getOverlayClass: function () {
-                if (menuOpened) {
-                    return "overlayVisible";
-                } else {
-                    return "overlayInvisible";
-                }
-            },
-            getMenuItemClass: function () {
-                return "";
-            }
-        };
-
         app.getUser = function () {
             if ($scope.user == undefined) {
                 return {};
@@ -200,17 +173,19 @@
             $state.go('home');
         };
 
-        app.getUserType = function () {
-            if ($scope.user == undefined ||
-                $scope.user.type == undefined) {
-                return "";
-            } else {
-                return $scope.user.type;
+        app.isPro = function () {
+            if (!app.getUser()) {
+                return false;
             }
+            return app.getUser().professional;
         };
 
-        app.isPro = function () {
-            return app.getUserType() == "pro";
+        app.getTheme = function () {
+            if (app.isPro()) {
+                return "orange";
+            } else {
+                return "lightblue"
+            }
         };
 
         app.getFirstName = function () {
@@ -275,5 +250,17 @@
                 });
             smartsupp('chat:open');
         };
+
+        //Template stuff
+
+        app.sidebarToggle = {
+            left: false
+        };
+
+        app.sidebarStat = function (event) {
+            if (!angular.element(event.target).parent().hasClass('active')) {
+                this.sidebarToggle.left = false;
+            }
+        }
     }
 })();

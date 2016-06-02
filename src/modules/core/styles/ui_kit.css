@@ -33,7 +33,7 @@
 }
 
 .yakaButton.yakaBlue {
-    background: #00A3D3;
+    background: #03A9F4;
     color: white;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .yakaButton.yakaBlue:active {
-    background: #00A3D3;
+    background: #03A9F4;
 }
 
 .yakaButton.yakaBlue.yakaDisabled {
@@ -50,7 +50,7 @@
 }
 
 .yakaButton.yakaOrange {
-    background: #fdaf00;
+    background: #FF9800;
     color: white;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .yakaButton.yakaOrange:active {
-    background: #fdaf00;
+    background: #FF9800;
 }
 
 .yakaButton.yakaOrange.yakaDisabled {
@@ -89,7 +89,7 @@
 }
 
 .yakaLinkWhite:active {
-    color: #FDAF00;
+    color: #FF9800;
 }
 
 /* Popups */

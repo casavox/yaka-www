@@ -1,14 +1,26 @@
 <style ng-if="app.isPro()">
     .customerSupportWidget {
-        background: #fdaf00;
+        background: #FF9800;
     }
 
     .contactsItemNumberActive {
-        background: #fdaf00;
+        background: #FF9800;
     }
 </style>
 
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
+
 <section class="view">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    <!--
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>-->
+
+
+    <!--
     <div class="header-menu">
         <div class="titleYakaClub" ui-sref="contacts">
             <span class="titleYaka">YAKA</span><span class="titleClub">CLUB</span>
@@ -37,7 +49,8 @@
             </div>
         </a>
     </div>
-    <div class="page-content contacts">
+    -->
+    <div id="content" class="page-content contacts">
         <div class="col-xs-12 contactsHeader">
             <div class="col-sm-6 hidden-xs contactsHeaderLeft">
                 <div class="col-xs-12 contactsHeaderLeftTitle"
