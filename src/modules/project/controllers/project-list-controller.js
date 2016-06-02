@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function MyProjectscontroller(networkService, $rootScope, $state, $filter) {
+    function MyProjectscontroller(networkService, $rootScope, $state, $filter, $translate) {
 
         $rootScope.pageName = "Mes projets";
         $rootScope.updateProfile();
@@ -53,14 +53,22 @@
 
         function successProjectsGET(res) {
             $rootScope.projects = res.items;
-            if (!angular.isUndefined(res.items) && res.items && res.items.length > 0)
+            if (!angular.isUndefined(res.items) && res.items && res.items.length > 0) {
                 vm.projectsOnGoing = res.items;
-            else
+                angular.forEach(vm.projectsOnGoing, function (proj) {
+                    proj.translatedTitle = translateLeadTitle(proj);
+                });
+            }
+            else {
                 vm.projectsOnGoing = [];
+            }
         }
 
         function succesProjectsCompletedGET(res) {
             vm.projectsCompleted = res.items;
+            angular.forEach(vm.projectsCompleted, function (proj) {
+                proj.translatedTitle = translateLeadTitle(proj);
+            });
         }
 
         function errorProjectsGET(res) {
@@ -68,5 +76,14 @@
 
         function errorProjectsCompletedGET(res) {
         }
+
+        function translateLeadTitle(lead) {
+            var titleArray = lead.title.split(' ');
+            for (var i = 0; i < titleArray.length; i++) {
+                titleArray[i] = $translate.instant('ACTIVITY_' + titleArray[i]);
+            }
+            return titleArray.join(' ');
+        }
+
     }
 })();

@@ -80,11 +80,11 @@
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                 networkService.deleteProject($stateParams.projectId,
                     function () {
-                        alertMsg.send("Your project has been deleted", "success");
+                        alertMsg.send("Votre projet à bien été supprimé", "success");
                         $state.go("my-projects");
                     },
                     function () {
-                        alertMsg.send("Error : project can't be deleted", "danger");
+                        alertMsg.send("Impossible de supprimer le projet", "danger");
                     }
                 );
             }
@@ -95,13 +95,13 @@
                 networkService.publishProject($stateParams.projectId,
                     function () {
                         vm.publishFlag = false;
-                        alertMsg.send("Your project has been published", "success");
+                        alertMsg.send("Votre projet à bien été dépublié", "success");
                         if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
                         }
                     },
                     function () {
-                        alertMsg.send("Error : project can't be published", "danger");
+                        alertMsg.send("Impossible de dépublier le projet", "danger");
                     }
                 );
             }
@@ -113,7 +113,7 @@
                 vm.project.status = "ONGOING_RATE_PRO";
                 vm.closeFlag = false;
             }, function (res) {
-                alertMsg.send("Error : project can't be close", "danger");
+                alertMsg.send("Impossible de fermer le projet", "danger");
             });
         };
 
@@ -130,11 +130,11 @@
         function succesProposalAcceptPOST(res) {
             vm.proposal = res;
             vm.hireFlag = false;
-            alertMsg.send("Proposal selected", "success");
+            alertMsg.send("La proposition à bien été sélectionnée", "success");
         }
 
         function errorProposalAcceptPOST() {
-            alertMsg.send("Error Proposal not selected", "danger");
+            alertMsg.send("Impossible de selectionner la proposition ", "danger");
         }
 
         // vm.getQualities = function () {
@@ -165,7 +165,7 @@
             if (vm.newAddr.name.length > 0) {
                 vm.disabledAddr = vm.continueAddress = false;
                 vm.myAddress = "new";
-                $scope.address = angular.copy(cleanAddress);
+                $scope.address = angular.copy(vm.cleanAddress);
             }
             else {
                 vm.newAddr.name = "";
@@ -211,7 +211,7 @@
         };
 
         function errorProposalGET(res) {
-            alertMsg.send("Error. Can't get this proposal", "danger");
+            alertMsg.send("Impossible de récupérer le projet", "danger");
         }
 
         vm.draft = function () {
@@ -268,6 +268,10 @@
             if (vm.myAddress == "new") {
                 vm.projectTmp.address.name = vm.newAddr.name;
                 vm.projectTmp.address.address = $scope.address.name;
+                vm.projectTmp.address.streetNumber = $scope.address.components.streetNumber;
+                vm.projectTmp.address.route = $scope.address.components.street;
+                vm.projectTmp.address.postalCode = $scope.address.components.postCode;
+
                 vm.whereFlag = false;
             }
             else {
@@ -390,13 +394,13 @@
 
         function succesProfilePUT(res) {
             vm.cancel();
-            alertMsg.send("Project updated.", "success");
+            alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
         }
 
         function errorProfilePUT() {
             vm.cancel();
-            alertMsg.send("Error. the server can't update the project.", "danger");
+            alertMsg.send("Impossible de modifier le projet", "danger");
         }
 
         vm.all = function (j) {
@@ -454,7 +458,7 @@
         vm.uploadFiles = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
+                    alertMsg.send("Taille maximum : 5Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -477,7 +481,7 @@
                         file.result = data;
                         vm.projectTmp.images.push({cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
-                        alertMsg.send("Error : Upload failed.", "danger");
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
             });
@@ -620,7 +624,7 @@
         }
 
         function errorProjectGET(res) {
-            alertMsg.send("Error : Impossible to get the mission.", "danger");
+            alertMsg.send("Impossible de récupérer ce projet", "danger");
             $state.go("my-projects");
         }
 

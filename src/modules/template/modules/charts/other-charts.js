@@ -3,7 +3,7 @@ materialAdmin
     // =========================================================================
     // SPARKLINE CHARTS
     // =========================================================================
-    
+
     //Bar Chart
 
     .directive('sparklineBar', function(){
@@ -20,13 +20,13 @@ materialAdmin
                         barSpacing: barSpacing
                    });
                 }
-                
+
                 sparkLineBar('.stats-bar', [6,4,8,6,5,6,7,8,3,5,9,5,8,4,3,6,8], '45px', 3, '#fff', 2);
                 sparkLineBar('.stats-bar-2', [4,7,6,2,5,3,8,6,6,4,8,6,5,8,2,4,6], '45px', 3, '#fff', 2);
             }
         }
     })
-    
+
 
     //Line Chart
 
@@ -60,7 +60,7 @@ materialAdmin
         }
     })
 
-    
+
     // Pie Charts
 
     .directive('sparklinePie', function(){
@@ -76,8 +76,8 @@ materialAdmin
                         offset: 0,
                         borderWidth: 0
                     });
-                }   
-                
+                }
+
                 if ($('.stats-pie')[0]) {
                     sparklinePie('.stats-pie', [20, 35, 30, 5], 45, 45, ['#fff', 'rgba(255,255,255,0.7)', 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.2)']);
                 }
@@ -90,7 +90,7 @@ materialAdmin
     // =========================================================================
     // EASY PIE CHARTS
     // =========================================================================
-    
+
     .directive('easypieChart', function(){
         return {
             restrict: 'A',
@@ -108,7 +108,7 @@ materialAdmin
 
                 easyPieChart('.main-pie', 'rgba(255,255,255,0.2)', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0.7)', 7, 'butt', 148);
                 easyPieChart('.sub-pie-1', '#eee', '#ccc', '#2196F3', 4, 'butt', 95);
-                easyPieChart('.sub-pie-2', '#eee', '#ccc', '#FFC107', 4, 'butt', 95);
+                easyPieChart('.sub-pie-2', '#eee', '#ccc', '#FF9800', 4, 'butt', 95);
             }
         }
     })

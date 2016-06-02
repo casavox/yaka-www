@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    function ProfileController($rootScope, networkService, alertMsg) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg) {
 
         $rootScope.pageName = "Mon profil";
         $rootScope.updateProfile();
@@ -34,11 +34,11 @@
             if (vm.pwd2 === vm.pwd1) {
                 vm.updating = true;
                 networkService.changePassword(formData, function (res) {
-                    alertMsg.send("Password updated.", "success");
+                    alertMsg.send("Mot de passe modifié avec succès", "success");
                     vm.updating = false;
                 }, function (res) {
                     vm.updating = false;
-                    alertMsg.send("Error password not changed", "danger");
+                    alertMsg.send("Impossible de modifier le mot de passe", "danger");
                 });
             }
         }
@@ -112,10 +112,6 @@
                 vm.profile.avatar = {};
             }
 
-            console.log(vm.profileInfo);
-
-            console.log(vm.profile);
-
             return (vm.profileInfo.firstName != vm.profile.firstName ||
                 vm.profileInfo.lastName != vm.profile.lastName ||
                 vm.profileInfo.gender != vm.profile.gender ||
@@ -145,6 +141,17 @@
             }
             return str.length;
         };
+
+        $scope.$on('$stateChangeStart', function (event) {
+
+            if (vm.showButtonsNewPassword() ||
+                vm.showButtonsProfile()) {
+                if (confirm("Vous avez des modification en cours non sauvegardées. Voulez-vous vraiment quiter cette page ?\nCliquez sur Annuler pour rester sur cette page ou sur OK pour la quitter.")) {
+                    return;
+                }
+                event.preventDefault();
+            }
+        });
 
     }
 })();

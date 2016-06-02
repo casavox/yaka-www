@@ -180,3 +180,12 @@
     margin-left: 18px;
     font-size: 12px;
 }
+
+#sidebar {
+    font-family: roboto !important;
+    font-size: 13px !important;
+}
+
+.dropdown-toggle:hover {
+    text-decoration: none;
+}

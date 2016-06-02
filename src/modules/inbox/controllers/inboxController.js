@@ -25,10 +25,10 @@
                         vm.messages = res;
                         vm.glue = true;
                     }, function () {
-                        alertMsg.send("Error to get the messages historic", "warning");
+                        alertMsg.send("Imposible de récupérer les messages", "warning");
                     });
                 }, function () {
-                    alertMsg.send("Error to get the proposal's conversation", "warning");
+                    alertMsg.send("Imposible de récupérer les messages", "warning");
                 });
             }
             else {
@@ -42,10 +42,10 @@
                         vm.messages = res;
                         vm.glue = true;
                     }, function () {
-                        alertMsg.send("Error to get the messages historic", "warning");
+                        alertMsg.send("Imposible de récupérer les messages", "warning");
                     });
                 }, function () {
-                    alertMsg.send("Error to get the proposal's conversation", "warning");
+                    alertMsg.send("Imposible de récupérer les messages", "warning");
                 });
             }
             $stomp
@@ -90,11 +90,11 @@
             vm.hireFlag = false;
             if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId)
                 networkService.proposalGET($stateParams.proposalId, succesProposalGET, errorProposalGET);
-            alertMsg.send("Proposal selected", "success");
+            alertMsg.send("Proposition acceptée avec succès", "success");
         }
 
         function errorProposalAcceptPOST() {
-            alertMsg.send("Error Proposal not selected", "danger");
+            alertMsg.send("Impossible d'accepter la proposition", "danger");
         }
 
         function loadMore() {
@@ -102,7 +102,7 @@
             networkService.messagesGET($stateParams.proposalId, page, limit, function (res) {
                 vm.messages = vm.messages.concat(res);
             }, function () {
-                alertMsg.send("Error to get the messages", "warning");
+                alertMsg.send("Imposible de récupérer les messages", "warning");
             });
         }
 
@@ -116,7 +116,7 @@
         function uploadFiles(files, invalides) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
+                    alertMsg.send("Taille maximum : 5Mo", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -157,7 +157,7 @@
                             vm.msg = {};
                         }, function (res) {
                             vm.send = false;
-                            alertMsg.send("Error to send message", "warning");
+                            alertMsg.send("Impossible d'envoyer le message", "warning");
                         })
                     }
                     else {
@@ -167,13 +167,20 @@
                             vm.msg = {};
                         }, function () {
                             vm.send = false;
-                            alertMsg.send("Error to send message", "warning");
+                            alertMsg.send("Impossible d'envoyer le message", "warning");
                         })
                     }
                 }
             }
         }
 
+        vm.getClUrlThumbnail = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true, width: 200, height: 200, crop: 'fill'});
+        };
+
+        vm.getClUrl = function (clPublicId) {
+            return $.cloudinary.url(clPublicId, {secure: true});
+        };
 
     }
 })();

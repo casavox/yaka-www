@@ -19,6 +19,8 @@
                 <button type="button" class="form-control" ng-click="vm.loadMore()"
                         ng-hide="vm.messages.items.length < 20">Load more
                 </button>
+
+
                 <div class="inbox-message"
                      ng-repeat="message in vm.messages.items | orderBy : 'created'  | unique: 'id'">
                     <div class="inbox-pict-profile" ng-class="{'inbox-pict-profile-right': message.author == vm.me}">
@@ -42,10 +44,20 @@
                     </div>
                     <div class="inbox-message-content"
                          ng-class="{'inbox-message-content-me': message.author == vm.me, 'inbox-message-content-yaka': message.author == 'YAKA', 'inbox-message-content-auto': message.author == 'AUTO'}">
-                        <cl-image public-id="{{message.cloudinaryPublicId}}" secure="true" format="png"
-                                  ng-if="message.cloudinaryPublicId" ng-click="vm.selectImagePreview(message)">
-                            <cl-transformation height="200" width="200" crop="fit"/>
-                        </cl-image>
+
+
+                        <div class="lightbox photos">
+                            <div data-src="{{vm.getClUrl(message.cloudinaryPublicId) | trusted}}"
+                                 class="lightboxItemAngular col-xs-6 col-sm-3 col-md-3">
+                                <div class="lightbox-item p-item">
+                                    <img
+                                        ng-src="{{vm.getClUrlThumbnail(message.cloudinaryPublicId) | trusted}}"
+                                        alt=""/>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <textarea class="inbox-message-textarea" disabled="disabled" ng-if="message.text"
                                   ng-model="message.text"
                                   msd-elastic></textarea>

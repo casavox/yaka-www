@@ -83,7 +83,7 @@
     position: fixed;
     right: 0;
     top: calc(50% - (30px / 2));
-    background: #00A3D3;
+    background: #03A9F4;
     height: 30px;
     width: 164px;
     transform: rotate(270deg) translateY(67px);
@@ -174,7 +174,7 @@
 
 .titleBeta {
     text-align: right;
-    background: #00A3D3;
+    background: #03A9F4;
     margin-left: 5px;
     font-size: 16px;
     line-height: 18px;
@@ -188,7 +188,7 @@
 }
 
 .titleBetaPro {
-    background: #fdaf00 !important;
+    background: #FF9800 !important;
     left: 176px;
 }
 
@@ -443,7 +443,7 @@ img {
     border: none;
     width: 100%;
     height: 64px;
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -472,7 +472,7 @@ md-input-container {
 }
 
 .login-sign a {
-    color: #00aded;
+    color: #03A9F4;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -510,7 +510,6 @@ md-input-container {
 
 .content-slide {
     top: 55px !important;
-    position: fixed !important;
     left: 0px !important;
     height: calc(100% - 55px) !important;
     width: 100% !important;
@@ -596,7 +595,7 @@ md-input-container {
 
 .menu-active > li {
     background-color: white;
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
     -webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.38);
     -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.38);
     box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.38);
@@ -604,7 +603,7 @@ md-input-container {
 }
 
 .menu-active li > i {
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
 }
 
 .menu-content > a > li > i {
@@ -615,16 +614,16 @@ md-input-container {
 
 .menu-content > a > li:hover {
     background-color: white;
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
 }
 
 .menu-content > a > li:hover > i {
-    color: #00a3d3;
+    color: #03A9F4;
 }
 
 .active-menu {
     background-color: white;
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
     -moz-box-shadow: 0px 0px 15px 3px #656565;
     -webkit-box-shadow: 0px 0px 15px 3px #656565;
     -o-box-shadow: 0px 0px 15px 3px #656565;
@@ -634,7 +633,7 @@ md-input-container {
 }
 
 .active-menu > i {
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
 }
 
 .contentOverlay {
@@ -925,7 +924,7 @@ md-input-container {
 .inbox-send {
     font-family: "montserrat_regular";
     font-size: 14px;
-    color: #00a3d3;
+    color: #03A9F4;
     line-height: 18px;
     line-height: 60px;
     vertical-align: middle;
@@ -1046,7 +1045,7 @@ md-input-container {
 
 .inbox-message-content-yaka > textarea {
     text-align: left !important;
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
 }
 
 .inbox-img-join {
@@ -1163,7 +1162,7 @@ md-input-container {
 }
 
 .select-pos {
-    background: #00aded !important;
+    background: #03A9F4 !important;
 }
 
 .select-neg {
@@ -1180,9 +1179,9 @@ md-input-container {
 }
 
 .criteria-selected-pos {
-    background: #00aded !important;
+    background: #03A9F4 !important;
     color: white !important;
-    border-color: #00aded !important;
+    border-color: #03A9F4 !important;
 }
 
 .textarea-rating {
@@ -1277,7 +1276,7 @@ md-input-container {
 
 .rate-link > a {
     font-size: 14px;
-    color: #00aded;
+    color: #03A9F4;
     text-align: left;
 }
 
@@ -1370,7 +1369,7 @@ md-input-container {
     border: none;
     width: 50%;
     height: 64px;
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -1413,7 +1412,7 @@ md-input-container {
 }
 
 .alert-border {
-    border-left: 4px solid #00aded !important;
+    border-left: 4px solid #03A9F4 !important;
     max-width: 836px;
 }
 
@@ -1496,11 +1495,11 @@ md-input-container {
 .dashboard-project > div > div > i {
     position: relative;
     margin-top: 12px;
-    color: #00aded;
+    color: #03A9F4;
 }
 
 .puce {
-    color: #00aded;
+    color: #03A9F4;
 }
 
 .title-line > label {
@@ -1573,11 +1572,11 @@ md-input-container {
 
 .link-post-job {
     float: right;
-    color: #00aded;
+    color: #03A9F4;
 }
 
 .link-show-all {
-    color: #00aded;
+    color: #03A9F4;
 }
 
 .propositions {
@@ -1683,7 +1682,7 @@ md-input-container {
     width: 200px;
     height: 35px;
     border: none;
-    border-bottom: 1px solid #00a3d3;
+    border-bottom: 1px solid #03A9F4;
     line-height: 35px;
     font-size: 30px;
     outline: none;
@@ -1712,14 +1711,14 @@ md-input-container {
 }
 
 .pro-popUp-choice:hover {
-    background-color: #00a3d3;
+    background-color: #03A9F4;
     color: white;
     cursor: pointer;
 }
 
 .pro-popUp-choice {
     font-size: 14px;
-    color: #00aded;
+    color: #03A9F4;
     letter-spacing: 0.5px;
     text-align: center;
     line-height: 37px;
@@ -1727,15 +1726,15 @@ md-input-container {
     font-family: "montserrat_regular";
     height: 37px;
     width: 100px;
-    border: 1px solid #00a3d3;
-    color: #00a3d3;
+    border: 1px solid #03A9F4;
+    color: #03A9F4;
     text-align: center;
 }
 
 .sym-euro {
     font-family: "montserrat_regular";
     font-size: 36px;
-    color: #00a3d3;
+    color: #03A9F4;
     text-align: left;
 }
 
@@ -1759,7 +1758,7 @@ md-input-container {
 }
 
 .color-blue {
-    color: #00a3d3 !important;
+    color: #03A9F4 !important;
 }
 
 .make-menu-unread {
@@ -1917,7 +1916,7 @@ md-input-container {
 .menu-r > div > div > div > .button {
     width: 100%;
     height: 50px;
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white;
     font-weight: bold !important;
     text-align: center !important;
@@ -2097,7 +2096,7 @@ md-input-container {
     height: 50px;
     top: 15px;
     width: 250px;
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white !important;
     font-weight: bold !important;
     text-align: center !important;
@@ -2482,13 +2481,13 @@ md-input-container {
 
 .question-li {
     list-style: none;
-    border: 2px solid #00aded;
+    border: 2px solid #03A9F4;
     width: 456px;
     height: 56px;
     margin-top: 10px;
     font-family: 'montserrat_light';
     font-size: 18px;
-    color: #00aded;
+    color: #03A9F4;
     letter-spacing: 1.88px;
     line-height: 56px;
     text-align: center;
@@ -2500,7 +2499,7 @@ md-input-container {
 
 .question-li:hover {
     color: white;
-    background-color: #00aded;
+    background-color: #03A9F4;
 }
 
 .question-child {
@@ -2517,7 +2516,7 @@ md-input-container {
 .type-project-box:hover {
     border: 1px solid #edeff5;
     cursor: pointer;
-    background-color: #00aded;
+    background-color: #03A9F4;
 }
 
 .type-project-box:hover > div > p {
@@ -2533,7 +2532,7 @@ md-input-container {
 }
 
 .content-slide::-webkit-scrollbar-thumb {
-    background-color: #00aded;
+    background-color: #03A9F4;
 }
 
 .bckg-white {
@@ -2568,7 +2567,7 @@ md-input-container {
 
 .v-btn {
     background: #ffffff;
-    border: 2px solid #00aded;
+    border: 2px solid #03A9F4;
     width: 136px;
     height: 35px;
     text-align: center;
@@ -2577,7 +2576,7 @@ md-input-container {
 }
 
 .v-btn:active {
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white;
 }
 
@@ -2604,7 +2603,7 @@ md-input-container {
 .new-project-continue {
     border: none !important;
     height: 64px;
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white !important;
     font-weight: bold !important;
     text-align: center !important;
@@ -2619,7 +2618,7 @@ md-input-container {
 }
 
 .activate {
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white;
 }
 
@@ -2695,14 +2694,14 @@ md-input-container {
 }
 
 .custom-date > table > thead {
-    background-color: #00aded;
+    background-color: #03A9F4;
     color: white !important;
 }
 
 .custom-date > table > thead > tr > th > button {
     border-radius: 0;
     color: white;
-    background-color: #00aded;
+    background-color: #03A9F4;
     background-image: none !important;
     border: none !important;
     box-shadow: none !important;
@@ -2787,7 +2786,7 @@ md-input-container {
 .checkbox-style {
     height: 15px;
     width: 15px;
-    border: 2px solid #00aded;
+    border: 2px solid #03A9F4;
     cursor: pointer;
 }
 
@@ -2922,7 +2921,7 @@ md-input-container {
 }
 
 .profile-activities-check {
-    background-color: #00a3d3;
+    background-color: #03A9F4;
     color: white;
     min-width: 25px;
     height: 35px;
@@ -2939,7 +2938,7 @@ md-input-container {
 .icon-edit {
     height: 30px;
     width: 30px;
-    background-color: #00a3d3;
+    background-color: #03A9F4;
     border-radius: 50%;
     background-image: url('/icons/mdpi/ic_pen.png');
     background-size: 15px 15px;
@@ -3015,7 +3014,7 @@ md-input-container {
     top: 2px;
     width: 17px;
     height: 17px; /* dim. de la case */
-    border: 2px solid #00a3d3;
+    border: 2px solid #03A9F4;
     background: #f8f8f8;
     /*box-shadow: inset 0 1px 3px rgba(0,0,0,.3) /* légère ombre interne */
 }
@@ -3028,7 +3027,7 @@ md-input-container {
     top: 1px;
     left: 3px;
     font-size: 14px;
-    color: #00a3d3;
+    color: #03A9F4;
     transition: all .2s; /* on prévoit une animation */
 }
 
@@ -3061,13 +3060,13 @@ md-input-container {
     top: 2px;
     width: 17px;
     height: 17px; /* dim. de la case */
-    border: 2px solid #00a3d3;
+    border: 2px solid #03A9F4;
     background: #f8f8f8;
 }
 
 /* styles de la coche (si cochée/désactivée) */
 .profile-verif > [type="checkbox"]:disabled:checked + label:after {
-    color: #00a3d3;
+    color: #03A9F4;
 }
 
 /* on style aussi le label quand désactivé */
@@ -3084,7 +3083,7 @@ md-input-container {
 /* aspect au focus de l'élément */
 .profile-verif > [type="checkbox"]:checked:focus + label:before,
 .profile-verif > [type="checkbox"]:not(:checked):focus + label:before {
-    border: 2px solid #00a3d3;
+    border: 2px solid #03A9F4;
 }
 
 .profile-bck-verif > div > div > div > p {
@@ -3122,7 +3121,7 @@ md-input-container {
 .profile-box-footer-btn-fr {
     font-family: "montserrat_regular";
     font-size: 12px;
-    color: #00a3d3;
+    color: #03A9F4;
     text-align: right;
     margin-top: 13px;
     float: right;
@@ -3135,7 +3134,7 @@ md-input-container {
 }
 
 .md-input-container:not('.md-input-invalid').md-input-focused .md-input {
-    border-color: #00a3d3 !important;
+    border-color: #03A9F4 !important;
 }
 
 .profile-info-warning {
@@ -3221,7 +3220,7 @@ md-input-container {
 }
 
 .popUp-footer > div:nth-child(2n) {
-    color: #00aded;
+    color: #03A9F4;
     margin-right: 20px;
 }
 
@@ -3336,7 +3335,7 @@ md-input-container {
 }
 
 .tab-active {
-    border-bottom: 4px solid #00a3d3;
+    border-bottom: 4px solid #03A9F4;
 }
 
 .min-w-44 {
@@ -3470,7 +3469,7 @@ md-input-container {
     float: right;
     font-family: 'montserrat_light';
     font-size: 14px;
-    color: #00aded;
+    color: #03A9F4;
     letter-spacing: 1.46px;
     line-height: 17px;
     text-align: left;
@@ -3545,6 +3544,7 @@ md-input-container {
     width: 610px !important;
     outline: none !important;
     border-bottom: 2px solid red !important;
+    color: #444444;
 }
 
 .textarea-profile {
@@ -3602,7 +3602,7 @@ md-input-container {
     text-align: left;
     padding-top: 9px;
     outline: none !important;
-    border-bottom: 2px solid #00a3d3 !important;
+    border-bottom: 2px solid #03A9F4 !important;
 }
 
 .modal-content {
@@ -3627,12 +3627,12 @@ md-input-container {
 
 .custom-textarea-popUp:focus {
     outline: none !important;
-    border-bottom: 2px solid #00aded !important;
+    border-bottom: 2px solid #03A9F4 !important;
 }
 
 .custom-comment:focus {
     outline: none !important;
-    border-bottom: 2px solid #00aded !important;
+    border-bottom: 2px solid #03A9F4 !important;
 }
 
 .custom-textarea-image:focus ~ .row > .col-md-12 > .img-desc-length {
@@ -3670,7 +3670,7 @@ md-input-container {
 }
 
 .comment-length {
-    color: #00aded;
+    color: #03A9F4;
     float: right;
     display: none;
 }
@@ -4092,7 +4092,7 @@ md-input-container {
 .proposal-price {
     font-family: "montserrat_light";
     font-size: 36px;
-    color: #00a3d3;
+    color: #03A9F4;
     text-align: right;
 }
 
@@ -4269,7 +4269,7 @@ md-input-container {
     padding-top: 15px;
     position: fixed !important;
     bottom: 0;
-    background-color: #00a3d3;
+    background-color: #03A9F4;
     color: white;
 }
 
@@ -4751,14 +4751,14 @@ ul[rn-carousel-buffered] > li {
 }
 
 .bckg-blue {
-    background-color: #00a3d3 !important;
+    background-color: #03A9F4 !important;
     color: white !important;
-    border-color: #00a3d3 !important;
+    border-color: #03A9F4 !important;
 }
 
 .btn-blue {
-    color: #00a3d3 !important;
-    border-color: #00a3d3 !important;
+    color: #03A9F4 !important;
+    border-color: #03A9F4 !important;
 }
 
 .text-align-left {
@@ -4790,7 +4790,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .proDashboardList::-webkit-scrollbar-thumb {
-    background-color: #00aded;
+    background-color: #03A9F4;
 }
 
 @media (max-width: 767px) {
@@ -4825,4 +4825,17 @@ ul[rn-carousel-buffered] > li {
 
 .fg-float .fg-label.fg-label-phone {
     left: 50px !important;
+}
+
+.titleYakaClubWhite {
+    color: white;
+    line-height: normal !important;
+    margin-left: 0 !important;
+    position: absolute !important;
+    top: 19px !important;
+    left: auto !important;
+}
+
+.titleYakaClubBetaHeader {
+    top: 7px !important;
 }

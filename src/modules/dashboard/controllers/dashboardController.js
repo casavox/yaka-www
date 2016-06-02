@@ -37,7 +37,7 @@
 
 
         function errorProjectsGET() {
-            alertMsg.send("Error : Impossible to get the projects.", "warning");
+            alertMsg.send("Imposible de récupérer les projets", "warning");
         }
 
         function selectProject(p) {

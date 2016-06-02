@@ -1,35 +1,35 @@
 materialAdmin
-    
+
     // =========================================================================
-    // Curved Line Chart 
+    // Curved Line Chart
     // =========================================================================
 
     .directive('curvedlineChart', function(){
         return {
             restrict: 'A',
             link: function(scope, element) {
-                
+
                 /* Make some random data for the Chart*/
 
                 var d1 = [];
                 var d2 = [];
                 var d3 = [];
-                
+
                 for (var i = 0; i <= 10; i += 1) {
                     d1.push([i, parseInt(Math.random() * 30)]);
                 }
-                
+
                 for (var i = 0; i <= 20; i += 1) {
                     d2.push([i, parseInt(Math.random() * 30)]);
-                }    
-                
+                }
+
                 for (var i = 0; i <= 10; i += 1) {
                     d3.push([i, parseInt(Math.random() * 30)]);
                 }
-    
-                
+
+
                 /* Chart Options */
-    
+
                 var options = {
                     series: {
                         shadowSize: 0,
@@ -65,7 +65,7 @@ materialAdmin
                         show: false
                     }
                 };
-    
+
                 /* Let's create the chart */
 
                 $.plot($(element), [
@@ -93,16 +93,16 @@ materialAdmin
         }
     })
 
-    
+
     // =========================================================================
     // Regular Line Charts
     // =========================================================================
-    
+
     .directive('lineChart', function(){
         return {
             restrict: 'A',
             link: function(scope, element){
-                
+
                 /* Make some random data for Recent Items chart */
 
                 var data = [];
@@ -139,15 +139,15 @@ materialAdmin
                 var d1 = [];
                 var d2 = [];
                 var d3 = [];
-                
+
                 for (var i = 0; i <= 10; i += 1) {
                     d1.push([i, parseInt(Math.random() * 30)]);
                 }
-                
+
                 for (var i = 0; i <= 20; i += 1) {
                     d2.push([i, parseInt(Math.random() * 30)]);
-                }    
-                
+                }
+
                 for (var i = 0; i <= 10; i += 1) {
                     d3.push([i, parseInt(Math.random() * 30)]);
                 }
@@ -189,7 +189,7 @@ materialAdmin
                 if ($("#line-chart")[0]) {
                     $.plot($("#line-chart"), [
                         {data: d1, lines: { show: true, fill: 0.98 }, label: 'Product 1', stack: true, color: '#e3e3e3' },
-                        {data: d3, lines: { show: true, fill: 0.98 }, label: 'Product 2', stack: true, color: '#FFC107' }
+                        {data: d3, lines: { show: true, fill: 0.98 }, label: 'Product 2', stack: true, color: '#FF9800' }
                     ], options);
                 }
 
@@ -256,7 +256,7 @@ materialAdmin
                         fillColor: '#FF9800'
                     }
                 });
-                
+
                 /* Let's create the chart */
                 $.plot($(element), barData, {
                     grid : {
@@ -311,9 +311,9 @@ materialAdmin
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
-            
+
                 /* Make some random data*/
-    
+
                 var data = [];
                 var totalPoints = 300;
                 var updateInterval = 30;
@@ -398,7 +398,7 @@ materialAdmin
                     }
                 });
 
-                /* Update */    
+                /* Update */
                 function update() {
                     plot.setData([getRandomData()]);
                     // Since the axes don't change, we don't need to call plot.setupGrid()
@@ -435,7 +435,7 @@ materialAdmin
                         series: {
                             pie: {
                                 show: true,
-                                stroke: { 
+                                stroke: {
                                     width: 2,
                                 },
                             },
@@ -473,7 +473,7 @@ materialAdmin
                             pie: {
                                 innerRadius: 0.5,
                                 show: true,
-                                stroke: { 
+                                stroke: {
                                     width: 2,
                                 },
                             },
@@ -507,5 +507,5 @@ materialAdmin
     })
 
 
-    
-    
+
+

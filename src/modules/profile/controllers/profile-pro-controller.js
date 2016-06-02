@@ -160,12 +160,12 @@
                 },
                 radius: 10,
                 stroke: {
-                    color: '#00aded',
+                    color: '#03A9F4',
                     weight: 2,
                     opacity: 1
                 },
                 fill: {
-                    color: '#00aded',
+                    color: '#03A9F4',
                     opacity: 0.15
                 },
                 visible: false,
@@ -271,15 +271,15 @@
                 if (vm.pwd2 === vm.pwd1) {
                     vm.updating = true;
                     networkService.changePassword(formData, function (res) {
-                        alertMsg.send("Password updated.", "success");
+                        alertMsg.send("Mot de passe modifié avec succès", "success");
                         vm.updating = false;
                     }, function (res) {
                         vm.updating = false;
-                        alertMsg.send("Error password not changed", "danger");
+                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
                     });
                 }
                 else {
-                    vm.error.password.message = "Password not confirmed.";
+                    vm.error.password.message = "Les deux mots de passe ne correspondent pas";
                     vm.error.password.flag = true;
                 }
             }
@@ -318,7 +318,7 @@
         function uploadPortfolio(files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
+                    alertMsg.send("Taille maximum : 5Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -344,7 +344,7 @@
                         vm.portfolio.push({cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
-                        alertMsg.send("Error : Upload failed.", "danger");
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
             });
@@ -357,7 +357,7 @@
         function uploadVerifications(files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
+                    alertMsg.send("Taille maximum : 5Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -389,7 +389,7 @@
                         vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
-                        alertMsg.send("Error : Upload failed.", "danger");
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
             });
@@ -398,7 +398,7 @@
         function uploadProfile(files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
+                    alertMsg.send("Taille maximum : 5Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -425,7 +425,7 @@
                         vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
-                        alertMsg.send("Error : Upload failed.", "danger");
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
             });
@@ -484,7 +484,7 @@
                 vm.profile.portfolio = res;
                 vm.editFlag = false;
                 vm.updating = false;
-                alertMsg.send("Portfolio updated.", "success");
+                alertMsg.send("Le portfolio à été modifié avec succès", "success");
             }, errorProfilePUT);
         }
 
@@ -522,7 +522,7 @@
                     vm.verifications = res;
                     vm.profile.verifications = res;
                     vm.updating = false;
-                    alertMsg.send("Verifications updated.", "success");
+                    alertMsg.send("Les vérifications ont été modifiées avec succès", "success");
                 }, errorProfilePUT);
             } else {
                 vm.error.verif.message = "Merci de fournir un scan de votre KBIS et certificat d'assurance, " +
@@ -539,7 +539,7 @@
                     vm.activities = res;
                     vm.profile.activities = res;
                     vm.updating = false;
-                    alertMsg.send("Activities updated.", "success");
+                    alertMsg.send("Les domaines d'activité ont été modifié avec succès", "success");
                 }, errorProfilePUT);
             }
             else {
@@ -584,23 +584,23 @@
         function succesProfilePUT(res) {
             succesProfileGET(res);
             vm.updating = false;
-            alertMsg.send("Profile updated.", "success");
+            alertMsg.send("Les informations du profil on été modifiées avec succès", "success");
         }
 
         function errorProfilePUT() {
             vm.updating = false;
-            alertMsg.send("Profile not updated.", "danger");
+            alertMsg.send("Impossible de modifier le profil", "danger");
         }
 
         function succesWorkareaPUT(res) {
             vm.mapEditing = false;
             vm.updating = false;
-            alertMsg.send("Profile updated.", "success");
+            alertMsg.send("La zone de notification à été modifiée avec succès", "success");
         }
 
         function errorWorkareaPUT() {
             vm.updating = false;
-            alertMsg.send("Profile not updated.", "danger");
+            alertMsg.send("Impossible de modifier la zone de notification", "danger");
         }
 
         function succesProfileGET(res) {
@@ -620,7 +620,7 @@
         }
 
         function errorProfileGET(res) {
-            alertMsg.send("Error to get the profile informations.", "danger");
+            alertMsg.send("Impossible de récupérer le profil", "danger");
         }
 
         vm.showProfileEditPopup = false;
@@ -841,5 +841,20 @@
             return false;
         };
 
+        $scope.$on('$stateChangeStart', function (event) {
+
+            if (vm.showButtonsAbout() ||
+                vm.showButtonsProfile() ||
+                vm.showButtonsPortfolio() ||
+                vm.showButtonsActivities() ||
+                vm.showButtonsNewPassword() ||
+                vm.showButtonsVerifications() ||
+                vm.showButtonsWorkArea()) {
+                if (confirm("Vous avez des modification en cours non sauvegardées. Voulez-vous vraiment quiter cette page ?\nCliquez sur Annuler pour rester sur cette page ou sur OK pour la quitter.")) {
+                    return;
+                }
+                event.preventDefault();
+            }
+        });
     }
 })();

@@ -104,7 +104,7 @@
         $scope.uploadFiles = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Error : max size 5MB.", "danger");
+                    alertMsg.send("Taille maximum : 5Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;

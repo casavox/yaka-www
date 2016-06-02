@@ -148,7 +148,7 @@
             vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
             vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering);
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address);
         };
 
         vm.loginFormIsValid = function () {
@@ -165,16 +165,9 @@
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.user = res;
                 $localStorage.token = res.token;
-                if (angular.isUndefined(res.professional)) {
-                    $localStorage.user.type = 'customer';
-                } else if (angular.isDefined(res.professional)) {
-                    $localStorage.user.type = 'pro';
-                }
-                console.log("succesLogin - $localStorage.urlRedirect");
-                console.log($localStorage.urlRedirect);
-                if ($localStorage.urlRedirect != undefined) {
-                    window.location.href = $localStorage.urlRedirect;
-                    delete $localStorage.urlRedirect;
+                if (window.yakaRedirectUrl != undefined) {
+                    window.location.href = window.yakaRedirectUrl;
+                    delete window.yakaRedirectUrl;
                 } else {
                     $state.go('contacts');
                 }

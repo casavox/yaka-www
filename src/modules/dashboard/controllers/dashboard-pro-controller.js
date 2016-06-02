@@ -151,12 +151,12 @@
                 },
                 radius: args.radius,
                 stroke: {
-                    color: '#00aded',
+                    color: '#03A9F4',
                     weight: 2,
                     opacity: 1
                 },
                 fill: {
-                    color: '#00aded',
+                    color: '#03A9F4',
                     opacity: 0.15
                 },
                 control: {}
@@ -179,7 +179,7 @@
                 function succesProLeads(res) {
                     onLeadsLoaded(res);
                 }, function errorProLeads() {
-                    alertMsg.send("Pro get", "danger");
+                    alertMsg.send("Imposible de récupérer les projets", "danger");
                 }
             );
         }
@@ -333,7 +333,7 @@
                 vm.workareaDiameter = Math.ceil((res.radius * 2) / 1000);
                 loadLeads(bounds);
             }, function errorProLeads() {
-                alertMsg.send("Pro get", "danger");
+                alertMsg.send("Imposible de récupérer les projets", "danger");
             }
         );
     }
