@@ -1,6 +1,7 @@
 .proposalIconBackground {
     background-color: #03A9F4;
     border-radius: 50%;
+    vertical-align: middle;
 }
 
 .projectCreated .pti-header {
