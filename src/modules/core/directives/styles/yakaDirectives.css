@@ -10,4 +10,6 @@ yaka-avatar {
     height: 100%;
     background: #607D8B;
     border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
 }

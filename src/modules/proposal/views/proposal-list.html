@@ -106,12 +106,11 @@
                                ng-click="vm.selectProposal(p)">
                                 <div class="media">
                                     <div class="pull-left">
-                                        <yaka-avatar class="yakaHeaderAvatar" size="40"
-                                                     user="p.professional.user"></yaka-avatar>
+                                        <yaka-avatar class="yakaHeaderAvatar" size="35" user="p.professional.user"></yaka-avatar>
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title">{{ p.professional.user.firstName }} {{
-                                            p.professional.user.lastName }}
+                                        <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
+                                            ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
                                         </div>
                                         <small class="lv-small" ng-if="p.price">Devis <i>{{p.priceType}}</i> à
                                             {{p.price}} €

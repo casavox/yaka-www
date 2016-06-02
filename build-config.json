@@ -106,7 +106,8 @@
             "modules/password/styles/recoverpassword.css",
             "modules/profile/styles/profile.css",
             "modules/project/styles/project.css",
-            "modules/contacts/styles/contacts.css"
+            "modules/contacts/styles/contacts.css",
+            "modules/proposal/styles/proposal.css"
         ],
         "scss": [],
         "assets": [

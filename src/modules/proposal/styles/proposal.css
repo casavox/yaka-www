@@ -8,6 +8,10 @@
     padding: 30px 10px 60px !important;
 }
 
+.projectCreated h2 {
+    font-size: 40px !important;
+}
+
 .projectCreated h4 {
     margin: auto;
     width: 90%;
