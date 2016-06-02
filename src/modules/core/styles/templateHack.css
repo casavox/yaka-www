@@ -1,5 +1,5 @@
 
-.blue-card-hover:hover {
+.card-hover:hover {
     opacity: 0.85;
     filter: alpha(opacity=85);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);

@@ -21,15 +21,13 @@
 
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"></header>
 
-<section class="view" ng-cloak>
-
+<section id="main">
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
-
     <section id="content">
-        <div class="container" style="margin-top: 100px;">
+        <div class="container">
             <div class="card" ng-click="vm.projectDetails()">
-                <div class="card-header blue-card-hover">
+                <div class="card-header card-hover">
                     <div class="media">
                         <div class="pull-left">
                             <div class="proposalIconBackground">
@@ -37,18 +35,16 @@
                             </div>
                         </div>
                         <div class="media-body m-t-5">
-                            <h2>{{vm.project.title}}</h2>
-                            <h2>
-                                <small><i>{{vm.project.address.name}} - {{vm.project.address.administrativeAreaLevel2
-                                    }}</i>
+                            <h2>{{vm.project.title}}
+                                <small><i>{{vm.project.address.name}} -
+                                    {{vm.project.address.administrativeAreaLevel2}}</i>
                                 </small>
                             </h2>
                             <small>Echéance : {{vm.getWhen()}}</small>
                         </div>
-
                     </div>
                     <div class="pull-right">
-                        <h3><i class="zmdi zmdi-more zmdi-hc-fw"></i></h3>
+                        <h2><i class="zmdi zmdi-more-horiz"></i></h2>
                     </div>
                 </div>
             </div>
@@ -56,23 +52,23 @@
                 <div class="card pt-inner ">
                     <div class="pti-header bgm-lightblue">
                         <h2>Votre projet est correctement créé !</h2>
-                        <div class="ptih-title">Nous avons communiqué votre projet aux professionnels de votre secteur
+                        <div class="ptih-title">Nous l'avons communiqué aux professionnels de votre secteur
                         </div>
                     </div>
 
                     <div class="pti-body">
                         <div class="ptib-item">
-                            <h3>Vous allez bientôt recevoir plusieurs offres</h3>
+                            <h4>Vous allez bientôt recevoir plusieurs offres</h4>
                             <br>
-                            <h4 style="text-align: justify;">
+                            <h5 style="text-align: justify;">
                                 Vous pourrez alors voir celles qui vous intéressent, et discuter par messagerie
                                 instantanée - et privée - avec chaque professionnel.
                                 <ul>
-                                    <li class="ng-binding" style="font-size: 15px !important;">Par défaut vos
+                                    <li class="ng-binding" style="font-size: 13px !important;">Par défaut vos
                                         coordonnées personnelles sont masquées (Nom, téléphone, adresse, email,
                                         ...).
                                     </li>
-                                    <li class="ng-binding" style="font-size: 15px !important;">Vous pouvez à
+                                    <li class="ng-binding" style="font-size: 13px !important;">Vous pouvez à
                                         tout moment décider de communiquer vos coordonnées à un professionnel
                                         :<br>Pour cela il suffit de l'ajouter dans votre <a ui-sref="contacts">liste
                                             de contacts</a>.
@@ -82,7 +78,7 @@
                                 <p>Puis, sélectionnez le professionnel de votre choix et bloquez une date pour démarrer
                                     le
                                     chantier.</p>
-                            </h4>
+                            </h5>
                         </div>
                         <div class="ptib-item">
                             Invitez vos amis à rejoindre Yaka Club pour augmenter vos chances de trouver le
@@ -95,49 +91,44 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="container">
-        <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
-            <div class="card">
-                <div class="card-header bgm-orange">
-                    <h2>Offres reçues
-                        <small>Liste des réponses de professionnels</small>
-                    </h2>
-                </div>
+            <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
+                <div class="card">
+                    <div class="card-header bgm-orange">
+                        <h2>Offres reçues
+                            <small>Liste des réponses de professionnels</small>
+                        </h2>
+                    </div>
 
-                <div class="card-body">
-                    <div class="listview">
+                    <div class="card-body">
+                        <div class="listview">
 
-                        <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
-                           ng-click="vm.selectProposal(p)">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <!--<img class="lv-img-sm" data-ng-src="img/profile-pics/{{ w.img }}" alt="">-->
-                                    <cl-image public-id="{{p.professional.user.avatar.cloudinaryPublicId}}"
-                                              secure="true"
-                                              class="img-circle" format="png">
-                                        <cl-transformation height="70" width="70" crop="fill"/>
-                                    </cl-image>
-                                    <div class="img-default" ng-if="!p.professional.user.avatar.cloudinaryPublicId">
-                                        {{p.professional.user.firstName[0] | uppercase}}
-                                        {{p.professional.user.lastName[0] |
-                                        uppercase}}
+                            <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
+                               ng-click="vm.selectProposal(p)">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <yaka-avatar class="yakaHeaderAvatar" size="40"
+                                                     user="p.professional.user"></yaka-avatar>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">{{ p.professional.user.firstName }} {{
+                                            p.professional.user.lastName }}
+                                        </div>
+                                        <small class="lv-small" ng-if="p.price">Devis <i>{{p.priceType}}</i> à
+                                            {{p.price}} €
+                                        </small>
+                                        <small class="lv-small" ng-if="!p.price">Devis <i>{{p.priceType}}</i> à
+                                            {{p.price}} €
+                                        </small>
                                     </div>
                                 </div>
-                                <div class="media-body">
-                                    <div class="lv-title">{{ p.professional.user.firstName }}</div>
-                                    <small class="lv-small">{{ p.professional.user.lastName }}</small>
-                                </div>
-                            </div>
-                        </a>
-
-                        <div class="clearfix"></div>
-
-                        <a class="lv-footer" href="">View All</a>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 </section>
 
 
