@@ -36,31 +36,6 @@ var colors = gutil.colors;
 
 var buildConfig = require("./build-config.json");
 
-// Archi dev
-//- assets
-//- src
-//  - modules
-//
-//
-// Archi prod
-//- assets
-//- index.html      : index.html with library include and css
-//- app-xxxx.js     : all library, all app files, all html views as templateCache
-//- style-xxx.css   : all library css, all app css
-//
-//
-
-//gulp build -> build for dev environment
-
-//gulp build --production -> build for production environment
-
-//gulp serve -> create a server at port 8000 with dev environment
-
-// gulp serve --production -> create a server with prod environment
-
-//build-config.json -> respect the order in the list.
-// /**/* = recursive
-
 
 gulp.task("build", function (cb) {
     if (argv.production) {
@@ -82,7 +57,7 @@ gulp.task("clean", function (cb) {
     rimraf("dist", cb);
 });
 
-gulp.task("compile-js", ["rev-sass"], function () {
+gulp.task("compile-js", function () {
     return merge2(
         gulp.src(buildConfig.dependencies.js, {cwd: "src", base: "src"}),
         gulp.src("src/modules/**/*.html")
@@ -201,14 +176,6 @@ var rmOrig = function () {
     });
 };
 
-gulp.task("rev-sass", function () {
-    return gulp.src("dist/*.css")
-        .pipe(rev())
-        .pipe(rmOrig())
-        .pipe(gulp.dest("dist")
-    );
-});
-
 var getTarget = function () {
     return file("styles.scss", "/* inject:css *//* endinject *//* inject:scss *//* endinject */", {src: true});
 };
@@ -231,14 +198,16 @@ var getCleanedCssSources = function () {
         getTarget().pipe(inject(getSourcesScss(), {relative: true, removeTags: true})), getSourcesCss())
         .pipe(gulpif(argv.production, concat("styles.css")))
         .pipe(gulpif(argv.production, bless({imports: false})))
-        .pipe(sort(function (file1, file2) {
+        .pipe(gulpif(argv.production, sort(function (file1, file2) {
             if (file1.path.substring(file1.path.lastIndexOf("/") + 1) == "styles.css") {
                 return 1;
             }
             return file1.path.substring(file1.path.lastIndexOf("/") + 1) < file2.path.substring(file2.path.lastIndexOf("/") + 1);
-        }))
+        })))
         .pipe(gulpif(argv.production, cleanCss()))
         .pipe(flatten())
+        .pipe(gulpif(argv.production, rev()))
+        .pipe(gulpif(argv.production, rmOrig()))
         .pipe(gulp.dest("dist"))
 };
 
