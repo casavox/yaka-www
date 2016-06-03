@@ -49,6 +49,10 @@
         vm.all = all;
         vm.getSlot = getSlot;
 
+        vm.datepickerOptions = {
+            minDate: new Date()
+        };
+
         vm.circle =
         {
             id: 1,
@@ -493,6 +497,11 @@
         }
 
         function succesProjectGET(res) {
+
+            if (res.desiredDate) {
+                vm.datepickerOptions.minDate = new Date(res.desiredDate);
+                console.log(vm.datepickerOptions);
+            }
 
             $scope.map.center = {
                 latitude: res.address.latitude,

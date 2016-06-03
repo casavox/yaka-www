@@ -27,7 +27,7 @@
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-    <div class="content col-xs-12">
+    <div id="content" class="content col-xs-12">
         <div class="col-sm-8" ng-show="!vm.pro">
             <div class="card">
                 <div class="row no-margin">
@@ -524,7 +524,7 @@
                 </div>
                 <div ng-show="vm.project.type != 'EMERGENCY'">
                     <div style="display:inline-block; min-height:290px;" class="center custom-picker">
-                        <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" max-date="vm.maxDate" show-weeks="true"
+                        <uib-datepicker ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                         class="well well-sm custom-date"
                                         custom-class="getDayClass(date, mode)"></uib-datepicker>
                     </div>
