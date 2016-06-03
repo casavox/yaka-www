@@ -4855,12 +4855,12 @@ ul[rn-carousel-buffered] > li {
     line-height: normal !important;
     margin-left: 0 !important;
     position: absolute !important;
-    top: 21px !important;
+    top: 11px !important;
     left: auto !important;
 }
 
 .titleYakaClubBetaHeader {
-    top: 5px !important;
+    top: 7px !important;
 }
 
 .yakaHeaderAvatar {
@@ -4881,9 +4881,9 @@ ul[rn-carousel-buffered] > li {
 }
 
 .yakaHeaderAvatarDropdown {
-    top: -10px;
-    height: 55px;
-    padding-top: 7px;
+    top: -6px;
+    height: 50px;
+    padding-top: 3px;
 }
 
 @media (max-width: 767px) {
@@ -4892,7 +4892,7 @@ ul[rn-carousel-buffered] > li {
         font-size: 15px !important;
         position: relative !important;
         left: -8px !important;
-        top: -7px !important;
+        top: -9px !important;
         width: 81px !important;
     }
 
@@ -4907,4 +4907,8 @@ ul[rn-carousel-buffered] > li {
 
 .proDashboard {
     position: fixed !important;
+}
+
+.yakaHeaderMessagesDropdown {
+    margin-top: 1px !important;
 }

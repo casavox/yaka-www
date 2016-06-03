@@ -584,7 +584,7 @@
             if (flag == 0) {
                 vm.continueImg = false;
                 swal({
-                    title: "Votre projet ne contient pas de photos",
+                    title: "Votre projet ne contient pas de photos !",
                     text: "Nous vous conseillons de joindre des images pour améliorer la compréhension de votre projet !",
                     type: "warning",
                     confirmButtonColor: "#f44336",

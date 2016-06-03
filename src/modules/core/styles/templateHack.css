@@ -231,3 +231,29 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+header {
+    height: 56px !important;
+    min-height: 56px !important;
+}
+
+.header-inner {
+    padding-top: 9px !important;
+}
+
+#menu-trigger:before {
+    top: 5px !important;
+}
+
+#sidebar {
+    top: 56px !important;
+    height: calc(100% - 56px) !important;
+}
+
+#main {
+    padding-top: 86px !important;
+}
+
+#loading-bar .bar {
+    height: 56px !important;
+}
