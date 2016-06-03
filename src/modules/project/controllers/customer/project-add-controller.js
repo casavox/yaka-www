@@ -584,13 +584,13 @@
             if (flag == 0) {
                 vm.continueImg = false;
                 swal({
-                    title: "Continuer votre projet sans ajouter de photos ?",
+                    title: "Votre projet ne contient pas de photos",
                     text: "Nous vous conseillons de joindre des images pour améliorer la compréhension de votre projet !",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Ajouter une photo",
                     showCancelButton: true,
-                    cancelButtonText: "Continuer sans photo"
+                    cancelButtonText: "Continuer"
                 }, function (isConfirm) {
                     if (isConfirm) {
                         $('input[type=file]').first().click();
