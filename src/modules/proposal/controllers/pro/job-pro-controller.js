@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProJobController($rootScope, $scope, $state, networkService, alertMsg, $filter, $stateParams) {
+    function ProJobController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
+
+        if (!$localStorage.user.professional) {
+            $state.go("home");
+        }
 
         //TODO
         $rootScope.pageName = "";
@@ -32,17 +36,19 @@
         vm.J3.date.setDate(vm.J3.date.getDate() + 2);
         vm.minDate.setDate(vm.minDate.getDate() + 2);
         vm.error = {};
-        $scope.map = {
-            center: {
-                latitude: 46.5945259,
-                longitude: 2.4623584
-            }, zoom: 6
-        };
-        $scope.mapOptions = {
-            draggable: false,
-            disableDoubleClickZoom: true,
-            scrollwheel: false
-        };
+        uiGmapGoogleMapApi.then(function (maps) {
+            $scope.map = {
+                center: {
+                    latitude: 46.5945259,
+                    longitude: 2.4623584
+                }, zoom: 6
+            };
+            $scope.mapOptions = {
+                draggable: false,
+                disableDoubleClickZoom: true,
+                scrollwheel: false
+            };
+        });
         if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
             networkService.proposalProGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         }

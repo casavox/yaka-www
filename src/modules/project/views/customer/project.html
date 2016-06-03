@@ -152,9 +152,8 @@
                                      uib-tooltip="{{image.description}}"
                                      ng-repeat="image in vm.projectTmp.images">
                                     <div class="lightbox-item p-item">
-                                        <img
-                                            ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
-                                            alt=""/>
+                                        <img ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                             alt=""/>
                                     </div>
                                     <div id="caption{{$index}}" style="display:none">
                                         <div class="galleryCaption">

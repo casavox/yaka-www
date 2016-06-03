@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProposalController($scope, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox, $translate) {
+    function ProposalController($scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox, $translate, uiGmapGoogleMapApi) {
+
+        if ($localStorage.user.professional) {
+            $state.go("home");
+        }
 
         //TODO
         $rootScope.pageName = "";
@@ -23,17 +27,19 @@
         vm.project = {};
         vm.projectTmp = {};
         vm.markerCoords = {};
-        $scope.map = {
-            center: {
-                latitude: 46.5945259,
-                longitude: 2.4623584
-            }, zoom: 6
-        };
-        $scope.mapOptions = {
-            draggable: false,
-            disableDoubleClickZoom: true,
-            scrollwheel: false
-        };
+        uiGmapGoogleMapApi.then(function (maps) {
+            $scope.map = {
+                center: {
+                    latitude: 46.5945259,
+                    longitude: 2.4623584
+                }, zoom: 6
+            };
+            $scope.mapOptions = {
+                draggable: false,
+                disableDoubleClickZoom: true,
+                scrollwheel: false
+            };
+        });
         vm.dt = new Date();
         vm.default = angular.copy(vm.dt);
         vm.minDate = new Date();

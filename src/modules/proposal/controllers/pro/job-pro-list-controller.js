@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProJobsController(networkService, alertMsg, $rootScope) {
+    function ProJobsController(networkService, alertMsg, $rootScope, $localStorage, $state) {
+
+        if (!$localStorage.user.professional) {
+            $state.go("home");
+        }
 
         $rootScope.pageName = "Mes projets";
         $rootScope.updateProfile();

@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProjectController($scope, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate) {
+    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate, uiGmapGoogleMapApi) {
+
+        if ($localStorage.user.professional) {
+            $state.go("home");
+        }
 
         //TODO
         $rootScope.pageName = "";
@@ -44,36 +48,38 @@
             types: ['address'],
             componentRestrictions: {country: 'fr'}
         };
-        $scope.map = {
-            center: {
-                latitude: 46.5945259,
-                longitude: 2.4623584
-            }, zoom: 6
-        };
-        $scope.mapOptions = {
-            draggable: false,
-            disableDoubleClickZoom: true,
-            scrollwheel: false
-        };
-        $scope.address = {
-            name: '',
-            place: '',
-            components: {
-                placeId: '',
-                streetNumber: '',
-                street: '',
-                city: '',
-                state: '',
-                countryCode: '',
-                country: '',
-                postCode: '',
-                district: '',
-                location: {
-                    lat: '',
-                    long: ''
+        uiGmapGoogleMapApi.then(function (maps) {
+            $scope.map = {
+                center: {
+                    latitude: 46.5945259,
+                    longitude: 2.4623584
+                }, zoom: 6
+            };
+            $scope.mapOptions = {
+                draggable: false,
+                disableDoubleClickZoom: true,
+                scrollwheel: false
+            };
+            $scope.address = {
+                name: '',
+                place: '',
+                components: {
+                    placeId: '',
+                    streetNumber: '',
+                    street: '',
+                    city: '',
+                    state: '',
+                    countryCode: '',
+                    country: '',
+                    postCode: '',
+                    district: '',
+                    location: {
+                        lat: '',
+                        long: ''
+                    }
                 }
-            }
-        };
+            };
+        });
         vm.cleanAddress = angular.copy($scope.address);
 
         vm.deleteProject = function () {
@@ -136,20 +142,6 @@
         function errorProposalAcceptPOST() {
             alertMsg.send("Impossible de selectionner la proposition ", "danger");
         }
-
-        // vm.getQualities = function () {
-        //     if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.professional) && !angular.isUndefined(vm.proposal.professional.qualities)) {
-        //         var res = "";
-        //         for (var i = 0; i < vm.proposal.professional.qualities.length; i++) {
-        //             switch (vm.proposal.professional.qualities[i].name) {
-        //                 case expression:
-        //                     break;
-        //                 default:
-        //
-        //             }
-        //         }
-        //     }
-        // };
 
         vm.getSlot = function () {
             if (!angular.isUndefined(vm.proposal) && !angular.isUndefined(vm.proposal.availability) && !angular.isUndefined(vm.proposal.availability.slot)) {

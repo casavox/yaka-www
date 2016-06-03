@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProposalsController(networkService, alertMsg, $stateParams, $state, $rootScope) {
+    function ProposalsController(networkService, alertMsg, $stateParams, $localStorage, $state, $rootScope) {
+
+        if ($localStorage.user.professional) {
+            $state.go("home");
+        }
 
         //TODO
         $rootScope.pageName = "";

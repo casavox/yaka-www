@@ -5,7 +5,11 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage) {
+
+        if ($localStorage.user.professional) {
+            $state.go("home");
+        }
 
         $rootScope.pageName = "Mon profil";
         $rootScope.updateProfile();

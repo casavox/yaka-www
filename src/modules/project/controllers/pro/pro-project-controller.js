@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProProjectController($rootScope, $scope, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate) {
+    function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
+
+        if (!$localStorage.user.professional) {
+            $state.go("home");
+        }
 
         //TODO
         $rootScope.pageName = "";
@@ -53,35 +57,37 @@
             minDate: new Date()
         };
 
-        vm.circle =
-        {
-            id: 1,
-            center: {
-                latitude: 0,
-                longitude: 0
-            },
-            radius: 200,
-            stroke: {
-                color: '#03A9F4',
-                weight: 2,
-                opacity: 1
-            },
-            visible: false,
-            control: {},
-            bounds: {}
-        };
+        uiGmapGoogleMapApi.then(function (maps) {
+            vm.circle =
+            {
+                id: 1,
+                center: {
+                    latitude: 0,
+                    longitude: 0
+                },
+                radius: 200,
+                stroke: {
+                    color: '#03A9F4',
+                    weight: 2,
+                    opacity: 1
+                },
+                visible: false,
+                control: {},
+                bounds: {}
+            };
 
-        $scope.map = {
-            center: {
-                latitude: 46.5945259,
-                longitude: 2.4623584
-            }, zoom: 6
-        };
-        $scope.mapOptions = {
-            draggable: false,
-            disableDoubleClickZoom: true,
-            scrollwheel: false
-        };
+            $scope.map = {
+                center: {
+                    latitude: 46.5945259,
+                    longitude: 2.4623584
+                }, zoom: 6
+            };
+            $scope.mapOptions = {
+                draggable: false,
+                disableDoubleClickZoom: true,
+                scrollwheel: false
+            };
+        });
 
         if ($stateParams.projectId) {
             networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);

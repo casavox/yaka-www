@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function MyProjectscontroller(networkService, $rootScope, $state, $filter, $translate) {
+    function MyProjectscontroller(networkService, $rootScope, $localStorage, $state, $filter, $translate) {
+
+        if ($localStorage.user.professional) {
+            $state.go("home");
+        }
 
         $rootScope.pageName = "Mes projets";
         $rootScope.updateProfile();

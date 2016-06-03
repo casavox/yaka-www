@@ -5,7 +5,11 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage) {
+
+        if (!$localStorage.user.professional) {
+            $state.go("home");
+        }
 
         $rootScope.pageName = "Mon profil Pro";
         $rootScope.updateProfile();

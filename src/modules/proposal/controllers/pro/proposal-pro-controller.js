@@ -7,7 +7,11 @@
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $state, networkService, alertMsg, $filter, $stateParams, $translate) {
+    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
+
+        if (!$localStorage.user.professional) {
+            $state.go("home");
+        }
 
         //TODO
         $rootScope.pageName = "";
@@ -61,36 +65,38 @@
         vm.getSlot = getSlot;
         vm.error = {};
 
-        vm.circle =
-        {
-            id: 1,
-            center: {
-                latitude: 0,
-                longitude: 0
-            },
-            radius: 200,
-            stroke: {
-                color: '#03A9F4',
-                weight: 1,
-                opacity: 1
-            },
-            visible: false,
-            control: {},
-            bounds: {}
-        };
+        uiGmapGoogleMapApi.then(function (maps) {
 
-        $scope.map = {
-            center: {
-                latitude: 46.5945259,
-                longitude: 2.4623584
-            }, zoom: 6
-        };
-        $scope.mapOptions = {
-            draggable: false,
-            disableDoubleClickZoom: true,
-            scrollwheel: false
-        };
+            vm.circle =
+            {
+                id: 1,
+                center: {
+                    latitude: 0,
+                    longitude: 0
+                },
+                radius: 200,
+                stroke: {
+                    color: '#03A9F4',
+                    weight: 1,
+                    opacity: 1
+                },
+                visible: false,
+                control: {},
+                bounds: {}
+            };
 
+            $scope.map = {
+                center: {
+                    latitude: 46.5945259,
+                    longitude: 2.4623584
+                }, zoom: 6
+            };
+            $scope.mapOptions = {
+                draggable: false,
+                disableDoubleClickZoom: true,
+                scrollwheel: false
+            };
+        });
 
         if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
             networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
