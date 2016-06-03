@@ -156,11 +156,7 @@
         };
 
         app.getUser = function () {
-            if ($localStorage.user) {
-                return $localStorage.user;
-            } else {
-                return {};
-            }
+            return $localStorage.user;
         };
 
         app.logout = function () {
@@ -184,15 +180,15 @@
         };
 
         app.getFirstName = function () {
-            if (app.getUser) {
+            if (app.getUser()) {
                 return app.getUser().firstName;
             }
             return "";
         };
 
         app.getLastName = function () {
-            if (app.getUser) {
-                return app.getUser().firstName;
+            if (app.getUser()) {
+                return app.getUser().lastName;
             }
             return "";
         };
@@ -207,8 +203,8 @@
         };
 
         app.getEmail = function () {
-            if (app.getUser) {
-                return app.getUser().firstName.toLowerCase();
+            if (app.getUser()) {
+                return app.getUser().email.toLowerCase();
             }
             return "";
         };
