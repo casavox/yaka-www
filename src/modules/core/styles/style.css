@@ -508,6 +508,10 @@ md-input-container {
     z-index: 10;
 }
 
+.content {
+    background-color: #edecec;
+}
+
 .content-slide {
     top: 55px !important;
     left: 0px !important;
@@ -3699,8 +3703,27 @@ md-input-container {
     cursor: pointer;
 }
 
+.icon-pen-blue {
+    background-image: url('/icons/mdpi/ic_pen_edit.png');
+    background-size: 18px 18px;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    right: 39px;
+    cursor: pointer;
+}
+
 .icon-pen-red-pro {
     background-image: url('/icons/mdpi/ic_pen_modify.png');
+    background-size: 18px 18px;
+    height: 18px;
+    width: 18px;
+    float: right;
+    cursor: pointer;
+}
+
+.icon-pen-blue-pro {
+    background-image: url('/icons/mdpi/ic_pen_edit.png');
     background-size: 18px 18px;
     height: 18px;
     width: 18px;

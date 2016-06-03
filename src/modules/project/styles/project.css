@@ -28,3 +28,30 @@
     font-family: 'montserrat_light' !important;
     font-size: 14px !important;
 }
+
+.makeAQuote {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: 100% !important;
+}
+
+.button.btn.send-offer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.makeOfferBox {
+    padding-top: 10px;
+}
+
+.error.makeOfferError {
+    margin-top: 29px !important;
+    margin-bottom: 0px !important;
+    font-size: 12px !important;
+}
+
+.makeQuoteMain {
+
+}
