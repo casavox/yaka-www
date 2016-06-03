@@ -4881,3 +4881,7 @@ ul[rn-carousel-buffered] > li {
     }
 
 }
+
+.proDashboard {
+    position: fixed !important;
+}
