@@ -500,7 +500,6 @@
 
             if (res.desiredDate) {
                 vm.datepickerOptions.minDate = new Date(res.desiredDate);
-                console.log(vm.datepickerOptions);
             }
 
             $scope.map.center = {
