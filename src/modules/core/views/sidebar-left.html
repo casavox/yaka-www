@@ -1,9 +1,15 @@
 <div class="sidebar-inner c-overflow">
     <ul class="main-menu">
         <li ui-sref-active="active">
+            <a ui-sref="new-project" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-plus"></i>
+                Créer un projet
+            </a>
+        </li>
+        <li ui-sref-active="active">
             <a ui-sref="my-projects" ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-assignment"></i>
-                Projets
+                Mes projets
             </a>
         </li>
         <li ui-sref-active="active">
