@@ -36,7 +36,7 @@
                 controllerAs: 'vm'
             })
             .state('pro-job', {
-                url: "/pro/proposals/:proposalId/edit",
+                url: "/pro/job/:proposalId",
                 templateUrl: "/modules/proposal/views/pro/job-pro.html",
                 controller: 'ProJobController',
                 controllerAs: 'vm'

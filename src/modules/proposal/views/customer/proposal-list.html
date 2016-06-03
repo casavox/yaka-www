@@ -22,8 +22,10 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"></header>
 
 <section id="main">
+
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    
     <section id="content">
         <div class="container">
             <div class="card" ng-click="vm.projectDetails()">
@@ -52,6 +54,7 @@
                 <div class="card pt-inner ">
                     <div class="pti-header bgm-lightblue">
                         <h2>Votre projet est correctement créé !</h2>
+
                         <div class="ptih-title">Nous l'avons communiqué aux professionnels de votre secteur
                         </div>
                     </div>
@@ -106,7 +109,8 @@
                                ng-click="vm.selectProposal(p)">
                                 <div class="media">
                                     <div class="pull-left">
-                                        <yaka-avatar class="yakaHeaderAvatar" size="35" user="p.professional.user"></yaka-avatar>
+                                        <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                                     user="p.professional.user"></yaka-avatar>
                                     </div>
                                     <div class="media-body">
                                         <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
@@ -121,6 +125,7 @@
                                     </div>
                                 </div>
                             </a>
+
                             <div class="clearfix"></div>
                         </div>
                     </div>

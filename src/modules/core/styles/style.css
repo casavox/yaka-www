@@ -3524,7 +3524,7 @@ md-input-container {
     background: transparent !important;
     border: none !important;
     resize: none !important;
-    width: 610px !important;
+    width: 100% !important;
 }
 
 .custom-textarea-about-me {

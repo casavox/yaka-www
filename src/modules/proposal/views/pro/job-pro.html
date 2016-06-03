@@ -18,31 +18,17 @@
     }
 </style>
 
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
 
-<section class="view">
-    <div class="header-menu">
-        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
-        <div class="in-line min-w-44 arrow-nav">
-            <img src="icons/mdpi/arrow-left.png" alt="" ui-sref="pro-jobs" class="center-middle"/>
-        </div>
-        <div class="title no-line" ng-show="!vm.proDetails">
-            {{vm.project.title}}
-            <p class="sub-title-proposal">
-                My Job
-            </p>
-        </div>
-        <div class="title" ng-show="vm.proDetails">
-            Proposal's details
-        </div>
-        <a ng-click="app.logout()">
-            <div class="logout">
-                Log Out
-            </div>
-        </a>
-    </div>
-    <div class="page-content">
-        <div class="content-slide">
-            <div class="project-description" ng-show="!vm.pro">
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content col-xs-12">
+        <div class="col-sm-8" ng-show="!vm.pro">
+            <div class="card">
                 <div class="row no-margin">
                     <div class="col-xs-12">
                         <div class="description-action-btn" ng-click="vm.edit()"
@@ -175,35 +161,31 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <div class="col-sm-4">
 
+            <div class="card col-xs-12 projectRightBox">
 
-        <div class="menu-r" ng-class="{'top-120': !vm.pro}" ng-show="vm.proposal.status != 'SELECTED'">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="pro-menu-title">
+                            Chat with {{vm.proposal.project.user.firstName}} {{vm.proposal.project.user.lastName}}
+                        </p>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="pro-menu-title">
-                        Chat with {{vm.proposal.project.user.firstName}} {{vm.proposal.project.user.lastName}}
-                    </p>
+                        <p class="pro-menu-subTitle" ng-show="!vm.offer.price.price">
 
-                    <p class="pro-menu-subTitle" ng-show="!vm.offer.price.price">
+                        </p>
 
-                    </p>
+                        <p class="pro-menu-subTitle" ng-show="vm.offer.price.price">{{vm.offer.price.type}}.
+                            {{vm.offer.price.price}} €</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="button" class="button btn">CHAT</button>
+                    </div>
 
-                    <p class="pro-menu-subTitle" ng-show="vm.offer.price.price">{{vm.offer.price.type}}.
-                        {{vm.offer.price.price}} €</p>
                 </div>
-                <div class="col-xs-12">
-                    <button type="button" class="button btn">CHAT</button>
-                </div>
-
             </div>
-
-
         </div>
-
-
     </div>
 
 

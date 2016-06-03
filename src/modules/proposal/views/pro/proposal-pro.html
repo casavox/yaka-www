@@ -20,41 +20,17 @@
 </style>
 
 
-<section class="view">
-    <div class="header-menu">
-        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
-        <div class="in-line min-w-44 arrow-nav" ui-sref="pro-proposals"
-             ng-if="vm.proposal.status == 'START' || vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'DECLINED'">
-            <img src="icons/mdpi/arrow-left.png" class="center-middle"/>
-        </div>
-        <div class="in-line min-w-44 arrow-nav" ui-sref="pro-jobs"
-             ng-if="vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'RATE_PRO' ||  vm.proposal.status == 'SELECTED'">
-            <img src="icons/mdpi/arrow-left.png" class="center-middle"/>
-        </div>
-        <div class="title no-line" ng-show="!vm.proDetails">
-            {{vm.project.title}}
-            <p class="sub-title-proposal"
-               ng-if="vm.proposal.status == 'START' || vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'DECLINED'">
-                My Quote
-            </p>
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
 
-            <p class="sub-title-proposal"
-               ng-if="vm.proposal.status == 'COMPLETED' || vm.proposal.status == 'RATE_PRO' ||  vm.proposal.status == 'SELECTED'">
-                My Job
-            </p>
-        </div>
-        <div class="title" ng-show="vm.proDetails">
-            Proposal's details
-        </div>
-        <a ng-click="app.logout()">
-            <div class="logout">
-                Log Out
-            </div>
-        </a>
-    </div>
-    <div class="page-content">
-        <div class="content-slide">
-            <div class="project-description" ng-show="!vm.pro">
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+        <div class="col-sm-8" ng-show="!vm.pro">
+            <div class="card">
                 <div class="row no-margin">
                     <div class="col-xs-12">
                         <div class="description-action-btn" ng-click="vm.edit()"
@@ -212,25 +188,20 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <div class="col-sm-4">
 
-        <div class="menu-r top-120">
-            <div>
-                <div>
-                    <div>
-                        <p ng-if="vm.proposal.unreadMessages" class="make-menu-unread">
-                            unread messages
-                        </p>
+            <div class="card col-xs-12 projectRightBox">
 
-                        <p class="make-menu-desc">Chat with {{ vm.proposal.project.user.firstName }}
-                            {{vm.proposal.project.user.lastName}}</p>
-                        <button type="button" class="button btn btn-menu-sel center bckg-blue"
-                                ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
-                        </button>
-                    </div>
+                <p ng-if="vm.proposal.unreadMessages" class="make-menu-unread">
+                    unread messages
+                </p>
 
-                </div>
+                <p class="make-menu-desc">Chat with {{ vm.proposal.project.user.firstName }}
+                    {{vm.proposal.project.user.lastName}}</p>
+                <button type="button" class="button btn btn-menu-sel center bckg-blue"
+                        ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
+                </button>
             </div>
         </div>
     </div>
