@@ -35,17 +35,18 @@
             material: {flag: false, message: ""}
         };
         vm.dt = new Date(); // date picker binding
+        vm.dt.setDate(vm.dt.getDate() + 2);
         vm.default = angular.copy(vm.dt);
         vm.minDate = new Date();
         vm.maxDate = new Date();
-        vm.maxDate.setDate(vm.minDate.getDate() + 180);
+        vm.maxDate.setDate(vm.minDate.getDate() + 15);
         vm.J1 = {date: new Date()};
         vm.time = vm.J1.date.getHours();
         vm.J2 = {date: new Date()};
         vm.J3 = {date: new Date()};
         vm.J2.date.setDate(vm.J2.date.getDate() + 1);
         vm.J3.date.setDate(vm.J3.date.getDate() + 2);
-        vm.minDate.setDate(vm.minDate.getDate() + 2);
+        vm.minDate.setDate(vm.minDate.getDate() + 10);
         var d = new Date();
         $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
         vm.imageLoading = {
