@@ -144,7 +144,7 @@
                 }
             });
         }
-
+        Upload
 
         function sendMessage() {
             if (vm.msg.text && vm.msg.text.length > 0 || vm.msg.cloudinaryPublicId) {

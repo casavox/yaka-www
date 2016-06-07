@@ -1,0 +1,194 @@
+angular.module('Yaka')
+
+    .directive('yakaChat', function (networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG) {
+        return {
+            restrict: 'E',
+            scope: {
+                chatId: '@',
+                userMe: '=',
+                userOther: '='
+            },
+            link: function (scope, element, attr) {
+
+                scope.loadingMessages = false;
+
+                scope.newMessage = {
+                    text: ""
+                };
+
+                scope.sendMessage = function () {
+                    networkService.sendMessage(scope.chatId, scope.newMessage, function (res) {
+                        scope.newMessage = {
+                            text: ""
+                        };
+                    }, function (res) {
+                        alertMsg.send("Impossible d'envoyer le message", "danger");
+                    })
+                };
+
+                scope.showRight = function (message) {
+                    if (message.author && message.author == 'CUSTOMER') {
+                        if ($localStorage.user.professional) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        if ($localStorage.user.professional) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                };
+
+                scope.getClUrlThumbnail = function (clPublicId) {
+                    return $.cloudinary.url(clPublicId, {secure: true, width: 150, height: 150, crop: 'fill'});
+                };
+
+                scope.getClUrl = function (clPublicId) {
+                    return $.cloudinary.url(clPublicId, {secure: true});
+                };
+
+                scope.createImageArray = function (cloudinaryPublicId) {
+                    return [cloudinaryPublicId];
+                };
+
+                var noMoreMessages = false;
+
+                function loadMoreMessages() {
+                    if (noMoreMessages) {
+                        return;
+                    }
+                    scope.loadingMessages = true;
+                    networkService.messagesGET(scope.chatId, parseInt((scope.messages.length / 20) + 1), 20, function (res) {
+                        scope.loadingMessages = false;
+                        if (res.totalPageNumber == res.page) {
+                            noMoreMessages = true;
+                        }
+                        for (var i = 0; i < res.items.length; i++) {
+                            scope.messages.push(res.items[i]);
+                        }
+                    }, function () {
+                        alertMsg.send("Imposible de récupérer les messages", "danger");
+                        scope.loadingMessages = false;
+                    });
+                }
+
+                function chatIdChanged() {
+                    if (!scope.chatId) {
+                        return;
+                    }
+
+                    scope.loadingMessages = true;
+                    networkService.messagesGET(scope.chatId, 1, 20, function (res) {
+                        scope.loadingMessages = false;
+                        scope.messages = res.items;
+                        scrollDown();
+                    }, function () {
+                        alertMsg.send("Imposible de récupérer les messages", "danger");
+                        scope.loadingMessages = false;
+                    });
+                    setupStomp();
+                    setupScrollTopDetection();
+                }
+
+                function scrollDown() {
+                    setTimeout(
+                        function () {
+                            element.find('.lv-body').scrollTop(1E10);
+                        }, 100);
+                }
+
+                function setupStomp() {
+                    $stomp
+                        .connect(CONFIG.API_BASE_URL + '/connect', {token: $localStorage.token})
+
+                        .then(function () {
+                            $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
+                                scope.messages.push(payload);
+                                scrollDown();
+                            }, {
+                                'token': $localStorage.token
+                            });
+                        }, function () {
+                            alertMsg.send("Erreur de connection au chat.", "danger")
+                        });
+                }
+
+                function setupScrollTopDetection() {
+                    element.find('.lv-body').scroll(function () {
+                        if ($(this).scrollTop() == 0) {
+                            loadMoreMessages();
+                        }
+                    });
+                }
+
+                scope.uploadFiles = function (files, invalides) {
+                    if (invalides.length > 0) {
+                        if (invalides[0].$error == "maxSize")
+                            alertMsg.send("Taille maximum : 5Mo", "danger");
+                    }
+                    if (!files) {
+                        return
+                    }
+                    angular.forEach(files, function (file) {
+                        if (file && !file.$error) {
+                            file.upload = Upload.upload({
+                                url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+                                data: {
+                                    upload_preset: cloudinary.config().upload_preset,
+                                    tags: 'chat',
+                                    context: 'photo=' + "Chat : " + scope.chatId,
+                                    file: file
+                                }
+                            }).progress(function (e) {
+                                file.progress = Math.round((e.loaded * 100.0) / e.total);
+                                file.status = "Uploading... " + file.progress + "%";
+                            }).success(function (data, status, headers, config) {
+                                data.context = {custom: {photo: "Chat : " + scope.chatId}};
+                                file.result = data;
+                                scope.newMessage.cloudinaryPublicId = data.public_id;
+                            }).error(function (data, status, headers, config) {
+                                file.result = data;
+                            });
+                        }
+                    });
+                };
+
+                attr.$observe('chatId', chatIdChanged);
+            },
+            templateUrl: "/modules/core/directives/views/yakaChat.html"
+        }
+    })
+
+    .directive("yakaKeepScroll", function () {
+
+        return {
+            controller: function ($scope) {
+                var element = null;
+
+                this.setElement = function (el) {
+                    element = el;
+                };
+
+                this.addItem = function (item) {
+                    element.scrollTop = (element.scrollTop + item.clientHeight + 1);
+                };
+            },
+
+            link: function (scope, el, attr, ctrl) {
+                ctrl.setElement(el[0]);
+            }
+        };
+    })
+
+    .directive("yakaScrollItem", function () {
+
+        return {
+            require: "^yakaKeepScroll",
+            link: function (scope, el, att, scrCtrl) {
+                scrCtrl.addItem(el[0]);
+            }
+        }
+    });
