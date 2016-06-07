@@ -2570,18 +2570,31 @@ md-input-container {
 }
 
 .v-btn {
-    background: #ffffff;
-    border: 2px solid #03A9F4;
     width: 136px;
     height: 35px;
-    text-align: center;
     line-height: 35px;
+    list-style: none;
+    border: 2px solid #03A9F4;
+    margin-top: 10px;
+    font-family: 'montserrat_light';
+    font-size: 18px;
+    color: #03A9F4;
+    letter-spacing: 1.88px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .v-btn:active {
     background-color: #03A9F4;
     color: white;
+}
+
+.v-btn:hover {
+    color: white;
+    background-color: #03A9F4;
 }
 
 .material-sub {
