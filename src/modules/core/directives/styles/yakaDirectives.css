@@ -16,8 +16,8 @@ yaka-avatar .yakaAvatarInitials {
 
 yaka-chat {
     display: block;
-    width: 600px;
-    height: 400px;
+    width: 100%;
+    height: 500px;
     background: white;
 }
 
@@ -66,4 +66,10 @@ yaka-chat .ms-item.messageAuto {
     width: 100%;
     max-width: 100%;
     background: #607D8B !important;
+    color: white !important;
+}
+
+yaka-chat .chatImg {
+    width: 150px;
+    height: 150px;
 }

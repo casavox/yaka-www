@@ -9,7 +9,7 @@
     //Controller login
     function NewProjectController($scope, networkService, $rootScope, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll) {
 
-        if ($localStorage.user.professional) {
+        if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
         }
 

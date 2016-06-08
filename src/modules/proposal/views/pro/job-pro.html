@@ -27,8 +27,24 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content col-xs-12">
-        <div class="col-sm-8" ng-show="!vm.pro">
-            <div class="card">
+        <div class="card">
+
+            <ul class="tab-nav tn-justified">
+                <li heading="Home"
+                    data-ng-class="{'active': !vm.showChat}">
+                    <a href="" ng-click="vm.showChat = false" class="ng-binding">Détails</a>
+                </li>
+
+                <li heading="Profile"
+                    data-ng-class="{'active': vm.showChat}">
+                    <a href="" ng-click="vm.showChat = true" class="ng-binding">Messages</a>
+                </li>
+            </ul>
+
+            <yaka-chat data-ng-show="vm.showChat" chat-id="{{vm.proposal.chat.id}}" user-me="app.getUser()"
+                       user-other="vm.proposal.project.user"></yaka-chat>
+
+            <div data-ng-show="!vm.showChat">
                 <div class="row no-margin">
                     <div class="col-xs-12">
                         <div class="description-action-btn" ng-click="vm.edit()"
@@ -162,62 +178,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-
-            <div class="card col-xs-12 projectRightBox">
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p class="pro-menu-title">
-                            Chat with {{vm.proposal.project.user.firstName}} {{vm.proposal.project.user.lastName}}
-                        </p>
-
-                        <p class="pro-menu-subTitle" ng-show="!vm.offer.price.price">
-
-                        </p>
-
-                        <p class="pro-menu-subTitle" ng-show="vm.offer.price.price">{{vm.offer.price.type}}.
-                            {{vm.offer.price.price}} €</p>
-                    </div>
-                    <div class="col-xs-12">
-                        <button type="button" class="button btn">CHAT</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <div class="popUp" ng-show="vm.declineFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.declineFlag = false"></span>
-                <h4>Decline</h4>
+        <div class="popUp" ng-show="vm.declineFlag">
+            <div class="popUp-container center-middle">
+                <div class="popUp-content">
+                    <span class="boxclose" ng-click="vm.declineFlag = false"></span>
+                    <h4>Decline</h4>
 
-                <p class="info-popUp">
-                    Caution : Do you really want to refuse this offer ?
-                </p>
+                    <p class="info-popUp">
+                        Caution : Do you really want to refuse this offer ?
+                    </p>
 
-                <p class="info-popUp-comp">
-                    Say why :
-                </p>
+                    <p class="info-popUp-comp">
+                        Say why :
+                    </p>
 
-                <div class="row">
-                    <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12">
                         <textarea class="custom-textarea-red w-100p placeholder-xs mb-10"
                                   placeholder="I am sorry but my schedule has changed so I wouldn't be available without more detail I can't give an engagement ..."
                                   ng-model="vm.declineComment"></textarea>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.declineProposal()">
-                    DECLINE
                 </div>
-                <div ng-click="vm.declineFlag = false">
-                    CANCEL
+                <div class="popUp-footer">
+                    <div ng-click="vm.declineProposal()">
+                        DECLINE
+                    </div>
+                    <div ng-click="vm.declineFlag = false">
+                        CANCEL
+                    </div>
                 </div>
             </div>
         </div>

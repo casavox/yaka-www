@@ -9,7 +9,7 @@
     //Controller login
     function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
 
-        if (!$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
         }
 

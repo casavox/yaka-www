@@ -21,26 +21,35 @@
             <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
                     <i class="tm-icon zmdi zmdi-email"></i>
-                    <i class="tmn-counts">6</i>
+                    <i class="tmn-counts" ng-if="app.getUserchatsUnreadNumber() > 0">
+                        {{app.getUserchatsUnreadNumber()}}
+                    </i>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-lg stop-propagate pull-right">
                     <div class="listview">
                         <div class="lv-header">Messages</div>
                         <div class="lv-body">
-                            <a class="lv-item" ng-href="" ng-repeat="w in hctrl.messageResult.list">
+                            <a class="lv-item userChatItem" ng-href=""
+                               data-ng-repeat="userchat in app.getUserchats()"
+                               data-ng-class="{'unread': userchat.unreadMessages}">
                                 <div class="media">
-                                    <div class="pull-left"><img class="lv-img-sm" ng-src="img/profile-pics/{{ w.img }}"
-                                                                alt=""></div>
+                                    <div class="pull-left">
+                                        <yaka-avatar size="35"
+                                                     user="userchat.chat.proposal.professional.user"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
                                     <div class="media-body">
-                                        <div class="lv-title">{{ w.user }}</div>
-                                        <small class="lv-small">{{ w.text }}</small>
+                                        <div class="lv-title">{{userchat.chat.proposal.professional.user.firstName}}
+                                            {{userchat.chat.proposal.professional.user.lastName}}
+                                        </div>
+                                        <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="clearfix"></div>
-                        <a class="lv-footer" href="">View All</a>
                     </div>
                 </div>
             </li>

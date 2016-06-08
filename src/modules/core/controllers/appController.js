@@ -209,6 +209,25 @@
             return "";
         };
 
+        app.getUserchats = function () {
+            if (app.getUser() && app.getUser().userChats) {
+                return app.getUser().userChats;
+            }
+            return [];
+        };
+
+        app.getUserchatsUnreadNumber = function () {
+            var num = 0;
+            if (app.getUserchats()) {
+                angular.forEach(app.getUserchats(), function (userChat) {
+                    if (userChat.unreadMessages) {
+                        num++;
+                    }
+                })
+            }
+            return num;
+        };
+
         app.showCustomerSupport = false;
 
         app.closeCustomerSupport = function () {

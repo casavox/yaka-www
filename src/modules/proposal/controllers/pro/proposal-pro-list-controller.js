@@ -9,7 +9,7 @@
     //Controller login
     function ProProposalsController(networkService, alertMsg, $rootScope, $state, $localStorage) {
 
-        if (!$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
         }
 

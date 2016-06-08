@@ -17,7 +17,13 @@ angular.module('Yaka')
                 };
 
                 scope.sendMessage = function () {
-                    networkService.sendMessage(scope.chatId, scope.newMessage, function (res) {
+                    var sendMessageApi;
+                    if (!$localStorage.user.professional) {
+                        sendMessageApi = networkService.sendMessage;
+                    } else {
+                        sendMessageApi = networkService.sendMessagePro;
+                    }
+                    sendMessageApi(scope.chatId, scope.newMessage, function (res) {
                         scope.newMessage = {
                             text: ""
                         };
@@ -60,8 +66,15 @@ angular.module('Yaka')
                     if (noMoreMessages) {
                         return;
                     }
+
+                    var apiGetMessages;
+                    if (!$localStorage.user.professional) {
+                        apiGetMessages = networkService.messagesGET;
+                    } else {
+                        apiGetMessages = networkService.messagesProGET;
+                    }
                     scope.loadingMessages = true;
-                    networkService.messagesGET(scope.chatId, parseInt((scope.messages.length / 20) + 1), 20, function (res) {
+                    apiGetMessages(scope.chatId, parseInt((scope.messages.length / 20) + 1), 20, function (res) {
                         scope.loadingMessages = false;
                         if (res.totalPageNumber == res.page) {
                             noMoreMessages = true;
@@ -80,8 +93,15 @@ angular.module('Yaka')
                         return;
                     }
 
+                    var apiGetMessages;
+                    if (!$localStorage.user.professional) {
+                        apiGetMessages = networkService.messagesGET;
+                    } else {
+                        apiGetMessages = networkService.messagesProGET;
+                    }
+
                     scope.loadingMessages = true;
-                    networkService.messagesGET(scope.chatId, 1, 20, function (res) {
+                    apiGetMessages(scope.chatId, 1, 20, function (res) {
                         scope.loadingMessages = false;
                         scope.messages = res.items;
                         scrollDown();

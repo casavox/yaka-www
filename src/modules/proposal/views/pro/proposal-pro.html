@@ -29,8 +29,25 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
-        <div class="col-sm-8" ng-show="!vm.pro">
-            <div class="card">
+
+        <div class="card">
+
+            <ul class="tab-nav tn-justified">
+                <li heading="Home"
+                    data-ng-class="{'active': !vm.showChat}">
+                    <a href="" ng-click="vm.showChat = false" class="ng-binding">Détails</a>
+                </li>
+
+                <li heading="Profile"
+                    data-ng-class="{'active': vm.showChat}">
+                    <a href="" ng-click="vm.showChat = true" class="ng-binding">Messages</a>
+                </li>
+            </ul>
+
+            <yaka-chat data-ng-show="vm.showChat" chat-id="{{vm.proposal.chat.id}}" user-me="app.getUser()"
+                       user-other="vm.proposal.project.user"></yaka-chat>
+
+            <div data-ng-show="!vm.showChat">
                 <div class="row no-margin">
                     <div class="col-xs-12">
                         <div class="description-action-btn" ng-click="vm.edit()"
@@ -94,7 +111,8 @@
                                     events="vm.circle.events"></ui-gmap-circle>
                                 <ui-gmap-marker
                                     ng-if="vm.proposalTmp.status == 'SELECTED' || vm.proposalTmp.status == 'RATE_PRO' || vm.proposalTmp.status == 'COMPLETED'"
-                                    idKey='1' coords='vm.marker.coords' visible="vm.marker.visible"></ui-gmap-marker>
+                                    idKey='1' coords='vm.marker.coords'
+                                    visible="vm.marker.visible"></ui-gmap-marker>
                             </ui-gmap-google-map>
                         </div>
                     </div>
@@ -189,23 +207,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-
-            <div class="card col-xs-12 projectRightBox">
-
-                <p ng-if="vm.proposal.unreadMessages" class="make-menu-unread">
-                    unread messages
-                </p>
-
-                <p class="make-menu-desc">Chat with {{ vm.proposal.project.user.firstName }}
-                    {{vm.proposal.project.user.lastName}}</p>
-                <button type="button" class="button btn btn-menu-sel center bckg-blue"
-                        ui-sref="pro-inbox({proposalId:vm.proposal.id})">CHAT
-                </button>
-            </div>
-        </div>
     </div>
-
 
     <div class="popUp" ng-show="vm.declineFlag">
         <div class="popUp-container center-middle">
