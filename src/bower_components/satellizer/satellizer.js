@@ -1,5 +1,5 @@
 /**
- * Satellizer 0.14.0
+ * Satellizer 0.14.1
  * (c) 2016 Sahat Yalkabov
  * License: MIT
  */
@@ -24,7 +24,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
       baseUrl: '/',
       loginUrl: '/auth/login',
       signupUrl: '/auth/signup',
-      unlinkUrl: '/auth/unlink/',
+      unlinkUrl: '/auth/unlink',
       tokenName: 'token',
       tokenPrefix: 'satellizer',
       authHeader: 'Authorization',
@@ -49,13 +49,17 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
           redirectUri: window.location.origin,
           requiredUrlParams: ['scope'],
-          optionalUrlParams: ['display'],
+          optionalUrlParams: ['display', 'state'],
           scope: ['profile', 'email'],
           scopePrefix: 'openid',
           scopeDelimiter: ' ',
           display: 'popup',
           oauthType: '2.0',
-          popupOptions: { width: 452, height: 633 }
+          popupOptions: { width: 452, height: 633 },
+          state: function() {
+            var rand = Math.random().toString(36).substr(2);
+            return encodeURIComponent(rand);
+          }
         },
         github: {
           name: 'github',
@@ -518,24 +522,26 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
                 openPopup = popup.open(url, defaults.name, defaults.popupOptions, defaults.redirectUri).pollPopup(defaults.redirectUri);
               }
 
-              return openPopup
+              openPopup
                 .then(function(oauthData) {
                   // When no server URL provided, return popup params as-is.
                   // This is for a scenario when someone wishes to opt out from
                   // Satellizer's magic by doing authorization code exchange and
                   // saving a token manually.
                   if (defaults.responseType === 'token' || !defaults.url) {
-                    defer.resolve(oauthData);
+                    return defer.resolve(oauthData);
                   }
 
-                if (oauthData.state && oauthData.state !== storage.get(stateName)) {
-                  return defer.reject(
-                    'The value returned in the state parameter does not match the state value from your original ' +
-                    'authorization code request.'
-                  );
-                }
+                  if (oauthData.state && oauthData.state !== storage.get(stateName)) {
+                    return defer.reject(
+                      'The value returned in the state parameter does not match the state value from your original ' +
+                      'authorization code request.'
+                    );
+                  }
 
                   defer.resolve(Oauth2.exchangeForToken(oauthData, userData));
+                }, function (err) {
+                  defer.reject(err);
                 });
             });
 
@@ -823,8 +829,10 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
       }])
     .service('SatellizerUtils', function() {
       this.getFullUrlPath = function(location) {
+        var isHttps = location.protocol === 'https:';
         return location.protocol + '//' + location.hostname +
-        (location.port ? ':' + location.port : '') + location.pathname;
+          ':' + (location.port || (isHttps ? '443' : '80')) +
+          (/^\//.test(location.pathname) ? location.pathname : '/' + location.pathname);
       };
 
       this.camelCase = function(name) {

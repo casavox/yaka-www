@@ -21,11 +21,11 @@
     "**/.*",
     "node_modules"
   ],
-  "_release": "31e8a45aa2",
+  "_release": "82a04c64fe",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "31e8a45aa2bb29187594bd2ccc6a89aa17adb4e0"
+    "commit": "82a04c64fe5ae967af970ba1d86ddfc3d532d73c"
   },
   "_source": "https://github.com/nelsoncash/angular-ripple.git",
   "_target": "*",

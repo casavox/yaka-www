@@ -5,7 +5,7 @@
 [![Donate](https://img.shields.io/badge/paypal-donate-blue.svg)](https://paypal.me/sahat) [![Join the chat at https://gitter.im/sahat/satellizer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sahat/satellizer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](http://img.shields.io/travis/sahat/satellizer.svg?style=flat)](https://travis-ci.org/sahat/satellizer)
 [![Test Coverage](http://img.shields.io/codeclimate/coverage/github/sahat/satellizer.svg?style=flat)](https://codeclimate.com/github/sahat/satellizer)
-[![Version](https://img.shields.io/badge/version-0.14.0-brightgreen.svg)](https://www.npmjs.org/package/satellizer)
+[![Version](https://img.shields.io/badge/version-0.14.1-brightgreen.svg)](https://www.npmjs.org/package/satellizer)
 
 **Live Demo:** [https://satellizer.herokuapp.com](https://satellizer.herokuapp.com)
 
@@ -23,6 +23,7 @@ in the app *config* block.
 ## Table of Contents
 
 - [Installation](#installation)
+ - [Requirements for Mobile Apps](#requirements-for-mobile-apps)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Browser Support](#browser-support)
@@ -60,7 +61,7 @@ Alternatively, you may [**download**](https://github.com/sahat/satellizer/releas
 <!--[if lte IE 9]>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
 <![endif]-->
-<script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
+<script src="//cdn.jsdelivr.net/satellizer/0.14.1/satellizer.min.js"></script>
 ```
 
 If installed via [Bower](http://bower.io/), include one of the following script tags:
@@ -73,6 +74,27 @@ If installed via [Bower](http://bower.io/), include one of the following script 
 **Note:** Sattelizer depends on [`window.atob()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/atob) for decoding JSON Web Tokens. If you need to support *IE9* then use Base64 polyfill above.
 
 
+### Requirements for Mobile Apps
+
+With any Cordova mobile apps or any framework that uses Cordova, such as [Ionic Framework](http://ionicframework.com/), you will need to add [cordova-plugin-inappbrowser](https://cordova.apache.org/docs/en/3.0.0/cordova/inappbrowser/inappbrowser.html) plugin:
+
+```
+$ cordova plugin add cordova-plugin-inappbrowser
+```
+
+Make sure that **inAppBrowser** is listed in your project:
+
+```
+$ cordova plugins
+cordova-plugin-console 1.0.2 "Console"
+cordova-plugin-device 1.1.1 "Device"
+cordova-plugin-inappbrowser 1.3.0 "InAppBrowser"
+cordova-plugin-splashscreen 3.2.0 "Splashscreen"
+cordova-plugin-statusbar 2.1.1 "StatusBar"
+cordova-plugin-whitelist 1.2.1 "Whitelist"
+ionic-plugin-keyboard 1.0.8 "Keyboard"
+```
+
 ## Usage
 
 **Step 1. App Module**
@@ -82,6 +104,12 @@ angular.module('MyApp', ['satellizer'])
 
     $authProvider.facebook({
       clientId: 'Facebook App ID'
+    });
+
+    // Optional: For client-side use (Implicit Grant), set responseType to 'token'
+    $authProvider.facebook({
+      clientId: 'Facebook App ID',
+      responseType: 'token'
     });
 
     $authProvider.google({
@@ -167,7 +195,6 @@ Below is a complete listing of all default configuration options.
 $authProvider.httpInterceptor = function() { return true; },
 $authProvider.withCredentials = true;
 $authProvider.tokenRoot = null;
-$authProvider.cordova = false;
 $authProvider.baseUrl = '/';
 $authProvider.loginUrl = '/auth/login';
 $authProvider.signupUrl = '/auth/signup';
@@ -368,7 +395,7 @@ Satellizer relies on *token-based authentication* using
 [JSON Web Tokens](https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/)
 instead of cookies.
 
-Additionally, **authorization** (obtaining user's information with their permission) and **authentication** (app sign-in) requires sever-side implementation. See provided [examples](https://github.com/sahat/satellizer/tree/master/examples/server) implemented in multiple languages for your convenience. In other words, you cannot just launch your AngularJS application and expect everything to work. The only exception is when you use *OAuth 2.0 Implicit Grant* (client-side) authorization by setting `responseType: 'token'` in provider's [configuration](https://github.com/sahat/satellizer#configuration).
+Additionally, **authorization** (obtaining user's information with their permission) and **authentication** (application sign-in) requires sever-side implementation. See provided [examples](https://github.com/sahat/satellizer/tree/master/examples/server) implemented in multiple languages for your convenience. In other words, you cannot just launch your AngularJS application and expect everything to work. The only exception is when you use *OAuth 2.0 Implicit Grant* (client-side) authorization by setting `responseType: 'token'` in provider's [configuration](https://github.com/sahat/satellizer#configuration).
 
 ### <img height="34" align="top" src="http://tech-lives.com/wp-content/uploads/2012/03/Lock-icon.png"> Login with Email and Password
 
@@ -578,7 +605,7 @@ $auth.signup(user)
 
 #### `$auth.authenticate(name, [userData])`
 
-Starts the OAuth 1.0 or the OAuth 2.0 authorization flow by opening a popup window.
+Starts the OAuth 1.0 or the OAuth 2.0 authorization flow by opening a popup window. If used client side, [`responseType: "token"`](#authentication-flow) is required in the provider setup to get the actual access token. 
 
 ##### Parameters
 

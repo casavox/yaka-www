@@ -1,36 +1,15 @@
-<section class="view">
-    <div class="header-menu-default">
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+></header>
 
-        <div class="title no-margin">
-            <div class="logo-black center">
-                <a ui-sref="dashboard">
-                    <div class="y-white">
-                        Y
-                    </div>
-                </a>
-                <a ui-sref="dashboard" class="color-none">
-                    <div class="Flogo">
-                        Yaka
-                    </div>
-                </a>
-                <a ui-sref="dashboard" class="color-none">
-                    <div class="Slogo">
-                        Club
-                    </div>
-                </a>
-            </div>
-        </div>
-        <a ng-click="app.logout()">
-            <div class="logout">
-                Log Out
-            </div>
-        </a>
-    </div>
+<aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+       data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+<section class="view">
     <div class="page-content">
         <div class="content-slide-default" id="main-scroll-container">
             <div class="slide-main" id="slide1" ng-show="vm.selectCategory">
                 <div class="row new-project-box no-margin">
-                    <h2 class="text-center">Select one professional category</h2>
+                    <h2 class="text-center h2-middle">Sélectionnez l'activité principale de votre projet</h2>
                     <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected"
                          ng-repeat="child in vm.newProject.childrenActivities"
                          ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
@@ -57,34 +36,32 @@
             </div>
             <div class="slide bckg-default" id="slide3" ng-show="vm.service">
                 <div class="row center no-margin no-padding material-box">
-                    <h4 class="material-title">Do you have material?</h4>
-
+                    <h4 class="material-title">Fournissez-vous une partie du matériel ?</h4>
                     <div class="col-md-6">
-
                         <div class="v-btn center" ng-click="vm.material = 'yes'"
                              ng-class="{activate: vm.material == 'yes'}">
-                            YES
+                            OUI
                         </div>
-                        <p class="material-sub">I have it</p>
+                        <p class="material-sub">Précisez ci-dessous</p>
                     </div>
                     <div class="col-md-6">
                         <div class="v-btn center" ng-click="vm.material = 'no'"
                              ng-class="{activate: vm.material == 'no'}">
-                            NO
+                            NON
                         </div>
-                        <p class="material-sub">I need it</p>
+                        <p class="material-sub"></p>
                     </div>
                 </div>
                 <p class="error center" ng-show="vm.error.material.flag">
                     {{vm.error.material.message}}
                 </p>
 
-                <h2 class="text-center h2-middle">Could you describe project for us?</h2>
+                <h2 class="text-center h2-middle">Décrivez-nous votre projet ?</h2>
                 <textarea class="description center" ng-model="vm.projectDescription"
-                          placeholder="Décrivez-nous votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez-nous si vous avez des contraintes ou souhaits particuliers"
+                          placeholder="Au moins 30 caractères : Décrivez-nous votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez-nous également si vous avez des contraintes ou souhaits particuliers."
                           ng-blur="vm.verifDescription()"></textarea>
 
-                <p class="error center" ng-show="vm.error.description.flag ">
+                <p class="error center" ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
                     {{vm.error.description.message}}
                 </p>
                 <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()"
@@ -92,7 +69,7 @@
                 </button>
             </div>
             <div class="slide bckg-white" id="slide4" ng-show="vm.continue">
-                <h2 class="text-center">Add some photos of your project</h2>
+                <h2 class="text-center">Ajoutez des photos</h2>
 
                 <div class="row w-900 center no-margin">
                     <div class="col-md-3 no-padding"
@@ -121,7 +98,7 @@
                             <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[0]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[0].description"
-                                  ng-show="photos[0].public_id" placeholder="Comment this photo"
+                                  ng-show="photos[0].public_id" placeholder="Joindre un commentaire"
                                   ng-change="vm.limitLength(photos[0], 'description', 140)"></textarea>
 
                         <div class="comment-length">
@@ -248,7 +225,7 @@
                 </button>
             </div>
             <div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
-                <h2 class="text-center mb-39">Where do need it?</h2>
+                <h2 class="text-center mb-39">Indiquez l'adresse des travaux ?</h2>
 
                 <h3 class="text-center mb-60" ng-show="!vm.newAddrFlag">Choisissez une de vos adresses ou indiquez-en
                     une nouvelle</h3>
@@ -271,7 +248,7 @@
                     </div>
                     <div class="col-md-4 no-padding">
                         <input type="text" class="select-custom" ng-model="vm.newAddr.name"
-                               ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse">
+                               ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse (Maison, Papa, ...)">
                     </div>
                 </div>
                 <div class="row no-margin w-900 center addr">
@@ -309,12 +286,24 @@
                 <button type="button" class="new-project-continue btn" ng-click="vm.continueAddr()">Continue</button>
             </div>
             <div class="slide bckg-white" id="slide6" ng-show="vm.continueAddressFlag">
-                <h2 class="text-center">Indicate your availabilities</h2>
+                <h2 class="text-center">Indiquez la période souhaitée de début des travaux</h2>
                 <div>
                     <ul class="questions-ul center no-padding">
+                        <li class="question-li center" ng-class="vm.child3"
+                            ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+                            Dès que possible
+                        </li>
+                        <li class="question-li center" ng-class="vm.child1"
+                            ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
+                            D'ici une semaine
+                        </li>
+                        <li class="question-li center" ng-class="vm.child2"
+                            ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+                            Dans le mois
+                        </li>
                         <li class="question-li center" ng-class="vm.child0"
                             ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
-                            On a specific date
+                            À partir d'une date
                         </li>
                         <li ng-show="vm.dateSelected" class="custom-li-date question-li center"
                             ng-click="vm.unSelectdate()">
@@ -322,23 +311,10 @@
                         </li>
                         <li ng-show="vm.dateFlag">
                             <div style="display:inline-block; min-height:290px;" class="center custom-picker">
-                                <uib-datepicker ng-model="vm.dt" min-date="vm.minDate" show-weeks="true"
-                                                max-date="vm.maxDate"
+                                <uib-datepicker ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                                 class="well well-sm custom-date"
                                                 custom-class="getDayClass(date, mode)"></uib-datepicker>
                             </div>
-                        </li>
-                        <li class="question-li center" ng-class="vm.child1"
-                            ng-click="vm.selectDateType('WITHIN_A_WEEK'); vm.child0 = ''; vm.child1 = 'activate'; vm.child2 = ''; vm.child3 = ''">
-                            Within a week
-                        </li>
-                        <li class="question-li center" ng-class="vm.child2"
-                            ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
-                            Within a month
-                        </li>
-                        <li class="question-li center" ng-class="vm.child3"
-                            ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
-                            I am a flexible on the start date
                         </li>
                     </ul>
                     <p class="error center" ng-show="vm.error.date.flag">
@@ -347,7 +323,7 @@
                 </div>
                 <button type="button" class="new-project-continue btn" ng-click="vm.post()"
                         ng-disabled="!vm.dateType">
-                    POST
+                    PUBLIER
                 </button>
             </div>
         </div>
