@@ -4925,3 +4925,28 @@ ul[rn-carousel-buffered] > li {
 .yakaHeaderMessagesDropdown {
     margin-top: 1px !important;
 }
+
+ul.yaka-chips {
+    padding: 0;
+}
+
+ul.yaka-chips li {
+    position: relative;
+    margin: 0 4px 0 0;
+    padding: 5px 8px 5px 8px;
+    max-width: 100%;
+    border-radius: 2px;
+    background: #eaeaea;
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    color: #333;
+    line-height: 13px;
+    cursor: default;
+    float: left;
+    list-style: none;
+}
+
+.whiteSpacePre {
+    white-space: pre;
+}
