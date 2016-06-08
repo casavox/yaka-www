@@ -6,7 +6,7 @@
         .controller('ProDashboardController', ProDashboardController)
         .controller('ProDashboardMapHomeControlController', ProDashboardMapHomeControlController);
 
-    function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $translate) {
+    function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
         $scope.showList = false;
 
         $rootScope.pageName = "Tableau de bord Pro";
@@ -126,19 +126,10 @@
                 } else {
                     lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
                 }
-                lead.translatedTitle = translateLeadTitle(lead);
             });
             vm.leads = args;
 
             loadingLeads = false;
-        }
-
-        function translateLeadTitle(lead) {
-            var titleArray = lead.title.split(' ');
-            for (var i = 0; i < titleArray.length; i++) {
-                titleArray[i] = $translate.instant(titleArray[i]);
-            }
-            return titleArray.join(' ');
         }
 
         function addCircle(args) {
