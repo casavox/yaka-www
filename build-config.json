@@ -50,6 +50,7 @@
             "bower_components/satellizer/satellizer.js",
             "bower_components/angular-elastic/elastic.js",
             "bower_components/moment/moment.js",
+            "bower_components/moment/locale/fr.js",
             "bower_components/angular-moment/angular-moment.js",
             "bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js",
             "bower_components/angular-typewrite/dist/angular-typewrite.js",

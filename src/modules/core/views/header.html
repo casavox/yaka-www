@@ -21,7 +21,7 @@
             <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
                     <i class="tm-icon zmdi zmdi-email"></i>
-                    <i class="tmn-counts">
+                    <i class="tmn-counts" ng-if="app.getUserchatsUnreadNumber() > 0">
                         {{app.getUserchatsUnreadNumber()}}
                     </i>
                 </a>

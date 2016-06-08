@@ -26,6 +26,7 @@
                             <div class="lightbox-item p-item">
                                 <img
                                     ng-src="{{getClUrlThumbnail(img) | trusted}}"
+                                    class="chatImg"
                                     alt=""/>
                             </div>
                         </div>
@@ -34,7 +35,9 @@
                     {{message.text}}
                 </div>
                 <small class="ms-date">
-                    <i class="zmdi zmdi-time"></i> 20/02/2015 at 09:00
+                    <i class="zmdi zmdi-time" ng-if="!showRight(message)"></i>
+                    <span am-time-ago="message.created"></span>
+                    <i class="zmdi zmdi-time" ng-if="showRight(message)"></i>
                 </small>
             </div>
         </div>

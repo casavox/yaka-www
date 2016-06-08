@@ -68,3 +68,8 @@ yaka-chat .ms-item.messageAuto {
     background: #607D8B !important;
     color: white !important;
 }
+
+yaka-chat .chatImg {
+    width: 150px;
+    height: 150px;
+}
