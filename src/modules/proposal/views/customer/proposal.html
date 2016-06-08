@@ -199,8 +199,10 @@
                                 <dl class="dl-horizontal">
                                     <dt>Addresse</dt>
                                     <dd>
-                                        <span class="whiteSpacePre" ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
-                                        <span class="whiteSpacePre" ng-if="!vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.administrativeAreaLevel2}}</span>
+                                        <span class="whiteSpacePre"
+                                              ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
+                                        <span class="whiteSpacePre"
+                                              ng-if="!vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.administrativeAreaLevel2}}</span>
                                     </dd>
                                 </dl>
                             </div>
@@ -212,22 +214,18 @@
                         </div>
                         <div class="pmbb-body p-l-30">
                             <div class="pmbb-view">
-                                <dl class="dl-horizontal">
-                                    <dt>Mobile Phone</dt>
-                                    <dd>00971123456789</dd>
-                                </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Email Address</dt>
-                                    <dd>malinda.h@gmail.com</dd>
-                                </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Twitter</dt>
-                                    <dd>@malinda</dd>
-                                </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Skype</dt>
-                                    <dd>malinda.hollaway</dd>
-                                </dl>
+                                <div class="lightbox photos">
+                                    <div
+                                        data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
+                                        class="lightboxItemAngular col-md-3 col-sm-4 col-xs-6"
+                                        ng-repeat="image in vm.proposal.professional.portfolio">
+                                        <div class="lightbox-item p-item">
+                                            <img
+                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                alt=""/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
