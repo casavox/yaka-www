@@ -9,7 +9,7 @@
     //Controller login
     function ProJobController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
 
-        if (!$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
         }
 
@@ -19,6 +19,7 @@
         $rootScope.showMenu = true;
 
         var vm = this;
+        vm.showChat = false;
         vm.markerCoords = {};
         vm.declineComment = "";
         vm.declineFlag = vm.imagePreviewFlag = vm.myDateFlag = vm.myPriceFlag = false;

@@ -7,7 +7,7 @@
 
     function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage) {
 
-        if (!$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
         }
 

@@ -141,6 +141,9 @@
             profileGET: function (success, error) {
                 httpService.get(baseUrl + '/me').success(success).error(error)
             },
+            chatsGET: function (success, error) {
+                httpService.get(baseUrl + '/me/chats').success(success).error(error)
+            },
             professionalGET: function (success, error) {
                 httpService.get(baseUrl + '/pro/me').success(success).error(error)
             },

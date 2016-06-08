@@ -9,7 +9,7 @@
     //Controller login
     function ProJobsController(networkService, alertMsg, $rootScope, $localStorage, $state) {
 
-        if (!$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
         }
 

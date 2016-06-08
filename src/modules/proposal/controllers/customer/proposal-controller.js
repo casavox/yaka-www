@@ -9,7 +9,7 @@
     //Controller login
     function ProposalController($scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, $rootScope, Lightbox, $translate, uiGmapGoogleMapApi) {
 
-        if ($localStorage.user.professional) {
+        if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
         }
 

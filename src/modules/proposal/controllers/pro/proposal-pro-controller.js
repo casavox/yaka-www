@@ -9,7 +9,7 @@
     //Controller login
     function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
 
-        if (!$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
         }
 
@@ -19,6 +19,7 @@
         $rootScope.showMenu = true;
 
         var vm = this;
+        vm.showChat = false;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
         vm.selectImagePreview = selectImagePreview;
@@ -694,6 +695,11 @@
         function succesProjectGET(res) {
             vm.project = res.project;
             vm.proposal = res;
+
+            if (vm.proposal.status != 'START') {
+                $state.go("pro-job", {'proposalId': vm.proposal.id});
+            }
+
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);
             if (vm.projectTmp.type != "EMERGENCY") {

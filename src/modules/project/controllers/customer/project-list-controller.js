@@ -9,7 +9,7 @@
     //Controller login
     function MyProjectscontroller(networkService, $rootScope, $localStorage, $state, $filter, $translate) {
 
-        if ($localStorage.user.professional) {
+        if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
         }
 

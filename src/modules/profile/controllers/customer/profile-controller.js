@@ -7,7 +7,7 @@
 
     function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage) {
 
-        if ($localStorage.user.professional) {
+        if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
         }
 

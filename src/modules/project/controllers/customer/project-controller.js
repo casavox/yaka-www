@@ -9,7 +9,7 @@
     //Controller login
     function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate, uiGmapGoogleMapApi) {
 
-        if ($localStorage.user.professional) {
+        if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
         }
 
