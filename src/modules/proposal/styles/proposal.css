@@ -1,7 +1,21 @@
 .proposalIconBackground {
     background-color: #03A9F4;
     border-radius: 50%;
-    vertical-align: middle;
+}
+
+.projectTitleBar {
+    width:auto !important;
+    margin: 0 !important;
+    line-height: 100%;
+    color: #000;
+}
+
+.projectTitleBar .media-heading .row {
+    font-size: 17px !important;
+}
+
+.projectTitleBar small{
+    font-size: 12px;
 }
 
 .projectCreated .pti-header {

@@ -4925,3 +4925,14 @@ ul[rn-carousel-buffered] > li {
 .yakaHeaderMessagesDropdown {
     margin-top: 1px !important;
 }
+
+@media (min-width: 768px) {
+
+    .textAlignRightFullDesktop {
+        text-align: right !important;
+    }
+
+    .paddingRightFullDesktop {
+        padding-right: 30px !important;
+    }
+}
