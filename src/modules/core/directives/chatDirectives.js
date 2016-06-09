@@ -48,14 +48,6 @@ angular.module('Yaka')
                     }
                 };
 
-                scope.getClUrlThumbnail = function (clPublicId) {
-                    return $.cloudinary.url(clPublicId, {secure: true, width: 150, height: 150, crop: 'fill'});
-                };
-
-                scope.getClUrl = function (clPublicId) {
-                    return $.cloudinary.url(clPublicId, {secure: true});
-                };
-
                 scope.createImageArray = function (cloudinaryPublicId) {
                     return [cloudinaryPublicId];
                 };
