@@ -145,14 +145,14 @@
                             <!--Viewing mode-->
 
                             <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
-                                <div data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
+                                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                      data-sub-html="#caption{{$index}}"
                                      class="lightboxItemAngular col-md-3 col-sm-3 col-xs-6"
                                      tooltip-placement="top"
                                      uib-tooltip="{{image.description}}"
                                      ng-repeat="image in vm.projectTmp.images">
                                     <div class="lightbox-item p-item">
-                                        <img ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                        <img ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                              alt=""/>
                                     </div>
                                     <div id="caption{{$index}}" style="display:none">
@@ -172,7 +172,7 @@
                                         <img
                                             tooltip-placement="top"
                                             uib-tooltip="{{image.description}}"
-                                            ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                            ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                             alt=""/>
                                     </div>
 

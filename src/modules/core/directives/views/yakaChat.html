@@ -21,11 +21,11 @@
 
                     <div class="lightbox photos" data-ng-if="message.cloudinaryPublicId">
                         <div data-ng-repeat="img in createImageArray(message.cloudinaryPublicId)"
-                             data-src="{{getClUrl(img) | trusted}}"
+                             data-src="{{img | yakaCloudinaryUrl}}"
                              class="lightboxItemAngular col-xs-12">
                             <div class="lightbox-item p-item">
                                 <img
-                                    ng-src="{{getClUrlThumbnail(img) | trusted}}"
+                                    ng-src="{{img | yakaCloudinaryUrl:true}}"
                                     class="chatImg"
                                     alt=""/>
                             </div>
@@ -45,7 +45,7 @@
     <div class="clearfix"></div>
 
     <div class="imgPreview center" ng-if="newMessage.cloudinaryPublicId">
-        <img ng-src="{{getClUrlThumbnail(newMessage.cloudinaryPublicId) | trusted}}"
+        <img ng-src="{{img | yakaCloudinaryUrl:true}}"
              alt=""/>
         <button class="btn bgm-red btn-icon waves-effect waves-circle"
                 data-ng-click="newMessage.cloudinaryPublicId = ''">

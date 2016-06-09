@@ -4,73 +4,76 @@
 <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
        data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-<section id="main" ng-cloak>
+<section id="main" class="yakaMain proposalMainView" ng-cloak>
     <div id="content" class="content">
 
         <div class="card" id="profile-main">
-            <div class="pm-overview c-overflow mCustomScrollbar _mCS_7 mCS-autoHide" style="overflow: visible;">
-                <div id="mCSB_7" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+            <div class="pm-overview">
+                <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                      tabindex="0">
-                    <div id="mCSB_7_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x"
-                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                    <div
+                        style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                         <div class="pmo-pic">
                             <div class="p-relative">
-                                <a href="">
-                                    <img class="img-responsive mCS_img_loaded" src="img/profile-pics/profile-pic-2.jpg"
-                                         alt="">
-                                </a>
+                                <img class="img-responsive proAvatarProposalImage"
+                                     ng-src="{{vm.proposal.professional.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                     alt=""/>
 
-                                <div class="dropdown pmop-message" uib-dropdown="">
-                                    <button uib-dropdown-toggle=""
-                                            class="btn bgm-white btn-float dropdown-toggle waves-effect waves-circle"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        <i class="zmdi zmdi-comment-text-alt"></i>
+                                <cl-image public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                          class="proposalProMainPartnerImg" format="png"
+                                          ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                    <cl-transformation height="55" width="55" crop="fill" radius="max"/>
+                                </cl-image>
+
+                            </div>
+
+                            <div class="col-xs-12 no-border pmo-stat proposalProName">
+                                <h2>
+                                    {{vm.proposal.professional.user.firstName}}
+                                    {{vm.proposal.professional.user.lastName}}
+                                    <small>
+                                        {{vm.proposal.professional.company.name}}
+                                    </small>
+                                </h2>
+
+                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                    <li class="wa-stats center">
+                                        <span class="bgm-white">
+                                            <i class="zmdi zmdi-calendar"></i>
+                                            <span data-ng-if="vm.proposal.startDate">{{vm.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                            <span data-ng-if="!vm.proposal.startDate">- - -</span>
+                                        </span>
+                                        <span class="active bgm-white">
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                            <span data-ng-if="vm.proposal.price">{{vm.proposal.price}} €</span>
+                                            <span data-ng-if="!vm.proposal.price">- - - €</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <div data-ng-if="vm.proposal.status == 'START'">
+                                    <button
+                                        class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
+                                        <i class="zmdi zmdi-check"></i> Selectionner
                                     </button>
-
-                                    <div class="dropdown-menu stop-propagate">
-                                        <textarea placeholder="Write something..."></textarea>
-
-                                        <button class="btn bgm-green btn-float waves-effect waves-circle"><i
-                                            class="zmdi zmdi-mail-send"></i></button>
-                                    </div>
+                                    <button
+                                        class="right col-xs-6 col-sm-8 col-sm-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                        <i class="zmdi zmdi-close"></i> Refuser
+                                    </button>
                                 </div>
-
-                                <a href="" class="pmop-edit">
-                                    <i class="zmdi zmdi-camera"></i> <span
-                                    class="hidden-xs">Update Profile Picture</span>
-                                </a>
+                                <div data-ng-if="vm.proposal.status == 'SELECTED'">
+                                    <button
+                                        class="col-xs-offset-1 col-xs-10 col-xs-10 btn btn-default btn-icon-text waves-effect">
+                                        <i class="zmdi zmdi-check"></i> Travaux terminés
+                                    </button>
+                                </div>
+                                <div data-ng-if="vm.proposal.status == 'RATE_PRO'">
+                                    <button
+                                        class="col-xs-offset-1 col-xs-10 btn btn-warning btn-icon-text waves-effect">
+                                        <i class="zmdi zmdi-account"></i> Noter ce pro
+                                    </button>
+                                </div>
                             </div>
-
-
-                            <div class="pmo-stat">
-                                <h2 class="m-0 c-white">1562</h2>
-                                Total Connections
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <div id="mCSB_7_scrollbar_vertical"
-                     class="mCSB_scrollTools mCSB_7_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
-                     style="display: block;">
-                    <div class="mCSB_draggerContainer">
-                        <div id="mCSB_7_dragger_vertical" class="mCSB_dragger"
-                             style="position: absolute; min-height: 50px; display: block; height: 601px; max-height: 683px; top: 0px;"
-                             oncontextmenu="return false;">
-                            <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
-                        </div>
-                        <div class="mCSB_draggerRail"></div>
-                    </div>
-                </div>
-                <div id="mCSB_7_scrollbar_horizontal"
-                     class="mCSB_scrollTools mCSB_7_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal"
-                     style="display: none;">
-                    <div class="mCSB_draggerContainer">
-                        <div id="mCSB_7_dragger_horizontal" class="mCSB_dragger"
-                             style="position: absolute; min-width: 50px; width: 0px; left: 0px;"
-                             oncontextmenu="return false;">
-                            <div class="mCSB_dragger_bar"></div>
-                        </div>
-                        <div class="mCSB_draggerRail"></div>
                     </div>
                 </div>
             </div>
@@ -90,10 +93,11 @@
                 </ul>
 
 
-                <yaka-chat data-ng-show="vm.showChat" chat-id="{{vm.proposal.chat.id}}" user-me="app.getUser()"
+                <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat" chat-id="{{vm.proposal.chat.id}}"
+                           user-me="app.getUser()"
                            user-other="vm.proposal.professional.user"></yaka-chat>
 
-                <div data-ng-show="!vm.showChat">
+                <div data-ng-show="!vm.showChat" class="scrollViewProposalDetail">
                     <div class="pmb-block">
                         <div class="pmbb-header">
                             <h2>
@@ -178,6 +182,20 @@
                                         </ul>
                                     </dd>
                                 </dl>
+                                <dl class="dl-horizontal"
+                                    data-ng-if="vm.proposal.professional.businessRegistrationOk || vm.proposal.professional.insuranceOk">
+                                    <dt>Statut entreprise</dt>
+                                    <dd>
+                                        <ul class="yaka-chips">
+                                            <li ng-if="vm.proposal.professional.businessRegistrationOk">
+                                                Entreprise vérifiée
+                                            </li>
+                                            <li ng-if="vm.proposal.professional.insuranceOk">
+                                                Assuré
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
                             </div>
                         </div>
                     </div>
@@ -216,12 +234,12 @@
                             <div class="pmbb-view">
                                 <div class="lightbox photos">
                                     <div
-                                        data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
-                                        class="lightboxItemAngular col-md-3 col-sm-4 col-xs-6"
+                                        data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                        class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
                                         ng-repeat="image in vm.proposal.professional.portfolio">
                                         <div class="lightbox-item p-item">
                                             <img
-                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                 alt=""/>
                                         </div>
                                     </div>

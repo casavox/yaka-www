@@ -16,7 +16,163 @@
     margin: auto;
     width: 90%;
 }
+
 .projectCreated li {
     text-align: justify !important;
 }
 
+.proposalProMainPartnerImg {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.scrollViewProposalDetail {
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    top: 48px;
+    padding-bottom: 40px;
+}
+
+.scrollViewChatProposal {
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    top: 48px;
+    width: auto;
+    height: auto;
+}
+
+.proposalMainView .content .card {
+    min-height: initial !important;
+}
+
+.proposalMainView .pm-overview {
+    height: 150px;
+}
+
+.proposalProName {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+.proposalCounters {
+    color: #5e5e5e;
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+.proposalMainView .wa-stats > span.active {
+    color: #03a9f4 !important;
+}
+
+.proAvatarProposalImage {
+    height: 209px;
+}
+
+@media (min-width: 1200px) {
+    .proAvatarProposalImage {
+        height: 259px;
+    }
+}
+
+.proposalProName button {
+    margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+
+    .scrollViewProposalDetail {
+        top: 198px;
+    }
+
+    .proposalMainView .content .card {
+        margin-bottom: 0 !important;
+    }
+
+    .scrollViewChatProposal {
+        left: 0;
+        top: 198px;
+    }
+
+    .proposalMainView yaka-chat .lv-footer {
+        height: 50px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .proposalMainView yaka-chat .lv-body {
+        height: calc(100% - 50px);
+    }
+
+    .proposalMainView yaka-chat .ms-reply textarea {
+        height: 40px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .proposalMainView .pmo-pic {
+        margin: 10px;
+    }
+
+    .proposalMainView .pm-overview {
+        background: #9E9E9E !important;
+    }
+
+    .proposalMainView .proAvatarProposalImage {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 70px !important;
+        height: 70px !important;
+        z-index: 1;
+    }
+
+    .proposalProMainPartnerImg {
+        position: absolute !important;
+        top: -2px !important;
+        left: 45px !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        border: 1px solid white !important;
+        z-index: 2;
+    }
+
+    .proposalProName {
+        background: #9E9E9E !important;
+    }
+
+    .proposalCounters {
+        position: absolute;
+        top: 36px;
+        left: 63px;
+        right: 0;
+    }
+
+    .proposalProName button.right {
+        width: 45%;
+        margin-left: 5%;
+    }
+
+    .proposalProName button {
+        margin-top: 77px;
+    }
+
+    .proposalProName h2 {
+        position: absolute;
+        left: 94px;
+        top: 0;
+    }
+
+}
