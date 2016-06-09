@@ -1525,11 +1525,6 @@ md-input-container {
     display: inline-block;
 }
 
-.project-address {
-    display: inline-block;
-    color: grey;
-}
-
 .title-line {
     display: -webkit-flex;
     display: -moz-flex;
@@ -1552,6 +1547,14 @@ md-input-container {
 }
 
 .project-address {
+    display: inline-block;
+    color: grey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.yakaEllipsis {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -4935,4 +4938,33 @@ ul[rn-carousel-buffered] > li {
     .paddingRightFullDesktop {
         padding-right: 40px !important;
     }
+}
+
+ul.yaka-chips {
+    padding: 0;
+}
+
+ul.yaka-chips li {
+    position: relative;
+    margin: 0 4px 0 0;
+    padding: 5px 8px 5px 8px;
+    max-width: 100%;
+    border-radius: 2px;
+    background: #eaeaea;
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    color: #333;
+    line-height: 13px;
+    cursor: default;
+    float: left;
+    list-style: none;
+}
+
+.whiteSpacePre {
+    white-space: pre;
+}
+
+.vertical-middle {
+    vertical-align: middle;
 }

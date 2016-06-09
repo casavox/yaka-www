@@ -96,7 +96,9 @@
                 <div data-ng-show="!vm.showChat">
                     <div class="pmb-block">
                         <div class="pmbb-header">
-                            <h2><i class="zmdi zmdi-equalizer m-r-5"></i> Summary</h2>
+                            <h2>
+                                <i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Présentation
+                            </h2>
                         </div>
                         <div class="pmbb-body p-l-30">
                             <div class="pmbb-view">
@@ -107,61 +109,123 @@
 
                     <div class="pmb-block">
                         <div class="pmbb-header">
-                            <h2><i class="zmdi zmdi-person m-r-5"></i>Expérience et qualités</h2>
+                            <h2><i class="zmdi zmdi-star zmdi-hc-fw"></i> Expérience et qualités</h2>
                         </div>
                         <div class="pmbb-body p-l-30">
                             <div class="pmbb-view">
                                 <dl class="dl-horizontal">
                                     <dt>Métier</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        {{vm.getExperienceYearNumber()}} ans d'expérience
+                                    </dd>
                                 </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Gender</dt>
-                                    <dd>Qualités reconnues</dd>
+                                <dl class="dl-horizontal"
+                                    data-ng-if="vm.proposal.professional.qualities && vm.proposal.professional.qualities.length > 0">
+                                    <dt>Qualités reconnues</dt>
+                                    <dd>
+                                        <ul class="yaka-chips">
+                                            <li data-ng-repeat="quality in vm.proposal.professional.qualities">
+                                                {{'CRITERION_' + quality.name | translate}}
+                                            </li>
+                                        </ul>
+                                    </dd>
                                 </dl>
-                                <dl class="dl-horizontal">
+                                <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.yakaProjectNumber">
                                     <dt>Projets réalisés</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.yakaProjectNumber > 1">
+                                            <b>{{vm.proposal.professional.yakaProjectNumber}} projets</b> réalisés sur YakaClub
+                                        </span>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.yakaProjectNumber == 1">
+                                            <b>1 projet</b> réalisé sur YakaClub
+                                        </span>
+                                    </dd>
                                 </dl>
-                                <dl class="dl-horizontal">
+                                <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.likes">
                                     <dt>Recommandations</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.likes > 1">
+                                            <b>{{vm.proposal.professional.likes}} membres</b> recommandent cet artisan
+                                        </span>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.likes == 1">
+                                            <b>1 membre</b> recommande cet artisan
+                                        </span>
+                                    </dd>
                                 </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Artisan agréé</dt>
-                                    <dd></dd>
+                                <dl class="dl-horizontal"
+                                    data-ng-if="vm.proposal.professional.partners && vm.proposal.professional.partners.length > 0">
+                                    <dt>Partenaire</dt>
+                                    <dd>
+                                        <ul class="yaka-chips">
+                                            <li data-ng-repeat="partner in vm.proposal.professional.partners">
+                                                {{partner.name}}
+                                            </li>
+                                        </ul>
+                                    </dd>
                                 </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Agréments / Certificats</dt>
-                                    <dd></dd>
+                                <dl class="dl-horizontal"
+                                    data-ng-if="vm.proposal.professional.certifications && vm.proposal.professional.certifications.length > 0">
+                                    <dt>Certifications</dt>
+                                    <dd>
+                                        <ul class="yaka-chips">
+                                            <li data-ng-repeat="certification in vm.proposal.professional.certifications">
+                                                {{certification.name}}
+                                            </li>
+                                        </ul>
+                                    </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
 
-
                     <div class="pmb-block">
                         <div class="pmbb-header">
-                            <h2><i class="zmdi zmdi-phone m-r-5"></i> Contact Information</h2>
+                            <h2><i class="zmdi zmdi-store zmdi-hc-fw"></i> Coordonnées</h2>
                         </div>
                         <div class="pmbb-body p-l-30">
                             <div class="pmbb-view">
-                                <dl class="dl-horizontal">
-                                    <dt>Mobile Phone</dt>
-                                    <dd>00971123456789</dd>
+                                <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.phoneNumber">
+                                    <dt>Téléphone</dt>
+                                    <dd>{{vm.proposal.professional.phoneNumber}}</dd>
+                                </dl>
+                                <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.user.email">
+                                    <dt>Email</dt>
+                                    <dd>{{vm.proposal.professional.user.email}}</dd>
                                 </dl>
                                 <dl class="dl-horizontal">
-                                    <dt>Email Address</dt>
-                                    <dd>malinda.h@gmail.com</dd>
+                                    <dt>Addresse</dt>
+                                    <dd>
+                                        <span class="whiteSpacePre"
+                                              ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
+                                        <span class="whiteSpacePre"
+                                              ng-if="!vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.administrativeAreaLevel2}}</span>
+                                    </dd>
                                 </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Twitter</dt>
-                                    <dd>@malinda</dd>
-                                </dl>
-                                <dl class="dl-horizontal">
-                                    <dt>Skype</dt>
-                                    <dd>malinda.hollaway</dd>
-                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Portfolio</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div class="pmbb-view">
+                                <div class="lightbox photos">
+                                    <div
+                                        data-src="{{vm.getClUrl(image.cloudinaryPublicId) | trusted}}"
+                                        class="lightboxItemAngular col-md-3 col-sm-4 col-xs-6"
+                                        ng-repeat="image in vm.proposal.professional.portfolio">
+                                        <div class="lightbox-item p-item">
+                                            <img
+                                                ng-src="{{vm.getClUrlThumbnail(image.cloudinaryPublicId) | trusted}}"
+                                                alt=""/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

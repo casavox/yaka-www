@@ -334,5 +334,13 @@
     "ERROR_BAD_DATA": "Veuillez vérifier les informations envoyées",
     "ERROR_BAD_SLOT": "Le créneau choisi n'est pas valide",
     "ERROR_ALREADY_INVITED": "Vous avez déjà invité cette personne",
-    "ERROR_ALREADY_IN_CONTACTS": "Cette personne est déjà dans vos contacts"
+    "ERROR_ALREADY_IN_CONTACTS": "Cette personne est déjà dans vos contacts",
+    "CRITERION_PUNCTUAL": "Ponctualité",
+    "CRITERION_QUALITY_PRICE": "Qualité / prix",
+    "CRITERION_CONTACT_QUALITY": "Qualité du contact",
+    "CRITERION_QUALITY_WORK": "Qualité des travaux",
+    "CRITERION_FLEXIBILITY": "Flexibilité",
+    "CRITERION_DEADLINES": "Respect des délais",
+    "CRITERION_ADVICES": "De bon conseil",
+    "CRITERION_CLEAN": "Propreté du chantier"
 }

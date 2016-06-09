@@ -69,13 +69,64 @@
             </div>
             <div class="card-body card-padding">
                 Choisissez un artisan pour votre projet.
-                <span ng-show="p.proposals.length == 1"><br>Vous avez reçus <b>1 proposition</b></span>
-                <span ng-show="p.proposals.length > 1"><br>Vous avez reçus <b>{{p.proposals.length}}
+                <span ng-show="p.proposals.length == 1"><br>Vous avez reçu <b>1 proposition</b></span>
+                <span ng-show="p.proposals.length > 1"><br>Vous avez reçu <b>{{p.proposals.length}}
                     propositions</b></span>
             </div>
-            <div class="card-body card-padding" ng-repeat="proposal in p.proposals" ng-click="vm.selectProject(p)">
-                <yaka-avatar class="yakaHeaderAvatar" size="35" user="proposal.professional.user"></yaka-avatar>
-                {{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}
+            <div class="card-body card-padding">
+                <ul ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
+                    <li class="wa-stats">
+                        <span><i class="zmdi zmdi-comments"></i> 36</span>
+                        <span class="active"><i class="zmdi zmdi-favorite"></i> 220</span>
+                    </li>
+
+                    <li class="wa-users m-r-20">
+                        <div class="p-relative"
+                            title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
+                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                         user="p.proposals[0].professional.user"></yaka-avatar>
+                            <i class="porposalUnreadMessagesIndicator"></i>
+                            <div class="yakaEllipsis vertical-middle" style="width: 40px;">
+                                <strong>{{p.proposals[0].professional.user.firstName}}
+                                    {{p.proposals[0].professional.user.lastName}}
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="wa-users m-r-20">
+                        <a title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
+                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                         user="p.proposals[0].professional.user"></yaka-avatar>
+                            <div class="yakaEllipsis vertical-middle" style="width: 40px;">
+                                <strong>{{p.proposals[0].professional.user.firstName}}
+                                    {{p.proposals[0].professional.user.lastName}}
+                                </strong>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="wa-users m-r-20">
+                        <a title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
+                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                         user="p.proposals[0].professional.user"></yaka-avatar>
+                            <div class="yakaEllipsis vertical-middle" style="width: 40px;">
+                                <strong>{{p.proposals[0].professional.user.firstName}}
+                                    {{p.proposals[0].professional.user.lastName}}
+                                </strong>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="wa-users m-r-20">
+                        <a title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
+                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                         user="p.proposals[0].professional.user"></yaka-avatar>
+                            <div class="yakaEllipsis vertical-middle" style="width: 40px;">
+                                <strong>{{p.proposals[0].professional.user.firstName}}
+                                    {{p.proposals[0].professional.user.lastName}}
+                                </strong>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 
