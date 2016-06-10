@@ -63,11 +63,49 @@
         };
 
         vm.acceptProposal = function () {
-            //networkService.proposalAcceptPOST();
+            swal({
+                title: "Vous êtes sur le point de sélectionner ce Pro pour vos travaux",
+                text: "Votre projet de travaux ne sera plus visible par les autres professionels",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, sélectionner ce Pro",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.proposalAcceptPOST(vm.proposal.id,
+                        function (res) {
+                            alertMsg.send("L'offre a été sélectionnée", "info");
+                            $state.go("proposal", {proposalId: vm.proposal.id});
+                        }, function () {
+                            alertMsg.send("Impossible de sélectionner l'offre", "danger");
+                        }
+                    );
+                }
+            });
         };
 
         vm.completeProposal = function () {
-
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Voulez-vous indiquer que les travaux sont terminés ?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, les travaux sont terminés",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.closeProject(vm.proposal.id,
+                        function (res) {
+                            alertMsg.send("Vous avez indiqué que les travaux étaient terminés", "info");
+                            $state.go("proposal", {proposalId: vm.proposal.id});
+                        }, function () {
+                            alertMsg.send("Impossible d'indiquer que les travaux sont terminés", "danger");
+                        }
+                    );
+                }
+            });
         };
 
         vm.rateProposal = function () {

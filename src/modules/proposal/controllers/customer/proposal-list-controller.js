@@ -22,8 +22,11 @@
         vm.getWhen = getWhen;
         vm.projectDetails = projectDetails;
         vm.selectProposal = selectProposal;
-        if ($stateParams.projectId)
+        if ($stateParams.projectId) {
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
+        } else {
+            $state.go("home");
+        }
 
         function selectProposal(p) {
             $state.go('proposal', {proposalId: p.id});
