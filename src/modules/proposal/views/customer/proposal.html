@@ -27,7 +27,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 no-border pmo-stat proposalProName">
+                            <div class="col-xs-12 no-padding pmo-stat proposalProName">
                                 <h2>
                                     {{vm.proposal.professional.user.firstName}}
                                     {{vm.proposal.professional.user.lastName}}
@@ -51,24 +51,24 @@
                                     </li>
                                 </ul>
                                 <div data-ng-if="vm.proposal.status == 'START'">
-                                    <button
-                                        class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
+                                    <button data-ng-click="vm.acceptProposal()"
+                                            class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
                                         <i class="zmdi zmdi-check"></i> Selectionner
                                     </button>
-                                    <button
-                                        class="right col-xs-6 col-sm-8 col-sm-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                    <button data-ng-click="vm.declineProposal()"
+                                            class="right col-xs-6 col-sm-8 col-sm-offset-2 btn btn-danger btn-icon-text waves-effect">
                                         <i class="zmdi zmdi-close"></i> Refuser
                                     </button>
                                 </div>
                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
-                                    <button
-                                        class="col-xs-offset-1 col-xs-10 col-xs-10 btn btn-default btn-icon-text waves-effect">
+                                    <button data-ng-click="vm.completeProposal()"
+                                            class="col-xs-offset-1 col-xs-10 col-xs-10 btn btn-default btn-icon-text waves-effect">
                                         <i class="zmdi zmdi-check"></i> Travaux terminés
                                     </button>
                                 </div>
                                 <div data-ng-if="vm.proposal.status == 'RATE_PRO'">
-                                    <button
-                                        class="col-xs-offset-1 col-xs-10 btn btn-warning btn-icon-text waves-effect">
+                                    <button data-ng-click="vm.rateProposal()"
+                                            class="col-xs-offset-1 col-xs-10 btn btn-warning btn-icon-text waves-effect">
                                         <i class="zmdi zmdi-account"></i> Noter ce pro
                                     </button>
                                 </div>

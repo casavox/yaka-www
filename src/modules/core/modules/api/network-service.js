@@ -165,8 +165,11 @@
             proProposalsArchiveGET: function (id, success, error) {
                 httpService.get(baseUrl + '/pro/proposals/' + id + '/archive').success(success).error(error)
             },
-            proposalAcceptPOST: function (data, success, error) {
-                httpService.post(baseUrl + '/proposals/' + data.id + "/accept", data).success(success).error(error)
+            proposalAcceptPOST: function (proposalId, success, error) {
+                httpService.post(baseUrl + '/proposals/' + proposalId + "/accept").success(success).error(error)
+            },
+            proposalDeclinePOST: function (proposalId, success, error) {
+                httpService.post(baseUrl + '/proposals/' + proposalId + "/decline").success(success).error(error)
             },
             proposalEmergencyPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/pro/proposals/emergency', data).success(success).error(error)

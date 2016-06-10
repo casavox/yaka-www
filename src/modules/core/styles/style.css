@@ -4968,3 +4968,8 @@ ul.yaka-chips li {
 .vertical-middle {
     vertical-align: middle;
 }
+
+.pointer {
+    cursor: pointer;
+}
+
