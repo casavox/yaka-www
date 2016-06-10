@@ -21,6 +21,12 @@
         vm.proposal = {};
 
         if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId) {
+            loadProposal();
+        } else {
+            $state.go("my-projects");
+        }
+
+        function loadProposal() {
             networkService.proposalGET($stateParams.proposalId, function (res) {
                 vm.proposal = res;
                 if (vm.proposal.professional.company.address.address) {
@@ -76,7 +82,7 @@
                     networkService.proposalAcceptPOST(vm.proposal.id,
                         function (res) {
                             alertMsg.send("L'offre a été sélectionnée", "info");
-                            $state.go("proposal", {proposalId: vm.proposal.id});
+                            loadProposal();
                         }, function () {
                             alertMsg.send("Impossible de sélectionner l'offre", "danger");
                         }
@@ -99,7 +105,7 @@
                     networkService.closeProject(vm.proposal.id,
                         function (res) {
                             alertMsg.send("Vous avez indiqué que les travaux étaient terminés", "info");
-                            $state.go("proposal", {proposalId: vm.proposal.id});
+                            loadProposal();
                         }, function () {
                             alertMsg.send("Impossible d'indiquer que les travaux sont terminés", "danger");
                         }
@@ -109,7 +115,8 @@
         };
 
         vm.rateProposal = function () {
-
+            $rootScope.rating = false;
+            $rootScope.rate_watcher = !$rootScope.rate_watcher;
         };
     }
 })();
