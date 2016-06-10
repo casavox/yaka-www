@@ -4950,3 +4950,8 @@ ul.yaka-chips li {
 .whiteSpacePre {
     white-space: pre;
 }
+
+
+.pointer {
+    cursor: pointer;
+}

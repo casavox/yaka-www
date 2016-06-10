@@ -28,6 +28,7 @@
                 }
             }, function (err) {
                 alertMsg.send("Impossible de récupérer l'offre", "danger");
+                $state.go("my-projects");
             });
         }
 
@@ -36,7 +37,41 @@
                 return (new Date().getFullYear() - vm.proposal.professional.activityStartedYear) + 1;
             }
             return " - ";
-        }
+        };
 
+        vm.declineProposal = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Une fois cette offre refusée, vous ne pourrez plus y accéder",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, refuser cette offre",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.proposalDeclinePOST(vm.proposal.id,
+                        function (res) {
+                            alertMsg.send("L'offre a été refusée", "info");
+                            $state.go("proposals", {projectId: vm.proposal.project.id});
+                        }, function () {
+                            alertMsg.send("Impossible de refuser l'offre", "danger");
+                        }
+                    );
+                }
+            });
+        };
+
+        vm.acceptProposal = function () {
+            //networkService.proposalAcceptPOST();
+        };
+
+        vm.completeProposal = function () {
+
+        };
+
+        vm.rateProposal = function () {
+
+        };
     }
 })();
