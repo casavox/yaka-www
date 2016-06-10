@@ -5,8 +5,9 @@
         .module('Yaka')
         .controller('MyProjectsController', MyProjectscontroller);
 
+    //
     //Controller login
-    function MyProjectscontroller(networkService, $rootScope, $localStorage, $state, $filter) {
+    function MyProjectscontroller(networkService, $rootScope, $localStorage, $state, $filter, $translate) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -24,7 +25,6 @@
         vm.now = new Date();
         networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);
         networkService.projectsGET("completed", 1, 2147483647, succesProjectsCompletedGET, errorProjectsCompletedGET);
-
         function dateDiff(d1, d2) {
             var h = 0;
             var d = 0;
@@ -48,25 +48,31 @@
         };
 
         function selectProject(p) {
-            if (p.status == 'ONGOING_PROJECT_ONGOING') {
+            if (p.status == 'ONGOING_PROJECT_ONGOING')
                 $state.go("proposal", {proposalId: p.proposals[0].id});
-            } else {
+            else
                 $state.go("proposals", {projectId: p.id});
-            }
+
         }
 
         function successProjectsGET(res) {
             $rootScope.projects = res.items;
             if (!angular.isUndefined(res.items) && res.items && res.items.length > 0) {
                 vm.projectsOnGoing = res.items;
-            } else {
+                angular.forEach(vm.projectsOnGoing, function (proj) {
+                    proj.translatedTitle = translateLeadTitle(proj);
+                });
+            }
+            else {
                 vm.projectsOnGoing = [];
             }
-            console.log(vm.projectsOnGoing);
         }
 
         function succesProjectsCompletedGET(res) {
             vm.projectsCompleted = res.items;
+            angular.forEach(vm.projectsCompleted, function (proj) {
+                proj.translatedTitle = translateLeadTitle(proj);
+            });
         }
 
         function errorProjectsGET(res) {
@@ -74,5 +80,14 @@
 
         function errorProjectsCompletedGET(res) {
         }
+
+        function translateLeadTitle(lead) {
+            var titleArray = lead.title.split(' ');
+            for (var i = 0; i < titleArray.length; i++) {
+                titleArray[i] = $translate.instant('ACTIVITY_' + titleArray[i]);
+            }
+            return titleArray.join(' ');
+        }
+
     }
 })();

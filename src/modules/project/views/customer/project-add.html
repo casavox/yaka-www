@@ -1,12 +1,13 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
 ></header>
 
-<aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
-       data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+<section id="view">
 
-<section class="view">
-    <div class="page-content">
-        <div class="content-slide-default" id="main-scroll-container">
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="page-content">
+        <div class="content-slide" id="main-scroll-container">
             <div class="slide-main" id="slide1" ng-show="vm.selectCategory">
                 <div class="row new-project-box no-margin">
                     <h2 class="text-center h2-middle">Sélectionnez l'activité principale de votre projet</h2>
@@ -28,7 +29,8 @@
                  ng-repeat="q in vm.questions" ng-if="q.childrenActivities">
                 <h2 class="text-center">{{'ACTIVITY_' + q.code | translate }}</h2>
                 <ul class="questions-ul center">
-                    <li class="question-li center" ng-class="child.selected" ng-repeat="child in q.childrenActivities"
+                    <li class="question-li center" ng-class="child.selected"
+                        ng-repeat="child in q.childrenActivities"
                         ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
                         {{ 'ACTIVITY_' + child.code | translate }}
                     </li>
@@ -61,7 +63,8 @@
                           placeholder="Au moins 30 caractères : Décrivez-nous votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez-nous également si vous avez des contraintes ou souhaits particuliers."
                           ng-blur="vm.verifDescription()"></textarea>
 
-                <p class="error center" ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
+                <p class="error center"
+                   ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
                     {{vm.error.description.message}}
                 </p>
                 <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()"
@@ -82,7 +85,8 @@
 
                         <div class="add-img center" ngf-select="uploadFiles($files, $invalidFiles, 0)"
                              ngf-accept="'image/*'" ngf-max-size="5MB">
-                            <a cl-href="{{photos[0].public_id}}" target="_blank" format="png" class="center-midlle"
+                            <a cl-href="{{photos[0].public_id}}" target="_blank" format="png"
+                               class="center-midlle"
                                ng-show="photos[0].public_id">
 
                                 <cl-image public-id="{{photos[0].public_id}}" secure="true"
@@ -95,7 +99,8 @@
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
                                  ng-hide="photos[0].public_id || vm.imageLoading[0]"/>
 
-                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[0]"/>
+                            <img class="center-middle" src="img/loader_small.gif" alt=""
+                                 ng-show="vm.imageLoading[0]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[0].description"
                                   ng-show="photos[0].public_id" placeholder="Joindre un commentaire"
@@ -133,7 +138,8 @@
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
                                  ng-hide="photos[1].public_id || vm.imageLoading[1]"/>
 
-                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[1]"/>
+                            <img class="center-middle" src="img/loader_small.gif" alt=""
+                                 ng-show="vm.imageLoading[1]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[1].description"
                                   ng-show="photos[1].public_id" placeholder="Comment this photo"
@@ -171,7 +177,8 @@
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
                                  ng-hide="photos[2].public_id || vm.imageLoading[2]"/>
 
-                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[2]"/>
+                            <img class="center-middle" src="img/loader_small.gif" alt=""
+                                 ng-show="vm.imageLoading[2]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[2].description"
                                   ng-show="photos[2].public_id" placeholder="Comment this photo"
@@ -209,7 +216,8 @@
                             <img class="center-middle" src="icons/mdpi/ic_new_request.png" alt=""
                                  ng-hide="photos[3].public_id || vm.imageLoading[3]"/>
 
-                            <img class="center-middle" src="img/loader_small.gif" alt="" ng-show="vm.imageLoading[3]"/>
+                            <img class="center-middle" src="img/loader_small.gif" alt=""
+                                 ng-show="vm.imageLoading[3]"/>
                         </div>
                         <textarea class="comment custom-comment" ng-model="photos[3].description"
                                   ng-show="photos[3].public_id"
@@ -221,16 +229,19 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">Continue
+                <button type="button" class="new-project-continue btn" ng-click="vm.continueProjectImg()">
+                    Continue
                 </button>
             </div>
             <div class="slide bckg-default" id="slide5" ng-show="vm.continueImg">
                 <h2 class="text-center mb-39">Indiquez l'adresse des travaux ?</h2>
 
-                <h3 class="text-center mb-60" ng-show="!vm.newAddrFlag">Choisissez une de vos adresses ou indiquez-en
+                <h3 class="text-center mb-60" ng-show="!vm.newAddrFlag">Choisissez une de vos adresses ou
+                    indiquez-en
                     une nouvelle</h3>
 
-                <h3 class="text-center mb-60" ng-show="vm.newAddrFlag">Indiquez un nom puis précisez votre adresse</h3>
+                <h3 class="text-center mb-60" ng-show="vm.newAddrFlag">Indiquez un nom puis précisez votre
+                    adresse</h3>
 
                 <div class="row no-margin w-900 center select-addr">
                     <div class="col-md-4 no-padding" ng-if="vm.user.addresses.length>0">
@@ -248,7 +259,8 @@
                     </div>
                     <div class="col-md-4 no-padding">
                         <input type="text" class="select-custom" ng-model="vm.newAddr.name"
-                               ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse (Maison, Papa, ...)">
+                               ng-change="vm.verifNameAddr()"
+                               placeholder="Nom de l'adresse (Maison, Papa, ...)">
                     </div>
                 </div>
                 <div class="row no-margin w-900 center addr">
@@ -283,7 +295,8 @@
                 <p class="error center" ng-show="vm.error.address.flag">
                     {{vm.error.address.message}}
                 </p>
-                <button type="button" class="new-project-continue btn" ng-click="vm.continueAddr()">Continue</button>
+                <button type="button" class="new-project-continue btn" ng-click="vm.continueAddr()">Continue
+                </button>
             </div>
             <div class="slide bckg-white" id="slide6" ng-show="vm.continueAddressFlag">
                 <h2 class="text-center">Indiquez la période souhaitée de début des travaux</h2>
