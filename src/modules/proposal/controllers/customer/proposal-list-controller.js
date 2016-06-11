@@ -55,13 +55,13 @@
             else if (angular.isDefined(vm.project) && vm.project.desiredDatePeriod) {
                 switch (vm.project.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "À partir du " + vm.project.desiredDate;
+                        return "autour du " + moment(vm.project.desiredDate).format("D MMMM");
                     case "WITHIN_A_WEEK":
-                        return "Dans la semaine";
+                        return "dans la semaine autour du " + moment(vm.project.desiredDate).format("D MMMM");
                     case "WITHIN_A_MONTH":
-                        return "Dans le mois";
+                        return "dans le mois autour du " + moment(vm.project.desiredDate).format("D MMMM");
                     case "NONE":
-                        return "Dès que possible";
+                        return 'dès que possible';
                 }
             }
         }

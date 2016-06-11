@@ -425,17 +425,16 @@
                     }
                 }
                 return res;
-            }
-            else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.type != "EMERGENCY") {
+            } else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.type != "EMERGENCY") {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "Le " + vm.projectTmp.desiredDate;
+                        return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "WITHIN_A_WEEK":
-                        return "Dans la semaine";
+                        return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "WITHIN_A_MONTH":
-                        return "Dans le mois";
+                        return "dans le mois autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "NONE":
-                        return "Flexible sur la date de départ";
+                        return 'dès que possible';
                 }
             }
             return "";

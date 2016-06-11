@@ -418,7 +418,7 @@
             vm.end = true;
             swal({
                 title: 'Félicitations, votre projet vient d’être créé !',
-                text: 'Suivez son avancement dans le menu "Projets" !',
+                text: 'Suivez son avancement dans le menu "Mes projets" !',
                 type: 'success',
                 confirmButtonColor: '#03A9F4',
                 confirmButtonText: 'Continuer !',
