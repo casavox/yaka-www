@@ -59,6 +59,7 @@
         };
 
         function selectProject(p) {
+            console.log("selectProject")
             if (p.status == 'ONGOING_PROJECT_ONGOING') {
                 $state.go("proposal", {proposalId: p.proposals[0].id});
             } else {
@@ -67,6 +68,8 @@
         }
 
         function selectProposal(proposal) {
+            console.log("proposal.id")
+            console.log(proposal.id)
             $state.go("proposal", {proposalId: proposal.id});
         }
 
