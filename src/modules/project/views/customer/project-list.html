@@ -29,7 +29,6 @@
             <div ng-show="vm.projectsOnGoing.length >0" class="block-header">
                 <h2>PROJET EN COURS</h2>
             </div>
-
             <div ng-show="vm.projectsOnGoing.length >0" class="card card-hover" ng-repeat="p in vm.projectsOnGoing"
                  ng-click="vm.selectProject(p)">
                 <div class="card-header">
@@ -83,51 +82,18 @@
                             <li class="wa-stats">
                                 <span><i class="zmdi zmdi-comments"></i> 36</span>
                             </li>
-                            <li class="wa-users m-r-20">
+                            <li class="wa-users m-r-20" data-ng-repeat="proposal in p.proposals">
                                 <div class="p-relative"
-                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
+                                     title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
                                     <yaka-avatar class="yakaHeaderAvatar" size="35"
-                                                 user="p.proposals[0].professional.user"></yaka-avatar>
+                                                 user="proposal.professional.user"></yaka-avatar>
                                     <i class="porposalUnreadMessagesIndicator"></i>
                                     <div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
-                                        <span>{{p.proposals[0].professional.user.firstName}}
-                                            {{p.proposals[0].professional.user.lastName}}
+                                        <span>{{proposal.professional.user.firstName}}
+                                            {{proposal.professional.user.lastName}}
                                         </span>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="wa-users m-r-20">
-                                <a title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <yaka-avatar class="yakaHeaderAvatar" size="35"
-                                                 user="p.proposals[0].professional.user"></yaka-avatar>
-                                    <div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
-                                        <span>{{p.proposals[0].professional.user.firstName}}
-                                            {{p.proposals[0].professional.user.lastName}}
-                                        </span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="wa-users m-r-20">
-                                <a title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <yaka-avatar class="yakaHeaderAvatar" size="35"
-                                                 user="p.proposals[0].professional.user"></yaka-avatar>
-                                    <div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
-                                        <span>{{p.proposals[0].professional.user.firstName}}
-                                            {{p.proposals[0].professional.user.lastName}}
-                                        </span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="wa-users m-r-20">
-                                <a title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <yaka-avatar class="yakaHeaderAvatar" size="35"
-                                                 user="p.proposals[0].professional.user"></yaka-avatar>
-                                    <div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
-                                        <span>{{p.proposals[0].professional.user.firstName}}
-                                            {{p.proposals[0].professional.user.lastName}}
-                                        </span>
-                                    </div>
-                                </a>
                             </li>
                         </ul>
                     </div>
