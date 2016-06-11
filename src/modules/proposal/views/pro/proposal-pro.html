@@ -87,7 +87,7 @@
                         </div>
                         <div class="pro-proposal-title">
                             <p ng-class="{'red': vm.project.type == 'EMERGENCY'}">
-                                {{vm.project.title}}
+                                {{vm.project.title | yakaTranslateTitle}}
                             </p>
 
                             <p>
