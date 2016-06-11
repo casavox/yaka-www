@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
+    function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -113,7 +113,7 @@
                 for (var i = 0; i < vm.projectTmp.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
+                    res += vm.projectTmp.activities[i].code
                 }
             }
             return res;
@@ -520,7 +520,6 @@
             vm.circle.visible = true;
 
             vm.project = res;
-            vm.project.translatedTitle = translateProjectTitle(vm.project);
             vm.projectTmp = angular.copy(vm.project);
             vm.whenSlot = vm.getWhen();
             if (vm.projectTmp.type != "EMERGENCY") {
@@ -648,14 +647,6 @@
                         break;
                 }
             }
-        }
-
-        function translateProjectTitle(proj) {
-            var titleArray = proj.title.split(' ');
-            for (var i = 0; i < titleArray.length; i++) {
-                titleArray[i] = $translate.instant(titleArray[i]);
-            }
-            return titleArray.join(' ');
         }
 
         function errorProjectGET(err) {

@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, $translate, uiGmapGoogleMapApi) {
+    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -494,7 +494,7 @@
                 for (var i = 0; i < vm.projectTmp.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
+                    res += vm.projectTmp.activities[i].code
                 }
             }
             if (vm.project.hasMaterial) {

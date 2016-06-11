@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
+    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -381,7 +381,7 @@
                 for (var i = 0; i < vm.project.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
+                    res += vm.projectTmp.activities[i].code
                 }
             }
             return res;

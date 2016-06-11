@@ -190,7 +190,7 @@
                         </div>
                         <div class="col-xs-12 description-sub-text">
                             <span class="red" ng-show="vm.projectTmp.type == 'EMERGENCY'">Emergency</span>
-                            {{vm.getTags()}}
+                            {{vm.getTags() | yakaTranslateTags}}
                         </div>
                     </div>
                 </div>
