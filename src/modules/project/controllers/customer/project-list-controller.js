@@ -20,6 +20,7 @@
         vm.projectsOnGoing = [];
         vm.projectsCompleted = [];
         vm.selectProject = selectProject;
+        vm.selectProposal = selectProposal;
         vm.dateDiff = dateDiff;
         vm.now = new Date();
         networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);
@@ -63,6 +64,10 @@
             } else {
                 $state.go("proposals", {projectId: p.id});
             }
+        }
+
+        function selectProposal(proposal) {
+            $state.go("proposal", {proposalId: proposal.id});
         }
 
         function successProjectsGET(res) {

@@ -79,10 +79,13 @@
                     </div>
                     <div class="card-body p-l-25 p-r-30 p-t-15 p-b-20">
                         <ul ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
-                            <li class="wa-stats">
-                                <span><i class="zmdi zmdi-comments"></i> 36</span>
+                            <li ng-show="p.unreadMessages" class="wa-stats">
+                                <span><i class="zmdi zmdi-comments-alt-text c-gray zmdi-hc-fw"></i></span>
                             </li>
-                            <li class="wa-users m-r-20" data-ng-repeat="proposal in p.proposals">
+                            <li ng-show="!p.unreadMessages" class="wa-stats">
+                                <span><i class="zmdi zmdi-comment-alt-text c-lightblue zmdi-hc-fw"></i></span>
+                            </li>
+                            <li class="wa-users m-r-20" data-ng-repeat="proposal in p.proposals" ng-click="vm.selectProposal(proposal)">
                                 <div class="p-relative"
                                      title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
                                     <yaka-avatar class="yakaHeaderAvatar" size="35"
