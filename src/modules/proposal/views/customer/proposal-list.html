@@ -47,7 +47,7 @@
                             <small>
                                 <div class="c-gray">
                                     <i>{{vm.project.address.name}} -
-                                        {{vm.project.address.administrativeAreaLevel2}}</i>
+                                        {{vm.project.address.locality}}</i>
                                 </div>
                                 <div class="c-gray">
                                     Début souhaité {{vm.getWhen()}}
@@ -110,31 +110,29 @@
                             <small>Liste des réponses de professionnels</small>
                         </h2>
                     </div>
-
                     <div class="card-body">
                         <div class="listview">
-
                             <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
                                ng-click="vm.selectProposal(p)">
                                 <div class="media">
                                     <div class="pull-left">
-                                        <yaka-avatar class="yakaHeaderAvatar" size="35"
-                                                     user="p.professional.user"></yaka-avatar>
+                                        <div class="p-relative">
+                                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                                         user="p.professional.user"></yaka-avatar>
+                                            <i ng-show="p.unreadMessages" class="porposalUnreadMessagesIndicator"></i>
+                                        </div>
                                     </div>
                                     <div class="media-body">
                                         <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
                                             ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
                                         </div>
-                                        <small class="lv-small" ng-if="p.price">Devis <i>{{p.priceType}}</i> à
-                                            {{p.price}} €
+                                        <small class="lv-small" ng-show="p.price">Estimation actuelle {{p.price}} €
                                         </small>
-                                        <small class="lv-small" ng-if="!p.price">Devis <i>{{p.priceType}}</i> à
-                                            {{p.price}} €
+                                        <small class="lv-small" ng-show="p.startDate">Disponible à partir du {{p.startDate | yakaTranslateShortDate}}
                                         </small>
                                     </div>
                                 </div>
                             </a>
-
                             <div class="clearfix"></div>
                         </div>
                     </div>

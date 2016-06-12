@@ -48,8 +48,7 @@
                             </div>
                             <small>
                                 <div class="c-gray">
-                                    <i>{{p.address.name}} - {{p.address.administrativeAreaLevel2}}</i>
-                                    <!-- @todo  see back to get administrativeAreaLevel2 -->
+                                    <i>{{p.address.name}} - {{p.address.locality}}</i>
                                 </div>
                                 <div class="c-gray">
                                     Début souhaité {{vm.getDesiredPedriod(p)}}
@@ -67,7 +66,10 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="p.proposals.length > 0">
+                <div ng-show="!p.proposals" class="card-body p-l-25 p-b-20">
+                    <span>Réponses des Pro en attentes...</span>
+                </div>
+                <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
                     <div class="card-body p-l-25">
                         <span>Choisissez un professionnel pour votre projet.</span>
                         <span ng-show="p.proposals.length == 1">
@@ -101,9 +103,6 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div ng-show="!p.proposals" class="card-body p-l-25 p-b-20">
-                    <span>Réponses des Pro en attentes...</span>
                 </div>
             </div>
 
