@@ -46,8 +46,7 @@
                             </div>
                             <small>
                                 <div class="c-gray">
-                                    <i>{{vm.project.address.name}} -
-                                        {{vm.project.address.locality}}</i>
+                                    <strong>{{vm.project.address.name}}</strong> - {{vm.project.address.locality}}
                                 </div>
                                 <div class="c-gray">
                                     Début souhaité {{vm.getWhen()}}
@@ -106,12 +105,15 @@
             <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
                 <div class="card">
                     <div class="card-header bgm-orange">
-                        <h2>Offres reçues
-                            <small>Liste des réponses de professionnels</small>
+                        <h2 ng-show="vm.project.proposals.length == 1">Une offre reçue
+                            <small>Sélectionner la pour en voir le détail</small>
+                        </h2>
+                        <h2 ng-show="vm.project.proposals.length > 1">{{vm.project.proposals.length}} offres reçues
+                            <small>Sélectionner une offre pour en voir le détail</small>
                         </h2>
                     </div>
-                    <div class="card-body">
-                        <div class="listview">
+                    <div class="lv-body">
+                        <div class="listview media">
                             <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
                                ng-click="vm.selectProposal(p)">
                                 <div class="media">
@@ -123,17 +125,24 @@
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
-                                            ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
+                                        <div class="pull-left">
+                                            <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
+                                                ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
+                                            </div>
+                                            <small class="lv-small" ng-show="p.price">Estimation actuelle {{p.price}} €
+                                            </small>
+                                            <small class="lv-small" ng-show="p.startDate">Disponible à partir du
+                                                {{p.startDate | yakaTranslateShortDate}}
+                                            </small>
                                         </div>
-                                        <small class="lv-small" ng-show="p.price">Estimation actuelle {{p.price}} €
-                                        </small>
-                                        <small class="lv-small" ng-show="p.startDate">Disponible à partir du {{p.startDate | yakaTranslateShortDate}}
-                                        </small>
+                                        <div class="pull-right textAlignRightFullDesktop paddingRightFullDesktop">
+                                            <small class="c-gray">
+                                                <span am-time-ago="p.updated"></span>
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
