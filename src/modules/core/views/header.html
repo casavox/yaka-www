@@ -33,7 +33,8 @@
                             <a class="lv-item userChatItem" ng-href=""
                                data-ng-repeat="userchat in app.getUserchats()"
                                data-ng-class="{'unread': userchat.unreadMessages}">
-                                <div class="media">
+                                <div class="media" data-ng-if="!app.isPro()"
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id})">
                                     <div class="pull-left">
                                         <yaka-avatar size="35"
                                                      user="userchat.chat.proposal.professional.user"></yaka-avatar>
@@ -43,6 +44,21 @@
                                     <div class="media-body">
                                         <div class="lv-title">{{userchat.chat.proposal.professional.user.firstName}}
                                             {{userchat.chat.proposal.professional.user.lastName}}
+                                        </div>
+                                        <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
+                                    </div>
+                                </div>
+                                <div class="media" data-ng-if="app.isPro()"
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id})">
+                                    <div class="pull-left">
+                                        <yaka-avatar size="35"
+                                                     user="userchat.chat.proposal.project.user"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">{{userchat.chat.proposal.project.user.firstName}}
+                                            {{userchat.chat.proposal.project.user.lastName}}
                                         </div>
                                         <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
                                     </div>

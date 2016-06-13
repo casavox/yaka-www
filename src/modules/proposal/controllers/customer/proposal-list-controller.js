@@ -25,7 +25,7 @@
         if ($stateParams.projectId) {
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("home");
+            $state.go("my-projects");
         }
 
         function selectProposal(p) {

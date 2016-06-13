@@ -251,7 +251,7 @@
                     },
                     userType: {
                         label: 'User Type',
-                        value: app.getUserType()
+                        value: app.getUser().professional ? "pro" : "customer"
                     },
                     version: {
                         label: 'YakaClub Version',

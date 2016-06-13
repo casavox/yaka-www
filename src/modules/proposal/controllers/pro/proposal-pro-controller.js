@@ -101,6 +101,8 @@
 
         if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
             networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
+        } else {
+            $state.go('home');
         }
 
         function declineProposal() {
