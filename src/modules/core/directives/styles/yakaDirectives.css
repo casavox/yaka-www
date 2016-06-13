@@ -45,6 +45,7 @@ yaka-chat .ms-reply .leftButton {
 
 yaka-chat .ms-reply textarea {
     padding: 8px 60px;
+    line-height: normal;
 }
 
 yaka-chat .imgPreview {
@@ -67,6 +68,10 @@ yaka-chat .ms-item.messageAuto {
     max-width: 100%;
     background: #607D8B !important;
     color: white !important;
+}
+
+yaka-chat .ms-item span.msg {
+    white-space: pre-wrap;
 }
 
 yaka-chat .chatImg {
