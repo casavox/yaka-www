@@ -323,3 +323,8 @@ section#main.yakaMain .content .card {
         padding-bottom: 0 !important;
     }
 }
+
+.on-avatar:hover {
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(3, 169, 244, 1), 0 -1px 3px rgba(3, 169, 244, 1);
+}

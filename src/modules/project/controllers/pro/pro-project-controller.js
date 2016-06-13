@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, $translate, uiGmapGoogleMapApi) {
+    function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -113,7 +113,7 @@
                 for (var i = 0; i < vm.projectTmp.activities.length; i++) {
                     if (i != 0)
                         res += " - ";
-                    res += $translate.instant('ACTIVITY_' + vm.projectTmp.activities[i].code)
+                    res += vm.projectTmp.activities[i].code
                 }
             }
             return res;
@@ -425,17 +425,16 @@
                     }
                 }
                 return res;
-            }
-            else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.type != "EMERGENCY") {
+            } else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.type != "EMERGENCY") {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "Le " + vm.projectTmp.desiredDate;
+                        return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "WITHIN_A_WEEK":
-                        return "Dans la semaine";
+                        return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "WITHIN_A_MONTH":
-                        return "Dans le mois";
+                        return "dans le mois autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "NONE":
-                        return "Flexible sur la date de départ";
+                        return 'dès que possible';
                 }
             }
             return "";
@@ -521,7 +520,6 @@
             vm.circle.visible = true;
 
             vm.project = res;
-            vm.project.translatedTitle = translateProjectTitle(vm.project);
             vm.projectTmp = angular.copy(vm.project);
             vm.whenSlot = vm.getWhen();
             if (vm.projectTmp.type != "EMERGENCY") {
@@ -649,14 +647,6 @@
                         break;
                 }
             }
-        }
-
-        function translateProjectTitle(proj) {
-            var titleArray = proj.title.split(' ');
-            for (var i = 0; i < titleArray.length; i++) {
-                titleArray[i] = $translate.instant(titleArray[i]);
-            }
-            return titleArray.join(' ');
         }
 
         function errorProjectGET(err) {

@@ -85,7 +85,7 @@
                             <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
                         </div>
                         <div class="col-xs-12 description-sub-text">
-                            {{vm.getWhen()}}
+                            Début souhaité {{vm.getWhen()}}
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                             Tags
                         </div>
                         <div class="col-xs-12 description-sub-text">
-                            {{vm.getTags()}}
+                            {{vm.getTags() | yakaTranslateTags}}
                         </div>
                     </div>
                 </div>

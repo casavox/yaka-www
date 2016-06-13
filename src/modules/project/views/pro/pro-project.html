@@ -49,7 +49,7 @@
 
                         <div class="pro-proposal-title">
                             <p ng-class="{'red': vm.projectTmp.type == 'EMERGENCY'}">
-                                {{vm.project.translatedTitle}}
+                                {{vm.project.title | yakaTranslateTitle}}
                             </p>
 
                             <p>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-xs-12 description-sub-text">
                             <span class="red" ng-show="vm.projectTmp.type == 'EMERGENCY'">Emergency</span>
-                            {{vm.getTags()}}
+                            {{vm.getTags()  | yakaTranslateTags}}
                         </div>
                     </div>
                 </div>

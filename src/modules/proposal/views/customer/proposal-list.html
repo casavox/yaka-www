@@ -25,28 +25,43 @@
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
-    
+
     <section id="content">
         <div class="container">
             <div class="card" ng-click="vm.projectDetails()">
                 <div class="card-header card-hover">
                     <div class="media">
                         <div class="pull-left">
-                            <div class="proposalIconBackground">
-                                <img class="lv-img v-icon-{{vm.project.activities[0].code}}-white" alt="">
+                            <div class="proposalIconBackground lv-img v-icon-{{vm.project.activities[0].code}}-white">
                             </div>
                         </div>
-                        <div class="media-body m-t-5">
-                            <h2>{{vm.project.title}}
-                                <small><i>{{vm.project.address.name}} -
-                                    {{vm.project.address.administrativeAreaLevel2}}</i>
-                                </small>
-                            </h2>
-                            <small>Echéance : {{vm.getWhen()}}</small>
+                        <div class="media-body projectTitleBar">
+                            <div class="media-heading row">
+                                <div class="col-sm-9">{{vm.project.title | yakaTranslateTitle}}</div>
+                                <div class="col-sm-3 textAlignRightFullDesktop paddingRightFullDesktop">
+                                    <small class="c-gray">
+                                        <span am-time-ago="vm.project.updated"></span>
+                                    </small>
+                                </div>
+                            </div>
+                            <small>
+                                <div class="c-gray">
+                                    <strong>{{vm.project.address.name}}</strong> - {{vm.project.address.locality}}
+                                </div>
+                                <div class="c-gray">
+                                    Début souhaité {{vm.getWhen()}}
+                                </div>
+                            </small>
                         </div>
-                    </div>
-                    <div class="pull-right">
-                        <h2><i class="zmdi zmdi-more-horiz"></i></h2>
+                        <div class="pull-right">
+                            <ul class="actions m-t-20">
+                                <li class="dropdown" uib-dropdown>
+                                    <a href="" uib-dropdown-toggle>
+                                        <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,21 +86,14 @@
                                         coordonnées personnelles sont masquées (Nom, téléphone, adresse, email,
                                         ...).
                                     </li>
-                                    <li class="ng-binding" style="font-size: 13px !important;">Vous pouvez à
-                                        tout moment décider de communiquer vos coordonnées à un professionnel
-                                        :<br>Pour cela il suffit de l'ajouter dans votre <a ui-sref="contacts">liste
-                                            de contacts</a>.
-                                    </li>
                                 </ul>
-                                </li>
                                 <p>Puis, sélectionnez le professionnel de votre choix et bloquez une date pour démarrer
-                                    le
-                                    chantier.</p>
+                                    le chantier.</p>
                             </h5>
                         </div>
                         <div class="ptib-item">
                             Invitez vos amis à rejoindre Yaka Club pour augmenter vos chances de trouver le
-                            professionnel du batiment qu'il vous faut.
+                            professionnel qu'il vous faut.
                         </div>
                     </div>
 
@@ -97,36 +105,44 @@
             <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
                 <div class="card">
                     <div class="card-header bgm-orange">
-                        <h2>Offres reçues
-                            <small>Liste des réponses de professionnels</small>
+                        <h2 ng-show="vm.project.proposals.length == 1">Une offre reçue
+                            <small>Sélectionner la pour en voir le détail</small>
+                        </h2>
+                        <h2 ng-show="vm.project.proposals.length > 1">{{vm.project.proposals.length}} offres reçues
+                            <small>Sélectionner une offre pour en voir le détail</small>
                         </h2>
                     </div>
-
-                    <div class="card-body">
-                        <div class="listview">
-
+                    <div class="lv-body">
+                        <div class="listview media">
                             <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
                                ng-click="vm.selectProposal(p)">
                                 <div class="media">
                                     <div class="pull-left">
-                                        <yaka-avatar class="yakaHeaderAvatar" size="35"
-                                                     user="p.professional.user"></yaka-avatar>
+                                        <div class="p-relative">
+                                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                                         user="p.professional.user"></yaka-avatar>
+                                            <i ng-show="p.unreadMessages" class="porposalUnreadMessagesIndicator"></i>
+                                        </div>
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
-                                            ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
+                                        <div class="pull-left">
+                                            <div class="lv-title"><span ng-if="p.status == 'START'">{{p.professional.user.firstName}} {{p.professional.user.lastName}}</span><span
+                                                ng-if="p.status == 'SELECTED'">{{p.professional.company.name}}</span>
+                                            </div>
+                                            <small class="lv-small" ng-show="p.price">Estimation actuelle {{p.price}} €
+                                            </small>
+                                            <small class="lv-small" ng-show="p.startDate">Disponible à partir du
+                                                {{p.startDate | yakaTranslateShortDate}}
+                                            </small>
                                         </div>
-                                        <small class="lv-small" ng-if="p.price">Devis <i>{{p.priceType}}</i> à
-                                            {{p.price}} €
-                                        </small>
-                                        <small class="lv-small" ng-if="!p.price">Devis <i>{{p.priceType}}</i> à
-                                            {{p.price}} €
-                                        </small>
+                                        <div class="pull-right textAlignRightFullDesktop">
+                                            <small class="c-gray">
+                                                Mit à jour <span am-time-ago="p.updated"></span>
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
-
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>

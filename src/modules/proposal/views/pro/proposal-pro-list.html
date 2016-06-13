@@ -28,8 +28,8 @@
                     <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
                          ng-if="proposal.unreadMessages">
 
-                    <p class="pro-proposals-title" title="{{ proposal.project.title }}">
-                        {{ proposal.project.title }}
+                    <p class="pro-proposals-title" title="{{ proposal.project.title | yakaTranslateTitle}}">
+                        {{ proposal.project.title | yakaTranslateTitle}}
                     </p>
 
                     <p class="pro-proposals-info"

@@ -1529,11 +1529,6 @@ md-input-container {
     display: inline-block;
 }
 
-.project-address {
-    display: inline-block;
-    color: grey;
-}
-
 .title-line {
     display: -webkit-flex;
     display: -moz-flex;
@@ -1556,6 +1551,14 @@ md-input-container {
 }
 
 .project-address {
+    display: inline-block;
+    color: grey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.yakaEllipsis {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -4930,6 +4933,17 @@ ul[rn-carousel-buffered] > li {
     margin-top: 1px !important;
 }
 
+@media (min-width: 768px) {
+
+    .textAlignRightFullDesktop {
+        text-align: right !important;
+    }
+
+    .paddingRightFullDesktop {
+        padding-right: 40px !important;
+    }
+}
+
 ul.yaka-chips {
     padding: 0;
 }
@@ -4953,6 +4967,10 @@ ul.yaka-chips li {
 
 .whiteSpacePre {
     white-space: pre;
+}
+
+.vertical-middle {
+    vertical-align: middle;
 }
 
 .pointer {

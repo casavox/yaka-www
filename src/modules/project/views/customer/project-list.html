@@ -1,246 +1,156 @@
 <header id="header" data-current-skin='lightblue' ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
-<section class="view">
+<section id="main">
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-    <div id="content" class="page-content">
-        <div class="content-slide">
-            <h4>IN PROGRESS</h4>
-
-            <div class="project" ng-repeat="p in vm.projectsOnGoing" ng-click="vm.selectProject(p)" ng-ripple
-                 ng-class="{'emergency-border': p.type == 'EMERGENCY' && (p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'), 'alert-border': p.unreadMessages || p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_RATE_PRO'}">
-                <div class="project-icon no-margin no-padding">
-                    <div class="v-icon v-icon-{{p.mainActivity.code}} center-middle">
-                    </div>
+    <section id="content" class="content">
+        <div class="container">
+            <div ng-show="vm.projectsOnGoing.length <0" class="card">
+                <div class="card-header">
+                    <h2>VOUS N’AVEZ ENCORE DE PROJETS
+                        <small>Comment fonctionne Yaka Club ?</small>
+                    </h2>
                 </div>
-                <div class="project-info-middle no-margin no-padding" title="{{p.translatedTitle}}">
-                    <div class="project-middle pl-20">
-                        <div class="title-line">
-                            <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
-
-                            <p class="project-title"
-                               ng-class="{'draft': p.status == 'DRAFT'}">
-                                {{p.translatedTitle}}
-                            </p>
-                        </div>
-
-                        <div class="info-line">
-                            <p class="project-date" ng-class="{'draft': p.status == 'DRAFT'}">
-                                {{ vm.getDesiredPedriod(p)}} -
-                            </p>
-
-                            <p class="project-address" ng-class="{'draft': p.status == 'DRAFT'}">
-                                {{p.address.name}}
-                            </p>
-                        </div>
-                    </div>
+                <div class="card-body card-padding">
+                    <ol>
+                        <li>Créez votre projet</li>
+                        <li>Recevez des offres et discutez avec nos professionnels</li>
+                        <li>Sélectionnez celui qui vous convient</li>
+                        <li>Clôturez le projet et partagez votre recommandation</li>
+                    </ol>
                 </div>
-                <div class="project-message no-margin no-padding">
-                    <img class="center-middle img-message" src="icons/mdpi/ic_message.png" alt=""
-                         ng-show="p.unreadMessages"/>
-
-                    <p class="no-message" ng-hide="p.unreadMessages">
-                        No message
-                    </p>
-
-                    <p class="post-message">
-                        Posté depuis {{vm.dateDiff(p.updated, vm.now)}}
-                    </p>
+                <div class="panel-footer text-right">
+                    <button class="btn btn-lg btn-primary" data-ui-sref="new-project">CREER UN PROJET</button>
                 </div>
-                <div class=" project-proposals no-margin no-padding">
-                    <div class="status-info"
-                         ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS' || p.status == 'DRAFT'">
-                        <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'">
-                            <i class="fa fa-circle  puce"></i> {{p.proposals.length}} propositions
-                        </p>
-
-                        <p ng-show="p.status == 'ONGOING_RATE_PRO'">
-                            <i class="fa fa-circle  puce-green" ng-class="[p.status]"></i>
-                        </p>
-
-                        <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="">
-                            <i class="fa fa-circle color-9b"></i> Waiting for proposals
-                        </p>
-
-                        <p ng-show="p.status == 'DRAFT'" class="color-9b draft">
-                            <i class="fa fa-circle  color-9b"></i> Draft
-                        </p>
-
-                        <div class="row avatar-display " ng-if="p.proposals.length > 0">
-                            <div class="col-xs-3">
-                                <cl-image ng-if="p.proposals[0].professional.user.avatar.cloudinaryPublicId"
-                                          public-id="{{p.proposals[0].professional.user.avatar.cloudinaryPublicId}}"
-                                          secure="true"
-                                          class="img-circle avatar-pro" format="png"
-                                          title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <cl-transformation height="29" width="29" crop="fill"/>
-                                </cl-image>
-                                <div class="img-default-preview"
-                                     ng-if="!p.proposals[0].professional.user.avatar.cloudinaryPublicId"
-                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    {{p.proposals[0].professional.user.firstName[0] | uppercase}}
-                                    {{p.proposals[0].professional.user.lastName[0] | uppercase}}
-                                </div>
-                            </div>
-                            <div class="col-xs-3" ng-if="p.proposals.length > 1">
-                                <cl-image ng-if="p.proposals[1].professional.user.avatar.cloudinaryPublicId"
-                                          public-id="{{p.proposals[1].professional.user.avatar.cloudinaryPublicId}}"
-                                          secure="true"
-                                          class="img-circle avatar-pro" format="png"
-                                          title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <cl-transformation height="29" width="29" crop="fill"/>
-                                </cl-image>
-                                <div class="img-default-preview"
-                                     ng-if="!p.proposals[1].professional.user.avatar.cloudinaryPublicId"
-                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    {{p.proposals[1].professional.user.firstName[0] | uppercase}}
-                                    {{p.proposals[1].professional.user.lastName[0] | uppercase}}
-                                </div>
-                            </div>
-                            <div class="col-xs-3" ng-if="p.proposals.length > 2">
-                                <cl-image ng-if="p.proposals[1].professional.user.avatar.cloudinaryPublicId"
-                                          public-id="{{p.proposals[2].professional.user.avatar.cloudinaryPublicId}}"
-                                          secure="true"
-                                          class="img-circle avatar-pro" format="png"
-                                          title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <cl-transformation height="29" width="29" crop="fill"/>
-                                </cl-image>
-                                <div class="img-default-preview"
-                                     ng-if="!p.proposals[2].professional.user.avatar.cloudinaryPublicId"
-                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    {{p.proposals[2].professional.user.firstName[0] | uppercase}}
-                                    {{p.proposals[2].professional.user.lastName[0] | uppercase}}
-                                </div>
-                            </div>
-                            <div class="col-xs-3" ng-if="p.proposals.length > 3">
-                                <cl-image ng-if="p.proposals[1].professional.user.avatar.cloudinaryPublicId"
-                                          public-id="{{p.proposals[3].professional.user.avatar.cloudinaryPublicId}}"
-                                          secure="true"
-                                          class="img-circle avatar-pro" format="png"
-                                          title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <cl-transformation height="29" width="29" crop="fill"/>
-                                </cl-image>
-                                <div class="img-default-preview"
-                                     ng-if="!p.proposals[3].professional.user.avatar.cloudinaryPublicId"
-                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    {{p.proposals[3].professional.user.firstName[0] | uppercase}}
-                                    {{p.proposals[3].professional.user.lastName[0] | uppercase}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status-info" ng-show="p.status == 'ONGOING_PROJECT_ONGOING'">
-                        <p>
-                            <i class="fa fa-circle puce-green" ng-class="[p.status]"></i>Pro selected
-                        </p>
-
-                        <div class="row avatar-display">
-                            <div class="col-xs-12">
-                                <cl-image ng-if="p.proposals[0].professional.user.avatar.cloudinaryPublicId"
-                                          public-id="{{p.professional.user.avatar.cloudinaryPublicId}}"
-                                          secure="true"
-                                          class="img-circle avatar-pro" format="png"
-                                          title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    <cl-transformation height="29" width="29" crop="fill"/>
-                                </cl-image>
-                                <div class="img-default-preview"
-                                     ng-if="!p.proposals[0].professional.user.avatar.cloudinaryPublicId"
-                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
-                                    {{p.proposals[0].professional.user.firstName[0] | uppercase}}
-                                    {{p.proposals[0].professional.user.lastName[0] | uppercase}}
-                                </div>
-                                {{p.professional.user.firstName}} {{p.professional.user.lastName}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <h4>COMPLETED</h4>
 
-            <div class="project" ng-repeat="p in vm.projectsCompleted">
-                <div class="row no-margin no-padding">
-                    <div class="col-xs-2 no-margin no-padding">
-
-                    </div>
-                    <div class="col-xs-4 no-margin no-padding" title="{{p.translatedTitle}}">
-                        <div class="project-middle pl-20">
-                            <div class="title-line">
-                                <label ng-show="p.type == 'EMERGENCY'">Emergency - </label>
-
-                                <p class="project-title">
-                                    {{p.translatedTitle}}
-                                </p>
-                            </div>
-
-                            <div class="info-line">
-                                <p class="project-date">
-                                    {{p.updated | date:'mediumDate'}} -
-                                </p>
-
-                                <p class="project-address">
-                                    {{p.address.name}}
-                                </p>
+            <div ng-show="vm.projectsOnGoing.length >0" class="block-header">
+                <h2>PROJET EN COURS</h2>
+            </div>
+            <div ng-show="vm.projectsOnGoing.length >0" class="card card-hover" ng-repeat="p in vm.projectsOnGoing"
+                 ng-click="vm.selectProject(p)">
+                <div class="card-header">
+                    <div class="media">
+                        <div class="pull-left">
+                            <div class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
                             </div>
                         </div>
+                        <div class="media-body projectTitleBar" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-heading row">
+                                <div class="col-sm-7">{{p.title | yakaTranslateTitle}}</div>
+                                <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                    <small class="c-gray">
+                                        Mit à jour <span am-time-ago="p.updated"></span>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="c-gray">
+                                <strong>{{p.address.name}}</strong> - {{p.address.locality}}
+                            </div>
+                            <div class="c-gray">
+                                Début souhaité {{vm.getDesiredPedriod(p)}}
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <ul class="actions m-t-20">
+                                <li class="dropdown" uib-dropdown>
+                                    <a href="" uib-dropdown-toggle>
+                                        <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-xs-4 no-margin no-padding">
-                        <div class="status-info"
-                             ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
-                            <p ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED'">
-                                <i class="fa fa-circle  puce" ng-class="p.type"></i> {{p.proposals.length}} propositions
-                            </p>
-
-                            <p ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'">
-                                <i class="fa fa-circle  puce" ng-class="[p.type, p.status]"></i> 0 propositions
-                            </p>
-
-                            <div class="row avatar-display" ng-show="p.proposals.length > 0">
-                                <div class="col-xs-3">
-                                    <img class="img-circle avatar-pro fr"
-                                         ng-src="{{p.proposals[0].professional.user.avatarUrl}}" alt=""/>
+                </div>
+                <div ng-show="!p.proposals" class="card-body p-l-25 p-b-20">
+                    <span>Réponses des Pro en attentes...</span>
+                </div>
+                <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
+                    <div class="card-body p-l-25">
+                        <span>Choisissez un professionnel pour votre projet.</span>
+                        <span ng-show="p.proposals.length == 1">
+                            <br>Vous avez reçu <b>1 proposition</b>
+                        </span>
+                        <span ng-show="p.proposals.length > 1">
+                            <br>Vous avez reçu <b>{{p.proposals.length}} propositions</b>
+                        </span>
+                    </div>
+                    <div class="card-body p-l-25 p-r-30 p-t-15 p-b-20">
+                        <ul ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
+                            <li ng-show="!p.unreadMessages" class="wa-stats">
+                                <span><i class="zmdi zmdi-comment-alt-text c-gray zmdi-hc-fw"></i></span>
+                            </li>
+                            <li ng-show="p.unreadMessages" class="wa-stats">
+                                <span><i class="zmdi zmdi-comment-alt-text c-lightblue zmdi-hc-fw"></i></span>
+                            </li>
+                            <li ng-show="p.proposals.length > 4" class="wa-users m-r-5" ng-click="vm.selectProject(p)">
+                                <div class="p-relative"
+                                     title="{{p.proposals.length-3}} autre(s) proposition(s)">
+                                    <div class="lv-avatar bgm-bluegray pull-left on-avatar">+{{p.proposals.length-3}}
+                                    </div>
+                                    <!--<div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
+                                        <span>{{p.proposals.length-3}} autre(s)</span>
+                                    </div>-->
                                 </div>
-                                <div class="col-xs-3" ng-show="p.proposals.length > 1">
-                                    <img class="img-circle avatar-pro center"
-                                         ng-src="{{p.proposals[1].professional.user.avatarUrl}}" alt=""/>
+                            </li>
+                            <li class="wa-users m-r-5" data-ng-repeat="proposal in p.proposals | limitTo:4"
+                                ng-click="vm.selectProposal(proposal)">
+                                <div class="p-relative"
+                                     title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
+                                    <yaka-avatar class="on-avatar" size="35"
+                                                 user="proposal.professional.user"></yaka-avatar>
+                                    <i ng-show="proposal.unreadMessages" class="porposalUnreadMessagesIndicator"></i>
+                                    <!--<div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
+                                        <span>{{proposal.professional.user.firstName}}
+                                            {{proposal.professional.user.lastName}}
+                                        </span>
+                                    </div>-->
                                 </div>
-                                <div class="col-xs-3" ng-show="p.proposals.length > 2">
-                                    <img class="img-circle avatar-pro fl"
-                                         ng-src="{{p.proposals[2].professional.user.avatarUrl}}" alt=""/>
-                                </div>
-                                <div class="col-xs-3" ng-show="p.proposals.length > 3">
-                                    <span class="glyphicon glyphicon-option-horizontal other-avatars img-circle"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-show="p.status == 'ONGOING_PROJECT_ONGOING'" class="card-body p-l-25 p-b-20"
+                     ng-click="vm.selectProposal(p.proposals[0])">
+                    <div class="media">
+                        <div class="pull-left">
+                            <div class="btn-dpday bgm-bluegray pull-left on-avatar">
+                                <div class="p-relative"
+                                     title="{{p.proposals[0].professional.user.firstName}} {{p.proposals[0].professional.user.lastName}}">
+                                    <yaka-avatar class="on-avatar" size="42"
+                                                 user="p.proposals[0].professional.user"></yaka-avatar>
+                                    <i ng-show="p.proposals[0].unreadMessages"
+                                       class="porposalUnreadMessagesIndicator"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="status-info" ng-show="p.status == 'ONGOING_PROS_PRESELECTED'">
-                            <p>
-                                Pro selected
-                            </p>
-
-                            <p>
-                                {{p.professional.companyName}}
-                            </p>
+                        <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-heading m-b-5">
+                                <div class="c-gray">Votre Pro. pour ce projet</div>
+                                <strong>{{p.proposals[0].professional.user.firstName}}
+                                    {{p.proposals[0].professional.user.lastName}}</strong>
+                            </div>
+                            <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
+                                <li class="wa-stats center">
+                                    <span class="bgm-white">
+                                        <i class="zmdi zmdi-calendar"></i>
+                                        <span data-ng-if="p.proposals[0].startDate">{{p.proposals[0].startDate | date:'dd/MM/yy'}}</span>
+                                        <span data-ng-if="!p.proposals[0].startDate">- - -</span>
+                                    </span>
+                                    <span class="active bgm-white c-lightblue">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <span data-ng-if="p.proposals[0].price">{{p.proposals[0].price}} €</span>
+                                        <span data-ng-if="!p.proposals[0].price">- - - €</span>
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="status-info" ng-show="p.status == 'DRAFT'">
-                            <p>
-                                {{p.status}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 no-margin no-padding">
-                        <img class="center-middle" src="icons/mdpi/ic_message.png" alt="" ng-show="p.unreadMessages"/>
-                        <img class="center-middle" src="icons/mdpi/ic_nomessage.png" alt="" ng-hide="p.unreadMessages"/>
-
-                        <p class="post-message">
-                            Posté depuis
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </section>
