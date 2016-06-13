@@ -295,6 +295,7 @@
                     description: vm.projectDescription,
                     desiredDatePeriod: vm.dateType,
                     address: {},
+                    hasMaterial: vm.material,
                     activities: []
                 };
                 for (var i = 0; i < vm.questions.length; i++) {
@@ -360,7 +361,8 @@
                     description: vm.projectDescription,
                     address: {},
                     activities: [],
-                    availabilities: []
+                    availabilities: [],
+                    hasMaterial: vm.material
                 };
                 for (var i = 0; i < vm.questions.length; i++) {
                     if (vm.questions[i].code != "OTHER") {

@@ -40,11 +40,14 @@
 
                 <li heading="Profile"
                     data-ng-class="{'active': vm.showChat}">
-                    <a href="" ng-click="vm.showChat = true" class="ng-binding">Messages</a>
+                    <a href="" ng-click="vm.showChat = true; vm.scrollBottom = 1" class="ng-binding">Messages</a>
                 </li>
             </ul>
 
-            <yaka-chat data-ng-show="vm.showChat" chat-id="{{vm.proposal.chat.id}}" user-me="app.getUser()"
+            <yaka-chat data-ng-show="vm.showChat"
+                       scroll-bottom="{{vm.scrollBottom}}"
+                       chat-id="{{vm.proposal.chat.id}}"
+                       user-me="app.getUser()"
                        user-other="vm.proposal.project.user"></yaka-chat>
 
             <div data-ng-show="!vm.showChat">

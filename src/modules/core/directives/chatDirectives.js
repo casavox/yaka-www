@@ -171,7 +171,7 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('scrollBottom', function () {
-                    console.log("scroll !!! : " + scope.scrollBottom);
+                    scrollDown();
                 });
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"

@@ -19,6 +19,7 @@
         $rootScope.showMenu = true;
 
         var vm = this;
+        vm.scrollBottom = 0;
         vm.showChat = false;
         vm.getWhen = getWhen;
         vm.dateDiff = dateDiff;
