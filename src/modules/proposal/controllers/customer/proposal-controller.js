@@ -19,6 +19,7 @@
         var vm = this;
         vm.showChat = false;
         vm.proposal = {};
+        vm.scrollBottom = 0;
 
         if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId) {
             loadProposal();

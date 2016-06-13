@@ -52,7 +52,6 @@
             "bower_components/moment/moment.js",
             "bower_components/moment/locale/fr.js",
             "bower_components/angular-moment/angular-moment.js",
-            "bower_components/angular-i18n/angular-locale_fr-fr.js",
             "bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js",
             "bower_components/angular-typewrite/dist/angular-typewrite.js",
             "bower_components/angular-cookies/angular-cookies.js",
@@ -79,6 +78,7 @@
             "modules/template/**/*.js",
             "modules/core/module.js",
             "modules/**/*.js",
+            "scripts/angular-locale_fr-fr.js",
             "scripts/customer-support.js"
         ],
         "css": [
