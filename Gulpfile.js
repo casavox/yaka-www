@@ -17,7 +17,6 @@ var ngAnnotate = require("gulp-ng-annotate");
 var rev = require("gulp-rev");
 var fs = require("fs");
 var connect = require('gulp-connect');
-var connect = require('gulp-connect');
 var coffee = require("gulp-coffee");
 var karma = require("karma").Server;
 var debug = require("gulp-debug");

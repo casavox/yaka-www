@@ -81,8 +81,7 @@
     "bootstrap-growl": "https://github.com/mouse0270/bootstrap-notify.git#old-2.0.1",
     "ng-table": "^0.8.3",
     "intl-tel-input": "^8.5.2",
-    "angular-bootstrap-lightbox": "^0.12.0",
-    "angular-i18n": "^1.5.6"
+    "angular-bootstrap-lightbox": "^0.12.0"
   },
   "resolutions": {
     "angular": "1.5.x",

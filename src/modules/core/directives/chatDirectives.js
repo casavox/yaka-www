@@ -5,6 +5,7 @@ angular.module('Yaka')
             restrict: 'E',
             scope: {
                 chatId: '@',
+                scrollBottom: '@',
                 userMe: '=',
                 userOther: '='
             },
@@ -169,6 +170,9 @@ angular.module('Yaka')
                 };
 
                 attr.$observe('chatId', chatIdChanged);
+                attr.$observe('scrollBottom', function () {
+                    console.log("scroll !!! : " + scope.scrollBottom);
+                });
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"
         }
