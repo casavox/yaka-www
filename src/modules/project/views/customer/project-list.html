@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div ng-show="p.status == 'ONGOING_PROJECT_ONGOING'" class="card-body p-l-25 p-b-20"
-                     ng-click="vm.selectProposal(p.proposals[0])">
+                     ng-click="vm.selectProject(p)">
                     <div class="media">
                         <div class="pull-left">
                             <div class="btn-dpday bgm-bluegray pull-left on-avatar">
@@ -127,7 +127,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                        <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}"
+                             ng-click="vm.selectProposal(p.proposals[0])">
                             <div class="media-heading m-b-5">
                                 <div class="c-gray">Votre Pro. pour ce projet</div>
                                 <strong>{{p.proposals[0].professional.user.firstName}}

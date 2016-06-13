@@ -27,13 +27,4 @@ angular.module('Yaka')
             return projectTitle;
         }
     })
-    .filter('yakaTranslateShortDate', function () {
-        return function (unformattedDate) {
-            if (moment(unformattedDate).isValid()) {
-                //@todo later : handle local
-                return moment(unformattedDate).format("D MMMM");
-            }
-            return unformattedDate;
-        }
-    })
 ;
