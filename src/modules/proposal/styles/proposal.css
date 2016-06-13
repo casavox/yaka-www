@@ -3,6 +3,11 @@
     border-radius: 50%;
 }
 
+.proposalIconBackgroundOff {
+    background-color: #9E9E9E;
+    border-radius: 50%;
+}
+
 .projectTitleBar {
     width: auto !important;
     margin: 0 !important;
