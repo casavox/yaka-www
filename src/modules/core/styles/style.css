@@ -1,3 +1,7 @@
+html {
+    background-color: #edecec;
+}
+
 @media (min-width: 768px) {
     .container {
         width: 750px !important;;
@@ -4950,7 +4954,6 @@ ul.yaka-chips li {
 .whiteSpacePre {
     white-space: pre;
 }
-
 
 .pointer {
     cursor: pointer;

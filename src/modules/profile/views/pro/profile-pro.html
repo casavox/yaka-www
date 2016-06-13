@@ -18,267 +18,259 @@
         left: 0;
     }
 </style>
-<section class="view">
-    <div class="header-menu">
-        <ng-include src="'/modules/core/modules/menu/views/menuHamburger.html'"></ng-include>
-        <div class="title">
-            PROFILE PRO
-        </div>
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
 
-        <a ng-click="app.logout()">
-            <div class="logout">
-                Log Out
+<aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+       data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+<section id="main" ng-cloak>
+    <div id="content" class="content">
+        <div class="col-md-12" ng-show="vm.profile.status != 'COMPLETED'">
+            <div class="profile-info-warning">
+                <p>
+                    <span ng-if="vm.profile.status == 'REGISTERED'">
+                        Votre profil est incomplet, vous devez compléter toutes les informations soulignées en
+                        rouge pour pouvoir répondre à une offre
+                    </span>
+                    <span ng-if="vm.profile.status == 'WAITING'">
+                        Votre profil est en cours de validation, vous recevrez un mail dès qu'il aura été
+                        vérifié
+                    </span>
+                    <span ng-if="vm.profile.status == 'REFUSED'">
+                        Nous n'avons pas pu vérifier votre profil
+                    </span>
+                    <span ng-if="vm.profile.status == 'VALIDATED'">
+                        Compléter votre profil augmente votre visibilité et vos chances d'être sélectionné
+                    </span>
+                </p>
+
+                <p>
+                    <span ng-if="vm.profile.status == 'REFUSED' && vm.profile.refusedReason != ''">
+                        Raison : {{vm.profile.refusedReason}}
+                    </span>
+                </p>
             </div>
-        </a>
-    </div>
-    <div class="page-content">
-        <div class="content-slide p-20">
-            <div class="row">
-                <div class="col-md-12" ng-show="vm.profile.status != 'COMPLETED'">
-                    <div class="profile-info-warning">
-                        <p>
-                            <span ng-if="vm.profile.status == 'REGISTERED'">
-                                Votre profil est incomplet, vous devez compléter toutes les informations soulignées en
-                                rouge pour pouvoir répondre à une offre
-                            </span>
-                            <span ng-if="vm.profile.status == 'WAITING'">
-                                Votre profil est en cours de validation, vous recevrez un mail dès qu'il aura été
-                                vérifié
-                            </span>
-                            <span ng-if="vm.profile.status == 'REFUSED'">
-                                Nous n'avons pas pu vérifier votre profil
-                            </span>
-                            <span ng-if="vm.profile.status == 'VALIDATED'">
-                                Compléter votre profil augmente votre visibilité et vos chances d'être sélectionné
-                            </span>
-                        </p>
+        </div>
+        <div class="col-md-6">
+            <div class="menu-category profile-info">
+                <div class="profile-box">
+                    <p>
+                        Informations générales
+                    </p>
 
-                        <p>
-                            <span ng-if="vm.profile.status == 'REFUSED' && vm.profile.refusedReason != ''">
-                                Raison : {{vm.profile.refusedReason}}
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="menu-category profile-info">
-                        <div class="profile-box">
-                            <p>
-                                Informations générales
-                            </p>
-
-                            <form name="profileForm">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <div class="img-profile">
-                                            <cl-image public-id="{{vm.profileInfo.user.avatar.cloudinaryPublicId}}"
-                                                      secure="true" format="png"
-                                                      class="img-circle center-middle pro-icon"
-                                                      ng-show="vm.profileInfo.user.avatar.cloudinaryPublicId">
-                                                <cl-transformation height="92" width="92" crop="fill"/>
-                                            </cl-image>
-                                            <div class="img-default center"
-                                                 ng-show="!vm.profileInfo.user.avatar.cloudinaryPublicId">
-                                                {{vm.profileInfo.user.firstName[0] | uppercase}}
-                                                {{vm.profileInfo.user.lastName[0] |
-                                                uppercase}}
-                                            </div>
-                                            <div class="icon-edit cursor-pointer"
-                                                 ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
-                                                 ngf-accept="'image/*'" ngf-max-size="5MB">
-                                            </div>
-                                        </div>
+                    <form name="profileForm">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="img-profile">
+                                    <cl-image public-id="{{vm.profileInfo.user.avatar.cloudinaryPublicId}}"
+                                              secure="true" format="png"
+                                              class="img-circle center-middle pro-icon"
+                                              ng-show="vm.profileInfo.user.avatar.cloudinaryPublicId">
+                                        <cl-transformation height="92" width="92" crop="fill"/>
+                                    </cl-image>
+                                    <div class="img-default center"
+                                         ng-show="!vm.profileInfo.user.avatar.cloudinaryPublicId">
+                                        {{vm.profileInfo.user.firstName[0] | uppercase}}
+                                        {{vm.profileInfo.user.lastName[0] |
+                                        uppercase}}
                                     </div>
-                                    <div class="col-xs-9">
-
-                                        <div class="form-group fg-float m-b-30"
-                                             ng-class="{'has-error': !vm.profileInfo.user.firstName}">
-
-                                            <div class="fg-line">
-                                                <input type="text" name="firstName" class="form-control fg-input"
-                                                       ng-model="vm.profileInfo.user.firstName"
-                                                       required="required" yaka-input-name>
-                                                <label class="fg-label">Prénom</label>
-                                            </div>
-                                            <div ng-messages="profileForm.firstName.$error">
-                                                <small class="help-block" ng-message="required">Ce champ est requis
-                                                </small>
-                                                <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
-                                                    valide
-                                                </small>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group fg-float m-b-30"
-                                             ng-class="{'has-error': !vm.profileInfo.user.lastName}">
-
-                                            <div class="fg-line">
-                                                <input type="text" name="lastName" class="form-control fg-input"
-                                                       ng-model="vm.profileInfo.user.lastName"
-                                                       required="required" yaka-input-name>
-                                                <label class="fg-label">Nom</label>
-                                            </div>
-                                            <div ng-messages="profileForm.lastName.$error">
-                                                <small class="help-block" ng-message="required">Ce champ est requis
-                                                </small>
-                                                <small class="help-block" ng-message="invalidName">Ce nom n'est pas
-                                                    valide
-                                                </small>
-                                            </div>
-
-                                        </div>
-
+                                    <div class="icon-edit cursor-pointer"
+                                         ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
+                                         ngf-accept="'image/*'" ngf-max-size="5MB">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-xs-9">
 
                                 <div class="form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                                     ng-class="{'has-error': !vm.profileInfo.user.firstName}">
+
                                     <div class="fg-line">
-                                        <input type="text" name="phoneNumber"
-                                               required="required" class="form-control fg-input"
-                                               ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
-                                        <label class="fg-label fg-label-phone">Téléphone</label>
+                                        <input type="text" name="firstName" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.user.firstName"
+                                               required="required" yaka-input-name>
+                                        <label class="fg-label">Prénom</label>
                                     </div>
-                                    <div ng-messages="profileForm.phoneNumber.$error">
+                                    <div ng-messages="profileForm.firstName.$error">
                                         <small class="help-block" ng-message="required">Ce champ est requis
                                         </small>
-                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
-                                            pas valide
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <div class="form-group fg-float"
-                                     ng-class="{'has-error': !vm.profileInfo.user.email}">
-                                    <div class="fg-line">
-                                        <input type="text" name="email" class="form-control fg-input"
-                                               ng-model="vm.profileInfo.user.email"
-                                               required="required" yaka-input-email>
-                                        <label class="fg-label">Email</label>
-                                    </div>
-                                    <div ng-messages="profileForm.email.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                        <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
                                             valide
                                         </small>
                                     </div>
-                                </div>
 
-                                <div class="form-group m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
-                                    <div class="fg-line">
-                                        <div class="select">
-                                            <select name="activityStartedYear"
-                                                    required="required"
-                                                    ng-model="vm.profileInfo.activityStartedYear"
-                                                    class="form-control">
-                                                <option value="" disabled selected>Première année d'expérience</option>
-                                                <option ng-repeat="year in vm.years | orderBy:'-toString()'"
-                                                        ng-selected="vm.profileInfo.activityStartedYear == year"
-                                                        value="{{year}}">
-                                                    {{year}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div ng-messages="profileForm.activityStartedYear.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    </div>
                                 </div>
-
                                 <div class="form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.name}">
-                                    <div class="fg-line">
-                                        <input type="text" name="companyName" required="required"
-                                               class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.name">
-                                        <label class="fg-label">Nom de l'entreprise</label>
-                                    </div>
-                                    <div ng-messages="profileForm.companyName.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    </div>
-                                </div>
+                                     ng-class="{'has-error': !vm.profileInfo.user.lastName}">
 
-                                <div class="form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.siret}">
                                     <div class="fg-line">
-                                        <input name="siret" type="text" required="required"
-                                               class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.siret" yaka-input-siret>
-                                        <label class="fg-label">SIRET</label>
+                                        <input type="text" name="lastName" class="form-control fg-input"
+                                               ng-model="vm.profileInfo.user.lastName"
+                                               required="required" yaka-input-name>
+                                        <label class="fg-label">Nom</label>
                                     </div>
-                                    <div ng-messages="profileForm.siret.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" ng-message="invalidSiret">Ce SIRET n'est pas
+                                    <div ng-messages="profileForm.lastName.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis
+                                        </small>
+                                        <small class="help-block" ng-message="invalidName">Ce nom n'est pas
                                             valide
                                         </small>
                                     </div>
-                                </div>
-
-                                <div class="form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.address.address}">
-                                    <div class="fg-line">
-                                        <input type="text" class="form-control fg-input"
-                                               vs-google-autocomplete="options"
-                                               vs-autocomplete-validator
-                                               ng-model="vm.profileInfo.company.address.address"
-                                               type="text"
-                                               name="address"
-                                               required="required"
-                                               placeholder=""
-                                               id="address">
-                                        <label class="fg-label">Addresse de l'entreprise</label>
-                                    </div>
-                                    <div ng-messages="profileForm.address.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    </div>
-                                </div>
-
-                                <div class="form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.phone}">
-
-                                    <div class="fg-line">
-                                        <input type="text" name="companyPhoneNumber"
-                                               class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.phone" yaka-input-phone>
-                                        <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
-                                    </div>
-                                    <div ng-messages="profileForm.companyPhoneNumber.$error">
-                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
-                                            pas valide
-                                        </small>
-                                    </div>
 
                                 </div>
 
-                                <div class="profile-box-footer">
-
-                                    <button class="btn btn-info bgm-lightblue waves-effect"
-                                            ng-click="vm.showProfileEditPopup = true"
-                                            ng-disabled="vm.updating || !vm.showButtonsProfile()">
-                                        Enregistrer
-                                    </button>
-                                    <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
-                                            ng-disabled="!vm.showButtonsProfile()">
-                                        Annuler
-                                    </button>
-
-                                </div>
-
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="menu-category profile-about">
-                        <div class="profile-box">
-                            <p>
-                                About me
-                            </p>
 
-                            <form name="aboutMeForm">
+                        <div class="form-group fg-float m-b-30"
+                             ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                            <div class="fg-line">
+                                <input type="text" name="phoneNumber"
+                                       required="required" class="form-control fg-input"
+                                       ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                                <label class="fg-label fg-label-phone">Téléphone</label>
+                            </div>
+                            <div ng-messages="profileForm.phoneNumber.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis
+                                </small>
+                                <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                    pas valide
+                                </small>
+                            </div>
+                        </div>
 
-                                <div class="form-group"
-                                     ng-class="{'has-error': !vm.about.aboutMe}">
-                                    <div class="fg-line">
+                        <div class="form-group fg-float"
+                             ng-class="{'has-error': !vm.profileInfo.user.email}">
+                            <div class="fg-line">
+                                <input type="text" name="email" class="form-control fg-input"
+                                       ng-model="vm.profileInfo.user.email"
+                                       required="required" yaka-input-email>
+                                <label class="fg-label">Email</label>
+                            </div>
+                            <div ng-messages="profileForm.email.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                    valide
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-b-30"
+                             ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
+                            <div class="fg-line">
+                                <div class="select">
+                                    <select name="activityStartedYear"
+                                            required="required"
+                                            ng-model="vm.profileInfo.activityStartedYear"
+                                            class="form-control">
+                                        <option value="" disabled selected>Première année d'expérience</option>
+                                        <option ng-repeat="year in vm.years | orderBy:'-toString()'"
+                                                ng-selected="vm.profileInfo.activityStartedYear == year"
+                                                value="{{year}}">
+                                            {{year}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div ng-messages="profileForm.activityStartedYear.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30"
+                             ng-class="{'has-error': !vm.profileInfo.company.name}">
+                            <div class="fg-line">
+                                <input type="text" name="companyName" required="required"
+                                       class="form-control fg-input"
+                                       ng-model="vm.profileInfo.company.name">
+                                <label class="fg-label">Nom de l'entreprise</label>
+                            </div>
+                            <div ng-messages="profileForm.companyName.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30"
+                             ng-class="{'has-error': !vm.profileInfo.company.siret}">
+                            <div class="fg-line">
+                                <input name="siret" type="text" required="required"
+                                       class="form-control fg-input"
+                                       ng-model="vm.profileInfo.company.siret" yaka-input-siret>
+                                <label class="fg-label">SIRET</label>
+                            </div>
+                            <div ng-messages="profileForm.siret.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                <small class="help-block" ng-message="invalidSiret">Ce SIRET n'est pas
+                                    valide
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30"
+                             ng-class="{'has-error': !vm.profileInfo.company.address.address}">
+                            <div class="fg-line">
+                                <input type="text" class="form-control fg-input"
+                                       vs-google-autocomplete="options"
+                                       vs-autocomplete-validator
+                                       ng-model="vm.profileInfo.company.address.address"
+                                       type="text"
+                                       name="address"
+                                       required="required"
+                                       placeholder=""
+                                       id="address">
+                                <label class="fg-label">Addresse de l'entreprise</label>
+                            </div>
+                            <div ng-messages="profileForm.address.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30"
+                             ng-class="{'has-error': !vm.profileInfo.company.phone}">
+
+                            <div class="fg-line">
+                                <input type="text" name="companyPhoneNumber"
+                                       class="form-control fg-input"
+                                       ng-model="vm.profileInfo.company.phone" yaka-input-phone>
+                                <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
+                            </div>
+                            <div ng-messages="profileForm.companyPhoneNumber.$error">
+                                <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                    pas valide
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="profile-box-footer">
+
+                            <button class="btn btn-info bgm-lightblue waves-effect"
+                                    ng-click="vm.showProfileEditPopup = true"
+                                    ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                Enregistrer
+                            </button>
+                            <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
+                                    ng-disabled="!vm.showButtonsProfile()">
+                                Annuler
+                            </button>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="menu-category profile-about">
+                <div class="profile-box">
+                    <p>
+                        Description
+                    </p>
+
+                    <form name="aboutMeForm">
+
+                        <div class="form-group"
+                             ng-class="{'has-error': !vm.about.aboutMe}">
+                            <div class="fg-line">
                                     <textarea class="form-control" rows="2"
                                               name="aboutMe"
                                               ng-model="vm.about.aboutMe"
@@ -286,284 +278,286 @@
                                               data-auto-size
                                               data-autosize-on="true"
                                               placeholder="Décrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan."></textarea>
-                                    </div>
-                                    <div ng-messages="aboutMeForm.aboutMe.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    </div>
-                                </div>
-
-                            </form>
-
-                            <div class="profile-box-footer">
-
-                                <button class="btn btn-info bgm-lightblue waves-effect" ng-click="vm.updateAboutMe()"
-                                        ng-disabled="vm.updating || !vm.showButtonsAbout()">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelAboutMe()"
-                                        ng-disabled="!vm.showButtonsAbout()">
-                                    Annuler
-                                </button>
-
+                            </div>
+                            <div ng-messages="aboutMeForm.aboutMe.$error">
+                                <small class="help-block" ng-message="required">Ce champ est requis</small>
                             </div>
                         </div>
-                    </div>
-                    <div class="menu-category profile-bck-verif">
-                        <div class="profile-box">
-                            <p>
-                                Background verification
-                            </p>
 
-                            <div class="row">
-                                <div class="col-xs-2 profile-verif">
-                                    <input id="profile-back-verif-1" type="checkbox"
-                                           ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
-                                           disabled="disabled">
-                                    <label for="profile-back-verif-1"></label>
-                                </div>
-                                <div class="col-xs-10">
-                                    <p>
-                                        Extrait KBIS / SIRET
-                                    </p>
-                                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('BUSINESS_REGISTRATION')"><p>
+                    </form>
+
+                    <div class="profile-box-footer">
+
+                        <button class="btn btn-info bgm-lightblue waves-effect" ng-click="vm.updateAboutMe()"
+                                ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                            Enregistrer
+                        </button>
+                        <button class="btn btn-link waves-effect" ng-click="vm.cancelAboutMe()"
+                                ng-disabled="!vm.showButtonsAbout()">
+                            Annuler
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="menu-category profile-bck-verif">
+                <div class="profile-box">
+                    <p>
+                        Vérifications
+                    </p>
+
+                    <div class="row">
+                        <div class="col-xs-2 profile-verif">
+                            <input id="profile-back-verif-1" type="checkbox"
+                                   ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
+                                   disabled="disabled">
+                            <label for="profile-back-verif-1"></label>
+                        </div>
+                        <div class="col-xs-10">
+                            <p>
+                                Extrait KBIS / SIRET
+                            </p>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                               ng-click="vm.setVerif('BUSINESS_REGISTRATION')"><p>
                                         <span class="pointer"
                                               ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">Add</span>
                                         <span class="pointer"
                                               ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">Change</span>
-                                    </p></a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-2 profile-verif">
-                                    <input id="profile-back-verif-2" type="checkbox"
-                                           ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
-                                           disabled="disabled">
-                                    <label for="profile-back-verif-2"></label>
-                                </div>
-                                <div class="col-xs-10">
-                                    <p>
-                                        Assurance
-                                    </p>
-                                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('INSURANCE')"><p>
+                            </p></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 profile-verif">
+                            <input id="profile-back-verif-2" type="checkbox"
+                                   ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
+                                   disabled="disabled">
+                            <label for="profile-back-verif-2"></label>
+                        </div>
+                        <div class="col-xs-10">
+                            <p>
+                                Assurance
+                            </p>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                               ng-click="vm.setVerif('INSURANCE')"><p>
                                         <span class="pointer"
                                               ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">Add</span>
                                         <span class="pointer"
                                               ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">Change</span>
 
-                                    </p></a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-2 profile-verif">
-                                    <input id="profile-back-verif-3" type="checkbox"
-                                           ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
-                                           disabled="disabled">
-                                    <label for="profile-back-verif-3"></label>
-                                </div>
-                                <div class="col-xs-10">
-                                    <p>
-                                        Attestation RGE
-                                    </p>
-                                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('RGE')"><p>
+                            </p></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 profile-verif">
+                            <input id="profile-back-verif-3" type="checkbox"
+                                   ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
+                                   disabled="disabled">
+                            <label for="profile-back-verif-3"></label>
+                        </div>
+                        <div class="col-xs-10">
+                            <p>
+                                Attestation RGE
+                            </p>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                               ng-click="vm.setVerif('RGE')"><p>
                                         <span class="pointer"
                                               ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
                                     <span class="pointer"
                                           ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
-                                    </p></a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-2 profile-verif">
-                                    <input id="profile-back-verif-4" type="checkbox"
-                                           ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
-                                           disabled="disabled">
-                                    <label for="profile-back-verif-4"></label>
-                                </div>
-                                <div class="col-xs-10">
-                                    <p>
-                                        Main partner (EDF, Leroy Merlin, ...)
-                                    </p>
-                                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('PARTNER')">
-                                        <p>
+                            </p></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 profile-verif">
+                            <input id="profile-back-verif-4" type="checkbox"
+                                   ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
+                                   disabled="disabled">
+                            <label for="profile-back-verif-4"></label>
+                        </div>
+                        <div class="col-xs-10">
+                            <p>
+                                Partenaire principal (EDF, Leroy Merlin, ...)
+                            </p>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                               ng-click="vm.setVerif('PARTNER')">
+                                <p>
                                             <span class="pointer"
                                                   ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Add</span>
                                             <span class="pointer"
                                                   ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">Change</span>
-                                        </p></a>
-                                </div>
-                            </div>
-                            <p class="error center" ng-show="vm.error.verif.flag">
-                                {{vm.error.verif.message}}
-                            </p>
-
-                            <div class="profile-box-footer">
-
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.showVerificationsEditPopup = true"
-                                        ng-disabled="vm.updating || !vm.showButtonsVerifications()">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelVerifications()"
-                                        ng-disabled="!vm.showButtonsVerifications()">
-                                    Annuler
-                                </button>
-
-                            </div>
+                                </p></a>
                         </div>
                     </div>
-                    <div class="menu-category profile-about">
-                        <div class="profile-box">
-                            <p>
-                                Change password
-                            </p>
+                    <p class="error center" ng-show="vm.error.verif.flag">
+                        {{vm.error.verif.message}}
+                    </p>
 
-                            <div class="form-group fg-float m-b-30">
-                                <div class="fg-line">
-                                    <input type="password" class="form-control fg-input"
-                                           ng-model="vm.pwdCurrent">
-                                    <label class="fg-label">Mot de passe actuel</label>
-                                </div>
-                            </div>
+                    <div class="profile-box-footer">
 
-                            <div class="form-group fg-float m-b-30">
-                                <div class="fg-line">
-                                    <input type="password" class="form-control fg-input"
-                                           ng-model="vm.pwd1">
-                                    <label class="fg-label">Nouveau mot de passe</label>
-                                </div>
-                            </div>
+                        <button class="btn btn-info bgm-lightblue waves-effect"
+                                ng-click="vm.showVerificationsEditPopup = true"
+                                ng-disabled="vm.updating || !vm.showButtonsVerifications()">
+                            Enregistrer
+                        </button>
+                        <button class="btn btn-link waves-effect" ng-click="vm.cancelVerifications()"
+                                ng-disabled="!vm.showButtonsVerifications()">
+                            Annuler
+                        </button>
 
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
-                                <div class="fg-line">
-                                    <input type="password" class="form-control fg-input"
-                                           ng-model="vm.pwd2">
-                                    <label class="fg-label">Confirmation</label>
-                                </div>
-                                <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
-                                    Les deux mots de passe ne correspondent pas
-                                </small>
-                            </div>
-
-                            <div class="profile-box-footer mt-12">
-
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.changePassword()"
-                                        ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
-                                    Enregistrer
-                                </button>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="menu-category profile-about">
+                <div class="profile-box">
+                    <p>
+                        Modifier le mot de passe
+                    </p>
 
-
-                <div class="col-md-6">
-
-                    <div class="menu-category profile-area">
-                        <div class="profile-box">
-                            <div class="profile-area-header">
-                                <p>
-                                    Notification area
-                                </p>
-
-                                <p class="profile-area-header-info">
-                                    Zoom and center the map to define your notification area : you will be notified of
-                                    all works
-                                    in this area.
-                                </p>
-                            </div>
-                            <div id="map_canvas">
-                                <ui-gmap-google-map center="vm.map.center" control="vm.map.control"
-                                                    bounds="vm.map.bounds" zoom="vm.map.zoom" options="vm.mapOptions"
-                                                    events="vm.map.events">
-                                    <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
-                                                    fill="vm.circle.fill" radius="vm.circle.radius"
-                                                    bounds="vm.circle.bounds"
-                                                    visible="vm.circle.visible" geodesic="true" editable="false"
-                                                    draggable="false" clickable="true" control="vm.circle.control"
-                                                    events="vm.circle.events"></ui-gmap-circle>
-                                </ui-gmap-google-map>
-                                <div class="mapMinimumZoomMessage" ng-show="vm.mapShowMinimumZoomMessage">
-                                    Please zoom in to define your notification area
-                                </div>
-                                <div class="workareaDiameter"
-                                     ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
-                                    Area diameter : {{vm.workareaDiameter}} km
-                                </div>
-                            </div>
-                            <div class="profile-box-footer m-t-15">
-
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.updateWorkArea()"
-                                        ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelWorkArea()"
-                                        ng-disabled="!vm.showButtonsWorkArea()">
-                                    Annuler
-                                </button>
-
-                            </div>
+                    <div class="form-group fg-float m-b-30">
+                        <div class="fg-line">
+                            <input type="password" class="form-control fg-input"
+                                   ng-model="vm.pwdCurrent">
+                            <label class="fg-label">Mot de passe actuel</label>
                         </div>
                     </div>
-                    <div class="menu-category profile-about">
-                        <div class="profile-box">
-                            <p>
-                                Portfolio
-                            </p>
 
-                            <div class="row cl">
+                    <div class="form-group fg-float m-b-30">
+                        <div class="fg-line">
+                            <input type="password" class="form-control fg-input"
+                                   ng-model="vm.pwd1">
+                            <label class="fg-label">Nouveau mot de passe</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group fg-float m-b-30"
+                         ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                        <div class="fg-line">
+                            <input type="password" class="form-control fg-input"
+                                   ng-model="vm.pwd2">
+                            <label class="fg-label">Confirmation</label>
+                        </div>
+                        <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
+                            Les deux mots de passe ne correspondent pas
+                        </small>
+                    </div>
+
+                    <div class="profile-box-footer mt-12">
+
+                        <button class="btn btn-info bgm-lightblue waves-effect"
+                                ng-click="vm.changePassword()"
+                                ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                            Enregistrer
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-                                <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
-                                    <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                         data-sub-html="#caption{{$index}}"
-                                         class="lightboxItemAngular col-xs-6 col-sm-3 col-md-3"
-                                         tooltip-placement="top"
-                                         uib-tooltip="{{image.description}}"
-                                         ng-repeat="image in vm.portfolio">
-                                        <div class="lightbox-item p-item">
-                                            <img
-                                                ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                                alt=""/>
-                                        </div>
-                                        <div id="caption{{$index}}" style="display:none">
-                                            <div class="galleryCaption">
-                                                <p>{{image.description}}</p>
-                                            </div>
-                                        </div>
+        <div class="col-md-6">
+
+            <div class="menu-category profile-area">
+                <div class="profile-box">
+                    <div class="profile-area-header">
+                        <p>
+                            Zone d'alerte
+                        </p>
+
+                        <p class="profile-area-header-info">
+                            Déplacez-vous et zoomez dans la carte afin de définir votre zone d'alerte : vous serez alors
+                            notifié de tous les nouveaux chantiers qui correspondent à vos compétences dans cette
+                            zone.<br/>
+                            Vous pourrez bien sûr également rechercher des chantiers en dehors de cette zone via la
+                            page "Trouver des chantiers".
+                        </p>
+                    </div>
+                    <div id="map_canvas">
+                        <ui-gmap-google-map center="vm.map.center" control="vm.map.control"
+                                            bounds="vm.map.bounds" zoom="vm.map.zoom" options="vm.mapOptions"
+                                            events="vm.map.events">
+                            <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
+                                            fill="vm.circle.fill" radius="vm.circle.radius"
+                                            bounds="vm.circle.bounds"
+                                            visible="vm.circle.visible" geodesic="true" editable="false"
+                                            draggable="false" clickable="true" control="vm.circle.control"
+                                            events="vm.circle.events"></ui-gmap-circle>
+                        </ui-gmap-google-map>
+                        <div class="mapMinimumZoomMessage" ng-show="vm.mapShowMinimumZoomMessage">
+                            Veuillez zommer pour définir votre zone d'alerte
+                        </div>
+                        <div class="workareaDiameter"
+                             ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
+                            Diamètre de la zone : {{vm.workareaDiameter}} km
+                        </div>
+                    </div>
+                    <div class="profile-box-footer m-t-15">
+
+                        <button class="btn btn-info bgm-lightblue waves-effect"
+                                ng-click="vm.updateWorkArea()"
+                                ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
+                            Enregistrer
+                        </button>
+                        <button class="btn btn-link waves-effect" ng-click="vm.cancelWorkArea()"
+                                ng-disabled="!vm.showButtonsWorkArea()">
+                            Annuler
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="menu-category profile-about">
+                <div class="profile-box">
+                    <p>
+                        Portfolio
+                    </p>
+
+                    <div class="row cl">
+
+
+                        <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                            <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                 data-sub-html="#caption{{$index}}"
+                                 class="lightboxItemAngular col-xs-6 col-sm-3 col-md-3"
+                                 tooltip-placement="top"
+                                 uib-tooltip="{{image.description}}"
+                                 ng-repeat="image in vm.portfolio">
+                                <div class="lightbox-item p-item">
+                                    <img
+                                        ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                        alt=""/>
+                                </div>
+                                <div id="caption{{$index}}" style="display:none">
+                                    <div class="galleryCaption">
+                                        <p>{{image.description}}</p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <!--Editing mode-->
+                        <!--Editing mode-->
 
-                                <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
-                                    <div class="galleryEditingItem col-xs-6 col-sm-3 col-md-3"
-                                         ng-repeat="image in vm.portfolio">
-                                        <div class="lightbox-item p-item projectImageTooltip">
-                                            <img
-                                                tooltip-placement="top"
-                                                uib-tooltip="{{image.description}}"
-                                                ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                                alt=""/>
-                                        </div>
+                        <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
+                            <div class="galleryEditingItem col-xs-6 col-sm-3 col-md-3"
+                                 ng-repeat="image in vm.portfolio">
+                                <div class="lightbox-item p-item projectImageTooltip">
+                                    <img
+                                        tooltip-placement="top"
+                                        uib-tooltip="{{image.description}}"
+                                        ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                        alt=""/>
+                                </div>
 
-                                        <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
-                                            <button uib-dropdown-toggle class="btn bgm-lightblue btn-float">
-                                                <i class="zmdi zmdi-comment-text-alt"></i>
-                                            </button>
+                                <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                                    <button uib-dropdown-toggle class="btn bgm-lightblue btn-float">
+                                        <i class="zmdi zmdi-comment-text-alt"></i>
+                                    </button>
 
-                                            <div class="dropdown-menu stop-propagate">
+                                    <div class="dropdown-menu stop-propagate">
                                                 <textarea placeholder="Ajouter un commentaire"
                                                           ng-model="image.description"
                                                           ng-maxlength="140"
@@ -572,109 +566,107 @@
                                                           ng-trim="false"
                                                           ng-change="vm.descriptionChanged(image)"></textarea>
 
-                                                <div class="descriptionCounter">
-                                                    {{vm.getStringLength(image.description)}} / 140 caractères
-                                                </div>
-
-                                                <button class="btn bgm-lightblue btn-float"
-                                                        data-tl-action="save"
-                                                        ng-click="vm.saveComment();">
-                                                    <i class="zmdi zmdi-check"></i>
-                                                </button>
-                                            </div>
+                                        <div class="descriptionCounter">
+                                            {{vm.getStringLength(image.description)}} / 140 caractères
                                         </div>
 
-                                        <button class="floatingButton btn btn-danger btn-float"
-                                                ng-click="vm.removeImage($index)">
-                                            <i class="zmdi zmdi-delete"></i>
+                                        <button class="btn bgm-lightblue btn-float"
+                                                data-tl-action="save"
+                                                ng-click="vm.saveComment();">
+                                            <i class="zmdi zmdi-check"></i>
                                         </button>
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 no-padding"
-                                     ngf-drop="vm.uploadPortfolio($files)"
-                                     ngf-drag-over-class="dragOverClass($event)"
-                                     ng-model="files"
-                                     ng-multiple="false" ng-if="vm.portfolio.length < 8 && vm.editFlag">
-                                    <div class="galleryUpload lightbox-item p-item"
-                                         ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
-                                         ngf-accept="'image/*'" ngf-max-size="5MB">
-                                        <div class="content">
-                                            <i class="zmdi zmdi-plus-circle-o"></i>
-                                        </div>
+                                <button class="floatingButton btn btn-danger btn-float"
+                                        ng-click="vm.removeImage($index)">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-3 col-md-3 no-padding"
+                             ngf-drop="vm.uploadPortfolio($files)"
+                             ngf-drag-over-class="dragOverClass($event)"
+                             ng-model="files"
+                             ng-multiple="false" ng-if="vm.portfolio.length < 8 && vm.editFlag">
+                            <div class="galleryUpload lightbox-item p-item"
+                                 ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
+                                 ngf-accept="'image/*'" ngf-max-size="5MB">
+                                <div class="content">
+                                    <i class="zmdi zmdi-plus-circle-o"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="profile-box-footer m-t-15">
+
+                        <button class="btn btn-info bgm-lightblue waves-effect"
+                                ng-click="vm.updatePortfolio()"
+                                ng-if="vm.editFlag && vm.showButtonsPortfolio()"
+                                ng-disabled="vm.updating">
+                            Enregistrer
+                        </button>
+                        <button class="btn btn-link waves-effect"
+                                ng-click="vm.cancelPortfolio()"
+                                ng-if="vm.editFlag">
+                            Annuler
+                        </button>
+
+                        <button class="btn btn-info bgm-lightblue btn-icon-text waves-effect"
+                                ng-if="!vm.editFlag"
+                                ng-click="vm.editFlag = true">
+                            <i class="zmdi zmdi-edit"></i>
+                            Modifier
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="menu-category profile-about">
+                <div class="profile-box">
+                    <p>
+                        Domaines de compétence
+                    </p>
+
+                    <div class="row">
+                        <div class="col-xs-6 mb-15 cursor-pointer" ng-repeat="s in vm.cat"
+                             ng-click="vm.actionActivities(s)">
+                            <div class="row profile-activities no-margin">
+                                <div class="col-xs-3 no-padding"
+                                     ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
+                                    <div class="profile-activities-check">
+                                        <span class="glyphicon glyphicon-ok"></span>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="profile-box-footer m-t-15">
-
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.updatePortfolio()"
-                                        ng-if="vm.editFlag && vm.showButtonsPortfolio()"
-                                        ng-disabled="vm.updating">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect"
-                                        ng-click="vm.cancelPortfolio()"
-                                        ng-if="vm.editFlag">
-                                    Annuler
-                                </button>
-
-                                <button class="btn btn-info bgm-lightblue btn-icon-text waves-effect"
-                                        ng-if="!vm.editFlag"
-                                        ng-click="vm.editFlag = true">
-                                    <i class="zmdi zmdi-edit"></i>
-                                    Modifier
-                                </button>
-
+                                <div class="col-xs-3 no-padding"
+                                     ng-show="vm.indexOfObject(s, 'code', vm.activities).length == 0">
+                                    <span>-</span>
+                                </div>
+                                <div class="col-xs-9 no-padding">
+                                    {{ 'ACTIVITY_' + s | translate}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="menu-category profile-about">
-                        <div class="profile-box">
-                            <p>
-                                Jobs categories & skills
-                            </p>
+                    <p class="error center" ng-show="vm.error.activities.flag">
+                        {{vm.error.activities.message}}
+                    </p>
 
-                            <div class="row">
-                                <div class="col-xs-6 mb-15 cursor-pointer" ng-repeat="s in vm.cat"
-                                     ng-click="vm.actionActivities(s)">
-                                    <div class="row profile-activities no-margin">
-                                        <div class="col-xs-3 no-padding"
-                                             ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
-                                            <div class="profile-activities-check">
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-3 no-padding"
-                                             ng-show="vm.indexOfObject(s, 'code', vm.activities).length == 0">
-                                            <span>-</span>
-                                        </div>
-                                        <div class="col-xs-9 no-padding">
-                                            {{ 'ACTIVITY_' + s | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="error center" ng-show="vm.error.activities.flag">
-                                {{vm.error.activities.message}}
-                            </p>
+                    <div class="profile-box-footer">
 
-                            <div class="profile-box-footer">
+                        <button class="btn btn-info bgm-lightblue waves-effect"
+                                ng-click="vm.updateActivities()"
+                                ng-disabled="vm.updating || !vm.showButtonsActivities()">
+                            Enregistrer
+                        </button>
+                        <button class="btn btn-link waves-effect"
+                                ng-click="vm.cancelActivities()"
+                                ng-disabled="!vm.showButtonsActivities()">
+                            Annuler
+                        </button>
 
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.updateActivities()"
-                                        ng-disabled="vm.updating || !vm.showButtonsActivities()">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect"
-                                        ng-click="vm.cancelActivities()"
-                                        ng-disabled="!vm.showButtonsActivities()">
-                                    Annuler
-                                </button>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -45,7 +45,7 @@
     <div class="clearfix"></div>
 
     <div class="imgPreview center" ng-if="newMessage.cloudinaryPublicId">
-        <img ng-src="{{img | yakaCloudinaryUrl:true}}"
+        <img ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
              alt=""/>
         <button class="btn bgm-red btn-icon waves-effect waves-circle"
                 data-ng-click="newMessage.cloudinaryPublicId = ''">

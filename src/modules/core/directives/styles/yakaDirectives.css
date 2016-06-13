@@ -70,6 +70,6 @@ yaka-chat .ms-item.messageAuto {
 }
 
 yaka-chat .chatImg {
-    width: 150px;
+    width: 150px !important;
     height: 150px;
 }

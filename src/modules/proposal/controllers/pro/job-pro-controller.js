@@ -52,6 +52,8 @@
         });
         if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
             networkService.proposalProGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
+        } else {
+            $state.go('home');
         }
 
         vm.declineProposal = function () {
