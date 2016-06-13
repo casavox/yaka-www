@@ -21,7 +21,7 @@
                 controllerAs: 'vm'
             })
             .state('proposals', {
-                url: "/proposals/:projectId",
+                url: "/project/:projectId/proposals",
                 templateUrl: "/modules/proposal/views/customer/proposal-list.html",
                 controller: 'ProposalsController',
                 controllerAs: 'vm'
