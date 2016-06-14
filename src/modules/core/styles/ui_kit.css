@@ -95,6 +95,7 @@
 /* Popups */
 
 .yakaPopup {
+    top: 0;
     position: fixed !important;
     width: 100% !important;
     height: 100% !important;
@@ -129,6 +130,15 @@
     right: 0;
     padding: 10px;
     cursor: pointer;
+}
+
+.yakaPopupRateWindow {
+    width: 400px !important;
+    margin-left: -200px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
 }
 
 @media (max-width: 459px) {
