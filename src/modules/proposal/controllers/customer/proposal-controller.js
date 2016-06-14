@@ -27,6 +27,11 @@
             $state.go("my-projects");
         }
 
+        if ($stateParams.chat) {
+            vm.showChat = true;
+            vm.scrollBottom = 1;
+        }
+
         function loadProposal() {
             networkService.proposalGET($stateParams.proposalId, function (res) {
                 vm.proposal = res;

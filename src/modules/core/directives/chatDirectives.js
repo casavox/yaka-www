@@ -98,6 +98,9 @@ angular.module('Yaka')
                         scope.loadingMessages = false;
                         scope.messages = res.items;
                         scrollDown();
+                        if (scope.scrollBottom == 1) {
+                            setChatRead();
+                        }
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
@@ -120,7 +123,11 @@ angular.module('Yaka')
                         .then(function () {
                             $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
                                 scope.messages.push(payload);
-                                scrollDown();
+
+                                scope.$apply(function () {
+                                    scrollDown();
+                                    setChatRead();
+                                });
                             }, {
                                 'token': $localStorage.token
                             });
@@ -171,20 +178,24 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('scrollBottom', function () {
-                    if (scope.scrollBottom == 1) {
+                    if (scope.scrollBottom == 1 && scope.chatId) {
                         scrollDown();
-                        var apiSetChatRead
-                        if (!$localStorage.user.professional) {
-                            apiSetChatRead = networkService.setChatRead;
-                        } else {
-                            apiSetChatRead = networkService.proSetChatRead;
-                        }
-                        apiSetChatRead(scope.chatId, function () {
-                            $rootScope.updateProfile();
-                        }, function () {
-                        });
+                        setChatRead();
                     }
                 });
+
+                function setChatRead() {
+                    var apiSetChatRead;
+                    if (!$localStorage.user.professional) {
+                        apiSetChatRead = networkService.setChatRead;
+                    } else {
+                        apiSetChatRead = networkService.proSetChatRead;
+                    }
+                    apiSetChatRead(scope.chatId, function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                    });
+                }
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"
         }

@@ -34,7 +34,7 @@
                                data-ng-repeat="userchat in app.getUserchats()"
                                data-ng-class="{'unread': userchat.unreadMessages}">
                                 <div class="media" data-ng-if="!app.isPro()"
-                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id})">
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
                                                      user="userchat.chat.proposal.professional.user"></yaka-avatar>
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro()"
-                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id})">
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
                                                      user="userchat.chat.proposal.project.user"></yaka-avatar>
