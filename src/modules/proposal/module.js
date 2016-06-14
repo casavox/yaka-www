@@ -15,7 +15,7 @@
             //Customer
 
             .state('proposal', {
-                url: "/proposal/:proposalId",
+                url: "/proposal/:proposalId?chat",
                 templateUrl: "/modules/proposal/views/customer/proposal.html",
                 controller: 'ProposalController',
                 controllerAs: 'vm'
@@ -30,15 +30,9 @@
             // Pro
 
             .state('pro-proposal', {
-                url: "/pro/proposal/:proposalId",
+                url: "/pro/proposal/:proposalId?chat",
                 templateUrl: "/modules/proposal/views/pro/proposal-pro.html",
                 controller: 'ProProposalController',
-                controllerAs: 'vm'
-            })
-            .state('pro-job', {
-                url: "/pro/job/:proposalId",
-                templateUrl: "/modules/proposal/views/pro/job-pro.html",
-                controller: 'ProJobController',
                 controllerAs: 'vm'
             })
             .state('pro-proposals', {

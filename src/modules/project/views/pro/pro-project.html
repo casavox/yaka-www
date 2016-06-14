@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-xs-12 description-sub-text">
                             <span class="red" ng-show="vm.projectTmp.type == 'EMERGENCY'">Emergency</span>
-                            {{vm.getTags()  | yakaTranslateTags}}
+                            {{vm.getTags() | yakaTranslateTags}}
                         </div>
                     </div>
                 </div>
@@ -209,6 +209,10 @@
                             {{vm.error.comment.message}}
                         </p>
                     </div>
+
+                    <button type="button" class="yakaButton yakaBlue col-xs-12 button btn send-offer"
+                            ng-click="vm.sendOffer()">SEND OFFER
+                    </button>
                 </div>
                 <div class="row" ng-if="vm.project.error">
                     <div class="col-xs-12 proErrorMessage"
@@ -216,7 +220,7 @@
                         Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
                     </div>
 
-                    <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange"
+                    <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange m-b-20"
                          ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'"
                          ui-sref="pro-profile">
                         COMPLÉTER MON PROFIL
@@ -228,9 +232,6 @@
                         mis-à-jour sous peu, vous en serez notifié par mail
                     </div>
                 </div>
-                <button type="button" class="yakaButton yakaBlue col-xs-12 button btn send-offer"
-                        ng-click="vm.sendOffer()">SEND OFFER
-                </button>
             </div>
         </div>
     </div>

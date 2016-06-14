@@ -106,6 +106,11 @@
             $state.go('home');
         }
 
+        if ($stateParams.chat) {
+            vm.showChat = true;
+            vm.scrollBottom = 1;
+        }
+
         function declineProposal() {
 
         }
@@ -698,10 +703,6 @@
         function succesProjectGET(res) {
             vm.project = res.project;
             vm.proposal = res;
-
-            if (vm.proposal.status != 'START') {
-                $state.go("pro-job", {'proposalId': vm.proposal.id});
-            }
 
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);

@@ -463,6 +463,7 @@
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
                     vm.updating = false;
                     vm.profileInfo = res;
+                    vm.profile.status = res.status;
                     vm.profile.user.firstName = res.user.firstName;
                     vm.profile.user.lastName = res.user.lastName;
                     vm.profile.user.avatar = angular.copy(res.user.avatar);
@@ -484,8 +485,9 @@
         function updatePortfolio() {
             vm.updating = true;
             networkService.proPortfolioPUT(vm.portfolio, function (res) {
-                vm.portfolio = res;
-                vm.profile.portfolio = res;
+                vm.portfolio = res.portfolio;
+                vm.profile.portfolio = res.portfolio;
+                vm.profile.status = res.status;
                 vm.editFlag = false;
                 vm.updating = false;
                 alertMsg.send("Le portfolio à été modifié avec succès", "success");
@@ -502,6 +504,7 @@
             networkService.proAboutMePUT(vm.about, function (res) {
                 vm.about = angular.copy(res);
                 vm.profile.aboutMe = res.aboutMe;
+                vm.profile.status = res.status;
                 vm.updating = false;
                 alertMsg.send("Description enregistrée avec succès", "success");
             }, function () {
@@ -523,8 +526,9 @@
                 vm.error.verif.flag = false;
                 vm.updating = true;
                 networkService.proVerificationsPUT(vm.verifications, function (res) {
-                    vm.verifications = res;
-                    vm.profile.verifications = res;
+                    vm.verifications = res.verifications;
+                    vm.profile.verifications = res.verifications;
+                    vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Les vérifications ont été modifiées avec succès", "success");
                 }, errorProfilePUT);
@@ -540,8 +544,9 @@
                 vm.error.activities.flag = false;
                 vm.updating = true;
                 networkService.proActivitiesPUT(vm.activities, function (res) {
-                    vm.activities = res;
-                    vm.profile.activities = res;
+                    vm.activities = res.activities;
+                    vm.profile.activities = res.activities;
+                    vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Les domaines d'activité ont été modifié avec succès", "success");
                 }, errorProfilePUT);
@@ -569,6 +574,7 @@
 
         function cancelWorkArea() {
             vm.workArea = angular.copy(vm.profile.workArea);
+            displayWorkArea();
         }
 
         function cancelAboutMe() {
@@ -599,6 +605,7 @@
         function succesWorkareaPUT(res) {
             vm.mapEditing = false;
             vm.updating = false;
+            vm.profile.status = res.status;
             alertMsg.send("La zone de notification à été modifiée avec succès", "success");
         }
 

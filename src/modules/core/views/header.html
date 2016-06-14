@@ -34,31 +34,41 @@
                                data-ng-repeat="userchat in app.getUserchats()"
                                data-ng-class="{'unread': userchat.unreadMessages}">
                                 <div class="media" data-ng-if="!app.isPro()"
-                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id})">
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
                                     <div class="pull-left">
-                                        <yaka-avatar size="35"
+                                        <yaka-avatar class="m-t-9" size="35"
                                                      user="userchat.chat.proposal.professional.user"></yaka-avatar>
                                         <i class="unreadMessagesIndicator"
                                            data-ng-if="userchat.unreadMessages"></i>
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title">{{userchat.chat.proposal.professional.user.firstName}}
+                                        <div class="lv-title">
+                                            {{userchat.chat.proposal.professional.user.firstName}}
                                             {{userchat.chat.proposal.professional.user.lastName}}
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposal.project.address.locality}} -
+                                            {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
                                         </div>
                                         <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro()"
-                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id})">
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
                                     <div class="pull-left">
-                                        <yaka-avatar size="35"
+                                        <yaka-avatar class="m-t-9" size="35"
                                                      user="userchat.chat.proposal.project.user"></yaka-avatar>
                                         <i class="unreadMessagesIndicator"
                                            data-ng-if="userchat.unreadMessages"></i>
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title">{{userchat.chat.proposal.project.user.firstName}}
+                                        <div class="lv-title">
+                                            {{userchat.chat.proposal.project.user.firstName}}
                                             {{userchat.chat.proposal.project.user.lastName}}
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposal.project.address.locality}} -
+                                            {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
                                         </div>
                                         <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
                                     </div>

@@ -61,7 +61,8 @@
         <textarea data-ng-model="newMessage.text" placeholder="Entrez votre message"></textarea>
 
         <button data-ng-click="sendMessage()">
-            <i class="zmdi zmdi-mail-send"></i>
+            <i class="zmdi zmdi-mail-send"
+               data-ng-class="{'c-grey': !newMessage.text && !newMessage.cloudinaryPublicId}"></i>
         </button>
     </div>
 </div>

@@ -49,7 +49,7 @@
         vm.datepickerOptions = {
             minDate: vm.dt,
             maxDate: vm.maxDate,
-            showWeeks : false
+            showWeeks: false
         };
 
         var d = new Date();

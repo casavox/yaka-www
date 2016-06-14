@@ -30,10 +30,6 @@
             vm.ongoing = res;
         }, function () {
         });
-        networkService.proProposalsGET('scheduled', function (res) {
-            vm.scheduled = res;
-        }, function () {
-        });
         networkService.proProposalsGET('completed', function (res) {
             vm.completed = res;
         }, function () {

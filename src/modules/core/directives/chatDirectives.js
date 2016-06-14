@@ -1,6 +1,6 @@
 angular.module('Yaka')
 
-    .directive('yakaChat', function (networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG) {
+    .directive('yakaChat', function ($rootScope, networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG) {
         return {
             restrict: 'E',
             scope: {
@@ -18,6 +18,9 @@ angular.module('Yaka')
                 };
 
                 scope.sendMessage = function () {
+                    if (!scope.newMessage.text && !scope.newMessage.cloudinaryPublicId) {
+                        return;
+                    }
                     var sendMessageApi;
                     if (!$localStorage.user.professional) {
                         sendMessageApi = networkService.sendMessage;
@@ -40,13 +43,14 @@ angular.module('Yaka')
                         } else {
                             return true;
                         }
-                    } else {
+                    } else if (message.author && message.author == 'PRO') {
                         if ($localStorage.user.professional) {
                             return true;
                         } else {
                             return false;
                         }
                     }
+                    return false;
                 };
 
                 scope.createImageArray = function (cloudinaryPublicId) {
@@ -98,6 +102,9 @@ angular.module('Yaka')
                         scope.loadingMessages = false;
                         scope.messages = res.items;
                         scrollDown();
+                        if (scope.scrollBottom == 1) {
+                            setChatRead();
+                        }
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
@@ -120,7 +127,11 @@ angular.module('Yaka')
                         .then(function () {
                             $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
                                 scope.messages.push(payload);
-                                scrollDown();
+
+                                scope.$apply(function () {
+                                    scrollDown();
+                                    setChatRead();
+                                });
                             }, {
                                 'token': $localStorage.token
                             });
@@ -171,8 +182,24 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('scrollBottom', function () {
-                    scrollDown();
+                    if (scope.scrollBottom == 1 && scope.chatId) {
+                        scrollDown();
+                        setChatRead();
+                    }
                 });
+
+                function setChatRead() {
+                    var apiSetChatRead;
+                    if (!$localStorage.user.professional) {
+                        apiSetChatRead = networkService.setChatRead;
+                    } else {
+                        apiSetChatRead = networkService.proSetChatRead;
+                    }
+                    apiSetChatRead(scope.chatId, function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                    });
+                }
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"
         }

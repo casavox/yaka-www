@@ -33,7 +33,7 @@
                 controllerAs: 'vm'
             })
             .state('project', {
-                url: "/project/:projectId",
+                url: "/project/:projectId/details",
                 templateUrl: "/modules/project/views/customer/project.html",
                 controller: 'ProjectController',
                 controllerAs: 'vm'
