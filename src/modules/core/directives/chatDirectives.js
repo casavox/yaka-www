@@ -43,13 +43,14 @@ angular.module('Yaka')
                         } else {
                             return true;
                         }
-                    } else {
+                    } else if (message.author && message.author == 'PRO') {
                         if ($localStorage.user.professional) {
                             return true;
                         } else {
                             return false;
                         }
                     }
+                    return false;
                 };
 
                 scope.createImageArray = function (cloudinaryPublicId) {
