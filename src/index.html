@@ -56,7 +56,11 @@
                     <a ng-click="viewProposal()" class="cursor-pointer">Voir le projet</a>
                 </div>
                 <div class="media">
-                    <yaka-avatar class="c-white f-20 in-white-circle" size="80"
+                    <yaka-avatar ng-show="!project.professional.user.avatar.cloudinaryPublicId"
+                                 class="ratepro-noavatar c-white f-20" size="80"
+                                 user="project.professional.user"></yaka-avatar>
+                    <yaka-avatar ng-show="project.professional.user.avatar.cloudinaryPublicId"
+                                 class="c-white f-20 in-white-circle" size="80"
                                  user="project.professional.user"></yaka-avatar>
                 </div>
                 <div class="media">
@@ -86,7 +90,7 @@
                             <div
                                 ng-class="{'criteria': rating.positive != 'true' && rating.positive != 'false', 'criteria-pos': rating.positive == 'true', 'criteria-neg': rating.positive == 'false', 'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
                                 ng-click="selectCriteria($index)">
-                                {{c}}
+                                {{'CRITERION_' + c | translate}}
                             </div>
                         </div>
                     </div>
@@ -105,7 +109,7 @@
                 </div>
             </div>
             <div class="card-padding m-b-15">
-                <button class="btn bgm-lightblue btn-block" ng-click="send()"
+                <button class="btn btn-lg bgm-lightblue btn-block" ng-click="send()"
                         ng-disabled="!(rating.criteria.length > 2 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
                     NOTER
                 </button>

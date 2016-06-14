@@ -2089,6 +2089,13 @@ md-input-container {
     margin-right: 10px;
 }
 
+.ratepro-noavatar {
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    line-height: 74px !important;
+}
+
 .avatar-pro {
     width: 29px;
     height: 29px;
