@@ -452,8 +452,7 @@
                 !vm.profileInfo.activityStartedYear || //
                 !vm.profileInfo.company.name || //
                 !vm.profileInfo.company.siret || //
-                !vm.profileInfo.company.address.address || //
-                !vm.profileInfo.company.phone) {
+                !vm.profileInfo.company.address.address) {
 
                 f = true;
             }
