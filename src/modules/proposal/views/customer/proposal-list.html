@@ -28,11 +28,11 @@
 
     <section id="content">
         <div class="container">
-            <div class="card" ng-click="vm.projectDetails()">
+            <div class="card" ng-click="vm.projectDetails()" ng-cloak>
                 <div class="card-header card-hover">
                     <div class="media">
                         <div class="pull-left">
-                            <div class="proposalIconBackground lv-img v-icon-{{vm.project.activities[0].code}}-white">
+                            <div class="proposalIconBackground lv-img v-icon-{{vm.project.activities[0].code}}-white m-t-5">
                             </div>
                         </div>
                         <div class="media-body projectTitleBar">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card projectCreated" ng-show="!vm.project.proposals || vm.project.proposals.length == 0">
+            <div class="card projectCreated" ng-show="!vm.project.proposals || vm.project.proposals.length == 0" ng-cloak>
                 <div class="card pt-inner ">
                     <div class="pti-header bgm-lightblue">
                         <h2>Votre projet est correctement créé !</h2>
@@ -108,14 +108,14 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="vm.project.proposals && vm.project.proposals.length > 0">
+            <div ng-show="vm.project.proposals && vm.project.proposals.length > 0" ng-cloak>
                 <div class="card">
                     <div class="card-header bgm-orange">
                         <h2 ng-show="vm.project.proposals.length == 1">Une offre reçue
                             <small>Sélectionner la pour en voir le détail</small>
                         </h2>
                         <h2 ng-show="vm.project.proposals.length > 1">{{vm.project.proposals.length}} offres reçues
-                            <small>Sélectionner une offre pour en voir le détail</small>
+                            <small>Cliquez sur une offre pour en voir le détail</small>
                         </h2>
                     </div>
                     <div class="lv-body">
@@ -125,7 +125,7 @@
                                 <div class="media">
                                     <div class="pull-left">
                                         <div class="p-relative">
-                                            <yaka-avatar class="yakaHeaderAvatar" size="35"
+                                            <yaka-avatar class="yakaHeaderAvatar m-t-8" size="35"
                                                          user="p.professional.user"></yaka-avatar>
                                             <i ng-show="p.unreadMessages" class="porposalUnreadMessagesIndicator"></i>
                                         </div>
