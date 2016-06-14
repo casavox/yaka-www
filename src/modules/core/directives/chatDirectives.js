@@ -1,6 +1,6 @@
 angular.module('Yaka')
 
-    .directive('yakaChat', function (networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG) {
+    .directive('yakaChat', function ($rootScope, networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG) {
         return {
             restrict: 'E',
             scope: {
@@ -171,7 +171,19 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('scrollBottom', function () {
-                    scrollDown();
+                    if (scope.scrollBottom == 1) {
+                        scrollDown();
+                        var apiSetChatRead
+                        if (!$localStorage.user.professional) {
+                            apiSetChatRead = networkService.setChatRead;
+                        } else {
+                            apiSetChatRead = networkService.proSetChatRead;
+                        }
+                        apiSetChatRead(scope.chatId, function () {
+                            $rootScope.updateProfile();
+                        }, function () {
+                        });
+                    }
                 });
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"

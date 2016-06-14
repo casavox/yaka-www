@@ -1,5 +1,5 @@
 <header id="header" data-current-skin='lightblue' ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="main">
 
@@ -30,6 +30,7 @@
             <div ng-show="vm.projectsOnGoing">
                 <div class="block-header">
                     <h2 ng-show="vm.projectsOnGoing.length == 1">PROJET EN COURS</h2>
+
                     <h2 ng-show="vm.projectsOnGoing.length > 1">PROJETS EN COURS</h2>
                 </div>
                 <div class="card card-hover" ng-repeat="p in vm.projectsOnGoing" ng-click="vm.selectProject(p)">
@@ -67,7 +68,7 @@
                         </div>
                     </div>
                     <div ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="card-body p-l-25 p-b-20">
-                        <span>Réponses des Pro en attentes...</span>
+                        <span>En attente de propositions de professionels...</span>
                     </div>
                     <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
                         <div class="card-body p-l-25">
@@ -197,6 +198,7 @@
             <div ng-show="vm.projectsCompleted">
                 <div class="block-header">
                     <h2 ng-show="vm.projectsCompleted.length == 1">PROJET TERMINÉ</h2>
+
                     <h2 ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
                 </div>
                 <div class="card card-hover" ng-repeat="pc in vm.projectsCompleted" ng-click="vm.selectProject(pc)">

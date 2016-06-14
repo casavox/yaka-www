@@ -263,6 +263,12 @@
             },
             passwordNewPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/password/new', data).success(success).error(error)
+            },
+            setChatRead: function (chatId, success, error) {
+                httpService.put(baseUrl + '/chat/' + chatId + '/read').success(success).error(error)
+            },
+            proSetChatRead: function (chatId, success, error) {
+                httpService.put(baseUrl + '/pro/chat/' + chatId + '/read').success(success).error(error)
             }
         };
     }
