@@ -1224,7 +1224,6 @@ md-input-container {
     cursor: text !important;
 }
 
-
 .criteria {
     background: #ffffff;
     border: 1px solid #444444;
@@ -3181,6 +3180,7 @@ md-input-container {
     height: 70px;
     width: 70px;
     position: relative;
+    left: calc(50% - 35px);
 }
 
 /* aspect au focus de l'élément */
@@ -5064,6 +5064,14 @@ ul.yaka-chips li {
     cursor: pointer;
 }
 
+.m-t-8 {
+    margin-top: 8px;
+}
+
 .m-t-9 {
     margin-top: 9px;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
 }

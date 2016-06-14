@@ -21,9 +21,9 @@
 
         app.getPageName = function () {
             if ($rootScope.pageName == "") {
-                return "YakaClub : Trouvez et recommandez vos artisans pour vos travaux";
+                return "YakaClub : Trouvez vos artisans en toute confiance";
             } else {
-                return $rootScope.pageName + " - YakaClub : Trouvez et recommandez vos artisans pour vos travaux"
+                return $rootScope.pageName + " - YakaClub : Trouvez vos artisans en toute confiance"
             }
         };
 

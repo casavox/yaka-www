@@ -52,7 +52,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="menu-category profile-info">
                 <div class="profile-box">
                     <p>
@@ -60,7 +60,7 @@
                     </p>
 
                     <form name="profileForm">
-                        <div class="row">
+                        <div class="col-xs-12 no-padding">
                             <div class="col-xs-3">
                                 <div class="img-profile">
                                     <cl-image public-id="{{vm.profileInfo.user.avatar.cloudinaryPublicId}}"
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-9">
+                            <div class="col-xs-9 no-padding-right">
 
                                 <div class="form-group fg-float m-b-30"
                                      ng-class="{'has-error': !vm.profileInfo.user.firstName}">
@@ -358,7 +358,7 @@
                         </div>
                         <div class="col-xs-10">
                             <p>
-                                Attestation RGE
+                                Principale certification ou qualification
                             </p>
                             <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
@@ -379,7 +379,7 @@
                         </div>
                         <div class="col-xs-10">
                             <p>
-                                Partenaire principal (EDF, Leroy Merlin, ...)
+                                Principal partenaire
                             </p>
                             <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
@@ -459,7 +459,7 @@
         </div>
 
 
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
             <div class="menu-category profile-area">
                 <div class="profile-box">

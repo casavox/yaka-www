@@ -16,8 +16,15 @@
                         <div class="pmo-pic">
                             <div class="p-relative">
                                 <img class="img-responsive proAvatarProposalImage"
-                                     ng-src="{{vm.proposal.professional.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                     data-ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId"
+                                     data-ng-src="{{vm.proposal.professional.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
                                      alt=""/>
+
+                                <div class="yakaAvatarInitialsProposal"
+                                     data-ng-if="!vm.proposal.professional.user.avatar.cloudinaryPublicId">
+                                    {{vm.proposal.professional.user.firstName[0] | uppercase}}.
+                                    {{vm.proposal.professional.user.lastName[0]| uppercase}}.
+                                </div>
 
                                 <cl-image public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
                                           class="proposalProMainPartnerImg" format="png"
@@ -228,7 +235,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pmb-block">
+                    <div class="pmb-block" ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                         <div class="pmbb-header">
                             <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Portfolio</h2>
                         </div>
