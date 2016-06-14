@@ -220,16 +220,16 @@
                 httpService.put(baseUrl + '/pro/me/verifications', data).success(success).error(error)
             },
             messagesGET: function (id, page, limit, success, error) {
-                httpService.get(baseUrl + '/proposals/' + id + "/messages?page=" + page + "&limit=" + limit).success(success).error(error)
+                httpService.get(baseUrl + '/chat/' + id + "/messages?page=" + page + "&limit=" + limit).success(success).error(error)
             },
             sendMessage: function (id, data, success, error) {
-                httpService.post(baseUrl + '/proposals/' + id + "/message", data).success(success).error(error)
+                httpService.post(baseUrl + '/chat/' + id + "/message", data).success(success).error(error)
             },
             messagesProGET: function (id, page, limit, success, error) {
-                httpService.get(baseUrl + '/pro/proposals/' + id + "/messages?page=" + page + "&limit=" + limit).success(success).error(error)
+                httpService.get(baseUrl + '/pro/chat/' + id + "/messages?page=" + page + "&limit=" + limit).success(success).error(error)
             },
             sendMessagePro: function (id, data, success, error) {
-                httpService.post(baseUrl + '/pro/proposals/' + id + "/message", data).success(success).error(error)
+                httpService.post(baseUrl + '/pro/chat/' + id + "/message", data).success(success).error(error)
             },
             proProposalsInProgressGET: function (success, error) {
                 httpService.get(baseUrl + '/pro/proposals/inprogress').success(success).error(error)
