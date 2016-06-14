@@ -44,65 +44,74 @@
        ng-click="alertMsgFlag = false">&times;
     </a>{{alertMessage}}
 </div>
-
-<div class="popUp" ng-show="projectFlag" ng-cloak>
-    <div class="popUp-container center-middle">
-        <div class="popUp-content">
-            <h4>Rate your pro </h4>
-
-            <p class="rate-message-thx">
-                Merci d'avoir choisi YakaClub pour vos travaux
-            </p>
-
-            <div class="rate-box">
-                <p class="rate-project-title text-center">
-                    {{project.title}}
-                </p>
-
-                <p class="rate-link text-center">
-                    <a ng-click="viewProposal()" class="cursor-pointer">View details</a>
-                </p>
-                <cl-image public-id="{{project.professional.user.avatar.cloudinaryPublicId}}" class="img-circle center"
-                          format="png" ng-if="project.professional.user.avatar.cloudinaryPublicId">
-                    <cl-transformation height="80" width="80" crop="fill"/>
-                </cl-image>
-                <div class="img-default-preview center h-80 w-80"
-                     ng-if="!project.professional.user.avatar.cloudinaryPublicId">
-                    {{project.professional.firstName[0] | uppercase}} {{project.professional.lastName[0] | uppercase}}
+<div class="yakaPopup" ng-show="app.getUser() && projectFlag" ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow yakaPopupRateWindow col-xs-12">
+            <div class="f-20 c-black">
+                <span>Merci de notez votre Pro.</span>
+            </div>
+            <div class="card text-center bgm-bluegray">
+                <div class="media">
+                    <h3 class="c-white">{{project.title | yakaTranslateTitle }}</h3>
                 </div>
-                <p class="rate-info">
-                    Would you recommend <b>{{project.professional.firstName}}</b> to your friends ?
-                </p>
-
+                <div class="media m-t-0">
+                    <a ng-click="viewProposal()" class="cursor-pointer">Voir le projet</a>
+                </div>
+                <div class="media">
+                    <yaka-avatar class="c-white f-20 in-white-circle" size="80"
+                                 user="project.professional.user"></yaka-avatar>
+                </div>
+                <div class="media">
+                    <span class="c-white m-l-5 m-r-5">{{project.professional.user.firstName}} {{project.professional.user.lastName}}</span>
+                </div>
+                <div class="media">
+                    <span class="c-white f-17 m-l-5 m-r-5">Le recommanderiez-vous à vos amis ?</span>
+                </div>
                 <div class="rate-btn center">
-                    <div class=" img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive == 'true'}"
+                    <div class="img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive == 'true'}"
                          ng-click="rating.positive = 'true'">
-                        <img src="icons/mdpi/ic_thumb_up_defult.png" class="rate-like"/>
+                        <i class="zmdi zmdi-thumb-up zmdi-hc-fw c-white zmdi-hc-2x"></i>
                     </div>
                     <div class="img-circle f-r cursor-pointer" ng-class="{'select-neg': rating.positive == 'false'}"
                          ng-click="rating.positive = 'false'">
-                        <img src="icons/mdpi/ic_thumb_down_defult.png" class="rate-dislike "/>
+                        <i class="zmdi zmdi-thumb-down zmdi-hc-fw c-white zmdi-hc-2x"></i>
                     </div>
                 </div>
             </div>
-            <p class="rate-cat-info">
-                Selectionnez 3 crtières qui définissent cet artisan
-            </p>
-
-            <div class="row">
-                <div class="col-md-6" ng-repeat="c in criteria">
-                    <div class="criteria"
-                         ng-class="{'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
-                         ng-click="selectCriteria($index)">
-                        {{c}}
+            <div class="m-l-5 m-r-5">
+                <div class="media m-t-5">
+                    <p class="c-bluegray text-center f-15 m-b-5">
+                        Selectionnez 3 critères pour le décrire
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="c in criteria">
+                            <div
+                                ng-class="{'criteria': rating.positive != 'true' && rating.positive != 'false', 'criteria-pos': rating.positive == 'true', 'criteria-neg': rating.positive == 'false', 'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
+                                ng-click="selectCriteria($index)">
+                                {{c}}
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="media m-t-5">
+                        <textarea class="textarea-rating"
+                                  ng-class="{'textarea-rating-pos': rating.positive == 'true', 'textarea-rating-neg': rating.positive == 'false'}"
+                                  ng-disabled="rating.positive != 'true' && rating.positive != 'false'"
+                                  placeholder="Ajouter un commentaire (au moins 10 caractères)"
+                                  ng-model="rating.comment"></textarea>
+                </div>
+                <div class="media m-t-5">
+                    <p class="error center my-price-error" ng-show="error.criteria.flag">
+                        {{error.criteria.message}}
+                    </p>
+                </div>
             </div>
-            <p class="error center my-price-error" ng-show="error.criteria.flag">
-                {{error.criteria.message}}
-            </p>
-            <textarea class="textarea-rating" placeholder="Ajouter un commentaire" ng-model="rating.comment"></textarea>
-            <button type="button" class="button btn btn-popUp" ng-click="send()" ng-disabled="disable">SEND</button>
+            <div class="card-padding m-b-15">
+                <button class="btn bgm-lightblue btn-block" ng-click="send()"
+                        ng-disabled="!(rating.criteria.length > 2 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
+                    NOTER
+                </button>
+            </div>
         </div>
     </div>
 </div>

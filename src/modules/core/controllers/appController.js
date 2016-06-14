@@ -40,14 +40,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                    vm.messages.items.push(payload);
-                    vm.glue = true;
-                }, {
-                    'token': $localStorage.token
-                });
-            }
-        );
+                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                        vm.messages.items.push(payload);
+                        vm.glue = true;
+                    }, {
+                        'token': $localStorage.token
+                    });
+                }
+            );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -70,7 +70,6 @@
                                 $scope.criteria = res;
                                 $scope.projectFlag = true;
                             }, function (res) {
-
                                 alertMsg.send("Impossible d'effectuer la notation", "danger");
                             })
                         }
@@ -140,12 +139,12 @@
                 })
             }
             else if ($scope.rating.positive == 'false' && $scope.rating.comment.length < 10) {
-                $scope.error.criteria.message = "Please select at least 3 criteria and say why.";
+                $scope.error.criteria.message = "Merci de choisir 3 critères et d'ajouter un commentaire (10 caractères au moins).";
                 $scope.error.criteria.flag = true;
                 $scope.disable = false;
             }
             else {
-                $scope.error.criteria.message = "Please select at least 3 criteria";
+                $scope.error.criteria.message = "Merci de choisir 3 critères, vous pouvez également ajouter un commentaire";
                 $scope.error.criteria.flag = true;
                 $scope.disable = false;
             }
