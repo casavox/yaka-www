@@ -1,9 +1,9 @@
 <cl-image public-id="{{user.avatar.cloudinaryPublicId}}"
-          class="center-block" format="png"
+          class="" format="png"
           ng-if="user.avatar.cloudinaryPublicId">
     <cl-transformation height="{{size}}" width="{{size}}" crop="fill" radius="max"/>
 </cl-image>
-<div class="yakaAvatarInitials center-block"
+<div class="yakaAvatarInitials"
      ng-if="!user.avatar.cloudinaryPublicId">
     {{user.firstName[0] | uppercase}}.
     {{user.lastName[0]| uppercase}}.
