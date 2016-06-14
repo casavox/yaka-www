@@ -346,3 +346,7 @@ section#main.yakaMain .content .card {
         width: calc(100% - 6%) !important;
     }
 }
+
+.c-grey {
+    color: #9E9E9E !important;
+}

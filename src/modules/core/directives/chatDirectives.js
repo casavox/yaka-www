@@ -18,6 +18,9 @@ angular.module('Yaka')
                 };
 
                 scope.sendMessage = function () {
+                    if (!scope.newMessage.text && !scope.newMessage.cloudinaryPublicId) {
+                        return;
+                    }
                     var sendMessageApi;
                     if (!$localStorage.user.professional) {
                         sendMessageApi = networkService.sendMessage;

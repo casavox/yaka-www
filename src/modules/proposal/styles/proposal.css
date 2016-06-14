@@ -81,6 +81,12 @@
     height: auto;
 }
 
+@media (min-width: 1200px) {
+    .scrollViewChatProposal {
+        left: 300px;
+    }
+}
+
 .proposalMainView .content .card {
     min-height: initial !important;
 }
