@@ -40,14 +40,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                        vm.messages.items.push(payload);
-                        vm.glue = true;
-                    }, {
-                        'token': $localStorage.token
-                    });
-                }
-            );
+                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                    vm.messages.items.push(payload);
+                    vm.glue = true;
+                }, {
+                    'token': $localStorage.token
+                });
+            }
+        );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -247,10 +247,6 @@
                     email: {
                         label: 'Email',
                         value: app.getEmail().toLowerCase()
-                    },
-                    userType: {
-                        label: 'User Type',
-                        value: app.getUser().professional ? "pro" : "customer"
                     },
                     version: {
                         label: 'YakaClub Version',
