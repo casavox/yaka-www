@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, Upload, cloudinary) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -51,6 +51,7 @@
             var f = false;
             if (!vm.profileInfo.firstName || //
                 !vm.profileInfo.lastName || //
+                !vm.profileInfo.phoneNumber || //
                 !vm.profileInfo.gender || //
                 !vm.profileInfo.email) {
 
@@ -58,7 +59,7 @@
             }
             if (!f) {
                 vm.updating = true;
-                networkService.proProfilePUT(vm.profileInfo, function (res) {
+                networkService.profilePUT(vm.profileInfo, function (res) {
                     vm.updating = false;
                     vm.profileInfo = res;
                     vm.profile.firstName = res.firstName;
@@ -74,6 +75,44 @@
                 alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
             }
         }
+
+
+        vm.uploadProfileImg = function (files, invalides, index) {
+            if (invalides.length > 0) {
+                if (invalides[0].$error == "maxSize")
+                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+            }
+            $scope.files = files;
+            if (!$scope.files) return;
+            angular.forEach(files, function (file) {
+                if (file && !file.$error) {
+                    vm.updating = true;
+                    file.upload = Upload.upload({
+                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+                        data: {
+                            upload_preset: cloudinary.config().upload_preset,
+                            tags: 'verifications',
+                            context: 'file=' + $scope.title,
+                            file: file
+                        }
+                    }).progress(function (e) {
+                        file.progress = Math.round((e.loaded * 100.0) / e.total);
+                        file.status = "Uploading... " + file.progress + "%";
+                    }).success(function (data, status, headers, config) {
+                        vm.updating = false;
+                        vm.profileInfo.avatar = vm.profileInfo.avatar || {};
+                        data.context = {custom: {photo: $scope.title}};
+                        file.result = data;
+                        var res = null;
+                        vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
+                    }).error(function (data, status, headers, config) {
+                        console.log(5);
+                        vm.updating = false;
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
+                    });
+                }
+            });
+        };
 
         function cancelProfile() {
             vm.profileInfo = angular.copy(vm.profile);
@@ -104,6 +143,7 @@
                 !vm.profileInfo.firstName || //
                 !vm.profileInfo.lastName || //
                 !vm.profileInfo.gender || //
+                !vm.profileInfo.phoneNumber || //
                 !vm.profileInfo.email) {
                 return false;
             }
@@ -119,6 +159,7 @@
             return (vm.profileInfo.firstName != vm.profile.firstName ||
                 vm.profileInfo.lastName != vm.profile.lastName ||
                 vm.profileInfo.gender != vm.profile.gender ||
+                vm.profileInfo.phoneNumber != vm.profile.phoneNumber ||
                 vm.profileInfo.email != vm.profile.email ||
                 vm.profileInfo.avatar.cloudinaryPublicId != vm.profile.avatar.cloudinaryPublicId
             );
