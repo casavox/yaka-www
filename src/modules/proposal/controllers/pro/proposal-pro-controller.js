@@ -53,7 +53,6 @@
         vm.dt = new Date();
         vm.now = new Date();
         vm.default = angular.copy(vm.dt);
-        vm.minDate = new Date();
         vm.J1 = {date: new Date()};
         vm.time = vm.J1.date.getHours();
         vm.initHours = initHours;
@@ -62,7 +61,9 @@
         vm.J3 = {date: new Date()};
         vm.J2.date.setDate(vm.J2.date.getDate() + 1);
         vm.J3.date.setDate(vm.J3.date.getDate() + 2);
-        vm.minDate.setDate(vm.minDate.getDate() + 2);
+        vm.datepickerOptions = {
+            showWeeks: false
+        };
         vm.all = all;
         vm.getSlot = getSlot;
         vm.error = {};
@@ -104,11 +105,6 @@
             networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         } else {
             $state.go('home');
-        }
-
-        if ($stateParams.chat) {
-            vm.showChat = true;
-            vm.scrollBottom = 1;
         }
 
         function declineProposal() {
@@ -656,14 +652,14 @@
 
         function selectPrice(type) {
             vm.error.price = vm.error.price || {};
-            if (vm.myPrice > 1) {
+            if (vm.myPrice > 10) {
                 vm.proposalTmp.price = vm.myPrice;
                 vm.proposalTmp.priceType = type;
                 vm.myPriceFlag = false;
                 vm.error.price.flag = false;
             }
             else {
-                vm.error.price.message = "Vous devez mettre un tarif réaliste (au moins 10 euros)";
+                vm.error.price.message = "Vous devez mettre un tarif réaliste";
                 vm.error.price.flag = true;
             }
         }
@@ -703,6 +699,10 @@
         function succesProjectGET(res) {
             vm.project = res.project;
             vm.proposal = res;
+
+            if (vm.proposal.status != 'START') {
+                $state.go("pro-job", {'proposalId': vm.proposal.id});
+            }
 
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);
@@ -931,6 +931,19 @@
             else {
                 vm.dt = new Date(vm.proposal.startDate);
             }
+            setMinMaxDate();
+        }
+
+        function setMinMaxDate() {
+            var minDate = new Date();
+            var maxDate = new Date();
+            if (vm.projectTmp.desiredDatePeriod != "NONE" && moment(vm.projectTmp.desiredDate).isAfter(minDate)) {
+                minDate = new Date(vm.projectTmp.desiredDate);
+            }
+            vm.dt = minDate;
+            maxDate.setDate(minDate.getDate() + 91);
+            vm.datepickerOptions.minDate = minDate;
+            vm.datepickerOptions.maxDate = maxDate;
         }
 
         function getWhen() {
@@ -944,17 +957,14 @@
             else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.desiredDatePeriod) {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "Le " + vm.projectTmp.desiredDate;
+                        return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_WEEK":
-                        var d = new Date();
-                        d.setDate(d.getDate() + 7);
-                        return "until " + $filter('date')(d, "yyyy-MM-dd");
+                        return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_MONTH":
-                        var d = new Date();
-                        d.setDate(d.getDate() + 30);
-                        return "Until " + $filter('date')(d, "yyyy-MM-dd");
+                        return "dans le mois autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "NONE":
-                        return "Flexible sur la date de départ";
+                    default:
+                        return 'dès que possible';
                 }
             }
             else {
