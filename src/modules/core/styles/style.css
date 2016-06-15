@@ -4983,7 +4983,7 @@ ul[rn-carousel-buffered] > li {
     font-size: 18px;
     display: inline-block;
     position: relative;
-    top: -13px;
+    top: 1px;
     margin-left: 5px;
 }
 
