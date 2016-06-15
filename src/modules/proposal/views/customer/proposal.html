@@ -103,6 +103,7 @@
                 <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
                            scroll-bottom="{{vm.scrollBottom}}"
                            chat-id="{{vm.proposal.chat.id}}"
+                           proposal-status="{{vm.proposal.status}}"
                            user-me="app.getUser()"
                            user-other="vm.proposal.professional.user"></yaka-chat>
 
@@ -235,7 +236,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pmb-block" ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
+                    <div class="pmb-block"
+                         ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                         <div class="pmbb-header">
                             <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Portfolio</h2>
                         </div>

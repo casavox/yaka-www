@@ -7,7 +7,8 @@ angular.module('Yaka')
                 chatId: '@',
                 scrollBottom: '@',
                 userMe: '=',
-                userOther: '='
+                userOther: '=',
+                proposalStatus: '@'
             },
             link: function (scope, element, attr) {
 
@@ -17,8 +18,10 @@ angular.module('Yaka')
                     text: ""
                 };
 
+                scope.disableSending = false;
+
                 scope.sendMessage = function () {
-                    if (!scope.newMessage.text && !scope.newMessage.cloudinaryPublicId) {
+                    if (scope.disableSending || (!scope.newMessage.text && !scope.newMessage.cloudinaryPublicId)) {
                         return;
                     }
                     var sendMessageApi;
@@ -181,6 +184,13 @@ angular.module('Yaka')
                 };
 
                 attr.$observe('chatId', chatIdChanged);
+                attr.$observe('proposalStatus', function () {
+                    if (scope.proposalStatus == "DECLINED" ||
+                        scope.proposalStatus == "RATE_PRO" ||
+                        scope.proposalStatus == "COMPLETED") {
+                        scope.disableSending = true;
+                    }
+                });
                 attr.$observe('scrollBottom', function () {
                     if (scope.scrollBottom == 1 && scope.chatId) {
                         scrollDown();

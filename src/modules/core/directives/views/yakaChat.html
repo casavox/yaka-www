@@ -54,15 +54,19 @@
 
     <div class="lv-footer ms-reply">
         <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
-                ngf-accept="'image/*'" ngf-max-size="5MB">
-            <i class="zmdi zmdi-attachment-alt"></i>
+                ngf-accept="'image/*'" ngf-max-size="5MB"
+                data-ng-disabled="disableSending">
+            <i class="zmdi zmdi-attachment-alt"
+               data-ng-class="{'c-grey': disableSending}"></i>
         </button>
 
-        <textarea data-ng-model="newMessage.text" placeholder="Entrez votre message"></textarea>
+        <textarea data-ng-model="newMessage.text" placeholder="Entrez votre message"
+                  data-ng-disabled="disableSending"></textarea>
 
-        <button data-ng-click="sendMessage()">
+        <button data-ng-click="sendMessage()"
+                data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)">
             <i class="zmdi zmdi-mail-send"
-               data-ng-class="{'c-grey': !newMessage.text && !newMessage.cloudinaryPublicId}"></i>
+               data-ng-class="{'c-grey': disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)}"></i>
         </button>
     </div>
 </div>
