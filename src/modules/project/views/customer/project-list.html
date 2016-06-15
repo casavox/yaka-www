@@ -8,10 +8,10 @@
 
     <section id="content" class="content">
         <div class="container">
-            <div ng-show="!vm.projectsOnGoing || vm.projectsOnGoing.length == 0" class="card">
+            <div ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length == 0" class="card" ng-cloak>
                 <div class="card-header">
-                    <h2>VOUS N’AVEZ ENCORE DE PROJETS
-                        <small>Comment fonctionne Yaka Club ?</small>
+                    <h2>VOUS N'AVEZ ENCORE DE PROJET
+                        <small>Comment fonctionne YakaClub ?</small>
                     </h2>
                 </div>
                 <div class="card-body card-padding">
@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <div ng-show="vm.projectsOnGoing">
+            <div ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length > 0" ng-cloak>
                 <div class="block-header">
                     <h2 ng-show="vm.projectsOnGoing.length == 1">PROJET EN COURS</h2>
 
@@ -194,7 +194,7 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="vm.projectsCompleted">
+            <div ng-show="vm.projectsCompleted && vm.projectsCompleted.length > 0" ng-cloak>
                 <div class="block-header">
                     <h2 ng-show="vm.projectsCompleted.length == 1">PROJET TERMINÉ</h2>
 

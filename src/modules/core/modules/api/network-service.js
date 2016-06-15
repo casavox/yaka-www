@@ -123,17 +123,14 @@
             ratePro: function (data, success, error) {
                 httpService.post(baseUrl + '/proposals/' + data.id + "/rate", data).success(success).error(error)
             },
-            projectSMALLPOST: function (data, success, error) {
-                httpService.post(baseUrl + '/projects/small', data).success(success).error(error)
+            projectPOST: function (data, success, error) {
+                httpService.post(baseUrl + '/projects', data).success(success).error(error)
             },
             closeProject: function (data, success, error) {
                 httpService.post(baseUrl + '/proposals/' + data + '/complete').success(success).error(error)
             },
             changePassword: function (data, success, error) {
                 httpService.put(baseUrl + '/me/password', data).success(success).error(error)
-            },
-            projectEMERGENCYPOST: function (data, success, error) {
-                httpService.post(baseUrl + '/projects/emergency', data).success(success).error(error)
             },
             activitiesGET: function (success, error) {
                 httpService.get(baseUrl + '/projects/activities').success(success).error(error)
@@ -147,8 +144,8 @@
             professionalGET: function (success, error) {
                 httpService.get(baseUrl + '/pro/me').success(success).error(error)
             },
-            proLeadsGET: function (type, sw_lat, sw_lng, ne_lat, ne_lng, success, error) {
-                httpService.get(baseUrl + '/pro/leads?type=' + type + "&sw_lat=" + sw_lat + "&sw_lng=" + sw_lng + "&ne_lat=" + ne_lat + "&ne_lng=" + ne_lng).success(success).error(error)
+            proLeadsGET: function (sw_lat, sw_lng, ne_lat, ne_lng, success, error) {
+                httpService.get(baseUrl + '/pro/leads?sw_lat=' + sw_lat + '&sw_lng=' + sw_lng + '&ne_lat=' + ne_lat + '&ne_lng=' + ne_lng).success(success).error(error)
             },
             proposalGET: function (data, success, error) {
                 httpService.get(baseUrl + '/proposals/' + data).success(success).error(error)
@@ -171,11 +168,8 @@
             proposalDeclinePOST: function (proposalId, success, error) {
                 httpService.post(baseUrl + '/proposals/' + proposalId + "/decline").success(success).error(error)
             },
-            proposalEmergencyPOST: function (data, success, error) {
-                httpService.post(baseUrl + '/pro/proposals/emergency', data).success(success).error(error)
-            },
-            proposalSmallPOST: function (data, success, error) {
-                httpService.post(baseUrl + '/pro/proposals/small', data).success(success).error(error)
+            proposalPOST: function (data, success, error) {
+                httpService.post(baseUrl + '/pro/proposals', data).success(success).error(error)
             },
             deleteProject: function (id, success, error) {
                 httpService.delete(baseUrl + '/projects/' + id).success(success).error(error)
@@ -184,16 +178,10 @@
                 httpService.post(baseUrl + '/projects/' + id + '/publish').success(success).error(error)
             },
             projectPUT: function (data, success, error) {
-                if (data.type == "EMERGENCY")
-                    httpService.put(baseUrl + '/projects/emergency/' + data.id, data).success(success).error(error);
-                else if (data.type == "SMALL_PROJECT")
-                    httpService.put(baseUrl + '/projects/small/' + data.id, data).success(success).error(error);
+                httpService.put(baseUrl + '/projects/' + data.id, data).success(success).error(error);
             },
             proposalPUT: function (data, success, error) {
-                if (data.type == "EMERGENCY")
-                    httpService.put(baseUrl + '/pro/proposals/emergency/' + data.id, data).success(success).error(error);
-                else if (data.type == "SMALL_PROJECT")
-                    httpService.put(baseUrl + '/pro/proposals/small/' + data.id, data).success(success).error(error);
+                httpService.put(baseUrl + '/pro/proposals/' + data.id, data).success(success).error(error);
             },
             profilePUT: function (data, success, error) {
                 httpService.put(baseUrl + '/me/profile', data).success(success).error(error)

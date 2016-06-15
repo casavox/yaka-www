@@ -10,7 +10,11 @@
     function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
 
         if ($localStorage.token && $localStorage.token != '') {
-            $state.go('contacts');
+            if ($localStorage.user && $localStorage.user.professional) {
+                $state.go('prodashboard');
+            } else {
+                $state.go('my-projects');
+            }
         }
 
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
@@ -169,7 +173,11 @@
                     window.location.href = window.yakaRedirectUrl;
                     delete window.yakaRedirectUrl;
                 } else {
-                    $state.go('contacts');
+                    if ($localStorage.user && $localStorage.user.professional) {
+                        $state.go('prodashboard');
+                    } else {
+                        $state.go('my-projects');
+                    }
                 }
             }
         }
@@ -269,7 +277,11 @@
                 window.location.href = $localStorage.urlRedirect;
                 delete $localStorage.urlRedirect;
             } else {
-                $state.go('contacts');
+                if ($localStorage.user && $localStorage.user.professional) {
+                    $state.go('prodashboard');
+                } else {
+                    $state.go('my-projects');
+                }
             }
         }
 

@@ -4529,7 +4529,7 @@ md-input-container {
 /*------------------------------------------ Pro Dashboard Map ----------------------------*/
 
 .proDashboardMap {
-    height: calc(100% - 45px);
+    height: 100%;
     padding-left: 0 !important;
     padding-right: 0 !important;
     z-index: -1;
@@ -4561,7 +4561,7 @@ md-input-container {
 }
 
 .mapWorkArea.mapWorkAreaVisible {
-    top: 145px;
+    top: 80px;
 }
 
 .proDashboardMap .angular-google-map-container {
@@ -4820,10 +4820,6 @@ ul[rn-carousel-buffered] > li {
 
 @media (max-width: 767px) {
 
-    .mapWorkArea.mapWorkAreaVisible {
-        top: 80px;
-    }
-
     .rn-carousel-control {
         display: none !important;
     }
@@ -4837,22 +4833,6 @@ ul[rn-carousel-buffered] > li {
     .proDashboardMap {
         height: calc(100% - 50px) !important;
     }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-    .proDashboardMap {
-        height: calc(100% - 45px) !important;
-    }
-
-    .mapWorkArea.mapWorkAreaVisible {
-        top: 120px;
-    }
-
-    .proDashboardMap {
-        height: calc(100% - 125px);
-    }
-
 }
 
 @media (min-width: 768px) {
@@ -4913,7 +4893,7 @@ ul[rn-carousel-buffered] > li {
 }
 
 .proDashboardList {
-    height: calc(100% - 45px) !important;
+    height: 100% !important;
 }
 
 .proDashboardList::-webkit-scrollbar {

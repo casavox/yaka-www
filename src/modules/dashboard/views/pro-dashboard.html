@@ -9,27 +9,6 @@
     <div id="content" class="content">
         <div class="content-slide proDashboard">
 
-            <div class="col-xs-6 col-xs-offset-6 col-sm-12 col-sm-offset-0 proDashboardFilters"
-                 ng-class="{'proDashboardFiltersVisible':vm.showFilters}">
-                <div class="proDashboardFilterHeader">
-                    <div class="line"></div>
-                    <span class="text">Project Type</span>
-                </div>
-
-                <div class="proDashboardFilterChoice" ng-class="{'selected': vm.type == 'all'}"
-                     ng-click="vm.changeType('all'); vm.showFilters = false" angular-ripple>
-                    All
-                </div>
-                <div class="proDashboardFilterChoice" ng-class="{'selected': vm.type == 'emergency'}"
-                     ng-click="vm.changeType('emergency'); vm.showFilters = false" angular-ripple>
-                    Emergencies
-                </div>
-                <div class="proDashboardFilterChoice" ng-class="{'selected': vm.type == 'small'}"
-                     ng-click="vm.changeType('small'); vm.showFilters = false" angular-ripple>
-                    Jobs
-                </div>
-            </div>
-
             <div class="proDashboardOverlay visible-xs" ng-click="vm.showFilters = false"
                  ng-class="vm.showFilters ? 'overlayVisible' : 'overlayInvisible'"></div>
 
