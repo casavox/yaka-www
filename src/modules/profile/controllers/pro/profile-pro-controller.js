@@ -243,7 +243,7 @@
             loadMap();
             setTimeout(function () {
                 displayWorkArea();
-            }, 500);
+            }, 1000);
         }, 1000);
 
         function displayWorkArea() {
