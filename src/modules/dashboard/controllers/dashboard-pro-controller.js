@@ -20,10 +20,8 @@
         var currentCenter = {};
         var loadingLeads = false;
         var disableExploringMode = true;
-        var type = "all";
 
         vm.showFilters = false;
-        vm.type = "all";
         vm.tabIndex = 0;
         vm.leads = [];
         vm.carrouselSelectedItem = {index: -1};
@@ -36,13 +34,6 @@
                 return "active-menu";
             }
             return "";
-        };
-
-        vm.changeType = function (newType) {
-            vm.type = newType;
-            type = newType;
-            lastBounds.type = type;
-            loadLeads(lastBounds);
         };
 
         vm.getIcon = function (lead) {
@@ -98,11 +89,7 @@
                         break;
                 }
             }
-            if (lead.type == 'EMERGENCY') {
-                return "icons/mdpi/ic_" + icon + "_emergency.png";
-            } else {
-                return "icons/mdpi/ic_" + icon + "_blue.png";
-            }
+            return "icons/mdpi/ic_" + icon + "_blue.png";
         };
 
         $rootScope.$on('showHomeControlEmit', function (event, show) {
@@ -121,11 +108,7 @@
 
         function onLeadsLoaded(args) {
             angular.forEach(args, function (lead) {
-                if (lead.type == 'EMERGENCY') {
-                    lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinEmergencyProject.png";
-                } else {
-                    lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
-                }
+                lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
             });
             vm.leads = args;
 
@@ -166,7 +149,7 @@
         };
 
         function loadLeads(args) {
-            networkService.proLeadsGET(args.type, args.sw_lat, args.sw_lng, args.ne_lat, args.ne_lng,
+            networkService.proLeadsGET(args.sw_lat, args.sw_lng, args.ne_lat, args.ne_lng,
                 function succesProLeads(res) {
                     onLeadsLoaded(res);
                 }, function errorProLeads() {
@@ -187,11 +170,7 @@
 
         function onLeadSelected(lead) {
             for (var i = 0; i < vm.leads.length; i++) {
-                if (vm.leads[i].type == 'EMERGENCY') {
-                    vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinEmergencyProject.png";
-                } else {
-                    vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
-                }
+                vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
             }
             lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459254146/yakaclub/pinSelectedProject.png";
             vm.showSlider = true;
@@ -245,7 +224,6 @@
                                         'ne_lng': vm.map.bounds.northeast.longitude
                                     };
                                     lastBounds = angular.copy(bnds);
-                                    bnds.type = type;
                                     loadLeads(bnds);
                                 }
                             }, 50);
@@ -319,7 +297,6 @@
                     'ne_lat': res.neLatitude,
                     'ne_lng': res.neLongitude
                 };
-                bounds.type = "all";
                 addCircle(res);
                 vm.workareaDiameter = Math.ceil((res.radius * 2) / 1000);
                 loadLeads(bounds);

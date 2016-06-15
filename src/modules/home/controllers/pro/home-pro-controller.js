@@ -8,7 +8,11 @@
     function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
 
         if ($localStorage.token && $localStorage.token != '') {
-            $state.go('contacts');
+            if ($localStorage.user && $localStorage.user.professional) {
+                $state.go('prodashboard');
+            } else {
+                $state.go('my-projects');
+            }
         }
 
         if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
@@ -265,7 +269,11 @@
 
         function successProRegister(res) {
             $localStorage.token = res.token;
-            $state.go('contacts');
+            if ($localStorage.user && $localStorage.user.professional) {
+                $state.go('prodashboard');
+            } else {
+                $state.go('my-projects');
+            }
         }
 
         function failProRegister(err) {
@@ -310,7 +318,11 @@
                     window.location.href = window.yakaRedirectUrl;
                     delete window.yakaRedirectUrl;
                 } else {
-                    $state.go('contacts');
+                    if ($localStorage.user && $localStorage.user.professional) {
+                        $state.go('prodashboard');
+                    } else {
+                        $state.go('my-projects');
+                    }
                 }
             }
         }

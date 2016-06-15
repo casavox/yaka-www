@@ -22,7 +22,7 @@
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
         vm.countdown = 5;
-        vm.service = vm.continueAddressFlag = vm.continue = vm.dateFlag = vm.emergency = vm.wait = false;
+        vm.service = vm.continueAddressFlag = vm.continue = vm.dateFlag = vm.wait = false;
         vm.newAddrFlag = vm.continueImg = vm.popUpImg = false;
         vm.selectCategory = vm.disabledAddr = true;
         vm.questions = [];
@@ -200,12 +200,11 @@
             }
         };
 
-
-        vm.draft = function () {
+        vm.post = function () {
             if (!vm.dateType) {
                 vm.error.date.flag = true;
                 vm.error.date.message = "At least a slot is required";
-                return;
+                return
             }
             else if (vm.dateType == 'SPECIFIC') {
                 if (vm.dt.getTime() == vm.default.getTime()) {
@@ -226,12 +225,14 @@
                 title: vm.title,
                 description: vm.projectDescription,
                 desiredDatePeriod: vm.dateType,
-                status: "DRAFT",
                 address: {},
+                hasMaterial: vm.material == 'yes',
                 activities: []
             };
             for (var i = 0; i < vm.questions.length; i++) {
-                formData.activities.push({code: vm.questions[i].code});
+                if (vm.questions[i].code != "OTHER") {
+                    formData.activities.push({code: vm.questions[i].code});
+                }
             }
             if (vm.dateType == "SPECIFIC") {
                 formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
@@ -246,170 +247,42 @@
                 }
             }
             else {
+                if (angular.isUndefined(vm.newAddr) || !vm.newAddr.name || vm.newAddr.name.length < 3) {
+                    vm.error.address.flag = true;
+                    vm.error.address.message = "A valid address name is required";
+                    $timeout(function () {
+                        var element = document.getElementById('slide5');
+                        smoothScroll(element, scrollOptions);
+                    }, 0);
+
+                }
+                else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3) {
+                    vm.error.address.flag = true;
+                    vm.error.address.message = "A valid address is required";
+                    $timeout(function () {
+                        var element = document.getElementById('slide5');
+                        smoothScroll(element, scrollOptions);
+                    }, 0);
+
+                }
                 formData.address.name = vm.newAddr.name;
                 formData.address.address = vm.newAddr.address;
             }
             for (var i = 0; i < $rootScope.photos.length; i++) {
                 if ($rootScope.photos[i].public_id) {
                     var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-                    if ($rootScope.photos[i].commentFlag && $rootScope.photos[i].description) {
+                    if ($rootScope.photos[i].description) {
                         tmp.description = $rootScope.photos[i].description;
                     }
                     formData.images = formData.images || [];
                     formData.images.push(tmp);
                 }
             }
-            formData.type = "small";
             if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
-                networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
+                networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST);
             else {
                 $rootScope.newProject = formData;
                 $state.go("login");
-            }
-        };
-
-        vm.post = function () {
-            if (!vm.emergency) {
-                if (!vm.dateType) {
-                    vm.error.date.flag = true;
-                    vm.error.date.message = "At least a slot is required";
-                    return
-                }
-                else if (vm.dateType == 'SPECIFIC') {
-                    if (vm.dt.getTime() == vm.default.getTime()) {
-                        vm.error.date.flag = true;
-                        vm.error.date.message = "At least a slot is required";
-                        return;
-                    }
-                    else {
-                        vm.error.date.flag = false;
-                        vm.error.date.message = "At least a slot is required";
-                    }
-                }
-                else {
-                    vm.error.date.flag = false;
-                    vm.error.date.message = "At least a slot is required";
-                }
-                var formData = {
-                    title: vm.title,
-                    description: vm.projectDescription,
-                    desiredDatePeriod: vm.dateType,
-                    address: {},
-                    hasMaterial: vm.material == 'yes',
-                    activities: []
-                };
-                for (var i = 0; i < vm.questions.length; i++) {
-                    if (vm.questions[i].code != "OTHER") {
-                        formData.activities.push({code: vm.questions[i].code});
-                    }
-                }
-                if (vm.dateType == "SPECIFIC") {
-                    formData.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
-                }
-                if (vm.continueAddress) {
-                    for (var i = 0; i < vm.user.addresses.length; i++) {
-                        if (vm.user.addresses[i].address == vm.myAddress) {
-                            formData.address.name = vm.user.addresses[i].name;
-                            formData.address.address = vm.myAddress;
-                            break;
-                        }
-                    }
-                }
-                else {
-                    if (angular.isUndefined(vm.newAddr) || !vm.newAddr.name || vm.newAddr.name.length < 3) {
-                        vm.error.address.flag = true;
-                        vm.error.address.message = "A valid address name is required";
-                        $timeout(function () {
-                            var element = document.getElementById('slide5');
-                            smoothScroll(element, scrollOptions);
-                        }, 0);
-
-                    }
-                    else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3) {
-                        vm.error.address.flag = true;
-                        vm.error.address.message = "A valid address is required";
-                        $timeout(function () {
-                            var element = document.getElementById('slide5');
-                            smoothScroll(element, scrollOptions);
-                        }, 0);
-
-                    }
-                    formData.address.name = vm.newAddr.name;
-                    formData.address.address = vm.newAddr.address;
-                }
-                for (var i = 0; i < $rootScope.photos.length; i++) {
-                    if ($rootScope.photos[i].public_id) {
-                        var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-                        if ($rootScope.photos[i].description) {
-                            tmp.description = $rootScope.photos[i].description;
-                        }
-                        formData.images = formData.images || [];
-                        formData.images.push(tmp);
-                    }
-                }
-                formData.type = "small";
-                if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
-                    networkService.projectSMALLPOST(formData, succesProjectsPOST, errorProjectsPOST);
-                else {
-                    $rootScope.newProject = formData;
-                    $state.go("login");
-                }
-            }
-            else {
-                var formData = {
-                    title: vm.title,
-                    description: vm.projectDescription,
-                    address: {},
-                    activities: [],
-                    availabilities: [],
-                    hasMaterial: vm.material == 'yes'
-                };
-                for (var i = 0; i < vm.questions.length; i++) {
-                    if (vm.questions[i].code != "OTHER") {
-                        formData.activities.push({code: vm.questions[i].code});
-                    }
-                }
-                if (vm.continueAddress) {
-                    for (var i = 0; i < vm.user.addresses.length; i++) {
-                        if (vm.user.addresses[i].address == vm.myAddress) {
-                            if (angular.isUndefined(formData.images))
-                                formData.images = [];
-                            formData.address.name = vm.user.addresses[i].name;
-                            formData.address.address = vm.myAddress;
-                            break;
-                        }
-                    }
-                }
-                else {
-                    formData.address.name = vm.newAddr.name;
-                    formData.address.address = vm.newAddr.address;
-                }
-                for (var i = 0; i < $rootScope.photos.length; i++) {
-                    if ($rootScope.photos[i].public_id) {
-                        if (angular.isUndefined(formData.images))
-                            formData.images = [];
-                        var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-                        if ($rootScope.photos[i].description) {
-                            tmp.description = $rootScope.photos[i].description;
-                        }
-                        formData.images.push(tmp);
-                    }
-                }
-                vm.initDate(vm.J1, formData.availabilities);
-                vm.initDate(vm.J2, formData.availabilities);
-                vm.initDate(vm.J3, formData.availabilities);
-                if (formData.availabilities.length == 0) {
-                    vm.error.date.flag = true;
-                    vm.error.date.message = "At least a slot is required";
-                    return;
-                }
-                formData.type = "emergency";
-                if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
-                    networkService.projectEMERGENCYPOST(formData, succesProjectsPOST, errorProjectsPOST);
-                else {
-                    $rootScope.newProject = formData;
-                    $state.go("login");
-                }
             }
         };
 
@@ -634,10 +507,7 @@
             if (item.childrenActivities && item.childrenActivities.length > 0) {
                 var childrenArray = [];
                 for (var i = 0; i < item.childrenActivities.length; i++) {
-                    if (vm.emergency && item.childrenActivities[i].emergency)
-                        childrenArray.push(item.childrenActivities[i]);
-                    else if (!vm.emergency && item.childrenActivities[i].small)
-                        childrenArray.push(item.childrenActivities[i]);
+                    childrenArray.push(item.childrenActivities[i]);
                 }
                 item.childrenActivities = childrenArray;
                 for (var i = 0; i < item.childrenActivities.length; i++) {
@@ -682,17 +552,12 @@
             item.selected = "activate";
             if (item.childrenActivities && item.childrenActivities.length > 0) {
                 var otherChild = {
-                    code: "OTHER",
-                    emergency: true,
-                    small: true
+                    code: "OTHER"
                 };
                 vm.questions[index + 1].childrenActivities.push(otherChild);
                 var childrenArray = [];
                 for (var i = 0; i < vm.questions[index + 1].childrenActivities.length; i++) {
-                    if (vm.emergency && vm.questions[index + 1].childrenActivities[i].emergency)
-                        childrenArray.push(vm.questions[index + 1].childrenActivities[i]);
-                    else if (!vm.emergency && vm.questions[index + 1].childrenActivities[i].small)
-                        childrenArray.push(vm.questions[index + 1].childrenActivities[i]);
+                    childrenArray.push(vm.questions[index + 1].childrenActivities[i]);
                 }
                 item.childrenActivities = childrenArray;
                 for (var i = 0; i < vm.questions[index + 1].childrenActivities.length; i++) {
@@ -715,10 +580,7 @@
         function succesProjectsGET(res) {
             var childrenArray = [];
             for (var i = 0; i < res.childrenActivities.length; i++) {
-                if (vm.emergency && res.childrenActivities[i].emergency)
-                    childrenArray.push(res.childrenActivities[i]);
-                else if (!vm.emergency && res.childrenActivities[i].small)
-                    childrenArray.push(res.childrenActivities[i]);
+                childrenArray.push(res.childrenActivities[i]);
             }
             res.childrenActivities = childrenArray;
             vm.newProject = res;

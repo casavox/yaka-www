@@ -406,7 +406,7 @@
                         date: $filter('date')(vm.offer.date.date, "yyyy-MM-dd"),
                         slot: vm.offer.date.slot
                     };
-                    networkService.proposalEmergencyPOST(formData, function (res) {
+                    networkService.proposalPOST(formData, function (res) {
                         alertMsg.send("Proposition envoyée avec succès", "success");
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer la proposition", "danger");
@@ -414,7 +414,7 @@
                 }
                 else {
                     formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
-                    networkService.proposalSmallPOST(formData, function (res) {
+                    networkService.proposalPOST(formData, function (res) {
                         alertMsg.send("Proposition envoyée avec succès", "success");
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer la proposition", "danger");
