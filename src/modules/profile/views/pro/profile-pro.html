@@ -155,11 +155,11 @@
                                     <select name="activityStartedYear"
                                             required="required"
                                             ng-model="vm.profileInfo.activityStartedYear"
-                                            class="form-control">
+                                            class="form-control" convert-to-number>
                                         <option value="" disabled selected>Première année d'expérience</option>
                                         <option ng-repeat="year in vm.years | orderBy:'-toString()'"
                                                 ng-selected="vm.profileInfo.activityStartedYear == year"
-                                                value="{{year}}">
+                                                ng-value="year">
                                             {{year}}
                                         </option>
                                     </select>
