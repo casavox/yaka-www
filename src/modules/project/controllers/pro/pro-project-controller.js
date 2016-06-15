@@ -432,7 +432,7 @@
                     case "WITHIN_A_WEEK":
                         return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "WITHIN_A_MONTH":
-                        return "dans le mois autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
+                        return "dans le mois avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM");
                     case "NONE":
                         return 'dès que possible';
                 }

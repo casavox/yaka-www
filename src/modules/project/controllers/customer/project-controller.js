@@ -37,6 +37,13 @@
         vm.J2.date.setDate(vm.J2.date.getDate() + 1);
         vm.J3.date.setDate(vm.J3.date.getDate() + 2);
         vm.minDate.setDate(vm.minDate.getDate() + 2);
+        vm.maxDate = new Date();
+        vm.maxDate.setDate(vm.dt.getDate() + 180);
+        vm.datepickerOptions = {
+            minDate: vm.dt,
+            maxDate: vm.maxDate,
+            showWeeks: false
+        };
         vm.newAddr = {};
         vm.error = {
             description: {flag: false, message: ""},
@@ -356,6 +363,25 @@
             vm.dateSelected = false;
             vm.dateFlag = false;
             vm.dateType = type;
+            console.log(vm.dateType);
+            switch (vm.dateType) {
+                case "SPECIFIC":
+                    vm.projectTmp.desiredDatePeriod = "SPECIFIC";
+                    vm.projectTmp.desiredDate = vm.dt;
+                    break;
+                case "WITHIN_A_WEEK":
+                    vm.projectTmp.desiredDatePeriod = "WITHIN_A_WEEK";
+                    vm.projectTmp.desiredDate = moment().add(1, 'weeks');
+                    break;
+                case "WITHIN_A_MONTH":
+                    vm.projectTmp.desiredDatePeriod = "WITHIN_A_MONTH";
+                    vm.projectTmp.desiredDate = moment().add(1, 'months');
+                    break;
+                case "NONE":
+                    vm.projectTmp.desiredDatePeriod = "NONE";
+                    vm.projectTmp.desiredDate = vm.dt;
+                    break;
+            }
         };
 
         vm.selectDate = function () {
@@ -505,23 +531,15 @@
 
         vm.getWhen = function () {
             var res = 0;
-            if (!angular.isUndefined(vm.projectTmp.availabilities) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0) {
-                for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
-                    res += 1;
-                }
-                return "Emergency : " + res + " slots appointment"
-            }
-            else {
-                switch (vm.projectTmp.desiredDatePeriod) {
-                    case "SPECIFIC":
-                        return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
-                    case "WITHIN_A_WEEK":
-                        return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
-                    case "WITHIN_A_MONTH":
-                        return "dans le mois autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
-                    case "NONE":
-                        return 'dès que possible';
-                }
+            switch (vm.projectTmp.desiredDatePeriod) {
+                case "SPECIFIC":
+                    return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
+                case "WITHIN_A_WEEK":
+                    return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM");
+                case "WITHIN_A_MONTH":
+                    return "dans le mois avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM");
+                case "NONE":
+                    return 'dès que possible';
             }
         };
 
@@ -543,10 +561,8 @@
             }
             vm.project = res;
             vm.projectTmp = angular.copy(vm.project);
-            if (vm.projectTmp.type != "EMERGENCY") {
-                vm.dateType = vm.projectTmp.desiredDatePeriod;
-                vm.dt = angular.copy(vm.now);
-            }
+            vm.dateType = vm.projectTmp.desiredDatePeriod;
+            vm.dt = angular.copy(vm.now);
             if (!angular.isUndefined(vm.projectTmp.address) && vm.projectTmp.address) {
                 vm.myAddress = vm.projectTmp.address.address;
                 $scope.address.name = vm.projectTmp.address.address;
@@ -555,63 +571,28 @@
                 vm.newAddrFlag = true;
                 vm.myAddress = "new";
             }
-            if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities) {
-                for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
-                    var dateObject = "J1";
-                    if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd"))
-                        dateObject = "J1";
-                    else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd"))
-                        dateObject = "J2";
-                    else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd"))
-                        dateObject = "J3";
-                    switch (vm.projectTmp.availabilities[i].slot) {
-                        case "7H_9H":
-                            vm[dateObject].c1 = true;
-                            break;
-                        case "9H_12H":
-                            vm[dateObject].c2 = true;
-                            break;
-                        case "12H_14H":
-                            vm[dateObject].c3 = true;
-                            break;
-                        case "14H_16H":
-                            vm[dateObject].c4 = true;
-                            break;
-                        case "16H_18H":
-                            vm[dateObject].c5 = true;
-                            break;
-                        case "18H_20H":
-                            vm[dateObject].c6 = true;
-                            break;
-                        case "AFTER_20H":
-                            vm[dateObject].c7 = true;
-                            break;
-                        case "ALL_DAY":
-                            vm[dateObject].c1 = true;
-                            vm.all(vm[dateObject]);
-                            break;
-                    }
-
-                }
-            }
-            else {
-                vm.dateSelected = false;
-
-                switch (vm.projectTmp.desiredDatePeriod) {
-                    case "SPECIFIC":
-                        vm.child0 = "activate";
-                        vm.dateSelected = true;
-                        break;
-                    case "WITHIN_A_WEEK":
-                        vm.child1 = "activate";
-                        break;
-                    case "WITHIN_A_MONTH":
-                        vm.child2 = "activate";
-                        break;
-                    case "NONE":
-                        vm.child3 = "activate";
-                        break;
-                }
+            vm.dateSelected = false;
+            switch (vm.projectTmp.desiredDatePeriod) {
+                case "SPECIFIC":
+                    vm.child0 = "activate";
+                    vm.dateSelected = true;
+                    vm.projectTmp.desiredDatePeriod = "SPECIFIC";
+                    vm.dt = vm.projectTmp.desiredDate;
+                    break;
+                case "WITHIN_A_WEEK":
+                    vm.child1 = "activate";
+                    vm.projectTmp.desiredDatePeriod = "WITHIN_A_WEEK";
+                    vm.dt = vm.projectTmp.desiredDate;
+                    break;
+                case "WITHIN_A_MONTH":
+                    vm.child2 = "activate";
+                    vm.projectTmp.desiredDatePeriod = "WITHIN_A_MONTH";
+                    vm.dt = vm.projectTmp.desiredDate;
+                    break;
+                case "NONE":
+                    vm.projectTmp.desiredDatePeriod = "NONE";
+                    vm.child3 = "activate";
+                    break;
             }
         }
 
