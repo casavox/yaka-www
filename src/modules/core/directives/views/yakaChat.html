@@ -52,19 +52,23 @@
         </button>
     </div>
 
-    <div class="lv-footer ms-reply">
+    <div class="lv-footer ms-reply" data-ng-class="{'pointer-not-allowed': disableSending}">
         <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
                 ngf-accept="'image/*'" ngf-max-size="5MB"
-                data-ng-disabled="disableSending">
+                data-ng-disabled="disableSending"
+                data-ng-class="{'pointer-not-allowed': disableSending}">
             <i class="zmdi zmdi-attachment-alt"
                data-ng-class="{'c-grey': disableSending}"></i>
         </button>
 
-        <textarea data-ng-model="newMessage.text" placeholder="Entrez votre message"
-                  data-ng-disabled="disableSending"></textarea>
+        <textarea data-ng-model="newMessage.text"
+                  placeholder="{{disableSending ? 'Cette discussion est close' : 'Entrez votre message'}}"
+                  data-ng-disabled="disableSending"
+                  data-ng-class="{'pointer-not-allowed': disableSending}"></textarea>
 
         <button data-ng-click="sendMessage()"
-                data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)">
+                data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)"
+                data-ng-class="{'pointer-not-allowed': disableSending}">
             <i class="zmdi zmdi-mail-send"
                data-ng-class="{'c-grey': disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)}"></i>
         </button>
