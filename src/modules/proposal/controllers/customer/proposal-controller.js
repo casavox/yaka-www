@@ -112,6 +112,8 @@
                         function (res) {
                             alertMsg.send("Vous avez indiqué que les travaux étaient terminés", "info");
                             loadProposal();
+                            $rootScope.rating = false;
+                            $rootScope.rate_watcher = !$rootScope.rate_watcher;
                         }, function () {
                             alertMsg.send("Impossible d'indiquer que les travaux sont terminés", "danger");
                         }

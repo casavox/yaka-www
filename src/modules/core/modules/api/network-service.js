@@ -195,6 +195,9 @@
                 else if (data.type == "SMALL_PROJECT")
                     httpService.put(baseUrl + '/pro/proposals/small/' + data.id, data).success(success).error(error);
             },
+            profilePUT: function (data, success, error) {
+                httpService.put(baseUrl + '/me/profile', data).success(success).error(error)
+            },
             proProfilePUT: function (data, success, error) {
                 httpService.put(baseUrl + '/pro/me/profile', data).success(success).error(error)
             },

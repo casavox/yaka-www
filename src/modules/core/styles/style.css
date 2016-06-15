@@ -3181,6 +3181,11 @@ md-input-container {
     width: 70px;
     position: relative;
     left: calc(50% - 35px);
+    top: 60px;
+}
+
+.img-profile-pro {
+    top: 5px;
 }
 
 /* aspect au focus de l'élément */
@@ -4978,7 +4983,7 @@ ul[rn-carousel-buffered] > li {
     font-size: 18px;
     display: inline-block;
     position: relative;
-    top: -13px;
+    top: 1px;
     margin-left: 5px;
 }
 

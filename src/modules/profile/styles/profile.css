@@ -14,3 +14,9 @@
 .proCommentCounter {
     float: right;
 }
+
+.profileAvatarEditButton {
+    position: absolute;
+    right: -13px;
+    bottom: -13px;
+}
