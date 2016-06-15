@@ -126,5 +126,26 @@
             $rootScope.rating = false;
             $rootScope.rate_watcher = !$rootScope.rate_watcher;
         };
+
+        vm.getWhen = function () {
+            /* handle emergency slots here*/
+            if (!angular.isUndefined(vm.proposal.project)) {
+                switch (vm.proposal.project.desiredDatePeriod) {
+                    case "SPECIFIC":
+                        return "autour du " + moment(vm.proposal.project.desiredDate).format("D MMMM");
+                    case "WITHIN_A_WEEK":
+                        return "dans la semaine autour du " + moment(vm.proposal.project.desiredDate).format("D MMMM");
+                    case "WITHIN_A_MONTH":
+                        return "dans le mois autour du " + moment(vm.proposal.project.desiredDate).format("D MMMM");
+                    case "NONE":
+                        return 'dès que possible';
+                }
+            }
+        };
+
+        vm.projectDetails = function () {
+            $state.go('project', {projectId: vm.proposal.project.id});
+        }
+
     }
 })();
