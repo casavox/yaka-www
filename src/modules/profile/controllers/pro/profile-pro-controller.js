@@ -241,10 +241,8 @@
 
         setTimeout(function () {
             loadMap();
-            console.log("Loaded map");
             setTimeout(function () {
                 displayWorkArea();
-                console.log("Displayed WorkArea");
             }, 500);
         }, 1000);
 
@@ -266,9 +264,7 @@
                 };
                 vm.circle.radius = vm.workArea.radius;
                 vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
-                console.log("displayWorkArea OK");
             } else {
-                console.log("displayWorkArea KO");
             }
         }
 
