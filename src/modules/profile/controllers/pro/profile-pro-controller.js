@@ -264,7 +264,7 @@
                 };
                 vm.circle.radius = vm.workArea.radius;
                 vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
-            } else {
+                $scope.$applyAsync();
             }
         }
 
