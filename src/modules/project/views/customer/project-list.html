@@ -1,5 +1,5 @@
 <header id="header" data-current-skin='lightblue' ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -71,16 +71,15 @@
                         <span>En attente de propositions de professionels...</span>
                     </div>
                     <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
-                        <div class="card-body p-l-25">
-                            <span>Choisissez un professionnel pour votre projet.</span>
-                        <span ng-show="p.proposals.length == 1">
-                            <br>Vous avez reçu <b>1 proposition</b>
-                        </span>
-                        <span ng-show="p.proposals.length > 1">
-                            <br>Vous avez reçu <b>{{p.proposals.length}} propositions</b>
-                        </span>
+                        <div class="card-body p-l-25 p-t-0">
+                            <span ng-show="p.proposals.length == 1">
+                                Vous avez reçu <b>1 proposition</b>
+                            </span>
+                            <span ng-show="p.proposals.length > 1">
+                                Vous avez reçu <b>{{p.proposals.length}} propositions</b>
+                            </span>
                         </div>
-                        <div class="card-body p-l-25 p-r-30 p-t-15 p-b-20">
+                        <div class="card-body p-l-25 p-r-30 p-t-10 p-b-20">
                             <ul ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
                                 <li ng-show="!p.unreadMessages" class="wa-stats">
                                     <span><i class="zmdi zmdi-comment-alt-text c-gray zmdi-hc-fw"></i></span>
@@ -95,9 +94,6 @@
                                         <div class="lv-avatar bgm-bluegray pull-left on-avatar">
                                             +{{p.proposals.length-3}}
                                         </div>
-                                        <!--<div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
-                                            <span>{{p.proposals.length-3}} autre(s)</span>
-                                        </div>-->
                                     </div>
                                 </li>
                                 <li class="wa-users m-r-5" data-ng-repeat="proposal in p.proposals | limitTo:4"
