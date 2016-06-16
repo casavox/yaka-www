@@ -62,7 +62,8 @@
         vm.J2.date.setDate(vm.J2.date.getDate() + 1);
         vm.J3.date.setDate(vm.J3.date.getDate() + 2);
         vm.datepickerOptions = {
-            showWeeks: false
+            showWeeks: false,
+            customClass: getDayClass
         };
         vm.all = all;
         vm.getSlot = getSlot;
@@ -937,13 +938,21 @@
         function setMinMaxDate() {
             var minDate = new Date();
             var maxDate = new Date();
-            if (vm.projectTmp.desiredDatePeriod != "NONE" && moment(vm.projectTmp.desiredDate).isAfter(minDate)) {
+            if (vm.projectTmp.desiredDatePeriod == "SPECIFIC" && moment(vm.projectTmp.desiredDate).isAfter(minDate)) {
+                // desiredDate is a start date
                 minDate = new Date(vm.projectTmp.desiredDate);
             }
             vm.dt = minDate;
             maxDate.setDate(minDate.getDate() + 91);
             vm.datepickerOptions.minDate = minDate;
             vm.datepickerOptions.maxDate = maxDate;
+        }
+
+        function getDayClass(date, mode) {
+            if (date.mode === 'day' && moment(date.date).isSame(moment(vm.projectTmp.desiredDate), 'day')) {
+                return 'desiredDate';
+            }
+            return '';
         }
 
         function getWhen() {
@@ -961,7 +970,7 @@
                     case "WITHIN_A_WEEK":
                         return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_MONTH":
-                        return "dans le mois avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "NONE":
                     default:
                         return 'dès que possible';

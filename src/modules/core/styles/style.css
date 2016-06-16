@@ -2802,7 +2802,7 @@ md-input-container {
 
 .custom-date > table > thead > tr > th > button {
     border-radius: 0;
-    color: white;
+    color: white !important;
     background-color: #03A9F4;
     background-image: none !important;
     border: none !important;
@@ -2810,11 +2810,28 @@ md-input-container {
     margin-bottom: 10px !important;
 }
 
+.btn-info.active,
+.open > .dropdown-toggle.btn-info {
+    color: white !important;
+    background-color: #03A9F4 !important;
+    border-color: none !important;
+}
+
 .custom-date > table > tbody > tr > td > button {
     border-radius: 0;
     background-image: none !important;
     border: none !important;
     box-shadow: none !important;
+}
+
+.desiredDate button {
+    background-color: #FF5722 !important;
+    border-radius: 50% !important;
+    color: white !important;
+}
+
+.desiredDate button span {
+    color: white !important;
 }
 
 .custom-li-date {
