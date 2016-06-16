@@ -154,7 +154,7 @@
                     if (vm.offer.date && vm.offer.date.date) {
                         formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
                     }
-                    networkService.proposalSmallPOST(formData, function (res) {
+                    networkService.proposalPOST(formData, function (res) {
                         alertMsg.send("Proposition envoyée avec succès", "success");
                         $state.go('prodashboard');
                     }, function (res) {
