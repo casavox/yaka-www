@@ -39,6 +39,7 @@
         vm.default = angular.copy(vm.dt);
         vm.maxDate = new Date();
         vm.maxDate.setDate(vm.dt.getDate() + 180);
+        vm.desiredDateMonth = moment().add(1, 'months').toDate();
         vm.J1 = {date: new Date()};
         vm.time = vm.J1.date.getHours();
         vm.J2 = {date: new Date()};
