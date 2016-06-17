@@ -653,14 +653,14 @@
 
         function selectPrice(type) {
             vm.error.price = vm.error.price || {};
-            if (vm.myPrice > 10) {
+            if (vm.myPrice > 10 && vm.myPrice < 100000) {
                 vm.proposalTmp.price = vm.myPrice;
                 vm.proposalTmp.priceType = type;
                 vm.myPriceFlag = false;
                 vm.error.price.flag = false;
             }
             else {
-                vm.error.price.message = "Vous devez mettre un tarif réaliste";
+                vm.error.price.message = "Merci de proposer un tarif réaliste - ou de ne rien mettre";
                 vm.error.price.flag = true;
             }
         }
@@ -702,7 +702,7 @@
             vm.proposal = res;
 
             if (vm.proposal.status != 'START') {
-                $state.go("pro-job", {'proposalId': vm.proposal.id});
+                $state.go("pro-proposal", {'proposalId': vm.proposal.id});
             }
 
             vm.proposalTmp = angular.copy(vm.proposal);
@@ -949,7 +949,7 @@
         }
 
         function getDayClass(date, mode) {
-            if (date.mode === 'day' && moment(date.date).isSame(moment(vm.projectTmp.desiredDate), 'day')) {
+            if (vm.projectTmp && date.mode === 'day' && moment(date.date).isSame(moment(vm.projectTmp.desiredDate), 'day')) {
                 return 'desiredDate';
             }
             return '';
