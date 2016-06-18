@@ -39,7 +39,6 @@
         vm.getStartDate = getStartDate;
         vm.editPrice = editPrice;
         vm.editDate = editDate;
-        vm.decline = decline;
         vm.declineProposal = declineProposal;
         vm.declineFlag = false;
         vm.declineComment = "";
@@ -109,11 +108,33 @@
         }
 
         function declineProposal() {
-
-        }
-
-        function decline() {
-            vm.declineFlag = true;
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus revenir sur votre décision, le client en sera immédiatement informé",
+                type: "warning",
+                //type: "input", --> pas inclut dans template, et visiblement en 'standard'' sweetalert et sweetalert2 pas compatible IE9/IE10
+                showCancelButton: true,
+                confirmButtonColor: "#F44336",
+                confirmButtonText: "Oui, supprimer ma proposition",
+                cancelButtonText: "Non, maintenir ma proposition",
+                animation: "slide-from-top",
+                //inputPlaceholder: "Restez en bon terme avec le client, expliquez votre décision (30 à 140 caractères): Désolé, je ne suis malheureusement plus disponible / Je n'ai pas assez d'info pour m'engager / Mes compétences ne correspondent pas exactement a votre besoin / ..."
+            }, function (isConfirm) {
+                /*if (inputValue.length < 30 || inputValue.length < 150) {
+                    swal.showInputError("Restez en bon terme avec le client en expliquant votre décision : 30 à 140 caractères");
+                    return false
+                }*/
+                if (isConfirm) {
+                    networkService.proProposalDeclinePOST($stateParams.proposalId,
+                        function (res) {
+                            alertMsg.send("Votre proposition à bien été supprimée", "info");
+                            $state.go("pro-proposals");
+                        }, function () {
+                            alertMsg.send("Impossible de supprimer la proposition (contactez le support)", "danger");
+                        }
+                    );
+                }
+            });
         }
 
         function save() {
@@ -136,228 +157,7 @@
 
         function editDate() {
             if (vm.editFlag) {
-                if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities) {
-                    vm.disabledDay(vm.J1);
-                    vm.disabledDay(vm.J2);
-                    vm.disabledDay(vm.J3);
-                    vm.unSelectOther();
-                    for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
-                        switch (vm.projectTmp.availabilities[i].slot) {
-                            case "7H_9H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c1Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c1Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c1Disabled = '';
-                                }
-                                break;
-                            case "9H_12H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c2Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c2Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c2Disabled = '';
-                                }
-                                break;
-                            case "12H_14H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c3Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c3Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c3Disabled = '';
-                                }
-                                break;
-                            case "14H_16H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c4Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c4Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c4Disabled = '';
-                                }
-                                break;
-                            case "16H_18H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c5Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c5Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c5Disabled = '';
-                                }
-                                break;
-                            case "18H_20H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c6Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c6Disabled = '';
-                                    vm.J1.c1 = true;
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c6Disabled = '';
-                                }
-                                break;
-                            case "AFTER_20H":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.c7Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.c7Disabled = '';
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.c7Disabled = '';
-                                }
-                                break;
-                            case "ALL_DAY":
-                                if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                    vm.J1.allDisabled = '';
-                                    enabledDay(vm.J1);
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                    vm.J2.allDisabled = '';
-                                    enabledDay(vm.J2);
-                                }
-                                else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                    vm.J3.allDisabled = '';
-                                    enabledDay(vm.J3);
-                                }
-                                break;
-                        }
-                    }
-                    switch (vm.proposalTmp.availability.slot) {
-                        case "7H_9H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c1Disabled = '';
-                                vm.J1.c1 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c1Disabled = '';
-                                vm.J2.c1 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c1Disabled = '';
-                                vm.J3.c1 = true;
-                            }
-                            break;
-                        case "9H_12H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c2Disabled = '';
-                                vm.J1.c2 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c2Disabled = '';
-                                vm.J2.c2 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c2Disabled = '';
-                                vm.J3.c2 = true;
-                            }
-                            break;
-                        case "12H_14H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c3Disabled = '';
-                                vm.J1.c3 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c3Disabled = '';
-                                vm.J2.c3 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c3Disabled = '';
-                                vm.J3.c3 = true;
-                            }
-                            break;
-                        case "14H_16H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c4Disabled = '';
-                                vm.J1.c4 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c4Disabled = '';
-                                vm.J2.c4 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c4Disabled = '';
-                                vm.J3.c4 = true;
-                            }
-                            break;
-                        case "16H_18H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c5Disabled = '';
-                                vm.J1.c5 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c5Disabled = '';
-                                vm.J2.c5 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c5Disabled = '';
-                                vm.J3.c5 = true;
-                            }
-                            break;
-                        case "18H_20H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c6Disabled = '';
-                                vm.J1.c6 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c6Disabled = '';
-                                vm.J2.c6 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c6Disabled = '';
-                                vm.J3.c6 = true;
-                            }
-                            break;
-                        case "AFTER_20H":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c7Disabled = '';
-                                vm.J1.c7 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c7Disabled = '';
-                                vm.J2.c7 = true;
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c7Disabled = '';
-                                vm.J3.c7 = true;
-                            }
-                            break;
-                        case "ALL_DAY":
-                            if (vm.proposalTmp.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.allDisabled = '';
-                                vm.J1.all = true;
-                                enabledDay(vm.J1);
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.allDisabled = '';
-                                vm.J2.all = true;
-                                enabledDay(vm.J2);
-                            }
-                            else if (vm.proposalTmp.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.allDisabled = '';
-                                vm.J3.all = true;
-                                enabledDay(vm.J3);
-                            }
-                            break;
-                    }
-                }
-                else {
-                    vm.dt = new Date(vm.proposalTmp.startDate);
-                }
+                vm.dt = new Date(vm.proposalTmp.startDate);
                 vm.myDateFlag = true;
             }
         }
@@ -393,7 +193,7 @@
         }
 
         function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 0 && vm.offer.comment.indexOf(' ') > -1 && ((vm.projectTmp.type == "EMERGENCY" && vm.offer.price.price && vm.offer.date.date) || (vm.projectTmp.type != "EMERGENCY"))) {
+            if (vm.offer.comment && vm.offer.comment.length > 30 && vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.date.date = vm.offer.date.date || null;
                 vm.offer.comment = vm.offer.comment || "";
                 var formData = {
@@ -402,31 +202,14 @@
                     priceType: $filter('uppercase')(vm.offer.price.type),
                     comment: vm.offer.comment
                 };
-                if (vm.projectTmp.type == 'EMERGENCY') {
-                    formData.availability = {
-                        date: $filter('date')(vm.offer.date.date, "yyyy-MM-dd"),
-                        slot: vm.offer.date.slot
-                    };
-                    networkService.proposalPOST(formData, function (res) {
-                        alertMsg.send("Proposition envoyée avec succès", "success");
-                    }, function (res) {
-                        alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                    });
-                }
-                else {
-                    formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
-                    networkService.proposalPOST(formData, function (res) {
-                        alertMsg.send("Proposition envoyée avec succès", "success");
-                    }, function (res) {
-                        alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                    });
-                }
+                formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
+                networkService.proposalPOST(formData, function (res) {
+                    alertMsg.send("Proposition envoyée avec succès", "success");
+                }, function (res) {
+                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
+                });
             } else {
-                if (vm.projectTmp.type == "EMERGENCY")
-                    vm.error.comment.message = "The comment is mandatory";
-                else {
-                    vm.error.comment.message = "Price, Start date and comment are mandatory"
-                }
+                vm.error.comment.message = "Vous devez accompagner votre proposition d'un premier message au client (30 caractères minimums)"
                 vm.error.comment.falg = true;
             }
         }
@@ -707,231 +490,7 @@
 
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);
-            if (vm.projectTmp.type != "EMERGENCY") {
-                vm.dateType = vm.projectTmp.desiredDatePeriod;
-                vm.dt = new Date(vm.projectTmp.desiredDate);
-            }
-            if (vm.projectTmp.type == "EMERGENCY" && vm.projectTmp.availabilities) {
-                vm.disabledDay(vm.J1);
-                vm.disabledDay(vm.J2);
-                vm.disabledDay(vm.J3);
-                for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
-                    switch (vm.projectTmp.availabilities[i].slot) {
-                        case "7H_9H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c1Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c1Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c1Disabled = '';
-                            }
-                            break;
-                        case "9H_12H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c2Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c2Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c2Disabled = '';
-                            }
-                            break;
-                        case "12H_14H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c3Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c3Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c3Disabled = '';
-                            }
-                            break;
-                        case "14H_16H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c4Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c4Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c4Disabled = '';
-                            }
-                            break;
-                        case "16H_18H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c5Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c5Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c5Disabled = '';
-                            }
-                            break;
-                        case "18H_20H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c6Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c6Disabled = '';
-                                vm.J1.c1 = true;
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c6Disabled = '';
-                            }
-                            break;
-                        case "AFTER_20H":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.c7Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.c7Disabled = '';
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.c7Disabled = '';
-                            }
-                            break;
-                        case "ALL_DAY":
-                            if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                                vm.J1.allDisabled = '';
-                                enabledDay(vm.J1);
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                                vm.J2.allDisabled = '';
-                                enabledDay(vm.J2);
-                            }
-                            else if (vm.projectTmp.availabilities[i].date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                                vm.J3.allDisabled = '';
-                                enabledDay(vm.J3);
-                            }
-                            break;
-                    }
-                }
-                switch (vm.proposal.availability.slot) {
-                    case "7H_9H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c1Disabled = '';
-                            vm.J1.c1 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c1Disabled = '';
-                            vm.J2.c1 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c1Disabled = '';
-                            vm.J3.c1 = true;
-                        }
-                        break;
-                    case "9H_12H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c2Disabled = '';
-                            vm.J1.c2 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c2Disabled = '';
-                            vm.J2.c2 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c2Disabled = '';
-                            vm.J3.c2 = true;
-                        }
-                        break;
-                    case "12H_14H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c3Disabled = '';
-                            vm.J1.c3 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c3Disabled = '';
-                            vm.J2.c3 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c3Disabled = '';
-                            vm.J3.c3 = true;
-                        }
-                        break;
-                    case "14H_16H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c4Disabled = '';
-                            vm.J1.c4 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c4Disabled = '';
-                            vm.J2.c4 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c4Disabled = '';
-                            vm.J3.c4 = true;
-                        }
-                        break;
-                    case "16H_18H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c5Disabled = '';
-                            vm.J1.c5 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c5Disabled = '';
-                            vm.J2.c5 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c5Disabled = '';
-                            vm.J3.c5 = true;
-                        }
-                        break;
-                    case "18H_20H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c6Disabled = '';
-                            vm.J1.c6 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c6Disabled = '';
-                            vm.J2.c6 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c6Disabled = '';
-                            vm.J3.c6 = true;
-                        }
-                        break;
-                    case "AFTER_20H":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.c7Disabled = '';
-                            vm.J1.c7 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.c7Disabled = '';
-                            vm.J2.c7 = true;
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.c7Disabled = '';
-                            vm.J3.c7 = true;
-                        }
-                        break;
-                    case "ALL_DAY":
-                        if (vm.proposal.availability.date == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                            vm.J1.allDisabled = '';
-                            vm.J1.all = true;
-                            enabledDay(vm.J1);
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                            vm.J2.allDisabled = '';
-                            vm.J2.all = true;
-                            enabledDay(vm.J2);
-                        }
-                        else if (vm.proposal.availability.date == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                            vm.J3.allDisabled = '';
-                            vm.J3.all = true;
-                            enabledDay(vm.J3);
-                        }
-                        break;
-                }
-            }
-            else {
-                vm.dt = new Date(vm.proposal.startDate);
-            }
+            vm.dateType = vm.projectTmp.desiredDatePeriod;
             setMinMaxDate();
         }
 

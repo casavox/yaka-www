@@ -60,7 +60,7 @@
                             </div>
                             <div class="description-action-btn"
                                  ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'"
-                                 ng-click="vm.decline()">
+                                 ng-click="vm.declineProposal()">
                                 REFUSER
                             </div>
                             <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.save()">
@@ -213,41 +213,6 @@
             </div>
         </div>
     </div>
-
-    <div class="popUp" ng-show="vm.declineFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.declineFlag = false"></span>
-                <h4>Decline</h4>
-
-                <p class="info-popUp">
-                    Caution : Do you really want to refuse this offer ?
-                </p>
-
-                <p class="info-popUp-comp">
-                    Say why :
-                </p>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <textarea class="custom-textarea-red w-100p placeholder-xs mb-10"
-                                  placeholder="I am sorry but my schedule has changed so I wouldn't be available without more detail I can't give an engagement ..."
-                                  ng-model="vm.declineComment"></textarea>
-                    </div>
-                </div>
-
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.declineProposal()">
-                    CONFIRMER LE REFUS
-                </div>
-                <div ng-click="vm.declineFlag = false">
-                    RETOUR
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="popUp" ng-show="vm.myPriceFlag">
         <div class="popUp-container center-middle">
