@@ -2803,11 +2803,15 @@ md-input-container {
 .custom-date > table > thead > tr > th > button {
     border-radius: 0;
     color: white !important;
-    background-color: #03A9F4;
+    background-color: #03A9F4 !important;
     background-image: none !important;
     border: none !important;
     box-shadow: none !important;
     margin-bottom: 10px !important;
+}
+.custom-date > table > thead > tr > th > button:hover {
+    color: #03A9F4 !important;
+    background-color: white !important;
 }
 
 .btn-info.active,

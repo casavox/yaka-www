@@ -149,10 +149,7 @@
         }
 
         function getStartDate() {
-            if (!angular.isUndefined(vm.proposalTmp) && vm.proposalTmp && vm.proposalTmp.availability && vm.proposalTmp.availability.date && vm.proposalTmp.availability.slot) {
-                return $filter('date')(new Date(vm.proposalTmp.availability.date), "dd EEE yyyy") + " " + vm.proposalTmp.availability.slot;
-            }
-            else if (!angular.isUndefined(vm.proposalTmp) && vm.proposalTmp.startDate) {
+            if (!angular.isUndefined(vm.proposalTmp) && vm.proposalTmp.startDate) {
                 return $filter('date')(new Date(vm.proposalTmp.startDate), "dd MMM.  yyyy");
             }
         }
@@ -204,7 +201,7 @@
                 vm.error.price.flag = false;
             }
             else {
-                vm.error.price.message = "Merci de proposer un tarif réaliste - ou de ne rien mettre";
+                vm.error.price.message = "Merci de proposer un tarif réaliste - ou de ne pas en mettre";
                 vm.error.price.flag = true;
             }
         }
@@ -231,12 +228,11 @@
         function setMinMaxDate() {
             var minDate = new Date();
             var maxDate = new Date();
-            if (vm.projectTmp.desiredDatePeriod == "SPECIFIC" && moment(vm.projectTmp.desiredDate).isAfter(minDate)) {
-                // desiredDate is a start date
-                minDate = new Date(vm.projectTmp.desiredDate);
-            }
-            vm.dt = minDate;
             maxDate.setDate(minDate.getDate() + 91);
+            if (vm.projectTmp.desiredDatePeriod == "SPECIFIC" && moment(vm.projectTmp.desiredDate).isAfter(minDate)) {
+                // move date picker marker to desiredDate
+                vm.dt = new Date(vm.projectTmp.desiredDate);
+            }
             vm.datepickerOptions.minDate = minDate;
             vm.datepickerOptions.maxDate = maxDate;
         }
