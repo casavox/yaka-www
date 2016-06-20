@@ -12762,6 +12762,20 @@ a.thumbnail.active {
   vertical-align: bottom;
   line-height: 100%;
 }
+
+.ms-reply-modal {
+    box-shadow: none !important;
+    text-align: left;
+    border: 1px solid #FF9800;
+    padding: 0;
+}
+.ms-reply-modal  textarea {
+    width: calc(100% - 60px) !important;
+}
+.ms-reply-modal button:not([disabled]) {
+    background: #FF9800 !important;
+    color: white !important;
+}
 .ms-reply {
   box-shadow: 0 -20px 20px -5px #ffffff;
   position: relative;

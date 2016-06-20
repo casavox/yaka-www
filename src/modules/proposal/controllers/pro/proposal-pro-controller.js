@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
+    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -22,7 +22,6 @@
         vm.scrollBottom = 0;
         vm.showChat = false;
         vm.getWhen = getWhen;
-        vm.dateDiff = dateDiff;
         vm.selectImagePreview = selectImagePreview;
         vm.marker = {
             coords: {},
@@ -31,7 +30,6 @@
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.sendOffer = sendOffer;
-        vm.disabledDay = disabledDay;
         vm.getTags = getTags;
         vm.edit = edit;
         vm.cancel = cancel;
@@ -39,10 +37,9 @@
         vm.getStartDate = getStartDate;
         vm.editPrice = editPrice;
         vm.editDate = editDate;
-        vm.declineProposal = declineProposal;
+        vm.cancelProposalModal = cancelProposalModal;
+        vm.cancelProposal = cancelProposal;
         vm.declineFlag = false;
-        vm.declineComment = "";
-        vm.unSelectOther = unSelectOther;
         vm.imagePreviewFlag = false;
         vm.myPriceFlag = false;
         vm.myDateFlag = false;
@@ -52,20 +49,10 @@
         vm.dt = new Date();
         vm.now = new Date();
         vm.default = angular.copy(vm.dt);
-        vm.J1 = {date: new Date()};
-        vm.time = vm.J1.date.getHours();
-        vm.initHours = initHours;
-        vm.initHours();
-        vm.J2 = {date: new Date()};
-        vm.J3 = {date: new Date()};
-        vm.J2.date.setDate(vm.J2.date.getDate() + 1);
-        vm.J3.date.setDate(vm.J3.date.getDate() + 2);
         vm.datepickerOptions = {
             showWeeks: false,
             customClass: getDayClass
         };
-        vm.all = all;
-        vm.getSlot = getSlot;
         vm.error = {};
 
         uiGmapGoogleMapApi.then(function (maps) {
@@ -107,35 +94,25 @@
             $state.go('home');
         }
 
-        function declineProposal() {
-            swal({
-                title: "Êtes-vous sûr ?",
-                text: "Vous ne pourrez plus revenir sur votre décision, le client en sera immédiatement informé",
-                type: "warning",
-                //type: "input", --> pas inclut dans template, et visiblement en 'standard'' sweetalert et sweetalert2 pas compatible IE9/IE10
-                showCancelButton: true,
-                confirmButtonColor: "#F44336",
-                confirmButtonText: "Oui, supprimer ma proposition",
-                cancelButtonText: "Non, maintenir ma proposition",
-                animation: "slide-from-top",
-                //inputPlaceholder: "Restez en bon terme avec le client, expliquez votre décision (30 à 140 caractères): Désolé, je ne suis malheureusement plus disponible / Je n'ai pas assez d'info pour m'engager / Mes compétences ne correspondent pas exactement a votre besoin / ..."
-            }, function (isConfirm) {
-                /*if (inputValue.length < 30 || inputValue.length < 150) {
-                    swal.showInputError("Restez en bon terme avec le client en expliquant votre décision : 30 à 140 caractères");
-                    return false
-                }*/
-                if (isConfirm) {
-                    networkService.proProposalDeclinePOST($stateParams.proposalId,
-                        function (res) {
-                            alertMsg.send("Votre proposition à bien été supprimée", "info");
-                            $state.go("pro-proposals");
-                        }, function () {
-                            alertMsg.send("Impossible de supprimer la proposition (contactez le support)", "danger");
-                        }
-                    );
-                }
-            });
+        function cancelProposal(cancelProposalMessage) {
+            if (cancelProposalMessage && cancelProposalMessage.length >= 20) {
+                networkService.proProposalDeclinePOST($stateParams.proposalId,
+                    function (res) {
+                        //@victor todo send 'cancelProposalMessage' as pro chat message
+                        alertMsg.send("Votre proposition à bien été supprimée", "info");
+                        $state.go("pro-proposals");
+                    }, function () {
+                        alertMsg.send("Impossible de supprimer la proposition (contactez le support)", "danger");
+                    }
+                );
+            } else {
+                alertMsg.send("Vous devez accompagner la suppression de votre proposition d'un message au client (30 caractères minimum)", "danger");
+            }
         }
+
+        function cancelProposalModal() {
+            modalService.cancelProposal('cancelProposalContent.html', 'animated zoomIn', vm);
+        };
 
         function save() {
             vm.proposalTmp.type = vm.project.type;
@@ -216,222 +193,6 @@
 
         function selectDate() {
             vm.proposalTmp.startDate = $filter('date')(vm.dt, 'yyyy-MM-dd');
-            if (vm.projectTmp.type == 'EMERGENCY') {
-                var tmp = [];
-                initDate(vm.J1, tmp);
-                initDate(vm.J2, tmp);
-                initDate(vm.J3, tmp);
-                if (tmp.length > 0) {
-                    vm.proposalTmp.availability.date = $filter('date')(tmp[0].date, "yyyy-MM-dd");
-                    vm.proposalTmp.availability.slot = tmp[0].slot;
-                    vm.myDateFlag = false;
-                }
-            }
-        }
-
-        function getSlot(slot) {
-            slot = slot || null;
-            switch (slot) {
-                case "7H_9H":
-                    return "7h";
-                    break;
-                case "9H_12H":
-                    return "9h";
-                    break;
-                case "12H_14H":
-                    return "12h";
-                    break;
-                case "14H_16H":
-                    return "14h";
-                    break;
-                case "16H_18H":
-                    return "16h";
-                    break;
-                case "18H_20H":
-                    return "18h";
-                    break;
-                case "AFTER_20H":
-                    return "20h";
-                    break;
-                default:
-                    return "";
-            }
-        }
-
-        function all(j) {
-            if (j.all == true) {
-                j.all = true;
-                j.c1 = true;
-                j.c2 = true;
-                j.c3 = true;
-                j.c4 = true;
-                j.c5 = true;
-                j.c6 = true;
-                j.c7 = true;
-            }
-            else {
-                j.all = false;
-                j.c1 = false;
-                j.c2 = false;
-                j.c3 = false;
-                j.c4 = false;
-                j.c5 = false;
-                j.c6 = false;
-                j.c7 = false;
-            }
-        }
-
-        function disabledDay(j) {
-            j.allDisabled = "checkbox-disabled";
-            j.c1Disabled = "checkbox-disabled";
-            j.c2Disabled = "checkbox-disabled";
-            j.c3Disabled = "checkbox-disabled";
-            j.c4Disabled = "checkbox-disabled";
-            j.c5Disabled = "checkbox-disabled";
-            j.c6Disabled = "checkbox-disabled";
-            j.c7Disabled = "checkbox-disabled";
-        }
-
-        function enabledDay(j) {
-            j.allDisabled = "";
-            j.c1Disabled = "";
-            j.c2Disabled = "";
-            j.c3Disabled = "";
-            j.c4Disabled = "";
-            j.c5Disabled = "";
-            j.c6Disabled = "";
-            j.c7Disabled = "";
-        }
-
-        function unSelectOther() {
-            vm.J1.all = false;
-            vm.all(vm.J1);
-            vm.J2.all = false;
-            vm.all(vm.J2);
-            vm.J3.all = false;
-            vm.all(vm.J3);
-        }
-
-        function initDate(j, tab) {
-            var tmp = "";
-            if (j.all && j.allDisabled != "checkbox-disabled") {
-                tmp = "ALL_DAY";
-                tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
-            }
-            else {
-                for (var i = 0; i < 7; i++) {
-                    if (j["c" + (i + 1)] && j["c" + (i + 1) + "Disabled"] != "checkbox-disabled") {
-                        if (i == 0)
-                            tmp = "7H_9H";
-                        else if (i == 1) {
-                            tmp = "9H_12H";
-                        }
-                        else if (i == 2) {
-                            tmp = "12H_14H";
-                        }
-                        else if (i == 3) {
-                            tmp = "14H_16H";
-                        }
-                        else if (i == 4) {
-                            tmp = "16H_18H";
-                        }
-                        else if (i == 5) {
-                            tmp = "18H_20H"
-                        }
-                        else if (i == 6) {
-                            tmp = "AFTER_20H";
-                        }
-                        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: tmp});
-                    }
-                }
-            }
-        }
-
-        function initHours() {
-            if (vm.time >= 9) {
-                if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                    vm.J1.c1Disabled = "checkbox-disabled";
-                    vm.J1.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                    vm.J2.c1Disabled = "checkbox-disabled";
-                    vm.J2.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                    vm.J3.c1Disabled = "checkbox-disabled";
-                    vm.J3.allDisabled = "checkbox-disabled";
-                }
-            }
-            if (vm.time >= 12) {
-                if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                    vm.J1.c2Disabled = "checkbox-disabled";
-                    vm.J1.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                    vm.J2.c2Disabled = "checkbox-disabled";
-                    vm.J2.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                    vm.J3.c2Disabled = "checkbox-disabled";
-                    vm.J3.allDisabled = "checkbox-disabled";
-                }
-            }
-            if (vm.time >= 14) {
-                if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                    vm.J1.c3Disabled = "checkbox-disabled";
-                    vm.J1.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                    vm.J2.c3Disabled = "checkbox-disabled";
-                    vm.J2.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                    vm.J3.c3Disabled = "checkbox-disabled";
-                    vm.J3.allDisabled = "checkbox-disabled";
-                }
-            }
-            if (vm.time >= 16) {
-                if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                    vm.J1.c4Disabled = "checkbox-disabled";
-                    vm.J1.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                    vm.J2.c4Disabled = "checkbox-disabled";
-                    vm.J2.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                    vm.J3.c4Disabled = "checkbox-disabled";
-                    vm.J3.allDisabled = "checkbox-disabled";
-                }
-            }
-            if (vm.time >= 18) {
-                if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                    vm.J1.c5Disabled = "checkbox-disabled";
-                    vm.J1.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                    vm.J2.c5Disabled = "checkbox-disabled";
-                    vm.J2.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                    vm.J3.c5Disabled = "checkbox-disabled";
-                    vm.J3.allDisabled = "checkbox-disabled";
-                }
-            }
-            if (vm.time >= 20) {
-                if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J1.date, "yyyy-MM-dd")) {
-                    vm.J1.c6Disabled = "checkbox-disabled";
-                    vm.J1.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J2.date, "yyyy-MM-dd")) {
-                    vm.J2.c6Disabled = "checkbox-disabled";
-                    vm.J2.allDisabled = "checkbox-disabled";
-                }
-                else if ($filter('date')(vm.now, "yyyy-MM-dd") == $filter('date')(vm.J3.date, "yyyy-MM-dd")) {
-                    vm.J3.c6Disabled = "checkbox-disabled";
-                    vm.J3.allDisabled = "checkbox-disabled";
-                }
-            }
         }
 
         function selectPrice(type) {
@@ -451,33 +212,6 @@
         function selectImagePreview(media) {
             vm.imgTmpPreview = media;
             vm.imagePreviewFlag = true;
-        }
-
-        function dateDiff(d1, d2) {
-            var h = 0;
-            var d = 0;
-            var m = 0;
-            var min = 0;
-            d1 = new Date(d1).getTime() / 60000;
-            d2 = new Date(d2).getTime() / 60000;
-            var min = new Number(d2 - d1).toFixed(0);
-            if (min > 60) {
-                h = min / 60;
-                if (h > 24) {
-                    d = h / 24;
-                    if (d > 30)
-                        m = d / 30;
-                }
-            }
-            if (m > 0) {
-                return $filter('number')(m, 0) + " mois"
-            }
-            else if (d > 0)
-                return $filter('number')(d, 0) + " jours";
-            else if (h > 0)
-                return $filter('number')(h, 0) + "h";
-            else
-                return $filter('number')(min, 0) + " min";
         }
 
         function succesProjectGET(res) {
@@ -516,13 +250,7 @@
 
         function getWhen() {
             var res = 0;
-            if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.availabilities && vm.projectTmp.availabilities.length > 0) {
-                for (var i = 0; i < vm.projectTmp.availabilities.length; i++) {
-                    res += 1;
-                }
-                return "Emergency : " + res + " slots appointment"
-            }
-            else if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.desiredDatePeriod) {
+            if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.desiredDatePeriod) {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
                         return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
@@ -534,8 +262,7 @@
                     default:
                         return 'dès que possible';
                 }
-            }
-            else {
+            } else {
                 return "";
             }
         }
