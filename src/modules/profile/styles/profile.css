@@ -20,3 +20,7 @@
     right: -13px;
     bottom: -13px;
 }
+
+#profile-main {
+    min-height: auto;
+}

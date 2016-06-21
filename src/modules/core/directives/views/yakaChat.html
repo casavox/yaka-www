@@ -17,7 +17,8 @@
             </div>
             <div class="media-body">
 
-                <div class="ms-item" data-ng-class="{'messageAuto': message.author == 'AUTO'}">
+                <div class="ms-item"
+                     data-ng-class="{'messageAuto': message.author == 'AUTO' || message.author == 'YAKA'}">
 
                     <div class="lightbox photos" data-ng-if="message.cloudinaryPublicId">
                         <div data-ng-repeat="img in createImageArray(message.cloudinaryPublicId)"
@@ -31,7 +32,15 @@
                             </div>
                         </div>
                     </div>
-                    <span class="msg">{{message.text}}</span>
+                    <span class="msg" data-ng-if="message.author != 'AUTO'">{{message.text}}</span>
+                    <span data-ng-if="message.author == 'AUTO'" ng-switch="message.text">
+                        <span class="msg" ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}}</span>
+                        <span class="msg" ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate}}</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate}}</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                    </span>
                 </div>
                 <small class="ms-date">
                     <i class="zmdi zmdi-time" ng-if="!showRight(message)"></i>

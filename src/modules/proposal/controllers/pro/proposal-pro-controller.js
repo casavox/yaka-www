@@ -701,7 +701,7 @@
             vm.proposal = res;
 
             if (vm.proposal.status != 'START') {
-                $state.go("pro-job", {'proposalId': vm.proposal.id});
+                $state.go("pro-proposal", {'proposalId': vm.proposal.id});
             }
 
             vm.proposalTmp = angular.copy(vm.proposal);

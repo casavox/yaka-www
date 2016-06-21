@@ -20,6 +20,14 @@ angular.module('Yaka')
 
                 scope.disableSending = false;
 
+                scope.getProUser = function () {
+                    if ($localStorage.user.professional) {
+                        return scope.userMe;
+                    } else {
+                        return scope.userOther;
+                    }
+                };
+
                 scope.sendMessage = function () {
                     if (scope.disableSending || (!scope.newMessage.text && !scope.newMessage.cloudinaryPublicId)) {
                         return;

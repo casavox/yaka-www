@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
        data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
@@ -11,7 +11,8 @@
                 <div class="card-header card-hover">
                     <div class="media">
                         <div class="pull-left">
-                            <div class="proposalIconBackground lv-img v-icon-{{vm.proposal.project.activities[0].code}}-white">
+                            <div
+                                class="proposalIconBackground lv-img v-icon-{{vm.proposal.project.activities[0].code}}-white">
                             </div>
                         </div>
                         <div class="media-body projectTitleBar">
@@ -153,7 +154,7 @@
                                    user-me="app.getUser()"
                                    user-other="vm.proposal.professional.user"></yaka-chat>
 
-                        <div data-ng-show="!vm.showChat" class="scrollViewProposalDetail">
+                        <div data-ng-show="!vm.showChat">
                             <div class="pmb-block">
                                 <div class="pmbb-header">
                                     <h2>
@@ -283,23 +284,25 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="pmb-block"
                                  ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
                                 <div class="pmbb-header">
                                     <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Portfolio</h2>
                                 </div>
-                                <div class="pmbb-body p-l-30">
-                                    <div class="pmbb-view">
-                                        <div class="lightbox photos">
-                                            <div
-                                                data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                                class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
-                                                ng-repeat="image in vm.proposal.professional.portfolio">
-                                                <div class="lightbox-item p-item">
-                                                    <img
-                                                        ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                                        alt=""/>
-                                                </div>
+                            </div>
+
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <div class="lightbox photos">
+                                        <div
+                                            data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                            class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
+                                            ng-repeat="image in vm.proposal.professional.portfolio">
+                                            <div class="lightbox-item p-item">
+                                                <img
+                                                    ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
                                             </div>
                                         </div>
                                     </div>
