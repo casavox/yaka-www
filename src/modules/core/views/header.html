@@ -50,7 +50,18 @@
                                             {{userchat.chat.proposal.project.address.locality}} -
                                             {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
                                         </div>
-                                        <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
+                                               ng-switch="userchat.chat.messages[0].text">
+                                            <span ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{userchat.chat.messages[0].varPrice}}</span>
+                                            <span ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{userchat.chat.messages[0].varAddress}}</span>
+                                            <span ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                                            <span ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro()"
@@ -71,6 +82,19 @@
                                             {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
                                         </div>
                                         <small class="lv-small">{{userchat.chat.messages[0].text}}</small>
+
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
+                                               ng-switch="userchat.chat.messages[0].text">
+                                            <span ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{userchat.chat.messages[0].varPrice}}</span>
+                                            <span ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{userchat.chat.messages[0].varAddress}}</span>
+                                            <span ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                                            <span ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                                        </small>
                                     </div>
                                 </div>
                             </a>
