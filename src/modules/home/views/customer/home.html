@@ -173,7 +173,7 @@
                     INSCRIPTION
                 </div>
 
-                <div ng-if="vm.loginTab">
+                <div data-ng-show="vm.loginTab">
                     <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookLogin()" angular-ripple>
                         Facebook
                     </div>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
 
-                <div ng-if="!vm.loginTab">
+                <div data-ng-show="!vm.loginTab">
 
                     <div class="col-xs-12 registerFacebookGoogle">
                         <span ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
@@ -227,66 +227,113 @@
                               ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
                         <span ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                     </div>
+                    <form name="registerForm">
+                        <div class="col-xs-12 showRegisterFields"
+                             ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
 
-                    <div class="col-xs-12 showRegisterFields"
-                         ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
-                        <input class="form-control halfInput" placeholder="Prénom"
-                               ng-model="vm.newUser.firstName"
-                               ng-disabled="vm.isSocialRegister()"/>
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
+                                 ng-class="{'has-error': !vm.newUser.firstName}">
 
-                        <input class="form-control halfInput halfInputRight" placeholder="Nom"
-                               ng-model="vm.newUser.lastName"
-                               ng-disabled="vm.isSocialRegister()"/>
+                                <div class="fg-line">
+                                    <input type="text" name="firstName" class="form-control fg-input input-sm"
+                                           ng-model="vm.newUser.firstName"
+                                           required="required" yaka-input-name>
+                                    <label class="fg-label">Prénom</label>
+                                </div>
+                                <div ng-messages="registerForm.firstName.$error">
+                                    <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
 
-                        <div class="loginPopupInputError"
-                             ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
-                            Ce prénom n'est pas valide
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
+                                 ng-class="{'has-error': !vm.newUser.lastName}">
+
+                                <div class="fg-line">
+                                    <input type="text" name="lastName" class="form-control fg-input input-sm"
+                                           ng-model="vm.newUser.lastName"
+                                           required="required" yaka-input-name>
+                                    <label class="fg-label">Nom</label>
+                                </div>
+                                <div ng-messages="registerForm.lastName.$error">
+                                    <small class="help-block" ng-message="invalidName">Ce nom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           ng-model="vm.newUser.defaultAddress.address"
+                                           type="text"
+                                           name="address"
+                                           required="required"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.newUser.email}">
+                                <div class="fg-line">
+                                    <input type="text" name="email" class="form-control fg-input input-sm"
+                                           ng-model="vm.newUser.email"
+                                           required="required" yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <div ng-messages="registerForm.email.$error">
+                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error':! vm.newUser.password}">
+                                <div class="fg-line">
+                                    <input type="password" name="password" class="form-control fg-input input-sm"
+                                           ng-model="vm.newUser.password" ng-minlength="6">
+                                    <label class="fg-label">Mot de passe</label>
+                                </div>
+                                <div ng-messages="registerForm.password.$error">
+                                    <small class="help-block" ng-message="minlength">Le mot de passe doit faire au moins
+                                        6 caractères
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-0"
+                                 ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input input-sm"
+                                           ng-model="vm.passwordConfirm" ng-minlength="6">
+                                    <label class="fg-label">Confirmation</label>
+                                </div>
+                                <small class="help-block"
+                                       ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
+                                    Les deux mots de passe ne correspondent pas
+                                </small>
+                            </div>
+
+                            <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
+                                 ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()"
+                                 angular-ripple>
+                                S'INSCRIRE
+                            </div>
+
+                            <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
+                                Vous êtes Pro ? Cliquez ici pour vous inscrire
+                            </div>
                         </div>
-
-                        <div class="loginPopupInputError"
-                             ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
-                            Ce nom n'est pas valide
-                        </div>
-
-                        <input
-                            vs-google-autocomplete="vm.autocomplete.options"
-                            vs-autocomplete-validator class="form-control"
-                            placeholder="Ville"
-                            ng-model="vm.newUser.defaultAddress.address"/>
-
-                        <input class="form-control" type="email" placeholder="Email" ng-model="vm.newUser.email"
-                               ng-disabled="vm.needToHideEmail()"/>
-
-                        <div class="loginPopupInputError"
-                             ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
-                            Cet email n'est pas valide
-                        </div>
-
-                        <input class="form-control" type="password" placeholder="Mot de passe"
-                               ng-model="vm.newUser.password"/>
-
-                        <div class="loginPopupInputError"
-                             ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
-                            Trop court : 6 caractères minimum
-                        </div>
-
-                        <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
-                               ng-model="vm.passwordConfirm"/>
-
-                        <div class="loginPopupInputError"
-                             ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
-                            Les mots de passe ne correspondent pas
-                        </div>
-
-                        <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
-                             ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()"
-                             angular-ripple>
-                            S'INSCRIRE
-                        </div>
-                    </div>
-                    <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
-                        Vous êtes Pro ? Cliquez ici pour vous inscrire
-                    </div>
+                    </form>
                 </div>
             </div>
             <div ng-if="vm.noSocialAccountMessage">

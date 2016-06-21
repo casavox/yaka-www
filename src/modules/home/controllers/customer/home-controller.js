@@ -114,15 +114,6 @@
             }
         };
 
-        vm.isEmailValid = function (email) {
-            return new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}").test(email);
-        };
-
-        vm.isNameValid = function (name) {
-            return !(name == undefined || name.length < 2 || !isNaN(name));
-
-        };
-
         var doNotHide = false;
 
         vm.needToHideEmail = function () {
@@ -148,9 +139,7 @@
         };
 
         vm.registerFormIsValid = function () {
-            return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
-            vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) ||
-            vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
+            return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address);
         };

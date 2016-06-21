@@ -101,8 +101,8 @@
     height: 100% !important;
     overflow-x: scroll;
     background-color: rgba(11, 16, 23, .5);
-    padding-top: 90px !important;
-    padding-bottom: 90px !important;
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
     z-index: 20;
 }
 
