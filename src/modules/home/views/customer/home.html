@@ -237,7 +237,7 @@
                                 <div class="fg-line">
                                     <input type="text" name="firstName" class="form-control fg-input input-sm"
                                            ng-model="vm.newUser.firstName"
-                                           required="required" yaka-input-name>
+                                           required="required" ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
                                 <div ng-messages="registerForm.firstName.$error">
@@ -253,7 +253,7 @@
                                 <div class="fg-line">
                                     <input type="text" name="lastName" class="form-control fg-input input-sm"
                                            ng-model="vm.newUser.lastName"
-                                           required="required" yaka-input-name>
+                                           required="required" ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
                                 <div ng-messages="registerForm.lastName.$error">
@@ -263,6 +263,21 @@
                                 </div>
                             </div>
 
+                            <div class="form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.newUser.email}">
+                                <div class="fg-line">
+                                    <input type="text" name="email" ng-disabled="vm.isSocialRegister()"
+                                           class="form-control fg-input input-sm"
+                                           ng-model="vm.newUser.email"
+                                           required="required" yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <div ng-messages="registerForm.email.$error">
+                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
 
                             <div class="form-group fg-float m-b-30"
                                  ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
@@ -279,22 +294,6 @@
                                     <label class="fg-label">Ville</label>
                                 </div>
                             </div>
-
-                            <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.newUser.email}">
-                                <div class="fg-line">
-                                    <input type="text" name="email" class="form-control fg-input input-sm"
-                                           ng-model="vm.newUser.email"
-                                           required="required" yaka-input-email>
-                                    <label class="fg-label">Email</label>
-                                </div>
-                                <div ng-messages="registerForm.email.$error">
-                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
-                                        valide
-                                    </small>
-                                </div>
-                            </div>
-
 
                             <div class="form-group fg-float m-b-30"
                                  ng-class="{'has-error':! vm.newUser.password}">
