@@ -193,7 +193,8 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('proposalStatus', function () {
-                    if (scope.proposalStatus == "DECLINED" ||
+                    if (scope.proposalStatus == "PRO_DECLINED" ||
+                        scope.proposalStatus == "CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
                         scope.proposalStatus == "COMPLETED") {
                         scope.disableSending = true;

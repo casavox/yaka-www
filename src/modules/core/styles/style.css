@@ -2809,6 +2809,7 @@ md-input-container {
     box-shadow: none !important;
     margin-bottom: 10px !important;
 }
+
 .custom-date > table > thead > tr > th > button:hover {
     color: #03A9F4 !important;
     background-color: white !important;
@@ -3175,6 +3176,10 @@ md-input-container {
     height: 17px; /* dim. de la case */
     border: 2px solid #F44336;
     background: #f8f8f8;
+}
+
+.profile-verif > [type="checkbox"]:disabled:not(:checked) + label.blue:before {
+    border: 2px solid #03A9F4;
 }
 
 .profile-verif > [type="checkbox"]:disabled:checked + label:before {
@@ -5021,6 +5026,14 @@ ul[rn-carousel-buffered] > li {
 
 .proDashboard {
     position: fixed !important;
+}
+
+@media (min-width: 1200px) {
+
+    .proDashboard {
+        margin-left: 269px;
+        width: calc(100% - 269px) !important;
+    }
 }
 
 .yakaHeaderMessagesDropdown {
