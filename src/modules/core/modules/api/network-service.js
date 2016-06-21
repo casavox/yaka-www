@@ -228,8 +228,8 @@
             proProposalsDeclinedGET: function (success, error) {
                 httpService.get(baseUrl + '/pro/proposals/declined').success(success).error(error)
             },
-            proProposalDeclinePOST: function (proposalId, success, error) {
-                httpService.post(baseUrl + '/pro/proposal/' + proposalId + '/decline').success(success).error(error)
+            proProposalDeclinePOST: function (proposalId, data, success, error) {
+                httpService.post(baseUrl + '/pro/proposal/' + proposalId + '/decline', data).success(success).error(error)
             },
             contactsGET: function (success, error) {
                 httpService.get(baseUrl + '/contacts').success(success).error(error)
