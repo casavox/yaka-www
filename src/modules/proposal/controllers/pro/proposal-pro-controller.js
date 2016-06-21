@@ -99,7 +99,6 @@
                 networkService.proProposalDeclinePOST($stateParams.proposalId,
                     {text: cancelProposalMessage},
                     function (res) {
-                        //@victor todo send 'cancelProposalMessage' as pro chat message
                         alertMsg.send("Votre proposition à bien été supprimée", "info");
                         $state.go("pro-proposals");
                     }, function () {
