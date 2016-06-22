@@ -79,6 +79,7 @@
                 title: "Vous êtes sur le point de sélectionner ce Pro pour vos travaux",
                 text: "Votre projet de travaux ne sera plus visible par les autres professionels",
                 type: "warning",
+                showConfirmButton: true,
                 showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Oui, sélectionner ce Pro",
@@ -87,10 +88,10 @@
                 if (isConfirm) {
                     networkService.proposalAcceptPOST(vm.proposal.id,
                         function (res) {
-                            alertMsg.send("L'offre a été sélectionnée", "info");
+                            alertMsg.send("Félicitations, vous avez choisi cette proposition pour vos travaux", "info");
                             loadProposal();
                         }, function () {
-                            alertMsg.send("Impossible de sélectionner l'offre", "danger");
+                            alertMsg.send("Impossible de sélectionner cette proposition, réessayez puis contactez le support si besoin", "danger");
                         }
                     );
                 }
@@ -110,12 +111,12 @@
                 if (isConfirm) {
                     networkService.closeProject(vm.proposal.id,
                         function (res) {
-                            alertMsg.send("Vous avez indiqué que les travaux étaient terminés", "info");
+                            alertMsg.send("Merci d'avoir indiqué la fin des travaux. Vous allez pouvoir noter ce Pro !", "info");
                             loadProposal();
                             $rootScope.rating = false;
                             $rootScope.rate_watcher = !$rootScope.rate_watcher;
                         }, function () {
-                            alertMsg.send("Impossible d'indiquer que les travaux sont terminés", "danger");
+                            alertMsg.send("Impossible d'indiquer la fin des travaux, réessayez puis contactez le support si besoin", "danger");
                         }
                     );
                 }
