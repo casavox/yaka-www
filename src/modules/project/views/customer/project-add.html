@@ -7,7 +7,7 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="page-content">
-        <div class="content-slide" id="main-scroll-container">
+        <div class="content-slide new-project" id="main-scroll-container">
             <div class="slide-main" id="slide1" ng-show="vm.selectCategory">
                 <div class="row new-project-box no-margin">
                     <h2 class="text-center h2-middle">Sélectionnez l'activité principale de votre projet</h2>
@@ -39,16 +39,16 @@
             </div>
             <div class="slide bckg-default" id="slide3" ng-show="vm.service">
                 <div class="row center no-margin no-padding material-box">
-                    <h4 class="material-title">Fournissez-vous une partie du matériel ?</h4>
+                    <h4 class="material-title material-title-small">Fournissez-vous une partie du matériel ?</h4>
 
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <div class="v-btn center" ng-click="vm.material = 'yes'"
                              ng-class="{activate: vm.material == 'yes'}">
                             OUI
                         </div>
                         <p class="material-sub">Précisez ci-dessous</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <div class="v-btn center" ng-click="vm.material = 'no'"
                              ng-class="{activate: vm.material == 'no'}">
                             NON
@@ -69,9 +69,13 @@
                    ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
                     {{vm.error.description.message}}
                 </p>
-                <button type="button" class="new-project-continue btn" ng-click="vm.continueProject()"
-                        ng-if="vm.material && (vm.projectDescription.length >= 30)">Continue
+
+                <button class="col-xs-4 col-xs-offset-4 btn btn-primary btn-lg waves-effect m-t-20"
+                        ng-click="vm.continueProject()"
+                        ng-disabled="!vm.material || vm.projectDescription.length < 30">
+                    Continuer
                 </button>
+
             </div>
             <div class="slide bckg-white" id="slide4" ng-show="vm.continue">
                 <h2 class="text-center">Ajoutez des photos</h2>

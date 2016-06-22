@@ -72,3 +72,12 @@
     line-height: 36px;
     cursor: initial;
 }
+
+.content-slide.new-project {
+    height: 100% !important;
+}
+
+.material-title.material-title-small {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
