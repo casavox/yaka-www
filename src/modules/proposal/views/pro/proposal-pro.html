@@ -293,20 +293,12 @@
                 </p>
 
             </div>
-            <div class="clearfix mt-50" ng-show="vm.projectTmp.type != 'EMERGENCY'">
+            <div class="clearfix mt-50">
                 <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">
                     ESTIMATE
                 </div>
                 <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">
                     FINAL
-                </div>
-            </div>
-            <div class="clearfix mt-50" ng-show="vm.projectTmp.type == 'EMERGENCY'">
-                <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Hourly rate')">
-                    HOURLY
-                </div>
-                <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Flat rate')">
-                    FLAT
                 </div>
             </div>
         </div>

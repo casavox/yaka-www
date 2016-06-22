@@ -40,14 +40,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                    vm.messages.items.push(payload);
-                    vm.glue = true;
-                }, {
-                    'token': $localStorage.token
-                });
-            }
-        );
+                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                        vm.messages.items.push(payload);
+                        vm.glue = true;
+                    }, {
+                        'token': $localStorage.token
+                    });
+                }
+            );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -121,8 +121,8 @@
             return res;
         };
 
-        $scope.send = function () {
-            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10) || $scope.rating.positive == 'true')) {
+        $scope.sendRating = function () {
+            if ($scope.rating.criteria.length > 0 && $scope.rating.criteria.length < 4 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10) || $scope.rating.positive == 'true')) {
                 $scope.disable = true;
                 $scope.error.criteria.flag = false;
                 $scope.rating.id = $scope.project.proposal.id;
@@ -131,7 +131,7 @@
                     $rootScope.rate_pro = false;
                     $scope.disable = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
-                    $state.go('my-projects');
+                    afterRatingSuccess()
                 }, function (res) {
                     alertMsg.send("Impossible d'effectuer la notation", "danger");
                     $scope.projectFlag = false;
@@ -140,16 +140,29 @@
                 })
             }
             else if ($scope.rating.positive == 'false' && $scope.rating.comment.length < 10) {
-                $scope.error.criteria.message = "Merci de choisir 3 critères et d'ajouter un commentaire (10 caractères au moins).";
+                $scope.error.criteria.message = "Merci de choisir 1 à 3 critères et d'ajouter un commentaire (10 caractères au moins).";
                 $scope.error.criteria.flag = true;
                 $scope.disable = false;
             }
             else {
-                $scope.error.criteria.message = "Merci de choisir 3 critères, vous pouvez également ajouter un commentaire";
+                $scope.error.criteria.message = "Merci de choisir 1 à 3 critères, vous pouvez également ajouter un commentaire";
                 $scope.error.criteria.flag = true;
                 $scope.disable = false;
             }
         };
+
+        function afterRatingSuccess() {
+            swal({
+                title: "C'est fait !",
+                text: "La communauté YakaClub vous remercie d'avoir partagé votre avis sur ce Pro !",
+                type: "success",
+                showConfirmButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Fermer"
+            }, function () {
+                $state.go('my-projects');
+            });
+        }
 
         app.setUser = function (user) {
             $localStorage.user = user;

@@ -39,7 +39,7 @@
             <div class="m-l-5 m-r-5">
                 <div class="media m-t-5">
                     <p class="c-bluegray text-center f-15 m-b-5">
-                        Selectionnez 3 critères pour le décrire
+                        Selectionnez 1 à 3 critères pour le décrire
                     </p>
 
                     <div class="row">
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <div class="card-padding m-b-15">
-                <button class="btn btn-lg bgm-lightblue btn-block" ng-click="send()"
-                        ng-disabled="!(rating.criteria.length > 2 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
+                <button class="btn btn-lg bgm-lightblue btn-block" ng-click="sendRating()"
+                        ng-disabled="!(rating.criteria.length > 0 && rating.criteria.length < 4 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
                     NOTER
                 </button>
             </div>

@@ -110,12 +110,12 @@
                 if (isConfirm) {
                     networkService.closeProject(vm.proposal.id,
                         function (res) {
-                            alertMsg.send("Vous avez indiqué que les travaux étaient terminés", "info");
+                            alertMsg.send("Merci d'avoir indiqué la fin des travaux. Vous allez pouvoir noter ce Pro !", "info");
                             loadProposal();
                             $rootScope.rating = false;
                             $rootScope.rate_watcher = !$rootScope.rate_watcher;
                         }, function () {
-                            alertMsg.send("Impossible d'indiquer que les travaux sont terminés", "danger");
+                            alertMsg.send("Impossible d'indiquer la fin des travaux, réessayez puis contactez le support si besoin", "danger");
                         }
                     );
                 }
