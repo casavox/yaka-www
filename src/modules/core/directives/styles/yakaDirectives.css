@@ -37,7 +37,7 @@ yaka-chat .lv-footer {
 
 yaka-chat .lv-body {
     height: calc(100% - 76px);
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 yaka-chat .moreMessagesLoading {

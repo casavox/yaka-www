@@ -514,8 +514,10 @@
                 for (var i = 0; i < item.childrenActivities.length; i++) {
                     item.childrenActivities[i].selected = "";
                 }
-                var otherChild = {code: "OTHER"};
-                item.childrenActivities.push(otherChild);
+                if (item.childrenActivities[item.childrenActivities.length - 1].code != "OTHER") {
+                    var otherChild = {code: "OTHER"};
+                    item.childrenActivities.push(otherChild);
+                }
             }
             item.selected = "activate";
             if (!angular.isUndefined(vm.user) && vm.user.addresses) {
@@ -552,10 +554,12 @@
             vm.questions = tmp;
             item.selected = "activate";
             if (item.childrenActivities && item.childrenActivities.length > 0) {
-                var otherChild = {
-                    code: "OTHER"
-                };
-                vm.questions[index + 1].childrenActivities.push(otherChild);
+                if (vm.questions[index + 1].childrenActivities[vm.questions[index + 1].childrenActivities.length - 1].code != "OTHER") {
+                    var otherChild = {
+                        code: "OTHER"
+                    };
+                    vm.questions[index + 1].childrenActivities.push(otherChild);
+                }
                 var childrenArray = [];
                 for (var i = 0; i < vm.questions[index + 1].childrenActivities.length; i++) {
                     childrenArray.push(vm.questions[index + 1].childrenActivities[i]);

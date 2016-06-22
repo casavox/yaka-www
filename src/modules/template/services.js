@@ -7,7 +7,7 @@ materialAdmin
     .service('messageService', ['$resource', function($resource){
         this.getMessage = function(img, user, text) {
             var gmList = $resource("data/messages-notifications.json");
-            
+
             return gmList.get({
                 img: img,
                 user: user,
@@ -15,7 +15,7 @@ materialAdmin
             });
         }
     }])
-    
+
 
     // =========================================================================
     // Best Selling Widget Data (Home Page)
@@ -24,7 +24,7 @@ materialAdmin
     .service('bestsellingService', ['$resource', function($resource){
         this.getBestselling = function(img, name, range) {
             var gbList = $resource("data/best-selling.json");
-            
+
             return gbList.get({
                 img: img,
                 name: name,
@@ -33,7 +33,7 @@ materialAdmin
         }
     }])
 
-    
+
     // =========================================================================
     // Todo List Widget Data
     // =========================================================================
@@ -41,7 +41,7 @@ materialAdmin
     .service('todoService', ['$resource', function($resource){
         this.getTodo = function(todo) {
             var todoList = $resource("data/todo.json");
-            
+
             return todoList.get({
                 todo: todo
             });
@@ -52,11 +52,11 @@ materialAdmin
     // =========================================================================
     // Recent Items Widget Data
     // =========================================================================
-    
+
     .service('recentitemService', ['$resource', function($resource){
         this.getRecentitem = function(id, name, price) {
             var recentitemList = $resource("data/recent-items.json");
-            
+
             return recentitemList.get ({
                 id: id,
                 name: name,
@@ -69,11 +69,11 @@ materialAdmin
     // =========================================================================
     // Recent Posts Widget Data
     // =========================================================================
-    
+
     .service('recentpostService', ['$resource', function($resource){
         this.getRecentpost = function(img, user, text) {
             var recentpostList = $resource("data/messages-notifications.json");
-            
+
             return recentpostList.get ({
                 img: img,
                 user: user,
@@ -81,11 +81,11 @@ materialAdmin
             })
         }
     }])
-    
+
     // =========================================================================
     // Data Table
     // =========================================================================
-    
+
     .service('tableService', [function(){
         this.data = [
             {
@@ -95,7 +95,7 @@ materialAdmin
                 "username": "MarcBarnes",
                 "contact": "(382)-122-5003"
             },
-            {   
+            {
                 "id": 10243,
                 "name": "Glen Curtis",
                 "email": "glen.curtis11@example.com",
@@ -122,7 +122,7 @@ materialAdmin
                 "email": "melinda@example.com",
                 "username": "MelindaMitchelle",
                 "contact": "(813)-716-4996"
-                
+
             },
             {
                 "id": 10239,
@@ -236,7 +236,7 @@ materialAdmin
     // =========================================================================
     // Malihu Scroll - Custom Scroll bars
     // =========================================================================
-    .service('scrollService', function() {
+    /*.service('scrollService', function() {
         var ss = {};
         ss.malihuScroll = function scrollBar(selector, theme, mousewheelaxis) {
             $(selector).mCustomScrollbar({
@@ -250,9 +250,9 @@ materialAdmin
                 }
             });
         }
-        
+
         return ss;
-    })
+    })*/
 
 
     //==============================================
@@ -284,6 +284,6 @@ materialAdmin
                 }
             });
         }
-        
+
         return gs;
     })

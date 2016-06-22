@@ -2612,18 +2612,6 @@ md-input-container {
     color: white;
 }
 
-.content-slide::-webkit-scrollbar {
-    width: 8px;
-}
-
-.content-slide::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.content-slide::-webkit-scrollbar-thumb {
-    background-color: #03A9F4;
-}
-
 .bckg-white {
     background-color: white !important;
 }
@@ -2820,6 +2808,10 @@ md-input-container {
     color: white !important;
     background-color: #03A9F4 !important;
     border-color: none !important;
+}
+
+.btn.dropdown-toggle {
+    text-transform: none;
 }
 
 .custom-date > table > tbody > tr > td > button {
@@ -4920,18 +4912,6 @@ ul[rn-carousel-buffered] > li {
 
 .proDashboardList {
     height: 100% !important;
-}
-
-.proDashboardList::-webkit-scrollbar {
-    width: 8px;
-}
-
-.proDashboardList::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.proDashboardList::-webkit-scrollbar-thumb {
-    background-color: #03A9F4;
 }
 
 @media (max-width: 767px) {

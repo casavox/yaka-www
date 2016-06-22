@@ -269,11 +269,8 @@
 
         function successProRegister(res) {
             $localStorage.token = res.token;
-            if ($localStorage.user && $localStorage.user.professional) {
-                $state.go('prodashboard');
-            } else {
-                $state.go('my-projects');
-            }
+            $localStorage.user = res;
+            $state.go('prodashboard');
         }
 
         function failProRegister(err) {

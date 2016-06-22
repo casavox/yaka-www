@@ -3,9 +3,9 @@ materialAdmin
     // =========================================================================
     // MALIHU SCROLL
     // =========================================================================
-    
+
     //On Custom Class
-    .directive('cOverflow', ['scrollService', function(scrollService){
+    /*.directive('cOverflow', ['scrollService', function(scrollService){
         return {
             restrict: 'C',
             link: function(scope, element) {
@@ -15,7 +15,7 @@ materialAdmin
                 }
             }
         }
-    }])
+    }])*/
 
     // =========================================================================
     // WAVES

@@ -131,6 +131,7 @@
                     $rootScope.rate_pro = false;
                     $scope.disable = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
+                    $state.go('my-projects');
                 }, function (res) {
                     alertMsg.send("Impossible d'effectuer la notation", "danger");
                     $scope.projectFlag = false;

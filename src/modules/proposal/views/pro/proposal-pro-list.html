@@ -7,78 +7,80 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
-        <h4 class="inprogress">IN PROGRESS</h4>
+        <div class="container">
+            <h4 class="inprogress">IN PROGRESS</h4>
 
-        <div class="row no-margin">
-            <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
-                 ng-click="vm.quoteClicked(proposal.id)">
-                <div class="pro-proposal-bloc-pict">
-                    <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
-                              secure="true"
-                              class="img-circle center-middle" format="png"
-                              ng-if="proposal.project.avatar.cloudinaryPublicId">
-                        <cl-transformation height="40" width="40" crop="fill"/>
-                    </cl-image>
-                    <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
-                        {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
-                        | uppercase}}
+            <div class="row no-margin">
+                <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
+                     ng-click="vm.quoteClicked(proposal.id)">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
                     </div>
-                </div>
-                <div class="pro-proposal-bloc-info">
-                    <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
-                         ng-if="proposal.unreadMessages">
+                    <div class="pro-proposal-bloc-info">
+                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
+                             ng-if="proposal.unreadMessages">
 
-                    <p class="pro-proposals-title" title="{{ proposal.project.title | yakaTranslateTitle}}">
-                        {{ proposal.project.title | yakaTranslateTitle}}
-                    </p>
+                        <p class="pro-proposals-title" title="{{ proposal.project.title | yakaTranslateTitle}}">
+                            {{ proposal.project.title | yakaTranslateTitle}}
+                        </p>
 
-                    <p class="pro-proposals-info"
-                       title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
-                        {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
-                        {{proposal.project.address.locality}}
-                    </p>
-                    <hr class="pro-proposals-hr">
-                    <p class="pro-proposals-price">
-                        <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
-                    </p>
+                        <p class="pro-proposals-info"
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-price">
+                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                        </p>
 
-                    <p class="pro-proposals-date" ng-if="proposal.startDate">
-                        My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
-                    </p>
+                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                            My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <h4 class="inprogress">DECLINED</h4>
+            <h4 class="inprogress">DECLINED</h4>
 
-        <div class="row no-margin">
-            <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
-                <div class="pro-proposal-bloc-pict">
-                    <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
-                              secure="true"
-                              class="img-circle center-middle" format="png"
-                              ng-if="proposal.project.avatar.cloudinaryPublicId">
-                        <cl-transformation height="40" width="40" crop="fill"/>
-                    </cl-image>
-                    <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
-                        {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
-                        | uppercase}}
+            <div class="row no-margin">
+                <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
                     </div>
-                </div>
-                <div class="pro-proposal-bloc-info">
-                    <div class="pro-proposal-unread red glyphicon glyphicon-remove"
-                         ng-click="vm.selectProposal($index)"></div>
-                    <p class="pro-proposals-title">
-                        {{ proposal.project.title }}
-                    </p>
+                    <div class="pro-proposal-bloc-info">
+                        <div class="pro-proposal-unread red glyphicon glyphicon-remove"
+                             ng-click="vm.selectProposal($index)"></div>
+                        <p class="pro-proposals-title">
+                            {{ proposal.project.title }}
+                        </p>
 
-                    <p class="pro-proposals-info">
-                        {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
-                        {{proposal.project.address.locality}}
-                    </p>
-                    <hr class="pro-proposals-hr">
-                    <p class="pro-proposals-date red">
-                        Sorry, you are not selected for this job
-                    </p>
+                        <p class="pro-proposals-info">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-date red">
+                            Sorry, you are not selected for this job
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

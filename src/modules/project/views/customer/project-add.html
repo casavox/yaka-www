@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="view">
 
@@ -11,6 +11,7 @@
             <div class="slide-main" id="slide1" ng-show="vm.selectCategory">
                 <div class="row new-project-box no-margin">
                     <h2 class="text-center h2-middle">Sélectionnez l'activité principale de votre projet</h2>
+
                     <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="child.selected"
                          ng-repeat="child in vm.newProject.childrenActivities"
                          ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
@@ -39,6 +40,7 @@
             <div class="slide bckg-default" id="slide3" ng-show="vm.service">
                 <div class="row center no-margin no-padding material-box">
                     <h4 class="material-title">Fournissez-vous une partie du matériel ?</h4>
+
                     <div class="col-md-6">
                         <div class="v-btn center" ng-click="vm.material = 'yes'"
                              ng-class="{activate: vm.material == 'yes'}">
@@ -300,6 +302,7 @@
             </div>
             <div class="slide bckg-white" id="slide6" ng-show="vm.continueAddressFlag">
                 <h2 class="text-center">Quand voulez-vous que les travaux commencent ?</h2>
+
                 <div>
                     <ul class="questions-ul center no-padding">
                         <li class="question-li center" ng-class="vm.child3"
@@ -310,7 +313,7 @@
                             ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
                             Dans le mois
                         </li>
-                        <li ng-show="vm.dateType == 'WITHIN_A_MONTH'" class="custom-li-date question-li center" >
+                        <li ng-show="vm.dateType == 'WITHIN_A_MONTH'" class="custom-li-date question-li center">
                             Avant le {{vm.desiredDateMonth | date:'dd MMMM'}}
                         </li>
                         <li class="question-li center" ng-class="vm.child0"

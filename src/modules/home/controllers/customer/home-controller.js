@@ -262,15 +262,12 @@
         function successRegister(res) {
             vm.registering = false;
             $localStorage.token = res.token;
+            $localStorage.user = res;
             if ($localStorage.urlRedirect != undefined) {
                 window.location.href = $localStorage.urlRedirect;
                 delete $localStorage.urlRedirect;
             } else {
-                if ($localStorage.user && $localStorage.user.professional) {
-                    $state.go('prodashboard');
-                } else {
-                    $state.go('my-projects');
-                }
+                $state.go('my-projects');
             }
         }
 
@@ -292,7 +289,7 @@
         };
 
         vm.forgottenPassword = function () {
-            if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
+            if (vm.forgottenPasswordUser.email) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
             }
         };
