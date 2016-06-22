@@ -35,21 +35,6 @@
         }, function () {
         });
 
-        vm.selectProposal = function (index) {
-            vm.index = index;
-            vm.delete = true;
-        };
-
-        vm.deleteProposal = function () {
-            networkService.proProposalsArchiveGET(vm.decline[vm.index].id, function (res) {
-                vm.delete = false;
-                alertMsg.send('Proposition supprimée avec succès', "success");
-            }, function () {
-                vm.delete = false;
-                alertMsg.send("Impossible de supprimer la proposition", "danger");
-            });
-        };
-
         vm.quoteClicked = function (proposalId) {
             var user = $localStorage.user;
             if (user.professional &&
