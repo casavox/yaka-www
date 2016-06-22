@@ -5078,3 +5078,23 @@ ul.yaka-chips li {
 .pointer-not-allowed {
     cursor: not-allowed !important;
 }
+
+.f-right {
+    float: right !important;
+}
+
+.f-left {
+    float: left !important;
+}
+
+.t-right {
+    text-align: right !important;
+}
+
+.t-left {
+    text-align: left !important;
+}
+
+.t-center {
+    text-align: center !important;
+}
