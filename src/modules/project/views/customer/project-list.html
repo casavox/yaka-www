@@ -193,10 +193,9 @@
             <div ng-show="vm.projectsCompleted && vm.projectsCompleted.length > 0" ng-cloak>
                 <div class="block-header">
                     <h2 ng-show="vm.projectsCompleted.length == 1">PROJET TERMINÉ</h2>
-
                     <h2 ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
                 </div>
-                <div class="card card-hover" ng-repeat="pc in vm.projectsCompleted" ng-click="vm.selectProject(pc)">
+                <div class="card card-hover" ng-repeat="pc in vm.projectsCompleted" ng-click="vm.selectProposal(pc.proposal)">
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
@@ -236,7 +235,7 @@
                         </div>
                     </div>
                     <div ng-show="pc.status == 'COMPLETED' && pc.proposal" class="card-body p-l-25 p-b-20"
-                         ng-click="vm.selectProject(pc)">
+                         ng-click="vm.selectProposal(pc.proposal)">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
