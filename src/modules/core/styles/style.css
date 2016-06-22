@@ -878,9 +878,8 @@ md-input-container {
 }
 
 .pro-proposal-vignette {
-    max-width: 350px;
     background-color: white;
-    margin: 15px;
+    margin-top: 15px;
     -moz-box-shadow: 1px 1px 1px 0px #9E9E9E;
     -webkit-box-shadow: 1px 1px 1px 0px #9E9E9E;
     -o-box-shadow: 1px 1px 1px 0px #9E9E9E;

@@ -13,7 +13,7 @@
             $state.go("home");
         }
 
-        $rootScope.pageName = "Mes projets";
+        $rootScope.pageName = "Mes chantiers";
         $rootScope.updateProfile();
         $rootScope.showMenu = true;
 

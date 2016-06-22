@@ -8,10 +8,35 @@
 
     <div id="content" class="content">
         <div class="container">
-            <h4 class="inprogress">IN PROGRESS</h4>
 
-            <div class="row no-margin">
-                <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
+            <div data-ng-if="vm.proposals && vm.proposals.length == 0" class="card" ng-cloak>
+                <div class="card-header">
+                    <h2>VOUS N'AVEZ AUCUN DEVIS EN COURS
+                        <small>Comment proposer un devis ?</small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+                    <ol>
+                        <li>Votre profil doit être complet et validé</li>
+                        <li>Sélectionnez un projet parmi ceux disponibles</li>
+                        <li>Indiquez un montant approximatif si vous le pouvez et surtout ajouter un message afin
+                            d’engager la discussion avec votre client.
+                        </li>
+                    </ol>
+                </div>
+                <div class="panel-footer text-right">
+                    <button class="btn btn-lg btn-primary" data-ui-sref="prodashboard">Voir les chantiers disponibles
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-xs-12 no-padding block-header m-b-5" data-ng-if="vm.proposals && vm.proposals.length > 0">
+                <h2>En cours</h2>
+            </div>
+
+            <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0 m-b-20"
+                 data-ng-if="vm.proposals && vm.proposals.length > 0">
+                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
                      ng-click="vm.quoteClicked(proposal.id)">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
@@ -44,15 +69,18 @@
                         </p>
 
                         <p class="pro-proposals-date" ng-if="proposal.startDate">
-                            My start date {{ proposal.startDate | date:'dd MMM. hh' }}h.
+                            Date d'intervention : {{ proposal.startDate | date:'dd MMMM yyyy' }}
                         </p>
                     </div>
                 </div>
             </div>
-            <h4 class="inprogress">DECLINED</h4>
 
-            <div class="row no-margin">
-                <div class="col-sm-6 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
+            <div class="col-xs-12 no-padding block-header m-b-5" data-ng-if="vm.decline && vm.decline.length > 0">
+                <h2>Refusés</h2>
+            </div>
+
+            <div class="col-xs-12 no-padding row no-margin" data-ng-if="vm.decline && vm.decline.length > 0">
+                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.decline">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
                                   secure="true"
@@ -69,7 +97,7 @@
                         <div class="pro-proposal-unread red glyphicon glyphicon-remove"
                              ng-click="vm.selectProposal($index)"></div>
                         <p class="pro-proposals-title">
-                            {{ proposal.project.title }}
+                            {{ proposal.project.title | yakaTranslateTitle }}
                         </p>
 
                         <p class="pro-proposals-info">
@@ -78,7 +106,7 @@
                         </p>
                         <hr class="pro-proposals-hr">
                         <p class="pro-proposals-date red">
-                            Sorry, you are not selected for this job
+                            Désolé, vous n'avez pas été sélectionné pour ce projet
                         </p>
                     </div>
                 </div>
