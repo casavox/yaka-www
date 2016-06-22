@@ -60,3 +60,15 @@
 .descriptionFormProject .form-group {
     margin-bottom: 0 !important;
 }
+
+.question-li.date:hover {
+    background-color: white;
+    color: #03A9F4;
+}
+
+.question-li.date {
+    height: auto;
+    font-size: 15px;
+    line-height: 36px;
+    cursor: initial;
+}

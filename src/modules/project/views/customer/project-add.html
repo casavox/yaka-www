@@ -313,7 +313,7 @@
                             ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
                             Dans le mois
                         </li>
-                        <li ng-show="vm.dateType == 'WITHIN_A_MONTH'" class="custom-li-date question-li center">
+                        <li ng-show="vm.dateType == 'WITHIN_A_MONTH'" class="custom-li-date question-li center date">
                             Avant le {{vm.desiredDateMonth | date:'dd MMMM'}}
                         </li>
                         <li class="question-li center" ng-class="vm.child0"
