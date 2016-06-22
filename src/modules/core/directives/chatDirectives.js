@@ -12,6 +12,10 @@ angular.module('Yaka')
             },
             link: function (scope, element, attr) {
 
+                scope.$on('$destroy', function () {
+                    $stomp.disconnect();
+                });
+
                 scope.loadingMessages = false;
 
                 scope.newMessage = {
