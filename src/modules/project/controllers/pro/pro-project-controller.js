@@ -79,7 +79,7 @@
         if ($stateParams.projectId) {
             networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("prodashboard");
+            $state.go("findjobs");
         }
 
         function getTags() {
@@ -214,7 +214,7 @@
         }
 
         function errorProjectGET(err) {
-            $state.go("prodashboard");
+            $state.go("findjobs");
         }
 
         vm.getStringLength = function (str) {

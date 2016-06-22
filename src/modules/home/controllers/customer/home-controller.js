@@ -11,7 +11,7 @@
 
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
-                $state.go('prodashboard');
+                $state.go('findjobs');
             } else {
                 $state.go('my-projects');
             }
@@ -163,7 +163,7 @@
                     delete window.yakaRedirectUrl;
                 } else {
                     if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('prodashboard');
+                        $state.go('findjobs');
                     } else {
                         $state.go('my-projects');
                     }

@@ -17,40 +17,30 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content contacts">
         <div class="container">
-            <div class="col-xs-12 contactsHeader">
-                <div class="col-sm-6 hidden-xs contactsHeaderLeft">
-                    <div class="col-xs-12 contactsHeaderLeftTitle"
-                         ng-class="{'contactsHeaderLeftTitlePro': app.isPro()}">
-                        Bienvenue sur YakaClub
-                    </div>
-                    <div class="col-xs-12 contactsHeaderLeftSubtitle">
-                        et merci de rejoindre notre communauté !
-                    </div>
-                    <div class="col-xs-12 contactsHeaderLeftDesc">
-                        Dès aujourd’hui, commencez à constituer votre réseau de confiance.<br/>
-                        Dans les prochaines semaines, vous pourrez accéder à de nouveaux services vous permettant de
-                        créer
-                        vos projets et recommander vos meilleurs artisans à la communauté.
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 contactsHeaderRight">
-                    <div class="col-xs-12 contactsHeaderRightTitle">
+            <div class="col-xs-12 no-padding visible-xs m-b-20">
+                <button class="col-xs-5 btn btn-default waves-effect c-lightblue btn-xs"
+                        ng-click="vm.openFriendPopup()">
+                    Inviter un ami
+                </button>
+                <button class="col-xs-5 col-xs-offset-2 btn btn-default waves-effect c-orange btn-xs" ng-click="vm.openProPopup()">
+                    Inviter un pro
+                </button>
+            </div>
+            <div class="col-xs-12 p-l-0 p-r-0 card  hidden-xs">
+                <div class="col-xs-12 p-l-0 p-r-0 card-header">
+                    <h2 class="col-sm-6">
                         DÉVELOPPEZ VOTRE RÉSEAU
-                    </div>
-                    <div class="col-xs-12 hidden-xs contactsHeaderRightSubTitle">
-                        Invitez vos amis et vos artisans à vous rejoindre.
-                        Développons ensemble une communauté basée sur la qualité de nos artisans et la confiance.
-                    </div>
-                    <div class="col-xs-12 contactsHeaderRightButtons">
-                        <div
-                            class="col-xs-3 yakaButton yakaBlue contactsHeaderRightButton contactsHeaderRightButtonLeft"
-                            ng-click="vm.openFriendPopup()">
-                            INVITER UN AMI
-                        </div>
-                        <div class="col-xs-3 yakaButton yakaOrange contactsHeaderRightButton"
-                             ng-click="vm.openProPopup()">
-                            INVITER UN PRO
-                        </div>
+                        <small class="hidden-xs">
+                            Invitez vos connaissances à rejoindre votre réseau
+                        </small>
+                    </h2>
+                    <div class="col-sm-6 t-right m-t-5">
+                        <button class="btn btn-default waves-effect c-lightblue m-r-15" ng-click="vm.openFriendPopup()">
+                            Inviter un ami
+                        </button>
+                        <button class="btn btn-default waves-effect c-orange" ng-click="vm.openProPopup()">
+                            Inviter un pro
+                        </button>
                     </div>
                 </div>
             </div>
@@ -266,24 +256,26 @@
                     <div class="col-xs-12 contactsEmpty"
                          ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
 
-                        <img class="contactsEmptyIcon" src="icons/mdpi/ic_person_add.png"/>
+                        <img class="contactsEmptyIcon hidden-xs" src="icons/mdpi/ic_person_add.png"/>
 
                         <div class="contactsEmptyTitle">
-                            Vous n’avez pas encore de contacts.
+                            Retrouvez ici l'ensemble de vos relations YakaClub.
                         </div>
                         <div class="contactsEmptySubtitle">
-                            Développez votre réseau en invitant vos contacts
+                            Vous pourrez prochainement utliser vos contacts pour recommander et vous faire recommander
+                            les meilleurs professionnels du batiment. Développons ensemble une communauté basée sur la
+                            qualité de nos Pro et sur la confiance.
                         </div>
-                        <div class="contactsEmptyLinks">
-                        <span class="contactsEmptyLink" ng-click="vm.openFriendPopup()">
-                            Inviter des amis
-                        </span>
-                        <span class="contactsEmptyLinkOr">
-                            ou
-                        </span>
-                        <span class="contactsEmptyLink" ng-click="vm.openProPopup()">
-                            Invitez des professionnels
-                        </span>
+                        <div class="contactsEmptyLinks hidden-xs">
+                            <span class="contactsEmptyLink" ng-click="vm.openFriendPopup()">
+                                Inviter des amis
+                            </span>
+                            <span class="contactsEmptyLinkOr">
+                                ou
+                            </span>
+                            <span class="contactsEmptyLink" ng-click="vm.openProPopup()">
+                                Invitez des professionnels
+                            </span>
                         </div>
                     </div>
                 </div>

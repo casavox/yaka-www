@@ -55,6 +55,11 @@
         };
         vm.error = {};
 
+        if ($stateParams.chat) {
+            vm.showChat = true;
+            vm.scrollBottom = 1;
+        }
+
         uiGmapGoogleMapApi.then(function (maps) {
 
             vm.circle =
@@ -264,7 +269,7 @@
         }
 
         function errorProjectGET() {
-            $state.go("prodashboard");
+            $state.go("findjobs");
         }
     }
 })();

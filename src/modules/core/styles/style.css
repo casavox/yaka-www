@@ -878,9 +878,8 @@ md-input-container {
 }
 
 .pro-proposal-vignette {
-    max-width: 350px;
     background-color: white;
-    margin: 15px;
+    margin-top: 15px;
     -moz-box-shadow: 1px 1px 1px 0px #9E9E9E;
     -webkit-box-shadow: 1px 1px 1px 0px #9E9E9E;
     -o-box-shadow: 1px 1px 1px 0px #9E9E9E;
@@ -2626,7 +2625,6 @@ md-input-container {
     box-shadow: 0px 1px 6px 0px rgba(73, 97, 127, 0.14);
     border-radius: 2px;
     width: 460px;
-    min-height: 187px;
     height: auto;
 }
 
@@ -5078,4 +5076,24 @@ ul.yaka-chips li {
 
 .pointer-not-allowed {
     cursor: not-allowed !important;
+}
+
+.f-right {
+    float: right !important;
+}
+
+.f-left {
+    float: left !important;
+}
+
+.t-right {
+    text-align: right !important;
+}
+
+.t-left {
+    text-align: left !important;
+}
+
+.t-center {
+    text-align: center !important;
 }

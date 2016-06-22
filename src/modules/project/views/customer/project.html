@@ -142,7 +142,7 @@
                             <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
                                 <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                      data-sub-html="#caption{{$index}}"
-                                     class="lightboxItemAngular col-md-3 col-sm-3 col-xs-6"
+                                     class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
                                      tooltip-placement="top"
                                      uib-tooltip="{{image.description}}"
                                      ng-repeat="image in vm.projectTmp.images">
@@ -161,7 +161,7 @@
                             <!--Editing mode-->
 
                             <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
-                                <div class="galleryEditingItem col-md-3 col-sm-3 col-xs-6"
+                                <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
                                      ng-repeat="image in vm.projectTmp.images">
                                     <div class="lightbox-item p-item projectImageTooltip">
                                         <img
@@ -204,7 +204,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3 col-sm-3 col-xs-6 no-padding"
+                            <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
                                  ngf-drop="vm.uploadFiles($files)"
                                  ngf-drag-over-class="dragOverClass($event)"
                                  ng-model="files"

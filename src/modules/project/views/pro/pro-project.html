@@ -112,16 +112,24 @@
                         <div class="col-xs-12 description-sub-title">
                             Photos
                         </div>
-                        <div class="col-xs-12 description-sub-text row m-b-15 m-t-15">
-                            <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images"
-                                 title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
-                                <span class="center-middle img-comment" ng-show="media.description"
-                                      ng-click="vm.editImage(media)"></span>
-                                <cl-image public-id="{{media.cloudinaryPublicId}}" secure="true" format="png"
-                                          class="center"
-                                          ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
-                                    <cl-transformation height="92" width="92" crop="fill"/>
-                                </cl-image>
+                        <div class="col-xs-12 description-sub-text row mb-15 m-t-15">
+                            <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                     data-sub-html="#caption{{$index}}"
+                                     class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
+                                     tooltip-placement="top"
+                                     uib-tooltip="{{image.description}}"
+                                     ng-repeat="image in vm.projectTmp.images">
+                                    <div class="lightbox-item p-item">
+                                        <img ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                             alt=""/>
+                                    </div>
+                                    <div id="caption{{$index}}" style="display:none">
+                                        <div class="galleryCaption">
+                                            <p>{{image.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
