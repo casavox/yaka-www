@@ -79,6 +79,7 @@
                 title: "Vous êtes sur le point de sélectionner ce Pro pour vos travaux",
                 text: "Votre projet de travaux ne sera plus visible par les autres professionels",
                 type: "warning",
+                showConfirmButton: true,
                 showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Oui, sélectionner ce Pro",
@@ -87,10 +88,10 @@
                 if (isConfirm) {
                     networkService.proposalAcceptPOST(vm.proposal.id,
                         function (res) {
-                            alertMsg.send("L'offre a été sélectionnée", "info");
+                            alertMsg.send("Félicitations, vous avez choisi cette proposition pour vos travaux", "info");
                             loadProposal();
                         }, function () {
-                            alertMsg.send("Impossible de sélectionner l'offre", "danger");
+                            alertMsg.send("Impossible de sélectionner cette proposition, réessayez puis contactez le support si besoin", "danger");
                         }
                     );
                 }
