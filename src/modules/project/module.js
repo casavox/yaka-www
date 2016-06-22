@@ -26,12 +26,6 @@
                 controller: 'NewProjectController',
                 controllerAs: 'vm'
             })
-            .state('end-project', {
-                url: "/new-project/end-project",
-                templateUrl: "/modules/project/views/customer/project-add-end.html",
-                controller: 'EndController',
-                controllerAs: 'vm'
-            })
             .state('project', {
                 url: "/project/:projectId/details",
                 templateUrl: "/modules/project/views/customer/project.html",

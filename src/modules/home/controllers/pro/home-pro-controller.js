@@ -9,7 +9,7 @@
 
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
-                $state.go('prodashboard');
+                $state.go('findjobs');
             } else {
                 $state.go('my-projects');
             }
@@ -270,7 +270,7 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go('prodashboard');
+            $state.go('findjobs');
         }
 
         function failProRegister(err) {
@@ -316,7 +316,7 @@
                     delete window.yakaRedirectUrl;
                 } else {
                     if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('prodashboard');
+                        $state.go('findjobs');
                     } else {
                         $state.go('my-projects');
                     }

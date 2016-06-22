@@ -264,7 +264,7 @@
         }
 
         function errorProjectGET() {
-            $state.go("prodashboard");
+            $state.go("findjobs");
         }
     }
 })();

@@ -594,7 +594,7 @@
 
         function errorProjectsGET() {
             alertMsg.send("Error : Impossible de charger le module de création de projet", "danger");
-            $state.go("dashboard");
+            $state.go("home");
         }
 
         function succesProfileGET(res) {

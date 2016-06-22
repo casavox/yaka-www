@@ -3,10 +3,10 @@
 
     angular
         .module('Yaka')
-        .controller('ProDashboardController', ProDashboardController)
+        .controller('FindJobsController', FindJobsController)
         .controller('ProDashboardMapHomeControlController', ProDashboardMapHomeControlController);
 
-    function ProDashboardController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
+    function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
         $scope.showList = false;
 
         $rootScope.pageName = "Tableau de bord Pro";
@@ -30,7 +30,7 @@
         vm.workareaDiameter = 0;
 
         vm.getMenuItemClass = function (state) {
-            if (state == "prodashboard") {
+            if (state == "findjobs") {
                 return "active-menu";
             }
             return "";
