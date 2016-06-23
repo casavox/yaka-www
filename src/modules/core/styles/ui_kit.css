@@ -28,10 +28,6 @@
     cursor: default;
 }
 
-.yakaButton.yakaDisabled .angular-ripple.animate {
-    animation: none !important;
-}
-
 .yakaButton.yakaBlue {
     background: #03A9F4;
     color: white;

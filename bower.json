@@ -31,7 +31,6 @@
     "angularjs-dropdown-multiselect": "^1.5.2",
     "angular-typewrite": "^0.0.14",
     "angular-cookies": "^1.5.x",
-    "angular-ripple": "*",
     "satellizer": "^0.14.0",
     "angular-elastic": "^2.5.1",
     "angular-moment": "^0.10.3",

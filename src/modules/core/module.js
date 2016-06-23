@@ -12,7 +12,6 @@ angular.module('Yaka', [
         'satellizer',
         'uiGmapgoogle-maps',
         'angular-carousel',
-        'angularRipple',
         'monospaced.elastic',
         'smoothScroll',
         'angularMoment',

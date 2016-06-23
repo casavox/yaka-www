@@ -45,7 +45,6 @@
             "bower_components/angular-simple-logger/dist/angular-simple-logger.js",
             "bower_components/angular-google-maps/dist/angular-google-maps.js",
             "bower_components/angular-carousel/dist/angular-carousel.js",
-            "bower_components/angular-ripple/angular-ripple.js",
             "bower_components/satellizer/satellizer.js",
             "bower_components/angular-elastic/elastic.js",
             "bower_components/moment/moment.js",
