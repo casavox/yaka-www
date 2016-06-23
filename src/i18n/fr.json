@@ -342,5 +342,6 @@
     "CRITERION_FLEXIBILITY": "Flexibilité",
     "CRITERION_DEADLINES": "Respect des délais",
     "CRITERION_ADVICES": "De bon conseil",
-    "CRITERION_CLEAN": "Propreté du chantier"
+    "CRITERION_CLEAN": "Propreté du chantier",
+    "ACTIVITY_MATERIAL_TRUE": "Matériel fourni"
 }
