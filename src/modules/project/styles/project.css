@@ -81,3 +81,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.dateEdit ul.questions-ul li {
+    width: 100% !important;
+}
