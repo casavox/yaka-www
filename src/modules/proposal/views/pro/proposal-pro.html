@@ -21,7 +21,7 @@
 
 
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="main">
 
@@ -55,47 +55,13 @@
                     <div class="row no-margin">
                         <div class="col-xs-12">
                             <div class="description-action-btn" ng-click="vm.edit()"
-                                 ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'">
+                                 ng-show="!vm.editFlag && (vm.proposal.status == 'START' || vm.proposal.status == 'SELECTED')">
                                 MODIFIER
                             </div>
                             <div class="description-action-btn"
-                                 ng-show="!vm.editFlag && vm.proposal.status != 'DECLINED' && vm.proposal.status != 'RATE_PRO' && vm.proposal.status != 'COMPLETED'"
-                                 ng-click="vm.cancelProposalModal()">REFUSER</button>
-                                {{vm.choice}}
-                                <script type="text/ng-template" id="cancelProposalContent.html">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title">Êtes-vous bien sûr ?</h3>
-                                    </div>
-                                    <div class="modal-body">
-                                        <strong>Vous ne pourrez plus revenir sur votre décision</strong>
-                                        <P>Le client en sera immédiatement informé</P>
-                                    </div>
-                                    <div class="modal-footer p-t-0 p-b-10">
-                                        <button class="btn btn-primary m-b-5" type="button" ng-click="cancel()">
-                                            Non, maintenir ma proposition
-                                        </button>
-                                        <button class="btn btn-warning m-b-5" type="button" ng-click="yesChoice = true"
-                                                data-ng-disabled="yesChoice">
-                                            Oui, supprimer ma proposition
-                                        </button>
-                                        <div class="m-t-10 text-left" data-ng-show="yesChoice">
-                                            <strong class="c-orange">Restez en bon terme avec le client, expliquez lui
-                                                votre décision :</strong>
-                                            <div class="lv-footer ms-reply ms-reply-modal" data-ng-show="yesChoice">
-                                                <textarea data-ng-model="cancelProposalMessage" ng-trim="true"
-                                                          placeholder="20 caractères minimum : Désolé, je ne suis malheureusement plus disponible / Je n'ai pas assez d'info pour m'engager / Mes compétences ne correspondent pas exactement à votre besoin / ...">
-                                                </textarea>
-                                                <button data-ng-click="ok(cancelProposalMessage)"
-                                                        data-ng-disabled="!cancelProposalMessage || cancelProposalMessage.length < 20"
-                                                        data-ng-class="{'pointer-not-allowed': !cancelProposalMessage || cancelProposalMessage.length < 20}">
-                                                    <i class="zmdi zmdi-mail-send"
-                                                       data-ng-class="{'c-grey': !cancelProposalMessage || cancelProposalMessage.length < 20}"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </script>
+                                 ng-show="!vm.editFlag && (vm.proposal.status == 'START' || vm.proposal.status == 'SELECTED')"
+                                 ng-click="vm.cancelProposalModal()">
+                                ANNULER MA PROPOSITION
                             </div>
                             <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.save()">
                                 ENVOYER

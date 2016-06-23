@@ -13,7 +13,7 @@
                     class="homeSection1Yaka">PRO</span>
                     <span class="titleBeta titleBetaPro">Beta</span>
                 </div>
-                <div class="homeSection1ProLink proTopLink" angular-ripple ui-sref="home">
+                <div class="homeSection1ProLink proTopLink waves-effect" ui-sref="home">
                     ACCES CLIENT
                 </div>
                 <div class="homeSection1Login proTopLink yakaLinkWhite" ng-click="vm.openPopup()">
@@ -28,12 +28,12 @@
                 toujours faire confiance à un artisan qui leur est recommandé.
             </div>
             <div class="col-xs-12 proHomeSection1Buttons">
-                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange"
-                     ng-click="vm.smoothScrollRegister()" angular-ripple>
+                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect"
+                     ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE
                 </div>
-                <div class="col-xs-4 col-sm-3 proHomeSection1AboutButton yakaButton yakaBorderWhite"
-                     ng-click="vm.smoothScrollAbout()" angular-ripple>
+                <div class="col-xs-4 col-sm-3 proHomeSection1AboutButton yakaButton yakaBorderWhite waves-effect"
+                     ng-click="vm.smoothScrollAbout()">
                     EN SAVOIR PLUS
                 </div>
             </div>
@@ -180,12 +180,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-6 proHomeSection2RegisterFacebook" ng-click="vm.facebookPreRegister()"
-                     ng-if="!vm.isSocialRegister()" angular-ripple>
+                <div class="col-xs-6 proHomeSection2RegisterFacebook waves-effect" ng-click="vm.facebookPreRegister()"
+                     ng-if="!vm.isSocialRegister()">
                     Facebook
                 </div>
-                <div class="col-xs-6 proHomeSection2RegisterGoogle" ng-click="vm.googlePreRegister()"
-                     ng-if="!vm.isSocialRegister()" angular-ripple>
+                <div class="col-xs-6 proHomeSection2RegisterGoogle waves-effect" ng-click="vm.googlePreRegister()"
+                     ng-if="!vm.isSocialRegister()">
                     Google
                 </div>
 
@@ -261,9 +261,8 @@
                     placeholder="Ville"
                     ng-model="vm.newUser.professional.company.address.address"/>
 
-                <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button"
-                     ng-class="{yakaDisabled: !vm.formIsValid()}" ng-click="vm.registerUser()"
-                     angular-ripple>
+                <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
+                     ng-class="{yakaDisabled: !vm.formIsValid()}" ng-click="vm.registerUser()">
                     S'INSCRIRE
                 </div>
             </div>
@@ -310,9 +309,8 @@
                 <div class="col-xs-12 proHomeSection3bTitle">
                     Inscrivez-vous dès maintenant et développez votre réseau
                 </div>
-                <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange proHomeSection3bButton"
-                     ng-click="vm.smoothScrollRegister()"
-                     angular-ripple>
+                <div class="col-xs-6 col-xs-offset-3 yakaButton yakaOrange proHomeSection3bButton waves-effect"
+                     ng-click="vm.smoothScrollRegister()">
                     S’INSCRIRE GRATUITEMENT
                 </div>
             </div>
@@ -369,10 +367,10 @@
                     CONNEXION
                 </div>
 
-                <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookLogin()" angular-ripple>
+                <div class="col-xs-6 loginPopupFacebook waves-effect" ng-click="vm.facebookLogin()">
                     Facebook
                 </div>
-                <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googleLogin()" angular-ripple>
+                <div class="col-xs-6 loginPopupGoogle waves-effect" ng-click="vm.googleLogin()">
                     Google
                 </div>
 
@@ -382,9 +380,8 @@
                        ng-model="vm.loginUser.password"
                        ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                     ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
-                     angular-ripple>
+                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
+                     ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()">
                     SE CONNECTER
                 </div>
                 <div class="col-xs-12 passwordForgotten passwordForgottenPro">
@@ -399,9 +396,8 @@
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en bas de
                     cette page.
                 </div>
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                     ng-click="vm.noSocialAccountMessage = false"
-                     angular-ripple>
+                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
+                     ng-click="vm.noSocialAccountMessage = false">
                     OK
                 </div>
             </div>
@@ -436,10 +432,9 @@
                     </div>
                 </form>
 
-                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton"
+                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
                      ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     ng-click="vm.forgottenPassword()"
-                     angular-ripple>
+                     ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
                 </div>
 

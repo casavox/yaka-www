@@ -19,7 +19,6 @@
             "bower_components/masonry/masonry.js",
             "bower_components/imagesloaded/imagesloaded.js",
             "bower_components/angular/angular.js",
-            "bower_components/angular-material/angular-material.js",
             "bower_components/ng-stomp/src/ng-stomp.js",
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
             "bower_components/angular-scroll-glue/src/scrollglue.js",
@@ -46,7 +45,6 @@
             "bower_components/angular-simple-logger/dist/angular-simple-logger.js",
             "bower_components/angular-google-maps/dist/angular-google-maps.js",
             "bower_components/angular-carousel/dist/angular-carousel.js",
-            "bower_components/angular-ripple/angular-ripple.js",
             "bower_components/satellizer/satellizer.js",
             "bower_components/angular-elastic/elastic.js",
             "bower_components/moment/moment.js",
@@ -78,8 +76,7 @@
             "modules/template/**/*.js",
             "modules/core/module.js",
             "modules/**/*.js",
-            "scripts/angular-locale_fr-fr.js",
-            "scripts/customer-support.js"
+            "scripts/angular-locale_fr-fr.js"
         ],
         "css": [
             "bower_components/lightgallery/light-gallery/css/lightGallery.css",
@@ -90,7 +87,6 @@
             "bower_components/intl-tel-input/build/css/intlTelInput.css",
             "bower_components/bootstrap/dist/css/bootstrap-theme.css",
             "bower_components/angular-carousel/dist/angular-carousel.css",
-            "bower_components/angular-material/angular-material.css",
             "bower_components/animate.css/animate.css",
             "bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.css",
             "bower_components/bootstrap-sweetalert/lib/sweet-alert.css",

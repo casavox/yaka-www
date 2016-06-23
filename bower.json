@@ -14,7 +14,6 @@
   ],
   "dependencies": {
     "angular-masonry": "~0.16.0",
-    "angular-material": "~1.0.6",
     "angular-scroll-glue": "~2.0.6",
     "cloudinary-jquery-file-upload": "^2.0.8",
     "cloudinary_ng": "^1.0.0",
@@ -32,7 +31,6 @@
     "angularjs-dropdown-multiselect": "^1.5.2",
     "angular-typewrite": "^0.0.14",
     "angular-cookies": "^1.5.x",
-    "angular-ripple": "*",
     "satellizer": "^0.14.0",
     "angular-elastic": "^2.5.1",
     "angular-moment": "^0.10.3",
@@ -81,14 +79,16 @@
     "bootstrap-growl": "https://github.com/mouse0270/bootstrap-notify.git#old-2.0.1",
     "ng-table": "^0.8.3",
     "intl-tel-input": "^8.5.2",
-    "angular-bootstrap-lightbox": "^0.12.0"
+    "angular-bootstrap-lightbox": "^0.12.0",
+    "angular-messages": "^1.5.x",
+    "angular-aria": "^1.5.x"
   },
   "resolutions": {
-    "angular": "1.5.x",
     "angular-bootstrap": "^1.3.3",
     "angular-sanitize": "^1.5.x",
     "angular-touch": "^1.5.x",
     "angular-animate": "~1.5.x",
-    "lodash": "4.13.x"
+    "lodash": "4.13.x",
+    "angular": "1.5.x"
   }
 }

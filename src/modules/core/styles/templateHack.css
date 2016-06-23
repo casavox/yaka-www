@@ -262,7 +262,7 @@ header {
 .top-menu > li .dropdown-menu-lg .lv-body {
     min-height: inherit !important;
     max-height: 265px !important;
-    overflow-x: scroll !important;
+    overflow-y: scroll !important;
 }
 
 .lv-item.userChatItem {

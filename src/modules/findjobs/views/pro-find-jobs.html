@@ -52,9 +52,8 @@
                             <li ng-repeat="lead in vm.leads track by lead.id"
                                 ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
                                 <a title="{{lead.title | yakaTranslateTitle}}">
-                                    <div class="proDashboardListItem"
-                                         ui-sref="pro-project-proposal-new({projectId: lead.id})"
-                                         angular-ripple>
+                                    <div class="proDashboardListItem waves-effect"
+                                         ui-sref="pro-project-proposal-new({projectId: lead.id})">
                                         <div class="proDashboardListItemLogo">
                                             <img width="50" height="50" ng-src="{{vm.getIcon(lead)}}"/>
                                         </div>
@@ -80,8 +79,7 @@
                  ng-show="showList">
                 <a ng-repeat="lead in vm.leads track by lead.id" title="{{lead.title | yakaTranslateTitle}}">
                     <div class="proDashboardListItem"
-                         ui-sref="pro-project-proposal-new({projectId: lead.id})"
-                         angular-ripple>
+                         ui-sref="pro-project-proposal-new({projectId: lead.id})">
                         <div class="proDashboardListItemLogo">
                             <img width="50" height="50" ng-src="{{vm.getIcon(lead)}}"/>
                         </div>
@@ -103,7 +101,7 @@
                     voir plus d'offres.
                 </div>
             </div>
-            <div class="col-xs-12 proDashboardBottomButton visible-xs" ng-click="showList = !showList" angular-ripple>
+            <div class="col-xs-12 proDashboardBottomButton visible-xs waves-effect" ng-click="showList = !showList">
                 {{ showList ? "Show Map" : "Show List" }}
             </div>
         </div>

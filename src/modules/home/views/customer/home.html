@@ -6,7 +6,7 @@
                     <span class="homeSection1Yaka">YAKA</span><span class="homeSection1Club">CLUB</span>
                     <span class="titleBeta">Beta</span>
                 </div>
-                <div class="homeSection1ProLink" angular-ripple ui-sref="pro-home">
+                <div class="homeSection1ProLink waves-effect" ui-sref="pro-home">
                     ACCES PRO
                 </div>
                 <div class="homeSection1Register yakaLinkWhite"
@@ -27,8 +27,7 @@
             <div class="col-xs-12 homeSection1SubTitle">
                 Rejoignez la 1ère plateforme de recommandation d’artisans entre particuliers.
             </div>
-            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button" ng-click="vm.openPopup(false)"
-                 angular-ripple>
+            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button waves-effect" ng-click="vm.openPopup(false)">
                 CREER MON RESEAU
             </div>
         </div>
@@ -95,8 +94,8 @@
                         Trouvez de nouveaux clients et passez moins de temps à prospecter.
                     </div>
                     <div
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaOrange"
-                        ui-sref="pro-home" angular-ripple>
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaOrange waves-effect"
+                        ui-sref="pro-home">
                         DECOUVREZ NOS SERVICES
                     </div>
                 </div>
@@ -108,9 +107,8 @@
                         Augmentez vos chances de trouver de bons artisans et aidez vos amis.
                     </div>
                     <div
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue"
-                        ng-click="vm.openPopup(false)"
-                        angular-ripple>
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue waves-effect"
+                        ng-click="vm.openPopup(false)">
                         INVITEZ VOS AMIS ET VOS ARTISANS
                     </div>
                 </div>
@@ -174,10 +172,10 @@
                 </div>
 
                 <div data-ng-show="vm.loginTab">
-                    <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookLogin()" angular-ripple>
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" ng-click="vm.facebookLogin()">
                         Facebook
                     </div>
-                    <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googleLogin()" angular-ripple>
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" ng-click="vm.googleLogin()">
                         Google
                     </div>
 
@@ -187,9 +185,8 @@
                            ng-model="vm.loginUser.password"
                            ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
-                         ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()"
-                         angular-ripple>
+                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
+                         ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()">
                         SE CONNECTER
                     </div>
                     <div class="col-xs-12 passwordForgotten">
@@ -211,12 +208,12 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 loginPopupFacebook" ng-click="vm.facebookPreRegister()"
-                         ng-if="!vm.isSocialRegister()" angular-ripple>
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" ng-click="vm.facebookPreRegister()"
+                         ng-if="!vm.isSocialRegister()">
                         Facebook
                     </div>
-                    <div class="col-xs-6 loginPopupGoogle" ng-click="vm.googlePreRegister()"
-                         ng-if="!vm.isSocialRegister()" angular-ripple>
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" ng-click="vm.googlePreRegister()"
+                         ng-if="!vm.isSocialRegister()">
                         Google
                     </div>
 
@@ -322,9 +319,8 @@
                                 </small>
                             </div>
 
-                            <div class="col-xs-12 yakaButton yakaBlue loginPopupButton"
-                                 ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()"
-                                 angular-ripple>
+                            <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
+                                 ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()">
                                 S'INSCRIRE
                             </div>
 
@@ -341,9 +337,8 @@
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
                     sur "Inscription" puis "{{vm.socialNetwork}}".
                 </div>
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton"
-                     ng-click="vm.noSocialAccountMessage = false"
-                     angular-ripple>
+                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
+                     ng-click="vm.noSocialAccountMessage = false">
                     OK
                 </div>
             </div>
@@ -378,10 +373,9 @@
                     </div>
                 </form>
 
-                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton"
+                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
                      ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     ng-click="vm.forgottenPassword()"
-                     angular-ripple>
+                     ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
                 </div>
 

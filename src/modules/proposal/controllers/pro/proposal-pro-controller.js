@@ -116,8 +116,10 @@
         }
 
         function cancelProposalModal() {
-            modalService.cancelProposal('cancelProposalContent.html', 'animated zoomIn', vm);
-        };
+            modalService.cancelProposal('cancelProposalContent.html', 'animated zoomIn', function (chatMessage) {
+                vm.cancelProposal(chatMessage);
+            });
+        }
 
         function save() {
             vm.proposalTmp.type = vm.project.type;

@@ -35,11 +35,11 @@
                         <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
                             MODIFIER
                         </div>
-                        <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.trashFlag = true">
+                        <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.openDeleteProjectPopup()">
                             SUPPRIMER
                         </div>
                         <div class="description-action-btn color-red" ng-show="vm.editFlag"
-                             ng-click="vm.saveFlag = true">
+                             ng-click="vm.openSavePopup()">
                             ENREGISTER
                         </div>
                         <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
@@ -224,48 +224,12 @@
         </div>
     </div>
 
-
-    <div class="popUp" ng-show="vm.trashFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.trashFlag = false"></span>
-                <h4>Êtes-vous sûr ?</h4>
-                <p>Il est en général préférable de modifier un projet.</p>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.trashFlag = false">
-                    ANNULER
-                </div>
-                <div ng-click="vm.deleteProject()">
-                    SUPPRIMER DÉFINITIVEMENT
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popUp" ng-show="vm.closeFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.closeFlag = false"></span>
-                <h4>Clore le projet</h4>
-                <p>Les travaux sont terminés et payés.</p>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.trashFlag = false">
-                    ANNULER
-                </div>
-                <div ng-click="vm.closeProject()">
-                    CONFIRMER
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="popUp" ng-show="vm.saveFlag">
         <div class="popUp-container center-middle">
             <div class="popUp-content">
                 <span class="boxclose" ng-click="vm.saveFlag = false"></span>
                 <h4>Êtes-vous sûr ?</h4>
+
                 <p>
                     Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, en fonction de
                     vos modifications ils pourront décider de modifier ou retirer leur proposition.
@@ -278,46 +242,6 @@
                 <div ng-click="vm.update()">
                     METTRE À JOUR
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popUp img-preview-size" ng-show="vm.imageFlag" ng-click="vm.imageFlag = false">
-        <div class="popUp-container center-middle w-90p h-90p" ng-click="$event.stopPropagation()">
-            <div class="popUp-content img-preview-popUp">
-                <span class="boxclose" ng-click="vm.imageFlag = false"></span>
-                <h4>Delete or Update description</h4>
-                <cl-image public-id="{{vm.imgTmp.cloudinaryPublicId}}"
-                          secure="true" format="png" class="center mb-39">
-                </cl-image>
-                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmp.description"
-                          ng-change="vm.limitLength(vm.imgTmp, 'description', 140)"></textarea>
-
-                <div class="img-desc-length">
-                    {{vm.imgTmp.description.length}}/140
-                </div>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.deleteImg()">
-                    DELETE
-                </div>
-                <div ng-click="vm.updateImg()">
-                    UPDATE
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
-        <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
-            <div class="popUp-content no-margin img-preview-popUp">
-                <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
-                <h4>Preview</h4>
-                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}"
-                          secure="true" format="png" class="center">
-                </cl-image>
-                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
-                          disabled></textarea>
             </div>
         </div>
     </div>
@@ -397,6 +321,7 @@
             <div class="popUp-content">
                 <span class="boxclose" ng-click="vm.whenFlag = false"></span>
                 <h4>Quand voulez-vous que les travaux commencent ?</h4>
+
                 <div>
                     <ul class="questions-ul center no-padding">
                         <li class="question-li center" ng-class="vm.child3"

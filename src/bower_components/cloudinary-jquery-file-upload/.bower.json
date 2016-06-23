@@ -1,6 +1,6 @@
 {
   "name": "cloudinary-jquery-file-upload",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "homepage": "http://cloudinary.com",
   "authors": [
     {
@@ -59,11 +59,11 @@
     "test",
     "tests"
   ],
-  "_release": "2.0.9",
+  "_release": "2.1.0",
   "_resolution": {
     "type": "version",
-    "tag": "2.0.9",
-    "commit": "f18569cffac82a7e391b97942f8fb68b219bfa5d"
+    "tag": "2.1.0",
+    "commit": "c42c8215ff66a79f664f592bf7f24a5372462cb5"
   },
   "_source": "https://github.com/cloudinary/pkg-cloudinary-jquery-file-upload.git",
   "_target": "^2.0.8",
