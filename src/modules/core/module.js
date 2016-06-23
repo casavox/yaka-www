@@ -15,7 +15,6 @@ angular.module('Yaka', [
         'angularRipple',
         'monospaced.elastic',
         'smoothScroll',
-        'ngMaterial',
         'angularMoment',
         'ngStomp',
         'luegg.directives',
