@@ -78,7 +78,7 @@
                  ng-class="{'proDashboardListWithTopView':$parent.vm.showTopView}"
                  ng-show="showList">
                 <a ng-repeat="lead in vm.leads track by lead.id" title="{{lead.title | yakaTranslateTitle}}">
-                    <div class="proDashboardListItem waves-effect"
+                    <div class="proDashboardListItem"
                          ui-sref="pro-project-proposal-new({projectId: lead.id})">
                         <div class="proDashboardListItemLogo">
                             <img width="50" height="50" ng-src="{{vm.getIcon(lead)}}"/>

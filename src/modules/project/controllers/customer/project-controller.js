@@ -120,16 +120,6 @@
             }
         };
 
-
-        vm.closeProject = function () {
-            networkService.closeProject(vm.project.proposal.id, function (res) {
-                vm.project.status = "ONGOING_RATE_PRO";
-                vm.closeFlag = false;
-            }, function (res) {
-                alertMsg.send("Impossible de fermer le projet", "danger");
-            });
-        };
-
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
         vm.hire = function () {
@@ -636,6 +626,38 @@
                 return 0;
             }
             return str.length;
+        };
+
+        vm.openDeleteProjectPopup = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Au lieu de supprimer un projet, il est généralement préférable de le modifier.",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui, supprimer mon projet",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    vm.deleteProject();
+                }
+            });
+        };
+
+        vm.openSavePopup = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui, mettre à jour mon projet",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    vm.update();
+                }
+            });
         };
     }
 })();
