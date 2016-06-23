@@ -35,7 +35,8 @@
                         <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
                             MODIFIER
                         </div>
-                        <div class="description-action-btn" ng-show="!vm.editFlag" ng-click="vm.openDeleteProjectPopup()">
+                        <div class="description-action-btn" ng-show="!vm.editFlag"
+                             ng-click="vm.openDeleteProjectPopup()">
                             SUPPRIMER
                         </div>
                         <div class="description-action-btn color-red" ng-show="vm.editFlag"
@@ -102,7 +103,6 @@
                         <div class="col-xs-12 description-sub-text">
                                 <textarea msd-elastic class="custom-textarea" disabled
                                           ng-model="vm.projectTmp.description" ng-hide="vm.editFlag"></textarea>
-
 
                             <form class="descriptionFormProject" ng-show="vm.editFlag" name="descriptionForm">
                                 <div class="form-group"
@@ -224,49 +224,32 @@
         </div>
     </div>
 
-    <div class="popUp" ng-show="vm.saveFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.saveFlag = false"></span>
-                <h4>Êtes-vous sûr ?</h4>
 
-                <p>
-                    Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, en fonction de
-                    vos modifications ils pourront décider de modifier ou retirer leur proposition.
-                </p>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.cancel()">
-                    ANNULER
-                </div>
-                <div ng-click="vm.update()">
-                    METTRE À JOUR
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="yakaPopup" ng-show="vm.whereFlag"
+         ng-click="vm.whereFlag = false" ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
 
-    <div class="popUp" ng-show="vm.whereFlag">
-        <div class="popUp-container center-middle w-550">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.whereFlag = false"></span>
-                <h4>Lieu des travaux ?</h4>
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     ng-click="vm.whereFlag = false" alt=""/>
+
+                <h4>Veuillez indiquer le lieu des travaux</h4>
 
                 <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
-                    <div class="col-md-4 no-padding">
+                    <div class="col-xs-4 no-padding">
                         <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
-                            <option value="new">Create new one</option>
+                            <option value="new">Créer une nouvelle addresse</option>
                             <option ng-repeat="a in vm.user.addresses" value="{{a.address}}"
                                     ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-4 no-padding">
+                    <div class="col-xs-4 no-padding">
                         <p class="">
                             - Ou ajouter une nouvelle adresse
                         </p>
                     </div>
-                    <div class="col-md-4 no-padding">
+                    <div class="col-xs-4 no-padding">
                         <input type="text" class="select-custom" ng-model="vm.newAddr.name"
                                ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse (Maison, Papa, ...)">
                     </div>
@@ -304,25 +287,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.whereFlag = false">
-                    ANNULER
-                </div>
-                <div ng-click="vm.changeWhere()">
-                    CONFIRMER
+                <div class="t-right">
+                    <button class="btn btn-link waves-effect c-red" ng-click="vm.whereFlag = false">
+                        ANNULER
+                    </button>
+                    <button class="btn btn-link waves-effect c-lightblue" ng-click="vm.changeWhere()">
+                        CONFIRMER
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="yakaPopup" ng-show="vm.whenFlag"
+         ng-click="vm.whenFlag = false" ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
 
-    <div class="popUp" ng-show="vm.whenFlag">
-        <div class="popUp-container center-middle w-500">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.whenFlag = false"></span>
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     ng-click="vm.whenFlag = false" alt=""/>
+
                 <h4>Quand voulez-vous que les travaux commencent ?</h4>
 
-                <div>
+                <div class="dateEdit">
                     <ul class="questions-ul center no-padding">
                         <li class="question-li center" ng-class="vm.child3"
                             ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
@@ -352,15 +338,15 @@
                         {{vm.error.date.message}}
                     </p>
                 </div>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.whenFlag = false">
-                    ANNULER
-                </div>
-                <div ng-click="vm.changeWhen()">
-                    CONFIRMER
-                </div>
 
+                <div class="t-right">
+                    <button class="btn btn-link waves-effect c-red" ng-click="vm.whenFlag = false">
+                        ANNULER
+                    </button>
+                    <button class="btn btn-link waves-effect c-lightblue" ng-click="vm.changeWhen()">
+                        CONFIRMER
+                    </button>
+                </div>
             </div>
         </div>
     </div>
