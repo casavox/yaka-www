@@ -78,8 +78,7 @@
             "modules/template/**/*.js",
             "modules/core/module.js",
             "modules/**/*.js",
-            "scripts/angular-locale_fr-fr.js",
-            "scripts/customer-support.js"
+            "scripts/angular-locale_fr-fr.js"
         ],
         "css": [
             "bower_components/lightgallery/light-gallery/css/lightGallery.css",

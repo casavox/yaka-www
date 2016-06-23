@@ -99,7 +99,7 @@
     position: fixed !important;
     width: 100% !important;
     height: 100% !important;
-    overflow-x: scroll;
+    overflow-y: scroll;
     background-color: rgba(11, 16, 23, .5);
     padding-top: 55px !important;
     padding-bottom: 55px !important;
