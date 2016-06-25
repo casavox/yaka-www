@@ -232,10 +232,12 @@
         </div>
     </div>
 
-    <div class="popUp" ng-show="vm.myPriceFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.myPriceFlag = false; vm.error.price.flag = false"></span>
+    <div class="yakaPopup" ng-show="vm.myPriceFlag"
+         ng-click="vm.myPriceFlag = false" ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     ng-click="vm.myPriceFlag = false" alt=""/>
                 <h4>My price</h4>
 
                 <p class="info-popUp">
@@ -258,36 +260,39 @@
                     {{vm.error.price.message}}
                 </p>
 
-            </div>
-            <div class="clearfix mt-50">
-                <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">
-                    ESTIMATE
+                <div class="clearfix mt-50">
+                    <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">
+                        ESTIMATE
+                    </div>
+                    <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">
+                        FINAL
+                    </div>
                 </div>
-                <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">
-                    FINAL
-                </div>
+
             </div>
         </div>
     </div>
 
 
-    <div class="popUp" ng-show="vm.myDateFlag">
-        <div class="popUp-container center-middle" ng-class="{'w-500': vm.project.type == 'EMERGENCY'}">
-            <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.myDateFlag = false"></span>
+    <div class="yakaPopup" ng-show="vm.myDateFlag"
+         ng-click="vm.myDateFlag = false" ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     ng-click="vm.myDateFlag = false" alt=""/>
                 <h4>Ma date d'intervention</h4>
 
                 <div style="display:inline-block; min-height:290px;" class="center custom-picker">
                     <uib-datepicker ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                     class="well well-sm custom-date"></uib-datepicker>
                 </div>
-            </div>
-            <div class="popUp-footer">
-                <div ng-click="vm.myDateFlag = false">
-                    ANNULER
-                </div>
-                <div ng-click="vm.myDateFlag = false; vm.selectDate()">
-                    CONFIRMER
+                <div class="popUp-footer">
+                    <div ng-click="vm.myDateFlag = false">
+                        ANNULER
+                    </div>
+                    <div ng-click="vm.myDateFlag = false; vm.selectDate()">
+                        CONFIRMER
+                    </div>
                 </div>
             </div>
         </div>
