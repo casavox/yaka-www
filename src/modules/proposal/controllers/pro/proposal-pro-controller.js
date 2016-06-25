@@ -104,14 +104,14 @@
                 networkService.proProposalDeclinePOST($stateParams.proposalId,
                     {text: cancelProposalMessage},
                     function (res) {
-                        alertMsg.send("Votre proposition à bien été supprimée", "info");
+                        alertMsg.send("Votre proposition à bien été retirée", "info");
                         $state.go("pro-proposals");
                     }, function () {
-                        alertMsg.send("Impossible de supprimer la proposition (contactez le support)", "danger");
+                        alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
                     }
                 );
             } else {
-                alertMsg.send("Vous devez accompagner la suppression de votre proposition d'un message au client (30 caractères minimum)", "danger");
+                alertMsg.send("Vous devez accompagner le retrait de votre proposition d'un message au client (30 caractères minimum)", "danger");
             }
         }
 
