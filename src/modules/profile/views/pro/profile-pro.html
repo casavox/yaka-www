@@ -132,7 +132,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding form-group fg-float"
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                                  ng-class="{'has-error': !vm.profileInfo.user.email}">
                                 <div class="fg-line">
                                     <input type="text" name="email" class="form-control fg-input"
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding form-group m-b-30"
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                                  ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
                                 <div class="fg-line">
                                     <div class="select">
@@ -163,6 +163,7 @@
                                                 {{year}}
                                             </option>
                                         </select>
+                                        <label class="fg-label">Première année d'expérience</label>
                                     </div>
                                 </div>
                                 <div ng-messages="profileForm.activityStartedYear.$error">
