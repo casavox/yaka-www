@@ -100,7 +100,7 @@
                 var formData = {
                     project: {id: vm.projectTmp.id},
                     comment: vm.offer.comment
-                }
+                };
                 if (vm.offer.price && vm.offer.price.price) {
                     formData.price = parseInt(vm.offer.price.price);
                     formData.priceType = $filter('uppercase')(vm.offer.price.type);
