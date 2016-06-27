@@ -19,6 +19,7 @@
         $rootScope.pageName = "Nouveau projet";
         $rootScope.updateProfile();
         $rootScope.showMenu = false;
+        vm.multi = "";
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
         vm.countdown = 5;
@@ -495,50 +496,61 @@
         };
 
         vm.selectType = function (item, items) {
-            vm.title = item.name;
             vm.type = item;
             vm.questions = [];
             vm.continue = vm.continueImg = vm.continueAddressFlag = vm.service = false;
-            vm.questions.push(item);
             vm.material = vm.subService = null;
             vm.projectDescription = vm.child1 = vm.child2 = vm.child3 = vm.child0 = "";
-            for (var i = 0; i < items.length; i++) {
-                items[i].selected = "";
+            for (var i = 0; i < vm.newProject.childrenActivities.length; i++) {
+                vm.newProject.childrenActivities[i].selected = "";
             }
-            if (item.childrenActivities && item.childrenActivities.length > 0) {
-                var childrenArray = [];
-                for (var i = 0; i < item.childrenActivities.length; i++) {
-                    childrenArray.push(item.childrenActivities[i]);
+
+            if (item == 'MULTI') {
+                $timeout(function () {
+                    vm.service = true;
+                    vm.title = "Multidomaines";
+                    vm.multi = "activate";
+                    vm.questions.push({code : 'MULTI'});
+                    var element = document.getElementById('slide3');
+                    smoothScroll(element, scrollOptions);
+                }, 0);
+            } else {
+                vm.multi = "";
+                vm.title = item.name;
+                if (item.childrenActivities && item.childrenActivities.length > 0) {
+                    vm.questions.push(item);
+                    var childrenArray = [];
+                    for (var i = 0; i < item.childrenActivities.length; i++) {
+                        childrenArray.push(item.childrenActivities[i]);
+                    }
+                    item.childrenActivities = childrenArray;
+                    for (var i = 0; i < item.childrenActivities.length; i++) {
+                        item.childrenActivities[i].selected = "";
+                    }
+                    if (item.childrenActivities[item.childrenActivities.length - 1].code != "OTHER") {
+                        var otherChild = {code: "OTHER"};
+                        item.childrenActivities.push(otherChild);
+                    }
                 }
-                item.childrenActivities = childrenArray;
-                for (var i = 0; i < item.childrenActivities.length; i++) {
-                    item.childrenActivities[i].selected = "";
+                item.selected = "activate";
+                if (!angular.isUndefined(vm.user) && vm.user.addresses) {
+                    if (vm.user.addresses.length > 0) {
+                        vm.myAddress = vm.user.addresses[0].address;
+                        $scope.address.name = vm.myAddress;
+                        vm.continueAddress = true;
+                    } else {
+                        vm.continueAddress = false;
+                        vm.newAddrFlag = true;
+                    }
+                } else {
+                    vm.user = {};
+                    vm.user.addresses = [];
                 }
-                if (item.childrenActivities[item.childrenActivities.length - 1].code != "OTHER") {
-                    var otherChild = {code: "OTHER"};
-                    item.childrenActivities.push(otherChild);
-                }
+                $timeout(function () {
+                    var element = document.getElementById('subSlide0');
+                    smoothScroll(element, scrollOptions);
+                }, 0);
             }
-            item.selected = "activate";
-            if (!angular.isUndefined(vm.user) && vm.user.addresses) {
-                if (vm.user.addresses.length > 0) {
-                    vm.myAddress = vm.user.addresses[0].address;
-                    $scope.address.name = vm.myAddress;
-                    vm.continueAddress = true;
-                }
-                else {
-                    vm.continueAddress = false;
-                    vm.newAddrFlag = true;
-                }
-            }
-            else {
-                vm.user = {};
-                vm.user.addresses = [];
-            }
-            $timeout(function () {
-                var element = document.getElementById('subSlide0');
-                smoothScroll(element, scrollOptions);
-            }, 0);
         };
 
         vm.selectSubService = function (item, items, index) {
