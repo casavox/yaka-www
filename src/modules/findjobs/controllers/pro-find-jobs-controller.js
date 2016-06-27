@@ -149,7 +149,7 @@
                 }
             };
             vm.map.bounds = angular.copy(homeBounds);
-        };
+        }
 
         function loadLeads(args) {
             networkService.proLeadsGET(args.sw_lat, args.sw_lng, args.ne_lat, args.ne_lng,
@@ -194,7 +194,7 @@
             }
 
             vm.carrouselSelectedItem.index = carouselIndex;
-        }
+        };
 
         var resizeTimeoutId;
         uiGmapGoogleMapApi.then(function (maps) {
@@ -241,6 +241,7 @@
                         $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
+                        console.log(vm.map.zoom);
                         if (!disableExploringMode) {
                             vm.showSlider = false;
                             vm.showWorkArea = false;
@@ -255,7 +256,7 @@
                 control: {}
             };
             vm.mapOptions = {
-                minZoom: 6,
+                minZoom: 10,
                 zoomControlOptions: {
                     style: google.maps.ZoomControlStyle.DEFAULT,
                     position: google.maps.ControlPosition.TOP_RIGHT
@@ -322,7 +323,7 @@
 
         vm.homeControlClicked = function () {
             $rootScope.$emit('showHomeControlClickedEmit');
-        }
+        };
 
         $rootScope.$on('showHomeControlBroadcast', function (event, bool) {
             vm.showHomeControl = bool;
