@@ -123,10 +123,10 @@
             {
                 id: 1,
                 center: {
-                    latitude: 49.11893763273547,
-                    longitude: 2.1791872320312855
+                    latitude: args.latitude,
+                    longitude: args.longitude
                 },
-                radius: 29446.137444389682,
+                radius: args.radius,
                 stroke: {
                     color: '#03A9F4',
                     weight: 2,
