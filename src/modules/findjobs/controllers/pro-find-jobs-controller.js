@@ -18,8 +18,8 @@
         var homeBounds = {};
         var lastBounds = {};
         var currentCenter = {
-            latitude: 49.11893763273547,
-            longitude: 2.1791872320312855
+            latitude: 0,
+            longitude: 0
         };
         var loadingLeads = false;
         var disableExploringMode = true;
@@ -200,8 +200,8 @@
         uiGmapGoogleMapApi.then(function (maps) {
             vm.map = {
                 center: {
-                    latitude: 49.11893763273547,
-                    longitude: 2.1791872320312855
+                    latitude: 0,
+                    longitude: 0
                 },
                 zoom: 6,
                 bounds: {},
