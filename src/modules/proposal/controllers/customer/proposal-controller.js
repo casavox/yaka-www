@@ -54,7 +54,7 @@
         vm.declineProposal = function () {
             swal({
                 title: "Êtes-vous sûr ?",
-                text: "Une fois cette offre refusée, vous ne pourrez plus y accéder",
+                text: "Le Pro en sera immédiatement notifié, vous ne pourrez plus échanger avec lui",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
@@ -64,10 +64,10 @@
                 if (isConfirm) {
                     networkService.proposalDeclinePOST(vm.proposal.id,
                         function (res) {
-                            alertMsg.send("L'offre a été refusée", "info");
+                            alertMsg.send("La proposition a été refusée", "info");
                             $state.go("proposals", {projectId: vm.proposal.project.id});
                         }, function () {
-                            alertMsg.send("Impossible de refuser l'offre", "danger");
+                            alertMsg.send("Impossible d'annuler la proposition, réessayez puis contactez le support si besoin", "danger");
                         }
                     );
                 }

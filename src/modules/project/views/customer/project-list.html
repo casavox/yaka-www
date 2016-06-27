@@ -67,15 +67,15 @@
                         </div>
                     </div>
                     <div ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="card-body p-l-25 p-b-20">
-                        <span>En attente de propositions de professionels...</span>
+                        <span>En attente de propositions...</span>
                     </div>
                     <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
                         <div class="card-body p-l-25 p-t-0">
                             <span ng-show="p.proposals.length == 1">
-                                Vous avez reçu <b>1 proposition</b>
+                                Vous avez <b>1 proposition</b>
                             </span>
                             <span ng-show="p.proposals.length > 1">
-                                Vous avez reçu <b>{{p.proposals.length}} propositions</b>
+                                Vous avez <b>{{p.proposals.length}} propositions</b>
                             </span>
                         </div>
                         <div class="card-body p-l-25 p-r-30 p-t-10 p-b-20">
@@ -195,7 +195,6 @@
                     <h2 ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
                 </div>
                 <div class="card card-hover pointer" ng-repeat="pc in vm.projectsCompleted" ng-click="vm.selectProposal(pc.proposal)">
->>>>>>> c4e693d3a4b3e0ee5f8ae3b773642682d5575274
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
