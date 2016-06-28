@@ -4772,6 +4772,7 @@ ul[rn-carousel-buffered] > li {
     position: absolute;
     top: calc(15%);
     left: 8px;
+    width: 50px;
 }
 
 .proDashboardListItemTitle {
@@ -5049,7 +5050,7 @@ ul.yaka-chips li {
 }
 
 .vertical-center {
-    min-height: 100%; /* Fallback for vh unit */
+    min-height: 100%;
     /* Make it a flex container */
     display: -webkit-box;
     display: -moz-box;
