@@ -2175,13 +2175,6 @@ md-input-container {
     float: left;
 }
 
-.v-icon {
-    height: 55px;
-    width: 55px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .pro-price {
     margin-top: 9px;
     font-family: 'montserrat_light';
@@ -2259,6 +2252,13 @@ md-input-container {
 
 .ONGOING_RATE_PRO {
     color: #7ED321 !important;
+}
+
+.v-icon {
+    height: 55px;
+    width: 55px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .v-icon-ELE_1000 {
@@ -2472,8 +2472,6 @@ md-input-container {
     background-image: url('/icons/mdpi/ic_construction_white.png')
 }
 
-
-
 .type-project-box:hover > div > .v-icon-ELE_1000 {
     background-image: url('/icons/mdpi/ic_electrician_white.png')
 }
@@ -2528,6 +2526,38 @@ md-input-container {
 
 .type-project-box:hover > div > .v-icon-CON_14000 {
     background-image: url('/icons/mdpi/ic_construction_white.png')
+}
+
+.type-project-box:hover > div > div > .v-icon-COU_9000 {
+    background-image: url('/icons/mdpi/ic_architect_white.png')
+}
+
+.type-project-box:hover > div > div > .v-icon-ELE_1000 {
+    background-image: url('/icons/mdpi/ic_electrician_white.png');
+}
+
+.type-project-box:hover > div > div > .v-icon-PLU_2000 {
+    background-image: url('/icons/mdpi/ic_plumber_white.png')
+}
+
+.type-project-box:hover > div > div > .v-icon-PAI_6000 {
+    background-image: url('/icons/mdpi/ic_painter_white.png')
+}
+
+.type-project-box.activate > div > div > .v-icon-COU_9000 {
+    background-image: url('/icons/mdpi/ic_architect_white.png')
+}
+
+.type-project-box.activate > div > div > .v-icon-ELE_1000 {
+    background-image: url('/icons/mdpi/ic_electrician_white.png');
+}
+
+.type-project-box.activate > div > div > .v-icon-PLU_2000 {
+    background-image: url('/icons/mdpi/ic_plumber_white.png')
+}
+
+.type-project-box.activate > div > div > .v-icon-PAI_6000 {
+    background-image: url('/icons/mdpi/ic_painter_white.png')
 }
 
 .new-project-box {
@@ -4706,80 +4736,6 @@ ul[rn-carousel-buffered] > li {
     right: 28px !important;
 }
 
-/* proDashboardMapItem no more used, use proDashboardListItem instead
-.proDashboardMapItem {
-    background-color: white;
-    height: 100%;
-    position: relative;
-    cursor: pointer;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.proDashboardMapItemLogo {
-    position: absolute;
-    top: 30px;
-    left: 8px;
-    width: 32px;
-    height: 32px;
-}
-
-.proDashboardMapItemTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
-    font-size: 14px;
-    color: #000000;
-    line-height: 13px;
-    text-align: left;
-    position: absolute;
-    top: 22px;
-    left: 50px;
-    right: 90px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.proDashboardMapItemAddress {
-    font-family: 'montserrat_regular', Arial, sans-serif;
-    font-size: 14px;
-    color: #9E9E9E;
-    line-height: 20px;
-    text-align: left;
-    position: absolute;
-    top: 50px;
-    left: 49px;
-    right: 90px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.proDashboardMapItemChronoLogo {
-    position: absolute;
-    top: 36px;
-    right: 65px;
-    width: 20px;
-    height: 20px;
-}
-
-.proDashboardMapItemChrono {
-    font-family: 'montserrat_light', Arial, sans-serif;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.54);
-    line-height: 12px;
-    position: absolute;
-    top: 34px;
-    right: 10px;
-    width: 50px;
-    text-align: justify;
-}
-*/
-
 .proDashboardListEmptyMessage {
     width: 230px !important;
     height: 80px;
@@ -5090,6 +5046,33 @@ ul.yaka-chips li {
 
 .vertical-middle {
     vertical-align: middle;
+}
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for vh unit */
+    /* Make it a flex container */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+    -webkit-align-items : center;
+    -moz-box-align : center;
+    -ms-flex-align : center;
+    align-items : center;
+    /* In legacy web browsers such as Firefox 9
+       we need to specify the width of the flex container */
+    width: 100%;
+    /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+       hence the bootstrap's container won't be aligned to the center anymore.
+       Therefore, we should use the following declarations to get it centered again */
+    -webkit-box-pack : center;
+    -moz-box-pack : center;
+    -ms-flex-pack : center;
+    -webkit-justify-content : center;
+    justify-content : center;
 }
 
 .pointer {
