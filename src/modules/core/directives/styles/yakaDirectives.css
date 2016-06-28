@@ -8,7 +8,7 @@ yaka-avatar {
 yaka-avatar img {
     display: inline-block;
     position: relative;
-    top: -2px;
+    top: -1px;
 }
 
 yaka-avatar .yakaAvatarInitials {
