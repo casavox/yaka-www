@@ -31,7 +31,6 @@
         vm.edit = edit;
         vm.cancel = cancel;
         vm.save = save;
-        vm.getStartDate = getStartDate;
         vm.editPrice = editPrice;
         vm.editDate = editDate;
         vm.cancelProposalModal = cancelProposalModal;
@@ -145,12 +144,6 @@
         function cancel() {
             vm.proposalTmp = vm.proposal;
             vm.editFlag = false;
-        }
-
-        function getStartDate() {
-            if (!angular.isUndefined(vm.proposalTmp) && vm.proposalTmp.startDate) {
-                return $filter('date')(new Date(vm.proposalTmp.startDate), "dd MMM.  yyyy");
-            }
         }
 
         function getTags() {
