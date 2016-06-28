@@ -444,18 +444,13 @@
             <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
                 <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                      ng-click="vm.myPriceFlag = false" alt=""/>
-                <h4>My price</h4>
-
-                <p class="info-popUp">
-                </p>
-
-                <p class="info-popUp-comp">
-                    Send an estimate or final price
-                </p>
+                <h4>Mon prix</h4>
 
                 <div class="row">
-                    <div class="col-xs-10">
-                        <input type="text" class="custom-input-number input-number-hide" ng-model="vm.myPrice"
+                    <div class="col-xs-6 col-xs-offset-4">
+                        <input type="text" class="form-control t-right f-s-18" id="exampleInputEmail2"
+                               placeholder="Entrer un prix"
+                               ng-model="vm.myPrice"
                                yaka-input-numbers-only>
                     </div>
                     <div class="col-xs-2 sym-euro">
@@ -466,10 +461,10 @@
                     {{vm.error.price.message}}
                 </p>
 
-                <div class="clearfix mt-50">
-                    <div class="pro-popUp-choice fr" ng-click="vm.selectPrice()">
-                        OK
-                    </div>
+                <div class="clearfix m-t-10 f-right">
+                    <button class="btn bgm-lightblue waves-effect" ng-click="vm.selectPrice(); vm.save()">
+                        Enregistrer
+                    </button>
                 </div>
 
             </div>
@@ -485,21 +480,18 @@
                      ng-click="vm.myDateFlag = false" alt=""/>
                 <h4>Ma date d'intervention</h4>
 
-                <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                <div style="display:inline-block" class="center custom-picker">
                     <uib-datepicker ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                     class="well well-sm custom-date"></uib-datepicker>
                 </div>
-                <div class="popUp-footer">
-                    <div ng-click="vm.myDateFlag = false">
-                        ANNULER
-                    </div>
-                    <div ng-click="vm.myDateFlag = false; vm.selectDate()">
-                        CONFIRMER
-                    </div>
+                <div class="clearfix m-t-10 f-right">
+                    <button class="btn bgm-lightblue waves-effect"
+                            ng-click="vm.myDateFlag = false; vm.selectDate(); vm.save()">
+                        Enregistrer
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
 
 </section>

@@ -1785,9 +1785,11 @@ md-input-container {
 
 .sym-euro {
     font-family: "montserrat_regular";
-    font-size: 36px;
+    font-size: 25px;
+    top: 0;
     color: #03A9F4;
     text-align: left;
+    padding-left: 0 !important;
 }
 
 .w-330 {
@@ -5114,6 +5116,10 @@ ul.yaka-chips li {
 
 .t-center {
     text-align: center !important;
+}
+
+.f-s-18 {
+    font-size: 18px !important;
 }
 
 .f-s-20 {

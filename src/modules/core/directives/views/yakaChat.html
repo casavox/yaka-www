@@ -34,7 +34,7 @@
                     </div>
                     <span class="msg" data-ng-if="message.author != 'AUTO'">{{message.text}}</span>
                     <span data-ng-if="message.author == 'AUTO'" ng-switch="message.text">
-                        <span class="msg" ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}}</span>
+                        <span class="msg" ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
                         <span class="msg" ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
                         <span class="msg" ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
                         <span class="msg" ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
