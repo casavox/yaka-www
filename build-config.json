@@ -73,6 +73,7 @@
             "bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js",
             "bower_components/lightgallery/light-gallery/js/lightGallery.js",
             "bower_components/autosize/dist/autosize.js",
+            "bower_components/angular-recaptcha/release/angular-recaptcha.js",
             "modules/template/**/*.js",
             "modules/core/module.js",
             "modules/**/*.js",

@@ -14,7 +14,6 @@
         //TODO
         $rootScope.pageName = "";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
         vm.showChat = false;

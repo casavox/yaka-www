@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-xs-9 no-padding-right">
 
-                                    <div class="form-group m-b-30"
+                                    <div class="form-group fg-float m-b-30"
                                          ng-class="{'has-error': !vm.profileInfo.gender}">
                                         <div class="fg-line">
                                             <div class="select">
@@ -59,8 +59,7 @@
                                                         required="required"
                                                         ng-model="vm.profileInfo.gender"
                                                         class="form-control">
-                                                    <option value="" disabled selected>Civilité
-                                                    </option>
+                                                    <option value="" disabled selected></option>
                                                     <option ng-selected="vm.profileInfo.gender == 'MR'" value="MR">
                                                         M.
                                                     </option>
@@ -70,6 +69,7 @@
                                                     </option>
                                                 </select>
                                             </div>
+                                            <label class="fg-label">Civilité</label>
                                         </div>
                                         <div ng-messages="profileForm.gender.$error">
                                             <small class="help-block" ng-message="required">Ce champ est requis

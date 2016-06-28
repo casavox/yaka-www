@@ -156,7 +156,7 @@
                                                 required="required"
                                                 ng-model="vm.profileInfo.activityStartedYear"
                                                 class="form-control" convert-to-number>
-                                            <option value="" disabled selected>Première année d'expérience</option>
+                                            <option value="0" disabled selected></option>
                                             <option ng-repeat="year in vm.years | orderBy:'-toString()'"
                                                     ng-selected="vm.profileInfo.activityStartedYear == year"
                                                     ng-value="year">

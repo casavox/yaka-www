@@ -11,7 +11,6 @@
 
         $rootScope.pageName = "Tableau de bord Pro";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
 

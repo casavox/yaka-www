@@ -16,7 +16,6 @@
         //TODO
         $rootScope.pageName = "";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
         var vm = this;
         vm.pro = vm.disabledAddr = true;
         vm.newAddrFlag = vm.saveFlag = vm.editFlag = $rootScope.editMode = vm.proDetails = vm.editDescriptionFlag = false;

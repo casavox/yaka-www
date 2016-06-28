@@ -22,7 +22,6 @@
         var vm = this;
 
         $rootScope.pageName = "Accès Pro";
-        $rootScope.showMenu = false;
 
         vm.currentYear = new Date().getFullYear();
 

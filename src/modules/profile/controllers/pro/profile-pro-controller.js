@@ -13,7 +13,6 @@
 
         $rootScope.pageName = "Mon profil Pro";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
 
@@ -627,10 +626,13 @@
 
         function succesProfileGET(res) {
             vm.profile = res;
+            if (!vm.profile.activityStartedYear) {
+                vm.profile.activityStartedYear = 0;
+            }
             vm.profileInfo = {
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
-                activityStartedYear: angular.copy(vm.profile.activityStartedYear),
+                activityStartedYear: vm.profile.activityStartedYear,
                 company: angular.copy(vm.profile.company)
             };
             vm.workArea = angular.copy(vm.profile.workArea);

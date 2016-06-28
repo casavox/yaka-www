@@ -40,14 +40,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                        vm.messages.items.push(payload);
-                        vm.glue = true;
-                    }, {
-                        'token': $localStorage.token
-                    });
-                }
-            );
+                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                    vm.messages.items.push(payload);
+                    vm.glue = true;
+                }, {
+                    'token': $localStorage.token
+                });
+            }
+        );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -241,33 +241,10 @@
             return num;
         };
 
-        app.showCustomerSupport = false;
 
-        app.closeCustomerSupport = function () {
-            app.showCustomerSupport = false;
-            smartsupp('chat:close');
-        };
-
-        app.openCustomerSupport = function () {
-            app.showCustomerSupport = true;
-            smartsupp('name', app.getFullName());
-            smartsupp('email', app.getEmail().toLowerCase());
-            smartsupp('variables',
-                {
-                    name: {
-                        label: 'Name',
-                        value: app.getFullName()
-                    },
-                    email: {
-                        label: 'Email',
-                        value: app.getEmail().toLowerCase()
-                    },
-                    version: {
-                        label: 'YakaClub Version',
-                        value: 'beta 0'
-                    }
-                });
-            smartsupp('chat:open');
+        app.openSupport = function () {
+            $localStorage.lastUrlBeforeSupport = window.location.href;
+            $state.go("support");
         };
 
         //Template stuff
@@ -280,6 +257,6 @@
             if (!angular.element(event.target).parent().hasClass('active')) {
                 this.sidebarToggle.left = false;
             }
-        }
+        };
     }
 })();

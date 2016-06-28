@@ -18,7 +18,6 @@
 
         $rootScope.pageName = "Nouveau projet";
         $rootScope.updateProfile();
-        $rootScope.showMenu = false;
         vm.multi = "";
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
