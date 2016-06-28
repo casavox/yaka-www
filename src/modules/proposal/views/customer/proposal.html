@@ -17,7 +17,7 @@
                         </div>
                         <div class="media-body projectTitleBar">
                             <div class="media row">
-                                <div class="col-sm-7">{{vm.proposal.project.title | yakaTranslateTitle}}</div>
+                                <div class="col-sm-7 yakaEllipsis proposalProjectTitle">{{vm.proposal.project.title | yakaTranslateTitle}}</div>
                                 <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                     <div class="hidden-xs">
                                         <small class="c-gray">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="yakaMain proposalMainView">
-                <div class="card" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
                     <div class="pm-overview hidden-xs">
                         <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                              tabindex="0">
@@ -81,10 +81,10 @@
                                     </div>
 
                                     <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                        <h2>
+                                        <h2 class="yakaEllipsis">
                                             {{vm.proposal.professional.user.firstName}}
                                             {{vm.proposal.professional.user.lastName}}
-                                            <small>
+                                            <small class="yakaEllipsis">
                                                 {{vm.proposal.professional.company.name}}
                                             </small>
                                         </h2>
@@ -184,10 +184,10 @@
                                             </div>
 
                                             <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                                <h2>
+                                                <h2 class="yakaEllipsis">
                                                     {{vm.proposal.professional.user.firstName}}
                                                     {{vm.proposal.professional.user.lastName}}
-                                                    <small>
+                                                    <small class="yakaEllipsis">
                                                         {{vm.proposal.professional.company.name}}
                                                     </small>
                                                 </h2>

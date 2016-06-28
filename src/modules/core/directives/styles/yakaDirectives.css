@@ -91,4 +91,8 @@ yaka-chat .chatImg {
         padding: 8px 12px 8px;
     }
 
+    yaka-chat .lv-message .lv-item {
+        padding: 10px;
+    }
+
 }
