@@ -78,7 +78,7 @@
     "angular": "1.5.x",
     "bootstrap-growl": "https://github.com/mouse0270/bootstrap-notify.git#old-2.0.1",
     "ng-table": "^0.8.3",
-    "intl-tel-input": "^8.5.2",
+    "intl-tel-input": "9.0.x",
     "angular-bootstrap-lightbox": "^0.12.0",
     "angular-messages": "^1.5.x",
     "angular-aria": "^1.5.x",
