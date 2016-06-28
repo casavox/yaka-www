@@ -168,7 +168,7 @@
 
     .scrollViewChatProposal {
         left: 0;
-        top: 198px;
+        top: 38px;
     }
 
     .proposalMainView yaka-chat .lv-footer {
@@ -243,4 +243,38 @@
         top: 0;
     }
 
+    #profile-main .pmo-pic {
+        margin: 15px;
+    }
+
+    #profile-main {
+        min-height: initial;
+    }
+
+    .wa-stats > span {
+        padding: 5px 6px;
+    }
+
+    .proposalHeader {
+        padding: 10px !important;
+    }
+
+    .card-header .actions {
+        right: 3px !important;
+        top: 3px !important;
+        margin-top: 0 !important;
+    }
+
+    .tab-nav.tab-nav-proposal > li > a {
+        padding: 10px 8px;
+    }
+
+    #profile-main.no-scroll {
+        height: calc(100vh - 145px) !important;
+    }
+
+}
+
+#profile-main.no-scroll {
+    height: calc(100vh - 240px);
 }
