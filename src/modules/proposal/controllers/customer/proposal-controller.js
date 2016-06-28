@@ -11,8 +11,6 @@
             $state.go("home");
         }
 
-        //TODO
-        $rootScope.pageName = "";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -34,6 +32,8 @@
         function loadProposal() {
             networkService.proposalGET($stateParams.proposalId, function (res) {
                 vm.proposal = res;
+                $rootScope.pageName = vm.proposal.professional.user.firstName + " " + vm.proposal.professional.user.lastName +
+                    " - " + $filter('yakaTranslateTitle')(vm.proposal.project.title);
                 if (vm.proposal.professional.company.address.address) {
                     vm.proposal.professional.company.address.address = vm.proposal.professional.company.address.address.replace(/, /g, "\n");
                 }

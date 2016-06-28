@@ -16,7 +16,7 @@
         var vm = this;
         vm.user = $localStorage.user;
 
-        $rootScope.pageName = "Nouveau projet";
+        $rootScope.pageName = "Publier un projet";
         $rootScope.updateProfile();
         vm.multi = "";
         vm.newProject = {};
