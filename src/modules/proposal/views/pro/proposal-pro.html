@@ -141,14 +141,18 @@
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
                                             <dt>Mon prix</dt>
-                                            <dd>
-                                                XXXXXXX
+                                            <dd class="l-h-18">
+                                                {{vm.proposalTmp.price}} € <i
+                                                class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                                data-ng-click="vm.editPrice()"></i>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt>Ma date d'intervention</dt>
-                                            <dd>
-                                                XXXXXXX
+                                            <dd class="l-h-18">
+                                                {{vm.getStartDate()}} <i
+                                                class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
+                                                data-ng-click="vm.editDate()"></i>
                                             </dd>
                                         </dl>
                                     </div>
@@ -227,14 +231,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
 
 
         <div class="container m-t-30">
@@ -334,7 +330,7 @@
                              ng-click="vm.editPrice()" role="grid">
                             <div class="col-xs-12 description-sub-title color-blue">
                                 Mon prix
-                                <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
+                                <span class="icon-pen-blue" ng-show="vm.editFlag"></span>
 
                                 <p class="my-price-proposal">
                                     {{vm.proposalTmp.price}} €
@@ -471,11 +467,8 @@
                 </p>
 
                 <div class="clearfix mt-50">
-                    <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">
-                        ESTIMATE
-                    </div>
-                    <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">
-                        FINAL
+                    <div class="pro-popUp-choice fr" ng-click="vm.selectPrice()">
+                        OK
                     </div>
                 </div>
 

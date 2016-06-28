@@ -5115,3 +5115,11 @@ ul.yaka-chips li {
 .t-center {
     text-align: center !important;
 }
+
+.f-s-20 {
+    font-size: 20px !important;
+}
+
+.v-align-bottom {
+    vertical-align: bottom;
+}

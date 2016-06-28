@@ -120,7 +120,6 @@
 
         function save() {
             vm.proposalTmp.type = vm.project.type;
-            vm.proposalTmp.priceType = $filter('uppercase')(vm.proposalTmp.priceType);
             networkService.proposalPUT(vm.proposalTmp, function (res) {
                 alertMsg.send("La proposition a bien été mise à jour", "success");
             }, function (res) {
@@ -130,17 +129,13 @@
         }
 
         function editPrice() {
-            if (vm.editFlag) {
-                vm.myPrice = vm.proposalTmp.price;
-                vm.myPriceFlag = true;
-            }
+            vm.myPrice = vm.proposalTmp.price;
+            vm.myPriceFlag = true;
         }
 
         function editDate() {
-            if (vm.editFlag) {
-                vm.dt = new Date(vm.proposalTmp.startDate);
-                vm.myDateFlag = true;
-            }
+            vm.dt = new Date(vm.proposalTmp.startDate);
+            vm.myDateFlag = true;
         }
 
         function edit() {
@@ -177,7 +172,6 @@
                 var formData = {
                     project: {id: vm.projectTmp.id},
                     price: parseInt(vm.offer.price.price),
-                    priceType: $filter('uppercase')(vm.offer.price.type),
                     comment: vm.offer.comment
                 };
                 formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
@@ -196,18 +190,16 @@
             vm.proposalTmp.startDate = $filter('date')(vm.dt, 'yyyy-MM-dd');
         }
 
-        function selectPrice(type) {
+        function selectPrice() {
             vm.error.price = vm.error.price || {};
-            if (vm.myPrice > 10 && vm.myPrice < 100000) {
-                vm.proposalTmp.price = vm.myPrice;
-                vm.proposalTmp.priceType = type;
-                vm.myPriceFlag = false;
-                vm.error.price.flag = false;
+            if (vm.myPrice <= 10) {
+                vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
+            } else if (vm.myPrice > 1000000) {
+                vm.error.price.message = "Veuillez entrer un montant réaliste";
             }
-            else {
-                vm.error.price.message = "Merci de proposer un tarif réaliste - ou de ne pas en mettre";
-                vm.error.price.flag = true;
-            }
+            vm.proposalTmp.price = vm.myPrice;
+            vm.myPriceFlag = false;
+            vm.error.price.flag = false;
         }
 
         function selectImagePreview(media) {

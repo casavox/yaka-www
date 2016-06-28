@@ -240,7 +240,6 @@
                         $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
-                        console.log(vm.map.zoom);
                         if (!disableExploringMode) {
                             vm.showSlider = false;
                             vm.showWorkArea = false;
