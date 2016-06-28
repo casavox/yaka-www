@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -49,8 +49,7 @@
                     <div class="carousel-demo">
                         <ul rn-carousel rn-carousel-controls rn-carousel-index="vm.carrouselSelectedItem.index"
                             rn-carousel-buffered>
-                            <li ng-repeat="lead in vm.leads track by lead.id"
-                                ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
+                            <li ng-repeat="lead in vm.leads track by lead.id" ng-class="'id-' + lead.id">
                                 <a title="{{lead.title | yakaTranslateTitle}}">
                                     <div class="proDashboardListItem waves-effect"
                                          ui-sref="pro-project-proposal-new({projectId: lead.id})">
@@ -81,7 +80,10 @@
                     <div class="proDashboardListItem"
                          ui-sref="pro-project-proposal-new({projectId: lead.id})">
                         <div class="proDashboardListItemLogo">
-                            <img width="50" height="50" ng-src="{{vm.getIcon(lead)}}"/>
+                            <img data-ng-show="lead.activities[0].code != 'MULTI'" width="50" height="50"
+                                 ng-src="{{vm.getIcon(lead)}}"/>
+                            <i data-ng-show="lead.activities[0].code == 'MULTI'"
+                               class="zmdi zmdi-apps zmdi-hc-3x c-cyan center"/>
                         </div>
                         <div class="proDashboardListItemTitle">
                             {{lead.title | yakaTranslateTitle}}

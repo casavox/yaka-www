@@ -32,7 +32,11 @@
                 <div class="card-header card-hover">
                     <div class="media">
                         <div class="pull-left">
-                            <div class="proposalIconBackground lv-img v-icon-{{vm.project.activities[0].code}}-white">
+                            <div data-ng-show="vm.project.activities[0].code != 'MULTI'"
+                                 class="proposalIconBackground lv-img v-icon-{{vm.project.activities[0].code}}-white">
+                            </div>
+                            <div data-ng-show="vm.project.activities[0].code == 'MULTI'"
+                                 class="proposalIconBackground lv-img zmdi zmdi-apps zmdi-hc-2x c-white vertical-center">
                             </div>
                         </div>
                         <div class="media-body projectTitleBar">
