@@ -28,18 +28,17 @@
     <div id="content" class="content">
         <div class="container">
             <div class="col-sm-6">
-                <div class="menu-category profile-info">
-                    <div class="col-xs-12 profile-box">
-                        <p>
-                            Informations générales
-                        </p>
-
+                <div class="col-xs-12 no-padding card">
+                    <div class="card-header">
+                        <h2>Informations générales</h2>
+                    </div>
+                    <div class="col-xs-12 card-body m-t-0">
                         <form name="profileForm">
                             <div class="col-xs-12 no-padding">
                                 <div class="col-xs-3">
                                     <div class="img-profile">
 
-                                        <yaka-avatar size="70" user="vm.profileInfo"></yaka-avatar>
+                                        <yaka-avatar size="44" user="vm.profileInfo"></yaka-avatar>
 
                                         <button
                                             class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
@@ -167,7 +166,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding profile-box-footer">
+                            <div class="col-xs-12 no-padding profile-box-footer m-b-20">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
                                         ng-click="vm.updateProfile()"
@@ -178,20 +177,18 @@
                                         ng-disabled="!vm.showButtonsProfile()">
                                     Annuler
                                 </button>
-
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="menu-category profile-about">
-                    <div class="profile-box">
-                        <p>
-                            Modifier le mot de passe
-                        </p>
 
+            <div class="col-sm-6">
+                <div class="col-xs-12 no-padding card">
+                    <div class="card-header">
+                        <h2>Modifier le mot de passe</h2>
+                    </div>
+                    <div class="col-xs-12 card-body m-t-0">
                         <div class="form-group fg-float m-b-30">
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
@@ -220,7 +217,7 @@
                             </small>
                         </div>
 
-                        <div class="profile-box-footer mt-12">
+                        <div class="profile-box-footer m-b-20">
 
                             <button class="btn btn-info bgm-lightblue waves-effect"
                                     ng-click="vm.changePassword()"

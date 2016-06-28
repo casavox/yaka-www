@@ -17,10 +17,8 @@
 
 .profileAvatarEditButton {
     position: absolute;
-    right: -13px;
-    bottom: -13px;
-}
-
-#profile-main {
-    min-height: auto;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
 }

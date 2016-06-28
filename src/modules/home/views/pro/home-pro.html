@@ -240,11 +240,12 @@
                     Les mots de passe ne correspondent pas
                 </div>
 
-                <input id="proRegisterPhone" class="form-control proHomeSection2RegisterPhone" placeholder="Mobile"
-                       ng-model="vm.phoneNumber"/>
+                <input type="text"
+                       required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone"
+                       ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
 
                 <div class="proHomeSection2InputError"
-                     ng-hide="vm.phoneNumber == '' || vm.isPhoneNumberValid">
+                     ng-hide="vm.newUser.professional.phoneNumber">
                     Cet numéro de téléphone n'est pas valide
                 </div>
 

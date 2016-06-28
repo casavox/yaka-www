@@ -3257,10 +3257,10 @@ md-input-container {
 }
 
 .img-profile {
-    height: 70px;
-    width: 70px;
+    height: 54px;
+    width: 54px;
     position: relative;
-    left: calc(50% - 35px);
+    left: calc(50% - (54px / 2));
     top: 60px;
 }
 
