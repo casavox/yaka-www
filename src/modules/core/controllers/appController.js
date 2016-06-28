@@ -192,6 +192,14 @@
             }
         };
 
+        app.getThemeColor = function () {
+            if (app.isPro()) {
+                return "#FF9800";
+            } else {
+                return "#03A9F4"
+            }
+        };
+
         app.getFirstName = function () {
             if (app.getUser()) {
                 return app.getUser().firstName;
