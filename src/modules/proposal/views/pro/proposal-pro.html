@@ -40,7 +40,7 @@
 
             <div class="yakaMain proposalMainView">
                 <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
-                    <div class="pm-overview hidden-xs">
+                    <div class="pm-overview pro hidden-xs">
                         <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                              tabindex="0">
                             <div
@@ -72,6 +72,11 @@
                                             {{vm.project.user.firstName}}
                                             {{vm.project.user.lastName}}
                                         </h2>
+
+                                        <button data-ng-click="vm.cancelProposalModal()"
+                                                class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect">
+                                            <i class="zmdi zmdi-close"></i> Annuler ce devis
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +107,7 @@
 
                         <div data-ng-show="!vm.showChat">
 
-                            <div class="pm-overview visible-xs">
+                            <div class="pm-overview pro visible-xs">
                                 <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                                      tabindex="0">
                                     <div
@@ -127,6 +132,11 @@
                                                     {{vm.project.user.firstName}}
                                                     {{vm.project.user.lastName}}
                                                 </h2>
+
+                                                <button data-ng-click="vm.cancelProposalModal()"
+                                                        class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
+                                                    <i class="zmdi zmdi-close"></i> Annuler ce devis
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -168,15 +178,18 @@
                                         <dl class="dl-horizontal">
                                             <dt>Lieu du chantier</dt>
                                             <dd>
-                                                XXXXXXXXXXX<br/>
-                                                XXXXXXXXX<br/>
-                                                XXXXX XXXXXXX
+                                                <div ng-switch on="vm.proposal.status">
+                                                    <span ng-switch-when="SELECTED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                                    <span ng-switch-when="RATE_PRO" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                                    <span ng-switch-when="COMPLETED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                                    <span ng-switch-default class="whiteSpacePre">{{vm.projectTmp.address.locality}} {{vm.projectTmp.address.postalCode}}</span>
+                                                </div>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Début des travaux souhaité</dt>
+                                            <dt>Date souhaitée des travaux</dt>
                                             <dd>
-                                                XXXXXXXXX
+                                                Début souhaité {{vm.getWhen()}}
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
@@ -184,8 +197,8 @@
                                             <dt>Mots clés</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-repeat="quality in vm.proposal.professional.qualities">
-                                                        {{'CRITERION_' + quality.name | translate}}
+                                                    <li data-ng-repeat="tag in vm.getTags()">
+                                                        {{'ACTIVITY_' + tag | translate}}
                                                     </li>
                                                 </ul>
                                             </dd>
@@ -193,11 +206,7 @@
                                         <dl class="dl-horizontal">
                                             <dt>Description</dt>
                                             <dd>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                                                fermentum eleifend nunc eget cursus. Nullam vitae iaculis ligula. Nam
-                                                sed cursus lorem. Sed lorem lectus, lobortis at nisi nec, posuere
-                                                consequat sapien. Donec semper blandit orci, aliquam efficitur dolor.
-                                                Suspendisse potenti.
+                                                {{vm.projectTmp.description}}
                                             </dd>
                                         </dl>
                                     </div>
@@ -231,211 +240,6 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="container m-t-30">
-            <div class="card">
-
-                <ul class="tab-nav tn-justified">
-                    <li heading="Home"
-                        data-ng-class="{'active': !vm.showChat}">
-                        <a href="" ng-click="vm.showChat = false" class="ng-binding">Détails</a>
-                    </li>
-
-                    <li heading="Profile"
-                        data-ng-class="{'active': vm.showChat}">
-                        <a href="" ng-click="vm.showChat = true; vm.scrollBottom = 1" class="ng-binding">Messages</a>
-                    </li>
-                </ul>
-
-                <yaka-chat data-ng-show="vm.showChat"
-                           scroll-bottom="{{vm.scrollBottom}}"
-                           chat-id="{{vm.proposal.chat.id}}"
-                           proposal-status="{{vm.proposal.status}}"
-                           user-me="app.getUser()"
-                           user-other="vm.proposal.project.user"></yaka-chat>
-
-                <div data-ng-show="!vm.showChat">
-                    <div class="row no-margin">
-                        <div class="col-xs-12">
-                            <div class="description-action-btn" ng-click="vm.edit()"
-                                 ng-show="!vm.editFlag && (vm.proposal.status == 'START' || vm.proposal.status == 'SELECTED')">
-                                MODIFIER
-                            </div>
-                            <div class="description-action-btn"
-                                 ng-show="!vm.editFlag && (vm.proposal.status == 'START' || vm.proposal.status == 'SELECTED')"
-                                 ng-click="vm.cancelProposalModal()">
-                                ANNULER MA PROPOSITION
-                            </div>
-                            <div class="description-action-btn color-red" ng-show="vm.editFlag" ng-click="vm.save()">
-                                ENVOYER
-                            </div>
-                            <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
-                                ANNULER
-                            </div>
-                            <div class="description-date" am-time-ago="vm.proposal.updated">
-                                Ma proposition
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12">
-                            <p class="pro-title-post">
-                                Mis à jour le <span am-time-ago="vm.project.updated"></span>
-                            </p>
-                            <cl-image public-id="{{vm.proposal.professional.user.avatar.cloudinaryPublicId}}"
-                                      class="img-circle pro-icon-medium mt-20 fl-l ml-15" format="png"
-                                      ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId">
-                                <cl-transformation height="70" width="70" crop="fill"/>
-                            </cl-image>
-                            <div class="img-default-medium mt-20 fl-l ml-15"
-                                 ng-if="!vm.proposal.professional.user.avatar.cloudinaryPublicId">
-                                {{vm.proposal.professional.user.firstName[0] | uppercase}}
-                                {{vm.proposal.professional.user.lastName[0] | uppercase}}
-                            </div>
-                            <div class="pro-proposal-title">
-                                <p ng-class="{'red': vm.project.type == 'EMERGENCY'}">
-                                    {{vm.project.title | yakaTranslateTitle}}
-                                </p>
-
-                                <p>
-                                    {{vm.project.user.firstName}} {{vm.project.user.lastName}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 ">
-                            <div id="map_canvas">
-                                <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
-                                                    dragging="false">
-                                    <ui-gmap-circle
-                                        ng-if="vm.proposalTmp.status != 'SELECTED' && vm.proposalTmp.status != 'RATE_PRO' && vm.proposalTmp.status != 'COMPLETED'"
-                                        center="vm.circle.center" stroke="vm.circle.stroke"
-                                        fill="vm.circle.fill" radius="vm.circle.radius"
-                                        bounds="vm.circle.bounds"
-                                        visible="vm.circle.visible" geodesic="true" editable="false"
-                                        draggable="false" clickable="true" control="vm.circle.control"
-                                        events="vm.circle.events"></ui-gmap-circle>
-                                    <ui-gmap-marker
-                                        ng-if="vm.proposalTmp.status == 'SELECTED' || vm.proposalTmp.status == 'RATE_PRO' || vm.proposalTmp.status == 'COMPLETED'"
-                                        idKey='1' coords='vm.marker.coords'
-                                        visible="vm.marker.visible"></ui-gmap-marker>
-                                </ui-gmap-google-map>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 row no-margin" ng-class="{'cursor-pointer': vm.editFlag}"
-                             ng-click="vm.editPrice()" role="grid">
-                            <div class="col-xs-12 description-sub-title color-blue">
-                                Mon prix
-                                <span class="icon-pen-blue" ng-show="vm.editFlag"></span>
-
-                                <p class="my-price-proposal">
-                                    {{vm.proposalTmp.price}} €
-                                </p>
-                            </div>
-                            <div class="col-xs-12 description-sub-text">
-                                C'est un prix {{vm.proposalTmp.priceType | lowercase}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 row no-margin" ng-class="{'cursor-pointer': vm.editFlag}"
-                             ng-click="vm.editDate()" role="grid">
-                            <div class="col-xs-12 description-sub-title color-blue">
-                                Ma date d'intervention
-                                <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
-
-                                <p class="start-date-proposal">
-                                    {{vm.getStartDate()}}
-                                </p>
-                            </div>
-                            <div class="col-xs-12 description-sub-text">
-                                Quand pourriez-vous commencer ?
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 row no-margin">
-                            <div class="col-xs-12 description-sub-title">
-                                Où
-                            </div>
-                            <div class="col-xs-12 description-sub-text">
-                                <div ng-switch on="vm.proposal.status">
-                                    <div ng-switch-when="SELECTED">
-                                        {{vm.projectTmp.address.address}}
-                                    </div>
-                                    <div ng-switch-when="RATE_PRO">
-                                        {{vm.projectTmp.address.address}}
-                                    </div>
-                                    <div ng-switch-when="COMPLETED">
-                                        {{vm.projectTmp.address.address}}
-                                    </div>
-                                    <div ng-switch-default>
-                                        {{vm.projectTmp.address.locality}} {{vm.projectTmp.address.postalCode}}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 row no-margin">
-                            <div class="col-xs-12 description-sub-title">
-                                Quand
-                            </div>
-                            <div class="col-xs-12 description-sub-text">
-                                Début souhaité {{vm.getWhen()}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 row no-margin">
-                            <div class="col-xs-12 description-sub-title">
-                                Mots clés
-                            </div>
-                            <div class="col-xs-12 description-sub-text">
-                                {{vm.getTags() | yakaTranslateTags}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin">
-                        <div class="col-xs-12 row no-margin">
-                            <div class="col-xs-12 description-sub-title">
-                                Description
-                            </div>
-                            <div class="col-xs-12 description-sub-text">
-                            <textarea msd-elastic class="custom-textarea" disabled
-                                      ng-model="vm.projectTmp.description"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin" ng-if="vm.projectTmp.images && vm.projectTmp.images.lenght != 0">
-                        <div class="col-xs-12 row no-margin">
-                            <div class="col-xs-12 description-sub-title">
-                                Photos
-                            </div>
-                            <div class="col-xs-12 description-sub-text row m-b-15 m-t-15">
-                                <div class="col-xs-3" ng-repeat="media in vm.projectTmp.images"
-                                     title="{{media.description}}" ng-click="vm.selectImagePreview(media)">
-                                <span class="center-middle img-comment" ng-show="media.description"
-                                      ng-click="vm.editImage(media)"></span>
-                                    <cl-image public-id="{{media.cloudinaryPublicId}}" secure="true" format="png"
-                                              class="center"
-                                              ng-click="vm.editImage(media)" ng-class="{'hover-border': vm.editFlag}">
-                                        <cl-transformation height="92" width="92" crop="fill"/>
-                                    </cl-image>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
 
     <div class="yakaPopup" ng-show="vm.myPriceFlag"

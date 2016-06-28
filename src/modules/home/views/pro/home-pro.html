@@ -242,10 +242,10 @@
 
                 <input type="text"
                        required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone"
-                       ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
+                       ng-model="vm.phoneNumber" yaka-input-phone>
 
                 <div class="proHomeSection2InputError"
-                     ng-hide="vm.newUser.professional.phoneNumber">
+                     ng-hide="vm.phoneNumber">
                     Cet numéro de téléphone n'est pas valide
                 </div>
 
@@ -416,7 +416,7 @@
             <div ng-if="!vm.passwordForgottenMessageSent">
 
                 <form name="recoverPassword">
-                    <div class="form-group fg-float m-b-30"
+                    <div class="form-group fg-float m-t-30"
                          ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
                             <input type="text" name="email" ng-disabled="vm.isSocialRegister()"

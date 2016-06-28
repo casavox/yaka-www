@@ -154,12 +154,13 @@
         }
 
         function getTags() {
-            var res = "";
+            var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    if (i != 0)
-                        res += " - ";
-                    res += vm.projectTmp.activities[i].code
+                    res.push(vm.project.activities[i].code);
+                }
+                if (vm.project.hasMaterial) {
+                    res.push("MATERIAL_TRUE");
                 }
             }
             return res;
@@ -208,8 +209,12 @@
         }
 
         function succesProjectGET(res) {
+
             vm.project = res.project;
             vm.proposal = res;
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
             $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
                 " - " + $filter('yakaTranslateTitle')(vm.project.title);
 
