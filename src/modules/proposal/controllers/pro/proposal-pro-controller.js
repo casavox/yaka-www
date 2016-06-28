@@ -202,9 +202,31 @@
         }
 
         function succesProjectGET(res) {
-
             vm.project = res.project;
             vm.proposal = res;
+
+
+            if (vm.project.address.latitude && vm.project.address.longitude) {
+                $scope.map.center = {
+                    latitude: vm.project.address.latitude,
+                    longitude: vm.project.address.longitude
+                };
+                if (vm.proposal.status == 'SELECTED' || vm.proposal.status == 'RATE_PRO' || vm.proposal.status == 'COMPLETED') {
+                    $scope.map.zoom = 15;
+                    vm.markerCoords = {
+                        latitude: vm.project.address.latitude,
+                        longitude: vm.project.address.longitude
+                    };
+                } else {
+                    $scope.map.zoom = 14;
+                    vm.circle.center = {
+                        latitude: vm.project.address.latitude,
+                        longitude: vm.project.address.longitude
+                    };
+                    vm.circle.visible = true;
+                }
+            }
+
             if (vm.project.address.address) {
                 vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
             }
