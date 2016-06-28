@@ -1,6 +1,7 @@
 angular.module('Yaka', [
         'ngRoute',
         'ui.router',
+        'materialAdmin',
         'ngStorage',
         'pascalprecht.translate',
         'ap.lateralSlideMenu',
@@ -11,12 +12,8 @@ angular.module('Yaka', [
         'satellizer',
         'uiGmapgoogle-maps',
         'angular-carousel',
-        'angularRipple',
         'monospaced.elastic',
         'smoothScroll',
-        'ngMaterial',
-        'internationalPhoneNumber',
-        'bootstrapLightbox',
         'angularMoment',
         'ngStomp',
         'luegg.directives',
@@ -24,7 +21,10 @@ angular.module('Yaka', [
         'angularTypewrite',
         'ngCookies',
         'angulartics',
-        'angulartics.google.analytics'
+        'angulartics.google.analytics',
+        'bootstrapLightbox',
+        'ngMessages',
+        'vcRecaptcha'
     ]
 );
 
@@ -65,25 +65,7 @@ angular.module('Yaka', [
         })
         .config(config);
 
-    function config($urlRouterProvider, $httpProvider, $authProvider, ipnConfig, LightboxProvider, CONFIG) {
-
-        ipnConfig.defaultCountry = 'fr';
-        // Translation area
-
-        LightboxProvider.templateUrl = '/modules/templates-dependencies/views/template-lightbox.html';
-        LightboxProvider.calculateModalDimensions = function (dimensions) {
-            var width = Math.max(400, dimensions.imageDisplayWidth + 32);
-
-            if (width >= dimensions.windowWidth - 20 || dimensions.windowWidth < 768) {
-                width = 'auto';
-            }
-
-            return {
-                'width': width,                             // default
-                'height': 'auto'                            // custom
-            };
-        };
-
+    function config($urlRouterProvider, $httpProvider, $authProvider, CONFIG) {
 
         $authProvider.oauth2({
             name: "googleLogin",
@@ -232,17 +214,6 @@ angular.module('Yaka', [
                 }
                 if (toState.name != "login" && toState.name != "new-project")
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
-                if ((angular.isUndefined($localStorage.token) || !$localStorage.token) &&
-                    toState.name != "home" &&
-                    toState.name != "pro-home" &&
-                    toState.name != "login" &&
-                    toState.name != "new-project" &&
-                    toState.name != "register" &&
-                    toState.name != "recoverpassword"
-                ) {
-                    event.preventDefault();
-                    $injector.get('$state').go('home');
-                }
             });
 
         amMoment.changeLocale('fr');

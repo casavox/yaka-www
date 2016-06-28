@@ -1,0 +1,278 @@
+<header id="header" data-current-skin='lightblue' ng-include="'/modules/core/views/header.html'"
+></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <section id="content" class="content">
+        <div class="container">
+            <div ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length == 0" class="card" ng-cloak>
+                <div class="card-header">
+                    <h2>VOUS N'AVEZ ENCORE DE PROJET
+                        <small>Comment fonctionne YakaClub ?</small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+                    <ol>
+                        <li>Créez votre projet</li>
+                        <li>Recevez des offres et discutez avec nos professionnels</li>
+                        <li>Sélectionnez celui qui vous convient</li>
+                        <li>Clôturez le projet et partagez votre recommandation</li>
+                    </ol>
+                </div>
+                <div class="panel-footer text-right">
+                    <button class="btn btn-lg btn-primary" data-ui-sref="new-project">CREER UN PROJET</button>
+                </div>
+            </div>
+
+            <div ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length > 0" ng-cloak>
+                <div class="block-header">
+                    <h2 ng-show="vm.projectsOnGoing.length == 1">PROJET EN COURS</h2>
+                    <h2 ng-show="vm.projectsOnGoing.length > 1">PROJETS EN COURS</h2>
+                </div>
+                <div class="card card-hover pointer" ng-repeat="p in vm.projectsOnGoing" ng-click="vm.selectProject(p)">
+                    <div class="card-header p-b-15">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
+                                </div>
+                            </div>
+                            <div class="media-body projectTitleBar" title="{{p.title | yakaTranslateTitle}}">
+                                <div class="media row">
+                                    <div class="col-sm-7">{{p.title | yakaTranslateTitle}}</div>
+                                    <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                        <small class="c-gray">
+                                            Mis à jour <span am-time-ago="p.updated"></span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="c-gray m-t-5">
+                                    <strong>{{p.address.name}}</strong> - {{p.address.locality}}
+                                </div>
+                                <div class="c-gray">
+                                    Début souhaité {{vm.getDesiredPedriod(p)}}
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <ul class="actions m-t-20">
+                                    <li class="dropdown" uib-dropdown>
+                                        <a href="" uib-dropdown-toggle>
+                                            <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="card-body p-l-25 p-b-20">
+                        <span>En attente de propositions...</span>
+                    </div>
+                    <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
+                        <div class="card-body p-l-25 p-t-0">
+                            <span ng-show="p.proposals.length == 1">
+                                Vous avez <b>1 proposition</b>
+                            </span>
+                            <span ng-show="p.proposals.length > 1">
+                                Vous avez <b>{{p.proposals.length}} propositions</b>
+                            </span>
+                        </div>
+                        <div class="card-body p-l-25 p-r-30 p-t-10 p-b-20">
+                            <ul ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
+                                <li ng-show="!p.unreadMessages" class="wa-stats">
+                                    <span><i class="zmdi zmdi-comment-alt-text c-gray zmdi-hc-fw"></i></span>
+                                </li>
+                                <li ng-show="p.unreadMessages" class="wa-stats">
+                                    <span><i class="zmdi zmdi-comment-alt-text c-lightblue zmdi-hc-fw"></i></span>
+                                </li>
+                                <li ng-show="p.proposals.length > 4" class="wa-users m-r-5"
+                                    ng-click="vm.selectProject(p)">
+                                    <div class="p-relative"
+                                         title="{{p.proposals.length-3}} autre(s) proposition(s)">
+                                        <div class="lv-avatar bgm-bluegray pull-left on-avatar">
+                                            +{{p.proposals.length-3}}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="wa-users m-r-5" data-ng-repeat="proposal in p.proposals | limitTo:4"
+                                    ng-click="vm.selectProposal(proposal)">
+                                    <div class="p-relative"
+                                         title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
+                                        <yaka-avatar class="on-avatar" size="35"
+                                                     user="proposal.professional.user"></yaka-avatar>
+                                        <i ng-show="proposal.unreadMessages"
+                                           class="porposalUnreadMessagesIndicator"></i>
+                                        <!--<div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
+                                            <span>{{proposal.professional.user.firstName}}
+                                                {{proposal.professional.user.lastName}}
+                                            </span>
+                                        </div>-->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div ng-show="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal" class="card-body p-l-25 p-b-20"
+                         ng-click="vm.selectProposal(p.proposal)">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="btn-dpday pull-left on-avatar">
+                                    <div class="p-relative"
+                                         title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
+                                        <yaka-avatar class="on-avatar" size="42"
+                                                     user="p.proposal.professional.user"></yaka-avatar>
+                                        <i ng-show="p.proposal.unreadMessages"
+                                           class="porposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                                <div class="media-heading m-b-5">
+                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <strong>{{p.proposal.professional.user.firstName}}
+                                        {{p.proposal.professional.user.lastName}}</strong>
+                                </div>
+                                <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
+                                    <li class="wa-stats center">
+                                    <span class="bgm-white">
+                                        <i class="zmdi zmdi-calendar"></i>
+                                        <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                        <span data-ng-show="!p.proposal.startDate">- - -</span>
+                                    </span>
+                                    <span class="active bgm-white c-lightblue">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <span data-ng-show="p.proposal.price">{{p.proposal.price}} €</span>
+                                        <span data-ng-show="!p.proposal.price">- - - €</span>
+                                    </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="p.status == 'ONGOING_RATE_PRO' && p.proposal" class="card-body p-l-25 p-b-20"
+                         ng-click="vm.selectProposal(p.proposal)">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="btn-dpday pull-left on-avatar">
+                                    <div class="p-relative"
+                                         title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
+                                        <yaka-avatar class="on-avatar" size="42"
+                                                     user="p.proposal.professional.user"></yaka-avatar>
+                                        <i ng-show="p.proposal.unreadMessages"
+                                           class="porposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                                <div class="media-heading m-b-5">
+                                    <div class="c-red"><strong>Notez votre Pro. pour ce projet</strong></div>
+                                    <strong>{{p.proposal.professional.user.firstName}}
+                                        {{p.proposal.professional.user.lastName}}</strong>
+                                </div>
+                                <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
+                                    <li class="wa-stats center">
+                                    <span class="bgm-white">
+                                        <i class="zmdi zmdi-calendar"></i>
+                                        <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                        <span data-ng-show="!p.proposal.startDate">- - -</span>
+                                    </span>
+                                    <span class="active bgm-white c-lightblue">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <span data-ng-show="p.proposal.price">{{p.proposal.price}} €</span>
+                                        <span data-ng-show="!p.proposal.price">- - - €</span>
+                                    </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.projectsCompleted && vm.projectsCompleted.length > 0" ng-cloak>
+                <div class="block-header">
+                    <h2 ng-show="vm.projectsCompleted.length == 1">PROJET TERMINÉ</h2>
+                    <h2 ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
+                </div>
+                <div class="card card-hover pointer" ng-repeat="pc in vm.projectsCompleted" ng-click="vm.selectProposal(pc.proposal)">
+                    <div class="card-header p-b-15">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="proposalIconBackgroundOff lv-img v-icon-{{pc.mainActivity.code}}-white">
+                                </div>
+                            </div>
+                            <div class="media-body projectTitleBar">
+                                <div class="media row">
+                                    <div class="col-sm-7">{{pc.title | yakaTranslateTitle}}</div>
+                                    <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                        <div>
+                                            <small class="c-gray">
+                                                Cloturé le {{pc.updated | date:'d MMMM y'}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media m-t-5">
+                                    <div class="c-gray">
+                                        <strong>{{pc.address.name}}</strong> -
+                                        <small>{{pc.address.locality}}</small>
+                                    </div>
+                                    <div class="c-gray">
+                                        <small>Début souhaité {{vm.getDesiredPedriod(pc)}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <ul class="actions m-t-20">
+                                    <li class="dropdown" uib-dropdown>
+                                        <a href="" uib-dropdown-toggle>
+                                            <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="pc.status == 'COMPLETED' && pc.proposal" class="card-body p-l-25 p-b-20"
+                         ng-click="vm.selectProposal(pc.proposal)">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="btn-dpday pull-left on-avatar">
+                                    <div class="p-relative"
+                                         title="{{pc.proposal.professional.user.firstName}} {{pc.proposal.professional.user.lastName}}">
+                                        <yaka-avatar class="on-avatar" size="42"
+                                                     user="pc.proposal.professional.user"></yaka-avatar>
+                                        <i ng-show="pc.proposal.unreadMessages"
+                                           class="porposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body pull-left" title="{{pc.title | yakaTranslateTitle}}"
+                                 ng-click="vm.selectProposal(pc.proposal)">
+                                <div class="media-heading m-b-5">
+                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <strong>{{pc.proposal.professional.user.firstName}}
+                                        {{pc.proposal.professional.user.lastName}}</strong>
+                                </div>
+                                <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
+                                    <li class="wa-stats center">
+                                    <span class="bgm-white">
+                                        <i class="zmdi zmdi-calendar c-gray"></i>
+                                        <span data-ng-show="pc.proposal.startDate">{{pc.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                        <span data-ng-show="!pc.proposal.startDate">- - -</span>
+                                    </span>
+                                    <span class="active bgm-white c-gray">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <span data-ng-show="pc.proposal.price">{{pc.proposals[0].price}} €</span>
+                                        <span data-ng-show="!pc.proposal.price">- - - €</span>
+                                    </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

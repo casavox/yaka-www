@@ -1,0 +1,52 @@
+<div class="sidebar-inner c-overflow">
+    <ul class="main-menu">
+
+
+        <li ui-sref-active="active" ng-if="!app.isPro()">
+            <a ui-sref="new-project" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-plus"></i>
+                Créer un projet
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-if="!app.isPro()">
+            <a ui-sref="my-projects" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-assignment"></i>
+                Mes projets
+            </a>
+        </li>
+
+
+        <li ui-sref-active="active" ng-if="app.isPro()">
+            <a ui-sref="findjobs" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-map"></i>
+                Trouver des chantiers
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-if="app.isPro()">
+            <a ui-sref="pro-proposals" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-assignment-o"></i>
+                Devis en cours
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-if="app.isPro()">
+            <a ui-sref="pro-jobs" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-roller"></i>
+                Mes chantiers
+            </a>
+        </li>
+
+
+        <li ui-sref-active="active">
+            <a ui-sref="contacts" ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-accounts-alt"></i>
+                Mes contacts
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="support" ng-click="app.sidebarStat($event); app.openSupport();">
+                <i class="zmdi zmdi-headset-mic"></i>
+                Support
+            </a>
+        </li>
+    </ul>
+</div>

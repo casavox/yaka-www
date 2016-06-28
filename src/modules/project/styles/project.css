@@ -1,0 +1,87 @@
+.proErrorMessage {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.projectImageTooltip .tooltip-inner {
+    background: #03a9f4 !important;
+    color: white !important;
+    word-wrap: break-word !important;
+}
+
+.projectImageTooltip .tooltip-arrow {
+    border-top-color: #03a9f4 !important;
+}
+
+.descriptionFormProject {
+    font-family: 'montserrat_light' !important;
+    font-size: 16px !important;
+}
+
+.descriptionFormProject textarea {
+    font-family: 'montserrat_light' !important;
+    font-size: 16px !important;
+}
+
+.descriptionFormProject .help-block {
+    font-family: 'montserrat_light' !important;
+    font-size: 14px !important;
+}
+
+.makeAQuote {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: 100% !important;
+}
+
+.button.btn.send-offer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.makeOfferBox {
+    padding-top: 10px;
+}
+
+.error.makeOfferError {
+    margin-top: 29px !important;
+    margin-bottom: 0px !important;
+    font-size: 12px !important;
+}
+
+.projectRightBox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.descriptionFormProject .form-group {
+    margin-bottom: 0 !important;
+}
+
+.question-li.date:hover {
+    background-color: white;
+    color: #03A9F4;
+}
+
+.question-li.date {
+    height: auto;
+    font-size: 15px;
+    line-height: 36px;
+    cursor: initial;
+}
+
+.content-slide.new-project {
+    height: 100% !important;
+}
+
+.material-title.material-title-small {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dateEdit ul.questions-ul li {
+    width: 100% !important;
+}

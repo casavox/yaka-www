@@ -1,0 +1,137 @@
+<ul class="header-inner clearfix">
+    <li id="menu-trigger" data-target="mainmenu" data-toggle-sidebar data-model-left="app.sidebarToggle.left"
+        data-ng-if="app.getUser()"
+        data-ng-class="{ 'open': app.sidebarToggle.left === true }">
+        <div class="line-wrap">
+            <div class="line top"></div>
+            <div class="line center"></div>
+            <div class="line bottom"></div>
+        </div>
+    </li>
+    <li class="logo">
+        <a ui-sref="home" ng-click="app.sidebarStat($event)">
+            <div class="titleYakaClub titleYakaClubWhite" ui-sref="contacts">
+                <span class="titleYaka">YAKA</span><span class="titleClub">CLUB</span>
+                <span class="titleContactsBeta titleYakaClubBetaHeader"
+                      ng-class="{'bgm-lightblue': app.isPro(), 'bgm-orange': !app.isPro()}">Beta</span>
+            </div>
+        </a>
+    </li>
+    <li class="pull-right" data-ng-if="app.getUser()">
+        <ul class="top-menu">
+            <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown>
+                <a uib-dropdown-toggle href="">
+                    <i class="tm-icon zmdi zmdi-email"></i>
+                    <i class="tmn-counts" ng-if="app.getUserchatsUnreadNumber() > 0">
+                        {{app.getUserchatsUnreadNumber()}}
+                    </i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-lg stop-propagate pull-right">
+                    <div class="listview">
+                        <div class="lv-header">Messages</div>
+                        <div class="lv-body">
+                            <a class="lv-item userChatItem" ng-href=""
+                               data-ng-repeat="userchat in app.getUserchats()"
+                               data-ng-class="{'unread': userchat.unreadMessages}">
+                                <div class="media" data-ng-if="!app.isPro()"
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <div class="pull-left">
+                                        <yaka-avatar class="m-t-9" size="35"
+                                                     user="userchat.chat.proposal.professional.user"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">
+                                            {{userchat.chat.proposal.professional.user.firstName}}
+                                            {{userchat.chat.proposal.professional.user.lastName}}
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposal.project.address.locality}} -
+                                            {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
+                                        </div>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
+                                               ng-switch="userchat.chat.messages[0].text">
+                                            <span ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{userchat.chat.messages[0].varPrice}}</span>
+                                            <span ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{userchat.chat.messages[0].varAddress}}</span>
+                                            <span ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                                            <span ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="media" data-ng-if="app.isPro()"
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <div class="pull-left">
+                                        <yaka-avatar class="m-t-9" size="35"
+                                                     user="userchat.chat.proposal.project.user"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">
+                                            {{userchat.chat.proposal.project.user.firstName}}
+                                            {{userchat.chat.proposal.project.user.lastName}}
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposal.project.address.locality}} -
+                                            {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
+                                        </div>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
+                                               ng-switch="userchat.chat.messages[0].text">
+                                            <span ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{userchat.chat.messages[0].varPrice}}</span>
+                                            <span ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{userchat.chat.messages[0].varDate}}</span>
+                                            <span ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{userchat.chat.messages[0].varAddress}}</span>
+                                            <span ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                                            <span ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown>
+                <a uib-dropdown-toggle href="">
+                    <yaka-avatar class="yakaHeaderAvatar" size="40" user="app.getUser()"></yaka-avatar>
+                    <span class="yakaHeaderFirstname">
+                        <span class="hidden-xs">{{app.getFirstName()}}</span>
+                        <i class="zmdi zmdi-caret-down"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu dm-icon pull-right">
+                    <li ng-if="!app.isPro()">
+                        <a ui-sref="profile">
+                            <i class="zmdi zmdi-face"></i>
+                            Mon profil
+                        </a>
+                    </li>
+                    <li ng-if="app.isPro()">
+                        <a ui-sref="pro-profile">
+                            <i class="zmdi zmdi-face"></i>
+                            Mon profil pro
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="app.logout()">
+                            <i class="zmdi zmdi-close"></i>
+                            Déconnexion
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

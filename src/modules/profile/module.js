@@ -11,15 +11,21 @@
     function config($stateProvider) {
 
         $stateProvider
+
+            //Customer
+
             .state('profile', {
                 url: "/profile/me",
-                templateUrl: "/modules/profile/views/profile.html",
+                templateUrl: "/modules/profile/views/customer/profile.html",
                 controller: 'ProfileCustomerController',
                 controllerAs: 'vm'
             })
+
+            //Pro
+
             .state('pro-profile', {
                 url: "/pro/profile/me",
-                templateUrl: "/modules/profile/views/profile-pro.html",
+                templateUrl: "/modules/profile/views/pro/profile-pro.html",
                 controller: 'ProfileController',
                 controllerAs: 'vm'
             });

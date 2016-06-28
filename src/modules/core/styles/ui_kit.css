@@ -28,12 +28,8 @@
     cursor: default;
 }
 
-.yakaButton.yakaDisabled .angular-ripple.animate {
-    animation: none !important;
-}
-
 .yakaButton.yakaBlue {
-    background: #00A3D3;
+    background: #03A9F4;
     color: white;
 }
 
@@ -42,7 +38,7 @@
 }
 
 .yakaButton.yakaBlue:active {
-    background: #00A3D3;
+    background: #03A9F4;
 }
 
 .yakaButton.yakaBlue.yakaDisabled {
@@ -50,7 +46,7 @@
 }
 
 .yakaButton.yakaOrange {
-    background: #fdaf00;
+    background: #FF9800;
     color: white;
 }
 
@@ -59,7 +55,7 @@
 }
 
 .yakaButton.yakaOrange:active {
-    background: #fdaf00;
+    background: #FF9800;
 }
 
 .yakaButton.yakaOrange.yakaDisabled {
@@ -89,19 +85,20 @@
 }
 
 .yakaLinkWhite:active {
-    color: #FDAF00;
+    color: #FF9800;
 }
 
 /* Popups */
 
 .yakaPopup {
+    top: 0;
     position: fixed !important;
     width: 100% !important;
     height: 100% !important;
-    overflow-x: scroll;
+    overflow-y: scroll;
     background-color: rgba(11, 16, 23, .5);
-    padding-top: 90px !important;
-    padding-bottom: 90px !important;
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
     z-index: 20;
 }
 
@@ -129,6 +126,15 @@
     right: 0;
     padding: 10px;
     cursor: pointer;
+}
+
+.yakaPopupRateWindow {
+    width: 400px !important;
+    margin-left: -200px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
 }
 
 @media (max-width: 459px) {

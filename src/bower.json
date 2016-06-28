@@ -14,7 +14,6 @@
   ],
   "dependencies": {
     "angular-masonry": "~0.16.0",
-    "angular-bootstrap-lightbox": "~0.10.0",
     "angular-material": "~1.0.6",
     "angular-scroll-glue": "~2.0.6",
     "lodash": "~4.11.2",

@@ -1,0 +1,123 @@
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+        <div class="container">
+
+            <div data-ng-if="vm.ongoing && vm.ongoing.length == 0" class="card" ng-cloak>
+                <div class="card-header">
+                    <h2>VOUS N’AVEZ AUCUN CHANTIER EN COURS
+                        <small>Comment obtenir de nouveaux chantiers ?</small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+                    <ol>
+                        <li>Votre profil doit être complet et validé</li>
+                        <li>Sélectionnez un projet parmi ceux disponibles</li>
+                        <li>Indiquez un montant approximatif si vous le pouvez et surtout ajouter un message afin
+                            d’engager la discussion avec votre client.
+                        </li>
+                    </ol>
+                </div>
+                <div class="panel-footer text-right">
+                    <button class="btn btn-lg btn-primary" data-ui-sref="findjobs">Voir les chantiers disponibles
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-xs-12 no-padding block-header m-b-5" data-ng-if="vm.ongoing && vm.ongoing.length > 0">
+                <h2>En cours</h2>
+            </div>
+
+            <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0 m-b-20"
+                 data-ng-if="vm.ongoing && vm.ongoing.length > 0">
+                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.ongoing"
+                     ui-sref="pro-proposal({proposalId: proposal.id})">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
+                    </div>
+                    <div class="pro-proposal-bloc-info">
+                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
+                             ng-if="proposal.unreadMessages">
+
+                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
+                            {{ proposal.project.title | yakaTranslateTitle }}
+                        </p>
+
+                        <p class="pro-proposals-info"
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-price">
+                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                        </p>
+
+                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                            Date d'intervention : {{ proposal.startDate | date:'dd MMMM yyyy' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 no-padding block-header m-b-5" data-ng-if="vm.completed && vm.completed.length > 0">
+                <h2>Terminés</h2>
+            </div>
+
+            <div class="col-xs-12 no-padding row no-margin" data-ng-if="vm.completed && vm.completed.length > 0">
+                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.completed"
+                     ui-sref="pro-proposal({proposalId: proposal.id})">
+                    <div class="pro-proposal-bloc-pict">
+                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
+                                  secure="true"
+                                  class="img-circle center-middle" format="png"
+                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
+                            | uppercase}}
+                        </div>
+                    </div>
+                    <div class="pro-proposal-bloc-info">
+                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
+                             ng-if="proposal.unreadMessages">
+
+                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
+                            {{ proposal.project.title | yakaTranslateTitle }}
+                        </p>
+
+                        <p class="pro-proposals-info"
+                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
+                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
+                            {{proposal.project.address.locality}}
+                        </p>
+                        <hr class="pro-proposals-hr">
+                        <p class="pro-proposals-price">
+                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                        </p>
+
+                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                            Date d'intervention : {{ proposal.startDate | date:'dd MMMM yyyy' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

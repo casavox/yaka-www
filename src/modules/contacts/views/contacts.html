@@ -1,103 +1,74 @@
 <style ng-if="app.isPro()">
     .customerSupportWidget {
-        background: #fdaf00;
+        background: #FF9800;
     }
 
     .contactsItemNumberActive {
-        background: #fdaf00;
+        background: #FF9800;
     }
 </style>
 
-<section class="view">
-    <div class="header-menu">
-        <div class="titleYakaClub" ui-sref="contacts">
-            <span class="titleYaka">YAKA</span><span class="titleClub">CLUB</span>
-            <span class="titleContactsBeta" ng-class="{'titleBetaPro': app.isPro()}">Beta</span>
-        </div>
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
 
-        <div class="headerFirstname hidden-xs">
-            {{app.getUser().firstName}}
-        </div>
+<section id="main">
 
-        <cl-image public-id="{{app.getUser().avatar.cloudinaryPublicId}}"
-                  class="f-l proposal-icon img-circle avatarCloudinary hidden-xs" format="png"
-                  ng-if="app.getUser().avatar.cloudinaryPublicId">
-            <cl-transformation height="40" width="40" crop="fill"/>
-        </cl-image>
-        <div class="img-default fl avatarInitials hidden-xs"
-             ng-if="!app.getUser().avatar.cloudinaryPublicId">
-            {{app.getUser().firstName[0] | uppercase}}.
-            {{app.getUser().lastName[0]| uppercase}}.
-        </div>
-
-        <a ng-click="app.logout()">
-            <div class="logout">
-                Déconnexion<br/>
-                <span class="logoutExplain">(Revenir à l'accueil)</span>
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    <div id="content" class="content contacts">
+        <div class="container">
+            <div class="col-xs-12 no-padding visible-xs m-b-20">
+                <button class="col-xs-5 btn btn-default waves-effect c-lightblue btn-xs"
+                        ng-click="vm.openFriendPopup()">
+                    Inviter un ami
+                </button>
+                <button class="col-xs-5 col-xs-offset-2 btn btn-default waves-effect c-orange btn-xs" ng-click="vm.openProPopup()">
+                    Inviter un pro
+                </button>
             </div>
-        </a>
-    </div>
-    <div class="page-content contacts">
-        <div class="col-xs-12 contactsHeader">
-            <div class="col-sm-6 hidden-xs contactsHeaderLeft">
-                <div class="col-xs-12 contactsHeaderLeftTitle"
-                     ng-class="{'contactsHeaderLeftTitlePro': app.isPro()}">
-                    Bienvenue sur YakaClub
-                </div>
-                <div class="col-xs-12 contactsHeaderLeftSubtitle">
-                    et merci de rejoindre notre communauté !
-                </div>
-                <div class="col-xs-12 contactsHeaderLeftDesc">
-                    Dès aujourd’hui, commencez à constituer votre réseau de confiance.<br/>
-                    Dans les prochaines semaines, vous pourrez accéder à de nouveaux services vous permettant de créer
-                    vos projets et recommander vos meilleurs artisans à la communauté.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 contactsHeaderRight">
-                <div class="col-xs-12 contactsHeaderRightTitle">
-                    DÉVELOPPEZ VOTRE RÉSEAU
-                </div>
-                <div class="col-xs-12 hidden-xs contactsHeaderRightSubTitle">
-                    Invitez vos amis et vos artisans à vous rejoindre.
-                    Développons ensemble une communauté basée sur la qualité de nos artisans et la confiance.
-                </div>
-                <div class="col-xs-12 contactsHeaderRightButtons">
-                    <div class="col-xs-3 yakaButton yakaBlue contactsHeaderRightButton contactsHeaderRightButtonLeft"
-                         ng-click="vm.openFriendPopup()">
-                        INVITER UN AMI
-                    </div>
-                    <div class="col-xs-3 yakaButton yakaOrange contactsHeaderRightButton"
-                         ng-click="vm.openProPopup()">
-                        INVITER UN PRO
+            <div class="col-xs-12 p-l-0 p-r-0 card  hidden-xs">
+                <div class="col-xs-12 p-l-0 p-r-0 card-header">
+                    <h2 class="col-sm-6">
+                        DÉVELOPPEZ VOTRE RÉSEAU
+                        <small class="hidden-xs">
+                            Invitez vos connaissances à rejoindre votre réseau
+                        </small>
+                    </h2>
+                    <div class="col-sm-6 t-right m-t-5">
+                        <button class="btn btn-default waves-effect c-lightblue m-r-15" ng-click="vm.openFriendPopup()">
+                            Inviter un ami
+                        </button>
+                        <button class="btn btn-default waves-effect c-orange" ng-click="vm.openProPopup()">
+                            Inviter un pro
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 contactsMain">
-            <div class="col-xs-4 contactsMenu"
-                 ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
-                 ng-swipe-left="vm.contactsMenuOpened = false">
-                <div class="col-sm-12 contactsMenuTitle">
-                    CONTACTS
-                </div>
-                <div class="col-xs-12 contactsMenuItem"
-                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_ALL}"
-                     ng-click="vm.currentMenuItem = vm.MENU_ALL; vm.contactsMenuOpened = false">
-                    <img class="contactsMenuBlueCircle"
-                         ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
-                         ng-if="vm.currentMenuItem == vm.MENU_ALL">
-                    TOUS
-                    <div class="contactsItemNumber"
-                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_ALL}">
-                        {{vm.contacts.length}}
+            <div class="col-xs-12 contactsMain">
+                <div class="col-xs-4 contactsMenu"
+                     ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
+                     ng-swipe-left="vm.contactsMenuOpened = false">
+                    <div class="col-sm-12 contactsMenuTitle">
+                        CONTACTS
                     </div>
-                </div>
-                <div class="col-xs-12 contactsMenuItem"
-                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_PROS}"
-                     ng-click="vm.currentMenuItem = vm.MENU_PROS; vm.contactsMenuOpened = false">
-                    <img class="contactsMenuBlueCircle"
-                         ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
-                         ng-if="vm.currentMenuItem == vm.MENU_PROS">
+                    <div class="col-xs-12 contactsMenuItem"
+                         ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_ALL}"
+                         ng-click="vm.currentMenuItem = vm.MENU_ALL; vm.contactsMenuOpened = false">
+                        <img class="contactsMenuBlueCircle"
+                             ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
+                             ng-if="vm.currentMenuItem == vm.MENU_ALL">
+                        TOUS
+                        <div class="contactsItemNumber"
+                             ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_ALL}">
+                            {{vm.contacts.length}}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 contactsMenuItem"
+                         ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_PROS}"
+                         ng-click="vm.currentMenuItem = vm.MENU_PROS; vm.contactsMenuOpened = false">
+                        <img class="contactsMenuBlueCircle"
+                             ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
+                             ng-if="vm.currentMenuItem == vm.MENU_PROS">
                     <span ng-if="!app.isPro()">
                         ARTISANS
                     </span>
@@ -105,77 +76,77 @@
                         COLLÈGUES
                     </span>
 
-                    <div class="contactsItemNumber"
-                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_PROS}">
-                        {{vm.prosNumber}}
+                        <div class="contactsItemNumber"
+                             ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_PROS}">
+                            {{vm.prosNumber}}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 contactsMenuItem"
+                         ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_FRIENDS}"
+                         ng-click="vm.currentMenuItem = vm.MENU_FRIENDS; vm.contactsMenuOpened = false">
+                        <img class="contactsMenuBlueCircle"
+                             ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
+                             ng-if="vm.currentMenuItem == vm.MENU_FRIENDS">
+                        AMIS
+                        <div class="contactsItemNumber"
+                             ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_FRIENDS}">
+                            {{vm.friendsNumber}}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 contactsMenuSeparator"></div>
+                    <div class="col-xs-12 contactsMenuTitle">
+                        INVITATIONS
+                    </div>
+                    <div class="col-xs-12 contactsMenuItem"
+                         ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}"
+                         ng-click="vm.currentMenuItem = vm.MENU_INVIT_RECEIVED; vm.contactsMenuOpened = false">
+                        <img class="contactsMenuBlueCircle"
+                             ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
+                             ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
+                        RECUES
+                        <div class="contactsItemNumber"
+                             ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}">
+                            {{vm.invitationsReceived.length}}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 contactsMenuItem"
+                         ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}"
+                         ng-click="vm.currentMenuItem = vm.MENU_INVIT_SENT; vm.contactsMenuOpened = false">
+                        <img class="contactsMenuBlueCircle"
+                             ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
+                             ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
+                        ENVOYÉES
+                        <div class="contactsItemNumber"
+                             ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}">
+                            {{vm.invitationsSent.length}}
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-12 contactsMenuItem"
-                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_FRIENDS}"
-                     ng-click="vm.currentMenuItem = vm.MENU_FRIENDS; vm.contactsMenuOpened = false">
-                    <img class="contactsMenuBlueCircle"
-                         ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
-                         ng-if="vm.currentMenuItem == vm.MENU_FRIENDS">
-                    AMIS
-                    <div class="contactsItemNumber"
-                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_FRIENDS}">
-                        {{vm.friendsNumber}}
+                <div class="col-xs-8 contactsContacts">
+                    <div class="contentOverlay col-xs-12 visible-xs" ng-click="vm.contactsMenuOpened = false"
+                         ng-class="vm.getOverlayClass()"
+                         ng-swipe-left="vm.contactsMenuOpened = false">
                     </div>
-                </div>
-                <div class="col-xs-12 contactsMenuSeparator"></div>
-                <div class="col-xs-12 contactsMenuTitle">
-                    INVITATIONS
-                </div>
-                <div class="col-xs-12 contactsMenuItem"
-                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}"
-                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_RECEIVED; vm.contactsMenuOpened = false">
-                    <img class="contactsMenuBlueCircle"
-                         ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
-                         ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
-                    RECUES
-                    <div class="contactsItemNumber"
-                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_RECEIVED}">
-                        {{vm.invitationsReceived.length}}
+                    <div class="col-xs-12 visible-xs contactsMenuItemMain">
+                        <div class="contactsMenuItemMainClick"
+                             ng-click="vm.contactsMenuOpened = true">
+                            <img class="contactsContactsMenuItemIcon" ng-src="icons/mdpi/ic_filter_contacts.png"/>
+                            <span class="contactsContactsMenuItemTitle">{{vm.getHumanReadableMenuItem()}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 contactsMenuItem"
-                     ng-class="{contactsMenuItemActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}"
-                     ng-click="vm.currentMenuItem = vm.MENU_INVIT_SENT; vm.contactsMenuOpened = false">
-                    <img class="contactsMenuBlueCircle"
-                         ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
-                         ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
-                    ENVOYÉES
-                    <div class="contactsItemNumber"
-                         ng-class="{contactsItemNumberActive: vm.currentMenuItem == vm.MENU_INVIT_SENT}">
-                        {{vm.invitationsSent.length}}
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-8 contactsContacts">
-                <div class="contentOverlay col-xs-12 visible-xs" ng-click="vm.contactsMenuOpened = false"
-                     ng-class="vm.getOverlayClass()"
-                     ng-swipe-left="vm.contactsMenuOpened = false">
-                </div>
-                <div class="col-xs-12 visible-xs contactsMenuItemMain">
-                    <div class="contactsMenuItemMainClick"
-                         ng-click="vm.contactsMenuOpened = true">
-                        <img class="contactsContactsMenuItemIcon" ng-src="icons/mdpi/ic_filter_contacts.png"/>
-                        <span class="contactsContactsMenuItemTitle">{{vm.getHumanReadableMenuItem()}}</span>
-                    </div>
-                </div>
-                <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts"
-                     ng-if="vm.showContactOrNot(contact)">
+                    <div class="col-xs-12 contactItem" ng-repeat="contact in vm.contacts"
+                         ng-if="vm.showContactOrNot(contact)">
 
-                    <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
-                              class="f-l proposal-icon img-circle contactItemAvatar" format="png"
-                              ng-if="contact.user.avatar.cloudinaryPublicId">
-                        <cl-transformation height="40" width="40" crop="fill"/>
-                    </cl-image>
-                    <div class="img-default fl contactItemInitials"
-                         ng-if="!contact.user.avatar.cloudinaryPublicId">
-                        {{contact.user.firstName[0] | uppercase}}.
-                        {{contact.user.lastName[0]| uppercase}}.
-                    </div>
+                        <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
+                                  class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                                  ng-if="contact.user.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default fl contactItemInitials"
+                             ng-if="!contact.user.avatar.cloudinaryPublicId">
+                            {{contact.user.firstName[0] | uppercase}}.
+                            {{contact.user.lastName[0]| uppercase}}.
+                        </div>
 
                     <span class="contactItemName">
                         {{contact.user.firstName}} {{contact.user.lastName}}
@@ -200,22 +171,22 @@
                           ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
                         {{contact.user.professional.company.address.locality}}
                     </span>
-                </div>
-                <div class="col-xs-12 contactItem"
-                     ng-repeat="invit in vm.invitationsReceived"
-                     ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
-
-                    <cl-image public-id="{{invit.inviter.avatar.cloudinaryPublicId}}"
-                              class="f-l proposal-icon img-circle contactItemAvatar" format="png"
-                              ng-if="invit.inviter.avatar.cloudinaryPublicId">
-                        <cl-transformation height="40" width="40" crop="fill"/>
-                    </cl-image>
-                    <div class="img-default fl contactItemInitials"
-                         ng-if="!invit.inviter.avatar.cloudinaryPublicId">
-                        {{invit.inviter.firstName[0] | uppercase}}.
-                        {{invit.inviter.lastName[0]| uppercase}}.
                     </div>
-                    <div class="invitReceivedSpanHolder">
+                    <div class="col-xs-12 contactItem"
+                         ng-repeat="invit in vm.invitationsReceived"
+                         ng-if="vm.currentMenuItem == vm.MENU_INVIT_RECEIVED">
+
+                        <cl-image public-id="{{invit.inviter.avatar.cloudinaryPublicId}}"
+                                  class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                                  ng-if="invit.inviter.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default fl contactItemInitials"
+                             ng-if="!invit.inviter.avatar.cloudinaryPublicId">
+                            {{invit.inviter.firstName[0] | uppercase}}.
+                            {{invit.inviter.lastName[0]| uppercase}}.
+                        </div>
+                        <div class="invitReceivedSpanHolder">
                         <span class="contactItemName contactItemNameInvitReceived">
                             {{invit.inviter.firstName}} {{invit.inviter.lastName}}
                             <span class="contactItemPro" ng-if="invit.inviter.professional">
@@ -238,22 +209,22 @@
                               ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
                             {{invit.inviter.professional.company.address.locality}}
                         </span>
-                    </div>
+                        </div>
 
-                    <span angular-ripple>
+                    <span class="waves-effect">
                         <img class="invitRefuse"
                              src="icons/mdpi/ic_refuse_invitation.png"
                              ng-click="vm.refuseInvitation(invit.id)"/>
                     </span>
-                    <span angular-ripple>
+                    <span class="waves-effect">
                         <img class="invitAccept"
                              src="icons/mdpi/ic_accept_invitation.png"
                              ng-click="vm.acceptInvitation(invit.id)"/>
                     </span>
-                </div>
-                <div class="col-xs-12 contactItem contactItemInvitation"
-                     ng-repeat="invit in vm.invitationsSent"
-                     ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
+                    </div>
+                    <div class="col-xs-12 contactItem contactItemInvitation"
+                         ng-repeat="invit in vm.invitationsSent"
+                         ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
 
                     <span ng-if="invit.firstName && invit.lastName">
                         {{invit.firstName}} {{invit.lastName}}
@@ -281,28 +252,31 @@
                         </span>
                     </span>
 
-                </div>
-                <div class="col-xs-12 contactsEmpty"
-                     ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
-
-                    <img class="contactsEmptyIcon" src="icons/mdpi/ic_person_add.png"/>
-
-                    <div class="contactsEmptyTitle">
-                        Vous n’avez pas encore de contacts.
                     </div>
-                    <div class="contactsEmptySubtitle">
-                        Développez votre réseau en invitant vos contacts
-                    </div>
-                    <div class="contactsEmptyLinks">
-                        <span class="contactsEmptyLink" ng-click="vm.openFriendPopup()">
-                            Inviter des amis
-                        </span>
-                        <span class="contactsEmptyLinkOr">
-                            ou
-                        </span>
-                        <span class="contactsEmptyLink" ng-click="vm.openProPopup()">
-                            Invitez des professionnels
-                        </span>
+                    <div class="col-xs-12 contactsEmpty"
+                         ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
+
+                        <img class="contactsEmptyIcon hidden-xs" src="icons/mdpi/ic_person_add.png"/>
+
+                        <div class="contactsEmptyTitle">
+                            Retrouvez ici l'ensemble de vos relations YakaClub.
+                        </div>
+                        <div class="contactsEmptySubtitle">
+                            Vous pourrez prochainement utliser vos contacts pour recommander et vous faire recommander
+                            les meilleurs professionnels du batiment. Développons ensemble une communauté basée sur la
+                            qualité de nos Pro et sur la confiance.
+                        </div>
+                        <div class="contactsEmptyLinks hidden-xs">
+                            <span class="contactsEmptyLink" ng-click="vm.openFriendPopup()">
+                                Inviter des amis
+                            </span>
+                            <span class="contactsEmptyLinkOr">
+                                ou
+                            </span>
+                            <span class="contactsEmptyLink" ng-click="vm.openProPopup()">
+                                Invitez des professionnels
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

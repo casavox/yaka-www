@@ -3,7 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title ng-bind="app.getPageName()">YakaClub : Trouvez et recommandez vos artisans pour vos travaux</title>
+    <title ng-bind="app.getPageName()">YakaClub : Trouvez vos artisans en toute confiance</title>
+    <meta name="description"
+          content="Réseau de recommandation d'artisans entre particuliers. En 3 clics, vos amis, collègues et voisins vous recommandent leurs artisans pour vos travaux."/>
+
     <!-- inject:css -->
     <!-- endinject -->
 
@@ -26,10 +29,7 @@
     <meta name="theme-color" content="#222f45">
 </head>
 
-<body>
-
-<!--<div ng-include src="'/modules/core/modules/menu/views/menu.html'" ng-show="showMenu"
-     ng-controller="AppController"></div>-->
+<body class="sw-toggled">
 
 <div ui-view></div>
 
@@ -45,85 +45,15 @@
     </a>{{alertMessage}}
 </div>
 
-<div class="popUp" ng-show="projectFlag" ng-cloak>
-    <div class="popUp-container center-middle">
-        <div class="popUp-content">
-            <h4>Rate your pro </h4>
-
-            <p class="rate-message-thx">
-                Merci d'avoir choisi YakaClub pour vos travaux
-            </p>
-
-            <div class="rate-box">
-                <p class="rate-project-title text-center">
-                    {{project.title}}
-                </p>
-
-                <p class="rate-link text-center">
-                    <a ng-click="viewProposal()" class="cursor-pointer">View details</a>
-                </p>
-                <cl-image public-id="{{project.professional.avatar.cloudinaryPublicId}}" class="img-circle center"
-                          format="png" ng-if="project.professional.avatar.cloudinaryPublicId">
-                    <cl-transformation height="80" width="80" crop="fill"/>
-                </cl-image>
-                <div class="img-default-preview center h-80 w-80"
-                     ng-if="!project.professional.avatar.cloudinaryPublicId">
-                    {{project.professional.firstName[0] | uppercase}} {{project.professional.lastName[0] | uppercase}}
-                </div>
-                <p class="rate-info">
-                    Would you recommend <b>{{project.professional.firstName}}</b> to your friends ?
-                </p>
-
-                <div class="rate-btn center">
-                    <div class=" img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive == 'true'}"
-                         ng-click="rating.positive = 'true'">
-                        <img src="icons/mdpi/ic_thumb_up_defult.png" class="rate-like"/>
-                    </div>
-                    <div class="img-circle f-r cursor-pointer" ng-class="{'select-neg': rating.positive == 'false'}"
-                         ng-click="rating.positive = 'false'">
-                        <img src="icons/mdpi/ic_thumb_down_defult.png" class="rate-dislike "/>
-                    </div>
-                </div>
-            </div>
-            <p class="rate-cat-info">
-                Selectionnez 3 crtières qui définissent cet artisan
-            </p>
-
-            <div class="row">
-                <div class="col-md-6" ng-repeat="c in criteria">
-                    <div class="criteria"
-                         ng-class="{'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
-                         ng-click="selectCriteria($index)">
-                        {{c}}
-                    </div>
-                </div>
-            </div>
-            <p class="error center my-price-error" ng-show="error.criteria.flag">
-                {{error.criteria.message}}
-            </p>
-            <textarea class="textarea-rating" placeholder="Ajouter un commentaire" ng-model="rating.comment"></textarea>
-            <button type="button" class="button btn btn-popUp" ng-click="send()" ng-disabled="disable">SEND</button>
-        </div>
-    </div>
-</div>
-
-<div class="yakaPopup" ng-show="app.showCustomerSupport" ng-click="app.closeCustomerSupport()" ng-cloak>
-    <div class="container">
-        <div class="yakaPopupWindow yakaPopupWindowCustomerService col-xs-12" ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" ng-click="app.closeCustomerSupport()"
-                 alt=""/>
-
-            <div id="customerService"></div>
-        </div>
-    </div>
-</div>
-<div class="customerSupportWidget hidden-xs" ng-click="app.openCustomerSupport()">
-    <div class="customerSupportWidgetText"> Contactez-nous</div>
-    <img class="customerSupportWidgetIcon" src="icons/mdpi/ic_chat_bubble.png"/>
-</div>
+<div data-ng-include="'/modules/core/views/rating-popup.html'"></div>
 
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtq1oFK_ku6rSm9OHM8Q0MlHeOYzOWgr8&libraries=places"></script>
+
+<script
+    src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit"
+    async defer
+    ></script>
 
 <!-- inject:js -->
 <!-- endinject -->

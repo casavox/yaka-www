@@ -11,7 +11,6 @@
 
         $rootScope.pageName = "Contacts";
         $rootScope.updateProfile();
-        $rootScope.showMenu = false;
 
         var vm = this;
 
@@ -43,11 +42,15 @@
 
         vm.getHumanReadableMenuItem = function () {
             if (vm.currentMenuItem == vm.MENU_ALL) {
-                return "Tous mes Contacts";
+                return "Mes Contacts";
             } else if (vm.currentMenuItem == vm.MENU_PROS) {
-                return "Mes Pros";
+                if ($localStorage.user.professional) {
+                    return "Collègues";
+                } else {
+                    return "Artisans";
+                }
             } else if (vm.currentMenuItem == vm.MENU_FRIENDS) {
-                return "Mes Amis";
+                return "Amis";
             } else if (vm.currentMenuItem == vm.MENU_INVIT_RECEIVED) {
                 return "Invitations reçues";
             } else if (vm.currentMenuItem == vm.MENU_INVIT_SENT) {

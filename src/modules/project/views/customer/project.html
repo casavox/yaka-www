@@ -1,0 +1,344 @@
+<style type="text/css">
+    #map_canvas {
+        height: 120px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+</style>
+
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+        <div class="container">
+            <div class="card">
+                <div class="row no-margin">
+                    <div class="col-xs-12">
+                        <div class="description-action-btn" ng-click="vm.edit()" ng-show="!vm.editFlag">
+                            MODIFIER
+                        </div>
+                        <div class="description-action-btn" ng-show="!vm.editFlag"
+                             ng-click="vm.openDeleteProjectPopup()">
+                            SUPPRIMER
+                        </div>
+                        <div class="description-action-btn color-red" ng-show="vm.editFlag"
+                             ng-click="vm.openSavePopup()">
+                            ENREGISTER
+                        </div>
+                        <div class="description-action-btn" ng-show="vm.editFlag" ng-click="vm.cancel()">
+                            ANNULER
+                        </div>
+                        <div class="description-date">
+                            Mis à jour <span am-time-ago="vm.project.updated"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 ">
+                        <div id="map_canvas">
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                dragging="false">
+                                <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                            </ui-gmap-google-map>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin" title="{{vm.projectTmp.address.address}}">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Où
+                            <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhere()"></span>
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.streetNumber}}
+                            {{vm.projectTmp.address.route}}, {{vm.projectTmp.address.postalCode}}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Quand
+                            <span class="icon-pen-blue" ng-show="vm.editFlag" ng-click="vm.editWhen()"></span>
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            Début souhaité {{vm.getWhen()}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Mots clés
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                            {{vm.getTags() | yakaTranslateTags}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Description
+                        </div>
+                        <div class="col-xs-12 description-sub-text">
+                                <textarea msd-elastic class="custom-textarea" disabled
+                                          ng-model="vm.projectTmp.description" ng-hide="vm.editFlag"></textarea>
+
+                            <form class="descriptionFormProject" ng-show="vm.editFlag" name="descriptionForm">
+                                <div class="form-group"
+                                     ng-class="{'has-error': !vm.projectTmp.description}">
+                                    <div class="fg-line">
+                                    <textarea class="form-control" rows="2"
+                                              name="description"
+                                              ng-model="vm.projectTmp.description"
+                                              required="required"
+                                              ng-minlength="5"
+                                              data-auto-size
+                                              data-autosize-on="true"
+                                              placeholder=""></textarea>
+                                    </div>
+                                    <div ng-messages="descriptionForm.description.$error">
+                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                        <small class="help-block" ng-message="minlength">La description est trop
+                                            courte
+                                        </small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-margin"
+                     ng-if="(vm.projectTmp.images && vm.projectTmp.images.length > 0) || vm.editFlag">
+                    <div class="col-xs-12 row no-margin">
+                        <div class="col-xs-12 description-sub-title">
+                            Photos
+                        </div>
+
+                        <div class="col-xs-12 description-sub-text row mb-15 m-t-15">
+
+                            <!--Viewing mode-->
+
+                            <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                     data-sub-html="#caption{{$index}}"
+                                     class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                     tooltip-placement="top"
+                                     uib-tooltip="{{image.description}}"
+                                     ng-repeat="image in vm.projectTmp.images">
+                                    <div class="lightbox-item p-item">
+                                        <img ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                             alt=""/>
+                                    </div>
+                                    <div id="caption{{$index}}" style="display:none">
+                                        <div class="galleryCaption">
+                                            <p>{{image.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Editing mode-->
+
+                            <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
+                                <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
+                                     ng-repeat="image in vm.projectTmp.images">
+                                    <div class="lightbox-item p-item projectImageTooltip">
+                                        <img
+                                            tooltip-placement="top"
+                                            uib-tooltip="{{image.description}}"
+                                            ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                            alt=""/>
+                                    </div>
+
+                                    <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                                        <button uib-dropdown-toggle class="btn bgm-lightblue btn-float">
+                                            <i class="zmdi zmdi-comment-text-alt"></i>
+                                        </button>
+
+                                        <div class="dropdown-menu stop-propagate">
+                                                <textarea placeholder="Ajouter un commentaire"
+                                                          ng-model="image.description"
+                                                          ng-maxlength="140"
+                                                          maxlength="140"
+                                                          data-auto-size
+                                                          ng-trim="false"
+                                                          ng-change="vm.descriptionChanged(image)"></textarea>
+
+                                            <div class="descriptionCounter">
+                                                {{vm.getStringLength(image.description)}} / 140 caractères
+                                            </div>
+
+                                            <button class="btn bgm-lightblue btn-float"
+                                                    data-tl-action="save"
+                                                    ng-click="vm.saveComment();">
+                                                <i class="zmdi zmdi-check"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <button class="floatingButton btn btn-danger btn-float"
+                                            ng-click="vm.removeImage($index)">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
+                                 ngf-drop="vm.uploadFiles($files)"
+                                 ngf-drag-over-class="dragOverClass($event)"
+                                 ng-model="files"
+                                 ng-multiple="false" ng-show="vm.editFlag">
+                                <div class="galleryUpload lightbox-item p-item"
+                                     ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                                     ngf-accept="'image/*'" ngf-max-size="5MB">
+                                    <div class="content">
+                                        <i class="zmdi zmdi-plus-circle-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="yakaPopup" ng-show="vm.whereFlag"
+         ng-click="vm.whereFlag = false" ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     ng-click="vm.whereFlag = false" alt=""/>
+
+                <h4>Veuillez indiquer le lieu des travaux</h4>
+
+                <div class="row no-margin w-900 center select-addr" ng-show="vm.user.addresses.length > 0">
+                    <div class="col-xs-5 no-padding">
+                        <select class="select-custom" ng-model="vm.myAddress" ng-change="vm.setAddress()">
+                            <option value="new">Créer une nouvelle addresse</option>
+                            <option ng-repeat="a in vm.user.addresses" value="{{a.address}}"
+                                    ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-xs-5 col-xs-offset-2 no-padding">
+                        <input type="text" class="select-custom" data-ng-if="vm.newAddrFlag" ng-model="vm.newAddr.name"
+                               ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse (Maison, Papa, ...)">
+                    </div>
+                </div>
+                <div class="row no-margin w-900 center addr">
+                    <div class="no-padding mb-39"
+                         ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
+                        <div class="inner-addon right-addon">
+                            <div class="disabled-addr" ng-show="vm.disabledAddr"></div>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <input vs-google-autocomplete="options"
+                                   options="options"
+                                   ng-model="address.name"
+                                   vs-place="address.place"
+                                   vs-place-id="address.components.placeId"
+                                   vs-street-number="address.components.streetNumber"
+                                   vs-street="address.components.street"
+                                   vs-city="address.components.city"
+                                   vs-state="address.components.state"
+                                   vs-country-short="address.components.countryCode"
+                                   vs-country="address.components.country"
+                                   vs-post-code="address.components.postCode"
+                                   vs-district="address.components.district"
+                                   vs-latitude="address.components.location.lat"
+                                   vs-longitude="address.components.location.long"
+
+                                   type="text"
+                                   name="address"
+                                   id="address"
+                                   placeholder="Indiquer l'adresse" class="input-custom">
+                        </div>
+                    </div>
+                </div>
+                <div class="t-right">
+                    <button class="btn btn-link waves-effect c-red" ng-click="vm.whereFlag = false">
+                        ANNULER
+                    </button>
+                    <button class="btn btn-link waves-effect c-lightblue" ng-click="vm.changeWhere()">
+                        CONFIRMER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="yakaPopup" ng-show="vm.whenFlag"
+         ng-click="vm.whenFlag = false" ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     ng-click="vm.whenFlag = false" alt=""/>
+
+                <h4>Quand voulez-vous que les travaux commencent ?</h4>
+
+                <div class="dateEdit">
+                    <ul class="questions-ul center no-padding">
+                        <li class="question-li center" ng-class="vm.child3"
+                            ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+                            Dès que possible
+                        </li>
+                        <li class="question-li center" ng-class="vm.child2"
+                            ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+                            Dans le mois
+                        </li>
+                        <li class="question-li center" ng-class="vm.child0"
+                            ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
+                            À partir d'une date
+                        </li>
+                        <li ng-show="vm.dateSelected" class="custom-li-date question-li center"
+                            ng-click="vm.unSelectdate()">
+                            {{vm.dt | date:'dd-MM-yyyy'}}
+                        </li>
+                        <li ng-show="vm.dateFlag" class="list-style-none">
+                            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                                <uib-datepicker ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
+                                                class="well well-sm custom-date"
+                                                custom-class="getDayClass(date, mode)"></uib-datepicker>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="error center" ng-show="vm.error.date.flag">
+                        {{vm.error.date.message}}
+                    </p>
+                </div>
+
+                <div class="t-right">
+                    <button class="btn btn-link waves-effect c-red" ng-click="vm.whenFlag = false">
+                        ANNULER
+                    </button>
+                    <button class="btn btn-link waves-effect c-lightblue" ng-click="vm.changeWhen()">
+                        CONFIRMER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

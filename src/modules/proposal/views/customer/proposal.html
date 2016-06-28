@@ -1,0 +1,317 @@
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
+
+<aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+       data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+<section id="main" ng-cloak>
+    <div id="content" class="content">
+        <div class="container">
+            <div class="card" ng-click="vm.projectDetails()">
+                <div class="card-header card-hover">
+                    <div class="media">
+                        <div class="pull-left">
+                            <div
+                                class="proposalIconBackground lv-img v-icon-{{vm.proposal.project.activities[0].code}}-white">
+                            </div>
+                        </div>
+                        <div class="media-body projectTitleBar">
+                            <div class="media row">
+                                <div class="col-sm-7">{{vm.proposal.project.title | yakaTranslateTitle}}</div>
+                                <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                    <div>
+                                        <small class="c-gray">
+                                            Mis à jour <span am-time-ago="vm.proposal.project.updated"></span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media m-t-5">
+                                <div class="c-gray">
+                                    <strong>{{vm.proposal.project.address.name}}</strong> -
+                                    <small>{{vm.proposal.project.address.locality}}</small>
+                                </div>
+                                <div class="c-gray">
+                                    <small>Début souhaité {{vm.getWhen()}}</small>
+                                </div>
+                                <div class="c-gray">
+                                    <small>Publié le {{vm.proposal.project.published | date:'d MMMM y'}}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <ul class="actions m-t-20">
+                                <li class="dropdown" uib-dropdown>
+                                    <a href="" uib-dropdown-toggle>
+                                        <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="yakaMain proposalMainView">
+                <div class="card" id="profile-main">
+                    <div class="pm-overview">
+                        <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                             tabindex="0">
+                            <div
+                                style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                <div class="pmo-pic">
+                                    <div class="p-relative">
+                                        <img class="img-responsive proAvatarProposalImage"
+                                             data-ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId"
+                                             data-ng-src="{{vm.proposal.professional.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                             alt=""/>
+
+                                        <div class="yakaAvatarInitialsProposal"
+                                             data-ng-if="!vm.proposal.professional.user.avatar.cloudinaryPublicId">
+                                            {{vm.proposal.professional.user.firstName[0] | uppercase}}.
+                                            {{vm.proposal.professional.user.lastName[0]| uppercase}}.
+                                        </div>
+
+                                        <cl-image
+                                            public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                            class="proposalProMainPartnerImg" format="png"
+                                            ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                            <cl-transformation height="55" width="55" crop="fill" radius="max"/>
+                                        </cl-image>
+
+                                    </div>
+
+                                    <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                        <h2>
+                                            {{vm.proposal.professional.user.firstName}}
+                                            {{vm.proposal.professional.user.lastName}}
+                                            <small>
+                                                {{vm.proposal.professional.company.name}}
+                                            </small>
+                                        </h2>
+
+                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                            <li class="wa-stats center">
+                                        <span class="bgm-white">
+                                            <i class="zmdi zmdi-calendar"></i>
+                                            <span data-ng-if="vm.proposal.startDate">{{vm.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                            <span data-ng-if="!vm.proposal.startDate">- - -</span>
+                                        </span>
+                                        <span class="active bgm-white">
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                            <span data-ng-if="vm.proposal.price">{{vm.proposal.price}} €</span>
+                                            <span data-ng-if="!vm.proposal.price">- - - €</span>
+                                        </span>
+                                            </li>
+                                        </ul>
+                                        <div data-ng-if="vm.proposal.status == 'START'">
+                                            <button data-ng-click="vm.acceptProposal()"
+                                                    class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-check"></i> Accepter
+                                            </button>
+                                            <button data-ng-click="vm.declineProposal()"
+                                                    class="right col-xs-6 col-sm-8 col-sm-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-close"></i> Refuser
+                                            </button>
+                                        </div>
+                                        <div data-ng-if="vm.proposal.status == 'SELECTED'">
+                                            <button data-ng-click="vm.completeProposal()"
+                                                    class="col-xs-offset-1 col-xs-10 col-xs-10 btn btn-default btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-check"></i> Travaux terminés
+                                            </button>
+                                        </div>
+                                        <div data-ng-if="vm.proposal.status == 'RATE_PRO'">
+                                            <button data-ng-click="vm.rateProposal()"
+                                                    class="col-xs-offset-1 col-xs-10 btn btn-warning btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-account"></i> Noter ce pro
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pm-body clearfix h650">
+
+                        <ul class="tab-nav tn-justified">
+                            <li heading="Home"
+                                data-ng-class="{'active': !vm.showChat}">
+                                <a href="" ng-click="vm.showChat = false" class="ng-binding">Profil</a>
+                            </li>
+
+                            <li heading="Profile"
+                                data-ng-class="{'active': vm.showChat}">
+                                <a href="" ng-click="vm.showChat = true; vm.scrollBottom = 1"
+                                   class="ng-binding">Messages</a>
+                            </li>
+                        </ul>
+
+
+                        <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
+                                   scroll-bottom="{{vm.scrollBottom}}"
+                                   chat-id="{{vm.proposal.chat.id}}"
+                                   proposal-status="{{vm.proposal.status}}"
+                                   user-me="app.getUser()"
+                                   user-other="vm.proposal.professional.user"></yaka-chat>
+
+                        <div data-ng-show="!vm.showChat">
+                            <div class="pmb-block">
+                                <div class="pmbb-header">
+                                    <h2>
+                                        <i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Présentation
+                                    </h2>
+                                </div>
+                                <div class="pmbb-body p-l-30">
+                                    <div class="pmbb-view">
+                                        {{vm.proposal.professional.aboutMe}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pmb-block">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-star zmdi-hc-fw"></i> Expérience et qualités</h2>
+                                </div>
+                                <div class="pmbb-body p-l-30">
+                                    <div class="pmbb-view">
+                                        <dl class="dl-horizontal">
+                                            <dt>Métier</dt>
+                                            <dd>
+                                                {{vm.getExperienceYearNumber()}} ans d'expérience
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal"
+                                            data-ng-if="vm.proposal.professional.qualities && vm.proposal.professional.qualities.length > 0">
+                                            <dt>Qualités reconnues</dt>
+                                            <dd>
+                                                <ul class="yaka-chips">
+                                                    <li data-ng-repeat="quality in vm.proposal.professional.qualities">
+                                                        {{'CRITERION_' + quality.name | translate}}
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal"
+                                            data-ng-if="vm.proposal.professional.yakaProjectNumber">
+                                            <dt>Projets réalisés</dt>
+                                            <dd>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.yakaProjectNumber > 1">
+                                            <b>{{vm.proposal.professional.yakaProjectNumber}} projets</b> réalisés sur YakaClub
+                                        </span>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.yakaProjectNumber == 1">
+                                            <b>1 projet</b> réalisé sur YakaClub
+                                        </span>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.likes">
+                                            <dt>Recommandations</dt>
+                                            <dd>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.likes > 1">
+                                            <b>{{vm.proposal.professional.likes}} membres</b> recommandent ce Pro
+                                        </span>
+                                        <span
+                                            data-ng-if="vm.proposal.professional.likes == 1">
+                                            <b>1 membre</b> recommande ce Pro
+                                        </span>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal"
+                                            data-ng-if="vm.proposal.professional.partners && vm.proposal.professional.partners.length > 0">
+                                            <dt>Partenaire</dt>
+                                            <dd>
+                                                <ul class="yaka-chips">
+                                                    <li data-ng-repeat="partner in vm.proposal.professional.partners">
+                                                        {{partner.name}}
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal"
+                                            data-ng-if="vm.proposal.professional.certifications && vm.proposal.professional.certifications.length > 0">
+                                            <dt>Certifications</dt>
+                                            <dd>
+                                                <ul class="yaka-chips">
+                                                    <li data-ng-repeat="certification in vm.proposal.professional.certifications">
+                                                        {{certification.name}}
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal"
+                                            data-ng-if="vm.proposal.professional.businessRegistrationOk || vm.proposal.professional.insuranceOk">
+                                            <dt>Statut entreprise</dt>
+                                            <dd>
+                                                <ul class="yaka-chips">
+                                                    <li ng-if="vm.proposal.professional.businessRegistrationOk">
+                                                        Entreprise vérifiée
+                                                    </li>
+                                                    <li ng-if="vm.proposal.professional.insuranceOk">
+                                                        Assuré
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pmb-block">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-store zmdi-hc-fw"></i> Coordonnées</h2>
+                                </div>
+                                <div class="pmbb-body p-l-30">
+                                    <div class="pmbb-view">
+                                        <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.phoneNumber">
+                                            <dt>Téléphone</dt>
+                                            <dd>{{vm.proposal.professional.phoneNumber}}</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.user.email">
+                                            <dt>Email</dt>
+                                            <dd>{{vm.proposal.professional.user.email}}</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Addresse</dt>
+                                            <dd>
+                                        <span class="whiteSpacePre"
+                                              ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
+                                        <span class="whiteSpacePre"
+                                              ng-if="!vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.administrativeAreaLevel2}}</span>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pmb-block"
+                                 ng-if="vm.proposal.professional.portfolio && vm.proposal.professional.portfolio.length > 0">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Portfolio</h2>
+                                </div>
+                            </div>
+
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <div class="lightbox photos">
+                                        <div
+                                            data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                            class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
+                                            ng-repeat="image in vm.proposal.professional.portfolio">
+                                            <div class="lightbox-item p-item">
+                                                <img
+                                                    ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

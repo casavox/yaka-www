@@ -1,0 +1,942 @@
+.intl-tel-input .country-list .iti-flag, .intl-tel-input .country-list .country-name {
+    margin-top: 4px;
+}
+
+.intl-tel-input .flag-dropdown {
+    width: 100% !important;
+}
+
+.intl-tel-input .country-list {
+    width: 100% !important;
+}
+
+.titleContactsBeta {
+    text-align: right;
+    background: #03A9F4;
+    margin-left: 5px;
+    font-size: 16px;
+    line-height: 18px;
+    position: absolute;
+    top: 18px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    left: 145px;
+}
+
+.homeSection {
+}
+
+.warningText {
+    margin-top: 30px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 30px;
+    color:#c67605;
+    background: rgba(255, 255, 255, 0.24);
+    background-size: contain;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.homeSection1 {
+    height: auto;
+    padding-bottom: 147px;
+    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+}
+
+.homeSection1Header {
+    margin-top: 30px;
+    height: 40px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection1YakaClub {
+    font-size: 24px;
+    float: left;
+    line-height: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.homeSection1Yaka {
+    font-family: 'raleway_black', Arial, sans-serif;
+}
+
+.homeSection1Club {
+    font-family: 'raleway_regular', Arial, sans-serif;
+}
+
+.homeSection1Register {
+    float: right;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 25px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1Login {
+    float: right;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 15px;
+    margin-right: 25px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.homeSection1ProLink {
+    float: right;
+    height: 40px;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 13px;
+    border: solid white 1px;
+    border-radius: 4px;
+    padding-top: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+}
+
+.homeSection1ProLink:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.homeSection1ProLink:active {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.homeSection1Title {
+    margin-top: 140px;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 50px;
+    line-height: 1.2;
+    text-align: justify;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection1SubTitle {
+    margin-top: 45px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 33px;
+    text-align: left;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 60px;
+}
+
+.homeSection1SubSubTitle {
+    margin-top: 4px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    color: #03A9F4;
+    text-align: justify;
+    text-shadow: 1px 1px 1px #414141;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2 {
+    height: auto;
+    padding-bottom: 80px;
+    color: black;
+    background-color: white;
+    text-align: center;
+}
+
+.homeSection2Title {
+    font-family: 'raleway_light', Arial, sans-serif;
+    font-size: 32px;
+    line-height: 58px;
+    margin-top: 57px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2SubTitle {
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 20px;
+    color: #8D8D8D;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2Items {
+    margin-top: 59px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2ItemTitle {
+    margin-top: 36px;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 16px;
+}
+
+.homeSection2ItemDescription {
+    margin-top: 36px;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 14px;
+    color: #626262;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection2ItemIconTitle {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3 {
+    height: auto;
+    padding-bottom: 74px;
+    background: linear-gradient(rgba(11, 1, 81, 0.41), rgba(11, 1, 81, 0.41)), url('../../../img/homeWork.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.homeSection3Items {
+    margin-top: 79px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3ItemTitle {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3ItemDescription {
+    margin-top: 11px;
+    font-family: 'raleway_regular', Arial, sans-serif;
+    font-size: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection3ItemButton {
+    margin-top: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.homeSection4 {
+    height: auto;
+    padding-bottom: 25px;
+    background: #1E2E40;
+    color: white;
+    text-align: center;
+}
+
+.homeSection4Title {
+    margin-top: 23px;
+    line-height: 53px;
+    font-family: 'raleway_semi_bold', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.homeSection4ItemSocial {
+    float: left;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.homeSection4ItemFacebook {
+    margin-left: calc(50% - (48px * 3 + 33px * 2) / 2);
+    margin-right: 33px;
+}
+
+.homeSection4ItemGoogle {
+    margin-right: 33px;
+}
+
+body:after {
+    display: none;
+    content: url('/icons/mdpi/ic_facebook_active.png') url('/icons/mdpi/ic_facebook_hover.png') url('/icons/mdpi/ic_facebook_default.png') url('/icons/mdpi/ic_google_active.png') url('/icons/mdpi/ic_google_hover.png') url('/icons/mdpi/ic_google_default.png') url('/icons/mdpi/ic_twitter_active.png') url('/icons/mdpi/ic_twitter_hover.png') url('/icons/mdpi/ic_twitter_default.png');
+}
+
+.homeSection4ItemFacebook {
+    background-image: url('/icons/mdpi/ic_facebook_default.png');
+}
+
+.homeSection4ItemFacebook:hover {
+    background-image: url('/icons/mdpi/ic_facebook_hover.png');
+}
+
+.homeSection4ItemFacebook:active {
+    background-image: url('/icons/mdpi/ic_facebook_active.png');
+}
+
+.homeSection4ItemGoogle {
+    background-image: url('/icons/mdpi/ic_google_default.png');
+}
+
+.homeSection4ItemGoogle:hover {
+    background-image: url('/icons/mdpi/ic_google_hover.png');
+}
+
+.homeSection4ItemGoogle:active {
+    background-image: url('/icons/mdpi/ic_google_active.png');
+}
+
+.homeSection4ItemTwitter {
+    background-image: url('/icons/mdpi/ic_twitter_default.png');
+}
+
+.homeSection4ItemTwitter:hover {
+    background-image: url('/icons/mdpi/ic_twitter_hover.png');
+}
+
+.homeSection4ItemTwitter:active {
+    background-image: url('/icons/mdpi/ic_twitter_active.png');
+}
+
+.homeSection5 {
+    height: auto;
+    background: #1A2939;
+    color: white;
+}
+
+.homeSection5FooterLeft {
+    float: left;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.homeSection5FooterRegister {
+    margin-top: 20px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterLogin {
+    margin-top: 20px;
+    line-height: 40px;
+    margin-right: 25px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterContactUs {
+    margin-top: 20px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+.homeSection5FooterGotop {
+    margin-top: 20px;
+    line-height: 40px;
+    float: right;
+    cursor: pointer;
+}
+
+/* Login Popup */
+
+.loginPopupTabItem {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 16px;
+    color: #9B9B9B;
+    border-bottom: solid 1px #C6C6C6;
+    height: 35px;
+    cursor: pointer;
+    margin-bottom: 34px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.loginPopupTabItemActive {
+    border-bottom: solid 3px #03A9F4;
+    cursor: default;
+    color: black;
+}
+
+.loginPopupTabItemActivePro {
+    border-bottom: solid 3px #FBB832;
+    cursor: default;
+    color: black;
+}
+
+.loginPopupFacebook {
+    margin-bottom: 15px;
+    background: #6076ba;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-right: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupGoogle {
+    margin-bottom: 15px;
+    background: #d24922;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 8px;
+    margin-left: 2%;
+    width: 48% !important;
+    cursor: pointer;
+    font-family: 'raleway_medium', Arial, sans-serif;
+    text-align: center;
+}
+
+.loginPopupInputError {
+    color: #FF9800;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.loginPopupButton {
+    margin-top: 15px;
+}
+
+.noSocialAccountMessage {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.registerSocialConfirm {
+    margin-bottom: 6px;
+    margin-top: 20px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.registerFacebookGoogle {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: center;
+    width: 100% !important;
+    margin-top: -10px;
+}
+
+.registerSeparator {
+    height: 1px;
+    background: #E6E6E6;
+    margin-bottom: 25px;
+}
+
+.registerMail {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 15px;
+    margin-top: -15px;
+    text-align: center;
+}
+
+.customerRegisterProLink {
+    color: #FBB832;
+    font-family: 'montserrat_regular', Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.showRegisterFields {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height 0.3s linear;
+    -moz-transition: height 0.3s linear;
+    -o-transition: height 0.3s linear;
+    -ms-transition: height 0.3s linear;
+    transition: height 0.3s linear;
+}
+
+.showRegisterFields.showRegisterFieldsVisible {
+    height: 465px;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+.registerWithEmailMessage {
+    color: #03A9F4;
+}
+
+.passwordForgotten {
+    font-family: 'montserrat_light', Arial, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+    color: #03A9F4;
+}
+
+.passwordForgottenPro {
+    color: #FF9800;
+}
+
+.passwordForgotten span {
+    cursor: pointer;
+}
+
+.passwordForgottenMessageSent {
+    font-family: 'raleway_medium', Arial, sans-serif;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.passwordForgottenButton {
+    font-size: 13px;
+    height: auto;
+    padding-bottom: 13px;
+}
+
+@media (max-width: 991px) {
+
+    .homeSection3ItemTitle {
+        font-size: 22px;
+        height: 62px;
+    }
+
+    .homeSection3ItemDescription {
+        font-size: 15px;
+    }
+
+    .homeSection3ItemButton {
+        font-size: 13px !important;
+    }
+
+    .homeSection1Title {
+        margin-top: 110px;
+        font-size: 42px;
+    }
+
+    .homeSection1SubSubTitle {
+        font-size: 18px;
+    }
+
+    .homeSection1 {
+        padding-bottom: 105px;
+    }
+
+    .homeSection1SubTitle {
+        margin-top: 35px;
+        margin-bottom: 40px;
+        font-size: 27px;
+    }
+
+    .homeSection2Title {
+        font-size: 28px;
+    }
+
+    .homeSection2SubTitle {
+        font-size: 16px;
+        color: #626262;
+    }
+
+    .homeSection2Items {
+        margin-top: 40px;
+    }
+
+    .homeSection2Title {
+        margin-top: 40px;
+    }
+
+    .homeSection2 {
+        padding-bottom: 55px;
+    }
+
+    .homeSection2ItemTitle {
+        margin-top: 20px;
+    }
+
+    .homeSection2ItemDescription {
+        margin-top: 20px;
+    }
+
+    .homeSection2Item {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .homeSection2ItemDescription {
+        font-size: 13px;
+    }
+
+    .homeSection3 {
+        padding-bottom: 40px;
+    }
+
+    .homeSection3Items {
+        margin-top: 40px;
+    }
+
+    .homeSection4 {
+        padding-bottom: 5px;
+    }
+
+    .homeSection4Title {
+        margin-top: 5px;
+        font-size: 17px;
+    }
+
+    .homeSection5FooterLeft {
+        margin-top: 17px;
+        margin-bottom: 17px;
+    }
+
+    .homeSection5FooterLogin {
+        margin-top: 17px;
+    }
+
+    .homeSection5FooterContactUs {
+        margin-top: 17px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .homeSection1Title {
+        margin-top: 70px;
+        font-size: 35px;
+    }
+
+    .homeSection1SubTitle {
+        font-size: 24px;
+    }
+
+    .homeSection1 {
+        padding-bottom: 60px;
+    }
+
+    .homeSection2SubTitle {
+        font-size: 12px;
+    }
+
+    .homeSection2ItemDescription {
+        padding-left: 15px !important;
+        padding-right: 0 !important;
+        text-align: left;
+    }
+
+    .homeSection2ItemDescriptionRight {
+        padding-right: 15px !important;
+        padding-left: 0 !important;
+    }
+
+    .homeSection2Item {
+        margin-bottom: 30px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .homeSection2ItemTitle {
+        margin-top: 6px;
+        font-size: 10px;
+    }
+
+    .homeSection2ItemIconTitle img {
+        width: 44px;
+    }
+
+    .homeSection3Item {
+        margin-bottom: 20px;
+    }
+
+    .homeSection3ItemTitle {
+        font-size: 24px;
+        height: auto;
+    }
+
+    .homeSection3ItemDescription {
+        font-size: 14px;
+    }
+
+    .homeSection3ItemButton {
+        margin-top: 15px;
+        height: auto !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        font-size: 12px !important;
+    }
+
+    .homeSection3 {
+        padding-bottom: 10px;
+    }
+
+    .homeSection3Items {
+        margin-top: 25px;
+    }
+
+    .homeSection2ItemDescription {
+        margin-top: 9px;
+    }
+
+    .homeSection2 {
+        padding-bottom: 15px !important;
+    }
+
+    .homeSection4ItemFacebook {
+        margin-left: calc(50% - (35px * 3 + 20px * 2) / 2);
+        margin-right: 20px;
+    }
+
+    .homeSection4ItemGoogle {
+        margin-right: 20px;
+    }
+
+    .homeSection4ItemFacebook {
+        background-size: 35px 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .homeSection4ItemGoogle {
+        background-size: 35px 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .homeSection4ItemTwitter {
+        background-size: 35px 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .proHomeSection3aSubSubTitle {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 580px) {
+    .homeSection2ItemDescription {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 549px) {
+
+    .homeSection1Register {
+        margin-right: 10px;
+    }
+
+    .homeSection1Login {
+        margin-right: 10px;
+    }
+
+    .homeSection1Header {
+        margin-top: 0px;
+    }
+
+    .homeSection1YakaClub {
+        font-size: 20px;
+    }
+
+    .titleBeta {
+        font-size: 14px;
+        line-height: 16px;
+        top: 11px;
+        left: 104px;
+    }
+
+    .titleBetaPro {
+        left: 145px;
+    }
+
+    .homeSection1ProLink {
+        height: 28px;
+        padding-top: 6px;
+        font-size: 11px;
+        margin-top: 7px;
+    }
+
+    .homeSection1Register {
+        margin-right: 10px;
+        line-height: 28px;
+        font-size: 13px;
+        margin-top: 7px;
+    }
+
+    .homeSection1Login {
+        margin-right: 10px;
+        line-height: 28px;
+        font-size: 13px;
+        margin-top: 7px;
+    }
+
+    .homeSection1Title {
+        margin-top: 35px;
+        font-size: 27px;
+    }
+
+    .homeSection1SubSubTitle {
+        font-size: 15px;
+    }
+
+    .homeSection1SubTitle {
+        font-size: 18px;
+        margin-top: 25px;
+    }
+
+    .homeSection1Button {
+        margin-left: 8.33333333% !important;
+        width: 83.33333333% !important;
+    }
+
+    .homeSection2Title {
+        margin-top: 25px;
+        font-size: 22px;
+    }
+
+    .homeSection3ItemButton {
+        margin-left: 8.33333333% !important;
+        width: 83.33333333% !important;
+    }
+
+    .homeSection5FooterContactUs {
+        height: 28px;
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .homeSection5FooterLogin {
+        height: 28px;
+        font-size: 13px;
+        margin-right: 10px;
+        margin-top: 6px;
+    }
+
+    .homeSection5 {
+        height: 50px;
+    }
+
+    .homeSection5FooterLeft {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 459px) {
+
+    .passwordForgottenButton {
+        font-size: 13px;
+        padding-bottom: 9px;
+    }
+
+    .showRegisterFields.showRegisterFieldsVisible {
+        height: 270px;
+    }
+}
+
+@media (max-width: 439px) {
+
+    .homeSection1Title {
+        font-size: 24px;
+    }
+
+    .homeSection1SubSubTitle {
+        font-size: 14px;
+    }
+
+    .homeSection1SubTitle {
+        font-size: 13px;
+    }
+
+    .homeSection1Button {
+        height: 40px;
+        padding-top: 10px;
+    }
+
+    .homeSection2Title {
+        line-height: normal;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .homeSection2ItemDescriptionRight {
+        right: 35% !important;
+    }
+
+    .homeSection2ItemIconTitleRight {
+        left: calc(65% - 10px) !important;
+    }
+
+    .homeSection3ItemTitle {
+        font-size: 18px;
+    }
+
+    .homeSection3ItemDescription {
+        font-size: 12px;
+    }
+
+    .homeSection3ItemButton {
+        margin-left: 5% !important;
+        width: 90% !important;
+        font-size: 11px !important;
+    }
+
+    .homeSection2ItemIconTitle {
+        width: 35% !important;
+    }
+
+    .homeSection2ItemDescription {
+        width: calc(65% - 10px) !important;
+    }
+}
+
+@media (max-width: 434px) {
+
+    .homeSection1Title {
+        margin-top: 60px;
+    }
+
+    .homeSection1ProLink {
+        margin-top: 35px;
+    }
+
+    .homeSection1Register {
+        margin-top: 35px;
+    }
+
+    .homeSection1Login {
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 374px) {
+
+    .homeSection1Title {
+        font-size: 19px;
+    }
+}

@@ -1,0 +1,187 @@
+<style type="text/css">
+    #map_canvas {
+        height: 70px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <section id="content">
+        <div class="container">
+            <div class="card pointer" ng-click="vm.projectDetails()" ng-cloak>
+                <div class="card-header card-hover">
+                    <div class="media">
+                        <div class="pull-left">
+                            <div class="proposalIconBackground lv-img v-icon-{{vm.project.activities[0].code}}-white">
+                            </div>
+                        </div>
+                        <div class="media-body projectTitleBar">
+                            <div class="media row">
+                                <div class="col-sm-7">{{vm.project.title | yakaTranslateTitle}}</div>
+                                <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                    <div>
+                                        <small class="c-gray">
+                                            Mis à jour <span am-time-ago="vm.project.updated"></span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media m-t-5">
+                                <div class="c-gray">
+                                    <strong>{{vm.project.address.name}}</strong> -
+                                    <small>{{vm.project.address.locality}}</small>
+                                </div>
+                                <div class="c-gray">
+                                    <small>Début souhaité {{vm.getWhen()}}</small>
+                                </div>
+                                <div class="c-gray">
+                                    <small>Publié le {{vm.project.published | date:'d MMMM y'}}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <ul class="actions m-t-20">
+                                <li class="dropdown" uib-dropdown>
+                                    <a href="" uib-dropdown-toggle>
+                                        <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card projectCreated" ng-show="!vm.project.proposals || vm.project.proposals.length == 0"
+                 ng-cloak>
+                <div class="card pt-inner ">
+                    <div class="pti-header bgm-lightblue">
+                        <h2>Votre projet est correctement créé !</h2>
+
+                        <div class="ptih-title">Nous l'avons communiqué aux professionnels de votre secteur
+                        </div>
+                    </div>
+
+                    <div class="pti-body">
+                        <div class="ptib-item">
+                            <h4>Vous allez bientôt recevoir plusieurs offres</h4>
+                            <br>
+                            <h5 style="text-align: justify;">
+                                Vous pourrez alors voir celles qui vous intéressent, et discuter par messagerie
+                                instantanée - et privée - avec chaque professionnel.
+                                <ul>
+                                    <li class="ng-binding" style="font-size: 13px !important;">Par défaut vos
+                                        coordonnées personnelles sont masquées (Nom, téléphone, adresse, email,
+                                        ...).
+                                    </li>
+                                </ul>
+                                <p>Puis, sélectionnez le professionnel de votre choix et bloquez une date pour démarrer
+                                    le chantier.</p>
+                            </h5>
+                        </div>
+                        <div class="ptib-item">
+                            Invitez vos amis à rejoindre YakaClub pour augmenter vos chances de trouver le
+                            professionnel qu'il vous faut.
+                        </div>
+                    </div>
+
+                    <div class="pti-footer">
+                        <button class="btn bgm-lightblue" ui-sref="contacts">Inviter des amis</button>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.project.proposals && vm.project.proposals.length > 0" ng-cloak>
+                <div class="card">
+                    <div class="card-header bgm-orange">
+                        <h2 ng-show="vm.project.proposals.length == 1">
+                            Une proposition reçue
+                            <small>Sélectionner la pour en voir le détail</small>
+                        </h2>
+                        <h2 ng-show="vm.project.proposals.length > 1">
+                            {{vm.project.proposals.length}} propositions reçues
+                            <small>Cliquez sur une proposition pour en voir le détail</small>
+                        </h2>
+                    </div>
+                    <div class="lv-body">
+                        <div class="listview media">
+                            <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
+                               ng-click="vm.selectProposal(p)">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <div class="p-relative">
+                                            <yaka-avatar size="35"
+                                                         user="p.professional.user"></yaka-avatar>
+                                            <i ng-show="p.unreadMessages" class="porposalUnreadMessagesIndicator"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="pull-left">
+                                            <div class="lv-title">
+                                                <span ng-if="p.status == 'START'">
+                                                    {{p.professional.user.firstName}} {{p.professional.user.lastName}}</span>
+                                                <span ng-if="p.status == 'SELECTED'">
+                                                    {{p.professional.company.name}}</span>
+                                                <div class="c-gray m-t-0 m-b-0" ng-if="p.status == 'PRO_DECLINED'">
+                                                    <p class="m-b-0"><strong>Annulée par le Pro.</strong></p>
+                                                    <p class="m-b-0">{{p.professional.user.firstName}}
+                                                        {{p.professional.user.lastName}}</p>
+                                                </div>
+                                                <div class="c-gray m-t-0 m-b-0" ng-if="p.status == 'CUSTOMER_DECLINED'">
+                                                    <p class="m-b-0"><strong>Proposition refusée</strong></p>
+                                                    <p class="m-b-0">{{p.professional.user.firstName}}
+                                                        {{p.professional.user.lastName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                                <small class="lv-small c-bluegray" ng-show="p.price">
+                                                    Estimation actuelle <span class="c-lightblue">{{p.price}} €</span>
+                                                </small>
+                                                <small class="lv-small c-bluegray" ng-show="p.startDate">
+                                                    Disponible à partir du <span class="c-lightblue">{{p.startDate | date:'d MMMM'}}</span>
+                                                </small>
+                                            </div>
+                                            <div ng-if="p.status == 'PRO_DECLINED' || p.status == 'CUSTOMER_DECLINED'">
+                                                <small class="lv-small" ng-show="p.price">
+                                                    Estimation actuelle {{p.price}} €
+                                                </small>
+                                                <small class="lv-small" ng-show="p.startDate">
+                                                    Disponible à partir du {{p.startDate | date:'d MMMM'}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right textAlignRightFullDesktop">
+                                            <small class="c-gray">
+                                                Mis à jour <span am-time-ago="p.updated"></span>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+

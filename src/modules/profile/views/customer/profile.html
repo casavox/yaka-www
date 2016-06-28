@@ -1,0 +1,261 @@
+<style type="text/css">
+    #map_canvas {
+        height: 327px;
+        width: calc(100% + 30px);
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+    ></header>
+
+<aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+       data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+<section id="main" ng-cloak>
+    <div id="content" class="content">
+        <div class="container">
+            <div class="col-sm-6">
+                <div class="menu-category profile-info">
+                    <div class="col-xs-12 profile-box">
+                        <p>
+                            Informations générales
+                        </p>
+
+                        <form name="profileForm">
+                            <div class="col-xs-12 no-padding">
+                                <div class="col-xs-3">
+                                    <div class="img-profile">
+
+                                        <yaka-avatar size="70" user="vm.profileInfo"></yaka-avatar>
+
+                                        <button
+                                            class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
+                                            ngf-select="vm.uploadProfileImg($files, $invalidFiles, 0)"
+                                            ngf-accept="'image/*'" ngf-max-size="5MB">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-9 no-padding-right">
+
+                                    <div class="form-group fg-float m-b-30"
+                                         ng-class="{'has-error': !vm.profileInfo.gender}">
+                                        <div class="fg-line">
+                                            <div class="select">
+                                                <select name="gender"
+                                                        required="required"
+                                                        ng-model="vm.profileInfo.gender"
+                                                        class="form-control">
+                                                    <option value="" disabled selected></option>
+                                                    <option ng-selected="vm.profileInfo.gender == 'MR'" value="MR">
+                                                        M.
+                                                    </option>
+                                                    <option ng-selected="vm.profileInfo.gender == 'MRS'"
+                                                            value="MRS">
+                                                        Mme.
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <label class="fg-label">Civilité</label>
+                                        </div>
+                                        <div ng-messages="profileForm.gender.$error">
+                                            <small class="help-block" ng-message="required">Ce champ est requis
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group fg-float m-b-30"
+                                         ng-class="{'has-error': !vm.profileInfo.firstName}">
+
+                                        <div class="fg-line">
+                                            <input type="text" name="firstName" class="form-control fg-input"
+                                                   ng-model="vm.profileInfo.firstName"
+                                                   required="required" yaka-input-name>
+                                            <label class="fg-label">Prénom</label>
+                                        </div>
+                                        <div ng-messages="profileForm.firstName.$error">
+                                            <small class="help-block" ng-message="required">Ce champ est requis
+                                            </small>
+                                            <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
+                                                valide
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group fg-float m-b-30"
+                                         ng-class="{'has-error': !vm.profileInfo.lastName}">
+
+                                        <div class="fg-line">
+                                            <input type="text" name="lastName" class="form-control fg-input"
+                                                   ng-model="vm.profileInfo.lastName"
+                                                   required="required" yaka-input-name>
+                                            <label class="fg-label">Nom</label>
+                                        </div>
+                                        <div ng-messages="profileForm.lastName.$error">
+                                            <small class="help-block" ng-message="required">Ce champ est requis
+                                            </small>
+                                            <small class="help-block" ng-message="invalidName">Ce nom n'est pas
+                                                valide
+                                            </small>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                                <div class="fg-line">
+                                    <input type="text" name="phoneNumber"
+                                           class="form-control fg-input"
+                                           ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                                    <label class="fg-label fg-label-phone">Téléphone</label>
+                                </div>
+                                <div ng-messages="profileForm.phoneNumber.$error">
+                                    <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                        pas valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.email}">
+                                <div class="fg-line">
+                                    <input type="text" name="email" class="form-control fg-input"
+                                           ng-model="vm.profileInfo.email"
+                                           required="required" yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <div ng-messages="profileForm.email.$error">
+                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 ng-class="{'has-error': !vm.profileInfo.defaultAddress.address}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input"
+                                           vs-google-autocomplete="options"
+                                           vs-autocomplete-validator
+                                           ng-model="vm.profileInfo.defaultAddress.address"
+                                           type="text"
+                                           name="address"
+                                           required="required"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Addresse principale</label>
+                                </div>
+                                <div ng-messages="profileForm.address.$error">
+                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding profile-box-footer">
+
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        ng-click="vm.updateProfile()"
+                                        ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                    Enregistrer
+                                </button>
+                                <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
+                                        ng-disabled="!vm.showButtonsProfile()">
+                                    Annuler
+                                </button>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="menu-category profile-about">
+                    <div class="profile-box">
+                        <p>
+                            Modifier le mot de passe
+                        </p>
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="password" class="form-control fg-input"
+                                       ng-model="vm.pwdCurrent">
+                                <label class="fg-label">Mot de passe actuel</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="password" class="form-control fg-input"
+                                       ng-model="vm.pwd1">
+                                <label class="fg-label">Nouveau mot de passe</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30"
+                             ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                            <div class="fg-line">
+                                <input type="password" class="form-control fg-input"
+                                       ng-model="vm.pwd2">
+                                <label class="fg-label">Confirmation</label>
+                            </div>
+                            <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
+                                Les deux mots de passe ne correspondent pas
+                            </small>
+                        </div>
+
+                        <div class="profile-box-footer mt-12">
+
+                            <button class="btn btn-info bgm-lightblue waves-effect"
+                                    ng-click="vm.changePassword()"
+                                    ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                                Enregistrer
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="yakaPopup" ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" ng-click="vm.closePopup()"
+     ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton"
+                 src="icons/mdpi/ic_popup_close.png"
+                 ng-click="vm.closePopup()"
+                 alt=""/>
+
+            <div class="profilePopupMessage">
+                Vous allez modifier des éléments importants de votre profil Pro, vous ne pourrez plus répondre à de
+                nouvelles offres tant qu'il n'aura pas été revalidé par l'équipe YakaClub (vous recevrez un mail
+                rapidement pour vous en tenir informé).
+            </div>
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.closePopup()">
+                ANNULER
+            </div>
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.validatePopup()">
+                VALIDER
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+yaka-avatar {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    display: inline-block;
+}
+
+yaka-avatar img {
+    display: inline-block;
+    position: relative;
+    top: -2px;
+}
+
+yaka-avatar .yakaAvatarInitials {
+    width: 100%;
+    height: 100%;
+    background: #607D8B;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+}
+
+yaka-chat {
+    display: block;
+    width: 100%;
+    height: 500px;
+    background: white;
+}
+
+yaka-chat .lv-message {
+    height: 100%;
+}
+
+yaka-chat .lv-footer {
+    height: 76px;
+}
+
+yaka-chat .lv-body {
+    height: calc(100% - 76px);
+    overflow-y: scroll;
+}
+
+yaka-chat .moreMessagesLoading {
+    text-align: center;
+}
+
+yaka-chat .ms-reply .leftButton {
+    left: 0;
+    color: black;
+}
+
+yaka-chat .ms-reply textarea {
+    padding: 8px 60px;
+    line-height: normal;
+}
+
+yaka-chat .imgPreview {
+    position: absolute;
+    bottom: 76px;
+    z-index: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+yaka-chat .imgPreview button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+yaka-chat .ms-item.messageAuto {
+    width: 100%;
+    max-width: 100%;
+    background: #607D8B !important;
+    color: white !important;
+}
+
+yaka-chat .ms-item span.msg {
+    white-space: pre-wrap;
+}
+
+yaka-chat .chatImg {
+    width: 150px !important;
+    height: 150px;
+}

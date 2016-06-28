@@ -1,0 +1,85 @@
+<div class="listview lv-message">
+
+    <div class="lv-body" yaka-keep-scroll>
+        <div class="m-t-10 m-b-10 moreMessagesLoading" data-ng-show="loadingMessages">
+            Chargement...
+        </div>
+        <div data-ng-repeat="message in messages | orderBy : 'created' | unique: 'id'" class="lv-item media"
+             data-ng-class="{'right': showRight(message)}" yaka-scroll-item>
+
+            <div class="lv-avatar"
+                 ng-if="message.author != 'AUTO'"
+                 data-ng-class="{'pull-left': !showRight(message), 'pull-right': showRight(message)}">
+
+                <yaka-avatar ng-if="!showRight(message)" user="userOther" size="35"></yaka-avatar>
+                <yaka-avatar ng-if="showRight(message)" user="userMe" size="35"></yaka-avatar>
+
+            </div>
+            <div class="media-body">
+
+                <div class="ms-item"
+                     data-ng-class="{'messageAuto': message.author == 'AUTO' || message.author == 'YAKA'}">
+
+                    <div class="lightbox photos" data-ng-if="message.cloudinaryPublicId">
+                        <div data-ng-repeat="img in createImageArray(message.cloudinaryPublicId)"
+                             data-src="{{img | yakaCloudinaryUrl}}"
+                             class="lightboxItemAngular col-xs-12">
+                            <div class="lightbox-item p-item">
+                                <img
+                                    ng-src="{{img | yakaCloudinaryUrl:true}}"
+                                    class="chatImg"
+                                    alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="msg" data-ng-if="message.author != 'AUTO'">{{message.text}}</span>
+                    <span data-ng-if="message.author == 'AUTO'" ng-switch="message.text">
+                        <span class="msg" ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}}</span>
+                        <span class="msg" ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate}}</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate}}</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                        <span class="msg" ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                    </span>
+                </div>
+                <small class="ms-date">
+                    <i class="zmdi zmdi-time" ng-if="!showRight(message)"></i>
+                    <span am-time-ago="message.created"></span>
+                    <i class="zmdi zmdi-time" ng-if="showRight(message)"></i>
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="imgPreview center" ng-if="newMessage.cloudinaryPublicId">
+        <img ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+             alt=""/>
+        <button class="btn bgm-red btn-icon waves-effect waves-circle"
+                data-ng-click="newMessage.cloudinaryPublicId = ''">
+            <i class="zmdi zmdi-close"></i>
+        </button>
+    </div>
+
+    <div class="lv-footer ms-reply" data-ng-class="{'pointer-not-allowed': disableSending}">
+        <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+                ngf-accept="'image/*'" ngf-max-size="5MB"
+                data-ng-disabled="disableSending"
+                data-ng-class="{'pointer-not-allowed': disableSending}">
+            <i class="zmdi zmdi-attachment-alt"
+               data-ng-class="{'c-grey': disableSending}"></i>
+        </button>
+
+        <textarea data-ng-model="newMessage.text"
+                  placeholder="{{disableSending ? 'Cette discussion est close' : 'Entrez votre message'}}"
+                  data-ng-disabled="disableSending"
+                  data-ng-class="{'pointer-not-allowed': disableSending}"></textarea>
+
+        <button data-ng-click="sendMessage()"
+                data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)"
+                data-ng-class="{'pointer-not-allowed': disableSending}">
+            <i class="zmdi zmdi-mail-send"
+               data-ng-class="{'c-grey': disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)}"></i>
+        </button>
+    </div>
+</div>
