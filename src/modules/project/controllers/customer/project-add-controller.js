@@ -504,12 +504,12 @@
                 vm.newProject.childrenActivities[i].selected = "";
             }
 
-            if (item == 'MULTI') {
+            if (item == 'AUTO_MULTI') {
                 $timeout(function () {
                     vm.service = true;
                     vm.title = "Multidomaines";
                     vm.multi = "activate";
-                    vm.questions.push({code : 'MULTI'});
+                    vm.questions.push({code : 'AUTO_MULTI'});
                     var element = document.getElementById('slide3');
                     smoothScroll(element, scrollOptions);
                 }, 0);

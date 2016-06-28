@@ -80,9 +80,9 @@
                     <div class="proDashboardListItem"
                          ui-sref="pro-project-proposal-new({projectId: lead.id})">
                         <div class="proDashboardListItemLogo">
-                            <img data-ng-show="lead.activities[0].code != 'MULTI'" width="50" height="50"
+                            <img data-ng-show="lead.activities[0].code != 'AUTO_MULTI'" width="50" height="50"
                                  ng-src="{{vm.getIcon(lead)}}"/>
-                            <i data-ng-show="lead.activities[0].code == 'MULTI'"
+                            <i data-ng-show="lead.activities[0].code == 'AUTO_MULTI'"
                                class="zmdi zmdi-apps zmdi-hc-3x c-cyan center"/>
                         </div>
                         <div class="proDashboardListItemTitle">
