@@ -13,7 +13,6 @@
 
         $rootScope.pageName = "Mon profil";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
 

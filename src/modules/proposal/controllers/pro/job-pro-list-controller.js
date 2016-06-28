@@ -15,7 +15,6 @@
 
         $rootScope.pageName = "Mes chantiers";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
 

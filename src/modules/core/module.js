@@ -23,7 +23,8 @@ angular.module('Yaka', [
         'angulartics',
         'angulartics.google.analytics',
         'bootstrapLightbox',
-        'ngMessages'
+        'ngMessages',
+        'vcRecaptcha'
     ]
 );
 

@@ -724,6 +724,15 @@
         padding-bottom: 20px;
     }
 
+    .halfInput.halfInputNotInMobile {
+        width: 100% !important;
+        float: left !important;
+    }
+
+    .halfInput.halfInputNotInMobile.halfInputRight {
+        float: left !important;
+    }
+
 }
 
 @media (max-width: 599px) {

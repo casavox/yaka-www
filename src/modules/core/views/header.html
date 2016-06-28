@@ -1,5 +1,6 @@
 <ul class="header-inner clearfix">
     <li id="menu-trigger" data-target="mainmenu" data-toggle-sidebar data-model-left="app.sidebarToggle.left"
+        data-ng-if="app.getUser()"
         data-ng-class="{ 'open': app.sidebarToggle.left === true }">
         <div class="line-wrap">
             <div class="line top"></div>
@@ -16,7 +17,7 @@
             </div>
         </a>
     </li>
-    <li class="pull-right">
+    <li class="pull-right" data-ng-if="app.getUser()">
         <ul class="top-menu">
             <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">

@@ -16,7 +16,6 @@
         //TODO
         $rootScope.pageName = "";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
         vm.scrollBottom = 0;

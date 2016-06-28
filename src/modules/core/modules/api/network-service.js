@@ -263,6 +263,9 @@
             },
             proSetChatRead: function (chatId, success, error) {
                 httpService.put(baseUrl + '/pro/chat/' + chatId + '/read').success(success).error(error)
+            },
+            sendSupportMessage: function (supportMessage, success, error) {
+                httpService.post(baseUrl + '/support/message', supportMessage).success(success).error(error)
             }
         };
     }

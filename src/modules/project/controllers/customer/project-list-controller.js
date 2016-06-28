@@ -14,7 +14,6 @@
 
         $rootScope.pageName = "Mes projets";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
         vm.projectsOnGoing = [];

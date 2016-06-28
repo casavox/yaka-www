@@ -15,7 +15,6 @@
 
         $rootScope.pageName = "Mes devis";
         $rootScope.updateProfile();
-        $rootScope.showMenu = true;
 
         var vm = this;
 

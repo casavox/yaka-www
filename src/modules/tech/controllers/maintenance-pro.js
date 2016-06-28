@@ -13,7 +13,6 @@
         var vm = this;
 
         $rootScope.pageName = "Accès Pro - Maintenance";
-        $rootScope.showMenu = false;
 
         var scrollOptions = {
             containerId: 'main-scroll-container'

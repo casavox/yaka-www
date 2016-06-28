@@ -11,7 +11,6 @@
 
         $rootScope.pageName = "Contacts";
         $rootScope.updateProfile();
-        $rootScope.showMenu = false;
 
         var vm = this;
 
