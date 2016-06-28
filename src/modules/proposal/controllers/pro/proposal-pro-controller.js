@@ -13,8 +13,6 @@
             $state.go("home");
         }
 
-        //TODO
-        $rootScope.pageName = "";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -220,6 +218,8 @@
         function succesProjectGET(res) {
             vm.project = res.project;
             vm.proposal = res;
+            $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
+                " - " + $filter('yakaTranslateTitle')(vm.project.title);
 
             if (vm.proposal.status != 'START') {
                 $state.go("pro-proposal", {'proposalId': vm.proposal.id});

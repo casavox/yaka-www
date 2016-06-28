@@ -9,7 +9,7 @@
     //Controller login
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
 
-        $rootScope.pageName = "Contacts";
+        $rootScope.pageName = "Mes contacts";
         $rootScope.updateProfile();
 
         var vm = this;

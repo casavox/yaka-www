@@ -7,14 +7,12 @@
 
     //
     //Controller login
-    function ProposalsController(networkService, alertMsg, $stateParams, $localStorage, $state, $rootScope) {
+    function ProposalsController(networkService, alertMsg, $stateParams, $localStorage, $state, $rootScope, $filter) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
         }
 
-        //TODO
-        $rootScope.pageName = "";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -33,6 +31,7 @@
 
         function succesProjectGET(res) {
             vm.project = res;
+            $rootScope.pageName = $filter('yakaTranslateTitle')(vm.project.title);
         }
 
         function errorProjectGET() {

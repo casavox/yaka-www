@@ -9,7 +9,7 @@
     function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
         $scope.showList = false;
 
-        $rootScope.pageName = "Tableau de bord Pro";
+        $rootScope.pageName = "Trouvez des chantiers";
         $rootScope.updateProfile();
 
         var vm = this;
