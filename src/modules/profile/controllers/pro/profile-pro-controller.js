@@ -558,11 +558,11 @@
                     vm.profile.activities = res.activities;
                     vm.profile.status = res.status;
                     vm.updating = false;
-                    alertMsg.send("Les domaines d'activité ont été modifié avec succès", "success");
+                    alertMsg.send("Vos domaines d'activité ont été modifié avec succès", "success");
                 }, errorProfilePUT);
             }
             else {
-                vm.error.activities.message = "Select at least one category or skill.";
+                vm.error.activities.message = "Vous devez indiquer au moins une de vos compétences.";
                 vm.error.activities.flag = true;
             }
         }

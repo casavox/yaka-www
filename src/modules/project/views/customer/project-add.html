@@ -16,7 +16,7 @@
                              ng-repeat="child in vm.newProject.childrenActivities"
                              ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
                              title="{{'ACTIVITY_' + child.code | translate}}"
-                             ng-show="vm.wait && child.code != 'MULTI'">
+                             ng-show="vm.wait && child.code != 'AUTO_MULTI'">
                             <div class="type-project-box-content">
                                 <div class="v-icon v-icon-{{child.code}} center">
                                 </div>
@@ -30,7 +30,7 @@
                         <h2 class="m-t-5 m-l-10 text-left">Ou sur plusieurs ?</h2>
                         <div class="row vertical-center no-margin">
                             <div class="col-xs-3 no-margin no-padding type-project-box" ng-class="vm.multi"
-                                 ng-click="vm.selectType('MULTI')"
+                                 ng-click="vm.selectType('AUTO_MULTI')"
                                  title="{{'ACTIVITY_MULTI' | translate}}" ng-show="vm.wait">
                                 <div class="type-project-box-content">
                                     <div class="row m-l-0 m-r-0">
