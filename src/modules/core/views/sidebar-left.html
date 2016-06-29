@@ -2,34 +2,34 @@
     <ul class="main-menu">
 
 
-        <li ui-sref-active="active" ng-if="!app.isPro()">
-            <a ui-sref="new-project" ng-click="app.sidebarStat($event)">
+        <li ui-sref-active="active" data-ng-if="!app.isPro()">
+            <a ui-sref="new-project" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-plus"></i>
                 Publier un projet
             </a>
         </li>
-        <li ui-sref-active="active" ng-if="!app.isPro()">
-            <a ui-sref="my-projects" ng-click="app.sidebarStat($event)">
+        <li ui-sref-active="active" data-ng-if="!app.isPro()">
+            <a ui-sref="my-projects" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-assignment"></i>
                 Mes projets
             </a>
         </li>
 
 
-        <li ui-sref-active="active" ng-if="app.isPro()">
-            <a ui-sref="findjobs" ng-click="app.sidebarStat($event)">
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="findjobs" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-map"></i>
                 Trouver des chantiers
             </a>
         </li>
-        <li ui-sref-active="active" ng-if="app.isPro()">
-            <a ui-sref="pro-proposals" ng-click="app.sidebarStat($event)">
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-proposals" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-assignment-o"></i>
                 Mes devis
             </a>
         </li>
-        <li ui-sref-active="active" ng-if="app.isPro()">
-            <a ui-sref="pro-jobs" ng-click="app.sidebarStat($event)">
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-jobs" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-roller"></i>
                 Mes chantiers
             </a>
@@ -37,13 +37,13 @@
 
 
         <li ui-sref-active="active">
-            <a ui-sref="contacts" ng-click="app.sidebarStat($event)">
+            <a ui-sref="contacts" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-accounts-alt"></i>
                 Mes contacts
             </a>
         </li>
         <li ui-sref-active="active">
-            <a ui-sref="support" ng-click="app.sidebarStat($event); app.openSupport();">
+            <a ui-sref="support" data-ng-click="app.sidebarStat($event); app.openSupport();">
                 <i class="zmdi zmdi-headset-mic"></i>
                 Support
             </a>

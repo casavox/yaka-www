@@ -1,5 +1,5 @@
-<header id="header" data-current-skin='lightblue' ng-include="'/modules/core/views/header.html'"
-></header>
+<header id="header" data-current-skin='lightblue' data-ng-include="'/modules/core/views/header.html'"
+    ></header>
 
 <section id="main">
 
@@ -8,7 +8,7 @@
 
     <section id="content" class="content">
         <div class="container">
-            <div ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length == 0" class="card" ng-cloak>
+            <div data-ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length == 0" class="card" data-ng-cloak>
                 <div class="card-header">
                     <h2>VOUS N'AVEZ ENCORE DE PROJET
                         <small>Comment fonctionne YakaClub ?</small>
@@ -27,12 +27,13 @@
                 </div>
             </div>
 
-            <div ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length > 0" ng-cloak>
+            <div data-ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length > 0" data-ng-cloak>
                 <div class="block-header">
-                    <h2 ng-show="vm.projectsOnGoing.length == 1">PROJET EN COURS</h2>
-                    <h2 ng-show="vm.projectsOnGoing.length > 1">PROJETS EN COURS</h2>
+                    <h2 data-ng-show="vm.projectsOnGoing.length == 1">PROJET EN COURS</h2>
+
+                    <h2 data-ng-show="vm.projectsOnGoing.length > 1">PROJETS EN COURS</h2>
                 </div>
-                <div class="card card-hover pointer" ng-repeat="p in vm.projectsOnGoing" ng-click="vm.selectProject(p)">
+                <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsOnGoing" data-ng-click="vm.selectProject(p)">
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
@@ -70,28 +71,28 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="card-body p-l-25 p-b-20">
+                    <div data-ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="card-body p-l-25 p-b-20">
                         <span>En attente de propositions...</span>
                     </div>
-                    <div ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
+                    <div data-ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
                         <div class="card-body p-l-25 p-t-0">
-                            <span ng-show="p.proposals.length == 1">
+                            <span data-ng-show="p.proposals.length == 1">
                                 Vous avez <b>1 proposition</b>
                             </span>
-                            <span ng-show="p.proposals.length > 1">
+                            <span data-ng-show="p.proposals.length > 1">
                                 Vous avez <b>{{p.proposals.length}} propositions</b>
                             </span>
                         </div>
                         <div class="card-body p-l-25 p-r-30 p-t-10 p-b-20">
-                            <ul ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
-                                <li ng-show="!p.unreadMessages" class="wa-stats">
+                            <ul data-ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
+                                <li data-ng-show="!p.unreadMessages" class="wa-stats">
                                     <span><i class="zmdi zmdi-comment-alt-text c-gray zmdi-hc-fw"></i></span>
                                 </li>
-                                <li ng-show="p.unreadMessages" class="wa-stats">
+                                <li data-ng-show="p.unreadMessages" class="wa-stats">
                                     <span><i class="zmdi zmdi-comment-alt-text c-lightblue zmdi-hc-fw"></i></span>
                                 </li>
-                                <li ng-show="p.proposals.length > 4" class="wa-users m-r-5"
-                                    ng-click="vm.selectProject(p)">
+                                <li data-ng-show="p.proposals.length > 4" class="wa-users m-r-5"
+                                    data-ng-click="vm.selectProject(p)">
                                     <div class="p-relative"
                                          title="{{p.proposals.length-3}} autre(s) proposition(s)">
                                         <div class="lv-avatar bgm-bluegray pull-left on-avatar">
@@ -100,12 +101,12 @@
                                     </div>
                                 </li>
                                 <li class="wa-users m-r-5" data-ng-repeat="proposal in p.proposals | limitTo:4"
-                                    ng-click="vm.selectProposal(proposal)">
+                                    data-ng-click="vm.selectProposal(proposal)">
                                     <div class="p-relative"
                                          title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="35"
                                                      user="proposal.professional.user"></yaka-avatar>
-                                        <i ng-show="proposal.unreadMessages"
+                                        <i data-ng-show="proposal.unreadMessages"
                                            class="porposalUnreadMessagesIndicator"></i>
                                         <!--<div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
                                             <span>{{proposal.professional.user.firstName}}
@@ -117,8 +118,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div ng-show="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal" class="card-body p-l-25 p-b-20"
-                         ng-click="vm.selectProposal(p.proposal)">
+                    <div data-ng-show="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal" class="card-body p-l-25 p-b-20"
+                         data-ng-click="vm.selectProposal(p.proposal)">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
@@ -126,7 +127,7 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i ng-show="p.proposal.unreadMessages"
+                                        <i data-ng-show="p.proposal.unreadMessages"
                                            class="porposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
@@ -154,8 +155,8 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="p.status == 'ONGOING_RATE_PRO' && p.proposal" class="card-body p-l-25 p-b-20"
-                         ng-click="vm.selectProposal(p.proposal)">
+                    <div data-ng-show="p.status == 'ONGOING_RATE_PRO' && p.proposal" class="card-body p-l-25 p-b-20"
+                         data-ng-click="vm.selectProposal(p.proposal)">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
@@ -163,7 +164,7 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i ng-show="p.proposal.unreadMessages"
+                                        <i data-ng-show="p.proposal.unreadMessages"
                                            class="porposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
@@ -193,13 +194,14 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="vm.projectsCompleted && vm.projectsCompleted.length > 0" ng-cloak>
+            <div data-ng-show="vm.projectsCompleted && vm.projectsCompleted.length > 0" data-ng-cloak>
                 <div class="block-header">
-                    <h2 ng-show="vm.projectsCompleted.length == 1">PROJET TERMINÉ</h2>
-                    <h2 ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
+                    <h2 data-ng-show="vm.projectsCompleted.length == 1">PROJET TERMINÉ</h2>
+
+                    <h2 data-ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
                 </div>
-                <div class="card card-hover pointer" ng-repeat="pc in vm.projectsCompleted"
-                     ng-click="vm.selectProposal(pc.proposal)">
+                <div class="card card-hover pointer" data-ng-repeat="pc in vm.projectsCompleted"
+                     data-ng-click="vm.selectProposal(pc.proposal)">
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
@@ -238,8 +240,8 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="pc.status == 'COMPLETED' && pc.proposal" class="card-body p-l-25 p-b-20"
-                         ng-click="vm.selectProposal(pc.proposal)">
+                    <div data-ng-show="pc.status == 'COMPLETED' && pc.proposal" class="card-body p-l-25 p-b-20"
+                         data-ng-click="vm.selectProposal(pc.proposal)">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
@@ -247,13 +249,13 @@
                                          title="{{pc.proposal.professional.user.firstName}} {{pc.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="pc.proposal.professional.user"></yaka-avatar>
-                                        <i ng-show="pc.proposal.unreadMessages"
+                                        <i data-ng-show="pc.proposal.unreadMessages"
                                            class="porposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="media-body pull-left" title="{{pc.title | yakaTranslateTitle}}"
-                                 ng-click="vm.selectProposal(pc.proposal)">
+                                 data-ng-click="vm.selectProposal(pc.proposal)">
                                 <div class="media-heading m-b-5">
                                     <div class="c-gray">Votre Pro. pour ce projet</div>
                                     <strong>{{pc.proposal.professional.user.firstName}}

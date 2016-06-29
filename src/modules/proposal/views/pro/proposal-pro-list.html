@@ -1,4 +1,4 @@
-<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
 ></header>
 
 <section id="main">
@@ -9,7 +9,7 @@
     <div id="content" class="content">
         <div class="container">
 
-            <div data-ng-if="vm.proposals && vm.proposals.length == 0" class="card" ng-cloak>
+            <div data-ng-if="vm.proposals && vm.proposals.length == 0" class="card" data-ng-cloak>
                 <div class="card-header">
                     <h2>VOUS N'AVEZ AUCUN DEVIS EN COURS
                         <small>Comment proposer un devis ?</small>
@@ -36,23 +36,23 @@
 
             <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0 m-b-20"
                  data-ng-if="vm.proposals && vm.proposals.length > 0">
-                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.proposals"
-                     ng-click="vm.quoteClicked(proposal.id)">
+                <div class="col-xs-12 pro-proposal-vignette" data-ng-repeat="proposal in vm.proposals"
+                     data-ng-click="vm.quoteClicked(proposal.id)">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
                                   secure="true"
                                   class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                                  data-ng-if="proposal.project.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
-                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                        <div class="img-default-preview-40" data-ng-if="!proposal.project.avatar.cloudinaryPublicId">
                             {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
                             | uppercase}}
                         </div>
                     </div>
                     <div class="pro-proposal-bloc-info">
                         <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
-                             ng-if="proposal.unreadMessages">
+                             data-ng-if="proposal.unreadMessages">
 
                         <p class="pro-proposals-title" title="{{ proposal.project.title | yakaTranslateTitle}}">
                             {{ proposal.project.title | yakaTranslateTitle}}
@@ -65,10 +65,10 @@
                         </p>
                         <hr class="pro-proposals-hr">
                         <p class="pro-proposals-price">
-                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
+                            <span data-ng-if="!proposal.price">--</span>{{ proposal.price }}€
                         </p>
 
-                        <p class="pro-proposals-date" ng-if="proposal.startDate">
+                        <p class="pro-proposals-date" data-ng-if="proposal.startDate">
                             Date d'intervention : {{ proposal.startDate | date:'dd MMMM yyyy' }}
                         </p>
                     </div>
@@ -80,16 +80,16 @@
             </div>
 
             <div class="col-xs-12 no-padding row no-margin" data-ng-if="vm.decline && vm.decline.length > 0">
-                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.decline"
-                     ng-click="vm.quoteClicked(proposal.id)">
+                <div class="col-xs-12 pro-proposal-vignette" data-ng-repeat="proposal in vm.decline"
+                     data-ng-click="vm.quoteClicked(proposal.id)">
                     <div class="pro-proposal-bloc-pict">
                         <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
                                   secure="true"
                                   class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
+                                  data-ng-if="proposal.project.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
-                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
+                        <div class="img-default-preview-40" data-ng-if="!proposal.project.avatar.cloudinaryPublicId">
                             {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
                             | uppercase}}
                         </div>
@@ -120,26 +120,26 @@
 
 </section>
 
-<div class="yakaPopup" ng-show="vm.showProNotValidatedPopup" ng-click="vm.closePopup()" ng-cloak>
+<div class="yakaPopup" data-ng-show="vm.showProNotValidatedPopup" data-ng-click="vm.closePopup()" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
             <img class="popupCloseButton"
                  src="icons/mdpi/ic_popup_close.png"
-                 ng-click="vm.closePopup()"
+                 data-ng-click="vm.closePopup()"
                  alt=""/>
 
             <div class="col-xs-12 proErrorMessage"
-                 ng-if="app.getUser().professional.status == 'REGISTERED' || app.getUser().professional.status == 'REFUSED'">
+                 data-ng-if="app.getUser().professional.status == 'REGISTERED' || app.getUser().professional.status == 'REFUSED'">
                 Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
             </div>
 
             <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange"
-                 ng-if="app.getUser().professional.status == 'REGISTERED'"
+                 data-ng-if="app.getUser().professional.status == 'REGISTERED'"
                  ui-sref="pro-profile">
                 COMPLÉTER MON PROFIL
             </div>
 
-            <div class="col-xs-12 proErrorMessage" ng-if="app.getUser().professional.status == 'WAITING'">
+            <div class="col-xs-12 proErrorMessage" data-ng-if="app.getUser().professional.status == 'WAITING'">
                 Vous ne pouvez pas encore faire d'offre car votre profil est en cours de validation. Il sera
                 mis-à-jour sous peu, vous en serez notifié par mail
             </div>

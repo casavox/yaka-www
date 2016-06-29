@@ -19,7 +19,7 @@
     }
 </style>
 
-<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
 ></header>
 
 <section id="main">
@@ -37,11 +37,11 @@
                         </p>
                         <cl-image public-id="{{vm.projectTmp.user.avatar.cloudinaryPublicId}}"
                                   class="img-circle pro-icon-medium mt-20 fl-l ml-15" format="png"
-                                  ng-if="vm.projectTmp.user.avatar.cloudinaryPublicId">
+                                  data-ng-if="vm.projectTmp.user.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
                         <div class="img-default-medium mt-20 fl-l ml-15"
-                             ng-if="!vm.projectTmp.user.avatar.cloudinaryPublicId">
+                             data-ng-if="!vm.projectTmp.user.avatar.cloudinaryPublicId">
                             {{vm.projectTmp.user.firstName[0] | uppercase}}.
                             {{vm.projectTmp.user.lastName[0]| uppercase}}.
                         </div>
@@ -103,25 +103,25 @@
                         </div>
                         <div class="col-xs-12 description-sub-text">
                             <textarea msd-elastic class="custom-textarea" disabled
-                                      ng-model="vm.projectTmp.description"></textarea>
+                                      data-ng-model="vm.projectTmp.description"></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="row no-margin" ng-if="vm.projectTmp.images && vm.projectTmp.images.lenght != 0">
+                <div class="row no-margin" data-ng-if="vm.projectTmp.images && vm.projectTmp.images.lenght != 0">
                     <div class="col-xs-12 row no-margin">
                         <div class="col-xs-12 description-sub-title">
                             Photos
                         </div>
                         <div class="col-xs-12 description-sub-text row mb-15 m-t-15">
-                            <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                            <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
                                 <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                      data-sub-html="#caption{{$index}}"
                                      class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
                                      tooltip-placement="top"
                                      uib-tooltip="{{image.description}}"
-                                     ng-repeat="image in vm.projectTmp.images">
+                                     data-ng-repeat="image in vm.projectTmp.images">
                                     <div class="lightbox-item p-item">
-                                        <img ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                        <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                              alt=""/>
                                     </div>
                                     <div id="caption{{$index}}" style="display:none">
@@ -138,57 +138,57 @@
             <div class="block-header">
                 <h2>Ma proposition</h2>
             </div>
-            <div ng-show="vm.proposal.status != 'SELECTED'">
+            <div data-ng-show="vm.proposal.status != 'SELECTED'">
                 <div class="card col-xs-12 row no-margin makeOfferBox">
-                    <div ng-if="!vm.project.error">
-                        <div class="cursor-pointer" ng-click="vm.myPrice()">
+                    <div data-ng-if="!vm.project.error">
+                        <div class="cursor-pointer" data-ng-click="vm.myPrice()">
                             <span class="icon-pen-blue-pro"></span>
-                            <span class="price-area" ng-show="!vm.offer.price.price">---</span>
-                            <span class="price-area" ng-show="vm.offer.price.price">{{vm.offer.price.type}}. {{vm.offer.price.price}} €</span>
+                            <span class="price-area" data-ng-show="!vm.offer.price.price">---</span>
+                            <span class="price-area" data-ng-show="vm.offer.price.price">{{vm.offer.price.type}}. {{vm.offer.price.price}} €</span>
                             <p class="pro-menu-title">Mon devis</p>
                             <p class="pro-menu-subTitle">Estimatif ou final ?</p>
                         </div>
-                        <div class="cursor-pointer" ng-click="vm.myDate()">
+                        <div class="cursor-pointer" data-ng-click="vm.myDate()">
                             <span class="icon-pen-blue-pro"></span>
-                            <span class="price-area" ng-show="!vm.offer.date.date">---</span>
-                            <span class="price-area" ng-show="vm.offer.date.date">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span>
+                            <span class="price-area" data-ng-show="!vm.offer.date.date">---</span>
+                            <span class="price-area" data-ng-show="vm.offer.date.date">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span>
                             <p class="pro-menu-title">Ma date d'intervention</p>
                             <p class="pro-menu-subTitle">Quand pensez-vous pouvoir commencer ?</p>
                         </div>
                         <div>
                             <p class="pro-menu-title">Mon premier message au client</p>
                                 <textarea class="custom-textarea-red w-100p placeholder-xs mb-10"
-                                          ng-maxlength="140"
+                                          data-ng-maxlength="140"
                                           maxlength="140"
                                           placeholder="Commentaire"
                                           data-auto-size
-                                          ng-trim="true"
-                                          ng-model="vm.offer.comment"></textarea>
+                                          data-ng-trim="true"
+                                          data-ng-model="vm.offer.comment"></textarea>
                             <div class="proCommentCounter">
                                 {{vm.getStringLength(vm.offer.comment)}} / 140 caractères
                             </div>
-                            <p class="error center makeOfferError" ng-show="vm.error.comment.flag">
+                            <p class="error center makeOfferError" data-ng-show="vm.error.comment.flag">
                                 {{vm.error.comment.message}}
                             </p>
                         </div>
                         <button type="button" class="yakaButton yakaBlue button btn send-offer"
-                                ng-click="vm.sendOffer()">ENVOYER LA PROPOSITION
+                                data-ng-click="vm.sendOffer()">ENVOYER LA PROPOSITION
                         </button>
                     </div>
-                    <div ng-if="vm.project.error">
+                    <div data-ng-if="vm.project.error">
                         <div class="proErrorMessage"
-                             ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                             data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                             Votre profil est incomplet, vous ne pouvez pas encore répondre aux offres.
                         </div>
 
                         <div class="yakaButton yakaOrange m-b-20"
-                             ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'"
+                             data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'"
                              ui-sref="pro-profile">
                             COMPLÉTER MON PROFIL
                         </div>
 
                         <div class="proErrorMessage"
-                             ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
+                             data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
                             Vous ne pouvez pas encore proposer vos services car votre profil est en cours de
                             validation.
                             Il sera mis-à-jour sous peu, vous en serez notifié par mail -
@@ -200,56 +200,56 @@
         </div>
     </div>
 
-    <div class="popUp" ng-show="vm.myPriceFlag" ng-cloak>
+    <div class="popUp" data-ng-show="vm.myPriceFlag" data-ng-cloak>
         <div class="popUp-container center-middle w-330">
             <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.myPriceFlag = false"></span>
+                <span class="boxclose" data-ng-click="vm.myPriceFlag = false"></span>
                 <h4>Mon devis</h4>
                 <p class="info-popUp"></p>
                 <p class="info-popUp-comp">Indiquer si le devis est estimatif ou final</p>
                 <div class="row">
                     <div class="col-xs-10">
                         <input type="text" class="custom-input-number" min="0" step="1"
-                               ng-model="vm.price"
-                               ng-class="{'mb-25': !vm.error.price.flag}"
+                               data-ng-model="vm.price"
+                               data-ng-class="{'mb-25': !vm.error.price.flag}"
                                yaka-input-numbers-only>
                     </div>
                     <div class="col-xs-2 sym-euro no-padding h-0">€</div>
                 </div>
-                <p class="error center my-price-error" ng-show="vm.error.price.flag">{{vm.error.price.message}}</p>
+                <p class="error center my-price-error" data-ng-show="vm.error.price.flag">{{vm.error.price.message}}</p>
             </div>
-            <div class="clearfix" ng-show="vm.projectTmp.type != 'EMERGENCY'">
-                <div class="pro-popUp-choice fl" ng-click="vm.selectPrice('Estimate')">ESTIMATION</div>
-                <div class="pro-popUp-choice fr" ng-click="vm.selectPrice('Final')">FINAL</div>
+            <div class="clearfix" data-ng-show="vm.projectTmp.type != 'EMERGENCY'">
+                <div class="pro-popUp-choice fl" data-ng-click="vm.selectPrice('Estimate')">ESTIMATION</div>
+                <div class="pro-popUp-choice fr" data-ng-click="vm.selectPrice('Final')">FINAL</div>
             </div>
         </div>
     </div>
 
-    <div class="popUp" ng-show="vm.myDateFlag">
+    <div class="popUp" data-ng-show="vm.myDateFlag">
         <div class="popUp-container center-middle">
             <div class="popUp-content">
-                <span class="boxclose" ng-click="vm.myDateFlag = false"></span>
+                <span class="boxclose" data-ng-click="vm.myDateFlag = false"></span>
                 <h4>Date d'intervention estimée</h4>
                 <div style="display:inline-block; min-height:290px;" class="center custom-picker">
-                    <uib-datepicker ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
+                    <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                     class="well well-sm custom-date"></uib-datepicker>
                 </div>
             </div>
             <div class="popUp-footer">
-                <div ng-click="vm.myDateFlag = false">ANNULER</div>
-                <div ng-click="vm.selectDate()">CONFIRMER</div>
+                <div data-ng-click="vm.myDateFlag = false">ANNULER</div>
+                <div data-ng-click="vm.selectDate()">CONFIRMER</div>
             </div>
         </div>
     </div>
 
-    <div class="popUp img-preview-size" ng-show="vm.imagePreviewFlag" ng-click="vm.imagePreviewFlag = false">
-        <div class="popUp-container center-middle" ng-click="$event.stopPropagation()">
+    <div class="popUp img-preview-size" data-ng-show="vm.imagePreviewFlag" data-ng-click="vm.imagePreviewFlag = false">
+        <div class="popUp-container center-middle" data-ng-click="$event.stopPropagation()">
             <div class="popUp-content no-margin img-preview-popUp">
-                <span class="boxclose" ng-click="vm.imagePreviewFlag = false"></span>
+                <span class="boxclose" data-ng-click="vm.imagePreviewFlag = false"></span>
                 <h4>Preview</h4>
                 <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" secure="true" format="png" class="center">
                 </cl-image>
-                <textarea class="custom-textarea-image bt-20" ng-model="vm.imgTmpPreview.description"
+                <textarea class="custom-textarea-image bt-20" data-ng-model="vm.imgTmpPreview.description"
                           disabled></textarea>
             </div>
         </div>

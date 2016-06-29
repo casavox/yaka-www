@@ -8,11 +8,11 @@
              data-ng-class="{'right': showRight(message)}" yaka-scroll-item>
 
             <div class="lv-avatar"
-                 ng-if="message.author != 'AUTO'"
+                 data-ng-if="message.author != 'AUTO'"
                  data-ng-class="{'pull-left': !showRight(message), 'pull-right': showRight(message)}">
 
-                <yaka-avatar ng-if="!showRight(message)" user="userOther" size="35"></yaka-avatar>
-                <yaka-avatar ng-if="showRight(message)" user="userMe" size="35"></yaka-avatar>
+                <yaka-avatar data-ng-if="!showRight(message)" user="userOther" size="35"></yaka-avatar>
+                <yaka-avatar data-ng-if="showRight(message)" user="userMe" size="35"></yaka-avatar>
 
             </div>
             <div class="media-body">
@@ -26,34 +26,34 @@
                              class="lightboxItemAngular col-xs-12">
                             <div class="lightbox-item p-item">
                                 <img
-                                    ng-src="{{img | yakaCloudinaryUrl:true}}"
+                                    data-ng-src="{{img | yakaCloudinaryUrl:true}}"
                                     class="chatImg"
                                     alt=""/>
                             </div>
                         </div>
                     </div>
                     <span class="msg" data-ng-if="message.author != 'AUTO'">{{message.text}}</span>
-                    <span data-ng-if="message.author == 'AUTO'" ng-switch="message.text">
-                        <span class="msg" ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
-                        <span class="msg" ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        <span class="msg" ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        <span class="msg" ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
-                        <span class="msg" ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
-                        <span class="msg" ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                    <span data-ng-if="message.author == 'AUTO'" data-ng-switch="message.text">
+                        <span class="msg" data-ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
+                        <span class="msg" data-ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
+                        <span class="msg" data-ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
+                        <span class="msg" data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
+                        <span class="msg" data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                        <span class="msg" data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
                     </span>
                 </div>
                 <small class="ms-date">
-                    <i class="zmdi zmdi-time" ng-if="!showRight(message)"></i>
+                    <i class="zmdi zmdi-time" data-ng-if="!showRight(message)"></i>
                     <span am-time-ago="message.created"></span>
-                    <i class="zmdi zmdi-time" ng-if="showRight(message)"></i>
+                    <i class="zmdi zmdi-time" data-ng-if="showRight(message)"></i>
                 </small>
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
 
-    <div class="imgPreview center" ng-if="newMessage.cloudinaryPublicId">
-        <img ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+    <div class="imgPreview center" data-ng-if="newMessage.cloudinaryPublicId">
+        <img data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
              alt=""/>
         <button class="btn bgm-red btn-icon waves-effect waves-circle"
                 data-ng-click="newMessage.cloudinaryPublicId = ''">

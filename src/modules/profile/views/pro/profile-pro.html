@@ -18,36 +18,36 @@
         left: 0;
     }
 </style>
-<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
     ></header>
 
 <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
        data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-<section id="main" ng-cloak>
+<section id="main" data-ng-cloak>
     <div id="content" class="content">
         <div class="container">
-            <div class="col-md-12" ng-show="vm.profile.status != 'COMPLETED'">
+            <div class="col-md-12" data-ng-show="vm.profile.status != 'COMPLETED'">
                 <div class="profile-info-warning">
                     <p>
-                    <span ng-if="vm.profile.status == 'REGISTERED'">
+                    <span data-ng-if="vm.profile.status == 'REGISTERED'">
                         Votre profil est incomplet, vous devez compléter toutes les informations soulignées en
                         rouge pour pouvoir répondre à une offre
                     </span>
-                    <span ng-if="vm.profile.status == 'WAITING'">
+                    <span data-ng-if="vm.profile.status == 'WAITING'">
                         Votre profil est en cours de validation, vous recevrez un mail dès qu'il aura été
                         vérifié
                     </span>
-                    <span ng-if="vm.profile.status == 'REFUSED'">
+                    <span data-ng-if="vm.profile.status == 'REFUSED'">
                         Nous n'avons pas pu vérifier votre profil
                     </span>
-                    <span ng-if="vm.profile.status == 'VALIDATED'">
+                    <span data-ng-if="vm.profile.status == 'VALIDATED'">
                         Compléter votre profil augmente votre visibilité et vos chances d'être sélectionné
                     </span>
                     </p>
 
                     <p>
-                    <span ng-if="vm.profile.status == 'REFUSED' && vm.profile.refusedReason != ''">
+                    <span data-ng-if="vm.profile.status == 'REFUSED' && vm.profile.refusedReason != ''">
                         Raison : {{vm.profile.refusedReason}}
                     </span>
                     </p>
@@ -77,36 +77,36 @@
                                     <div class="col-xs-9 no-padding-right">
 
                                         <div class="form-group fg-float m-b-30"
-                                             ng-class="{'has-error': !vm.profileInfo.user.firstName}">
+                                             data-ng-class="{'has-error': !vm.profileInfo.user.firstName}">
 
                                             <div class="fg-line">
                                                 <input type="text" name="firstName" class="form-control fg-input"
-                                                       ng-model="vm.profileInfo.user.firstName"
+                                                       data-ng-model="vm.profileInfo.user.firstName"
                                                        required="required" yaka-input-name>
                                                 <label class="fg-label">Prénom</label>
                                             </div>
-                                            <div ng-messages="profileForm.firstName.$error">
-                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                            <div data-ng-messages="profileForm.firstName.$error">
+                                                <small class="help-block" data-ng-message="required">Ce champ est requis
                                                 </small>
-                                                <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
+                                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                                     valide
                                                 </small>
                                             </div>
                                         </div>
 
                                         <div class="form-group fg-float m-b-30"
-                                             ng-class="{'has-error': !vm.profileInfo.user.lastName}">
+                                             data-ng-class="{'has-error': !vm.profileInfo.user.lastName}">
 
                                             <div class="fg-line">
                                                 <input type="text" name="lastName" class="form-control fg-input"
-                                                       ng-model="vm.profileInfo.user.lastName"
+                                                       data-ng-model="vm.profileInfo.user.lastName"
                                                        required="required" yaka-input-name>
                                                 <label class="fg-label">Nom</label>
                                             </div>
-                                            <div ng-messages="profileForm.lastName.$error">
-                                                <small class="help-block" ng-message="required">Ce champ est requis
+                                            <div data-ng-messages="profileForm.lastName.$error">
+                                                <small class="help-block" data-ng-message="required">Ce champ est requis
                                                 </small>
-                                                <small class="help-block" ng-message="invalidName">Ce nom n'est pas
+                                                <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                                     valide
                                                 </small>
                                             </div>
@@ -116,97 +116,97 @@
                                 </div>
 
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                                     data-ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
                                     <div class="fg-line">
                                         <input type="text" name="phoneNumber"
                                                required="required" class="form-control fg-input"
-                                               ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                                               data-ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
                                         <label class="fg-label fg-label-phone">Téléphone</label>
                                     </div>
-                                    <div ng-messages="profileForm.phoneNumber.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis
+                                    <div data-ng-messages="profileForm.phoneNumber.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis
                                         </small>
-                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone n'est
                                             pas valide
                                         </small>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.user.email}">
+                                     data-ng-class="{'has-error': !vm.profileInfo.user.email}">
                                     <div class="fg-line">
                                         <input type="text" name="email" class="form-control fg-input"
-                                               ng-model="vm.profileInfo.user.email"
+                                               data-ng-model="vm.profileInfo.user.email"
                                                required="required" yaka-input-email>
                                         <label class="fg-label">Email</label>
                                     </div>
-                                    <div ng-messages="profileForm.email.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                    <div data-ng-messages="profileForm.email.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                                        <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                             valide
                                         </small>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
+                                     data-ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
                                     <div class="fg-line">
                                         <div class="select">
                                             <select name="activityStartedYear"
                                                     required="required"
-                                                    ng-model="vm.profileInfo.activityStartedYear"
+                                                    data-ng-model="vm.profileInfo.activityStartedYear"
                                                     class="form-control" convert-to-number>
                                                 <option value="0" disabled selected></option>
-                                                <option ng-repeat="year in vm.years | orderBy:'-toString()'"
-                                                        ng-selected="vm.profileInfo.activityStartedYear == year"
-                                                        ng-value="year">
+                                                <option data-ng-repeat="year in vm.years | orderBy:'-toString()'"
+                                                        data-ng-selected="vm.profileInfo.activityStartedYear == year"
+                                                        data-ng-value="year">
                                                     {{year}}
                                                 </option>
                                             </select>
                                             <label class="fg-label">Première année d'expérience</label>
                                         </div>
                                     </div>
-                                    <div ng-messages="profileForm.activityStartedYear.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    <div data-ng-messages="profileForm.activityStartedYear.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.name}">
+                                     data-ng-class="{'has-error': !vm.profileInfo.company.name}">
                                     <div class="fg-line">
                                         <input type="text" name="companyName" required="required"
                                                class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.name">
+                                               data-ng-model="vm.profileInfo.company.name">
                                         <label class="fg-label">Nom de l'entreprise</label>
                                     </div>
-                                    <div ng-messages="profileForm.companyName.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    <div data-ng-messages="profileForm.companyName.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.siret}">
+                                     data-ng-class="{'has-error': !vm.profileInfo.company.siret}">
                                     <div class="fg-line">
                                         <input name="siret" type="text" required="required"
                                                class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.siret" yaka-input-siret>
+                                               data-ng-model="vm.profileInfo.company.siret" yaka-input-siret>
                                         <label class="fg-label">SIRET</label>
                                     </div>
-                                    <div ng-messages="profileForm.siret.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" ng-message="invalidSiret">Ce SIRET n'est pas
+                                    <div data-ng-messages="profileForm.siret.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                                        <small class="help-block" data-ng-message="invalidSiret">Ce SIRET n'est pas
                                             valide
                                         </small>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     ng-class="{'has-error': !vm.profileInfo.company.address.address}">
+                                     data-ng-class="{'has-error': !vm.profileInfo.company.address.address}">
                                     <div class="fg-line">
                                         <input type="text" class="form-control fg-input"
                                                vs-google-autocomplete="options"
                                                vs-autocomplete-validator
-                                               ng-model="vm.profileInfo.company.address.address"
+                                               data-ng-model="vm.profileInfo.company.address.address"
                                                type="text"
                                                name="address"
                                                required="required"
@@ -214,8 +214,8 @@
                                                id="address">
                                         <label class="fg-label">Addresse de l'entreprise</label>
                                     </div>
-                                    <div ng-messages="profileForm.address.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    <div data-ng-messages="profileForm.address.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                                     </div>
                                 </div>
 
@@ -224,11 +224,11 @@
                                     <div class="fg-line">
                                         <input type="text" name="companyPhoneNumber"
                                                class="form-control fg-input"
-                                               ng-model="vm.profileInfo.company.phone" yaka-input-phone>
+                                               data-ng-model="vm.profileInfo.company.phone" yaka-input-phone>
                                         <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
                                     </div>
-                                    <div ng-messages="profileForm.companyPhoneNumber.$error">
-                                        <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                    <div data-ng-messages="profileForm.companyPhoneNumber.$error">
+                                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone n'est
                                             pas valide
                                         </small>
                                     </div>
@@ -238,12 +238,12 @@
                                 <div class="col-xs-12 no-padding profile-box-footer">
 
                                     <button class="btn btn-info bgm-lightblue waves-effect"
-                                            ng-click="vm.showProfileEditPopup = true"
-                                            ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                            data-ng-click="vm.showProfileEditPopup = true"
+                                            data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                                         Enregistrer
                                     </button>
-                                    <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
-                                            ng-disabled="!vm.showButtonsProfile()">
+                                    <button class="btn btn-link waves-effect" data-ng-click="vm.cancelProfile()"
+                                            data-ng-disabled="!vm.showButtonsProfile()">
                                         Annuler
                                     </button>
 
@@ -279,23 +279,23 @@
                                                     draggable="false" clickable="true" control="vm.circle.control"
                                                     events="vm.circle.events"></ui-gmap-circle>
                                 </ui-gmap-google-map>
-                                <div class="mapMinimumZoomMessage" ng-show="vm.mapShowMinimumZoomMessage">
+                                <div class="mapMinimumZoomMessage" data-ng-show="vm.mapShowMinimumZoomMessage">
                                     Veuillez zommer pour définir votre zone d'alerte
                                 </div>
                                 <div class="workareaDiameter"
-                                     ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
+                                     data-ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
                                     Diamètre de la zone : {{vm.workareaDiameter}} km
                                 </div>
                             </div>
                             <div class="profile-box-footer m-t-15">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.updateWorkArea()"
-                                        ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
+                                        data-ng-click="vm.updateWorkArea()"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
                                     Enregistrer
                                 </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelWorkArea()"
-                                        ng-disabled="!vm.showButtonsWorkArea()">
+                                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelWorkArea()"
+                                        data-ng-disabled="!vm.showButtonsWorkArea()">
                                     Annuler
                                 </button>
                             </div>
@@ -311,7 +311,7 @@
                             <div class="form-group fg-float m-b-30">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input"
-                                           ng-model="vm.pwdCurrent">
+                                           data-ng-model="vm.pwdCurrent">
                                     <label class="fg-label">Mot de passe actuel</label>
                                 </div>
                             </div>
@@ -319,19 +319,19 @@
                             <div class="form-group fg-float m-b-30">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input"
-                                           ng-model="vm.pwd1">
+                                           data-ng-model="vm.pwd1">
                                     <label class="fg-label">Nouveau mot de passe</label>
                                 </div>
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                                 data-ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input"
-                                           ng-model="vm.pwd2">
+                                           data-ng-model="vm.pwd2">
                                     <label class="fg-label">Confirmation</label>
                                 </div>
-                                <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
+                                <small class="help-block" data-ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
                                     Les deux mots de passe ne correspondent pas
                                 </small>
                             </div>
@@ -339,8 +339,8 @@
                             <div class="profile-box-footer mt-12">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.changePassword()"
-                                        ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                                        data-ng-click="vm.changePassword()"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                                     Enregistrer
                                 </button>
 
@@ -361,18 +361,18 @@
                             <form name="aboutMeForm">
 
                                 <div class="form-group"
-                                     ng-class="{'has-error': !vm.about.aboutMe}">
+                                     data-ng-class="{'has-error': !vm.about.aboutMe}">
                                     <div class="fg-line">
                                     <textarea class="form-control" rows="2"
                                               name="aboutMe"
-                                              ng-model="vm.about.aboutMe"
+                                              data-ng-model="vm.about.aboutMe"
                                               required="required"
                                               data-auto-size
                                               data-autosize-on="true"
                                               placeholder="Décrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan."></textarea>
                                     </div>
-                                    <div ng-messages="aboutMeForm.aboutMe.$error">
-                                        <small class="help-block" ng-message="required">Ce champ est requis</small>
+                                    <div data-ng-messages="aboutMeForm.aboutMe.$error">
+                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                                     </div>
                                 </div>
 
@@ -380,12 +380,12 @@
 
                             <div class="profile-box-footer">
 
-                                <button class="btn btn-info bgm-lightblue waves-effect" ng-click="vm.updateAboutMe()"
-                                        ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                                <button class="btn btn-info bgm-lightblue waves-effect" data-ng-click="vm.updateAboutMe()"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
                                     Enregistrer
                                 </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelAboutMe()"
-                                        ng-disabled="!vm.showButtonsAbout()">
+                                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelAboutMe()"
+                                        data-ng-disabled="!vm.showButtonsAbout()">
                                     Annuler
                                 </button>
 
@@ -400,16 +400,16 @@
                         </div>
                         <div class="col-xs-12 card-body m-t-0">
                             <div class="row cl">
-                                <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                                <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
                                     <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                          data-sub-html="#caption{{$index}}"
                                          class="lightboxItemAngular col-xs-6 col-sm-3 col-md-3"
                                          tooltip-placement="top"
                                          uib-tooltip="{{image.description}}"
-                                         ng-repeat="image in vm.portfolio">
+                                         data-ng-repeat="image in vm.portfolio">
                                         <div class="lightbox-item p-item">
                                             <img
-                                                ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                 alt=""/>
                                         </div>
                                         <div id="caption{{$index}}" style="display:none">
@@ -422,14 +422,14 @@
 
                                 <!--Editing mode-->
 
-                                <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
+                                <div class="" data-ng-show="vm.editFlag" data-ng-show="vm.editFlag">
                                     <div class="galleryEditingItem col-xs-6 col-sm-3 col-md-3"
-                                         ng-repeat="image in vm.portfolio">
+                                         data-ng-repeat="image in vm.portfolio">
                                         <div class="lightbox-item p-item projectImageTooltip">
                                             <img
                                                 tooltip-placement="top"
                                                 uib-tooltip="{{image.description}}"
-                                                ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                 alt=""/>
                                         </div>
 
@@ -440,12 +440,12 @@
 
                                             <div class="dropdown-menu stop-propagate">
                                                 <textarea placeholder="Ajouter un commentaire"
-                                                          ng-model="image.description"
-                                                          ng-maxlength="140"
+                                                          data-ng-model="image.description"
+                                                          data-ng-maxlength="140"
                                                           maxlength="140"
                                                           data-auto-size
-                                                          ng-trim="false"
-                                                          ng-change="vm.descriptionChanged(image)"></textarea>
+                                                          data-ng-trim="false"
+                                                          data-ng-change="vm.descriptionChanged(image)"></textarea>
 
                                                 <div class="descriptionCounter">
                                                     {{vm.getStringLength(image.description)}} / 140 caractères
@@ -453,14 +453,14 @@
 
                                                 <button class="btn bgm-lightblue btn-float"
                                                         data-tl-action="save"
-                                                        ng-click="vm.saveComment();">
+                                                        data-ng-click="vm.saveComment();">
                                                     <i class="zmdi zmdi-check"></i>
                                                 </button>
                                             </div>
                                         </div>
 
                                         <button class="floatingButton btn btn-danger btn-float"
-                                                ng-click="vm.removeImage($index)">
+                                                data-ng-click="vm.removeImage($index)">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
                                     </div>
@@ -469,8 +469,8 @@
                                 <div class="col-xs-6 col-sm-3 col-md-3 no-padding"
                                      ngf-drop="vm.uploadPortfolio($files)"
                                      ngf-drag-over-class="dragOverClass($event)"
-                                     ng-model="files"
-                                     ng-multiple="false" ng-if="vm.portfolio.length < 8 && vm.editFlag">
+                                     data-ng-model="files"
+                                     data-ng-multiple="false" data-ng-if="vm.portfolio.length < 8 && vm.editFlag">
                                     <div class="galleryUpload lightbox-item p-item"
                                          ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
                                          ngf-accept="'image/*'" ngf-max-size="5MB">
@@ -484,20 +484,20 @@
                             <div class="profile-box-footer m-t-15">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.updatePortfolio()"
-                                        ng-if="vm.editFlag && vm.showButtonsPortfolio()"
-                                        ng-disabled="vm.updating">
+                                        data-ng-click="vm.updatePortfolio()"
+                                        data-ng-if="vm.editFlag && vm.showButtonsPortfolio()"
+                                        data-ng-disabled="vm.updating">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect"
-                                        ng-click="vm.cancelPortfolio()"
-                                        ng-if="vm.editFlag">
+                                        data-ng-click="vm.cancelPortfolio()"
+                                        data-ng-if="vm.editFlag">
                                     Annuler
                                 </button>
 
                                 <button class="btn btn-info bgm-lightblue btn-icon-text waves-effect"
-                                        ng-if="!vm.editFlag"
-                                        ng-click="vm.editFlag = true">
+                                        data-ng-if="!vm.editFlag"
+                                        data-ng-click="vm.editFlag = true">
                                     <i class="zmdi zmdi-edit"></i>
                                     Modifier
                                 </button>
@@ -515,7 +515,7 @@
                             <div class="row">
                                 <div class="col-xs-2 profile-verif">
                                     <input id="profile-back-verif-1" type="checkbox"
-                                           ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
+                                           data-ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
                                            disabled="disabled">
                                     <label for="profile-back-verif-1"></label>
                                 </div>
@@ -525,18 +525,18 @@
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
                                        ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('BUSINESS_REGISTRATION')"><p>
+                                       data-ng-click="vm.setVerif('BUSINESS_REGISTRATION')"><p>
                                         <span class="pointer"
-                                              ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">Add</span>
+                                              data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">Add</span>
                                         <span class="pointer"
-                                              ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">Change</span>
+                                              data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">Change</span>
                                     </p></a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-2 profile-verif">
                                     <input id="profile-back-verif-2" type="checkbox"
-                                           ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
+                                           data-ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
                                            disabled="disabled">
                                     <label for="profile-back-verif-2"></label>
                                 </div>
@@ -546,11 +546,11 @@
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
                                        ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('INSURANCE')"><p>
+                                       data-ng-click="vm.setVerif('INSURANCE')"><p>
                                         <span class="pointer"
-                                              ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">Add</span>
+                                              data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">Add</span>
                                         <span class="pointer"
-                                              ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">Change</span>
+                                              data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">Change</span>
 
                                     </p></a>
                                 </div>
@@ -558,7 +558,7 @@
                             <div class="row">
                                 <div class="col-xs-2 profile-verif">
                                     <input id="profile-back-verif-3" type="checkbox"
-                                           ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
+                                           data-ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
                                            disabled="disabled">
                                     <label for="profile-back-verif-3" class="blue"></label>
                                 </div>
@@ -568,18 +568,18 @@
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
                                        ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('RGE')"><p>
+                                       data-ng-click="vm.setVerif('RGE')"><p>
                                         <span class="pointer"
-                                              ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
+                                              data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
                                     <span class="pointer"
-                                          ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
+                                          data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
                                     </p></a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-2 profile-verif">
                                     <input id="profile-back-verif-4" type="checkbox"
-                                           ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
+                                           data-ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
                                            disabled="disabled">
                                     <label for="profile-back-verif-4" class="blue"></label>
                                 </div>
@@ -589,28 +589,28 @@
                                     </p>
                                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
                                        ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                       ng-click="vm.setVerif('PARTNER')">
+                                       data-ng-click="vm.setVerif('PARTNER')">
                                         <p>
                                             <span class="pointer"
-                                                  ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Add</span>
+                                                  data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Add</span>
                                             <span class="pointer"
-                                                  ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">Change</span>
+                                                  data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">Change</span>
                                         </p></a>
                                 </div>
                             </div>
-                            <p class="error center" ng-show="vm.error.verif.flag">
+                            <p class="error center" data-ng-show="vm.error.verif.flag">
                                 {{vm.error.verif.message}}
                             </p>
 
                             <div class="profile-box-footer">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.showVerificationsEditPopup = true"
-                                        ng-disabled="vm.updating || !vm.showButtonsVerifications()">
+                                        data-ng-click="vm.showVerificationsEditPopup = true"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
                                     Enregistrer
                                 </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelVerifications()"
-                                        ng-disabled="!vm.showButtonsVerifications()">
+                                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelVerifications()"
+                                        data-ng-disabled="!vm.showButtonsVerifications()">
                                     Annuler
                                 </button>
 
@@ -626,17 +626,17 @@
                         <div class="col-xs-12 card-body m-t-0">
 
                             <div class="row">
-                                <div class="col-xs-6 mb-15 cursor-pointer" ng-repeat="s in vm.cat"
-                                     ng-click="vm.actionActivities(s)">
+                                <div class="col-xs-6 mb-15 cursor-pointer" data-ng-repeat="s in vm.cat"
+                                     data-ng-click="vm.actionActivities(s)">
                                     <div data-ng-show="s != 'AUTO_MULTI'" class="row profile-activities no-margin">
                                         <div class="col-xs-3 no-padding"
-                                             ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
+                                             data-ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
                                             <div class="profile-activities-check">
                                                 <span class="glyphicon glyphicon-ok"></span>
                                             </div>
                                         </div>
                                         <div class="col-xs-3 no-padding"
-                                             ng-show="vm.indexOfObject(s, 'code', vm.activities).length == 0">
+                                             data-ng-show="vm.indexOfObject(s, 'code', vm.activities).length == 0">
                                             <span>-</span>
                                         </div>
                                         <div class="col-xs-9 no-padding">
@@ -645,20 +645,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="error center" ng-show="vm.error.activities.flag">
+                            <p class="error center" data-ng-show="vm.error.activities.flag">
                                 {{vm.error.activities.message}}
                             </p>
 
                             <div class="profile-box-footer">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.updateActivities()"
-                                        ng-disabled="vm.updating || !vm.showButtonsActivities()">
+                                        data-ng-click="vm.updateActivities()"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsActivities()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect"
-                                        ng-click="vm.cancelActivities()"
-                                        ng-disabled="!vm.showButtonsActivities()">
+                                        data-ng-click="vm.cancelActivities()"
+                                        data-ng-disabled="!vm.showButtonsActivities()">
                                     Annuler
                                 </button>
 
@@ -671,13 +671,13 @@
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" ng-click="vm.closePopup()"
-     ng-cloak>
+<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" data-ng-click="vm.closePopup()"
+     data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
             <img class="popupCloseButton"
                  src="icons/mdpi/ic_popup_close.png"
-                 ng-click="vm.closePopup()"
+                 data-ng-click="vm.closePopup()"
                  alt=""/>
 
             <div class="profilePopupMessage">
@@ -685,10 +685,10 @@
                 nouvelles offres tant qu'il n'aura pas été revalidé par l'équipe YakaClub (vous recevrez un mail
                 rapidement pour vous en tenir informé).
             </div>
-            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.closePopup()">
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.closePopup()">
                 ANNULER
             </div>
-            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.validatePopup()">
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.validatePopup()">
                 VALIDER
             </div>
         </div>
