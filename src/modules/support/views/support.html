@@ -108,8 +108,7 @@
                             </div>
 
                             <div
-                                class="col-xs-12 no-padding form-group fg-float m-b-30 halfInput halfInputNotInMobile halfInputRight"
-                                data-ng-class="{'has-error': !vm.supportMessage.phoneNumber}">
+                                class="col-xs-12 no-padding form-group fg-float m-b-30 halfInput halfInputNotInMobile halfInputRight">
                                 <div class="fg-line">
                                     <input type="text" name="phoneNumber"
                                            class="form-control fg-input"
@@ -117,9 +116,8 @@
                                     <label class="fg-label fg-label-phone">Téléphone</label>
                                 </div>
                                 <div data-ng-messages="supportForm.phoneNumber.$error">
-                                    <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
-                                        n'est
-                                        pas valide
+                                    <small class="help-block" data-ng-message="invalidPhone">
+                                        Ce numéro de téléphone n'est pas valide
                                     </small>
                                 </div>
                             </div>
@@ -141,12 +139,12 @@
                                               data-ng-model="vm.supportMessage.message"
                                               required="required"
                                               data-auto-size
-                                              data-ng-minlength="140"
+                                              data-ng-minlength="100"
                                               data-autosize-on="true"
                                               placeholder="Tapez ici votre message"></textarea>
                             </div>
                             <div data-ng-messages="supportForm.aboutMe.$error">
-                                <small class="help-block" data-ng-message="minlength">Le message est trop court (140
+                                <small class="help-block" data-ng-message="minlength">Le message est trop court (100
                                     caractères min)
                                 </small>
                                 <small class="help-block" data-ng-message="required">Ce champ est requis</small>
