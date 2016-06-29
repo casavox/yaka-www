@@ -507,7 +507,7 @@
                     vm.service = true;
                     vm.title = "Multidomaines";
                     vm.multi = "activate";
-                    vm.questions.push({code : 'AUTO_MULTI'});
+                    vm.questions.push({code: 'AUTO_MULTI'});
                     var element = document.getElementById('slide3');
                     smoothScroll(element, scrollOptions);
                 }, 0);

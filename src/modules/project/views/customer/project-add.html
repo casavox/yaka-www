@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="view">
 
@@ -12,6 +12,7 @@
                 <div class="new-project-box ">
                     <div class="row no-margin">
                         <h2 class="m-l-10 text-left">Votre projet porte-t-il sur une activité en particulier ?</h2>
+
                         <div class="col-xs-3 no-margin no-padding type-project-box" data-ng-class="child.selected"
                              data-ng-repeat="child in vm.newProject.childrenActivities"
                              data-ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
@@ -28,6 +29,7 @@
                     </div>
                     <div class="row no-margin">
                         <h2 class="m-t-5 m-l-10 text-left">Ou sur plusieurs ?</h2>
+
                         <div class="row vertical-center no-margin">
                             <div class="col-xs-3 no-margin no-padding type-project-box" data-ng-class="vm.multi"
                                  data-ng-click="vm.selectType('AUTO_MULTI')"
@@ -48,10 +50,13 @@
                                 <div class="lv-small m-l-10">
                                     <p class="m-b-0">
                                         - Créer ou modifier une salle de bain, une cuisine, des toilettes, ...</p>
+
                                     <p class="m-b-0">
                                         - Construire une extension, une piscine, un garage,...</p>
+
                                     <p class="m-b-0">
                                         - Modifier ou aménager des combles, un sous-sol, un box, ...</p>
+
                                     <p class="m-b-0">
                                         - Tout autre projet nécessitant plusieurs corps de métier, ...</p>
                                 </div>

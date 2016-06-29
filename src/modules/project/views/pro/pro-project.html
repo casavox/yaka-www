@@ -20,7 +20,7 @@
 </style>
 
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="main">
 
@@ -47,6 +47,7 @@
                         </div>
                         <div class="pro-proposal-title">
                             <p>{{vm.project.title | yakaTranslateTitle}}</p>
+
                             <p>{{vm.projectTmp.user.firstName}} {{vm.projectTmp.user.lastName}}</p>
                         </div>
                     </div>
@@ -145,14 +146,18 @@
                             <span class="icon-pen-blue-pro"></span>
                             <span class="price-area" data-ng-show="!vm.offer.price.price">---</span>
                             <span class="price-area" data-ng-show="vm.offer.price.price">{{vm.offer.price.type}}. {{vm.offer.price.price}} €</span>
+
                             <p class="pro-menu-title">Mon devis</p>
+
                             <p class="pro-menu-subTitle">Estimatif ou final ?</p>
                         </div>
                         <div class="cursor-pointer" data-ng-click="vm.myDate()">
                             <span class="icon-pen-blue-pro"></span>
                             <span class="price-area" data-ng-show="!vm.offer.date.date">---</span>
                             <span class="price-area" data-ng-show="vm.offer.date.date">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span>
+
                             <p class="pro-menu-title">Ma date d'intervention</p>
+
                             <p class="pro-menu-subTitle">Quand pensez-vous pouvoir commencer ?</p>
                         </div>
                         <div>
@@ -164,6 +169,7 @@
                                           data-auto-size
                                           data-ng-trim="true"
                                           data-ng-model="vm.offer.comment"></textarea>
+
                             <div class="proCommentCounter">
                                 {{vm.getStringLength(vm.offer.comment)}} / 140 caractères
                             </div>
@@ -205,8 +211,11 @@
             <div class="popUp-content">
                 <span class="boxclose" data-ng-click="vm.myPriceFlag = false"></span>
                 <h4>Mon devis</h4>
+
                 <p class="info-popUp"></p>
+
                 <p class="info-popUp-comp">Indiquer si le devis est estimatif ou final</p>
+
                 <div class="row">
                     <div class="col-xs-10">
                         <input type="text" class="custom-input-number" min="0" step="1"
@@ -230,6 +239,7 @@
             <div class="popUp-content">
                 <span class="boxclose" data-ng-click="vm.myDateFlag = false"></span>
                 <h4>Date d'intervention estimée</h4>
+
                 <div style="display:inline-block; min-height:290px;" class="center custom-picker">
                     <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                     class="well well-sm custom-date"></uib-datepicker>

@@ -125,7 +125,8 @@
                                     <label class="fg-label fg-label-phone">Téléphone</label>
                                 </div>
                                 <div data-ng-messages="profileForm.phoneNumber.$error">
-                                    <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                    <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
+                                        n'est
                                         pas valide
                                     </small>
                                 </div>
@@ -233,7 +234,8 @@
     </div>
 </section>
 
-<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" data-ng-click="vm.closePopup()"
+<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup"
+     data-ng-click="vm.closePopup()"
      data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">

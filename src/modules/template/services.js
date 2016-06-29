@@ -4,8 +4,8 @@ materialAdmin
     // Header Messages and Notifications list Data
     // =========================================================================
 
-    .service('messageService', ['$resource', function($resource){
-        this.getMessage = function(img, user, text) {
+    .service('messageService', ['$resource', function ($resource) {
+        this.getMessage = function (img, user, text) {
             var gmList = $resource("data/messages-notifications.json");
 
             return gmList.get({
@@ -21,8 +21,8 @@ materialAdmin
     // Best Selling Widget Data (Home Page)
     // =========================================================================
 
-    .service('bestsellingService', ['$resource', function($resource){
-        this.getBestselling = function(img, name, range) {
+    .service('bestsellingService', ['$resource', function ($resource) {
+        this.getBestselling = function (img, name, range) {
             var gbList = $resource("data/best-selling.json");
 
             return gbList.get({
@@ -38,8 +38,8 @@ materialAdmin
     // Todo List Widget Data
     // =========================================================================
 
-    .service('todoService', ['$resource', function($resource){
-        this.getTodo = function(todo) {
+    .service('todoService', ['$resource', function ($resource) {
+        this.getTodo = function (todo) {
             var todoList = $resource("data/todo.json");
 
             return todoList.get({
@@ -53,11 +53,11 @@ materialAdmin
     // Recent Items Widget Data
     // =========================================================================
 
-    .service('recentitemService', ['$resource', function($resource){
-        this.getRecentitem = function(id, name, price) {
+    .service('recentitemService', ['$resource', function ($resource) {
+        this.getRecentitem = function (id, name, price) {
             var recentitemList = $resource("data/recent-items.json");
 
-            return recentitemList.get ({
+            return recentitemList.get({
                 id: id,
                 name: name,
                 price: price
@@ -70,11 +70,11 @@ materialAdmin
     // Recent Posts Widget Data
     // =========================================================================
 
-    .service('recentpostService', ['$resource', function($resource){
-        this.getRecentpost = function(img, user, text) {
+    .service('recentpostService', ['$resource', function ($resource) {
+        this.getRecentpost = function (img, user, text) {
             var recentpostList = $resource("data/messages-notifications.json");
 
-            return recentpostList.get ({
+            return recentpostList.get({
                 img: img,
                 user: user,
                 text: text
@@ -86,7 +86,7 @@ materialAdmin
     // Data Table
     // =========================================================================
 
-    .service('tableService', [function(){
+    .service('tableService', [function () {
         this.data = [
             {
                 "id": 10238,
@@ -237,34 +237,34 @@ materialAdmin
     // Malihu Scroll - Custom Scroll bars
     // =========================================================================
     /*.service('scrollService', function() {
-        var ss = {};
-        ss.malihuScroll = function scrollBar(selector, theme, mousewheelaxis) {
-            $(selector).mCustomScrollbar({
-                theme: theme,
-                scrollInertia: 100,
-                axis:'yx',
-                mouseWheel: {
-                    enable: true,
-                    axis: mousewheelaxis,
-                    preventDefault: true
-                }
-            });
-        }
+     var ss = {};
+     ss.malihuScroll = function scrollBar(selector, theme, mousewheelaxis) {
+     $(selector).mCustomScrollbar({
+     theme: theme,
+     scrollInertia: 100,
+     axis:'yx',
+     mouseWheel: {
+     enable: true,
+     axis: mousewheelaxis,
+     preventDefault: true
+     }
+     });
+     }
 
-        return ss;
-    })*/
+     return ss;
+     })*/
 
 
     //==============================================
     // BOOTSTRAP GROWL
     //==============================================
 
-    .service('growlService', function(){
+    .service('growlService', function () {
         var gs = {};
-        gs.growl = function(message, type) {
+        gs.growl = function (message, type) {
             $.growl({
                 message: message
-            },{
+            }, {
                 type: type,
                 allow_dismiss: false,
                 label: 'Cancel',
@@ -275,8 +275,8 @@ materialAdmin
                 },
                 delay: 2500,
                 animate: {
-                        enter: 'animated bounceIn',
-                        exit: 'animated bounceOut'
+                    enter: 'animated bounceIn',
+                    exit: 'animated bounceOut'
                 },
                 offset: {
                     x: 20,

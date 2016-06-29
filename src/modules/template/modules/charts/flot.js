@@ -4,10 +4,10 @@ materialAdmin
     // Curved Line Chart
     // =========================================================================
 
-    .directive('curvedlineChart', function(){
+    .directive('curvedlineChart', function () {
         return {
             restrict: 'A',
-            link: function(scope, element) {
+            link: function (scope, element) {
 
                 /* Make some random data for the Chart*/
 
@@ -45,10 +45,10 @@ materialAdmin
                     },
                     grid: {
                         borderWidth: 0,
-                        labelMargin:10,
+                        labelMargin: 10,
                         hoverable: true,
                         clickable: true,
-                        mouseActiveRadius:6,
+                        mouseActiveRadius: 6,
 
                     },
                     xaxis: {
@@ -69,8 +69,8 @@ materialAdmin
                 /* Let's create the chart */
 
                 $.plot($(element), [
-                    {data: d1, lines: { show: true, fill: 0.98 }, label: 'Product 1', stack: true, color: '#e3e3e3' },
-                    {data: d3, lines: { show: true, fill: 0.98 }, label: 'Product 2', stack: true, color: '#f1dd2c' }
+                    {data: d1, lines: {show: true, fill: 0.98}, label: 'Product 1', stack: true, color: '#e3e3e3'},
+                    {data: d3, lines: {show: true, fill: 0.98}, label: 'Product 2', stack: true, color: '#f1dd2c'}
                 ], options);
 
                 /* Tooltips for Flot Charts */
@@ -80,7 +80,10 @@ materialAdmin
                         if (item) {
                             var x = item.datapoint[0].toFixed(2),
                                 y = item.datapoint[1].toFixed(2);
-                            $(".flot-tooltip").html(item.series.label + " of " + x + " = " + y).css({top: item.pageY+5, left: item.pageX+5}).show();
+                            $(".flot-tooltip").html(item.series.label + " of " + x + " = " + y).css({
+                                top: item.pageY + 5,
+                                left: item.pageX + 5
+                            }).show();
                         }
                         else {
                             $(".flot-tooltip").hide();
@@ -98,10 +101,10 @@ materialAdmin
     // Regular Line Charts
     // =========================================================================
 
-    .directive('lineChart', function(){
+    .directive('lineChart', function () {
         return {
             restrict: 'A',
-            link: function(scope, element){
+            link: function (scope, element) {
 
                 /* Make some random data for Recent Items chart */
 
@@ -164,10 +167,10 @@ materialAdmin
                     },
                     grid: {
                         borderWidth: 0,
-                        labelMargin:10,
+                        labelMargin: 10,
                         hoverable: true,
                         clickable: true,
-                        mouseActiveRadius:6,
+                        mouseActiveRadius: 6,
 
                     },
                     xaxis: {
@@ -188,15 +191,21 @@ materialAdmin
                 /* Regular Line Chart */
                 if ($("#line-chart")[0]) {
                     $.plot($("#line-chart"), [
-                        {data: d1, lines: { show: true, fill: 0.98 }, label: 'Product 1', stack: true, color: '#e3e3e3' },
-                        {data: d3, lines: { show: true, fill: 0.98 }, label: 'Product 2', stack: true, color: '#FF9800' }
+                        {data: d1, lines: {show: true, fill: 0.98}, label: 'Product 1', stack: true, color: '#e3e3e3'},
+                        {data: d3, lines: {show: true, fill: 0.98}, label: 'Product 2', stack: true, color: '#FF9800'}
                     ], options);
                 }
 
                 /* Recent Items Table Chart */
                 if ($("#recent-items-chart")[0]) {
                     $.plot($("#recent-items-chart"), [
-                        {data: getRandomData(), lines: { show: true, fill: 0.8 }, label: 'Items', stack: true, color: '#00BCD4' },
+                        {
+                            data: getRandomData(),
+                            lines: {show: true, fill: 0.8},
+                            label: 'Items',
+                            stack: true,
+                            color: '#00BCD4'
+                        },
                     ], options);
                 }
             }
@@ -204,54 +213,53 @@ materialAdmin
     })
 
 
-
     //-----------------------------------------------
     // BAR CHART
     //-----------------------------------------------
 
-    .directive('barChart', function(){
+    .directive('barChart', function () {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs){
-                var data1 = [[1,60], [2,30], [3,50], [4,100], [5,10], [6,90], [7,85]];
-                var data2 = [[1,20], [2,90], [3,60], [4,40], [5,100], [6,25], [7,65]];
-                var data3 = [[1,100], [2,20], [3,60], [4,90], [5,80], [6,10], [7,5]];
+            link: function (scope, element, attrs) {
+                var data1 = [[1, 60], [2, 30], [3, 50], [4, 100], [5, 10], [6, 90], [7, 85]];
+                var data2 = [[1, 20], [2, 90], [3, 60], [4, 40], [5, 100], [6, 25], [7, 65]];
+                var data3 = [[1, 100], [2, 20], [3, 60], [4, 90], [5, 80], [6, 10], [7, 5]];
 
                 /* Create an Array push the data + Draw the bars*/
 
                 var barData = new Array();
 
                 barData.push({
-                    data : data1,
+                    data: data1,
                     label: 'Tokyo',
-                    bars : {
-                        show : true,
-                        barWidth : 0.08,
-                        order : 1,
+                    bars: {
+                        show: true,
+                        barWidth: 0.08,
+                        order: 1,
                         lineWidth: 0,
                         fillColor: '#8BC34A'
                     }
                 });
 
                 barData.push({
-                    data : data2,
+                    data: data2,
                     label: 'Seoul',
-                    bars : {
-                        show : true,
-                        barWidth : 0.08,
-                        order : 2,
+                    bars: {
+                        show: true,
+                        barWidth: 0.08,
+                        order: 2,
                         lineWidth: 0,
                         fillColor: '#00BCD4'
                     }
                 });
 
                 barData.push({
-                    data : data3,
+                    data: data3,
                     label: 'Beijing',
-                    bars : {
-                        show : true,
-                        barWidth : 0.08,
-                        order : 3,
+                    bars: {
+                        show: true,
+                        barWidth: 0.08,
+                        order: 3,
                         lineWidth: 0,
                         fillColor: '#FF9800'
                     }
@@ -259,18 +267,18 @@ materialAdmin
 
                 /* Let's create the chart */
                 $.plot($(element), barData, {
-                    grid : {
-                            borderWidth: 1,
-                            borderColor: '#eee',
-                            show : true,
-                            hoverable : true,
-                            clickable : true
+                    grid: {
+                        borderWidth: 1,
+                        borderColor: '#eee',
+                        show: true,
+                        hoverable: true,
+                        clickable: true
                     },
 
                     yaxis: {
                         tickColor: '#eee',
                         tickDecimals: 0,
-                        font :{
+                        font: {
                             lineHeight: 13,
                             style: "normal",
                             color: "#9f9f9f",
@@ -281,7 +289,7 @@ materialAdmin
                     xaxis: {
                         tickColor: '#fff',
                         tickDecimals: 0,
-                        font :{
+                        font: {
                             lineHeight: 13,
                             style: "normal",
                             color: "#9f9f9f"
@@ -289,7 +297,7 @@ materialAdmin
                         shadowSize: 0,
                     },
 
-                    legend:{
+                    legend: {
                         container: '.flc-bar',
                         backgroundOpacity: 0.5,
                         noColumns: 0,
@@ -302,15 +310,14 @@ materialAdmin
     })
 
 
-
     //-----------------------------------------------
     // DYNAMIC CHART
     //-----------------------------------------------
 
-    .directive('dynamicChart', function(){
+    .directive('dynamicChart', function () {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
 
                 /* Make some random data*/
 
@@ -345,7 +352,7 @@ materialAdmin
 
                 /* Create Chart */
 
-                var plot = $.plot(element, [ getRandomData() ], {
+                var plot = $.plot(element, [getRandomData()], {
                     series: {
                         label: "Server Process Data",
                         lines: {
@@ -361,7 +368,7 @@ materialAdmin
                         min: 0,
                         max: 100,
                         tickColor: '#eee',
-                        font :{
+                        font: {
                             lineHeight: 13,
                             style: "normal",
                             color: "#9f9f9f",
@@ -372,7 +379,7 @@ materialAdmin
                     xaxis: {
                         tickColor: '#eee',
                         show: true,
-                        font :{
+                        font: {
                             lineHeight: 13,
                             style: "normal",
                             color: "#9f9f9f",
@@ -384,12 +391,12 @@ materialAdmin
                     grid: {
                         borderWidth: 1,
                         borderColor: '#eee',
-                        labelMargin:10,
+                        labelMargin: 10,
                         hoverable: true,
                         clickable: true,
-                        mouseActiveRadius:6,
+                        mouseActiveRadius: 6,
                     },
-                    legend:{
+                    legend: {
                         container: '.flc-dynamic',
                         backgroundOpacity: 0.5,
                         noColumns: 0,
@@ -406,6 +413,7 @@ materialAdmin
                     plot.draw();
                     setTimeout(update, updateInterval);
                 }
+
                 update();
             }
         }
@@ -416,10 +424,10 @@ materialAdmin
     // PIE AND DONUT
     //-----------------------------------------------
 
-    .directive('pieDonut', function(){
+    .directive('pieDonut', function () {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs){
+            link: function (scope, element, attrs) {
                 var pieData = [
                     {data: 1, color: '#F44336', label: 'Toyota'},
                     {data: 2, color: '#03A9F4', label: 'Nissan'},
@@ -430,7 +438,7 @@ materialAdmin
 
                 /* Pie Chart */
 
-                if($('#pie-chart')[0]){
+                if ($('#pie-chart')[0]) {
                     $.plot('#pie-chart', pieData, {
                         series: {
                             pie: {
@@ -467,7 +475,7 @@ materialAdmin
 
                 /* Donut Chart */
 
-                if($('#donut-chart')[0]){
+                if ($('#donut-chart')[0]) {
                     $.plot('#donut-chart', pieData, {
                         series: {
                             pie: {

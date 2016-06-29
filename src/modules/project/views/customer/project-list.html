@@ -33,7 +33,8 @@
 
                     <h2 data-ng-show="vm.projectsOnGoing.length > 1">PROJETS EN COURS</h2>
                 </div>
-                <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsOnGoing" data-ng-click="vm.selectProject(p)">
+                <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsOnGoing"
+                     data-ng-click="vm.selectProject(p)">
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
@@ -84,7 +85,8 @@
                             </span>
                         </div>
                         <div class="card-body p-l-25 p-r-30 p-t-10 p-b-20">
-                            <ul data-ng-show="p.proposals.length > 0" class="wall-attrs clearfix list-inline list-unstyled">
+                            <ul data-ng-show="p.proposals.length > 0"
+                                class="wall-attrs clearfix list-inline list-unstyled">
                                 <li data-ng-show="!p.unreadMessages" class="wa-stats">
                                     <span><i class="zmdi zmdi-comment-alt-text c-gray zmdi-hc-fw"></i></span>
                                 </li>
@@ -118,7 +120,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-ng-show="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal" class="card-body p-l-25 p-b-20"
+                    <div data-ng-show="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal"
+                         class="card-body p-l-25 p-b-20"
                          data-ng-click="vm.selectProposal(p.proposal)">
                         <div class="media">
                             <div class="pull-left">

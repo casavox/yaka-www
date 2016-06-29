@@ -65,7 +65,8 @@
                     <div class="col-xs-12 row no-margin">
                         <div class="col-xs-12 description-sub-title">
                             Où
-                            <span class="icon-pen-blue" data-ng-show="vm.editFlag" data-ng-click="vm.editWhere()"></span>
+                            <span class="icon-pen-blue" data-ng-show="vm.editFlag"
+                                  data-ng-click="vm.editWhere()"></span>
                         </div>
                         <div class="col-xs-12 description-sub-text">
                             {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.streetNumber}}
@@ -102,7 +103,8 @@
                         </div>
                         <div class="col-xs-12 description-sub-text">
                                 <textarea msd-elastic class="custom-textarea" disabled
-                                          data-ng-model="vm.projectTmp.description" data-ng-hide="vm.editFlag"></textarea>
+                                          data-ng-model="vm.projectTmp.description"
+                                          data-ng-hide="vm.editFlag"></textarea>
 
                             <form class="descriptionFormProject" data-ng-show="vm.editFlag" name="descriptionForm">
                                 <div class="form-group"
@@ -245,7 +247,8 @@
                         </select>
                     </div>
                     <div class="col-xs-5 col-xs-offset-2 no-padding">
-                        <input type="text" class="select-custom" data-ng-if="vm.newAddrFlag" data-ng-model="vm.newAddr.name"
+                        <input type="text" class="select-custom" data-ng-if="vm.newAddrFlag"
+                               data-ng-model="vm.newAddr.name"
                                data-ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse (Maison, Papa, ...)">
                     </div>
                 </div>

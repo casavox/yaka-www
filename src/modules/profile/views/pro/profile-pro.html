@@ -88,7 +88,8 @@
                                             <div data-ng-messages="profileForm.firstName.$error">
                                                 <small class="help-block" data-ng-message="required">Ce champ est requis
                                                 </small>
-                                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est
+                                                    pas
                                                     valide
                                                 </small>
                                             </div>
@@ -126,7 +127,8 @@
                                     <div data-ng-messages="profileForm.phoneNumber.$error">
                                         <small class="help-block" data-ng-message="required">Ce champ est requis
                                         </small>
-                                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
+                                            n'est
                                             pas valide
                                         </small>
                                     </div>
@@ -228,7 +230,8 @@
                                         <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
                                     </div>
                                     <div data-ng-messages="profileForm.companyPhoneNumber.$error">
-                                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone n'est
+                                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
+                                            n'est
                                             pas valide
                                         </small>
                                     </div>
@@ -380,7 +383,8 @@
 
                             <div class="profile-box-footer">
 
-                                <button class="btn btn-info bgm-lightblue waves-effect" data-ng-click="vm.updateAboutMe()"
+                                <button class="btn btn-info bgm-lightblue waves-effect"
+                                        data-ng-click="vm.updateAboutMe()"
                                         data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
                                     Enregistrer
                                 </button>
@@ -671,7 +675,8 @@
     </div>
 </section>
 
-<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" data-ng-click="vm.closePopup()"
+<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup"
+     data-ng-click="vm.closePopup()"
      data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
