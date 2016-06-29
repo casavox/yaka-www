@@ -288,7 +288,7 @@
         };
 
         function succesProjectsPOST(res) {
-            console.log(res)
+            console.log(res);
             vm.continueAddressFlag = vm.continueImg = vm.continue = vm.service = vm.selectCategory = false;
             vm.questions = [];
             vm.end = true;
@@ -299,10 +299,8 @@
                 confirmButtonColor: '#03A9F4',
                 confirmButtonText: 'Continuer !',
                 confirmButtonClass: 'btn btn-success'
-            }, function (isConfirm) {
-                $state.go("proposals", {projectId: res});
             });
-            vm.redirect();
+            $state.go("proposals", {projectId: res});
         }
 
         function errorProjectsPOST() {
@@ -685,16 +683,6 @@
             vm.myAddress = "new";
         }
 
-        vm.redirect = function () {
-            vm.countdown -= 1;
-            if (vm.countdown == 0)
-                $state.go("my-projects");
-            else {
-                $timeout(function () {
-                    vm.redirect();
-                }, 500);
-            }
-        };
         vm.initHours();
     }
 })();

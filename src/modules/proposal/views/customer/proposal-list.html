@@ -75,7 +75,8 @@
                     </div>
                 </div>
             </div>
-            <div class="card projectCreated" data-ng-show="vm.project.proposals && vm.project.proposals.length == 0"
+            <div class="card projectCreated"
+                 data-ng-show="vm.project && (!vm.project.proposals || vm.project.proposals.length == 0)"
                  data-ng-cloak>
                 <div class="card pt-inner ">
                     <div class="pti-header bgm-lightblue">
@@ -133,7 +134,8 @@
                                         <div class="p-relative">
                                             <yaka-avatar size="35"
                                                          user="p.professional.user"></yaka-avatar>
-                                            <i data-ng-show="p.unreadMessages" class="porposalUnreadMessagesIndicator"></i>
+                                            <i data-ng-show="p.unreadMessages"
+                                               class="porposalUnreadMessagesIndicator"></i>
                                         </div>
                                     </div>
                                     <div class="media-body">
@@ -150,14 +152,16 @@
                                                     <p class="m-b-0">{{p.professional.user.firstName}}
                                                         {{p.professional.user.lastName}}</p>
                                                 </div>
-                                                <div class="c-gray m-t-0 m-b-0" data-ng-if="p.status == 'CUSTOMER_DECLINED'">
+                                                <div class="c-gray m-t-0 m-b-0"
+                                                     data-ng-if="p.status == 'CUSTOMER_DECLINED'">
                                                     <p class="m-b-0"><strong>Proposition refusée</strong></p>
 
                                                     <p class="m-b-0">{{p.professional.user.firstName}}
                                                         {{p.professional.user.lastName}}</p>
                                                 </div>
                                             </div>
-                                            <div data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                            <div
+                                                data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
                                                 <small class="lv-small c-bluegray" data-ng-show="p.price">
                                                     Estimation actuelle <span class="c-lightblue">{{p.price}} €</span>
                                                 </small>
@@ -165,7 +169,8 @@
                                                     Disponible à partir du <span class="c-lightblue">{{p.startDate | date:'d MMMM'}}</span>
                                                 </small>
                                             </div>
-                                            <div data-ng-if="p.status == 'PRO_DECLINED' || p.status == 'CUSTOMER_DECLINED'">
+                                            <div
+                                                data-ng-if="p.status == 'PRO_DECLINED' || p.status == 'CUSTOMER_DECLINED'">
                                                 <small class="lv-small" data-ng-show="p.price">
                                                     Estimation actuelle {{p.price}} €
                                                 </small>
