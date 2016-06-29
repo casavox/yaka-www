@@ -666,7 +666,7 @@
         };
 
         vm.showButtonsAbout = function () {
-            if (!vm.about || !vm.profile) {
+            if (!vm.about || !vm.profile || !vm.about.aboutMe) {
                 return false;
             }
             return vm.about.aboutMe != vm.profile.aboutMe;
@@ -729,6 +729,11 @@
 
             if (!vm.profile.verifications) {
                 vm.profile.verifications = [];
+            }
+
+            if (vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0 ||
+                vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0) {
+                return false;
             }
 
             if (vm.verifications.length != vm.profile.verifications.length) {
@@ -872,5 +877,35 @@
                 event.preventDefault();
             }
         });
+
+        vm.infosCardIsComplete = function () {
+            return (vm.profile &&
+            vm.profile.user &&
+            vm.profile.user.firstName &&
+            vm.profile.user.lastName &&
+            vm.profile.phoneNumber &&
+            vm.profile.user.email &&
+            vm.profile.activityStartedYear &&
+            vm.profile.company.name &&
+            vm.profile.company.siret &&
+            vm.profile.company.address.address);
+        };
+
+        vm.descriptionCardIsComplete = function () {
+            return (vm.profile &&
+            vm.profile.aboutMe);
+        };
+
+        vm.verificationsCardIsComplete = function () {
+            return (vm.profile &&
+            vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.profile.verifications).length > 0 &&
+            vm.indexOfObject('INSURANCE', 'name', vm.profile.verifications).length > 0);
+        };
+
+        vm.portfolioCardIsComplete = function () {
+            return (vm.profile &&
+            vm.profile.portfolio &&
+            vm.profile.portfolio.length > 0);
+        };
     }
 })();

@@ -21,3 +21,14 @@
     width: 30px;
     height: 30px;
 }
+
+.topViewProfile .topViewProfileIcon {
+    display: inline-block;
+    width: 35px;
+    vertical-align: top;
+}
+
+.topViewProfile .topViewProfileContent {
+    display: inline-block;
+    width: calc(100% - 40px);
+}
