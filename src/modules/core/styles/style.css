@@ -3250,11 +3250,11 @@ md-input-container {
     width: 54px;
     position: relative;
     left: calc(50% - (54px / 2));
-    top: 60px;
+    top: 70px;
 }
 
 .img-profile-pro {
-    top: 5px;
+    top: 15px;
 }
 
 /* aspect au focus de l'élément */
@@ -5026,6 +5026,22 @@ ul.yaka-chips li {
     justify-content: center;
 }
 
+.floatingButtonImage {
+    width: 35px !important;
+    height: 35px !important;
+    padding: 0 !important;
+}
+
+.floatingButtonImage i {
+    font-size: 20px !important;
+}
+
+.floatingButtonImageDelete {
+    left: 72%;
+    margin-left: -24px;
+    margin-top: -19px;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -5036,6 +5052,10 @@ ul.yaka-chips li {
 
 .m-t-9 {
     margin-top: 9px;
+}
+
+.p-l-25 {
+    padding-left: 25px;
 }
 
 .no-padding-right {
@@ -5075,5 +5095,9 @@ ul.yaka-chips li {
 }
 
 .v-align-bottom {
-    vertical-align: bottom;
+    vertical-align: bottom !important;
+}
+
+.v-align-sub {
+    vertical-align: sub !important;
 }
