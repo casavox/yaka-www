@@ -139,7 +139,7 @@
                    data-ng-if="vm.infosCardIsComplete()"></i>
                 Informations générales
                 <small class="c-red" data-ng-if="!vm.infosCardIsComplete()">
-                    Incomplet (obligatoire)
+                    Informations en rouge obligatoires
                 </small>
             </h2>
         </div>
@@ -578,7 +578,7 @@
                    data-ng-if="vm.descriptionCardIsComplete()"></i>
                 Description
                 <small class="c-red" data-ng-if="!vm.descriptionCardIsComplete()">
-                    Incomplet (obligatoire)
+                    Obligatoire (au moins 100 caractères)
                 </small>
             </h2>
         </div>
@@ -592,14 +592,14 @@
                 <div class="form-group"
                      data-ng-class="{'has-error': !vm.about.aboutMe}">
                     <div class="fg-line">
-                                    <textarea class="form-control" rows="2"
+                                    <textarea class="form-control" rows="4"
                                               name="aboutMe"
                                               data-ng-model="vm.about.aboutMe"
                                               required="required"
                                               data-ng-minlength="100"
                                               data-auto-size
                                               data-autosize-on="true"
-                                              placeholder="Décrivez-vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan. Indiquez vos certifications ou distinctions"></textarea>
+                                              placeholder="Décrivez-vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan. Indiquez vos certifications ou distinctions."></textarea>
                     </div>
                     <div data-ng-messages="aboutMeForm.aboutMe.$error">
                         <small class="help-block" data-ng-message="minlength">
