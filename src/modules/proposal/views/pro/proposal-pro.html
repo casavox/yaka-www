@@ -36,13 +36,11 @@
 
     <div id="content" class="content">
 
-
         <div class="container">
 
             <div class="block-header">
                 <h2>{{vm.project.title | yakaTranslateTitle}}</h2>
             </div>
-
 
             <div class="yakaMain proposalMainView">
                 <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
@@ -233,7 +231,7 @@
                                                     <span ng-switch-when="SELECTED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
                                                     <span ng-switch-when="RATE_PRO" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
                                                     <span ng-switch-when="COMPLETED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                    <span ng-switch-default class="whiteSpacePre">{{vm.projectTmp.address.locality}} {{vm.projectTmp.address.postalCode}}</span>
+                                                    <span ng-switch-default class="whiteSpacePre">{{vm.projectTmp.address.postalCode}} {{vm.projectTmp.address.locality}}</span>
                                                 </div>
                                             </dd>
                                         </dl>
@@ -248,15 +246,21 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
-                                        <div class="lightbox photos clearfix">
-                                            <div
-                                                data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                                class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
-                                                ng-repeat="image in vm.projectTmp.images">
+                                        <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
+                                            <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                                 data-sub-html="#caption{{$index}}"
+                                                 class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                                 tooltip-placement="top"
+                                                 uib-tooltip="{{image.description}}"
+                                                 ng-repeat="image in vm.projectTmp.images">
                                                 <div class="lightbox-item p-item">
-                                                    <img
-                                                        ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                                        alt=""/>
+                                                    <img ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                         alt=""/>
+                                                </div>
+                                                <div id="caption{{$index}}" style="display:none">
+                                                    <div class="galleryCaption">
+                                                        <p>{{image.description}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

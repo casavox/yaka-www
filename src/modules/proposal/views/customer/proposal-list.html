@@ -75,14 +75,13 @@
                     </div>
                 </div>
             </div>
-            <div class="card projectCreated" ng-show="!vm.project.proposals || vm.project.proposals.length == 0"
+            <div class="card projectCreated" ng-show="vm.project.proposals && vm.project.proposals.length == 0"
                  ng-cloak>
                 <div class="card pt-inner ">
                     <div class="pti-header bgm-lightblue">
                         <h2>Votre projet est correctement créé !</h2>
 
-                        <div class="ptih-title">Nous l'avons communiqué aux professionnels de votre secteur
-                        </div>
+                        <div class="ptih-title">Nous l'avons communiqué aux professionnels de votre secteur</div>
                     </div>
 
                     <div class="pti-body">
@@ -144,13 +143,16 @@
                                                     {{p.professional.user.firstName}} {{p.professional.user.lastName}}</span>
                                                 <span ng-if="p.status == 'SELECTED'">
                                                     {{p.professional.company.name}}</span>
+
                                                 <div class="c-gray m-t-0 m-b-0" ng-if="p.status == 'PRO_DECLINED'">
                                                     <p class="m-b-0"><strong>Annulée par le Pro.</strong></p>
+
                                                     <p class="m-b-0">{{p.professional.user.firstName}}
                                                         {{p.professional.user.lastName}}</p>
                                                 </div>
                                                 <div class="c-gray m-t-0 m-b-0" ng-if="p.status == 'CUSTOMER_DECLINED'">
                                                     <p class="m-b-0"><strong>Proposition refusée</strong></p>
+
                                                     <p class="m-b-0">{{p.professional.user.firstName}}
                                                         {{p.professional.user.lastName}}</p>
                                                 </div>
