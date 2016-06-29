@@ -187,7 +187,7 @@
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
                     <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()">
+                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()" id="signInPopupButton">
                         SE CONNECTER
                     </div>
                     <div class="col-xs-12 passwordForgotten">
