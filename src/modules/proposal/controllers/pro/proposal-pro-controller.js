@@ -188,8 +188,10 @@
             vm.error.price = vm.error.price || {};
             if (vm.myPrice <= 10) {
                 vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
+                vm.error.price.flag = true;
             } else if (vm.myPrice > 1000000) {
                 vm.error.price.message = "Veuillez entrer un montant réaliste";
+                vm.error.price.flag = true;
             }
             vm.proposalTmp.price = vm.myPrice;
             vm.myPriceFlag = false;

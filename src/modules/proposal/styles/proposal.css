@@ -302,3 +302,14 @@
 #profile-main.pro.no-scroll {
     height: calc(100vh - 170px);
 }
+
+.proProposalListPrice {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.unreadMessagesIndicator.proProposalList {
+    left: 55px;
+    top: 27px;
+}

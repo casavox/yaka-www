@@ -176,17 +176,17 @@
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
-                                            <dt>Mon prix</dt>
+                                            <dt class="yakaDisableEllipsis">Mon prix</dt>
                                             <dd class="l-h-18">
-                                                {{vm.proposalTmp.price}} € <i
+                                                {{vm.proposalTmp.price || '--'}} € <i
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
                                                 data-ng-click="vm.editPrice()"></i>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Ma date d'intervention</dt>
+                                            <dt class="yakaDisableEllipsis">Ma date d'intervention</dt>
                                             <dd class="l-h-18">
-                                                {{vm.proposalTmp.startDate | date: 'dd MMMM yyyy'}} <i
+                                                {{(vm.proposalTmp.startDate | date: 'dd MMMM yyyy') || '--'}} <i
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
                                                 data-ng-click="vm.editDate()"></i>
                                             </dd>
@@ -202,14 +202,14 @@
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
-                                            <dt>Description</dt>
+                                            <dt class="yakaDisableEllipsis">Description</dt>
                                             <dd>
                                                 {{vm.projectTmp.description}}
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
-                                            data-ng-if="vm.proposal.professional.qualities && vm.proposal.professional.qualities.length > 0">
-                                            <dt>Mots clés</dt>
+                                            data-ng-if="vm.getTags() && vm.getTags().length > 0">
+                                            <dt class="yakaDisableEllipsis">Mots clés</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
                                                     <li data-ng-repeat="tag in vm.getTags()">
@@ -219,13 +219,13 @@
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Date souhaitée des travaux</dt>
+                                            <dt class="yakaDisableEllipsis">Date souhaitée des travaux</dt>
                                             <dd>
                                                 Début souhaité {{vm.getWhen()}}
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Lieu du chantier</dt>
+                                            <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
                                             <dd>
                                                 <div data-ng-switch on="vm.proposal.status">
                                                     <span data-ng-switch-when="SELECTED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
@@ -239,7 +239,7 @@
                                 </div>
                             </div>
 
-                            <div class="pmb-block"
+                            <div class="pmb-block clearfix"
                                  data-ng-if="vm.projectTmp.images && vm.projectTmp.images.length > 0">
                                 <div class="pmbb-header">
                                     <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Photos</h2>

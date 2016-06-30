@@ -82,3 +82,67 @@
 .dateEdit ul.questions-ul li {
     width: 100% !important;
 }
+
+@media (max-width: 767px) {
+
+    .proposalMainView.proMakeOffer .proAvatarProposalImage {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .proposalMainView.proMakeOffer .yakaAvatarInitialsProposal {
+        width: 50px !important;
+        height: 50px !important;
+        line-height: 43px;
+        font-size: 17px;
+    }
+
+    .proposalMainView.proMakeOffer .proposalProName h2 {
+        position: absolute;
+        left: 23%;
+        top: 17px;
+        width: 77%;
+    }
+
+    .proposalMainView.proMakeOffer .pm-overview.pro {
+        height: 80px;
+    }
+
+    .type-project-box {
+        width: calc(50% - 22px) !important;
+    }
+
+    .type-project-box-content {
+        height: 75px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .type-project-box-content .v-icon {
+        height: 40px;
+        width: 40px;
+    }
+
+    .multiDomainChoiceIcon {
+        margin-left: calc((50% + 11px) / 2) !important;
+    }
+
+    .multiDomainChoiceIcon4Icons {
+        width: 90px;
+    }
+
+    .col-sm-9.multiDomainChoiceDescription {
+        margin-top: 10px !important;
+        font-size: 11px;
+    }
+
+    .multiDomainChoiceDescription div {
+        margin-left: 0 !important;
+    }
+}
+
+.multiDomainChoiceDescription {
+    margin-top: 30px !important;
+}
