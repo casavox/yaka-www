@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="view">
 
@@ -31,7 +31,8 @@
                         <h2 class="m-t-5 m-l-10 text-left">Ou sur plusieurs ?</h2>
 
                         <div class="row vertical-center no-margin">
-                            <div class="col-xs-3 no-margin no-padding type-project-box" data-ng-class="vm.multi"
+                            <div class="col-xs-3 no-margin no-padding type-project-box"
+                                 data-ng-class="vm.multi"
                                  data-ng-click="vm.selectType('AUTO_MULTI')"
                                  title="{{'ACTIVITY_MULTI' | translate}}" data-ng-show="vm.wait">
                                 <div class="type-project-box-content">
@@ -85,16 +86,14 @@
                     <h4 class="material-title material-title-small">Fournissez-vous une partie du matériel ?</h4>
 
                     <div class="col-sm-6">
-                        <div class="v-btn center" data-ng-click="vm.material = 'yes'"
-                             data-ng-class="{activate: vm.material == 'yes'}">
-                            OUI
+                        <div id="materialYes" class="v-btn center" data-ng-click="vm.material = 'yes'"
+                             data-ng-class="{activate: vm.material == 'yes'}">OUI
                         </div>
                         <p class="material-sub">Précisez ci-dessous</p>
                     </div>
                     <div class="col-sm-6">
-                        <div class="v-btn center" data-ng-click="vm.material = 'no'"
-                             data-ng-class="{activate: vm.material == 'no'}">
-                            NON
+                        <div id="materialNo" class="v-btn center" data-ng-click="vm.material = 'no'"
+                             data-ng-class="{activate: vm.material == 'no'}">NON
                         </div>
                         <p class="material-sub"></p>
                     </div>
@@ -108,12 +107,12 @@
                           placeholder="Au moins 30 caractères - Que voulez-vous faire faire ? Décrivez-nous votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez-nous également si vous avez des contraintes ou souhaits particuliers."
                           data-ng-blur="vm.verifDescription()"></textarea>
 
-                <p class="error center"
+                <p id="errorDescriptionMessage" class="error center"
                    data-ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
                     {{vm.error.description.message}}
                 </p>
 
-                <button class="col-xs-4 col-xs-offset-4 btn btn-primary btn-lg waves-effect m-t-20"
+                <button id="descriptionOk" class="col-xs-4 col-xs-offset-4 btn btn-primary btn-lg waves-effect m-t-20"
                         data-ng-click="vm.continueProject()"
                         data-ng-disabled="!vm.material || vm.projectDescription.length < 30">
                     Continuer
@@ -335,7 +334,7 @@
                                    type="text"
                                    name="address"
                                    id="address"
-                                   placeholder="Précisez votre adresse (vous seul décidez quand et par qui elle sera visible)"
+                                   placeholder="Indiquez votre adresse complète (vous seul décidez quand et par qui elle sera visible)"
                                    class="input-custom">
                         </div>
 
