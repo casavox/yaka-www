@@ -285,6 +285,14 @@
         width: calc(100% - 25px);
     }
 
+    .projectCreated .pti-header h2 {
+        font-size: 30px !important;
+        margin-bottom: 10px;
+    }
+
+    .projectCreated .pti-header {
+        padding: 20px 10px 60px !important;
+    }
 }
 
 .proposalProjectTitle {

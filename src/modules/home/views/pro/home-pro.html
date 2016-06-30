@@ -217,7 +217,7 @@
                     Ce nom n'est pas valide
                 </div>
 
-                <input class="form-control" type="email" placeholder="Email" data-ng-model="vm.newUser.email"
+                <input class="form-control" type="email" name="username" placeholder="Email" data-ng-model="vm.newUser.email"
                        data-ng-disabled="vm.needToHideEmail()"/>
 
                 <div class="proHomeSection2InputError"
@@ -225,7 +225,7 @@
                     Cet email n'est pas valide
                 </div>
 
-                <input class="form-control" type="password" placeholder="Mot de passe"
+                <input class="form-control" type="password" name="password" placeholder="Mot de passe"
                        data-ng-model="vm.newUser.password"/>
 
                 <div class="proHomeSection2InputError"
@@ -376,9 +376,9 @@
                     Google
                 </div>
 
-                <input class="form-control" type="text" placeholder="Email" data-ng-model="vm.loginUser.email"/>
+                <input class="form-control" type="text" name="username" placeholder="Email" data-ng-model="vm.loginUser.email"/>
 
-                <input class="form-control" type="password" placeholder="Mot de passe"
+                <input class="form-control" type="password" name="password" placeholder="Mot de passe"
                        data-ng-model="vm.loginUser.password"
                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
