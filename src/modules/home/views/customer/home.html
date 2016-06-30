@@ -180,14 +180,16 @@
                         Google
                     </div>
 
-                    <input class="form-control" type="text" placeholder="Email" data-ng-model="vm.loginUser.email"/>
+                    <input class="form-control" type="text" name="username" placeholder="Email"
+                           data-ng-model="vm.loginUser.email"/>
 
-                    <input class="form-control" type="password" placeholder="Mot de passe"
+                    <input class="form-control" type="password" name="password" placeholder="Mot de passe"
                            data-ng-model="vm.loginUser.password"
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
                     <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()" id="signInPopupButton">
+                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
+                         id="signInPopupButton">
                         SE CONNECTER
                     </div>
                     <div class="col-xs-12 passwordForgotten">
@@ -264,13 +266,13 @@
                             <div class="form-group fg-float m-b-30"
                                  data-ng-class="{'has-error': !vm.newUser.email}">
                                 <div class="fg-line">
-                                    <input type="text" name="email" data-ng-disabled="vm.isSocialRegister()"
+                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
                                            required="required" yaka-input-email>
                                     <label class="fg-label">Email</label>
                                 </div>
-                                <div data-ng-messages="registerForm.email.$error">
+                                <div data-ng-messages="registerForm.username.$error">
                                     <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                         valide
                                     </small>
