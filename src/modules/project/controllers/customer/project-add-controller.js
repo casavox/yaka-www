@@ -61,7 +61,7 @@
             2: false,
             3: false
         };
-        $rootScope.photos = [{}, {}, {}, {}];
+        $rootScope.photos = [];
         vm.newAddr = {};
         var scrollOptions = {containerId: 'main-scroll-container'};
         $scope.options = {
@@ -112,8 +112,44 @@
         };
 
         // UPLOAD FILE
+        /*
+         $scope.uploadFiles = function (files, invalides, index) {
+         if (invalides.length > 0) {
+         if (invalides[0].$error == "maxSize")
+         alertMsg.send("Taille maximum : 5Mo.", "danger");
+         }
+         $scope.files = files;
+         if (!$scope.files) return;
+         angular.forEach(files, function (file) {
+         if (file && !file.$error) {
+         vm.imageLoading[index] = true;
+         file.upload = Upload.upload({
+         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+         data: {
+         upload_preset: cloudinary.config().upload_preset,
+         tags: 'project',
+         context: 'photo=' + $scope.title,
+         file: file
+         }
+         }).progress(function (e) {
+         file.progress = Math.round((e.loaded * 100.0) / e.total);
+         file.status = "Uploading... " + file.progress + "%";
+         }).success(function (data, status, headers, config) {
+         vm.imageLoading[index] = false;
+         $rootScope.photos = $rootScope.photos || [];
+         data.context = {custom: {photo: $scope.title}};
+         file.result = data;
+         $rootScope.photos[index] = data;
+         }).error(function (data, status, headers, config) {
+         vm.imageLoading[index] = false;
+         file.result = data;
+         });
+         }
+         });
+         };
+         */
 
-        $scope.uploadFiles = function (files, invalides, index) {
+        vm.uploadFiles = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 5Mo.", "danger");
@@ -122,7 +158,6 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
-                    vm.imageLoading[index] = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -135,18 +170,17 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.imageLoading[index] = false;
-                        $rootScope.photos = $rootScope.photos || [{}, {}, {}, {}];
+                        $rootScope.photos = $rootScope.photos || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
-                        $rootScope.photos[index] = data;
+                        $rootScope.photos.push({cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
-                        vm.imageLoading[index] = false;
-                        file.result = data;
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
             });
         };
+
 
         $scope.dragOverClass = function ($event) {
             var items = $event.dataTransfer.items;
@@ -269,16 +303,7 @@
                 formData.address.name = vm.newAddr.name;
                 formData.address.address = vm.newAddr.address;
             }
-            for (var i = 0; i < $rootScope.photos.length; i++) {
-                if ($rootScope.photos[i].public_id) {
-                    var tmp = {cloudinaryPublicId: $rootScope.photos[i].public_id};
-                    if ($rootScope.photos[i].description) {
-                        tmp.description = $rootScope.photos[i].description;
-                    }
-                    formData.images = formData.images || [];
-                    formData.images.push(tmp);
-                }
-            }
+            formData.images = $rootScope.photos;
             if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
                 networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST);
             else {
@@ -451,17 +476,7 @@
         };
 
         vm.continueProjectImg = function () {
-            var flag = 0;
-            for (var i = 0; i < $rootScope.photos.length; i++) {
-                if ($rootScope.photos[i].public_id) {
-                    flag += 1;
-                } else {
-                    $rootScope.photos.splice(flag, 1);
-                    i += 1;
-                }
-            }
-
-            if (flag == 0) {
+            if ($rootScope.photos && $rootScope.photos.length <= 0) {
                 vm.continueImg = false;
                 swal({
                     title: "Votre projet ne contient pas de photos !",
@@ -684,5 +699,26 @@
         }
 
         vm.initHours();
+
+        vm.saveComment = function () {
+            $('html').trigger('click');
+        };
+
+        vm.removeImage = function (imageIndex) {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Voulez-vous vraiment supprimer cette image ?",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui, je veux la supprimer",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    $rootScope.photos.splice(imageIndex, 1);
+                    $scope.$applyAsync();
+                }
+            });
+        };
     }
 })();

@@ -520,7 +520,6 @@ md-input-container {
     left: 0px !important;
     height: calc(100% - 55px) !important;
     width: 100% !important;
-    background-color: #edeff5 !important;
     overflow: auto !important;
 }
 
@@ -2628,20 +2627,20 @@ md-input-container {
 }
 
 .questions-ul {
-    padding-left: 0;
     padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .question-li {
     list-style: none;
     border: 2px solid #03A9F4;
-    width: 456px;
-    height: 56px;
+    width: 100%;
+    height: 40px;
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 14px;
     color: #03A9F4;
-    letter-spacing: 1.88px;
-    line-height: 56px;
+    line-height: 40px;
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -2704,13 +2703,12 @@ md-input-container {
 }
 
 .v-btn {
-    width: 136px;
-    height: 35px;
-    line-height: 35px;
+    height: 31px;
+    line-height: 28px;
     list-style: none;
     border: 2px solid #03A9F4;
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 14px;
     color: #03A9F4;
     letter-spacing: 1.88px;
     text-align: center;
@@ -2944,7 +2942,7 @@ md-input-container {
 }
 
 .error {
-    font-size: 18px;
+    font-size: 14px;
     color: #F44336 !important;
     letter-spacing: 0.53px;
     line-height: 21px;
@@ -3818,7 +3816,7 @@ md-input-container {
 
 .select-addr {
     height: 40px;
-    margin-bottom: 40px !important;
+    margin-bottom: 20px !important;
 }
 
 .select-addr > div {
