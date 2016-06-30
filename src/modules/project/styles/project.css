@@ -82,3 +82,29 @@
 .dateEdit ul.questions-ul li {
     width: 100% !important;
 }
+
+@media (max-width: 767px) {
+
+    .proposalMainView.proMakeOffer .proAvatarProposalImage {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .proposalMainView.proMakeOffer .yakaAvatarInitialsProposal {
+        width: 50px !important;
+        height: 50px !important;
+        line-height: 43px;
+        font-size: 17px;
+    }
+
+    .proposalMainView.proMakeOffer .proposalProName h2 {
+        position: absolute;
+        left: 23%;
+        top: 17px;
+        width: 77%;
+    }
+
+    .proposalMainView.proMakeOffer .pm-overview.pro {
+        height: 80px;
+    }
+}

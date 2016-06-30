@@ -51,10 +51,13 @@
                             rn-carousel-buffered>
                             <li data-ng-repeat="lead in vm.leads track by lead.id" data-ng-class="'id-' + lead.id">
                                 <a title="{{lead.title | yakaTranslateTitle}}">
-                                    <div class="proDashboardListItem waves-effect"
+                                    <div class="proDashboardListItem"
                                          ui-sref="pro-project-proposal-new({projectId: lead.id})">
                                         <div class="proDashboardListItemLogo">
-                                            <img width="50" height="50" data-ng-src="{{vm.getIcon(lead)}}"/>
+                                            <img data-ng-show="lead.activities[0].code != 'AUTO_MULTI'" width="50" height="50"
+                                                 data-ng-src="{{vm.getIcon(lead)}}"/>
+                                            <i data-ng-show="lead.activities[0].code == 'AUTO_MULTI'"
+                                               class="zmdi zmdi-apps zmdi-hc-3x c-cyan center m-t-10"/>
                                         </div>
                                         <div class="proDashboardListItemTitle">
                                             {{lead.title | yakaTranslateTitle}}

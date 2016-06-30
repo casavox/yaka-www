@@ -28,106 +28,228 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
-        <div class="container">
-            <div class="card">
-                <div class="row no-margin">
-                    <div class="col-xs-12">
-                        <p class="pro-title-post">
-                            Mis à jour le <span am-time-ago="vm.project.updated"></span>
-                        </p>
-                        <cl-image public-id="{{vm.projectTmp.user.avatar.cloudinaryPublicId}}"
-                                  class="img-circle pro-icon-medium mt-20 fl-l ml-15" format="png"
-                                  data-ng-if="vm.projectTmp.user.avatar.cloudinaryPublicId">
-                            <cl-transformation height="40" width="40" crop="fill"/>
-                        </cl-image>
-                        <div class="img-default-medium mt-20 fl-l ml-15"
-                             data-ng-if="!vm.projectTmp.user.avatar.cloudinaryPublicId">
-                            {{vm.projectTmp.user.firstName[0] | uppercase}}.
-                            {{vm.projectTmp.user.lastName[0]| uppercase}}.
-                        </div>
-                        <div class="pro-proposal-title">
-                            <p>{{vm.project.title | yakaTranslateTitle}}</p>
 
-                            <p>{{vm.projectTmp.user.firstName}} {{vm.projectTmp.user.lastName}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 ">
-                        <div id="map_canvas">
-                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
-                                                dragging="false">
-                                <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
-                                                fill="vm.circle.fill" radius="vm.circle.radius"
-                                                bounds="vm.circle.bounds"
-                                                visible="vm.circle.visible" geodesic="true" editable="false"
-                                                draggable="false" clickable="true" control="vm.circle.control"
-                                                events="vm.circle.events"></ui-gmap-circle>
-                            </ui-gmap-google-map>
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Où
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            {{vm.projectTmp.address.locality}} {{vm.projectTmp.address.postalCode}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Quand
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            Début souhaité {{vm.getWhen()}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Mots clés
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            {{vm.getTags() | yakaTranslateTags}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Description
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            <textarea msd-elastic class="custom-textarea" disabled
-                                      data-ng-model="vm.projectTmp.description"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin" data-ng-if="vm.projectTmp.images && vm.projectTmp.images.lenght != 0">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Photos
-                        </div>
-                        <div class="col-xs-12 description-sub-text row mb-15 m-t-15">
-                            <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
-                                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                     data-sub-html="#caption{{$index}}"
-                                     class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
-                                     tooltip-placement="top"
-                                     uib-tooltip="{{image.description}}"
-                                     data-ng-repeat="image in vm.projectTmp.images">
-                                    <div class="lightbox-item p-item">
-                                        <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+
+        <div class="container">
+
+            <div class="block-header">
+                <h2>{{vm.project.title | yakaTranslateTitle}}</h2>
+            </div>
+
+            <div class="yakaMain proposalMainView proMakeOffer">
+                <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                    <div class="pm-overview pro hidden-xs">
+                        <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                             tabindex="0">
+                            <div
+                                style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                <div class="pmo-pic">
+                                    <div class="p-relative">
+                                        <img class="img-responsive proAvatarProposalImage"
+                                             data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
+                                             data-ng-src="{{vm.project.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
                                              alt=""/>
+
+                                        <div class="yakaAvatarInitialsProposal"
+                                             data-ng-if="!vm.project.user.avatar.cloudinaryPublicId">
+                                            {{vm.project.user.firstName[0] | uppercase}}.
+                                            {{vm.project.user.lastName[0]| uppercase}}.
+                                        </div>
+
+                                        <cl-image
+                                            public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                            class="proposalProMainPartnerImg" format="png"
+                                            data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                            <cl-transformation height="55" width="55" crop="fill" radius="max"/>
+                                        </cl-image>
+
                                     </div>
-                                    <div id="caption{{$index}}" style="display:none">
-                                        <div class="galleryCaption">
-                                            <p>{{image.description}}</p>
+
+                                    <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                        <h2 class="yakaEllipsis">
+                                            {{vm.project.user.firstName}}
+                                            {{vm.project.user.lastName}}
+                                        </h2>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pm-body clearfix">
+
+                        <div class="pm-overview pro visible-xs">
+                            <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                                 tabindex="0">
+                                <div
+                                    style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                    <div class="pmo-pic">
+                                        <div class="p-relative">
+                                            <img class="img-responsive proAvatarProposalImage"
+                                                 data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
+                                                 data-ng-src="{{vm.project.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                                 alt=""/>
+
+                                            <div class="yakaAvatarInitialsProposal"
+                                                 data-ng-if="!vm.project.user.avatar.cloudinaryPublicId">
+                                                {{vm.project.user.firstName[0] | uppercase}}.
+                                                {{vm.project.user.lastName[0]| uppercase}}.
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                            <h2 class="yakaEllipsis">
+                                                {{vm.project.user.firstName}}
+                                                {{vm.project.user.lastName}}
+                                            </h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row no-margin">
+                            <div class="col-xs-12 ">
+                                <div id="map_canvas">
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                        dragging="false">
+                                        <ui-gmap-circle
+                                            data-ng-if="vm.proposalTmp.status != 'SELECTED' && vm.proposalTmp.status != 'RATE_PRO' && vm.proposalTmp.status != 'COMPLETED'"
+                                            center="vm.circle.center" stroke="vm.circle.stroke"
+                                            fill="vm.circle.fill" radius="vm.circle.radius"
+                                            bounds="vm.circle.bounds"
+                                            visible="vm.circle.visible" geodesic="true" editable="false"
+                                            draggable="false" clickable="true" control="vm.circle.control"
+                                            events="vm.circle.events"></ui-gmap-circle>
+                                        <ui-gmap-marker
+                                            data-ng-if="vm.proposalTmp.status == 'SELECTED' || vm.proposalTmp.status == 'RATE_PRO' || vm.proposalTmp.status == 'COMPLETED'"
+                                            idKey='1' coords='vm.markerCoords'
+                                            visible="vm.marker.visible"></ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Faire une proposition</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Mon prix</dt>
+                                        <dd class="l-h-18">
+                                            {{vm.offer.price || '--'}} € <i
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                            data-ng-click="vm.editPrice()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Ma date d'intervention</dt>
+                                        <dd class="l-h-18">
+                                            {{(vm.offer.date | date: 'dd MMMM yyyy') || '--'}} <i
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
+                                            data-ng-click="vm.editDate()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Mon premier message au client (obligatoire)</dt>
+                                        <dd class="l-h-18">
+                                            <textarea class="form-control" data-auto-size=""
+                                                      placeholder="Entrez votre message içi"
+                                                      data-autosize-on="true"
+                                                      data-ng-maxlength="140"
+                                                      maxlength="140"
+                                                      data-ng-model="vm.offer.comment"></textarea>
+
+                                            <div class="proCommentCounter">
+                                                {{vm.getStringLength(vm.offer.comment)}} / 140 caractères
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                    <p class="error center makeOfferError"
+                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 20">
+                                        Message trop court (20 caractères min)
+                                    </p>
+                                    <button class="btn btn-primary btn-block waves-effect"
+                                            data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
+                                        Envoyer la proposition
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Informations</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Description</dt>
+                                        <dd>
+                                            {{vm.projectTmp.description}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.getTags() && vm.getTags().length > 0">
+                                        <dt class="yakaDisableEllipsis">Mots clés</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="tag in vm.getTags()">
+                                                    {{'ACTIVITY_' + tag | translate}}
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Date souhaitée des travaux</dt>
+                                        <dd>
+                                            Début souhaité {{vm.getWhen()}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
+                                        <dd>
+                                            <div data-ng-switch on="vm.proposal.status">
+                                                <span data-ng-switch-when="SELECTED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                                <span data-ng-switch-when="RATE_PRO" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                                <span data-ng-switch-when="COMPLETED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                                <span data-ng-switch-default class="whiteSpacePre">{{vm.projectTmp.address.postalCode}} {{vm.projectTmp.address.locality}}</span>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block clearfix"
+                             data-ng-if="vm.projectTmp.images && vm.projectTmp.images.length > 0">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Photos</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
+                                        <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                             data-sub-html="#caption{{$index}}"
+                                             class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                             tooltip-placement="top"
+                                             uib-tooltip="{{image.description}}"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item">
+                                                <img
+                                                    data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                            </div>
+                                            <div id="caption{{$index}}" style="display:none">
+                                                <div class="galleryCaption">
+                                                    <p>{{image.description}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -136,133 +258,61 @@
                     </div>
                 </div>
             </div>
-            <div class="block-header">
-                <h2>Ma proposition</h2>
-            </div>
-            <div data-ng-show="vm.proposal.status != 'SELECTED'">
-                <div class="card col-xs-12 row no-margin makeOfferBox">
-                    <div data-ng-if="!vm.project.error">
-                        <div class="cursor-pointer" data-ng-click="vm.myPrice()">
-                            <span class="icon-pen-blue-pro"></span>
-                            <span class="price-area" data-ng-show="!vm.offer.price.price">---</span>
-                            <span class="price-area" data-ng-show="vm.offer.price.price">{{vm.offer.price.type}}. {{vm.offer.price.price}} €</span>
+        </div>
 
-                            <p class="pro-menu-title">Mon devis</p>
+        <div class="yakaPopup" data-ng-show="vm.myPriceFlag"
+             data-ng-click="vm.myPriceFlag = false" data-ng-cloak>
+            <div class="container">
+                <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+                    <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                         data-ng-click="vm.myPriceFlag = false" alt=""/>
+                    <h4>Mon prix</h4>
 
-                            <p class="pro-menu-subTitle">Estimatif ou final ?</p>
+                    <div class="row">
+                        <div class="col-xs-6 col-xs-offset-4">
+                            <input type="text" class="form-control t-right f-s-18" id="exampleInputEmail2"
+                                   placeholder="Entrer un prix"
+                                   data-ng-model="vm.price"
+                                   yaka-input-numbers-only>
                         </div>
-                        <div class="cursor-pointer" data-ng-click="vm.myDate()">
-                            <span class="icon-pen-blue-pro"></span>
-                            <span class="price-area" data-ng-show="!vm.offer.date.date">---</span>
-                            <span class="price-area" data-ng-show="vm.offer.date.date">{{vm.offer.date.date | date:'dd MMM yyyy'}}</span>
-
-                            <p class="pro-menu-title">Ma date d'intervention</p>
-
-                            <p class="pro-menu-subTitle">Quand pensez-vous pouvoir commencer ?</p>
+                        <div class="col-xs-2 sym-euro">
+                            €
                         </div>
-                        <div>
-                            <p class="pro-menu-title">Mon premier message au client</p>
-                                <textarea class="custom-textarea-red w-100p placeholder-xs mb-10"
-                                          data-ng-maxlength="140"
-                                          maxlength="140"
-                                          placeholder="Commentaire"
-                                          data-auto-size
-                                          data-ng-trim="true"
-                                          data-ng-model="vm.offer.comment"></textarea>
+                    </div>
+                    <p class="error center my-price-error" data-ng-show="vm.error.price.flag">
+                        {{vm.error.price.message}}
+                    </p>
 
-                            <div class="proCommentCounter">
-                                {{vm.getStringLength(vm.offer.comment)}} / 140 caractères
-                            </div>
-                            <p class="error center makeOfferError" data-ng-show="vm.error.comment.flag">
-                                {{vm.error.comment.message}}
-                            </p>
-                        </div>
-                        <button type="button" class="yakaButton yakaBlue button btn send-offer"
-                                data-ng-click="vm.sendOffer()">ENVOYER LA PROPOSITION
+                    <div class="clearfix m-t-10 f-right">
+                        <button class="btn bgm-lightblue waves-effect" data-ng-click="vm.selectPrice();">
+                            Enregistrer
                         </button>
                     </div>
-                    <div data-ng-if="vm.project.error">
-                        <div class="proErrorMessage"
-                             data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
-                            Votre profil est incomplet, vous ne pouvez pas encore répondre aux offres.
-                        </div>
 
-                        <div class="yakaButton yakaOrange m-b-20"
-                             data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'"
-                             ui-sref="pro-profile">
-                            COMPLÉTER MON PROFIL
-                        </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class="proErrorMessage"
-                             data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
-                            Vous ne pouvez pas encore proposer vos services car votre profil est en cours de
-                            validation.
-                            Il sera mis-à-jour sous peu, vous en serez notifié par mail -
-                            En cas de problème ou question n'hésitez pas à contacter le support.
-                        </div>
+        <div class="yakaPopup" data-ng-show="vm.myDateFlag"
+             data-ng-click="vm.myDateFlag = false" data-ng-cloak>
+            <div class="container">
+                <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+                    <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                         data-ng-click="vm.myDateFlag = false" alt=""/>
+                    <h4>Ma date d'intervention</h4>
+
+                    <div style="display:inline-block" class="center custom-picker">
+                        <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
+                                        class="well well-sm custom-date"></uib-datepicker>
+                    </div>
+                    <div class="clearfix m-t-10 f-right">
+                        <button class="btn bgm-lightblue waves-effect"
+                                data-ng-click="vm.myDateFlag = false; vm.selectDate();">
+                            Enregistrer
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="popUp" data-ng-show="vm.myPriceFlag" data-ng-cloak>
-        <div class="popUp-container center-middle w-330">
-            <div class="popUp-content">
-                <span class="boxclose" data-ng-click="vm.myPriceFlag = false"></span>
-                <h4>Mon devis</h4>
-
-                <p class="info-popUp"></p>
-
-                <p class="info-popUp-comp">Indiquer si le devis est estimatif ou final</p>
-
-                <div class="row">
-                    <div class="col-xs-10">
-                        <input type="text" class="custom-input-number" min="0" step="1"
-                               data-ng-model="vm.price"
-                               data-ng-class="{'mb-25': !vm.error.price.flag}"
-                               yaka-input-numbers-only>
-                    </div>
-                    <div class="col-xs-2 sym-euro no-padding h-0">€</div>
-                </div>
-                <p class="error center my-price-error" data-ng-show="vm.error.price.flag">{{vm.error.price.message}}</p>
-            </div>
-            <div class="clearfix" data-ng-show="vm.projectTmp.type != 'EMERGENCY'">
-                <div class="pro-popUp-choice fl" data-ng-click="vm.selectPrice('Estimate')">ESTIMATION</div>
-                <div class="pro-popUp-choice fr" data-ng-click="vm.selectPrice('Final')">FINAL</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popUp" data-ng-show="vm.myDateFlag">
-        <div class="popUp-container center-middle">
-            <div class="popUp-content">
-                <span class="boxclose" data-ng-click="vm.myDateFlag = false"></span>
-                <h4>Date d'intervention estimée</h4>
-
-                <div style="display:inline-block; min-height:290px;" class="center custom-picker">
-                    <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
-                                    class="well well-sm custom-date"></uib-datepicker>
-                </div>
-            </div>
-            <div class="popUp-footer">
-                <div data-ng-click="vm.myDateFlag = false">ANNULER</div>
-                <div data-ng-click="vm.selectDate()">CONFIRMER</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popUp img-preview-size" data-ng-show="vm.imagePreviewFlag" data-ng-click="vm.imagePreviewFlag = false">
-        <div class="popUp-container center-middle" data-ng-click="$event.stopPropagation()">
-            <div class="popUp-content no-margin img-preview-popUp">
-                <span class="boxclose" data-ng-click="vm.imagePreviewFlag = false"></span>
-                <h4>Preview</h4>
-                <cl-image public-id="{{vm.imgTmpPreview.cloudinaryPublicId}}" secure="true" format="png" class="center">
-                </cl-image>
-                <textarea class="custom-textarea-image bt-20" data-ng-model="vm.imgTmpPreview.description"
-                          disabled></textarea>
-            </div>
-        </div>
-    </div>
-
 </section>

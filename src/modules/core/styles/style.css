@@ -1615,6 +1615,12 @@ md-input-container {
     white-space: nowrap;
 }
 
+.yakaDisableEllipsis {
+    text-overflow: initial !important;
+    overflow: visible !important;
+    white-space: initial !important;
+}
+
 .project-date {
     white-space: nowrap;
     margin-right: 5px;
