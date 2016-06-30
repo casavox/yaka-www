@@ -12,7 +12,7 @@
                 <div class="slide-main" id="slide1" data-ng-show="vm.selectCategory">
                     <div class="card col-md-10 col-md-offset-1">
                         <div class="card-header">
-                            <h2>
+                            <h2 class="t-center">
                                 Votre projet porte-t-il sur une activité en particulier ?
                             </h2>
                         </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="row no-margin">
                             <div class="card-header">
-                                <h2>
+                                <h2 class="t-center">
                                     Ou sur plusieurs ?
                                 </h2>
                             </div>
@@ -76,15 +76,16 @@
                     </div>
                 </div>
 
-                <div class="card col-md-10 col-md-offset-1" id="subSlide{{$index}}" data-ng-show="vm.questions[$index]"
+                <div class="card col-md-10 col-md-offset-1 clearfix" id="subSlide{{$index}}"
+                     data-ng-show="vm.questions[$index]"
                      data-ng-repeat="q in vm.questions" data-ng-if="q.childrenActivities">
                     <div class="card-header">
-                        <h2>
+                        <h2 class="t-center">
                             {{'ACTIVITY_' + q.code | translate }}
                         </h2>
                     </div>
-                    <ul class="questions-ul center">
-                        <li class="question-li center" data-ng-class="child.selected"
+                    <ul class="questions-ul center clearfix">
+                        <li class="col-xs-12 col-sm-8 question-li center" data-ng-class="child.selected"
                             data-ng-repeat="child in q.childrenActivities"
                             data-ng-click="vm.selectSubService(child, q.childrenActivities, $parent.$index)">
                             {{ 'ACTIVITY_' + child.code | translate }}
@@ -94,7 +95,7 @@
 
                 <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide3" data-ng-show="vm.service">
                     <div class="card-header">
-                        <h2>
+                        <h2 class="t-center">
                             Fournissez-vous une partie du matériel ?
                         </h2>
                     </div>
@@ -115,7 +116,7 @@
                     </p>
 
                     <div class="col-xs-12 card-header">
-                        <h2>
+                        <h2 class="t-center">
                             Décrivez votre projet
                         </h2>
                     </div>
@@ -144,7 +145,7 @@
                 </div>
                 <div class="card clearfix col-md-10 col-md-offset-1 p-b-20" id="slide4" data-ng-show="vm.continue">
                     <div class="col-xs-12 card-header">
-                        <h2>
+                        <h2 class="t-center">
                             Ajoutez des photos
                         </h2>
                     </div>
@@ -216,7 +217,7 @@
                 <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide5" data-ng-show="vm.continueImg">
 
                     <div class="col-xs-12 card-header">
-                        <h2>
+                        <h2 class="t-center">
                             Indiquez l'adresse des travaux
                             <small>
                                 Choisissez une de vos adresses ou créez-en une nouvelle
@@ -285,32 +286,33 @@
                     </button>
 
                 </div>
-                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6" data-ng-show="vm.continueAddressFlag">
+                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6"
+                     data-ng-show="vm.continueAddressFlag">
 
                     <div class="col-xs-12 card-header">
-                        <h2>
+                        <h2 class="t-center">
                             Quand souhaitez-vous que les travaux commencent ?
                         </h2>
                     </div>
 
                     <ul class="col-xs-12 no-padding questions-ul center">
-                        <li class="question-li center" data-ng-class="vm.child3"
+                        <li class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child3"
                             data-ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
                             Dès que possible
                         </li>
-                        <li class="question-li center" data-ng-class="vm.child2"
+                        <li class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child2"
                             data-ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
                             Dans le mois
                         </li>
                         <li data-ng-show="vm.dateType == 'WITHIN_A_MONTH'"
-                            class="custom-li-date question-li center date">
+                            class="col-xs-12 col-sm-8 custom-li-date question-li center date">
                             Avant le {{vm.desiredDateMonth | date:'dd MMMM'}}
                         </li>
-                        <li class="question-li center" data-ng-class="vm.child0"
+                        <li class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child0"
                             data-ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
                             À partir d'une date
                         </li>
-                        <li data-ng-show="vm.dateSelected" class="custom-li-date question-li center"
+                        <li data-ng-show="vm.dateSelected" class="col-xs-12 col-sm-8 custom-li-date question-li center"
                             data-ng-click="vm.unSelectdate()">
                             {{vm.dt | date:'dd-MM-yyyy'}}
                         </li>
