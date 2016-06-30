@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="view">
 
@@ -100,13 +100,13 @@
                         </h2>
                     </div>
                     <div class="col-xs-6 col-sm-3 col-sm-offset-3">
-                        <div class="v-btn center" data-ng-click="vm.material = 'yes'"
+                        <div id="materialYes" class="v-btn center" data-ng-click="vm.material = 'yes'"
                              data-ng-class="{activate: vm.material == 'yes'}">
                             OUI
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-3">
-                        <div class="v-btn center" data-ng-click="vm.material = 'no'"
+                        <div id="materialNo" class="v-btn center" data-ng-click="vm.material = 'no'"
                              data-ng-class="{activate: vm.material == 'no'}">
                             NON
                         </div>
@@ -268,7 +268,7 @@
                                        type="text"
                                        name="address"
                                        id="address"
-                                       placeholder="Précisez votre adresse (vous seul décidez quand et par qui elle sera visible)"
+                                       placeholder="Indiquez votre adresse complète (vous seul décidez quand et par qui elle sera visible)"
                                        class="form-control">
                             </div>
 
@@ -286,9 +286,7 @@
                     </button>
 
                 </div>
-                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6"
-                     data-ng-show="vm.continueAddressFlag">
-
+                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6" data-ng-show="vm.continueAddressFlag">
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
                             Quand souhaitez-vous que les travaux commencent ?
