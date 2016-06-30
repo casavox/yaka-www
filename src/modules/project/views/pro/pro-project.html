@@ -142,7 +142,7 @@
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Mon prix</dt>
                                         <dd class="l-h-18">
-                                            {{vm.offer.price || '--'}} € <i
+                                            {{vm.offer.price || '- - -'}} € <i
                                             class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
                                             data-ng-click="vm.editPrice()"></i>
                                         </dd>
@@ -150,7 +150,7 @@
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Ma date d'intervention</dt>
                                         <dd class="l-h-18">
-                                            {{(vm.offer.date | date: 'dd MMMM yyyy') || '--'}} <i
+                                            {{(vm.offer.date | date: 'dd MMMM yyyy') || '- - -'}} <i
                                             class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
                                             data-ng-click="vm.editDate()"></i>
                                         </dd>

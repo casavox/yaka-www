@@ -48,5 +48,16 @@
                 alertMsg.send("Impossible de supprimer cette offre", "danger");
             });
         }
+
+        vm.getWhen = function (proposal) {
+            switch (proposal.project.desiredDatePeriod) {
+                case "SPECIFIC":
+                    return "à partir du " + moment(proposal.project.desiredDate).format("D MMMM");
+                case "WITHIN_A_MONTH":
+                    return "dans le mois (avant le " + moment(proposal.project.desiredDate).format("D MMMM") + ")";
+                case "NONE":
+                    return 'dès que possible';
+            }
+        };
     }
 })();
