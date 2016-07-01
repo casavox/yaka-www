@@ -5046,6 +5046,10 @@ ul.yaka-chips li {
     margin-top: -19px;
 }
 
+.pm-body dl dd {
+    word-wrap: break-word !important;
+}
+
 .pointer {
     cursor: pointer;
 }

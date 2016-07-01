@@ -79,18 +79,6 @@
             $state.go("findjobs");
         }
 
-        function getTags() {
-            var res = "";
-            if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.activities) {
-                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
-                    if (i != 0)
-                        res += " - ";
-                    res += vm.projectTmp.activities[i].code
-                }
-            }
-            return res;
-        }
-
         function sendOffer() {
             if (vm.offer.comment && vm.offer.comment.length > 20 && vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
@@ -249,7 +237,7 @@
         vm.formIsValid = function () {
             return (vm.offer &&
             vm.offer.comment &&
-            vm.offer.comment.length >= 20);
+            vm.offer.co);
         };
     }
 })();

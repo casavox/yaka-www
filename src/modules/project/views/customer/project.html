@@ -28,157 +28,146 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
+
+
         <div class="container">
-            <div class="card">
-                <div class="row no-margin">
-                    <div class="col-xs-12">
-                        <div class="description-action-btn" data-ng-click="vm.edit()" data-ng-show="!vm.editFlag">
-                            MODIFIER
-                        </div>
-                        <div class="description-action-btn" data-ng-show="!vm.editFlag"
-                             data-ng-click="vm.openDeleteProjectPopup()">
-                            SUPPRIMER
-                        </div>
-                        <div class="description-action-btn color-red" data-ng-show="vm.editFlag"
-                             data-ng-click="vm.openSavePopup()">
-                            ENREGISTER
-                        </div>
-                        <div class="description-action-btn" data-ng-show="vm.editFlag" data-ng-click="vm.cancel()">
-                            ANNULER
-                        </div>
-                        <div class="description-date">
-                            Mis à jour <span am-time-ago="vm.project.updated"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 ">
-                        <div id="map_canvas">
-                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
-                                                dragging="false">
-                                <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
-                            </ui-gmap-google-map>
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin" title="{{vm.projectTmp.address.address}}">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Où
-                            <span class="icon-pen-blue" data-ng-show="vm.editFlag"
-                                  data-ng-click="vm.editWhere()"></span>
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.streetNumber}}
-                            {{vm.projectTmp.address.route}}, {{vm.projectTmp.address.postalCode}}
-                        </div>
 
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Quand
-                            <span class="icon-pen-blue" data-ng-show="vm.editFlag" data-ng-click="vm.editWhen()"></span>
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            Début souhaité {{vm.getWhen()}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Mots clés
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                            {{vm.getTags()}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Description
-                        </div>
-                        <div class="col-xs-12 description-sub-text">
-                                <textarea msd-elastic class="custom-textarea" disabled
-                                          data-ng-model="vm.projectTmp.description"
-                                          data-ng-hide="vm.editFlag"></textarea>
+            <div class="block-header">
+                <h2>{{vm.project.title | yakaTranslateTitle}}</h2>
+            </div>
 
-                            <form class="descriptionFormProject" data-ng-show="vm.editFlag" name="descriptionForm">
-                                <div class="form-group"
-                                     data-ng-class="{'has-error': !vm.projectTmp.description}">
-                                    <div class="fg-line">
-                                    <textarea class="form-control" rows="2"
-                                              name="description"
-                                              data-ng-model="vm.projectTmp.description"
-                                              required="required"
-                                              data-ng-minlength="5"
-                                              data-auto-size
-                                              data-autosize-on="true"
-                                              placeholder=""></textarea>
-                                    </div>
-                                    <div data-ng-messages="descriptionForm.description.$error">
-                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" data-ng-message="minlength">La description est trop
-                                            courte
-                                        </small>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="row no-margin"
-                     data-ng-if="(vm.projectTmp.images && vm.projectTmp.images.length > 0) || vm.editFlag">
-                    <div class="col-xs-12 row no-margin">
-                        <div class="col-xs-12 description-sub-title">
-                            Photos
-                        </div>
+            <div class="yakaMain proposalMainView proMakeOffer">
+                <div class="card m-b-15 clearfix" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
 
-                        <div class="col-xs-12 description-sub-text row mb-15 m-t-15">
+                    <div class="col-xs-12 no-padding clearfix">
 
-                            <!--Viewing mode-->
-
-                            <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
-                                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                     data-sub-html="#caption{{$index}}"
-                                     class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
-                                     tooltip-placement="top"
-                                     uib-tooltip="{{image.description}}"
-                                     data-ng-repeat="image in vm.projectTmp.images">
-                                    <div class="lightbox-item p-item">
-                                        <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                             alt=""/>
-                                    </div>
-                                    <div id="caption{{$index}}" style="display:none">
-                                        <div class="galleryCaption">
-                                            <p>{{image.description}}</p>
-                                        </div>
-                                    </div>
+                        <div class="row no-margin">
+                            <div class="col-xs-12 ">
+                                <div id="map_canvas">
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                        dragging="false">
+                                        <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                                    </ui-gmap-google-map>
                                 </div>
                             </div>
+                        </div>
 
-                            <!--Editing mode-->
+                        <div class="row no-margin">
+                            <div class="col-xs-12">
+                                <div class="description-action-btn" data-ng-click="vm.edit()"
+                                     data-ng-show="!vm.editFlag">
+                                    MODIFIER
+                                </div>
+                                <div class="description-action-btn color-red" data-ng-show="!vm.editFlag"
+                                     data-ng-click="vm.openDeleteProjectPopup()">
+                                    SUPPRIMER
+                                </div>
+                                <div class="description-action-btn color-red" data-ng-show="vm.editFlag"
+                                     data-ng-click="vm.openSavePopup()">
+                                    ENREGISTER
+                                </div>
+                                <div class="description-action-btn" data-ng-show="vm.editFlag"
+                                     data-ng-click="vm.cancel()">
+                                    ANNULER
+                                </div>
+                            </div>
+                        </div>
 
-                            <div class="" data-ng-show="vm.editFlag" data-ng-show="vm.editFlag">
-                                <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
-                                     data-ng-repeat="image in vm.projectTmp.images">
-                                    <div class="lightbox-item p-item projectImageTooltip">
-                                        <img
-                                            tooltip-placement="top"
-                                            uib-tooltip="{{image.description}}"
-                                            data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                            alt=""/>
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Informations</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Description</dt>
+                                        <dd>
+                                            {{vm.projectTmp.description}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.getTags() && vm.getTags().length > 0">
+                                        <dt class="yakaDisableEllipsis">Mots clés</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="tag in vm.getTags()">
+                                                    {{'ACTIVITY_' + tag | translate}}
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Date souhaitée des travaux</dt>
+                                        <dd>
+                                            Début souhaité {{vm.getWhen()}} <i
+                                            data-ng-show="vm.editFlag"
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                            data-ng-click="vm.editWhen()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
+                                        <dd>
+                                            <div data-ng-switch on="vm.proposal.status">
+                                                {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.address}}
+                                                <i data-ng-show="vm.editFlag"
+                                                   class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                                   data-ng-click="vm.editWhere()"></i>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block clearfix"
+                             data-ng-if="vm.projectTmp.images && vm.projectTmp.images.length > 0">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Photos</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <!--Viewing mode-->
+
+                                    <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
+                                        <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                             data-sub-html="#caption{{$index}}"
+                                             class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                             tooltip-placement="top"
+                                             uib-tooltip="{{image.description}}"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item">
+                                                <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                     alt=""/>
+                                            </div>
+                                            <div id="caption{{$index}}" style="display:none">
+                                                <div class="galleryCaption">
+                                                    <p>{{image.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
-                                        <button uib-dropdown-toggle class="btn bgm-lightblue btn-float floatingButtonImage ">
-                                            <i class="zmdi zmdi-comment-text-alt"></i>
-                                        </button>
+                                    <!--Editing mode-->
 
-                                        <div class="dropdown-menu stop-propagate">
+                                    <div class="" data-ng-show="vm.editFlag" data-ng-show="vm.editFlag">
+                                        <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item projectImageTooltip">
+                                                <img
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="{{image.description}}"
+                                                    data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                            </div>
+
+                                            <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                                                <button uib-dropdown-toggle
+                                                        class="btn bgm-lightblue btn-float floatingButtonImage ">
+                                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                                </button>
+
+                                                <div class="dropdown-menu stop-propagate">
                                                 <textarea placeholder="Ajouter un commentaire"
                                                           data-ng-model="image.description"
                                                           data-ng-maxlength="140"
@@ -187,35 +176,38 @@
                                                           data-ng-trim="false"
                                                           data-ng-change="vm.descriptionChanged(image)"></textarea>
 
-                                            <div class="descriptionCounter">
-                                                {{vm.getStringLength(image.description)}} / 140 caractères
+                                                    <div class="descriptionCounter">
+                                                        {{vm.getStringLength(image.description)}} / 140 caractères
+                                                    </div>
+
+                                                    <button class="btn bgm-lightblue btn-float"
+                                                            data-tl-action="save"
+                                                            data-ng-click="vm.saveComment();">
+                                                        <i class="zmdi zmdi-check"></i>
+                                                    </button>
+                                                </div>
                                             </div>
 
-                                            <button class="btn bgm-lightblue btn-float"
-                                                    data-tl-action="save"
-                                                    data-ng-click="vm.saveComment();">
-                                                <i class="zmdi zmdi-check"></i>
+                                            <button
+                                                class="floatingButtonImage floatingButtonImageDelete btn btn-danger btn-float"
+                                                data-ng-click="vm.removeImage($index)">
+                                                <i class="zmdi zmdi-delete"></i>
                                             </button>
                                         </div>
                                     </div>
 
-                                    <button class="floatingButtonImage floatingButtonImageDelete btn btn-danger btn-float"
-                                            data-ng-click="vm.removeImage($index)">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
-                                 ngf-drop="vm.uploadFiles($files)"
-                                 ngf-drag-over-class="dragOverClass($event)"
-                                 data-ng-model="files"
-                                 data-ng-multiple="false" data-ng-show="vm.editFlag">
-                                <div class="galleryUpload lightbox-item p-item"
-                                     ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
-                                     ngf-accept="'image/*'" ngf-max-size="5MB">
-                                    <div class="content">
-                                        <i class="zmdi zmdi-plus-circle-o"></i>
+                                    <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
+                                         ngf-drop="vm.uploadFiles($files)"
+                                         ngf-drag-over-class="dragOverClass($event)"
+                                         data-ng-model="files"
+                                         data-ng-multiple="false" data-ng-show="vm.editFlag">
+                                        <div class="galleryUpload lightbox-item p-item"
+                                             ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                                             ngf-accept="'image/*'" ngf-max-size="5MB">
+                                            <div class="content">
+                                                <i class="zmdi zmdi-plus-circle-o"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +217,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="yakaPopup" data-ng-show="vm.whereFlag"
          data-ng-click="vm.whereFlag = false" data-ng-cloak>
