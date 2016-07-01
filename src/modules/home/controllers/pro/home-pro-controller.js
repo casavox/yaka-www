@@ -271,7 +271,8 @@
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.user = res;
                 $localStorage.token = res.token;
-                if (window.yakaRedirectUrl != undefined) {
+                if (window.yakaRedirectUrl &&
+                    window.location.href != window.yakaRedirectUrl) {
                     window.location.href = window.yakaRedirectUrl;
                     delete window.yakaRedirectUrl;
                 } else {
