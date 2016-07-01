@@ -1,4 +1,4 @@
-<div class="yakaPopup" data-ng-show="app.getUser() && projectFlag" data-ng-cloak>
+<div class="yakaPopup" data-ng-show="app.getUser() && projectFlag && !$state.includes('support')" data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow yakaPopupRateWindow col-xs-12">
             <div class="f-20 c-black">
@@ -71,6 +71,9 @@
                         data-ng-disabled="!(rating.criteria.length > 0 && rating.criteria.length < 4 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
                     NOTER
                 </button>
+                <div data-ng-click="app.openSupport();" class="col-xs-12 no-padding t-center pointer m-t-10">
+                    Contacter le support
+                </div>
             </div>
         </div>
     </div>

@@ -196,7 +196,10 @@ angular.module('Yaka', [
         .module('Yaka')
         .run(runBlock);
 
-    function runBlock($rootScope, $localStorage, $injector, amMoment, moment) {
+    function runBlock($rootScope, $localStorage, $injector, amMoment, moment, $state) {
+
+        $rootScope.$state = $state;
+
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
                 $rootScope.menu = false;

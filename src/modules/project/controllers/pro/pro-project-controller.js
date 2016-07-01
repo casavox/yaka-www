@@ -17,7 +17,6 @@
 
         var vm = this;
         vm.getWhen = getWhen;
-        vm.getTags = getTags;
         vm.myPrice = myPrice;
         vm.myDate = myDate;
         vm.selectImagePreview = selectImagePreview;

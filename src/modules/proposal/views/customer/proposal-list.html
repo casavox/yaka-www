@@ -23,6 +23,15 @@
 
 <section id="main">
 
+    <ol class="breadcrumb container">
+        <li class="pointer" data-ui-sref="my-projects">
+            Mes projets
+        </li>
+        <li class="active">
+            {{vm.project.title | yakaTranslateTitle}}
+        </li>
+    </ol>
+
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 

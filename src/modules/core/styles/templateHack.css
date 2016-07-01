@@ -341,3 +341,7 @@ section#main.yakaMain .content .card {
         width: calc(100% - 6%) !important;
     }
 }
+
+.breadcrumb {
+    margin-top: -27px;
+}

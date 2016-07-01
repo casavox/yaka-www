@@ -24,6 +24,18 @@
 
 <section id="main">
 
+    <ol class="breadcrumb container">
+        <li class="pointer" data-ui-sref="my-projects">
+            Mes projets
+        </li>
+        <li class="pointer" data-ui-sref="proposals({projectId: vm.project.id})">
+            {{vm.project.title | yakaTranslateTitle}}
+        </li>
+        <li class="active">
+            Détails du projet
+        </li>
+    </ol>
+
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 

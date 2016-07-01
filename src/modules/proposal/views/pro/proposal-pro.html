@@ -31,6 +31,20 @@
 
 <section id="main">
 
+    <ol class="breadcrumb container" data-ng-if="vm.proposal">
+        <li class="pointer" data-ui-sref="pro-proposals"
+            data-ng-if="vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED'">
+            Mes devis
+        </li>
+        <li class="pointer" data-ui-sref="pro-jobs"
+            data-ng-if="vm.proposal.status == 'SELECTED' || vm.proposal.status == 'COMPLETED'">
+            Mes chantiers
+        </li>
+        <li class="active">
+            {{vm.project.title | yakaTranslateTitle}}
+        </li>
+    </ol>
+
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 

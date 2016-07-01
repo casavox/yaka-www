@@ -1,10 +1,23 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
     ></header>
 
-<aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
-       data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
-
 <section id="main" data-ng-cloak>
+
+    <ol class="breadcrumb container">
+        <li class="pointer" data-ui-sref="my-projects">
+            Mes projets
+        </li>
+        <li class="pointer" data-ui-sref="proposals({projectId: vm.project.id})">
+            {{vm.proposal.project.title | yakaTranslateTitle}}
+        </li>
+        <li class="active">
+            {{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}
+        </li>
+    </ol>
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
     <div id="content" class="content">
         <div class="container">
             <div class="card pointer m-b-10" data-ng-click="vm.projectDetails()">

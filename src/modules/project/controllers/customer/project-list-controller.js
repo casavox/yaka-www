@@ -16,8 +16,6 @@
         $rootScope.updateProfile();
 
         var vm = this;
-        vm.projectsOnGoing = [];
-        vm.projectsCompleted = [];
         vm.selectProject = selectProject;
         vm.selectProposal = selectProposal;
         vm.dateDiff = dateDiff;
