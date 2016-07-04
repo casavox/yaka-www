@@ -20,11 +20,18 @@
 
 </style>
 
-<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"></header>
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="proposals"
+                    up-state-id="vm.project.id"
+                    title="{{vm.project.title | yakaTranslateTitle}}"
+                    current-user="app.getUser()"></yaka-mobile-header>
 
 <section id="main">
 
-    <ol class="breadcrumb container">
+    <ol class="breadcrumb container hidden-xs" data-ng-if="vm.project.title">
         <li class="pointer" data-ui-sref="my-projects">
             Mes projets
         </li>

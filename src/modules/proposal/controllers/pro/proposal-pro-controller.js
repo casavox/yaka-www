@@ -150,7 +150,9 @@
             var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    res.push(vm.project.activities[i].code);
+                    if (!_.includes(res, vm.project.activities[i].code)) {
+                        res.push(vm.project.activities[i].code);
+                    }
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
@@ -286,5 +288,21 @@
         function errorProjectGET() {
             $state.go("findjobs");
         }
+
+        vm.getUpState = function () {
+            if (vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED') {
+                return "pro-proposals";
+            } else {
+                return "pro-jobs";
+            }
+        };
+
+        vm.getUpName = function () {
+            if (vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED') {
+                return "Mes devis";
+            } else {
+                return "Mes chantiers";
+            }
+        };
     }
 })();

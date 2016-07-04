@@ -413,7 +413,9 @@
             var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    res.push(vm.project.activities[i].code);
+                    if (!_.includes(res, vm.project.activities[i].code)) {
+                        res.push(vm.project.activities[i].code);
+                    }
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");

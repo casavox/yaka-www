@@ -26,22 +26,23 @@
 </style>
 
 
-<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"
     ></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="{{vm.getUpState()}}"
+                    title="{{vm.proposal.project.title | yakaTranslateTitle}}"
+                    current-user="app.getUser()"></yaka-mobile-header>
 
 <section id="main">
 
-    <ol class="breadcrumb container" data-ng-if="vm.proposal">
-        <li class="pointer" data-ui-sref="pro-proposals"
-            data-ng-if="vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED'">
-            Mes devis
-        </li>
-        <li class="pointer" data-ui-sref="pro-jobs"
-            data-ng-if="vm.proposal.status == 'SELECTED' || vm.proposal.status == 'COMPLETED'">
-            Mes chantiers
+    <ol class="breadcrumb container hidden-xs" data-ng-if="vm.proposal.status">
+        <li class="pointer" data-ui-sref="{{vm.getUpState()}}">
+            {{vm.getUpName()}}
         </li>
         <li class="active">
-            {{vm.project.title | yakaTranslateTitle}}
+            {{vm.proposal.project.title | yakaTranslateTitle}}
         </li>
     </ol>
 
