@@ -1,4 +1,4 @@
-<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
     ></header>
 
 <section id="main">
@@ -9,7 +9,7 @@
     <div id="content" class="content">
         <div class="container">
 
-            <div data-ng-if="vm.ongoing && vm.ongoing.length == 0" class="card" ng-cloak>
+            <div data-ng-if="vm.ongoing && vm.ongoing.length == 0" class="card" data-ng-cloak>
                 <div class="card-header">
                     <h2>VOUS N’AVEZ AUCUN CHANTIER EN COURS
                         <small>Comment obtenir de nouveaux chantiers ?</small>
@@ -30,91 +30,97 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 no-padding block-header m-b-5" data-ng-if="vm.ongoing && vm.ongoing.length > 0">
+            <div class="col-xs-12 no-padding block-header" data-ng-if="vm.ongoing && vm.ongoing.length > 0">
                 <h2>En cours</h2>
             </div>
 
-            <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0 m-b-20"
+            <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0"
                  data-ng-if="vm.ongoing && vm.ongoing.length > 0">
-                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.ongoing"
-                     ui-sref="pro-proposal({proposalId: proposal.id})">
-                    <div class="pro-proposal-bloc-pict">
-                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
-                                  secure="true"
-                                  class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
-                            <cl-transformation height="40" width="40" crop="fill"/>
-                        </cl-image>
-                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
-                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
-                            | uppercase}}
-                        </div>
+                <div class="card pointer clearfix" data-ng-repeat="proposal in vm.ongoing"
+                     data-ui-sref="pro-proposal({proposalId: proposal.id})">
+                    <div class="card-header">
+                        <yaka-avatar user="proposal.project.user" size="40" class="d-i-p v-align-middle"></yaka-avatar>
+                        <i class="unreadMessagesIndicator proProposalList ng-scope"
+                           data-ng-if="proposal.unreadMessages"></i>
+
+                        <h2 class="d-i-p v-align-middle m-l-10 m-t-5">
+                            {{ proposal.project.title | yakaTranslateTitle}}
+                            <small>
+                                {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
+                                {{proposal.project.address.locality}}
+                            </small>
+                        </h2>
                     </div>
-                    <div class="pro-proposal-bloc-info">
-                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
-                             ng-if="proposal.unreadMessages">
 
-                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
-                            {{ proposal.project.title | yakaTranslateTitle }}
-                        </p>
+                    <div class="pl-body clearfix col-xs-12">
+                        <div class="col-xs-8 t-left no-padding m-t-5 m-b-10">
+                            <div class="visible-xs">
+                                Date souhaitée par le client :<br/>
+                                {{vm.getWhen(proposal)}}
+                                <div class="col-xs-12 no-padding f-s-14 m-t-5">
+                                    Ma date d'intervention :<br/>
+                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
+                                </div>
+                            </div>
+                            <div class="hidden-xs">
+                                Date souhaitée par le client :
+                                {{vm.getWhen(proposal)}}
+                                <div class="col-xs-12 no-padding f-s-14 m-t-5">
+                                    Ma date d'intervention :
+                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
+                                </div>
+                            </div>
+                        </div>
 
-                        <p class="pro-proposals-info"
-                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
-                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
-                            {{proposal.project.address.locality}}
-                        </p>
-                        <hr class="pro-proposals-hr">
-                        <p class="pro-proposals-price">
-                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
-                        </p>
-
-                        <p class="pro-proposals-date" ng-if="proposal.startDate">
-                            Date d'intervention : {{ proposal.startDate | date:'dd MMMM yyyy' }}
-                        </p>
+                        <p class="col-xs-4 t-right no-padding proProposalListPrice">{{ proposal.price || '- - -' }}
+                            €</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xs-12 no-padding block-header m-b-5" data-ng-if="vm.completed && vm.completed.length > 0">
+            <div class="col-xs-12 no-padding block-header" data-ng-if="vm.completed && vm.completed.length > 0">
                 <h2>Terminés</h2>
             </div>
 
             <div class="col-xs-12 no-padding row no-margin" data-ng-if="vm.completed && vm.completed.length > 0">
-                <div class="col-xs-12 pro-proposal-vignette" ng-repeat="proposal in vm.completed"
-                     ui-sref="pro-proposal({proposalId: proposal.id})">
-                    <div class="pro-proposal-bloc-pict">
-                        <cl-image public-id="{{proposal.project.avatar.cloudinaryPublicId}}"
-                                  secure="true"
-                                  class="img-circle center-middle" format="png"
-                                  ng-if="proposal.project.avatar.cloudinaryPublicId">
-                            <cl-transformation height="40" width="40" crop="fill"/>
-                        </cl-image>
-                        <div class="img-default-preview-40" ng-if="!proposal.project.avatar.cloudinaryPublicId">
-                            {{proposal.project.user.firstName[0] | uppercase}} {{proposal.project.user.lastName[0]
-                            | uppercase}}
-                        </div>
+                <div class="card pointer clearfix" data-ng-repeat="proposal in vm.completed"
+                     data-ui-sref="pro-proposal({proposalId: proposal.id})">
+                    <div class="card-header">
+                        <yaka-avatar user="proposal.project.user" size="40" class="d-i-p v-align-middle"></yaka-avatar>
+                        <i class="unreadMessagesIndicator proProposalList ng-scope"
+                           data-ng-if="proposal.unreadMessages"></i>
+
+                        <h2 class="d-i-p v-align-middle m-l-10 m-t-5">
+                            {{ proposal.project.title | yakaTranslateTitle}}
+                            <small>
+                                {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
+                                {{proposal.project.address.locality}}
+                            </small>
+                        </h2>
                     </div>
-                    <div class="pro-proposal-bloc-info">
-                        <img class="pro-proposal-unread" src="icons/mdpi/ic_message.png"
-                             ng-if="proposal.unreadMessages">
 
-                        <p class="pro-proposals-title" title="{{ proposal.project.title }}">
-                            {{ proposal.project.title | yakaTranslateTitle }}
-                        </p>
+                    <div class="pl-body clearfix col-xs-12">
+                        <div class="col-xs-8 t-left no-padding m-t-5 m-b-10">
+                            <div class="visible-xs">
+                                Date souhaitée par le client :<br/>
+                                {{vm.getWhen(proposal)}}
+                                <div class="col-xs-12 no-padding f-s-14 m-t-5">
+                                    Ma date d'intervention :<br/>
+                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
+                                </div>
+                            </div>
+                            <div class="hidden-xs">
+                                Date souhaitée par le client :
+                                {{vm.getWhen(proposal)}}
+                                <div class="col-xs-12 no-padding f-s-14 m-t-5">
+                                    Ma date d'intervention :
+                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
+                                </div>
+                            </div>
+                        </div>
 
-                        <p class="pro-proposals-info"
-                           title="{{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} - {{proposal.project.address.locality}}">
-                            {{ proposal.project.user.firstName }} {{proposal.project.user.lastName}} -
-                            {{proposal.project.address.locality}}
-                        </p>
-                        <hr class="pro-proposals-hr">
-                        <p class="pro-proposals-price">
-                            <span ng-if="!proposal.price">--</span>{{ proposal.price }}€
-                        </p>
-
-                        <p class="pro-proposals-date" ng-if="proposal.startDate">
-                            Date d'intervention : {{ proposal.startDate | date:'dd MMMM yyyy' }}
-                        </p>
+                        <p class="col-xs-4 t-right no-padding proProposalListPrice">{{ proposal.price || '- - -' }}
+                            €</p>
                     </div>
                 </div>
             </div>

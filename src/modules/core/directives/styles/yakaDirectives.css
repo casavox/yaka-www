@@ -8,7 +8,7 @@ yaka-avatar {
 yaka-avatar img {
     display: inline-block;
     position: relative;
-    top: -2px;
+    top: -1px;
 }
 
 yaka-avatar .yakaAvatarInitials {
@@ -83,4 +83,16 @@ yaka-chat .ms-item span.msg {
 yaka-chat .chatImg {
     width: 150px !important;
     height: 150px;
+}
+
+@media (max-width: 767px) {
+
+    yaka-chat .ms-item {
+        padding: 8px 12px 8px;
+    }
+
+    yaka-chat .lv-message .lv-item {
+        padding: 10px;
+    }
+
 }

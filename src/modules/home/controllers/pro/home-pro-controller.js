@@ -50,8 +50,6 @@
 
         vm.phoneNumber = "";
 
-        vm.isPhoneNumberValid = false;
-
         vm.multiChoiceInput = {
             settings: {
                 showCheckAll: false,
@@ -89,43 +87,6 @@
 
         angular.forEach(vm.multiChoiceInput.options, function (value) {
             value.labelTranslated = $translate.instant('ACTIVITY_' + value.label);
-        });
-
-        $('#proRegisterPhone').intlTelInput({
-            utilsScript: "https://cdn.rawgit.com/jackocnr/intl-tel-input/master/build/js/utils.js",
-            initialCountry: "fr",
-            onlyCountries: ["fr"]
-            //DOM-TOM : onlyCountries: ["fr", "mq", "gf", "re", "yt", "pm", "bl", "mf", "tf", "wf", "pf", "nc"]
-        });
-        $('#proRegisterPhone').blur(function () {
-            if ($.trim($('#proRegisterPhone').val())) {
-                if ($('#proRegisterPhone').intlTelInput("isValidNumber")) {
-                    vm.newUser.professional.phoneNumber = $('#proRegisterPhone').intlTelInput("getNumber");
-                }
-            }
-        });
-        $('#proRegisterPhone').keyup(function (e) {
-            var code = (e.keyCode || e.which);
-
-            if (code == 37 || code == 38 || code == 39 || code == 40) {
-                return;
-            }
-
-            if ($.trim($('#proRegisterPhone').val())) {
-                if ($('#proRegisterPhone').intlTelInput("isValidNumber")) {
-                    vm.isPhoneNumberValid = true;
-                } else {
-                    vm.isPhoneNumberValid = false;
-                }
-                vm.phoneNumber = $('#proRegisterPhone').val();
-                vm.phoneNumber = vm.phoneNumber.replace(/\D/g, '');
-                vm.phoneNumber = addCharEveryNChar(vm.phoneNumber, 2, ' ');
-                if (vm.phoneNumber.length > 14) {
-                    vm.phoneNumber = vm.phoneNumber.substring(0, 14);
-                }
-                $('#proRegisterPhone').val(vm.phoneNumber);
-                $scope.$apply();
-            }
         });
 
         function addCharEveryNChar(str, n, char) {
@@ -237,7 +198,7 @@
             });
 
             return !(vm.newUser.firstName == '' || !vm.isNameValid(vm.newUser.firstName) ||
-            vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !$('#proRegisterPhone').intlTelInput("isValidNumber") || vm.newUser.professional.phoneNumber == '' ||
+            vm.newUser.lastName == '' || !vm.isNameValid(vm.newUser.lastName) || !vm.newUser.professional.phoneNumber ||
             vm.newUser.email == '' || !vm.isEmailValid(vm.newUser.email) ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
@@ -310,7 +271,8 @@
             if (!angular.isUndefined(res.token) && res.token && res.token != "") {
                 $localStorage.user = res;
                 $localStorage.token = res.token;
-                if (window.yakaRedirectUrl != undefined) {
+                if (window.yakaRedirectUrl &&
+                    window.location.href != window.yakaRedirectUrl) {
                     window.location.href = window.yakaRedirectUrl;
                     delete window.yakaRedirectUrl;
                 } else {

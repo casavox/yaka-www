@@ -15,7 +15,7 @@
     background: #03A9F4;
     margin-left: 5px;
     font-size: 16px;
-    line-height: 18px;
+    line-height: 17px;
     position: absolute;
     top: 18px;
     padding-left: 3px;
@@ -24,16 +24,17 @@
     padding-top: 1px;
     padding-bottom: 1px;
     left: 145px;
+    text-transform: none;
 }
 
 .homeSection {
+
 }
 
 .warningText {
     margin-top: 30px;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 30px;
-    color:#c67605;
+    color: #c67605;
     background: rgba(255, 255, 255, 0.24);
     background-size: contain;
     line-height: 1.2;
@@ -71,16 +72,15 @@
 }
 
 .homeSection1Yaka {
-    font-family: 'raleway_black', Arial, sans-serif;
+    font-weight: 900;
 }
 
 .homeSection1Club {
-    font-family: 'raleway_regular', Arial, sans-serif;
+    font-weight: 100;
 }
 
 .homeSection1Register {
     float: right;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
     margin-right: 25px;
     line-height: 40px;
@@ -89,7 +89,6 @@
 
 .homeSection1Login {
     float: right;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
     margin-right: 25px;
     line-height: 40px;
@@ -99,7 +98,6 @@
 .homeSection1ProLink {
     float: right;
     height: 40px;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 13px;
     border: solid white 1px;
     border-radius: 4px;
@@ -119,7 +117,6 @@
 
 .homeSection1Title {
     margin-top: 140px;
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 50px;
     line-height: 1.2;
     text-align: justify;
@@ -129,7 +126,6 @@
 
 .homeSection1SubTitle {
     margin-top: 45px;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 33px;
     text-align: left;
     padding-left: 0 !important;
@@ -139,7 +135,6 @@
 
 .homeSection1SubSubTitle {
     margin-top: 4px;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
     color: #03A9F4;
     text-align: justify;
@@ -157,7 +152,6 @@
 }
 
 .homeSection2Title {
-    font-family: 'raleway_light', Arial, sans-serif;
     font-size: 32px;
     line-height: 58px;
     margin-top: 57px;
@@ -166,7 +160,6 @@
 }
 
 .homeSection2SubTitle {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
     color: #8D8D8D;
     padding-left: 0 !important;
@@ -181,13 +174,11 @@
 
 .homeSection2ItemTitle {
     margin-top: 36px;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 16px;
 }
 
 .homeSection2ItemDescription {
     margin-top: 36px;
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 14px;
     color: #626262;
     padding-left: 0 !important;
@@ -215,7 +206,6 @@
 }
 
 .homeSection3ItemTitle {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 25px;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -223,7 +213,6 @@
 
 .homeSection3ItemDescription {
     margin-top: 11px;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 16px;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -246,7 +235,6 @@
 .homeSection4Title {
     margin-top: 23px;
     line-height: 53px;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 20px;
 }
 
@@ -317,7 +305,6 @@ body:after {
 
 .homeSection5FooterLeft {
     float: left;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 13px;
     margin-top: 22px;
     margin-bottom: 22px;
@@ -358,7 +345,6 @@ body:after {
     padding-left: 0 !important;
     padding-right: 0 !important;
     text-align: center;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 16px;
     color: #9B9B9B;
     border-bottom: solid 1px #C6C6C6;
@@ -394,7 +380,6 @@ body:after {
     margin-right: 2%;
     width: 48% !important;
     cursor: pointer;
-    font-family: 'raleway_medium', Arial, sans-serif;
     text-align: center;
 }
 
@@ -408,7 +393,6 @@ body:after {
     margin-left: 2%;
     width: 48% !important;
     cursor: pointer;
-    font-family: 'raleway_medium', Arial, sans-serif;
     text-align: center;
 }
 
@@ -424,7 +408,6 @@ body:after {
 }
 
 .noSocialAccountMessage {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 15px;
 }
 
@@ -436,7 +419,6 @@ body:after {
 }
 
 .registerFacebookGoogle {
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 14px;
     margin-bottom: 6px;
     text-align: center;
@@ -451,7 +433,6 @@ body:after {
 }
 
 .registerMail {
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 15px;
     margin-top: -15px;
     text-align: center;
@@ -459,7 +440,6 @@ body:after {
 
 .customerRegisterProLink {
     color: #FBB832;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     text-align: center;
     margin-top: 10px;
@@ -494,7 +474,6 @@ body:after {
 }
 
 .passwordForgotten {
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 13px;
     text-align: center;
     margin-top: 10px;
@@ -510,7 +489,6 @@ body:after {
 }
 
 .passwordForgottenMessageSent {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 15px;
     text-align: justify;
 }
@@ -766,7 +744,7 @@ body:after {
         font-size: 14px;
         line-height: 16px;
         top: 11px;
-        left: 104px;
+        left: 96px;
     }
 
     .titleBetaPro {
@@ -855,7 +833,7 @@ body:after {
     }
 
     .showRegisterFields.showRegisterFieldsVisible {
-        height: 270px;
+        height: 420px;
     }
 }
 

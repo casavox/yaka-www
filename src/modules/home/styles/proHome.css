@@ -30,16 +30,13 @@
 }
 
 .proHomeSection1Yaka {
-    font-family: 'raleway_black', Arial, sans-serif;
 }
 
 .proHomeSection1Club {
-    font-family: 'raleway_regular', Arial, sans-serif;
 }
 
 .proHomeSection1Register {
     float: right;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
     margin-right: 27px;
     line-height: 40px;
@@ -48,7 +45,6 @@
 
 .proHomeSection1Login {
     float: right;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 15px;
     line-height: 40px;
     cursor: pointer;
@@ -57,7 +53,6 @@
 .proHomeSection1CustomerLink {
     float: right;
     height: 40px;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 13px;
     border: solid white 1px;
     border-radius: 4px;
@@ -77,7 +72,6 @@
 
 .proHomeSection1Title {
     margin-top: 140px;
-    font-family: 'raleway_light', Arial, sans-serif;
     font-size: 43px;
     line-height: 1.2;
     padding-left: 0 !important;
@@ -86,7 +80,6 @@
 
 .proHomeSection1SubTitle {
     margin-top: 45px;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -110,7 +103,6 @@
 }
 
 .proHomeSection2Title {
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 24px;
     margin-top: 40px;
     color: #332C3E;
@@ -119,7 +111,6 @@
 }
 
 .proHomeSection2SubTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 24px;
     color: #332C3E;
     padding-left: 0 !important;
@@ -127,7 +118,6 @@
 }
 
 .proHomeSection2Quote {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 18px;
     color: #626262;
     margin-top: 12px;
@@ -146,14 +136,12 @@
 }
 
 .proHomeSection2ItemTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     margin-top: 20px;
     font-size: 14px;
 }
 
 .proHomeSection2ItemDescription {
     margin-top: 7px;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 14px;
     color: #626262;
 }
@@ -166,7 +154,6 @@
 }
 
 .proHomeSection2RegisterTitle {
-    font-family: 'raleway_light', Arial, sans-serif;
     font-size: 32px;
 }
 
@@ -176,13 +163,11 @@
 }
 
 .proHomeSection2RegisterExplainTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 16px;
     margin-top: 20px;
 }
 
 .proHomeSection2RegisterExplainDesc {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 14px;
     color: #9B9B9B;
     margin-top: 12px;
@@ -194,12 +179,10 @@
 }
 
 .proHomeSection2RegisterFormTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 25px;
 }
 
 .proHomeSection2RegisterSeparator {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 12px;
     margin-top: 14px;
 }
@@ -219,7 +202,6 @@
     margin-right: 2%;
     width: 48% !important;
     cursor: pointer;
-    font-family: 'raleway_medium', Arial, sans-serif;
 }
 
 .proHomeSection2RegisterGoogle {
@@ -232,7 +214,6 @@
     margin-left: 2%;
     width: 48% !important;
     cursor: pointer;
-    font-family: 'raleway_medium', Arial, sans-serif;
 }
 
 .proHomeSection2RegisterSeparator {
@@ -243,7 +224,6 @@
 }
 
 .proHomeSection2RegisterMail {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 12px;
 }
 
@@ -306,20 +286,17 @@
 }
 
 .proHomeSection3aTitle {
-    font-family: 'raleway_light', Arial, sans-serif;
     font-size: 32px;
     line-height: 58px;
     margin-top: 35px;
 }
 
 .proHomeSection3aSubTitle {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
 }
 
 .proHomeSection3aSubSubTitle {
     color: #8D8D8D;
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
     margin-bottom: 19px;
 }
@@ -338,39 +315,33 @@
 }
 
 .proHomeSection3aFreeTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 34px;
     margin-top: 49px;
 }
 
 .proHomeSection3aFreeDesc {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 16px;
     color: #626262;
     margin-top: 34px;
 }
 
 .proHomeSection3aPaidTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 34px;
     margin-top: 20px;
 }
 
 .proHomeSection3aPaidSubTitle {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 14px;
     color: #9B9B9B;
 }
 
 .proHomeSection3aPaidDesc {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 16px;
     color: #626262;
     margin-top: 15px;
 }
 
 .proHomeSection3bTitle {
-    font-family: 'raleway_light', Arial, sans-serif;
     font-size: 32px;
     line-height: 58px;
     margin-top: 35px;
@@ -378,7 +349,6 @@
 }
 
 .proHomeSection3bSmallText {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 12px;
     color: #999999;
     margin-top: 40px;
@@ -394,7 +364,6 @@
 .proHomeSection4Title {
     margin-top: 23px;
     line-height: 53px;
-    font-family: 'raleway_semi_bold', Arial, sans-serif;
     font-size: 20px;
 }
 
@@ -410,7 +379,6 @@
 
 .proHomeSection5FooterLeft {
     float: left;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 13px;
     margin-top: 22px;
     margin-bottom: 22px;

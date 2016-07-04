@@ -13,13 +13,10 @@
             $state.go("home");
         }
 
-        //TODO
-        $rootScope.pageName = "";
         $rootScope.updateProfile();
 
         var vm = this;
         vm.getWhen = getWhen;
-        vm.getTags = getTags;
         vm.myPrice = myPrice;
         vm.myDate = myDate;
         vm.selectImagePreview = selectImagePreview;
@@ -81,18 +78,6 @@
             $state.go("findjobs");
         }
 
-        function getTags() {
-            var res = "";
-            if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.activities) {
-                for (var i = 0; i < vm.projectTmp.activities.length; i++) {
-                    if (i != 0)
-                        res += " - ";
-                    res += vm.projectTmp.activities[i].code
-                }
-            }
-            return res;
-        }
-
         function sendOffer() {
             if (vm.offer.comment && vm.offer.comment.length > 20 && vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
@@ -100,12 +85,11 @@
                     project: {id: vm.projectTmp.id},
                     comment: vm.offer.comment
                 };
-                if (vm.offer.price && vm.offer.price.price) {
-                    formData.price = parseInt(vm.offer.price.price);
-                    formData.priceType = $filter('uppercase')(vm.offer.price.type);
+                if (vm.offer.price && vm.offer.price) {
+                    formData.price = parseInt(vm.offer.price);
                 }
-                if (vm.offer.date && vm.offer.date.date) {
-                    formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
+                if (vm.offer.date && vm.offer.date) {
+                    formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
                 }
                 networkService.proposalPOST(formData, function (res) {
                     alertMsg.send("Proposition envoyée avec succès", "success");
@@ -113,15 +97,11 @@
                 }, function (res) {
                     alertMsg.send("Impossible d'envoyer la proposition", "danger");
                 });
-            } else {
-                vm.error = {comment: {}};
-                vm.error.comment.message = "Merci d'écrire un premier message au client (20 caractères minimum)";
-                vm.error.comment.flag = true;
             }
         }
 
         function selectDate() {
-            vm.offer.date = {date: vm.dt};
+            vm.offer.date = vm.dt;
             vm.myDateFlag = false;
         }
 
@@ -164,15 +144,17 @@
         }
 
         function selectPrice(type) {
-            vm.error.price = {message: "Merci de proposer un tarif réaliste - ou de ne pas en mettre", flag: false};
-            if (vm.price < 10) {
-                vm.error.price.flag = true;
-                vm.price = '';
-            } else {
-                vm.offer.price = {type: type, price: vm.price};
-                vm.myPriceFlag = false;
-                vm.error.price.flag = false;
+            vm.error.price = vm.error.price || {};
+            if (vm.price <= 10) {
+                vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
+                vm.error.price.flag = true
+            } else if (vm.price > 1000000) {
+                vm.error.price.message = "Veuillez entrer un montant réaliste";
+                vm.error.price.flag = true
             }
+            vm.offer.price = vm.price;
+            vm.myPriceFlag = false;
+            vm.error.price.flag = false;
         }
 
         function myPrice() {
@@ -207,6 +189,10 @@
             vm.circle.visible = true;
 
             vm.project = res;
+            $rootScope.pageName = vm.project.user.firstName + " " +
+                vm.project.user.lastName +
+                " - " + $filter('yakaTranslateTitle')(vm.project.title);
+
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             setMinMaxDate();
@@ -223,5 +209,34 @@
             return str.length;
         };
 
+        vm.getTags = function () {
+            var res = [];
+            if (!angular.isUndefined(vm.project) && vm.project.activities) {
+                for (var i = 0; i < vm.project.activities.length; i++) {
+                    res.push(vm.project.activities[i].code);
+                }
+                if (vm.project.hasMaterial) {
+                    res.push("MATERIAL_TRUE");
+                }
+            }
+            return res;
+        };
+
+
+        vm.editPrice = function () {
+            vm.price = vm.offer.price;
+            vm.myPriceFlag = true;
+        };
+
+        vm.editDate = function () {
+            vm.dt = vm.offer.date;
+            vm.myDateFlag = true;
+        };
+
+        vm.formIsValid = function () {
+            return (vm.offer &&
+            vm.offer.comment &&
+            vm.offer.co);
+        };
     }
 })();

@@ -197,5 +197,15 @@
             }
         });
 
+        vm.infosCardIsComplete = function () {
+            return (vm.profile &&
+            vm.profile.gender &&
+            vm.profile.firstName &&
+            vm.profile.lastName &&
+            vm.profile.defaultAddress &&
+            vm.profile.defaultAddress.address &&
+            vm.profile.phoneNumber &&
+            vm.profile.email);
+        };
     }
 })();

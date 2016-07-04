@@ -1,6 +1,5 @@
 
 .profilePopupMessage {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 15px;
     margin-bottom: 20px;
 }
@@ -17,10 +16,19 @@
 
 .profileAvatarEditButton {
     position: absolute;
-    right: -13px;
-    bottom: -13px;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
 }
 
-#profile-main {
-    min-height: auto;
+.topViewProfile .topViewProfileIcon {
+    display: inline-block;
+    width: 35px;
+    vertical-align: top;
+}
+
+.topViewProfile .topViewProfileContent {
+    display: inline-block;
+    width: calc(100% - 40px);
 }

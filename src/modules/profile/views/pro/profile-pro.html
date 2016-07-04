@@ -18,662 +18,103 @@
         left: 0;
     }
 </style>
-<header id="header" data-current-skin="{{app.getTheme()}}" ng-include="'/modules/core/views/header.html'"
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
     ></header>
 
 <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
        data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-<section id="main" ng-cloak>
+<section id="main" data-ng-cloak>
     <div id="content" class="content">
-        <div class="container">
-            <div class="col-md-12" ng-show="vm.profile.status != 'COMPLETED'">
-                <div class="profile-info-warning">
-                    <p>
-                    <span ng-if="vm.profile.status == 'REGISTERED'">
-                        Votre profil est incomplet, vous devez compléter toutes les informations soulignées en
-                        rouge pour pouvoir répondre à une offre
-                    </span>
-                    <span ng-if="vm.profile.status == 'WAITING'">
-                        Votre profil est en cours de validation, vous recevrez un mail dès qu'il aura été
-                        vérifié
-                    </span>
-                    <span ng-if="vm.profile.status == 'REFUSED'">
+        <div class="container" data-ng-show="vm.profile" data-ng-cloak>
+
+            <div class="topViewProfile">
+                <div data-ng-if="vm.profile.status == 'REGISTERED'" class="card bgm-red c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs ci-dessous afin de
+                        pouvoir répondre aux offres.
+                    </div>
+                </div>
+
+                <div data-ng-if="vm.profile.status == 'WAITING'" class="card bgm-orange c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <b>Merci d’avoir complété votre profil</b>. Vous allez recevoir dans les prochaines heures un
+                        email
+                        vous confirmant que votre compte a bien été validé. Vous pourrez alors consulter les offres et
+                        proposer vos services.
+                    </div>
+                </div>
+
+                <div data-ng-if="vm.profile.status == 'REFUSED'" class="card bgm-red c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
                         Nous n'avons pas pu vérifier votre profil
-                    </span>
-                    <span ng-if="vm.profile.status == 'VALIDATED'">
-                        Compléter votre profil augmente votre visibilité et vos chances d'être sélectionné
-                    </span>
-                    </p>
-
-                    <p>
-                    <span ng-if="vm.profile.status == 'REFUSED' && vm.profile.refusedReason != ''">
-                        Raison : {{vm.profile.refusedReason}}
-                    </span>
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="menu-category profile-info">
-                    <div class="col-xs-12 profile-box">
-                        <p>
-                            Informations générales
-                        </p>
-
-                        <form name="profileForm">
-                            <div class="col-xs-12 no-padding">
-                                <div class="col-xs-3">
-                                    <div class="img-profile img-profile-pro">
-                                        <yaka-avatar size="70" user="vm.profileInfo.user"></yaka-avatar>
-
-                                        <button
-                                            class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
-                                            ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
-                                            ngf-accept="'image/*'" ngf-max-size="5MB">
-                                            <i class="zmdi zmdi-edit"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-xs-9 no-padding-right">
-
-                                    <div class="form-group fg-float m-b-30"
-                                         ng-class="{'has-error': !vm.profileInfo.user.firstName}">
-
-                                        <div class="fg-line">
-                                            <input type="text" name="firstName" class="form-control fg-input"
-                                                   ng-model="vm.profileInfo.user.firstName"
-                                                   required="required" yaka-input-name>
-                                            <label class="fg-label">Prénom</label>
-                                        </div>
-                                        <div ng-messages="profileForm.firstName.$error">
-                                            <small class="help-block" ng-message="required">Ce champ est requis
-                                            </small>
-                                            <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
-                                                valide
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group fg-float m-b-30"
-                                         ng-class="{'has-error': !vm.profileInfo.user.lastName}">
-
-                                        <div class="fg-line">
-                                            <input type="text" name="lastName" class="form-control fg-input"
-                                                   ng-model="vm.profileInfo.user.lastName"
-                                                   required="required" yaka-input-name>
-                                            <label class="fg-label">Nom</label>
-                                        </div>
-                                        <div ng-messages="profileForm.lastName.$error">
-                                            <small class="help-block" ng-message="required">Ce champ est requis
-                                            </small>
-                                            <small class="help-block" ng-message="invalidName">Ce nom n'est pas
-                                                valide
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
-                                <div class="fg-line">
-                                    <input type="text" name="phoneNumber"
-                                           required="required" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
-                                    <label class="fg-label fg-label-phone">Téléphone</label>
-                                </div>
-                                <div ng-messages="profileForm.phoneNumber.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis
-                                    </small>
-                                    <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
-                                        pas valide
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.user.email}">
-                                <div class="fg-line">
-                                    <input type="text" name="email" class="form-control fg-input"
-                                           ng-model="vm.profileInfo.user.email"
-                                           required="required" yaka-input-email>
-                                    <label class="fg-label">Email</label>
-                                </div>
-                                <div ng-messages="profileForm.email.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
-                                        valide
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
-                                <div class="fg-line">
-                                    <div class="select">
-                                        <select name="activityStartedYear"
-                                                required="required"
-                                                ng-model="vm.profileInfo.activityStartedYear"
-                                                class="form-control" convert-to-number>
-                                            <option value="0" disabled selected></option>
-                                            <option ng-repeat="year in vm.years | orderBy:'-toString()'"
-                                                    ng-selected="vm.profileInfo.activityStartedYear == year"
-                                                    ng-value="year">
-                                                {{year}}
-                                            </option>
-                                        </select>
-                                        <label class="fg-label">Première année d'expérience</label>
-                                    </div>
-                                </div>
-                                <div ng-messages="profileForm.activityStartedYear.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.name}">
-                                <div class="fg-line">
-                                    <input type="text" name="companyName" required="required"
-                                           class="form-control fg-input"
-                                           ng-model="vm.profileInfo.company.name">
-                                    <label class="fg-label">Nom de l'entreprise</label>
-                                </div>
-                                <div ng-messages="profileForm.companyName.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.siret}">
-                                <div class="fg-line">
-                                    <input name="siret" type="text" required="required"
-                                           class="form-control fg-input"
-                                           ng-model="vm.profileInfo.company.siret" yaka-input-siret>
-                                    <label class="fg-label">SIRET</label>
-                                </div>
-                                <div ng-messages="profileForm.siret.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                    <small class="help-block" ng-message="invalidSiret">Ce SIRET n'est pas
-                                        valide
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.profileInfo.company.address.address}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input"
-                                           vs-google-autocomplete="options"
-                                           vs-autocomplete-validator
-                                           ng-model="vm.profileInfo.company.address.address"
-                                           type="text"
-                                           name="address"
-                                           required="required"
-                                           placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Addresse de l'entreprise</label>
-                                </div>
-                                <div ng-messages="profileForm.address.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30">
-
-                                <div class="fg-line">
-                                    <input type="text" name="companyPhoneNumber"
-                                           class="form-control fg-input"
-                                           ng-model="vm.profileInfo.company.phone" yaka-input-phone>
-                                    <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
-                                </div>
-                                <div ng-messages="profileForm.companyPhoneNumber.$error">
-                                    <small class="help-block" ng-message="invalidPhone">Ce numéro de téléphone n'est
-                                        pas valide
-                                    </small>
-                                </div>
-
-                            </div>
-
-                            <div class="col-xs-12 no-padding profile-box-footer">
-
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        ng-click="vm.showProfileEditPopup = true"
-                                        ng-disabled="vm.updating || !vm.showButtonsProfile()">
-                                    Enregistrer
-                                </button>
-                                <button class="btn btn-link waves-effect" ng-click="vm.cancelProfile()"
-                                        ng-disabled="!vm.showButtonsProfile()">
-                                    Annuler
-                                </button>
-
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-                <div class="menu-category profile-about">
-                    <div class="profile-box">
-                        <p>
-                            Description
-                        </p>
-
-                        <form name="aboutMeForm">
-
-                            <div class="form-group"
-                                 ng-class="{'has-error': !vm.about.aboutMe}">
-                                <div class="fg-line">
-                                    <textarea class="form-control" rows="2"
-                                              name="aboutMe"
-                                              ng-model="vm.about.aboutMe"
-                                              required="required"
-                                              data-auto-size
-                                              data-autosize-on="true"
-                                              placeholder="Décrivez vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan."></textarea>
-                                </div>
-                                <div ng-messages="aboutMeForm.aboutMe.$error">
-                                    <small class="help-block" ng-message="required">Ce champ est requis</small>
-                                </div>
-                            </div>
-
-                        </form>
-
-                        <div class="profile-box-footer">
-
-                            <button class="btn btn-info bgm-lightblue waves-effect" ng-click="vm.updateAboutMe()"
-                                    ng-disabled="vm.updating || !vm.showButtonsAbout()">
-                                Enregistrer
-                            </button>
-                            <button class="btn btn-link waves-effect" ng-click="vm.cancelAboutMe()"
-                                    ng-disabled="!vm.showButtonsAbout()">
-                                Annuler
-                            </button>
-
+                        <div data-ng-if="vm.profile.refusedReason != ''">
+                            Raison : {{vm.profile.refusedReason}}
                         </div>
                     </div>
                 </div>
-                <div class="menu-category profile-bck-verif">
-                    <div class="profile-box">
-                        <p>
-                            Vérifications
-                        </p>
 
-                        <div class="row">
-                            <div class="col-xs-2 profile-verif">
-                                <input id="profile-back-verif-1" type="checkbox"
-                                       ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
-                                       disabled="disabled">
-                                <label for="profile-back-verif-1"></label>
-                            </div>
-                            <div class="col-xs-10">
-                                <p>
-                                    Extrait KBIS / SIRET
-                                </p>
-                                <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                   ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                   ng-click="vm.setVerif('BUSINESS_REGISTRATION')"><p>
-                                        <span class="pointer"
-                                              ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">Add</span>
-                                        <span class="pointer"
-                                              ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">Change</span>
-                                </p></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-2 profile-verif">
-                                <input id="profile-back-verif-2" type="checkbox"
-                                       ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
-                                       disabled="disabled">
-                                <label for="profile-back-verif-2"></label>
-                            </div>
-                            <div class="col-xs-10">
-                                <p>
-                                    Assurance
-                                </p>
-                                <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                   ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                   ng-click="vm.setVerif('INSURANCE')"><p>
-                                        <span class="pointer"
-                                              ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">Add</span>
-                                        <span class="pointer"
-                                              ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">Change</span>
-
-                                </p></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-2 profile-verif">
-                                <input id="profile-back-verif-3" type="checkbox"
-                                       ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
-                                       disabled="disabled">
-                                <label for="profile-back-verif-3" class="blue"></label>
-                            </div>
-                            <div class="col-xs-10">
-                                <p>
-                                    Principale certification ou qualification
-                                </p>
-                                <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                   ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                   ng-click="vm.setVerif('RGE')"><p>
-                                        <span class="pointer"
-                                              ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Add</span>
-                                    <span class="pointer"
-                                          ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Change</span>
-                                </p></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-2 profile-verif">
-                                <input id="profile-back-verif-4" type="checkbox"
-                                       ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
-                                       disabled="disabled">
-                                <label for="profile-back-verif-4" class="blue"></label>
-                            </div>
-                            <div class="col-xs-10">
-                                <p>
-                                    Principal partenaire
-                                </p>
-                                <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                                   ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
-                                   ng-click="vm.setVerif('PARTNER')">
-                                    <p>
-                                            <span class="pointer"
-                                                  ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Add</span>
-                                            <span class="pointer"
-                                                  ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">Change</span>
-                                    </p></a>
-                            </div>
-                        </div>
-                        <p class="error center" ng-show="vm.error.verif.flag">
-                            {{vm.error.verif.message}}
-                        </p>
-
-                        <div class="profile-box-footer">
-
-                            <button class="btn btn-info bgm-lightblue waves-effect"
-                                    ng-click="vm.showVerificationsEditPopup = true"
-                                    ng-disabled="vm.updating || !vm.showButtonsVerifications()">
-                                Enregistrer
-                            </button>
-                            <button class="btn btn-link waves-effect" ng-click="vm.cancelVerifications()"
-                                    ng-disabled="!vm.showButtonsVerifications()">
-                                Annuler
-                            </button>
-
-                        </div>
+                <div data-ng-if="vm.profile.status == 'VALIDATED'" class="card bgm-bluegray c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Votre profil est complet. Vous pouvez répondre aux offres.<br/>
+                        Compléter entièrement votre profil augmente votre visibilité et vos chances d'être sélectionné
                     </div>
                 </div>
-                <div class="menu-category profile-about">
-                    <div class="profile-box">
-                        <p>
-                            Modifier le mot de passe
-                        </p>
 
-                        <div class="form-group fg-float m-b-30">
-                            <div class="fg-line">
-                                <input type="password" class="form-control fg-input"
-                                       ng-model="vm.pwdCurrent">
-                                <label class="fg-label">Mot de passe actuel</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group fg-float m-b-30">
-                            <div class="fg-line">
-                                <input type="password" class="form-control fg-input"
-                                       ng-model="vm.pwd1">
-                                <label class="fg-label">Nouveau mot de passe</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group fg-float m-b-30"
-                             ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
-                            <div class="fg-line">
-                                <input type="password" class="form-control fg-input"
-                                       ng-model="vm.pwd2">
-                                <label class="fg-label">Confirmation</label>
-                            </div>
-                            <small class="help-block" ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
-                                Les deux mots de passe ne correspondent pas
-                            </small>
-                        </div>
-
-                        <div class="profile-box-footer mt-12">
-
-                            <button class="btn btn-info bgm-lightblue waves-effect"
-                                    ng-click="vm.changePassword()"
-                                    ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
-                                Enregistrer
-                            </button>
-
-                        </div>
+                <div data-ng-if="vm.profile.status == 'COMPLETED'" class="p-15">
+                    <div class="topViewProfileIcon v-align-sub">
+                        <i class="zmdi zmdi-hc-2x zmdi-check"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Votre profil est complet. <span class="c-gray">Vous pouvez répondre aux offres.</span>
                     </div>
                 </div>
             </div>
 
-
-            <div class="col-sm-6">
-
-                <div class="menu-category profile-area">
-                    <div class="profile-box">
-                        <div class="profile-area-header">
-                            <p>
-                                Zone de notification
-                            </p>
-
-                            <p class="profile-area-header-info">
-                                Déplacez-vous et zoomez dans la carte afin de définir votre zone de notification : vous
-                                serez alors avertis de tous les nouveaux chantiers qui correspondent à vos compétences
-                                dans cette zone.<br/>
-                                Vous pourrez également rechercher manuellement des chantiers en dehors de cette zone via
-                                la page "Trouver des chantiers".
-                            </p>
-                        </div>
-                        <div id="map_canvas">
-                            <ui-gmap-google-map center="vm.map.center" control="vm.map.control"
-                                                bounds="vm.map.bounds" zoom="vm.map.zoom" options="vm.mapOptions"
-                                                events="vm.map.events">
-                                <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
-                                                fill="vm.circle.fill" radius="vm.circle.radius"
-                                                bounds="vm.circle.bounds"
-                                                visible="vm.circle.visible" geodesic="true" editable="false"
-                                                draggable="false" clickable="true" control="vm.circle.control"
-                                                events="vm.circle.events"></ui-gmap-circle>
-                            </ui-gmap-google-map>
-                            <div class="mapMinimumZoomMessage" ng-show="vm.mapShowMinimumZoomMessage">
-                                Veuillez zommer pour définir votre zone d'alerte
-                            </div>
-                            <div class="workareaDiameter"
-                                 ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
-                                Diamètre de la zone : {{vm.workareaDiameter}} km
-                            </div>
-                        </div>
-                        <div class="profile-box-footer m-t-15">
-
-                            <button class="btn btn-info bgm-lightblue waves-effect"
-                                    ng-click="vm.updateWorkArea()"
-                                    ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
-                                Enregistrer
-                            </button>
-                            <button class="btn btn-link waves-effect" ng-click="vm.cancelWorkArea()"
-                                    ng-disabled="!vm.showButtonsWorkArea()">
-                                Annuler
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-category profile-about">
-                    <div class="profile-box">
-                        <p>
-                            Portfolio
-                        </p>
-
-                        <div class="row cl">
-
-
-                            <div class="lightbox photos projectImageTooltip" ng-show="!vm.editFlag">
-                                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                     data-sub-html="#caption{{$index}}"
-                                     class="lightboxItemAngular col-xs-6 col-sm-3 col-md-3"
-                                     tooltip-placement="top"
-                                     uib-tooltip="{{image.description}}"
-                                     ng-repeat="image in vm.portfolio">
-                                    <div class="lightbox-item p-item">
-                                        <img
-                                            ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                            alt=""/>
-                                    </div>
-                                    <div id="caption{{$index}}" style="display:none">
-                                        <div class="galleryCaption">
-                                            <p>{{image.description}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Editing mode-->
-
-                            <div class="" ng-show="vm.editFlag" ng-show="vm.editFlag">
-                                <div class="galleryEditingItem col-xs-6 col-sm-3 col-md-3"
-                                     ng-repeat="image in vm.portfolio">
-                                    <div class="lightbox-item p-item projectImageTooltip">
-                                        <img
-                                            tooltip-placement="top"
-                                            uib-tooltip="{{image.description}}"
-                                            ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                                            alt=""/>
-                                    </div>
-
-                                    <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
-                                        <button uib-dropdown-toggle class="btn bgm-lightblue btn-float">
-                                            <i class="zmdi zmdi-comment-text-alt"></i>
-                                        </button>
-
-                                        <div class="dropdown-menu stop-propagate">
-                                                <textarea placeholder="Ajouter un commentaire"
-                                                          ng-model="image.description"
-                                                          ng-maxlength="140"
-                                                          maxlength="140"
-                                                          data-auto-size
-                                                          ng-trim="false"
-                                                          ng-change="vm.descriptionChanged(image)"></textarea>
-
-                                            <div class="descriptionCounter">
-                                                {{vm.getStringLength(image.description)}} / 140 caractères
-                                            </div>
-
-                                            <button class="btn bgm-lightblue btn-float"
-                                                    data-tl-action="save"
-                                                    ng-click="vm.saveComment();">
-                                                <i class="zmdi zmdi-check"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <button class="floatingButton btn btn-danger btn-float"
-                                            ng-click="vm.removeImage($index)">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 col-sm-3 col-md-3 no-padding"
-                                 ngf-drop="vm.uploadPortfolio($files)"
-                                 ngf-drag-over-class="dragOverClass($event)"
-                                 ng-model="files"
-                                 ng-multiple="false" ng-if="vm.portfolio.length < 8 && vm.editFlag">
-                                <div class="galleryUpload lightbox-item p-item"
-                                     ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
-                                     ngf-accept="'image/*'" ngf-max-size="5MB">
-                                    <div class="content">
-                                        <i class="zmdi zmdi-plus-circle-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="profile-box-footer m-t-15">
-
-                            <button class="btn btn-info bgm-lightblue waves-effect"
-                                    ng-click="vm.updatePortfolio()"
-                                    ng-if="vm.editFlag && vm.showButtonsPortfolio()"
-                                    ng-disabled="vm.updating">
-                                Enregistrer
-                            </button>
-                            <button class="btn btn-link waves-effect"
-                                    ng-click="vm.cancelPortfolio()"
-                                    ng-if="vm.editFlag">
-                                Annuler
-                            </button>
-
-                            <button class="btn btn-info bgm-lightblue btn-icon-text waves-effect"
-                                    ng-if="!vm.editFlag"
-                                    ng-click="vm.editFlag = true">
-                                <i class="zmdi zmdi-edit"></i>
-                                Modifier
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-category profile-about">
-                    <div class="profile-box">
-                        <p>
-                            Domaines de compétence
-                        </p>
-
-                        <div class="row">
-                            <div class="col-xs-6 mb-15 cursor-pointer" ng-repeat="s in vm.cat"
-                                 ng-click="vm.actionActivities(s)">
-                                <div class="row profile-activities no-margin">
-                                    <div class="col-xs-3 no-padding"
-                                         ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
-                                        <div class="profile-activities-check">
-                                            <span class="glyphicon glyphicon-ok"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3 no-padding"
-                                         ng-show="vm.indexOfObject(s, 'code', vm.activities).length == 0">
-                                        <span>-</span>
-                                    </div>
-                                    <div class="col-xs-9 no-padding">
-                                        {{ 'ACTIVITY_' + s | translate}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="error center" ng-show="vm.error.activities.flag">
-                            {{vm.error.activities.message}}
-                        </p>
-
-                        <div class="profile-box-footer">
-
-                            <button class="btn btn-info bgm-lightblue waves-effect"
-                                    ng-click="vm.updateActivities()"
-                                    ng-disabled="vm.updating || !vm.showButtonsActivities()">
-                                Enregistrer
-                            </button>
-                            <button class="btn btn-link waves-effect"
-                                    ng-click="vm.cancelActivities()"
-                                    ng-disabled="!vm.showButtonsActivities()">
-                                Annuler
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-6 p-l-0 hidden-xs">
+                <div data-ng-include="'infos.html'"></div>
+                <div data-ng-include="'workarea.html'"></div>
+                <div data-ng-include="'password.html'"></div>
+            </div>
+            <div class="col-sm-6 p-r-0 hidden-xs">
+                <div data-ng-include="'verifications.html'"></div>
+                <div data-ng-include="'description.html'"></div>
+                <div data-ng-include="'portfolio.html'"></div>
+                <div data-ng-include="'activities.html'"></div>
+            </div>
+            <div class="col-sm-12 no-padding visible-xs clearfix">
+                <div data-ng-include="'infos.html'"></div>
+                <div data-ng-include="'verifications.html'"></div>
+                <div data-ng-include="'description.html'"></div>
+                <div data-ng-include="'portfolio.html'"></div>
+                <div data-ng-include="'activities.html'"></div>
+                <div data-ng-include="'workarea.html'"></div>
+                <div data-ng-include="'password.html'"></div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup" ng-click="vm.closePopup()"
-     ng-cloak>
+<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup"
+     data-ng-click="vm.closePopup()"
+     data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
             <img class="popupCloseButton"
                  src="icons/mdpi/ic_popup_close.png"
-                 ng-click="vm.closePopup()"
+                 data-ng-click="vm.closePopup()"
                  alt=""/>
 
             <div class="profilePopupMessage">
@@ -681,12 +122,692 @@
                 nouvelles offres tant qu'il n'aura pas été revalidé par l'équipe YakaClub (vous recevrez un mail
                 rapidement pour vous en tenir informé).
             </div>
-            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.closePopup()">
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.closePopup()">
                 ANNULER
             </div>
-            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" ng-click="vm.validatePopup()">
+            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.validatePopup()">
                 VALIDER
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="infos.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+            <h2>
+                <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
+                   data-ng-if="vm.infosCardIsComplete()"></i>
+                Informations générales
+                <small class="c-red" data-ng-if="!vm.infosCardIsComplete()">
+                    Informations en rouge obligatoires
+                </small>
+            </h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-30">
+            <form name="profileForm">
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-3">
+                        <div class="img-profile img-profile-pro">
+                            <yaka-avatar size="44" user="vm.profileInfo.user"></yaka-avatar>
+
+                            <button
+                                class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
+                                ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
+                                ngf-accept="'image/*'" ngf-max-size="5MB">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-xs-9 no-padding-right">
+
+                        <div class="form-group fg-float m-b-30"
+                             data-ng-class="{'has-error': !vm.profileInfo.user.firstName}">
+
+                            <div class="fg-line">
+                                <input type="text" name="firstName" class="form-control fg-input"
+                                       data-ng-model="vm.profileInfo.user.firstName"
+                                       required="required" yaka-input-name>
+                                <label class="fg-label">Prénom</label>
+                            </div>
+                            <div data-ng-messages="profileForm.firstName.$error">
+                                <small class="help-block" data-ng-message="required">Ce champ est requis
+                                </small>
+                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est
+                                    pas
+                                    valide
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30"
+                             data-ng-class="{'has-error': !vm.profileInfo.user.lastName}">
+
+                            <div class="fg-line">
+                                <input type="text" name="lastName" class="form-control fg-input"
+                                       data-ng-model="vm.profileInfo.user.lastName"
+                                       required="required" yaka-input-name>
+                                <label class="fg-label">Nom</label>
+                            </div>
+                            <div data-ng-messages="profileForm.lastName.$error">
+                                <small class="help-block" data-ng-message="required">Ce champ est requis
+                                </small>
+                                <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                    valide
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                    <div class="fg-line">
+                        <input type="text" name="phoneNumber"
+                               required="required" class="form-control fg-input"
+                               data-ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                        <label class="fg-label fg-label-phone">Téléphone</label>
+                    </div>
+                    <div data-ng-messages="profileForm.phoneNumber.$error">
+                        <small class="help-block" data-ng-message="required">Ce champ est requis
+                        </small>
+                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
+                            n'est
+                            pas valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.profileInfo.user.email}">
+                    <div class="fg-line">
+                        <input type="text" name="email" class="form-control fg-input"
+                               data-ng-model="vm.profileInfo.user.email"
+                               required="required" yaka-input-email>
+                        <label class="fg-label">Email</label>
+                    </div>
+                    <div data-ng-messages="profileForm.email.$error">
+                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                        <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                            valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
+                    <div class="fg-line">
+                        <div class="select">
+                            <select name="activityStartedYear"
+                                    required="required"
+                                    data-ng-model="vm.profileInfo.activityStartedYear"
+                                    class="form-control" convert-to-number>
+                                <option value="0" disabled selected></option>
+                                <option data-ng-repeat="year in vm.years | orderBy:'-toString()'"
+                                        data-ng-selected="vm.profileInfo.activityStartedYear == year"
+                                        data-ng-value="year">
+                                    {{year}}
+                                </option>
+                            </select>
+                            <label class="fg-label">Première année d'expérience</label>
+                        </div>
+                    </div>
+                    <div data-ng-messages="profileForm.activityStartedYear.$error">
+                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.profileInfo.company.name}">
+                    <div class="fg-line">
+                        <input type="text" name="companyName" required="required"
+                               class="form-control fg-input"
+                               data-ng-model="vm.profileInfo.company.name">
+                        <label class="fg-label">Nom de l'entreprise</label>
+                    </div>
+                    <div data-ng-messages="profileForm.companyName.$error">
+                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.profileInfo.company.siret}">
+                    <div class="fg-line">
+                        <input name="siret" type="text" required="required"
+                               class="form-control fg-input"
+                               data-ng-model="vm.profileInfo.company.siret" yaka-input-siret>
+                        <label class="fg-label">SIRET</label>
+                    </div>
+                    <div data-ng-messages="profileForm.siret.$error">
+                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                        <small class="help-block" data-ng-message="invalidSiret">Ce SIRET n'est pas
+                            valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.profileInfo.company.address.address}">
+                    <div class="fg-line">
+                        <input type="text" class="form-control fg-input"
+                               vs-google-autocomplete="options"
+                               vs-autocomplete-validator
+                               data-ng-model="vm.profileInfo.company.address.address"
+                               type="text"
+                               name="address"
+                               required="required"
+                               placeholder=""
+                               id="address">
+                        <label class="fg-label">Addresse de l'entreprise</label>
+                    </div>
+                    <div data-ng-messages="profileForm.address.$error">
+                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30">
+
+                    <div class="fg-line">
+                        <input type="text" name="companyPhoneNumber"
+                               class="form-control fg-input"
+                               data-ng-model="vm.profileInfo.company.phone" yaka-input-phone>
+                        <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
+                    </div>
+                    <div data-ng-messages="profileForm.companyPhoneNumber.$error">
+                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
+                            n'est
+                            pas valide
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 no-padding profile-box-footer m-b-20">
+
+                    <button class="btn btn-info bgm-lightblue waves-effect"
+                            data-ng-click="vm.showProfileEditPopup = true"
+                            data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                        Enregistrer
+                    </button>
+                    <button class="btn btn-link waves-effect" data-ng-click="vm.cancelProfile()"
+                            data-ng-disabled="!vm.showButtonsProfile()">
+                        Annuler
+                    </button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="workarea.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt bgm-lightblue">
+            <h2>
+                <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"></i>
+                Zone de notification
+            </h2>
+        </div>
+
+        <div class="col-xs-12 card-body m-t-20">
+
+            <p class="profile-area-header-info">
+                Déplacez-vous et zoomez dans la carte afin de définir votre zone de notification : vous
+                serez alors avertis de tous les nouveaux chantiers qui correspondent à vos compétences
+                dans cette zone.<br/>
+                Vous pourrez également rechercher manuellement des chantiers en dehors de cette zone via
+                la page "Trouver des chantiers".
+            </p>
+
+            <div id="map_canvas">
+                <ui-gmap-google-map center="vm.map.center" control="vm.map.control"
+                                    bounds="vm.map.bounds" zoom="vm.map.zoom" options="vm.mapOptions"
+                                    events="vm.map.events">
+                    <ui-gmap-circle center="vm.circle.center" stroke="vm.circle.stroke"
+                                    fill="vm.circle.fill" radius="vm.circle.radius"
+                                    bounds="vm.circle.bounds"
+                                    visible="vm.circle.visible" geodesic="true" editable="false"
+                                    draggable="false" clickable="true" control="vm.circle.control"
+                                    events="vm.circle.events"></ui-gmap-circle>
+                </ui-gmap-google-map>
+                <div class="mapMinimumZoomMessage" data-ng-show="vm.mapShowMinimumZoomMessage">
+                    Veuillez zommer pour définir votre zone d'alerte
+                </div>
+                <div class="workareaDiameter"
+                     data-ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
+                    Diamètre de la zone : {{vm.workareaDiameter}} km
+                </div>
+            </div>
+            <div class="profile-box-footer m-t-15 m-b-20">
+
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.updateWorkArea()"
+                        data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
+                    Enregistrer
+                </button>
+                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelWorkArea()"
+                        data-ng-disabled="!vm.showButtonsWorkArea()">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="password.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt">
+            <h2>Modifier le mot de passe</h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-20">
+            <div class="form-group fg-float m-b-30">
+                <div class="fg-line">
+                    <input type="password" class="form-control fg-input"
+                           data-ng-model="vm.pwdCurrent">
+                    <label class="fg-label">Mot de passe actuel</label>
+                </div>
+            </div>
+
+            <div class="form-group fg-float m-b-30">
+                <div class="fg-line">
+                    <input type="password" class="form-control fg-input"
+                           data-ng-model="vm.pwd1">
+                    <label class="fg-label">Nouveau mot de passe</label>
+                </div>
+            </div>
+
+            <div class="form-group fg-float m-b-30"
+                 data-ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                <div class="fg-line">
+                    <input type="password" class="form-control fg-input"
+                           data-ng-model="vm.pwd2">
+                    <label class="fg-label">Confirmation</label>
+                </div>
+                <small class="help-block" data-ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
+                    Les deux mots de passe ne correspondent pas
+                </small>
+            </div>
+
+            <div class="profile-box-footer mt-12 m-b-20">
+
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.changePassword()"
+                        data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                    Enregistrer
+                </button>
+
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="verifications.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt"
+             data-ng-class="{'bgm-lightblue': vm.verificationsCardIsComplete()}">
+            <h2>
+                <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
+                   data-ng-if="vm.verificationsCardIsComplete()"></i>
+                Documents à fournir
+                <small class="c-red" data-ng-if="!vm.verificationsCardIsComplete()">
+                    Incomplet (KBIS et Assurance obligatoires)
+                </small>
+            </h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-20">
+            <div class="row">
+                <div class="col-xs-2 profile-verif p-l-25">
+                    <input id="profile-back-verif-1" type="checkbox"
+                           data-ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
+                           disabled="disabled">
+                    <label for="profile-back-verif-1"></label>
+                </div>
+                <div class="col-xs-10">
+                    <p class="m-b-0">
+                        Extrait KBIS / SIRET
+                    </p>
+                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       data-ng-click="vm.setVerif('BUSINESS_REGISTRATION')">
+                        <p class="m-b-5">
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">Ajouter</span>
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">Modifier</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 profile-verif p-l-25">
+                    <input id="profile-back-verif-2" type="checkbox"
+                           data-ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
+                           disabled="disabled">
+                    <label for="profile-back-verif-2"></label>
+                </div>
+                <div class="col-xs-10">
+                    <p class="m-b-0">
+                        Assurance
+                    </p>
+                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       data-ng-click="vm.setVerif('INSURANCE')">
+                        <p class="m-b-5">
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">Ajouter</span>
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">Modifier</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 profile-verif p-l-25">
+                    <input id="profile-back-verif-3" type="checkbox"
+                           data-ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
+                           disabled="disabled">
+                    <label for="profile-back-verif-3" class="blue"></label>
+                </div>
+                <div class="col-xs-10">
+                    <p class="m-b-0">
+                        Principale certification ou qualification
+                    </p>
+                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       data-ng-click="vm.setVerif('RGE')">
+                        <p class="m-b-5">
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">Ajouter</span>
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">Modifier</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 profile-verif p-l-25">
+                    <input id="profile-back-verif-4" type="checkbox"
+                           data-ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
+                           disabled="disabled">
+                    <label for="profile-back-verif-4" class="blue"></label>
+                </div>
+                <div class="col-xs-10">
+                    <p class="m-b-0">
+                        Principal partenaire
+                    </p>
+                    <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       data-ng-click="vm.setVerif('PARTNER')">
+                        <p class="m-b-5">
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">Ajouter</span>
+                                            <span class="pointer"
+                                                  data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">Modifier</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <p class="error center" data-ng-show="vm.error.verif.flag">
+                {{vm.error.verif.message}}
+            </p>
+
+            <div class="profile-box-footer m-t-10 m-b-20">
+
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.showVerificationsEditPopup = true"
+                        data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
+                    Enregistrer
+                </button>
+                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelVerifications()"
+                        data-ng-disabled="!vm.showButtonsVerifications()">
+                    Annuler
+                </button>
+
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="description.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt"
+             data-ng-class="{'bgm-lightblue': vm.descriptionCardIsComplete()}">
+            <h2>
+                <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
+                   data-ng-if="vm.descriptionCardIsComplete()"></i>
+                Description
+                <small class="c-red" data-ng-if="!vm.descriptionCardIsComplete()">
+                    Obligatoire (au moins 100 caractères)
+                </small>
+            </h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-20">
+
+            <p class="profile-area-header-info">
+                Présentez-vous et expliquez votre façon de travailler
+            </p>
+
+            <form name="aboutMeForm">
+                <div class="form-group"
+                     data-ng-class="{'has-error': !vm.about.aboutMe}">
+                    <div class="fg-line">
+                                    <textarea class="form-control" rows="4"
+                                              name="aboutMe"
+                                              data-ng-model="vm.about.aboutMe"
+                                              required="required"
+                                              data-ng-minlength="100"
+                                              data-auto-size
+                                              data-autosize-on="true"
+                                              placeholder="Décrivez-vous ainsi que vos méthodes de travail. Expliquez à vos clients pourquoi ils doivent vous embaucher plutôt qu’un autre artisan. Indiquez vos certifications ou distinctions."></textarea>
+                    </div>
+                    <div data-ng-messages="aboutMeForm.aboutMe.$error">
+                        <small class="help-block" data-ng-message="minlength">
+                            Description trop courte (100 caractères min)
+                        </small>
+                        <small class="help-block" data-ng-message="required">
+                            Ce champ est requis
+                        </small>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="profile-box-footer m-b-20">
+
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.updateAboutMe()"
+                        data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                    Enregistrer
+                </button>
+                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelAboutMe()"
+                        data-ng-disabled="!vm.showButtonsAbout()">
+                    Annuler
+                </button>
+
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="portfolio.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt"
+             data-ng-class="{'bgm-lightblue': vm.portfolioCardIsComplete()}">
+            <h2>
+                <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
+                   data-ng-if="vm.portfolioCardIsComplete()"></i>
+                Portfolio
+                <small class="c-gray" data-ng-if="!vm.portfolioCardIsComplete()">
+                    Améliorez votre visibilité en ajoutant des photos de vos anciens chantiers
+                </small>
+            </h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-20">
+
+            <p class="profile-area-header-info">
+                Ajoutez des photos de vos précédents réalisations (avec l'autorisation du propriétaire).
+            </p>
+
+            <div class="lightbox photos projectImageTooltip clearfix" data-ng-show="!vm.editFlag">
+                <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                     data-sub-html="#caption{{$index}}"
+                     class="lightboxItemAngular col-md-4 col-sm-4 col-xs-6"
+                     tooltip-placement="top"
+                     uib-tooltip="{{image.description}}"
+                     data-ng-repeat="image in vm.portfolio">
+                    <div class="lightbox-item p-item">
+                        <img
+                            data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                            alt=""/>
+                    </div>
+                    <div id="caption{{$index}}" style="display:none">
+                        <div class="galleryCaption">
+                            <p>{{image.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Editing mode-->
+
+            <div class="" data-ng-show="vm.editFlag" data-ng-show="vm.editFlag">
+                <div class="galleryEditingItem col-md-4 col-sm-4 col-xs-6"
+                     data-ng-repeat="image in vm.portfolio">
+                    <div class="lightbox-item p-item projectImageTooltip">
+                        <img
+                            tooltip-placement="top"
+                            uib-tooltip="{{image.description}}"
+                            data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                            alt=""/>
+                    </div>
+
+                    <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                        <button uib-dropdown-toggle class="btn bgm-lightblue btn-float floatingButtonImage">
+                            <i class="zmdi zmdi-comment-text-alt"></i>
+                        </button>
+
+                        <div class="dropdown-menu stop-propagate">
+                                                <textarea placeholder="Ajouter un commentaire"
+                                                          data-ng-model="image.description"
+                                                          data-ng-maxlength="140"
+                                                          maxlength="140"
+                                                          data-auto-size
+                                                          data-ng-trim="false"
+                                                          data-ng-change="vm.descriptionChanged(image)"></textarea>
+
+                            <div class="descriptionCounter">
+                                {{vm.getStringLength(image.description)}} / 140 caractères
+                            </div>
+
+                            <button class="btn bgm-lightblue btn-float"
+                                    data-tl-action="save"
+                                    data-ng-click="vm.saveComment();">
+                                <i class="zmdi zmdi-check"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="floatingButtonImage floatingButtonImageDelete btn btn-danger btn-float"
+                            data-ng-click="vm.removeImage($index)">
+                        <i class="zmdi zmdi-delete"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-6 no-padding"
+                 ngf-drop="vm.uploadPortfolio($files)"
+                 ngf-drag-over-class="dragOverClass($event)"
+                 data-ng-model="files"
+                 data-ng-multiple="false" data-ng-if="vm.portfolio.length < 8 && vm.editFlag">
+                <div class="galleryUpload lightbox-item p-item"
+                     ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
+                     ngf-accept="'image/*'" ngf-max-size="5MB">
+                    <div class="content">
+                        <i class="zmdi zmdi-plus-circle-o"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 no-padding profile-box-footer m-t-15 m-b-20">
+
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.updatePortfolio()"
+                        data-ng-if="vm.editFlag && vm.showButtonsPortfolio()"
+                        data-ng-disabled="vm.updating">
+                    Enregistrer
+                </button>
+                <button class="btn btn-link waves-effect"
+                        data-ng-click="vm.cancelPortfolio()"
+                        data-ng-if="vm.editFlag">
+                    Annuler
+                </button>
+
+                <button class="btn btn-info bgm-lightblue btn-icon-text waves-effect"
+                        data-ng-if="!vm.editFlag"
+                        data-ng-click="vm.editFlag = true">
+                    <i class="zmdi zmdi-edit"></i>
+                    Modifier
+                </button>
+
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="activities.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt bgm-lightblue">
+            <h2>
+                <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"></i>
+                Domaines de compétence
+            </h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-20">
+
+            <p class="profile-area-header-info">
+                Sélectionnez les domaines pour lesquels vous souhaitez recevoir des offres.
+            </p>
+
+            <div class="row">
+                <div class="col-xs-6 mb-15 cursor-pointer" data-ng-repeat="s in vm.cat"
+                     data-ng-click="vm.actionActivities(s)">
+                    <div data-ng-show="s != 'AUTO_MULTI'" class="row profile-activities no-margin">
+                        <div class="col-xs-3 no-padding"
+                             data-ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
+                            <div class="profile-activities-check">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 no-padding"
+                             data-ng-show="vm.indexOfObject(s, 'code', vm.activities).length == 0">
+                            <span>-</span>
+                        </div>
+                        <div class="col-xs-9 no-padding">
+                            {{ 'ACTIVITY_' + s | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="error center" data-ng-show="vm.error.activities.flag">
+                {{vm.error.activities.message}}
+            </p>
+
+            <div class="profile-box-footer m-b-20">
+
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.updateActivities()"
+                        data-ng-disabled="vm.updating || !vm.showButtonsActivities()">
+                    Enregistrer
+                </button>
+                <button class="btn btn-link waves-effect"
+                        data-ng-click="vm.cancelActivities()"
+                        data-ng-disabled="!vm.showButtonsActivities()">
+                    Annuler
+                </button>
+
+            </div>
+        </div>
+    </div>
+</script>

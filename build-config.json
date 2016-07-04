@@ -96,7 +96,6 @@
             "bower_components/ng-table/dist/ng-table.css",
             "modules/core/styles/style.css",
             "modules/core/styles/ui_kit.css",
-            "modules/core/styles/fonts.css",
             "modules/core/styles/app.css",
             "modules/core/styles/templateHack.css",
             "modules/core/directives/styles/yakaDirectives.css",

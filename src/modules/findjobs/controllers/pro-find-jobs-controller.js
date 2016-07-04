@@ -9,7 +9,7 @@
     function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
         $scope.showList = false;
 
-        $rootScope.pageName = "Tableau de bord Pro";
+        $rootScope.pageName = "Trouvez des chantiers";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -240,7 +240,6 @@
                         $('.gm-style-mtc').show();
                     },
                     "zoom_changed": function () {
-                        console.log(vm.map.zoom);
                         if (!disableExploringMode) {
                             vm.showSlider = false;
                             vm.showWorkArea = false;

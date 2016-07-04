@@ -84,7 +84,6 @@ html {
 }
 
 .customerSupportWidgetText {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     position: absolute;
     right: 10px;
     top: 4px;
@@ -102,7 +101,6 @@ html {
 }
 
 .Flogo {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-weight: bold;
     display: inline-block;
     font-size: 35px;
@@ -112,7 +110,6 @@ html {
 }
 
 .Slogo {
-    font-family: 'montserrat_ultra_light', Arial, sans-serif;
     display: inline-block;
     font-size: 35px;
     vertical-align: middle;
@@ -121,7 +118,6 @@ html {
 }
 
 .Flogo-white {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-weight: bold;
     display: inline-block;
     font-size: 35px;
@@ -132,7 +128,6 @@ html {
 }
 
 .Slogo-white {
-    font-family: 'montserrat_ultra_light', Arial, sans-serif;
     display: inline-block;
     font-size: 35px;
     vertical-align: middle;
@@ -157,19 +152,48 @@ html {
     background: #03A9F4;
     margin-left: 5px;
     font-size: 16px;
-    line-height: 18px;
+    line-height: 17px;
     position: absolute;
-    top: 10px;
+    top: 11px;
     padding-left: 3px;
     padding-right: 3px;
     padding-top: 1px;
     padding-bottom: 1px;
-    left: 125px;
+    left: 115px;
 }
 
 .titleBetaPro {
     background: #FF9800 !important;
-    left: 176px;
+    left: 163px;
+}
+
+.titleYakaClub {
+    font-size: 24px;
+    float: left;
+    cursor: pointer;
+    color: black;
+    line-height: 55px;
+    margin-left: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.titleYaka {
+    font-weight: 900;
+}
+
+.titleClub {
+    font-weight: 100;
+}
+
+.titleContactsBeta {
+    left: 116px !important;
 }
 
 .logout {
@@ -205,7 +229,6 @@ img {
 }
 
 .view {
-    font-family: 'montserrat_light', Arial, sans-serif;
     background-color: #f2f4f9;
     position: absolute;
     top: 0;
@@ -497,7 +520,6 @@ md-input-container {
     left: 0px !important;
     height: calc(100% - 55px) !important;
     width: 100% !important;
-    background-color: #edeff5 !important;
     overflow: auto !important;
 }
 
@@ -511,7 +533,6 @@ md-input-container {
 }
 
 .content-slide > h4 {
-    font-family: 'montserrat_light', Arial, sans-serif;;
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.04px;
@@ -685,7 +706,6 @@ md-input-container {
 }
 
 .proposals-price-type {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.16px;
@@ -695,7 +715,6 @@ md-input-container {
 }
 
 .proposals-price {
-    font-family: 'montserrat_light';
     font-size: 36px;
     color: #000000;
     text-align: right;
@@ -704,7 +723,6 @@ md-input-container {
 }
 
 .proposals-more-info {
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #2f313a;
     text-align: right;
@@ -731,7 +749,6 @@ md-input-container {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     text-align: left;
@@ -741,7 +758,6 @@ md-input-container {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-family: 'montserrat_bold';
     font-size: 18px;
     color: #444444;
     text-align: left;
@@ -754,7 +770,6 @@ md-input-container {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     text-align: left;
@@ -768,21 +783,18 @@ md-input-container {
 }
 
 .inprogress {
-    font-family: 'montserrat_regular' !important;
     font-size: 14px !important;
     color: #9E9E9E !important;
     margin-bottom: 0px !important;
 }
 
 .pro-proposals-date {
-    font-family: 'montserrat_light';
     font-size: 12px;
     color: #444444;
     text-align: left;
 }
 
 .pro-proposals-price {
-    font-family: 'montserrat_regular';
     font-size: 18px;
     color: #444444;
     text-align: right;
@@ -812,7 +824,6 @@ md-input-container {
 }
 
 .pro-proposals-title {
-    font-family: 'montserrat_regular';
     font-size: 14px;
     color: #444444;
     text-align: left;
@@ -830,7 +841,6 @@ md-input-container {
 }
 
 .pro-proposals-info {
-    font-family: 'montserrat_light';
     font-size: 12px;
     color: #444444;
     text-align: left;
@@ -1450,7 +1460,6 @@ md-input-container {
     vertical-align: middle;
     text-align: center;
     opacity: 0.8;
-    font-family: 'montserrat_light';
     font-size: 13px;
     color: #9E9E9E;
     line-height: 100px;
@@ -1605,6 +1614,12 @@ md-input-container {
     white-space: nowrap;
 }
 
+.yakaDisableEllipsis {
+    text-overflow: initial !important;
+    overflow: visible !important;
+    white-space: initial !important;
+}
+
 .project-date {
     white-space: nowrap;
     margin-right: 5px;
@@ -1690,7 +1705,6 @@ md-input-container {
 
 .pro-title-post {
     float: right;
-    font-family: 'montserrat_light';
     font-size: 12px;
     color: #9E9E9E;
     letter-spacing: 0.89px;
@@ -1785,9 +1799,11 @@ md-input-container {
 
 .sym-euro {
     font-family: "montserrat_regular";
-    font-size: 36px;
+    font-size: 25px;
+    top: 0;
     color: #03A9F4;
     text-align: left;
+    padding-left: 0 !important;
 }
 
 .w-330 {
@@ -1814,7 +1830,6 @@ md-input-container {
 }
 
 .make-menu-unread {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #F44336;
     text-align: left;
@@ -1823,14 +1838,12 @@ md-input-container {
 }
 
 .make-menu-desc {
-    font-family: 'montserrat_light';
     font-size: 11.76px;
     color: #444444;
     text-align: center;
 }
 
 .pro-proposal-title > p:nth-child(1) {
-    font-family: 'montserrat_regular';
     font-size: 16px;
     letter-spacing: 1.13px;
     text-align: left;
@@ -1841,7 +1854,6 @@ md-input-container {
 }
 
 .pro-proposal-title > p:nth-child(2) {
-    font-family: 'montserrat_regular';
     font-size: 16px;
     color: #000000;
     text-align: left;
@@ -1881,7 +1893,6 @@ md-input-container {
 }
 
 .info-popUp {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1px;
@@ -1892,7 +1903,6 @@ md-input-container {
 }
 
 .info-popUp-comp {
-    font-family: 'montserrat_light';
     font-size: 12px;
     color: #9E9E9E;
     letter-spacing: 0.86px;
@@ -1903,7 +1913,6 @@ md-input-container {
 
 .hire {
     margin-bottom: 10px;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     line-height: 17px;
@@ -1949,7 +1958,6 @@ md-input-container {
 }
 
 .meu-r-title {
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #2f313a;
     letter-spacing: 1.19px;
@@ -1958,7 +1966,6 @@ md-input-container {
 }
 
 .menu-r-text {
-    font-family: 'montserrat_light';
     font-size: 12px;
     color: #444444;
     letter-spacing: 1px;
@@ -1995,7 +2002,6 @@ md-input-container {
 
 .proposal-about-me {
     clear: right;
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     letter-spacing: 1.29px;
@@ -2133,7 +2139,6 @@ md-input-container {
     margin: 0;
     width: 100%;
     opacity: 0.8;
-    font-family: 'montserrat_light';
     font-size: 13px;
     color: #9E9E9E;
     line-height: 15px;
@@ -2177,7 +2182,6 @@ md-input-container {
 
 .pro-price {
     margin-top: 9px;
-    font-family: 'montserrat_light';
     font-size: 36px;
     color: #000000;
     line-height: 43px;
@@ -2186,7 +2190,6 @@ md-input-container {
 }
 
 .pro-price-none {
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #2f313a;
     line-height: 21px;
@@ -2197,7 +2200,6 @@ md-input-container {
 }
 
 .pro-price-desc {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 0.99px;
@@ -2218,7 +2220,6 @@ md-input-container {
     margin-left: 9px;
     height: 30px;
     font-weight: bold;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 18px;
     color: #444444;
     text-align: center;
@@ -2616,7 +2617,6 @@ md-input-container {
 .slide > h2 {
     margin-top: 0;
     margin-bottom: 28px;
-    font-family: 'montserrat_light';
     font-size: 40px;
     color: #2f313a;
     line-height: 48px;
@@ -2627,21 +2627,20 @@ md-input-container {
 }
 
 .questions-ul {
-    padding-left: 0;
     padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .question-li {
     list-style: none;
     border: 2px solid #03A9F4;
-    width: 456px;
-    height: 56px;
+    width: 100%;
+    height: 40px;
     margin-top: 10px;
-    font-family: 'montserrat_light';
-    font-size: 18px;
+    font-size: 14px;
     color: #03A9F4;
-    letter-spacing: 1.88px;
-    line-height: 56px;
+    line-height: 40px;
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -2693,7 +2692,6 @@ md-input-container {
 }
 
 .material-title {
-    font-family: 'montserrat_regular';
     font-weight: bold;
     font-size: 18px;
     color: #2f313a;
@@ -2705,14 +2703,12 @@ md-input-container {
 }
 
 .v-btn {
-    width: 136px;
-    height: 35px;
-    line-height: 35px;
+    height: 31px;
+    line-height: 28px;
     list-style: none;
     border: 2px solid #03A9F4;
     margin-top: 10px;
-    font-family: 'montserrat_light';
-    font-size: 18px;
+    font-size: 14px;
     color: #03A9F4;
     letter-spacing: 1.88px;
     text-align: center;
@@ -2736,7 +2732,6 @@ md-input-container {
     margin-top: 5px;
     text-align: center;
     opacity: 0.8;
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #9E9E9E;
     line-height: 15px;
@@ -2947,7 +2942,7 @@ md-input-container {
 }
 
 .error {
-    font-size: 18px;
+    font-size: 14px;
     color: #F44336 !important;
     letter-spacing: 0.53px;
     line-height: 21px;
@@ -3068,7 +3063,6 @@ md-input-container {
 
 .popUp-footer > div {
     cursor: pointer;
-    font-family: 'montserrat_regular';
     font-size: 14px;
     letter-spacing: 0.5px;
     line-height: 17px;
@@ -3156,7 +3150,6 @@ md-input-container {
 }
 
 .profile-box > p {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     text-align: left;
@@ -3257,15 +3250,15 @@ md-input-container {
 }
 
 .img-profile {
-    height: 70px;
-    width: 70px;
+    height: 54px;
+    width: 54px;
     position: relative;
-    left: calc(50% - 35px);
-    top: 60px;
+    left: calc(50% - (54px / 2));
+    top: 70px;
 }
 
 .img-profile-pro {
-    top: 5px;
+    top: 15px;
 }
 
 /* aspect au focus de l'élément */
@@ -3296,7 +3289,6 @@ md-input-container {
 }
 
 .profile-area-header > p {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     text-align: left;
@@ -3347,7 +3339,6 @@ md-input-container {
 }
 
 .profile-area-header-info {
-    font-family: 'montserrat_light';
     font-size: 12px !important;
     color: #444444;
     text-align: left;
@@ -3451,7 +3442,6 @@ md-input-container {
 }
 
 .end > p {
-    font-family: 'montserrat_regular';
     font-weight: bold;
     font-size: 25px;
     color: #2f313a;
@@ -3551,7 +3541,6 @@ md-input-container {
 }
 
 .in-line > h2 {
-    font-family: 'montserrat_regular';
     font-weight: bold;
     font-size: 24px;
     color: #2f313a;
@@ -3582,7 +3571,6 @@ md-input-container {
 }
 
 .in-line > p {
-    font-family: 'montserrat_light';
     font-size: 24px;
     color: #2f313a;
     line-height: 29px;
@@ -3600,7 +3588,6 @@ md-input-container {
 
 .detail-pro-title > div {
     margin-right: 30px;
-    font-family: 'montserrat_light';
     font-size: 20px;
     color: #2f313a;
     line-height: 24px;
@@ -3632,7 +3619,6 @@ md-input-container {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 382px;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.04px;
@@ -3655,7 +3641,6 @@ md-input-container {
 
 .description-action-btn {
     float: right;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #03A9F4;
     letter-spacing: 1.46px;
@@ -3671,7 +3656,6 @@ md-input-container {
     float: left;
     margin-top: 18px;
     margin-bottom: 18px;
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #2f313a;
     letter-spacing: 1.19px;
@@ -3684,7 +3668,6 @@ md-input-container {
 }
 
 .description-sub-title {
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #9E9E9E;
     letter-spacing: 1.67px;
@@ -3693,7 +3676,6 @@ md-input-container {
 }
 
 .description-sub-text {
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #2f313a;
     letter-spacing: 1.19px;
@@ -3716,7 +3698,6 @@ md-input-container {
     border: none !important;
     resize: none !important;
     width: calc(100% - 46px) !important;
-    font-family: 'montserrat_light';
     font-size: 13.41px;
     color: #444444;
     letter-spacing: 0.99px;
@@ -3766,7 +3747,6 @@ md-input-container {
     width: 100% !important;
     height: 100px;
     padding: 15px;
-    font-family: 'montserrat_light';
     font-size: 13px;
     color: #5A5A5A;
     letter-spacing: 1.67px;
@@ -3783,7 +3763,6 @@ md-input-container {
     width: 100% !important;
     height: 100px;
     padding: 15px;
-    font-family: 'montserrat_light';
     font-size: 13px;
     color: #5A5A5A;
     letter-spacing: 1.67px;
@@ -3837,7 +3816,7 @@ md-input-container {
 
 .select-addr {
     height: 40px;
-    margin-bottom: 40px !important;
+    margin-bottom: 20px !important;
 }
 
 .select-addr > div {
@@ -3978,7 +3957,6 @@ md-input-container {
 
 .pro-title-name {
     margin-top: 9px;
-    font-family: 'montserrat_regular';
     font-size: 18px;
     color: #444444;
     line-height: 21px;
@@ -3987,7 +3965,6 @@ md-input-container {
 
 .pro-title-companyName {
     margin-top: 9px;
-    font-family: 'montserrat_bold';
     font-size: 18px;
     color: #444444;
     line-height: 21px;
@@ -4008,7 +3985,6 @@ md-input-container {
 
 .proposal-qualities {
     float: left;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     line-height: 30px;
@@ -4021,7 +3997,6 @@ md-input-container {
 
 .proposal-qual {
     float: left;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     line-height: 30px;
@@ -4047,7 +4022,6 @@ md-input-container {
 }
 
 .proposal-partner > p {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.09px;
@@ -4072,7 +4046,6 @@ md-input-container {
 }
 
 .proposal-checked > p {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.09px;
@@ -4116,7 +4089,6 @@ md-input-container {
     height: 48px;
     margin-bottom: 0;
     vertical-align: middle;
-    font-family: 'montserrat_regular';
     font-weight: bold;
     font-size: 24px;
     color: #444444;
@@ -4134,7 +4106,6 @@ md-input-container {
     height: 42px;
     margin-top: 8px;
     margin-right: 27px;
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     letter-spacing: 1.29px;
@@ -4148,7 +4119,6 @@ md-input-container {
 
 .proposal-box-title {
     width: 90px;
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     letter-spacing: 1.29px;
@@ -4161,7 +4131,6 @@ md-input-container {
 }
 
 .proposal-skill p {
-    font-family: montserrat_light;
     font-size: 12px;
     color: #9E9E9E;
     letter-spacing: 0.89px;
@@ -4178,7 +4147,6 @@ md-input-container {
 }
 
 .proposal-exp > span {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.09px;
@@ -4191,7 +4159,6 @@ md-input-container {
     height: 48px;
     margin-bottom: 0;
     vertical-align: middle;
-    font-family: 'montserrat_regular';
     font-weight: bold;
     font-size: 24px;
     color: #444444;
@@ -4206,7 +4173,6 @@ md-input-container {
 
 .proposal-place {
     display: inline;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     letter-spacing: 1px;
@@ -4215,7 +4181,6 @@ md-input-container {
 }
 
 .proposal-name {
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #444444;
     letter-spacing: 1.29px;
@@ -4227,7 +4192,6 @@ md-input-container {
 .proposal-company {
     height: 28px;
     display: block;
-    font-family: 'montserrat_regular';
     font-size: 20px;
     color: #444444;
     text-align: left;
@@ -4240,7 +4204,6 @@ md-input-container {
 }
 
 .proposal-tel {
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #2f313a;
     letter-spacing: 1.04px;
@@ -4279,7 +4242,6 @@ md-input-container {
 
 .proposal-offer-line-price-type {
     clear: right;
-    font-family: 'montserrat_light';
     font-size: 14px;
     color: #444444;
     text-align: right;
@@ -4287,7 +4249,6 @@ md-input-container {
 }
 
 .proposal-offer-line-res {
-    font-family: 'montserrat_light';
     font-size: 18px;
     color: #2f313a;
     letter-spacing: 1.88px;
@@ -4321,7 +4282,6 @@ md-input-container {
 
 .proposal-offer-line-info {
     position: relative;
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #9E9E9E;
     letter-spacing: 1.42px;
@@ -4409,7 +4369,6 @@ md-input-container {
 }
 
 .modal-description {
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #9E9E9E;
     letter-spacing: 1.67px;
@@ -4418,7 +4377,6 @@ md-input-container {
 }
 
 .modal-no-description {
-    font-family: 'montserrat_light';
     font-size: 16px;
     color: #9E9E9E;
     letter-spacing: 1.67px;
@@ -4618,7 +4576,6 @@ md-input-container {
 .mapWorkArea {
     cursor: pointer;
     font-size: 14px;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     color: white;
     background-color: #1A2939;
     line-height: 28px;
@@ -4772,10 +4729,10 @@ ul[rn-carousel-buffered] > li {
     position: absolute;
     top: calc(15%);
     left: 8px;
+    width: 50px;
 }
 
 .proDashboardListItemTitle {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     color: #000000;
     line-height: 13px;
@@ -4788,7 +4745,6 @@ ul[rn-carousel-buffered] > li {
 }
 
 .proDashboardListItemAddress {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     color: #9E9E9E;
     line-height: 20px;
@@ -4803,7 +4759,6 @@ ul[rn-carousel-buffered] > li {
 }
 
 .proDashboardListItemChrono {
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.54);
     line-height: 20px;
@@ -5049,7 +5004,7 @@ ul.yaka-chips li {
 }
 
 .vertical-center {
-    min-height: 100%;  /* Fallback for vh unit */
+    min-height: 100%;
     /* Make it a flex container */
     display: -webkit-box;
     display: -moz-box;
@@ -5057,22 +5012,42 @@ ul.yaka-chips li {
     display: -webkit-flex;
     display: flex;
     /* Align the bootstrap's container vertically */
-    -webkit-box-align : center;
-    -webkit-align-items : center;
-    -moz-box-align : center;
-    -ms-flex-align : center;
-    align-items : center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     /* In legacy web browsers such as Firefox 9
        we need to specify the width of the flex container */
     width: 100%;
     /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
        hence the bootstrap's container won't be aligned to the center anymore.
        Therefore, we should use the following declarations to get it centered again */
-    -webkit-box-pack : center;
-    -moz-box-pack : center;
-    -ms-flex-pack : center;
-    -webkit-justify-content : center;
-    justify-content : center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.floatingButtonImage {
+    width: 35px !important;
+    height: 35px !important;
+    padding: 0 !important;
+}
+
+.floatingButtonImage i {
+    font-size: 20px !important;
+}
+
+.floatingButtonImageDelete {
+    left: 72%;
+    margin-left: -24px;
+    margin-top: -19px;
+}
+
+.pm-body dl dd {
+    word-wrap: break-word !important;
 }
 
 .pointer {
@@ -5085,6 +5060,10 @@ ul.yaka-chips li {
 
 .m-t-9 {
     margin-top: 9px;
+}
+
+.p-l-25 {
+    padding-left: 25px;
 }
 
 .no-padding-right {
@@ -5113,4 +5092,32 @@ ul.yaka-chips li {
 
 .t-center {
     text-align: center !important;
+}
+
+.f-s-14 {
+    font-size: 14px !important;
+}
+
+.f-s-18 {
+    font-size: 18px !important;
+}
+
+.f-s-20 {
+    font-size: 20px !important;
+}
+
+.v-align-bottom {
+    vertical-align: bottom !important;
+}
+
+.v-align-middle {
+    vertical-align: middle !important;
+}
+
+.v-align-sub {
+    vertical-align: sub !important;
+}
+
+.d-i-p {
+    display: inline-block !important;
 }

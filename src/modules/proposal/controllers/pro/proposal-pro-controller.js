@@ -13,8 +13,6 @@
             $state.go("home");
         }
 
-        //TODO
-        $rootScope.pageName = "";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -33,7 +31,6 @@
         vm.edit = edit;
         vm.cancel = cancel;
         vm.save = save;
-        vm.getStartDate = getStartDate;
         vm.editPrice = editPrice;
         vm.editDate = editDate;
         vm.cancelProposalModal = cancelProposalModal;
@@ -122,7 +119,6 @@
 
         function save() {
             vm.proposalTmp.type = vm.project.type;
-            vm.proposalTmp.priceType = $filter('uppercase')(vm.proposalTmp.priceType);
             networkService.proposalPUT(vm.proposalTmp, function (res) {
                 alertMsg.send("La proposition a bien été mise à jour", "success");
             }, function (res) {
@@ -132,17 +128,13 @@
         }
 
         function editPrice() {
-            if (vm.editFlag) {
-                vm.myPrice = vm.proposalTmp.price;
-                vm.myPriceFlag = true;
-            }
+            vm.myPrice = vm.proposalTmp.price;
+            vm.myPriceFlag = true;
         }
 
         function editDate() {
-            if (vm.editFlag) {
-                vm.dt = new Date(vm.proposalTmp.startDate);
-                vm.myDateFlag = true;
-            }
+            vm.dt = new Date(vm.proposalTmp.startDate);
+            vm.myDateFlag = true;
         }
 
         function edit() {
@@ -154,19 +146,14 @@
             vm.editFlag = false;
         }
 
-        function getStartDate() {
-            if (!angular.isUndefined(vm.proposalTmp) && vm.proposalTmp.startDate) {
-                return $filter('date')(new Date(vm.proposalTmp.startDate), "dd MMM.  yyyy");
-            }
-        }
-
         function getTags() {
-            var res = "";
+            var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    if (i != 0)
-                        res += " - ";
-                    res += vm.projectTmp.activities[i].code
+                    res.push(vm.project.activities[i].code);
+                }
+                if (vm.project.hasMaterial) {
+                    res.push("MATERIAL_TRUE");
                 }
             }
             return res;
@@ -179,7 +166,6 @@
                 var formData = {
                     project: {id: vm.projectTmp.id},
                     price: parseInt(vm.offer.price.price),
-                    priceType: $filter('uppercase')(vm.offer.price.type),
                     comment: vm.offer.comment
                 };
                 formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
@@ -198,18 +184,18 @@
             vm.proposalTmp.startDate = $filter('date')(vm.dt, 'yyyy-MM-dd');
         }
 
-        function selectPrice(type) {
+        function selectPrice() {
             vm.error.price = vm.error.price || {};
-            if (vm.myPrice > 10 && vm.myPrice < 100000) {
-                vm.proposalTmp.price = vm.myPrice;
-                vm.proposalTmp.priceType = type;
-                vm.myPriceFlag = false;
-                vm.error.price.flag = false;
-            }
-            else {
-                vm.error.price.message = "Merci de proposer un tarif réaliste - ou de ne pas en mettre";
+            if (vm.myPrice <= 10) {
+                vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
+                vm.error.price.flag = true;
+            } else if (vm.myPrice > 1000000) {
+                vm.error.price.message = "Veuillez entrer un montant réaliste";
                 vm.error.price.flag = true;
             }
+            vm.proposalTmp.price = vm.myPrice;
+            vm.myPriceFlag = false;
+            vm.error.price.flag = false;
         }
 
         function selectImagePreview(media) {
@@ -220,6 +206,34 @@
         function succesProjectGET(res) {
             vm.project = res.project;
             vm.proposal = res;
+
+
+            if (vm.project.address.latitude && vm.project.address.longitude) {
+                $scope.map.center = {
+                    latitude: vm.project.address.latitude,
+                    longitude: vm.project.address.longitude
+                };
+                if (vm.proposal.status == 'SELECTED' || vm.proposal.status == 'RATE_PRO' || vm.proposal.status == 'COMPLETED') {
+                    $scope.map.zoom = 15;
+                    vm.markerCoords = {
+                        latitude: vm.project.address.latitude,
+                        longitude: vm.project.address.longitude
+                    };
+                } else {
+                    $scope.map.zoom = 14;
+                    vm.circle.center = {
+                        latitude: vm.project.address.latitude,
+                        longitude: vm.project.address.longitude
+                    };
+                    vm.circle.visible = true;
+                }
+            }
+
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
+            $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
+                " - " + $filter('yakaTranslateTitle')(vm.project.title);
 
             if (vm.proposal.status != 'START') {
                 $state.go("pro-proposal", {'proposalId': vm.proposal.id});

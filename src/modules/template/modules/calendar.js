@@ -1,13 +1,13 @@
-materialAdmin 
+materialAdmin
 
     // =========================================================================
     // CALENDAR WIDGET
     // =========================================================================
 
-    .directive('fullCalendar', function(){
+    .directive('fullCalendar', function () {
         return {
             restrict: 'A',
-            link: function(scope, element) {
+            link: function (scope, element) {
                 element.fullCalendar({
                     contentHeight: 'auto',
                     theme: true,
@@ -69,21 +69,21 @@ materialAdmin
             }
         }
     })
-    
+
 
     // =========================================================================
     // MAIN CALENDAR
     // =========================================================================
 
-    .directive('calendar', function($compile){
+    .directive('calendar', function ($compile) {
         return {
             restrict: 'A',
             scope: {
                 select: '&',
                 actionLinks: '=',
             },
-            link: function(scope, element, attrs) {
-                
+            link: function (scope, element, attrs) {
+
                 var date = new Date();
                 var d = date.getDate();
                 var m = date.getMonth();
@@ -185,29 +185,29 @@ materialAdmin
                     ],
 
                     //On Day Select
-                    select: function(start, end, allDay) {
+                    select: function (start, end, allDay) {
                         scope.select({
-                            start: start, 
+                            start: start,
                             end: end
                         });
                     }
                 });
-                
-                  
+
+
                 //Add action links in calendar header
                 element.find('.fc-toolbar').append($compile(scope.actionLinks)(scope));
             }
         }
     })
-    
+
 
     //Change Calendar Views
-    .directive('calendarView', function(){
+    .directive('calendarView', function () {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
-                element.on('click', function(){
-                    $('#calendar').fullCalendar('changeView', attrs.calendarView);  
+            link: function (scope, element, attrs) {
+                element.on('click', function () {
+                    $('#calendar').fullCalendar('changeView', attrs.calendarView);
                 })
             }
         }

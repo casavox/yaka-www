@@ -196,7 +196,10 @@ angular.module('Yaka', [
         .module('Yaka')
         .run(runBlock);
 
-    function runBlock($rootScope, $localStorage, $injector, amMoment) {
+    function runBlock($rootScope, $localStorage, $injector, amMoment, moment, $state) {
+
+        $rootScope.$state = $state;
+
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
                 $rootScope.menu = false;
@@ -216,6 +219,6 @@ angular.module('Yaka', [
                     $rootScope.rate_watcher = !$rootScope.rate_watcher;
             });
 
-        amMoment.changeLocale('fr');
+        moment.locale('fr');
     }
 })();

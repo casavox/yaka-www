@@ -10,11 +10,11 @@
                     ACCES PRO
                 </div>
                 <div class="homeSection1Register yakaLinkWhite"
-                     ng-click="vm.openPopup(false)">
+                     data-ng-click="vm.openPopup(false)">
                     S'inscrire
                 </div>
                 <div class="homeSection1Login yakaLinkWhite"
-                     ng-click="vm.openPopup(true)">
+                     data-ng-click="vm.openPopup(true)">
                     Se connecter
                 </div>
             </div>
@@ -27,7 +27,8 @@
             <div class="col-xs-12 homeSection1SubTitle">
                 Rejoignez la 1ère plateforme de recommandation d’artisans entre particuliers.
             </div>
-            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button waves-effect" ng-click="vm.openPopup(false)">
+            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button waves-effect"
+                 data-ng-click="vm.openPopup(false)">
                 CREER MON RESEAU
             </div>
         </div>
@@ -108,7 +109,7 @@
                     </div>
                     <div
                         class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue waves-effect"
-                        ng-click="vm.openPopup(false)">
+                        data-ng-click="vm.openPopup(false)">
                         INVITEZ VOS AMIS ET VOS ARTISANS
                     </div>
                 </div>
@@ -121,13 +122,13 @@
                 Suivez-nous !
             </div>
             <div class="homeSection4Items">
-                <a target="_blank" ng-href="https://www.facebook.com/yakaclub">
+                <a target="_blank" data-ng-href="https://www.facebook.com/yakaclub">
                     <div class="homeSection4ItemSocial homeSection4ItemFacebook"></div>
                 </a>
-                <a target="_blank" ng-href="https://plus.google.com/117693956496667116327">
+                <a target="_blank" data-ng-href="https://plus.google.com/117693956496667116327">
                     <div class="homeSection4ItemSocial homeSection4ItemGoogle"></div>
                 </a>
-                <a target="_blank" ng-href="https://twitter.com/yakaclub">
+                <a target="_blank" data-ng-href="https://twitter.com/yakaclub">
                     <div class="homeSection4ItemSocial homeSection4ItemTwitter"></div>
                 </a>
             </div>
@@ -155,42 +156,44 @@
     </div>
 </section>
 
-<div class="yakaPopup" ng-show="vm.showLoginPopup" ng-click="vm.closePopup()" ng-cloak>
+<div class="yakaPopup" data-ng-show="vm.showLoginPopup" data-ng-click="vm.closePopup()" data-ng-cloak>
     <div class="container">
-        <div id="loginPopup" class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
-                 ng-click="vm.closePopup()" alt=""/>
+        <div id="loginPopup" class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.closePopup()" alt=""/>
 
-            <div ng-if="!vm.noSocialAccountMessage">
-                <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: vm.loginTab}"
-                     ng-click="vm.loginTab = true">
+            <div data-ng-if="!vm.noSocialAccountMessage">
+                <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: vm.loginTab}"
+                     data-ng-click="vm.loginTab = true">
                     CONNEXION
                 </div>
-                <div class="loginPopupTabItem col-xs-6" ng-class="{loginPopupTabItemActive: !vm.loginTab}"
-                     ng-click="vm.loginTab = false">
+                <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: !vm.loginTab}"
+                     data-ng-click="vm.loginTab = false">
                     INSCRIPTION
                 </div>
 
                 <div data-ng-show="vm.loginTab">
-                    <div class="col-xs-6 loginPopupFacebook waves-effect" ng-click="vm.facebookLogin()">
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
                         Facebook
                     </div>
-                    <div class="col-xs-6 loginPopupGoogle waves-effect" ng-click="vm.googleLogin()">
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
                         Google
                     </div>
 
-                    <input class="form-control" type="text" placeholder="Email" ng-model="vm.loginUser.email"/>
+                    <input class="form-control" type="text" name="username" placeholder="Email"
+                           data-ng-model="vm.loginUser.email"/>
 
-                    <input class="form-control" type="password" placeholder="Mot de passe"
-                           ng-model="vm.loginUser.password"
-                           ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                    <input class="form-control" type="password" name="password" placeholder="Mot de passe"
+                           data-ng-model="vm.loginUser.password"
+                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
                     <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                         ng-class="{yakaDisabled: !vm.loginFormIsValid()}" ng-click="vm.login()">
+                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
+                         id="signInPopupButton">
                         SE CONNECTER
                     </div>
                     <div class="col-xs-12 passwordForgotten">
-                        <span ng-click="vm.closePopup();
+                        <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
                          vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
                     </div>
@@ -199,90 +202,90 @@
                 <div data-ng-show="!vm.loginTab">
 
                     <div class="col-xs-12 registerFacebookGoogle">
-                        <span ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
+                        <span data-ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
 
-                        <div ng-if="vm.isSocialRegister()">
+                        <div data-ng-if="vm.isSocialRegister()">
                             <div class="registerSocialConfirm">
                                 Inscription via {{vm.socialNetwork}}
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-6 loginPopupFacebook waves-effect" ng-click="vm.facebookPreRegister()"
-                         ng-if="!vm.isSocialRegister()">
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookPreRegister()"
+                         data-ng-if="!vm.isSocialRegister()">
                         Facebook
                     </div>
-                    <div class="col-xs-6 loginPopupGoogle waves-effect" ng-click="vm.googlePreRegister()"
-                         ng-if="!vm.isSocialRegister()">
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googlePreRegister()"
+                         data-ng-if="!vm.isSocialRegister()">
                         Google
                     </div>
 
                     <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
 
                     <div class="col-xs-12 registerMail">
-                        <span class="registerWithEmailMessage" ng-if="!vm.isSocialRegister()"
-                              ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
-                        <span ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
+                        <span class="registerWithEmailMessage" data-ng-if="!vm.isSocialRegister()"
+                              data-ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
+                        <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                     </div>
                     <form name="registerForm">
                         <div class="col-xs-12 showRegisterFields"
-                             ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
+                             data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
 
                             <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
-                                 ng-class="{'has-error': !vm.newUser.firstName}">
+                                 data-ng-class="{'has-error': !vm.newUser.firstName}">
 
                                 <div class="fg-line">
                                     <input type="text" name="firstName" class="form-control fg-input input-sm"
-                                           ng-model="vm.newUser.firstName"
-                                           required="required" ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           data-ng-model="vm.newUser.firstName"
+                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
-                                <div ng-messages="registerForm.firstName.$error">
-                                    <small class="help-block" ng-message="invalidName">Ce prénom n'est pas
+                                <div data-ng-messages="registerForm.firstName.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                         valide
                                     </small>
                                 </div>
                             </div>
 
                             <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
-                                 ng-class="{'has-error': !vm.newUser.lastName}">
+                                 data-ng-class="{'has-error': !vm.newUser.lastName}">
 
                                 <div class="fg-line">
                                     <input type="text" name="lastName" class="form-control fg-input input-sm"
-                                           ng-model="vm.newUser.lastName"
-                                           required="required" ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           data-ng-model="vm.newUser.lastName"
+                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
-                                <div ng-messages="registerForm.lastName.$error">
-                                    <small class="help-block" ng-message="invalidName">Ce nom n'est pas
+                                <div data-ng-messages="registerForm.lastName.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
                                 </div>
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.newUser.email}">
+                                 data-ng-class="{'has-error': !vm.newUser.email}">
                                 <div class="fg-line">
-                                    <input type="text" name="email" ng-disabled="vm.isSocialRegister()"
+                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
-                                           ng-model="vm.newUser.email"
+                                           data-ng-model="vm.newUser.email"
                                            required="required" yaka-input-email>
                                     <label class="fg-label">Email</label>
                                 </div>
-                                <div ng-messages="registerForm.email.$error">
-                                    <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                                <div data-ng-messages="registerForm.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                         valide
                                     </small>
                                 </div>
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
                                 <div class="fg-line">
                                     <input type="text" class="form-control fg-input input-sm"
                                            vs-google-autocomplete="vm.autocomplete.options"
                                            vs-autocomplete-validator
-                                           ng-model="vm.newUser.defaultAddress.address"
+                                           data-ng-model="vm.newUser.defaultAddress.address"
                                            type="text"
                                            name="address"
                                            required="required"
@@ -293,34 +296,36 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 ng-class="{'has-error':! vm.newUser.password}">
+                                 data-ng-class="{'has-error':! vm.newUser.password}">
                                 <div class="fg-line">
                                     <input type="password" name="password" class="form-control fg-input input-sm"
-                                           ng-model="vm.newUser.password" ng-minlength="6">
+                                           data-ng-model="vm.newUser.password" data-ng-minlength="6">
                                     <label class="fg-label">Mot de passe</label>
                                 </div>
-                                <div ng-messages="registerForm.password.$error">
-                                    <small class="help-block" ng-message="minlength">Le mot de passe doit faire au moins
+                                <div data-ng-messages="registerForm.password.$error">
+                                    <small class="help-block" data-ng-message="minlength">Le mot de passe doit faire au
+                                        moins
                                         6 caractères
                                     </small>
                                 </div>
                             </div>
 
                             <div class="form-group fg-float m-b-0"
-                                 ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                 data-ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input input-sm"
-                                           ng-model="vm.passwordConfirm" ng-minlength="6">
+                                           data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
                                     <label class="fg-label">Confirmation</label>
                                 </div>
                                 <small class="help-block"
-                                       ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
+                                       data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
                                     Les deux mots de passe ne correspondent pas
                                 </small>
                             </div>
 
                             <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                                 ng-class="{yakaDisabled: !vm.registerFormIsValid()}" ng-click="vm.register()">
+                                 data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
+                                 data-ng-click="vm.register()">
                                 S'INSCRIRE
                             </div>
 
@@ -331,14 +336,14 @@
                     </form>
                 </div>
             </div>
-            <div ng-if="vm.noSocialAccountMessage">
+            <div data-ng-if="vm.noSocialAccountMessage">
                 <div class="noSocialAccountMessage">
                     Ce compte {{vm.socialNetwork}} nous est inconnu.<br/>
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
                     sur "Inscription" puis "{{vm.socialNetwork}}".
                 </div>
                 <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     ng-click="vm.noSocialAccountMessage = false">
+                     data-ng-click="vm.noSocialAccountMessage = false">
                     OK
                 </div>
             </div>
@@ -346,27 +351,27 @@
     </div>
 </div>
 
-<div class="yakaPopup" ng-show="vm.showForgottenPasswordPopup"
-     ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" ng-cloak>
+<div class="yakaPopup" data-ng-show="vm.showForgottenPasswordPopup"
+     data-ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton" ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
-                 ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
 
-            <div ng-if="!vm.passwordForgottenMessageSent">
+            <div data-ng-if="!vm.passwordForgottenMessageSent">
 
                 <form name="recoverPassword">
-                    <div class="form-group fg-float m-b-30"
-                         ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
+                    <div class="form-group fg-float m-t-30"
+                         data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
-                            <input type="text" name="email" ng-disabled="vm.isSocialRegister()"
+                            <input type="text" name="email" data-ng-disabled="vm.isSocialRegister()"
                                    class="form-control fg-input input-sm"
-                                   ng-model="vm.forgottenPasswordUser.email"
+                                   data-ng-model="vm.forgottenPasswordUser.email"
                                    required="required" yaka-input-email>
                             <label class="fg-label">Email</label>
                         </div>
-                        <div ng-messages="recoverPassword.email.$error">
-                            <small class="help-block" ng-message="invalidEmail">Cet email n'est pas
+                        <div data-ng-messages="recoverPassword.email.$error">
+                            <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                 valide
                             </small>
                         </div>
@@ -374,13 +379,13 @@
                 </form>
 
                 <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
-                     ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     ng-click="vm.forgottenPassword()">
+                     data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
+                     data-ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
                 </div>
 
             </div>
-            <div class="passwordForgottenMessageSent" ng-if="vm.passwordForgottenMessageSent">
+            <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
                 Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
                 passe.
             </div>

@@ -1,7 +1,6 @@
 /* Buttons */
 
 .yakaButton {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     padding: 16px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24), inset 0px 1px 2px 0px rgba(255, 255, 255, 0.50);
@@ -153,11 +152,6 @@
     .yakaPopup .container {
         padding-left: 0px !important;
         padding-right: 0px !important;
-    }
-
-    input.form-control {
-        margin-top: 7px !important;
-        height: 36px !important;
     }
 
     .loginPopupButton {

@@ -1,4 +1,4 @@
-<div class="yakaPopup" ng-show="app.getUser() && projectFlag" ng-cloak>
+<div class="yakaPopup" data-ng-show="app.getUser() && projectFlag && !$state.includes('support')" data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow yakaPopupRateWindow col-xs-12">
             <div class="f-20 c-black">
@@ -9,13 +9,13 @@
                     <h3 class="c-white">{{project.title | yakaTranslateTitle }}</h3>
                 </div>
                 <div class="media m-t-0">
-                    <a ng-click="viewProposal()" class="cursor-pointer">Voir le projet</a>
+                    <a data-ng-click="viewProposal()" class="cursor-pointer">Voir le projet</a>
                 </div>
                 <div class="media">
-                    <yaka-avatar ng-show="!project.professional.user.avatar.cloudinaryPublicId"
+                    <yaka-avatar data-ng-show="!project.professional.user.avatar.cloudinaryPublicId"
                                  class="ratepro-noavatar c-white f-20" size="80"
                                  user="project.professional.user"></yaka-avatar>
-                    <yaka-avatar ng-show="project.professional.user.avatar.cloudinaryPublicId"
+                    <yaka-avatar data-ng-show="project.professional.user.avatar.cloudinaryPublicId"
                                  class="c-white f-20 in-white-circle" size="80"
                                  user="project.professional.user"></yaka-avatar>
                 </div>
@@ -26,12 +26,13 @@
                     <span class="c-white f-17 m-l-5 m-r-5">Le recommanderiez-vous à vos amis ?</span>
                 </div>
                 <div class="rate-btn center">
-                    <div class="img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive == 'true'}"
-                         ng-click="rating.positive = 'true'">
+                    <div class="img-circle f-l cursor-pointer" data-ng-class="{'select-pos': rating.positive == 'true'}"
+                         data-ng-click="rating.positive = 'true'">
                         <i class="zmdi zmdi-thumb-up zmdi-hc-fw c-white zmdi-hc-2x"></i>
                     </div>
-                    <div class="img-circle f-r cursor-pointer" ng-class="{'select-neg': rating.positive == 'false'}"
-                         ng-click="rating.positive = 'false'">
+                    <div class="img-circle f-r cursor-pointer"
+                         data-ng-class="{'select-neg': rating.positive == 'false'}"
+                         data-ng-click="rating.positive = 'false'">
                         <i class="zmdi zmdi-thumb-down zmdi-hc-fw c-white zmdi-hc-2x"></i>
                     </div>
                 </div>
@@ -43,10 +44,10 @@
                     </p>
 
                     <div class="row">
-                        <div class="col-md-6" ng-repeat="c in criteria">
+                        <div class="col-md-6" data-ng-repeat="c in criteria">
                             <div
-                                ng-class="{'criteria': rating.positive != 'true' && rating.positive != 'false', 'criteria-pos': rating.positive == 'true', 'criteria-neg': rating.positive == 'false', 'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
-                                ng-click="selectCriteria($index)">
+                                data-ng-class="{'criteria': rating.positive != 'true' && rating.positive != 'false', 'criteria-pos': rating.positive == 'true', 'criteria-neg': rating.positive == 'false', 'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
+                                data-ng-click="selectCriteria($index)">
                                 {{'CRITERION_' + c | translate}}
                             </div>
                         </div>
@@ -54,22 +55,25 @@
                 </div>
                 <div class="media m-t-5">
                         <textarea class="textarea-rating"
-                                  ng-class="{'textarea-rating-pos': rating.positive == 'true', 'textarea-rating-neg': rating.positive == 'false'}"
-                                  ng-disabled="rating.positive != 'true' && rating.positive != 'false'"
+                                  data-ng-class="{'textarea-rating-pos': rating.positive == 'true', 'textarea-rating-neg': rating.positive == 'false'}"
+                                  data-ng-disabled="rating.positive != 'true' && rating.positive != 'false'"
                                   placeholder="Ajouter un commentaire (au moins 10 caractères)"
-                                  ng-model="rating.comment"></textarea>
+                                  data-ng-model="rating.comment"></textarea>
                 </div>
                 <div class="media m-t-5">
-                    <p class="error center my-price-error" ng-show="error.criteria.flag">
+                    <p class="error center my-price-error" data-ng-show="error.criteria.flag">
                         {{error.criteria.message}}
                     </p>
                 </div>
             </div>
             <div class="card-padding m-b-15">
-                <button class="btn btn-lg bgm-lightblue btn-block" ng-click="sendRating()"
-                        ng-disabled="!(rating.criteria.length > 0 && rating.criteria.length < 4 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
+                <button class="btn btn-lg bgm-lightblue btn-block" data-ng-click="sendRating()"
+                        data-ng-disabled="!(rating.criteria.length > 0 && rating.criteria.length < 4 && rating.positive != '' && ((rating.positive == 'false' && rating.comment.length >= 10) || rating.positive == 'true'))">
                     NOTER
                 </button>
+                <div data-ng-click="app.openSupport();" class="col-xs-12 no-padding t-center pointer m-t-10">
+                    Contacter le support
+                </div>
             </div>
         </div>
     </div>

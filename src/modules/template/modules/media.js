@@ -24,7 +24,7 @@ materialAdmin
             restrict: 'C',
             link: function (scope, element) {
                 if (scope.$last) {
-                    // ng-repeat is completed
+                    //findjobsrepeat is completed
                     element.parent().lightGallery({
                         enableTouch: true,
                         thumbnail: false

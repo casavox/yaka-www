@@ -17,7 +17,6 @@
 }
 
 .avatarInitials {
-    font-family: 'raleway_medium', Arial, sans-serif;
     width: 40px !important;
     height: 40px !important;
     right: 142px;
@@ -30,31 +29,6 @@
     line-height: 40px !important;
     margin-right: 0 !important;
     letter-spacing: -0.4px !important;
-}
-
-.titleYakaClub {
-    font-size: 24px;
-    float: left;
-    cursor: pointer;
-    color: black;
-    line-height: 55px;
-    margin-left: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.titleYaka {
-    font-family: 'raleway_black', Arial, sans-serif;
-}
-
-.titleClub {
-    font-family: 'raleway_regular', Arial, sans-serif;
 }
 
 .contacts {
@@ -72,7 +46,6 @@
 
 .contactsMenu {
     background: #FCFCFC;
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     line-height: 60px;
     padding-left: 0 !important;
@@ -140,7 +113,6 @@
 
 .contactItem {
     height: 55px;
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 16px;
     color: #626262;
     line-height: 55px;
@@ -162,7 +134,6 @@
 
 .contactItemPro {
     color: #FF9800;
-    font-family: 'raleway_bold', Arial, sans-serif;
     font-size: 14px;
     margin-left: 10px;
     margin-right: 10px;
@@ -201,7 +172,6 @@
 }
 
 .yakaPopupInvitTitle {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 20px;
     text-align: center;
     margin-bottom: 25px;
@@ -209,7 +179,6 @@
 }
 
 .yakaPopupInvitSubTitle {
-    font-family: 'raleway_light', Arial, sans-serif;
     font-size: 13px;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -287,7 +256,6 @@
 }
 
 .contactsHeaderLeftTitle {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 34px;
     color: #03A9F4;
     margin-top: 25px;
@@ -298,23 +266,17 @@
 }
 
 .contactsHeaderLeftSubtitle {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 18px;
     color: #3E404B;
 }
 
 .contactsHeaderLeftDesc {
-    font-family: 'raleway_regular', Arial, sans-serif;
     font-size: 15px;
     color: #2F313A;
     margin-top: 10px;
     line-height: 26px;
     padding-left: 0 !important;
     padding-right: 0 !important;
-}
-
-.titleContactsBeta {
-    left: 130px !important;
 }
 
 .contactsMenuSeparator {
@@ -334,20 +296,17 @@
 
 .contactsEmptyTitle {
     margin-top: 15px;
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 24px;
     color: #9B9B9B;
 }
 
 .contactsEmptySubtitle {
-    font-family: 'montserrat_light', Arial, sans-serif;
     font-size: 14px;
     color: #9B9B9B;
     margin-bottom: 15px;
 }
 
 .contactsEmptyLinks {
-    font-family: 'montserrat_regular', Arial, sans-serif;
     font-size: 14px;
     color: black;
 }
@@ -447,7 +406,6 @@
     }
 
     .contactsContactsMenuItemTitle {
-        font-family: 'raleway_medium', Arial, sans-serif;
         font-size: 15px;
         position: absolute;
         top: 8px;
