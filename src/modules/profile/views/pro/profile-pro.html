@@ -24,9 +24,9 @@
 <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
        data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-            <section id="main" data-ng-cloak>
-                <div id="content" class="content">
-                    <div class="container" data-ng-show="vm.profile" data-ng-cloak>
+<section id="main" data-ng-cloak>
+    <div id="content" class="content">
+        <div class="container" data-ng-show="vm.profile" data-ng-cloak>
 
             <div class="topViewProfile">
                 <div data-ng-if="vm.profile.status == 'REGISTERED'" class="card bgm-red c-white p-15">
@@ -323,15 +323,14 @@
 
                 </div>
 
-                <div class="col-xs-12 no-padding profile-box-footer m-b-20">
+                <div class="col-xs-12 no-padding profile-box-footer m-b-20"
+                     data-ng-hide="vm.updating || !vm.showButtonsProfile()">
 
                     <button class="btn btn-info bgm-lightblue waves-effect"
-                            data-ng-click="vm.showProfileEditPopup = true"
-                            data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                            data-ng-click="vm.showProfileEditPopup = true">
                         Enregistrer
                     </button>
-                    <button class="btn btn-link waves-effect" data-ng-click="vm.cancelProfile()"
-                            data-ng-disabled="!vm.showButtonsProfile()">
+                    <button class="btn btn-link waves-effect" data-ng-click="vm.cancelProfile()">
                         Annuler
                     </button>
 
@@ -380,15 +379,14 @@
                     Diamètre de la zone : {{vm.workareaDiameter}} km
                 </div>
             </div>
-            <div class="profile-box-footer m-t-15 m-b-20">
+            <div class="profile-box-footer m-t-15 m-b-20"
+                 data-ng-hide="vm.updating || !vm.showButtonsWorkArea()">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateWorkArea()"
-                        data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
+                        data-ng-click="vm.updateWorkArea()">
                     Enregistrer
                 </button>
-                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelWorkArea()"
-                        data-ng-disabled="!vm.showButtonsWorkArea()">
+                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelWorkArea()">
                     Annuler
                 </button>
             </div>
@@ -430,11 +428,11 @@
                 </small>
             </div>
 
-            <div class="profile-box-footer mt-12 m-b-20">
+            <div class="profile-box-footer mt-12 m-b-20"
+                 data-ng-hide="vm.updating || !vm.showButtonsNewPassword()">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.changePassword()"
-                        data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                        data-ng-click="vm.changePassword()">
                     Enregistrer
                 </button>
 
@@ -553,15 +551,15 @@
                 {{vm.error.verif.message}}
             </p>
 
-            <div class="profile-box-footer m-t-10 m-b-20">
+            <div class="profile-box-footer m-t-10 m-b-20"
+                 data-ng-hide="vm.updating || !vm.showButtonsVerifications()">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.showVerificationsEditPopup = true"
-                        data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
+                        data-ng-click="vm.showVerificationsEditPopup = true">
                     Enregistrer
                 </button>
-                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelVerifications()"
-                        data-ng-disabled="!vm.showButtonsVerifications()">
+                <button class="btn btn-link waves-effect"
+                        data-ng-click="vm.cancelVerifications()">
                     Annuler
                 </button>
 
@@ -614,15 +612,15 @@
 
             </form>
 
-            <div class="profile-box-footer m-b-20">
+            <div class="profile-box-footer m-b-20"
+                 data-ng-hide="vm.updating || !vm.showButtonsAbout()">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateAboutMe()"
-                        data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                        data-ng-click="vm.updateAboutMe()">
                     Enregistrer
                 </button>
-                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelAboutMe()"
-                        data-ng-disabled="!vm.showButtonsAbout()">
+                <button class="btn btn-link waves-effect"
+                        data-ng-click="vm.cancelAboutMe()">
                     Annuler
                 </button>
 
@@ -794,16 +792,15 @@
                 {{vm.error.activities.message}}
             </p>
 
-            <div class="profile-box-footer m-b-20">
+            <div class="profile-box-footer m-b-20"
+                 data-ng-hide="vm.updating || !vm.showButtonsActivities()">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateActivities()"
-                        data-ng-disabled="vm.updating || !vm.showButtonsActivities()">
+                        data-ng-click="vm.updateActivities()">
                     Enregistrer
                 </button>
                 <button class="btn btn-link waves-effect"
-                        data-ng-click="vm.cancelActivities()"
-                        data-ng-disabled="!vm.showButtonsActivities()">
+                        data-ng-click="vm.cancelActivities()">
                     Annuler
                 </button>
 

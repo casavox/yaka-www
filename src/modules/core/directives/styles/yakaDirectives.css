@@ -74,6 +74,7 @@ yaka-chat .ms-item.messageAuto {
     max-width: 100%;
     background: #607D8B !important;
     color: white !important;
+    border-radius: 20px !important;
 }
 
 yaka-chat .ms-item span.msg {

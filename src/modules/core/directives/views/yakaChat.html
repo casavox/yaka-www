@@ -8,7 +8,7 @@
              data-ng-class="{'right': showRight(message)}" yaka-scroll-item>
 
             <div class="lv-avatar"
-                 data-ng-if="message.author != 'AUTO'"
+                 data-ng-if="message.author != 'AUTO' && message.author != 'YAKA'"
                  data-ng-class="{'pull-left': !showRight(message), 'pull-right': showRight(message)}">
 
                 <yaka-avatar data-ng-if="!showRight(message)" user="userOther" size="35"></yaka-avatar>
@@ -32,15 +32,16 @@
                             </div>
                         </div>
                     </div>
-                    <span class="msg" data-ng-if="message.author != 'AUTO'">{{message.text}}</span>
+                    <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
+                    <span class="msg yaka" data-ng-if="message.author == 'YAKA'">{{message.text}}</span>
                     <span data-ng-if="message.author == 'AUTO'" data-ng-switch="message.text">
-                        <span class="msg" data-ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
-                        <span class="msg" data-ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_DECLINED_PROPOSAL">La proposition n'a pas été retenue par le client</span>
+                        <span class="msg yaka" data-ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
+                        <span class="msg yaka" data-ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
+                        <span class="msg yaka" data-ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
+                        <span class="msg yaka" data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
+                        <span class="msg yaka" data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
+                        <span class="msg yaka" data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                        <span class="msg yaka" data-ng-switch-when="CUSTOMER_DECLINED_PROPOSAL">La proposition n'a pas été retenue par le client</span>
                     </span>
                 </div>
                 <small class="ms-date">
