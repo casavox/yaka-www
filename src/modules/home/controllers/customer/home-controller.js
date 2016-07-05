@@ -195,7 +195,6 @@
         };
 
         vm.facebookLogin = function () {
-            console.log("LOGIN CLICKED");
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
                 succesLogin(res.data);

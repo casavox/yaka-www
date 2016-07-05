@@ -39,7 +39,7 @@ angular.module('Yaka', [
                     return 'https://baeacb59-6f35-4d43-a16b-dc71d7.herokuapp.com';
                 } else if (window.location.hostname == 'fb34936c-dd2e-4abd-bf29-4c7217.herokuapp.com') {
                     return 'https://bbb5dfb4-a465-49b2-8d2f-0ee040.herokuapp.com';
-                } else if (window.location.hostname == 'fb6310bf-0465-45a5-b3e4-88e905.herokuapp.com') {
+                } else if (window.location.hostname == 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com') {
                     return 'https://bc3a5ece-8b03-4ee0-82dd-ea944f.herokuapp.com';
                 } else if (window.location.hostname == 'www.yakaclub.com') {
                     return 'https://bc3a5ece-8b03-4ee0-82dd-ea944f.herokuapp.com';
