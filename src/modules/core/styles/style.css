@@ -5098,6 +5098,10 @@ ul.yaka-chips li {
     font-size: 14px !important;
 }
 
+.f-s-16 {
+    font-size: 16px !important;
+}
+
 .f-s-18 {
     font-size: 18px !important;
 }
@@ -5120,4 +5124,8 @@ ul.yaka-chips li {
 
 .d-i-p {
     display: inline-block !important;
+}
+
+.p-18 {
+    padding: 18px !important;
 }

@@ -1,0 +1,189 @@
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+    ></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+        <div class="container" data-ng-show="vm.pro" data-ng-cloak>
+            <div class="block-header">
+                <h2><b>LES 3 ÉTAPES POUR BIEN DÉMARRER SUR YAKACLUB</b></h2>
+            </div>
+            <div class="col-xs-12 no-padding">
+                <div class="col-xs-2 card p-18 f-s-16 t-center tutoHeaderGray tutoLeft"
+                     data-ng-switch="vm.pro.status"
+                     data-ng-class="{'bgm-lightblue': vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED'), 'bgm-orange': vm.pro && vm.pro.status && vm.pro.status == 'WAITING', 'bgm-red': vm.pro && vm.pro.status && vm.pro.status == 'REFUSED'}">
+                    <span data-ng-switch-when="REGISTERED">
+                        Étape<br/>1
+                    </span>
+                    <span data-ng-switch-when="WAITING">
+                        <i class="zmdi zmdi-hc-2x zmdi-alert-circle-o c-white"></i>
+                    </span>
+                    <span data-ng-switch-when="REFUSED">
+                        <i class="zmdi zmdi-hc-2x zmdi-alert-circle-o c-white"></i>
+                    </span>
+                    <span data-ng-switch-when="VALIDATED">
+                        <i class="zmdi zmdi-hc-2x zmdi-check c-white"></i>
+                    </span>
+                    <span data-ng-switch-when="COMPLETED">
+                        <i class="zmdi zmdi-hc-2x zmdi-check c-white"></i>
+                    </span>
+                </div>
+                <div class="col-xs-9 col-xs-offset-1 card no-padding tutoRight">
+                    <div class="card-header tutoHeaderGray" data-ng-switch="vm.pro.status"
+                         data-ng-class="{'bgm-lightblue': vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED'), 'bgm-orange': vm.pro && vm.pro.status && vm.pro.status == 'WAITING', 'bgm-red': vm.pro && vm.pro.status && vm.pro.status == 'REFUSED'}">
+                        <h2 data-ng-switch-when="REGISTERED">
+                            JE COMPLÈTE MON PROFIL
+                            <small>
+                                Votre profil nécessite d’être complet pour répondre aux propositions de chantier
+                            </small>
+                        </h2>
+                        <h2 data-ng-switch-when="VALIDATED">
+                            <span>
+                                PROFIL VALIDÉ
+                            </span>
+                            <small>
+                                Vous pouvez toujours compléter ou modifier votre profil.
+                            </small>
+                        </h2>
+                        <h2 data-ng-switch-when="COMPLETED">
+                            <span>
+                                PROFIL COMPLET
+                            </span>
+                            <small>
+                                Vous pouvez toujours modifier votre profil.
+                            </small>
+                        </h2>
+                        <h2 data-ng-switch-when="WAITING">
+                            <span>
+                                PROFIL EN COURS DE VALIDATION
+                            </span>
+                            <small>
+                                Votre compte sera actif dans les prochaines 24 à 48 heures.
+                            </small>
+                        </h2>
+                        <h2 data-ng-switch-when="REFUSED">
+                            <span>
+                                PROFIL REFUSÉ
+                            </span>
+                            <small>
+                                Votre compte à été refusé par notre équipe.<br/>
+                                Raison : {{vm.pro.refusedReason}}
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="col-xs-12 p-18"
+                         data-ng-hide="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED' || vm.pro.status == 'WAITING')">
+                        Complétez votre profil, dites nous qui vous êtes, ce que vous faites et le secteur dans
+                        lequel vous cherchez des chantiers. Toutes les informations sont vérifiées pour garantir
+                        à nos utilisateurs d’être bien mis en contact avec des professionnels sérieux.
+                    </div>
+                    <div class="col-xs-12 p-18"
+                         data-ng-hide="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED' || vm.pro.status == 'WAITING')">
+                        <button class="btn bgm-orange waves-effect f-right" data-ui-sref="pro-profile">
+                            Compléter mon profil
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 no-padding">
+                <div class="col-xs-2 card p-18 f-s-16 t-center tutoHeaderGray tutoLeft"
+                     data-ng-class="{'bgm-lightblue': vm.pro.step2}">
+                    <span data-ng-if="!vm.pro.step2">
+                        Étape<br/>2
+                    </span>
+                    <span data-ng-if="vm.pro.step2">
+                        <i class="zmdi zmdi-hc-2x zmdi-check c-white"></i>
+                    </span>
+                </div>
+                <div class="col-xs-9 col-xs-offset-1 card no-padding tutoRight">
+                    <div class="card-header tutoHeaderGray"
+                         data-ng-class="{'bgm-lightblue': vm.pro.step2}">
+                        <h2 data-ng-if="!vm.pro.step2">
+                            <span>
+                                JE DÉVELOPPE MON RÉSEAU
+                            </span>
+                            <small>
+                                Plus vous ajoutez de contacts et plus vous aurez de chances de recevoir des offres.
+                            </small>
+                        </h2>
+                        <h2 data-ng-if="vm.pro.step2">
+                            <span>
+                                VOTRE RÉSEAU SE DÉVELOPPE
+                            </span>
+                            <small>
+                                Bravo, vous avez invité de nouveaux contacts. Continuez à développer votre réseau afin
+                                d’augmenter vos chances de toucher de nouveaux clients.
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step2">
+                        Yakaclub c’est le bouche à oreille sur Internet.
+                        Invitez vos clients, amis et confrères à vous rejoindre afin de vous recommander auprès de leurs
+                        contacts.
+                    </div>
+                    <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step2">
+                        <button class="btn bgm-orange waves-effect f-right" data-ui-sref="contacts">
+                            Inviter des contacts
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 no-padding">
+                <div class="col-xs-2 card p-18 f-s-16 t-center tutoHeaderGray tutoLeft"
+                     data-ng-class="{'bgm-lightblue': vm.pro.step3}">
+                    <span data-ng-if="!vm.pro.step3">
+                        Étape<br/>3
+                    </span>
+                    <span data-ng-if="vm.pro.step3">
+                        <i class="zmdi zmdi-hc-2x zmdi-check c-white"></i>
+                    </span>
+                </div>
+                <div class="col-xs-9 col-xs-offset-1 card no-padding tutoRight">
+                    <div class="card-header tutoHeaderGray"
+                         data-ng-class="{'bgm-lightblue': vm.pro.step3}">
+                        <h2 data-ng-if="!vm.pro.step3">
+                            JE RÉPONDS AUX OFFRES
+                            <small>
+                                Trouvez des chantiers et proposez vos services.
+                            </small>
+                        </h2>
+                        <h2 data-ng-if="vm.pro.step3">
+                            TROUVER DE NOUVEAUX CHANTIERS
+                            <small>
+                                Vous savez maintenant comment répondre aux offres. À vous de jouer !
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step3">
+                        <b>1/</b> Sélectionnez le menu « Trouver des chantiers »<br/>
+                        <br/>
+                        <b>2/</b> Naviguez dans la carte et sélectionnez un chantier en cliquant dessus.<br/>
+                        <br/>
+                        <b>3/</b> Si le chantier vous intéresse, vous pouvez :<br/>
+                        <br/>
+                        - <b>indiquer un prix approximatif</b> (si vous avez assez d’éléments),<br/>
+                        - <b>indiquer la date</b> à partir de laquelle vous pourriez intervenir,<br/>
+                        - <b>écrire un 1er message</b> au client afin de lui indiquer pourquoi vous êtes la
+                        personne/société la
+                        plus adaptée pour réaliser le chantier. Vous pouvez également demander des précisions sur le
+                        chantier.<br/>
+                        <br/>
+                        Ce message débutera la discussion avec votre client qui sera ensuite accessible à tout moment
+                        via une <b>messagerie privée</b>.<br/>
+                        <br/>
+                        <b>4/</b> Cliquez sur le bouton « Envoyer la proposition » afin de transmettre la proposition au
+                        client.
+                    </div>
+                    <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step3">
+                        <button class="btn bgm-orange waves-effect f-right" data-ui-sref="findjobs">
+                            Voir les offres
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

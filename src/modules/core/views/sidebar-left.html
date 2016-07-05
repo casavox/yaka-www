@@ -16,6 +16,12 @@
         </li>
 
 
+        <li ui-sref-active="active" data-ng-if="app.isPro() && app.showProTuto()">
+            <a ui-sref="protuto" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-chart"></i>
+                Bien débuter
+            </a>
+        </li>
         <li ui-sref-active="active" data-ng-if="app.isPro()">
             <a ui-sref="findjobs" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-map"></i>

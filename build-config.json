@@ -105,7 +105,8 @@
             "modules/profile/styles/profile.css",
             "modules/project/styles/project.css",
             "modules/contacts/styles/contacts.css",
-            "modules/proposal/styles/proposal.css"
+            "modules/proposal/styles/proposal.css",
+            "modules/tuto/styles/tuto.css"
         ],
         "scss": [],
         "assets": [
