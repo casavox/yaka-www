@@ -77,7 +77,8 @@
                                      data-ng-show="!vm.editFlag">
                                     MODIFIER
                                 </div>
-                                <div class="description-action-btn color-red" data-ng-show="!vm.editFlag"
+                                <div class="description-action-btn color-red"
+                                     data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))"
                                      data-ng-click="vm.openDeleteProjectPopup()">
                                     SUPPRIMER
                                 </div>

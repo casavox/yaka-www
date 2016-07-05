@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi) {
+    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -525,20 +525,40 @@
         };
 
         vm.openDeleteProjectPopup = function () {
-            swal({
-                title: "Êtes-vous sûr ?",
-                text: "Au lieu de supprimer un projet, il est généralement préférable de le modifier.",
-                type: "warning",
-                confirmButtonColor: "#f44336",
-                confirmButtonText: "Oui, supprimer mon projet",
-                showCancelButton: true,
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    vm.deleteProject();
-                }
+            /*
+             swal({
+             title: "Êtes-vous sûr ?",
+             text: "Au lieu de supprimer un projet, il est généralement préférable de le modifier.",
+             type: "warning",
+             confirmButtonColor: "#f44336",
+             confirmButtonText: "Oui, supprimer mon projet",
+             showCancelButton: true,
+             cancelButtonText: "Non"
+             }, function (isConfirm) {
+             if (isConfirm) {
+             vm.deleteProject();
+             }
+             });
+             */
+            modalService.cancelProject(getProName(), function (chatMessage) {
+                console.log(chatMessage);
+                //TODO
             });
         };
+
+        function getProName() {
+            var name = null;
+            if (vm.project &&
+                vm.project.proposal &&
+                vm.project.proposal.professional &&
+                vm.project.proposal.professional.user &&
+                vm.project.proposal.professional.user.firstName &&
+                vm.project.proposal.professional.user.lastName) {
+                name = vm.project.proposal.professional.user.firstName + " " + vm.project.proposal.professional.user.lastName;
+            }
+            console.log(vm.project);
+            return name;
+        }
 
         vm.openSavePopup = function () {
             swal({
