@@ -1,12 +1,12 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="view">
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-    <div id="content" class="page-content no-padding">
+    <div id="content" class="page-content">
         <div class="content-slide new-project" id="main-scroll-container">
             <div class="container">
                 <div class="slide-main" id="slide1" data-ng-show="vm.selectCategory">
@@ -286,7 +286,8 @@
                     </button>
 
                 </div>
-                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6" data-ng-show="vm.continueAddressFlag">
+                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6"
+                     data-ng-show="vm.continueAddressFlag">
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
                             Quand souhaitez-vous que les travaux commencent ?
@@ -294,11 +295,13 @@
                     </div>
 
                     <ul class="col-xs-12 no-padding questions-ul center">
-                        <li id="selectDateType_NONE" class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child3"
+                        <li id="selectDateType_NONE" class="col-xs-12 col-sm-8 question-li center"
+                            data-ng-class="vm.child3"
                             data-ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
                             Dès que possible
                         </li>
-                        <li id="selectDateType_WITHIN_A_MONTH" class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child2"
+                        <li id="selectDateType_WITHIN_A_MONTH" class="col-xs-12 col-sm-8 question-li center"
+                            data-ng-class="vm.child2"
                             data-ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
                             Dans le mois
                         </li>
@@ -306,7 +309,8 @@
                             class="col-xs-12 col-sm-8 custom-li-date question-li center date">
                             Avant le {{vm.desiredDateMonth | date:'dd MMMM'}}
                         </li>
-                        <li id="selectDateType_SPECIFIC" class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child0"
+                        <li id="selectDateType_SPECIFIC" class="col-xs-12 col-sm-8 question-li center"
+                            data-ng-class="vm.child0"
                             data-ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
                             À partir d'une date
                         </li>
@@ -327,9 +331,9 @@
                     </p>
 
                     <button id="publish"
-                        class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.post()"
-                        data-ng-disabled="!vm.dateType">
+                            class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
+                            data-ng-click="vm.post()"
+                            data-ng-disabled="!vm.dateType">
                         Publier
                     </button>
 
