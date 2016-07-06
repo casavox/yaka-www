@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage, screenSize) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -15,6 +15,10 @@
         $rootScope.updateProfile();
 
         var vm = this;
+
+        vm.isXsmall = function () {
+            return screenSize.is('xs');
+        };
 
         vm.updating = false;
 
@@ -693,9 +697,6 @@
                 Math.sin(dLong / 2) * Math.sin(dLong / 2);
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c; // returns the distance in meter
-            console.log(d);
-            console.log("-----");
-            console.log("-----");
             return d;
         }
 
@@ -704,8 +705,6 @@
             var map = vm.map.control.getGMap();
             var bounds = map.getBounds();
             var center = map.getCenter();
-
-            console.log(vm.map.bounds);
 
             var width = getDistance(
                 {

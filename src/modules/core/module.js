@@ -24,7 +24,8 @@ angular.module('Yaka', [
         'angulartics.google.analytics',
         'bootstrapLightbox',
         'ngMessages',
-        'vcRecaptcha'
+        'vcRecaptcha',
+        'matchMedia'
     ]
 );
 

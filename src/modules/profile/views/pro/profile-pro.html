@@ -83,18 +83,18 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 p-l-0 hidden-xs">
+            <div class="col-sm-6 p-l-0" data-ng-if="!vm.isXsmall()">
                 <div data-ng-include="'infos.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
-            <div class="col-sm-6 p-r-0 hidden-xs">
+            <div class="col-sm-6 p-r-0" data-ng-if="!vm.isXsmall()">
                 <div data-ng-include="'verifications.html'"></div>
                 <div data-ng-include="'description.html'"></div>
                 <div data-ng-include="'portfolio.html'"></div>
                 <div data-ng-include="'activities.html'"></div>
             </div>
-            <div class="col-sm-12 no-padding visible-xs clearfix">
+            <div class="col-sm-12 no-padding clearfix" data-ng-if="vm.isXsmall()">
                 <div data-ng-include="'infos.html'"></div>
                 <div data-ng-include="'verifications.html'"></div>
                 <div data-ng-include="'description.html'"></div>
