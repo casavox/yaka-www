@@ -20,8 +20,13 @@
 
         <div class="lv-footer ms-reply ms-reply-modal" data-ng-show="yesChoice">
             <textarea data-ng-model="cancelProposalMessage" data-ng-trim="true"
-                      placeholder="20 caractères minimum : Désolé, je dois repousser ce projet / Le prix ne correspond pas à mon budget / ...">
+                      placeholder="Ex : Désolé, je dois repousser ce projet">
             </textarea>
+
+            <div class="c-red f-right t-right m-t-5"
+                 data-ng-if="!cancelProposalMessage || cancelProposalMessage.length < 20">
+                <b>20 caractères min</b>
+            </div>
             <button data-ng-click="ok(cancelProposalMessage)"
                     data-ng-disabled="!cancelProposalMessage || cancelProposalMessage.length < 20"
                     data-ng-class="{'pointer-not-allowed': !cancelProposalMessage || cancelProposalMessage.length < 20}">
