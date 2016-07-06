@@ -238,7 +238,7 @@
         vm.formIsValid = function () {
             return (vm.offer &&
             vm.offer.comment &&
-            vm.offer.co);
+            vm.offer.comment.length >= 20);
         };
     }
 })();
