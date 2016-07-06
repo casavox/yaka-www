@@ -412,6 +412,15 @@
         vm.showProfileEditPopup = false;
         vm.showVerificationsEditPopup = false;
 
+        vm.profileSaveButtonClicked = function () {
+            if (vm.profileInfo.company.name != vm.profile.company.name ||
+                vm.profileInfo.company.siret != vm.profile.company.siret) {
+                vm.showProfileEditPopup = true
+            } else {
+                vm.updateProfile();
+            }
+        };
+
         vm.validatePopup = function () {
             if (vm.showProfileEditPopup) {
                 vm.updateProfile();

@@ -63,12 +63,12 @@
                     </div>
                 </div>
 
-                <div data-ng-if="vm.profile.status == 'VALIDATED'" class="card bgm-bluegray c-white p-15">
+                <div data-ng-if="vm.profile.status == 'VALIDATED'" class="card bgm-lightblue c-white p-15">
                     <div class="topViewProfileIcon">
-                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                        <i class="zmdi zmdi-hc-2x zmdi-check"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Votre profil est complet. Vous pouvez répondre aux offres.<br/>
+                        Votre profil est validé. Vous pouvez répondre aux offres.<br/>
                         Compléter entièrement votre profil augmente votre visibilité et vos chances d'être sélectionné
                     </div>
                 </div>
@@ -327,7 +327,7 @@
                      data-ng-hide="vm.updating || !vm.showButtonsProfile()">
 
                     <button class="btn btn-info bgm-lightblue waves-effect"
-                            data-ng-click="vm.showProfileEditPopup = true">
+                            data-ng-click="vm.profileSaveButtonClicked()">
                         Enregistrer
                     </button>
                     <button class="btn btn-link waves-effect" data-ng-click="vm.cancelProfile()">
@@ -506,7 +506,7 @@
                     <input id="profile-back-verif-3" type="checkbox"
                            data-ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
                            disabled="disabled">
-                    <label for="profile-back-verif-3" class="blue"></label>
+                    <label for="profile-back-verif-3" class="gray"></label>
                 </div>
                 <div class="col-xs-10">
                     <p class="m-b-0">
@@ -529,7 +529,7 @@
                     <input id="profile-back-verif-4" type="checkbox"
                            data-ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
                            disabled="disabled">
-                    <label for="profile-back-verif-4" class="blue"></label>
+                    <label for="profile-back-verif-4" class="gray"></label>
                 </div>
                 <div class="col-xs-10">
                     <p class="m-b-0">

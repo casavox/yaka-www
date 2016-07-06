@@ -3225,8 +3225,8 @@ md-input-container {
     background: #f8f8f8;
 }
 
-.profile-verif > [type="checkbox"]:disabled:not(:checked) + label.blue:before {
-    border: 2px solid #03A9F4;
+.profile-verif > [type="checkbox"]:disabled:not(:checked) + label.gray:before {
+    border: 2px solid #9E9E9E;
 }
 
 .profile-verif > [type="checkbox"]:disabled:checked + label:before {
@@ -4700,7 +4700,7 @@ ul[rn-carousel-buffered] > li {
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin-left: calc(50% - 115px);
-    margin-top: calc(50vh - 326px);
+    margin-top: 50px;
 }
 
 .proDashboardListItem {
