@@ -239,7 +239,7 @@
 
         vm.actionActivities = function (s) {
             var res = null;
-            if ((res = indexOfObject(s, 'code', vm.activities)).length == 0)
+            if ((res = vm.indexOfObject(s, 'code', vm.activities)).length == 0)
                 vm.activities.push({code: s});
             else {
                 for (var i = 0; i < res.length; i++) {
@@ -685,6 +685,10 @@
         }
 
         function getDistance(p1, p2) {
+            console.log("p1");
+            console.log(p1);
+            console.log("p2");
+            console.log(p2);
             var R = 6378137; // Earth’s mean radius in meter
             var dLat = rad(p2.latitude - p1.latitude);
             var dLong = rad(p2.longitude - p1.longitude);
@@ -692,7 +696,11 @@
                 Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) *
                 Math.sin(dLong / 2) * Math.sin(dLong / 2);
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c; // returns the distance in meter
+            var d = R * c; // returns the distance in meter
+            console.log(d);
+            console.log("-----");
+            console.log("-----");
+            return d;
         }
 
         function getMinimumWidthOrHeight() {
@@ -700,6 +708,8 @@
             var map = vm.map.control.getGMap();
             var bounds = map.getBounds();
             var center = map.getCenter();
+
+            console.log(vm.map.bounds);
 
             var width = getDistance(
                 {
@@ -757,7 +767,6 @@
                                     vm.circle.radius = circleRadius;
                                     vm.circle.control.getCircle().setCenter(new google.maps.LatLng(vm.map.center.latitude, vm.map.center.longitude));
                                     vm.circle.control.getCircle().setRadius(circleRadius);
-
                                     vm.workArea.radius = circleRadius;
                                     vm.workArea.latitude = vm.map.center.latitude;
                                     vm.workArea.longitude = vm.map.center.longitude;
@@ -774,11 +783,13 @@
                             vm.mapEditing = true;
                         },
                         "zoom_changed": function () {
-                            if (canStartEditionWithZoom && firstZoom) {
-                                firstZoom = false;
-                            } else if (canStartEditionWithZoom && !firstZoom) {
-                                vm.mapEditing = true;
-                            }
+                            /*
+                             if (canStartEditionWithZoom && firstZoom) {
+                             firstZoom = false;
+                             } else if (canStartEditionWithZoom && !firstZoom) {
+                             vm.mapEditing = true;
+                             }
+                             */
                         }
                     },
                     control: {}
