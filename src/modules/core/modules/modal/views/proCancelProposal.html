@@ -1,16 +1,16 @@
 <div class="modal-header">
-    <h3 class="modal-title">Êtes-vous sûr de vouloir supprimer votre proposition ?</h3>
+    <h3 class="modal-title">Vous êtes sur le point de supprimer votre proposition</h3>
 </div>
 <div class="modal-body">
-    <strong>Cette décision est définitive</strong>
+    <strong>Êtes-vous sûr ?</strong>
 
     <P>Le client en sera immédiatement informé</P>
 </div>
 <div class="modal-footer p-t-0 p-b-10">
-    <button class="btn btn-primary m-b-5" type="button" data-ng-click="cancel()">
+    <button class="btn btn-default m-b-5" type="button" data-ng-click="cancel()">
         Non
     </button>
-    <button class="btn btn-warning m-b-5" type="button" data-ng-click="yesChoice = true"
+    <button class="btn bgm-red m-b-5" type="button" data-ng-click="yesChoice = true"
             data-ng-disabled="yesChoice">
         Oui, annuler ma proposition
     </button>
