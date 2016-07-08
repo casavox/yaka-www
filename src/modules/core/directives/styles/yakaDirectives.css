@@ -97,3 +97,15 @@ yaka-chat .chatImg {
     }
 
 }
+
+yaka-chat .yakaMessageWithIcon {
+    display: inline-block;
+    width: calc(100% - 36px);
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+yaka-chat .yakaMessageIcon {
+    vertical-align: middle;
+    font-size: 20px;
+}

@@ -93,9 +93,16 @@
                                         </h2>
 
                                         <button data-ng-click="vm.cancelProposalModal()"
+                                                data-ng-if="vm.proposal.status != 'CUSTOMER_DECLINED' && vm.proposal.status != 'PRO_DECLINED'"
                                                 class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect">
                                             <i class="zmdi zmdi-close"></i> Annuler ce devis
                                         </button>
+                                        <div class="m-t-10" data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
+                                            Annulé par le client
+                                        </div>
+                                        <div class="m-t-10" data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
+                                            Annulé par le professionel
+                                        </div>
                                     </div>
                                 </div>
                             </div>

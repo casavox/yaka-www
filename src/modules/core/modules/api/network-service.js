@@ -171,8 +171,8 @@
             proposalPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/pro/proposals', data).success(success).error(error)
             },
-            deleteProject: function (id, success, error) {
-                httpService.delete(baseUrl + '/projects/' + id).success(success).error(error)
+            deleteProject: function (id, data, success, error) {
+                httpService.post(baseUrl + '/projects/' + id + '/delete', data).success(success).error(error)
             },
             publishProject: function (id, success, error) {
                 httpService.post(baseUrl + '/projects/' + id + '/publish').success(success).error(error)

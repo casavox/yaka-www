@@ -9,7 +9,7 @@
                     <h3 class="c-white">{{project.title | yakaTranslateTitle }}</h3>
                 </div>
                 <div class="media m-t-0">
-                    <a data-ng-click="viewProposal()" class="cursor-pointer">Voir le projet</a>
+                    <a data-ng-click="viewProposal()" class="cursor-pointer c-white underline">Voir le projet</a>
                 </div>
                 <div class="media">
                     <yaka-avatar data-ng-show="!project.professional.user.avatar.cloudinaryPublicId"
@@ -46,6 +46,7 @@
                     <div class="row">
                         <div class="col-md-6" data-ng-repeat="c in criteria">
                             <div
+                                class="pointer"
                                 data-ng-class="{'criteria': rating.positive != 'true' && rating.positive != 'false', 'criteria-pos': rating.positive == 'true', 'criteria-neg': rating.positive == 'false', 'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
                                 data-ng-click="selectCriteria($index)">
                                 {{'CRITERION_' + c | translate}}

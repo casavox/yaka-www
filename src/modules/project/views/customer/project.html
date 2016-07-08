@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        <div class="row no-margin">
+                        <div class="row no-margin" data-ng-if="vm.project">
                             <div class="col-xs-12">
 
 
@@ -92,7 +92,7 @@
                                 </button>
 
                                 <button class="btn bgm-lightblue waves-effect f-right m-10" data-ng-click="vm.edit()"
-                                        data-ng-show="!vm.editFlag">
+                                        data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))">
                                     Modifier
                                 </button>
 

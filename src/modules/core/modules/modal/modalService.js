@@ -5,7 +5,7 @@ angular.module('Yaka')
                 return $uibModal.open({
                     templateUrl: "/modules/core/modules/modal/views/proCancelProposal.html",
                     backdrop: true,
-                    windowClass: "animated zoomIn",
+                    windowClass: "animated",
                     size: '',
                     keyboard: true,
                     controller: function ($scope, $uibModalInstance) {
@@ -28,7 +28,7 @@ angular.module('Yaka')
                 return $uibModal.open({
                     templateUrl: "/modules/core/modules/modal/views/cancelProject.html",
                     backdrop: true,
-                    windowClass: "animated zoomIn",
+                    windowClass: "animated",
                     size: '',
                     keyboard: true,
                     controller: function ($scope, $uibModalInstance) {
@@ -39,7 +39,15 @@ angular.module('Yaka')
                         };
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss('cancel');
-                        }
+                        };
+                        $scope.yesClicked = function () {
+                            if (professionalName) {
+                                $scope.yesChoice = true;
+                            } else {
+                                onOkClicked(null);
+                                $uibModalInstance.close("ok");
+                            }
+                        };
                     },
                     resolve: {
                         resCancelProject: function () {

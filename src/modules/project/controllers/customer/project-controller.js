@@ -80,32 +80,15 @@
         });
         vm.cleanAddress = angular.copy($scope.address);
 
-        vm.deleteProject = function () {
+        vm.deleteProject = function (message) {
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
-                networkService.deleteProject($stateParams.projectId,
+                networkService.deleteProject($stateParams.projectId, message,
                     function () {
                         alertMsg.send("Votre projet à bien été supprimé", "success");
                         $state.go("my-projects");
                     },
                     function () {
                         alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
-                    }
-                );
-            }
-        };
-
-        vm.publishProject = function () {
-            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
-                networkService.publishProject($stateParams.projectId,
-                    function () {
-                        vm.publishFlag = false;
-                        alertMsg.send("Votre projet à bien été dépublié", "success");
-                        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
-                            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
-                        }
-                    },
-                    function () {
-                        alertMsg.send("Impossible de dépublier le projet, réessayez puis contactez le support si besoin", "danger");
                     }
                 );
             }
@@ -320,7 +303,6 @@
             vm.dateSelected = false;
             vm.dateFlag = false;
             vm.dateType = type;
-            console.log(vm.dateType);
             switch (vm.dateType) {
                 case "SPECIFIC":
                     vm.projectTmp.desiredDatePeriod = "SPECIFIC";
@@ -525,24 +507,8 @@
         };
 
         vm.openDeleteProjectPopup = function () {
-            /*
-             swal({
-             title: "Êtes-vous sûr ?",
-             text: "Au lieu de supprimer un projet, il est généralement préférable de le modifier.",
-             type: "warning",
-             confirmButtonColor: "#f44336",
-             confirmButtonText: "Oui, supprimer mon projet",
-             showCancelButton: true,
-             cancelButtonText: "Non"
-             }, function (isConfirm) {
-             if (isConfirm) {
-             vm.deleteProject();
-             }
-             });
-             */
             modalService.cancelProject(getProName(), function (chatMessage) {
-                console.log(chatMessage);
-                //TODO
+                vm.deleteProject({text: chatMessage});
             });
         };
 
@@ -556,7 +522,6 @@
                 vm.project.proposal.professional.user.lastName) {
                 name = vm.project.proposal.professional.user.firstName + " " + vm.project.proposal.professional.user.lastName;
             }
-            console.log(vm.project);
             return name;
         }
 

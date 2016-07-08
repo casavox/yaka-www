@@ -368,3 +368,13 @@ section#main.yakaMain .content .card {
 #menu-trigger.open.mobile .line-wrap {
     margin: 12px 10px;
 }
+
+@media (min-width: 1199px) {
+    body.sw-toggled .breadcrumb {
+        padding-top: 10px !important;
+        padding-bottom: 11px !important;
+        padding-left: 33px !important;
+        padding-right: 33px !important;
+        margin-left: calc(50% - 336px) !important;
+    }
+}

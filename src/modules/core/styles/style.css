@@ -5129,3 +5129,7 @@ ul.yaka-chips li {
 .p-18 {
     padding: 18px !important;
 }
+
+.underline {
+    text-decoration: underline;
+}

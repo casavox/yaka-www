@@ -32,6 +32,14 @@ angular.module('Yaka')
                     }
                 };
 
+                scope.getCustomerUser = function () {
+                    if (!$localStorage.user.professional) {
+                        return scope.userMe;
+                    } else {
+                        return scope.userOther;
+                    }
+                };
+
                 scope.sendMessage = function () {
                     if (scope.disableSending || (!scope.newMessage.text && !scope.newMessage.cloudinaryPublicId)) {
                         return;
