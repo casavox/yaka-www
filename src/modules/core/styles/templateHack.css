@@ -378,3 +378,16 @@ section#main.yakaMain .content .card {
         margin-left: calc(50% - 336px) !important;
     }
 }
+
+.newContactsIndicator {
+    position: absolute !important;
+    font-style: normal !important;
+    background: #f44336 !important;
+    border-radius: 50% !important;
+    left: 33px !important;
+    top: 12px !important;
+    font-size: 5px !important;
+    width: 8px !important;
+    height: 8px !important;
+    padding: 0 !important;
+}

@@ -45,6 +45,7 @@
         <li ui-sref-active="active">
             <a ui-sref="contacts" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-accounts-alt"></i>
+                <i class="newContactsIndicator" data-ng-if="app.getUser().newContacts"></i>
                 Mes contacts
             </a>
         </li>

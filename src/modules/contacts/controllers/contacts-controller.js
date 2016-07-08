@@ -19,13 +19,6 @@
             $localStorage.invitationId = '';
         }
 
-        vm.getMenuItemClass = function (state) {
-            if (state == "contacts") {
-                return "active-menu";
-            }
-            return "";
-        };
-
         vm.MENU_ALL = "ALL";
         vm.MENU_PROS = "PROS";
         vm.MENU_FRIENDS = "FRIENDS";

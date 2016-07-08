@@ -266,6 +266,9 @@
             },
             sendSupportMessage: function (supportMessage, success, error) {
                 httpService.post(baseUrl + '/support/message', supportMessage).success(success).error(error)
+            },
+            setContactsRead: function (success, error) {
+                httpService.put(baseUrl + '/contacts/read').success(success).error(error)
             }
         };
     }
