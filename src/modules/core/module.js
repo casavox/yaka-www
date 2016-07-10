@@ -160,6 +160,39 @@ angular.module('Yaka', [
             popupOptions: {width: 580, height: 400}
         });
 
+        // Social Accounts Attach
+
+        $authProvider.oauth2({
+            name: "googleLoginAttach",
+            clientId: CONFIG.GOOGLE_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/login/google/attach',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+            redirectUri: window.location.origin,
+            requiredUrlParams: ['scope'],
+            optionalUrlParams: ['display'],
+            scope: ['profile', 'email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            scopePrefix: 'openid',
+            scopeDelimiter: ' ',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 452, height: 633}
+        });
+
+        $authProvider.oauth2({
+            name: 'facebookLoginAttach',
+            clientId: CONFIG.FACEBOOK_CLIENT_ID,
+            url: CONFIG.API_BASE_URL + '/login/facebook/attach',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
+        });
+
+
         //
         // For any unmatched url, redirect to /login
         $urlRouterProvider.otherwise("/");

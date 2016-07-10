@@ -93,6 +93,7 @@
                 <div data-ng-include="'description.html'"></div>
                 <div data-ng-include="'portfolio.html'"></div>
                 <div data-ng-include="'activities.html'"></div>
+                <div data-ng-include="'social.html'"></div>
             </div>
             <div class="col-sm-12 no-padding clearfix" data-ng-if="vm.isXsmall()">
                 <div data-ng-include="'infos.html'"></div>
@@ -101,6 +102,7 @@
                 <div data-ng-include="'portfolio.html'"></div>
                 <div data-ng-include="'activities.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
+                <div data-ng-include="'social.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
         </div>
@@ -804,6 +806,58 @@
                     Annuler
                 </button>
 
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="social.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt">
+            <h2>
+                Comptes sociaux associés
+                <small>
+                    Associer votre compte Facebook ou Google vous permet de vous connecter plus rapidement.
+                </small>
+            </h2>
+        </div>
+        <div class="col-xs-12 card-body m-t-20 m-b-20 c-gray">
+
+            <div class="row">
+                <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-facebook-box p-l-25"
+                   data-ng-class="{'c-facebook-blue': app.getUser().facebookId}"></i>
+
+                <div class="col-xs-8 v-align-middle m-t-10" data-ng-if="app.getUser().facebookId">
+                    Compte Facebook associé
+                </div>
+
+                <button class="btn btn-default waves-effect m-t-4 m-l-20"
+                        data-ng-if="!app.getUser().facebookId"
+                        data-ng-click="vm.attachFacebook()">
+                    Associer
+                </button>
+
+                <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
+                   data-ng-if="app.getUser().facebookId"
+                   data-ng-click="vm.detachFacebook()"></i>
+            </div>
+            <div class="row m-t-5">
+                <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-google p-l-25"
+                   data-ng-class="{'c-google-red': app.getUser().googleId}"></i>
+
+                <div class="col-xs-8 v-align-middle m-t-10" data-ng-if="app.getUser().googleId">
+                    Compte Google asocié
+                </div>
+
+                <button class="btn btn-default waves-effect m-t-4 m-l-20"
+                        data-ng-if="!app.getUser().googleId"
+                        data-ng-click="vm.attachGoogle()">
+                    Associer
+                </button>
+
+                <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
+                   data-ng-if="app.getUser().googleId"
+                   data-ng-click="vm.detachGoogle()"></i>
             </div>
         </div>
     </div>

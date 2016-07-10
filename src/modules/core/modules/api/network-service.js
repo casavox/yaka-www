@@ -96,6 +96,12 @@
             login: function (data, success, error) {
                 httpService.post(baseUrl + '/login', data).success(success).error(error)
             },
+            loginGoogleDetach: function (success, error) {
+                httpService.post(baseUrl + '/login/google/detach').success(success).error(error)
+            },
+            loginFacebookDetach: function (success, error) {
+                httpService.post(baseUrl + '/login/facebook/detach').success(success).error(error)
+            },
             register: function (data, success, error) {
                 httpService.post(baseUrl + '/register', data).success(success).error(error)
             },

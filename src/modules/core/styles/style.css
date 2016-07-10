@@ -5133,3 +5133,15 @@ ul.yaka-chips li {
 .underline {
     text-decoration: underline;
 }
+
+.c-google-red {
+    color: #EA4335 !important;
+}
+
+.c-facebook-blue {
+    color: #3B5998 !important;
+}
+
+.m-t-4 {
+    margin-top: 4px !important;
+}

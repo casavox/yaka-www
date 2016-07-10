@@ -31,7 +31,6 @@
             networkService.me(function (res) {
                 app.setUser(res);
 
-                console.log($state.current);
                 if ($state.current.name == "contacts" && res.newContacts) {
                     alertMsg.send("Du nouveaux dans vos contacts ! Vérifiez vos invitations reçues et votre liste de contacts.", 'success');
                     networkService.setContactsRead(function () {

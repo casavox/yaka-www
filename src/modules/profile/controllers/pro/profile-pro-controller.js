@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage, screenSize) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage, screenSize, $auth) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -913,5 +913,68 @@
         //
         //
 
+        vm.attachGoogle = function () {
+            $auth.authenticate('googleLoginAttach').then(function (res) {
+                if (res.data && res.data.status && res.data.status == "ok") {
+                    $rootScope.updateProfile();
+                } else {
+                    alertMsg.send("Impossible d'associer le compte Google", 'danger');
+                }
+            }).catch(function (res) {
+                alertMsg.send("Impossible d'associer le compte Google", 'danger');
+            });
+        };
+
+        vm.attachFacebook = function () {
+            $auth.authenticate('facebookLoginAttach').then(function (res) {
+                if (res.data && res.data.status && res.data.status == "ok") {
+                    $rootScope.updateProfile();
+                } else {
+                    alertMsg.send("Impossible d'associer le compte Facebook", 'danger');
+                }
+            }).catch(function (res) {
+                alertMsg.send("Impossible d'associer le compte Facebook", 'danger');
+            });
+        };
+
+        vm.detachGoogle = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus vous connecter automatiquement via votre compte Google",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.loginGoogleDetach(function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                        alertMsg.send("Impossible d'effectuer cette action", "danger");
+                    });
+                }
+            });
+        };
+
+        vm.detachFacebook = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus vous connecter automatiquement via votre compte Facebook",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.loginFacebookDetach(function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                        alertMsg.send("Impossible d'effectuer cette action", "danger");
+                    });
+                }
+            });
+        };
     }
 })();
