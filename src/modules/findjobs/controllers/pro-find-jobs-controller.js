@@ -6,8 +6,12 @@
         .controller('FindJobsController', FindJobsController)
         .controller('ProDashboardMapHomeControlController', ProDashboardMapHomeControlController);
 
-    function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi) {
+    function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $localStorage, $state) {
         $scope.showList = false;
+
+        if ($localStorage.user && !$localStorage.user.professional) {
+            $state.go("home");
+        }
 
         $rootScope.pageName = "Trouvez des chantiers";
         $rootScope.updateProfile();
