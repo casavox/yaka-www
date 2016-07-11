@@ -827,8 +827,11 @@
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-facebook-box p-l-25"
                    data-ng-class="{'c-facebook-blue': app.getUser().facebookId}"></i>
 
-                <div class="col-xs-8 v-align-middle m-t-10" data-ng-if="app.getUser().facebookId">
+                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().facebookId">
                     Compte Facebook associé
+                    <small>
+                        {{app.getUser().facebookEmail}}
+                    </small>
                 </div>
 
                 <button class="btn btn-default waves-effect m-t-4 m-l-20"
@@ -845,8 +848,11 @@
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-google p-l-25"
                    data-ng-class="{'c-google-red': app.getUser().googleId}"></i>
 
-                <div class="col-xs-8 v-align-middle m-t-10" data-ng-if="app.getUser().googleId">
-                    Compte Google asocié
+                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().googleId">
+                    Compte Google associé
+                    <small>
+                        {{app.getUser().googleEmail}}
+                    </small>
                 </div>
 
                 <button class="btn btn-default waves-effect m-t-4 m-l-20"
