@@ -621,18 +621,3 @@
     }
 
 }
-
-.gmailButtonIcon {
-    height: 30px;
-}
-
-.gmailButtonText {
-    position: relative;
-    top: 1px;
-}
-
-.gmailContactsList {
-    max-height: 277px;
-    overflow-x: scroll;
-    margin-bottom: 20px;
-}

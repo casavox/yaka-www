@@ -293,20 +293,31 @@
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
-                Invitez vos amis
+                Invitez vos amis à faire partie de vos relations YakaClub
             </div>
 
-            <textarea class="col-xs-12 form-control" data-ng-model="vm.invitCustomer"/>
+            <button class="center btn bgm-blue btn-icon-text waves-effect"
+                    data-ng-click="vm.closeFriendPopup(); vm.loadGmailContacts()">
+                <img class="gmailButtonIcon" src="icons/ic_gmail.png" alt=""/>
+                <span class="gmailButtonText">Sélectionner mes contacts Gmail</span>
+            </button>
+
+            <h4 class="m-t-20 m-b-20 center t-center">
+                Ou
+            </h4>
+
+            <textarea class="col-xs-12 form-control m-t-20" placeholder="exemple@mail.fr,..."
+                      data-ng-model="vm.invitCustomer"></textarea>
 
             <div class="col-xs-12 yakaPopupInvitSubTitle">
                 Vous pouvez ajouter plusieurs emails en les séparant par une virgule.
             </div>
 
-            <div class="col-xs-12 yakaButton yakaBlue"
-                 data-ng-class="{yakaDisabled: vm.invitCustomer == ''}"
-                 data-ng-click="vm.sendCustomerInvit()">
-                INVITER
-            </div>
+            <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
+                    data-ng-disabled="vm.invitCustomer == ''"
+                    data-ng-click="vm.sendCustomerInvit()">
+                Inviter
+            </button>
         </div>
     </div>
 </div>
@@ -378,6 +389,50 @@
                  data-ng-click="vm.sendProInvit()">
                 INVITER
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" data-ng-show="vm.showGmailPopup" data-ng-click="vm.closeGmailPopup()" data-ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeGmailPopup()"
+                 alt=""/>
+
+            <img class="center" src="img/loader_small.gif"
+                 data-ng-if="!vm.gmailContacts || vm.gmailContacts.length == 0" alt=""/>
+
+
+            <div class="checkbox" data-ng-if="vm.gmailContacts && vm.gmailContacts.length > 0">
+                <label class="yakaEllipsis">
+                    <input type="checkbox" data-ng-change="vm.selectAllChanged()" data-ng-model="vm.selectAll">
+                    <i class="input-helper"></i>
+                    <b>Tout sélectionner</b>
+                </label>
+            </div>
+            <div class="gmailContactsList">
+                <div data-ng-repeat="contact in vm.gmailContacts track by contact.id">
+                    <div class="checkbox">
+                        <label class="yakaEllipsis">
+                            <input type="checkbox" data-ng-model="contact.selected" value="">
+                            <i class="input-helper"></i>
+                            <span data-ng-if="contact.name">
+                                <b>{{contact.name}}</b> - {{contact.address}}
+                            </span>
+                            <span data-ng-if="!contact.name">
+                                <b>{{contact.address}}</b>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
+                    data-ng-disabled="!vm.showGmailInviteButton()"
+                    data-ng-if="vm.gmailContacts && vm.gmailContacts.length > 0"
+                    data-ng-click="vm.sendGoogleCustomerInvit()">
+                Inviter
+            </button>
         </div>
     </div>
 </div>

@@ -1,0 +1,18 @@
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+    ></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    <div id="content" class="content contacts">
+        <div class="container">
+            <button class="btn btn-primary waves-effect" data-ng-click="vm.invite()">
+                Contacts Google
+            </button>
+            <div data-ng-repeat="email in vm.emails">
+                {{email.name}} <small>{{email.address}}</small>
+            </div>
+        </div>
+    </div>
+</section>

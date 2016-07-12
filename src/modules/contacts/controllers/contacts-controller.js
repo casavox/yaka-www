@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts) {
 
         $rootScope.pageName = "Mes contacts";
         $rootScope.updateProfile();
@@ -200,6 +200,7 @@
         function succesInviteCustomerPOST(res) {
             vm.invitCustomer = "";
             vm.closeFriendPopup();
+            vm.closeGmailPopup();
             reloadContactsAndInvitations();
             alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
@@ -433,6 +434,67 @@
                 return "overlayInvisible";
             }
         };
+
+        vm.showGmailPopup = false;
+        vm.gmailContacts = [];
+
+        vm.loadGmailContacts = function () {
+            vm.openGmailPopup();
+            gmailContacts.getGmailContacts(function (contacts) {
+                vm.gmailContacts = contacts;
+                $scope.$applyAsync();
+            });
+        };
+
+        vm.openGmailPopup = function () {
+            vm.showGmailPopup = true;
+        };
+
+        vm.closeGmailPopup = function () {
+            vm.showGmailPopup = false;
+            vm.gmailContacts = [];
+            vm.selectAll = false;
+        };
+
+        vm.setAllContactsSelected = function (selected) {
+            if (vm.gmailContacts) {
+                for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                    vm.gmailContacts[i].selected = selected;
+                }
+            }
+        };
+
+        vm.selectAllChanged = function () {
+            if (vm.selectAll) {
+                vm.setAllContactsSelected(true);
+            } else {
+                vm.setAllContactsSelected(false);
+            }
+        };
+
+        vm.showGmailInviteButton = function () {
+            if (vm.gmailContacts) {
+                for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                    if (vm.gmailContacts[i].selected) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+
+        vm.sendGoogleCustomerInvit = function () {
+
+            var invits = [];
+
+            for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                if (vm.gmailContacts[i].selected) {
+                    invits.push(vm.gmailContacts[i].address);
+                }
+            }
+
+            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
+        }
     }
 })
 ();
