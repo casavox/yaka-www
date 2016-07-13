@@ -54,15 +54,8 @@
                                         <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
                                             {{userchat.chat.messages[0].text}}
                                         </small>
-                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
-                                               data-ng-switch="userchat.chat.messages[0].text">
-                                            <span class="msg yaka" data-ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
-                                            <span class="msg yaka" data-ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_DATE_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié la date souhaité de début de chantier au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié l'addresse du chantier au {{message.varAddress}}</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié la description du projet</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié les photos du projet</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_DECLINE_PROPOSAL">La proposition n'a pas été retenue par {{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}}</span>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
+                                            <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
                                         </small>
                                     </div>
                                 </div>
@@ -86,15 +79,8 @@
                                         <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
                                             {{userchat.chat.messages[0].text}}
                                         </small>
-                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
-                                               data-ng-switch="userchat.chat.messages[0].text">
-                                            <span class="msg yaka" data-ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
-                                            <span class="msg yaka" data-ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_DATE_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié la date souhaité de début de chantier au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié l'addresse du chantier au {{message.varAddress}}</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié la description du projet</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">{{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}} à modifié les photos du projet</span>
-                                            <span class="msg yaka" data-ng-switch-when="CUSTOMER_DECLINE_PROPOSAL">La proposition n'a pas été retenue par {{userchat.chat.proposal.project.user.firstName}} {{userchat.chat.proposal.project.user.lastName}}</span>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
+                                            <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
                                         </small>
                                     </div>
                                 </div>

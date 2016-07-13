@@ -34,35 +34,9 @@
                     </div>
                     <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
                     <span class="msg yaka" data-ng-if="message.author == 'YAKA'">{{message.text}}</span>
-                    <span data-ng-if="message.author == 'AUTO'" data-ng-switch="message.text">
-                        <span data-ng-switch-when="PRO_PRICE_UPDATED">
-                            <i class="zmdi zmdi-money-box yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
-                        </span>
-                        <span data-ng-switch-when="PRO_DATE_UPDATED">
-                            <i class="zmdi zmdi-calendar yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        </span>
-                        <span data-ng-switch-when="CUSTOMER_DATE_UPDATED">
-                            <i class="zmdi zmdi-calendar yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">{{getCustomerUser().firstName}} {{getCustomerUser().lastName}} à modifié la date souhaité de début de chantier au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        </span>
-                        <span data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">
-                            <i class="zmdi zmdi-pin yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">{{getCustomerUser().firstName}} {{getCustomerUser().lastName}} à modifié l'addresse du chantier au {{message.varAddress}}</span>
-                        </span>
-                        <span data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">
-                            <i class="zmdi zmdi-assignment yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">{{getCustomerUser().firstName}} {{getCustomerUser().lastName}} à modifié la description du projet</span>
-                        </span>
-                        <span data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">
-                            <i class="zmdi zmdi-collection-image yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">{{getCustomerUser().firstName}} {{getCustomerUser().lastName}} à modifié les photos du projet</span>
-                        </span>
-                        <span data-ng-switch-when="CUSTOMER_DECLINE_PROPOSAL">
-                            <i class="zmdi zmdi-close-circle-o yakaMessageIcon"></i>
-                            <span class="msg yaka yakaMessageWithIcon">La proposition n'a pas été retenue par {{getCustomerUser().firstName}} {{getCustomerUser().lastName}}</span>
-                        </span>
+                    <span data-ng-if="message.author == 'AUTO'">
+                        <i class="zmdi {{message | yakaAutoMsgIcon : getCustomerUser() : getProUser()}} yakaMessageIcon"></i>
+                        <span class="msg yaka yakaMessageWithIcon">{{message | yakaAutoMsg : getCustomerUser() : getProUser()}}</span>
                     </span>
                 </div>
                 <small class="ms-date">
