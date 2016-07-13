@@ -13,10 +13,7 @@
         }
 
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-            networkService.acceptInvitationPOST($localStorage.invitationId, function () {
-            }, function () {
-            });
-            $localStorage.invitationId = '';
+            $state.go("contacts");
         }
 
         $rootScope.pageName = "Mes projets";

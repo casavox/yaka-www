@@ -9,8 +9,8 @@
     function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $localStorage, $state) {
         $scope.showList = false;
 
-        if ($localStorage.user && !$localStorage.user.professional) {
-            $state.go("home");
+        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+            $state.go("contacts");
         }
 
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
