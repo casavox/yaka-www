@@ -81,6 +81,7 @@
                                 </button>
 
                                 <button class="btn bgm-lightblue waves-effect f-right m-10" data-ng-show="vm.editFlag"
+                                        data-ng-disabled="!vm.projectTmp.description"
                                         data-ng-click="vm.openSavePopup()">
                                     Enregistrer
                                 </button>
@@ -107,8 +108,14 @@
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Description</dt>
-                                        <dd>
+                                        <dd data-ng-if="!vm.editFlag">
                                             {{vm.projectTmp.description}}
+                                        </dd>
+                                        <dd data-ng-if="vm.editFlag">
+                                            <textarea class="form-control" data-auto-size=""
+                                                      placeholder="Description du projet"
+                                                      data-ng-model="vm.projectTmp.description"
+                                                      data-autosize-on="true"></textarea>
                                         </dd>
                                     </dl>
                                     <dl class="dl-horizontal"
