@@ -216,12 +216,12 @@
                     <span class="waves-effect">
                         <img class="invitRefuse"
                              src="icons/mdpi/ic_refuse_invitation.png"
-                             data-ng-click="vm.refuseInvitation(invit.id)"/>
+                             data-ng-click="vm.refuseInvitation(invit.inviter.email)"/>
                     </span>
                     <span class="waves-effect">
                         <img class="invitAccept"
                              src="icons/mdpi/ic_accept_invitation.png"
-                             data-ng-click="vm.acceptInvitation(invit.id)"/>
+                             data-ng-click="vm.acceptInvitation(invit.inviter.email)"/>
                     </span>
                     </div>
                     <div class="col-xs-12 contactItem contactItemInvitation"
@@ -318,6 +318,17 @@
                     data-ng-click="vm.sendCustomerInvit()">
                 Inviter
             </button>
+
+            <div class="col-xs-12 no-padding center t-center m-t-20">
+                Étendez vos relations grâce à Facebook :
+            </div>
+
+            <div class="col-xs-12 center t-center m-t-5">
+                <iframe
+                    ng-src="{{vm.getFacebookIframeUrl() | trusted}}"
+                    width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowTransparency="true"></iframe>
+            </div>
         </div>
     </div>
 </div>

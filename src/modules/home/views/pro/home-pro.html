@@ -243,10 +243,10 @@
 
                 <input type="text"
                        required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone"
-                       data-ng-model="vm.phoneNumber" yaka-input-phone>
+                       data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
 
                 <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.phoneNumber">
+                     data-ng-hide="vm.newUser.professional.phoneNumber">
                     Cet numéro de téléphone n'est pas valide
                 </div>
 
@@ -262,6 +262,10 @@
                     vs-autocomplete-validator class="form-control"
                     placeholder="Ville"
                     data-ng-model="vm.newUser.professional.company.address.address"/>
+
+                <pre>
+                    {{vm.newUser}}
+                </pre>
 
                 <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
                      data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">

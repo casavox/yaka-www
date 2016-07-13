@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG) {
 
         $rootScope.pageName = "Mes contacts";
         $rootScope.updateProfile();
@@ -378,8 +378,8 @@
             return true;
         };
 
-        vm.refuseInvitation = function (invitationId) {
-            networkService.refuseInvitationPOST(invitationId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
+        vm.refuseInvitation = function (inviterId) {
+            networkService.refuseInvitationPOST(inviterId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
         };
 
         function succesRefuseInvitationPOST(res) {
@@ -395,8 +395,8 @@
             }
         }
 
-        vm.acceptInvitation = function (invitationId) {
-            networkService.acceptInvitationPOST(invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+        vm.acceptInvitation = function (inviterId) {
+            networkService.acceptInvitationPOST(inviterId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
         };
 
         function succesAcceptInvitationPOST(res) {
@@ -494,7 +494,11 @@
             }
 
             networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
-        }
+        };
+
+        vm.getFacebookIframeUrl = function () {
+            return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.id + "&layout=button&size=large&mobile_iframe=true&appId=847913895334564&width=89&height=28";
+        };
     }
 })
 ();
