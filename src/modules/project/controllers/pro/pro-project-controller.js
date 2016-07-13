@@ -143,18 +143,23 @@
             }
         }
 
-        function selectPrice(type) {
+        function selectPrice() {
             vm.error.price = vm.error.price || {};
-            if (vm.price <= 10) {
-                vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
+            if (vm.price <= 10 || vm.price > 1000000) {
+                vm.error.price.message = "Merci d'indiquer un montant réaliste";
                 vm.error.price.flag = true
-            } else if (vm.price > 1000000) {
-                vm.error.price.message = "Veuillez entrer un montant réaliste";
-                vm.error.price.flag = true
+            } else {
+                vm.offer.price = vm.price;
+                vm.myPriceFlag = false;
+                vm.error.price.flag = false;
             }
-            vm.offer.price = vm.price;
-            vm.myPriceFlag = false;
-            vm.error.price.flag = false;
+        }
+
+        vm.isValidPrice = function() {
+            if (!vm.price || vm.price == 0 || vm.price <= 10 || vm.price > 1000000) {
+                return false;
+            }
+            return true;
         }
 
         function myPrice() {

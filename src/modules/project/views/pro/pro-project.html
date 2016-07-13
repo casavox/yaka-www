@@ -21,7 +21,7 @@
 
 <header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
         data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="findjobs" title="Détails du projet"
@@ -337,7 +337,9 @@
                     </p>
 
                     <div class="clearfix m-t-10 f-right">
-                        <button class="btn bgm-lightblue waves-effect" data-ng-click="vm.selectPrice();">
+                        <button class="btn bgm-lightblue waves-effect"
+                                data-ng-disabled="!vm.isValidPrice()"
+                                data-ng-click="vm.selectPrice();">
                             Enregistrer
                         </button>
                     </div>
