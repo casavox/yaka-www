@@ -45,9 +45,9 @@
                                      class="proposalIconBackground lv-img zmdi zmdi-apps zmdi-hc-2x c-white vertical-center">
                                 </div>
                             </div>
-                            <div class="media-body projectTitleBar" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-body projectTitleBar" title="{{p.title}}">
                                 <div class="media row">
-                                    <div class="col-sm-7">{{p.title | yakaTranslateTitle}}</div>
+                                    <div class="col-sm-7">{{p.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                         <small class="c-gray">
                                             Mis à jour <span am-time-ago="p.updated"></span>
@@ -135,7 +135,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
                                     <div class="c-gray">Votre Pro. pour ce projet</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
@@ -172,7 +172,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
                                     <div class="c-red"><strong>Notez votre Pro. pour ce projet</strong></div>
                                     <strong>{{p.proposal.professional.user.firstName}}
@@ -213,7 +213,7 @@
                             </div>
                             <div class="media-body projectTitleBar">
                                 <div class="media row">
-                                    <div class="col-sm-7">{{pc.title | yakaTranslateTitle}}</div>
+                                    <div class="col-sm-7">{{pc.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                         <div>
                                             <small class="c-gray">
@@ -257,7 +257,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="media-body pull-left" title="{{pc.title | yakaTranslateTitle}}"
+                            <div class="media-body pull-left" title="{{pc.title}}"
                                  data-ng-click="vm.selectProposal(pc.proposal)">
                                 <div class="media-heading m-b-5">
                                     <div class="c-gray">Votre Pro. pour ce projet</div>
