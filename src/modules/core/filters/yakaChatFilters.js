@@ -16,9 +16,9 @@ angular.module('Yaka')
                 case 'CUSTOMER_PHOTOS_UPDATED':
                     return customerUser.firstName + " " + customerUser.lastName + " a modifié les photos du projet";
                 case 'CUSTOMER_DECLINE_PROPOSAL':
-                    return "La proposition n'a pas été retenue par " + customerUser.firstName + " " + customerUser.lastName;
+                    return "Cette proposition n'a pas été retenue par " + customerUser.firstName + " " + customerUser.lastName;
                 case 'CUSTOMER_SELECTED_PRO':
-                    return proUser.firstName + " " + proUser.lastName + " embauché pour ce projet !";
+                    return proUser.firstName + " " + proUser.lastName + " embauché pour ce projet !\nVos coordonnées respectives sont maintenant accessibles depuis la fiche projet (vérifier votre profil si nécessaire).";
                 case 'CUSTOMER_RATED_PRO':
                     return customerUser.firstName + " " + customerUser.lastName + " a indiqué la fin des travaux";
                 default :
