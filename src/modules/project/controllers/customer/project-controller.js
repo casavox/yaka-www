@@ -310,11 +310,11 @@
                     break;
                 case "WITHIN_A_MONTH":
                     vm.projectTmp.desiredDatePeriod = "WITHIN_A_MONTH";
-                    vm.projectTmp.desiredDate = moment().add(1, 'months');
+                    vm.projectTmp.desiredDate = new Date(moment().add(1, 'months'));
                     break;
                 case "NONE":
                     vm.projectTmp.desiredDatePeriod = "NONE";
-                    vm.projectTmp.desiredDate = vm.dt;
+                    vm.projectTmp.desiredDate = null;
                     break;
             }
         };
@@ -415,10 +415,6 @@
                 case "NONE":
                     return 'dès que possible';
             }
-        };
-
-        vm.prev = function () {
-            $state.go("proposals", {projectId: $stateParams.projectId});
         };
 
         function succesProjectGET(res) {

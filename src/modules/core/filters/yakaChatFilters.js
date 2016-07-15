@@ -5,6 +5,8 @@ angular.module('Yaka')
             switch (autoMessage.text) {
                 case 'PRO_PRICE_UPDATED':
                     return proUser.firstName + " " + proUser.lastName + " a modifié sa proposition de prix à " + autoMessage.varPrice + " €";
+                case 'PRO_DECLINE_PROPOSAL':
+                    return proUser.firstName + " " + proUser.lastName + " a annulé sa proposition";
                 case 'PRO_DATE_UPDATED':
                     return proUser.firstName + " " + proUser.lastName + " a modifié sa date d'intervention au " + $filter('date')(autoMessage.varDate, 'dd/MM/yyyy');
                 case 'CUSTOMER_DATE_UPDATED':
@@ -31,6 +33,8 @@ angular.module('Yaka')
             switch (autoMessage.text) {
                 case 'PRO_PRICE_UPDATED':
                     return 'zmdi-money-box';
+                case 'PRO_DECLINE_PROPOSAL':
+                    return 'zmdi-close-circle-o';
                 case 'PRO_DATE_UPDATED':
                 case 'CUSTOMER_DATE_UPDATED':
                     return 'zmdi-calendar';
