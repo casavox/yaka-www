@@ -217,7 +217,8 @@
                     Ce nom n'est pas valide
                 </div>
 
-                <input class="form-control" type="email" name="username" placeholder="Email" data-ng-model="vm.newUser.email"
+                <input class="form-control" type="email" name="username" placeholder="Email"
+                       data-ng-model="vm.newUser.email"
                        data-ng-disabled="vm.needToHideEmail()"/>
 
                 <div class="proHomeSection2InputError"
@@ -262,10 +263,6 @@
                     vs-autocomplete-validator class="form-control"
                     placeholder="Ville"
                     data-ng-model="vm.newUser.professional.company.address.address"/>
-
-                <pre>
-                    {{vm.newUser}}
-                </pre>
 
                 <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
                      data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">
@@ -380,7 +377,8 @@
                     Google
                 </div>
 
-                <input class="form-control" type="text" name="username" placeholder="Email" data-ng-model="vm.loginUser.email"/>
+                <input class="form-control" type="text" name="username" placeholder="Email"
+                       data-ng-model="vm.loginUser.email"/>
 
                 <input class="form-control" type="password" name="password" placeholder="Mot de passe"
                        data-ng-model="vm.loginUser.password"
