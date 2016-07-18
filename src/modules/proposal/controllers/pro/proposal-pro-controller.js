@@ -295,6 +295,9 @@
         }
 
         vm.getUpState = function () {
+            if (!vm.proposal || !vm.proposal.status) {
+                return "home";
+            }
             if (vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED') {
                 return "pro-proposals";
             } else {
