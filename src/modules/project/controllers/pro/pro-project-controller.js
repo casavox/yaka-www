@@ -196,7 +196,7 @@
             vm.project = res;
             $rootScope.pageName = vm.project.user.firstName + " " +
                 vm.project.user.lastName +
-                " - " + $filter('yakaTranslateTitle')(vm.project.title);
+                " - " + vm.project.title;
 
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;

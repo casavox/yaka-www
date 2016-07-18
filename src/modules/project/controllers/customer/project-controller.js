@@ -430,7 +430,7 @@
                 }
             }
             vm.project = res;
-            $rootScope.pageName = $filter('yakaTranslateTitle')(vm.project.title);
+            $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             vm.dt = angular.copy(vm.now);

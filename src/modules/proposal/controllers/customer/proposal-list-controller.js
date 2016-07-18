@@ -31,7 +31,7 @@
 
         function succesProjectGET(res) {
             vm.project = res;
-            $rootScope.pageName = $filter('yakaTranslateTitle')(vm.project.title);
+            $rootScope.pageName = vm.project.title;
         }
 
         function errorProjectGET() {

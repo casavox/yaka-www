@@ -198,7 +198,7 @@
             }
         }
 
-        vm.isValidPrice = function() {
+        vm.isValidPrice = function () {
             if (!vm.myPrice || vm.myPrice == 0 || vm.myPrice <= 10 || vm.myPrice > 1000000) {
                 return false;
             }
@@ -240,7 +240,7 @@
                 vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
             }
             $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
-                " - " + $filter('yakaTranslateTitle')(vm.project.title);
+                " - " + vm.project.title;
 
             if (vm.proposal.status != 'START') {
                 $state.go("pro-proposal", {'proposalId': vm.proposal.id});
