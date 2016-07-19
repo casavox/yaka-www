@@ -79,7 +79,7 @@
         vm.uploadProfileImg = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -92,7 +92,8 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: file
+                            file: file,
+                            resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);

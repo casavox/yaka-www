@@ -197,7 +197,7 @@
         vm.uploadPortfolio = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -210,7 +210,8 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'myPortfolio',
                             context: 'photo=' + $scope.title,
-                            file: file
+                            file: file,
+                            resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
@@ -285,7 +286,7 @@
         vm.uploadVerifications = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -317,7 +318,7 @@
                         vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
-                        alertMsg.send("Impossible d'envoyer l'image", "danger");
+                        alertMsg.send("Impossible d'envoyer ce fichier", "danger");
                     });
                 }
             });
@@ -326,7 +327,7 @@
         vm.uploadProfile = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -339,7 +340,8 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: file
+                            file: file,
+                            resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);

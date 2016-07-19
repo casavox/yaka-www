@@ -11,12 +11,12 @@
     "jquery": ">=1.7"
   },
   "homepage": "https://github.com/Bluefieldscom/intl-tel-input",
-  "version": "9.0.2",
-  "_release": "9.0.2",
+  "version": "9.0.4",
+  "_release": "9.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "v9.0.2",
-    "commit": "7c95a3a25ef3c079851d8b8b0d77be14752d6522"
+    "tag": "v9.0.4",
+    "commit": "742f935b166fdb3b5d0769f4f7083db38b00a526"
   },
   "_source": "https://github.com/Bluefieldscom/intl-tel-input.git",
   "_target": "9.0.x",

@@ -111,48 +111,10 @@
             }
         };
 
-        // UPLOAD FILE
-        /*
-         $scope.uploadFiles = function (files, invalides, index) {
-         if (invalides.length > 0) {
-         if (invalides[0].$error == "maxSize")
-         alertMsg.send("Taille maximum : 5Mo.", "danger");
-         }
-         $scope.files = files;
-         if (!$scope.files) return;
-         angular.forEach(files, function (file) {
-         if (file && !file.$error) {
-         vm.imageLoading[index] = true;
-         file.upload = Upload.upload({
-         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-         data: {
-         upload_preset: cloudinary.config().upload_preset,
-         tags: 'project',
-         context: 'photo=' + $scope.title,
-         file: file
-         }
-         }).progress(function (e) {
-         file.progress = Math.round((e.loaded * 100.0) / e.total);
-         file.status = "Uploading... " + file.progress + "%";
-         }).success(function (data, status, headers, config) {
-         vm.imageLoading[index] = false;
-         $rootScope.photos = $rootScope.photos || [];
-         data.context = {custom: {photo: $scope.title}};
-         file.result = data;
-         $rootScope.photos[index] = data;
-         }).error(function (data, status, headers, config) {
-         vm.imageLoading[index] = false;
-         file.result = data;
-         });
-         }
-         });
-         };
-         */
-
         vm.uploadFiles = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -164,7 +126,8 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'project',
                             context: 'photo=' + $scope.title,
-                            file: file
+                            file: file,
+                            resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);

@@ -156,7 +156,7 @@
                             <button
                                 class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
                                 ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
-                                ngf-accept="'image/*'" ngf-max-size="5MB">
+                                ngf-accept="'image/*'" ngf-max-size="20MB">
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
                         </div>
@@ -469,7 +469,7 @@
                         Extrait KBIS / SIRET
                     </p>
                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
                        data-ng-click="vm.setVerif('BUSINESS_REGISTRATION')">
                         <p class="m-b-5">
                                             <span class="pointer"
@@ -492,7 +492,7 @@
                         Assurance
                     </p>
                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
                        data-ng-click="vm.setVerif('INSURANCE')">
                         <p class="m-b-5">
                                             <span class="pointer"
@@ -515,7 +515,7 @@
                         Principale certification ou qualification
                     </p>
                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
                        data-ng-click="vm.setVerif('RGE')">
                         <p class="m-b-5">
                                             <span class="pointer"
@@ -538,7 +538,7 @@
                         Principal partenaire
                     </p>
                     <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                       ngf-accept="'image/*,application/pdf'" ngf-max-size="5MB"
+                       ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
                        data-ng-click="vm.setVerif('PARTNER')">
                         <p class="m-b-5">
                                             <span class="pointer"
@@ -723,7 +723,7 @@
                  data-ng-multiple="false" data-ng-if="vm.portfolio.length < 8 && vm.editFlag">
                 <div class="galleryUpload lightbox-item p-item"
                      ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
-                     ngf-accept="'image/*'" ngf-max-size="5MB">
+                     ngf-accept="'image/*'" ngf-max-size="20MB">
                     <div class="content">
                         <i class="zmdi zmdi-plus-circle-o"></i>
                     </div>

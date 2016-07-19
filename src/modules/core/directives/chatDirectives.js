@@ -144,11 +144,17 @@ angular.module('Yaka')
                 }
 
                 function setupStomp() {
-                    $stomp
-                        .connect(CONFIG.API_BASE_URL + '/connect', {token: $localStorage.token})
 
-                        .then(function () {
-                            $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
+                    var subscription = null;
+
+                    $stomp.connect(CONFIG.API_BASE_URL + '/connect',
+                        {token: $localStorage.token},
+                        function () {
+                            if (subscription != null) {
+                                subscription.unsubscribe();
+                            }
+                            subscription = $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
+
                                 scope.messages.push(payload);
 
                                 scope.$apply(function () {
@@ -159,7 +165,7 @@ angular.module('Yaka')
                                 'token': $localStorage.token
                             });
                         }, function () {
-                            alertMsg.send("Erreur de connection au chat.", "danger")
+                            alertMsg.send("Connexion au chat impossible, nouvelle tentative en cours...", "danger")
                         });
                 }
 
@@ -174,7 +180,7 @@ angular.module('Yaka')
                 scope.uploadFiles = function (files, invalides) {
                     if (invalides.length > 0) {
                         if (invalides[0].$error == "maxSize")
-                            alertMsg.send("Taille maximum : 5Mo", "danger");
+                            alertMsg.send("Taille maximum : 20Mo", "danger");
                     }
                     if (!files) {
                         return
@@ -196,8 +202,20 @@ angular.module('Yaka')
                                 data.context = {custom: {photo: "Chat : " + scope.chatId}};
                                 file.result = data;
                                 scope.newMessage.cloudinaryPublicId = data.public_id;
+                                scope.newMessage.filename = data.original_filename;
+                                scope.newMessage.resourceType = data.resource_type;
+                                scope.newMessage.format = data.format;
+
+                                if (!data.format &&
+                                    data.public_id.lastIndexOf(".") != -1) {
+                                    scope.extension = data.public_id.substring(data.public_id.lastIndexOf(".") + 1);
+                                } else {
+                                    scope.extension = null;
+                                }
+
                             }).error(function (data, status, headers, config) {
                                 file.result = data;
+                                alertMsg.send("Impossible d'envoyer ce fichier", "danger");
                             });
                         }
                     });

@@ -61,6 +61,7 @@ yaka-chat .imgPreview {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
+    background: #f8f8f8;
 }
 
 yaka-chat .imgPreview button {
@@ -108,4 +109,11 @@ yaka-chat .yakaMessageWithIcon {
 yaka-chat .yakaMessageIcon {
     vertical-align: middle;
     font-size: 20px;
+}
+
+yaka-chat .chatFilePreview {
+    margin-bottom: 20px;
+    margin-top: 25px;
+    max-width: 200px;
+    word-break: break-all;
 }
