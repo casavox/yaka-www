@@ -772,8 +772,9 @@
 
             <div class="row">
                 <div class="col-xs-6 mb-15 cursor-pointer" data-ng-repeat="s in vm.cat"
+                     data-ng-show="s != 'AUTO_MULTI'"
                      data-ng-click="vm.actionActivities(s)">
-                    <div data-ng-show="s != 'AUTO_MULTI'" class="row profile-activities no-margin">
+                    <div class="row profile-activities no-margin">
                         <div class="col-xs-3 no-padding"
                              data-ng-show="vm.indexOfObject(s, 'code', vm.activities).length > 0">
                             <div class="profile-activities-check">

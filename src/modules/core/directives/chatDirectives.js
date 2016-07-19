@@ -61,13 +61,13 @@ angular.module('Yaka')
 
                 scope.showRight = function (message) {
                     if (message.author && message.author == 'CUSTOMER') {
-                        if ($localStorage.user.professional) {
+                        if ($localStorage.user && $localStorage.user.professional) {
                             return false;
                         } else {
                             return true;
                         }
                     } else if (message.author && message.author == 'PRO') {
-                        if ($localStorage.user.professional) {
+                        if ($localStorage.user && $localStorage.user.professional) {
                             return true;
                         } else {
                             return false;
