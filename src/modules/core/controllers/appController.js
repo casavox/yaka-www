@@ -289,5 +289,9 @@
                 return true;
             }
         };
+
+        app.getEnvironment = function () {
+            return CONFIG.ENV;
+        };
     }
 })();

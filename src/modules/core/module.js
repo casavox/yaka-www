@@ -54,6 +54,20 @@ angular.module('Yaka', [
                         return 'http://localhost:8080';
                 }
             }()),
+            'ENV': (function () {
+
+                switch (window.location.hostname) {
+                    case 'fad2bced-1115-4049-8e43-e2e107.herokuapp.com':
+                        return 'development';
+                    case 'fb34936c-dd2e-4abd-bf29-4c7217.herokuapp.com':
+                        return 'staging';
+                    case 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com':
+                    case 'www.yakaclub.com':
+                        return 'production';
+                    default:
+                        return 'local';
+                }
+            }()),
             'GOOGLE_CLIENT_ID': '554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com',
             'GOOGLE_API_KEY': 'AIzaSyDtq1oFK_ku6rSm9OHM8Q0MlHeOYzOWgr8',
             'FACEBOOK_CLIENT_ID': (function () {

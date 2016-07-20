@@ -7,6 +7,15 @@
     <meta name="description"
           content="Réseau de recommandation d'artisans entre particuliers. En 3 clics, vos amis, collègues et voisins vous recommandent leurs artisans pour vos travaux."/>
 
+    <ng-include src="'/modules/core/views/rollbar-production.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'production'"></ng-include>
+    <ng-include src="'/modules/core/views/rollbar-staging.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'staging'"></ng-include>
+    <ng-include src="'/modules/core/views/rollbar-development.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'development'"></ng-include>
+    <ng-include src="'/modules/core/views/rollbar-local.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'local'"></ng-include>
+
     <!-- inject:css -->
     <!-- endinject -->
 
