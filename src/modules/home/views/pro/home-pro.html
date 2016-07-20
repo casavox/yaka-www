@@ -242,14 +242,22 @@
                     Les mots de passe ne correspondent pas
                 </div>
 
-                <input type="text"
-                       required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone"
-                       data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
+                <div class="col-xs-12 no-padding m-t-15">
+                    <input type="text"
+                           required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone"
+                           data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
+                </div>
 
                 <div class="proHomeSection2InputError"
                      data-ng-hide="vm.newUser.professional.phoneNumber">
                     Cet numéro de téléphone n'est pas valide
                 </div>
+
+                <input
+                    vs-google-autocomplete="vm.autocomplete.options"
+                    vs-autocomplete-validator class="form-control"
+                    placeholder="Ville"
+                    data-ng-model="vm.newUser.professional.company.address.address"/>
 
                 <div class="proHomeSection2ActivitiesInput" data-ng-dropdown-multiselect=""
                      options="vm.multiChoiceInput.options"
@@ -257,12 +265,6 @@
                      extra-settings="vm.multiChoiceInput.settings"
                      translation-texts="vm.multiChoiceInput.translation"
                      checkboxes="true"></div>
-
-                <input
-                    vs-google-autocomplete="vm.autocomplete.options"
-                    vs-autocomplete-validator class="form-control"
-                    placeholder="Ville"
-                    data-ng-model="vm.newUser.professional.company.address.address"/>
 
                 <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
                      data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">

@@ -382,18 +382,18 @@
                 Cet numéro de téléphone n'est pas valide
             </div>
 
+            <input
+                vs-google-autocomplete="vm.autocomplete.options"
+                vs-autocomplete-validator class="form-control"
+                placeholder="Ville"
+                data-ng-model="vm.invitPro.address.address"/>
+
             <div class="proInviteActivitiesInput" data-ng-dropdown-multiselect=""
                  options="vm.multiChoiceInput.options"
                  selected-model="vm.multiChoiceInput.selected"
                  extra-settings="vm.multiChoiceInput.settings"
                  translation-texts="vm.multiChoiceInput.translation"
                  checkboxes="true"></div>
-
-            <input
-                vs-google-autocomplete="vm.autocomplete.options"
-                vs-autocomplete-validator class="form-control"
-                placeholder="Ville"
-                data-ng-model="vm.invitPro.address.address"/>
 
             <div class="col-xs-12 yakaButton yakaOrange invitProButton"
                  data-ng-class="{yakaDisabled: !vm.formIsValid()}"
