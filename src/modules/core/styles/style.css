@@ -5050,6 +5050,20 @@ ul.yaka-chips li {
     word-wrap: break-word !important;
 }
 
+#lg-slider.slide {
+    padding-top: inherit !important;
+    transform: translate3d(0, 60px, 0) !important;
+}
+
+#lg-action > a {
+    color: #03a9f4 !important;
+}
+
+#lg-close {
+    display: block !important;
+    line-height: 23px !important;
+}
+
 .pointer {
     cursor: pointer;
 }
