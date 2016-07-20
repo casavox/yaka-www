@@ -288,7 +288,7 @@
                 confirmButtonText: 'Continuer !',
                 confirmButtonClass: 'btn btn-success'
             });
-            $state.go("proposals", {projectId: res});
+            $state.go("proposals", {projectId: res.id});
         }
 
         function errorProjectsPOST() {
