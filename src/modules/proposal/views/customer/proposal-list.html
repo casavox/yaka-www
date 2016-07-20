@@ -127,21 +127,183 @@
                     </div>
                 </div>
             </div>
-            <div data-ng-show="vm.project.proposals && vm.project.proposals.length > 0" data-ng-cloak>
+            <div data-ng-show="vm.project.proposal" data-ng-cloak>
+                <div class="card">
+                    <div class="card-header bgm-lightblue">
+                        <h2>
+                            <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10 ng-scope"></i>
+                            Mon Pro pour ce projet
+                            <small>Cliquez pour voir le détail</small>
+                        </h2>
+                    </div>
+                    <div class="lv-body">
+                        <div class="listview media">
+                            <a class="lv-item" href=""
+                               data-ng-click="vm.selectProposal(vm.project.proposal)">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <div class="p-relative">
+                                            <yaka-avatar size="35"
+                                                         user="vm.project.proposal.professional.user"></yaka-avatar>
+                                            <i data-ng-show="vm.project.proposal.unreadMessages"
+                                               class="porposalUnreadMessagesIndicator"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="pull-left">
+                                            <div class="lv-title">
+                                                <span data-ng-if="vm.project.proposal.status == 'START'">
+                                                    {{vm.project.proposal.professional.user.firstName}} {{vm.project.proposal.professional.user.lastName}}</span>
+                                                <span data-ng-if="vm.project.proposal.status == 'SELECTED'">
+                                                    {{vm.project.proposal.professional.company.name}}</span>
+
+                                                <div class="c-gray m-t-0 m-b-0"
+                                                     data-ng-if="vm.project.proposal.status == 'PRO_DECLINED'">
+                                                    <p class="m-b-0"><strong>Annulée par le Pro.</strong></p>
+
+                                                    <p class="m-b-0">{{vm.project.proposal.professional.user.firstName}}
+                                                        {{vm.project.proposal.professional.user.lastName}}</p>
+                                                </div>
+                                                <div class="c-gray m-t-0 m-b-0"
+                                                     data-ng-if="vm.project.proposal.status == 'CUSTOMER_DECLINED'">
+                                                    <p class="m-b-0"><strong>Proposition refusée</strong></p>
+
+                                                    <p class="m-b-0">{{vm.project.proposal.professional.user.firstName}}
+                                                        {{vm.project.proposal.professional.user.lastName}}</p>
+                                                </div>
+                                            </div>
+                                            <div
+                                                data-ng-if="vm.project.proposal.status != 'PRO_DECLINED' && vm.project.proposal.status != 'CUSTOMER_DECLINED'">
+                                                <small class="lv-small c-bluegray"
+                                                       data-ng-show="vm.project.proposal.price">
+                                                    Estimation actuelle <span class="c-lightblue">{{vm.project.proposal.price}} €</span>
+                                                </small>
+                                                <small class="lv-small c-bluegray"
+                                                       data-ng-show="vm.project.proposal.startDate">
+                                                    Disponible à partir du <span class="c-lightblue">{{vm.project.proposal.startDate | date:'d MMMM'}}</span>
+                                                </small>
+                                            </div>
+                                            <div
+                                                data-ng-if="vm.project.proposal.status == 'PRO_DECLINED' || vm.project.proposal.status == 'CUSTOMER_DECLINED'">
+                                                <small class="lv-small" data-ng-show="vm.project.proposal.price">
+                                                    Estimation actuelle {{vm.project.proposal.price}} €
+                                                </small>
+                                                <small class="lv-small" data-ng-show="vm.project.proposal.startDate">
+                                                    Disponible à partir du {{vm.project.proposal.startDate | date:'d
+                                                    MMMM'}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right textAlignRightFullDesktop">
+                                            <small class="c-gray">
+                                                Mis à jour <span am-time-ago="vm.project.proposal.updated"></span>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-show="vm.project.proposals && vm.project.proposals.length > 0 && !vm.project.proposal"
+                 data-ng-cloak>
                 <div class="card">
                     <div class="card-header bgm-orange">
                         <h2 data-ng-show="vm.project.proposals.length == 1">
                             Une proposition reçue
-                            <small>Sélectionner la pour en voir le détail</small>
+                            <small>Cliquez pour voir le détail</small>
                         </h2>
                         <h2 data-ng-show="vm.project.proposals.length > 1">
                             {{vm.project.proposals.length}} propositions reçues
-                            <small>Cliquez sur une proposition pour en voir le détail</small>
+                            <small>Cliquez pour voir le détail</small>
                         </h2>
                     </div>
                     <div class="lv-body">
                         <div class="listview media">
                             <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
+                               data-ng-click="vm.selectProposal(p)">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <div class="p-relative">
+                                            <yaka-avatar size="35"
+                                                         user="p.professional.user"></yaka-avatar>
+                                            <i data-ng-show="p.unreadMessages"
+                                               class="porposalUnreadMessagesIndicator"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="pull-left">
+                                            <div class="lv-title">
+                                                <span data-ng-if="p.status == 'START'">
+                                                    {{p.professional.user.firstName}} {{p.professional.user.lastName}}</span>
+                                                <span data-ng-if="p.status == 'SELECTED'">
+                                                    {{p.professional.company.name}}</span>
+
+                                                <div class="c-gray m-t-0 m-b-0" data-ng-if="p.status == 'PRO_DECLINED'">
+                                                    <p class="m-b-0"><strong>Annulée par le Pro.</strong></p>
+
+                                                    <p class="m-b-0">{{p.professional.user.firstName}}
+                                                        {{p.professional.user.lastName}}</p>
+                                                </div>
+                                                <div class="c-gray m-t-0 m-b-0"
+                                                     data-ng-if="p.status == 'CUSTOMER_DECLINED'">
+                                                    <p class="m-b-0"><strong>Proposition refusée</strong></p>
+
+                                                    <p class="m-b-0">{{p.professional.user.firstName}}
+                                                        {{p.professional.user.lastName}}</p>
+                                                </div>
+                                            </div>
+                                            <div
+                                                data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                                <small class="lv-small c-bluegray" data-ng-show="p.price">
+                                                    Estimation actuelle <span class="c-lightblue">{{p.price}} €</span>
+                                                </small>
+                                                <small class="lv-small c-bluegray" data-ng-show="p.startDate">
+                                                    Disponible à partir du <span class="c-lightblue">{{p.startDate | date:'d MMMM'}}</span>
+                                                </small>
+                                            </div>
+                                            <div
+                                                data-ng-if="p.status == 'PRO_DECLINED' || p.status == 'CUSTOMER_DECLINED'">
+                                                <small class="lv-small" data-ng-show="p.price">
+                                                    Estimation actuelle {{p.price}} €
+                                                </small>
+                                                <small class="lv-small" data-ng-show="p.startDate">
+                                                    Disponible à partir du {{p.startDate | date:'d MMMM'}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right textAlignRightFullDesktop">
+                                            <small class="c-gray">
+                                                Mis à jour <span am-time-ago="p.updated"></span>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-show="vm.project.proposals && vm.project.proposals.length > 1 && vm.project.proposal"
+                 data-ng-cloak>
+                <div class="card">
+                    <div class="card-header bgm-bluegray">
+                        <h2 data-ng-show="vm.project.proposals.length == 2">
+                            Proposition refusée
+                            <small>Cliquez pour voir le détail</small>
+                        </h2>
+                        <h2 data-ng-show="vm.project.proposals.length > 2">
+                            {{vm.project.proposals.length - 1}} propositions refusées
+                            <small>Cliquez pour voir le détail</small>
+                        </h2>
+                    </div>
+                    <div class="lv-body">
+                        <div class="listview media">
+                            <a class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
+                               data-ng-if="p.id != vm.project.proposal.id"
                                data-ng-click="vm.selectProposal(p)">
                                 <div class="media">
                                     <div class="pull-left">

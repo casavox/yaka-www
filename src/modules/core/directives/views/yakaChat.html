@@ -36,8 +36,9 @@
                     <div data-ng-if="message.cloudinaryPublicId">
                         <i class="zmdi zmdi-file"></i> {{message.filename}}<span data-ng-if="message.format">.{{message.format}}</span>
                     </div>
-                    <a class="pointer c-lightblue" data-ng-if="message.cloudinaryPublicId"
-                       data-ng-href="{{message.cloudinaryPublicId | yakaCloudinaryDownload : message.resourceType}}">
+                    <a class="pointer" data-ng-if="message.cloudinaryPublicId"
+                       data-ng-href="{{message.cloudinaryPublicId | yakaCloudinaryDownload : message.resourceType}}"
+                       data-ng-class="{'c-yaka-dark-blue': !showRight(message), 'c-lightblue': showRight(message)}">
                         <i class="zmdi zmdi-download"></i> Télécharger
                     </a>
 
