@@ -230,7 +230,7 @@
                     </p>
 
                     <div class="col-xs-12 row no-margin w-900 center select-addr">
-                        <div class="col-xs-5 no-padding" data-ng-if="vm.user.addresses.length>0">
+                        <div class="col-xs-5 no-padding select" data-ng-if="vm.user.addresses.length>0">
                             <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
                                 <option value="new">- Nouvelle adresse -</option>
                                 <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"

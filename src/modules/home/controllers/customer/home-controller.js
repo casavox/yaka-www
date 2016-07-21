@@ -13,7 +13,7 @@
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('protuto');
             } else {
-                $state.go('my-projects');
+                $state.go('dashboard');
             }
         }
 
@@ -165,7 +165,7 @@
                     if ($localStorage.user && $localStorage.user.professional) {
                         $state.go('protuto');
                     } else {
-                        $state.go('my-projects');
+                        $state.go('dashboard');
                     }
                 }
             }
@@ -267,7 +267,7 @@
                 window.location.href = $localStorage.urlRedirect;
                 delete $localStorage.urlRedirect;
             } else {
-                $state.go('my-projects');
+                $state.go('dashboard');
             }
         }
 

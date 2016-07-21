@@ -21,7 +21,7 @@
         if (angular.isDefined($stateParams.proposalId) && $stateParams.proposalId) {
             loadProposal();
         } else {
-            $state.go("my-projects");
+            $state.go("dashboard");
         }
 
         if ($stateParams.chat) {

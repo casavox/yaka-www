@@ -169,7 +169,7 @@
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Fermer"
             }, function () {
-                $state.go('my-projects');
+                $state.go('dashboard');
             });
         }
 

@@ -11,7 +11,7 @@
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('protuto');
             } else {
-                $state.go('my-projects');
+                $state.go('dashboard');
             }
         }
 
@@ -279,7 +279,7 @@
                     if ($localStorage.user && $localStorage.user.professional) {
                         $state.go('protuto');
                     } else {
-                        $state.go('my-projects');
+                        $state.go('dashboard');
                     }
                 }
             }

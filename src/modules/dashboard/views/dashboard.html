@@ -1,0 +1,40 @@
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+    ></header>
+
+<section id="main">
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    <div id="content" class="content contacts">
+        <div class="container">
+            <div class="block-header">
+                <h2>Tableau de bord</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header p-b-15">
+                    <div class="media">
+                        <div class="pull-left">
+                            <yaka-avatar size="50" user="app.getUser()"></yaka-avatar>
+                        </div>
+                        <div class="media-body projectTitleBar">
+                            <div class="media row">
+                                <div class="col-sm-7">
+                                    <div class="f-s-16">
+                                        {{app.getUser().firstName}} {{app.getUser().lastName}}
+                                    </div>
+                                    <div class="dashboardContacts c-gray">
+                                        XX Contacts - XX Pros
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    RIGHT
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
