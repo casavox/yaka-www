@@ -216,12 +216,12 @@
                     <span class="waves-effect">
                         <img class="invitRefuse"
                              src="icons/mdpi/ic_refuse_invitation.png"
-                             data-ng-click="vm.refuseInvitation(invit.inviter.email)"/>
+                             data-ng-click="vm.refuseInvitation(invit.inviter.id)"/>
                     </span>
                     <span class="waves-effect">
                         <img class="invitAccept"
                              src="icons/mdpi/ic_accept_invitation.png"
-                             data-ng-click="vm.acceptInvitation(invit.inviter.email)"/>
+                             data-ng-click="vm.acceptInvitation(invit.inviter.id)"/>
                     </span>
                     </div>
                     <div class="col-xs-12 contactItem contactItemInvitation"
@@ -387,6 +387,15 @@
                 vs-autocomplete-validator class="form-control"
                 placeholder="Ville"
                 data-ng-model="vm.invitPro.address.address"/>
+
+            <select class="form-control m-t-10"
+                    data-ng-model="vm.invitPro.relation">
+                <option value="">Votre relation avec ce pro ?</option>
+                <option value="CLIENT">Client</option>
+                <option value="FRIEND">Ami</option>
+                <option value="FAMILY">Famille</option>
+                <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
+            </select>
 
             <div class="proInviteActivitiesInput" data-ng-dropdown-multiselect=""
                  options="vm.multiChoiceInput.options"

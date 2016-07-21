@@ -25,7 +25,7 @@ angular.module('Yaka')
                 scope.disableSending = false;
 
                 scope.getProUser = function () {
-                    if ($localStorage.user.professional) {
+                    if ($localStorage.user && $localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -33,7 +33,7 @@ angular.module('Yaka')
                 };
 
                 scope.getCustomerUser = function () {
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -45,7 +45,7 @@ angular.module('Yaka')
                         return;
                     }
                     var sendMessageApi;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         sendMessageApi = networkService.sendMessage;
                     } else {
                         sendMessageApi = networkService.sendMessagePro;
@@ -88,7 +88,7 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -114,7 +114,7 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -239,7 +239,7 @@ angular.module('Yaka')
 
                 function setChatRead() {
                     var apiSetChatRead;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         apiSetChatRead = networkService.setChatRead;
                     } else {
                         apiSetChatRead = networkService.proSetChatRead;
