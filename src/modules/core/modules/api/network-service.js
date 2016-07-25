@@ -275,6 +275,9 @@
             },
             setContactsRead: function (success, error) {
                 httpService.put(baseUrl + '/contacts/read').success(success).error(error)
+            },
+            projectToRecommendGET: function (success, error) {
+                httpService.get(baseUrl + '/recommend/projects/torecommend').success(success).error(error)
             }
         };
     }

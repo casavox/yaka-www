@@ -14,7 +14,12 @@
 
         var vm = this;
 
-
+        networkService.projectToRecommendGET(function (projects) {
+            console.log(projects);
+            vm.projectsToRecommend = projects;
+        }, function (err) {
+            alertMsg.send("Impossible de récupérer les projets", "danger");
+        });
     }
 })
 ();

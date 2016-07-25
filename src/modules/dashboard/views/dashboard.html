@@ -17,21 +17,83 @@
                         <div class="pull-left">
                             <yaka-avatar size="50" user="app.getUser()"></yaka-avatar>
                         </div>
-                        <div class="media-body projectTitleBar">
+                        <div class="media-body">
                             <div class="media row">
-                                <div class="col-sm-7">
-                                    <div class="f-s-16">
+                                <div class="col-sm-4">
+                                    <div class="f-s-16 yakaEllipsis">
                                         {{app.getUser().firstName}} {{app.getUser().lastName}}
                                     </div>
-                                    <div class="dashboardContacts c-gray">
+                                    <div class="c-gray">
                                         XX Contacts - XX Pros
                                     </div>
+                                    <div class="c-lightblue pointer"
+                                         data-ui-sref="contacts">
+                                        Développer mon réseau
+                                    </div>
                                 </div>
-                                <div class="col-sm-5">
-                                    RIGHT
+                                <div class="col-sm-8 f-s-14 t-right dashboardStats hidden-xs">
+                                    <div class="d-i-b c-green m-r-15">
+                                        Projets en cours X
+                                    </div>
+                                    <div class="d-i-b c-lightblue m-r-15">
+                                        Projets finalisés X
+                                    </div>
+                                    <div class="d-i-b c-orange">
+                                        Pros recommandés X
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 m-t-10 f-s-14 dashboardStats visible-xs">
+                                    <div class="col-xs-12 no-padding d-i-b c-green">
+                                        Projets en cours X
+                                    </div>
+                                    <div class="col-xs-12 no-padding d-i-b c-orange">
+                                        Pros recommandés X
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="t-right bgm-lightgray">
+                    <button class="btn btn-default waves-effect c-lightblue btn-sm m-r-10 m-b-10 m-t-10">
+                        Nouveau projet
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header dashboardCommunityHeader">
+
+                    <i class="zmdi zmdi-hc-2x zmdi-accounts c-black d-i-b hidden-xs"></i>
+
+                    <h2 class="d-i-b">
+                        Actualité de la communauté
+                        <small>
+                            Aidez la communauté, recommandez vos professionels
+                        </small>
+                    </h2>
+                </div>
+                <div class="clearfix card-body card-padding">
+
+                    <div class="col-sm-6 dashboardRecommendProject" data-ng-repeat="project in vm.projectsToRecommend">
+
+                        <yaka-avatar size="35" user="project.user"></yaka-avatar>
+
+                        <div class="inContactsIndicator" data-ng-if="project.inContacts">
+                            <i class="zmdi zmdi-account c-orange"></i>
+                        </div>
+
+                        <div class="dashboardRecommendProjectText">
+                            <div class="yakaEllipsis">
+                                {{project.user.firstName}} {{project.user.lastName}} -
+                                {{project.address.locality}}
+                            </div>
+
+                            <div class="yakaEllipsis c-lightblue pointer">
+                                {{project.title}}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

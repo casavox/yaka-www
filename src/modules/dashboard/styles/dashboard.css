@@ -1,3 +1,35 @@
-.dashboardContacts {
+.dashboardStats {
+    font-size: 12px !important;
+    font-weight: 500;
+}
 
+.dashboardCommunityHeader {
+    background-color: #F8F8F8 !important;
+}
+
+.dashboardCommunityHeader h2 {
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+.dashboardRecommendProject {
+    height: 55px;
+}
+
+.dashboardRecommendProject yaka-avatar {
+    margin-top: 10px;
+}
+
+.dashboardRecommendProjectText {
+    position: absolute;
+    left: 65px;
+    top: 9px;
+    width: calc(100% - 65px);
+}
+
+.dashboardRecommendProject .inContactsIndicator {
+    position: absolute;
+    top: -2px;
+    left: 38px;
+    font-size: 25px;
 }

@@ -5136,7 +5136,7 @@ ul.yaka-chips li {
     vertical-align: sub !important;
 }
 
-.d-i-p {
+.d-i-b {
     display: inline-block !important;
 }
 
@@ -5166,4 +5166,8 @@ ul.yaka-chips li {
 
 .c-yaka-dark-blue {
     color: #0068B2 !important;
+}
+
+.bgm-lightgray {
+    background-color: #F8F8F8 !important;
 }
