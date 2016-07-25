@@ -339,6 +339,8 @@
             vm.cancel();
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
+            vm.newAddrFlag = false;
+            networkService.profileGET(succesProfileGET, errorProfileGET);
         }
 
         function errorProfilePUT() {
