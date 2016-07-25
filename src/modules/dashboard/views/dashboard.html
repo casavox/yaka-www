@@ -24,7 +24,7 @@
                                         {{app.getUser().firstName}} {{app.getUser().lastName}}
                                     </div>
                                     <div class="c-gray">
-                                        XX Contacts - XX Pros
+                                        {{vm.data.contactsNumber}} Contacts - {{vm.data.contactsProNumber}} Pros
                                     </div>
                                     <div class="c-lightblue pointer"
                                          data-ui-sref="contacts">
@@ -33,21 +33,21 @@
                                 </div>
                                 <div class="col-sm-8 f-s-14 t-right dashboardStats hidden-xs">
                                     <div class="d-i-b c-green m-r-15">
-                                        Projets en cours X
+                                        Projets en cours {{vm.data.ongoingProjectsNumber}}
                                     </div>
                                     <div class="d-i-b c-lightblue m-r-15">
-                                        Projets finalisés X
+                                        Projets finalisés {{vm.data.completedProjectsNumber}}
                                     </div>
                                     <div class="d-i-b c-orange">
-                                        Pros recommandés X
+                                        Pros recommandés {{vm.data.recommendedProNumber}}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 m-t-10 f-s-14 dashboardStats visible-xs">
                                     <div class="col-xs-12 no-padding d-i-b c-green">
-                                        Projets en cours X
+                                        Projets en cours {{vm.data.ongoingProjectsNumber}}
                                     </div>
                                     <div class="col-xs-12 no-padding d-i-b c-orange">
-                                        Pros recommandés X
+                                        Pros recommandés {{vm.data.recommendedProNumber}}
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,8 @@
                     </div>
                 </div>
                 <div class="t-right bgm-lightgray">
-                    <button class="btn btn-default waves-effect c-lightblue btn-sm m-r-10 m-b-10 m-t-10">
+                    <button class="btn btn-default waves-effect c-lightblue btn-sm m-r-10 m-b-10 m-t-10"
+                        data-ui-sref="new-project">
                         Nouveau projet
                     </button>
                 </div>
@@ -75,21 +76,21 @@
                 </div>
                 <div class="clearfix card-body card-padding">
 
-                    <div class="col-sm-6 dashboardRecommendProject" data-ng-repeat="project in vm.projectsToRecommend">
+                    <div class="col-sm-6 dashboardRecommendProject pointer no-padding p-l-10"
+                         data-ng-repeat="project in vm.projectsToRecommend">
 
                         <yaka-avatar size="35" user="project.user"></yaka-avatar>
 
-                        <div class="inContactsIndicator" data-ng-if="project.inContacts">
-                            <i class="zmdi zmdi-account c-orange"></i>
-                        </div>
-
                         <div class="dashboardRecommendProjectText">
                             <div class="yakaEllipsis">
+                                <span class="" data-ng-if="project.inContacts">
+                                    <i class="zmdi zmdi-accounts c-lightblue"></i>
+                                </span>
                                 {{project.user.firstName}} {{project.user.lastName}} -
                                 {{project.address.locality}}
                             </div>
 
-                            <div class="yakaEllipsis c-lightblue pointer">
+                            <div class="yakaEllipsis c-lightblue">
                                 {{project.title}}
                             </div>
                         </div>

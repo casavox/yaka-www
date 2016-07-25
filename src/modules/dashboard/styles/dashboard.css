@@ -22,7 +22,7 @@
 
 .dashboardRecommendProjectText {
     position: absolute;
-    left: 65px;
+    left: 55px;
     top: 9px;
     width: calc(100% - 65px);
 }
@@ -32,4 +32,8 @@
     top: -2px;
     left: 38px;
     font-size: 25px;
+}
+
+.dashboardRecommendProject:hover {
+    background-color: #FAFAFA;
 }

@@ -5064,6 +5064,11 @@ ul.yaka-chips li {
     line-height: 23px !important;
 }
 
+.sidebar-inner ul li.separator {
+    height: 1px;
+    background: #BBBBBB;
+}
+
 .pointer {
     cursor: pointer;
 }

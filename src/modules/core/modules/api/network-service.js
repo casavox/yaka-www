@@ -278,6 +278,9 @@
             },
             projectToRecommendGET: function (success, error) {
                 httpService.get(baseUrl + '/recommend/projects/torecommend').success(success).error(error)
+            },
+            dashboardDataGET: function (success, error) {
+                httpService.get(baseUrl + '/dashboard/infos').success(success).error(error)
             }
         };
     }
