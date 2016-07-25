@@ -4,19 +4,19 @@ angular.module('Yaka')
 
             switch (autoMessage.text) {
                 case 'PRO_PRICE_UPDATED':
-                    return proUser.firstName + " " + proUser.lastName + " a modifié sa proposition de prix à " + autoMessage.varPrice + " €";
+                    return proUser.firstName + " " + proUser.lastName + " a mis à jour sa proposition de prix à " + autoMessage.varPrice + " €";
                 case 'PRO_DECLINE_PROPOSAL':
                     return proUser.firstName + " " + proUser.lastName + " a annulé sa proposition";
                 case 'PRO_DATE_UPDATED':
-                    return proUser.firstName + " " + proUser.lastName + " a modifié sa date d'intervention au " + $filter('date')(autoMessage.varDate, 'dd/MM/yyyy');
+                    return proUser.firstName + " " + proUser.lastName + " a mis à jour sa date d'intervention au " + $filter('date')(autoMessage.varDate, 'dd/MM/yyyy');
                 case 'CUSTOMER_DATE_UPDATED':
-                    return customerUser.firstName + " " + customerUser.lastName + " a modifié la date souhaitée de début de chantier au " + $filter('date')(autoMessage.varDate, 'dd/MM/yyyy');
+                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour la date souhaitée de début de chantier";
                 case 'CUSTOMER_ADDRESS_UPDATED':
-                    return customerUser.firstName + " " + customerUser.lastName + " a modifié l'addresse du chantier au " + autoMessage.varAddress;
+                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour l'addresse du chantier au " + autoMessage.varAddress;
                 case 'CUSTOMER_DESCRIPTION_UPDATED':
-                    return customerUser.firstName + " " + customerUser.lastName + " a modifié la description du projet";
+                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour la description du projet";
                 case 'CUSTOMER_PHOTOS_UPDATED':
-                    return customerUser.firstName + " " + customerUser.lastName + " a modifié les photos du projet";
+                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour l'album projet";
                 case 'CUSTOMER_DECLINE_PROPOSAL':
                     return "Cette proposition n'a pas été retenue par " + customerUser.firstName + " " + customerUser.lastName;
                 case 'CUSTOMER_SELECTED_PRO':

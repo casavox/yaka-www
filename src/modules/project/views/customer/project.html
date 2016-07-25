@@ -51,14 +51,47 @@
 
         <div class="container">
 
-            <div class="block-header">
-                <h2>{{vm.project.title}}</h2>
-            </div>
 
             <div class="yakaMain proposalMainView proMakeOffer">
                 <div class="card m-b-15 clearfix" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
 
                     <div class="col-xs-12 no-padding clearfix">
+
+                        <div class="row no-margin" data-ng-if="vm.project">
+                            <div class="col-xs-12">
+                                <div class="card-header">
+                                    <div class="d-i-b">
+                                        <h2>{{vm.project.title}}</h2>
+                                    </div>
+                                    <div class="d-i-b">
+                                        <button class="btn btn-default waves-effect f-right m-10"
+                                                data-ng-show="vm.editFlag"
+                                                data-ng-click="vm.cancel()">
+                                            <i class="zmdi zmdi-close"></i>
+                                        </button>
+
+                                        <button class="btn bgm-lightblue waves-effect f-right m-10"
+                                                data-ng-show="vm.editFlag"
+                                                data-ng-disabled="!vm.projectTmp.description"
+                                                data-ng-click="vm.openSavePopup()">
+                                            Enregistrer
+                                        </button>
+
+                                        <button class="btn bgm-red waves-effect f-right m-10"
+                                                data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))"
+                                                data-ng-click="vm.openDeleteProjectPopup()">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+
+                                        <button class="btn bgm-lightblue waves-effect f-right m-10"
+                                                data-ng-click="vm.edit()"
+                                                data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))">
+                                            Modifier
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row no-margin">
                             <div class="col-xs-12 ">
@@ -68,35 +101,6 @@
                                         <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
                                     </ui-gmap-google-map>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="row no-margin" data-ng-if="vm.project">
-                            <div class="col-xs-12">
-
-
-                                <button class="btn btn-default waves-effect f-right m-10" data-ng-show="vm.editFlag"
-                                        data-ng-click="vm.cancel()">
-                                    <i class="zmdi zmdi-close"></i>
-                                </button>
-
-                                <button class="btn bgm-lightblue waves-effect f-right m-10" data-ng-show="vm.editFlag"
-                                        data-ng-disabled="!vm.projectTmp.description"
-                                        data-ng-click="vm.openSavePopup()">
-                                    Enregistrer
-                                </button>
-
-                                <button class="btn bgm-red waves-effect f-right m-10"
-                                        data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))"
-                                        data-ng-click="vm.openDeleteProjectPopup()">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-
-                                <button class="btn bgm-lightblue waves-effect f-right m-10" data-ng-click="vm.edit()"
-                                        data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))">
-                                    Modifier
-                                </button>
-
                             </div>
                         </div>
 
