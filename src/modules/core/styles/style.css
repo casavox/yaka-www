@@ -5176,3 +5176,7 @@ ul.yaka-chips li {
 .bgm-lightgray {
     background-color: #F8F8F8 !important;
 }
+
+.d-i-b {
+    display: inline-block;
+}

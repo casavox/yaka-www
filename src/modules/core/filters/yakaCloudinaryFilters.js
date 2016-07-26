@@ -12,7 +12,7 @@ angular.module('Yaka')
                         width: size,
                         height: size,
                         crop: 'fill',
-                        format: 'jpg'
+                        format: 'png'
                     });
                 } else {
                     generatedUrl = $.cloudinary.url(cloudinaryPublicId, {
@@ -20,13 +20,13 @@ angular.module('Yaka')
                         width: 200,
                         height: 200,
                         crop: 'fill',
-                        format: 'jpg'
+                        format: 'png'
                     });
                 }
             } else {
                 generatedUrl = $.cloudinary.url(cloudinaryPublicId, {
                     secure: true,
-                    format: 'jpg'
+                    format: 'png'
                 });
             }
 

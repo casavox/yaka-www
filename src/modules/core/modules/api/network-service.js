@@ -281,6 +281,12 @@
             },
             dashboardDataGET: function (success, error) {
                 httpService.get(baseUrl + '/dashboard/infos').success(success).error(error)
+            },
+            projectRecommendGET: function (id, success, error) {
+                httpService.get(baseUrl + '/recommend/projects/' + id).success(success).error(error)
+            },
+            projectRecommendMyProsGET: function (id, success, error) {
+                httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros').success(success).error(error)
             }
         };
     }

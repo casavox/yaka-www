@@ -32,6 +32,12 @@
                 controller: 'ProjectController',
                 controllerAs: 'vm'
             })
+            .state('project-recommend', {
+                url: "/project/recommend/:projectId",
+                templateUrl: "/modules/project/views/customer/project-recommend.html",
+                controller: 'ProjectRecommendController',
+                controllerAs: 'vm'
+            })
 
             //Pro
 

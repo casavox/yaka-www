@@ -146,3 +146,115 @@
 .multiDomainChoiceDescription {
     margin-top: 30px !important;
 }
+
+.projectRecommendTopCard {
+    height: 90px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.projectRecommendTopCard .dashboardRecommendProjectText {
+    left: 85px;
+    top: 23px;
+    width: calc(100% - 105px);
+}
+
+.projectRecommendTopCard .dashboardRecommendProjectText.right {
+    left: 85px;
+    top: 17px;
+    width: calc(100% - 105px);
+}
+
+.projectRecommendGrayHeader {
+    background-color: #F8F8F8 !important;
+}
+
+.proToRecommend {
+    height: 80px;
+}
+
+.proToRecommend:hover {
+    background-color: #F0F0F0;
+}
+
+.proToRecommend.selected {
+    background-color: #F0F0F0;
+}
+
+.proToRecommendRight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 15px;
+    left: 90px;
+    margin-top: 8px;
+}
+
+.proToRecommend yaka-avatar {
+    margin-top: 9px;
+}
+
+.proposalProMainPartnerImg.proToRecommendPartner {
+    top: 13px !important;
+    left: 53px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.recommendProSelected {
+    width: 100%;
+    border: #B8B8B8 dashed 1px;
+}
+
+.recommendProSelected .leftArrow {
+    position: absolute;
+    top: 115px;
+    left: 41px;
+    font-size: 35px;
+}
+
+.selectedProDetails .pmbb-body {
+    padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+
+    .selectedProDetails .dl-horizontal dt {
+        width: 120px;
+    }
+
+    .selectedProDetails .dl-horizontal dd {
+        margin-left: 125px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .recommendProSelected .leftArrow {
+        left: 15px;
+    }
+
+}
+
+.selectedProDetails .pmbb-header h2, .h2 {
+    font-size: 18px !important;
+}
+
+.selectedProDetails .card-header h2 {
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dashboardRecommendProjectText.professional {
+    position: absolute;
+    left: 89px;
+    top: 28px;
+    width: calc(100% - 180px);
+}
+
+.proSelectedPartner {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
