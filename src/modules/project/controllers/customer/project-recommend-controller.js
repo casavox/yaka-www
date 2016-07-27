@@ -156,5 +156,16 @@
                 alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
             });
         };
+
+        vm.showInvitProPopup = false;
+
+        vm.openProPopup = function () {
+            vm.showInvitProPopup = true;
+        };
+
+        vm.closeProPopup = function () {
+            vm.showInvitProPopup = false;
+        };
+
     }
 })();
