@@ -71,13 +71,13 @@
 
         function succesContactsGET(res) {
 
-            var prosNum = 0;
-            var friendsNum = 0;
+            var prosNum = 1;
+            var friendsNum = 1;
             angular.forEach(res, function (contact) {
                 if (contact.user.professional) {
-                    prosNum++;
-                } else {
                     friendsNum++;
+                } else {
+                    prosNum++;
                 }
             });
 
