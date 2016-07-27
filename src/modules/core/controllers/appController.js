@@ -21,9 +21,9 @@
 
         app.getPageName = function () {
             if ($rootScope.pageName == "") {
-                return "YakaClub : Trouvez vos artisans en toute confiance";
+                return "CasaVox : Trouvez vos artisans en toute confiance";
             } else {
-                return $rootScope.pageName + " - YakaClub : Trouvez vos artisans en toute confiance"
+                return $rootScope.pageName + " - CasaVox : Trouvez de nouveaux clients"
             }
         };
 
@@ -163,7 +163,7 @@
         function afterRatingSuccess() {
             swal({
                 title: "C'est fait !",
-                text: "La communauté YakaClub vous remercie d'avoir partagé votre avis sur ce Pro !",
+                text: "La communauté CasaVox vous remercie d'avoir partagé votre avis sur ce Pro !",
                 type: "success",
                 showConfirmButton: true,
                 confirmButtonColor: "#03a9f4",
