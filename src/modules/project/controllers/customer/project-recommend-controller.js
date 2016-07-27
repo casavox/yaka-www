@@ -23,6 +23,7 @@
         networkService.projectRecommendGET($stateParams.projectId,
             function (project) {
                 vm.project = project;
+                $rootScope.pageName = vm.project.title;
             }, function (err) {
                 alertMsg.send("Impossible de récupérer le projet", "danger");
             }
@@ -142,6 +143,7 @@
                 };
                 vm.phoneNumber = "";
                 vm.multiChoiceInput.selected = [];
+                vm.closeProPopup();
                 swal({
                     title: "C'est fait !",
                     text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet lui à également été envoyé.",
