@@ -391,12 +391,13 @@
             <div class="select">
                 <select class="form-control m-t-10"
                         data-ng-model="vm.invitPro.relation">
-                    <option value="">Votre relation avec ce pro ?</option>
+                    <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
                     <option value="CLIENT">Client</option>
                     <option value="FRIEND">Ami</option>
                     <option value="FAMILY">Famille</option>
                     <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
-                </select></div>
+                </select>
+            </div>
 
             <div class="proInviteActivitiesInput" data-ng-dropdown-multiselect=""
                  options="vm.multiChoiceInput.options"

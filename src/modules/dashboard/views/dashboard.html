@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="card" data-ng-if="vm.projectsToRecommend">
+            <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
                 <div class="card-header dashboardCommunityHeader">
 
                     <i class="zmdi zmdi-hc-2x zmdi-accounts c-black d-i-b hidden-xs"></i>
@@ -70,7 +70,7 @@
                     <h2 class="d-i-b">
                         Actualité de la communauté
                         <small>
-                            Aidez la communauté, recommandez vos professionels
+                            Aidez la communauté, recommandez vos professionnels
                         </small>
                     </h2>
                 </div>
@@ -86,6 +86,9 @@
                             <div class="yakaEllipsis">
                                 <span class="" data-ng-if="project.inContacts">
                                     <i class="zmdi zmdi-accounts c-lightblue"></i>
+                                </span>
+                                <span class="" data-ng-if="project.isInvited">
+                                    <i class="zmdi zmdi-accounts c-gray"></i>
                                 </span>
                                 {{project.user.firstName}} {{project.user.lastName}} -
                                 {{project.address.locality}}
