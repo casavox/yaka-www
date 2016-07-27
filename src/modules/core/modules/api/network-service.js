@@ -287,6 +287,9 @@
             },
             projectRecommendMyProsGET: function (id, success, error) {
                 httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros').success(success).error(error)
+            },
+            testCinemas: function (success, error) {
+                httpService.get(baseUrl + '/test').success(success).error(error)
             }
         };
     }
