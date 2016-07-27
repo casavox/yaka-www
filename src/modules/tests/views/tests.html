@@ -8,25 +8,44 @@
     <div id="content" class="content contacts">
         <div class="container">
 
-            <div class="card">
-                <div class="card-header">
-                    <h2>
-                        Titre Exemple
-                    </h2>
-                </div>
-                <div class="card-body card-padding">
-                    Text Exemple
+            <div class="col-sm-6" data-ng-repeat="cinema in vm.cinemas">
+                <div class="card clearfix p-b-15">
+                    <div class="card-header">
+                        <h2>
+                            Cinéma {{cinema.name}}
+                        </h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="col-xs-6">
+                            <div>
+                                <b>Distance :</b> {{cinema.distance}} km
+                            </div>
+                            <div>
+                                <b>Addresse :</b>
+                            </div>
+                            <div>
+                                {{cinema.address.streetNumber}} {{cinema.address.route}}
+                            </div>
+                            <div>
+                                {{cinema.address.postalCode}} {{cinema.address.locality}}
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div>
+                                <b>Note moyenne :</b> {{cinema.rating}} / 5
+                            </div>
+                            <div>
+                                <b>Téléphone :</b> {{cinema.phone}}
+                            </div>
+
+                            <button class="btn btn-danger waves-effect m-t-15" style="width: 100%"
+                                    data-ng-click="vm.remove(cinema)">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <button class="btn btn-danger waves-effect">
-                Button Exemple
-            </button>
-
-            <div class="m-t-30">
-                {{vm.cinemas}}
-            </div>
-
         </div>
     </div>
 </section>

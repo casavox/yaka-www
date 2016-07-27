@@ -19,6 +19,11 @@
         }, function () {
             alertMsg.send("Impossible de récupérer les cinémas", "danger");
         });
+
+        vm.remove = function (item) {
+            var index = vm.cinemas.indexOf(item);
+            vm.cinemas.splice(index, 1);
+        }
     }
 })
 ();
