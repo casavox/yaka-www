@@ -748,13 +748,13 @@
                         </button>
 
                         <div class="dropdown-menu stop-propagate">
-                                                <textarea placeholder="Ajouter un commentaire"
-                                                          data-ng-model="image.description"
-                                                          data-ng-maxlength="140"
-                                                          maxlength="140"
-                                                          data-auto-size
-                                                          data-ng-trim="false"
-                                                          data-ng-change="vm.descriptionChanged(image)"></textarea>
+                            <textarea placeholder="Ajouter un commentaire"
+                                data-ng-model="image.description"
+                                data-ng-maxlength="140"
+                                maxlength="140"
+                                data-auto-size
+                                data-ng-trim="false"
+                                data-ng-change="vm.descriptionChanged(image)"></textarea>
 
                             <div class="descriptionCounter">
                                 {{vm.getStringLength(image.description)}} / 140 caractères
