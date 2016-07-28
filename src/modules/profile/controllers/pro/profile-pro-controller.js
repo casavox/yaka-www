@@ -242,6 +242,18 @@
             return res;
         };
 
+        vm.getVerification = function (verificationName) {
+
+            var foundVerification = null;
+            angular.forEach(vm.verifications, function(verification) {
+                if (verification.name && verification.name == verificationName) {
+                    console.log(verification.cloudinaryPublicId);
+                    foundVerification = verification;
+                }
+            });
+            return foundVerification;
+        };
+
         vm.actionActivities = function (s) {
             var res = null;
             if ((res = vm.indexOfObject(s, 'code', vm.activities)).length == 0)

@@ -20,7 +20,7 @@
             $localStorage.invitationId = '';
         }
 
-        $rootScope.pageName = "Trouvez des chantiers";
+        $rootScope.pageName = "Carte des chantiers";
         $rootScope.updateProfile();
 
         var vm = this;

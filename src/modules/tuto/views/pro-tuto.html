@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -9,7 +9,7 @@
     <div id="content" class="content">
         <div class="container" data-ng-show="vm.pro" data-ng-cloak>
             <div class="block-header">
-                <h2><b>LES 3 ÉTAPES POUR BIEN DÉMARRER SUR YAKACLUB</b></h2>
+                <h2><b>LES 3 ÉTAPES POUR BIEN DÉBUTER SUR CASAVOX</b></h2>
             </div>
             <div class="col-xs-12 no-padding">
                 <div class="col-xs-12 card no-padding">
@@ -92,13 +92,13 @@
                         </h2>
                     </div>
                     <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step2">
-                        Yakaclub c’est le bouche à oreille sur Internet.
-                        Invitez vos clients, amis et confrères à vous rejoindre afin de vous recommander auprès de leurs
+                        CasaVox c’est le bouche à oreille sur Internet.
+                        Invitez vos clients, amis et collègues à vous rejoindre afin de vous recommander auprès de leurs
                         contacts.
                     </div>
                     <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step2">
                         <button class="btn bgm-orange waves-effect f-right" data-ui-sref="contacts">
-                            Inviter des contacts
+                            Ajouter des contacts
                         </button>
                     </div>
                 </div>
@@ -122,25 +122,22 @@
                         </h2>
                     </div>
                     <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step3">
-                        <b>1/</b> Sélectionnez le Menu « <b>Trouver des chantiers</b> »<br/>
+                        <b>1/</b> Sélectionnez le Menu « <b>Carte des offres</b> »<br/>
                         <br/>
-                        <b>2/</b> Naviguez dans la carte et sélectionnez un chantier en cliquant dessus.<br/>
+                        <b>2/</b> Naviguez dans la carte et sélectionnez un offre en cliquant dessus.<br/>
                         <br/>
-                        <b>3/</b> Si le chantier vous intéresse, vous pouvez :<br/>
-                        <br/>
-                        - <b>indiquer un prix approximatif</b> (si vous avez assez d’éléments),<br/>
-                        - <b>indiquer la date</b> à partir de laquelle vous pourriez intervenir,<br/>
-                        - <b>écrire un 1er message</b> au client afin de lui indiquer pourquoi vous êtes la
-                        personne/société la
-                        plus adaptée pour réaliser le chantier. Vous pouvez également demander des précisions sur le
-                        chantier.<br/>
-                        <br/>
-                        Ce message débutera la discussion avec votre client qui sera ensuite accessible à tout moment
-                        via une <b>messagerie privée</b>.<br/>
-                        <br/>
+                        <b>3/</b> Si l'offre de chantier vous intéresse, vous pouvez :<br/>
+                        <ul>
+                            <li><b>indiquer un prix approximatif</b> (si vous avez assez d’éléments),</li>
+                            <li><b>indiquer la date</b> à partir de laquelle vous pourriez intervenir,</li>
+                            <li><b>écrire un 1er message</b> au client afin de lui indiquer pourquoi vous êtes la
+                                personne/société la plus adaptée pour réaliser le chantier.
+                                <br/>Ce message débutera la discussion avec votre client qui sera ensuite accessible à tout moment
+                                via une <b>messagerie privée</b>.
+                            </li>
+                        </ul>
                         <b>4/</b> Cliquez sur le bouton « <b>Envoyer la proposition</b> » afin de transmettre la
-                        proposition au
-                        client.
+                        proposition au client.
                     </div>
                     <div class="col-xs-12 p-18" data-ng-if="!vm.pro.step3">
                         <button class="btn bgm-orange waves-effect f-right" data-ui-sref="findjobs">

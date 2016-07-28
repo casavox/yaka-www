@@ -915,7 +915,6 @@ md-input-container {
 }
 
 .inbox-send {
-    font-family: "montserrat_regular";
     font-size: 14px;
     color: #03A9F4;
     line-height: 18px;
@@ -1062,7 +1061,6 @@ md-input-container {
 }
 
 .menu-r-title {
-    font-family: "montserrat_light";
     margin-top: 0;
     font-size: 16px;
     color: #2f313a;
@@ -1100,7 +1098,6 @@ md-input-container {
 
 .my-price-proposal, .start-date-proposal {
     float: right;
-    font-family: "montserrat_regular";
     font-size: 20px;
     color: #2f313a;
     text-align: right;
@@ -1121,7 +1118,6 @@ md-input-container {
 }
 
 .rate-project-title {
-    font-family: "montserrat_ultra_light";
     font-size: 14px;
     color: #ffffff;
     text-align: center;
@@ -1277,7 +1273,6 @@ md-input-container {
     position: relative;
     left: 50%;
     transform: translate(-50%);
-    font-family: "montserrat_regular";
     font-size: 14px;
     color: #444444;
     text-align: center;
@@ -1296,7 +1291,6 @@ md-input-container {
 }
 
 .rate-cat-info {
-    font-family: "montserrat_ultra_light";
     font-size: 12px;
     color: #607d8b;
     text-align: center;
@@ -1317,7 +1311,6 @@ md-input-container {
 }
 
 .rate-info {
-    font-family: "montserrat_ultra_light";
     font-size: 14px;
     color: #ffffff;
     text-align: center;
@@ -1593,7 +1586,6 @@ md-input-container {
 
 .info-line > p {
     margin: 0 !important;
-    font-family: "montserrat_light";
     font-size: 14px;
     color: #444444;
     letter-spacing: 1.16px;
@@ -1654,7 +1646,6 @@ md-input-container {
 }
 
 .propositions > p {
-    font-family: "montserrat_regular";
     font-size: 12px;
     color: #444444;
     text-align: right;
@@ -1722,7 +1713,6 @@ md-input-container {
 }
 
 .pro-menu-title {
-    font-family: "montserrat_regular";
     font-size: 16px;
     color: #2f313a;
     text-align: left;
@@ -1730,7 +1720,6 @@ md-input-container {
 }
 
 .pro-menu-subTitle {
-    font-family: "montserrat_light";
     font-size: 14px;
     color: #9E9E9E;
     text-align: left;
@@ -1755,7 +1744,6 @@ md-input-container {
     text-align: right;
     float: right;
     margin-top: 5px;
-    font-family: "montserrat_regular";
 }
 
 .ml-50 {
@@ -1763,14 +1751,12 @@ md-input-container {
 }
 
 .send-offer {
-    font-family: "montserrat_light";
     font-size: 18px !important;
     color: #ffffff !important;
 }
 
 .price-area {
     float: right;
-    font-family: "montserrat_regular";
     font-size: 14.22px;
     color: #444444;
     margin-right: 10px;
@@ -1789,7 +1775,6 @@ md-input-container {
     text-align: center;
     line-height: 37px;
     vertical-align: middle;
-    font-family: "montserrat_regular";
     height: 37px;
     width: 100px;
     border: 1px solid #03A9F4;
@@ -1798,7 +1783,6 @@ md-input-container {
 }
 
 .sym-euro {
-    font-family: "montserrat_regular";
     font-size: 25px;
     top: 0;
     color: #03A9F4;
@@ -1815,7 +1799,6 @@ md-input-container {
 }
 
 .placeholder-xs {
-    font-family: "montserrat_light";
     font-size: 14px;
     color: #9E9E9E;
     text-align: left;
@@ -1863,7 +1846,6 @@ md-input-container {
 }
 
 .sub-title-proposal {
-    font-family: "montserrat_light";
     font-size: 24px;
     color: #2f313a;
     line-height: auto;
@@ -2917,7 +2899,6 @@ md-input-container {
 }
 
 .menu-title {
-    font-family: "montserrat_light";
     font-size: 16px;
     color: #2f313a;
     letter-spacing: 1.19px;
@@ -2926,7 +2907,6 @@ md-input-container {
 }
 
 .unread-message {
-    font-family: "montserrat_light";
     font-size: 12px;
     color: #F44336;
     letter-spacing: 1px;
@@ -3079,7 +3059,6 @@ md-input-container {
     padding-left: 0 !important;
     padding-bottom: 0 !important;
     box-shadow: none !important;
-    font-family: "montserrat_light";
     font-size: 14px;
     color: #9E9E9E;
     text-align: left;
@@ -3125,26 +3104,30 @@ md-input-container {
     margin-bottom: 15px;
 }
 
-.profile-activities > .col-xs-9 {
+.profile-activities-label {
     background-color: #ebebeb;
     height: 35px;
+    width: calc(100% - 36px);
     line-height: 35px;
     vertical-align: middle;
+    display: inline-block;
     padding-left: 10px !important;
-    font-family: "montserrat_regular";
     font-size: 12px;
     color: #444444;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     padding-right: 10px !important;
+    margin-left: -3px;
 }
 
-.profile-activities > .col-xs-3 {
+.profile-activities-box {
     background-color: #9E9E9E;
     height: 35px;
+    width: 35px;
     line-height: 35px;
     vertical-align: middle;
+    display: inline-block;
     text-align: center;
     color: white;
 }
@@ -3268,7 +3251,6 @@ md-input-container {
 }
 
 .profile-bck-verif > div > div > div > p {
-    font-family: "montserrat_regular";
     font-size: 12px;
     color: #444444;
     text-align: left;
@@ -3282,7 +3264,6 @@ md-input-container {
 }
 
 .cancel {
-    font-family: "montserrat_regular" !important;
     font-size: 12px !important;
     color: #9E9E9E !important;
     text-align: right !important;
@@ -3299,7 +3280,6 @@ md-input-container {
 }
 
 .profile-box-footer-btn-fr {
-    font-family: "montserrat_regular";
     font-size: 12px;
     color: #03A9F4;
     text-align: right;
@@ -3324,7 +3304,6 @@ md-input-container {
 }
 
 .profile-info-warning > p:first-child {
-    font-family: "montserrat_light";
     font-size: 12px;
     color: #F44336;
     text-align: center;
@@ -3333,7 +3312,6 @@ md-input-container {
 }
 
 .profile-info-warning > p {
-    font-family: "montserrat_light";
     font-size: 12px;
     text-align: center;
 }
@@ -4215,7 +4193,6 @@ md-input-container {
     float: right;
     height: 25px;
     line-height: 25px;
-    font-family: "montserrat_light";
     font-size: 14px;
     color: #2f313a;
     letter-spacing: 1.04px;
@@ -4258,7 +4235,6 @@ md-input-container {
 }
 
 .proposal-price {
-    font-family: "montserrat_light";
     font-size: 36px;
     color: #03A9F4;
     text-align: right;

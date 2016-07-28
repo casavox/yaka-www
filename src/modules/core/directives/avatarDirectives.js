@@ -9,16 +9,17 @@ angular.module('Yaka')
             },
             link: function (scope, element, attr) {
 
-                function getPixelSize() {
-                    return scope.size + "px";
+                function getPixelSize(ratio) {
+                    return (scope.size * ratio) + "px";
                 }
 
                 function sizeChanged() {
                     element.css(
                         {
-                            'width': getPixelSize,
-                            'height': getPixelSize,
-                            'line-height': getPixelSize
+                            'width': getPixelSize(1),
+                            'height': getPixelSize(1),
+                            'line-height': getPixelSize(1),
+                            'font-size': getPixelSize(0.4)
                         }
                     );
                 }

@@ -301,28 +301,3 @@
         </div>
     </div>
 </section>
-
-<div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup"
-     data-ng-click="vm.closePopup()"
-     data-ng-cloak>
-    <div class="container">
-        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton"
-                 src="icons/mdpi/ic_popup_close.png"
-                 data-ng-click="vm.closePopup()"
-                 alt=""/>
-
-            <div class="profilePopupMessage">
-                Vous allez modifier des éléments importants de votre profil Pro, vous ne pourrez plus répondre à de
-                nouvelles offres tant qu'il n'aura pas été revalidé par l'équipe YakaClub (vous recevrez un mail
-                rapidement pour vous en tenir informé).
-            </div>
-            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.closePopup()">
-                ANNULER
-            </div>
-            <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.validatePopup()">
-                VALIDER
-            </div>
-        </div>
-    </div>
-</div>
