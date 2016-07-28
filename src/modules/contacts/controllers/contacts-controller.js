@@ -37,7 +37,7 @@
             if (vm.currentMenuItem == vm.MENU_ALL) {
                 return "Mes Contacts";
             } else if (vm.currentMenuItem == vm.MENU_PROS) {
-                if ($localStorage.user$localStorage.user.professional) {
+                if ($localStorage.user && $localStorage.user.professional) {
                     return "Collègues";
                 } else {
                     return "Artisans";
