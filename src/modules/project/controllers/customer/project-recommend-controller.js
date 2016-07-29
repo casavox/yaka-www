@@ -168,8 +168,12 @@
             vm.showInvitProPopup = false;
         };
 
+        vm.recommendMsg = {
+            text: ""
+        };
+
         vm.recommendPro = function (proId) {
-            networkService.recommendProForProjectPOST(vm.project.id, proId, function (res) {
+            networkService.recommendProForProjectPOST(vm.project.id, proId, vm.recommendMsg, function (res) {
                 $state.go('dashboard');
                 swal({
                     title: "C'est fait !",
