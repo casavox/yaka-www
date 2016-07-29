@@ -9,7 +9,6 @@ angular.module('Yaka')
                 $injector.get('$state').go("home");
                 if (!window.yakaRedirectUrl) {
                     window.yakaRedirectUrl = window.location.href;
-                    console.log(window.yakaRedirectUrl);
                 }
             }
             return $q.reject(response);
