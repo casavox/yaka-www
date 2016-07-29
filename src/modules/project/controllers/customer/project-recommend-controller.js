@@ -144,6 +144,7 @@
                 vm.phoneNumber = "";
                 vm.multiChoiceInput.selected = [];
                 vm.closeProPopup();
+                $state.go('dashboard');
                 swal({
                     title: "C'est fait !",
                     text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet lui à également été envoyé.",
@@ -151,8 +152,6 @@
                     showConfirmButton: true,
                     confirmButtonColor: "#03a9f4",
                     confirmButtonText: "Fermer"
-                }, function () {
-                    $state.go('dashboard');
                 });
             }, function (err) {
                 alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
@@ -167,6 +166,22 @@
 
         vm.closeProPopup = function () {
             vm.showInvitProPopup = false;
+        };
+
+        vm.recommendPro = function (proId) {
+            networkService.recommendProForProjectPOST(vm.project.id, proId, function (res) {
+                $state.go('dashboard');
+                swal({
+                    title: "C'est fait !",
+                    text: "Vous avez bien recommandé ce professionel sur ce projet.",
+                    type: "success",
+                    showConfirmButton: true,
+                    confirmButtonColor: "#03a9f4",
+                    confirmButtonText: "Fermer"
+                });
+            }, function (err) {
+                alertMsg.send("Impossible de recommander ce professionnel", 'danger');
+            });
         };
 
     }
