@@ -258,3 +258,8 @@
     top: 15px;
     right: 20px;
 }
+
+.proposalTypeTitle {
+    font-size: 15px;
+    margin-left: 5px;
+}
