@@ -259,6 +259,11 @@
     right: 20px;
 }
 
-.linkHover:hover{
-    color : blue !important;
+.linkHover:hover {
+    color: blue !important;
+}
+
+.proposalTypeTitle {
+    font-size: 15px;
+    margin-left: 5px;
 }

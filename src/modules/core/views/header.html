@@ -95,7 +95,7 @@
             <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
                     <yaka-avatar class="yakaHeaderAvatar" size="40" user="app.getUser()"></yaka-avatar>
-                    <span class="yakaHeaderFirstname">
+                    <span class="yakaHeaderFirstname" data-ng-class="{'t-0': !app.getUser().avatar.cloudinaryPublicId}">
                         <span class="hidden-xs">{{app.getFirstName()}}</span>
                         <i class="zmdi zmdi-caret-down"></i>
                     </span>
