@@ -288,8 +288,8 @@
             projectRecommendMyProsGET: function (id, success, error) {
                 httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros').success(success).error(error)
             },
-            recommendProForProjectPOST: function (id, professionalId, success, error) {
-                httpService.post(baseUrl + '/recommend/projects/' + id + '/pro/' + professionalId).success(success).error(error)
+            recommendProForProjectPOST: function (id, professionalId, data, success, error) {
+                httpService.post(baseUrl + '/recommend/projects/' + id + '/pro/' + professionalId, data).success(success).error(error)
             }
         };
     }
