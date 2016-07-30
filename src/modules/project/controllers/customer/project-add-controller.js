@@ -101,13 +101,13 @@
         };
 
         vm.verifDescription = function () {
-            if (vm.projectDescription.length < 30) {
+            if (vm.projectDescription.length < 50) {
                 vm.continue = false;
                 vm.continueImg = false;
                 vm.img = [];
                 vm.continueAddressFlag = false;
                 vm.error.description.flag = true;
-                vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
+                vm.error.description.message = "Merci de préciser votre besoin (au moins 50 caractères)";
             }
         };
 
@@ -281,8 +281,8 @@
             vm.questions = [];
             vm.end = true;
             swal({
-                title: 'Félicitations, votre projet vient d’être créé !',
-                text: 'Suivez son avancement dans le menu "Mes projets" !',
+                title: 'Félicitations, votre projet vient d’être publié !',
+                text: 'Suivez son avancement dans le menu « Mes projets »',
                 type: 'success',
                 confirmButtonColor: '#03A9F4',
                 confirmButtonText: 'Continuer !',
@@ -293,7 +293,7 @@
 
         function errorProjectsPOST() {
             vm.end = false;
-            alertMsg.send("Error : Impossible de créer le projet", "danger");
+            alertMsg.send("Error : Impossible de publier le projet", "danger");
             if (vm.error.description.flag || vm.error.material.flag)
                 $timeout(function () {
                     var element = document.getElementById('slide3');
@@ -326,14 +326,6 @@
             vm.dateSelected = false;
             vm.dateFlag = true;
         };
-
-        $scope.$watch("vm.dt", function (newVal, oldVal) {
-            if (newVal !== oldVal) {
-                vm.dateSelected = true;
-                vm.error.date.flag = vm.dateFlag = false;
-                vm.error.date.message = "At least a slot is required";
-            }
-        });
 
         vm.verifNameAddr = function () {
             vm.continueAddressFlag = false;
@@ -443,7 +435,7 @@
                 vm.continueImg = false;
                 swal({
                     title: "Votre projet ne contient pas de photos !",
-                    text: "Nous vous conseillons de joindre des images pour améliorer la compréhension de votre projet !",
+                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre projet !",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Ajouter une photo",
@@ -580,7 +572,7 @@
         }
 
         function errorProjectsGET() {
-            alertMsg.send("Error : Impossible de charger le module de création de projet", "danger");
+            alertMsg.send("Error : Impossible de charger le module de publication de projet", "danger");
             $state.go("home");
         }
 
@@ -606,62 +598,11 @@
             }
         }
 
-        vm.all = function (j) {
-            angular.forEach(j, function (value, key) {
-                if (key != 'date' && j.all == true)
-                    j[key] = true;
-                else if (key != 'date' && j.all == false)
-                    j[key] = false;
-            });
-        };
-
-
-        vm.initDate = function (j, tab) {
-            var array = ["7H_9H", "9H_12H", "12H_14H", "14H_16H", "16H_18H", "18H_20H", "AFTER_20H"];
-            if (j.all && j.allDisabled != "checkbox-disabled")
-                tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: "ALL_DAY"});
-            else {
-                for (var i = 0; i < 7; i++) {
-                    if (j["c" + (i + 1)] && j["c" + (i + 1) + "Disabled"] != "checkbox-disabled")
-                        tab.push({date: $filter('date')(j.date, "yyyy-MM-dd"), slot: array[i]});
-                }
-            }
-        };
-
-        vm.initHours = function () {
-            if (vm.time >= 9) {
-                vm.J1.c1Disabled = "checkbox-disabled";
-                vm.J1.allDisabled = "checkbox-disabled";
-            }
-            if (vm.time >= 12) {
-                vm.J1.c2Disabled = "checkbox-disabled";
-                vm.J1.allDisabled = "checkbox-disabled";
-            }
-            if (vm.time >= 14) {
-                vm.J1.c3Disabled = "checkbox-disabled";
-                vm.J1.allDisabled = "checkbox-disabled";
-            }
-            if (vm.time >= 16) {
-                vm.J1.c4Disabled = "checkbox-disabled";
-                vm.J1.allDisabled = "checkbox-disabled";
-            }
-            if (vm.time >= 18) {
-                vm.J1.c5Disabled = "checkbox-disabled";
-                vm.J1.allDisabled = "checkbox-disabled";
-            }
-            if (vm.time >= 20) {
-                vm.J1.c6Disabled = "checkbox-disabled";
-                vm.J1.allDisabled = "checkbox-disabled";
-            }
-        };
-
         function errorProfileGET() {
             vm.continueAddress = false;
             vm.newAddrFlag = true;
             vm.myAddress = "new";
         }
-
-        vm.initHours();
 
         vm.saveComment = function () {
             $('html').trigger('click');

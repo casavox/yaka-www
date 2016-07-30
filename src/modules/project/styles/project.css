@@ -258,3 +258,7 @@
     top: 15px;
     right: 20px;
 }
+
+.linkHover:hover{
+    color : blue !important;
+}

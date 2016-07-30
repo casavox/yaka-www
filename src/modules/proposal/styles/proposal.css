@@ -316,3 +316,43 @@
     font-weight: 500;
     margin-top: 10px;
 }
+
+@media (min-width: 768px) {
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 13px;
+    }
+}

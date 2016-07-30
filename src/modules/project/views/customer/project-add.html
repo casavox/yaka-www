@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="view">
 
@@ -126,19 +126,19 @@
                                   rows="4"
                                   data-ng-model="vm.projectDescription"
                                   data-ng-blur="vm.verifDescription()"
-                                  placeholder="Au moins 30 caractères - Quels travaux souhaitez-vous faire ? Décrivez votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez également si vous avez des contraintes ou souhaits particuliers."
+                                  placeholder="Au moins 100 caractères - Quels travaux souhaitez-vous faire ? Décrivez votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez également si vous avez des contraintes ou souhaits particuliers."
                                   data-autosize-on="true"></textarea>
                     </div>
 
                     <p class="col-xs-12 error center"
-                       data-ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
+                       data-ng-show="vm.error.description.flag  && (vm.projectDescription.length < 50)">
                         {{vm.error.description.message}}
                     </p>
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
                         data-ng-click="vm.continueProject()"
-                        data-ng-disabled="!vm.material || vm.projectDescription.length < 30">
+                        data-ng-disabled="!vm.material || vm.projectDescription.length < 50">
                         Continuer
                     </button>
 
@@ -148,6 +148,7 @@
                         <h2 class="t-center">
                             Ajoutez des photos
                         </h2>
+                        <p class="t-center">Joindre des photos avec un commentaire pour améliorer la compréhension de votre projet et ses éventuelles contraintes (état général actuel, difficulté d'accès, matériel fourni le cas échéant, ...)</p>
                     </div>
                     <div class="col-xs-12 no-padding">
                         <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
@@ -238,7 +239,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-xs-5 col-xs-offset-2 no-padding" data-ng-show="vm.newAddrFlag">
+                        <div data-ng-class="vm.user.addresses.length>0 ? 'col-xs-5 col-xs-offset-2 no-padding' : 'col-xs-5 center'" data-ng-show="vm.newAddrFlag">
                             <input type="text" class="form-control" data-ng-model="vm.newAddr.name"
                                    data-ng-change="vm.verifNameAddr()"
                                    placeholder="Nom de l'adresse (Maison, Papa, ...)">

@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -32,15 +32,21 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8 f-s-14 t-right dashboardStats hidden-xs">
-                                    <div class="d-i-b c-green m-r-15">
-                                        Projets en cours {{vm.data.ongoingProjectsNumber}}
-                                    </div>
-                                    <div class="d-i-b c-lightblue m-r-15">
-                                        Projets finalisés {{vm.data.completedProjectsNumber}}
-                                    </div>
-                                    <div class="d-i-b c-orange">
-                                        Pros recommandés {{vm.data.recommendedProNumber}}
-                                    </div>
+                                    <button class="btn bgm-green waves-effect btn-sm m-b-5 m-t-5" ui-sref="my-projects">
+                                        <div class="d-i-b">
+                                            Projets en cours {{vm.data.ongoingProjectsNumber}}
+                                        </div>
+                                    </button>
+                                    <button class="btn bgm-gray waves-effect btn-sm m-b-5 m-t-5" ui-sref="my-projects">
+                                        <div class="d-i-b">
+                                            Projets finalisés {{vm.data.completedProjectsNumber}}
+                                        </div>
+                                    </button>
+                                    <button class="btn bgm-orange waves-effect btn-sm m-b-5 m-t-5" ui-sref="contacts">
+                                        <div class="d-i-b">
+                                            Pros recommandés {{vm.data.recommendedProNumber}}
+                                        </div>
+                                    </button>
                                 </div>
                                 <div class="col-xs-12 m-t-10 f-s-14 dashboardStats visible-xs">
                                     <div class="col-xs-12 no-padding d-i-b c-green">
