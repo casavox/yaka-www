@@ -391,3 +391,7 @@ section#main.yakaMain .content .card {
     height: 8px !important;
     padding: 0 !important;
 }
+
+.listview .lv-item:hover {
+    background: #ECF9FF;
+}
