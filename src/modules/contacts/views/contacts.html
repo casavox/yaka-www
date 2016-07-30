@@ -9,7 +9,7 @@
 </style>
 
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -32,7 +32,8 @@
                     <h2 class="col-sm-6">
                         DÉVELOPPEZ VOTRE RÉSEAU
                         <small class="hidden-xs">
-                            Invitez vos connaissances à vous rejoindre sur YakaClub
+                            Faites fonctionner le bouche-à-oreille !<br>
+                            Invitez vos connaissances à vous retrouver sur CasaVox
                         </small>
                     </h2>
                     <div class="col-sm-6 t-right m-t-5">
@@ -72,7 +73,7 @@
                              data-ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
                              data-ng-if="vm.currentMenuItem == vm.MENU_PROS">
                     <span data-ng-if="!app.isPro()">
-                        ARTISANS
+                        PROFESSIONNELS
                     </span>
                     <span data-ng-if="app.isPro()">
                         COLLÈGUES
@@ -258,22 +259,42 @@
                     <div class="col-xs-12 contactsEmpty"
                          data-ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
 
-                        <img class="contactsEmptyIcon hidden-xs" src="icons/mdpi/ic_person_add.png"/>
+                        <img class="contactsEmptyIcon" src="icons/mdpi/ic_person_add.png"/>
 
                         <div class="contactsEmptyTitle">
-                            Retrouvez ici l'ensemble de vos relations YakaClub.
+                            Vous n'avez pas encore de « Contact » CasaVox
                         </div>
-                        <div class="contactsEmptySubtitle">
-                            Vous pourrez prochainement utliser vos contacts pour recommander et vous faire recommander
-                            les meilleurs professionnels du batiment. Développons ensemble une communauté basée sur la
-                            qualité de nos Pro et sur la confiance.
+                        <div class="contactsEmptySubtitle p-t-10 center">
+                            <div class="m-t-10 m-b-5"><strong>Pourquoi ajouter des contacts ?</strong></div>
+                            <div class="m-b-5" data-ng-show="!app.isPro()">
+                                Parce que quelqu'un parmi vos connaissances connaît le Pro qu'il vous faut ! Faites-vous
+                                aidez de vos relations de confiance pour trouver des Pro fiables et adaptés à vos
+                                besoins.
+                            </div>
+                            <div class="m-b-20" data-ng-show="!app.isPro()">
+                                Parce que quelqu'un parmi vos proches recherches un Pro et qu'il suffit de quelques
+                                clicks pour en recommander un que vous connaissez.
+                            </div>
+                            <div class="m-b-5" data-ng-show="app.isPro()">
+                                Parce qu'une de vos connaissances (perso, ancien client ou collègue) à un ami à la
+                                recherche de vos compétences ! Faites-vous aider de vos relations pour toucher de
+                                nouveaux clients.
+                            </div>
+                            <div class="m-b-20" data-ng-show="app.isPro()">
+                                Parce que s'aider entre collègues est toujours payant ! En quelques clicks, recommandez
+                                vos collègues à vos connaissances (par exemple, sur les projets qui ne correspondent pas
+                                à vos compétences ou zones d'activités).
+                            </div>
                         </div>
-                        <div class="contactsEmptyLinks hidden-xs">
+                        <div class="visible-xs m-b-10">
+                            <strong><em>CasaVox c'est le bouche-à-oreille sur internet !</em></strong><br>
+                        </div>
+                        <div class="contactsEmptyLinks">
                             <span class="contactsEmptyLink" data-ng-click="vm.openFriendPopup()">
                                 Inviter des amis
                             </span>
                             <span class="contactsEmptyLinkOr">
-                                ou
+                                 -
                             </span>
                             <span class="contactsEmptyLink" data-ng-click="vm.openProPopup()">
                                 Invitez des professionnels
@@ -293,7 +314,7 @@
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
-                Invitez vos amis à faire partie de vos relations YakaClub
+                Invitez vos connaissances à faire partie de vos relations CasaVox
             </div>
 
             <button class="center btn bgm-blue btn-icon-text waves-effect"
@@ -342,7 +363,7 @@
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
-                Invitez un super artisan !
+                Invitez un super Pro !
             </div>
 
             <input class="col-xs-12 form-control halfInput"
