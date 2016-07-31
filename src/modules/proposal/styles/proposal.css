@@ -92,7 +92,7 @@
 }
 
 .proposalMainView .pm-overview {
-    height: 150px;
+    min-height: 150px;
 }
 
 .proposalMainView .pm-overview.pro {

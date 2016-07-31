@@ -225,6 +225,8 @@ angular.module('Yaka')
                 attr.$observe('proposalStatus', function () {
                     if (scope.proposalStatus == "PRO_DECLINED" ||
                         scope.proposalStatus == "CUSTOMER_DECLINED" ||
+                        scope.proposalStatus == "RECO_PRO_DECLINED" ||
+                        scope.proposalStatus == "RECO_CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
                         scope.proposalStatus == "COMPLETED") {
                         scope.disableSending = true;

@@ -83,6 +83,19 @@
                             <div
                                 style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                                 <div class="pmo-pic">
+
+                                    <div class="bgm-lightblue t-center p-10 c-white f-s-14">
+                                        Recommandé par
+                                        <casa-name-and-contact
+                                            user="vm.proposal.firstRecommendation.recommender"
+                                            white="true"></casa-name-and-contact>
+                                        <span
+                                            data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 1">
+                                                        + {{vm.proposal.recommendations.length - 1}} autre<span
+                                            data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
+                                                    </span>
+                                    </div>
+
                                     <div class="p-relative">
                                         <img class="img-responsive proAvatarProposalImage"
                                              data-ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId"
@@ -127,6 +140,12 @@
                                         </span>
                                             </li>
                                         </ul>
+                                        <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
+                                            <button data-ng-click="vm.declineProposal()"
+                                                    class="right col-xs-6 col-sm-8 col-sm-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-close"></i> Refuser
+                                            </button>
+                                        </div>
                                         <div data-ng-if="vm.proposal.status == 'START'">
                                             <button data-ng-click="vm.acceptProposal()"
                                                     class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
@@ -153,6 +172,12 @@
                                             Refusée par le client
                                         </div>
                                         <div class="m-t-10" data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
+                                            Annulée par le professionel
+                                        </div>
+                                        <div class="m-t-10" data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
+                                            Refusée par le client
+                                        </div>
+                                        <div class="m-t-10" data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                             Annulée par le professionel
                                         </div>
                                     </div>
@@ -191,6 +216,19 @@
                                     <div
                                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                                         <div class="pmo-pic">
+
+                                            <div class="t-center p-10 c-white f-s-14 m-b-15">
+                                                Recommandé par
+                                                <casa-name-and-contact
+                                                    user="vm.proposal.firstRecommendation.recommender"
+                                                    white="true"></casa-name-and-contact>
+                                                <span
+                                                    data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 1">
+                                                    + {{vm.proposal.recommendations.length - 1}} autre<span
+                                                    data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
+                                                </span>
+                                            </div>
+
                                             <div class="p-relative">
                                                 <img class="img-responsive proAvatarProposalImage"
                                                      data-ng-if="vm.proposal.professional.user.avatar.cloudinaryPublicId"
@@ -236,6 +274,12 @@
                                                         </span>
                                                     </li>
                                                 </ul>
+                                                <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
+                                                    <button data-ng-click="vm.declineProposal()"
+                                                            class="col-xs-8 col-xs-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                                        <i class="zmdi zmdi-close"></i> Refuser
+                                                    </button>
+                                                </div>
                                                 <div data-ng-if="vm.proposal.status == 'START'">
                                                     <button data-ng-click="vm.acceptProposal()"
                                                             class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
@@ -314,15 +358,16 @@
                                         </span>
                                             </dd>
                                         </dl>
-                                        <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.likes">
+                                        <dl class="dl-horizontal"
+                                            data-ng-if="vm.proposal.professional.recommendationNumber">
                                             <dt>Recommandations</dt>
                                             <dd>
                                         <span
-                                            data-ng-if="vm.proposal.professional.likes > 1">
-                                            <b>{{vm.proposal.professional.likes}} membres</b> recommandent ce Pro
+                                            data-ng-if="vm.proposal.professional.recommendationNumber > 1">
+                                            <b>{{vm.proposal.professional.recommendationNumber}} membres</b> recommandent ce Pro
                                         </span>
                                         <span
-                                            data-ng-if="vm.proposal.professional.likes == 1">
+                                            data-ng-if="vm.proposal.professional.recommendationNumber == 1">
                                             <b>1 membre</b> recommande ce Pro
                                         </span>
                                             </dd>

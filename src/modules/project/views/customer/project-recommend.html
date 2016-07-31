@@ -171,7 +171,8 @@
 
                         <div class="dashboardRecommendProjectText professional">
                             <div class="yakaEllipsis f-s-16">
-                                {{vm.selectedProfessional.user.firstName}} {{vm.selectedProfessional.user.lastName}}
+                                <casa-name-and-contact user="vm.selectedProfessional.user"
+                                                       invite="true"></casa-name-and-contact>
                             </div>
 
                             <div class="yakaEllipsis">
