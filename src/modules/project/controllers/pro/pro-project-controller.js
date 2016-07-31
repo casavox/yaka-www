@@ -79,7 +79,7 @@
         }
 
         function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 20 && vm.offer.comment.indexOf(' ') > -1) {
+            if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
                 var formData = {
                     project: {id: vm.projectTmp.id},
@@ -145,7 +145,7 @@
 
         function selectPrice() {
             vm.error.price = vm.error.price || {};
-            if (vm.price <= 10 || vm.price > 1000000) {
+            if (vm.price <= 30 || vm.price > 1000000) {
                 vm.error.price.message = "Merci d'indiquer un montant réaliste";
                 vm.error.price.flag = true
             } else {
@@ -156,7 +156,7 @@
         }
 
         vm.isValidPrice = function() {
-            if (!vm.price || vm.price == 0 || vm.price <= 10 || vm.price > 1000000) {
+            if (!vm.price || vm.price == 0 || vm.price <= 30 || vm.price > 1000000) {
                 return false;
             }
             return true;
@@ -243,7 +243,7 @@
         vm.formIsValid = function () {
             return (vm.offer &&
             vm.offer.comment &&
-            vm.offer.comment.length >= 20);
+            vm.offer.comment.length >= 40);
         };
     }
 })();
