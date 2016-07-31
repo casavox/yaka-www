@@ -195,7 +195,7 @@
                                  data-ng-if="vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
-                                        <dt class="yakaDisableEllipsis">Mon prix</dt>
+                                        <dt class="yakaDisableEllipsis">Prix estimatif</dt>
                                         <dd class="l-h-18">
                                             {{vm.offer.price || '- - -'}} € <i
                                             class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
@@ -203,7 +203,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="dl-horizontal">
-                                        <dt class="yakaDisableEllipsis">Ma date d'intervention</dt>
+                                        <dt class="yakaDisableEllipsis">Date d'intervention estimée</dt>
                                         <dd class="l-h-18">
                                             {{(vm.offer.date | date: 'dd MMMM yyyy') || '- - -'}} <i
                                             class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
@@ -211,17 +211,17 @@
                                         </dd>
                                     </dl>
                                     <dl class="dl-horizontal">
-                                        <dt class="yakaDisableEllipsis">Mon premier message au client (obligatoire)</dt>
+                                        <dt class="yakaDisableEllipsis">Premier message privé au client (obligatoire)</dt>
                                         <dd class="l-h-18">
                                             <textarea class="form-control" data-auto-size=""
-                                                      placeholder="Entrez votre message içi"
+                                                      placeholder="Mettez vous en avant, expliquez votre proposition."
                                                       data-autosize-on="true"
                                                       data-ng-model="vm.offer.comment"></textarea>
                                         </dd>
                                     </dl>
                                     <p class="error center makeOfferError"
-                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 20">
-                                        Message trop court (20 caractères min)
+                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 40">
+                                        Message trop court (au moins 40 caractères)
                                     </p>
                                     <button class="btn btn-primary btn-block waves-effect"
                                             data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
@@ -319,7 +319,7 @@
                 <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
                     <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                          data-ng-click="vm.myPriceFlag = false" alt=""/>
-                    <h4>Mon prix</h4>
+                    <h4>Estimation de prix</h4>
 
                     <div class="row">
                         <div class="col-xs-6 col-xs-offset-4">
@@ -354,7 +354,7 @@
                 <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
                     <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                          data-ng-click="vm.myDateFlag = false" alt=""/>
-                    <h4>Ma date d'intervention</h4>
+                    <h4>Début des travaux possible autours du</h4>
 
                     <div style="display:inline-block" class="center custom-picker">
                         <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"

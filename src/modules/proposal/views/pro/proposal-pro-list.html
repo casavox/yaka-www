@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -17,15 +17,34 @@
                 </div>
                 <div class="card-body card-padding">
                     <ol>
-                        <li>Votre profil doit être complet et validé</li>
-                        <li>Sélectionnez un projet parmi ceux disponibles</li>
-                        <li>Indiquez un montant approximatif si vous le pouvez et surtout ajouter un message afin
-                            d’engager la discussion avec votre client.
+                        <li class="list-left-alignment">
+                            Vérifiez la validité de votre profil en cliquant sur votre logo avatar depuis la barre de
+                            menu <a data-ui-sref="pro-profile">Mon profil Pro</a></li>
+                        <li class="list-left-alignment">
+                            Sélectionnez un projet depuis la <a data-ui-sref="findjobs">Carte des offres</a>
+                            <ul>
+                                <li class="list-left-alignment">
+                                    Naviguer et zoomer dans cette carte pour retrouver les offres correspondant à votre
+                                    profil
+                                </li>
+                                <li class="list-left-alignment">
+                                    Sélectionnez un projet pour en voir les détails
+                                </li>
+                                <li class="list-left-alignment">
+                                    Faites votre proposition : Si vous avez assez d'élément, indiquez un montant
+                                    approximatif et une date d'intervention, puis ajouter un premier message afin de
+                                    vous mettre en avant et d’engager la discussion avec votre client.
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-left-alignment">
+                            Losrque vous remportez une offre, retrouvez-la dans <a data-ui-sref="pro-jobs">Mes
+                            chantiers</a>
                         </li>
                     </ol>
                 </div>
                 <div class="panel-footer text-right">
-                    <button class="btn btn-lg btn-primary" data-ui-sref="findjobs">Voir les chantiers disponibles
+                    <button class="btn btn-lg btn-primary" data-ui-sref="findjobs">Voir la Carte des offres
                     </button>
                 </div>
             </div>
