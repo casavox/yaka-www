@@ -1,0 +1,6 @@
+{{user.firstName}} {{user.lastName}}
+<span data-ng-if="invite && user.id || (user.inContacts || user.isInvited)">
+    (
+    <casa-contact user="user" invite="invite"></casa-contact>
+    )
+</span>

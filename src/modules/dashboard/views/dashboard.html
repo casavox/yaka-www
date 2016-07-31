@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+    ></header>
 
 <section id="main">
 
@@ -38,22 +38,27 @@
                                 <div class="col-sm-8 f-s-14 t-right dashboardStats visible-md visible-lg">
                                     <button class="btn bgm-green waves-effect btn-sm m-b-5 m-t-5" ui-sref="my-projects">
                                         <div class="d-i-b">
-                                            <span data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet en cours </span>
-                                            <span data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets en cours </span>
+                                            <span
+                                                data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet en cours </span>
+                                            <span
+                                                data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets en cours </span>
                                             {{vm.data.ongoingProjectsNumber}}
                                         </div>
                                     </button>
                                     <button class="btn bgm-gray waves-effect btn-sm m-b-5 m-t-5" ui-sref="my-projects">
                                         <div class="d-i-b">
-                                            <span data-ng-show="vm.data.completedProjectsNumber < 2">Projet finalisé </span>
-                                            <span data-ng-show="vm.data.completedProjectsNumber > 1">Projets finalisés </span>
+                                            <span
+                                                data-ng-show="vm.data.completedProjectsNumber < 2">Projet finalisé </span>
+                                            <span
+                                                data-ng-show="vm.data.completedProjectsNumber > 1">Projets finalisés </span>
                                             {{vm.data.completedProjectsNumber}}
                                         </div>
                                     </button>
                                     <button class="btn bgm-orange waves-effect btn-sm m-b-5 m-t-5" ui-sref="contacts">
                                         <div class="d-i-b">
                                             <span data-ng-show="vm.data.recommendedProNumber < 2">Pro recommandé </span>
-                                            <span data-ng-show="vm.data.recommendedProNumber > 1">Pros recommandés </span>
+                                            <span
+                                                data-ng-show="vm.data.recommendedProNumber > 1">Pros recommandés </span>
                                             {{vm.data.recommendedProNumber}}
                                         </div>
                                     </button>
@@ -61,15 +66,18 @@
                                 <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
                                     <button class="btn bgm-green waves-effect btn-sm" ui-sref="my-projects">
                                         <div class="d-i-b">
-                                            <span data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet en cours </span>
-                                            <span data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets en cours </span>
+                                            <span
+                                                data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet en cours </span>
+                                            <span
+                                                data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets en cours </span>
                                             {{vm.data.ongoingProjectsNumber}}
                                         </div>
                                     </button>
                                     <button class="btn bgm-orange waves-effect btn-sm m-t-5" ui-sref="contacts">
                                         <div class="d-i-b">
                                             <span data-ng-show="vm.data.recommendedProNumber < 2">Pro recommandé </span>
-                                            <span data-ng-show="vm.data.recommendedProNumber > 1">Pros recommandés </span>
+                                            <span
+                                                data-ng-show="vm.data.recommendedProNumber > 1">Pros recommandés </span>
                                             {{vm.data.recommendedProNumber}}
                                         </div>
                                     </button>
@@ -116,14 +124,8 @@
 
                         <div class="dashboardRecommendProjectText">
                             <div class="yakaEllipsis">
-                                <span class="" data-ng-if="project.inContacts">
-                                    <i class="zmdi zmdi-accounts c-lightblue"></i>
-                                </span>
-                                <span class="" data-ng-if="project.isInvited">
-                                    <i class="zmdi zmdi-accounts c-gray"></i>
-                                </span>
-                                {{project.user.firstName}} {{project.user.lastName}} -
-                                {{project.address.locality}}
+                                <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                - {{project.address.locality}}
                             </div>
 
                             <div class="yakaEllipsis c-lightblue">

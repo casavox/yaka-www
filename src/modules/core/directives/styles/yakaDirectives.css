@@ -116,3 +116,7 @@ yaka-chat .chatFilePreview {
     max-width: 200px;
     word-break: break-all;
 }
+
+casa-contact .contactRelationIcon {
+    font-size: larger;
+}

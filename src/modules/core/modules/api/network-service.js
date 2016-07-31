@@ -246,6 +246,9 @@
             inviteProPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/invite/pro', data).success(success).error(error)
             },
+            invitePOST: function (id, relation, success, error) {
+                httpService.post(baseUrl + '/invite/' + id + '/' + relation).success(success).error(error)
+            },
             invitationsReceivedGET: function (success, error) {
                 httpService.get(baseUrl + '/invitations/received').success(success).error(error)
             },

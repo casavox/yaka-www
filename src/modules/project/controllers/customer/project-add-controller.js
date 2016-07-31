@@ -276,7 +276,6 @@
         };
 
         function succesProjectsPOST(res) {
-            console.log(res);
             vm.continueAddressFlag = vm.continueImg = vm.continue = vm.service = vm.selectCategory = false;
             vm.questions = [];
             vm.end = true;
