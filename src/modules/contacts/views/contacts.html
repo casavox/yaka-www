@@ -17,6 +17,12 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content contacts">
         <div class="container">
+            <div class="block-header visible-xs m-b-5">
+                <h2>Développer votre réseau</h2>
+                <small>
+                    Utilisez le bouche-à-oreille CasaVox !
+                </small>
+            </div>
             <div class="col-xs-12 no-padding visible-xs m-b-20">
                 <button class="col-xs-5 btn btn-default waves-effect c-lightblue btn-xs"
                         data-ng-click="vm.openFriendPopup()">
@@ -27,11 +33,11 @@
                     Inviter un pro
                 </button>
             </div>
-            <div class="col-xs-12 p-l-0 p-r-0 card  hidden-xs">
+            <div class="col-xs-12 p-l-0 p-r-0 card hidden-xs">
                 <div class="col-xs-12 p-l-0 p-r-0 card-header">
                     <h2 class="col-sm-6">
                         DÉVELOPPEZ VOTRE RÉSEAU
-                        <small class="hidden-xs">
+                        <small>
                             Faites fonctionner le bouche-à-oreille !<br>
                             Invitez vos connaissances à vous retrouver sur CasaVox
                         </small>
@@ -72,8 +78,11 @@
                         <img class="contactsMenuBlueCircle"
                              data-ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
                              data-ng-if="vm.currentMenuItem == vm.MENU_PROS">
-                    <span data-ng-if="!app.isPro()">
+                    <span data-ng-if="!app.isPro()" class="hidden-xs">
                         PROFESSIONNELS
+                    </span>
+                    <span data-ng-if="!app.isPro()" class="visible-xs">
+                        PRO.
                     </span>
                     <span data-ng-if="app.isPro()">
                         COLLÈGUES
@@ -151,29 +160,29 @@
                             {{contact.user.lastName[0]| uppercase}}.
                         </div>
 
-                    <span class="contactItemName">
-                        {{contact.user.firstName}} {{contact.user.lastName}}
-                        <span class="contactItemPro" data-ng-if="contact.user.professional">
-                            <span data-ng-if="!app.isPro()">
-                                PRO
+                        <span class="contactItemName">
+                            {{contact.user.firstName}} {{contact.user.lastName}}
+                            <span class="contactItemPro" data-ng-if="contact.user.professional">
+                                <span data-ng-if="!app.isPro()">
+                                    PRO
+                                </span>
+                                <span data-ng-if="app.isPro()">
+                                    COLLÈGUE
+                                </span>
                             </span>
-                            <span data-ng-if="app.isPro()">
-                                COLLÈGUE
+                            <span class="contactItemEmail">
+                                ({{contact.user.email}})
                             </span>
                         </span>
-                        <span class="contactItemEmail">
-                            ({{contact.user.email}})
-                        </span>
-                    </span>
 
-                    <span class="contactItemCity"
-                          data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
-                        {{contact.user.defaultAddress.locality}}
-                    </span>
-                    <span class="contactItemCity contactItemCityInvitReceived"
-                          data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
-                        {{contact.user.professional.company.address.locality}}
-                    </span>
+                        <span class="contactItemCity"
+                              data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                            {{contact.user.defaultAddress.locality}}
+                        </span>
+                        <span class="contactItemCity contactItemCityInvitReceived"
+                              data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                            {{contact.user.professional.company.address.locality}}
+                        </span>
                     </div>
                     <div class="col-xs-12 contactItem"
                          data-ng-repeat="invit in vm.invitationsReceived"
@@ -187,12 +196,50 @@
                         <div class="img-default fl contactItemInitials"
                              data-ng-if="!invit.inviter.avatar.cloudinaryPublicId">
                             {{invit.inviter.firstName[0] | uppercase}}.
-                            {{invit.inviter.lastName[0]| uppercase}}.
+                            {{invit.inviter.lastName[0] | uppercase}}.
                         </div>
                         <div class="invitReceivedSpanHolder">
-                        <span class="contactItemName contactItemNameInvitReceived">
-                            {{invit.inviter.firstName}} {{invit.inviter.lastName}}
-                            <span class="contactItemPro" data-ng-if="invit.inviter.professional">
+                            <span class="contactItemName contactItemNameInvitReceived">
+                                {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                                <span class="contactItemPro" data-ng-if="invit.inviter.professional">
+                                    <span data-ng-if="!app.isPro()">
+                                        PRO
+                                    </span>
+                                    <span data-ng-if="app.isPro()">
+                                        COLLÈGUE
+                                    </span>
+                                </span>
+                                <span class="contactItemEmail">
+                                    ({{invit.inviter.email}})
+                                </span>
+                            </span>
+                            <span class="contactItemCity contactItemCityInvitReceived"
+                                  data-ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
+                                {{invit.inviter.defaultAddress.locality}}
+                            </span>
+                            <span class="contactItemCity contactItemCityInvitReceived"
+                                  data-ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
+                                {{invit.inviter.professional.company.address.locality}}
+                            </span>
+                        </div>
+                        <span class="waves-effect">
+                            <img class="invitRefuse"
+                                 src="icons/mdpi/ic_refuse_invitation.png"
+                                 data-ng-click="vm.refuseInvitation(invit.inviter.id)"/>
+                        </span>
+                        <span class="waves-effect">
+                            <img class="invitAccept"
+                                 src="icons/mdpi/ic_accept_invitation.png"
+                                 data-ng-click="vm.acceptInvitation(invit.inviter.id)"/>
+                        </span>
+                    </div>
+                    <div class="col-xs-12 contactItem contactItemInvitation"
+                         data-ng-repeat="invit in vm.invitationsSent"
+                         data-ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
+
+                        <span data-ng-if="invit.firstName && invit.lastName">
+                            {{invit.firstName}} {{invit.lastName}}
+                            <span class="contactItemPro" data-ng-if="invit.isPro">
                                 <span data-ng-if="!app.isPro()">
                                     PRO
                                 </span>
@@ -201,59 +248,20 @@
                                 </span>
                             </span>
                             <span class="contactItemEmail">
-                                ({{invit.inviter.email}})
+                                ({{invit.email}})
                             </span>
                         </span>
-                        <span class="contactItemCity contactItemCityInvitReceived"
-                              data-ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
-                            {{invit.inviter.defaultAddress.locality}}
-                        </span>
-                        <span class="contactItemCity contactItemCityInvitReceived"
-                              data-ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
-                            {{invit.inviter.professional.company.address.locality}}
-                        </span>
-                        </div>
-
-                    <span class="waves-effect">
-                        <img class="invitRefuse"
-                             src="icons/mdpi/ic_refuse_invitation.png"
-                             data-ng-click="vm.refuseInvitation(invit.inviter.id)"/>
-                    </span>
-                    <span class="waves-effect">
-                        <img class="invitAccept"
-                             src="icons/mdpi/ic_accept_invitation.png"
-                             data-ng-click="vm.acceptInvitation(invit.inviter.id)"/>
-                    </span>
-                    </div>
-                    <div class="col-xs-12 contactItem contactItemInvitation"
-                         data-ng-repeat="invit in vm.invitationsSent"
-                         data-ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
-
-                    <span data-ng-if="invit.firstName && invit.lastName">
-                        {{invit.firstName}} {{invit.lastName}}
-                        <span class="contactItemPro" data-ng-if="invit.isPro">
-                            <span data-ng-if="!app.isPro()">
-                                PRO
-                            </span>
-                            <span data-ng-if="app.isPro()">
-                                COLLÈGUE
+                        <span data-ng-if="!invit.firstName || !invit.lastName">
+                            {{invit.email}}
+                            <span class="contactItemPro" data-ng-if="invit.isPro">
+                                <span data-ng-if="!app.isPro()">
+                                    PRO
+                                </span>
+                                <span data-ng-if="app.isPro()">
+                                    COLLÈGUE
+                                </span>
                             </span>
                         </span>
-                        <span class="contactItemEmail">
-                            ({{invit.email}})
-                        </span>
-                    </span>
-                    <span data-ng-if="!invit.firstName || !invit.lastName">
-                        {{invit.email}}
-                        <span class="contactItemPro" data-ng-if="invit.isPro">
-                            <span data-ng-if="!app.isPro()">
-                                PRO
-                            </span>
-                            <span data-ng-if="app.isPro()">
-                                COLLÈGUE
-                            </span>
-                        </span>
-                    </span>
 
                     </div>
                     <div class="col-xs-12 contactsEmpty"
