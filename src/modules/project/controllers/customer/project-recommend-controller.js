@@ -9,10 +9,6 @@
     //Controller login
     function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate) {
 
-        if ($localStorage.user && $localStorage.user.professional) {
-            $state.go("home");
-        }
-
         if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
             $state.go("home");
         }
@@ -144,7 +140,11 @@
                 vm.phoneNumber = "";
                 vm.multiChoiceInput.selected = [];
                 vm.closeProPopup();
-                $state.go('dashboard');
+                if ($localStorage.user && $localStorage.user.professional) {
+                    $state.go('pro-dashboard');
+                } else {
+                    $state.go('dashboard');
+                }
                 swal({
                     title: "C'est fait !",
                     text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet lui à également été envoyé.",
@@ -174,7 +174,11 @@
 
         vm.recommendPro = function (proId) {
             networkService.recommendProForProjectPOST(vm.project.id, proId, vm.recommendMsg, function (res) {
-                $state.go('dashboard');
+                if ($localStorage.user && $localStorage.user.professional) {
+                    $state.go('pro-dashboard');
+                } else {
+                    $state.go('dashboard');
+                }
                 swal({
                     title: "C'est fait !",
                     text: "Vous avez bien recommandé ce professionel sur ce projet.",

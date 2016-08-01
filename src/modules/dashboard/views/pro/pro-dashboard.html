@@ -87,31 +87,50 @@
                 </div>
             </div>
 
-            <div class="col-xs-4">
+            <div class="col-sm-8 p-l-0 no-padding-mobile">
+                <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
+                    <div class="card-header bgm-lightblue">
+                        <i class="zmdi zmdi-hc-2x zmdi-roller c-white d-i-b hidden-xs"></i>
+
+                        <h2 class="d-i-b v-align-top m-l-10">
+                            Offres personnalisées
+                            <small>
+                                Chantiers en attente dans mon réseau
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="clearfix card-body p-l-15 p-r-15">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 p-r-0 no-padding-mobile">
                 <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
                     <div class="card-header dashboardCommunityHeader">
-
-                        <i class="zmdi zmdi-hc-2x zmdi-accounts c-black d-i-b hidden-xs"></i>
-
-                        <h2 class="d-i-b">
+                        <h2>
                             Recommander un collègue
                             <small>
                                 Entraide entre Pros
                             </small>
                         </h2>
                     </div>
-                    <div class="clearfix card-body card-padding">
+                    <div class="clearfix card-body p-l-15 p-r-15">
 
-                        <div class="col-xs-12 dashboardRecommendProject pointer no-padding p-l-10"
-                             data-ng-repeat="project in vm.projectsToRecommend"
-                             data-ui-sref="project-recommend({'projectId': project.id})">
+                        <div
+                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-10"
+                            data-ng-repeat="project in vm.projectsToRecommend"
+                            data-ui-sref="project-recommend({'projectId': project.id})">
 
                             <yaka-avatar size="35" user="project.user"></yaka-avatar>
 
                             <div class="dashboardRecommendProjectText">
                                 <div class="yakaEllipsis">
                                     <casa-name-and-contact user="project.user"></casa-name-and-contact>
-                                    - {{project.address.locality}}
+                                </div>
+
+                                <div class="yakaEllipsis">
+                                    {{project.address.locality}} - {{vm.getWhen(project)}}
                                 </div>
 
                                 <div class="yakaEllipsis c-lightblue">

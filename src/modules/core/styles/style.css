@@ -5129,6 +5129,10 @@ ul.yaka-chips li {
     vertical-align: sub !important;
 }
 
+.v-align-top {
+    vertical-align: top !important;
+}
+
 .d-i-b {
     display: inline-block !important;
 }

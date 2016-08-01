@@ -16,8 +16,16 @@
     height: 55px;
 }
 
+.proDashboardRecommendProject {
+    height: 65px;
+}
+
 .dashboardRecommendProject yaka-avatar {
     margin-top: 10px;
+}
+
+.proDashboardRecommendProject yaka-avatar {
+    margin-top: 15px;
 }
 
 .dashboardRecommendProjectText {
@@ -37,4 +45,3 @@
 .dashboardRecommendProject:hover {
     background-color: #FAFAFA;
 }
-
