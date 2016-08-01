@@ -84,7 +84,8 @@
                                 style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                                 <div class="pmo-pic">
 
-                                    <div class="bgm-lightblue t-center p-10 c-white f-s-14">
+                                    <div class="bgm-lightblue t-center p-10 c-white f-s-14"
+                                         data-ng-if="vm.proposal.firstRecommendation">
                                         Recommandé par
                                         <casa-name-and-contact
                                             user="vm.proposal.firstRecommendation.recommender"
@@ -217,7 +218,8 @@
                                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                                         <div class="pmo-pic">
 
-                                            <div class="t-center p-10 c-white f-s-14 m-b-15">
+                                            <div class="t-center p-10 c-white f-s-14 m-b-15"
+                                                 data-ng-if="vm.proposal.firstRecommendation">
                                                 Recommandé par
                                                 <casa-name-and-contact
                                                     user="vm.proposal.firstRecommendation.recommender"

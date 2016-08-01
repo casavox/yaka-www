@@ -92,7 +92,7 @@
 }
 
 .proposalMainView .pm-overview {
-    min-height: 150px;
+    min-height: 100px;
 }
 
 .proposalMainView .pm-overview.pro {
@@ -278,7 +278,7 @@
     }
 
     #profile-main.no-scroll {
-        height: calc(100vh - 145px) !important;
+        height: calc(100vh - 150px) !important;
     }
 
     .proposalProjectTitle {
@@ -304,11 +304,11 @@
 }
 
 #profile-main.no-scroll {
-    height: calc(100vh - 240px);
+    height: calc(100vh - 255px);
 }
 
 #profile-main.pro.no-scroll {
-    height: calc(100vh - 170px);
+    height: calc(100vh - 175px);
 }
 
 .proProposalListPrice {
