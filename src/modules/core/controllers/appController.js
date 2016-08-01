@@ -277,7 +277,6 @@
         };
 
         app.showProTuto = function () {
-            console.log(app.getUser());
             if (app.getUser() &&
                 app.getUser().professional &&
                 app.getUser().professional.step2 &&
