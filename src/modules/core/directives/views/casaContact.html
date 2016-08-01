@@ -1,5 +1,6 @@
 <!-- In contacts -->
-<i class="zmdi zmdi-accounts c-lightblue" data-ng-if="user.inContacts"></i>
+<i class="zmdi zmdi-accounts" data-ng-class="{'c-lightblue': !white, 'c-white': white}"
+   data-ng-if="user.inContacts"></i>
 <span data-ng-if="user.inContacts" data-ng-switch="user.contactRelation">
     <span data-ng-switch-when="CLIENT">
         Client
@@ -16,7 +17,7 @@
 </span>
 
 <!-- Invited -->
-<i class="zmdi zmdi-accounts c-gray" data-ng-if="user.isInvited"></i>
+<i class="zmdi zmdi-accounts" data-ng-class="{'c-gray': !white, 'c-white': white}" data-ng-if="user.isInvited"></i>
 <span data-ng-if="user.isInvited">
     Invité
 </span>
@@ -27,7 +28,7 @@
         <span class="c-green pointer">
             Inviter
         </span>
-        <i class="zmdi zmdi-accounts-add c-green pointer"></i>
+        <i class="zmdi zmdi-accounts-add pointer" data-ng-class="{'c-green': !white, 'c-white': white}"></i>
     </span>
 
     <ul class="dropdown-menu">

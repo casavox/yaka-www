@@ -204,6 +204,22 @@
                                                         {{vm.project.proposal.professional.user.firstName}}
                                                         {{vm.project.proposal.professional.user.lastName}}</p>
                                                 </div>
+                                                <div class="c-gray m-t-0 m-b-0"
+                                                     data-ng-if="vm.project.proposal.status == 'RECO_PRO_DECLINED'">
+                                                    <p class="m-b-0"><strong>Annulée par le Pro.</strong></p>
+
+                                                    <p class="m-b-0">
+                                                        {{vm.project.proposal.professional.user.firstName}}
+                                                        {{vm.project.proposal.professional.user.lastName}}</p>
+                                                </div>
+                                                <div class="c-gray m-t-0 m-b-0"
+                                                     data-ng-if="vm.project.proposal.status == 'RECO_CUSTOMER_DECLINED'">
+                                                    <p class="m-b-0"><strong>Proposition refusée</strong></p>
+
+                                                    <p class="m-b-0">
+                                                        {{vm.project.proposal.professional.user.firstName}}
+                                                        {{vm.project.proposal.professional.user.lastName}}</p>
+                                                </div>
                                             </div>
                                             <div
                                                 data-ng-if="vm.project.proposal.status != 'PRO_DECLINED' && vm.project.proposal.status != 'CUSTOMER_DECLINED'">
@@ -246,14 +262,14 @@
                 <div class="col-sm-6 p-l-0 no-padding-mobile">
                     <div class="card">
                         <div class="card-header bgm-orange">
-                            <h2 data-ng-show="vm.project.proposals.length == 1">
+                            <h2>
                                 Propositions
                                 <small>TEXTE A DEFINIR</small>
                             </h2>
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
-                                <div class="lv-item" href="" data-ng-repeat="p in vm.project.proposals"
+                                <div class="lv-item pointer" href="" data-ng-repeat="p in vm.project.proposals"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div class="media">
                                         <div class="pull-left">
@@ -267,10 +283,12 @@
                                         <div class="media-body">
                                             <div class="pull-left">
                                                 <div class="lv-title">
-                                                <span data-ng-if="p.status == 'START'">
-                                                    {{p.professional.user.firstName}} {{p.professional.user.lastName}}</span>
-                                                <span data-ng-if="p.status == 'SELECTED'">
-                                                    {{p.professional.company.name}}</span>
+                                                    <span data-ng-if="p.status == 'START'">
+                                                        {{p.professional.user.firstName}} {{p.professional.user.lastName}}
+                                                    </span>
+                                                    <span data-ng-if="p.status == 'SELECTED'">
+                                                        {{p.professional.company.name}}
+                                                    </span>
 
                                                     <div class="c-gray m-t-0 m-b-0"
                                                          data-ng-if="p.status == 'PRO_DECLINED'">
@@ -286,6 +304,32 @@
                                                         <p class="m-b-0">{{p.professional.user.firstName}}
                                                             {{p.professional.user.lastName}}</p>
                                                     </div>
+                                                    <div class="c-gray m-t-0 m-b-0"
+                                                         data-ng-if="p.status == 'RECO_PRO_DECLINED'">
+                                                        <p class="m-b-0"><strong>Annulée par le Pro.</strong></p>
+
+                                                        <p class="m-b-0">{{p.professional.user.firstName}}
+                                                            {{p.professional.user.lastName}}</p>
+                                                    </div>
+                                                    <div class="c-gray m-t-0 m-b-0"
+                                                         data-ng-if="p.status == 'RECO_CUSTOMER_DECLINED'">
+                                                        <p class="m-b-0"><strong>Proposition refusée</strong></p>
+
+                                                        <p class="m-b-0">{{p.professional.user.firstName}}
+                                                            {{p.professional.user.lastName}}</p>
+                                                    </div>
+                                                </div>
+                                                <div data-ng-if="p.firstRecommendation">
+                                                    <span class="c-gray">
+                                                        recommandé par
+                                                    </span>
+                                                    <casa-name-and-contact
+                                                        user="p.firstRecommendation.recommender"></casa-name-and-contact>
+                                                    <span
+                                                        data-ng-if="p.recommendations && p.recommendations.length > 1">
+                                                        + {{p.recommendations.length - 1}} autre<span
+                                                        data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
+                                                    </span>
                                                 </div>
                                                 <div
                                                     data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
@@ -322,7 +366,7 @@
                 <div class="col-sm-6 p-r-0 no-padding-mobile">
                     <div class="card">
                         <div class="card-header bgm-lightblue">
-                            <h2 data-ng-show="vm.project.recoProposals.length == 1">
+                            <h2>
                                 Recommandations
                                 <small>Pros recommandés par vos amis et la communauté</small>
                             </h2>
@@ -349,10 +393,13 @@
                                                     <span class="c-gray">
                                                         recommandé par
                                                     </span>
-                                                    <b>
-                                                        {{p.firstRecommendation.recommender.firstName}}
-                                                        {{p.firstRecommendation.recommender.lastName}}
-                                                    </b>
+                                                    <casa-name-and-contact
+                                                        user="p.firstRecommendation.recommender"></casa-name-and-contact>
+                                                    <span
+                                                        data-ng-if="p.recommendations && p.recommendations.length > 1">
+                                                        + {{p.recommendations.length - 1}} autre<span
+                                                        data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="pull-right textAlignRightFullDesktop">

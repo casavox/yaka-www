@@ -5173,6 +5173,10 @@ ul.yaka-chips li {
     top: 0 !important;
 }
 
+.w-s-nowrap {
+    white-space: nowrap !important;
+}
+
 @media (max-width: 767px) {
 
     .no-padding-mobile {

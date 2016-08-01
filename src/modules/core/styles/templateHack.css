@@ -395,3 +395,7 @@ section#main.yakaMain .content .card {
 .listview .lv-item:hover {
     background: #ECF9FF;
 }
+
+#sidebar {
+    z-index: 6;
+}
