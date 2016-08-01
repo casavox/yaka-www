@@ -3498,6 +3498,18 @@ md-input-container {
     min-width: 44px;
 }
 
+.min-w-145 {
+    min-width: 145px !important;
+}
+
+.min-w-150 {
+    min-width: 150px !important;
+}
+
+.min-w-175 {
+    min-width: 175px !important;
+}
+
 .arrow-nav {
     height: 80px;
 
