@@ -195,19 +195,19 @@
                                  data-ng-if="vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
-                                        <dt class="yakaDisableEllipsis">Prix estimatif</dt>
-                                        <dd class="l-h-18">
-                                            {{vm.offer.price || '- - -'}} € <i
-                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
-                                            data-ng-click="vm.editPrice()"></i>
-                                        </dd>
-                                    </dl>
-                                    <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Date d'intervention estimée</dt>
                                         <dd class="l-h-18">
                                             {{(vm.offer.date | date: 'dd MMMM yyyy') || '- - -'}} <i
                                             class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
                                             data-ng-click="vm.editDate()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Prix estimatif</dt>
+                                        <dd class="l-h-18">
+                                            {{vm.offer.price || '- - -'}} € <i
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                            data-ng-click="vm.editPrice()"></i>
                                         </dd>
                                     </dl>
                                     <dl class="dl-horizontal">
