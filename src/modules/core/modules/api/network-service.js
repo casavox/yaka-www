@@ -285,6 +285,9 @@
             dashboardDataGET: function (success, error) {
                 httpService.get(baseUrl + '/dashboard/infos').success(success).error(error)
             },
+            proDashboardDataGET: function (success, error) {
+                httpService.get(baseUrl + '/pro/dashboard/infos').success(success).error(error)
+            },
             projectRecommendGET: function (id, success, error) {
                 httpService.get(baseUrl + '/recommend/projects/' + id).success(success).error(error)
             },

@@ -75,7 +75,7 @@
         if ($stateParams.projectId) {
             networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("findjobs");
+            $state.go("pro-dashboard");
         }
 
         function sendOffer() {
@@ -155,7 +155,7 @@
             }
         }
 
-        vm.isValidPrice = function() {
+        vm.isValidPrice = function () {
             if (!vm.price || vm.price == 0 || vm.price <= 30 || vm.price > 1000000) {
                 return false;
             }
@@ -204,7 +204,7 @@
         }
 
         function errorProjectGET(err) {
-            $state.go("findjobs");
+            $state.go("pro-dashboard");
         }
 
         vm.getStringLength = function (str) {

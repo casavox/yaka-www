@@ -3,11 +3,9 @@
 
     angular
         .module('Yaka')
-        .controller('DashboardController', DashboardController);
+        .controller('ProDashboardController', ProDashboardController);
 
-    //
-    //Controller login
-    function DashboardController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG) {
+    function ProDashboardController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG) {
 
         $rootScope.pageName = "Accueil";
         $rootScope.updateProfile();
@@ -20,7 +18,7 @@
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
 
-        networkService.dashboardDataGET(function (data) {
+        networkService.proDashboardDataGET(function (data) {
             vm.data = data;
         }, function (err) {
             alertMsg.send("Impossible de récupérer les données", "danger");

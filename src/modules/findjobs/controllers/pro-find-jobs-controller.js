@@ -42,13 +42,6 @@
         vm.showWorkArea = true;
         vm.workareaDiameter = 0;
 
-        vm.getMenuItemClass = function (state) {
-            if (state == "findjobs") {
-                return "active-menu";
-            }
-            return "";
-        };
-
         vm.getIcon = function (lead) {
             var icon = "";
 

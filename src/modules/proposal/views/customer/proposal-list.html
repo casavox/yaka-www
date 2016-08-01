@@ -382,9 +382,11 @@
                 </div>
             </div>
             <div
-                data-ng-show="((vm.project.recoProposals && vm.project.recoProposals.length > 1) || (vm.project.proposals && vm.project.proposals.length > 1)) && vm.project.proposal"
+                data-ng-show="((vm.project.recoProposals && vm.project.recoProposals.length > 0) || (vm.project.proposals && vm.project.proposals.length > 1)) && vm.project.proposal"
                 data-ng-cloak>
-                <div class="col-sm-6 p-l-0 no-padding-mobile">
+                <div class="col-sm-12 no-padding-mobile"
+                     data-ng-if="vm.project.proposals && vm.project.proposals.length > 1"
+                     data-ng-class="{'col-sm-6 p-l-0': vm.project.recoProposals && vm.project.recoProposals.length > 0, 'no-padding': !vm.project.recoProposals || vm.project.recoProposals.length <= 0}">
                     <div class="card">
                         <div class="card-header bgm-bluegray">
                             <h2>
@@ -438,7 +440,9 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 p-r-0 no-padding-mobile">
+                <div class="col-sm-12 no-padding-mobile"
+                     data-ng-if="vm.project.recoProposals && vm.project.recoProposals.length > 0"
+                     data-ng-class="{'col-sm-6 p-r-0': vm.project.proposals && vm.project.proposals.length > 1}, 'no-padding': !vm.project.proposals || vm.project.proposals.length <= 1}">
                     <div class="card">
                         <div class="card-header bgm-bluegray">
                             <h2>
@@ -479,11 +483,11 @@
                                                     </small>
                                                 </div>
                                             </div>
-                                            <div class="pull-right textAlignRightFullDesktop">
-                                                <small class="c-gray">
-                                                    <span am-time-ago="p.updated"></span>
-                                                </small>
-                                            </div>
+                                            <div class=no-padding"pull-right textAlignRightFullDesktop
+                                            ">
+                                            <small class="c-gray">
+                                                <span am-time-ago="p.updated"></span>
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
