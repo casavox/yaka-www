@@ -175,16 +175,48 @@
 
                                             </div>
 
-                                            <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                            <div class="col-xs-12 no-padding pmo-stat proposalProName clearfix">
                                                 <h2 class="yakaEllipsis">
                                                     {{vm.project.user.firstName}}
                                                     {{vm.project.user.lastName}}
                                                 </h2>
 
-                                                <button data-ng-click="vm.cancelProposalModal()"
-                                                        class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
-                                                    <i class="zmdi zmdi-close"></i> Annuler ce devis
-                                                </button>
+                                                <div data-ng-if="vm.proposal.status == 'START'">
+                                                    <div class="proNetworkProjectButtonLabel t-center m-t-15">
+                                                        Devis en cours
+                                                    </div>
+                                                    <button data-ng-click="vm.cancelProposalModal()"
+                                                            class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close"></i> Annuler ce devis
+                                                    </button>
+                                                </div>
+                                                <div data-ng-if="vm.proposal.status == 'SELECTED'">
+                                                    <div class="proNetworkProjectButtonLabel t-center m-t-15">
+                                                        Chantier en cours
+                                                    </div>
+                                                    <button data-ng-click="vm.cancelProposalModal()"
+                                                            class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close"></i> Annuler chantier
+                                                    </button>
+                                                </div>
+                                                <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
+                                                    <div class="proNetworkProjectButtonLabel t-center m-t-15">
+                                                        En attente d'offre
+                                                    </div>
+                                                    <button data-ng-click="vm.cancelProposalModal()"
+                                                            class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close"></i> Annuler
+                                                    </button>
+                                                </div>
+                                                <div class="m-t-15"
+                                                     data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED' || vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
+                                                    Refusé par le client
+                                                </div>
+                                                <div class="m-t-15"
+                                                     data-ng-if="vm.proposal.status == 'PRO_DECLINED' || vm.proposal.status == 'RECO_PRO_DECLINED'">
+                                                    Annulé par moi
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
