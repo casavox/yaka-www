@@ -96,23 +96,19 @@
         }
 
         function cancelProposal(cancelProposalMessage) {
-            if (cancelProposalMessage && cancelProposalMessage.length >= 20) {
-                networkService.proProposalDeclinePOST($stateParams.proposalId,
-                    {text: cancelProposalMessage},
-                    function (res) {
-                        alertMsg.send("Votre proposition à bien été retirée", "info");
-                        $state.go("pro-proposals");
-                    }, function () {
-                        alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
-                    }
-                );
-            } else {
-                alertMsg.send("Vous devez accompagner le retrait de votre proposition d'un message au client (30 caractères minimum)", "danger");
-            }
+            networkService.proProposalDeclinePOST($stateParams.proposalId,
+                {text: cancelProposalMessage},
+                function (res) {
+                    alertMsg.send("Votre proposition à bien été retirée", "info");
+                    $state.go("pro-proposals");
+                }, function () {
+                    alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
+                }
+            );
         }
 
         function cancelProposalModal() {
-            modalService.proCancelProposal(function (chatMessage) {
+            modalService.proCancelProposal(vm.proposal.status, function (chatMessage) {
                 vm.cancelProposal(chatMessage);
             });
         }
@@ -298,18 +294,37 @@
             if (!vm.proposal || !vm.proposal.status) {
                 return "home";
             }
-            if (vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED') {
-                return "pro-proposals";
-            } else {
-                return "pro-jobs";
+
+            switch (vm.proposal.status) {
+                case "RECOMMENDATION":
+                    return "pro-dashboard";
+                case "START":
+                case "PRO_DECLINED":
+                case "CUSTOMER_DECLINED":
+                case "RECO_PRO_DECLINED":
+                case "RECO_CUSTOMER_DECLINED":
+                    return "pro-proposals";
+                case "COMPLETED":
+                case "SELECTED":
+                case "RATE_PRO":
+                    return "pro-jobs";
             }
         };
 
         vm.getUpName = function () {
-            if (vm.proposal.status != 'SELECTED' && vm.proposal.status != 'COMPLETED') {
-                return "Mes devis";
-            } else {
-                return "Mes chantiers";
+            switch (vm.proposal.status) {
+                case "RECOMMENDATION":
+                    return "Accueil";
+                case "START":
+                case "PRO_DECLINED":
+                case "CUSTOMER_DECLINED":
+                case "RECO_PRO_DECLINED":
+                case "RECO_CUSTOMER_DECLINED":
+                    return "Mes devis";
+                case "COMPLETED":
+                case "SELECTED":
+                case "RATE_PRO":
+                    return "Mes chantiers";
             }
         };
     }

@@ -1,7 +1,7 @@
 angular.module('Yaka')
     .factory('modalService', ['$uibModal', function ($uibModal) {
         return {
-            proCancelProposal: function (onOkClicked) {
+            proCancelProposal: function (proposalStatus, onOkClicked) {
                 return $uibModal.open({
                     templateUrl: "/modules/core/modules/modal/views/proCancelProposal.html",
                     backdrop: true,
@@ -15,7 +15,15 @@ angular.module('Yaka')
                         };
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss('cancel');
-                        }
+                        };
+                        $scope.yesClicked = function () {
+                            if (proposalStatus && proposalStatus != 'RECOMMENDATION') {
+                                $scope.yesChoice = true;
+                            } else {
+                                onOkClicked(null);
+                                $uibModalInstance.close("ok");
+                            }
+                        };
                     },
                     resolve: {
                         resCancelProposal: function () {

@@ -10,20 +10,20 @@
     <button class="btn btn-default m-b-5" type="button" data-ng-click="cancel()">
         Non
     </button>
-    <button class="btn bgm-red m-b-5" type="button" data-ng-click="yesChoice = true"
+    <button class="btn bgm-red m-b-5" type="button" data-ng-click="yesClicked()"
             data-ng-disabled="yesChoice">
         Oui, annuler ma proposition
     </button>
     <div class="m-t-10 text-left" data-ng-show="yesChoice">
-        <strong class="c-red">Restez en bon terme avec le client, expliquez lui
-            votre décision :</strong>
+        <strong class="c-red">Restez en bon terme avec le client, expliquez lui votre décision :</strong>
 
         <div class="lv-footer ms-reply ms-reply-modal" data-ng-show="yesChoice">
             <textarea data-ng-model="cancelProposalMessage" data-ng-trim="true"
                       placeholder="Ex : Désolé, je ne suis pas disponible">
             </textarea>
 
-            <div class="c-red f-right t-right m-t-5" data-ng-if="!cancelProposalMessage || cancelProposalMessage.length < 20">
+            <div class="c-red f-right t-right m-t-5"
+                 data-ng-if="!cancelProposalMessage || cancelProposalMessage.length < 20">
                 <b>20 caractères min</b>
             </div>
             <button data-ng-click="ok(cancelProposalMessage)"

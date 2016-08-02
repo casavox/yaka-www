@@ -74,3 +74,10 @@
 .proNetworkProject:hover {
     background-color: #F3F3F3;
 }
+
+.proNetworkProjectUpdated {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 12px;
+}

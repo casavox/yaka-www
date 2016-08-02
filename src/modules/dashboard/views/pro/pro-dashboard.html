@@ -94,7 +94,8 @@
                 </div>
 
                 <div data-ng-repeat="project in vm.networkProjects">
-                    <div class="card pointer proNetworkProject" data-ui-sref="project-recommend({'projectId': project.id})">
+                    <div class="card pointer proNetworkProject"
+                         data-ui-sref="pro-proposal({'proposalId': project.recoProposals[0].id})">
                         <div class="card-header p-t-10 p-b-10 ch-alt">
 
                             <yaka-avatar class="v-align-middle"
@@ -125,6 +126,12 @@
                                     </span>
                                 </small>
                             </h2>
+
+                            <div class="proNetworkProjectUpdated c-gray">
+                                <span am-time-ago="project.updated"></span>
+                            </div>
+
+                            <div class="m-t-20 visible-xs"></div>
                         </div>
                         <div class="card-body card-padding p-t-10 p-b-10 p-relative">
                             <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b">
@@ -145,10 +152,15 @@
                                 </div>
                                 <div class="yakaEllipsis">
                                     <div class="c-gray d-i-b proNetworkProjectInfosLabel">
-                                        Ville :
+                                        Lieu :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
-                                        {{project.address.locality}}
+                                        <span data-ng-if="!project.address.address">
+                                            {{project.address.postalCode}} {{project.address.locality}}
+                                        </span>
+                                        <span data-ng-if="project.address.address">
+                                            {{project.address.address}}
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="yakaEllipsis">
