@@ -6,14 +6,11 @@ angular.module('Yaka')
             scope: {
                 user: '=',
                 invite: '=?',
-                white: '=?'
+                iconColor: '@'
             },
             link: function (scope, element, attr) {
                 if (!scope.invite) {
                     scope.invite = false;
-                }
-                if (!scope.white) {
-                    scope.white = false;
                 }
                 scope.invite = function (relation) {
                     networkService.invitePOST(scope.user.id, relation, function (res) {
@@ -34,14 +31,11 @@ angular.module('Yaka')
             scope: {
                 user: '=',
                 invite: '=?',
-                white: '=?'
+                iconColor: '@'
             },
             link: function (scope, element, attr) {
                 if (!scope.invite) {
                     scope.invite = false;
-                }
-                if (!scope.white) {
-                    scope.white = false;
                 }
             },
             templateUrl: "/modules/core/directives/views/casaNameAndContact.html"

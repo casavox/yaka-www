@@ -48,7 +48,7 @@ angular.module('Yaka', [
                     case 'fb34936c-dd2e-4abd-bf29-4c7217.herokuapp.com':
                         return 'https://bbb5dfb4-a465-49b2-8d2f-0ee040.herokuapp.com';
                     case 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com':
-                    case 'www.yakaclub.com':
+                    case 'www.casavox.com':
                         return 'https://bc3a5ece-8b03-4ee0-82dd-ea944f.herokuapp.com';
                     default :
                         return 'http://localhost:8080';
@@ -62,7 +62,7 @@ angular.module('Yaka', [
                     case 'fb34936c-dd2e-4abd-bf29-4c7217.herokuapp.com':
                         return 'staging';
                     case 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com':
-                    case 'www.yakaclub.com':
+                    case 'www.casavox.com':
                         return 'production';
                     default:
                         return 'local';

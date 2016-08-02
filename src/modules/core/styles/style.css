@@ -5181,6 +5181,10 @@ ul.yaka-chips li {
     white-space: nowrap !important;
 }
 
+.c-darkgray {
+    color: #5e5e5e !important;
+}
+
 @media (max-width: 767px) {
 
     .no-padding-mobile {

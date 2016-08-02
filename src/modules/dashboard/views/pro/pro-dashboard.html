@@ -88,25 +88,85 @@
             </div>
 
             <div class="col-sm-8 p-l-0 no-padding-mobile">
-                <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
-                    <div class="card-header bgm-lightblue">
-                        <i class="zmdi zmdi-hc-2x zmdi-roller c-white d-i-b hidden-xs"></i>
 
-                        <h2 class="d-i-b v-align-top m-l-10">
-                            Offres personnalisées
-                            <small>
-                                Chantiers en attente dans mon réseau
-                            </small>
-                        </h2>
-                    </div>
-                    <div class="clearfix card-body p-l-15 p-r-15">
+                <div class="block-header">
+                    <h2>Chantiers en attente dans mon réseau</h2>
+                </div>
 
+                <div data-ng-repeat="project in vm.networkProjects">
+                    <div class="card pointer proNetworkProject" data-ui-sref="project-recommend({'projectId': project.id})">
+                        <div class="card-header p-t-10 p-b-10 ch-alt">
+
+                            <yaka-avatar class="v-align-middle"
+                                         user="project.recoProposals[0].firstRecommendation.recommender"
+                                         size="40"></yaka-avatar>
+
+                            <h2 class="d-i-b v-align-middle m-l-10 proNetworkProjectTitle f-s-14">
+                                <span class="c-lightblue">
+                                    {{project.recoProposals[0].firstRecommendation.recommender.firstName}}
+                                    {{project.recoProposals[0].firstRecommendation.recommender.lastName}}
+                                </span>
+                                <span class="c-darkgray">
+                                    (
+                                    <casa-contact
+                                        user="project.recoProposals[0].firstRecommendation.recommender"
+                                        icon-color="c-darkgray"></casa-contact>
+                                    )
+                                    vous a recommandé
+                                </span>
+                                <small
+                                    class="c-darkgray"
+                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
+                                    + {{project.recoProposals[0].recommendations.length - 1}} autre<span
+                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
+                                    </span>
+                                    personne<span
+                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
+                                    </span>
+                                </small>
+                            </h2>
+                        </div>
+                        <div class="card-body card-padding p-t-10 p-b-10 p-relative">
+                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b">
+                            </div>
+                            <i data-ng-if="project.unreadMessages" class="proNetworkProjectUnreadIndicator"></i>
+
+                            <div class="proNetworkProjectInfos d-i-b f-s-14">
+                                <div class="c-lightblue yakaEllipsis">
+                                    {{project.title}}
+                                </div>
+                                <div class="yakaEllipsis">
+                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                        Délai :
+                                    </div>
+                                    <div class="d-i-b proNetworkProjectInfosLabel">
+                                        {{vm.getWhen(project)}}
+                                    </div>
+                                </div>
+                                <div class="yakaEllipsis">
+                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                        Ville :
+                                    </div>
+                                    <div class="d-i-b proNetworkProjectInfosLabel">
+                                        {{project.address.locality}}
+                                    </div>
+                                </div>
+                                <div class="yakaEllipsis">
+                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                        Client :
+                                    </div>
+                                    <div class="d-i-b proNetworkProjectInfosLabel">
+                                        <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-4 p-r-0 no-padding-mobile">
-                <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
+                <div class="card">
                     <div class="card-header dashboardCommunityHeader">
                         <h2>
                             Recommander un collègue
