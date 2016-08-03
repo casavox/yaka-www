@@ -709,6 +709,8 @@
                 (assurez-vous d'avoir l'autorisation de les partager).
             </p>
 
+            <!--Viewing mode-->
+
             <div class="lightbox photos projectImageTooltip clearfix" data-ng-show="!vm.editFlag">
                 <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                      data-sub-html="#caption{{$index}}"
@@ -720,6 +722,7 @@
                         <img
                             data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                             alt=""/>
+                        <i data-ng-if="image.description" class="zmdi zmdi-assignment icon-comment"></i>
                     </div>
                     <div id="caption{{$index}}" style="display:none">
                         <div class="galleryCaption">

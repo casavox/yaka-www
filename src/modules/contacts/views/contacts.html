@@ -57,6 +57,11 @@
                 <div class="col-xs-4 contactsMenu"
                      data-ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
                      data-ng-swipe-left="vm.contactsMenuOpened = false">
+
+                    <button class="visible-xs btn bgm-bluegray btn-icon waves-effect waves-circle close-contact-button" data-ng-click="vm.contactsMenuOpened = false">
+                        <i class="zmdi zmdi-close"></i>
+                    </button>
+
                     <div class="col-sm-12 contactsMenuTitle">
                         CONTACTS
                     </div>
@@ -78,13 +83,13 @@
                         <img class="contactsMenuBlueCircle"
                              data-ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
                              data-ng-if="vm.currentMenuItem == vm.MENU_PROS">
-                    <span data-ng-if="!app.isPro()" class="hidden-xs">
+                        <span data-ng-if="!app.isPro()" class="hidden-xs">
                         PROFESSIONNELS
                     </span>
-                    <span data-ng-if="!app.isPro()" class="visible-xs">
+                        <span data-ng-if="!app.isPro()" class="visible-xs">
                         PRO.
                     </span>
-                    <span data-ng-if="app.isPro()">
+                        <span data-ng-if="app.isPro()">
                         COLLÈGUES
                     </span>
 
@@ -284,8 +289,10 @@
                                 clicks pour en recommander un que vous connaissez.
                             </div>
                             <div class="m-b-5" data-ng-show="app.isPro()">
-                                Parce qu'une de vos connaissances - personnelle, ancien client ou collègue - à un ami à la
-                                recherche de vos compétences. CasaVox encourage vos relations à vous recommander auprès de leurs connaissances « <em>les amis de mes amis sont mes nouveaux clients !</em> ».
+                                Parce qu'une de vos connaissances - personnelle, ancien client ou collègue - à un ami à
+                                la
+                                recherche de vos compétences. CasaVox encourage vos relations à vous recommander auprès
+                                de leurs connaissances « <em>les amis de mes amis sont mes nouveaux clients !</em> ».
                             </div>
                             <div class="m-b-20" data-ng-show="app.isPro()">
                                 Parce que s'aider entre collègues est toujours payant ! En quelques clicks, recommandez

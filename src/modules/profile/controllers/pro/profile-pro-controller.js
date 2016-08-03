@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage, $timeout) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -581,7 +581,9 @@
         vm.editFlag = false;
 
         vm.saveComment = function () {
-            $('html').trigger('click');
+            $timeout(function() {
+                $('html').trigger('click');
+            });
         };
 
         vm.descriptionChanged = function (image) {
