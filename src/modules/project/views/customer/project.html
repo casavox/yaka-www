@@ -54,8 +54,18 @@
                  data-ng-if="vm.project.proposal">
                 <div class="card-body card-padding row">
 
-                    <yaka-avatar user="vm.project.proposal.professional.user" size="70" class="d-i-b v-align-middle m-l-15">
-                    </yaka-avatar>
+                    <div class="d-i-b v-align-middle m-l-15 projectProposalHeader p-relative">
+
+                        <yaka-avatar user="vm.project.proposal.professional.user" size="70">
+                        </yaka-avatar>
+
+                        <cl-image
+                            public-id="{{vm.project.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                            class="bgm-white" format="png"
+                            data-ng-if="vm.project.proposal.professional.mainPartner.cloudinaryPublicId">
+                            <cl-transformation height="35" width="35" crop="fill" radius="max"/>
+                        </cl-image>
+                    </div>
 
                     <div class="d-i-b v-align-middle m-l-25">
                         <div class="b f-17 c-orange">

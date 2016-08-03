@@ -267,3 +267,15 @@
     font-size: 15px;
     margin-left: 5px;
 }
+
+.projectProposalHeader {
+    width: 70px;
+    height: 70px;
+}
+
+.projectProposalHeader > img {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    border-radius: 50%;
+}
