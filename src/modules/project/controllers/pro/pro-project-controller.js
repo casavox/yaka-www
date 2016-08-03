@@ -100,11 +100,6 @@
             }
         }
 
-        function selectDate() {
-            vm.offer.date = vm.dt;
-            vm.myDateFlag = false;
-        }
-
         function setMinMaxDate() {
             var minDate = new Date();
             var maxDate = new Date();
@@ -143,6 +138,11 @@
             }
         }
 
+        function selectDate() {
+            vm.offer.date = vm.dt;
+            vm.myDateFlag = false;
+        }
+
         function selectPrice() {
             vm.error.price = vm.error.price || {};
             if (vm.price <= 30 || vm.price > 1000000) {
@@ -160,7 +160,7 @@
                 return false;
             }
             return true;
-        }
+        };
 
         function myPrice() {
             vm.myPriceFlag = true;
