@@ -48,9 +48,29 @@
 
     <div id="content" class="content">
 
-
         <div class="container">
 
+            <div class="card pointer" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
+                 data-ng-if="vm.project.proposal">
+                <div class="card-body card-padding row">
+
+                    <yaka-avatar user="vm.project.proposal.professional.user" size="70" class="d-i-b v-align-middle m-l-15">
+                    </yaka-avatar>
+
+                    <div class="d-i-b v-align-middle m-l-25">
+                        <div class="b f-17 c-orange">
+                            Pro sélectionné
+                        </div>
+                        <div class="b f-20">
+                            {{vm.project.proposal.professional.user.lastName}}
+                            {{vm.project.proposal.professional.user.firstName}}
+                        </div>
+                        <div class="c-gray">
+                            {{vm.project.proposal.professional.company.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="yakaMain proposalMainView proMakeOffer">
                 <div class="card m-b-15 clearfix" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
