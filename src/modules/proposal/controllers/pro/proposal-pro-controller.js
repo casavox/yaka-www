@@ -26,7 +26,6 @@
         };
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
-        vm.sendOffer = sendOffer;
         vm.getTags = getTags;
         vm.edit = edit;
         vm.cancel = cancel;
@@ -155,27 +154,6 @@
                 }
             }
             return res;
-        }
-
-        function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 30 && vm.offer.comment.indexOf(' ') > -1) {
-                vm.offer.date.date = vm.offer.date.date || null;
-                vm.offer.comment = vm.offer.comment || "";
-                var formData = {
-                    project: {id: vm.projectTmp.id},
-                    price: parseInt(vm.offer.price.price),
-                    comment: vm.offer.comment
-                };
-                formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
-                networkService.proposalPOST(formData, function (res) {
-                    alertMsg.send("Proposition envoyée avec succès", "success");
-                }, function (res) {
-                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                });
-            } else {
-                vm.error.comment.message = "Vous devez accompagner votre proposition d'un premier message au client (30 caractères minimums)"
-                vm.error.comment.falg = true;
-            }
         }
 
         function selectDate() {
@@ -326,6 +304,71 @@
                 case "RATE_PRO":
                     return "Mes chantiers";
             }
+        };
+
+        vm.offer = {};
+
+        vm.editPriceOffer = function () {
+            vm.price = vm.offer.price;
+            vm.myPriceFlagOffer = true;
+        };
+
+        vm.editDateOffer = function () {
+            vm.dt = vm.offer.date;
+            vm.myDateFlagOffer = true;
+        };
+
+        vm.formIsValid = function () {
+            return (vm.offer &&
+            vm.offer.comment &&
+            vm.offer.comment.length >= 40);
+        };
+
+        vm.sendOffer = function () {
+            if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
+                vm.offer.comment = vm.offer.comment || "";
+                var formData = {
+                    project: {id: vm.projectTmp.id},
+                    comment: vm.offer.comment
+                };
+                if (vm.offer.price && vm.offer.price) {
+                    formData.price = parseInt(vm.offer.price);
+                }
+                if (vm.offer.date && vm.offer.date) {
+                    formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
+                }
+                networkService.proposalPOST(formData, function (res) {
+                    alertMsg.send("Proposition envoyée avec succès", "success");
+                    $state.go('pro-proposals');
+                }, function (res) {
+                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
+                });
+            }
+        };
+
+
+        vm.selectDateOffer = function () {
+            vm.offer.date = vm.dt;
+            vm.myDateFlagOffer = false;
+        };
+
+        vm.selectPriceOffer = function () {
+            vm.error.price = vm.error.price || {};
+            if (vm.price <= 30 || vm.price > 1000000) {
+                vm.error.price.message = "Merci d'indiquer un montant réaliste";
+                vm.error.price.flag = true
+            } else {
+                vm.offer.price = vm.price;
+                vm.myPriceFlagOffer = false;
+                vm.error.price.flag = false;
+            }
+        };
+
+        vm.isValidPriceOffer = function () {
+            if (!vm.price || vm.price == 0 || vm.price <= 30 || vm.price > 1000000) {
+                return false;
+            }
+            return true;
         };
     }
 })();

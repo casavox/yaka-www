@@ -120,25 +120,22 @@
 
                                     <div class="col-xs-12 no-padding pmo-stat proposalProName">
                                         <h2 class="yakaEllipsis">
-                                            {{vm.proposal.professional.user.firstName}}
-                                            {{vm.proposal.professional.user.lastName}}
-                                            <small class="yakaEllipsis">
-                                                {{vm.proposal.professional.company.name}}
-                                            </small>
+                                            <casa-name-and-contact user="vm.proposal.professional.user"
+                                                                   icon-color="c-white"></casa-name-and-contact>
                                         </h2>
 
                                         <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
                                             <li class="wa-stats center">
-                                        <span class="bgm-white">
-                                            <i class="zmdi zmdi-calendar"></i>
-                                            <span data-ng-if="vm.proposal.startDate">{{vm.proposal.startDate | date:'dd/MM/yy'}}</span>
-                                            <span data-ng-if="!vm.proposal.startDate">- - -</span>
-                                        </span>
-                                        <span class="active bgm-white">
-                                            <i class="zmdi zmdi-shopping-cart"></i>
-                                            <span data-ng-if="vm.proposal.price">{{vm.proposal.price}} €</span>
-                                            <span data-ng-if="!vm.proposal.price">- - - €</span>
-                                        </span>
+                                                <span class="bgm-white">
+                                                    <i class="zmdi zmdi-calendar"></i>
+                                                    <span data-ng-if="vm.proposal.startDate">{{vm.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                                    <span data-ng-if="!vm.proposal.startDate">- - -</span>
+                                                </span>
+                                                <span class="active bgm-white">
+                                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                                    <span data-ng-if="vm.proposal.price">{{vm.proposal.price}} €</span>
+                                                    <span data-ng-if="!vm.proposal.price">- - - €</span>
+                                                </span>
                                             </li>
                                         </ul>
                                         <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
@@ -254,11 +251,8 @@
 
                                             <div class="col-xs-12 no-padding pmo-stat proposalProName">
                                                 <h2 class="yakaEllipsis">
-                                                    {{vm.proposal.professional.user.firstName}}
-                                                    {{vm.proposal.professional.user.lastName}}
-                                                    <small class="yakaEllipsis">
-                                                        {{vm.proposal.professional.company.name}}
-                                                    </small>
+                                                    <casa-name-and-contact user="vm.proposal.professional.user"
+                                                                           icon-color="c-white"></casa-name-and-contact>
                                                 </h2>
 
                                                 <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">

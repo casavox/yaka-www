@@ -93,6 +93,33 @@
                     <h2>Chantiers en attente dans mon réseau</h2>
                 </div>
 
+                <div class="card clearfix" data-ng-if="vm.networkProjects && vm.networkProjects.length <= 0">
+                    <div class="card-body card-padding t-center">
+                        <div>
+                            <b>Il n’y a pas d’offres disponible par votre réseau.</b>
+                        </div>
+
+                        <div class="m-t-20">
+                            Répondez aux offres disponibles et augmentez vos chances remporter de nouveaux chantiers.
+                        </div>
+
+                        <div class="m-t-20">
+                            Invitez des contacts à vous rejoindre sur CasaVox pour plus d’opportunités de business.
+                        </div>
+
+                        <div class="m-t-10 clearfix">
+                            <button
+                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 btn btn-default waves-effect c-orange m-t-10">
+                                Voir toutes les offres
+                            </button>
+                            <button
+                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-lightblue m-t-10">
+                                Développer mon réseau
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div data-ng-repeat="project in vm.networkProjects">
                     <div class="card pointer proNetworkProject"
                          data-ui-sref="pro-proposal({'proposalId': project.recoProposals[0].id})">
@@ -111,7 +138,7 @@
                                     (
                                     <casa-contact
                                         user="project.recoProposals[0].firstRecommendation.recommender"
-                                        icon-color="c-darkgray"></casa-contact>
+                                        icon-color="c-darkgray" client-red="true"></casa-contact>
                                     )
                                     vous a recommandé
                                 </span>
@@ -188,6 +215,11 @@
                         </h2>
                     </div>
                     <div class="clearfix card-body p-l-15 p-r-15">
+
+                        <div class="p-15 m-t-10 m-b-10 t-center"
+                             data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length <= 0">
+                            Lorem Ipsum YakaClub
+                        </div>
 
                         <div
                             class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-10"
