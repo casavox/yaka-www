@@ -250,14 +250,14 @@
             if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.desiredDatePeriod) {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "Autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_WEEK":
-                        return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "Dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_MONTH":
-                        return "avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "Avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "NONE":
                     default:
-                        return 'dès que possible';
+                        return 'Dès que possible';
                 }
             } else {
                 return "";
