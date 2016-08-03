@@ -274,7 +274,7 @@
             vm.myAddress = "new";
         }
 
-        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+        if ($stateParams.projectId) {
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
 

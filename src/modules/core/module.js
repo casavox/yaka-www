@@ -213,7 +213,7 @@ angular.module('Yaka', [
 
 
         //
-        // For any unmatched url, redirect to /login
+        // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise("/");
 
 

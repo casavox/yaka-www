@@ -20,10 +20,10 @@
         $rootScope.pageName = "";
 
         app.getPageName = function () {
-            if ($rootScope.pageName == "") {
+            if (!$rootScope.pageName) {
                 return "CasaVox : Trouvez vos artisans en toute confiance";
             } else {
-                return $rootScope.pageName + " - CasaVox : Trouvez de nouveaux clients"
+                return $rootScope.pageName + " - CasaVox : Trouvez vos artisans en toute confiance"
             }
         };
 
