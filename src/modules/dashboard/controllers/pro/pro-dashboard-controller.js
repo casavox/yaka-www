@@ -45,6 +45,14 @@
         }, function (err) {
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
+
+        vm.networkProjectClicked = function (project) {
+            if (project.recoProposals) {
+                $state.go('pro-proposal', {'proposalId': project.recoProposals[0].id});
+            } else {
+                $state.go('pro-project-proposal-new', {'projectId': project.id});
+            }
+        }
     }
 })
 ();
