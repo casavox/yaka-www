@@ -27,7 +27,7 @@
 
 <header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
         data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="{{vm.getUpState()}}"
@@ -402,17 +402,18 @@
                                         <dl class="dl-horizontal">
                                             <dt class="yakaDisableEllipsis">Date souhaitée des travaux</dt>
                                             <dd>
-                                                Début souhaité {{vm.getWhen()}}
+                                                {{vm.getWhen()}}
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
                                             <dd>
-                                                <div data-ng-switch on="vm.proposal.status">
-                                                    <span data-ng-switch-when="SELECTED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                    <span data-ng-switch-when="RATE_PRO" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                    <span data-ng-switch-when="COMPLETED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                    <span data-ng-switch-default class="whiteSpacePre">{{vm.projectTmp.address.postalCode}} {{vm.projectTmp.address.locality}}</span>
+                                                <div data-ng-if="vm.project.address.address">
+                                                    {{vm.projectTmp.address.address}}
+                                                </div>
+                                                <div data-ng-if="!vm.project.address.address">
+                                                    {{vm.projectTmp.address.postalCode}}
+                                                    {{vm.projectTmp.address.locality}}
                                                 </div>
                                             </dd>
                                         </dl>

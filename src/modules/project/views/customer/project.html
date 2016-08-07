@@ -202,6 +202,7 @@
                                             <div class="lightbox-item p-item">
                                                 <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                      alt=""/>
+                                                <i data-ng-if="image.description" class="zmdi zmdi-assignment icon-comment"></i>
                                             </div>
                                             <div id="caption{{$index}}" style="display:none">
                                                 <div class="galleryCaption">

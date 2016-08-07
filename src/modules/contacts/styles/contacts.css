@@ -372,10 +372,18 @@
 
 @media (max-width: 767px) {
 
+
+    .close-contact-button {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        line-height: 45px;
+        z-index : 1;
+    }
     .contactsContacts {
-        max-height: calc(100vh - 150px) !important;
+        max-height: calc(100vh - 180px) !important;
         width: 100% !important;
-        min-height: calc(100vh - 150px) !important;
+        min-height: calc(100vh - 180px) !important;
     }
 
     .contactsMenu {
