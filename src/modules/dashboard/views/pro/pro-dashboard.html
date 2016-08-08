@@ -122,8 +122,8 @@
 
                 <div data-ng-repeat="project in vm.networkProjects">
                     <div class="card pointer proNetworkProject"
-                         data-ui-sref="pro-proposal({'proposalId': project.recoProposals[0].id})">
-                        <div class="card-header p-t-10 p-b-10 ch-alt">
+                         data-ng-click="vm.networkProjectClicked(project)">
+                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.recoProposals[0].firstRecommendation.recommender"
@@ -152,6 +152,33 @@
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
                                     </span>
                                 </small>
+                            </h2>
+
+                            <div class="proNetworkProjectUpdated c-gray">
+                                <span am-time-ago="project.updated"></span>
+                            </div>
+
+                            <div class="m-t-20 visible-xs"></div>
+                        </div>
+                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="!project.recoProposals">
+
+                            <yaka-avatar class="v-align-middle"
+                                         user="project.user"
+                                         size="40"></yaka-avatar>
+
+                            <h2 class="d-i-b v-align-middle m-l-10 proNetworkProjectTitle f-s-14">
+                                <span class="c-lightblue">
+                                    {{project.user.firstName}}
+                                    {{project.user.lastName}}
+                                </span>
+                                <span class="c-darkgray">
+                                    (
+                                    <casa-contact
+                                        user="project.user"
+                                        icon-color="c-darkgray" client-red="true"></casa-contact>
+                                    )
+                                    a un nouveau chantier
+                                </span>
                             </h2>
 
                             <div class="proNetworkProjectUpdated c-gray">
@@ -190,7 +217,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="yakaEllipsis">
+                                <div class="yakaEllipsis" data-ng-if="project.recoProposals">
                                     <div class="c-gray d-i-b proNetworkProjectInfosLabel">
                                         Client :
                                     </div>
