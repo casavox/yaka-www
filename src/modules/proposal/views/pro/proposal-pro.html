@@ -439,6 +439,10 @@
                                                     <img
                                                         data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                         alt=""/>
+                                                    <div data-ng-if="image.description"
+                                                         class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
+                                                        <i class="zmdi zmdi-comment-text-alt"></i>
+                                                    </div>
                                                 </div>
                                                 <div id="caption{{$index}}" style="display:none">
                                                     <div class="galleryCaption">
