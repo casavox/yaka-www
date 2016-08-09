@@ -43,11 +43,11 @@
                         </small>
                     </h2>
                     <div class="col-sm-6 t-right m-t-5">
-                        <button class="btn btn-default waves-effect c-lightblue m-r-15"
+                        <button id="invite-friend-button" class="btn btn-default waves-effect c-lightblue m-r-15"
                                 data-ng-click="vm.openFriendPopup()">
                             Inviter un ami
                         </button>
-                        <button class="btn btn-default waves-effect c-orange" data-ng-click="vm.openProPopup()">
+                        <button id="invite-pro-button" class="btn btn-default waves-effect c-orange" data-ng-click="vm.openProPopup()">
                             Inviter un pro
                         </button>
                     </div>
@@ -423,7 +423,7 @@
                 placeholder="Ville"
                 data-ng-model="vm.invitPro.address.address"/>
 
-            <div class="select">
+            <div id="select-pro-relation" class="select">
                 <select class="form-control m-t-10"
                         data-ng-model="vm.invitPro.relation">
                     <option value="" disabled="disabled">Votre relation avec ce pro ?</option>

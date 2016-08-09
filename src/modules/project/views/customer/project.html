@@ -138,7 +138,7 @@
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Description</dt>
-                                        <dd data-ng-if="!vm.editFlag">
+                                        <dd id="description-content" data-ng-if="!vm.editFlag">
                                             {{vm.projectTmp.description}}
                                         </dd>
                                         <dd data-ng-if="vm.editFlag">
@@ -202,7 +202,10 @@
                                             <div class="lightbox-item p-item">
                                                 <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                      alt=""/>
-                                                <i data-ng-if="image.description" class="zmdi zmdi-assignment icon-comment"></i>
+                                                <div data-ng-if="image.description"
+                                                     class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
+                                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                                </div>
                                             </div>
                                             <div id="caption{{$index}}" style="display:none">
                                                 <div class="galleryCaption">
