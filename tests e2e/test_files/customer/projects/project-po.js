@@ -23,6 +23,7 @@ var ProjectPage = function() {
 
     // Modification d'un projet
     this.firstProject = element.all(by.repeater('p in vm.projectsOnGoing')).get(0);
+    this.lastProject = element.all(by.repeater('p in vm.projectsOnGoing')).get(-1);
     this.seeProject = element(by.css('[data-ng-click="vm.projectDetails()"]'));
     this.modifyButton = element(by.css('[data-ng-click="vm.edit()"]'));
     this.modifyProjectDescription = element(by.model('vm.projectTmp.description'));
@@ -37,6 +38,24 @@ var ProjectPage = function() {
         day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"
     };
     this.todayDate = this.today.toLocaleDateString("fr-FR", this.options);
+
+    // Chat conversation
+    this.chatSelectTab = element(by.css('[data-ng-click="vm.showChat = true; vm.scrollBottom = 1"]'));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Pro Navigation
+    this.workList = element(by.linkText('Mes chantiers'));
+    this.firstWork = element.all(by.repeater('proposal in vm.ongoing')).get(0);
+    this.chatText = element(by.model('newMessage.text'));
+    this.toto = "Toto by pro ";
+    this.totoByC = "Toto by Customer ";
+    this.sendText = element(by.css('[data-ng-click="sendMessage()"]'));
+    this.lastText = element.all(by.repeater('message in messages')).get(-1);
+
+
+
 
 
 }

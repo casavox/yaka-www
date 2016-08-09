@@ -1,5 +1,5 @@
 require('jasmine-bail-fast');
-var LoginPage = require('./login-po.js');
+var LoginPage = require('./pro-login-po.js');
 
 describe('The user', function() {
     var loginPage = new LoginPage();
@@ -11,7 +11,7 @@ describe('The user', function() {
 
 
     it('should log in', function() {
-        console.log("* Début du test : connexion");
+        console.log("* Début du test côté pro : connexion");
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionLogin), 20000).then(function () {
             loginPage.homeSectionLogin.click();
@@ -35,8 +35,8 @@ describe('The user', function() {
         });
         browser.wait(loginPage.isLogable, 1000).then(function() {
             loginPage.signInPopupButton.click();
-            console.log("******* Envoi Email au contact ami OK");
-            console.log("******** Fin du Test, résultat : OK");
+            console.log("******* Pro loggué OK");
+            console.log("******** Fin du Test côté pro, résultat : OK");
         });
     });
 });

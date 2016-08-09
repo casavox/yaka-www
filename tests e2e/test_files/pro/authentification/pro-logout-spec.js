@@ -1,5 +1,5 @@
 require('jasmine-bail-fast');
-var LoginPage = require('./login-po.js');
+var LoginPage = require('./pro-login-po.js');
 
 describe('User', function() {
     var loginPage = new LoginPage();
@@ -7,7 +7,7 @@ describe('User', function() {
 
 
     it('should log out', function() {
-        console.log("* Début du test : déconnexion");
+        console.log("* Début du test côté pro : déconnexion");
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.nameHeader), 5000).then(function() {
             loginPage.nameHeader.click();
@@ -17,7 +17,7 @@ describe('User', function() {
             loginPage.logOut.click();
             console.log("*** Click bouton 'déconnexion' OK");
             console.log('**** L\'utilisateur est déconnecté avec succès');
-            console.log("***** Fin du Test, résultat : OK");
+            console.log("***** Fin du Test côté pro, résultat : OK");
         });
     });
 

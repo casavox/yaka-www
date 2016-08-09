@@ -4,7 +4,7 @@ var AddProContactPage = require('./add-contact-pro-po.js');
 describe('This test', function () {
     var addProContactPage = new AddProContactPage();
     var APCPage = addProContactPage;
-    browser.ignoreSynchronization = true;
+    //browser.ignoreSynchronization = true;
 
 
     it('should add a Pro (FAMILY) contact', function () {
@@ -54,10 +54,26 @@ describe('This test', function () {
         });
         browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), 20000).then(function () {
             APCPage.selectProDomain.click();
-            browser.sleep(500);
-            APCPage.sendEmailToPro.click();
-            console.log("----------- Envoi Email au professionnel OK");
-            console.log("------------ Fin du Test, résultat : OK");
+        }).then(function () {
+            browser.wait(APCPage.EC.elementToBeClickable(APCPage.sendEmailToPro), 20000);
+        }).then(function () {
+            APCPage.sendEmailToPro.click().then(function () {
+                browser.wait(APCPage.EC.visibilityOf(APCPage.alertYes), 20000).then(function() {
+                    APCPage.alertYes.getText().then(function(result) {
+                        if (result.slice(result.length - 18) == 'Invitation envoyée') {
+                            console.log("----------- Envoi Email au professionnel OK");
+                        }
+                        else if (result.slice(result.length - 36) == 'Vous avez déjà invité cette personne') {
+                            console.log("----------- !! ECHEC !! Envoi Email au professionnel !! ECHEC !!");
+                        }
+                    });
+                });
+
+            }).then(function () {
+                browser.sleep(600);
+                console.log("------------ Fin du Test, résultat : OK");
+            });
         });
     });
 });
+

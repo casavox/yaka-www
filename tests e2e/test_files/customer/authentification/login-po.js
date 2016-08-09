@@ -8,8 +8,8 @@ var LoginPage = function () {
     this.userLogin = 'gregorybizet@hotmail.com';
     this.userPwd = 'blabla';
     // Browser 2
-    this.userLogin = 'gregorybizet@gmail.com';
-    this.userPwd = 'blabla';
+    //this.userLogin = 'gregorybizet@gmail.com';
+    //this.userPwd = 'blabla';
 
     // Log In
     this.homeSectionLogin = element(by.css('.homeSection1Login'));

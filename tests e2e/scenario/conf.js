@@ -70,9 +70,19 @@ exports.config = {
             count: 1,
             shardTestFiles: false,
             maxInstances: 1,
-            specs: ['scenario/open-browser.js', 'scenario/customer/authentification/login-spec.js', 'scenario/customer/contacts/add-contact-friend/add-contact-friend-spec.js', 'scenario/customer/authentification/logout-spec.js'],
+            specs: ['scenario/open-browser.js', 'scenario/pro/authentification/pro-login-spec.js', 'scenario/pro/authentification/pro-logout-spec.js'],
             seleniumAddress: 'http://localhost:4444/wd/hub'
-        }
+        }/*,
+        {
+            browserName: 'firefox',
+            name: 'Customer : Communicate with pro',
+            logName: 'Chrome - English',
+            count: 1,
+            shardTestFiles: false,
+            maxInstances: 1,
+            specs: ['scenario/open-browser.js', 'scenario/customer/authentification/login-spec.js', 'scenario/customer/authentification/logout-spec.js'],
+            seleniumAddress: 'http://localhost:4444/wd/hub'
+        }*/
 
     ],
 

@@ -25,6 +25,9 @@ var AddProContactPage = function() {
 
     // Envoi du mail d'invitation
     this.sendEmailToPro = element(by.css('[data-ng-click="vm.sendProInvit()"]'));
+    this.popupInvit = element(by.css('yakaPopupWindow'));
+    // Résultat de l'envoi de la demande
+    this.alertYes = element(by.binding('alertMessage'));
 
 
 }
