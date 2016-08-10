@@ -154,7 +154,13 @@
                                         <dd>
                                             <ul class="yaka-chips">
                                                 <li data-ng-repeat="tag in vm.getTags()">
-                                                    {{'ACTIVITY_' + tag | translate}}
+                                                    <span data-ng-show="tag == 'MATERIAL_TRUE'"
+                                                          uib-tooltip="Le client fournit certains matériaux">
+                                                        {{'ACTIVITY_' + tag | translate}}
+                                                    </span>
+                                                    <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                        {{'ACTIVITY_' + tag | translate}}
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </dd>
@@ -202,7 +208,8 @@
                                             <div class="lightbox-item p-item">
                                                 <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                      alt=""/>
-                                                <i data-ng-if="image.description" class="zmdi zmdi-assignment icon-comment"></i>
+                                                <i data-ng-if="image.description"
+                                                   class="zmdi zmdi-assignment icon-comment"></i>
                                             </div>
                                             <div id="caption{{$index}}" style="display:none">
                                                 <div class="galleryCaption">

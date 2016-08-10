@@ -75,12 +75,13 @@
                 {id: 5, label: "PAI_6000"},
                 {id: 6, label: "WAL_7000"},
                 {id: 7, label: "INS_8000"},
-                {id: 8, label: "COU_9000"},
+                {id: 8, label: "BAT_10100"},
                 {id: 9, label: "KIT_10000"},
                 {id: 10, label: "ROO_11000"},
                 {id: 11, label: "GAT_12000"},
                 {id: 12, label: "GAR_13000"},
-                {id: 13, label: "CON_14000"}
+                {id: 13, label: "COU_13900"},
+                {id: 14, label: "CON_14000"}
             ],
             selected: []
         };

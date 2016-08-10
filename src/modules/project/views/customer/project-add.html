@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+        xmlns="http://www.w3.org/1999/html"></header>
 
 <section id="view">
 
@@ -38,8 +38,17 @@
                      data-ng-show="vm.questions[$index]"
                      data-ng-repeat="q in vm.questions" data-ng-if="q.childrenActivities">
                     <div class="card-header">
-                        <h2 class="t-center">
-                            {{'ACTIVITY_' + q.code | translate }}
+                        <h2 class="t-center" data-ng-show="$index == 0">
+                            <p><em>{{'ACTIVITY_' + q.code | translate }}</em></p>
+                            Indiquez l'objet des travaux
+                        </h2>
+                        <h2 class="t-center" data-ng-show="$index == 1">
+                            <p></p><em>{{'ACTIVITY_' + q.code | translate }}</em></p>
+                            Précisez votre besoin
+                        </h2>
+                        <h2 class="t-center" data-ng-show="$index > 1 ">
+                            <p><em>{{'ACTIVITY_' + q.code | translate }}</em></p>
+                            Précisez la nature des travaux
                         </h2>
                     </div>
                     <ul class="questions-ul center clearfix">
@@ -52,27 +61,30 @@
                 </div>
 
                 <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide3" data-ng-show="vm.service">
-                    <div class="card-header">
-                        <h2 class="t-center">
-                            Fournissez-vous une partie du matériel ?
-                        </h2>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 col-sm-offset-3">
-                        <div id="materialYes" class="v-btn center" data-ng-click="vm.material = 'yes'"
-                             data-ng-class="{activate: vm.material == 'yes'}">
-                            OUI
+                    <div data-ng-hide="vm.type.code == 'COU_13900'">
+                        <div class="card-header">
+                            <h2 class="t-center">
+                                Quelle prestation souhaitez-vous ?
+                            </h2>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <div id="materialNo" class="v-btn center" data-ng-click="vm.material = 'no'"
-                             data-ng-class="{activate: vm.material == 'no'}">
-                            NON
+                        <div class="col-sm-4 col-sm-offset-2 text-center">
+                            <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'"
+                                 data-ng-class="{activate: vm.material == 'yes'}">
+                                Pose uniquement
+                            </div>
+                            <small>Je fournis certains matériaux, à préciser</small>
                         </div>
+                        <div class="col-sm-4 text-center">
+                            <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no'"
+                                 data-ng-class="{activate: vm.material == 'no'}">
+                                Pose + matériaux
+                            </div>
+                            <small>Le Pro doit fournir les matériaux</small>
+                        </div>
+                        <p class="error center" data-ng-show="vm.error.material.flag">
+                            {{vm.error.material.message}}
+                        </p>
                     </div>
-                    <p class="error center" data-ng-show="vm.error.material.flag">
-                        {{vm.error.material.message}}
-                    </p>
-
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
                             Décrivez votre projet
@@ -96,7 +108,7 @@
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
                         data-ng-click="vm.continueProject()"
-                        data-ng-disabled="!vm.material || vm.projectDescription.length < 50">
+                        data-ng-disabled="(!vm.material && vm.type.code != 'COU_13900') || vm.projectDescription.length < 50">
                         Continuer
                     </button>
 

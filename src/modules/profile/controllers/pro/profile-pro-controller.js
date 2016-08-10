@@ -247,7 +247,6 @@
             var foundVerification = null;
             angular.forEach(vm.verifications, function(verification) {
                 if (verification.name && verification.name == verificationName) {
-                    console.log(verification.cloudinaryPublicId);
                     foundVerification = verification;
                 }
             });
