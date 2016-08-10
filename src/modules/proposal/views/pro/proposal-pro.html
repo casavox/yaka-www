@@ -429,7 +429,7 @@
 
                             <div class="pmb-block clearfix"
                                  data-ng-if="vm.projectTmp.images && vm.projectTmp.images.length > 0">
-                                <div class="pmbb-header">
+                                <div class="pmbb-header m-b-0">
                                     <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Photos</h2>
                                 </div>
                                 <div class="pmbb-body p-l-30">
@@ -437,7 +437,7 @@
                                         <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
                                             <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                                  data-sub-html="#caption{{$index}}"
-                                                 class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                                 class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4 p-t-20"
                                                  tooltip-placement="top"
                                                  uib-tooltip="{{image.description}}"
                                                  data-ng-repeat="image in vm.projectTmp.images">
@@ -445,6 +445,10 @@
                                                     <img
                                                         data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                         alt=""/>
+                                                    <div data-ng-if="image.description"
+                                                         class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
+                                                        <i class="zmdi zmdi-comment-text-alt"></i>
+                                                    </div>
                                                 </div>
                                                 <div id="caption{{$index}}" style="display:none">
                                                     <div class="galleryCaption">
