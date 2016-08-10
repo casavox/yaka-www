@@ -33,8 +33,12 @@ var LoginPage = function () {
     this.address = element(by.model('vm.newUser.defaultAddress.address'));
     this.password = element(by.model('vm.newUser.password'));
     this.confPassword = element(by.model('vm.passwordConfirm'));
-    //this.isLoginPopupOpen = this.EC.elementToBeClickable(this.registerByEmail);
     this.confirmInscription = element(by.css('[ data-ng-click="vm.register()"]'));
+    // Email de test
+    this.mailNumber = function () {
+        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1)+ (Math.random() * (20 - 1) + 1));
+    }
+    this.fakeMail = 'casavox.dev+reg' + this.mailNumber() + '@gmail.com';
 }
 
 module.exports = LoginPage;

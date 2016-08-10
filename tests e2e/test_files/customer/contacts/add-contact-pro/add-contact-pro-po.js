@@ -5,7 +5,7 @@ var AddProContactPage = function() {
 
     // Email de test
     this.mailNumber = function () {
-        return Math.floor(Math.random() * (20 - 1) + 1);
+        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1));
     }
     this.fakeMail = 'casavox.dev+pro' + this.mailNumber() + '@gmail.com';
 

@@ -6,24 +6,14 @@ exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     multiCapabilities: [
-        /*{
-            browserName: 'chrome',
-            name: 'Pro : Communicate with customer',
-            logName: 'Chrome - English',
-            count: 1,
-            shardTestFiles: false,
-            maxInstances: 1,
-            specs: ['../test_files/open-browser.js', '../test_files/pro/authentification/pro-login-spec.js', '../test_files/pro/projects/chat-with-cust-spec.js', '../test_files/pro/authentification/pro-logout-spec.js'],
-            seleniumAddress: 'http://localhost:4444/wd/hub'
-        },*/
         {
-            browserName: 'firefox',
-            name: 'Customer: Communicate with pro',
-            logName: 'firefox- English',
+            browserName: 'chrome',
+            name: 'Pro: register by email',
+            logName: 'chrome - English',
             count: 1,
             shardTestFiles: false,
             maxInstances: 1,
-            specs: ['../test_files/open-browser.js', '../test_files/customer/authentification/login-spec.js', '../test_files/customer/projects/chat-with-pro-spec.js', '../test_files/customer/authentification/logout-spec.js'],
+            specs: ['../../test_files/open-browser.js', '../../test_files/pro/authentification/ProRegisterByEmail-spec.js'],
             seleniumAddress: 'http://localhost:4444/wd/hub'
         }
     ],

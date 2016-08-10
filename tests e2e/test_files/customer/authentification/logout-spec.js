@@ -12,11 +12,7 @@ describe('User', function () {
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.nameHeader), 50000).then(function () {
             loginPage.nameHeader.click().then(function () {
                 console.log("** Click Menu utilisateur OK");
-
             });
-
         });
-
     });
-
 });

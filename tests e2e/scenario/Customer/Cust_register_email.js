@@ -5,16 +5,18 @@
 exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    capabilities : {
-        browserName: 'chrome',
-        name: 'Customer : Add Friend Contact',
-        logName: 'Chrome - English',
-        count: 1,
-        shardTestFiles: false,
-        maxInstances: 1,
-        specs: ['../test_files/open-browser.js', '../test_files/customer/authentification/login-spec.js', '../test_files/customer/contacts/add-contact-pro/add-contact-pro-spec.js', '../test_files/customer/authentification/logout-spec.js'],
-        seleniumAddress: 'http://localhost:4444/wd/hub'
-    },
+    multiCapabilities: [
+        {
+            browserName: 'chrome',
+            name: 'Customer: register by email',
+            logName: 'chrome - English',
+            count: 1,
+            shardTestFiles: false,
+            maxInstances: 1,
+            specs: ['../../test_files/open-browser.js', '../../test_files/customer/authentification/registerByEmail-spec.js'],
+            seleniumAddress: 'http://localhost:4444/wd/hub'
+        }
+    ],
 
     jasmineNodeOpts: {
         showColors: true, // Use colors in the command line report.
@@ -34,19 +36,5 @@ exports.config = {
             });
         });
     },
-    /*
-     capabilities: {
-     browserName: 'chrome',
-     chromeOptions: {
-     args: [
-     '--start-maximized'
-     ]
-     }
-     },
-
-     capabilities: {
-     'browserName': 'firefox',
-     },
-     */
 
 }

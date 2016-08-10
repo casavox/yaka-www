@@ -7,12 +7,12 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     capabilities : {
         browserName: 'chrome',
-        name: 'Customer : Add Friend Contact',
+        name: 'Creation Project',
         logName: 'Chrome - English',
         count: 1,
         shardTestFiles: false,
         maxInstances: 1,
-        specs: ['../test_files/open-browser.js', '../test_files/customer/authentification/login-spec.js', '../test_files/customer/contacts/add-contact-friend/add-contact-friend-spec.js', '../test_files/customer/authentification/logout-spec.js'],
+        specs: ['../../test_files/open-browser.js', '../../test_files/customer/authentification/login-spec.js', '../../test_files/customer/projects/project-creation-spec.js', '../../test_files/customer/authentification/logout-spec.js'],
         seleniumAddress: 'http://localhost:4444/wd/hub'
     },
 

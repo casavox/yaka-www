@@ -1,5 +1,5 @@
 require('jasmine-bail-fast');
-var ProjectPage = require('../../customer/projects/project-po.js');
+var ProjectPage = require('./pro-project-po.js');
 
 describe('This pro', function () {
     var projectPage = new ProjectPage();
@@ -8,8 +8,7 @@ describe('This pro', function () {
 
     it('should send a message to customer', function () {
         console.log("- Discussion projet avec client");
-        browser.wait(projectPage.EC.elementToBeClickable(projectPage.workList), 20000).then(function () {
-            browser.sleep(500);
+        browser.wait(projectPage.EC.presenceOf(projectPage.workList), 20000).then(function () {
             projectPage.workList.click().then(function () {
                 console.log("-- Click bouton 'mes chantiers' OK");
                 browser.wait(projectPage.EC.elementToBeClickable(projectPage.firstWork), 20000).then(function () {
@@ -32,7 +31,6 @@ describe('This pro', function () {
                                                     console.log('Le dernier message envoyé correspond au dernier message reçu');
                                                 }
                                                 console.log("---- Messages 'Toto by pro' envoyé OK");
-                                                browser.sleep(10000);
                                             });
                                         });
                                     });
