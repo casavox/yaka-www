@@ -10,6 +10,7 @@ var LoginPage = function () {
 
 
     // Log In
+    this.menuNewProject = element(by.linkText('Publier un projet'));
     this.homeSectionLogin = element(by.css('homeSection1Login'));
     this.userEmail = element(by.model('vm.loginUser.email'));
     this.pwd = element(by.model('vm.loginUser.password'));

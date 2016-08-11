@@ -7,6 +7,7 @@ describe('User', function() {
 
 
     it('should log out', function() {
+        console.log("(((***       pro-logout-spec.js       ***)))");
         console.log("* Début du test côté pro : déconnexion");
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.nameHeader), 5000).then(function() {

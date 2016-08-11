@@ -11,6 +11,7 @@ describe('The user', function () {
 
 
     it('should log in', function () {
+        console.log("(((***       pro-login-spec.js       ***)))");
         console.log("* Début du test côté pro : connexion");
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionLogin), 20000).then(function () {

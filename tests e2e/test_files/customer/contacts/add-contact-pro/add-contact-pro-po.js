@@ -3,12 +3,6 @@ var AddProContactPage = function() {
     this.wait4Anim = 500;
     this.EC = protractor.ExpectedConditions;
 
-    // Email de test
-    this.mailNumber = function () {
-        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1));
-    }
-    this.fakeMail = 'casavox.dev+pro' + this.mailNumber() + '@gmail.com';
-
     // Navigation dans menu contacts
     this.menuMyContacts = element(by.linkText('Mes contacts'));
     this.addProButton = element(by.id('invite-pro-button'));

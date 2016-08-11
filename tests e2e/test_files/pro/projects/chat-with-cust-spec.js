@@ -7,6 +7,7 @@ describe('This pro', function () {
 
 
     it('should send a message to customer', function () {
+        console.log("(((***       chat-with-cust-spec.js       ***)))");
         console.log("- Discussion projet avec client");
         browser.wait(projectPage.EC.presenceOf(projectPage.workList), 20000).then(function () {
             projectPage.workList.click().then(function () {

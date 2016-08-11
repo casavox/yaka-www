@@ -7,6 +7,7 @@ describe('This user', function () {
 
 
     it('should modify one project', function () {
+        console.log("(((***       project-modif-spec.js       ***)))");
         console.log("- Début du test : Modifier description du projet");
 
         browser.wait(projectPage.EC.elementToBeClickable(projectPage.menuMyProjects), 20000).then(function () {

@@ -7,8 +7,8 @@ describe('The user', function () {
 
 
     it('should publish a new project', function () {
+        console.log("(((***       project-creation-spec.js       ***)))");
         console.log("- Début du test : Modifier description du projet");
-
 
         browser.wait(projectPage.EC.elementToBeClickable(projectPage.menuNewProject), 20000).then(function () {
             projectPage.menuNewProject.click().then(function () {
