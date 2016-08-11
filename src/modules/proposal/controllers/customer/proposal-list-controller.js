@@ -22,7 +22,7 @@
         if ($stateParams.projectId) {
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("my-projects");
+            $state.go("dashboard");
         }
 
         function selectProposal(p) {
@@ -31,7 +31,7 @@
 
         function succesProjectGET(res) {
             vm.project = res;
-            $rootScope.pageName = $filter('yakaTranslateTitle')(vm.project.title);
+            $rootScope.pageName = vm.project.title;
         }
 
         function errorProjectGET() {

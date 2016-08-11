@@ -25,7 +25,15 @@ angular.module('Yaka')
                 scope.disableSending = false;
 
                 scope.getProUser = function () {
-                    if ($localStorage.user.professional) {
+                    if ($localStorage.user && $localStorage.user.professional) {
+                        return scope.userMe;
+                    } else {
+                        return scope.userOther;
+                    }
+                };
+
+                scope.getCustomerUser = function () {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -37,7 +45,7 @@ angular.module('Yaka')
                         return;
                     }
                     var sendMessageApi;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         sendMessageApi = networkService.sendMessage;
                     } else {
                         sendMessageApi = networkService.sendMessagePro;
@@ -53,13 +61,13 @@ angular.module('Yaka')
 
                 scope.showRight = function (message) {
                     if (message.author && message.author == 'CUSTOMER') {
-                        if ($localStorage.user.professional) {
+                        if ($localStorage.user && $localStorage.user.professional) {
                             return false;
                         } else {
                             return true;
                         }
                     } else if (message.author && message.author == 'PRO') {
-                        if ($localStorage.user.professional) {
+                        if ($localStorage.user && $localStorage.user.professional) {
                             return true;
                         } else {
                             return false;
@@ -80,7 +88,7 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -106,7 +114,7 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -136,11 +144,17 @@ angular.module('Yaka')
                 }
 
                 function setupStomp() {
-                    $stomp
-                        .connect(CONFIG.API_BASE_URL + '/connect', {token: $localStorage.token})
 
-                        .then(function () {
-                            $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
+                    var subscription = null;
+
+                    $stomp.connect(CONFIG.API_BASE_URL + '/connect',
+                        {token: $localStorage.token},
+                        function () {
+                            if (subscription != null) {
+                                subscription.unsubscribe();
+                            }
+                            subscription = $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
+
                                 scope.messages.push(payload);
 
                                 scope.$apply(function () {
@@ -151,7 +165,7 @@ angular.module('Yaka')
                                 'token': $localStorage.token
                             });
                         }, function () {
-                            alertMsg.send("Erreur de connection au chat.", "danger")
+                            alertMsg.send("Connexion au chat impossible, nouvelle tentative en cours...", "danger")
                         });
                 }
 
@@ -166,7 +180,7 @@ angular.module('Yaka')
                 scope.uploadFiles = function (files, invalides) {
                     if (invalides.length > 0) {
                         if (invalides[0].$error == "maxSize")
-                            alertMsg.send("Taille maximum : 5Mo", "danger");
+                            alertMsg.send("Taille maximum : 20Mo", "danger");
                     }
                     if (!files) {
                         return
@@ -188,8 +202,20 @@ angular.module('Yaka')
                                 data.context = {custom: {photo: "Chat : " + scope.chatId}};
                                 file.result = data;
                                 scope.newMessage.cloudinaryPublicId = data.public_id;
+                                scope.newMessage.filename = data.original_filename;
+                                scope.newMessage.resourceType = data.resource_type;
+                                scope.newMessage.format = data.format;
+
+                                if (!data.format &&
+                                    data.public_id.lastIndexOf(".") != -1) {
+                                    scope.extension = data.public_id.substring(data.public_id.lastIndexOf(".") + 1);
+                                } else {
+                                    scope.extension = null;
+                                }
+
                             }).error(function (data, status, headers, config) {
                                 file.result = data;
+                                alertMsg.send("Impossible d'envoyer ce fichier", "danger");
                             });
                         }
                     });
@@ -199,6 +225,8 @@ angular.module('Yaka')
                 attr.$observe('proposalStatus', function () {
                     if (scope.proposalStatus == "PRO_DECLINED" ||
                         scope.proposalStatus == "CUSTOMER_DECLINED" ||
+                        scope.proposalStatus == "RECO_PRO_DECLINED" ||
+                        scope.proposalStatus == "RECO_CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
                         scope.proposalStatus == "COMPLETED") {
                         scope.disableSending = true;
@@ -213,7 +241,7 @@ angular.module('Yaka')
 
                 function setChatRead() {
                     var apiSetChatRead;
-                    if (!$localStorage.user.professional) {
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         apiSetChatRead = networkService.setChatRead;
                     } else {
                         apiSetChatRead = networkService.proSetChatRead;

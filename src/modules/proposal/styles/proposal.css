@@ -92,11 +92,11 @@
 }
 
 .proposalMainView .pm-overview {
-    height: 150px;
+    min-height: 100px;
 }
 
 .proposalMainView .pm-overview.pro {
-    height: 100px;
+    min-height: 100px;
 }
 
 .proposalProName {
@@ -278,7 +278,7 @@
     }
 
     #profile-main.no-scroll {
-        height: calc(100vh - 145px) !important;
+        height: calc(100vh - 150px) !important;
     }
 
     .proposalProjectTitle {
@@ -304,11 +304,11 @@
 }
 
 #profile-main.no-scroll {
-    height: calc(100vh - 240px);
+    height: calc(100vh - 255px);
 }
 
 #profile-main.pro.no-scroll {
-    height: calc(100vh - 170px);
+    height: calc(100vh - 175px);
 }
 
 .proProposalListPrice {
@@ -317,7 +317,48 @@
     margin-top: 10px;
 }
 
-.unreadMessagesIndicator.proProposalList {
-    left: 55px;
-    top: 27px;
+@media (min-width: 768px) {
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+    .proNetworkProjectButtonLabel {
+        margin-left: 30%;
+        width: 70%;
+        margin-bottom: -10px;
+    }
 }

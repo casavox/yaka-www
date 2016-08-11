@@ -607,6 +607,21 @@
     }
 }
 
+@media (min-width: 768px) {
+    .supportGenderR {
+        width: calc(16.66666667% - 10px);
+        margin-right: 10px;
+    }
+    .supportNameLR {
+        width: calc(41.66666667% - 20px);
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .supportNameL {
+        width: calc(41.66666667% - 10px);
+        margin-left: 10px;
+    }
+}
 @media (max-width: 767px) {
     .proHomeSection1Container {
         background: none;

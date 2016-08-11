@@ -26,7 +26,6 @@
         };
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
-        vm.sendOffer = sendOffer;
         vm.getTags = getTags;
         vm.edit = edit;
         vm.cancel = cancel;
@@ -96,23 +95,19 @@
         }
 
         function cancelProposal(cancelProposalMessage) {
-            if (cancelProposalMessage && cancelProposalMessage.length >= 20) {
-                networkService.proProposalDeclinePOST($stateParams.proposalId,
-                    {text: cancelProposalMessage},
-                    function (res) {
-                        alertMsg.send("Votre proposition à bien été retirée", "info");
-                        $state.go("pro-proposals");
-                    }, function () {
-                        alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
-                    }
-                );
-            } else {
-                alertMsg.send("Vous devez accompagner le retrait de votre proposition d'un message au client (30 caractères minimum)", "danger");
-            }
+            networkService.proProposalDeclinePOST($stateParams.proposalId,
+                {text: cancelProposalMessage},
+                function (res) {
+                    alertMsg.send("Votre proposition à bien été retirée", "info");
+                    $state.go("pro-proposals");
+                }, function () {
+                    alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
+                }
+            );
         }
 
         function cancelProposalModal() {
-            modalService.cancelProposal('cancelProposalContent.html', 'animated zoomIn', function (chatMessage) {
+            modalService.proCancelProposal(vm.proposal.status, function (chatMessage) {
                 vm.cancelProposal(chatMessage);
             });
         }
@@ -150,7 +145,9 @@
             var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    res.push(vm.project.activities[i].code);
+                    if (!_.includes(res, vm.project.activities[i].code)) {
+                        res.push(vm.project.activities[i].code);
+                    }
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
@@ -159,43 +156,27 @@
             return res;
         }
 
-        function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 30 && vm.offer.comment.indexOf(' ') > -1) {
-                vm.offer.date.date = vm.offer.date.date || null;
-                vm.offer.comment = vm.offer.comment || "";
-                var formData = {
-                    project: {id: vm.projectTmp.id},
-                    price: parseInt(vm.offer.price.price),
-                    comment: vm.offer.comment
-                };
-                formData.startDate = $filter('date')(vm.offer.date.date, "yyyy-MM-dd");
-                networkService.proposalPOST(formData, function (res) {
-                    alertMsg.send("Proposition envoyée avec succès", "success");
-                }, function (res) {
-                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                });
-            } else {
-                vm.error.comment.message = "Vous devez accompagner votre proposition d'un premier message au client (30 caractères minimums)"
-                vm.error.comment.falg = true;
-            }
-        }
-
         function selectDate() {
             vm.proposalTmp.startDate = $filter('date')(vm.dt, 'yyyy-MM-dd');
         }
 
         function selectPrice() {
             vm.error.price = vm.error.price || {};
-            if (vm.myPrice <= 10) {
-                vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
+            if (vm.myPrice <= 10 || vm.myPrice > 1000000) {
+                vm.error.price.message = "Merci d'indiquer un montant réaliste";
                 vm.error.price.flag = true;
-            } else if (vm.myPrice > 1000000) {
-                vm.error.price.message = "Veuillez entrer un montant réaliste";
-                vm.error.price.flag = true;
+            } else {
+                vm.proposalTmp.price = vm.myPrice;
+                vm.myPriceFlag = false;
+                vm.error.price.flag = false;
             }
-            vm.proposalTmp.price = vm.myPrice;
-            vm.myPriceFlag = false;
-            vm.error.price.flag = false;
+        }
+
+        vm.isValidPrice = function () {
+            if (!vm.myPrice || vm.myPrice == 0 || vm.myPrice <= 10 || vm.myPrice > 1000000) {
+                return false;
+            }
+            return true;
         }
 
         function selectImagePreview(media) {
@@ -233,7 +214,7 @@
                 vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
             }
             $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
-                " - " + $filter('yakaTranslateTitle')(vm.project.title);
+                " - " + vm.project.title;
 
             if (vm.proposal.status != 'START') {
                 $state.go("pro-proposal", {'proposalId': vm.proposal.id});
@@ -269,14 +250,14 @@
             if (!angular.isUndefined(vm.projectTmp) && vm.projectTmp.desiredDatePeriod) {
                 switch (vm.projectTmp.desiredDatePeriod) {
                     case "SPECIFIC":
-                        return "autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "Autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_WEEK":
-                        return "dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "Dans la semaine autour du " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "WITHIN_A_MONTH":
-                        return "avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
+                        return "Avant le " + moment(vm.projectTmp.desiredDate).format("D MMMM YYYY");
                     case "NONE":
                     default:
-                        return 'dès que possible';
+                        return 'Dès que possible';
                 }
             } else {
                 return "";
@@ -286,5 +267,108 @@
         function errorProjectGET() {
             $state.go("findjobs");
         }
+
+        vm.getUpState = function () {
+            if (!vm.proposal || !vm.proposal.status) {
+                return "home";
+            }
+
+            switch (vm.proposal.status) {
+                case "RECOMMENDATION":
+                    return "pro-dashboard";
+                case "START":
+                case "PRO_DECLINED":
+                case "CUSTOMER_DECLINED":
+                case "RECO_PRO_DECLINED":
+                case "RECO_CUSTOMER_DECLINED":
+                    return "pro-proposals";
+                case "COMPLETED":
+                case "SELECTED":
+                case "RATE_PRO":
+                    return "pro-jobs";
+            }
+        };
+
+        vm.getUpName = function () {
+            switch (vm.proposal.status) {
+                case "RECOMMENDATION":
+                    return "Accueil";
+                case "START":
+                case "PRO_DECLINED":
+                case "CUSTOMER_DECLINED":
+                case "RECO_PRO_DECLINED":
+                case "RECO_CUSTOMER_DECLINED":
+                    return "Mes devis";
+                case "COMPLETED":
+                case "SELECTED":
+                case "RATE_PRO":
+                    return "Mes chantiers";
+            }
+        };
+
+        vm.offer = {};
+
+        vm.editPriceOffer = function () {
+            vm.price = vm.offer.price;
+            vm.myPriceFlagOffer = true;
+        };
+
+        vm.editDateOffer = function () {
+            vm.dt = vm.offer.date;
+            vm.myDateFlagOffer = true;
+        };
+
+        vm.formIsValid = function () {
+            return (vm.offer &&
+            vm.offer.comment &&
+            vm.offer.comment.length >= 40);
+        };
+
+        vm.sendOffer = function () {
+            if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
+                vm.offer.comment = vm.offer.comment || "";
+                var formData = {
+                    project: {id: vm.projectTmp.id},
+                    comment: vm.offer.comment
+                };
+                if (vm.offer.price && vm.offer.price) {
+                    formData.price = parseInt(vm.offer.price);
+                }
+                if (vm.offer.date && vm.offer.date) {
+                    formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
+                }
+                networkService.proposalPOST(formData, function (res) {
+                    alertMsg.send("Proposition envoyée avec succès", "success");
+                    $state.go('pro-proposals');
+                }, function (res) {
+                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
+                });
+            }
+        };
+
+
+        vm.selectDateOffer = function () {
+            vm.offer.date = vm.dt;
+            vm.myDateFlagOffer = false;
+        };
+
+        vm.selectPriceOffer = function () {
+            vm.error.price = vm.error.price || {};
+            if (vm.price <= 30 || vm.price > 1000000) {
+                vm.error.price.message = "Merci d'indiquer un montant réaliste";
+                vm.error.price.flag = true
+            } else {
+                vm.offer.price = vm.price;
+                vm.myPriceFlagOffer = false;
+                vm.error.price.flag = false;
+            }
+        };
+
+        vm.isValidPriceOffer = function () {
+            if (!vm.price || vm.price == 0 || vm.price <= 30 || vm.price > 1000000) {
+                return false;
+            }
+            return true;
+        };
     }
 })();

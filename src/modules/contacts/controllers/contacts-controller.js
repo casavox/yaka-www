@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG) {
 
         $rootScope.pageName = "Mes contacts";
         $rootScope.updateProfile();
@@ -18,13 +18,6 @@
             networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
             $localStorage.invitationId = '';
         }
-
-        vm.getMenuItemClass = function (state) {
-            if (state == "contacts") {
-                return "active-menu";
-            }
-            return "";
-        };
 
         vm.MENU_ALL = "ALL";
         vm.MENU_PROS = "PROS";
@@ -44,7 +37,7 @@
             if (vm.currentMenuItem == vm.MENU_ALL) {
                 return "Mes Contacts";
             } else if (vm.currentMenuItem == vm.MENU_PROS) {
-                if ($localStorage.user.professional) {
+                if ($localStorage.user && $localStorage.user.professional) {
                     return "Collègues";
                 } else {
                     return "Artisans";
@@ -207,6 +200,7 @@
         function succesInviteCustomerPOST(res) {
             vm.invitCustomer = "";
             vm.closeFriendPopup();
+            vm.closeGmailPopup();
             reloadContactsAndInvitations();
             alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
@@ -243,6 +237,7 @@
                 address: {}
             };
             vm.phoneNumber = "";
+            vm.multiChoiceInput.selected = [];
             reloadContactsAndInvitations();
             alertMsg.send("Invitation envoyée", "success");
         }
@@ -288,12 +283,14 @@
                 {id: 5, label: "PAI_6000"},
                 {id: 6, label: "WAL_7000"},
                 {id: 7, label: "INS_8000"},
-                {id: 8, label: "COU_9000"},
+                {id: 8, label: "BAT_10100"},
                 {id: 9, label: "KIT_10000"},
                 {id: 10, label: "ROO_11000"},
                 {id: 11, label: "GAT_12000"},
                 {id: 12, label: "GAR_13000"},
-                {id: 13, label: "CON_14000"}
+                {id: 13, label: "COU_13900"},
+                {id: 14, label: "CON_14000"},
+                {id: 15, label: "REN_500"}
             ],
             selected: []
         };
@@ -376,7 +373,7 @@
             if (vm.invitPro.firstName == '' || !vm.isNameValid(vm.invitPro.firstName) ||
                 vm.invitPro.lastName == '' || !vm.isNameValid(vm.invitPro.lastName) || !$('#proInvitePhone').intlTelInput("isValidNumber") || vm.invitPro.phone == '' ||
                 vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) ||
-                vm.invitPro.activities.length == 0 ||
+                vm.invitPro.activities.length == 0 || !vm.invitPro.relation ||
                 vm.invitPro.address.address == undefined || vm.invitPro.address.address == ''
             ) {
                 return false;
@@ -384,8 +381,8 @@
             return true;
         };
 
-        vm.refuseInvitation = function (invitationId) {
-            networkService.refuseInvitationPOST(invitationId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
+        vm.refuseInvitation = function (inviterId) {
+            networkService.refuseInvitationPOST(inviterId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
         };
 
         function succesRefuseInvitationPOST(res) {
@@ -401,8 +398,8 @@
             }
         }
 
-        vm.acceptInvitation = function (invitationId) {
-            networkService.acceptInvitationPOST(invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+        vm.acceptInvitation = function (inviterId) {
+            networkService.acceptInvitationPOST(inviterId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
         };
 
         function succesAcceptInvitationPOST(res) {
@@ -439,6 +436,74 @@
             } else {
                 return "overlayInvisible";
             }
+        };
+
+        vm.showGmailPopup = false;
+        vm.gmailContacts = [];
+
+        vm.loadGmailContacts = function () {
+            vm.openGmailPopup();
+            gmailContacts.getGmailContacts(function (contacts) {
+                vm.gmailContacts = contacts;
+                $scope.$applyAsync();
+            });
+        };
+
+        vm.openGmailPopup = function () {
+            vm.showGmailPopup = true;
+        };
+
+        vm.closeGmailPopup = function () {
+            vm.showGmailPopup = false;
+            vm.gmailContacts = [];
+            vm.selectAll = false;
+        };
+
+        vm.setAllContactsSelected = function (selected) {
+            if (vm.gmailContacts) {
+                for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                    vm.gmailContacts[i].selected = selected;
+                }
+            }
+        };
+
+        vm.selectAllChanged = function () {
+            if (vm.selectAll) {
+                vm.setAllContactsSelected(true);
+            } else {
+                vm.setAllContactsSelected(false);
+            }
+        };
+
+        vm.showGmailInviteButton = function () {
+            if (vm.gmailContacts) {
+                for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                    if (vm.gmailContacts[i].selected) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+
+        vm.sendGoogleCustomerInvit = function () {
+
+            var invits = [];
+
+            for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                if (vm.gmailContacts[i].selected) {
+                    invits.push(vm.gmailContacts[i].address);
+                }
+            }
+
+            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
+        };
+
+        vm.getFacebookIframeUrl = function () {
+            if ($localStorage.user) {
+                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.id + "&layout=button&size=large&mobile_iframe=true&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
+            }
+            return "";
         };
     }
 })

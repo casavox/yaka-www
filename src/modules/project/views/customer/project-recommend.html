@@ -1,0 +1,584 @@
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="dashboard"
+                    title="Recommander un pro"
+                    current-user="app.getUser()"></yaka-mobile-header>
+
+<section id="main">
+
+    <ol class="breadcrumb container hidden-xs">
+        <li class="pointer" data-ui-sref="dashboard">
+            Accueil
+        </li>
+        <li class="active">
+            Recommander un pro
+        </li>
+    </ol>
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+
+        <div class="container">
+
+            <div class="col-sm-6">
+                <div class="block-header">
+                    <h2>Recommander à</h2>
+                </div>
+                <div class="projectRecommendTopCard card">
+                    <div class="clearfix">
+
+                        <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
+
+                        <div class="dashboardRecommendProjectText">
+                            <casa-name-and-contact class="yakaEllipsis" user="vm.project.user"
+                                                   invite="true"></casa-name-and-contact>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="block-header">
+                    <h2>Pour</h2>
+                </div>
+                <div class="projectRecommendTopCard card">
+                    <div class="clearfix">
+
+                        <div class="proposalIconBackground lv-img v-icon-{{vm.project.mainActivity.code}}-white">
+                        </div>
+
+                        <div class="dashboardRecommendProjectText right">
+                            <div class="yakaEllipsis f-s-16">
+                                {{vm.project.title}}
+                            </div>
+
+                            <div class="yakaEllipsis" data-ng-if="vm.project.address.address">
+                                {{vm.project.address.address}}
+                            </div>
+                            <div class="yakaEllipsis" data-ng-if="!vm.project.address.address">
+                                {{vm.project.address.postalCode}} {{vm.project.address.locality}}
+                            </div>
+
+                            <div class="yakaEllipsis">
+                                {{vm.getWhen()}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" data-ng-if="vm.professionals">
+                <div class="block-header">
+                    <h2>Mes professionels</h2>
+                </div>
+                <div class="card">
+                    <div class="card-header projectRecommendGrayHeader">
+                        <h2>Recommandez un Pro
+                            <small>
+                                Liste de vos Pros ayant la compétence demandée
+                            </small>
+                        </h2>
+                    </div>
+
+                    <div class="proToRecommendList" data-ng-if="vm.professionals && vm.professionals.length > 0">
+                        <div class="p-10 p-relative proToRecommend pointer"
+                             data-ng-repeat="professional in vm.professionals"
+                             data-ng-click="vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
+                             data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
+
+                            <yaka-avatar class="m-l-20" size="40" user="professional.user"></yaka-avatar>
+
+                            <cl-image
+                                public-id="{{professional.mainPartner.cloudinaryPublicId}}"
+                                class="proposalProMainPartnerImg proToRecommendPartner" format="png"
+                                data-ng-if="professional.mainPartner.cloudinaryPublicId">
+                                <cl-transformation height="25" width="25" crop="fill" radius="max"/>
+                            </cl-image>
+
+                            <div class="proToRecommendRight">
+
+                                <div class="yakaEllipsis">
+                                    <b>
+                                        {{professional.user.firstName}} {{professional.user.firstName}}
+                                        (
+                                        <casa-contact user="professional.user"></casa-contact>
+                                        )
+                                    </b>
+                                </div>
+
+                                <div class="c-gray">
+                                    {{professional.company.name}} ({{professional.company.address.postalCode}}
+                                    {{professional.company.address.locality}})
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="projectRecommendGrayHeader"
+                         data-ng-if="vm.professionals && vm.professionals.length > 0">
+                        <button class="btn btn-default waves-effect c-orange m-15"
+                                data-ng-click="vm.openProPopup()">
+                            Ajouter un pro
+                        </button>
+                    </div>
+                    <div class="f-s-16 t-center p-t-30 p-b-30 p-relative p-l-10 p-r-10"
+                         data-ng-if="vm.professionals && vm.professionals.length == 0">
+
+                        <i class="zmdi zmdi-accounts zmdi-hc-4x c-gray"></i>
+
+                        <div class="m-t-20">
+                            Aucun de vos Pros ne correspond.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" data-ng-if="vm.professionals">
+                <div class="block-header">
+                    <h2>
+                        <span data-ng-if="vm.selectedProfessional">
+                            Recommandez ce Pro sur ce projet
+                        </span>
+                        <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
+                            Choisir un Pro
+                        </span>
+                        <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
+                            Ajouter un Pro
+                        </span>
+                    </h2>
+                </div>
+
+                <div class="recommendProSelected f-s-16 t-center p-t-30 p-b-30 p-relative"
+                     data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
+
+                    <i class="zmdi zmdi-account-box-o zmdi-hc-4x c-gray"></i>
+
+                    <div class="m-t-20">
+                        Sélectionnez un pro et retrouvez ici
+                    </div>
+                    <div>
+                        le résumé de son profil.
+                    </div>
+                    <i class="zmdi zmdi-chevron-left leftArrow"></i>
+                </div>
+
+                <div class="card selectedProDetails" data-ng-if="vm.selectedProfessional">
+
+                    <div class="card-header clearfix">
+
+                        <yaka-avatar size="50" user="vm.selectedProfessional.user"></yaka-avatar>
+
+                        <div class="dashboardRecommendProjectText professional">
+                            <div class="yakaEllipsis f-s-16">
+                                <casa-name-and-contact user="vm.selectedProfessional.user"
+                                                       invite="true"></casa-name-and-contact>
+                            </div>
+
+                            <div class="yakaEllipsis">
+                                Société {{vm.selectedProfessional.company.name}}
+                                ({{vm.selectedProfessional.company.address.postalCode}}
+                                {{vm.selectedProfessional.company.address.locality}})
+                            </div>
+                        </div>
+
+                        <div class="proSelectedPartner t-center"
+                             data-ng-if="vm.selectedProfessional.mainPartner.cloudinaryPublicId">
+
+                            <div>
+                                Partenaire
+                            </div>
+
+                            <cl-image
+                                public-id="{{vm.selectedProfessional.mainPartner.cloudinaryPublicId}}"
+                                class="m-t-10" format="png">
+                                <cl-transformation height="40" width="40" crop="fill" radius="max"/>
+                            </cl-image>
+
+                        </div>
+
+                        <div class="form-group m-t-20">
+                            <div class="fg-line">
+                                <textarea class="form-control" data-ng-model="vm.recommendMsg.text" data-auto-size=""
+                                          placeholder="Écrire un commentaire..."
+                                          data-autosize-on="true"></textarea>
+                            </div>
+                        </div>
+
+                        <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
+                                data-ng-click="vm.recommendPro(vm.selectedProfessional.id)">
+                            Recommander ce Pro
+                        </button>
+                    </div>
+
+                    <div class="card-body card-padding">
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-star zmdi-hc-fw"></i> Expérience et qualités</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt>Métier</dt>
+                                        <dd>
+                                            {{vm.getExperienceYearNumber()}} ans d'expérience
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.selectedProfessional.qualities && vm.selectedProfessional.qualities.length > 0">
+                                        <dt>Qualités reconnues</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="quality in vm.selectedProfessional.qualities">
+                                                    {{'CRITERION_' + quality.name | translate}}
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.selectedProfessional.yakaProjectNumber">
+                                        <dt>Projets réalisés</dt>
+                                        <dd>
+                                        <span
+                                            data-ng-if="vm.selectedProfessional.yakaProjectNumber > 1">
+                                            <b>{{vm.selectedProfessional.yakaProjectNumber}} projets</b> réalisés sur YakaClub
+                                        </span>
+                                        <span
+                                            data-ng-if="vm.selectedProfessional.yakaProjectNumber == 1">
+                                            <b>1 projet</b> réalisé sur YakaClub
+                                        </span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal" data-ng-if="vm.selectedProfessional.likes">
+                                        <dt>Recommandations</dt>
+                                        <dd>
+                                        <span
+                                            data-ng-if="vm.selectedProfessional.likes > 1">
+                                            <b>{{vm.selectedProfessional.likes}} membres</b> recommandent ce Pro
+                                        </span>
+                                        <span
+                                            data-ng-if="vm.selectedProfessional.likes == 1">
+                                            <b>1 membre</b> recommande ce Pro
+                                        </span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.selectedProfessional.partners && vm.selectedProfessional.partners.length > 0">
+                                        <dt>Partenaire</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="partner in vm.selectedProfessional.partners">
+                                                    {{partner.name}}
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.selectedProfessional.certifications && vm.selectedProfessional.certifications.length > 0">
+                                        <dt>Certifications</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="certification in vm.selectedProfessional.certifications">
+                                                    {{certification.name}}
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.selectedProfessional.businessRegistrationOk || vm.selectedProfessional.insuranceOk">
+                                        <dt>Statut entreprise</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-if="vm.selectedProfessional.businessRegistrationOk">
+                                                    Entreprise vérifiée
+                                                </li>
+                                                <li data-ng-if="vm.selectedProfessional.insuranceOk">
+                                                    Assuré
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2>
+                                    <i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Présentation
+                                </h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    {{vm.selectedProfessional.aboutMe}}
+                                    <div class="lightbox photos clearfix m-t-15"
+                                         data-ng-if="vm.selectedProfessional.portfolio && vm.selectedProfessional.portfolio.length > 0">
+                                        <div
+                                            data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                            class="lightboxItemAngular col-md-4 col-sm-4 col-xs-4"
+                                            data-ng-repeat="image in vm.selectedProfessional.portfolio">
+                                            <div class="lightbox-item p-item">
+                                                <img
+                                                    data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-ng-if="vm.professionals && vm.professionals.length == 0">
+
+                    <div class="card-header">
+                        <h2>
+                            Invitez un professionnel
+                            <small>
+                                Ce Pro sera prévenu par email de ce projet.
+                            </small>
+                        </h2>
+                    </div>
+
+                    <div class="card-body card-padding clearfix">
+                        <form name="inviteForm">
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-20 halfInput"
+                                 data-ng-class="{'has-error': !vm.invitPro.firstName}">
+
+                                <div class="fg-line">
+                                    <input type="text" name="firstName" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.firstName"
+                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                    <label class="fg-label">Prénom</label>
+                                </div>
+                                <div data-ng-messages="inviteForm.firstName.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-20 halfInput halfInputRight"
+                                 data-ng-class="{'has-error': !vm.invitPro.lastName}">
+
+                                <div class="fg-line">
+                                    <input type="text" name="lastName" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.lastName"
+                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                    <label class="fg-label">Nom</label>
+                                </div>
+                                <div data-ng-messages="inviteForm.lastName.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.invitPro.email}">
+                                <div class="fg-line">
+                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.email"
+                                           required="required" yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <div data-ng-messages="inviteForm.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">
+                                        Cet email n'est pas valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.invitPro.phone}">
+                                <div class="fg-line">
+                                    <input type="text" name="phoneNumber"
+                                           class="form-control fg-input"
+                                           required="required"
+                                           data-ng-model="vm.invitPro.phone" yaka-input-phone>
+                                    <label class="fg-label fg-label-phone">Téléphone</label>
+                                </div>
+                                <div data-ng-messages="inviteForm.phoneNumber.$error">
+                                    <small class="help-block" data-ng-message="invalidPhone">
+                                        Ce numéro de téléphone n'est pas valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-10"
+                                 data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.invitPro.address.address"
+                                           type="text"
+                                           name="address"
+                                           required="required"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding select">
+                                <select class="form-control m-t-10"
+                                        data-ng-model="vm.invitPro.relation">
+                                    <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                                    <option value="CLIENT">Client</option>
+                                    <option value="FRIEND">Ami</option>
+                                    <option value="FAMILY">Famille</option>
+                                    <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput"
+                                 data-ng-dropdown-multiselect=""
+                                 options="vm.multiChoiceInput.options"
+                                 selected-model="vm.multiChoiceInput.selected"
+                                 extra-settings="vm.multiChoiceInput.settings"
+                                 translation-texts="vm.multiChoiceInput.translation"
+                                 checkboxes="true"></div>
+
+                            <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
+                                    data-ng-disabled="!vm.formIsValid()"
+                                    data-ng-click="vm.sendProInvit()">
+                                Inviter
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="yakaPopup" data-ng-show="vm.showInvitProPopup" data-ng-click="vm.closeProPopup()" data-ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton"
+                 src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.closeProPopup()"
+                 alt=""/>
+
+            <div class="card-header p-l-0 p-r-0">
+                <h2>
+                    Invitez un professionnel
+                    <small>
+                        Ce Pro sera prévenu par email de ce projet.
+                    </small>
+                </h2>
+            </div>
+
+            <form name="inviteForm">
+                <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-20 halfInput"
+                     data-ng-class="{'has-error': !vm.invitPro.firstName}">
+
+                    <div class="fg-line">
+                        <input type="text" name="firstName" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.firstName"
+                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <label class="fg-label">Prénom</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.firstName.$error">
+                        <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                            valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-20 halfInput halfInputRight"
+                     data-ng-class="{'has-error': !vm.invitPro.lastName}">
+
+                    <div class="fg-line">
+                        <input type="text" name="lastName" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.lastName"
+                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <label class="fg-label">Nom</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.lastName.$error">
+                        <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                            valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.invitPro.email}">
+                    <div class="fg-line">
+                        <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                               class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.email"
+                               required="required" yaka-input-email>
+                        <label class="fg-label">Email</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.username.$error">
+                        <small class="help-block" data-ng-message="invalidEmail">
+                            Cet email n'est pas valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.invitPro.phone}">
+                    <div class="fg-line">
+                        <input type="text" name="phoneNumber"
+                               class="form-control fg-input"
+                               required="required"
+                               data-ng-model="vm.invitPro.phone" yaka-input-phone>
+                        <label class="fg-label fg-label-phone">Téléphone</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.phoneNumber.$error">
+                        <small class="help-block" data-ng-message="invalidPhone">
+                            Ce numéro de téléphone n'est pas valide
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-10"
+                     data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                    <div class="fg-line">
+                        <input type="text" class="form-control fg-input input-sm"
+                               vs-google-autocomplete="vm.autocomplete.options"
+                               vs-autocomplete-validator
+                               data-ng-model="vm.invitPro.address.address"
+                               type="text"
+                               name="address"
+                               required="required"
+                               placeholder=""
+                               id="address">
+                        <label class="fg-label">Ville</label>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 no-padding select">
+                    <select class="form-control m-t-10"
+                            data-ng-model="vm.invitPro.relation">
+                        <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                        <option value="CLIENT">Client</option>
+                        <option value="FRIEND">Ami</option>
+                        <option value="FAMILY">Famille</option>
+                        <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput"
+                     data-ng-dropdown-multiselect=""
+                     options="vm.multiChoiceInput.options"
+                     selected-model="vm.multiChoiceInput.selected"
+                     extra-settings="vm.multiChoiceInput.settings"
+                     translation-texts="vm.multiChoiceInput.translation"
+                     checkboxes="true"></div>
+
+                <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
+                        data-ng-disabled="!vm.formIsValid()"
+                        data-ng-click="vm.sendProInvit()">
+                    Inviter
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

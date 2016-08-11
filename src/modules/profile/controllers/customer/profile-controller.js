@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, Upload, cloudinary) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, Upload, cloudinary, $auth) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -79,7 +79,7 @@
         vm.uploadProfileImg = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -92,7 +92,8 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: file
+                            file: file,
+                            resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
@@ -105,7 +106,6 @@
                         var res = null;
                         vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
                     }).error(function (data, status, headers, config) {
-                        console.log(5);
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
@@ -206,6 +206,70 @@
             vm.profile.defaultAddress.address &&
             vm.profile.phoneNumber &&
             vm.profile.email);
+        };
+
+        vm.attachGoogle = function () {
+            $auth.authenticate('googleLoginAttach').then(function (res) {
+                if (res.data && res.data.status && res.data.status == "ok") {
+                    $rootScope.updateProfile();
+                } else {
+                    alertMsg.send("Impossible d'associer le compte Google", 'danger');
+                }
+            }).catch(function (res) {
+                alertMsg.send("Impossible d'associer le compte Google", 'danger');
+            });
+        };
+
+        vm.attachFacebook = function () {
+            $auth.authenticate('facebookLoginAttach').then(function (res) {
+                if (res.data && res.data.status && res.data.status == "ok") {
+                    $rootScope.updateProfile();
+                } else {
+                    alertMsg.send("Impossible d'associer le compte Facebook", 'danger');
+                }
+            }).catch(function (res) {
+                alertMsg.send("Impossible d'associer le compte Facebook", 'danger');
+            });
+        };
+
+        vm.detachGoogle = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus vous connecter automatiquement via votre compte Google",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.loginGoogleDetach(function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                        alertMsg.send("Impossible d'effectuer cette action", "danger");
+                    });
+                }
+            });
+        };
+
+        vm.detachFacebook = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus vous connecter automatiquement via votre compte Facebook",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.loginFacebookDetach(function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                        alertMsg.send("Impossible d'effectuer cette action", "danger");
+                    });
+                }
+            });
         };
     }
 })();

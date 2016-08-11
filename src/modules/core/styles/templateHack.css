@@ -226,7 +226,7 @@
     filter: alpha(opacity=0);
 }
 
-header {
+#header {
     height: 56px !important;
     min-height: 56px !important;
 }
@@ -344,4 +344,58 @@ section#main.yakaMain .content .card {
 
 .breadcrumb {
     margin-top: -27px;
+}
+
+#menu-trigger.open.mobile:before {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+}
+
+.logo.mobile {
+    padding: 7px 10px;
+    color: white;
+    display: block;
+    font-size: 16px;
+    width: calc(100% - 45px);
+}
+
+#menu-trigger.open.mobile {
+    width: 45px;
+}
+
+#menu-trigger.open.mobile .line-wrap {
+    margin: 12px 10px;
+}
+
+@media (min-width: 1199px) {
+    body.sw-toggled .breadcrumb {
+        padding-top: 10px !important;
+        padding-bottom: 11px !important;
+        padding-left: 33px !important;
+        padding-right: 33px !important;
+        margin-left: calc(50% - 336px) !important;
+    }
+}
+
+.newContactsIndicator {
+    position: absolute !important;
+    font-style: normal !important;
+    background: #f44336 !important;
+    border-radius: 50% !important;
+    left: 33px !important;
+    top: 12px !important;
+    font-size: 5px !important;
+    width: 8px !important;
+    height: 8px !important;
+    padding: 0 !important;
+}
+
+.listview .lv-item:hover {
+    background: #ECF9FF;
+}
+
+#sidebar {
+    z-index: 6;
 }

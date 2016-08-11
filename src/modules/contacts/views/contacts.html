@@ -9,7 +9,7 @@
 </style>
 
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -17,6 +17,12 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content contacts">
         <div class="container">
+            <div class="block-header visible-xs m-b-5">
+                <h2>Développer votre réseau</h2>
+                <small>
+                    Utilisez le bouche-à-oreille CasaVox !
+                </small>
+            </div>
             <div class="col-xs-12 no-padding visible-xs m-b-20">
                 <button class="col-xs-5 btn btn-default waves-effect c-lightblue btn-xs"
                         data-ng-click="vm.openFriendPopup()">
@@ -27,20 +33,21 @@
                     Inviter un pro
                 </button>
             </div>
-            <div class="col-xs-12 p-l-0 p-r-0 card  hidden-xs">
+            <div class="col-xs-12 p-l-0 p-r-0 card hidden-xs">
                 <div class="col-xs-12 p-l-0 p-r-0 card-header">
                     <h2 class="col-sm-6">
                         DÉVELOPPEZ VOTRE RÉSEAU
-                        <small class="hidden-xs">
-                            Invitez vos connaissances à vous rejoindre sur YakaClub
+                        <small>
+                            Faites fonctionner le bouche-à-oreille !<br>
+                            Invitez vos connaissances à vous retrouver sur CasaVox
                         </small>
                     </h2>
                     <div class="col-sm-6 t-right m-t-5">
-                        <button class="btn btn-default waves-effect c-lightblue m-r-15"
+                        <button id="invite-friend-button" class="btn btn-default waves-effect c-lightblue m-r-15"
                                 data-ng-click="vm.openFriendPopup()">
                             Inviter un ami
                         </button>
-                        <button class="btn btn-default waves-effect c-orange" data-ng-click="vm.openProPopup()">
+                        <button id="invite-pro-button" class="btn btn-default waves-effect c-orange" data-ng-click="vm.openProPopup()">
                             Inviter un pro
                         </button>
                     </div>
@@ -50,6 +57,11 @@
                 <div class="col-xs-4 contactsMenu"
                      data-ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
                      data-ng-swipe-left="vm.contactsMenuOpened = false">
+
+                    <button class="visible-xs btn bgm-bluegray btn-icon waves-effect waves-circle close-contact-button" data-ng-click="vm.contactsMenuOpened = false">
+                        <i class="zmdi zmdi-close"></i>
+                    </button>
+
                     <div class="col-sm-12 contactsMenuTitle">
                         CONTACTS
                     </div>
@@ -71,10 +83,13 @@
                         <img class="contactsMenuBlueCircle"
                              data-ng-src="{{app.isPro() && 'img/contactsMenuOrangeCircle.png' || 'img/contactsMenuBlueCircle.png'}}"
                              data-ng-if="vm.currentMenuItem == vm.MENU_PROS">
-                    <span data-ng-if="!app.isPro()">
-                        ARTISANS
+                        <span data-ng-if="!app.isPro()" class="hidden-xs">
+                        PROFESSIONNELS
                     </span>
-                    <span data-ng-if="app.isPro()">
+                        <span data-ng-if="!app.isPro()" class="visible-xs">
+                        PRO.
+                    </span>
+                        <span data-ng-if="app.isPro()">
                         COLLÈGUES
                     </span>
 
@@ -150,29 +165,29 @@
                             {{contact.user.lastName[0]| uppercase}}.
                         </div>
 
-                    <span class="contactItemName">
-                        {{contact.user.firstName}} {{contact.user.lastName}}
-                        <span class="contactItemPro" data-ng-if="contact.user.professional">
-                            <span data-ng-if="!app.isPro()">
-                                PRO
+                        <span class="contactItemName">
+                            {{contact.user.firstName}} {{contact.user.lastName}}
+                            <span class="contactItemPro" data-ng-if="contact.user.professional">
+                                <span data-ng-if="!app.isPro()">
+                                    PRO
+                                </span>
+                                <span data-ng-if="app.isPro()">
+                                    COLLÈGUE
+                                </span>
                             </span>
-                            <span data-ng-if="app.isPro()">
-                                COLLÈGUE
+                            <span class="contactItemEmail">
+                                ({{contact.user.email}})
                             </span>
                         </span>
-                        <span class="contactItemEmail">
-                            ({{contact.user.email}})
-                        </span>
-                    </span>
 
-                    <span class="contactItemCity"
-                          data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
-                        {{contact.user.defaultAddress.locality}}
-                    </span>
-                    <span class="contactItemCity contactItemCityInvitReceived"
-                          data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
-                        {{contact.user.professional.company.address.locality}}
-                    </span>
+                        <span class="contactItemCity"
+                              data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                            {{contact.user.defaultAddress.locality}}
+                        </span>
+                        <span class="contactItemCity contactItemCityInvitReceived"
+                              data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                            {{contact.user.professional.company.address.locality}}
+                        </span>
                     </div>
                     <div class="col-xs-12 contactItem"
                          data-ng-repeat="invit in vm.invitationsReceived"
@@ -186,12 +201,50 @@
                         <div class="img-default fl contactItemInitials"
                              data-ng-if="!invit.inviter.avatar.cloudinaryPublicId">
                             {{invit.inviter.firstName[0] | uppercase}}.
-                            {{invit.inviter.lastName[0]| uppercase}}.
+                            {{invit.inviter.lastName[0] | uppercase}}.
                         </div>
                         <div class="invitReceivedSpanHolder">
-                        <span class="contactItemName contactItemNameInvitReceived">
-                            {{invit.inviter.firstName}} {{invit.inviter.lastName}}
-                            <span class="contactItemPro" data-ng-if="invit.inviter.professional">
+                            <span class="contactItemName contactItemNameInvitReceived">
+                                {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                                <span class="contactItemPro" data-ng-if="invit.inviter.professional">
+                                    <span data-ng-if="!app.isPro()">
+                                        PRO
+                                    </span>
+                                    <span data-ng-if="app.isPro()">
+                                        COLLÈGUE
+                                    </span>
+                                </span>
+                                <span class="contactItemEmail">
+                                    ({{invit.inviter.email}})
+                                </span>
+                            </span>
+                            <span class="contactItemCity contactItemCityInvitReceived"
+                                  data-ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
+                                {{invit.inviter.defaultAddress.locality}}
+                            </span>
+                            <span class="contactItemCity contactItemCityInvitReceived"
+                                  data-ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
+                                {{invit.inviter.professional.company.address.locality}}
+                            </span>
+                        </div>
+                        <span class="waves-effect">
+                            <img class="invitRefuse"
+                                 src="icons/mdpi/ic_refuse_invitation.png"
+                                 data-ng-click="vm.refuseInvitation(invit.inviter.id)"/>
+                        </span>
+                        <span class="waves-effect">
+                            <img class="invitAccept"
+                                 src="icons/mdpi/ic_accept_invitation.png"
+                                 data-ng-click="vm.acceptInvitation(invit.inviter.id)"/>
+                        </span>
+                    </div>
+                    <div class="col-xs-12 contactItem contactItemInvitation"
+                         data-ng-repeat="invit in vm.invitationsSent"
+                         data-ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
+
+                        <span data-ng-if="invit.firstName && invit.lastName">
+                            {{invit.firstName}} {{invit.lastName}}
+                            <span class="contactItemPro" data-ng-if="invit.isPro">
                                 <span data-ng-if="!app.isPro()">
                                     PRO
                                 </span>
@@ -200,80 +253,62 @@
                                 </span>
                             </span>
                             <span class="contactItemEmail">
-                                ({{invit.inviter.email}})
+                                ({{invit.email}})
                             </span>
                         </span>
-                        <span class="contactItemCity contactItemCityInvitReceived"
-                              data-ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
-                            {{invit.inviter.defaultAddress.locality}}
-                        </span>
-                        <span class="contactItemCity contactItemCityInvitReceived"
-                              data-ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
-                            {{invit.inviter.professional.company.address.locality}}
-                        </span>
-                        </div>
-
-                    <span class="waves-effect">
-                        <img class="invitRefuse"
-                             src="icons/mdpi/ic_refuse_invitation.png"
-                             data-ng-click="vm.refuseInvitation(invit.id)"/>
-                    </span>
-                    <span class="waves-effect">
-                        <img class="invitAccept"
-                             src="icons/mdpi/ic_accept_invitation.png"
-                             data-ng-click="vm.acceptInvitation(invit.id)"/>
-                    </span>
-                    </div>
-                    <div class="col-xs-12 contactItem contactItemInvitation"
-                         data-ng-repeat="invit in vm.invitationsSent"
-                         data-ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
-
-                    <span data-ng-if="invit.firstName && invit.lastName">
-                        {{invit.firstName}} {{invit.lastName}}
-                        <span class="contactItemPro" data-ng-if="invit.isPro">
-                            <span data-ng-if="!app.isPro()">
-                                PRO
-                            </span>
-                            <span data-ng-if="app.isPro()">
-                                COLLÈGUE
+                        <span data-ng-if="!invit.firstName || !invit.lastName">
+                            {{invit.email}}
+                            <span class="contactItemPro" data-ng-if="invit.isPro">
+                                <span data-ng-if="!app.isPro()">
+                                    PRO
+                                </span>
+                                <span data-ng-if="app.isPro()">
+                                    COLLÈGUE
+                                </span>
                             </span>
                         </span>
-                        <span class="contactItemEmail">
-                            ({{invit.email}})
-                        </span>
-                    </span>
-                    <span data-ng-if="!invit.firstName || !invit.lastName">
-                        {{invit.email}}
-                        <span class="contactItemPro" data-ng-if="invit.isPro">
-                            <span data-ng-if="!app.isPro()">
-                                PRO
-                            </span>
-                            <span data-ng-if="app.isPro()">
-                                COLLÈGUE
-                            </span>
-                        </span>
-                    </span>
 
                     </div>
                     <div class="col-xs-12 contactsEmpty"
                          data-ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
 
-                        <img class="contactsEmptyIcon hidden-xs" src="icons/mdpi/ic_person_add.png"/>
+                        <img class="contactsEmptyIcon" src="icons/mdpi/ic_person_add.png"/>
 
                         <div class="contactsEmptyTitle">
-                            Retrouvez ici l'ensemble de vos relations YakaClub.
+                            Vous n'avez pas encore de « Contact » CasaVox
                         </div>
-                        <div class="contactsEmptySubtitle">
-                            Vous pourrez prochainement utliser vos contacts pour recommander et vous faire recommander
-                            les meilleurs professionnels du batiment. Développons ensemble une communauté basée sur la
-                            qualité de nos Pro et sur la confiance.
+                        <div class="contactsEmptySubtitle p-t-10 center">
+                            <div class="m-t-10 m-b-5"><strong>Pourquoi ajouter des contacts ?</strong></div>
+                            <div class="m-b-5" data-ng-show="!app.isPro()">
+                                Parce que quelqu'un parmi vos connaissances connaît le Pro qu'il vous faut ! Faites-vous
+                                aidez de vos relations de confiance pour trouver des Pro fiables et adaptés à vos
+                                besoins.
+                            </div>
+                            <div class="m-b-20" data-ng-show="!app.isPro()">
+                                Parce que quelqu'un parmi vos proches recherches un Pro et qu'il suffit de quelques
+                                clicks pour en recommander un que vous connaissez.
+                            </div>
+                            <div class="m-b-5" data-ng-show="app.isPro()">
+                                Parce qu'une de vos connaissances - personnelle, ancien client ou collègue - à un ami à
+                                la
+                                recherche de vos compétences. CasaVox encourage vos relations à vous recommander auprès
+                                de leurs connaissances « <em>les amis de mes amis sont mes nouveaux clients !</em> ».
+                            </div>
+                            <div class="m-b-20" data-ng-show="app.isPro()">
+                                Parce que s'aider entre collègues est toujours payant ! En quelques clicks, recommandez
+                                vos collègues à vos connaissances (par exemple, sur les projets qui ne correspondent pas
+                                à vos compétences ou zones d'activités), ils feront pareil avec vous !
+                            </div>
                         </div>
-                        <div class="contactsEmptyLinks hidden-xs">
+                        <div class="visible-xs m-b-10">
+                            <strong><em>Invitez vos connaissances à vous retrouver sur CasaVox !</em></strong><br>
+                        </div>
+                        <div class="contactsEmptyLinks">
                             <span class="contactsEmptyLink" data-ng-click="vm.openFriendPopup()">
                                 Inviter des amis
                             </span>
                             <span class="contactsEmptyLinkOr">
-                                ou
+                                 -
                             </span>
                             <span class="contactsEmptyLink" data-ng-click="vm.openProPopup()">
                                 Invitez des professionnels
@@ -293,19 +328,41 @@
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
-                Invitez vos amis
+                Invitez vos connaissances à faire partie de vos relations CasaVox
             </div>
 
-            <textarea class="col-xs-12 form-control" data-ng-model="vm.invitCustomer"/>
+            <button class="center btn bgm-blue btn-icon-text waves-effect"
+                    data-ng-click="vm.closeFriendPopup(); vm.loadGmailContacts()">
+                <img class="gmailButtonIcon" src="icons/ic_gmail.png" alt=""/>
+                <span class="gmailButtonText">Sélectionner mes contacts Gmail</span>
+            </button>
+
+            <h4 class="m-t-20 m-b-20 center t-center">
+                Ou
+            </h4>
+
+            <textarea class="col-xs-12 form-control m-t-20" placeholder="exemple@mail.fr,..."
+                      data-ng-model="vm.invitCustomer"></textarea>
 
             <div class="col-xs-12 yakaPopupInvitSubTitle">
                 Vous pouvez ajouter plusieurs emails en les séparant par une virgule.
             </div>
 
-            <div class="col-xs-12 yakaButton yakaBlue"
-                 data-ng-class="{yakaDisabled: vm.invitCustomer == ''}"
-                 data-ng-click="vm.sendCustomerInvit()">
-                INVITER
+            <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
+                    data-ng-disabled="vm.invitCustomer == ''"
+                    data-ng-click="vm.sendCustomerInvit()">
+                Inviter
+            </button>
+
+            <div class="col-xs-12 no-padding center t-center m-t-20">
+                Étendez vos relations grâce à Facebook :
+            </div>
+
+            <div class="col-xs-12 center t-center m-t-5">
+                <iframe
+                    ng-src="{{vm.getFacebookIframeUrl() | trusted}}"
+                    width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowTransparency="true"></iframe>
             </div>
         </div>
     </div>
@@ -320,7 +377,7 @@
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
-                Invitez un super artisan !
+                Invitez un super Pro !
             </div>
 
             <input class="col-xs-12 form-control halfInput"
@@ -360,6 +417,23 @@
                 Cet numéro de téléphone n'est pas valide
             </div>
 
+            <input
+                vs-google-autocomplete="vm.autocomplete.options"
+                vs-autocomplete-validator class="form-control"
+                placeholder="Ville"
+                data-ng-model="vm.invitPro.address.address"/>
+
+            <div id="select-pro-relation" class="select">
+                <select class="form-control m-t-10"
+                        data-ng-model="vm.invitPro.relation">
+                    <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                    <option value="CLIENT">Client</option>
+                    <option value="FRIEND">Ami</option>
+                    <option value="FAMILY">Famille</option>
+                    <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
+                </select>
+            </div>
+
             <div class="proInviteActivitiesInput" data-ng-dropdown-multiselect=""
                  options="vm.multiChoiceInput.options"
                  selected-model="vm.multiChoiceInput.selected"
@@ -367,17 +441,55 @@
                  translation-texts="vm.multiChoiceInput.translation"
                  checkboxes="true"></div>
 
-            <input
-                vs-google-autocomplete="vm.autocomplete.options"
-                vs-autocomplete-validator class="form-control"
-                placeholder="Ville"
-                data-ng-model="vm.invitPro.address.address"/>
-
             <div class="col-xs-12 yakaButton yakaOrange invitProButton"
                  data-ng-class="{yakaDisabled: !vm.formIsValid()}"
                  data-ng-click="vm.sendProInvit()">
                 INVITER
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" data-ng-show="vm.showGmailPopup" data-ng-click="vm.closeGmailPopup()" data-ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeGmailPopup()"
+                 alt=""/>
+
+            <img class="center" src="img/loader_small.gif"
+                 data-ng-if="!vm.gmailContacts || vm.gmailContacts.length == 0" alt=""/>
+
+
+            <div class="checkbox" data-ng-if="vm.gmailContacts && vm.gmailContacts.length > 0">
+                <label class="yakaEllipsis">
+                    <input type="checkbox" data-ng-change="vm.selectAllChanged()" data-ng-model="vm.selectAll">
+                    <i class="input-helper"></i>
+                    <b>Tout sélectionner</b>
+                </label>
+            </div>
+            <div class="gmailContactsList">
+                <div data-ng-repeat="contact in vm.gmailContacts track by contact.id">
+                    <div class="checkbox">
+                        <label class="yakaEllipsis">
+                            <input type="checkbox" data-ng-model="contact.selected" value="">
+                            <i class="input-helper"></i>
+                            <span data-ng-if="contact.name">
+                                <b>{{contact.name}}</b> - {{contact.address}}
+                            </span>
+                            <span data-ng-if="!contact.name">
+                                <b>{{contact.address}}</b>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
+                    data-ng-disabled="!vm.showGmailInviteButton()"
+                    data-ng-if="vm.gmailContacts && vm.gmailContacts.length > 0"
+                    data-ng-click="vm.sendGoogleCustomerInvit()">
+                Inviter
+            </button>
         </div>
     </div>
 </div>

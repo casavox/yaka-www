@@ -96,6 +96,12 @@
             login: function (data, success, error) {
                 httpService.post(baseUrl + '/login', data).success(success).error(error)
             },
+            loginGoogleDetach: function (success, error) {
+                httpService.post(baseUrl + '/login/google/detach').success(success).error(error)
+            },
+            loginFacebookDetach: function (success, error) {
+                httpService.post(baseUrl + '/login/facebook/detach').success(success).error(error)
+            },
             register: function (data, success, error) {
                 httpService.post(baseUrl + '/register', data).success(success).error(error)
             },
@@ -171,8 +177,8 @@
             proposalPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/pro/proposals', data).success(success).error(error)
             },
-            deleteProject: function (id, success, error) {
-                httpService.delete(baseUrl + '/projects/' + id).success(success).error(error)
+            deleteProject: function (id, data, success, error) {
+                httpService.post(baseUrl + '/projects/' + id + '/delete', data).success(success).error(error)
             },
             publishProject: function (id, success, error) {
                 httpService.post(baseUrl + '/projects/' + id + '/publish').success(success).error(error)
@@ -240,6 +246,9 @@
             inviteProPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/invite/pro', data).success(success).error(error)
             },
+            invitePOST: function (id, relation, success, error) {
+                httpService.post(baseUrl + '/invite/' + id + '/' + relation).success(success).error(error)
+            },
             invitationsReceivedGET: function (success, error) {
                 httpService.get(baseUrl + '/invitations/received').success(success).error(error)
             },
@@ -266,6 +275,30 @@
             },
             sendSupportMessage: function (supportMessage, success, error) {
                 httpService.post(baseUrl + '/support/message', supportMessage).success(success).error(error)
+            },
+            setContactsRead: function (success, error) {
+                httpService.put(baseUrl + '/contacts/read').success(success).error(error)
+            },
+            projectToRecommendGET: function (success, error) {
+                httpService.get(baseUrl + '/recommend/projects/torecommend').success(success).error(error)
+            },
+            dashboardDataGET: function (success, error) {
+                httpService.get(baseUrl + '/dashboard/infos').success(success).error(error)
+            },
+            proDashboardDataGET: function (success, error) {
+                httpService.get(baseUrl + '/pro/dashboard/infos').success(success).error(error)
+            },
+            projectRecommendGET: function (id, success, error) {
+                httpService.get(baseUrl + '/recommend/projects/' + id).success(success).error(error)
+            },
+            projectRecommendMyProsGET: function (id, success, error) {
+                httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros').success(success).error(error)
+            },
+            recommendProForProjectPOST: function (id, professionalId, data, success, error) {
+                httpService.post(baseUrl + '/recommend/projects/' + id + '/pro/' + professionalId, data).success(success).error(error)
+            },
+            getProNetworkLeads: function (success, error) {
+                httpService.get(baseUrl + '/pro/projects/network').success(success).error(error)
             }
         };
     }

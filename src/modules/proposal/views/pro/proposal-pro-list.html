@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -17,15 +17,34 @@
                 </div>
                 <div class="card-body card-padding">
                     <ol>
-                        <li>Votre profil doit être complet et validé</li>
-                        <li>Sélectionnez un projet parmi ceux disponibles</li>
-                        <li>Indiquez un montant approximatif si vous le pouvez et surtout ajouter un message afin
-                            d’engager la discussion avec votre client.
+                        <li class="list-left-alignment">
+                            Vérifiez la validité de votre profil en cliquant sur votre logo avatar depuis la barre de
+                            menu <a data-ui-sref="pro-profile">Mon profil Pro</a></li>
+                        <li class="list-left-alignment">
+                            Sélectionnez un projet depuis la <a data-ui-sref="findjobs">Carte des offres</a>
+                            <ul>
+                                <li class="list-left-alignment">
+                                    Naviguer et zoomer dans cette carte pour retrouver les offres correspondant à votre
+                                    profil
+                                </li>
+                                <li class="list-left-alignment">
+                                    Sélectionnez un projet pour en voir les détails
+                                </li>
+                                <li class="list-left-alignment">
+                                    Faites votre proposition : Si vous avez assez d'élément, indiquez un montant
+                                    approximatif et une date d'intervention, puis ajouter un premier message afin de
+                                    vous mettre en avant et d’engager la discussion avec votre client.
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-left-alignment">
+                            Losrque vous remportez une offre, retrouvez-la dans <a data-ui-sref="pro-jobs">Mes
+                            chantiers</a>
                         </li>
                     </ol>
                 </div>
                 <div class="panel-footer text-right">
-                    <button class="btn btn-lg btn-primary" data-ui-sref="findjobs">Voir les chantiers disponibles
+                    <button class="btn btn-lg btn-primary" data-ui-sref="findjobs">Voir la Carte des offres
                     </button>
                 </div>
             </div>
@@ -36,45 +55,70 @@
 
             <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0"
                  data-ng-if="vm.proposals && vm.proposals.length > 0">
-
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.proposals"
                      data-ng-click="vm.quoteClicked(proposal.id)">
-                    <div class="card-header">
-                        <yaka-avatar user="proposal.project.user" size="40" class="d-i-p v-align-middle"></yaka-avatar>
-                        <i class="unreadMessagesIndicator proProposalList ng-scope"
-                           data-ng-if="proposal.unreadMessages"></i>
-
-                        <h2 class="d-i-p v-align-middle m-l-10 m-t-5">
-                            {{ proposal.project.title | yakaTranslateTitle}}
-                            <small>
-                                {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
-                                {{proposal.project.address.locality}}
-                            </small>
-                        </h2>
-                    </div>
-
-                    <div class="pl-body clearfix col-xs-12">
-                        <div class="col-xs-8 t-left no-padding m-t-5 m-b-10">
-                            <div class="visible-xs">
-                                Date souhaitée par le client :<br/>
-                                {{vm.getWhen(proposal)}}
-                                <div class="col-xs-12 no-padding f-s-14 m-t-5">
-                                    Ma date d'intervention :<br/>
-                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
-                                </div>
+                    <div class="visible-xs">
+                        <div class="card-header p-t-20 p-b-0 p-r-10 p-l-10">
+                            <div class="col-xs-1 p-0 m-r-10 v-align-middle">
+                                <yaka-avatar user="proposal.project.user" size="40"></yaka-avatar>
+                                <i class="unreadMessagesIndicator proProposalList ng-scope"
+                                   data-ng-if="proposal.unreadMessages"></i>
                             </div>
-                            <div class="hidden-xs">
-                                Date souhaitée par le client :
-                                {{vm.getWhen(proposal)}}
-                                <div class="col-xs-12 no-padding f-s-14 m-t-5">
-                                    Ma date d'intervention :
-                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
-                                </div>
+                            <div class="col-xs-10 p-0 m-l-10 v-align-middle">
+                                <h2 class="f-s-16">{{ proposal.project.title}}</h2>
+                                <small>
+                                    <span class="m-0 p-0">{{proposal.project.user.firstName}} {{proposal.project.user.lastName}} à </span>
+                                    <span class="c-gray-darker">{{proposal.project.address.locality}}</span>
+                                    <br>
+                                    <span class="m-0 p-0">Date client : </span>
+                                    <span class="c-gray-darker">{{vm.getWhen(proposal)}}</span>
+                                </small>
                             </div>
                         </div>
-
-                        <p class="col-xs-4 t-right no-padding proProposalListPrice">{{ proposal.price || '- - -' }}
-                            €</p>
+                        <div class="card-body card-padding col-xs-12 p-10">
+                            <div>
+                                Ma date d'intervention : <span
+                                ng-class="{ 'c-gray-darker': proposal.startDate, 'c-lightblue': !proposal.startDate}">{{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}</span>
+                            </div>
+                            <div>
+                                Mon prix : <span
+                                ng-class="{ 'c-gray-darker': proposal.price, 'c-lightblue': !proposal.price}">{{ proposal.price + "€"|| '- - -' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header hidden-xs p-15">
+                        <div class="d-i-b v-align-middle">
+                            <yaka-avatar user="proposal.project.user" size="50"></yaka-avatar>
+                            <i class="unreadMessagesIndicator proProposalList ng-scope"
+                               data-ng-if="proposal.unreadMessages"></i>
+                        </div>
+                        <div class="d-i-b v-align-middle m-l-10">
+                            <h2>
+                                {{ proposal.project.title}}
+                            </h2>
+                            <div class="p-t-5 f-s-14">
+                                <span>{{proposal.project.user.firstName}} {{proposal.project.user.lastName}} à </span>
+                                <span class="c-gray-darker">{{proposal.project.address.locality}}</span>
+                            </div>
+                            <div class="f-s-14">
+                                <span>Date demandée par le client : </span>
+                                <span class="c-gray-darker">{{vm.getWhen(proposal)}}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-t-15 f-s-16">
+                            <div class="col-sm-12">
+                                <span class="pull-left min-w-175">Ma date d'intervention :</span>
+                                <span class="pull-left"
+                                      ng-class="{ 'c-gray-darker': proposal.startDate, 'c-lightblue': !proposal.startDate}">
+                                    {{(proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}</span>
+                            </div>
+                            <div class="col-sm-12 p-b-20">
+                                <span class="pull-left min-w-175">Mon prix estimatif :</span>
+                                <span class="pull-left"
+                                      ng-class="{ 'c-gray-darker': proposal.price, 'c-lightblue': !proposal.price}">
+                                    {{proposal.price + "€"|| '- - -' }}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,12 +131,12 @@
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.decline"
                      data-ng-click="vm.quoteClicked(proposal.id)">
                     <div class="card-header">
-                        <yaka-avatar user="proposal.project.user" size="40" class="d-i-p v-align-middle"></yaka-avatar>
+                        <yaka-avatar user="proposal.project.user" size="40" class="d-i-b v-align-middle"></yaka-avatar>
                         <i class="unreadMessagesIndicator proProposalList ng-scope"
                            data-ng-if="proposal.unreadMessages"></i>
 
-                        <h2 class="d-i-p v-align-middle m-l-10 m-t-5">
-                            {{ proposal.project.title | yakaTranslateTitle}}
+                        <h2 class="d-i-b v-align-middle m-l-10 m-t-5">
+                            {{ proposal.project.title}}
                             <small>
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                 {{proposal.project.address.locality}}

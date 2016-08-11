@@ -7,7 +7,9 @@ angular.module('Yaka')
                 $injector.get('$localStorage').$reset();
                 $injector.get('pendingRequests').cancelAll();
                 $injector.get('$state').go("home");
-                window.yakaRedirectUrl = window.location.href;
+                if (!window.yakaRedirectUrl) {
+                    window.yakaRedirectUrl = window.location.href;
+                }
             }
             return $q.reject(response);
         };

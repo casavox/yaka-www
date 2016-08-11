@@ -1,19 +1,19 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+        xmlns="http://www.w3.org/1999/html"></header>
 
 <section id="view">
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-    <div id="content" class="page-content no-padding">
+    <div id="content" class="page-content">
         <div class="content-slide new-project" id="main-scroll-container">
             <div class="container">
                 <div class="slide-main" id="slide1" data-ng-show="vm.selectCategory">
                     <div class="card col-md-10 col-md-offset-1">
                         <div class="card-header">
                             <h2 class="t-center">
-                                Votre projet porte-t-il sur une activité en particulier ?
+                                Quel type de travaux souhaitez vous réaliser ?
                             </h2>
                         </div>
                         <div class="row no-margin">
@@ -21,55 +21,13 @@
                                  data-ng-repeat="child in vm.newProject.childrenActivities"
                                  data-ng-click="vm.selectType(child, vm.newProject.childrenActivities)"
                                  title="{{'ACTIVITY_' + child.code | translate}}"
-                                 data-ng-show="vm.wait && child.code != 'AUTO_MULTI'">
+                                 data-ng-show="vm.wait">
                                 <div class="type-project-box-content">
                                     <div class="v-icon v-icon-{{child.code}} center">
                                     </div>
                                     <p class="type-project-title text-center">
                                         {{'ACTIVITY_' + child.code | translate }}
                                     </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row no-margin">
-                            <div class="card-header">
-                                <h2 class="t-center">
-                                    Ou sur plusieurs ?
-                                </h2>
-                            </div>
-
-                            <div class="row no-margin p-b-20">
-                                <div class="col-sm-3 no-margin no-padding type-project-box multiDomainChoiceIcon"
-                                     data-ng-class="vm.multi"
-                                     data-ng-click="vm.selectType('AUTO_MULTI')"
-                                     title="{{'ACTIVITY_MULTI' | translate}}" data-ng-show="vm.wait">
-                                    <div class="type-project-box-content center multiDomainChoiceIcon4Icons">
-                                        <div class="row m-l-0 m-r-0">
-                                            <div class="v-icon col-xs-6 v-icon-COU_9000 right"></div>
-                                            <div class="v-icon col-xs-6 v-icon-ELE_1000 left"></div>
-                                        </div>
-                                        <div class="row m-l-0 m-r-0">
-                                            <div class="v-icon col-xs-6 v-icon-PLU_2000"></div>
-                                            <div class="v-icon col-xs-6 v-icon-PAI_6000"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-9 no-margin no-padding multiDomainChoiceDescription"
-                                     title="{{'ACTIVITY_MULTI_100' | translate}}"
-                                     data-ng-show="vm.wait">
-                                    <div class="lv-small m-l-10">
-                                        <p class="m-b-0">
-                                            - Créer ou modifier une salle de bain, une cuisine, des toilettes, ...</p>
-
-                                        <p class="m-b-0">
-                                            - Construire une extension, une piscine, un garage,...</p>
-
-                                        <p class="m-b-0">
-                                            - Modifier ou aménager des combles, un sous-sol, un box, ...</p>
-
-                                        <p class="m-b-0">
-                                            - Tout autre projet nécessitant plusieurs corps de métier, ...</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,8 +38,17 @@
                      data-ng-show="vm.questions[$index]"
                      data-ng-repeat="q in vm.questions" data-ng-if="q.childrenActivities">
                     <div class="card-header">
-                        <h2 class="t-center">
-                            {{'ACTIVITY_' + q.code | translate }}
+                        <h2 class="t-center" data-ng-show="$index == 0">
+                            <p><em>{{'ACTIVITY_' + q.code | translate }}</em></p>
+                            Indiquez l'objet des travaux
+                        </h2>
+                        <h2 class="t-center" data-ng-show="$index == 1">
+                            <p></p><em>{{'ACTIVITY_' + q.code | translate }}</em></p>
+                            Précisez votre besoin
+                        </h2>
+                        <h2 class="t-center" data-ng-show="$index > 1 ">
+                            <p><em>{{'ACTIVITY_' + q.code | translate }}</em></p>
+                            Précisez la nature des travaux
                         </h2>
                     </div>
                     <ul class="questions-ul center clearfix">
@@ -94,27 +61,30 @@
                 </div>
 
                 <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide3" data-ng-show="vm.service">
-                    <div class="card-header">
-                        <h2 class="t-center">
-                            Fournissez-vous une partie du matériel ?
-                        </h2>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 col-sm-offset-3">
-                        <div id="materialYes" class="v-btn center" data-ng-click="vm.material = 'yes'"
-                             data-ng-class="{activate: vm.material == 'yes'}">
-                            OUI
+                    <div data-ng-hide="vm.type.code == 'COU_13900'">
+                        <div class="card-header">
+                            <h2 class="t-center">
+                                Quelle prestation souhaitez-vous ?
+                            </h2>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <div id="materialNo" class="v-btn center" data-ng-click="vm.material = 'no'"
-                             data-ng-class="{activate: vm.material == 'no'}">
-                            NON
+                        <div class="col-sm-4 col-sm-offset-2 text-center">
+                            <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'"
+                                 data-ng-class="{activate: vm.material == 'yes'}">
+                                Pose uniquement
+                            </div>
+                            <small>Je fournis certains matériaux, à préciser</small>
                         </div>
+                        <div class="col-sm-4 text-center">
+                            <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no'"
+                                 data-ng-class="{activate: vm.material == 'no'}">
+                                Pose + matériaux
+                            </div>
+                            <small>Le Pro doit fournir les matériaux</small>
+                        </div>
+                        <p class="error center" data-ng-show="vm.error.material.flag">
+                            {{vm.error.material.message}}
+                        </p>
                     </div>
-                    <p class="error center" data-ng-show="vm.error.material.flag">
-                        {{vm.error.material.message}}
-                    </p>
-
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
                             Décrivez votre projet
@@ -126,19 +96,19 @@
                                   rows="4"
                                   data-ng-model="vm.projectDescription"
                                   data-ng-blur="vm.verifDescription()"
-                                  placeholder="Au moins 30 caractères - Quels travaux souhaitez-vous faire ? Décrivez votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez également si vous avez des contraintes ou souhaits particuliers."
+                                  placeholder="Au moins 100 caractères - Quels travaux souhaitez-vous faire ? Décrivez votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez également si vous avez des contraintes ou souhaits particuliers."
                                   data-autosize-on="true"></textarea>
                     </div>
 
                     <p class="col-xs-12 error center"
-                       data-ng-show="vm.error.description.flag  && (vm.projectDescription.length < 30)">
+                       data-ng-show="vm.error.description.flag  && (vm.projectDescription.length < 50)">
                         {{vm.error.description.message}}
                     </p>
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
                         data-ng-click="vm.continueProject()"
-                        data-ng-disabled="!vm.material || vm.projectDescription.length < 30">
+                        data-ng-disabled="(!vm.material && vm.type.code != 'COU_13900') || vm.projectDescription.length < 50">
                         Continuer
                     </button>
 
@@ -148,6 +118,9 @@
                         <h2 class="t-center">
                             Ajoutez des photos
                         </h2>
+                        <p class="t-center">Joindre des photos avec un commentaire pour améliorer la compréhension de
+                            votre projet et ses éventuelles contraintes (état général actuel, difficulté d'accès,
+                            matériel fourni le cas échéant, ...)</p>
                     </div>
                     <div class="col-xs-12 no-padding">
                         <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
@@ -199,7 +172,7 @@
                              data-ng-multiple="false">
                             <div class="galleryUpload lightbox-item p-item"
                                  ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
-                                 ngf-accept="'image/*'" ngf-max-size="5MB">
+                                 ngf-accept="'image/*'" ngf-max-size="20MB">
                                 <div class="content">
                                     <i class="zmdi zmdi-plus-circle-o"></i>
                                 </div>
@@ -230,7 +203,7 @@
                     </p>
 
                     <div class="col-xs-12 row no-margin w-900 center select-addr">
-                        <div class="col-xs-5 no-padding" data-ng-if="vm.user.addresses.length>0">
+                        <div class="col-xs-5 no-padding select" data-ng-if="vm.user.addresses.length>0">
                             <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
                                 <option value="new">- Nouvelle adresse -</option>
                                 <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"
@@ -238,7 +211,9 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-xs-5 col-xs-offset-2 no-padding" data-ng-show="vm.newAddrFlag">
+                        <div
+                            data-ng-class="vm.user.addresses.length>0 ? 'col-xs-5 col-xs-offset-2 no-padding' : 'col-xs-5 center'"
+                            data-ng-show="vm.newAddrFlag">
                             <input type="text" class="form-control" data-ng-model="vm.newAddr.name"
                                    data-ng-change="vm.verifNameAddr()"
                                    placeholder="Nom de l'adresse (Maison, Papa, ...)">
@@ -286,7 +261,8 @@
                     </button>
 
                 </div>
-                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6" data-ng-show="vm.continueAddressFlag">
+                <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6"
+                     data-ng-show="vm.continueAddressFlag">
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
                             Quand souhaitez-vous que les travaux commencent ?
@@ -294,11 +270,13 @@
                     </div>
 
                     <ul class="col-xs-12 no-padding questions-ul center">
-                        <li id="selectDateType_NONE" class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child3"
+                        <li id="selectDateType_NONE" class="col-xs-12 col-sm-8 question-li center"
+                            data-ng-class="vm.child3"
                             data-ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
                             Dès que possible
                         </li>
-                        <li id="selectDateType_WITHIN_A_MONTH" class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child2"
+                        <li id="selectDateType_WITHIN_A_MONTH" class="col-xs-12 col-sm-8 question-li center"
+                            data-ng-class="vm.child2"
                             data-ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
                             Dans le mois
                         </li>
@@ -306,7 +284,8 @@
                             class="col-xs-12 col-sm-8 custom-li-date question-li center date">
                             Avant le {{vm.desiredDateMonth | date:'dd MMMM'}}
                         </li>
-                        <li id="selectDateType_SPECIFIC" class="col-xs-12 col-sm-8 question-li center" data-ng-class="vm.child0"
+                        <li id="selectDateType_SPECIFIC" class="col-xs-12 col-sm-8 question-li center"
+                            data-ng-class="vm.child0"
                             data-ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
                             À partir d'une date
                         </li>
@@ -327,9 +306,9 @@
                     </p>
 
                     <button id="publish"
-                        class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.post()"
-                        data-ng-disabled="!vm.dateType">
+                            class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
+                            data-ng-click="vm.post()"
+                            data-ng-disabled="!vm.dateType">
                         Publier
                     </button>
 

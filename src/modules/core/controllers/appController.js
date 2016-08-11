@@ -20,16 +20,25 @@
         $rootScope.pageName = "";
 
         app.getPageName = function () {
-            if ($rootScope.pageName == "") {
-                return "YakaClub : Trouvez vos artisans en toute confiance";
+            if (!$rootScope.pageName) {
+                return "CasaVox : Trouvez vos artisans en toute confiance";
             } else {
-                return $rootScope.pageName + " - YakaClub : Trouvez vos artisans en toute confiance"
+                return $rootScope.pageName + " - CasaVox : Trouvez vos artisans en toute confiance"
             }
         };
 
         $rootScope.updateProfile = function () {
             networkService.me(function (res) {
                 app.setUser(res);
+
+                if ($state.current.name == "contacts" && res.newContacts) {
+                    alertMsg.send("Du nouveaux dans vos contacts ! Vérifiez vos invitations reçues et votre liste de contacts.", 'success');
+                    networkService.setContactsRead(function () {
+                        app.getUser().newContacts = false;
+                    }, function () {
+                    });
+                }
+
             }, function () {
                 app.logout();
             });
@@ -154,13 +163,13 @@
         function afterRatingSuccess() {
             swal({
                 title: "C'est fait !",
-                text: "La communauté YakaClub vous remercie d'avoir partagé votre avis sur ce Pro !",
+                text: "La communauté CasaVox vous remercie d'avoir partagé votre avis sur ce Pro !",
                 type: "success",
                 showConfirmButton: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Fermer"
             }, function () {
-                $state.go('my-projects');
+                $state.go('dashboard');
             });
         }
 
@@ -265,6 +274,24 @@
             if (!angular.element(event.target).parent().hasClass('active')) {
                 this.sidebarToggle.left = false;
             }
+        };
+
+        app.showProTuto = function () {
+            if (app.getUser() &&
+                app.getUser().professional &&
+                app.getUser().professional.step2 &&
+                app.getUser().professional.step3 &&
+                app.getUser().professional.status &&
+                (app.getUser().professional.status == 'VALIDATED' ||
+                app.getUser().professional.status == 'COMPLETED')) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        app.getEnvironment = function () {
+            return CONFIG.ENV;
         };
     }
 })();

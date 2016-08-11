@@ -45,9 +45,9 @@
                                      class="proposalIconBackground lv-img zmdi zmdi-apps zmdi-hc-2x c-white vertical-center">
                                 </div>
                             </div>
-                            <div class="media-body projectTitleBar" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-body projectTitleBar" title="{{p.title}}">
                                 <div class="media row">
-                                    <div class="col-sm-7">{{p.title | yakaTranslateTitle}}</div>
+                                    <div class="col-sm-7">{{p.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                         <small class="c-gray">
                                             Mis à jour <span am-time-ago="p.updated"></span>
@@ -75,54 +75,73 @@
                     <div data-ng-show="p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS'" class="card-body p-l-25 p-b-20">
                         <span>En attente de propositions...</span>
                     </div>
-                    <div data-ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
-                        <div class="card-body p-l-25 p-t-0">
-                            <span data-ng-show="p.proposals.length == 1">
-                                Vous avez <b>1 proposition</b>
-                            </span>
-                            <span data-ng-show="p.proposals.length > 1">
-                                Vous avez <b>{{p.proposals.length}} propositions</b>
-                            </span>
-                        </div>
-                        <div class="card-body p-l-25 p-r-30 p-t-10 p-b-20">
-                            <ul data-ng-show="p.proposals.length > 0"
-                                class="wall-attrs clearfix list-inline list-unstyled">
-                                <li data-ng-show="!p.unreadMessages" class="wa-stats">
-                                    <span><i class="zmdi zmdi-comment-alt-text c-gray zmdi-hc-fw"></i></span>
-                                </li>
-                                <li data-ng-show="p.unreadMessages" class="wa-stats">
-                                    <span><i class="zmdi zmdi-comment-alt-text c-lightblue zmdi-hc-fw"></i></span>
-                                </li>
-                                <li data-ng-show="p.proposals.length > 4" class="wa-users m-r-5"
-                                    data-ng-click="vm.selectProject(p)">
-                                    <div class="p-relative"
-                                         title="{{p.proposals.length-3}} autre(s) proposition(s)">
-                                        <div class="lv-avatar bgm-bluegray pull-left on-avatar">
-                                            +{{p.proposals.length-3}}
+                    <div class="p-b-20 clearfix">
+                        <div data-ng-show="p.status == 'ONGOING_PROPOSITIONS_RECEIVED' && p.proposals.length > 0">
+                            <div class="card-body col-sm-6">
+                                <div class="proposalTypeTitle">
+                                    Propositions
+                                </div>
+                                <ul data-ng-show="p.proposals.length > 0"
+                                    class="wall-attrs clearfix list-inline list-unstyled m-l-5 m-t-10">
+                                    <li class="wa-users m-r-5 f-left"
+                                        data-ng-repeat="proposal in p.proposals | limitTo:4"
+                                        data-ui-sref="proposal({'proposalId': proposal.id})">
+                                        <div class="p-relative"
+                                             title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
+                                            <yaka-avatar class="on-avatar" size="35"
+                                                         user="proposal.professional.user"></yaka-avatar>
+                                            <i data-ng-show="proposal.unreadMessages"
+                                               class="porposalUnreadMessagesIndicator"></i>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="wa-users m-r-5" data-ng-repeat="proposal in p.proposals | limitTo:4"
-                                    data-ng-click="vm.selectProposal(proposal)">
-                                    <div class="p-relative"
-                                         title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
-                                        <yaka-avatar class="on-avatar" size="35"
-                                                     user="proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="proposal.unreadMessages"
-                                           class="porposalUnreadMessagesIndicator"></i>
-                                        <!--<div class="yakaEllipsis vertical-middle f-10" style="width: 40px;">
-                                            <span>{{proposal.professional.user.firstName}}
-                                                {{proposal.professional.user.lastName}}
-                                            </span>
-                                        </div>-->
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li data-ng-show="p.proposals.length > 4" class="wa-users m-r-5 f-left"
+                                        data-ng-click="vm.selectProject(p)">
+                                        <div class="p-relative"
+                                             title="{{p.proposals.length-3}} autre(s) proposition(s)">
+                                            <div class="lv-avatar bgm-bluegray pull-left on-avatar">
+                                                +{{p.proposals.length-3}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            data-ng-show="(p.status == 'ONGOING_PROPOSITIONS_RECEIVED' || p.status == 'ONGOING_WAITING_FOR_PROPOSITIONS') && p.recoProposals.length > 0">
+                            <div class="card-body col-sm-6">
+                                <div class="visible-xs m-t-20"></div>
+                                <div class="proposalTypeTitle">
+                                    Recommandations
+                                </div>
+                                <ul data-ng-show="p.recoProposals.length > 0"
+                                    class="wall-attrs clearfix list-inline list-unstyled m-l-5 m-t-10">
+                                    <li class="wa-users m-r-5 f-left"
+                                        data-ng-repeat="proposal in p.recoProposals | limitTo:4"
+                                        data-ui-sref="proposal({'proposalId': proposal.id})">
+                                        <div class="p-relative"
+                                             title="{{proposal.professional.user.firstName}} {{proposal.professional.user.lastName}}">
+                                            <yaka-avatar class="on-avatar" size="35"
+                                                         user="proposal.professional.user"></yaka-avatar>
+                                            <i data-ng-show="proposal.unreadMessages"
+                                               class="porposalUnreadMessagesIndicator"></i>
+                                        </div>
+                                    </li>
+                                    <li data-ng-show="p.recoProposals.length > 4" class="wa-users m-r-5 f-left"
+                                        data-ng-click="vm.selectProject(p)">
+                                        <div class="p-relative"
+                                             title="{{p.recoProposals.length-3}} autre(s) proposition(s)">
+                                            <div class="lv-avatar bgm-bluegray pull-left on-avatar">
+                                                +{{p.recoProposals.length-3}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div data-ng-show="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal"
                          class="card-body p-l-25 p-b-20"
-                         data-ng-click="vm.selectProposal(p.proposal)">
+                         data-ui-sref="proposal({'proposalId': p.proposal.id})">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
@@ -135,7 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
                                     <div class="c-gray">Votre Pro. pour ce projet</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
@@ -159,7 +178,7 @@
                         </div>
                     </div>
                     <div data-ng-show="p.status == 'ONGOING_RATE_PRO' && p.proposal" class="card-body p-l-25 p-b-20"
-                         data-ng-click="vm.selectProposal(p.proposal)">
+                         data-ui-sref="proposal({'proposalId': p.proposal.id})">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
@@ -172,7 +191,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="media-body pull-left" title="{{p.title | yakaTranslateTitle}}">
+                            <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
                                     <div class="c-red"><strong>Notez votre Pro. pour ce projet</strong></div>
                                     <strong>{{p.proposal.professional.user.firstName}}
@@ -204,7 +223,7 @@
                     <h2 data-ng-show="vm.projectsCompleted.length > 1">PROJETS TERMINÉS</h2>
                 </div>
                 <div class="card card-hover pointer" data-ng-repeat="pc in vm.projectsCompleted"
-                     data-ng-click="vm.selectProposal(pc.proposal)">
+                     data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
@@ -213,7 +232,7 @@
                             </div>
                             <div class="media-body projectTitleBar">
                                 <div class="media row">
-                                    <div class="col-sm-7">{{pc.title | yakaTranslateTitle}}</div>
+                                    <div class="col-sm-7">{{pc.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                         <div>
                                             <small class="c-gray">
@@ -244,7 +263,7 @@
                         </div>
                     </div>
                     <div data-ng-show="pc.status == 'COMPLETED' && pc.proposal" class="card-body p-l-25 p-b-20"
-                         data-ng-click="vm.selectProposal(pc.proposal)">
+                         data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                         <div class="media">
                             <div class="pull-left">
                                 <div class="btn-dpday pull-left on-avatar">
@@ -257,8 +276,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="media-body pull-left" title="{{pc.title | yakaTranslateTitle}}"
-                                 data-ng-click="vm.selectProposal(pc.proposal)">
+                            <div class="media-body pull-left" title="{{pc.title}}"
+                                 data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                                 <div class="media-heading m-b-5">
                                     <div class="c-gray">Votre Pro. pour ce projet</div>
                                     <strong>{{pc.proposal.professional.user.firstName}}

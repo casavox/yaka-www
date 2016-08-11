@@ -11,9 +11,9 @@
 
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
-                $state.go('findjobs');
+                $state.go('protuto');
             } else {
-                $state.go('my-projects');
+                $state.go('dashboard');
             }
         }
 
@@ -163,9 +163,9 @@
                     delete window.yakaRedirectUrl;
                 } else {
                     if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('findjobs');
+                        $state.go('protuto');
                     } else {
-                        $state.go('my-projects');
+                        $state.go('dashboard');
                     }
                 }
             }
@@ -195,7 +195,6 @@
         };
 
         vm.facebookLogin = function () {
-            console.log("LOGIN CLICKED");
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
                 succesLogin(res.data);
@@ -268,7 +267,7 @@
                 window.location.href = $localStorage.urlRedirect;
                 delete $localStorage.urlRedirect;
             } else {
-                $state.go('my-projects');
+                $state.go('dashboard');
             }
         }
 

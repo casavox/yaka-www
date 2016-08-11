@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $localStorage) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage, $timeout) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -15,6 +15,10 @@
         $rootScope.updateProfile();
 
         var vm = this;
+
+        vm.isXsmall = function () {
+            return screenSize.is('xs');
+        };
 
         vm.updating = false;
 
@@ -33,420 +37,9 @@
             profile: {flag: false, message: ""}
         };
 
-        vm.years = yearsContent();
-        vm.updateProfile = updateProfile;
-        vm.updateAboutMe = updateAboutMe;
-        vm.updateWorkArea = updateWorkArea;
-        vm.updateVerifications = updateVerifications;
-        vm.updateActivities = updateActivities;
-        vm.updatePortfolio = updatePortfolio;
-        vm.cancelProfile = cancelProfile;
-        vm.cancelAboutMe = cancelAboutMe;
-        vm.cancelWorkArea = cancelWorkArea;
-        vm.cancelVerifications = cancelVerifications;
-        vm.cancelActivities = cancelActivities;
-        vm.cancelPortfolio = cancelPortfolio;
-        vm.uploadPortfolio = uploadPortfolio;
-        vm.indexOfObject = indexOfObject;
-        vm.actionActivities = actionActivities;
-        vm.changePassword = changePassword;
-        vm.uploadVerifications = uploadVerifications;
-        vm.uploadProfile = uploadProfile;
-        vm.setVerif = setVerif;
+        vm.years = generateYears();
 
-        vm.mapShowMinimumZoomMessage = false;
-        vm.mapEditing = false;
-        vm.workareaDiameter = 0;
-
-        function rad(x) {
-            return x * Math.PI / 180;
-        }
-
-        function getDistance(p1, p2) {
-            var R = 6378137; // Earth’s mean radius in meter
-            var dLat = rad(p2.latitude - p1.latitude);
-            var dLong = rad(p2.longitude - p1.longitude);
-            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) *
-                Math.sin(dLong / 2) * Math.sin(dLong / 2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            var d = R * c;
-            return d; // returns the distance in meter
-        }
-
-        function getMinimumWidthOrHeight() {
-
-            var map = vm.map.control.getGMap();
-            var bounds = map.getBounds();
-            var center = map.getCenter();
-
-            var width = getDistance(
-                {
-                    latitude: center.lat(),
-                    longitude: bounds.getSouthWest().lng()
-                },
-                {
-                    latitude: center.lat(),
-                    longitude: bounds.getNorthEast().lng()
-                }
-            );
-
-            var height = getDistance(
-                {
-                    latitude: bounds.getSouthWest().lat(),
-                    longitude: center.lng()
-                },
-                {
-                    latitude: bounds.getNorthEast().lat(),
-                    longitude: center.lng()
-                }
-            );
-
-            if (width < height) {
-                return width;
-            } else {
-                return height;
-            }
-        }
-
-        var canStartEditionWithZoom = false;
-        var firstZoom = true;
-
-        function loadMap() {
-            uiGmapGoogleMapApi.then(function (maps) {
-                vm.map = {
-                    center: {
-                        latitude: 46.5945259,
-                        longitude: 2.4623584
-                    },
-                    bounds: {},
-                    zoom: 6,
-                    events: {
-                        "idle": function () {
-                            if (vm.mapEditing) {
-                                setTimeout(function () {
-                                    var circleRadius = (getMinimumWidthOrHeight() / 2) * 0.9;
-                                    vm.circle.radius = circleRadius;
-                                    vm.circle.control.getCircle().setCenter(new google.maps.LatLng(vm.map.center.latitude, vm.map.center.longitude));
-                                    vm.circle.control.getCircle().setRadius(circleRadius);
-
-                                    vm.workArea.radius = circleRadius;
-                                    vm.workArea.latitude = vm.map.center.latitude;
-                                    vm.workArea.longitude = vm.map.center.longitude;
-                                    var bnds = vm.circle.control.getCircle().getBounds();
-                                    vm.workArea.swLatitude = bnds.getSouthWest().lat();
-                                    vm.workArea.swLongitude = bnds.getSouthWest().lng();
-                                    vm.workArea.neLatitude = bnds.getNorthEast().lat();
-                                    vm.workArea.neLongitude = bnds.getNorthEast().lng();
-                                    vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
-                                }, 0);
-                            }
-                        },
-                        "dragstart": function () {
-                            vm.mapEditing = true;
-                        },
-                        "zoom_changed": function () {
-                            if (canStartEditionWithZoom && firstZoom) {
-                                firstZoom = false;
-                            } else if (canStartEditionWithZoom && !firstZoom) {
-                                vm.mapEditing = true;
-                            }
-                        }
-                    },
-                    control: {}
-                };
-                vm.circle =
-                {
-                    id: 1,
-                    center: {
-                        latitude: 0,
-                        longitude: 0
-                    },
-                    radius: 10,
-                    stroke: {
-                        color: '#03A9F4',
-                        weight: 2,
-                        opacity: 1
-                    },
-                    fill: {
-                        color: '#03A9F4',
-                        opacity: 0.15
-                    },
-                    visible: false,
-                    control: {},
-                    bounds: {}
-                };
-                vm.mapOptions = {
-                    minZoom: 6,
-                    maxZoom: 13,
-                    scrollwheel: false,
-                    streetViewControl: false,
-                    mapTypeControlOptions: {
-                        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                        position: google.maps.ControlPosition.TOP_LEFT,
-                        mapTypeIds: [
-                            google.maps.MapTypeId.ROADMAP,
-                            google.maps.MapTypeId.HYBRID
-                        ]
-                    }
-                };
-                $scope.$watch(
-                    function () {
-                        return vm.map.zoom;
-                    },
-                    function (newValue, oldValue) {
-                        if (vm.mapEditing) {
-                            if (newValue < 9) {
-                                vm.mapShowMinimumZoomMessage = true;
-                                vm.circle.visible = false;
-                            } else {
-                                vm.mapShowMinimumZoomMessage = false;
-                                vm.circle.visible = true;
-                            }
-                        } else {
-                            vm.mapShowMinimumZoomMessage = false;
-                            vm.circle.visible = true;
-                        }
-                        if (!vm.mapEditing && newValue - oldValue > 1) {
-                            vm.map.zoom = newValue + 1;
-                            canStartEditionWithZoom = true;
-                        }
-                    }
-                );
-                vm.map.bounds = {
-                    'southwest': {
-                        'latitude': vm.workArea.swLatitude,
-                        'longitude': vm.workArea.swLongitude
-                    },
-                    'northeast': {
-                        'latitude': vm.workArea.neLatitude,
-                        'longitude': vm.workArea.neLongitude
-                    }
-                };
-                if (vm.mapEditing) {
-                    if (vm.map.zoom < 9) {
-                        vm.mapShowMinimumZoomMessage = true;
-                        vm.circle.visible = false;
-                    } else {
-                        vm.mapShowMinimumZoomMessage = false;
-                        vm.circle.visible = true;
-                    }
-                } else {
-                    vm.mapShowMinimumZoomMessage = false;
-                    vm.circle.visible = true;
-                }
-            });
-        }
-
-        setTimeout(function () {
-            loadMap();
-            setTimeout(function () {
-                displayWorkArea();
-            }, 1000);
-        }, 1000);
-
-        function displayWorkArea() {
-            if (vm.map) {
-                vm.map.bounds = {
-                    'southwest': {
-                        'latitude': vm.workArea.swLatitude,
-                        'longitude': vm.workArea.swLongitude
-                    },
-                    'northeast': {
-                        'latitude': vm.workArea.neLatitude,
-                        'longitude': vm.workArea.neLongitude
-                    }
-                };
-                vm.circle.center = {
-                    latitude: vm.workArea.latitude,
-                    longitude: vm.workArea.longitude
-                };
-                vm.circle.radius = vm.workArea.radius;
-                vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
-                $scope.$applyAsync();
-            }
-        }
-
-        networkService.professionalGET(succesProfileGET, errorProfileGET);
-        networkService.skillsGET(succeSkillsGET, errorSkillsGET);
-
-        function changePassword() {
-            vm.pwd1 = vm.pwd1 || "";
-            vm.pwd2 = vm.pwd2 || "";
-            if (vm.pwd1.length < 6) {
-                vm.error.password.message = "Password min length 6.";
-                vm.error.password.flag = true;
-            }
-            else {
-                vm.error.password.flag = false;
-                var formData = {
-                    currentPassword: vm.pwdCurrent,
-                    newPassword: vm.pwd1
-                };
-                if (vm.pwd2 === vm.pwd1) {
-                    vm.updating = true;
-                    networkService.changePassword(formData, function (res) {
-                        alertMsg.send("Mot de passe modifié avec succès", "success");
-                        vm.updating = false;
-                    }, function (res) {
-                        vm.updating = false;
-                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                    });
-                }
-                else {
-                    vm.error.password.message = "Les deux mots de passe ne correspondent pas";
-                    vm.error.password.flag = true;
-                }
-            }
-        }
-
-        function actionActivities(s) {
-            var res = null;
-            if ((res = indexOfObject(s, 'code', vm.activities)).length == 0)
-                vm.activities.push({code: s});
-            else {
-                for (var i = 0; i < res.length; i++) {
-                    vm.activities.splice(res[i], 1);
-                }
-            }
-        }
-
-        function indexOfObject(a, token, tab) {
-            var res = [];
-
-            if (angular.isDefined(tab)) {
-                for (var i = 0; i < tab.length; i++) {
-                    if (tab[i][token] == a)
-                        res.push(i);
-                }
-            }
-            return res;
-        }
-
-        function succeSkillsGET(res) {
-            vm.cat = res;
-        }
-
-        function errorSkillsGET(res) {
-        }
-
-        function uploadPortfolio(files, invalides, index) {
-            if (invalides.length > 0) {
-                if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
-            }
-            $scope.files = files;
-            if (!$scope.files) return;
-            angular.forEach(files, function (file) {
-                if (file && !file.$error) {
-                    vm.updating = true;
-                    file.upload = Upload.upload({
-                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-                        data: {
-                            upload_preset: cloudinary.config().upload_preset,
-                            tags: 'myPortfolio',
-                            context: 'photo=' + $scope.title,
-                            file: file
-                        }
-                    }).progress(function (e) {
-                        file.progress = Math.round((e.loaded * 100.0) / e.total);
-                        file.status = "Uploading... " + file.progress + "%";
-                    }).success(function (data, status, headers, config) {
-                        vm.updating = false;
-                        vm.portfolio = vm.portfolio || [];
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        vm.portfolio.push({cloudinaryPublicId: data.public_id});
-                    }).error(function (data, status, headers, config) {
-                        vm.updating = false;
-                        alertMsg.send("Impossible d'envoyer l'image", "danger");
-                    });
-                }
-            });
-        }
-
-        function setVerif(name) {
-            vm.verifTmp = {name: name};
-        }
-
-        function uploadVerifications(files, invalides, index) {
-            if (invalides.length > 0) {
-                if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
-            }
-            $scope.files = files;
-            if (!$scope.files) return;
-            angular.forEach(files, function (file) {
-                if (file && !file.$error) {
-                    vm.updating = true;
-                    file.upload = Upload.upload({
-                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-                        data: {
-                            upload_preset: cloudinary.config().upload_preset,
-                            tags: 'verifications',
-                            context: 'file=' + $scope.title,
-                            file: file
-                        }
-                    }).progress(function (e) {
-                        file.progress = Math.round((e.loaded * 100.0) / e.total);
-                        file.status = "Uploading... " + file.progress + "%";
-                    }).success(function (data, status, headers, config) {
-                        vm.updating = false;
-                        vm.verifications = vm.verifications || [];
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        if (vm.verifications.length > 0 && vm.verifTmp.name) {
-                            var removeExistingVerificationIndex = vm.verifications.map(function (v) {
-                                return v.name;
-                            }).indexOf(vm.verifTmp.name);
-                            ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
-                        }
-                        vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
-                    }).error(function (data, status, headers, config) {
-                        vm.updating = false;
-                        alertMsg.send("Impossible d'envoyer l'image", "danger");
-                    });
-                }
-            });
-        }
-
-        function uploadProfile(files, invalides, index) {
-            if (invalides.length > 0) {
-                if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
-            }
-            $scope.files = files;
-            if (!$scope.files) return;
-            angular.forEach(files, function (file) {
-                if (file && !file.$error) {
-                    vm.updating = true;
-                    file.upload = Upload.upload({
-                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
-                        data: {
-                            upload_preset: cloudinary.config().upload_preset,
-                            tags: 'verifications',
-                            context: 'file=' + $scope.title,
-                            file: file
-                        }
-                    }).progress(function (e) {
-                        file.progress = Math.round((e.loaded * 100.0) / e.total);
-                        file.status = "Uploading... " + file.progress + "%";
-                    }).success(function (data, status, headers, config) {
-                        vm.updating = false;
-                        vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        var res = null;
-                        vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
-                    }).error(function (data, status, headers, config) {
-                        vm.updating = false;
-                        alertMsg.send("Impossible d'envoyer l'image", "danger");
-                    });
-                }
-            });
-        };
-
-        function yearsContent() {
+        function generateYears() {
             var res = [];
             for (var i = 0; i < (parseInt(vm.Year) - 1949); i++) {
                 res.push(1950 + i);
@@ -454,7 +47,7 @@
             return res;
         }
 
-        function updateProfile() {
+        vm.updateProfile = function () {
             var f = false;
             if (!vm.profileInfo.user.firstName || //
                 !vm.profileInfo.user.lastName || //
@@ -490,26 +83,9 @@
             else {
                 alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
             }
-        }
+        };
 
-        function updatePortfolio() {
-            vm.updating = true;
-            networkService.proPortfolioPUT(vm.portfolio, function (res) {
-                vm.portfolio = res.portfolio;
-                vm.profile.portfolio = res.portfolio;
-                vm.profile.status = res.status;
-                vm.editFlag = false;
-                vm.updating = false;
-                alertMsg.send("Le portfolio à été modifié avec succès", "success");
-            }, errorProfilePUT);
-        }
-
-        function updateWorkArea() {
-            vm.updating = true;
-            networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT);
-        }
-
-        function updateAboutMe() {
+        vm.updateAboutMe = function () {
             vm.updating = true;
             networkService.proAboutMePUT(vm.about, function (res) {
                 vm.about = angular.copy(res);
@@ -521,9 +97,14 @@
                 vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
             });
-        }
+        };
 
-        function updateVerifications() {
+        vm.updateWorkArea = function () {
+            vm.updating = true;
+            networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT);
+        };
+
+        vm.updateVerifications = function () {
             vm.verifications = vm.verifications || [];
             if (vm.verifications.filter(function (obj) {
                     return obj.name === 'BUSINESS_REGISTRATION';
@@ -547,9 +128,9 @@
                     "une fois que nous les aurons vérifié, vous pourrez répondre à toutes les offres.";
                 vm.error.verif.flag = true;
             }
-        }
+        };
 
-        function updateActivities() {
+        vm.updateActivities = function () {
             if (vm.activities.length > 0) {
                 vm.error.activities.flag = false;
                 vm.updating = true;
@@ -565,9 +146,21 @@
                 vm.error.activities.message = "Vous devez indiquer au moins une de vos compétences.";
                 vm.error.activities.flag = true;
             }
-        }
+        };
 
-        function cancelProfile() {
+        vm.updatePortfolio = function () {
+            vm.updating = true;
+            networkService.proPortfolioPUT(vm.portfolio, function (res) {
+                vm.portfolio = res.portfolio;
+                vm.profile.portfolio = res.portfolio;
+                vm.profile.status = res.status;
+                vm.editFlag = false;
+                vm.updating = false;
+                alertMsg.send("Le portfolio à été modifié avec succès", "success");
+            }, errorProfilePUT);
+        };
+
+        vm.cancelProfile = function () {
             vm.error.profile.flag = false;
             vm.profileInfo = {
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
@@ -575,37 +168,219 @@
                 activityStartedYear: angular.copy(vm.profile.activityStartedYear),
                 company: angular.copy(vm.profile.company)
             };
-        }
+        };
 
-        function cancelPortfolio() {
-            vm.portfolio = angular.copy(vm.profile.portfolio);
-            vm.editFlag = false;
-        }
+        vm.cancelAboutMe = function () {
+            vm.about = {aboutMe: angular.copy(vm.profile.aboutMe)};
+        };
 
-        function cancelWorkArea() {
+        vm.cancelWorkArea = function () {
             vm.workArea = angular.copy(vm.profile.workArea);
             displayWorkArea();
-        }
+        };
 
-        function cancelAboutMe() {
-            vm.about = {aboutMe: angular.copy(vm.profile.aboutMe)};
-        }
-
-        function cancelVerifications() {
+        vm.cancelVerifications = function () {
             vm.error.verif.flag = false;
             vm.verifications = angular.copy(vm.profile.verifications);
-        }
+        };
 
-        function cancelActivities() {
+        vm.cancelActivities = function () {
             vm.error.activities.flag = false;
             vm.activities = angular.copy(vm.profile.activities);
-        }
+        };
 
-        function succesProfilePUT(res) {
-            succesProfileGET(res);
-            vm.updating = false;
-            alertMsg.send("Les informations du profil on été modifiées avec succès", "success");
-        }
+        vm.cancelPortfolio = function () {
+            vm.portfolio = angular.copy(vm.profile.portfolio);
+            vm.editFlag = false;
+        };
+
+        vm.uploadPortfolio = function (files, invalides, index) {
+            if (invalides.length > 0) {
+                if (invalides[0].$error == "maxSize")
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
+            }
+            $scope.files = files;
+            if (!$scope.files) return;
+            angular.forEach(files, function (file) {
+                if (file && !file.$error) {
+                    vm.updating = true;
+                    file.upload = Upload.upload({
+                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+                        data: {
+                            upload_preset: cloudinary.config().upload_preset,
+                            tags: 'myPortfolio',
+                            context: 'photo=' + $scope.title,
+                            file: file,
+                            resource_type: 'image'
+                        }
+                    }).progress(function (e) {
+                        file.progress = Math.round((e.loaded * 100.0) / e.total);
+                        file.status = "Uploading... " + file.progress + "%";
+                    }).success(function (data, status, headers, config) {
+                        vm.updating = false;
+                        vm.portfolio = vm.portfolio || [];
+                        data.context = {custom: {photo: $scope.title}};
+                        file.result = data;
+                        vm.portfolio.push({cloudinaryPublicId: data.public_id});
+                    }).error(function (data, status, headers, config) {
+                        vm.updating = false;
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
+                    });
+                }
+            });
+        };
+
+        vm.indexOfObject = function (a, token, tab) {
+            var res = [];
+
+            if (angular.isDefined(tab)) {
+                for (var i = 0; i < tab.length; i++) {
+                    if (tab[i][token] == a)
+                        res.push(i);
+                }
+            }
+            return res;
+        };
+
+        vm.getVerification = function (verificationName) {
+
+            var foundVerification = null;
+            angular.forEach(vm.verifications, function(verification) {
+                if (verification.name && verification.name == verificationName) {
+                    foundVerification = verification;
+                }
+            });
+            return foundVerification;
+        };
+
+        vm.actionActivities = function (s) {
+            var res = null;
+            if ((res = vm.indexOfObject(s, 'code', vm.activities)).length == 0)
+                vm.activities.push({code: s});
+            else {
+                for (var i = 0; i < res.length; i++) {
+                    vm.activities.splice(res[i], 1);
+                }
+            }
+        };
+
+        vm.changePassword = function () {
+            vm.pwd1 = vm.pwd1 || "";
+            vm.pwd2 = vm.pwd2 || "";
+            if (vm.pwd1.length < 6) {
+                vm.error.password.message = "Password min length 6.";
+                vm.error.password.flag = true;
+            }
+            else {
+                vm.error.password.flag = false;
+                var formData = {
+                    currentPassword: vm.pwdCurrent,
+                    newPassword: vm.pwd1
+                };
+                if (vm.pwd2 === vm.pwd1) {
+                    vm.updating = true;
+                    networkService.changePassword(formData, function (res) {
+                        alertMsg.send("Mot de passe modifié avec succès", "success");
+                        vm.updating = false;
+                    }, function (res) {
+                        vm.updating = false;
+                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
+                    });
+                }
+                else {
+                    vm.error.password.message = "Les deux mots de passe ne correspondent pas";
+                    vm.error.password.flag = true;
+                }
+            }
+        };
+
+        vm.uploadVerifications = function (files, invalides, index) {
+            if (invalides.length > 0) {
+                if (invalides[0].$error == "maxSize")
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
+            }
+            $scope.files = files;
+            if (!$scope.files) return;
+            angular.forEach(files, function (file) {
+                if (file && !file.$error) {
+                    vm.updating = true;
+                    file.upload = Upload.upload({
+                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+                        data: {
+                            upload_preset: cloudinary.config().upload_preset,
+                            tags: 'verifications',
+                            context: 'file=' + $scope.title,
+                            file: file
+                        }
+                    }).progress(function (e) {
+                        file.progress = Math.round((e.loaded * 100.0) / e.total);
+                        file.status = "Uploading... " + file.progress + "%";
+                    }).success(function (data, status, headers, config) {
+                        vm.updating = false;
+                        vm.verifications = vm.verifications || [];
+                        data.context = {custom: {photo: $scope.title}};
+                        file.result = data;
+                        if (vm.verifications.length > 0 && vm.verifTmp.name) {
+                            var removeExistingVerificationIndex = vm.verifications.map(function (v) {
+                                return v.name;
+                            }).indexOf(vm.verifTmp.name);
+                            ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
+                        }
+                        vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
+                    }).error(function (data, status, headers, config) {
+                        vm.updating = false;
+                        alertMsg.send("Impossible d'envoyer ce fichier", "danger");
+                    });
+                }
+            });
+        };
+
+        vm.uploadProfile = function (files, invalides, index) {
+            if (invalides.length > 0) {
+                if (invalides[0].$error == "maxSize")
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
+            }
+            $scope.files = files;
+            if (!$scope.files) return;
+            angular.forEach(files, function (file) {
+                if (file && !file.$error) {
+                    vm.updating = true;
+                    file.upload = Upload.upload({
+                        url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+                        data: {
+                            upload_preset: cloudinary.config().upload_preset,
+                            tags: 'verifications',
+                            context: 'file=' + $scope.title,
+                            file: file,
+                            resource_type: 'image'
+                        }
+                    }).progress(function (e) {
+                        file.progress = Math.round((e.loaded * 100.0) / e.total);
+                        file.status = "Uploading... " + file.progress + "%";
+                    }).success(function (data, status, headers, config) {
+                        vm.updating = false;
+                        vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
+                        data.context = {custom: {photo: $scope.title}};
+                        file.result = data;
+                        var res = null;
+                        vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
+                    }).error(function (data, status, headers, config) {
+                        vm.updating = false;
+                        alertMsg.send("Impossible d'envoyer l'image", "danger");
+                    });
+                }
+            });
+        };
+
+        vm.setVerif = function setVerif(name) {
+            vm.verifTmp = {name: name};
+        };
+
+        networkService.professionalGET(succesProfileGET, errorProfileGET);
+        networkService.skillsGET(function (res) {
+            vm.cat = res;
+        }, function (res) {
+        });
 
         function errorProfilePUT() {
             vm.updating = false;
@@ -649,6 +424,15 @@
 
         vm.showProfileEditPopup = false;
         vm.showVerificationsEditPopup = false;
+
+        vm.profileSaveButtonClicked = function () {
+            if (vm.profileInfo.company.name != vm.profile.company.name ||
+                vm.profileInfo.company.siret != vm.profile.company.siret) {
+                vm.showProfileEditPopup = true
+            } else {
+                vm.updateProfile();
+            }
+        };
 
         vm.validatePopup = function () {
             if (vm.showProfileEditPopup) {
@@ -796,7 +580,9 @@
         vm.editFlag = false;
 
         vm.saveComment = function () {
-            $('html').trigger('click');
+            $timeout(function() {
+                $('html').trigger('click');
+            });
         };
 
         vm.descriptionChanged = function (image) {
@@ -906,6 +692,304 @@
             return (vm.profile &&
             vm.profile.portfolio &&
             vm.profile.portfolio.length > 0);
+        };
+
+        //
+        //
+        //
+        //
+        // Map Stuff
+        //
+        //
+        //
+        //
+
+        vm.mapShowMinimumZoomMessage = false;
+        vm.mapEditing = false;
+        vm.workareaDiameter = 0;
+
+        function rad(x) {
+            return x * Math.PI / 180;
+        }
+
+        function getDistance(p1, p2) {
+            var R = 6378137; // Earth’s mean radius in meter
+            var dLat = rad(p2.latitude - p1.latitude);
+            var dLong = rad(p2.longitude - p1.longitude);
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(rad(p1.latitude)) * Math.cos(rad(p2.latitude)) *
+                Math.sin(dLong / 2) * Math.sin(dLong / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // returns the distance in meter
+            return d;
+        }
+
+        function getMinimumWidthOrHeight() {
+
+            var map = vm.map.control.getGMap();
+            var bounds = map.getBounds();
+            var center = map.getCenter();
+
+            var width = getDistance(
+                {
+                    latitude: center.lat(),
+                    longitude: bounds.getSouthWest().lng()
+                },
+                {
+                    latitude: center.lat(),
+                    longitude: bounds.getNorthEast().lng()
+                }
+            );
+
+            var height = getDistance(
+                {
+                    latitude: bounds.getSouthWest().lat(),
+                    longitude: center.lng()
+                },
+                {
+                    latitude: bounds.getNorthEast().lat(),
+                    longitude: center.lng()
+                }
+            );
+
+            if (width < height) {
+                return width;
+            } else {
+                return height;
+            }
+        }
+
+        var canStartEditionWithZoom = false;
+        var firstZoom = true;
+
+        setTimeout(function () {
+            loadMap();
+            setTimeout(function () {
+                displayWorkArea();
+            }, 1000);
+        }, 1000);
+
+        function loadMap() {
+            uiGmapGoogleMapApi.then(function (maps) {
+                vm.map = {
+                    center: {
+                        latitude: 46.5945259,
+                        longitude: 2.4623584
+                    },
+                    bounds: {},
+                    zoom: 6,
+                    events: {
+                        "idle": function () {
+                            if (vm.mapEditing) {
+                                setTimeout(function () {
+                                    var circleRadius = (getMinimumWidthOrHeight() / 2) * 0.9;
+                                    vm.circle.radius = circleRadius;
+                                    vm.circle.control.getCircle().setCenter(new google.maps.LatLng(vm.map.center.latitude, vm.map.center.longitude));
+                                    vm.circle.control.getCircle().setRadius(circleRadius);
+                                    vm.workArea.radius = circleRadius;
+                                    vm.workArea.latitude = vm.map.center.latitude;
+                                    vm.workArea.longitude = vm.map.center.longitude;
+                                    var bnds = vm.circle.control.getCircle().getBounds();
+                                    vm.workArea.swLatitude = bnds.getSouthWest().lat();
+                                    vm.workArea.swLongitude = bnds.getSouthWest().lng();
+                                    vm.workArea.neLatitude = bnds.getNorthEast().lat();
+                                    vm.workArea.neLongitude = bnds.getNorthEast().lng();
+                                    vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
+                                }, 0);
+                            }
+                        },
+                        "dragstart": function () {
+                            vm.mapEditing = true;
+                        },
+                        "zoom_changed": function () {
+                            /*
+                             if (canStartEditionWithZoom && firstZoom) {
+                             firstZoom = false;
+                             } else if (canStartEditionWithZoom && !firstZoom) {
+                             vm.mapEditing = true;
+                             }
+                             */
+                        }
+                    },
+                    control: {}
+                };
+                vm.circle =
+                {
+                    id: 1,
+                    center: {
+                        latitude: 0,
+                        longitude: 0
+                    },
+                    radius: 10,
+                    stroke: {
+                        color: '#03A9F4',
+                        weight: 2,
+                        opacity: 1
+                    },
+                    fill: {
+                        color: '#03A9F4',
+                        opacity: 0.15
+                    },
+                    visible: false,
+                    control: {},
+                    bounds: {}
+                };
+                vm.mapOptions = {
+                    minZoom: 6,
+                    maxZoom: 13,
+                    scrollwheel: false,
+                    streetViewControl: false,
+                    mapTypeControlOptions: {
+                        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                        position: google.maps.ControlPosition.TOP_LEFT,
+                        mapTypeIds: [
+                            google.maps.MapTypeId.ROADMAP,
+                            google.maps.MapTypeId.HYBRID
+                        ]
+                    }
+                };
+                $scope.$watch(
+                    function () {
+                        return vm.map.zoom;
+                    },
+                    function (newValue, oldValue) {
+                        if (vm.mapEditing) {
+                            if (newValue < 9) {
+                                vm.mapShowMinimumZoomMessage = true;
+                                vm.circle.visible = false;
+                            } else {
+                                vm.mapShowMinimumZoomMessage = false;
+                                vm.circle.visible = true;
+                            }
+                        } else {
+                            vm.mapShowMinimumZoomMessage = false;
+                            vm.circle.visible = true;
+                        }
+                        if (!vm.mapEditing && newValue - oldValue > 1) {
+                            vm.map.zoom = newValue + 1;
+                            canStartEditionWithZoom = true;
+                        }
+                    }
+                );
+                vm.map.bounds = {
+                    'southwest': {
+                        'latitude': vm.workArea.swLatitude,
+                        'longitude': vm.workArea.swLongitude
+                    },
+                    'northeast': {
+                        'latitude': vm.workArea.neLatitude,
+                        'longitude': vm.workArea.neLongitude
+                    }
+                };
+                if (vm.mapEditing) {
+                    if (vm.map.zoom < 9) {
+                        vm.mapShowMinimumZoomMessage = true;
+                        vm.circle.visible = false;
+                    } else {
+                        vm.mapShowMinimumZoomMessage = false;
+                        vm.circle.visible = true;
+                    }
+                } else {
+                    vm.mapShowMinimumZoomMessage = false;
+                    vm.circle.visible = true;
+                }
+            });
+        }
+
+        function displayWorkArea() {
+            if (vm.map) {
+                vm.map.bounds = {
+                    'southwest': {
+                        'latitude': vm.workArea.swLatitude,
+                        'longitude': vm.workArea.swLongitude
+                    },
+                    'northeast': {
+                        'latitude': vm.workArea.neLatitude,
+                        'longitude': vm.workArea.neLongitude
+                    }
+                };
+                vm.circle.center = {
+                    latitude: vm.workArea.latitude,
+                    longitude: vm.workArea.longitude
+                };
+                vm.circle.radius = vm.workArea.radius;
+                vm.workareaDiameter = Math.ceil((vm.workArea.radius * 2) / 1000);
+                $scope.$applyAsync();
+            }
+        }
+
+        //
+        //
+        //
+        //
+        // End Map Stuff
+        //
+        //
+        //
+        //
+
+        vm.attachGoogle = function () {
+            $auth.authenticate('googleLoginAttach').then(function (res) {
+                if (res.data && res.data.status && res.data.status == "ok") {
+                    $rootScope.updateProfile();
+                } else {
+                    alertMsg.send("Impossible d'associer le compte Google", 'danger');
+                }
+            }).catch(function (res) {
+                alertMsg.send("Impossible d'associer le compte Google", 'danger');
+            });
+        };
+
+        vm.attachFacebook = function () {
+            $auth.authenticate('facebookLoginAttach').then(function (res) {
+                if (res.data && res.data.status && res.data.status == "ok") {
+                    $rootScope.updateProfile();
+                } else {
+                    alertMsg.send("Impossible d'associer le compte Facebook", 'danger');
+                }
+            }).catch(function (res) {
+                alertMsg.send("Impossible d'associer le compte Facebook", 'danger');
+            });
+        };
+
+        vm.detachGoogle = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus vous connecter automatiquement via votre compte Google",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.loginGoogleDetach(function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                        alertMsg.send("Impossible d'effectuer cette action", "danger");
+                    });
+                }
+            });
+        };
+
+        vm.detachFacebook = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Vous ne pourrez plus vous connecter automatiquement via votre compte Facebook",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.loginFacebookDetach(function () {
+                        $rootScope.updateProfile();
+                    }, function () {
+                        alertMsg.send("Impossible d'effectuer cette action", "danger");
+                    });
+                }
+            });
         };
     }
 })();

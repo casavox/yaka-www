@@ -11,7 +11,7 @@
     <li class="logo">
         <a ui-sref="home" data-ng-click="app.sidebarStat($event)">
             <div class="titleYakaClub titleYakaClubWhite" ui-sref="contacts">
-                <span class="titleYaka">YAKA</span><span class="titleClub">CLUB</span>
+                <span class="titleClub">CASA</span><span class="titleYaka">VOX</span>
                 <span class="titleContactsBeta titleYakaClubBetaHeader"
                       data-ng-class="{'bgm-lightblue': app.isPro(), 'bgm-orange': !app.isPro()}">Beta</span>
             </div>
@@ -49,19 +49,13 @@
                                         </div>
                                         <div class="lv-title lv-subtitle">
                                             {{userchat.chat.proposal.project.address.locality}} -
-                                            {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
+                                            {{userchat.chat.proposal.project.title}}
                                         </div>
                                         <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
                                             {{userchat.chat.messages[0].text}}
                                         </small>
-                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
-                                               data-ng-switch="userchat.chat.messages[0].text">
-                                            <span data-ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{userchat.chat.messages[0].varPrice}} €</span>
-                                            <span data-ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{userchat.chat.messages[0].varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span data-ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{userchat.chat.messages[0].varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{userchat.chat.messages[0].varAddress}}</span>
-                                            <span data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
-                                            <span data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
+                                            <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
                                         </small>
                                     </div>
                                 </div>
@@ -80,23 +74,18 @@
                                         </div>
                                         <div class="lv-title lv-subtitle">
                                             {{userchat.chat.proposal.project.address.locality}} -
-                                            {{userchat.chat.proposal.project.title | yakaTranslateTitle}}
+                                            {{userchat.chat.proposal.project.title}}
                                         </div>
                                         <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
                                             {{userchat.chat.messages[0].text}}
                                         </small>
-                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'"
-                                               data-ng-switch="userchat.chat.messages[0].text">
-                                            <span data-ng-switch-when="PRO_PRICE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition de prix à {{userchat.chat.messages[0].varPrice}} €</span>
-                                            <span data-ng-switch-when="PRO_DATE_UPDATED">{{userchat.chat.proposal.professional.user.firstName}} {{userchat.chat.proposal.professional.user.lastName}} a modifié sa proposition date d'intervention au {{userchat.chat.messages[0].varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span data-ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{userchat.chat.messages[0].varDate | date : 'dd/MM/yyyy'}}</span>
-                                            <span data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{userchat.chat.messages[0].varAddress}}</span>
-                                            <span data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
-                                            <span data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
+                                            <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
                                         </small>
                                     </div>
                                 </div>
                             </a>
+                            <span class="vertical-center p-b-10" ng-show="!app.getUserchats().length">Vous n'avez pas de message</span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -106,7 +95,7 @@
             <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
                     <yaka-avatar class="yakaHeaderAvatar" size="40" user="app.getUser()"></yaka-avatar>
-                    <span class="yakaHeaderFirstname">
+                    <span class="yakaHeaderFirstname" data-ng-class="{'t-0': !app.getUser().avatar.cloudinaryPublicId}">
                         <span class="hidden-xs">{{app.getFirstName()}}</span>
                         <i class="zmdi zmdi-caret-down"></i>
                     </span>

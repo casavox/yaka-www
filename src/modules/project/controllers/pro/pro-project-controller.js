@@ -75,11 +75,11 @@
         if ($stateParams.projectId) {
             networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("findjobs");
+            $state.go("pro-dashboard");
         }
 
         function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 20 && vm.offer.comment.indexOf(' ') > -1) {
+            if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
                 var formData = {
                     project: {id: vm.projectTmp.id},
@@ -98,11 +98,6 @@
                     alertMsg.send("Impossible d'envoyer la proposition", "danger");
                 });
             }
-        }
-
-        function selectDate() {
-            vm.offer.date = vm.dt;
-            vm.myDateFlag = false;
         }
 
         function setMinMaxDate() {
@@ -143,19 +138,29 @@
             }
         }
 
-        function selectPrice(type) {
-            vm.error.price = vm.error.price || {};
-            if (vm.price <= 10) {
-                vm.error.price.message = "Vous devez entrer un montant de 10 € minimum";
-                vm.error.price.flag = true
-            } else if (vm.price > 1000000) {
-                vm.error.price.message = "Veuillez entrer un montant réaliste";
-                vm.error.price.flag = true
-            }
-            vm.offer.price = vm.price;
-            vm.myPriceFlag = false;
-            vm.error.price.flag = false;
+        function selectDate() {
+            vm.offer.date = vm.dt;
+            vm.myDateFlag = false;
         }
+
+        function selectPrice() {
+            vm.error.price = vm.error.price || {};
+            if (vm.price <= 30 || vm.price > 1000000) {
+                vm.error.price.message = "Merci d'indiquer un montant réaliste";
+                vm.error.price.flag = true
+            } else {
+                vm.offer.price = vm.price;
+                vm.myPriceFlag = false;
+                vm.error.price.flag = false;
+            }
+        }
+
+        vm.isValidPrice = function () {
+            if (!vm.price || vm.price == 0 || vm.price <= 30 || vm.price > 1000000) {
+                return false;
+            }
+            return true;
+        };
 
         function myPrice() {
             vm.myPriceFlag = true;
@@ -191,7 +196,7 @@
             vm.project = res;
             $rootScope.pageName = vm.project.user.firstName + " " +
                 vm.project.user.lastName +
-                " - " + $filter('yakaTranslateTitle')(vm.project.title);
+                " - " + vm.project.title;
 
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
@@ -199,7 +204,7 @@
         }
 
         function errorProjectGET(err) {
-            $state.go("findjobs");
+            $state.go("pro-dashboard");
         }
 
         vm.getStringLength = function (str) {
@@ -213,7 +218,9 @@
             var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    res.push(vm.project.activities[i].code);
+                    if (!_.includes(res, vm.project.activities[i].code)) {
+                        res.push(vm.project.activities[i].code);
+                    }
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
@@ -236,7 +243,7 @@
         vm.formIsValid = function () {
             return (vm.offer &&
             vm.offer.comment &&
-            vm.offer.co);
+            vm.offer.comment.length >= 40);
         };
     }
 })();

@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi) {
+    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -80,32 +80,15 @@
         });
         vm.cleanAddress = angular.copy($scope.address);
 
-        vm.deleteProject = function () {
+        vm.deleteProject = function (message) {
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
-                networkService.deleteProject($stateParams.projectId,
+                networkService.deleteProject($stateParams.projectId, message,
                     function () {
                         alertMsg.send("Votre projet à bien été supprimé", "success");
                         $state.go("my-projects");
                     },
                     function () {
                         alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
-                    }
-                );
-            }
-        };
-
-        vm.publishProject = function () {
-            if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
-                networkService.publishProject($stateParams.projectId,
-                    function () {
-                        vm.publishFlag = false;
-                        alertMsg.send("Votre projet à bien été dépublié", "success");
-                        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
-                            networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
-                        }
-                    },
-                    function () {
-                        alertMsg.send("Impossible de dépublier le projet, réessayez puis contactez le support si besoin", "danger");
                     }
                 );
             }
@@ -291,7 +274,7 @@
             vm.myAddress = "new";
         }
 
-        if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
+        if ($stateParams.projectId) {
             networkService.projectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         }
 
@@ -320,7 +303,6 @@
             vm.dateSelected = false;
             vm.dateFlag = false;
             vm.dateType = type;
-            console.log(vm.dateType);
             switch (vm.dateType) {
                 case "SPECIFIC":
                     vm.projectTmp.desiredDatePeriod = "SPECIFIC";
@@ -328,11 +310,11 @@
                     break;
                 case "WITHIN_A_MONTH":
                     vm.projectTmp.desiredDatePeriod = "WITHIN_A_MONTH";
-                    vm.projectTmp.desiredDate = moment().add(1, 'months');
+                    vm.projectTmp.desiredDate = new Date(moment().add(1, 'months'));
                     break;
                 case "NONE":
                     vm.projectTmp.desiredDatePeriod = "NONE";
-                    vm.projectTmp.desiredDate = vm.dt;
+                    vm.projectTmp.desiredDate = null;
                     break;
             }
         };
@@ -357,6 +339,8 @@
             vm.cancel();
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
+            vm.newAddrFlag = false;
+            networkService.profileGET(succesProfileGET, errorProfileGET);
         }
 
         function errorProfilePUT() {
@@ -371,7 +355,7 @@
         vm.uploadFiles = function (files, invalides, index) {
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
-                    alertMsg.send("Taille maximum : 5Mo.", "danger");
+                    alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
@@ -383,7 +367,8 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'project',
                             context: 'photo=' + $scope.title,
-                            file: file
+                            file: file,
+                            resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
@@ -413,7 +398,9 @@
             var res = [];
             if (!angular.isUndefined(vm.project) && vm.project.activities) {
                 for (var i = 0; i < vm.project.activities.length; i++) {
-                    res.push(vm.project.activities[i].code);
+                    if (!_.includes(res, vm.project.activities[i].code)) {
+                        res.push(vm.project.activities[i].code);
+                    }
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
@@ -433,10 +420,6 @@
             }
         };
 
-        vm.prev = function () {
-            $state.go("proposals", {projectId: $stateParams.projectId});
-        };
-
         function succesProjectGET(res) {
             if (res.address.latitude && res.address.longitude) {
                 $scope.map.center = {
@@ -450,7 +433,7 @@
                 }
             }
             vm.project = res;
-            $rootScope.pageName = $filter('yakaTranslateTitle')(vm.project.title);
+            $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             vm.dt = angular.copy(vm.now);
@@ -523,20 +506,23 @@
         };
 
         vm.openDeleteProjectPopup = function () {
-            swal({
-                title: "Êtes-vous sûr ?",
-                text: "Au lieu de supprimer un projet, il est généralement préférable de le modifier.",
-                type: "warning",
-                confirmButtonColor: "#f44336",
-                confirmButtonText: "Oui, supprimer mon projet",
-                showCancelButton: true,
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    vm.deleteProject();
-                }
+            modalService.cancelProject(getProName(), function (chatMessage) {
+                vm.deleteProject({text: chatMessage});
             });
         };
+
+        function getProName() {
+            var name = null;
+            if (vm.project &&
+                vm.project.proposal &&
+                vm.project.proposal.professional &&
+                vm.project.proposal.professional.user &&
+                vm.project.proposal.professional.user.firstName &&
+                vm.project.proposal.professional.user.lastName) {
+                name = vm.project.proposal.professional.user.firstName + " " + vm.project.proposal.professional.user.lastName;
+            }
+            return name;
+        }
 
         vm.openSavePopup = function () {
             swal({

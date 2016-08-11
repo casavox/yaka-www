@@ -8,7 +8,7 @@
              data-ng-class="{'right': showRight(message)}" yaka-scroll-item>
 
             <div class="lv-avatar"
-                 data-ng-if="message.author != 'AUTO'"
+                 data-ng-if="message.author != 'AUTO' && message.author != 'YAKA'"
                  data-ng-class="{'pull-left': !showRight(message), 'pull-right': showRight(message)}">
 
                 <yaka-avatar data-ng-if="!showRight(message)" user="userOther" size="35"></yaka-avatar>
@@ -20,7 +20,8 @@
                 <div class="ms-item"
                      data-ng-class="{'messageAuto': message.author == 'AUTO' || message.author == 'YAKA'}">
 
-                    <div class="lightbox photos" data-ng-if="message.cloudinaryPublicId">
+                    <div class="lightbox photos"
+                         data-ng-if="message.cloudinaryPublicId && message.resourceType && message.resourceType == 'image'">
                         <div data-ng-repeat="img in createImageArray(message.cloudinaryPublicId)"
                              data-src="{{img | yakaCloudinaryUrl}}"
                              class="lightboxItemAngular col-xs-12">
@@ -32,14 +33,21 @@
                             </div>
                         </div>
                     </div>
-                    <span class="msg" data-ng-if="message.author != 'AUTO'">{{message.text}}</span>
-                    <span data-ng-if="message.author == 'AUTO'" data-ng-switch="message.text">
-                        <span class="msg" data-ng-switch-when="PRO_PRICE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition de prix à {{message.varPrice}} €</span>
-                        <span class="msg" data-ng-switch-when="PRO_DATE_UPDATED">{{getProUser().firstName}} {{getProUser().lastName}} a modifié sa proposition date d'intervention au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_DATE_UPDATED">La date souhaité de début de chantier a été modifiée au {{message.varDate | date : 'dd/MM/yyyy'}}</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_ADDRESS_UPDATED">L'addresse du chantier à été modifiée au {{message.varAddress}}</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_DESCRIPTION_UPDATED">La description du projet a été modifiée</span>
-                        <span class="msg" data-ng-switch-when="CUSTOMER_PHOTOS_UPDATED">Les photos du projets ont été modifiées</span>
+                    <div data-ng-if="message.cloudinaryPublicId">
+                        <i class="zmdi zmdi-file"></i> {{message.filename}}<span data-ng-if="message.format">.{{message.format}}</span>
+                    </div>
+                    <a class="pointer" data-ng-if="message.cloudinaryPublicId"
+                       data-ng-href="{{message.cloudinaryPublicId | yakaCloudinaryDownload : message.resourceType}}"
+                       data-ng-class="{'c-yaka-dark-blue': !showRight(message), 'c-lightblue': showRight(message)}">
+                        <i class="zmdi zmdi-download"></i> Télécharger
+                    </a>
+
+                    <div class="m-b-20" data-ng-if="message.cloudinaryPublicId && message.text"></div>
+                    <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
+                    <span class="msg yaka" data-ng-if="message.author == 'YAKA'">{{message.text}}</span>
+                    <span data-ng-if="message.author == 'AUTO'">
+                        <i class="zmdi {{message | yakaAutoMsgIcon : getCustomerUser() : getProUser()}} yakaMessageIcon"></i>
+                        <span class="msg yaka yakaMessageWithIcon">{{message | yakaAutoMsg : getCustomerUser() : getProUser()}}</span>
                     </span>
                 </div>
                 <small class="ms-date">
@@ -53,8 +61,14 @@
     <div class="clearfix"></div>
 
     <div class="imgPreview center" data-ng-if="newMessage.cloudinaryPublicId">
-        <img data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-             alt=""/>
+        <img width="200" height="200" data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+             alt=""
+             data-ng-if="newMessage.cloudinaryPublicId && newMessage.resourceType && newMessage.resourceType == 'image'"/>
+
+        <div class="chatFilePreview">
+            <i class="zmdi zmdi-file"></i> {{newMessage.filename}}<span data-ng-if="newMessage.format">.{{newMessage.format}}</span><span
+            data-ng-if="extension">.{{extension}}</span>
+        </div>
         <button class="btn bgm-red btn-icon waves-effect waves-circle"
                 data-ng-click="newMessage.cloudinaryPublicId = ''">
             <i class="zmdi zmdi-close"></i>
@@ -63,7 +77,7 @@
 
     <div class="lv-footer ms-reply" data-ng-class="{'pointer-not-allowed': disableSending}">
         <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
-                ngf-accept="'image/*'" ngf-max-size="5MB"
+                ngf-max-size="20MB"
                 data-ng-disabled="disableSending"
                 data-ng-class="{'pointer-not-allowed': disableSending}">
             <i class="zmdi zmdi-attachment-alt"
