@@ -1,6 +1,7 @@
 <div class="sidebar-inner c-overflow">
     <ul class="main-menu">
 
+        <!-- Customer -->
 
         <li ui-sref-active="active" data-ng-if="!app.isPro()">
             <a ui-sref="new-project" data-ng-click="app.sidebarStat($event)">
@@ -23,17 +24,12 @@
             </a>
         </li>
 
+        <!-- Pro -->
 
         <li ui-sref-active="active" data-ng-if="app.isPro()">
             <a ui-sref="pro-dashboard" data-ng-click="app.sidebarStat($event)">
                 <i class="zmdi zmdi-home"></i>
                 Accueil
-            </a>
-        </li>
-        <li ui-sref-active="active" data-ng-if="app.isPro() && app.showProTuto()">
-            <a ui-sref="protuto" data-ng-click="app.sidebarStat($event)">
-                <i class="zmdi zmdi-chart"></i>
-                Bien débuter
             </a>
         </li>
         <li ui-sref-active="active" data-ng-if="app.isPro()">
@@ -54,7 +50,14 @@
                 Mes chantiers
             </a>
         </li>
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-help" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-help"></i>
+                Aide
+            </a>
+        </li>
 
+        <!-- Both -->
 
         <li ui-sref-active="active">
             <a ui-sref="contacts" data-ng-click="app.sidebarStat($event)">
@@ -63,11 +66,15 @@
                 Mes contacts
             </a>
         </li>
-        <li ui-sref-active="active">
-            <a ui-sref="support" data-ng-click="app.sidebarStat($event); app.openSupport();">
-                <i class="zmdi zmdi-headset-mic"></i>
-                Support
+
+        <!-- Pro -->
+
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-help" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-help"></i>
+                Aide
             </a>
         </li>
+
     </ul>
 </div>

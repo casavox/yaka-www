@@ -49,6 +49,9 @@
                 lead.activities[0] !== undefined &&
                 lead.activities[0].code !== undefined) {
                 switch (lead.activities[0].code) {
+                    case "REN_500":
+                        icon = "multitask";
+                        break;
                     case "ELE_1000":
                         icon = "electrician";
                         break;
@@ -73,11 +76,11 @@
                     case "INS_8000":
                         icon = "insulation";
                         break;
-                    case "COU_9000":
-                        icon = "architect";
+                    case "BAT_10100":
+                        icon = "bathroom";
                         break;
                     case "KIT_10000":
-                        icon = "kitchen_bathroom";
+                        icon = "kitchen";
                         break;
                     case "ROO_11000":
                         icon = "roofer";
@@ -87,6 +90,9 @@
                         break;
                     case "GAR_13000":
                         icon = "landscaping";
+                        break;
+                    case "COU_13900":
+                        icon = "architect";
                         break;
                     case "CON_14000":
                         icon = "construction";

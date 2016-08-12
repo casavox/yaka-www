@@ -410,15 +410,14 @@
         };
 
         vm.continueProject = function () {
-            if (vm.material == null) {
+            if (vm.material == null && vm.type.code != 'COU_13900') {
                 vm.error.material.message = "Select YES or NO";
                 vm.error.material.flag = true;
             }
             if (vm.projectDescription.length < 30) {
                 vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
                 vm.error.description.flag = true;
-            }
-            else if (vm.material != null && vm.projectDescription.length >= 3) {
+            } else if ((vm.material != null || vm.type.code == 'COU_13900') && vm.projectDescription.length >= 30) {
                 vm.continue = vm.error.material.flag = true;
                 vm.error.description.message = vm.error.material.message = "";
                 vm.error.description.flag = false;
