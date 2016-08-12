@@ -3,6 +3,12 @@ var ProjectPage = function() {
     this.wait4Anim = 500;
     this.EC = protractor.ExpectedConditions;
 
+    // Temps d'attente timeout
+    this.waitLow = 2000;
+    this.waitMedium = 5000;
+    this.waitHigh = 10000;
+
+
     // Création d'un projet
     this.menuNewProject = element(by.linkText('Publier un projet'));
     this.menuMyProjects = element(by.linkText('Mes projets'));
@@ -19,6 +25,9 @@ var ProjectPage = function() {
     this.selectDateType = element(by.id('selectDateType_WITHIN_A_MONTH'));
     this.publishButton = element(by.id('publish'));
     this.confirmPublish = element(by.css('.confirm.btn.btn-lg.btn.btn-success'));
+    this.bottomAlert = element(by.binding('alertMessage'));
+    this.closeAlertMsg = element(by.css('[ng-click="alertMsgFlag = false"]'));
+    this.closePopupReg = element(by.id('closePopupFriendImg'));
 
 
     // Modification d'un projet

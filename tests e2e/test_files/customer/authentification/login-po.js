@@ -1,5 +1,9 @@
 var LoginPage = function () {
     browser.ignoreSynchronization = true;
+    // Temps d'attente timeout
+    this.waitLow = 2000;
+    this.waitMedium = 5000;
+    this.waitHigh = 10000;
 
     // Log In
     this.menuNewProject = element(by.linkText('Publier un projet'));
