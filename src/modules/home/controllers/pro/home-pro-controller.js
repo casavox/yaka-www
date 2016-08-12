@@ -9,7 +9,7 @@
 
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
-                $state.go('protuto');
+                $state.go('pro-dashboard');
             } else {
                 $state.go('dashboard');
             }
@@ -230,7 +230,7 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go('protuto');
+            $state.go('pro-dashboard');
         }
 
         function failProRegister(err) {
@@ -277,7 +277,7 @@
                     delete window.yakaRedirectUrl;
                 } else {
                     if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('protuto');
+                        $state.go('pro-dashboard');
                     } else {
                         $state.go('dashboard');
                     }

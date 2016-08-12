@@ -232,6 +232,50 @@
             </div>
 
             <div class="col-sm-4 p-r-0 no-padding-mobile">
+                <div class="card"
+                     data-ng-if="vm.pro && (vm.pro.status && (vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')) || !vm.pro.step2 || !vm.pro.step3">
+                    <div class="card-header dashboardCommunityHeader">
+                        <h2>
+                            Bien débuter sur CasaVox
+                            <small>
+                                Complétez ces 3 étapes
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="clearfix card-body p-l-15 p-r-15">
+                        <div class="checkbox m-b-15 cursor-default">
+                            <label class="cursor-default"
+                                   data-ng-class="{'c-lightblue': vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')}">
+                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
+                                       data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                <i class="input-helper" class="cursor-default"></i>
+                                Compléter mon profil
+                            </label>
+                        </div>
+                        <div class="checkbox m-b-15 cursor-default">
+                            <label class="cursor-default"
+                                   data-ng-class="{'c-lightblue': vm.pro.step2}">
+                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
+                                       data-ng-checked="vm.pro.step2">
+                                <i class="input-helper" class="cursor-default"></i>
+                                Développer mon réseau
+                            </label>
+                        </div>
+                        <div class="checkbox m-b-15 cursor-default">
+                            <label class="cursor-default"
+                                   data-ng-class="{'c-lightblue': vm.pro.step3}">
+                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
+                                       data-ng-checked="vm.pro && vm.pro.step3">
+                                <i class="input-helper" class="cursor-default"></i>
+                                Répondre aux offres
+                            </label>
+                        </div>
+                    </div>
+                    <div class="c-lightblue pointer t-right m-r-15 p-b-5" data-ui-sref="pro-help">
+                        Aide
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header dashboardCommunityHeader">
                         <h2>
