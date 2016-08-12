@@ -333,14 +333,13 @@
 
                 </div>
 
-                <div class="col-xs-12 no-padding profile-box-footer m-b-20"
-                     data-ng-hide="vm.updating || !vm.showButtonsProfile()">
+                <div class="col-xs-12 no-padding profile-box-footer m-b-20">
 
                     <button class="btn btn-info bgm-lightblue waves-effect"
-                            data-ng-click="vm.profileSaveButtonClicked()">
+                            data-ng-click="vm.profileSaveButtonClicked()" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                         Enregistrer
                     </button>
-                    <button class="btn btn-link waves-effect" data-ng-click="vm.cancelProfile()">
+                    <button class="btn btn-link waves-effect" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                         Annuler
                     </button>
 
@@ -386,14 +385,13 @@
                     Diamètre de la zone : {{vm.workareaDiameter}} km
                 </div>
             </div>
-            <div class="profile-box-footer m-t-15 m-b-20"
-                 data-ng-hide="vm.updating || !vm.showButtonsWorkArea()">
+            <div class="profile-box-footer m-t-15 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateWorkArea()">
+                        data-ng-click="vm.updateWorkArea()" data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
                     Enregistrer
                 </button>
-                <button class="btn btn-link waves-effect" data-ng-click="vm.cancelWorkArea()">
+                <button class="btn btn-link waves-effect" data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
                     Annuler
                 </button>
             </div>
@@ -435,11 +433,10 @@
                 </small>
             </div>
 
-            <div class="profile-box-footer mt-12 m-b-20"
-                 data-ng-hide="vm.updating || !vm.showButtonsNewPassword()">
+            <div class="profile-box-footer mt-12 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.changePassword()">
+                        data-ng-click="vm.changePassword()" data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                     Enregistrer
                 </button>
 
@@ -611,15 +608,14 @@
                 {{vm.error.verif.message}}
             </p>
 
-            <div class="profile-box-footer m-t-10 m-b-20"
-                 data-ng-hide="vm.updating || !vm.showButtonsVerifications()">
+            <div class="profile-box-footer m-t-10 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.showVerificationsEditPopup = true">
+                        data-ng-click="vm.showVerificationsEditPopup = true" data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
                     Enregistrer
                 </button>
                 <button class="btn btn-link waves-effect"
-                        data-ng-click="vm.cancelVerifications()">
+                        data-ng-click="vm.cancelVerifications()" data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
                     Annuler
                 </button>
 
@@ -667,15 +663,14 @@
 
             </form>
 
-            <div class="profile-box-footer m-b-20"
-                 data-ng-hide="vm.updating || !vm.showButtonsAbout()">
+            <div class="profile-box-footer m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateAboutMe()">
+                        data-ng-click="vm.updateAboutMe()" data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
                     Enregistrer
                 </button>
                 <button class="btn btn-link waves-effect"
-                        data-ng-click="vm.cancelAboutMe()">
+                        data-ng-click="vm.cancelAboutMe()" data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
                     Annuler
                 </button>
 
@@ -722,7 +717,10 @@
                         <img
                             data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                             alt=""/>
-                        <i data-ng-if="image.description" class="zmdi zmdi-assignment icon-comment"></i>
+                        <div data-ng-if="image.description"
+                             class="btn bgm-lightblue btn-float floatingButtonImage icon-comment  col-xs-offset-5 col-sm-offset-4">
+                            <i class="zmdi zmdi-comment-text-alt"></i>
+                        </div>
                     </div>
                     <div id="caption{{$index}}" style="display:none">
                         <div class="galleryCaption">
@@ -858,8 +856,7 @@
                 {{vm.error.activities.message}}
             </p>
 
-            <div class="profile-box-footer m-b-20"
-                 data-ng-hide="vm.updating || !vm.showButtonsActivities()">
+            <div class="profile-box-footer m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
                         data-ng-click="vm.updateActivities()">

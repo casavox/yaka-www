@@ -177,15 +177,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding profile-box-footer m-b-20"
-                                 data-ng-hide="vm.updating || !vm.showButtonsProfile()">
+                            <div class="col-xs-12 no-padding profile-box-footer m-b-20">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        data-ng-click="vm.updateProfile()">
+                                        data-ng-click="vm.updateProfile()" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect"
-                                        data-ng-click="vm.cancelProfile()">
+                                        data-ng-click="vm.cancelProfile()" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                                     Annuler
                                 </button>
                             </div>
@@ -286,11 +285,10 @@
                             </small>
                         </div>
 
-                        <div class="profile-box-footer m-b-20"
-                             data-ng-hide="vm.updating || !vm.showButtonsNewPassword()">
+                        <div class="profile-box-footer m-b-20">
 
                             <button class="btn btn-info bgm-lightblue waves-effect"
-                                    data-ng-click="vm.changePassword()">
+                                    data-ng-click="vm.changePassword()" data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                                 Enregistrer
                             </button>
 
