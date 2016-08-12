@@ -12,9 +12,12 @@ var ProjectPage = function() {
     // Création d'un projet
     this.menuNewProject = element(by.linkText('Publier un projet'));
     this.menuMyProjects = element(by.linkText('Mes projets'));
-    this.activityMulti = element(by.css('[data-ng-click="vm.selectType(\'AUTO_MULTI\')"]'));
+    this.activityGet = element.all(by.repeater('child in vm.newProject.childrenActivities')).get(-1);
+    this.activityObjectif = element.all(by.repeater('child in q.childrenActivities')).get(-1);
     this.materialYes = element(by.id('materialYes'));
     this.projectDescription = element(by.model('vm.projectDescription'));
+    this.descriptionShortTxt = "Lorem ipsum dolor sit amet";
+    this.descriptionText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at tincidunt quam, nec semper augue. Aliquam aliquet blandit volutpat.";
     this.descriptionOkBt = element(by.css('[data-ng-click="vm.continueProject()"]'));
     this.photoSlide_Next = element(by.css('[data-ng-click="vm.continueProjectImg()"]'));
     this.photoSlide_NoPhotoConfirm = element(by.css('.cancel.btn.btn-lg.btn-default'));
