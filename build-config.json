@@ -107,7 +107,7 @@
             "modules/project/styles/project.css",
             "modules/contacts/styles/contacts.css",
             "modules/proposal/styles/proposal.css",
-            "modules/tuto/styles/tuto.css",
+            "modules/help/styles/help.css",
             "modules/dashboard/styles/dashboard.css"
         ],
         "scss": [],

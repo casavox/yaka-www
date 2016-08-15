@@ -276,20 +276,6 @@
             }
         };
 
-        app.showProTuto = function () {
-            if (app.getUser() &&
-                app.getUser().professional &&
-                app.getUser().professional.step2 &&
-                app.getUser().professional.step3 &&
-                app.getUser().professional.status &&
-                (app.getUser().professional.status == 'VALIDATED' ||
-                app.getUser().professional.status == 'COMPLETED')) {
-                return false;
-            } else {
-                return true;
-            }
-        };
-
         app.getEnvironment = function () {
             return CONFIG.ENV;
         };
