@@ -434,7 +434,8 @@
                                             <dd>{{vm.proposal.professional.user.email}}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Addresse</dt>
+                                            <dt data-ng-if="vm.proposal.professional.company.address.address">Addresse</dt>
+                                            <dt data-ng-if="!vm.proposal.professional.company.address.address">Localité</dt>
                                             <dd>
                                         <span class="whiteSpacePre"
                                               data-ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
