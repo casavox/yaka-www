@@ -113,6 +113,7 @@
                                             public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
                                             class="proposalProMainPartnerImg on-avatar" format="png"
                                             data-ng-click="vm.partnerPopup()"
+                                            uib-tooltip="Clicker pour plus d'informations" tooltip-placement="bottom"
                                             data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                             <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                         </cl-image>
@@ -245,6 +246,8 @@
                                                     public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
                                                     class="proposalProMainPartnerImg" format="png"
                                                     data-ng-click="vm.partnerPopupXs()"
+                                                    uib-tooltip="Clicker pour plus d'informations"
+                                                    tooltip-placement="right"
                                                     data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                                     <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                                 </cl-image>
@@ -375,8 +378,14 @@
                                             <dt>Partenaire</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-repeat="partner in vm.proposal.professional.partners">
-                                                        {{partner.name}}
+                                                    <li data-ng-repeat="partner in vm.proposal.professional.partners"
+                                                        uib-tooltip="Clicker pour plus d'informations">
+                                                        <a class="hidden-xs" data-ng-click="vm.partnerPopup()">
+                                                            {{partner.name}} +
+                                                        </a>
+                                                        <a class="visible-xs" data-ng-click="vm.partnerPopupXs()">
+                                                            {{partner.name}} +
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </dd>
