@@ -1,6 +1,6 @@
 <header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
         data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="proposals"
@@ -111,7 +111,8 @@
 
                                         <cl-image
                                             public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
-                                            class="proposalProMainPartnerImg" format="png"
+                                            class="proposalProMainPartnerImg on-avatar" format="png"
+                                            data-ng-click="vm.partnerPopup()"
                                             data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                             <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                         </cl-image>
@@ -243,6 +244,7 @@
                                                 <cl-image
                                                     public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
                                                     class="proposalProMainPartnerImg" format="png"
+                                                    data-ng-click="vm.partnerPopupXs()"
                                                     data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                                     <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                                 </cl-image>
