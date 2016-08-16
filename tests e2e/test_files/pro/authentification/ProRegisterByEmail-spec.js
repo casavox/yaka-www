@@ -1,6 +1,6 @@
 require('jasmine-bail-fast');
 var LoginPage = require('./pro-login-po.js');
-var InfoPro = require('./Pro-variables.js');
+var InfoPro = require('../Pro-variables.js');
 
 
 describe('Test Casavox', function () {

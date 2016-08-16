@@ -32,9 +32,10 @@ var InfoCustomer = function () {
     this.ProphoneNumber = "0187654321";
 
     this.mailNumberp = function () {
-        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1));
+        return (Math.random() * (20 - 1));
     }
-    this.fakeProMail = 'casavox.dev+pro' + this.mailNumberp() + '@gmail.com';
+    this.fakeProMail = 'casavox.dev+pro' + (this.mailNumberp * 10) + '@gmail.com';
+    this.fakeNumber = '01' + (Math.floor(this.mailNumberp() * 10000000));
 };
 
 module.exports = InfoCustomer;

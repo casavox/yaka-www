@@ -1,17 +1,14 @@
 var LoginPage = function () {
     browser.ignoreSynchronization = true;
 
-
-
-    //Temp User Info
-    // Browser 1
-    this.userLogin = 'dominique@victorleduc.net';
-    this.userPwd = 'blabla';
-
+// Temps d'attente timeout
+    this.waitLow = 2000;
+    this.waitMedium = 5000;
+    this.waitHigh = 10000;
 
     // Log In
     this.menuNewProject = element(by.linkText('Publier un projet'));
-    this.homeSectionLogin = element(by.css('homeSection1Login'));
+    this.homeSectionLoginPro = element(by.css('.homeSection1Login'));
     this.userEmail = element(by.model('vm.loginUser.email'));
     this.pwd = element(by.model('vm.loginUser.password'));
     this.signInPopupButton = element(by.id('signInPopupButton'));

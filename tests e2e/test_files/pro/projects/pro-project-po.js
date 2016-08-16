@@ -6,8 +6,6 @@ var ProjectPage = function() {
     // Création d'un projet
     this.menuNewProject = element(by.linkText('Publier un projet'));
     this.menuMyProjects = element(by.linkText('Mes projets'));
-    this.activityMulti = element(by.css('[data-ng-click="vm.selectType(\'AUTO_MULTI\')"]'));
-    this.materialYes = element(by.id('materialYes'));
     this.projectDescription = element(by.model('vm.projectDescription'));
     this.descriptionOkBt = element(by.css('[data-ng-click="vm.continueProject()"]'));
     this.photoSlide_Next = element(by.css('[data-ng-click="vm.continueProjectImg()"]'));

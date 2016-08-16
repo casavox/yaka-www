@@ -14,24 +14,27 @@ describe('User', function () {
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.nameHeader), loginPage.waitHigh).then(function () {
             loginPage.nameHeader.click().then(function () {
-                browser.wait(loginPage.EC.elementToBeClickable(loginPage.logOut), loginPage.waitMedium).then(function() {
-                    loginPage.logOut.click().then(function() {
-                        browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionLogin), loginPage.waitHigh).then(function () {
-                            browser.getTitle().then(function (fullTitle) {
-                                var tempTitle = fullTitle.split(" ");
-                                var title = tempTitle[0];
-                                console.log("[[ Page actuelle : " + title + " ]]");
-                                if (title == "CasaVox") {
-                                    console.log("*** utilisateur " + infoCustomer.firstName + " " + infoCustomer.lastName + " déconnecté OK");
-                                    console.log("*** Fin du Test côté client, résultat : OK");
-                                } else {
-                                    console.log("!!! ERROR !!! Utilisateur non déconnecté !!!")
-                                }
-                            });
-                        });
+                browser.wait(loginPage.EC.elementToBeClickable(loginPage.logOut), loginPage.waitMedium).then(function () {
+                    loginPage.logOut.click();
+                    browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionLogin), loginPage.waitHigh).then(verifyURL(), function(err) {
+                        console.log(err);
                     });
                 });
             });
         });
+        // Vérification de la page d'arrivée
+        function verifyURL() {
+            browser.getTitle().then(function (fullTitle) {
+                var tempTitle = fullTitle.split(" ");
+                var title = tempTitle[0];
+                console.log("[[ Page actuelle : " + title + " ]]");
+                if (title == "CasaVox") {
+                    console.log("*** utilisateur " + infoCustomer.firstName + " " + infoCustomer.lastName + " déconnecté OK");
+                    console.log("*** Fin du Test côté client, résultat : OK");
+                } else {
+                    console.log("!!! ERROR !!! Utilisateur non déconnecté !!!")
+                }
+            });
+        }
     });
 });

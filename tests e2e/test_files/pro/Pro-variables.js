@@ -1,5 +1,9 @@
 var InfoPro = function () {
 
+    // Informations du Pro à connecter
+    this.userLogin = 'dominique@victorleduc.net';
+    this.userPwd = 'blabla';
+
     // Informations du professionnel à enregistrer
     this.firstName = "Victor";
     this.lastName = "LEDUC";
