@@ -50,6 +50,24 @@
             return " - ";
         };
 
+        vm.partnerPopup = function () {
+            swal({
+                title: "Je suis partenaire de " + vm.proposal.professional.mainPartner.name,
+                text: vm.proposal.professional.mainPartner.aboutLong_Fr,
+                imageUrl: 'http://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
+                confirmButtonText: "Fermer"
+            });
+        };
+
+        vm.partnerPopupXs = function () {
+            swal({
+                title: vm.proposal.professional.mainPartner.name,
+                text: vm.proposal.professional.mainPartner.aboutShort_Fr,
+                imageUrl: 'http://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
+                confirmButtonText: "Fermer"
+            });
+        };
+
         vm.declineProposal = function () {
             swal({
                 title: "Êtes-vous sûr ?",
