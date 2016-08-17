@@ -1,5 +1,5 @@
 <header id="header" data-current-skin='lightblue' data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -38,12 +38,11 @@
                     <div class="card-header p-b-15">
                         <div class="media">
                             <div class="pull-left">
-                                <div data-ng-show="p.mainActivity.code != 'AUTO_MULTI'"
-                                     class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
+                                <div class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
+                                    <i class="proposalUnreadMessagesIndicatorOnList"
+                                       data-ng-show="p.proposal.unreadMessages">1</i>
                                 </div>
-                                <div data-ng-show="p.mainActivity.code == 'AUTO_MULTI'"
-                                     class="proposalIconBackground lv-img zmdi zmdi-apps zmdi-hc-2x c-white vertical-center">
-                                </div>
+
                             </div>
                             <div class="media-body projectTitleBar" title="{{p.title}}">
                                 <div class="media row">
@@ -73,7 +72,8 @@
                         </div>
                     </div>
 
-                    <div class="p-b-20 clearfix m-l-65" data-ng-hide="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal">
+                    <div class="p-b-20 clearfix m-l-65"
+                         data-ng-hide="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal">
                         <div class="col-xs-12 col-sm-6"
                              data-ng-class="{'c-gray': !p.proposals.length || p.proposals.length == 0}">
                             <span class="f-20">
@@ -102,8 +102,6 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="p.proposal.unreadMessages"
-                                           class="porposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +118,7 @@
                                         <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
                                         <span data-ng-show="!p.proposal.startDate">- - -</span>
                                     </span>
-                                    <span class="active bgm-white c-lightblue">
+                                        <span class="active bgm-white c-lightblue">
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                         <span data-ng-show="p.proposal.price">{{p.proposal.price}} €</span>
                                         <span data-ng-show="!p.proposal.price">- - - €</span>
@@ -140,7 +138,7 @@
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
                                         <i data-ng-show="p.proposal.unreadMessages"
-                                           class="porposalUnreadMessagesIndicator"></i>
+                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +155,7 @@
                                         <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
                                         <span data-ng-show="!p.proposal.startDate">- - -</span>
                                     </span>
-                                    <span class="active bgm-white c-lightblue">
+                                        <span class="active bgm-white c-lightblue">
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                         <span data-ng-show="p.proposal.price">{{p.proposal.price}} €</span>
                                         <span data-ng-show="!p.proposal.price">- - - €</span>
@@ -225,7 +223,7 @@
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="pc.proposal.professional.user"></yaka-avatar>
                                         <i data-ng-show="pc.proposal.unreadMessages"
-                                           class="porposalUnreadMessagesIndicator"></i>
+                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
@@ -243,7 +241,7 @@
                                         <span data-ng-show="pc.proposal.startDate">{{pc.proposal.startDate | date:'dd/MM/yy'}}</span>
                                         <span data-ng-show="!pc.proposal.startDate">- - -</span>
                                     </span>
-                                    <span class="active bgm-white c-gray">
+                                        <span class="active bgm-white c-gray">
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                         <span data-ng-show="pc.proposal.price">{{pc.proposals[0].price}} €</span>
                                         <span data-ng-show="!pc.proposal.price">- - - €</span>
