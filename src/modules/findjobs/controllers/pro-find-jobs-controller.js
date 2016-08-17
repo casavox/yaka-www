@@ -120,7 +120,7 @@
 
         function onLeadsLoaded(args) {
             angular.forEach(args, function (lead) {
-                lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
+                lead.icon = "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png";
             });
             vm.leads = args;
 
@@ -182,9 +182,9 @@
 
         function onLeadSelected(lead) {
             for (var i = 0; i < vm.leads.length; i++) {
-                vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/v1459250431/yakaclub/pinSmallProject.png";
+                vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png";
             }
-            lead.icon = "http://res.cloudinary.com/yaka/image/upload/v1459254146/yakaclub/pinSelectedProject.png";
+            lead.icon = "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSelectedProject.png";
             vm.showSlider = true;
         }
 

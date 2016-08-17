@@ -1,6 +1,6 @@
 <header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
         data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="proposals"
@@ -111,7 +111,9 @@
 
                                         <cl-image
                                             public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
-                                            class="proposalProMainPartnerImg" format="png"
+                                            class="proposalProMainPartnerImg on-avatar" format="png"
+                                            data-ng-click="vm.partnerPopup()"
+                                            uib-tooltip="Clicker pour plus d'informations" tooltip-placement="bottom"
                                             data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                             <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                         </cl-image>
@@ -194,7 +196,12 @@
 
                             <li heading="Profile"
                                 data-ng-class="{'active': vm.showChat}">
-                                <a href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">Messages</a>
+                                <a  class="" href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">
+                                    <div>
+                                        Messages
+                                        <i class="proposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
 
@@ -243,6 +250,9 @@
                                                 <cl-image
                                                     public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
                                                     class="proposalProMainPartnerImg" format="png"
+                                                    data-ng-click="vm.partnerPopupXs()"
+                                                    uib-tooltip="Clicker pour plus d'informations"
+                                                    tooltip-placement="right"
                                                     data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                                     <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                                 </cl-image>
@@ -373,8 +383,14 @@
                                             <dt>Partenaire</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-repeat="partner in vm.proposal.professional.partners">
-                                                        {{partner.name}}
+                                                    <li data-ng-repeat="partner in vm.proposal.professional.partners"
+                                                        uib-tooltip="Clicker pour plus d'informations">
+                                                        <a class="hidden-xs" data-ng-click="vm.partnerPopup()">
+                                                            {{partner.name}} +
+                                                        </a>
+                                                        <a class="visible-xs" data-ng-click="vm.partnerPopupXs()">
+                                                            {{partner.name}} +
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </dd>
@@ -423,7 +439,8 @@
                                             <dd>{{vm.proposal.professional.user.email}}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Addresse</dt>
+                                            <dt data-ng-if="vm.proposal.professional.company.address.address">Addresse</dt>
+                                            <dt data-ng-if="!vm.proposal.professional.company.address.address">Localité</dt>
                                             <dd>
                                         <span class="whiteSpacePre"
                                               data-ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
