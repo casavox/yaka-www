@@ -130,7 +130,7 @@
         };
 
         vm.sendProInvit = function () {
-            networkService.inviteProPOST(vm.invitPro, function (res) {
+            networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
                 vm.invitPro = {
                     email: "",
                     firstName: "",
