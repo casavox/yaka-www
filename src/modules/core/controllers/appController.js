@@ -49,14 +49,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                    vm.messages.items.push(payload);
-                    vm.glue = true;
-                }, {
-                    'token': $localStorage.token
-                });
-            }
-        );
+                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                        vm.messages.items.push(payload);
+                        vm.glue = true;
+                    }, {
+                        'token': $localStorage.token
+                    });
+                }
+            );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -191,6 +191,13 @@
                 return false;
             }
             return app.getUser().professional;
+        };
+
+        app.isAdmin = function () {
+            if (!app.getUser()) {
+                return false;
+            }
+            return app.getUser().isAdmin;
         };
 
         app.getTheme = function () {
