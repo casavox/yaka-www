@@ -248,9 +248,16 @@
 
 .dashboardRecommendProjectText.professional {
     position: absolute;
-    left: 89px;
-    top: 28px;
-    width: calc(100% - 180px);
+    left: 85px;
+    top: 18px;
+    width: calc(100% - 115px);
+}
+
+.dashboardRecommendProjectText.propartner {
+    position: absolute;
+    left: 85px;
+    top: 18px;
+    width: calc(100% - 145px);
 }
 
 .proSelectedPartner {
