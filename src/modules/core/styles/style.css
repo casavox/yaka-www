@@ -5196,6 +5196,13 @@ ul.yaka-chips li {
     }
 }
 
+@media (max-width: 991px) and (min-width: 768px) {
+
+    .no-padding-medium {
+        padding: 0 !important;
+    }
+}
+
 .m-l-65 {
     margin-left: 65px !important;
 }
