@@ -3,7 +3,7 @@ var SupportPage = function() {
     this.wait4Anim = 500;
     this.EC = protractor.ExpectedConditions;
 
-    this.menuSupport = element(by.linkText('Support'));
+    this.menuSupport = element(by.linkText('Aide'));
     this.gender = element(by.model('vm.supportMessage.gender'));
     this.firstName = element(by.model('vm.supportMessage.firstName'));
     this.lastName = element(by.model('vm.supportMessage.lastName'));

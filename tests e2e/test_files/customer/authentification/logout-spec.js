@@ -13,15 +13,15 @@ describe('User', function () {
         console.log("** Début du test : déconnexion");
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.nameHeader), loginPage.waitHigh).then(function () {
-            loginPage.nameHeader.click().then(function () {
-                browser.wait(loginPage.EC.elementToBeClickable(loginPage.logOut), loginPage.waitMedium).then(function () {
-                    loginPage.logOut.click();
-                    browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionLogin), loginPage.waitHigh).then(verifyURL(), function(err) {
-                        console.log(err);
-                    });
-                });
-            });
+            loginPage.nameHeader.click();
         });
+        browser.wait(loginPage.EC.elementToBeClickable(loginPage.logOut), loginPage.waitMedium).then(function () {
+            loginPage.logOut.click();
+        });
+        browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionLogin), loginPage.waitHigh).then(verifyURL(), function (err) {
+            console.log(err);
+        });
+
         // Vérification de la page d'arrivée
         function verifyURL() {
             browser.getTitle().then(function (fullTitle) {

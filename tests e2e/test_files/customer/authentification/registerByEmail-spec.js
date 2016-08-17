@@ -13,16 +13,14 @@ describe('Test Casavox', function () {
 
 
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.homeSectionRegister), loginPage.waitMedium).then(function () {
-            loginPage.homeSectionRegister.click().then(function () {
-                console.log("- Menu Ajouter contact OK");
-                browser.wait(loginPage.EC.elementToBeClickable(loginPage.registerByEmail), loginPage.waitMedium).then(function () {
-                    loginPage.registerByEmail.click().then(fillInfos(), function (err) {
-                        console.log(err);
-                    });
-                    loginPage.confirmInscription.click().then(verifyURL(), function (err) {
-                        console.log(err);
-                        console.log("Impossible d'enregistrer l'utilisateur");
-                    });
+            loginPage.homeSectionRegister.click();
+            browser.wait(loginPage.EC.elementToBeClickable(loginPage.registerByEmail), loginPage.waitMedium).then(function () {
+                loginPage.registerByEmail.click().then(fillInfos(), function (err) {
+                    console.log(err);
+                });
+                loginPage.confirmInscription.click().then(verifyURL(), function (err) {
+                    console.log(err);
+                    console.log("Impossible d'enregistrer l'utilisateur");
                 });
             });
         });
@@ -30,35 +28,21 @@ describe('Test Casavox', function () {
 
         // Remplissage des informations de l'utilisatzeur à enregistrer
         function fillInfos() {
-            console.log("-- Début remplissage des informations");
-            loginPage.firstName.sendKeys(infoCustomer.firstName).then(function () {
-                console.log("--- Entrer prénom client OK");
-                loginPage.lastName.sendKeys(infoCustomer.lastName).then(function () {
-                    console.log("---- Entrer Nom client OK");
-                    loginPage.email.sendKeys(infoCustomer.fakeMail).then(function () {
-                        console.log("----- Entrer email client OK");
-                        loginPage.address.sendKeys(infoCustomer.city).then(function () {
-                            browser.wait(loginPage.EC.elementToBeClickable(loginPage.address), loginPage.waitMedium).then(function () {
-                                browser.sleep(200);
-                                loginPage.address.sendKeys(protractor.Key.ARROW_DOWN).then(function () {
-                                    browser.wait(loginPage.EC.elementToBeClickable(loginPage.address), loginPage.waitMedium).then(function () {
-                                        loginPage.address.sendKeys(protractor.Key.TAB).then(function () {
-                                            console.log("------ Entrer ville client OK");
-                                            loginPage.password.sendKeys(infoCustomer.password).then(function () {
-                                                console.log("------- Entrer mot de passe client OK");
-                                                loginPage.confPassword.sendKeys(infoCustomer.confirmPassword).then(function () {
-                                                    console.log("-------- Confirmer mot de passe client OK");
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
+            loginPage.firstName.sendKeys(infoCustomer.firstName);
+            loginPage.lastName.sendKeys(infoCustomer.lastName);
+            loginPage.email.sendKeys(infoCustomer.fakeMail);
+            loginPage.address.sendKeys(infoCustomer.city);
+            browser.wait(loginPage.EC.elementToBeClickable(loginPage.address), loginPage.waitMedium).then(function () {
+                browser.sleep(200);
+                loginPage.address.sendKeys(protractor.Key.ARROW_DOWN);
+                browser.wait(loginPage.EC.elementToBeClickable(loginPage.address), loginPage.waitMedium).then(function () {
+                    loginPage.address.sendKeys(protractor.Key.TAB);
+                    loginPage.password.sendKeys(infoCustomer.password);
+                    loginPage.confPassword.sendKeys(infoCustomer.confirmPassword);
                 });
             });
         }
+
 
         // Vérification de la page d'arrivée et du prénom utilisateur
         function verifyURL() {
@@ -82,3 +66,4 @@ describe('Test Casavox', function () {
         }
     });
 });
+

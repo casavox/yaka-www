@@ -1,6 +1,7 @@
 var InfoPro = function () {
 
     // Informations du Pro à connecter
+    this.userFirstName = "Dominique";
     this.userLogin = 'dominique@victorleduc.net';
     this.userPwd = 'blabla';
 
