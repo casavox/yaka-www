@@ -398,10 +398,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding select">
-                                <select class="form-control m-b-15"
+                            <div class="col-xs-12 no-padding select m-b-15">
+                                <select class="form-control c-red"
+                                        onchange="this.className='form-control'"
                                         data-ng-model="vm.invitPro.relation">
-                                    <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                                    <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                                     <option value="CLIENT">Client</option>
                                     <option value="FRIEND">Ami</option>
                                     <option value="FAMILY">Famille</option>
@@ -528,10 +529,11 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding select">
-                    <select class="form-control m-b-15"
+                <div class="col-xs-12 no-padding select m-b-15">
+                    <select class="form-control c-red"
+                            onchange="this.className='form-control'"
                             data-ng-model="vm.invitPro.relation">
-                        <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                        <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                         <option value="CLIENT">Client</option>
                         <option value="FRIEND">Ami</option>
                         <option value="FAMILY">Famille</option>
