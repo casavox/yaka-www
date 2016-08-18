@@ -400,7 +400,7 @@
 
                             <div class="col-xs-12 no-padding select m-b-15">
                                 <select class="form-control c-red"
-                                        onchange="this.className='form-control'"
+                                        onchange="this.className='form-control form-control-underline-ok'"
                                         data-ng-model="vm.invitPro.relation">
                                     <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                                     <option value="CLIENT">Client</option>
@@ -412,6 +412,7 @@
 
                             <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
                                  data-ng-dropdown-multiselect=""
+                                 events="vm.updateMultiChoiceInputColor"
                                  options="vm.multiChoiceInput.options"
                                  selected-model="vm.multiChoiceInput.selected"
                                  extra-settings="vm.multiChoiceInput.settings"
@@ -531,7 +532,7 @@
 
                 <div class="col-xs-12 no-padding select m-b-15">
                     <select class="form-control c-red"
-                            onchange="this.className='form-control'"
+                            onchange="this.className='form-control form-control-underline-ok'"
                             data-ng-model="vm.invitPro.relation">
                         <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                         <option value="CLIENT">Client</option>
@@ -542,6 +543,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
+                     events="vm.updateMultiChoiceInputColor"
                      data-ng-dropdown-multiselect=""
                      options="vm.multiChoiceInput.options"
                      selected-model="vm.multiChoiceInput.selected"
