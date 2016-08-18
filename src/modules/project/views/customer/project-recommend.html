@@ -26,7 +26,7 @@
 
             <div class="col-sm-6">
                 <div class="block-header">
-                    <h2>Recommander à</h2>
+                    <h2>À</h2>
                 </div>
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
@@ -42,7 +42,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="block-header">
-                    <h2>Pour</h2>
+                    <h2>POUR SON PROJET</h2>
                 </div>
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
@@ -71,11 +71,11 @@
             </div>
             <div class="col-sm-6" data-ng-if="vm.professionals">
                 <div class="block-header">
-                    <h2>Mes professionels</h2>
+                    <h2>Mes Pro</h2>
                 </div>
                 <div class="card">
                     <div class="card-header projectRecommendGrayHeader">
-                        <h2>Recommandez un Pro
+                        <h2>Recommander un Pro
                             <small>
                                 Liste de vos Pros ayant la compétence demandée
                             </small>
@@ -140,10 +140,10 @@
                 <div class="block-header">
                     <h2>
                         <span data-ng-if="vm.selectedProfessional">
-                            Profil du Pro
+                            RECOMMANDER
                         </span>
                         <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
-                            Choisir un Pro
+                            Aucun Pro sélectionné
                         </span>
                         <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
                             Ajouter un Pro
@@ -222,14 +222,14 @@
                         <div class="form-group m-t-25">
                             <div class="fg-line">
                                 <textarea class="form-control" data-ng-model="vm.recommendMsg.text" data-auto-size=""
-                                          placeholder="Écrire un commentaire à {{vm.project.user.firstName}} {{vm.project.user.lastName}}"
+                                          placeholder="Envoyer un message privé à {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
                                           data-autosize-on="true"></textarea>
                             </div>
                         </div>
 
                         <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
                                 data-ng-click="vm.recommendPro(vm.selectedProfessional.id)">
-                            Recommander ce Pro
+                            Recommander le projet
                         </button>
                     </div>
 
