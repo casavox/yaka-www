@@ -300,8 +300,11 @@
             getProNetworkLeads: function (success, error) {
                 httpService.get(baseUrl + '/pro/projects/network').success(success).error(error)
             },
-            proListGET: function (data, success, error) {
-                httpService.get(baseUrl + '/admin/professionals', data).success(success).error(error)
+            adminProListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/professionals').success(success).error(error)
+            },
+            adminValidateProPOST: function (data, success, error) {
+                httpService.post(baseUrl + '/admin/professionals/validate', data).success(success).error(error)
             }
         };
     }

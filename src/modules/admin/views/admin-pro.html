@@ -15,41 +15,45 @@
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
+    <div id="content" class="content">
+        <div class="container">
+            <table ng-table="usersTable" class="table table-striped">
+                <button class="btn btn-success validateButton m-b-20" data-ng-disabled="!vm.oneOrMorePro()" data-ng-click="vm.validatePro()">Valider
+                </button>
 
-    <table ng-table="usersTable" class="table table-striped">
-        <button class="btn btn-success validateButton">Valider</button>
-
-        <tr ng-repeat="pro in $data" class="t-center">
-            <td data-title="'Nom'" sortable="'user.name'">
-                {{pro.user.name}}
-            </td>
-            <td data-title="'Ville'" sortable="'company.address.city'">
-                {{ pro.company.address.city }}
-            </td>
-            <td data-title="'Création'" sortable="'user.created'">
-                {{ pro.user.created | date:"dd/MM/yyyy" }}
-            </td>
-            <td data-title="'Mis à jour'" sortable="'user.updated'">
-                {{ pro.user.updated| date:"dd/MM/yyyy" }}
-            </td>
-            <td data-title="'Eligible'" sortable="'eligibleStatus'">
-                {{ pro.eligibleStatus | casaProfessionalStatus }}
-            </td>
-            <td data-title="'Statut'" sortable="'status'">
-                {{ pro.status | casaProfessionalStatus }}
-            </td>
-            <td data-title="'Pièces jointes'">
-                <a ng-href="{{ file.cloudinaryPublicId | yakaCloudinaryDownload }}"
-                   data-ng-repeat="file in pro.verifications">
-                    <i class="zmdi zmdi-attachment-alt"></i>
-                </a>
-            </td>
-            <td class="checkbox m-b-15">
-                <label>
-                    <input type="checkbox" value="">
-                    <i class="input-helper"></i>
-                </label>
-            </td>
-        </tr>
-    </table>
+                <tr data-ng-repeat="pro in $data track by pro.id" class="t-center vali">
+                    <td data-title="'Nom'" data-sortable="'user.name'">
+                        {{pro.user.name}}
+                    </td>
+                    <td data-title="'Ville'" data-sortable="'company.address.city'">
+                        {{ pro.company.address.city }}
+                    </td>
+                    <td data-title="'Création'" data-sortable="'user.created'">
+                        {{ pro.user.created | date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Mis à jour'" data-sortable="'user.updated'">
+                        {{ pro.user.updated| date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Eligible'" data-sortable="'eligibleStatus'">
+                        {{ pro.eligibleStatus | casaProfessionalStatus }}
+                    </td>
+                    <td data-title="'Statut'" data-sortable="'status'">
+                        {{ pro.status | casaProfessionalStatus }}
+                    </td>
+                    <td data-title="'Pièces jointes'">
+                        <a ng-href="{{ file.cloudinaryPublicId | yakaCloudinaryDownload }}"
+                           data-ng-repeat="file in pro.verifications">
+                            <i class="zmdi zmdi-attachment-alt"></i>
+                        </a>
+                    </td>
+                    <td class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="pro.selected" value="">
+                            <i class="input-helper"></i>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </section>
