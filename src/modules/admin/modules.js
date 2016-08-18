@@ -10,7 +10,7 @@
         $stateProvider
             .state('admin', {
                 url: "/admin/professionnals",
-                templateUrl: "/modules/admin/views/admin.html",
+                templateUrl: "/modules/admin/views/admin-pro.html",
                 controller: 'AdminController',
                 controllerAs: 'vm'
             });

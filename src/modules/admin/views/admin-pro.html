@@ -1,0 +1,55 @@
+<style data-ng-if="app.isPro()">
+    .customerSupportWidget {
+        background: #FF9800;
+    }
+
+    .contactsItemNumberActive {
+        background: #FF9800;
+    }
+</style>
+
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+
+    <table ng-table="usersTable" class="table table-striped">
+        <button class="btn btn-success validateButton">Valider</button>
+
+        <tr ng-repeat="pro in $data" class="t-center">
+            <td data-title="'Nom'" sortable="'user.name'">
+                {{pro.user.name}}
+            </td>
+            <td data-title="'Ville'" sortable="'company.address.city'">
+                {{ pro.company.address.city }}
+            </td>
+            <td data-title="'Création'" sortable="'user.created'">
+                {{ pro.user.created | date:"dd/MM/yyyy" }}
+            </td>
+            <td data-title="'Mis à jour'" sortable="'user.updated'">
+                {{ pro.user.updated| date:"dd/MM/yyyy" }}
+            </td>
+            <td data-title="'Eligible'" sortable="'eligibleStatus'">
+                {{ pro.eligibleStatus | casaProfessionalStatus }}
+            </td>
+            <td data-title="'Statut'" sortable="'status'">
+                {{ pro.status | casaProfessionalStatus }}
+            </td>
+            <td data-title="'Pièces jointes'">
+                <a ng-href="{{ file.cloudinaryPublicId | yakaCloudinaryDownload }}"
+                   data-ng-repeat="file in pro.verifications">
+                    <i class="zmdi zmdi-attachment-alt"></i>
+                </a>
+            </td>
+            <td class="checkbox m-b-15">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                </label>
+            </td>
+        </tr>
+    </table>
+</section>

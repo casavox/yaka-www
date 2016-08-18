@@ -299,6 +299,9 @@
             },
             getProNetworkLeads: function (success, error) {
                 httpService.get(baseUrl + '/pro/projects/network').success(success).error(error)
+            },
+            proListGET: function (data, success, error) {
+                httpService.get(baseUrl + '/admin/professionals', data).success(success).error(error)
             }
         };
     }
