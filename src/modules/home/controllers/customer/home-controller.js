@@ -301,5 +301,12 @@
         function failPasswordForgotten(err) {
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
+
+        networkService.publicProjectsToRecommendGET(function (projects) {
+            vm.projectsToRecommend = projects;
+        }, function (err) {
+            alertMsg.send("Impossible de récupérer les projets", "danger");
+        });
+
     }
 })();

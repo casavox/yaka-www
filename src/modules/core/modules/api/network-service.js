@@ -279,8 +279,11 @@
             setContactsRead: function (success, error) {
                 httpService.put(baseUrl + '/contacts/read').success(success).error(error)
             },
-            projectToRecommendGET: function (success, error) {
+            projectsToRecommendGET: function (success, error) {
                 httpService.get(baseUrl + '/recommend/projects/torecommend').success(success).error(error)
+            },
+            publicProjectsToRecommendGET: function (success, error) {
+                httpService.get(baseUrl + '/public/recommend/projects/torecommend').success(success).error(error)
             },
             dashboardDataGET: function (success, error) {
                 httpService.get(baseUrl + '/dashboard/infos').success(success).error(error)
