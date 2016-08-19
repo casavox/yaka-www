@@ -17,6 +17,8 @@
             networkService.adminProListGET(function (res) {
                 vm.proData = res;
                 angular.forEach(vm.proData, function (pro) {
+                    pro.status = $filter('casaProfessionalStatus')(pro.status);
+                    pro.eligibleStatus = $filter('casaProfessionalStatus')(pro.eligibleStatus);
                     pro.selected = false;
                     pro.user.name = pro.user.firstName + " " + pro.user.lastName;
                     if (pro.company.address.postalCode == undefined) {
@@ -31,17 +33,23 @@
 
         loadProList();
 
+        vm.tableData = [];
+
         function proSorting() {
             $scope.usersTable = new ngTableParams({
                 page: 1,
-                count: 10,
+                count: 99999999,
                 sorting: {name: "asc"}
             }, {
                 total: vm.proData.length,
+                counts: [],
                 getData: function ($defer, params) {
-                    var orderedData = params.sorting() ? $filter('orderBy')(vm.proData, params.orderBy()) : vm.proData;
-                    $scope.data = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-                    $defer.resolve($scope.data);
+                    vm.tableData = vm.proData;
+                    vm.tableData = params.sorting() ? $filter('orderBy')(vm.tableData, params.orderBy()) : vm.tableData;
+                    vm.tableData = params.filter() ? $filter('filter')(vm.tableData, params.filter()) : vm.tableData;
+                    console.log(params.filter());
+                    vm.tableData = vm.tableData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(vm.tableData);
                 }
             });
         }
