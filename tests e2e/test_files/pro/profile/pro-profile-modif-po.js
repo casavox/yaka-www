@@ -19,6 +19,7 @@ var ProfilePage = function () {
     this.bottomAlert = element(by.binding('alertMessage'));
     this.closeAlertMsg = element(by.css('[ng-click="alertMsgFlag = false"]'));
     this.closePopupReg = element(by.id('closePopupFriendImg'));
+    //this.certificationADD = element(by.css('[data-ng-click="vm.setVerif(\'RGE\')"]'));
 
 
     this.n = Math.floor((Math.random() * (15 - 1) + 0));

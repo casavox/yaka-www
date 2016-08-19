@@ -1,6 +1,7 @@
 require('jasmine-bail-fast');
 var ProfilePage = require('./pro-profile-modif-po.js');
 var InfoPro = require('../Pro-variables.js');
+var path = require('path');
 
 
 describe('The user', function () {
@@ -17,6 +18,7 @@ describe('The user', function () {
             });
             changePhoneNumber();
             verifyChangePhoneNumber();
+            //sendCertification();
             changeDescription();
             verifyDateModification();
             changeSkill();
@@ -36,7 +38,6 @@ describe('The user', function () {
                     });
                 });
             }
-
             function verifyChangePhoneNumber() {
                 profilePage.phoneNumber.getAttribute('value').then(function (number) {
                     n = number.replace(/ /g, "");
@@ -66,7 +67,6 @@ describe('The user', function () {
                     });
                 });
             }
-
             function verifyDateModification() {
                 browser.wait(profilePage.EC.presenceOf(profilePage.description), profilePage.waitMedium, "Timeout : " + profilePage.waitMedium + " in " + "presenceOf(--newModifiedText--)").then(function () {
                     profilePage.description.getText().then(function (txt) {
@@ -81,6 +81,17 @@ describe('The user', function () {
                     });
                 });
             }
+
+            // Ajout d'un document todo envoi de document impossible !
+            /*function sendCertification () {
+                var fileToUpload = '/img.png';
+                var absolutePath = path.resolve(fileToUpload);
+                console.log(absolutePath);
+                $('input[type="file"]').sendKeys(absolutePath);
+                profilePage.certificationADD.click();
+                browser.sleep(2000);
+                browser.sleep(10000);
+            }*/
 
             // Modification des domaines de compétence
             function changeSkill() {

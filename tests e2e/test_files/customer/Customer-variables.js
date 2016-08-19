@@ -18,6 +18,9 @@ var InfoCustomer = function () {
     this.userLogin = 'gregorybizet@hotmail.com';
     this.userPwd = 'blabla';
 
+    // Information LOGIN pour mot de passe oublié
+    this.forgetLogin = 'gregorybizet@gmail.com';
+
     // Informations contact AMI ajouté
     this.mailNumberf = function () {
         return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1));

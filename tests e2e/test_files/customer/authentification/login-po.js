@@ -29,7 +29,12 @@ var LoginPage = function () {
     this.password = element(by.model('vm.newUser.password'));
     this.confPassword = element(by.model('vm.passwordConfirm'));
     this.confirmInscription = element(by.css('[ data-ng-click="vm.register()"]'));
+    this.inputPassword = element(by.model('vm.forgottenPasswordUser.email'));
 
+    // Password forgotten
+    this.passwordForgotten = element(by.id('forgotten'));
+    this.passwordReset = element(by.css('[data-ng-click="vm.forgottenPassword()"]'));
+    this.passwordMailSent = element(by.css('[data-ng-if="vm.passwordForgottenMessageSent"]'));
 }
 
 module.exports = LoginPage;
