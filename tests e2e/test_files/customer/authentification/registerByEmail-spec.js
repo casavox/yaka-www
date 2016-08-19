@@ -42,9 +42,6 @@ describe('Test Casavox', function () {
                 });
             });
         }
-
-
-        // Vérification de la page d'arrivée et du prénom utilisateur
         function verifyURL() {
             browser.wait(loginPage.EC.textToBePresentInElement(loginPage.nameHeader, infoCustomer.firstName), loginPage.waitHigh).then(function () {
                 loginPage.nameHeader.getText().then(function (name) {

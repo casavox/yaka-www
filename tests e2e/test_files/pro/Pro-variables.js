@@ -19,6 +19,13 @@ var InfoPro = function () {
     };
     this.fakeMail = 'casavox.dev+regPro' + this.mailNumber() + '@gmail.com';
 
+
+    //------------ Génération aléatoire d'un numéro de téléphone
+    this.mailNumberp = function () {
+        return (Math.random() * (20 - 1));
+    }
+    this.fakeNumber = '01' + (Math.floor(this.mailNumberp() * 10000000));
+
 };
 
 module.exports = InfoPro;
