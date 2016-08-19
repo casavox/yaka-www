@@ -40,7 +40,7 @@
                          data-ng-repeat="project in vm.projectsToRecommend">
 
                         <div class="card homeTransparentBox homeRecommendProject pointer p-l-10 c-white m-b-10"
-                             data-ui-sref="project-recommend({'projectId': project.id})">
+                             data-ui-sref="public-project-recommend({'projectId': project.id})">
 
                             <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white">
                             </div>
@@ -58,105 +58,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xs-12 m-t-20 pointer" data-ng-click="vm.openPopup(false)">
 
-
-                    <div class="col-sm-6 m-t-20"
-                         data-ng-repeat="project in vm.projectsToRecommend">
-
-                        <div class="card homeTransparentBox homeRecommendProject pointer p-l-10 c-white m-b-10"
-                             data-ui-sref="project-recommend({'projectId': project.id})">
-
-                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white">
-                            </div>
-
-                            <div class="homeRecommendProjectText">
-                                <div class="yakaEllipsis">
-                                    {{project.user.firstName}} {{project.user.lastName}} à un projet de
-                                </div>
-                                <div class="yakaEllipsis c-lightblue">
-                                    <u>{{'ACTIVITY_' + project.mainActivity.code | translate}}</u>
-                                </div>
-                                <div class="yakaEllipsis">
-                                    à {{project.address.locality}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 m-t-20"
-                         data-ng-repeat="project in vm.projectsToRecommend">
-
-                        <div class="card homeTransparentBox homeRecommendProject pointer p-l-10 c-white m-b-10"
-                             data-ui-sref="project-recommend({'projectId': project.id})">
-
-                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white">
-                            </div>
-
-                            <div class="homeRecommendProjectText">
-                                <div class="yakaEllipsis">
-                                    {{project.user.firstName}} {{project.user.lastName}} à un projet de
-                                </div>
-                                <div class="yakaEllipsis c-lightblue">
-                                    <u>{{'ACTIVITY_' + project.mainActivity.code | translate}}</u>
-                                </div>
-                                <div class="yakaEllipsis">
-                                    à {{project.address.locality}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 m-t-20"
-                         data-ng-repeat="project in vm.projectsToRecommend">
-
-                        <div class="card homeTransparentBox homeRecommendProject pointer p-l-10 c-white m-b-10"
-                             data-ui-sref="project-recommend({'projectId': project.id})">
-
-                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white">
-                            </div>
-
-                            <div class="homeRecommendProjectText">
-                                <div class="yakaEllipsis">
-                                    {{project.user.firstName}} {{project.user.lastName}} à un projet de
-                                </div>
-                                <div class="yakaEllipsis c-lightblue">
-                                    <u>{{'ACTIVITY_' + project.mainActivity.code | translate}}</u>
-                                </div>
-                                <div class="yakaEllipsis">
-                                    à {{project.address.locality}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 m-t-20"
-                         data-ng-repeat="project in vm.projectsToRecommend">
-
-                        <div class="card homeTransparentBox homeRecommendProject pointer p-l-10 c-white m-b-10"
-                             data-ui-sref="project-recommend({'projectId': project.id})">
-
-                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white">
-                            </div>
-
-                            <div class="homeRecommendProjectText">
-                                <div class="yakaEllipsis">
-                                    {{project.user.firstName}} {{project.user.lastName}} à un projet de
-                                </div>
-                                <div class="yakaEllipsis c-lightblue">
-                                    <u>{{'ACTIVITY_' + project.mainActivity.code | translate}}</u>
-                                </div>
-                                <div class="yakaEllipsis">
-                                    à {{project.address.locality}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-6 m-t-20" data-ng-click="vm.openPopup(false)">
-
-                        <div class="card homeTransparentBox homeRecommendProject pointer p-l-10">
-
-                            <div class="t-center c-lightblue p-t-25">
-                                <u>Voir plus</u>
-                            </div>
+                        <div class="t-right c-lightblue p-b-5">
+                            <u>Voir plus</u>
                         </div>
                     </div>
                 </div>
