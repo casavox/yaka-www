@@ -15,10 +15,10 @@
                 Bien démarrer sur CasaVox
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': vm.showTuto, 'zmdi-chevron-up': !vm.showTuto}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showTuto, 'zmdi-chevron-up': vm.showTuto}"></i>
             </div>
 
-            <div uib-collapse="!vm.showTuto" data-ng-show="vm.pro" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showTuto" data-ng-show="vm.pro" class="col-xs-12 no-padding">
                 <div class="block-header">
                     <h2>Bien débuter sur CasaVox</h2>
                 </div>
@@ -178,10 +178,10 @@
                 Naviguer dans CasaVox
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': vm.showNavigate, 'zmdi-chevron-up': !vm.showNavigate}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showNavigate, 'zmdi-chevron-up': vm.showNavigate}"></i>
             </div>
 
-            <div uib-collapse="!vm.showNavigate" data-ng-show="vm.pro" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showNavigate" data-ng-show="vm.pro" class="col-xs-12 no-padding">
                 <div class="block-header">
                     <h2>Menu : Carte des offres</h2>
                 </div>
@@ -198,15 +198,64 @@
             </div>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="vm.pro"
+                 data-ng-show="!vm.pro"
+                 data-ng-click="vm.customerCard1 = !vm.customerCard1">
+                Bla bla client 1
+
+                <i class="zmdi f-right f-18"
+                   data-ng-class="{'zmdi-chevron-down': !vm.customerCard1, 'zmdi-chevron-up': vm.customerCard1}"></i>
+            </div>
+
+            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding">
+                <div class="block-header">
+                    <h2>Bla bla client 1</h2>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Bla bla client 1</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            Bla bla client 1
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-show="!vm.pro"
+                 data-ng-click="vm.customerCard2 = !vm.customerCard2">
+                Bla bla client 2
+
+                <i class="zmdi f-right f-18"
+                   data-ng-class="{'zmdi-chevron-down': !vm.customerCard2, 'zmdi-chevron-up': vm.customerCard2}"></i>
+            </div>
+
+            <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding">
+                <div class="block-header">
+                    <h2>Bla bla client 2</h2>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Bla bla client 2</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            Bla bla client 2
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-click="vm.showSupport = !vm.showSupport">
                 Contacter CasaVox
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': vm.showSupport, 'zmdi-chevron-up': !vm.showSupport}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showSupport, 'zmdi-chevron-up': vm.showSupport}"></i>
             </div>
 
-            <div uib-collapse="!vm.showSupport" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showSupport" class="col-xs-12 no-padding">
 
                 <div class="block-header">
                     <h2>Support</h2>

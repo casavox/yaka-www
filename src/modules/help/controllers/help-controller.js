@@ -44,6 +44,8 @@
                 $state.go("home");
             });
 
+        } else {
+            vm.showSupport = false;
         }
         vm.supportMessage = {
             gender: '',

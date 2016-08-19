@@ -26,7 +26,7 @@
 
             <div class="col-sm-6">
                 <div class="block-header">
-                    <h2>Recommander à</h2>
+                    <h2>À</h2>
                 </div>
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
@@ -42,7 +42,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="block-header">
-                    <h2>Pour</h2>
+                    <h2>POUR SON PROJET</h2>
                 </div>
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
@@ -71,11 +71,11 @@
             </div>
             <div class="col-sm-6" data-ng-if="vm.professionals">
                 <div class="block-header">
-                    <h2>Mes professionels</h2>
+                    <h2>Mes Pro</h2>
                 </div>
                 <div class="card">
                     <div class="card-header projectRecommendGrayHeader">
-                        <h2>Recommandez un Pro
+                        <h2>Recommander un Pro
                             <small>
                                 Liste de vos Pros ayant la compétence demandée
                             </small>
@@ -140,10 +140,10 @@
                 <div class="block-header">
                     <h2>
                         <span data-ng-if="vm.selectedProfessional">
-                            Recommandez ce Pro sur ce projet
+                            RECOMMANDER
                         </span>
                         <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
-                            Choisir un Pro
+                            Aucun Pro sélectionné
                         </span>
                         <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
                             Ajouter un Pro
@@ -222,14 +222,14 @@
                         <div class="form-group m-t-25">
                             <div class="fg-line">
                                 <textarea class="form-control" data-ng-model="vm.recommendMsg.text" data-auto-size=""
-                                          placeholder="Écrire un commentaire à {{vm.project.user.firstName}} {{vm.project.user.lastName}}"
+                                          placeholder="Envoyer un message privé à {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
                                           data-autosize-on="true"></textarea>
                             </div>
                         </div>
 
                         <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
                                 data-ng-click="vm.recommendPro(vm.selectedProfessional.id)">
-                            Recommander ce Pro
+                            Recommander le projet
                         </button>
                     </div>
 
@@ -398,10 +398,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding select">
-                                <select class="form-control m-b-15"
+                            <div class="col-xs-12 no-padding select m-b-15">
+                                <select class="form-control c-red"
+                                        onchange="this.className='form-control form-control-underline-ok'"
                                         data-ng-model="vm.invitPro.relation">
-                                    <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                                    <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                                     <option value="CLIENT">Client</option>
                                     <option value="FRIEND">Ami</option>
                                     <option value="FAMILY">Famille</option>
@@ -411,6 +412,7 @@
 
                             <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
                                  data-ng-dropdown-multiselect=""
+                                 events="vm.updateMultiChoiceInputColor"
                                  options="vm.multiChoiceInput.options"
                                  selected-model="vm.multiChoiceInput.selected"
                                  extra-settings="vm.multiChoiceInput.settings"
@@ -528,10 +530,11 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding select">
-                    <select class="form-control m-b-15"
+                <div class="col-xs-12 no-padding select m-b-15">
+                    <select class="form-control c-red"
+                            onchange="this.className='form-control form-control-underline-ok'"
                             data-ng-model="vm.invitPro.relation">
-                        <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
+                        <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                         <option value="CLIENT">Client</option>
                         <option value="FRIEND">Ami</option>
                         <option value="FAMILY">Famille</option>
@@ -540,6 +543,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
+                     events="vm.updateMultiChoiceInputColor"
                      data-ng-dropdown-multiselect=""
                      options="vm.multiChoiceInput.options"
                      selected-model="vm.multiChoiceInput.selected"

@@ -245,7 +245,7 @@
         vm.getVerification = function (verificationName) {
 
             var foundVerification = null;
-            angular.forEach(vm.verifications, function(verification) {
+            angular.forEach(vm.verifications, function (verification) {
                 if (verification.name && verification.name == verificationName) {
                     foundVerification = verification;
                 }
@@ -255,8 +255,12 @@
 
         vm.actionActivities = function (s) {
             var res = null;
-            if ((res = vm.indexOfObject(s, 'code', vm.activities)).length == 0)
+            if ((res = vm.indexOfObject(s, 'code', vm.activities)).length == 0) {
+                if (!vm.activities) {
+                    vm.activities = [];
+                }
                 vm.activities.push({code: s});
+            }
             else {
                 for (var i = 0; i < res.length; i++) {
                     vm.activities.splice(res[i], 1);
@@ -580,7 +584,7 @@
         vm.editFlag = false;
 
         vm.saveComment = function () {
-            $timeout(function() {
+            $timeout(function () {
                 $('html').trigger('click');
             });
         };
