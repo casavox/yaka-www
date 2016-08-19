@@ -297,6 +297,9 @@
             recommendProForProjectPOST: function (id, professionalId, data, success, error) {
                 httpService.post(baseUrl + '/recommend/projects/' + id + '/pro/' + professionalId, data).success(success).error(error)
             },
+            recommendAndInviteProPOST: function (id, data, success, error) {
+                httpService.post(baseUrl + '/recommend/projects/' + id + '/invite/pro', data).success(success).error(error)
+            },
             getProNetworkLeads: function (success, error) {
                 httpService.get(baseUrl + '/pro/projects/network').success(success).error(error)
             }

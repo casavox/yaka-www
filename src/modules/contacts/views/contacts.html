@@ -376,76 +376,123 @@
                  data-ng-click="vm.closeProPopup()"
                  alt=""/>
 
-            <div class="col-xs-12 yakaPopupInvitTitle">
-                Invitez un super Pro !
+            <div class="card-header p-l-0 p-r-0">
+                <h2>
+                    Invitez un professionnel
+                    <small>
+                        Ce Pro sera prévenu par email de ce projet.
+                    </small>
+                </h2>
             </div>
 
-            <input class="col-xs-12 form-control halfInput"
-                   placeholder="Prénom"
-                   data-ng-model="vm.invitPro.firstName"/>
+            <form name="inviteForm">
+                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput"
+                     data-ng-class="{'has-error': !vm.invitPro.firstName}">
 
-            <input class="col-xs-12 form-control halfInput halfInputRight"
-                   placeholder="Nom"
-                   data-ng-model="vm.invitPro.lastName"/>
+                    <div class="fg-line">
+                        <input type="text" name="firstName" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.firstName"
+                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <label class="fg-label">Prénom</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.firstName.$error">
+                        <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                            valide
+                        </small>
+                    </div>
+                </div>
 
-            <div class="proInviteInputError"
-                 data-ng-hide="vm.invitPro.firstName == '' || vm.isNameValid(vm.invitPro.firstName)">
-                Ce prénom n'est pas valide
-            </div>
+                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput halfInputRight"
+                     data-ng-class="{'has-error': !vm.invitPro.lastName}">
 
-            <div class="proInviteInputError"
-                 data-ng-hide="vm.invitPro.lastName == '' || vm.isNameValid(vm.invitPro.lastName)">
-                Ce nom n'est pas valide
-            </div>
+                    <div class="fg-line">
+                        <input type="text" name="lastName" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.lastName"
+                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <label class="fg-label">Nom</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.lastName.$error">
+                        <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                            valide
+                        </small>
+                    </div>
+                </div>
 
-            <input class="col-xs-12 form-control"
-                   placeholder="Email"
-                   data-ng-model="vm.invitPro.email"/>
+                <div class="col-xs-12 no-padding select m-b-15">
+                    <select class="form-control c-red"
+                            onchange="this.className='form-control form-control-underline-ok'"
+                            data-ng-model="vm.invitPro.relation">
+                        <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
+                        <option value="CLIENT">Client</option>
+                        <option value="FRIEND">Ami</option>
+                        <option value="FAMILY">Famille</option>
+                        <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
+                    </select>
+                </div>
 
-            <div class="proInviteInputError"
-                 data-ng-hide="vm.invitPro.email == '' || vm.isEmailValid(vm.invitPro.email)">
-                Cet email n'est pas valide
-            </div>
+                <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
+                     events="vm.updateMultiChoiceInputColor"
+                     data-ng-dropdown-multiselect=""
+                     options="vm.multiChoiceInput.options"
+                     selected-model="vm.multiChoiceInput.selected"
+                     extra-settings="vm.multiChoiceInput.settings"
+                     translation-texts="vm.multiChoiceInput.translation"
+                     checkboxes="true"></div>
 
-            <input class="col-xs-12 form-control"
-                   id="proInvitePhone"
-                   placeholder="Téléphone"
-                   data-ng-model="vm.phoneNumber"/>
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                    <div class="fg-line">
+                        <input type="text" class="form-control fg-input input-sm"
+                               vs-google-autocomplete="vm.autocomplete.options"
+                               vs-autocomplete-validator
+                               data-ng-model="vm.invitPro.address.address"
+                               type="text"
+                               name="address"
+                               required="required"
+                               placeholder=""
+                               id="address">
+                        <label class="fg-label">Localité</label>
+                    </div>
+                </div>
 
-            <div class="proInviteInputError"
-                 data-ng-hide="vm.phoneNumber == '' || vm.isPhoneNumberValid">
-                Cet numéro de téléphone n'est pas valide
-            </div>
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error': !vm.invitPro.email}">
+                    <div class="fg-line">
+                        <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                               class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.email"
+                               required="required" yaka-input-email>
+                        <label class="fg-label">Email</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.username.$error">
+                        <small class="help-block" data-ng-message="invalidEmail">
+                            Cet email n'est pas valide
+                        </small>
+                    </div>
+                </div>
 
-            <input
-                vs-google-autocomplete="vm.autocomplete.options"
-                vs-autocomplete-validator class="form-control"
-                placeholder="Ville"
-                data-ng-model="vm.invitPro.address.address"/>
+                <div class="col-xs-12 no-padding form-group fg-float"
+                     data-ng-class="{'has-error': !vm.invitPro.phone}">
+                    <div class="fg-line">
+                        <input type="text" name="phoneNumber"
+                               class="form-control fg-input"
+                               required="required"
+                               data-ng-model="vm.invitPro.phone" yaka-input-phone>
+                        <label class="fg-label fg-label-phone">Téléphone</label>
+                    </div>
+                    <div data-ng-messages="inviteForm.phoneNumber.$error">
+                        <small class="help-block" data-ng-message="invalidPhone">
+                            Ce numéro de téléphone n'est pas valide
+                        </small>
+                    </div>
+                </div>
 
-            <div id="select-pro-relation" class="select">
-                <select class="form-control m-t-10"
-                        data-ng-model="vm.invitPro.relation">
-                    <option value="" disabled="disabled">Votre relation avec ce pro ?</option>
-                    <option value="CLIENT">Client</option>
-                    <option value="FRIEND">Ami</option>
-                    <option value="FAMILY">Famille</option>
-                    <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
-                </select>
-            </div>
-
-            <div class="proInviteActivitiesInput" data-ng-dropdown-multiselect=""
-                 options="vm.multiChoiceInput.options"
-                 selected-model="vm.multiChoiceInput.selected"
-                 extra-settings="vm.multiChoiceInput.settings"
-                 translation-texts="vm.multiChoiceInput.translation"
-                 checkboxes="true"></div>
-
-            <div class="col-xs-12 yakaButton yakaOrange invitProButton"
-                 data-ng-class="{yakaDisabled: !vm.formIsValid()}"
-                 data-ng-click="vm.sendProInvit()">
-                INVITER
-            </div>
+                <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
+                        data-ng-disabled="!vm.formIsValid()"
+                        data-ng-click="vm.sendProInvit()">
+                    Inviter
+                </button>
+            </form>
         </div>
     </div>
 </div>

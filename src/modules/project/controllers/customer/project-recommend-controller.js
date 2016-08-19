@@ -77,14 +77,15 @@
                 scrollable: true,
                 scrollableHeight: 265,
                 displayProp: "labelTranslated",
-                closeOnBlur: true
+                closeOnBlur: true,
+                buttonClasses: 'multiChoiceInputColor'
             },
             translation: {
                 checkAll: "Tout sélectionner",
                 uncheckAll: "Tout désélectionner",
                 selectionCount: "choisis",
                 searchPlaceholder: "Rechercher...",
-                buttonDefaultText: "Domaines d'intervention",
+                buttonDefaultText: "Préciser ses compétences",
                 dynamicButtonTextSuffix: "domaine(s) d'intervention"
             },
             options: [
@@ -106,6 +107,16 @@
                 {id: 15, label: "REN_500"}
             ],
             selected: []
+        };
+
+        vm.updateMultiChoiceInputColor = {
+            onItemSelect: function (item) {
+                $(".multiChoiceInputColor").css("color", "#2196f3");
+            }, onItemDeselect: function (item) {
+                if (!vm.multiChoiceInput.selected.length || vm.multiChoiceInput.selected.length == 0) {
+                    $(".multiChoiceInputColor").css("color", "red");
+                }
+            }
         };
 
         angular.forEach(vm.multiChoiceInput.options, function (value) {
@@ -130,7 +141,7 @@
         };
 
         vm.sendProInvit = function () {
-            networkService.inviteProPOST(vm.invitPro, function (res) {
+            networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
                 vm.invitPro = {
                     email: "",
                     firstName: "",

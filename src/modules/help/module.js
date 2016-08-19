@@ -7,10 +7,10 @@
 
     function config($stateProvider) {
         $stateProvider
-            .state('pro-help', {
-                url: "/pro/help",
-                templateUrl: "/modules/help/views/pro-help.html",
-                controller: 'ProHelpController',
+            .state('help', {
+                url: "/help?card",
+                templateUrl: "/modules/help/views/help.html",
+                controller: 'HelpController',
                 controllerAs: 'vm'
             });
     }

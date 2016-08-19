@@ -257,6 +257,11 @@
     height: 40px !important;
 }
 
+.multiChoiceInputColor {
+    color: red;
+    background-color: white;
+}
+
 .proHomeSection2Button {
     margin-top: 15px;
 }

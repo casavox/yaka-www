@@ -259,9 +259,9 @@
         };
 
 
-        app.openSupport = function () {
+        app.openHelp = function () {
             $localStorage.lastUrlBeforeSupport = window.location.href;
-            $state.go("support");
+            $state.go("help");
         };
 
         //Template stuff
