@@ -4,16 +4,12 @@ angular.module('Yaka')
             switch (status) {
                 case "REGISTERED":
                     return "Incomplet";
-                    break;
                 case "WAITING":
                     return "En attente";
-                    break;
                 case "REFUSED":
                     return "Refusé";
-                    break;
                 case "VALIDATED":
                     return "Validé";
-                    break;
                 case "COMPLETED":
                     return "Complet";
             }

@@ -1,3 +1,6 @@
+.input-filter {
+    width: calc((100% / 7.15) - 1px);
+}
 .validateButton {
-    float: right;
+    margin-bottom: 3px;
 }

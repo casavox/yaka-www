@@ -26,6 +26,8 @@
                     }
                     pro.company.address.city = pro.company.address.postalCode + " " + pro.company.address.locality;
                 });
+
+
                 proSorting();
             }, function () {
             });
