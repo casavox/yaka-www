@@ -156,7 +156,13 @@
 
                             <li heading="Profile"
                                 data-ng-class="{'active': vm.showChat}">
-                                <a href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">Messages</a>
+                                <a href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">
+                                    <div>
+                                        Messages
+                                        <i class="proposalUnreadMessagesIndicator"
+                                           data-ng-if="app.getUserchatsUnreadNumber() > 0""></i>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
 
