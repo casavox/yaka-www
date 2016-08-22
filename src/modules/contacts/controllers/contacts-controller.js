@@ -382,7 +382,7 @@
             });
 
             if (vm.invitPro.firstName == '' || !vm.isNameValid(vm.invitPro.firstName) ||
-                vm.invitPro.lastName == '' || !vm.isNameValid(vm.invitPro.lastName) || !$('#proInvitePhone').intlTelInput("isValidNumber") || vm.invitPro.phone == '' ||
+                vm.invitPro.lastName == '' || !vm.isNameValid(vm.invitPro.lastName) ||
                 vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) ||
                 vm.invitPro.activities.length == 0 || !vm.invitPro.relation ||
                 vm.invitPro.address.address == undefined || vm.invitPro.address.address == ''
