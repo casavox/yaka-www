@@ -132,7 +132,6 @@
 
             return (vm.invitPro.firstName &&
                 vm.invitPro.lastName &&
-                vm.invitPro.phone &&
                 vm.invitPro.email &&
                 vm.invitPro.activities.length > 0 &&
                 vm.invitPro.relation &&
