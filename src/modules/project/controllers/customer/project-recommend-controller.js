@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate) {
+    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll, smoothScroll) {
 
         if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
             $state.go("home");
@@ -132,7 +132,6 @@
 
             return (vm.invitPro.firstName &&
                 vm.invitPro.lastName &&
-                vm.invitPro.phone &&
                 vm.invitPro.email &&
                 vm.invitPro.activities.length > 0 &&
                 vm.invitPro.relation &&
@@ -205,5 +204,13 @@
             });
         };
 
+        var scrollOptions = {
+            containerId: 'pro-container'
+        };
+
+        vm.smoothScrollPro = function () {
+            var element = document.getElementById('pro');
+            smoothScroll(element, scrollOptions);
+        };
     }
 })();
