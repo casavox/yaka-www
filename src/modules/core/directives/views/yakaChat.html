@@ -45,10 +45,19 @@
                     <div class="m-b-20" data-ng-if="message.cloudinaryPublicId && message.text"></div>
                     <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
                     <span class="msg yaka" data-ng-if="message.author == 'YAKA'">{{message.text}}</span>
-                    <span data-ng-if="message.author == 'AUTO'">
+                    <span
+                        data-ng-if="message.author == 'AUTO' && message.text != 'FIRST_RECOMMENDATION' && message.text != 'NEW_RECOMMENDATION'">
                         <i class="zmdi {{message | yakaAutoMsgIcon : getCustomerUser() : getProUser()}} yakaMessageIcon"></i>
                         <span class="msg yaka yakaMessageWithIcon">{{message | yakaAutoMsg : getCustomerUser() : getProUser()}}</span>
                     </span>
+                    <div
+                        data-ng-if="message.author == 'AUTO' && (message.text != 'FIRST_RECOMMENDATION' || message.text != 'NEW_RECOMMENDATION')">
+                        <div class="d-i-b p-r-5">
+                            <yaka-avatar class="highlight-avatar v-align-middle" size="50"
+                                         user="message.varRecoUser"></yaka-avatar>
+                        </div>
+                        <div class="d-i-b recoType-text v-align-middle"><strong>{{message | yakaAutoMsg : null : getProUser()}}</strong></div>
+                    </div>
                 </div>
                 <small class="ms-date">
                     <i class="zmdi zmdi-time" data-ng-if="!showRight(message)"></i>

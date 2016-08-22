@@ -23,6 +23,10 @@ angular.module('Yaka')
                     return proUser.firstName + " " + proUser.lastName + " embauché pour ce projet !\nVos coordonnées respectives sont maintenant accessibles depuis la fiche projet (vérifier votre profil si nécessaire).";
                 case 'CUSTOMER_RATED_PRO':
                     return customerUser.firstName + " " + customerUser.lastName + " a indiqué la fin des travaux";
+                case 'FIRST_RECOMMENDATION':
+                    return "Cette proposition est issue d'une recommandation de " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
+                case 'NEW_RECOMMENDATION':
+                    return "Nouvelle recommandation de " + proUser.firstName + " " + proUser.lastName + ", par " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 default :
                     return '';
             }
@@ -50,6 +54,10 @@ angular.module('Yaka')
                     return 'zmdi-account-calendar';
                 case 'CUSTOMER_RATED_PRO':
                     return 'zmdi-assignment-check';
+                case 'FIRST_RECOMMENDATION':
+                    return 'zmdi-thumb-up';
+                case 'NEW_RECOMMENDATION':
+                    return 'zmdi-accounts-add';
                 default :
                     return '';
             }
