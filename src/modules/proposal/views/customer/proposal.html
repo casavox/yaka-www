@@ -199,7 +199,8 @@
                                 <a  class="" href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">
                                     <div>
                                         Messages
-                                        <i class="proposalUnreadMessagesIndicator"></i>
+                                        <i class="proposalUnreadMessagesIndicator"
+                                           data-ng-if="app.getUserchatsUnreadNumber() > 0""></i>
                                     </div>
                                 </a>
                             </li>

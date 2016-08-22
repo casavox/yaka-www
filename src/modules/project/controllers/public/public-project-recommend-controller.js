@@ -3,31 +3,20 @@
 
     angular
         .module('Yaka')
-        .controller('ProjectRecommendController', ProjectRecommendController);
+        .controller('PublicProjectRecommendController', PublicProjectRecommendController);
 
-    //
-    //Controller login
-    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll, smoothScroll) {
+    function PublicProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate) {
 
         if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
             $state.go("home");
         }
 
-        $rootScope.updateProfile();
         var vm = this;
 
-        networkService.projectRecommendGET($stateParams.projectId,
+        networkService.publicProjectRecommendGET($stateParams.projectId,
             function (project) {
                 vm.project = project;
                 $rootScope.pageName = vm.project.title;
-            }, function (err) {
-                alertMsg.send("Impossible de récupérer le projet", "danger");
-            }
-        );
-
-        networkService.projectRecommendMyProsGET($stateParams.projectId,
-            function (professionals) {
-                vm.professionals = professionals;
             }, function (err) {
                 alertMsg.send("Impossible de récupérer le projet", "danger");
             }
@@ -132,6 +121,7 @@
 
             return (vm.invitPro.firstName &&
                 vm.invitPro.lastName &&
+                vm.invitPro.phone &&
                 vm.invitPro.email &&
                 vm.invitPro.activities.length > 0 &&
                 vm.invitPro.relation &&
@@ -204,13 +194,5 @@
             });
         };
 
-        var scrollOptions = {
-            containerId: 'pro-container'
-        };
-
-        vm.smoothScrollPro = function () {
-            var element = document.getElementById('pro');
-            smoothScroll(element, scrollOptions);
-        };
     }
 })();
