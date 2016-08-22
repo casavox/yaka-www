@@ -85,7 +85,7 @@
                     <div class="proToRecommendList" data-ng-if="vm.professionals && vm.professionals.length > 0">
                         <div class="p-10 p-relative proToRecommend pointer"
                              data-ng-repeat="professional in vm.professionals"
-                             data-ng-click="vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
+                             data-ng-click="vm.selectedProfessional = professional; vm.recommendMsg.text = ''; vm.gotoPro()"
                              data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
 
                             <yaka-avatar class="m-l-20" size="40" user="professional.user"></yaka-avatar>
@@ -138,7 +138,7 @@
             </div>
             <div class="col-sm-6" data-ng-if="vm.professionals">
                 <div class="block-header">
-                    <h2>
+                    <h2  id="pro">
                         <span data-ng-if="vm.selectedProfessional">
                             RECOMMANDER
                         </span>
@@ -167,7 +167,7 @@
 
                 <div class="card selectedProDetails" data-ng-if="vm.selectedProfessional">
 
-                    <div class="card-header clearfix">
+                    <div class="card-header clea rfix">
 
                         <yaka-avatar size="50" user="vm.selectedProfessional.user"></yaka-avatar>
 

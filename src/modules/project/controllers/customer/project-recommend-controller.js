@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate) {
+    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll) {
 
         if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
             $state.go("home");
@@ -204,6 +204,9 @@
                 alertMsg.send("Impossible de recommander ce professionnel", 'danger');
             });
         };
-
+        vm.gotoPro= function() {
+            $location.hash('pro');
+            $anchorScroll();
+        };
     }
 })();
