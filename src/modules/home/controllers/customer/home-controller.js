@@ -83,67 +83,7 @@
         vm.closePopup = function () {
             vm.showLoginPopup = false;
         };
-
-        vm.newUser = {
-            password: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            googleId: "",
-            facebookId: "",
-            defaultAddress: {
-                address: ""
-            },
-            recaptchaResponse: "",
-            avatar: {
-                cloudinaryPublicId: ""
-            }
-        };
-
-        vm.loginUser = {
-            password: "",
-            email: ""
-        };
-
-        vm.passwordConfirm = "";
-
-        vm.autocomplete = {
-            options: {
-                types: ['(cities)'],
-                componentRestrictions: {country: 'fr'}
-            }
-        };
-
-        var doNotHide = false;
-
-        vm.needToHideEmail = function () {
-            if (doNotHide) {
-                return false;
-            }
-            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                if (vm.newUser.email == '') {
-                    doNotHide = true;
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-            return false;
-        };
-
-        vm.isSocialRegister = function () {
-            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
-
-        };
-
-        vm.registerFormIsValid = function () {
-            return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
-            vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address || !vm.newUser.recaptchaResponse);
-        };
-
+        googlePreRegister
         vm.loginFormIsValid = function () {
             return !(vm.loginUser.email == '' || vm.loginUser.password == '');
         };
