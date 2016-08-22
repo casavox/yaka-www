@@ -41,7 +41,7 @@
             lastName: "",
             googleId: "",
             facebookId: "",
-            recaptchaResponse: '',
+            recaptchaResponse: "",
             avatar: {
                 cloudinaryPublicId: ""
             }
@@ -205,7 +205,7 @@
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
             vm.newUser.professional.activities.length == 0 ||
-            vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == '') || vm.newUser.recaptchaResponse;
+            vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == '' || !vm.newUser.recaptchaResponse);
         };
 
         var scrollOptions = {
