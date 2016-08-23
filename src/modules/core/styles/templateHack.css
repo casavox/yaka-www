@@ -404,3 +404,7 @@ section#main.yakaMain .content .card {
 #sidebar {
     z-index: 6;
 }
+
+body.sw-toggled #content.noMenu {
+    padding-left: 268px;
+}

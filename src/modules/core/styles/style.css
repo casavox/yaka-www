@@ -5214,3 +5214,7 @@ ul.yaka-chips li {
 .m-t-35 {
     margin-top: 35px;
 }
+
+.w-s-normal {
+    white-space: normal !important;
+}

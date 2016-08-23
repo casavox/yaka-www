@@ -292,3 +292,24 @@
     margin-left:50%;
     transform:translate(-50%);
 }
+
+.showRegisterFieldsReco {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height 0.3s linear;
+    -moz-transition: height 0.3s linear;
+    -o-transition: height 0.3s linear;
+    -ms-transition: height 0.3s linear;
+    transition: height 0.3s linear;
+}
+
+.showRegisterFieldsReco.showRegisterFieldsRecoVisible {
+    height: 465px;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    transition-delay: 0s;
+}
