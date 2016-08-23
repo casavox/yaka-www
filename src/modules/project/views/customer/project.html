@@ -307,7 +307,7 @@
                      data-ng-show="vm.user.addresses.length > 0">
                     <div class="col-xs-5 no-padding select">
                         <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
-                            <option value="new">Nouvelle addresse</option>
+                            <option value="new">Nouvelle adresse</option>
                             <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"
                                     data-ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
                             </option>
@@ -354,7 +354,7 @@
                         ANNULER
                     </button>
                     <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhere()"
-                            data-ng-disabled="!address.name || !vm.newAddr.name">
+                            data-ng-disabled="!address.name && !vm.newAddr.name">
                         CONFIRMER
                     </button>
                 </div>

@@ -294,6 +294,9 @@
             projectRecommendGET: function (id, success, error) {
                 httpService.get(baseUrl + '/recommend/projects/' + id).success(success).error(error)
             },
+            publicProjectRecommendGET: function (id, success, error) {
+                httpService.get(baseUrl + '/public/recommend/projects/' + id).success(success).error(error)
+            },
             projectRecommendMyProsGET: function (id, success, error) {
                 httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros').success(success).error(error)
             },
