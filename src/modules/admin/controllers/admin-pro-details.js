@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AdminProDetailsController', AdminProDetailsController);
 
-    function AdminProDetailsController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $stateParams, screenSize, $auth, $localStorage, $timeout) {
+    function AdminProDetailsController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $stateParams, screenSize, $auth, $localStorage, $timeout, $filter) {
 
         if ($localStorage.user && !$localStorage.user.isAdmin) {
             $state.go("home");
@@ -416,6 +416,12 @@
             if (!vm.profile.activityStartedYear) {
                 vm.profile.activityStartedYear = 0;
             }
+            console.log(vm.profile.status);
+
+            vm.profile.status = $filter('casaProfessionalStatus')(vm.profile.status);
+            vm.profile.eligibleStatus = $filter('casaProfessionalStatus')(vm.profile.eligibleStatus);
+
+
             vm.profileInfo = {
                 phoneNumber: angular.copy(vm.profile.phoneNumber),
                 user: angular.copy(vm.profile.user),
@@ -429,6 +435,31 @@
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
         }
+
+        vm.validatePro = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Le statut du pro sera modifié",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, modifier le statut",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.adminValidateProPOST([$stateParams.professionnalId],
+                        function (res) {
+                        console.log(res);
+                            alertMsg.send("Le statut a été modifié", "info");
+                            vm.getProDetails();
+                        }, function () {
+                            alertMsg.send("Impossible de modifier le statut", "danger");
+                        }
+                    );
+
+                }
+            });
+        };
 
         function errorProfileGET(res) {
             alertMsg.send("Impossible de récupérer le profil", "danger");

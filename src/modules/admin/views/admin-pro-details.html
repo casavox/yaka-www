@@ -96,25 +96,25 @@
 
                     <div class="col-xs-12 card-body m-t-30">
                         <form name="profileForm">
-                            <div class="col-xs-12 no-padding">
-                                <div class="col-xs-9 no-padding-right">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12">
 
                                     <div class="form-group fg-float m-b-30 t-center">
 
                                         <div class="col-xs-6">
-                                            <div class="col-xs-9">
+                                            <div class="col-xs-7">
                                                 Statut actuel :
                                             </div>
-                                            <div class="col-xs-3" data-ng-class="{'bgm-green' : vm.profile.status == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue' : vm.profile.status == 'Complet', 'bgm-red' : vm.profile.status == 'Refusé'}">
+                                            <div class="col-xs-5" data-ng-class="{'bgm-green' : vm.profile.status == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue' : vm.profile.status == 'Complet', 'bgm-red' : vm.profile.status == 'Refusé'}">
                                                  {{ vm.profile.status }}
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
-                                            <div class="col-xs-9">
+                                            <div class="col-xs-7">
                                                 Statut éligible :
                                             </div>
-                                            <div class="col-xs-3" data-ng-class="{'bgm-green' : pro.eligibleStatus == 'Validé', 'bgm-yellow' : pro.eligibleStatus == 'Incomplet', 'bgm-blue' : pro.eligibleStatus == 'Complet', 'bgm-red' : pro.eligibleStatus == 'Refusé'}">
-                                                Défaut
+                                            <div class="col-xs-5" data-ng-class="{'bgm-green' : vm.profile.eligibleStatus == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue' : vm.profile.status == 'Complet', 'bgm-red' : vm.profile.status == 'Refusé'}">
+                                                {{ vm.profile.eligibleStatus }}
                                             </div>
                                         </div>
                                     </div>
@@ -124,15 +124,9 @@
                             <div class="col-xs-12 no-padding profile-box-footer m-t-20 m-b-20 t-center">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        data-ng-click="vm.profileSaveButtonClicked()"
-                                        data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
-                                    Enregistrer
+                                        data-ng-click="vm.validatePro()">
+                                    VALIDER LE PRO
                                 </button>
-                                <button class="btn btn-link waves-effect"
-                                        data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
-                                    Annuler
-                                </button>
-
                             </div>
 
                         </form>
