@@ -380,9 +380,15 @@
         vm.setVerif = function setVerif(name) {
             vm.verifTmp = {name: name};
         };
-        if ($stateParams.professionnalId) {
-            networkService.adminProDetailsGET($stateParams.professionnalId, succesProfileGET, errorProfileGET);
-        }
+
+        vm.getProDetails = function() {
+            if ($stateParams.professionnalId) {
+                networkService.adminProDetailsGET($stateParams.professionnalId, succesProfileGET, errorProfileGET);
+            }
+        };
+
+        vm.getProDetails();
+
         networkService.skillsGET(function (res) {
             vm.cat = res;
         }, function (res) {
@@ -641,14 +647,16 @@
             }
 
             for (var i = 0; i < vm.activities.length; i++) {
-                if (!vm.activities[i].code) {
-                    vm.activities[i].code = "";
-                }
-                if (!vm.profile.activities[i].code) {
-                    vm.profile.activities[i].code = "";
-                }
-                if (vm.activities[i].code != vm.profile.activities[i].code) {
-                    return true;
+                if (vm.activities[i]) {
+                    if (!vm.activities[i].code) {
+                        vm.activities[i].code = "";
+                    }
+                    if (!vm.profile.activities[i].code) {
+                        vm.profile.activities[i].code = "";
+                    }
+                    if (vm.activities[i].code != vm.profile.activities[i].code) {
+                        return true;
+                    }
                 }
             }
             return false;
