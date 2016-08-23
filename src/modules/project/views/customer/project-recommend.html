@@ -85,7 +85,7 @@
                     <div class="proToRecommendList" data-ng-if="vm.professionals && vm.professionals.length > 0">
                         <div class="p-10 p-relative proToRecommend pointer"
                              data-ng-repeat="professional in vm.professionals"
-                             data-ng-click="vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
+                             data-ng-click="vm.smoothScrollPro(); vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
                              data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
 
                             <yaka-avatar class="m-l-20" size="40" user="professional.user"></yaka-avatar>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" data-ng-if="vm.professionals">
+            <div id="pro" class="col-sm-6" data-ng-if="vm.professionals">
                 <div class="block-header">
                     <h2>
                         <span data-ng-if="vm.selectedProfessional">
@@ -167,7 +167,7 @@
 
                 <div class="card selectedProDetails" data-ng-if="vm.selectedProfessional">
 
-                    <div class="card-header clearfix">
+                    <div class="card-header clea rfix">
 
                         <yaka-avatar size="50" user="vm.selectedProfessional.user"></yaka-avatar>
 
@@ -588,7 +588,6 @@
                     <div class="fg-line">
                         <input type="text" name="phoneNumber"
                                class="form-control fg-input"
-                               required="required"
                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
                         <label class="fg-label fg-label-phone">Téléphone</label>
                     </div>

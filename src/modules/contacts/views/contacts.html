@@ -341,7 +341,7 @@
                 Ou
             </h4>
 
-            <textarea class="col-xs-12 form-control m-t-20" placeholder="exemple@mail.fr,..."
+            <textarea class="col-xs-12 form-control m-t-20" placeholder="exemple1@mail.fr, exemple2@mail.fr, ..."
                       data-ng-model="vm.invitCustomer"></textarea>
 
             <div class="col-xs-12 yakaPopupInvitSubTitle">
@@ -471,12 +471,10 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float"
-                     data-ng-class="{'has-error': !vm.invitPro.phone}">
+                <div class="col-xs-12 no-padding form-group fg-float">
                     <div class="fg-line">
                         <input type="text" name="phoneNumber"
                                class="form-control fg-input"
-                               required="required"
                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
                         <label class="fg-label fg-label-phone">Téléphone</label>
                     </div>

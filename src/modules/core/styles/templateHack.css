@@ -324,6 +324,11 @@ section#main.yakaMain .content .card {
     box-shadow: 0 1px 3px rgba(3, 169, 244, 1), 0 -1px 3px rgba(3, 169, 244, 1);
 }
 
+.highlight-avatar {
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 1), 0 -1px 3px rgba(255, 255, 255, 1);
+}
+
 .userChatItem .lv-subtitle {
     color: #444444 !important;
 }
@@ -398,4 +403,8 @@ section#main.yakaMain .content .card {
 
 #sidebar {
     z-index: 6;
+}
+
+body.sw-toggled #content.noMenu {
+    padding-left: 268px;
 }

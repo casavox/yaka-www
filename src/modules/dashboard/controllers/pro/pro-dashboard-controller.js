@@ -16,7 +16,7 @@
 
         var vm = this;
 
-        networkService.projectToRecommendGET(function (projects) {
+        networkService.projectsToRecommendGET(function (projects) {
             vm.projectsToRecommend = projects;
         }, function (err) {
             alertMsg.send("Impossible de récupérer les projets", "danger");
