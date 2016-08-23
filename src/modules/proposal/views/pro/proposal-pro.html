@@ -125,9 +125,12 @@
                                         </div>
                                         <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
                                             <div class="t-center m-t-15">
-                                                En attente d'offre
+                                                <strong>Vous avez été recommandé</strong>
                                             </div>
-                                            <button data-ng-click="vm.cancelProposalModal()"
+                                            <div class="t-center bgm-orange">
+                                                <strong>FAITES VOTRE PROPOSITION</strong>
+                                            </div>
+                                            <button data-ng-click="vm.cancelRecommandationModal()"
                                                     class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect">
                                                 <i class="zmdi zmdi-close"></i> Annuler
                                             </button>
@@ -160,7 +163,7 @@
                                     <div>
                                         Messages
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="app.getUserchatsUnreadNumber() > 0""></i>
+                                           data-ng-if="app.getUserchatsUnreadNumber() > 0"></i>
                                     </div>
                                 </a>
                             </li>
@@ -235,9 +238,10 @@
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
                                                     <div class="proNetworkProjectButtonLabel t-center m-t-15">
-                                                        En attente d'offre
+                                                        Vous avez été recommandé<br>
+                                                        <strong class="bgm-orange">FAITES VOTRE PROPOSITION</strong>
                                                     </div>
-                                                    <button data-ng-click="vm.cancelProposalModal()"
+                                                    <button data-ng-click="vm.cancelRecommandationModal()"
                                                             class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
                                                         <i class="zmdi zmdi-close"></i> Annuler
                                                     </button>
