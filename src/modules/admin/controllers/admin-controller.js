@@ -34,7 +34,6 @@
         }
 
         loadProList();
-
         vm.tableData = [];
 
         function proSorting() {
@@ -78,7 +77,6 @@
         }
 
         vm.validatePro = function () {
-            console.log(vm.proData);
             swal({
                 title: "Êtes-vous sûr ?",
                 text: "Le statut du pro sera modifié",
@@ -100,7 +98,7 @@
 
                 }
             });
-        }
+        };
     }
 })
 ();

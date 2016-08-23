@@ -13,6 +13,12 @@
                 templateUrl: "/modules/admin/views/admin-pro.html",
                 controller: 'AdminController',
                 controllerAs: 'vm'
+            })
+            .state('admin-pro-details', {
+                url: "/admin/pro/:professionnalId",
+                templateUrl: "/modules/admin/views/admin-pro-details.html",
+                controller: 'AdminProDetailsController',
+                controllerAs: 'vm'
             });
     }
 })();
