@@ -131,11 +131,13 @@
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.decline"
                      data-ng-click="vm.quoteClicked(proposal.id)">
                     <div class="card-header">
+
+
                         <yaka-avatar user="proposal.project.user" size="40" class="d-i-b v-align-middle"></yaka-avatar>
                         <i class="unreadMessagesIndicator proProposalList ng-scope"
                            data-ng-if="proposal.unreadMessages"></i>
 
-                        <h2 class="d-i-b v-align-middle m-l-10 m-t-5">
+                        <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                             {{ proposal.project.title}}
                             <small>
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
