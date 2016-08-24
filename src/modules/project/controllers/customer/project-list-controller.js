@@ -78,6 +78,7 @@
             } else {
                 vm.projectsOnGoing = [];
             }
+            console.log(vm.projectsOnGoing);
         }
 
         function succesProjectsCompletedGET(res) {
