@@ -15,7 +15,7 @@
             //Customer
 
             .state('home', {
-                url: "/?invitationId?login",
+                url: "/?invitationId&login",
                 templateUrl: "/modules/home/views/customer/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
