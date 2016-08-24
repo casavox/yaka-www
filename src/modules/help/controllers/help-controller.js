@@ -16,8 +16,7 @@
         vm.showTuto = false;
         vm.showNavigate = false;
         vm.showSupport = true;
-
-        if ($localStorage.user.professional) {
+        if ($localStorage.professional) {
             if ($stateParams.card && 1 <= $stateParams.card && $stateParams.card <= 3) {
                 switch ($stateParams.card) {
                     case "1":
