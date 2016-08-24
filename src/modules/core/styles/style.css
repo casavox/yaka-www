@@ -4569,7 +4569,7 @@ md-input-container {
     cursor: pointer;
     font-size: 14px;
     color: white;
-    background-color: #1A2939;
+    background-color: #03A9F4;
     line-height: 28px;
     height: 30px;
     margin-left: 25px;
@@ -4665,7 +4665,8 @@ ul[rn-carousel-buffered] > li {
     border-bottom-right-radius: 2px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
-    background-color: white;
+    color: white;
+    background-color: #03A9F4;
     padding: 8px;
     margin: 10px;
     box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;

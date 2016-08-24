@@ -33,7 +33,9 @@
         vm.editPrice = editPrice;
         vm.editDate = editDate;
         vm.cancelProposalModal = cancelProposalModal;
+        vm.cancelRecommandationModal = cancelRecommandationModal;
         vm.cancelProposal = cancelProposal;
+        vm.cancelRecommandation = cancelRecommandation;
         vm.declineFlag = false;
         vm.imagePreviewFlag = false;
         vm.myPriceFlag = false;
@@ -109,6 +111,24 @@
         function cancelProposalModal() {
             modalService.proCancelProposal(vm.proposal.status, function (chatMessage) {
                 vm.cancelProposal(chatMessage);
+            });
+        }
+
+        function cancelRecommandation(cancelMessage) {
+            networkService.proProposalDeclinePOST($stateParams.proposalId,
+                {text: cancelMessage},
+                function (res) {
+                    alertMsg.send("L'offre vous a bien été retirée", "info");
+                    $state.go("pro-proposals");
+                }, function () {
+                    alertMsg.send("Impossible de retirée l'offre (contactez le support)", "danger");
+                }
+            );
+        }
+
+        function cancelRecommandationModal() {
+            modalService.proCancelRecommandation(vm.proposal.status, function (chatMessage) {
+                vm.cancelRecommandation(chatMessage);
             });
         }
 

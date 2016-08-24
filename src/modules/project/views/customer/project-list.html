@@ -1,3 +1,4 @@
+f
 <header id="header" data-current-skin='lightblue' data-ng-include="'/modules/core/views/header.html'"
 ></header>
 
@@ -102,6 +103,8 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
+                                        <i class="proposalUnreadMessagesIndicatorOnPro ng-scope"
+                                           data-ng-if="app.getUserchatsUnreadNumber() > 0" "=""></i>
                                     </div>
                                 </div>
                             </div>

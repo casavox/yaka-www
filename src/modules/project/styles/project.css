@@ -313,3 +313,13 @@
     -ms-transition-delay: 0s;
     transition-delay: 0s;
 }
+.proposalUnreadMessagesIndicatorOnPro {
+    display: inline-block;
+    font-style: normal;
+    background: #f44336;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    margin-left: 32px;
+    transform: translateY(-50px);
+}
