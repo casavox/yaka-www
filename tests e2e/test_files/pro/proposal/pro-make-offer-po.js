@@ -20,6 +20,10 @@ var ProfilePage = function () {
     this.messageTxt = "Ceci est un message à destination du particulier. Il s'agit du premier contact entre le professionnel et le client et doit être composé d'au moins 40 caractères";
     this.sendProposal = element(by.css('[data-ng-click="vm.sendOffer()"]'));
 
+
+    // Elements pour la vérification du prix
+    this.newPrice = element(by.id('checkPrice'));
+
 }
 
 module.exports = ProfilePage;

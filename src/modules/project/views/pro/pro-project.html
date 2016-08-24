@@ -203,7 +203,7 @@
                                     </dl>
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Prix estimatif</dt>
-                                        <dd class="l-h-18">
+                                        <dd id="checkPrice" class="l-h-18">
                                             {{vm.offer.price || '- - -'}} € <i
                                             class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
                                             data-ng-click="vm.editPrice()"></i>
@@ -213,7 +213,7 @@
                                         <dt class="yakaDisableEllipsis">Premier message privé au client (obligatoire)
                                         </dt>
                                         <dd class="l-h-18">
-                                            <textarea class="form-control" data-auto-size=""
+                                            <textarea id="checkMessage" class="form-control" data-auto-size=""
                                                       placeholder="Mettez vous en avant, expliquez votre proposition."
                                                       data-autosize-on="true"
                                                       data-ng-model="vm.offer.comment"></textarea>
