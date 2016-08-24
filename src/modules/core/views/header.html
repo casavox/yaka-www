@@ -17,9 +17,9 @@
             </div>
         </a>
     </li>
-    <li class="pull-right" data-ng-if="app.getUser()">
+    <li class="pull-right">
         <ul class="top-menu">
-            <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown>
+            <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown data-ng-if="app.getUser()">
                 <a uib-dropdown-toggle href="">
                     <i class="tm-icon zmdi zmdi-email"></i>
                     <i class="tmn-counts" data-ng-if="app.getUserchatsUnreadNumber() > 0">
@@ -92,7 +92,7 @@
                 </div>
             </li>
 
-            <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown>
+            <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown data-ng-if="app.getUser()">
                 <a uib-dropdown-toggle href="">
                     <yaka-avatar class="yakaHeaderAvatar" size="40" user="app.getUser()"></yaka-avatar>
                     <span class="yakaHeaderFirstname" data-ng-class="{'t-0': !app.getUser().avatar.cloudinaryPublicId}">
@@ -120,6 +120,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="m-t-3 m-r-15" data-ng-if="!app.getUser()">
+                <button class="btn btn-default waves-effect" data-ng-click="app.goToLogin()">
+                    Se connecter
+                </button>
             </li>
         </ul>
     </li>

@@ -36,14 +36,16 @@
 
 <section id="main">
 
-    <ol class="breadcrumb container hidden-xs" data-ng-if="vm.proposal.status">
-        <li class="pointer" data-ui-sref="{{vm.getUpState()}}">
-            {{vm.getUpName()}}
-        </li>
-        <li class="active">
-            Détails du projet
-        </li>
-    </ol>
+    <div class="container p-l-25 p-r-25" data-ng-if="vm.proposal.status">
+        <ol class="breadcrumb hidden-xs">
+            <li class="pointer" data-ui-sref="{{vm.getUpState()}}">
+                {{vm.getUpName()}}
+            </li>
+            <li class="active">
+                Détails du projet
+            </li>
+        </ol>
+    </div>
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>

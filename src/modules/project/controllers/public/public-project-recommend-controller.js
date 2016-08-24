@@ -7,7 +7,7 @@
 
     function PublicProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $auth) {
 
-        if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
+        if (!$stateParams.projectId) {
             $state.go("home");
         }
 

@@ -5062,19 +5062,23 @@ ul.yaka-chips li {
 }
 
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
+}
+
+.m-t-3 {
+    margin-top: 3px !important;
 }
 
 .m-t-8 {
-    margin-top: 8px;
+    margin-top: 8px !important;
 }
 
 .m-t-9 {
-    margin-top: 9px;
+    margin-top: 9px !important;
 }
 
 .p-l-25 {
-    padding-left: 25px;
+    padding-left: 25px !important;
 }
 
 .no-padding-right {
@@ -5146,7 +5150,7 @@ ul.yaka-chips li {
 }
 
 .underline {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 .c-google-red {

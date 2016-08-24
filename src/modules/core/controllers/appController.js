@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -49,14 +49,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                    vm.messages.items.push(payload);
-                    vm.glue = true;
-                }, {
-                    'token': $localStorage.token
-                });
-            }
-        );
+                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                        vm.messages.items.push(payload);
+                        vm.glue = true;
+                    }, {
+                        'token': $localStorage.token
+                    });
+                }
+            );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -279,5 +279,12 @@
         app.getEnvironment = function () {
             return CONFIG.ENV;
         };
+
+        app.goToLogin = function () {
+            if ($state.current.name == "public-project-recommend") {
+                window.recoProjectId = $stateParams.projectId;
+            }
+            $state.go('home', {login: true});
+        }
     }
 })();
