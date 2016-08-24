@@ -9,14 +9,16 @@
         $scope.showList = false;
 
         $rootScope.pageName = "Aide";
-        $rootScope.updateProfile();
+        if ($localStorage.user) {
+            $rootScope.updateProfile();
+        }
 
         var vm = this;
 
         vm.showTuto = false;
         vm.showNavigate = false;
         vm.showSupport = true;
-        if ($localStorage.professional) {
+        if ($localStorage.user && $localStorage.user.professional) {
             if ($stateParams.card && 1 <= $stateParams.card && $stateParams.card <= 3) {
                 switch ($stateParams.card) {
                     case "1":
@@ -35,16 +37,12 @@
 
             networkService.professionalGET(function (pro) {
                 vm.pro = pro;
-                if (vm.pro && vm.pro.step2 && vm.pro.step3 && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')) {
-                    $state.go("pro-dashboard");
-                }
             }, function (err) {
                 alertMsg.send("Impossible de récupérer le profil", "danger");
                 $state.go("home");
             });
-
         } else {
-            vm.showSupport = false;
+            vm.showSupport = true;
         }
         vm.supportMessage = {
             gender: '',
