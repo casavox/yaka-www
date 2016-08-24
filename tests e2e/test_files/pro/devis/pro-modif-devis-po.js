@@ -17,6 +17,9 @@ var ProfilePage = function () {
     this.priceRandom = Math.floor((Math.random() * (1000 - 1) + 1));
     this.priceSave = element(by.css('[data-ng-click="vm.selectPrice(); vm.save()"]'));
 
+    // Elements pour la vérification du prix
+    this.newPrice = element(by.id('checkPrice'));
+
 }
 
 module.exports = ProfilePage;

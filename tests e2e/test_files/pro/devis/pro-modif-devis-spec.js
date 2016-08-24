@@ -15,15 +15,27 @@ describe('The user', function () {
             profilePage.firstDevis.click();
         });
         modifPrice();
+        checkPriceModif();
 
         function modifPrice() {
             browser.wait(profilePage.EC.elementToBeClickable(profilePage.priceIcon), profilePage.waitMedium).then(function() {
                 profilePage.priceIcon.click().then(function() {
+                    priceToCheck = profilePage.priceRandom;
                     browser.sleep(profilePage.wait4Anim);
                     profilePage.priceInput.clear();
-                    profilePage.priceInput.sendKeys(profilePage.priceRandom);
+                    profilePage.priceInput.sendKeys(priceToCheck);
                     profilePage.priceSave.click();
                 });
+            });
+        }
+        function checkPriceModif() {
+            browser.sleep(profilePage.wait4Anim);
+            profilePage.newPrice.getText().then(function(newPriceTxt) {
+                if (newPriceTxt == priceToCheck + " €") {
+                    console.log("Le Prix inséré correspond au nouveau prix affiché");
+                } else {
+                    console.log("ERREUR, les prix ne correspondent pas");
+                }
             });
         }
     });
