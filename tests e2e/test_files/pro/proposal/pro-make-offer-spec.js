@@ -7,7 +7,7 @@ describe('The user', function () {
     var infoPro = new InfoPro();
     browser.ignoreSynchronization = true;
 
-    it('should modify his profile', function () {
+    it('make a proposal to customer with price and message', function () {
         browser.wait(profilePage.EC.elementToBeClickable(profilePage.menuMapOffers), profilePage.waitMedium).then(function () {
             profilePage.menuMapOffers.click();
         });
@@ -31,7 +31,6 @@ describe('The user', function () {
                 });
             });
         }
-
         function addMessage() {
             browser.wait(profilePage.EC.elementToBeClickable(profilePage.messageInput), profilePage.waitMedium).then(function () {
                 profilePage.messageInput.sendKeys(profilePage.messageTxt);
@@ -49,7 +48,6 @@ describe('The user', function () {
                 }
             });
         }
-
         function checkMessageModif() {
             browser.sleep(profilePage.wait4Anim);
             profilePage.newMessage.getAttribute('value').then(function(newMessageTxt) {
