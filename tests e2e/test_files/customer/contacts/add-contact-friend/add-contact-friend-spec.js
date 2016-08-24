@@ -18,11 +18,11 @@ describe('This test', function () {
                 AFCPage.addFriendButton.click();
             });
         });
-        sendEmail();
+        sendEmailToOne();
         checkAlert();
 
         // Fonction d'invitation d'un ami
-        function sendEmail() {
+        function sendEmailToOne() {
             browser.wait(AFCPage.EC.elementToBeClickable(AFCPage.enterFriendEmail), AFCPage.waitHigh).then(function () {
                 AFCPage.enterFriendEmail.sendKeys(infoCustomer.fakeFriendMail).then(function () {
                     browser.wait(AFCPage.EC.elementToBeClickable(AFCPage.sendEmailToFriend), AFCPage.waitHigh).then(function () {

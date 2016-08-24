@@ -1,6 +1,6 @@
 var InfoCustomer = function () {
 
-    // Informations du particulier à enregistrer
+    // Informations du particulier à enregistrer // RegisterByEmail
     this.firstName = "Gregory";
     this.lastName = "BIZET";
     this.password = "blabla";
@@ -23,7 +23,7 @@ var InfoCustomer = function () {
 
     // Informations contact AMI ajouté
     this.mailNumberf = function () {
-        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1));
+        return Math.floor((Math.random() * (999 - 1) + 1));
     }
     this.fakeFriendMail = 'casavox.dev+f' + this.mailNumberf() + '@gmail.com';
 

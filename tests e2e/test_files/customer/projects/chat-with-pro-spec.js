@@ -10,7 +10,6 @@ describe('This user', function () {
         console.log("(((***       chat-with-pro-spec.js       ***)))");
         console.log("- Discussion projet avec pro");
 
-        browser.wait(projectPage.EC.elementToBeClickable(projectPage.menuMyProjects), projectPage.waitHigh).then(function () {
             projectPage.menuMyProjects.click();
             console.log("-- Click bouton 'mes projets' OK");
             browser.wait(projectPage.EC.elementToBeClickable(projectPage.lastProject), projectPage.waitHigh).then(function () {
@@ -21,7 +20,6 @@ describe('This user', function () {
                     console.log("-- Selection de la tab 'Messages' OK");
                 });
             });
-        });
         sendTextAndVerifyIt();
 
 

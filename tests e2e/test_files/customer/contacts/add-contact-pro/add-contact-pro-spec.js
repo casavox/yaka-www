@@ -20,20 +20,8 @@ describe('This test', function () {
             });
         });
         fillProInfos();
-        browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProRelation), APCPage.waitHigh).then(function () {
-            APCPage.selectProRelation.click();
-            browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
-                APCPage.selectProDomain.click();
-                APCPage.selectProOneDomain.click();
-                browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
-                    APCPage.selectProDomain.click();
-                    browser.wait(APCPage.EC.elementToBeClickable(APCPage.sendEmailToPro), APCPage.waitHigh).then(function () {
-                        APCPage.sendEmailToPro.click();
-                    });
-                });
-            });
-        });
-        verificationEmailSent();
+
+        //verificationEmailSent();
 
 
         //Remplissage des informations
@@ -48,6 +36,20 @@ describe('This test', function () {
                     APCPage.enterProAddress.sendKeys(protractor.Key.ARROW_DOWN);
                     browser.wait(APCPage.EC.elementToBeClickable(APCPage.enterProAddress), APCPage.waitMedium).then(function () {
                         APCPage.enterProAddress.sendKeys(protractor.Key.TAB);
+                    });
+                });
+
+            });
+            browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProRelation), APCPage.waitHigh).then(function () {
+                APCPage.selectProRelation.click();
+                browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
+                    APCPage.selectProDomain.click();
+                    APCPage.selectProOneDomain.click();
+                    browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
+                        APCPage.selectProDomain.click().then(function() {
+                            APCPage.closeAlertMsg.click();
+                            APCPage.sendEmailToPro.click();
+                        });
                     });
                 });
             });
