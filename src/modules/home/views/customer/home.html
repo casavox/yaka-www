@@ -216,7 +216,8 @@
                     </div>
 
                     <input class="form-control" type="text" name="username" placeholder="Email"
-                           data-ng-model="vm.loginUser.email"/>
+                           data-ng-model="vm.loginUser.email"
+                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
                     <input class="form-control" type="password" name="password" placeholder="Mot de passe"
                            data-ng-model="vm.loginUser.password"
