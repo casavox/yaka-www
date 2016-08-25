@@ -1,12 +1,12 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
-           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }" data-ng-if="app.getUser()"></aside>
 
-    <div id="content" class="content">
+    <div id="content" class="content" data-ng-class="{ 'noMenu': !app.getUser() }">
         <div id="accordion" class="container" data-ng-cloak>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
@@ -404,7 +404,7 @@
                                 data-ng-model="vm.supportMessage.recaptchaResponse"
                                 key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
                                 class="hidden-xs"
-                                ></div>
+                            ></div>
 
                             <div
                                 vc-recaptcha
@@ -412,7 +412,7 @@
                                 key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
                                 class="visible-xs"
                                 style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
-                                ></div>
+                            ></div>
 
                             <button class="btn bgm-lightblue waves-effect m-t-20"
                                     data-ng-disabled="!vm.formIsValid() || vm.loading"
