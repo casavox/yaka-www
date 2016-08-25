@@ -27,6 +27,7 @@ describe('This test', function () {
                 AFCPage.enterFriendEmail.sendKeys(infoCustomer.fakeFriendMail).then(function () {
                     browser.wait(AFCPage.EC.elementToBeClickable(AFCPage.sendEmailToFriend), AFCPage.waitHigh).then(function () {
                         AFCPage.sendEmailToFriend.click().then(function () {
+                            browser.sleep(1000);
                         });
                     });
                 });

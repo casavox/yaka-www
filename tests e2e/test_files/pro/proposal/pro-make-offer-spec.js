@@ -11,6 +11,7 @@ describe('The user', function () {
         browser.wait(profilePage.EC.elementToBeClickable(profilePage.menuMapOffers), profilePage.waitMedium).then(function () {
             profilePage.menuMapOffers.click();
         });
+        browser.sleep(500);
         browser.wait(profilePage.EC.elementToBeClickable(profilePage.firstOffer), profilePage.waitMedium).then(function () {
             profilePage.firstOffer.click();
         });

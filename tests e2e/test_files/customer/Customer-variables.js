@@ -24,7 +24,7 @@ var InfoCustomer = function () {
     // Informations contact AMI ajouté
     this.mailNumberf = function () {
         return Math.floor((Math.random() * (999 - 1) + 1));
-    }
+    };
     this.fakeFriendMail = 'casavox.dev+f' + this.mailNumberf() + '@gmail.com';
 
 
@@ -34,11 +34,10 @@ var InfoCustomer = function () {
     this.Procity = "Paris";
     this.ProphoneNumber = "0187654321";
 
-    this.mailNumberp = function () {
-        return (Math.random() * (20 - 1));
-    }
-    this.fakeProMail = 'casavox.dev+pro' + (this.mailNumberp * 10) + '@gmail.com';
-    this.fakeNumber = '01' + (Math.floor(this.mailNumberp() * 10000000));
+    this.timeStamp = new Date().getTime();
+
+    this.fakeProMail = 'casavox.dev+pro' + this.timeStamp + '@gmail.com';
+    this.fakeNumber = '01' + this.timeStamp;
 };
 
 module.exports = InfoCustomer;

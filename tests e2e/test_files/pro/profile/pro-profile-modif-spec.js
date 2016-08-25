@@ -38,6 +38,7 @@ describe('The user', function () {
                     });
                 });
             }
+
             function verifyChangePhoneNumber() {
                 profilePage.phoneNumber.getAttribute('value').then(function (number) {
                     n = number.replace(/ /g, "");
@@ -47,26 +48,22 @@ describe('The user', function () {
                         browser.sleep(profilePage.wait4Anim);
                     } else {
                         console.log("!!! Les numéros ne correspondent pas !!!");
+                        browser.sleep(profilePage.wait4Anim);
                     }
                 });
             }
 
             // Modification de la description
             function changeDescription() {
-                browser.wait(profilePage.EC.visibilityOf(profilePage.bottomAlert), profilePage.waitHigh).then(function () {
-                    browser.wait(profilePage.EC.visibilityOf(profilePage.closeAlertMsg), profilePage.waitHigh).then(function () {
-                        profilePage.closeAlertMsg.click().then(function () {
-                            browser.wait(profilePage.EC.textToBePresentInElementValue(profilePage.profileMail, infoPro.userLogin), profilePage.waitHigh).then(function () {
-                                profilePage.description.sendKeys(" " + profilePage.todayDate);
-                                dateToCompare = profilePage.todayDate;
-                                browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateDescProfile), 5000).then(function () {
-                                    profilePage.updateDescProfile.click();
-                                });
-                            });
-                        });
+                browser.wait(profilePage.EC.textToBePresentInElementValue(profilePage.profileMail, infoPro.userLogin), profilePage.waitHigh).then(function () {
+                    profilePage.description.sendKeys(" " + profilePage.todayDate);
+                    dateToCompare = profilePage.todayDate;
+                    browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateDescProfile), 5000).then(function () {
+                        profilePage.updateDescProfile.click();
                     });
                 });
             }
+
             function verifyDateModification() {
                 browser.wait(profilePage.EC.presenceOf(profilePage.description), profilePage.waitMedium, "Timeout : " + profilePage.waitMedium + " in " + "presenceOf(--newModifiedText--)").then(function () {
                     profilePage.description.getText().then(function (txt) {
@@ -84,14 +81,14 @@ describe('The user', function () {
 
             // Ajout d'un document todo envoi de document impossible !
             /*function sendCertification () {
-                var fileToUpload = '/img.png';
-                var absolutePath = path.resolve(fileToUpload);
-                console.log(absolutePath);
-                $('input[type="file"]').sendKeys(absolutePath);
-                profilePage.certificationADD.click();
-                browser.sleep(2000);
-                browser.sleep(10000);
-            }*/
+             var fileToUpload = '/img.png';
+             var absolutePath = path.resolve(fileToUpload);
+             console.log(absolutePath);
+             $('input[type="file"]').sendKeys(absolutePath);
+             profilePage.certificationADD.click();
+             browser.sleep(2000);
+             browser.sleep(10000);
+             }*/
 
             // Modification des domaines de compétence
             function changeSkill() {

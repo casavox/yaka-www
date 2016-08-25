@@ -47,7 +47,6 @@ describe('This test', function () {
                     APCPage.selectProOneDomain.click();
                     browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
                         APCPage.selectProDomain.click().then(function() {
-                            APCPage.closeAlertMsg.click();
                             APCPage.sendEmailToPro.click();
                         });
                     });

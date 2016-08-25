@@ -12,6 +12,7 @@ var ProfilePage = function () {
     this.profile = element(by.css('[ui-sref="profile"]'));
     this.phoneNumber = element(by.model('vm.profileInfo.phoneNumber'));
     this.profileMail = element(by.name('email'));
+    this.closeAlertMsg = element(by.css('[ng-click="alertMsgFlag = false"]'));
     this.updateProfile = element(by.css('[data-ng-click="vm.updateProfile()"]'));
 }
 

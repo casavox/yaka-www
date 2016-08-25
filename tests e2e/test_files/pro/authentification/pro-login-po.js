@@ -2,6 +2,7 @@ var LoginPage = function () {
     browser.ignoreSynchronization = true;
 
 // Temps d'attente timeout
+    this.wait4anim = 500;
     this.waitLow = 2000;
     this.waitMedium = 5000;
     this.waitHigh = 10000;
