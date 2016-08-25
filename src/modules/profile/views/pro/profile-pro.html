@@ -363,7 +363,7 @@
 
             <p class="profile-area-header-info">
                 La carte des offres est positionnée par défaut sur la zone en bleu ci-dessous.
-                <br>Déplacez-vous et zoomez dans cette carte afin de modifier votre zone principale d'activité.
+                <br>Déplacez-vous et zoomez dans cette carte afin de modifier votre zone principale d'activité (60Km max).
             </p>
 
             <div id="map_canvas">
@@ -377,8 +377,8 @@
                                     draggable="false" clickable="true" control="vm.circle.control"
                                     events="vm.circle.events"></ui-gmap-circle>
                 </ui-gmap-google-map>
-                <div class="mapMinimumZoomMessage" data-ng-show="vm.mapShowMinimumZoomMessage">
-                    Veuillez zommer pour définir votre zone d'alerte
+                <div class="mapMinimumZoomMessage bgm-red c-white" data-ng-show="vm.mapShowMinimumZoomMessage">
+                    Merci de zoomer pour reduire la zone
                 </div>
                 <div class="workareaDiameter"
                      data-ng-show="vm.workareaDiameter != 0 && !vm.mapShowMinimumZoomMessage">
