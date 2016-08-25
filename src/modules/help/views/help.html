@@ -198,7 +198,7 @@
             </div>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="!vm.pro"
+                 data-ng-show="!vm.pro && app.getUser()"
                  data-ng-click="vm.customerCard1 = !vm.customerCard1">
                 Bla bla client 1
 
@@ -206,7 +206,7 @@
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard1, 'zmdi-chevron-up': vm.customerCard1}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
                 <div class="block-header">
                     <h2>Bla bla client 1</h2>
                 </div>
@@ -223,7 +223,7 @@
             </div>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="!vm.pro"
+                 data-ng-show="!vm.pro && app.getUser()"
                  data-ng-click="vm.customerCard2 = !vm.customerCard2">
                 Bla bla client 2
 
@@ -231,7 +231,7 @@
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard2, 'zmdi-chevron-up': vm.customerCard2}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
                 <div class="block-header">
                     <h2>Bla bla client 2</h2>
                 </div>
@@ -248,6 +248,7 @@
             </div>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-show="app.getUser()"
                  data-ng-click="vm.showSupport = !vm.showSupport">
                 Contacter CasaVox
 
