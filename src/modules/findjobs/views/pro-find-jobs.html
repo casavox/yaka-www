@@ -19,15 +19,15 @@
 
                 <script type="text/ng-template" id="homeControl.tpl.html">
                     <div class="mapHomeControl" data-ng-show="vm.showHomeControl" showHomeControl
-                         data-ng-click="vm.homeControlClicked()">Home
+                         data-ng-click="vm.homeControlClicked()">Zone de recherche par défaut
                     </div>
                 </script>
 
                 <!-- End Custom map controls -->
 
-                <span class="mapWorkArea" title="Cliquez ici pour modifier votre zone de notification"
+                <span class="mapWorkArea" title="Cliquez ici pour modifier la zone de recherche par défaut"
                       data-ng-class="{'mapWorkAreaVisible':vm.showWorkArea}" ui-sref="pro-profile">
-                    Zone de notification ø {{vm.workareaDiameter}}km
+                    Zone de recherche par défaut ø {{vm.workareaDiameter}}km
                 </span>
 
                 <ui-gmap-google-map center='vm.map.center' pan='true' zoom='vm.map.zoom' options="vm.mapOptions"

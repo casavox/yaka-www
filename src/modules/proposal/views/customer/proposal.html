@@ -10,17 +10,19 @@
 
 <section id="main" data-ng-cloak>
 
-    <ol class="breadcrumb container hidden-xs" data-ng-if="vm.proposal.project.title">
-        <li class="pointer" data-ui-sref="my-projects">
-            Mes projets
-        </li>
-        <li class="pointer" data-ui-sref="proposals({projectId: vm.proposal.project.id})">
-            Propositions
-        </li>
-        <li class="active">
-            {{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}
-        </li>
-    </ol>
+    <div class="container p-l-25 p-r-25">
+        <ol class="breadcrumb hidden-xs" data-ng-if="vm.proposal.project.title">
+            <li class="pointer" data-ui-sref="my-projects">
+                Mes projets
+            </li>
+            <li class="pointer" data-ui-sref="proposals({projectId: vm.proposal.project.id})">
+                Propositions
+            </li>
+            <li class="active">
+                {{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}
+            </li>
+        </ol>
+    </div>
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
@@ -196,7 +198,13 @@
 
                             <li heading="Profile"
                                 data-ng-class="{'active': vm.showChat}">
-                                <a href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">Messages</a>
+                                <a class="" href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">
+                                    <div>
+                                        Messages
+                                        <i class="proposalUnreadMessagesIndicator"
+                                           data-ng-if="app.getUserchatsUnreadNumber() > 0""></i>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
 
@@ -353,8 +361,8 @@
                                             data-ng-if="vm.proposal.professional.yakaProjectNumber > 1">
                                             <b>{{vm.proposal.professional.yakaProjectNumber}} projets</b> réalisés sur YakaClub
                                         </span>
-                                        <span
-                                            data-ng-if="vm.proposal.professional.yakaProjectNumber == 1">
+                                                <span
+                                                    data-ng-if="vm.proposal.professional.yakaProjectNumber == 1">
                                             <b>1 projet</b> réalisé sur YakaClub
                                         </span>
                                             </dd>
@@ -367,8 +375,8 @@
                                             data-ng-if="vm.proposal.professional.recommendationNumber > 1">
                                             <b>{{vm.proposal.professional.recommendationNumber}} membres</b> recommandent ce Pro
                                         </span>
-                                        <span
-                                            data-ng-if="vm.proposal.professional.recommendationNumber == 1">
+                                                <span
+                                                    data-ng-if="vm.proposal.professional.recommendationNumber == 1">
                                             <b>1 membre</b> recommande ce Pro
                                         </span>
                                             </dd>
@@ -434,12 +442,16 @@
                                             <dd>{{vm.proposal.professional.user.email}}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt>Addresse</dt>
+                                            <dt data-ng-if="vm.proposal.professional.company.address.address">Addresse
+                                            </dt>
+                                            <dt data-ng-if="!vm.proposal.professional.company.address.address">
+                                                Localité
+                                            </dt>
                                             <dd>
                                         <span class="whiteSpacePre"
                                               data-ng-if="vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.address}}</span>
-                                        <span class="whiteSpacePre"
-                                              data-ng-if="!vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.administrativeAreaLevel2}}</span>
+                                                <span class="whiteSpacePre"
+                                                      data-ng-if="!vm.proposal.professional.company.address.address">{{vm.proposal.professional.company.address.administrativeAreaLevel2}}</span>
                                             </dd>
                                         </dl>
                                     </div>

@@ -36,14 +36,16 @@
 
 <section id="main">
 
-    <ol class="breadcrumb container hidden-xs" data-ng-if="vm.proposal.status">
-        <li class="pointer" data-ui-sref="{{vm.getUpState()}}">
-            {{vm.getUpName()}}
-        </li>
-        <li class="active">
-            Détails du projet
-        </li>
-    </ol>
+    <div class="container p-l-25 p-r-25" data-ng-if="vm.proposal.status">
+        <ol class="breadcrumb hidden-xs">
+            <li class="pointer" data-ui-sref="{{vm.getUpState()}}">
+                {{vm.getUpName()}}
+            </li>
+            <li class="active">
+                Détails du projet
+            </li>
+        </ol>
+    </div>
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
@@ -125,9 +127,12 @@
                                         </div>
                                         <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
                                             <div class="t-center m-t-15">
-                                                En attente d'offre
+                                                <strong>Vous avez été recommandé</strong>
                                             </div>
-                                            <button data-ng-click="vm.cancelProposalModal()"
+                                            <div class="t-center bgm-orange">
+                                                <strong>FAITES VOTRE PROPOSITION</strong>
+                                            </div>
+                                            <button data-ng-click="vm.cancelRecommandationModal()"
                                                     class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect">
                                                 <i class="zmdi zmdi-close"></i> Annuler
                                             </button>
@@ -156,7 +161,13 @@
 
                             <li heading="Profile"
                                 data-ng-class="{'active': vm.showChat}">
-                                <a href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">Messages</a>
+                                <a href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">
+                                    <div>
+                                        Messages
+                                        <i class="proposalUnreadMessagesIndicator"
+                                           data-ng-if="app.getUserchatsUnreadNumber() > 0"></i>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
 
@@ -229,9 +240,10 @@
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
                                                     <div class="proNetworkProjectButtonLabel t-center m-t-15">
-                                                        En attente d'offre
+                                                        Vous avez été recommandé<br>
+                                                        <strong class="bgm-orange">FAITES VOTRE PROPOSITION</strong>
                                                     </div>
-                                                    <button data-ng-click="vm.cancelProposalModal()"
+                                                    <button data-ng-click="vm.cancelRecommandationModal()"
                                                             class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
                                                         <i class="zmdi zmdi-close"></i> Annuler
                                                     </button>

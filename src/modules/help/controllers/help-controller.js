@@ -3,18 +3,47 @@
 
     angular
         .module('Yaka')
-        .controller('SupportController', SupportController);
+        .controller('HelpController', HelpController);
 
-    function SupportController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
+    function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams) {
+        $scope.showList = false;
 
-        $rootScope.pageName = "Support";
-
+        $rootScope.pageName = "Aide";
         if ($localStorage.user) {
             $rootScope.updateProfile();
         }
 
         var vm = this;
 
+        vm.showTuto = false;
+        vm.showNavigate = false;
+        vm.showSupport = true;
+        if ($localStorage.user && $localStorage.user.professional) {
+            if ($stateParams.card && 1 <= $stateParams.card && $stateParams.card <= 3) {
+                switch ($stateParams.card) {
+                    case "1":
+                        vm.showSupport = false;
+                        vm.showTuto = true;
+                        break;
+                    case "2":
+                        vm.showSupport = false;
+                        vm.showNavigate = true;
+                        break;
+                    case "3":
+                        vm.showSupport = true;
+                        break;
+                }
+            }
+
+            networkService.professionalGET(function (pro) {
+                vm.pro = pro;
+            }, function (err) {
+                alertMsg.send("Impossible de récupérer le profil", "danger");
+                $state.go("home");
+            });
+        } else {
+            vm.showSupport = true;
+        }
         vm.supportMessage = {
             gender: '',
             firstName: '',

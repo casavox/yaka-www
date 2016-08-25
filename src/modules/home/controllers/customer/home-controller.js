@@ -17,7 +17,7 @@
             }
         }
 
-        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
+        if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
@@ -65,6 +65,10 @@
 
         vm.showLoginPopup = false;
 
+        if ($stateParams.login) {
+            vm.showLoginPopup = true;
+        }
+
         vm.currentYear = new Date().getFullYear();
 
         vm.noSocialAccountMessage = false;
@@ -94,6 +98,7 @@
             defaultAddress: {
                 address: ""
             },
+            recaptchaResponse: "",
             avatar: {
                 cloudinaryPublicId: ""
             }
@@ -140,7 +145,7 @@
         vm.registerFormIsValid = function () {
             return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address);
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address || !vm.newUser.recaptchaResponse);
         };
 
         vm.loginFormIsValid = function () {
@@ -162,10 +167,14 @@
                     window.location.href = window.yakaRedirectUrl;
                     delete window.yakaRedirectUrl;
                 } else {
-                    if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('pro-dashboard');
+                    if (window.recoProjectId) {
+                        $state.go("project-recommend", {projectId: window.recoProjectId});
                     } else {
-                        $state.go('dashboard');
+                        if ($localStorage.user && $localStorage.user.professional) {
+                            $state.go('pro-dashboard');
+                        } else {
+                            $state.go('dashboard');
+                        }
                     }
                 }
             }
@@ -301,5 +310,12 @@
         function failPasswordForgotten(err) {
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
+
+        networkService.publicProjectsToRecommendGET(function (projects) {
+            vm.projectsToRecommend = projects;
+        }, function (err) {
+            alertMsg.send("Impossible de récupérer les projets", "danger");
+        });
+
     }
 })();

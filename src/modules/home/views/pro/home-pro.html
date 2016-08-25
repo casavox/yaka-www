@@ -184,7 +184,7 @@
                 <div class="col-xs-4 col-xs-offset-4 proHomeSection2RegisterSeparator"/>
 
                 <div class="col-xs-12 proHomeSection2RegisterMail">
-                    <span class="registerWithEmailMessagePro"
+                    <span class="registerWithEmailMessagePro pointer"
                           data-ng-if="!vm.isSocialRegister()">Inscription par email</span>
                     <span
                         data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
@@ -257,6 +257,20 @@
                      translation-texts="vm.multiChoiceInput.translation"
                      checkboxes="true"></div>
 
+                <div
+                    vc-recaptcha
+                    data-ng-model="vm.newUser.recaptchaResponse"
+                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                    class="hidden-xs col-xs-12 m-t-10"
+                ></div>
+                <div
+                    vc-recaptcha
+                    data-ng-model="vm.newUser.recaptchaResponse"
+                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                    class="visible-xs col-xs-12 m-t-10"
+                    style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
+                ></div>
+
                 <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
                      data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">
                     S'INSCRIRE
@@ -292,10 +306,10 @@
                     Tous droits réservés
                 </div>
             </div>
-            <div class="homeSection5FooterContactUs yakaLinkWhite" data-ng-click="app.openSupport()">
+            <div class="homeSection5FooterContactUs yakaLinkWhite" data-ng-click="app.openHelp()">
                 Contactez-nous
             </div>
-            <a href="http://res.cloudinary.com/yaka/image/upload/yakaclub/cgu.pdf" target="_blank">
+            <a href="http://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
                 <div class="homeSection5FooterLogin yakaLinkWhite">
                     CGU
                 </div>

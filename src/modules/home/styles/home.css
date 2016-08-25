@@ -43,7 +43,7 @@
 
 .homeSection1 {
     height: auto;
-    padding-bottom: 147px;
+    padding-bottom: 115px;
     background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
     background-size: cover;
     color: white;
@@ -499,6 +499,10 @@ body:after {
     padding-bottom: 13px;
 }
 
+.homeSection1Button {
+    margin-bottom: 30px !important;
+}
+
 @media (max-width: 991px) {
 
     .homeSection3ItemTitle {
@@ -917,4 +921,33 @@ body:after {
     .homeSection1Title {
         font-size: 19px;
     }
+}
+
+.homeRecommendProject {
+    height: 70px;
+}
+
+.homeRecommendProject .proposalIconBackground {
+    width: 45px;
+    height: 45px;
+    transform: translateY(13px);
+    margin-left: 15px;
+}
+
+.homeRecommendProjectText {
+    position: absolute;
+    left: 90px;
+    top: 9px;
+    width: calc(100% - 100px);
+}
+
+.homeProjectsToRecommendList {
+    background-color: rgba(74, 74, 74, 0.67);
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.homeTransparentBox {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: none;
 }

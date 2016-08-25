@@ -50,12 +50,6 @@
                 Mes chantiers
             </a>
         </li>
-        <li ui-sref-active="active" data-ng-if="app.isPro()">
-            <a ui-sref="pro-help" data-ng-click="app.sidebarStat($event)">
-                <i class="zmdi zmdi-help"></i>
-                Aide
-            </a>
-        </li>
 
         <!-- Both -->
 
@@ -67,10 +61,8 @@
             </a>
         </li>
 
-        <!-- Pro -->
-
-        <li ui-sref-active="active" data-ng-if="app.isPro()">
-            <a ui-sref="pro-help" data-ng-click="app.sidebarStat($event)">
+        <li ui-sref-active="active">
+            <a ui-sref="help" data-ng-click="app.sidebarStat($event); app.openHelp()">
                 <i class="zmdi zmdi-help"></i>
                 Aide
             </a>

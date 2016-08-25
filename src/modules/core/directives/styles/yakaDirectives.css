@@ -120,3 +120,7 @@ yaka-chat .chatFilePreview {
 casa-contact .contactRelationIcon {
     font-size: larger;
 }
+
+.recoType-text {
+    width: calc(100% - 60px);
+}
