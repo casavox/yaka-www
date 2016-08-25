@@ -28,14 +28,16 @@
 
 <section id="main">
 
-    <ol class="breadcrumb container hidden-xs" data-ng-if="vm.project.title">
-        <li class="pointer" data-ui-sref="my-projects">
-            Mes projets
-        </li>
-        <li class="active">
-            Propositions
-        </li>
-    </ol>
+    <div class="container p-l-25 p-r-25" data-ng-if="vm.project.title">
+        <ol class="breadcrumb hidden-xs">
+            <li class="pointer" data-ui-sref="my-projects">
+                Mes projets
+            </li>
+            <li class="active">
+                Propositions
+            </li>
+        </ol>
+    </div>
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>

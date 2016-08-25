@@ -4569,7 +4569,7 @@ md-input-container {
     cursor: pointer;
     font-size: 14px;
     color: white;
-    background-color: #1A2939;
+    background-color: #03A9F4;
     line-height: 28px;
     height: 30px;
     margin-left: 25px;
@@ -4665,7 +4665,8 @@ ul[rn-carousel-buffered] > li {
     border-bottom-right-radius: 2px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
-    background-color: white;
+    color: white;
+    background-color: #03A9F4;
     padding: 8px;
     margin: 10px;
     box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
@@ -5062,19 +5063,23 @@ ul.yaka-chips li {
 }
 
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
+}
+
+.m-t-3 {
+    margin-top: 3px !important;
 }
 
 .m-t-8 {
-    margin-top: 8px;
+    margin-top: 8px !important;
 }
 
 .m-t-9 {
-    margin-top: 9px;
+    margin-top: 9px !important;
 }
 
 .p-l-25 {
-    padding-left: 25px;
+    padding-left: 25px !important;
 }
 
 .no-padding-right {
@@ -5146,7 +5151,7 @@ ul.yaka-chips li {
 }
 
 .underline {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 .c-google-red {
