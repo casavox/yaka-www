@@ -382,6 +382,14 @@ section#main.yakaMain .content .card {
         padding-right: 33px !important;
         margin-left: calc(50% - 336px) !important;
     }
+    body.sw-toggled .breadcrumb.noMenu {
+        padding-top: 10px !important;
+        padding-bottom: 11px !important;
+        padding-left: 33px !important;
+        padding-right: 33px !important;
+        margin-left: -10px !important;
+    }
+
 }
 
 .newContactsIndicator {
@@ -403,4 +411,8 @@ section#main.yakaMain .content .card {
 
 #sidebar {
     z-index: 6;
+}
+
+body.sw-toggled #content.noMenu {
+    padding-left: 0 !important;
 }

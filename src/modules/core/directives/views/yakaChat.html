@@ -51,7 +51,7 @@
                         <span class="msg yaka yakaMessageWithIcon">{{message | yakaAutoMsg : getCustomerUser() : getProUser()}}</span>
                     </span>
                     <div
-                        data-ng-if="message.author == 'AUTO' && (message.text != 'FIRST_RECOMMENDATION' || message.text != 'NEW_RECOMMENDATION')">
+                        data-ng-if="message.author == 'AUTO' && (message.text == 'FIRST_RECOMMENDATION' || message.text == 'NEW_RECOMMENDATION')">
                         <div class="d-i-b p-r-5">
                             <yaka-avatar class="highlight-avatar v-align-middle" size="50"
                                          user="message.varRecoUser"></yaka-avatar>

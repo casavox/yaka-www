@@ -17,7 +17,7 @@
             }
         }
 
-        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
+        if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
@@ -64,6 +64,10 @@
         ];
 
         vm.showLoginPopup = false;
+
+        if ($stateParams.login) {
+            vm.showLoginPopup = true;
+        }
 
         vm.currentYear = new Date().getFullYear();
 
@@ -163,10 +167,14 @@
                     window.location.href = window.yakaRedirectUrl;
                     delete window.yakaRedirectUrl;
                 } else {
-                    if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('pro-dashboard');
+                    if (window.recoProjectId) {
+                        $state.go("project-recommend", {projectId: window.recoProjectId});
                     } else {
-                        $state.go('dashboard');
+                        if ($localStorage.user && $localStorage.user.professional) {
+                            $state.go('pro-dashboard');
+                        } else {
+                            $state.go('dashboard');
+                        }
                     }
                 }
             }

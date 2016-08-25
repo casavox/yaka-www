@@ -7,8 +7,12 @@
 
     function PublicProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $auth) {
 
-        if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
+        if (!$stateParams.projectId) {
             $state.go("home");
+        }
+
+        if ($localStorage.user) {
+            $state.go("project-recommend", {'projectId': $stateParams.projectId});
         }
 
         var vm = this;
@@ -112,7 +116,7 @@
             value.labelTranslated = $translate.instant('ACTIVITY_' + value.label);
         });
 
-        vm.formIsValid = function () {
+        vm.proFormIsValid = function () {
             vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
             angular.forEach(vm.invitPro.activities, function (activity) {
                 activity.code = vm.multiChoiceInput.options[activity.id].label;
@@ -121,7 +125,6 @@
 
             return (vm.invitPro.firstName &&
                 vm.invitPro.lastName &&
-                vm.invitPro.phone &&
                 vm.invitPro.email &&
                 vm.invitPro.activities.length > 0 &&
                 vm.invitPro.relation &&
@@ -141,7 +144,6 @@
                 };
                 vm.phoneNumber = "";
                 vm.multiChoiceInput.selected = [];
-                vm.closeProPopup();
                 if ($localStorage.user && $localStorage.user.professional) {
                     $state.go('pro-dashboard');
                 } else {
@@ -163,26 +165,6 @@
         vm.recommendMsg = {
             text: ""
         };
-        /*
-         vm.recommendPro = function (proId) {
-         networkService.recommendProForProjectPOST(vm.project.id, proId, vm.recommendMsg, function (res) {
-         if ($localStorage.user && $localStorage.user.professional) {
-         $state.go('pro-dashboard');
-         } else {
-         $state.go('dashboard');
-         }
-         swal({
-         title: "C'est fait !",
-         text: "Vous avez bien recommandé ce professionel sur ce projet.",
-         type: "success",
-         showConfirmButton: true,
-         confirmButtonColor: "#03a9f4",
-         confirmButtonText: "Fermer"
-         });
-         }, function (err) {
-         alertMsg.send("Impossible de recommander ce professionnel", 'danger');
-         });
-         };*/
 
         vm.newUser = {
             password: "",
@@ -292,12 +274,7 @@
             vm.registering = false;
             $localStorage.token = res.token;
             $localStorage.user = res;
-            if ($localStorage.urlRedirect != undefined) {
-                window.location.href = $localStorage.urlRedirect;
-                delete $localStorage.urlRedirect;
-            } else {
-                $state.go('dashboard');
-            }
+            vm.sendProInvit();
         }
 
         function failRegister(err) {

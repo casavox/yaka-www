@@ -8,25 +8,24 @@
 
 <section id="main">
 
-    <ol class="breadcrumb container hidden-xs">
-        <li class="pointer" data-ui-sref="dashboard">
-            Accueil
-        </li>
-        <li class="active">
-            Recommander un pro
-        </li>
-    </ol>
+    <div class="container p-l-25 p-r-25">
+        <ol class="breadcrumb hidden-xs noMenu">
+            <li class="pointer" data-ui-sref="home">
+                Accueil
+            </li>
+            <li class="active">
+                Recommander un pro
+            </li>
+        </ol>
+    </div>
 
-    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
-           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
-
-    <div id="content" class="content">
+    <div id="content noMenu" class="content">
 
         <div class="container">
 
             <div class="col-sm-6">
                 <div class="block-header">
-                    <h2>À</h2>
+                    <h2>Recommander à</h2>
                 </div>
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
@@ -173,12 +172,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 no-padding form-group fg-float"
-                                     data-ng-class="{'has-error': !vm.invitPro.phone}">
+                                <div class="col-xs-12 no-padding form-group fg-float">
                                     <div class="fg-line">
                                         <input type="text" name="phoneNumber"
                                                class="form-control fg-input"
-                                               required="required"
                                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
                                         <label class="fg-label fg-label-phone">Téléphone</label>
                                     </div>
@@ -193,11 +190,13 @@
 
                         <div class="col-sm-6">
 
+                            <div class="col-xs-12 visible-xs m-t-20"></div>
+
                             <div class="f-18 c-lightblue">
                                 Moi
                             </div>
 
-                            <div class="col-xs-12 registerFacebookGoogle m-t-25">
+                            <div class="col-xs-12 registerFacebookGoogle m-t-30">
                                 <span data-ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
 
                                 <div data-ng-if="vm.isSocialRegister()">
@@ -220,13 +219,13 @@
                             <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
 
                             <div class="col-xs-12 registerMail">
-                                <span class="registerWithEmailMessage" data-ng-if="!vm.isSocialRegister()"
+                                <span class="registerWithEmailMessage pointer" data-ng-if="!vm.isSocialRegister()"
                                       data-ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
                                 <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                             </div>
                             <form name="registerForm">
-                                <div class="col-xs-12 showRegisterFields"
-                                     data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
+                                <div class="col-xs-12 showRegisterFieldsReco"
+                                     data-ng-class="{showRegisterFieldsRecoVisible: vm.isSocialRegister() || vm.showRegisterFields}">
 
                                     <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
                                          data-ng-class="{'has-error': !vm.newUser.firstName}">
@@ -339,15 +338,12 @@
                                         class="visible-xs col-xs-12 m-t-10"
                                         style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
                                     ></div>
-                                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                                         data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
-                                         data-ng-click="vm.register()">
-                                        S'INSCRIRE
-                                    </div>
 
-                                    <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
-                                        Vous êtes Pro ? Cliquez ici pour vous inscrire
-                                    </div>
+                                    <button class="btn bgm-lightblue btn-lg waves-effect center m-t-10 w-s-normal"
+                                            data-ng-disabled="!vm.registerFormIsValid() || !vm.proFormIsValid()"
+                                            data-ng-click="vm.register()">
+                                        S'INSCRIRE ET RECOMMANDER
+                                    </button>
                                 </div>
                             </form>
                         </div>

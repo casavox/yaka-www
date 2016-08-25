@@ -8,25 +8,27 @@
 
 <section id="main">
 
-    <ol class="breadcrumb container hidden-xs">
-        <li class="pointer" data-ui-sref="dashboard">
-            Accueil
-        </li>
-        <li class="active">
-            Recommander un pro
-        </li>
-    </ol>
+    <div class="container p-l-25 p-r-25">
+        <ol class="breadcrumb hidden-xs">
+            <li class="pointer" data-ui-sref="dashboard">
+                Accueil
+            </li>
+            <li class="active">
+                Recommander un pro
+            </li>
+        </ol>
+    </div>
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
-    <div id="content pro-container" class="content">
+    <div id="content" class="content">
 
         <div class="container">
 
             <div class="col-sm-6">
                 <div class="block-header">
-                    <h2>À</h2>
+                    <h2>Recommander à</h2>
                 </div>
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
@@ -265,8 +267,8 @@
                                             data-ng-if="vm.selectedProfessional.yakaProjectNumber > 1">
                                             <b>{{vm.selectedProfessional.yakaProjectNumber}} projets</b> réalisés sur YakaClub
                                         </span>
-                                        <span
-                                            data-ng-if="vm.selectedProfessional.yakaProjectNumber == 1">
+                                            <span
+                                                data-ng-if="vm.selectedProfessional.yakaProjectNumber == 1">
                                             <b>1 projet</b> réalisé sur YakaClub
                                         </span>
                                         </dd>
@@ -278,8 +280,8 @@
                                             data-ng-if="vm.selectedProfessional.likes > 1">
                                             <b>{{vm.selectedProfessional.likes}} membres</b> recommandent ce Pro
                                         </span>
-                                        <span
-                                            data-ng-if="vm.selectedProfessional.likes == 1">
+                                            <span
+                                                data-ng-if="vm.selectedProfessional.likes == 1">
                                             <b>1 membre</b> recommande ce Pro
                                         </span>
                                         </dd>
@@ -451,12 +453,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.invitPro.phone}">
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30">
                                 <div class="fg-line">
                                     <input type="text" name="phoneNumber"
                                            class="form-control fg-input"
-                                           required="required"
                                            data-ng-model="vm.invitPro.phone" yaka-input-phone>
                                     <label class="fg-label fg-label-phone">Téléphone</label>
                                 </div>

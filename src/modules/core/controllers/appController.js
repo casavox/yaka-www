@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -286,5 +286,12 @@
         app.getEnvironment = function () {
             return CONFIG.ENV;
         };
+
+        app.goToLogin = function () {
+            if ($state.current.name == "public-project-recommend") {
+                window.recoProjectId = $stateParams.projectId;
+            }
+            $state.go('home', {login: true});
+        }
     }
 })();
