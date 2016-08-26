@@ -271,5 +271,11 @@
                 }
             });
         };
+
+        vm.autocomplete = {
+            options: {
+                componentRestrictions: {country: 'fr'}
+            }
+        };
     }
 })();
