@@ -359,19 +359,28 @@
                                 </small>
                             </div>
 
-                            <span class="c-red m-l-20 m-b-0">Cochez la case ci-dessous</span>
+                            <div class="c-red center m-b-0 t-center">
+                                Cochez la case ci-dessous
+                            </div>
                             <div
                                 vc-recaptcha
                                 data-ng-model="vm.newUser.recaptchaResponse"
                                 key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                class="hidden-xs col-xs-12 m-t-0"
+                                class="visible-lg visible-md col-xs-12 m-t-0 center recaptcha"
                             ></div>
                             <div
                                 vc-recaptcha
                                 data-ng-model="vm.newUser.recaptchaResponse"
                                 key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                class="visible-xs col-xs-12 m-t-0"
-                                style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
+                                class="visible-sm col-xs-12 m-t-0 center recaptcha mobile"
+                                style="-moz-transform:scale(0.95); -ms-transform:scale(0.95); -o-transform:scale(0.95); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.95); transform:scale(0.95); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.95,M12=0,M21=0,M22=0.95,SizingMethod='auto expand');"
+                            ></div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-xs col-xs-12 m-t-0 center recaptcha mobile"
+                                style="-moz-transform:scale(0.9); -ms-transform:scale(0.9); -o-transform:scale(0.9); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.9); transform:scale(0.9); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9,M12=0,M21=0,M22=0.9,SizingMethod='auto expand');"
                             ></div>
 
                             <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
@@ -391,7 +400,7 @@
                 <div class="noSocialAccountMessage">
                     Ce compte {{vm.socialNetwork}} nous est inconnu.<br/>
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
-                    sur "Inscription" puis "{{vm.socialNetwork}}".
+                    sur <em>S'inscrire</em> puis <em>{{vm.socialNetwork}}</em>.
                 </div>
                 <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
                      data-ng-click="vm.noSocialAccountMessage = false">
