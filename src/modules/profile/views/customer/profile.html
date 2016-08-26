@@ -19,7 +19,7 @@
     }
 </style>
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
        data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
@@ -60,6 +60,7 @@
                                     <div class="form-group fg-float m-b-30"
                                          data-ng-class="{'has-error': !vm.profileInfo.gender}">
                                         <div class="fg-line">
+                                            {{vm.profileInfo.gender}}
                                             <div class="select">
                                                 <select name="gender"
                                                         required="required"
@@ -162,7 +163,7 @@
                                  data-ng-class="{'has-error': !vm.profileInfo.defaultAddress.address}">
                                 <div class="fg-line">
                                     <input type="text" class="form-control fg-input"
-                                           vs-google-autocomplete="options"
+                                           vs-google-autocomplete="vm.autocomplete.options"
                                            vs-autocomplete-validator
                                            data-ng-model="vm.profileInfo.defaultAddress.address"
                                            type="text"
@@ -180,11 +181,13 @@
                             <div class="col-xs-12 no-padding profile-box-footer m-b-20">
 
                                 <button class="btn btn-info bgm-lightblue waves-effect"
-                                        data-ng-click="vm.updateProfile()" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                        data-ng-click="vm.updateProfile()"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                                     Enregistrer
                                 </button>
                                 <button class="btn btn-link waves-effect"
-                                        data-ng-click="vm.cancelProfile()" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                                        data-ng-click="vm.cancelProfile()"
+                                        data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                                     Annuler
                                 </button>
                             </div>
@@ -288,7 +291,8 @@
                         <div class="profile-box-footer m-b-20">
 
                             <button class="btn btn-info bgm-lightblue waves-effect"
-                                    data-ng-click="vm.changePassword()" data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                                    data-ng-click="vm.changePassword()"
+                                    data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                                 Enregistrer
                             </button>
 

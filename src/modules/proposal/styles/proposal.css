@@ -255,7 +255,19 @@
     }
 
     .proposalProName button {
-        margin-top: 77px;
+        margin-top: 77px !important;
+    }
+
+    .proposalProName.littleMargin button {
+        margin-top: 20px !important;
+    }
+
+    .proposalProName div.status {
+        margin-top: 77px !important;
+    }
+
+    .proposalProName.littleMargin div.status {
+        margin-top: 20px !important;
     }
 
     .proposalProName button.cancelProposal {

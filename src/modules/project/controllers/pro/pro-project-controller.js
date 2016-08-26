@@ -48,7 +48,7 @@
                     latitude: 0,
                     longitude: 0
                 },
-                radius: 200,
+                radius: 150,
                 stroke: {
                     color: '#03A9F4',
                     weight: 2,
@@ -185,7 +185,7 @@
                 latitude: res.address.latitude,
                 longitude: res.address.longitude
             };
-            $scope.map.zoom = 14;
+            $scope.map.zoom = 15;
 
             vm.circle.center = {
                 latitude: res.address.latitude,
@@ -193,7 +193,22 @@
             };
             vm.circle.visible = true;
 
+            vm.marker = {
+                coords: {
+                    latitude: res.address.latitude,
+                    longitude: res.address.longitude
+                },
+                options: {
+                    icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                }
+            };
+
             vm.project = res;
+
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
+
             $rootScope.pageName = vm.project.user.firstName + " " +
                 vm.project.user.lastName +
                 " - " + vm.project.title;

@@ -22,7 +22,6 @@
         vm.imageFlag = vm.whereFlag = vm.whenFlag = vm.dateFlag = vm.imagePreviewFlag = vm.dateSelected = false;
         vm.project = {};
         vm.projectTmp = {};
-        vm.markerCoords = {};
         vm.dt = new Date();
         vm.default = angular.copy(vm.dt);
         vm.minDate = new Date();
@@ -407,12 +406,22 @@
                     longitude: res.address.longitude
                 };
                 $scope.map.zoom = 15;
-                vm.markerCoords = {
-                    latitude: res.address.latitude,
-                    longitude: res.address.longitude
-                }
+                vm.marker = {
+                    coords: {
+                        latitude: res.address.latitude,
+                        longitude: res.address.longitude
+                    },
+                    options: {
+                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                    }
+                };
             }
             vm.project = res;
+
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
+
             $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;

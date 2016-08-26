@@ -18,13 +18,6 @@
 
         var vm = this;
 
-        vm.getMenuItemClass = function (state) {
-            if (state == "pro-jobs") {
-                return "active-menu";
-            }
-            return "";
-        };
-
         networkService.proProposalsGET('ongoing', function (res) {
             vm.ongoing = res;
         }, function () {

@@ -128,7 +128,8 @@
                                 <div id="map_canvas">
                                     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
                                                         dragging="false">
-                                        <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                                        <ui-gmap-marker idKey='1' coords='vm.marker.coords'
+                                                        options="vm.marker.options"></ui-gmap-marker>
                                     </ui-gmap-google-map>
                                 </div>
                             </div>
