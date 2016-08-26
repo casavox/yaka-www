@@ -1,6 +1,9 @@
 .input-filter {
     width: calc((100% / 7.15) - 1px);
 }
+.input-filter-project {
+    width: calc(100% / 10);
+}
 .validateButton {
     margin-bottom: 3px;
 }

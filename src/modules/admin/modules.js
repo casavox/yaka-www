@@ -8,7 +8,7 @@
     function config($stateProvider) {
 
         $stateProvider
-            .state('admin', {
+            .state('admin-pro', {
                 url: "/admin/professionnals",
                 templateUrl: "/modules/admin/views/admin-pro.html",
                 controller: 'AdminController',
@@ -19,6 +19,12 @@
                 templateUrl: "/modules/admin/views/admin-pro-details.html",
                 controller: 'AdminProDetailsController',
                 controllerAs: 'vm'
-            });
+            })
+            .state('admin-projects', {
+                url: "/admin/projects",
+                templateUrl: "/modules/admin/views/admin-projects.html",
+                controller: 'AdminProjectsController',
+                controllerAs: 'vm'
+            })
     }
 })();

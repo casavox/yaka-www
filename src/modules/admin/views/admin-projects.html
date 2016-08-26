@@ -1,0 +1,108 @@
+<style data-ng-if="app.isPro()">
+    .customerSupportWidget {
+        background: #FF9800;
+    }
+
+    .contactsItemNumberActive {
+        background: #FF9800;
+    }
+</style>
+
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggleguk.left }"></aside>
+    <div id="content" class="content">
+        <div class="container">
+            <div>
+                <input type="text" class="form-control di-block input-filter-project" ng-model="search.title"
+                       placeholder="Titre"/>
+                <input type="text" class="form-control di-block input-filter-project" ng-model="search.frenchStatus"
+                       placeholder="Statut"/>
+                <div class="select di-block input-filter-project">
+                    <select class="form-control" ng-model="search.mainActivity.code">
+                        <option disabled selected hidden>Type</option>
+                        <option ng-repeat="number in [1, 2, 3, 4]">{{ number }}</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control di-block input-filter-project" ng-model="search.place"
+                       placeholder="Lieu"/>
+                <input type="text" class="form-control di-block input-filter-project" ng-model="search.name"
+                       placeholder="Client"/>
+                <div class="select di-block input-filter-project">
+                    <select class="form-control" ng-model="search.compatibleValidatedProsNumber">
+                        <option disabled selected hidden>Nbr Propo</option>
+                        <option ng-repeat="number in vm.possibleProposalNbr">{{ number }}</option>
+                    </select>
+                </div>
+                <div class="select di-block input-filter-project">
+                    <select class="form-control">
+                        <option disabled selected hiddenNbr> Reco</option>
+                        <option ng-repeat="number in [1, 2, 3, 4]"></option>
+                    </select>
+                </div>
+                <div class="select di-block input-filter-project">
+                    <select class="form-control">
+                        <option disabled selected hidden>Nbr Valide Pro</option>
+                        <option ng-repeat="number in [1, 2, 3, 4]"></option>
+                    </select>
+                </div>
+                <div class="select di-block input-filter-project">
+                    <select class="form-control">
+                        <option disabled selected hidden>Nbr Non Valdie Pro</option>
+                    </select>
+                </div>
+            </div>
+            <table ng-table="usersTable" class="table table-striped" show-filter="true">
+
+                <tr data-ng-repeat="project in $data | filter:search" class="t-center">
+
+                    <td data-title="'Titre'" class="pointer" data-sortable="'title'">
+                        {{ project.title }}
+                    </td>
+                    <td data-title="'Statut'" data-sortable="'frenchStatus'">
+                        {{ project.frenchStatus }}
+                    </td>
+                    <td data-title="'Type'" data-sortable="'mainActivity.code'">
+                        {{ project.mainActivity.code }}
+                    </td>
+                    <td data-title="'Créé le'" data-sortable="'published'">
+                        <span am-time-ago="project.published"></span>
+                    </td>
+                    <td data-title="'Mis à jour le'" data-sortable="'updated'">
+                        <span am-time-ago="project.updated"></span>
+                    </td>
+                    <td data-title="'Lieu'" data-sortable="'place'">
+                        {{ project.place }}
+                    </td>
+                    <td data-title="'Date souhaitée'" data-sortable="'desiredDate'">
+                        {{ vm.getWhen(project) }}
+                    </td>
+                    <td data-title="'Client'" data-sortable="'name'">
+                        {{ project.name }}
+                    </td>
+                    <td data-title="'Nbr Propositions'" data-sortable="'proposalsNbr'">
+                        {{ project.proposalsNbr }}
+                    </td>
+                    <td data-title="'Nbr Recommandations'" data-sortable="'recoProposalsNbr'">
+                        {{ project.recoProposalsNbr }}
+                    </td>
+                    <td data-title="'Nbr Pros validés'" data-sortable="'compatibleValidatedProsNumber'">
+                        {{ project.compatibleValidatedProsNumber }}
+                    </td>
+                    <td data-title="'Nbr Pros non validés'" data-sortable="'compatibleNotValidatedProsNumber'">
+                        {{ project.compatibleNotValidatedProsNumber }}
+                    </td>
+                    <td class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="project.selected" value="">
+                            <i class="input-helper"></i>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

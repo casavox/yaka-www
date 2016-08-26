@@ -338,6 +338,9 @@
             },
             adminChangePassword: function (id, data, success, error) {
                 httpService.put(baseUrl + '/admin/' + id + '/password', data).success(success).error(error)
+            },
+            adminProjectsListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/projects').success(success).error(error)
             }
         };
     }
