@@ -214,7 +214,7 @@
 
                                             </div>
 
-                                            <div class="col-xs-12 no-padding pmo-stat proposalProName clearfix">
+                                            <div class="col-xs-12 no-padding pmo-stat proposalProName littleMargin clearfix">
                                                 <h2 class="yakaEllipsis">
                                                     <casa-name-and-contact user="vm.project.user"
                                                                            icon-color="c-white"></casa-name-and-contact>
@@ -248,12 +248,20 @@
                                                         <i class="zmdi zmdi-close"></i> Annuler
                                                     </button>
                                                 </div>
-                                                <div class="m-t-15"
-                                                     data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED' || vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                     data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="m-t-15"
-                                                     data-ng-if="vm.proposal.status == 'PRO_DECLINED' || vm.proposal.status == 'RECO_PRO_DECLINED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                     data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
+                                                    Annulé par moi
+                                                </div>
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                     data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
+                                                    Refusé par le client
+                                                </div>
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                     data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
 

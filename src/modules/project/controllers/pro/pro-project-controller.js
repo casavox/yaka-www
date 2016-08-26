@@ -204,6 +204,11 @@
             };
 
             vm.project = res;
+
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
+
             $rootScope.pageName = vm.project.user.firstName + " " +
                 vm.project.user.lastName +
                 " - " + vm.project.title;
