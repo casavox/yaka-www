@@ -29,7 +29,15 @@
                 confiance à un professionnel qui leur est recommandé.
             </div>
             <div class="col-xs-12 proHomeSection1Buttons">
-                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect"
+                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect hidden-xs hidden-sm"
+                     data-ng-click="vm.smoothScrollRegister()">
+                    S'INSCRIRE GRATUITEMENT
+                </div>
+                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect visible-sm p-t-5 p-b-5 vertical-center"
+                     data-ng-click="vm.smoothScrollRegister()">
+                    S'INSCRIRE GRATUITEMENT
+                </div>
+                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect visible-xs hidden-sm p-t-5 p-b-5 vertical-center"
                      data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
                 </div>
