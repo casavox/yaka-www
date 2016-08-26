@@ -12,11 +12,27 @@
         $rootScope.pageName = "Admin";
         var vm = this;
 
+        vm.filterAllowNullValue = function (expected, actual) {
+            if (actual === null) {
+                return true;
+            } else {
+                // angular's default (non-strict) internal comparator
+                var text = ('' + actual).toLowerCase();
+                return ('' + expected).toLowerCase().indexOf(text) > -1;
+            }
+        };
 
-        function loadProList () {
+        function loadProList() {
             networkService.adminProjectsListGET(function (res) {
                 vm.projectsList = res;
                 vm.possibleProposalNbr = [];
+                vm.possibleStatus = [];
+                vm.possibleMainActivity = [];
+                vm.possibleProposalNbr = [];
+                vm.possibleRecoNbr = [];
+                vm.possibleValidProNbr = [];
+                vm.possibleInvalidProNbr = [];
+
                 angular.forEach(vm.projectsList, function (project) {
                     project.frenchStatus = $filter('casaProjectStatus')(project.status);
                     if (project.address.postalCode == undefined) {
@@ -35,14 +51,35 @@
                     if (!project.compatibleValidatedProsNumber) {
                         project.compatibleValidatedProsNumber = 0;
                     }
-                    if(!project.compatibleNotValidatedProsNumber) {
+                    if (!project.compatibleNotValidatedProsNumber) {
                         project.compatibleNotValidatedProsNumber = 0;
                     }
-
                     if ($.inArray(project.proposalsNbr, vm.possibleProposalNbr) == -1) {
                         vm.possibleProposalNbr.push(project.proposalsNbr);
                     }
+                    if ($.inArray(project.frenchStatus, vm.possibleStatus) == -1) {
+                        vm.possibleStatus.push(project.frenchStatus);
+                    }
+                    if (project.mainActivity) {
+                        if ($.inArray(project.mainActivity.code, vm.possibleMainActivity) == -1) {
+                            vm.possibleMainActivity.push(project.mainActivity.code);
+                        }
+                    }
+                    if ($.inArray(project.recoProposalsNbr, vm.possibleRecoNbr) == -1) {
+                        vm.possibleRecoNbr.push(project.recoProposalsNbr);
+                    }
+                    if ($.inArray(project.compatibleValidatedProsNumber, vm.possibleValidProNbr) == -1) {
+                        vm.possibleValidProNbr.push(project.compatibleValidatedProsNumber);
+                    }
+                    if ($.inArray(project.compatibleNotValidatedProsNumber, vm.possibleInvalidProNbr) == -1) {
+                        vm.possibleInvalidProNbr.push(project.compatibleNotValidatedProsNumber);
+                    }
+
                 });
+                vm.possibleValidProNbr.sort(function(a, b){return a-b});
+                vm.possibleRecoNbr.sort(function(a, b){return a-b});
+                vm.possibleValidProNbr.sort(function(a, b){return a-b});
+                vm.possibleInvalidProNbr.sort(function(a, b){return a-b});
                 proSorting();
             }, function () {
             });
@@ -71,9 +108,7 @@
         }
 
 
-
-
-        function createIdList () {
+        function createIdList() {
             var idList = [];
             angular.forEach(vm.projectsList, function (pro) {
                 if (project.selected == true) {
@@ -107,7 +142,7 @@
             });
         };
 
-        vm.getWhen = function(project) {
+        vm.getWhen = function (project) {
             var res = 0;
             if (project && project.desiredDatePeriod) {
                 switch (project.desiredDatePeriod) {

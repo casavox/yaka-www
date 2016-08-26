@@ -26,5 +26,11 @@
                 controller: 'AdminProjectsController',
                 controllerAs: 'vm'
             })
+            .state('admin-project-details', {
+                url: "/admin/projects/:projectId/details",
+                templateUrl: "/modules/admin/views/admin-project-details.html",
+                controller: 'AdminProjectController',
+                controllerAs: 'vm'
+            })
     }
 })();

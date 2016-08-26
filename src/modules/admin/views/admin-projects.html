@@ -14,17 +14,21 @@
 <section id="main">
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggleguk.left }"></aside>
-    <div id="content" class="content">
-        <div class="container">
+    <div id="content" class="content m-l-5">
+            {{search}}
             <div>
                 <input type="text" class="form-control di-block input-filter-project" ng-model="search.title"
                        placeholder="Titre"/>
-                <input type="text" class="form-control di-block input-filter-project" ng-model="search.frenchStatus"
-                       placeholder="Statut"/>
                 <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.mainActivity.code">
-                        <option disabled selected hidden>Type</option>
-                        <option ng-repeat="number in [1, 2, 3, 4]">{{ number }}</option>
+                    <select class="form-control" ng-model="search.frenchStatus"
+                            ng-options="status for status in vm.possibleStatus">
+                        <option value="">Status</option>
+                    </select>
+                </div>
+                <div class="select di-block input-filter-project">
+                    <select class="form-control" ng-model="search.mainActivity.code"
+                            ng-options="type for type in vm.possibleMainActivity">
+                        <option value="">Code</option>
                     </select>
                 </div>
                 <input type="text" class="form-control di-block input-filter-project" ng-model="search.place"
@@ -32,34 +36,36 @@
                 <input type="text" class="form-control di-block input-filter-project" ng-model="search.name"
                        placeholder="Client"/>
                 <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.compatibleValidatedProsNumber">
-                        <option disabled selected hidden>Nbr Propo</option>
-                        <option ng-repeat="number in vm.possibleProposalNbr">{{ number }}</option>
+                    <select class="form-control" ng-model="search.proposalsNbr"
+                            ng-options="propNbr for propNbr in vm.possibleProposalNbr">
+                        <option value="">Props</option>
                     </select>
                 </div>
                 <div class="select di-block input-filter-project">
-                    <select class="form-control">
-                        <option disabled selected hiddenNbr> Reco</option>
-                        <option ng-repeat="number in [1, 2, 3, 4]"></option>
+                    <select class="form-control" ng-model="search.recoProposalsNbr"
+                            ng-options="recoNbr for recoNbr in vm.possibleRecoNbr">
+                        <option value="">RecoP</option>
                     </select>
                 </div>
                 <div class="select di-block input-filter-project">
-                    <select class="form-control">
-                        <option disabled selected hidden>Nbr Valide Pro</option>
-                        <option ng-repeat="number in [1, 2, 3, 4]"></option>
+                    <select class="form-control" ng-model="search.compatibleValidatedProsNumber"
+                            ng-options="validProNbr for validProNbr in vm.possibleValidProNbr">
+                        <option value="">CPV</option>
                     </select>
                 </div>
                 <div class="select di-block input-filter-project">
-                    <select class="form-control">
-                        <option disabled selected hidden>Nbr Non Valdie Pro</option>
+                    <select class="form-control" ng-model="search.compatibleNotValidatedProsNumber"
+                            ng-options="invalidProNbr for invalidProNbr in vm.possibleInvalidProNbr">
+                        <option value="">CPNV</option>
                     </select>
                 </div>
             </div>
+
             <table ng-table="usersTable" class="table table-striped" show-filter="true">
 
-                <tr data-ng-repeat="project in $data | filter:search" class="t-center">
+                <tr data-ng-repeat="project in $data | filter:search:vm.filterAllowNullValue" class="t-center">
 
-                    <td data-title="'Titre'" class="pointer" data-sortable="'title'">
+                    <td data-title="'Titre'" class="pointer" data-sortable="'title'" data-ui-sref="admin-project-details({projectId: project.id})">
                         {{ project.title }}
                     </td>
                     <td data-title="'Statut'" data-sortable="'frenchStatus'">
@@ -95,14 +101,7 @@
                     <td data-title="'Nbr Pros non validés'" data-sortable="'compatibleNotValidatedProsNumber'">
                         {{ project.compatibleNotValidatedProsNumber }}
                     </td>
-                    <td class="checkbox">
-                        <label>
-                            <input type="checkbox" data-ng-model="project.selected" value="">
-                            <i class="input-helper"></i>
-                        </label>
-                    </td>
                 </tr>
             </table>
         </div>
-    </div>
 </section>

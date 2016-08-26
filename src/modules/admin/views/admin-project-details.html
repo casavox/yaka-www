@@ -1,0 +1,422 @@
+<style type="text/css">
+    #map_canvas {
+        height: 120px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+</style>
+
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="proposals"
+                    up-state-id="vm.project.id"
+                    title="Détails du projet"
+                    current-user="app.getUser()"></yaka-mobile-header>
+
+<section id="main">
+
+    <div class="container p-l-25 p-r-25" data-ng-if="vm.project.title">
+        <ol class="breadcrumb hidden-xs">
+            <li class="pointer" data-ui-sref="my-projects">
+                Mes projets
+            </li>
+            <li class="pointer" data-ui-sref="proposals({projectId: vm.project.id})">
+                Propositions
+            </li>
+            <li class="active">
+                Détails du projet
+            </li>
+        </ol>
+    </div>
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+
+        <div class="container">
+
+            <div class="card pointer" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
+                 data-ng-if="vm.project.proposal">
+                <div class="card-body card-padding row">
+
+                    <div class="d-i-b v-align-middle m-l-15 projectProposalHeader p-relative">
+
+                        <yaka-avatar user="vm.project.proposal.professional.user" size="70">
+                        </yaka-avatar>
+
+                        <cl-image
+                            public-id="{{vm.project.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                            class="bgm-white" format="png"
+                            uib-tooltip="Je suis partenaire de {{vm.project.proposal.professional.mainPartner.name}}"
+                            tooltip-placement="right"
+                            data-ng-if="vm.project.proposal.professional.mainPartner.cloudinaryPublicId">
+                            <cl-transformation height="35" width="35" crop="fill" radius="max"/>
+                        </cl-image>
+                    </div>
+
+                    <div class="d-i-b v-align-middle m-l-25">
+                        <div class="b f-17 c-orange">
+                            Pro sélectionné
+                        </div>
+                        <div class="b f-20">
+                            {{vm.project.proposal.professional.user.lastName}}
+                            {{vm.project.proposal.professional.user.firstName}}
+                        </div>
+                        <div class="c-gray">
+                            {{vm.project.proposal.professional.company.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="yakaMain proposalMainView proMakeOffer">
+                <div class="card m-b-15 clearfix" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+
+                    <div class="col-xs-12 no-padding clearfix">
+
+                        <div class="row no-margin" data-ng-if="vm.project">
+                            <div class="card-header col-md-12 p-b-10">
+                                <div><h2 class="pull-left p-t-5 m-b-10">{{vm.project.title}}</h2></div>
+                                <div class="col-xs-9 col-sm-4 pull-right p-0">
+                                    <button class="btn btn-default waves-effect pull-right m-l-10 m-b-10"
+                                            data-ng-show="vm.editFlag"
+                                            data-ng-click="vm.cancel()">
+                                        <i class="zmdi zmdi-close"></i>
+                                    </button>
+
+                                    <button class="btn bgm-lightblue waves-effect pull-right m-b-10"
+                                            data-ng-show="vm.editFlag"
+                                            data-ng-disabled="!vm.projectTmp.description"
+                                            data-ng-click="vm.openSavePopup()">
+                                        Enregistrer
+                                    </button>
+
+                                    <button class="btn bgm-red waves-effect pull-right m-l-10 m-b-10"
+                                            data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))"
+                                            data-ng-click="vm.openDeleteProjectPopup()">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+
+                                    <button class="btn bgm-lightblue waves-effect pull-right m-b-10"
+                                            data-ng-click="vm.edit()"
+                                            data-ng-show="!vm.editFlag && !(vm.project.proposal && (vm.project.proposal.status == 'ONGOING_RATE_PRO' || vm.project.proposal.status == 'COMPLETED'))">
+                                        Modifier
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row no-margin">
+                            <div class="col-xs-12 ">
+                                <div id="map_canvas">
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                        dragging="false">
+                                        <ui-gmap-marker idKey='1' coords='vm.markerCoords'></ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Informations</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Description</dt>
+                                        <dd id="description-content" data-ng-if="!vm.editFlag">
+                                            {{vm.projectTmp.description}}
+                                        </dd>
+                                        <dd data-ng-if="vm.editFlag">
+                                            <textarea class="form-control" data-auto-size=""
+                                                      placeholder="Description du projet"
+                                                      data-ng-model="vm.projectTmp.description"
+                                                      data-autosize-on="true"></textarea>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.getTags() && vm.getTags().length > 0">
+                                        <dt class="yakaDisableEllipsis">Mots clés</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="tag in vm.getTags()">
+                                                    <span data-ng-show="tag == 'MATERIAL_TRUE'"
+                                                          uib-tooltip="Le client fournit certains matériaux">
+                                                        {{'ACTIVITY_' + tag | translate}}
+                                                    </span>
+                                                    <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                        {{'ACTIVITY_' + tag | translate}}
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Date souhaitée des travaux</dt>
+                                        <dd>
+                                            Début souhaité {{vm.getWhen()}} <i
+                                            data-ng-show="vm.editFlag"
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                            data-ng-click="vm.editWhen()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
+                                        <dd>
+                                            <div data-ng-switch on="vm.proposal.status">
+                                                {{vm.projectTmp.address.name}} - {{vm.projectTmp.address.address}}
+                                                <i data-ng-show="vm.editFlag"
+                                                   class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                                   data-ng-click="vm.editWhere()"></i>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block clearfix"
+                             data-ng-if="(vm.projectTmp.images && vm.projectTmp.images.length > 0) || vm.editFlag">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Album projet</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <!--Viewing mode-->
+
+                                    <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
+                                        <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                             data-sub-html="#caption{{$index}}"
+                                             class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                             tooltip-placement="top"
+                                             uib-tooltip="{{image.description}}"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item">
+                                                <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                     alt=""/>
+                                                <div data-ng-if="image.description"
+                                                     class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
+                                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                                </div>
+                                            </div>
+                                            <div id="caption{{$index}}" style="display:none">
+                                                <div class="galleryCaption">
+                                                    <p>{{image.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Editing mode-->
+
+                                    <div class="" data-ng-show="vm.editFlag" data-ng-show="vm.editFlag">
+                                        <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item projectImageTooltip">
+                                                <img
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="{{image.description}}"
+                                                    data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                            </div>
+
+                                            <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                                                <button uib-dropdown-toggle
+                                                        class="btn bgm-lightblue btn-float floatingButtonImage ">
+                                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                                </button>
+
+                                                <div class="dropdown-menu stop-propagate">
+                                                <textarea placeholder="Ajouter un commentaire"
+                                                          data-ng-model="image.description"
+                                                          data-ng-maxlength="140"
+                                                          maxlength="140"
+                                                          data-auto-size
+                                                          data-ng-trim="false"
+                                                          data-ng-change="vm.descriptionChanged(image)"></textarea>
+
+                                                    <div class="descriptionCounter">
+                                                        {{vm.getStringLength(image.description)}} / 140 caractères
+                                                    </div>
+
+                                                    <button class="btn bgm-lightblue btn-float"
+                                                            data-tl-action="save"
+                                                            data-ng-click="vm.saveComment();">
+                                                        <i class="zmdi zmdi-check"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <button
+                                                class="floatingButtonImage floatingButtonImageDelete btn btn-danger btn-float"
+                                                data-ng-click="vm.removeImage($index)">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
+                                         ngf-drop="vm.uploadFiles($files)"
+                                         ngf-drag-over-class="dragOverClass($event)"
+                                         data-ng-model="files"
+                                         data-ng-multiple="false" data-ng-show="vm.editFlag">
+                                        <div class="galleryUpload lightbox-item p-item"
+                                             ngf-select="vm.uploadFiles($files, $invalidFiles, 0)"
+                                             ngf-accept="'image/*'" ngf-max-size="20MB">
+                                            <div class="content">
+                                                <i class="zmdi zmdi-plus-circle-o"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="yakaPopup" data-ng-show="vm.whereFlag"
+         data-ng-click="vm.whereFlag = false" data-ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     data-ng-click="vm.whereFlag = false" alt=""/>
+
+                <h4>Veuillez indiquer le lieu des travaux</h4>
+
+                <div class="row no-margin w-900 center select-addr m-t-20 m-b-5"
+                     data-ng-show="vm.user.addresses.length > 0">
+                    <div class="col-xs-5 no-padding select">
+                        <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
+                            <option value="new">Nouvelle adresse</option>
+                            <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"
+                                    data-ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-1 no-padding">
+                        <input type="text" class="select-custom" data-ng-if="vm.newAddrFlag"
+                               data-ng-model="vm.newAddr.name"
+                               data-ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse Ex: Maison">
+                    </div>
+                </div>
+                <div class="row no-margin w-900 center addr">
+                    <div class="no-padding mb-39"
+                         data-ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
+                        <div class="inner-addon right-addon">
+                            <div class="disabled-addr" data-ng-show="vm.disabledAddr"></div>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            <input vs-google-autocomplete="options"
+                                   options="options"
+                                   data-ng-model="address.name"
+                                   vs-autocomplete-validator
+                                   vs-place="address.place"
+                                   vs-place-id="address.components.placeId"
+                                   vs-street-number="address.components.streetNumber"
+                                   vs-street="address.components.street"
+                                   vs-city="address.components.city"
+                                   vs-state="address.components.state"
+                                   vs-country-short="address.components.countryCode"
+                                   vs-country="address.components.country"
+                                   vs-post-code="address.components.postCode"
+                                   vs-district="address.components.district"
+                                   vs-latitude="address.components.location.lat"
+                                   vs-longitude="address.components.location.long"
+
+                                   type="text"
+                                   name="address"
+                                   id="address"
+                                   placeholder="Indiquer l'adresse" class="input-custom">
+                        </div>
+                    </div>
+                </div>
+                <div class="t-right">
+                    <button class="btn btn-link waves-effect c-red" data-ng-click="vm.whereFlag = false">
+                        ANNULER
+                    </button>
+                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhere()"
+                            data-ng-disabled="!address.name && !vm.newAddr.name">
+                        CONFIRMER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="yakaPopup" data-ng-show="vm.whenFlag"
+         data-ng-click="vm.whenFlag = false" data-ng-cloak>
+        <div class="container">
+            <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+
+                <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                     data-ng-click="vm.whenFlag = false" alt=""/>
+
+                <h4>Quand voulez-vous que les travaux commencent ?</h4>
+
+                <div class="dateEdit">
+                    <ul class="questions-ul center no-padding">
+                        <li class="question-li center" data-ng-class="vm.child3"
+                            data-ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
+                            Dès que possible
+                        </li>
+                        <li class="question-li center" data-ng-class="vm.child2"
+                            data-ng-click="vm.selectDateType('WITHIN_A_MONTH'); vm.child0 = ''; vm.child1 = ''; vm.child2 = 'activate'; vm.child3 = ''">
+                            Dans le mois
+                        </li>
+                        <li data-ng-show="vm.dateType == 'WITHIN_A_MONTH'"
+                            class="col-xs-12 col-sm-8 custom-li-date question-li center date m-b-10">
+                            Avant le {{vm.projectTmp.desiredDate | date:'dd MMMM'}}
+                        </li>
+                        <li class="question-li center" data-ng-class="vm.child0"
+                            data-ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
+                            À partir d'une date
+                        </li>
+                        <li data-ng-show="vm.dateSelected" class="custom-li-date question-li center"
+                            data-ng-click="vm.unSelectdate()">
+                            {{vm.dt | date:'dd-MM-yyyy'}}
+                        </li>
+                        <li data-ng-show="vm.dateFlag" class="list-style-none">
+                            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                                <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
+                                                class="well well-sm custom-date"
+                                                custom-class="getDayClass(date, mode)"></uib-datepicker>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="error center" data-ng-show="vm.error.date.flag">
+                        {{vm.error.date.message}}
+                    </p>
+                </div>
+
+                <div class="t-right">
+                    <button class="btn btn-link waves-effect c-red" data-ng-click="vm.whenFlag = false">
+                        ANNULER
+                    </button>
+                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhen()">
+                        CONFIRMER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

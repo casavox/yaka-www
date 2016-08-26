@@ -341,6 +341,21 @@
             },
             adminProjectsListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/projects').success(success).error(error)
+            },
+            adminProfileGET: function (id, success, error) {
+                httpService.get(baseUrl + '/admin/users/' + id).success(success).error(error)
+            },
+            adminProposalAcceptPOST: function (proposalId, success, error) {
+                httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept").success(success).error(error)
+            },
+            adminProjectGET: function (data, success, error) {
+                httpService.get(baseUrl + '/admin/projects/' + data).success(success).error(error)
+            },
+            adminProjectPUT: function (data, success, error) {
+                httpService.put(baseUrl + '/admin/projects/' + data.id, data).success(success).error(error);
+            },
+            adminDeleteProject: function (id, data, success, error) {
+                httpService.post(baseUrl + '/admin/projects/' + id + '/delete', data).success(success).error(error)
             }
         };
     }
