@@ -196,7 +196,7 @@
                        data-ng-model="vm.newUser.firstName"
                        data-ng-disabled="vm.isSocialRegister()"/>
 
-                <input class="form-control halfInput halfInputRight" placeholder="Nom"
+                <input class="form-control halfInput halfInputRight" placeholder="Nom du représentant"
                        data-ng-model="vm.newUser.lastName"
                        data-ng-disabled="vm.isSocialRegister()"/>
 
@@ -210,7 +210,7 @@
                     Ce nom n'est pas valide
                 </div>
 
-                <input class="form-control" type="email" name="username" placeholder="Email"
+                <input class="form-control" type="email" name="username" placeholder="Email du représentant"
                        data-ng-model="vm.newUser.email"
                        data-ng-disabled="vm.needToHideEmail()"/>
 
@@ -237,7 +237,7 @@
 
                 <div class="col-xs-12 no-padding m-t-15">
                     <input type="text"
-                           required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone"
+                           required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone du représentant"
                            data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
                 </div>
 
@@ -249,7 +249,7 @@
                 <input
                     vs-google-autocomplete="vm.autocomplete.options"
                     vs-autocomplete-validator class="form-control"
-                    placeholder="Ville"
+                    placeholder="Ville du siège de l'entreprise"
                     data-ng-model="vm.newUser.professional.company.address.address"/>
 
                 <div class="proHomeSection2ActivitiesInput m-b-20" data-ng-dropdown-multiselect=""

@@ -64,7 +64,7 @@
                 uncheckAll: "Tout désélectionner",
                 selectionCount: "choisis",
                 searchPlaceholder: "Rechercher...",
-                buttonDefaultText: "Domaines d'intervention",
+                buttonDefaultText: "Principaux domaines d'intervention",
                 dynamicButtonTextSuffix: "domaine(s) d'intervention"
             },
             options: [
