@@ -58,10 +58,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 m-t-20 pointer" data-ng-click="vm.openPopup(false)">
+                    <div class="col-xs-12 m-t-20">
 
                         <div class="t-right c-lightblue p-b-5">
-                            <u>Voir plus</u>
+                            <u class="pointer" data-ng-click="vm.openPopup(false)">Voir plus</u>
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,8 @@
                     </div>
 
                     <input class="form-control" type="text" name="username" placeholder="Email"
-                           data-ng-model="vm.loginUser.email"/>
+                           data-ng-model="vm.loginUser.email"
+                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
                     <input class="form-control" type="password" name="password" placeholder="Mot de passe"
                            data-ng-model="vm.loginUser.password"
@@ -236,11 +237,11 @@
 
                 <div data-ng-show="!vm.loginTab">
 
-                    <div class="col-xs-12 registerFacebookGoogle">
-                        <span data-ng-if="!vm.isSocialRegister()">Inscription via Facebook ou Google</span>
+                    <div class="col-xs-12 registerFacebookGoogle p-l-0 p-r-0">
+                        <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
 
                         <div data-ng-if="vm.isSocialRegister()">
-                            <div class="registerSocialConfirm">
+                            <div class="registerSocialConfirm p-l-0 p-r-0">
                                 Inscription via {{vm.socialNetwork}}
                             </div>
                         </div>
@@ -345,7 +346,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group fg-float m-b-0"
+                            <div class="form-group fg-float m-b-15"
                                  data-ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input input-sm"
@@ -358,20 +359,21 @@
                                 </small>
                             </div>
 
+                            <span class="c-red m-l-20 m-b-0">Cochez la case ci-dessous</span>
                             <div
                                 vc-recaptcha
                                 data-ng-model="vm.newUser.recaptchaResponse"
                                 key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                class="hidden-xs col-xs-12 m-t-10"
+                                class="hidden-xs col-xs-12 m-t-0"
                             ></div>
-
                             <div
                                 vc-recaptcha
                                 data-ng-model="vm.newUser.recaptchaResponse"
                                 key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                class="visible-xs col-xs-12 m-t-10"
+                                class="visible-xs col-xs-12 m-t-0"
                                 style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
                             ></div>
+
                             <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
                                  data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
                                  data-ng-click="vm.register()">

@@ -44,13 +44,7 @@
 
         function getWhen() {
             var res = 0;
-            if (!angular.isUndefined(vm.project) && vm.project.availabilities && vm.project.availabilities.length > 0) {
-                for (var i = 0; i < vm.project.availabilities.length; i++) {
-                    res += 1;
-                }
-                return "Emergency : " + res + " slots appointment"
-            }
-            else if (angular.isDefined(vm.project) && vm.project.desiredDatePeriod) {
+            if (vm.project && vm.project.desiredDatePeriod) {
                 switch (vm.project.desiredDatePeriod) {
                     case "SPECIFIC":
                         return "autour du " + moment(vm.project.desiredDate).format("D MMMM");

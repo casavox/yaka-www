@@ -165,26 +165,6 @@
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         };
 
-        vm.selectProposal = function (p) {
-            networkService.proposalGET(p.id, succesProposalGET, errorProposalGET);
-        };
-
-        function succesProposalGET(res) {
-            vm.proposal = res;
-            vm.proDetails = true;
-            vm.pro = false;
-        }
-
-        vm.homeDetail = function () {
-            vm.proposal = {};
-            vm.pro = true;
-            vm.proDetails = false;
-        };
-
-        function errorProposalGET(res) {
-            alertMsg.send("Impossible de récupérer le projet, réessayez puis contactez le support si besoin", "danger");
-        }
-
         vm.limitLength = function (obj, token, limit) {
             if (obj[token].length >= limit) {
                 obj[token] = obj[token].slice(0, limit);
