@@ -272,14 +272,13 @@
                                                 data-ng-if="!vm.proposalTmp.project.address.address"
                                                 center="vm.circle.center" stroke="vm.circle.stroke"
                                                 fill="vm.circle.fill" radius="vm.circle.radius"
-                                                bounds="vm.circle.bounds"
-                                                visible="vm.circle.visible" geodesic="true" editable="false"
+                                                bounds="vm.circle.bounds" geodesic="true" editable="false"
                                                 draggable="false" clickable="true" control="vm.circle.control"
                                                 events="vm.circle.events"></ui-gmap-circle>
                                             <ui-gmap-marker
                                                 data-ng-if="vm.proposalTmp.project.address.address"
-                                                idKey='1' coords='vm.markerCoords'
-                                                visible="vm.marker.visible"></ui-gmap-marker>
+                                                idKey='1'
+                                                coords='vm.marker.coords' options="vm.marker.options"></ui-gmap-marker>
                                         </ui-gmap-google-map>
                                     </div>
                                 </div>
