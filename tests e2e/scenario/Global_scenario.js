@@ -26,7 +26,7 @@ exports.config = {
         jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
             consolidateAll: true,
             savePath: '../logs',
-            filePrefix: 'xmloutput'
+            filePrefix: 'GLOBAL_SCENARIO_LOG'
         }));
 
         setTimeout(function () {
