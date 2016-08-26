@@ -24,7 +24,7 @@ var InfoPro = function () {
     this.mailNumberp = function () {
         return (Math.random() * (20 - 1));
     }
-    this.fakeNumber = '01' + (Math.floor(this.mailNumberp() * 10000000));
+    this.fakeNumber = '01' + (Math.floor(this.mailNumberp() * 100000000));
 
 };
 

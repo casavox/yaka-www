@@ -32,9 +32,8 @@ describe('The user', function () {
                         browser.sleep(2000);
                         profilePage.phoneNumber.sendKeys(infoPro.fakeNumber);
                         newPhoneNumber = infoPro.fakeNumber;
-                        browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateProfile), 5000).then(function () {
-                            profilePage.updateProfile.click();
-                        });
+                        browser.sleep(profilePage.wait4Anim);
+                        profilePage.updateProfile.click();
                     });
                 });
             }

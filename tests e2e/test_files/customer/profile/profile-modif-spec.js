@@ -29,9 +29,17 @@ describe('The user', function () {
                 newPhoneNumber = infoCustomer.fakeNumber;
                 console.log('Modification du numéro de téléphone OK');
                 browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateProfile), 5000).then(function () {
-                    profilePage.closeAlertMsg.click();
-                    profilePage.updateProfile.click();
-                    browser.sleep(1500);
+                    profilePage.closeAlertMsg.isDisplayed().then(function(displayed) {
+                        if (displayed) {
+                            profilePage.closeAlertMsg.click();
+                            profilePage.updateProfile.click();
+                            browser.sleep(1500);
+                        } else {
+                            profilePage.updateProfile.click();
+                            browser.sleep(1500);
+                        }
+                    });
+
                 });
             });
         }
@@ -49,7 +57,6 @@ describe('The user', function () {
                 }
             });
         }
-
     });
 });
 
