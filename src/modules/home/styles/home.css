@@ -461,7 +461,7 @@ body:after {
 }
 
 .showRegisterFields.showRegisterFieldsVisible {
-    height: 465px;
+    height: 510px;
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
     -o-transition-delay: 0s;
@@ -837,7 +837,7 @@ body:after {
     }
 
     .showRegisterFields.showRegisterFieldsVisible {
-        height: 420px;
+        height: 495px;
     }
 }
 
