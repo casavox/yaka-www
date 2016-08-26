@@ -5054,6 +5054,17 @@ ul.yaka-chips li {
     background: #BBBBBB;
 }
 
+div.recaptcha > div {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+div.recaptcha.mobile > div {
+    left: auto;
+    transform: translate(-54.5%);
+}
+
 .pointer {
     cursor: pointer !important;
 }
