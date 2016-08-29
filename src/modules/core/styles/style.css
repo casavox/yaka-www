@@ -3241,7 +3241,7 @@ md-input-container {
     width: 54px;
     position: relative;
     left: calc(50% - (54px / 2));
-    top: 70px;
+    top: 50px;
 }
 
 .img-profile-pro {
