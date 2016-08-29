@@ -101,7 +101,6 @@
                     vm.tableData = vm.projectsList;
                     vm.tableData = params.sorting() ? $filter('orderBy')(vm.tableData, params.orderBy()) : vm.tableData;
                     vm.tableData = params.filter() ? $filter('filter')(vm.tableData, params.filter()) : vm.tableData;
-                    console.log(params.filter());
                     vm.tableData = vm.tableData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                     $defer.resolve(vm.tableData);
                 }

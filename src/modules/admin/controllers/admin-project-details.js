@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function AdminProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService) {
+    function AdminProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, ngTableParams) {
 
         if ($localStorage.user && !$localStorage.user.isAdmin) {
             $state.go("home");
@@ -84,7 +84,7 @@
                 networkService.adminDeleteProject($stateParams.projectId, message,
                     function () {
                         alertMsg.send("Votre projet à bien été supprimé", "success");
-                        $state.go("my-projects");
+                        $state.go("admin-projects");
                     },
                     function () {
                         alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
@@ -92,7 +92,6 @@
                 );
             }
         };
-
 
         vm.hire = function () {
             var formData = {
@@ -310,18 +309,18 @@
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            networkService.adminProjectPUT(vm.projectTmp, succesProjectPUT, errorProjectPUT);
+            networkService.adminProjectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
         };
 
-        function succesProjectPUT(res) {
+        function succesProfilePUT(res) {
             vm.cancel();
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.adminProfileGET(vm.project.user.id, succesProfileGET, errorProfileGET);
+            networkService.adminProfileGET(succesProfileGET, errorProfileGET);
         }
 
-        function errorProjectPUT() {
+        function errorProfilePUT() {
             vm.cancel();
             alertMsg.send("Impossible de modifier le projet, réessayez puis contactez le support si besoin", "danger");
         }
@@ -416,6 +415,22 @@
                 };
             }
             vm.project = res;
+            angular.forEach(vm.project.compatiblePros, function (pro) {
+                pro.name = pro.user.firstName + " " + pro.user.lastName;
+                if (pro.company.address.postalCode == undefined) {
+                    pro.company.address.postalCode = "";
+                }
+                pro.place = pro.company.address.postalCode + " " + pro.company.address.locality;
+
+                if (pro.user.isInvited == undefined) {
+                    pro.user.isInvited = "NON";
+                } else {
+                    pro.user.isInvited == "OUI";
+                }
+                pro.distance = (pro.distance / 1000).toFixed(2);
+                pro.status = $filter('casaProfessionalStatus')(pro.status);
+
+            });
 
             if (vm.project.address.address) {
                 vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
@@ -452,11 +467,31 @@
                     break;
             }
             networkService.adminProfileGET(vm.project.user.id, succesProfileGET, errorProfileGET);
+            proSorting();
+            vm.tableData = [];
+        }
+
+        function proSorting() {
+            $scope.usersTable = new ngTableParams({
+                page: 1,
+                count: 99999999,
+                sorting: {name: "asc"}
+            }, {
+                total: vm.project.compatiblePros.length,
+                counts: [],
+                getData: function ($defer, params) {
+                    vm.tableData = vm.project.compatiblePros;
+                    vm.tableData = params.sorting() ? $filter('orderBy')(vm.tableData, params.orderBy()) : vm.tableData;
+                    vm.tableData = params.filter() ? $filter('filter')(vm.tableData, params.filter()) : vm.tableData;
+                    vm.tableData = vm.tableData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(vm.tableData);
+                }
+            });
         }
 
         function errorProjectGET(res) {
             alertMsg.send("Impossible de récupérer ce projet, réessayez puis contactez le support si besoin", "danger");
-            $state.go("my-projects");
+            $state.go("admin-projects");
         }
 
         vm.saveComment = function () {
