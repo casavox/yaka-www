@@ -53,18 +53,30 @@ var ProjectPage = function() {
 
     // Chat conversation
     this.chatSelectTab = element(by.css('[data-ng-click="vm.showChat = true; vm.scrollBottom = 1"]'));
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // Pro Navigation
-    this.workList = element(by.linkText('Mes chantiers'));
     this.firstWork = element.all(by.repeater('proposal in vm.ongoing')).get(0);
     this.chatText = element(by.model('newMessage.text'));
-    this.toto = "Toto by pro ";
     this.totoByC = "Toto by Customer ";
     this.sendText = element(by.css('[data-ng-click="sendMessage()"]'));
     this.lastText = element.all(by.repeater('message in messages')).get(-1);
+
+    // Recommend pro
+    this.recommendList = element.all(by.repeater('project in vm.projectsToRecommend')).get(0);
+    this.selectProInList = element.all(by.repeater('professional in vm.professionals')).get(0);
+    this.addAPro = element(by.css('[vm.openProPopup()]'));
+    this.recommendProject = element(by.css('[vm.recommendPro(vm.selectedProfessional.id)]'));
+
+    // Renseignement ds informations concernant le pro
+    this.enterProFirstName = element(by.model('vm.invitPro.firstName'));
+    this.enterProLastName = element(by.model('vm.invitPro.lastName'));
+    this.enterProPhone = element(by.model('vm.invitPro.phone'));
+    this.enterProEmail = element(by.model('vm.invitPro.email'));
+    this.enterProAddress = element(by.model('vm.invitPro.address.address'));
+    this.selectProRelation = element(by.model('vm.invitPro.relation')).$('[value="FAMILY"]');
+    this.selectProDomain = element(by.css('[ng-click="toggleDropdown()"]'));
+    this.selectProOneDomain = element(by.cssContainingText('label', "Serrurerie"));
+    this.sendEmailToPro = element(by.id('invitButton'));
+
+
 
 
 

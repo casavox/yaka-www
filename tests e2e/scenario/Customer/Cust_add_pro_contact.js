@@ -33,20 +33,5 @@ exports.config = {
                 browser.driver.manage().window().setSize(result.width, result.height);
             });
         });
-    },
-    /*
-     capabilities: {
-     browserName: 'chrome',
-     chromeOptions: {
-     args: [
-     '--start-maximized'
-     ]
-     }
-     },
-
-     capabilities: {
-     'browserName': 'firefox',
-     },
-     */
-
+    }
 }

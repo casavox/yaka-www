@@ -35,6 +35,5 @@ exports.config = {
                 browser.driver.manage().window().setSize(result.width, result.height);
             });
         });
-    },
-
+    }
 }

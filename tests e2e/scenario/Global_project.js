@@ -40,19 +40,4 @@ exports.config = {
             });
         });
     },
-    /*
-     capabilities: {
-     browserName: 'chrome',
-     chromeOptions: {
-     args: [
-     '--start-maximized'
-     ]
-     }
-     },
-
-     capabilities: {
-     'browserName': 'firefox',
-     },
-     */
-
 }

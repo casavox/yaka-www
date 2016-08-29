@@ -12,7 +12,7 @@ exports.config = {
         count: 1,
         shardTestFiles: false,
         maxInstances: 1,
-        specs: ['../../test_files/open-browser.js', '../../test_files/customer/authentification/login-spec.js', '../../test_files/customer/profile/profile-modif-spec.js', '../../test_files/customer/authentification/logout-spec.js'],
+        specs: ['../../test_files/open-browser.js', '../../test_files/customer/authentification/login-spec.js', '../../test_files/customer/project/project-recommend-pro-spec.js', '../../test_files/customer/authentification/logout-spec.js'],
         seleniumAddress: 'http://localhost:4444/wd/hub'
     },
 

@@ -8,12 +8,6 @@ var InfoCustomer = function () {
     this.city = "Paris";
     this.phoneNumber = "0187654321";
 
-    this.mailNumber = function () {
-        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1)+ (Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1));
-    }
-    this.fakeMail = 'casavox.dev+reg' + this.mailNumber() + '@gmail.com';
-
-
     // Informations LOGIN du particulier
     this.userLogin = 'gregorybizet@hotmail.com';
     this.userPwd = 'blabla';
@@ -21,23 +15,18 @@ var InfoCustomer = function () {
     // Information LOGIN pour mot de passe oublié
     this.forgetLogin = 'gregorybizet@gmail.com';
 
-    // Informations contact AMI ajouté
-    this.mailNumberf = function () {
-        return Math.floor((Math.random() * (999 - 1) + 1));
-    };
-    this.fakeFriendMail = 'casavox.dev+f' + this.mailNumberf() + '@gmail.com';
-
-
     // Informations contact PRO(famille) ajouté
     this.ProfirstName = "Grégory";
     this.ProlastName = "BIZET";
     this.Procity = "Paris";
     this.ProphoneNumber = "0187654321";
 
-    this.timeStamp = new Date().getTime();
-
-    this.fakeProMail = 'casavox.dev+pro' + this.timeStamp + '@gmail.com';
+    // Fake mails and phones number
     this.fakeNumber = '01' + this.timeStamp;
+    this.timeStamp = new Date().getTime();
+    this.fakeProMail = 'casavox.dev+pro' + this.timeStamp + '@gmail.com';
+    this.fakeFriendMail = 'casavox.dev+f' + this.timeStamp + '@gmail.com';
+    this.fakeMail = 'casavox.dev+reg' + this.timeStamp + '@gmail.com';
 };
 
 module.exports = InfoCustomer;

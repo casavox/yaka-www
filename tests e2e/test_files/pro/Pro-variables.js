@@ -18,7 +18,6 @@ var InfoPro = function () {
     this.timeStamp = new Date().getTime();
     this.fakeMail = 'casavox.dev+regPro' + this.timeStamp + '@gmail.com';
     this.fakeNumber = '01' + this.timeStamp;
-
 };
 
 module.exports = InfoPro;
