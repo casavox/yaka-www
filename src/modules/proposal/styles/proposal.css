@@ -55,15 +55,13 @@
 }
 
 .proposalUnreadMessagesIndicatorOnList {
+    display:inline-block;
     position: relative;
-    font-style: normal;
     background: #f44336;
-    padding: 1px 5px;
-    border-radius: 2px;
-    font-size: 10px;
-    line-height: 15px;
-    color: white;
-    left: 31px;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    left: 35px;
     top: -3px;
 }
 
