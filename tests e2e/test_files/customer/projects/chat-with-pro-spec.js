@@ -6,7 +6,7 @@ describe('This user', function () {
     browser.ignoreSynchronization = true;
 
 
-    it('should modify one project', function () {
+    it('should send to pro a message', function () {
         console.log("(((***       chat-with-pro-spec.js       ***)))");
         console.log("- Discussion projet avec pro");
 

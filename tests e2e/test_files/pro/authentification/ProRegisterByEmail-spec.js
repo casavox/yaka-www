@@ -9,7 +9,7 @@ describe('Test Casavox', function () {
     browser.ignoreSynchronization = true;
 
 
-    it('should register customer by email', function () {
+    it('should register pro by email', function () {
         console.log("(((***       ProRegisterByEmail-spec.js       ***)))");
         console.log("* Début du test : inscription pro par email");
         browser.wait(loginPage.EC.elementToBeClickable(loginPage.goProSection), 5000).then(function () {

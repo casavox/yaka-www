@@ -9,7 +9,7 @@ describe('The user', function () {
     var infoPro = new InfoPro();
     browser.ignoreSynchronization = true;
 
-    it('should modify his profile', function () {
+    it('should modify his pro profile', function () {
             browser.wait(profilePage.EC.textToBePresentInElement(profilePage.nameHeader, infoPro.userFirstName), profilePage.waitHigh).then(function () {
                 profilePage.nameHeader.click();
                 browser.wait(profilePage.EC.elementToBeClickable(profilePage.profile), profilePage.waitMedium).then(function () {
@@ -91,11 +91,26 @@ describe('The user', function () {
 
             // Modification des domaines de compétence
             function changeSkill() {
-                profilePage.skillCategory.get(profilePage.n).click();
                 browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
-                    profilePage.updateActivitiesProfile.click();
-                    browser.sleep(1000);
+                    profilePage.closeAlertMsg.isDisplayed().then(function (displayed) {
+                        if (displayed) {
+                            profilePage.closeAlertMsg.click();
+                            profilePage.skillCategory.get(profilePage.n).click();
+                            browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
+                                profilePage.updateActivitiesProfile.click();
+                                browser.sleep(1000);
+                            });
+                        } else {
+                            profilePage.skillCategory.get(profilePage.n).click();
+                            browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
+                                profilePage.updateActivitiesProfile.click();
+                                browser.sleep(1000);
+                            });
+                        }
+                    });
+
                 });
+
             }
         }
     );

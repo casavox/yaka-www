@@ -6,7 +6,7 @@ describe('This pro', function () {
     browser.ignoreSynchronization = true;
 
 
-    it('should send a message to customer', function () {
+    it('should send to customer a message', function () {
         console.log("(((***       chat-with-cust-spec.js       ***)))");
         console.log("- Discussion projet avec client");
         browser.wait(projectPage.EC.presenceOf(projectPage.workList), 20000).then(function () {

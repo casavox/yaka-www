@@ -7,7 +7,7 @@ describe('The user', function () {
     var infoPro = new InfoPro();
     browser.ignoreSynchronization = true;
 
-    it('should modify his profile', function () {
+    it('should modify a devis', function () {
         browser.wait(profilePage.EC.elementToBeClickable(profilePage.menuDevis), profilePage.waitMedium).then(function() {
             profilePage.menuDevis.click();
         });

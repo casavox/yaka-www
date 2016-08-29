@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="Window" timestamp="2016-08-29T10:33:10" hostname="localhost" time="3.748" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="Window" name="should open" time="3.747" />
+ </testsuite>
+ <testsuite name="The user" timestamp="2016-08-29T10:33:13" hostname="localhost" time="2.376" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="2.376" />
+ </testsuite>
+ <testsuite name="User" timestamp="2016-08-29T10:33:16" hostname="localhost" time="2.187" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="2.187" />
+ </testsuite>
+ <testsuite name="The user" timestamp="2016-08-29T10:33:18" hostname="localhost" time="2.07" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="2.07" />
+ </testsuite>
+ <testsuite name="User" timestamp="2016-08-29T10:33:20" hostname="localhost" time="4.616" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="4.616" />
+ </testsuite>
+</testsuites>

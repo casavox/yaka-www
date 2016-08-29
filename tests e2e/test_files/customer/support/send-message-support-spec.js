@@ -6,7 +6,7 @@ describe('The user', function () {
     browser.ignoreSynchronization = true;
 
 
-    it('should publish a new project', function () {
+    it('should send to support a message', function () {
         console.log("(((***       send-message-support-spec.js       ***)))");
         console.log("- Début du test : Envoi de mail au support");
 

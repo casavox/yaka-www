@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="Window" timestamp="2016-08-29T10:41:15" hostname="localhost" time="3.625" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="Window" name="should open" time="3.622" />
+ </testsuite>
+ <testsuite name="The user" timestamp="2016-08-29T10:41:18" hostname="localhost" time="2.744" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="2.742" />
+ </testsuite>
+ <testsuite name="The user" timestamp="2016-08-29T10:41:21" hostname="localhost" time="12.014" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should publish a new project" time="12.014" />
+ </testsuite>
+ <testsuite name="This user" timestamp="2016-08-29T10:41:33" hostname="localhost" time="10.954" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="This user" name="should modify one project" time="10.953" />
+ </testsuite>
+ <testsuite name="This user" timestamp="2016-08-29T10:41:44" hostname="localhost" time="9.225" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="This user" name="should modify one project" time="9.225" />
+ </testsuite>
+ <testsuite name="User" timestamp="2016-08-29T10:41:53" hostname="localhost" time="2.663" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="2.663" />
+ </testsuite>
+ <testsuite name="The user" timestamp="2016-08-29T10:41:56" hostname="localhost" time="2.009" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="2.008" />
+ </testsuite>
+ <testsuite name="This pro" timestamp="2016-08-29T10:41:58" hostname="localhost" time="10.208" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="This pro" name="should send a message to customer" time="10.208" />
+ </testsuite>
+ <testsuite name="User" timestamp="2016-08-29T10:42:08" hostname="localhost" time="3.638" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="3.638" />
+ </testsuite>
+</testsuites>

@@ -2,6 +2,7 @@ var InfoPro = function () {
 
     // Informations du Pro à connecter
     this.userFirstName = "Dominique";
+    this.userLastName = "Leduc";
     this.userLogin = 'dominique@victorleduc.net';
     this.userPwd = 'blabla';
 
@@ -13,18 +14,10 @@ var InfoPro = function () {
     this.city = "Paris";
     this.phoneNumber = "0987654321";
 
-    //------------ Génération aléatoire d'une adresse Mail
-    this.mailNumber = function () {
-        return Math.floor((Math.random() * (20 - 1) + 1) + (Math.random() * (20 - 1) + 1)+ (Math.random() * (20 - 1) + 1));
-    };
-    this.fakeMail = 'casavox.dev+regPro' + this.mailNumber() + '@gmail.com';
-
-
-    //------------ Génération aléatoire d'un numéro de téléphone
-    this.mailNumberp = function () {
-        return (Math.random() * (20 - 1));
-    }
-    this.fakeNumber = '01' + (Math.floor(this.mailNumberp() * 100000000));
+    // Fake mail and phone
+    this.timeStamp = new Date().getTime();
+    this.fakeMail = 'casavox.dev+regPro' + this.timeStamp + '@gmail.com';
+    this.fakeNumber = '01' + this.timeStamp;
 
 };
 

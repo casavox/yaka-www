@@ -8,7 +8,7 @@ describe('The user', function () {
     var infoCustomer = new InfoCustomer();
     browser.ignoreSynchronization = true;
 
-    it('should modify his profile', function () {
+    it('should modify his pro profile', function () {
         browser.wait(profilePage.EC.textToBePresentInElement(profilePage.nameHeader, infoCustomer.firstName), profilePage.waitHigh).then(function () {
             profilePage.nameHeader.click();
             browser.wait(profilePage.EC.elementToBeClickable(profilePage.profile), profilePage.waitMedium).then(function () {

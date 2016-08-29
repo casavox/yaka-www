@@ -34,7 +34,7 @@ describe('User', function () {
                 var title = tempTitle[0];
                 console.log("[[ Page actuelle : " + title + " ]]");
                 if (title == "CasaVox") {
-                    console.log("*** utilisateur " + infoPro.firstName + " " + infoPro.lastName + " déconnecté OK");
+                    console.log("*** utilisateur " + infoPro.userFirstName + " " + infoPro.userLastName + " déconnecté OK");
                     console.log("*** Fin du Test côté professionnel, résultat : OK");
                 } else {
                     console.log("!!! ERROR !!! Utilisateur non déconnecté !!!")
