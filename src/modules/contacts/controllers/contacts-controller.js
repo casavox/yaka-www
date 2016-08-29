@@ -169,6 +169,7 @@
         vm.invitCustomer = "";
 
         vm.sendCustomerInvit = function () {
+            vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
             var invits = vm.invitCustomer.split(",");
             for (var i = 0; i < invits.length; i++) {
                 invits[i] = invits[i].trim();

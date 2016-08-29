@@ -18,13 +18,6 @@
 
         var vm = this;
 
-        vm.getMenuItemClass = function (state) {
-            if (state == "pro-proposals") {
-                return "active-menu";
-            }
-            return "";
-        };
-
         networkService.proProposalsGET('proposal_sent', function (res) {
             vm.proposals = res;
         }, function () {

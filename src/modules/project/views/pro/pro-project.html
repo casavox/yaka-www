@@ -82,8 +82,8 @@
                     </div>
                     <div class="topViewProfileContent">
                         Nous n'avons pas pu vérifier votre profil
-                        <div data-ng-if="vm.profile.refusedReason != ''">
-                            Raison : {{vm.profile.refusedReason}}
+                        <div data-ng-if="app.getUser().professional.refusedReason">
+                            Raison : {{app.getUser().professional.refusedReason}}
                         </div>
                         <div>
                             Vous pourrez répondre aux offres une fois votre profil validé.
@@ -172,7 +172,7 @@
                                     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
                                                         dragging="false">
                                         <ui-gmap-circle
-                                            data-ng-if="vm.proposalTmp.status != 'SELECTED' && vm.proposalTmp.status != 'RATE_PRO' && vm.proposalTmp.status != 'COMPLETED'"
+                                            data-ng-if="!vm.project.address.address"
                                             center="vm.circle.center" stroke="vm.circle.stroke"
                                             fill="vm.circle.fill" radius="vm.circle.radius"
                                             bounds="vm.circle.bounds"
@@ -180,9 +180,8 @@
                                             draggable="false" clickable="true" control="vm.circle.control"
                                             events="vm.circle.events"></ui-gmap-circle>
                                         <ui-gmap-marker
-                                            data-ng-if="vm.proposalTmp.status == 'SELECTED' || vm.proposalTmp.status == 'RATE_PRO' || vm.proposalTmp.status == 'COMPLETED'"
-                                            idKey='1' coords='vm.markerCoords'
-                                            visible="vm.marker.visible"></ui-gmap-marker>
+                                            data-ng-if="vm.project.address.address" idKey='1'
+                                            coords='vm.marker.coords' options="vm.marker.options"></ui-gmap-marker>
                                     </ui-gmap-google-map>
                                 </div>
                             </div>
@@ -275,12 +274,8 @@
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
                                         <dd>
-                                            <div data-ng-switch on="vm.proposal.status">
-                                                <span data-ng-switch-when="SELECTED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                <span data-ng-switch-when="RATE_PRO" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                <span data-ng-switch-when="COMPLETED" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
-                                                <span data-ng-switch-default class="whiteSpacePre">{{vm.projectTmp.address.postalCode}} {{vm.projectTmp.address.locality}}</span>
-                                            </div>
+                                            <span data-ng-if="vm.projectTmp.address.address" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                            <span data-ng-if="!vm.projectTmp.address.address" class="whiteSpacePre">{{vm.projectTmp.address.postalCode}} {{vm.projectTmp.address.locality}}</span>
                                         </dd>
                                     </dl>
                                 </div>

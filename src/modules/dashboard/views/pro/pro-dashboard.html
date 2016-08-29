@@ -157,7 +157,8 @@
                             <button
                                 class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 btn btn-default waves-effect c-orange m-t-10"
                                 data-ui-sref="findjobs">
-                                Voir toutes les offres
+                                Voir les {{vm.data.availableLeadsNumber}} offres dispo<span
+                                class="hidden-xs">nibles</span>
                             </button>
                             <button
                                 class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-lightblue m-t-10"
@@ -319,8 +320,8 @@
                             </label>
                         </div>
                     </div>
-                    <div class="c-lightblue pointer t-right m-r-15 p-b-5" data-ui-sref="help({'card': 1})">
-                        Aide
+                    <div class="c-lightblue t-right m-r-15 p-b-5">
+                        <span class="pointer" data-ui-sref="help({'card': 1})">Aide</span>
                     </div>
                 </div>
 

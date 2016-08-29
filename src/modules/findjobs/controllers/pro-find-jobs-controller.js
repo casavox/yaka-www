@@ -265,6 +265,7 @@
             };
             vm.mapOptions = {
                 minZoom: 10,
+                maxZoom: 14,
                 zoomControlOptions: {
                     style: google.maps.ZoomControlStyle.DEFAULT,
                     position: google.maps.ControlPosition.TOP_RIGHT

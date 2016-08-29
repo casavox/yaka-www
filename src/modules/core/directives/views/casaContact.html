@@ -26,7 +26,7 @@
 <!-- Not in contacts and not invited -->
 <span class="dropdown" uib-dropdown="" data-ng-if="!user.inContacts && !user.isInvited && invite && user.id">
     <span uib-dropdown-toggle>
-        <span class="c-green pointer">
+        <span class="pointer" data-ng-class="{'c-green': !iconColor, iconColor: iconColor}">
             Inviter
         </span>
         <i class="zmdi zmdi-accounts-add pointer" data-ng-class="{'c-green': !iconColor, iconColor: iconColor}"></i>

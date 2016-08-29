@@ -20,10 +20,6 @@
         vm.showChat = false;
         vm.getWhen = getWhen;
         vm.selectImagePreview = selectImagePreview;
-        vm.marker = {
-            coords: {},
-            visible: false
-        };
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
         vm.getTags = getTags;
@@ -72,7 +68,6 @@
                     weight: 1,
                     opacity: 1
                 },
-                visible: false,
                 control: {},
                 bounds: {}
             };
@@ -214,20 +209,20 @@
                     latitude: vm.project.address.latitude,
                     longitude: vm.project.address.longitude
                 };
-                if (vm.proposal.status == 'SELECTED' || vm.proposal.status == 'RATE_PRO' || vm.proposal.status == 'COMPLETED') {
-                    $scope.map.zoom = 15;
-                    vm.markerCoords = {
+                $scope.map.zoom = 15;
+                vm.marker = {
+                    coords: {
                         latitude: vm.project.address.latitude,
                         longitude: vm.project.address.longitude
-                    };
-                } else {
-                    $scope.map.zoom = 14;
-                    vm.circle.center = {
-                        latitude: vm.project.address.latitude,
-                        longitude: vm.project.address.longitude
-                    };
-                    vm.circle.visible = true;
-                }
+                    },
+                    options: {
+                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                    }
+                };
+                vm.circle.center = {
+                    latitude: vm.project.address.latitude,
+                    longitude: vm.project.address.longitude
+                };
             }
 
             if (vm.project.address.address) {
