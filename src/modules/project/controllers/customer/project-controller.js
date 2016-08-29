@@ -417,6 +417,11 @@
                 };
             }
             vm.project = res;
+
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
+
             $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
