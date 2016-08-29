@@ -22,7 +22,6 @@
         vm.imageFlag = vm.whereFlag = vm.whenFlag = vm.dateFlag = vm.imagePreviewFlag = vm.dateSelected = false;
         vm.project = {};
         vm.projectTmp = {};
-        vm.markerCoords = {};
         vm.dt = new Date();
         vm.default = angular.copy(vm.dt);
         vm.minDate = new Date();
@@ -311,18 +310,18 @@
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            networkService.adminProjectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
+            networkService.adminProjectPUT(vm.projectTmp, succesProjectPUT, errorProjectPUT);
         };
 
-        function succesProfilePUT(res) {
+        function succesProjectPUT(res) {
             vm.cancel();
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.adminProfileGET(succesProfileGET, errorProfileGET);
+            networkService.adminProfileGET(vm.project.user.id, succesProfileGET, errorProfileGET);
         }
 
-        function errorProfilePUT() {
+        function errorProjectPUT() {
             vm.cancel();
             alertMsg.send("Impossible de modifier le projet, réessayez puis contactez le support si besoin", "danger");
         }
@@ -406,12 +405,22 @@
                     longitude: res.address.longitude
                 };
                 $scope.map.zoom = 15;
-                vm.markerCoords = {
-                    latitude: res.address.latitude,
-                    longitude: res.address.longitude
-                }
+                vm.marker = {
+                    coords: {
+                        latitude: res.address.latitude,
+                        longitude: res.address.longitude
+                    },
+                    options: {
+                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                    }
+                };
             }
             vm.project = res;
+
+            if (vm.project.address.address) {
+                vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
+            }
+
             $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
