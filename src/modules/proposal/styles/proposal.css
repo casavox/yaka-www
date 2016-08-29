@@ -85,7 +85,6 @@
 }
 
 .scrollViewChatProposal {
-    overflow-y: scroll;
     position: absolute;
     bottom: 0;
     left: 250px;
