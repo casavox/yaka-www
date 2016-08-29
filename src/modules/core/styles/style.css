@@ -5141,6 +5141,18 @@ div.recaptcha.mobile > div {
     font-size: 20px !important;
 }
 
+.f-s-27 {
+    font-size: 27px !important;
+}
+
+.f-w-100 {
+    font-weight: 100 !important;
+}
+
+.l-h-100pc {
+    line-height: 100% !important;
+}
+
 .v-align-bottom {
     vertical-align: bottom !important;
 }
