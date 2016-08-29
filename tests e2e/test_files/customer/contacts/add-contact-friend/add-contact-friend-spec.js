@@ -33,9 +33,6 @@ describe('This test', function () {
                 });
             });
         }
-
-
-        // Vérification de la validation de l'envoi de l'email
         function checkAlert() {
             browser.wait(AFCPage.EC.visibilityOf(AFCPage.bottomAlert), AFCPage.waitHigh).then(function () {
                 AFCPage.bottomAlert.getText().then(function (result) {

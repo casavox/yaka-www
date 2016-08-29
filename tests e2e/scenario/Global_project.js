@@ -23,6 +23,12 @@ exports.config = {
 
 
     onPrepare: function () {
+        var jasmineReporters = require('jasmine-reporters');
+        jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
+            consolidateAll: true,
+            savePath: '../logs',
+            filePrefix: 'GLOBAL_PROJECT_LOG'
+        }));
         setTimeout(function () {
             browser.driver.executeScript(function () {
                 return {
