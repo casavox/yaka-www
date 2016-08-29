@@ -14,37 +14,39 @@ describe('This user', function () {
                     if (displayed) {
                         projectPage.selectProInList.click();
                         projectPage.recommendProject.click();
+                        browser.sleep(5000);
                     } else {
                         projectPage.addAPro.click();
                         fillProInfos();
+                        browser.sleep(5000);
                     }
                 });
             });
         });
 
         function fillProInfos() {
-            browser.wait(APCPage.EC.elementToBeClickable(APCPage.enterProFirstName), APCPage.waitHigh).then(function () {
-                APCPage.enterProFirstName.sendKeys(infoCustomer.ProfirstName);
-                APCPage.enterProLastName.sendKeys(infoCustomer.ProlastName);
-                APCPage.enterProPhone.sendKeys(infoCustomer.ProphoneNumber);
-                APCPage.enterProEmail.sendKeys(infoCustomer.fakeProMail);
-                APCPage.enterProAddress.sendKeys(infoCustomer.Procity);
+            browser.wait(projectPage.EC.elementToBeClickable(projectPage.enterProFirstName), projectPage.waitHigh).then(function () {
+                projectPage.enterProFirstName.sendKeys(infoCustomer.ProfirstName);
+                projectPage.enterProLastName.sendKeys(infoCustomer.ProlastName);
+                projectPage.enterProPhone.sendKeys(infoCustomer.ProphoneNumber);
+                projectPage.enterProEmail.sendKeys(infoCustomer.fakeProMail);
+                projectPage.enterProAddress.sendKeys(infoCustomer.Procity);
                 browser.sleep(200).then(function () {
-                    APCPage.enterProAddress.sendKeys(protractor.Key.ARROW_DOWN);
-                    browser.wait(APCPage.EC.elementToBeClickable(APCPage.enterProAddress), APCPage.waitMedium).then(function () {
-                        APCPage.enterProAddress.sendKeys(protractor.Key.TAB);
+                    projectPage.enterProAddress.sendKeys(protractor.Key.ARROW_DOWN);
+                    browser.wait(projectPage.EC.elementToBeClickable(projectPage.enterProAddress), projectPage.waitMedium).then(function () {
+                        projectPage.enterProAddress.sendKeys(protractor.Key.TAB);
                     });
                 });
 
             });
-            browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProRelation), APCPage.waitHigh).then(function () {
-                APCPage.selectProRelation.click();
-                browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
-                    APCPage.selectProDomain.click();
-                    APCPage.selectProOneDomain.click();
-                    browser.wait(APCPage.EC.elementToBeClickable(APCPage.selectProDomain), APCPage.waitHigh).then(function () {
-                        APCPage.selectProDomain.click().then(function() {
-                            APCPage.sendEmailToPro.click();
+            browser.wait(projectPage.EC.elementToBeClickable(projectPage.selectProRelation), projectPage.waitHigh).then(function () {
+                projectPage.selectProRelation.click();
+                browser.wait(projectPage.EC.elementToBeClickable(projectPage.selectProDomain), projectPage.waitHigh).then(function () {
+                    projectPage.selectProDomain.click();
+                    projectPage.selectProOneDomain.click();
+                    browser.wait(projectPage.EC.elementToBeClickable(projectPage.selectProDomain), projectPage.waitHigh).then(function () {
+                        projectPage.selectProDomain.click().then(function() {
+                            projectPage.sendEmailToPro.click();
                         });
                     });
                 });

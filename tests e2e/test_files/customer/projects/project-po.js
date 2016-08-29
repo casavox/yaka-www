@@ -62,8 +62,8 @@ var ProjectPage = function() {
     // Recommend pro
     this.recommendList = element.all(by.repeater('project in vm.projectsToRecommend')).get(0);
     this.selectProInList = element.all(by.repeater('professional in vm.professionals')).get(0);
-    this.addAPro = element(by.css('[vm.openProPopup()]'));
-    this.recommendProject = element(by.css('[vm.recommendPro(vm.selectedProfessional.id)]'));
+    this.addAPro = element(by.css('[data-ng-click="vm.openProPopup()"]'));
+    this.recommendProject = element(by.css('[data-ng-click="vm.recommendPro(vm.selectedProfessional.id)"]'));
 
     // Renseignement ds informations concernant le pro
     this.enterProFirstName = element(by.model('vm.invitPro.firstName'));
