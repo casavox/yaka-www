@@ -251,6 +251,14 @@ angular.module('Yaka')
                     }, function () {
                     });
                 }
+
+                scope.getPlaceholder = function () {
+                    if (scope.disableSending) {
+                        return 'Cette discussion est close';
+                    } else {
+                        return 'Entrez votre message (chat privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName + ')';
+                    }
+                }
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"
         }

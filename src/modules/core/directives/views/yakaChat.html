@@ -95,7 +95,7 @@
         </button>
 
         <textarea data-ng-model="newMessage.text"
-                  placeholder="{{disableSending ? 'Cette discussion est close' : 'Entrez votre message'}}"
+                  data-ng-placeholder="getPlaceholder()"
                   data-ng-disabled="disableSending"
                   data-ng-class="{'pointer-not-allowed': disableSending}"></textarea>
 

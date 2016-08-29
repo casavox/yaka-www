@@ -278,6 +278,11 @@
     width: 10px;
 }
 
+.unreadMessagesIndicator.proProposalList {
+    left: 55px !important;
+    top: 26px !important;
+}
+
 .proposalProName {
     background: #03a9f4 !important;
 }
