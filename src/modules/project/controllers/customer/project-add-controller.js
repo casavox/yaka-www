@@ -606,6 +606,13 @@
             $('html').trigger('click');
         };
 
+        vm.getStringLength = function (str) {
+            if (!str) {
+                return 0;
+            }
+            return str.length;
+        };
+
         vm.removeImage = function (imageIndex) {
             swal({
                 title: "Êtes-vous sûr ?",
