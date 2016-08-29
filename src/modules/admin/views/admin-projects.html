@@ -64,14 +64,15 @@
 
                 <tr data-ng-repeat="project in $data | filter:search:vm.filterAllowNullValue" class="t-center">
 
-                    <td data-title="'Titre'" class="pointer" data-sortable="'title'" data-ui-sref="admin-project-details({projectId: project.id})">
+                    <td data-title="'Titre'" class="pointer c-blue" data-sortable="'title'" data-ui-sref="admin-project-details({projectId: project.id})">
                         {{ project.title }}
                     </td>
                     <td data-title="'Statut'" data-sortable="'frenchStatus'">
                         {{ project.frenchStatus }}
                     </td>
                     <td data-title="'Type'" data-sortable="'mainActivity.code'">
-                        {{ project.mainActivity.code }}
+                        <div class="v-icon v-icon-{{project.mainActivity.code}} center">
+                        </div>
                     </td>
                     <td data-title="'Créé le'" data-sortable="'published'">
                         <span am-time-ago="project.published"></span>

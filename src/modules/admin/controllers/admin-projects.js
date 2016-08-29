@@ -35,6 +35,7 @@
 
                 angular.forEach(vm.projectsList, function (project) {
                     project.frenchStatus = $filter('casaProjectStatus')(project.status);
+                    project.codeStatus = $filter('casaProjectType')(project.mainActivity.code);
                     if (project.address.postalCode == undefined) {
                         project.address.postalCode = "";
                     }
@@ -60,9 +61,9 @@
                     if ($.inArray(project.frenchStatus, vm.possibleStatus) == -1) {
                         vm.possibleStatus.push(project.frenchStatus);
                     }
-                    if (project.mainActivity) {
-                        if ($.inArray(project.mainActivity.code, vm.possibleMainActivity) == -1) {
-                            vm.possibleMainActivity.push(project.mainActivity.code);
+                    if (project.codeStatus) {
+                        if ($.inArray(project.codeStatus, vm.possibleMainActivity) == -1) {
+                            vm.possibleMainActivity.push(project.codeStatus);
                         }
                     }
                     if ($.inArray(project.recoProposalsNbr, vm.possibleRecoNbr) == -1) {
