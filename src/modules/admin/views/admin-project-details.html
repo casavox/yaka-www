@@ -443,7 +443,7 @@
 
                 <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
 
-                    <td data-title="'Nom'" class="pointer c-blue" data-sortable="'name'">
+                    <td data-title="'Nom'" class="pointer c-blue" data-sortable="'name'" data-ui-sref="admin-pro-details({professionnalId: pro.id})">
                          {{ pro.name }}
                     </td>
                     <td data-title="'Relation'" data-sortable="'user.contactRelation'">
