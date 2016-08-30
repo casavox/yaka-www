@@ -545,10 +545,6 @@
             return (vm.pwd1 == vm.pwd2);
         };
 
-        vm.showButtonsWorkArea = function () {
-            return vm.mapEditing;
-        };
-
         vm.showButtonsPortfolio = function () {
             if (!vm.profile) {
                 return false;
@@ -781,9 +777,10 @@
                         longitude: 2.4623584
                     },
                     bounds: {},
-                    zoom: 6,
+                    zoom: 9,
                     events: {
                         "idle": function () {
+                            console.log("idle");
                             if (vm.mapEditing) {
                                 setTimeout(function () {
                                     var circleRadius = (getMinimumWidthOrHeight() / 2) * 0.9;
@@ -799,6 +796,8 @@
                                     vm.workArea.neLatitude = bnds.getNorthEast().lat();
                                     vm.workArea.neLongitude = bnds.getNorthEast().lng();
                                     vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
+                                    console.log("map zoom " + vm.map.zoom);
+
                                 }, 0);
                             }
                         },
@@ -852,11 +851,47 @@
                         ]
                     }
                 };
+
+                var firstZoomChange = 2;
+
                 $scope.$watch(
                     function () {
                         return vm.map.zoom;
                     },
                     function (newValue, oldValue) {
+                        if (newValue != oldValue) {
+                            if (firstZoomChange > 0) {
+                                firstZoomChange--;
+                                console.log("111");
+                            } else {
+                                vm.mapEditing = true;
+                                console.log("222");
+
+                                    setTimeout(function () {
+                                        var circleRadius = (getMinimumWidthOrHeight() / 2) * 0.9;
+                                        vm.circle.radius = circleRadius;
+                                        vm.circle.control.getCircle().setCenter(new google.maps.LatLng(vm.map.center.latitude, vm.map.center.longitude));
+                                        vm.circle.control.getCircle().setRadius(circleRadius);
+                                        vm.workArea.radius = circleRadius;
+                                        vm.workArea.latitude = vm.map.center.latitude;
+                                        vm.workArea.longitude = vm.map.center.longitude;
+                                        var bnds = vm.circle.control.getCircle().getBounds();
+                                        vm.workArea.swLatitude = bnds.getSouthWest().lat();
+                                        vm.workArea.swLongitude = bnds.getSouthWest().lng();
+                                        vm.workArea.neLatitude = bnds.getNorthEast().lat();
+                                        vm.workArea.neLongitude = bnds.getNorthEast().lng();
+                                        vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
+                                        console.log("map zoom " + vm.map.zoom);
+
+                                    }, 0);
+
+
+                            }
+                            console.log("333");
+                        } else {
+                            console.log("444");
+                        }
+                        console.log("old " + oldValue + " new " + newValue);
                         if (vm.mapEditing) {
                             if (newValue < 9) {
                                 vm.mapShowMinimumZoomMessage = true;

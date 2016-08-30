@@ -393,12 +393,12 @@
             <div class="profile-box-footer m-t-15 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateWorkArea()" data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
+                        data-ng-click="vm.updateWorkArea()" data-ng-disabled="vm.updating || !(vm.mapEditing && !vm.mapShowMinimumZoomMessage)">
                     Enregistrer
                 </button>
-                <button class="btn btn-link waves-effect" data-ng-disabled="vm.updating || !vm.showButtonsWorkArea()">
+                <!-- <button class="btn btn-link waves-effect" data-ng-disabled="vm.updating || !vm.mapEditing" data-ng-click="vm.cancelWorkArea()">
                     Annuler
-                </button>
+                </button> -->
             </div>
         </div>
     </div>
