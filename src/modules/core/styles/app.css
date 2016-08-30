@@ -9248,6 +9248,10 @@ a.waves-effect .waves-ripple {
  * Generate Margin Class
  * margin, margin-top, margin-bottom, margin-left, margin-right
  */
+.m-l-m-15 {
+    margin-left: -15px !important;
+}
+
 .m-0 {
     margin: 0px !important;
 }
@@ -13937,6 +13941,16 @@ html:not(.ie9) .select.fg-line:before {
 
 .fg-float .form-control::-webkit-input-placeholder {
     color: #ffffff;
+}
+
+.fg-label-style {
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    color: #959595 !important;
+    pointer-events: none;
+    z-index: 0;
+    left: 0 !important;
+    white-space: nowrap !important;
 }
 
 .fg-float .fg-label {

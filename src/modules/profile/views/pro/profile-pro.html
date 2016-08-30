@@ -35,8 +35,7 @@
                     </div>
                     <div class="topViewProfileContent">
                         Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs obligatoires (en
-                        rouge)
-                        afin de pouvoir commencer à répondre aux offres.
+                        rouge) afin de pouvoir répondre aux offres.
                     </div>
                 </div>
 
@@ -67,9 +66,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-check"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Votre profil est validé. Vous pouvez répondre aux offres.<br/>
-                        Pensez à compléter entièrement votre profil, cela augmente votre visibilité et vos chances
-                        d'être sélectionné.
+                        <b>Votre profil est validé. Vous pouvez répondre aux offres.</b><br/>
+                        <span class="c-black">Pensez à compléter entièrement votre profil, cela augmente votre visibilité et vos chances d'être sélectionné.</span>
                     </div>
                 </div>
 
@@ -152,13 +150,17 @@
                 <small class="c-red" data-ng-if="!vm.infosCardIsComplete()">
                     Informations en rouge obligatoires
                 </small>
+                <small class="c-black" data-ng-if="!vm.profileInfo.user.avatar.cloudinaryPublicId">
+                    <b>Augmentez votre visibilité, ajouter un Logo/Avatar !</b>
+                </small>
             </h2>
         </div>
         <div class="col-xs-12 card-body m-t-30">
             <form name="profileForm">
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-3">
-                        <div class="img-profile img-profile-pro">
+                        <label class="fg-label-style m-b-0 p-b-0 m-l-m-15">Logo Avatar</label>
+                        <div class=" m-t-0 p-t-0 img-profile img-profile-pro">
                             <yaka-avatar size="65" user="vm.profileInfo.user"></yaka-avatar>
 
                             <button
@@ -694,7 +696,7 @@
                    data-ng-if="vm.portfolioCardIsComplete()"></i>
                 Portfolio
                 <small class="c-gray" data-ng-if="!vm.portfolioCardIsComplete()">
-                    Améliorez votre visibilité en ajoutant des photos de vos anciens chantiers
+                    Améliorez votre visibilité en ajoutant des photos de vos réalisations
                 </small>
             </h2>
         </div>
@@ -702,7 +704,7 @@
 
             <p data-ng-show="!vm.portfolio || vm.portfolio.length == 0" class="profile-area-header-info">
                 <b>Votre portfolio est vide !</b>
-                <br>Ajoutez des photos mettant en avant vos précédentes réalisations. Ces photos seront visibles par
+                <br>Ajoutez des photos mettant en avant votre savoir faire. Ces photos seront visibles par
                 tous vos clients et prospects (assurez-vous d'avoir l'autorisation de partager ces photos).
             </p>
             <p data-ng-show="vm.portfolio && vm.portfolio.length > 0" class="profile-area-header-info">

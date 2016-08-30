@@ -35,7 +35,7 @@
 
         vm.getHumanReadableMenuItem = function () {
             if (vm.currentMenuItem == vm.MENU_ALL) {
-                return "Mes Contacts";
+                return "Mes Contacts - " + (vm.contacts ? vm.contacts.length : 0);
             } else if (vm.currentMenuItem == vm.MENU_PROS) {
                 if ($localStorage.user && $localStorage.user.professional) {
                     return "Collègues";
