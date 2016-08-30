@@ -336,10 +336,12 @@
                 <div class="col-xs-12 no-padding profile-box-footer m-b-20">
 
                     <button class="btn btn-info bgm-lightblue waves-effect"
-                            data-ng-click="vm.profileSaveButtonClicked()" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                            data-ng-click="vm.profileSaveButtonClicked()"
+                            data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                         Enregistrer
                     </button>
-                    <button class="btn btn-link waves-effect" data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                    <button class="btn btn-link waves-effect"
+                            data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
                         Annuler
                     </button>
 
@@ -363,7 +365,8 @@
 
             <p class="profile-area-header-info">
                 La carte des offres est positionnée par défaut sur la zone en bleu ci-dessous.
-                <br>Déplacez-vous et zoomez dans cette carte afin de modifier votre zone principale d'activité (60Km max).
+                <br>Déplacez-vous et zoomez dans cette carte afin de modifier votre zone principale d'activité (60Km
+                max).
             </p>
 
             <div id="map_canvas">
@@ -436,7 +439,8 @@
             <div class="profile-box-footer mt-12 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.changePassword()" data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                        data-ng-click="vm.changePassword()"
+                        data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                     Enregistrer
                 </button>
 
@@ -611,11 +615,13 @@
             <div class="profile-box-footer m-t-10 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.showVerificationsEditPopup = true" data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
+                        data-ng-click="vm.showVerificationsEditPopup = true"
+                        data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
                     Enregistrer
                 </button>
                 <button class="btn btn-link waves-effect"
-                        data-ng-click="vm.cancelVerifications()" data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
+                        data-ng-click="vm.cancelVerifications()"
+                        data-ng-disabled="vm.updating || !vm.showButtonsVerifications()">
                     Annuler
                 </button>
 
@@ -750,12 +756,12 @@
 
                         <div class="dropdown-menu stop-propagate">
                             <textarea placeholder="Ajouter un commentaire"
-                                data-ng-model="image.description"
-                                data-ng-maxlength="140"
-                                maxlength="140"
-                                data-auto-size
-                                data-ng-trim="false"
-                                data-ng-change="vm.descriptionChanged(image)"></textarea>
+                                      data-ng-model="image.description"
+                                      data-ng-maxlength="140"
+                                      maxlength="140"
+                                      data-auto-size
+                                      data-ng-trim="false"
+                                      data-ng-change="vm.descriptionChanged(image)"></textarea>
 
                             <div class="descriptionCounter">
                                 {{vm.getStringLength(image.description)}} / 140 caractères
