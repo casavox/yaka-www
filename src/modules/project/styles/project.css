@@ -83,16 +83,23 @@
     width: 100% !important;
 }
 
+@media (min-width: 400px) {
+
+    .pmbb-body {
+        padding-left: 30px !important;
+    }
+}
+
 @media (max-width: 767px) {
 
     .proposalMainView.proMakeOffer .proAvatarProposalImage {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
     }
 
     .proposalMainView.proMakeOffer .yakaAvatarInitialsProposal {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
         line-height: 43px;
         font-size: 17px;
     }

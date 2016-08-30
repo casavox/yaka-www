@@ -121,14 +121,14 @@
                  class="profilePopupMessage">
                 Attention !<br>
                 Vous allez enregistrer des modifications sur des informations importantes de votre profil Pro.<br>
-                Si vous validez ces changements, l'équipe CasaVox vérifiera votre profil et si nécessaire il sera
-                temporairement invalidé, le cas échéant vous serez préalablement contacté.
+                Si vous validez ces changements, vous pourrez toujours répondre aux offres, l'équipe CasaVox vérifiera
+                votre profil et si nécessaire il sera temporairement invalidé, le cas échéant vous serez préalablement
+                contacté.
             </div>
             <div data-ng-show="vm.profile.status != 'VALIDATED' && vm.profile.status != 'COMPLETED' "
-                 class="profilePopupMessage">
-                Vous allez enregistrer des modifications sur des informations importantes de votre profil Pro.<br><br>
-                Après avoir validé ces changements, l'équipe CasaVox vérifiera si votre nouveau profil vous permet de
-                répondre aux offres, le cas échéant vous en serez notifié pas mail.
+                 class="profilePopupMessage text-justify">
+                Pour répondre aux offres et être recommandé vous devez à minima compléter toutes les informations obligatoires sur cet écran (en rouge).<br><br>
+                CasaVox vérifiera ensuite si vous pouvez répondre aux offres et être recommandé (vous en serez notifié pas mail).
             </div>
             <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.closePopup()">
                 ANNULER
@@ -150,7 +150,8 @@
                 <small class="c-red" data-ng-if="!vm.infosCardIsComplete()">
                     Informations en rouge obligatoires
                 </small>
-                <small class="c-black" data-ng-if="!vm.profileInfo.user.avatar.cloudinaryPublicId">
+                <small class="c-black"
+                       data-ng-if="vm.infosCardIsComplete() && !vm.profileInfo.user.avatar.cloudinaryPublicId">
                     <b>Augmentez votre visibilité, ajouter un Logo/Avatar !</b>
                 </small>
             </h2>
@@ -695,7 +696,7 @@
                 <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
                    data-ng-if="vm.portfolioCardIsComplete()"></i>
                 Portfolio
-                <small class="c-gray" data-ng-if="!vm.portfolioCardIsComplete()">
+                <small class="c-orange fw-bold" data-ng-if="!vm.portfolioCardIsComplete()">
                     Améliorez votre visibilité en ajoutant des photos de vos réalisations
                 </small>
             </h2>
