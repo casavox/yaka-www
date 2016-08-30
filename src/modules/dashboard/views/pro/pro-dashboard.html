@@ -88,42 +88,85 @@
             </div>
 
             <div class="col-xs-12 p-r-0 no-padding-mobile no-padding-medium visible-xs visible-sm">
-                <div class="card"
-                     data-ng-if="vm.pro && (vm.pro.status && (vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')) || !vm.pro.step2 || !vm.pro.step3">
-                    <div class="card-header dashboardCommunityHeader">
+                <div class="card">
+                    <div class="card-header dashboardCommunityHeader"
+                         data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                         <h2>
-                            Bien débuter sur CasaVox
+                            Mon statut PRO sur CasaVox
                             <small>
-                                Complétez ces 3 étapes
+                                Mon profil + Mon réseau + Mes offres
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="card-header dashboardCommunityHeader"
+                         data-ng-show="vm.pro && vm.pro.status && (vm.pro.status != 'WAITING' && vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')">
+                        <h2>
+                            <span class="c-red">Votre profil est incomplet</span>
+                            <small>
+                                Vous ne pouvez pas répondre aux offres
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="card-header dashboardCommunityHeader"
+                         data-ng-show="vm.pro && vm.pro.status && vm.pro.status == 'WAITING'">
+                        <h2>
+                            Profil en cours de validation
+                            <small class="c-orange">
+                                Vous ne pouvez pas encore répondre aux offres
                             </small>
                         </h2>
                     </div>
                     <div class="clearfix card-body p-l-15 p-r-15">
-                        <div class="checkbox m-b-15 cursor-default">
-                            <label class="cursor-default"
-                                   data-ng-class="{'c-lightblue': vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')}">
-                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
-                                       data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
-                                <i class="input-helper" class="cursor-default"></i>
-                                Compléter mon profil
+                        <div class="checkbox media p-t-15" data-ui-sref="pro-profile"
+                             data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                            <div class="media-body c-lightblue">
+                                <label>
+                                    <input type="checkbox" onclick="return false" value=""
+                                           data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                    <i class="input-helper"></i>
+                                    <span">Accéder à mon profil</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox media p-t-15" data-ui-sref="pro-profile"
+                             data-ng-show="vm.pro && vm.pro.status && (vm.pro.status != 'WAITING' && vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')">
+                            <div class="media-body c-red">
+                                <label>
+                                    <input type="checkbox" onclick="return false" value=""
+                                           data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                    <i class="input-helper"></i>
+                                    <span><strong class="underline">Voir et compléter mon profil</strong></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox media p-t-15" data-ui-sref="pro-profile"
+                             data-ng-show="vm.pro && vm.pro.status && vm.pro.status == 'WAITING'">
+                            <div class="media-body">
+                                <label>
+                                    <input type="checkbox" onclick="return false" value=""
+                                           data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                    <i class="input-helper"></i>
+                                    <span>Voir mon profil (validation en cours)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox" data-ui-sref="contacts">
+                            <label data-ng-class="{'c-lightblue': vm.pro.step2}">
+                                <input type="checkbox" onclick="return false" value="" data-ng-checked="vm.pro.step2">
+                                <i class="input-helper"></i>
+                                <span data-ng-show="!vm.pro.step2"
+                                      class="c-orange underline">Développer mon réseau</span>
+                                <span data-ng-show="vm.pro.step2">Développer mon réseau</span>
                             </label>
                         </div>
-                        <div class="checkbox m-b-15 cursor-default">
-                            <label class="cursor-default"
-                                   data-ng-class="{'c-lightblue': vm.pro.step2}">
-                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
-                                       data-ng-checked="vm.pro.step2">
-                                <i class="input-helper" class="cursor-default"></i>
-                                Développer mon réseau
-                            </label>
-                        </div>
-                        <div class="checkbox m-b-15 cursor-default">
-                            <label class="cursor-default"
-                                   data-ng-class="{'c-lightblue': vm.pro.step3}">
-                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
+                        <div class="checkbox m-b-15" data-ui-sref="findjobs">
+                            <label data-ng-class="{'c-lightblue': vm.pro.step3}">
+                                <input type="checkbox" onclick="return false" value=""
                                        data-ng-checked="vm.pro && vm.pro.step3">
-                                <i class="input-helper" class="cursor-default"></i>
-                                Répondre aux offres
+                                <i class="input-helper"></i>
+                                <span data-ng-show="!vm.pro.step3"
+                                      class="c-orange underline">Répondre aux offres</span>
+                                <span data-ng-show="vm.pro.step3">Répondre aux offres</span>
                             </label>
                         </div>
                     </div>
@@ -141,29 +184,38 @@
 
                 <div class="card clearfix" data-ng-if="vm.networkProjects && vm.networkProjects.length <= 0">
                     <div class="card-body card-padding t-center">
-                        <div>
-                            <b>Il n’y a pas d’offres disponible par votre réseau.</b>
-                        </div>
+                        <h4>Retrouvez ici les recommandations issues de votre <em>réseau CasaVox</em></h4>
 
                         <div class="m-t-20">
-                            Répondez aux offres disponibles et augmentez vos chances remporter de nouveaux chantiers.
+                            <b>Enfin un moyen fiable et efficace d'utiliser le bouche-à-oreille sur Internet!</b>
+                            <br>Soyez informé dès qu'un de vos anciens clients a un nouveau besoin
+                            <br>Vos clients, collègues et amis sont incités à vous recommander à leur entourage
+                            <br><br><b>Multiplier les opportunités de chantiers :
+                            <br>Invitez vos contacts à faire partie de votre <em>réseau CasaVox</em> !</b>
                         </div>
 
-                        <div class="m-t-20">
-                            Invitez des contacts à vous rejoindre sur CasaVox pour plus d’opportunités de business.
-                        </div>
-
-                        <div class="m-t-10 clearfix">
+                        <div class="m-t-10 clearfix" data-ng-show="vm.data.availableLeadsNumber <= 0">
                             <button
-                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 btn btn-default waves-effect c-orange m-t-10"
-                                data-ui-sref="findjobs">
-                                Voir les {{vm.data.availableLeadsNumber}} offres dispo<span
-                                class="hidden-xs">nibles</span>
-                            </button>
-                            <button
-                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-lightblue m-t-10"
+                                class="btn btn-default waves-effect c-lightblue m-t-10"
                                 data-ui-sref="contacts">
                                 Développer mon réseau
+                            </button>
+                        </div>
+                        <div class="m-t-10 clearfix" data-ng-show="vm.data.availableLeadsNumber >= 1">
+                            <button
+                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 btn btn-default waves-effect c-lightblue m-t-10"
+                                data-ui-sref="contacts">
+                                Développer mon réseau
+                            </button>
+                            <button data-ng-show="vm.data.availableLeadsNumber == 1"
+                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    data-ui-sref="findjobs">
+                                Voir les offres disponibles
+                            </button>
+                            <button data-ng-show="vm.data.availableLeadsNumber > 1"
+                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    data-ui-sref="findjobs">
+                                Voir les {{vm.data.availableLeadsNumber}} offres disponibles
                             </button>
                         </div>
                     </div>
@@ -281,42 +333,85 @@
             </div>
 
             <div class="col-md-4 p-r-0 no-padding-mobile no-padding-medium">
-                <div class="card hidden-xs hidden-sm"
-                     data-ng-if="vm.pro && (vm.pro.status && (vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')) || !vm.pro.step2 || !vm.pro.step3">
-                    <div class="card-header dashboardCommunityHeader">
+                <div class="card hidden-xs hidden-sm">
+                    <div class="card-header dashboardCommunityHeader"
+                         data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                         <h2>
-                            Bien débuter sur CasaVox
+                            Mon statut PRO sur CasaVox
                             <small>
-                                Complétez ces 3 étapes
+                                Mon profil + Mon réseau + Mes offres
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="card-header dashboardCommunityHeader"
+                         data-ng-show="vm.pro && vm.pro.status && (vm.pro.status != 'WAITING' && vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')">
+                        <h2>
+                            <span class="c-red">Votre profil est incomplet</span>
+                            <small>
+                                Vous ne pouvez pas répondre aux offres
+                            </small>
+                        </h2>
+                    </div>
+                    <div class="card-header dashboardCommunityHeader"
+                         data-ng-show="vm.pro && vm.pro.status && vm.pro.status == 'WAITING'">
+                        <h2>
+                            Profil en cours de validation
+                            <small class="c-orange">
+                                Vous ne pouvez pas encore répondre aux offres
                             </small>
                         </h2>
                     </div>
                     <div class="clearfix card-body p-l-15 p-r-15">
-                        <div class="checkbox m-b-15 cursor-default">
-                            <label class="cursor-default"
-                                   data-ng-class="{'c-lightblue': vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')}">
-                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
-                                       data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
-                                <i class="input-helper" class="cursor-default"></i>
-                                Compléter mon profil
+                        <div class="checkbox media p-t-15" data-ui-sref="pro-profile"
+                             data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                            <div class="media-body c-lightblue">
+                                <label>
+                                    <input type="checkbox" onclick="return false" value=""
+                                           data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                    <i class="input-helper"></i>
+                                    <span>Accéder à mon profil</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox media p-t-15" data-ui-sref="pro-profile"
+                             data-ng-show="vm.pro && vm.pro.status && (vm.pro.status != 'WAITING' && vm.pro.status != 'VALIDATED' && vm.pro.status != 'COMPLETED')">
+                            <div class="media-body c-red">
+                                <label>
+                                    <input type="checkbox" onclick="return false" value=""
+                                           data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                    <i class="input-helper"></i>
+                                    <span><strong class="underline">Voir et compléter mon profil</strong></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox media p-t-15" data-ui-sref="pro-profile"
+                             data-ng-show="vm.pro && vm.pro.status && vm.pro.status == 'WAITING'">
+                            <div class="media-body">
+                                <label>
+                                    <input type="checkbox" onclick="return false" value=""
+                                           data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
+                                    <i class="input-helper"></i>
+                                    <span>Voir mon profil (validation en cours)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="checkbox" data-ui-sref="contacts">
+                            <label data-ng-class="{'c-lightblue': vm.pro.step2}">
+                                <input type="checkbox" onclick="return false" value="" data-ng-checked="vm.pro.step2">
+                                <i class="input-helper"></i>
+                                <span data-ng-show="!vm.pro.step2"
+                                      class="c-orange underline">Développer mon réseau</span>
+                                <span data-ng-show="vm.pro.step2">Développer mon réseau</span>
                             </label>
                         </div>
-                        <div class="checkbox m-b-15 cursor-default">
-                            <label class="cursor-default"
-                                   data-ng-class="{'c-lightblue': vm.pro.step2}">
-                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
-                                       data-ng-checked="vm.pro.step2">
-                                <i class="input-helper" class="cursor-default"></i>
-                                Développer mon réseau
-                            </label>
-                        </div>
-                        <div class="checkbox m-b-15 cursor-default">
-                            <label class="cursor-default"
-                                   data-ng-class="{'c-lightblue': vm.pro.step3}">
-                                <input type="checkbox" onclick="return false" value="" class="cursor-default"
+                        <div class="checkbox m-b-15" data-ui-sref="findjobs">
+                            <label data-ng-class="{'c-lightblue': vm.pro.step3}">
+                                <input type="checkbox" onclick="return false" value=""
                                        data-ng-checked="vm.pro && vm.pro.step3">
-                                <i class="input-helper" class="cursor-default"></i>
-                                Répondre aux offres
+                                <i class="input-helper"></i>
+                                <span data-ng-show="!vm.pro.step3"
+                                      class="c-orange underline">Répondre aux offres</span>
+                                <span data-ng-show="vm.pro.step3">Répondre aux offres</span>
                             </label>
                         </div>
                     </div>
@@ -336,9 +431,14 @@
                     </div>
                     <div class="clearfix card-body p-l-15 p-r-15">
 
-                        <div class="p-15 m-t-10 m-b-10 t-center"
+                        <div class="text-justify"
                              data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length <= 0">
-                            Lorem Ipsum YakaClub
+                            <br>Retrouvez ici les offres ne correspondants pas à vos compétences, issues de votre
+                            entourage et de l'ensemble des clients CasoVox.
+                            <p>
+                                <br><b>S'aider entre collègues est toujours payant !</b>
+                                <br>Recommandez vos collègues en quelques clics, ils le sauront et feront pareil pour vous !
+                            </p>
                         </div>
 
                         <div
