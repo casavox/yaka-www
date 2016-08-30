@@ -75,7 +75,7 @@ var ProjectPage = function() {
     this.selectProDomain = element(by.css('[ng-click="toggleDropdown()"]'));
     this.selectProOneDomain = element(by.cssContainingText('label', "Serrurerie"));
     this.sendEmailToPro = element(by.id('invitButton'));
-
+    this.alertPopup = element(by.css('sweet-alert showSweetAlert visible'));
 
 
 

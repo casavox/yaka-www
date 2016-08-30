@@ -7,18 +7,20 @@ describe('This user', function () {
 
 
     it('should recommend a pro', function () {
-        browser.wait(projectPage.EC.elementToBeClickable(projectPage.recommendList), projectPage.waitMedium).then(function() {
+        browser.wait(projectPage.EC.elementToBeClickable(projectPage.recommendList), projectPage.waitMedium).then(function () {
             projectPage.recommendList.click();
-            browser.wait(projectPage.EC.elementToBeClickable(projectPage.addAPro), projectPage.waitMedium).then(function() {
+            browser.wait(projectPage.EC.elementToBeClickable(projectPage.addAPro), projectPage.waitMedium).then(function () {
                 projectPage.selectProInList.isDisplayed().then(function (displayed) {
                     if (displayed) {
                         projectPage.selectProInList.click();
                         projectPage.recommendProject.click();
-                        browser.sleep(5000);
+                        browser.sleep(3000);
+                        $('body').sendKeys(protractor.Key.ENTER);
                     } else {
                         projectPage.addAPro.click();
                         fillProInfos();
-                        browser.sleep(5000);
+                        browser.sleep(3000);
+                        $('body').sendKeys(protractor.Key.ENTER);
                     }
                 });
             });
@@ -45,7 +47,7 @@ describe('This user', function () {
                     projectPage.selectProDomain.click();
                     projectPage.selectProOneDomain.click();
                     browser.wait(projectPage.EC.elementToBeClickable(projectPage.selectProDomain), projectPage.waitHigh).then(function () {
-                        projectPage.selectProDomain.click().then(function() {
+                        projectPage.selectProDomain.click().then(function () {
                             projectPage.sendEmailToPro.click();
                         });
                     });
