@@ -880,9 +880,8 @@
                                     vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
                                 }, 0);
                             }
-                        } else {
                         }
-                        );
+                    });
                 vm.map.bounds = {
                     'southwest': {
                         'latitude': vm.workArea.swLatitude,

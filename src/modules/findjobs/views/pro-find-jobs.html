@@ -64,7 +64,11 @@
                                             {{lead.title}}
                                         </div>
                                         <div class="proDashboardListItemAddress c-black yakaEllipsis">
-                                            <casa-name-and-contact user="lead.user" client-blue="true"></casa-name-and-contact>
+                                            <casa-contact user="lead.user" client-blue="true"></casa-contact>
+                                            <span data-ng-if="lead.user.inContacts || lead.user.isInvited">
+                                                -
+                                            </span>
+                                            {{lead.user.firstName}} {{lead.user.lastName}}
                                             <span class="c-darkgray">- {{lead.address.locality}}</span>
                                         </div>
                                         <div class="proDashboardListItemChrono">
@@ -93,7 +97,11 @@
                             {{lead.title}}
                         </div>
                         <div class="proDashboardListItemAddress c-black yakaEllipsis">
-                            <casa-name-and-contact user="lead.user" client-blue="true"></casa-name-and-contact>
+                            <casa-contact user="lead.user" client-blue="true"></casa-contact>
+                            <span data-ng-if="lead.user.inContacts || lead.user.isInvited">
+                                -
+                            </span>
+                            {{lead.user.firstName}} {{lead.user.lastName}}
                             <span class="c-darkgray">- {{lead.address.locality}}</span>
                         </div>
                         <div class="proDashboardListItemChrono">
