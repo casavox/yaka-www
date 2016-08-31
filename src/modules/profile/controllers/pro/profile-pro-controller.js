@@ -134,6 +134,9 @@
             if (vm.activities.length > 0) {
                 vm.error.activities.flag = false;
                 vm.updating = true;
+                angular.forEach(vm.activities, function (result) {
+                });
+
                 networkService.proActivitiesPUT(vm.activities, function (res) {
                     vm.activities = res.activities;
                     vm.profile.activities = res.activities;
@@ -233,9 +236,9 @@
         vm.indexOfObject = function (a, token, tab) {
             var res = [];
 
-            if (angular.isDefined(tab)) {
+            if (tab) {
                 for (var i = 0; i < tab.length; i++) {
-                    if (tab[i][token] == a)
+                    if (tab[i] && tab[i][token] == a)
                         res.push(i);
                 }
             }
