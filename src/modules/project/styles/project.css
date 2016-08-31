@@ -320,6 +320,7 @@
     -ms-transition-delay: 0s;
     transition-delay: 0s;
 }
+
 .proposalUnreadMessagesIndicatorOnPro {
     display: inline-block;
     font-style: normal;
