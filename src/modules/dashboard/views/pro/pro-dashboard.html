@@ -213,7 +213,7 @@
                                 Voir les offres disponibles
                             </button>
                             <button data-ng-show="vm.data.availableLeadsNumber > 1"
-                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    class="yakaEllipsis col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
                                     data-ui-sref="findjobs">
                                 Voir les {{vm.data.availableLeadsNumber}} offres disponibles
                             </button>
@@ -228,9 +228,9 @@
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.recoProposals[0].firstRecommendation.recommender"
-                                         size="40"></yaka-avatar>
+                                         size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-10 proNetworkProjectTitle f-s-14">
+                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
                                 <span class="c-lightblue">
                                     {{project.recoProposals[0].firstRecommendation.recommender.firstName}}
                                     {{project.recoProposals[0].firstRecommendation.recommender.lastName}}
@@ -259,15 +259,15 @@
                                 <span am-time-ago="project.updated"></span>
                             </div>
 
-                            <div class="m-t-20 visible-xs"></div>
+                            <div class="m-t-10 visible-xs"></div>
                         </div>
                         <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="!project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.user"
-                                         size="40"></yaka-avatar>
+                                         size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-10 proNetworkProjectTitle f-s-14">
+                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
                                 <span class="c-lightblue">
                                     {{project.user.firstName}}
                                     {{project.user.lastName}}
@@ -275,8 +275,7 @@
                                 <span class="c-darkgray">
                                     (
                                     <casa-contact
-                                        user="project.user"
-                                        icon-color="c-darkgray" client-red="true"></casa-contact>
+                                        user="project.user" client-blue="true"></casa-contact>
                                     )
                                     a un nouveau chantier
                                 </span>
@@ -286,14 +285,15 @@
                                 <span am-time-ago="project.updated"></span>
                             </div>
 
-                            <div class="m-t-20 visible-xs"></div>
+                            <div class="m-t-10 visible-xs"></div>
                         </div>
-                        <div class="card-body card-padding p-t-10 p-b-10 p-relative">
-                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b">
+                        <div class="card-body p-t-10 p-b-10 p-l-15 p-r-10 p-relative">
+                            <div
+                                class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b m-t-5">
                             </div>
                             <i data-ng-if="project.unreadMessages" class="proNetworkProjectUnreadIndicator"></i>
 
-                            <div class="proNetworkProjectInfos d-i-b f-s-14">
+                            <div class="proNetworkProjectInfos d-i-b f-s-14 m-l-5">
                                 <div class="c-lightblue yakaEllipsis">
                                     {{project.title}}
                                 </div>
@@ -311,7 +311,7 @@
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
                                         <span data-ng-if="!project.address.address">
-                                            {{project.address.postalCode}} {{project.address.locality}}
+                                            {{project.address.locality}} {{project.address.postalCode}}
                                         </span>
                                         <span data-ng-if="project.address.address">
                                             {{project.address.address}}
@@ -443,24 +443,22 @@
                         </div>
 
                         <div
-                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-10"
+                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding"
                             data-ng-repeat="project in vm.projectsToRecommend"
                             data-ng-if="!vm.isInNetworkList(project)"
                             data-ui-sref="project-recommend({'projectId': project.id})">
 
-                            <yaka-avatar size="35" user="project.user"></yaka-avatar>
+                            <yaka-avatar size="45" user="project.user"></yaka-avatar>
 
                             <div class="dashboardRecommendProjectText">
+                                <div class="yakaEllipsis c-lightblue">
+                                    {{project.title}}
+                                </div>
                                 <div class="yakaEllipsis">
                                     <casa-name-and-contact user="project.user"></casa-name-and-contact>
                                 </div>
-
                                 <div class="yakaEllipsis">
                                     {{project.address.locality}} - {{vm.getWhen(project)}}
-                                </div>
-
-                                <div class="yakaEllipsis c-lightblue">
-                                    {{project.title}}
                                 </div>
                             </div>
 
