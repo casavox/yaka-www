@@ -213,7 +213,7 @@
                                 Voir les offres disponibles
                             </button>
                             <button data-ng-show="vm.data.availableLeadsNumber > 1"
-                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    class="yakaEllipsis col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
                                     data-ui-sref="findjobs">
                                 Voir les {{vm.data.availableLeadsNumber}} offres disponibles
                             </button>
@@ -443,24 +443,22 @@
                         </div>
 
                         <div
-                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-10"
+                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding"
                             data-ng-repeat="project in vm.projectsToRecommend"
                             data-ng-if="!vm.isInNetworkList(project)"
                             data-ui-sref="project-recommend({'projectId': project.id})">
 
-                            <yaka-avatar size="35" user="project.user"></yaka-avatar>
+                            <yaka-avatar size="45" user="project.user"></yaka-avatar>
 
                             <div class="dashboardRecommendProjectText">
+                                <div class="yakaEllipsis c-lightblue">
+                                    {{project.title}}
+                                </div>
                                 <div class="yakaEllipsis">
                                     <casa-name-and-contact user="project.user"></casa-name-and-contact>
                                 </div>
-
                                 <div class="yakaEllipsis">
                                     {{project.address.locality}} - {{vm.getWhen(project)}}
-                                </div>
-
-                                <div class="yakaEllipsis c-lightblue">
-                                    {{project.title}}
                                 </div>
                             </div>
 
