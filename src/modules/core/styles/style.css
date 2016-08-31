@@ -147,20 +147,7 @@ html {
     cursor: pointer;
 }
 
-.titleBeta {
-    text-align: right;
-    background: #03A9F4;
-    margin-left: 5px;
-    font-size: 16px;
-    line-height: 17px;
-    position: absolute;
-    top: 11px;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    left: 115px;
-}
+
 
 .titleBetaPro {
     background: #FF9800 !important;
@@ -4923,7 +4910,7 @@ ul[rn-carousel-buffered] > li {
         font-size: 15px !important;
         position: relative !important;
         left: -8px !important;
-        top: -9px !important;
+        top: 0px !important;
         width: 81px !important;
     }
 

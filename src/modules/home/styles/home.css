@@ -902,7 +902,13 @@ body:after {
     .homeSection1Title {
         margin-top: 60px;
     }
+}
 
+@media (max-width: 374px) {
+
+    .homeSection1Title {
+        font-size: 19px;
+    }
     .homeSection1ProLink {
         margin-top: 35px;
     }
@@ -913,13 +919,6 @@ body:after {
 
     .homeSection1Login {
         margin-top: 35px;
-    }
-}
-
-@media (max-width: 374px) {
-
-    .homeSection1Title {
-        font-size: 19px;
     }
 }
 
