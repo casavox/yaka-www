@@ -35,6 +35,13 @@
     width: calc(100% - 65px);
 }
 
+.dashboardProRecommendProjectText {
+    position: absolute;
+    left: 55px;
+    top: 10px;
+    width: calc(100% - 65px);
+}
+
 .dashboardRecommendProject .inContactsIndicator {
     position: absolute;
     top: -2px;
