@@ -19,13 +19,26 @@
         </ol>
     </div>
 
+
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
-
         <div class="container">
-
+            <div class="topViewProfile" data-ng-if="vm.project.activityCorrespond">
+                <div class="card bgm-lightblue c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-check  zmdi-hc-3x"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <b>Cette offre correspond à vos compétences</b></br>
+                        Vous pouvez la recommander à un collègue, ou y <a
+                        ui-sref="pro-project-proposal-new({projectId: vm.project.id})" class="c-white"><b><u>répondre
+                        vous
+                        même</u></b></a>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="block-header">
                     <h2>Recommander à</h2>
@@ -140,10 +153,12 @@
                         <span data-ng-if="vm.selectedProfessional">
                             RECOMMANDER
                         </span>
-                        <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
+                        <span
+                            data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
                             Aucun Pro sélectionné
                         </span>
-                        <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
+                        <span
+                            data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
                             Ajouter un Pro
                         </span>
                     </h2>

@@ -330,3 +330,10 @@
     margin-left: 32px;
     transform: translateY(-50px);
 }
+
+.icon-comment {
+    position: absolute;
+    left: -18px;
+    bottom: -18px;
+    margin-left: 50%;
+}

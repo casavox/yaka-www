@@ -127,8 +127,10 @@
             </div>
             <div data-ng-show="vm.profile.status != 'VALIDATED' && vm.profile.status != 'COMPLETED' "
                  class="profilePopupMessage text-justify">
-                Pour répondre aux offres et être recommandé vous devez à minima compléter toutes les informations obligatoires sur cet écran (en rouge).<br><br>
-                CasaVox vérifiera ensuite si vous pouvez répondre aux offres et être recommandé (vous en serez notifié pas mail).
+                Pour répondre aux offres et être recommandé vous devez à minima compléter toutes les informations
+                obligatoires sur cet écran (en rouge).<br><br>
+                CasaVox vérifiera ensuite si vous pouvez répondre aux offres et être recommandé (vous en serez notifié
+                pas mail).
             </div>
             <div class="col-xs-6 yakaButton yakaBlue profilePopupButton" data-ng-click="vm.closePopup()">
                 ANNULER
@@ -299,6 +301,11 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30" data-ng-if="!vm.profileInfo.company.siret">
+                    Retrouver rapidement mon SIRET sur <a href="http://www.infogreffe.fr/societes" target="_blank">www.infogreffe.fr/societes</a>
+                </div>
+
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                      data-ng-class="{'has-error': !vm.profileInfo.company.address.address}">
@@ -727,7 +734,7 @@
                             data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                             alt=""/>
                         <div data-ng-if="image.description"
-                             class="btn bgm-lightblue btn-float floatingButtonImage icon-comment  col-xs-offset-5 col-sm-offset-4">
+                             class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
                             <i class="zmdi zmdi-comment-text-alt"></i>
                         </div>
                     </div>
@@ -886,10 +893,12 @@
         <div class="card-header ch-alt">
             <h2>
                 Comptes sociaux associés
-                <small>
-                    Associer votre compte Facebook ou Google vous permet de vous connecter plus rapidement et de
-                    retrouver plus facilement vos connaissances
-                </small>
+                <div>
+                    <small>
+                        Associer votre compte Facebook ou Google vous permet de vous connecter plus rapidement et de
+                        retrouver plus facilement vos connaissances
+                    </small>
+                </div>
             </h2>
         </div>
         <div class="col-xs-12 card-body m-t-20 m-b-20 c-gray">
@@ -921,9 +930,11 @@
 
                 <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().googleId">
                     Compte Google associé
-                    <small>
-                        {{app.getUser().googleEmail}}
-                    </small>
+                    <div>
+                        <small>
+                            {{app.getUser().googleEmail}}
+                        </small>
+                    </div>
                 </div>
 
                 <button class="btn btn-default waves-effect m-t-4 m-l-20"
