@@ -10,23 +10,6 @@
     width: 100% !important;
 }
 
-.titleContactsBeta {
-    text-align: right;
-    background: #03A9F4;
-    margin-left: 5px;
-    font-size: 16px;
-    line-height: 17px;
-    position: absolute;
-    top: 18px;
-    padding-left: 3px;
-    padding-right: 3px;
-    color: white;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    left: 145px;
-    text-transform: none;
-}
-
 .homeSection {
 
 }
@@ -742,17 +725,6 @@ body:after {
 
     .homeSection1YakaClub {
         font-size: 20px;
-    }
-
-    .titleBeta {
-        font-size: 14px;
-        line-height: 16px;
-        top: 11px;
-        left: 96px;
-    }
-
-    .titleBetaPro {
-        left: 145px;
     }
 
     .homeSection1ProLink {

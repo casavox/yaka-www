@@ -147,13 +147,6 @@ html {
     cursor: pointer;
 }
 
-
-
-.titleBetaPro {
-    background: #FF9800 !important;
-    left: 163px;
-}
-
 .titleYakaClub {
     font-size: 24px;
     float: left;
@@ -177,10 +170,6 @@ html {
 
 .titleClub {
     font-weight: 100;
-}
-
-.titleContactsBeta {
-    left: 116px !important;
 }
 
 .logout {
@@ -4876,10 +4865,6 @@ ul[rn-carousel-buffered] > li {
     left: auto !important;
 }
 
-.titleYakaClubBetaHeader {
-    top: 7px !important;
-}
-
 .yakaHeaderAvatar {
     margin-left: 5px;
 }
@@ -4913,14 +4898,6 @@ ul[rn-carousel-buffered] > li {
         top: 0px !important;
         width: 81px !important;
     }
-
-    .titleContactsBeta.titleYakaClubBetaHeader {
-        position: relative !important;
-        left: -4px !important;
-        top: 0px !important;
-        font-size: 12px !important;
-    }
-
 }
 
 .proDashboard {
