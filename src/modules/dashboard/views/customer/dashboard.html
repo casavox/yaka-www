@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -109,7 +109,7 @@
             <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
                 <div class="card-header dashboardCommunityHeader">
 
-                    <i class="zmdi zmdi-hc-2x zmdi-accounts c-black d-i-b hidden-xs"></i>
+                    <i class="zmdi zmdi-hc-3x zmdi-accounts c-black d-i-b hidden-xs"></i>
 
                     <h2 class="d-i-b">
                         Actualité de la communauté
@@ -118,13 +118,13 @@
                         </small>
                     </h2>
                 </div>
-                <div class="clearfix card-body card-padding">
+                <div class="clearfix card-body p-t-0 p-b-0 p-l-15">
 
-                    <div class="col-sm-6 dashboardRecommendProject pointer no-padding p-l-10"
+                    <div class="col-sm-6 dashboardRecommendProject pointer no-padding m-t-5 m-b-5"
                          data-ng-repeat="project in vm.projectsToRecommend"
                          data-ui-sref="project-recommend({'projectId': project.id})">
 
-                        <yaka-avatar size="35" user="project.user"></yaka-avatar>
+                        <yaka-avatar class="m-t-5" size="45" user="project.user"></yaka-avatar>
 
                         <div class="dashboardRecommendProjectText">
                             <div class="yakaEllipsis">

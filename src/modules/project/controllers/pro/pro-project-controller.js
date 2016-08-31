@@ -92,10 +92,10 @@
                     formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
                 }
                 networkService.proposalPOST(formData, function (res) {
-                    alertMsg.send("Proposition envoyée avec succès", "success");
+                    alertMsg.send("Prise de contact envoyée avec succès", "success");
                     $state.go('pro-proposals');
                 }, function (res) {
-                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
+                    alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
                 });
             }
         }
