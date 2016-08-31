@@ -40,21 +40,21 @@
                                         class="col-sm-6 wl-95pe pull-right btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5"
                                         ui-sref="pro-jobs">
                                             <span
-                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier en cours </span>
+                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
                                         <span
-                                            data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers en cours </span>
+                                            data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers </span>
                                         {{vm.data.ongoingProProjectNumber}}
                                     </button>
                                     <button
                                         class="col-sm-6 wr-95pe pull-right btn bgm-green waves-effect btn-xs m-b-5 m-t-5"
                                         ui-sref="pro-proposals">
-                                        Devis en cours {{vm.data.ongoingProProposalNumber}}
+                                        Devis {{vm.data.ongoingProProposalNumber}}
                                     </button>
                                     <button
-                                        class="col-sm-12 pull-right btn bgm-orange waves-effect btn-xs m-b-5 m-t-5"
+                                        class="col-sm-12 pull-right btn bgm-orange waves-effect btn-sm m-b-5 m-t-5"
                                         ui-sref="findjobs">
                                         <span
-                                            data-ng-show="vm.data.availableLeadsNumber < 2">Voir l'offre disponible</span>
+                                            data-ng-show="vm.data.availableLeadsNumber < 2">Carte des offres</span>
                                         <span
                                             data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres disponibles</span>
                                     </button>
@@ -76,12 +76,12 @@
                                         </div>
                                     </button>
                                     <button
-                                        class="col-sm-12 btn bgm-orange waves-effect btn-xs m-b-5 m-t-5"
+                                        class="col-sm-12 btn bgm-orange waves-effect btn-sm m-b-5 m-t-5"
                                         ui-sref="findjobs">
                                         <span
-                                            data-ng-show="vm.data.availableLeadsNumber < 2">Voir l'offre disponible</span>
+                                            data-ng-show="vm.data.availableLeadsNumber < 2">Carte des offres</span>
                                         <span
-                                            data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres disponibles</span>
+                                            data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres dispo.</span>
                                     </button>
                                 </div>
                             </div>
@@ -101,10 +101,9 @@
                                 class="col-xs-5 btn bgm-orange waves-effect btn-xs t-lx-10"
                                 ui-sref="findjobs">
                                 <span
-                                    data-ng-show="vm.data.availableLeadsNumber < 2">Offre dispo </span>
+                                    data-ng-show="vm.data.availableLeadsNumber < 2">Voir les offres</span>
                                 <span
-                                    data-ng-show="vm.data.availableLeadsNumber > 1">Offres dispo </span>
-                                {{vm.data.availableLeadsNumber}}
+                                    data-ng-show="vm.data.availableLeadsNumber > 1">Offres dispo {{vm.data.availableLeadsNumber}}</span>
                             </button>
                         </div>
                     </div>
@@ -474,7 +473,7 @@
 
                             <yaka-avatar size="45" user="project.user"></yaka-avatar>
 
-                            <div class="dashboardRecommendProjectText">
+                            <div class="dashboardProRecommendProjectText">
                                 <div class="yakaEllipsis c-lightblue">
                                     {{project.title}}
                                 </div>
