@@ -58,6 +58,47 @@
                 <h2>{{vm.project.title}}</h2>
             </div>
 
+            <div class="topViewProfile">
+                <div class="card bgm-red c-white p-15"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs manquants dans votre
+                        profil afin de pouvoir répondre aux offres.
+                    </div>
+                </div>
+
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <b>Merci d’avoir complété votre profil</b>. Vous allez recevoir dans les prochaines heures un
+                        email vous confirmant que votre compte a bien été validé. Vous pourrez alors répondre aux
+                        offres.
+                    </div>
+                </div>
+
+                <div data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'"
+                     class="card bgm-red c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Nous n'avons pas pu vérifier votre profil
+                        <div data-ng-if="app.getUser().professional.refusedReason">
+                            Raison : {{app.getUser().professional.refusedReason}}
+                        </div>
+                        <div>
+                            Vous pourrez répondre aux offres une fois votre profil validé.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="yakaMain proposalMainView">
                 <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
                     <div class="pm-overview pro hidden-xs">
