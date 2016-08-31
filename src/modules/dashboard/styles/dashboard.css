@@ -31,7 +31,7 @@
 .dashboardRecommendProjectText {
     position: absolute;
     left: 55px;
-    top: 9px;
+    top: 0px;
     width: calc(100% - 65px);
 }
 

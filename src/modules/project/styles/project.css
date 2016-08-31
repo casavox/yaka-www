@@ -167,9 +167,9 @@
 }
 
 .projectRecommendTopCard .dashboardRecommendProjectText.right {
-    left: 85px;
+    left: 80px;
     top: 17px;
-    width: calc(100% - 105px);
+    width: calc(100% - 85px);
 }
 
 .projectRecommendGrayHeader {
@@ -190,11 +190,9 @@
 
 .proToRecommendRight {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 15px;
     right: 15px;
-    left: 90px;
-    margin-top: 8px;
+    left: 65px;
 }
 
 .proToRecommend yaka-avatar {
@@ -255,16 +253,16 @@
 
 .dashboardRecommendProjectText.professional {
     position: absolute;
-    left: 85px;
+    left: 82px;
     top: 18px;
-    width: calc(100% - 115px);
+    width: calc(100% - 100px);
 }
 
 .dashboardRecommendProjectText.propartner {
     position: absolute;
-    left: 85px;
+    left: 82px;
     top: 18px;
-    width: calc(100% - 145px);
+    width: calc(100% - 85px);
 }
 
 .proSelectedPartner {
@@ -293,11 +291,12 @@
     right: -5px;
     border-radius: 50%;
 }
+
 .icon-comment {
     font-size: 10px;
     bottom: -15px;
-    margin-left:50%;
-    transform:translate(-50%);
+    margin-left: 50%;
+    transform: translate(-50%);
 }
 
 .showRegisterFieldsReco {
@@ -320,6 +319,7 @@
     -ms-transition-delay: 0s;
     transition-delay: 0s;
 }
+
 .proposalUnreadMessagesIndicatorOnPro {
     display: inline-block;
     font-style: normal;
