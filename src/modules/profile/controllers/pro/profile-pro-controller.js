@@ -320,7 +320,6 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        console.log(vm.verifTmp);
                         vm.updating = false;
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
