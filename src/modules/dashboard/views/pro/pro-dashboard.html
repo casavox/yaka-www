@@ -35,14 +35,37 @@
                                          data-ui-sref="contacts">Développer mon réseau +
                                     </div>
                                 </div>
-                                <div class="col-sm-8 f-s-14 t-right dashboardStats visible-md visible-lg">
-                                    <button class="btn bgm-green waves-effect btn-xs m-b-5 m-t-5"
-                                            ui-sref="pro-proposals">
+                                <div class="col-sm-4 f-s-14 pull-right t-right dashboardStats visible-md visible-lg">
+                                    <button
+                                        class="col-sm-6 wl-95pe pull-right btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5"
+                                        ui-sref="pro-jobs">
+                                            <span
+                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier en cours </span>
+                                        <span
+                                            data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers en cours </span>
+                                        {{vm.data.ongoingProProjectNumber}}
+                                    </button>
+                                    <button
+                                        class="col-sm-6 wr-95pe pull-right btn bgm-green waves-effect btn-xs m-b-5 m-t-5"
+                                        ui-sref="pro-proposals">
+                                        Devis en cours {{vm.data.ongoingProProposalNumber}}
+                                    </button>
+                                    <button
+                                        class="col-sm-12 pull-right btn bgm-orange waves-effect btn-xs m-b-5 m-t-5"
+                                        ui-sref="findjobs">
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber < 2">Voir l'offre disponible</span>
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres disponibles</span>
+                                    </button>
+                                </div>
+                                <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
+                                    <button class="col-sm-12 btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
                                         <div class="d-i-b">
                                             Devis en cours {{vm.data.ongoingProProposalNumber}}
                                         </div>
                                     </button>
-                                    <button class="btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5"
+                                    <button class="col-sm-12 btn bgm-lightblue waves-effect btn-xs m-t-5"
                                             ui-sref="pro-jobs">
                                         <div class="d-i-b">
                                             <span
@@ -52,35 +75,36 @@
                                             {{vm.data.ongoingProProjectNumber}}
                                         </div>
                                     </button>
-                                </div>
-                                <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
-                                    <button class="btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
-                                        <div class="d-i-b">
-                                            Devis en cours {{vm.data.ongoingProProposalNumber}}
-                                        </div>
-                                    </button>
-                                    <button class="btn bgm-lightblue waves-effect btn-xs m-t-5" ui-sref="pro-jobs">
-                                        <div class="d-i-b">
-                                            <span
-                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier en cours </span>
-                                            <span
-                                                data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers en cours </span>
-                                            {{vm.data.ongoingProProjectNumber}}
-                                        </div>
+                                    <button
+                                        class="col-sm-12 btn bgm-orange waves-effect btn-xs m-b-5 m-t-5"
+                                        ui-sref="findjobs">
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber < 2">Voir l'offre disponible</span>
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres disponibles</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="pull-left m-t-10 f-s-14 dashboardStats visible-xs-block">
-                            <button class="btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
+                        <div class="m-t-10 f-s-13 t-rx-10 dashboardStats visible-xs-block">
+                            <button class="col-xs-3 btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
                                 Devis {{vm.data.ongoingProProposalNumber}}
                             </button>
-                            <button class="btn bgm-lightblue waves-effect btn-xs" ui-sref="pro-jobs">
+                            <button class="col-xs-4 btn bgm-lightblue waves-effect btn-xs t-lx-5" ui-sref="pro-jobs">
                                 <span
                                     data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
                                 <span
                                     data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers </span>
                                 {{vm.data.ongoingProProjectNumber}}
+                            </button>
+                            <button
+                                class="col-xs-5 btn bgm-orange waves-effect btn-xs t-lx-10"
+                                ui-sref="findjobs">
+                                <span
+                                    data-ng-show="vm.data.availableLeadsNumber < 2">Offre dispo </span>
+                                <span
+                                    data-ng-show="vm.data.availableLeadsNumber > 1">Offres dispo </span>
+                                {{vm.data.availableLeadsNumber}}
                             </button>
                         </div>
                     </div>
