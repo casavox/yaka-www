@@ -302,6 +302,11 @@
                     </div>
                 </div>
 
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30" data-ng-if="!vm.profileInfo.company.siret">
+                    Retrouver rapidement mon SIRET sur <a href="http://www.infogreffe.fr/societes" target="_blank">www.infogreffe.fr/societes</a>
+                </div>
+
+
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                      data-ng-class="{'has-error': !vm.profileInfo.company.address.address}">
                     <div class="fg-line">
@@ -729,7 +734,7 @@
                             data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                             alt=""/>
                         <div data-ng-if="image.description"
-                             class="btn bgm-lightblue btn-float floatingButtonImage icon-comment  col-xs-offset-5 col-sm-offset-4">
+                             class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
                             <i class="zmdi zmdi-comment-text-alt"></i>
                         </div>
                     </div>

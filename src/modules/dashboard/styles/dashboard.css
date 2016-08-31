@@ -31,7 +31,7 @@
 .dashboardRecommendProjectText {
     position: absolute;
     left: 55px;
-    top: 9px;
+    top: 0px;
     width: calc(100% - 65px);
 }
 
@@ -81,3 +81,21 @@
     right: 20px;
     font-size: 12px;
 }
+
+.wl-95pe {
+    width:48%;
+    margin-left:2%;
+}
+
+.t-lx-5 {
+    transform: translateX(5px);
+}
+
+.t-lx-10 {
+    transform: translateX(10px);
+}
+.t-rx-10 {
+    transform: translateX(-10px);
+}
+
+

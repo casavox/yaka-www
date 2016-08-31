@@ -120,7 +120,7 @@
                 </div>
                 <div class="clearfix card-body p-t-0 p-b-0 p-l-15">
 
-                    <div class="col-sm-6 dashboardRecommendProject pointer no-padding m-t-5 m-b-5"
+                    <div class="col-sm-6 dashboardRecommendProject pointer no-padding m-t-10 m-b-10"
                          data-ng-repeat="project in vm.projectsToRecommend"
                          data-ui-sref="project-recommend({'projectId': project.id})">
 
@@ -128,13 +128,20 @@
 
                         <div class="dashboardRecommendProjectText">
                             <div class="yakaEllipsis">
-                                <casa-name-and-contact user="project.user"></casa-name-and-contact>
-                                - {{project.address.locality}}
+                                <strong><em>
+                                    <casa-contact user="project.user"></casa-contact>
+                                </em></strong>
+                                {{project.user.firstName}} {{project.user.lastName}}
                             </div>
 
                             <div class="yakaEllipsis c-lightblue">
                                 {{project.title}}
                             </div>
+
+                            <div class="yakaEllipsis">
+                                à {{project.address.locality}}
+                            </div>
+
                         </div>
 
                     </div>

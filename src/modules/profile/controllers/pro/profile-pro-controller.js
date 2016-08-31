@@ -134,6 +134,9 @@
             if (vm.activities.length > 0) {
                 vm.error.activities.flag = false;
                 vm.updating = true;
+                angular.forEach(vm.activities, function (result) {
+                });
+
                 networkService.proActivitiesPUT(vm.activities, function (res) {
                     vm.activities = res.activities;
                     vm.profile.activities = res.activities;
@@ -233,9 +236,9 @@
         vm.indexOfObject = function (a, token, tab) {
             var res = [];
 
-            if (angular.isDefined(tab)) {
+            if (tab) {
                 for (var i = 0; i < tab.length; i++) {
-                    if (tab[i][token] == a)
+                    if (tab[i] && tab[i][token] == a)
                         res.push(i);
                 }
             }
@@ -324,13 +327,13 @@
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
-                        if (vm.verifications.length > 0 && vm.verifTmp.name) {
+                        if (vm.verifications.length > 0 && vm.verifTmp) {
                             var removeExistingVerificationIndex = vm.verifications.map(function (v) {
                                 return v.name;
-                            }).indexOf(vm.verifTmp.name);
+                            }).indexOf(vm.verifTmp);
                             ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
                         }
-                        vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
+                        vm.verifications.push({name: vm.verifTmp, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer ce fichier", "danger");
@@ -377,7 +380,7 @@
         };
 
         vm.setVerif = function setVerif(name) {
-            vm.verifTmp = {name: name};
+            vm.verifTmp = name;
         };
 
         networkService.professionalGET(succesProfileGET, errorProfileGET);
