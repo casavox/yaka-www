@@ -131,10 +131,18 @@
         };
 
         vm.updateActivities = function () {
+            console.log("updateActivities 1");
+            console.log(vm.activities.length);
             if (vm.activities.length > 0) {
                 vm.error.activities.flag = false;
                 vm.updating = true;
+                angular.forEach(vm.activities, function (result) {
+                    console.log(result);
+                });
+
                 networkService.proActivitiesPUT(vm.activities, function (res) {
+                    console.log("res.length");
+                    console.log(res.activities.length);
                     vm.activities = res.activities;
                     vm.profile.activities = res.activities;
                     vm.profile.status = res.status;
@@ -146,6 +154,9 @@
                 vm.error.activities.message = "Vous devez indiquer au moins une de vos compétences.";
                 vm.error.activities.flag = true;
             }
+            console.log("updateActivities 2");
+            console.log(vm.activities.length);
+
         };
 
         vm.updatePortfolio = function () {
@@ -233,9 +244,9 @@
         vm.indexOfObject = function (a, token, tab) {
             var res = [];
 
-            if (angular.isDefined(tab)) {
+            if (tab) {
                 for (var i = 0; i < tab.length; i++) {
-                    if (tab[i][token] == a)
+                    if (tab[i] && tab[i][token] == a)
                         res.push(i);
                 }
             }
@@ -254,18 +265,26 @@
         };
 
         vm.actionActivities = function (s) {
+            console.log("actionActivities 1");
+            console.log(vm.activities.length);
             var res = null;
             if ((res = vm.indexOfObject(s, 'code', vm.activities)).length == 0) {
                 if (!vm.activities) {
                     vm.activities = [];
                 }
                 vm.activities.push({code: s});
+                console.log(s);
+                console.log(vm.activities.length);
             }
             else {
                 for (var i = 0; i < res.length; i++) {
                     vm.activities.splice(res[i], 1);
+                    console.log(i);
                 }
             }
+            console.log("actionActivities 2");
+            console.log(vm.activities.length);
+
         };
 
         vm.changePassword = function () {

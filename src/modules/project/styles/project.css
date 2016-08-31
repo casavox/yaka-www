@@ -293,12 +293,6 @@
     right: -5px;
     border-radius: 50%;
 }
-.icon-comment {
-    font-size: 10px;
-    bottom: -15px;
-    margin-left:50%;
-    transform:translate(-50%);
-}
 
 .showRegisterFieldsReco {
     padding-left: 0 !important;
@@ -329,4 +323,11 @@
     border-radius: 50%;
     margin-left: 32px;
     transform: translateY(-50px);
+}
+
+.icon-comment {
+    position: absolute;
+    left: -18px;
+    bottom: -18px;
+    margin-left: 50%;
 }
