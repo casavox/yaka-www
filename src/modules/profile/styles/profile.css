@@ -32,9 +32,3 @@
     display: inline-block;
     width: calc(100% - 40px);
 }
-.icon-comment {
-    font-size: 10px;
-    bottom: -15px;
-    margin-left:50%;
-    transform:translate(-50%);
-}
