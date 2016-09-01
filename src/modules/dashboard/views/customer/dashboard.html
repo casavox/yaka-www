@@ -129,8 +129,9 @@
                         <div class="dashboardRecommendProjectText">
                             <div class="yakaEllipsis">
                                 <b>
-                                    <casa-contact user="project.user"></casa-contact> -
+                                    <casa-contact user="project.user"></casa-contact>
                                 </b>
+                                <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
                                 {{project.user.firstName}} {{project.user.lastName}}
                             </div>
 

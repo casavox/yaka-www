@@ -478,7 +478,11 @@
                                     {{project.title}}
                                 </div>
                                 <div class="yakaEllipsis">
-                                    <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                    <b>
+                                        <casa-contact user="project.user"></casa-contact>
+                                    </b>
+                                    <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
+                                    {{project.user.firstName}} {{project.user.lastName}}
                                 </div>
                                 <div class="yakaEllipsis">
                                     {{project.address.locality}} - {{vm.getWhen(project)}}
