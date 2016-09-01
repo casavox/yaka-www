@@ -91,12 +91,26 @@
                 if (vm.offer.date && vm.offer.date) {
                     formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
                 }
-                networkService.proposalPOST(formData, function (res) {
-                    alertMsg.send("Prise de contact envoyée avec succès", "success");
-                    $state.go('pro-proposals');
-                }, function (res) {
-                    alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                });
+                if (!vm.offer.date && !vm.offer.price) {
+                    swal({
+                        title: "Il est recommandé d'indiquer une date et/ou un prix estimatif",
+                        text: "Vous augmentez vos chances d'être retenu en indiquant une date ou un prix même estimatif dès que cela vous est possible",
+                        type: "warning",
+                        confirmButtonColor: "#f44336",
+                        confirmButtonText: "Envoyer quand même",
+                        showCancelButton: true,
+                        cancelButtonText: "Modifier avant envoi"
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            networkService.proposalPOST(formData, function (res) {
+                                alertMsg.send("Prise de contact envoyée avec succès", "success");
+                                $state.go('pro-proposals');
+                            }, function (res) {
+                                alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
+                            });
+                        }
+                    });
+                }
             }
         }
 
