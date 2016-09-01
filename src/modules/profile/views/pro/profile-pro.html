@@ -67,7 +67,7 @@
                     </div>
                     <div class="topViewProfileContent">
                         <b>Votre profil est validé. Vous pouvez répondre aux offres.</b><br/>
-                        <span class="c-black">Pensez à compléter entièrement votre profil, cela augmente votre visibilité et vos chances d'être sélectionné.</span>
+                        <span class="c-white">Pensez à compléter entièrement votre profil, cela augmente votre visibilité et vos chances d'être sélectionné.</span>
                     </div>
                 </div>
 
@@ -152,7 +152,7 @@
                 <small class="c-red" data-ng-if="!vm.infosCardIsComplete()">
                     Informations en rouge obligatoires
                 </small>
-                <small class="c-black"
+                <small class="c-white"
                        data-ng-if="vm.infosCardIsComplete() && !vm.profileInfo.user.avatar.cloudinaryPublicId">
                     <b>Augmentez votre visibilité, ajouter un Logo/Avatar !</b>
                 </small>
@@ -401,7 +401,8 @@
             <div class="profile-box-footer m-t-15 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateWorkArea()" data-ng-disabled="vm.updating || !(vm.mapEditing && !vm.mapShowMinimumZoomMessage)">
+                        data-ng-click="vm.updateWorkArea()"
+                        data-ng-disabled="vm.updating || !(vm.mapEditing && !vm.mapShowMinimumZoomMessage)">
                     Enregistrer
                 </button>
                 <!-- <button class="btn btn-link waves-effect" data-ng-disabled="vm.updating || !vm.mapEditing" data-ng-click="vm.cancelWorkArea()">
@@ -503,7 +504,7 @@
                                data-ng-click="vm.setVerif('BUSINESS_REGISTRATION')">
                                 Modifier
                             </a>
-                            &nbsp;&nbsp;-&nbsp;&nbsp;
+                            <span class="m-r-5 m-l-5">-</span>
                             <a class="pointer"
                                data-ng-href="{{vm.getVerification('BUSINESS_REGISTRATION').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
@@ -539,7 +540,7 @@
                                data-ng-click="vm.setVerif('INSURANCE')">
                                 Modifier
                             </a>
-                            &nbsp;&nbsp;-&nbsp;&nbsp;
+                            <span class="m-r-5 m-l-5">-</span>
                             <a class="pointer"
                                data-ng-href="{{vm.getVerification('INSURANCE').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
@@ -575,7 +576,7 @@
                                data-ng-click="vm.setVerif('RGE')">
                                 Modifier
                             </a>
-                            &nbsp;&nbsp;-&nbsp;&nbsp;
+                            <span class="m-r-5 m-l-5">-</span>
                             <a class="pointer"
                                data-ng-href="{{vm.getVerification('RGE').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
@@ -611,7 +612,7 @@
                                data-ng-click="vm.setVerif('PARTNER')">
                                 Modifier
                             </a>
-                            &nbsp;&nbsp;-&nbsp;&nbsp;
+                            <span class="m-r-5 m-l-5">-</span>
                             <a class="pointer"
                                data-ng-href="{{vm.getVerification('PARTNER').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>

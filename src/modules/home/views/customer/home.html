@@ -215,11 +215,19 @@
                         Google
                     </div>
 
-                    <input class="form-control" type="text" name="username" placeholder="Email"
+                    <input class="form-control"
+                           type="text"
+                           name="username"
+                           autocomplete="username"
+                           placeholder="Email"
                            data-ng-model="vm.loginUser.email"
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <input class="form-control" type="password" name="password" placeholder="Mot de passe"
+                    <input class="form-control"
+                           type="password"
+                           name="password"
+                           autocomplete="current-password"
+                           placeholder="Mot de passe"
                            data-ng-model="vm.loginUser.password"
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
@@ -271,12 +279,16 @@
                                  data-ng-class="{'has-error': !vm.newUser.firstName}">
 
                                 <div class="fg-line">
-                                    <input type="text" name="firstName" class="form-control fg-input input-sm"
+                                    <input type="text"
+                                           name="fname"
+                                           autocomplete="given-name"
+                                           class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.firstName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           required="required"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
-                                <div data-ng-messages="registerForm.firstName.$error">
+                                <div data-ng-messages="registerForm.fname.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                         valide
                                     </small>
@@ -287,12 +299,16 @@
                                  data-ng-class="{'has-error': !vm.newUser.lastName}">
 
                                 <div class="fg-line">
-                                    <input type="text" name="lastName" class="form-control fg-input input-sm"
+                                    <input type="text"
+                                           name="lname"
+                                           autocomplete="family-name"
+                                           class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.lastName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           required="required"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
-                                <div data-ng-messages="registerForm.lastName.$error">
+                                <div data-ng-messages="registerForm.lname.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
@@ -300,9 +316,30 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.newUser.defaultAddress.address"
+                                           type="text"
+                                           name="address"
+                                           autocomplete="address-level2"
+                                           required="required"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
                                  data-ng-class="{'has-error': !vm.newUser.email}">
                                 <div class="fg-line">
-                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                                    <input type="text"
+                                           name="username"
+                                           autocomplete="username"
+                                           data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
                                            required="required" yaka-input-email>
@@ -316,26 +353,14 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input input-sm"
-                                           vs-google-autocomplete="vm.autocomplete.options"
-                                           vs-autocomplete-validator
-                                           data-ng-model="vm.newUser.defaultAddress.address"
-                                           type="text"
-                                           name="address"
-                                           required="required"
-                                           placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Ville</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group fg-float m-b-30"
                                  data-ng-class="{'has-error':! vm.newUser.password}">
                                 <div class="fg-line">
-                                    <input type="password" name="password" class="form-control fg-input input-sm"
-                                           data-ng-model="vm.newUser.password" data-ng-minlength="6">
+                                    <input type="password"
+                                           name="password"
+                                           autocomplete="new-password"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.password"
+                                           data-ng-minlength="6">
                                     <label class="fg-label">Mot de passe</label>
                                 </div>
                                 <div data-ng-messages="registerForm.password.$error">
@@ -424,13 +449,17 @@
                     <div class="form-group fg-float m-t-30"
                          data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
-                            <input type="text" name="email" data-ng-disabled="vm.isSocialRegister()"
+                            <input type="text"
+                                   name="username"
+                                   autocomplete="username"
+                                   data-ng-disabled="vm.isSocialRegister()"
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
-                                   required="required" yaka-input-email>
+                                   required="required"
+                                   yaka-input-email>
                             <label class="fg-label">Email</label>
                         </div>
-                        <div data-ng-messages="recoverPassword.email.$error">
+                        <div data-ng-messages="recoverPassword.username.$error">
                             <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                 valide
                             </small>

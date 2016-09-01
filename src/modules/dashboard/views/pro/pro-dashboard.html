@@ -452,9 +452,9 @@
                             </small>
                         </h2>
                     </div>
-                    <div class="clearfix card-body p-l-15 p-r-15">
+                    <div class="clearfix card-body">
 
-                        <div class="text-justify"
+                        <div class="text-justify p-l-15 p-r-15"
                              data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length <= 0">
                             <br>Retrouvez ici les offres ne correspondants pas à vos compétences, issues de votre
                             entourage et de l'ensemble des clients CasoVox.
@@ -466,7 +466,7 @@
                         </div>
 
                         <div
-                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding"
+                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-15 p-r-15"
                             data-ng-repeat="project in vm.projectsToRecommend"
                             data-ng-if="!vm.isInNetworkList(project)"
                             data-ui-sref="project-recommend({'projectId': project.id})">
