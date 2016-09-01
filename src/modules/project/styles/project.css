@@ -292,13 +292,6 @@
     border-radius: 50%;
 }
 
-.icon-comment {
-    font-size: 10px;
-    bottom: -15px;
-    margin-left: 50%;
-    transform: translate(-50%);
-}
-
 .showRegisterFieldsReco {
     padding-left: 0 !important;
     padding-right: 0 !important;

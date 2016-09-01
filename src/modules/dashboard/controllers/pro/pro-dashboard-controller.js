@@ -41,7 +41,6 @@
 
         networkService.getProNetworkLeads(function (projects) {
             vm.networkProjects = projects;
-            console.log(projects);
         }, function (err) {
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
