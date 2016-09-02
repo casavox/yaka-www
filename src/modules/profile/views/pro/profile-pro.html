@@ -292,17 +292,15 @@
                         <label class="fg-label">SIRET</label>
                     </div>
                     <div data-ng-messages="profileForm.siret.$error">
+                        <div class="col-xs-12 no-padding form-group m-b-5 fg-float" data-ng-if="!vm.profileInfo.company.siret">
+                            <a class="pointer" data-ng-href="http://www.societe.com{{vm.siretInfo()}}" target="_blank">Retrouver rapidement mon numéro de SIRET sur societe.com</a>
+                        </div>
                         <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                         <small class="help-block" data-ng-message="invalidSiret">Ce SIRET n'est pas
                             valide
                         </small>
                     </div>
                 </div>
-
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30" data-ng-if="!vm.profileInfo.company.siret">
-                    Retrouver rapidement mon SIRET sur <a href="http://www.infogreffe.fr/societes" target="_blank">www.infogreffe.fr/societes</a>
-                </div>
-
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                      data-ng-class="{'has-error': !vm.profileInfo.company.address.address}">
