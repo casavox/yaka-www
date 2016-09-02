@@ -301,7 +301,7 @@
             }
         };
 
-        vm.uploadVerifications = function (files, invalides, index,  ) {
+        vm.uploadVerifications = function (files, invalides, index, verifName) {
 
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
