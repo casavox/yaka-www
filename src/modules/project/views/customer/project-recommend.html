@@ -84,13 +84,21 @@
             </div>
             <div class="col-sm-6" data-ng-if="vm.professionals">
                 <div class="block-header">
-                    <h2>Mes Pro</h2>
+                    <h2>
+                        <span ng-if="app.isPro()">Mes Collègues</span>
+                        <span ng-if="!app.isPro()">Mes Pro</span>
+                    </h2>
                 </div>
                 <div class="card">
                     <div class="card-header projectRecommendGrayHeader">
-                        <h2>Recommander un Pro
+                        <h2>Recommander un
+                            <span ng-if="app.isPro()">Collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
                             <small>
-                                Liste de vos Pros ayant la compétence demandée
+                                Liste de vos
+                                <span ng-if="app.isPro()">Collègues</span>
+                                <span ng-if="!app.isPro()">Pros</span>
+                                ayant la compétence demandée
                             </small>
                         </h2>
                     </div>
@@ -132,7 +140,9 @@
                          data-ng-if="vm.professionals && vm.professionals.length > 0">
                         <button class="btn btn-default waves-effect c-orange m-15"
                                 data-ng-click="vm.openProPopup()">
-                            Ajouter un pro
+                            Ajouter un
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
                         </button>
                     </div>
                     <div class="f-s-16 t-center p-t-30 p-b-30 p-relative p-l-10 p-r-10"
@@ -141,7 +151,10 @@
                         <i class="zmdi zmdi-accounts zmdi-hc-4x c-gray"></i>
 
                         <div class="m-t-20">
-                            Aucun de vos Pros ne correspond.
+                            Aucun de vos
+                            <span ng-if="app.isPro()">collègues</span>
+                            <span ng-if="!app.isPro()">Pros</span>
+                            ne correspond.
                         </div>
                     </div>
                 </div>
@@ -154,11 +167,16 @@
                         </span>
                         <span
                             data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
-                            Aucun Pro sélectionné
+                            Aucun
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
+                            sélectionné
                         </span>
                         <span
                             data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
-                            Ajouter un Pro
+                            Ajouter un
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
                         </span>
                     </h2>
                 </div>
@@ -169,7 +187,10 @@
                     <i class="zmdi zmdi-account-box-o zmdi-hc-4x c-gray"></i>
 
                     <div class="m-t-20">
-                        Sélectionnez un pro et retrouvez ici
+                        Sélectionnez un
+                        <span ng-if="app.isPro()">collègue</span>
+                        <span ng-if="!app.isPro()">Pro</span>
+                        et retrouvez ici
                     </div>
                     <div>
                         le résumé de son profil.
@@ -361,7 +382,9 @@
 
                     <div class="card-header">
                         <h2>
-                            Invitez un professionnel
+                            Invitez un
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">professionnel</span>
                             <small>
                                 Il recevra votre recommandation par email
                             </small>
