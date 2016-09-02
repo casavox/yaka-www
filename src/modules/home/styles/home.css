@@ -10,23 +10,6 @@
     width: 100% !important;
 }
 
-.titleContactsBeta {
-    text-align: right;
-    background: #03A9F4;
-    margin-left: 5px;
-    font-size: 16px;
-    line-height: 17px;
-    position: absolute;
-    top: 18px;
-    padding-left: 3px;
-    padding-right: 3px;
-    color: white;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    left: 145px;
-    text-transform: none;
-}
-
 .homeSection {
 
 }
@@ -744,17 +727,6 @@ body:after {
         font-size: 20px;
     }
 
-    .titleBeta {
-        font-size: 14px;
-        line-height: 16px;
-        top: 11px;
-        left: 96px;
-    }
-
-    .titleBetaPro {
-        left: 145px;
-    }
-
     .homeSection1ProLink {
         height: 28px;
         padding-top: 6px;
@@ -902,7 +874,13 @@ body:after {
     .homeSection1Title {
         margin-top: 60px;
     }
+}
 
+@media (max-width: 374px) {
+
+    .homeSection1Title {
+        font-size: 19px;
+    }
     .homeSection1ProLink {
         margin-top: 35px;
     }
@@ -913,13 +891,6 @@ body:after {
 
     .homeSection1Login {
         margin-top: 35px;
-    }
-}
-
-@media (max-width: 374px) {
-
-    .homeSection1Title {
-        font-size: 19px;
     }
 }
 
