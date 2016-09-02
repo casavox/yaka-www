@@ -232,7 +232,7 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go('pro-dashboard');
+            $state.go("help", {'card': 1});
         }
 
         function failProRegister(err) {
