@@ -302,7 +302,8 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30 infoGreffe" data-ng-if="!vm.profileInfo.company.siret">
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30 infoGreffe"
+                     data-ng-if="!vm.profileInfo.company.siret">
                     Retrouver rapidement mon SIRET sur <a href="http://www.infogreffe.fr/societes" target="_blank">www.infogreffe.fr/societes</a>
                 </div>
 
@@ -494,15 +495,15 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('BUSINESS_REGISTRATION')">Ajouter</a>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                                Ajouter
+                            </a>
                             </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('BUSINESS_REGISTRATION')">
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
@@ -530,15 +531,15 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('INSURANCE')">Ajouter</a>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                                Ajouter
+                            </a>
                             </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('INSURANCE')">
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
@@ -566,15 +567,15 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('RGE')">Ajouter</a>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                                Ajouter
+                            </a>
                             </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('RGE')">
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
@@ -602,15 +603,15 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('PARTNER')">Ajouter</a>
-                            </span>
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                                Ajouter
+                            </a>
+                        </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0)"
-                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB"
-                               data-ng-click="vm.setVerif('PARTNER')">
+                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
+                               ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>

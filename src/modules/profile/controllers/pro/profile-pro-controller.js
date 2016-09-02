@@ -301,7 +301,8 @@
             }
         };
 
-        vm.uploadVerifications = function (files, invalides, index) {
+        vm.uploadVerifications = function (files, invalides, index,  ) {
+
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
@@ -327,13 +328,13 @@
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
-                        if (vm.verifications.length > 0 && vm.verifTmp) {
+                        if (vm.verifications.length > 0 && verifName) {
                             var removeExistingVerificationIndex = vm.verifications.map(function (v) {
                                 return v.name;
-                            }).indexOf(vm.verifTmp);
+                            }).indexOf(verifName);
                             ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
                         }
-                        vm.verifications.push({name: vm.verifTmp, cloudinaryPublicId: data.public_id});
+                        vm.verifications.push({name: verifName, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer ce fichier", "danger");
@@ -377,10 +378,6 @@
                     });
                 }
             });
-        };
-
-        vm.setVerif = function setVerif(name) {
-            vm.verifTmp = name;
         };
 
         networkService.professionalGET(succesProfileGET, errorProfileGET);
