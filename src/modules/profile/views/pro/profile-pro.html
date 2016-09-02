@@ -292,9 +292,10 @@
                         <label class="fg-label">SIRET</label>
                     </div>
                     <div data-ng-messages="profileForm.siret.$error">
-                        <div class="col-xs-12 no-padding form-group m-b-5 fg-float" data-ng-if="!vm.profileInfo.company.siret">
-                            <a class="pointer" data-ng-href="http://www.societe.com{{vm.siretInfo()}}" target="_blank">Retrouver rapidement mon numéro de SIRET sur societe.com</a>
-                        </div>
+                        <a class="pointer col-xs-12 no-padding form-group m-b-5 fg-float"
+                           data-ng-if="!vm.profileInfo.company.siret"
+                           data-ng-href="http://www.societe.com{{vm.siretInfo()}}" target="_blank">Retrouver rapidement
+                            mon numéro de SIRET sur societe.com</a>
                         <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                         <small class="help-block" data-ng-message="invalidSiret">Ce SIRET n'est pas
                             valide
