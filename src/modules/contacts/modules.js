@@ -9,7 +9,7 @@
 
         $stateProvider
             .state('contacts', {
-                url: "/contacts",
+                url: "/contacts?invite",
                 templateUrl: "/modules/contacts/views/contacts.html",
                 controller: 'ContactsController',
                 controllerAs: 'vm'
