@@ -522,9 +522,6 @@
             return "";
         };
 
-        if ($stateParams.invitFriends) {
-            vm.showInvitFriendPopup = true;
-        }
     }
 })
 ();
