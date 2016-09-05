@@ -202,7 +202,6 @@
         function succesProjectGET(res) {
             vm.project = res.project;
             vm.proposal = res;
-            console.log(vm.proposal);
 
 
             if (vm.project.address.latitude && vm.project.address.longitude) {
