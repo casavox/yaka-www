@@ -24,17 +24,22 @@
 
     <div id="content" class="content">
         <div class="container">
-            <div class="col-sm-12 topViewProfile" data-ng-if="vm.project.activityCorrespond">
+            <div class="col-sm-12 topViewProfile pointer" data-ng-if="vm.project.activityCorrespond"
+                 ui-sref="pro-project-proposal-new({projectId: vm.project.id})">
                 <div class="card bgm-lightblue c-white p-10">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-check  zmdi-hc-3x"></i>
                     </div>
                     <div class="topViewProfileContent">
                         <b>Cette offre correspond à vos compétences</b></br>
-                        Vous pouvez la recommander à un collègue, ou y <a
-                        ui-sref="pro-project-proposal-new({projectId: vm.project.id})" class="c-white"><b><u>répondre
-                        vous
-                        même</u></b></a>
+                        Vous pouvez la recommander à un collègue, ou y
+                        <span class="c-white">
+                            <b>
+                                <u>
+                                    répondre vous même
+                                </u>
+                            </b>
+                        </span>
                     </div>
                 </div>
             </div>

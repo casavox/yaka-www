@@ -207,10 +207,10 @@
                                         <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                              data-sub-html="#caption{{$index}}"
                                              class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
-                                             tooltip-placement="top"
-                                             uib-tooltip="{{image.description}}"
                                              data-ng-repeat="image in vm.projectTmp.images">
-                                            <div class="lightbox-item p-item">
+                                            <div class="lightbox-item p-item"
+                                                 tooltip-placement="top"
+                                                 uib-tooltip="{{image.description}}">
                                                 <img data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                      alt=""/>
                                                 <div data-ng-if="image.description"
