@@ -32,6 +32,7 @@
         function loadProposal() {
             networkService.proposalGET($stateParams.proposalId, function (res) {
                 vm.proposal = res;
+                console.log(vm.proposal);
                 $rootScope.pageName = vm.proposal.professional.user.firstName + " " + vm.proposal.professional.user.lastName +
                     " - " + vm.proposal.project.title;
                 if (vm.proposal.professional.company.address.address) {
