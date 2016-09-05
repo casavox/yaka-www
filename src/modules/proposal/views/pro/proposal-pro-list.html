@@ -77,6 +77,20 @@
                         </div>
                         <div class="card-body card-padding col-xs-12 p-10">
                             <div>
+                                <div class="pull-left min-w-175"
+                                     data-ng-if="proposal.firstRecommendation">
+                                    Recommandé par
+                                    <casa-name-and-contact
+                                        user="proposal.firstRecommendation.recommender"
+                                        icon-color="c-white"></casa-name-and-contact>
+                                    <span
+                                        data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">
+                                                        + {{vm.proposal.recommendations.length - 1}} autre<span
+                                        data-ng-if="proposal.recommendations && proposal.recommendations.length > 2">s</span>
+                                                    </span>
+                                </div>
+                            </div>
+                            <div>
                                 Ma date d'intervention : <span
                                 ng-class="{ 'c-gray-darker': proposal.startDate, 'c-lightblue': !proposal.startDate}">{{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}</span>
                             </div>
@@ -106,6 +120,20 @@
                             </div>
                         </div>
                         <div class="card-body p-t-15 f-s-16">
+                            <div class="col-sm-12">
+                                <div class="pull-left min-w-175"
+                                     data-ng-if="proposal.firstRecommendation">
+                                    Recommandé par
+                                    <casa-name-and-contact
+                                        user="proposal.firstRecommendation.recommender"
+                                        icon-color="c-white"></casa-name-and-contact>
+                                    <span
+                                        data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">
+                                                        + {{vm.proposal.recommendations.length - 1}} autre<span
+                                        data-ng-if="proposal.recommendations && proposal.recommendations.length > 2">s</span>
+                                                    </span>
+                                </div>
+                            </div>
                             <div class="col-sm-12">
                                 <span class="pull-left min-w-175">Ma date d'intervention :</span>
                                 <span class="pull-left"
