@@ -47,7 +47,7 @@
                 case "SPECIFIC":
                     return "à partir du " + moment(proposal.project.desiredDate).format("D MMMM");
                 case "WITHIN_A_MONTH":
-                    return "dans le mois (avant le " + moment(proposal.project.desiredDate).format("D MMMM") + ")";
+                    return "avant le " + moment(proposal.project.desiredDate).format("D MMMM");
                 case "NONE":
                     return 'dès que possible';
             }
