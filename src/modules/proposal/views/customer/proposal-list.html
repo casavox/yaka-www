@@ -230,7 +230,7 @@
                         <div class="lv-body">
                             <div class="listview media">
                                 <div class="lv-item"
-                                     data-ng-if="!vm.project.proposals || vm.project.proposals.length == 0">
+                                     data-ng-if="vm.displayProposalText() == true">
                                     TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR
                                     TEXTE A DEFINIR TEXTE A DEFINIR
                                 </div>
@@ -339,7 +339,7 @@
                         <div class="lv-body">
                             <div class="listview media">
                                 <div class="lv-item"
-                                     ng-if="!vm.project.recoProposals || vm.project.recoProposals.length == 0">
+                                     data-ng-if="vm.displayRecommendText() == true">
                                     TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR
                                     TEXTE A DEFINIR TEXTE A DEFINIR
                                 </div>

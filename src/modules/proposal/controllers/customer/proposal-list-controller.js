@@ -31,6 +31,21 @@
 
         function succesProjectGET(res) {
             vm.project = res;
+
+            vm.displayProposalText = function() {
+                if (!vm.project.proposals || vm.project.proposals.length == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            vm.displayRecommendText = function() {
+                if (!vm.project.recoProposals || vm.project.recoProposals.length == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
             $rootScope.pageName = vm.project.title;
         }
 
@@ -57,5 +72,11 @@
                 }
             }
         }
+
+        vm.testContent = function() {
+          if  (!vm.project) {
+              return false;
+          }
+        };
     }
 })();
