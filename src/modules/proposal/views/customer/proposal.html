@@ -426,14 +426,14 @@
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
-                                            data-ng-if="vm.proposal.professional.businessRegistrationOk || vm.proposal.professional.insuranceOk">
+                                            data-ng-if="vm.proposal.professional.status == 'VALIDATED' || vm.proposal.professional.status == 'COMPLETED'">
                                             <dt>Statut entreprise</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-if="vm.proposal.professional.businessRegistrationOk">
+                                                    <li>
                                                         Entreprise vérifiée
                                                     </li>
-                                                    <li data-ng-if="vm.proposal.professional.insuranceOk">
+                                                    <li>
                                                         Assuré
                                                     </li>
                                                 </ul>
