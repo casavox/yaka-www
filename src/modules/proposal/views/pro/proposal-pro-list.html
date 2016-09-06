@@ -176,11 +176,12 @@
                 Votre profil est incomplet, vous ne pouvez pas faire d'offre sur ce projet.
             </div>
 
-            <div class="col-xs-10 col-xs-offset-1 yakaButton yakaOrange"
-                 data-ng-if="app.getUser().professional.status == 'REGISTERED'"
-                 ui-sref="pro-profile">
+            <button
+                class="col-xs-10 col-xs-offset-1 btn btn-lg bgm-orange waves-effect"
+                data-ng-if="app.getUser().professional.status == 'REGISTERED'"
+                ui-sref="pro-profile">
                 COMPLÉTER MON PROFIL
-            </div>
+            </button>
 
             <div class="col-xs-12 proErrorMessage" data-ng-if="app.getUser().professional.status == 'WAITING'">
                 Vous ne pouvez pas encore faire d'offre car votre profil est en cours de validation. Il sera

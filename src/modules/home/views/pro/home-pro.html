@@ -28,25 +28,26 @@
                 confiance à un professionnel qui leur est recommandé.
             </div>
             <div class="col-xs-12 proHomeSection1Buttons">
-                <div
-                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect hidden-xs hidden-sm"
+                <button
+                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton btn btn-lg bgm-orange waves-effect hidden-xs hidden-sm"
                     data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
-                </div>
-                <div
-                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect visible-sm p-t-5 p-b-5 vertical-center"
+                </button>
+                <button
+                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton btn btn-lg bgm-orange waves-effect visible-sm p-t-5 p-b-5 vertical-center"
                     data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
-                </div>
-                <div
-                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect visible-xs hidden-sm p-t-5 p-b-5 vertical-center"
+                </button>
+                <button
+                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton btn btn-lg bgm-orange waves-effect visible-xs hidden-sm p-t-5 p-b-5 vertical-center"
                     data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
-                </div>
-                <div class="col-xs-4 col-sm-3 proHomeSection1AboutButton yakaButton yakaBorderWhite waves-effect"
-                     data-ng-click="vm.smoothScrollAbout()">
+                </button>
+                <button
+                    class="col-xs-4 col-sm-3 proHomeSection1RegisterButton btn btn-lg bgm-orange waves-effect yakaBorderWhite"
+                    data-ng-click="vm.smoothScrollAbout()">
                     EN SAVOIR PLUS
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -307,11 +308,11 @@
                         class="visible-xs col-xs-12 m-t-0"
                         style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
                     ></div>
-
-                    <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
-                         data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">
+                    <button
+                        class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange waves-effect"
+                        data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">
                         S'INSCRIRE
-                    </div>
+                    </button>
                 </form>
             </div>
         </div>
@@ -390,10 +391,12 @@
                        data-ng-model="vm.loginUser.password"
                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()">
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()">
                     SE CONNECTER
-                </div>
+                </button>
+
                 <div class="col-xs-12 passwordForgotten passwordForgottenPro">
                         <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
@@ -406,10 +409,11 @@
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en bas de
                     cette page.
                 </div>
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     data-ng-click="vm.noSocialAccountMessage = false">
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-click="vm.noSocialAccountMessage = false">
                     OK
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -446,11 +450,12 @@
                     </div>
                 </form>
 
-                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     data-ng-click="vm.forgottenPassword()">
+                <button
+                    class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                    data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
+                    data-ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
-                </div>
+                </button>
 
             </div>
             <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
