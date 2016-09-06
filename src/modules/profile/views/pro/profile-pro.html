@@ -762,7 +762,33 @@
                             alt=""/>
                     </div>
 
-                    <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
+                    <div class="dropdown pmop-message pmop-message-icon-left visible-xs" uib-dropdown>
+                        <button uib-dropdown-toggle class="btn bgm-lightblue btn-float floatingButtonImage">
+                            <i class="zmdi zmdi-comment-text-alt"></i>
+                        </button>
+
+                        <div class="dropdown-menu stop-propagate">
+                            <textarea placeholder="Ajouter un commentaire"
+                                      data-ng-model="image.description"
+                                      data-ng-maxlength="140"
+                                      maxlength="140"
+                                      data-auto-size
+                                      data-ng-trim="false"
+                                      data-ng-change="vm.descriptionChanged(image)"></textarea>
+
+                            <div class="descriptionCounter">
+                                {{vm.getStringLength(image.description)}} / 140 caractères
+                            </div>
+
+                            <button class="btn bgm-lightblue btn-float"
+                                    data-tl-action="save"
+                                    data-ng-click="vm.saveComment();">
+                                <i class="zmdi zmdi-check"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dropdown pmop-message pmop-message-icon-left hidden-xs" uib-dropdown>
                         <button uib-dropdown-toggle class="btn bgm-lightblue btn-float floatingButtonImage">
                             <i class="zmdi zmdi-comment-text-alt"></i>
                         </button>
