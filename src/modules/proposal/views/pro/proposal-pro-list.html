@@ -55,6 +55,7 @@
 
             <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0"
                  data-ng-if="vm.proposals && vm.proposals.length > 0">
+
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.proposals"
                      data-ng-click="vm.quoteClicked(proposal.id)">
                     <div class="visible-xs">
@@ -64,7 +65,7 @@
                                 <i class="unreadMessagesIndicator proProposalList ng-scope"
                                    data-ng-if="proposal.unreadMessages"></i>
                             </div>
-                            <div class="col-xs-10 p-0 m-l-10 v-align-middle yakaEllipsis proposalTitle">
+                            <div class="col-xs-7 col-xs-offset-1 p-0 v-align-middle yakaEllipsis proposalTitle">
                                 <h2 class="f-s-16">{{ proposal.project.title}}</h2>
                                 <small>
                                     <span class="m-0 p-0">{{proposal.project.user.firstName}} {{proposal.project.user.lastName}} à </span>
@@ -92,7 +93,7 @@
                             <i class="unreadMessagesIndicator proProposalList ng-scope"
                                data-ng-if="proposal.unreadMessages"></i>
                         </div>
-                        <div class="d-i-b v-align-middle m-l-10">
+                        <div class="d-i-b v-align-middle">
                             <h2>
                                 {{ proposal.project.title}}
                             </h2>
