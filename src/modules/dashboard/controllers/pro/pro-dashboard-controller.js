@@ -74,18 +74,22 @@
             if (!vm.networkProjects) {
                 return false;
             }
-            var countVisible =  0;
+            vm.emptyList = 0;
             for (var i = 0; i < vm.networkProjects.length; i++) {
                 if (project.id == vm.networkProjects[i].id) {
-                    countVisible++;
+                    vm.emptyList++;
                     return true;
                 }
             }
+
             return false;
         };
 
-        vm.countProjectToRecommendNumber = function (project) {
-
+        vm.isListEmpty = function() {
+            if (vm.emptyList.length <= 0) {
+                return true;
+            }
+            return false;
         };
     }
 })
