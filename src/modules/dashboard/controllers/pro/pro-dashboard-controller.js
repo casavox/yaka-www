@@ -74,14 +74,18 @@
             if (!vm.networkProjects) {
                 return false;
             }
-
+            var countVisible =  0;
             for (var i = 0; i < vm.networkProjects.length; i++) {
                 if (project.id == vm.networkProjects[i].id) {
+                    countVisible++;
                     return true;
                 }
             }
-
             return false;
+        };
+
+        vm.countProjectToRecommendNumber = function (project) {
+
         };
     }
 })
