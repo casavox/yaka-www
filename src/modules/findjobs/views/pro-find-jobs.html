@@ -114,6 +114,9 @@
                     Il y n'a aucune offre pour le moment dans cette zone, déplacez vous dans la carte ou dézoomez pour
                     voir plus d'offres.
                 </div>
+                <div class="col-xs-12 proDashboardListEmptyMessage m-t-20" data-ng-if="vm.numberLeadProjects != 0">
+                    {{vm.numberLeadProject}} projets disponibles sur toute la France !
+                </div>
             </div>
             <div class="col-xs-12 proDashboardBottomButton visible-xs waves-effect"
                  data-ng-click="showList = !showList">
