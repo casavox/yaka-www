@@ -465,6 +465,11 @@
                             </p>
                         </div>
 
+                        <div class="text-justify p-l-15 p-r-15"
+                             data-ng-if="vm.isListEmpty()">
+                            Lorem ipsum YakaClub
+                        </div>
+
                         <div
                             class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-15 p-r-15"
                             data-ng-repeat="project in vm.projectsToRecommend"
