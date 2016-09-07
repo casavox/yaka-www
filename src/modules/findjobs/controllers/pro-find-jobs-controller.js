@@ -318,6 +318,14 @@
                 alertMsg.send("Imposible de récupérer les projets", "danger");
             }
         );
+
+        networkService.proDashboardDataGET(
+            function numberLeadProject(res) {
+                vm.numberLeadProject = res.availableLeadsNumber;
+            }, function errorProData() {
+                alertMsg.send("Imposible de récupérer les projets", "danger");
+            }
+        );
     }
 
     function ProDashboardMapHomeControlController($rootScope) {
