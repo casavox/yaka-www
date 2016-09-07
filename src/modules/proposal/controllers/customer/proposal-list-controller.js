@@ -72,11 +72,5 @@
                 }
             }
         }
-
-        vm.testContent = function() {
-          if  (!vm.project) {
-              return false;
-          }
-        };
     }
 })();
