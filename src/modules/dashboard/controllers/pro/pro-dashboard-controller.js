@@ -74,13 +74,13 @@
             if (!vm.networkProjects) {
                 return false;
             }
-            
+
             for (var i = 0; i < vm.networkProjects.length; i++) {
                 if (project.id == vm.networkProjects[i].id) {
                     return true;
                 }
             }
-            
+
             return false;
         };
     }
