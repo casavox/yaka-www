@@ -13,13 +13,6 @@
             $state.go("contacts");
         }
 
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-            networkService.acceptInvitationPOST($localStorage.invitationId, function () {
-            }, function () {
-            });
-            $localStorage.invitationId = '';
-        }
-
         $rootScope.pageName = "Carte des chantiers";
         $rootScope.updateProfile();
 
