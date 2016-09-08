@@ -13,7 +13,7 @@
         var vm = this;
 
 
-        function loadProList () {
+        function loadProList() {
             networkService.adminProListGET(function (res) {
                 vm.proData = res;
                 angular.forEach(vm.proData, function (pro) {
@@ -25,6 +25,11 @@
                         pro.company.address.postalCode = "";
                     }
                     pro.company.address.city = pro.company.address.postalCode + " " + pro.company.address.locality;
+                    if (pro.needToRecheck) {
+                        pro.newNeedToRecheck = "OUI";
+                    } else {
+                        pro.newNeedToRecheck = "NON";
+                    }
                 });
 
 
@@ -66,7 +71,7 @@
             return false;
         };
 
-        function createIdList () {
+        function createIdList() {
             var idList = [];
             angular.forEach(vm.proData, function (pro) {
                 if (pro.selected == true) {
@@ -75,6 +80,7 @@
             });
             return idList;
         }
+
 
         vm.validatePro = function () {
             swal({
@@ -93,6 +99,33 @@
                             loadProList();
                         }, function () {
                             alertMsg.send("Impossible de modifier le statut", "danger");
+                        }
+                    );
+
+                }
+            });
+        };
+
+        vm.invalidatePro = function (proId, proName) {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Le pro sera bloqué",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, bloquer le pro",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    var data = {
+                        "refusedReason": proName + " n'est pas bon bla bla bla !"
+                    };
+                    networkService.adminInvalidateProPOST(proId, data,
+                        function (res) {
+                            alertMsg.send("Le pro a été bloqué", "info");
+                            loadProList();
+                        }, function () {
+                            alertMsg.send("Impossible de bloquer le pro", "danger");
                         }
                     );
 

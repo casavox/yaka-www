@@ -29,7 +29,7 @@
                        placeholder="Eligible"/>
                 <input type="text" class="form-control di-block input-filter" ng-model="search.status"
                        placeholder="Statut"/>
-                <button class="btn btn-success validateButton di-block input-filter"
+                <button class="btn btn-success validateButton di-block input-filter waves-effect"
                         data-ng-disabled="!vm.oneOrMorePro()"
                         data-ng-click="vm.validatePro()">Valider
                 </button>
@@ -67,11 +67,19 @@
                                 casaProfessionalDoc }}</a>
                         </div>
                     </td>
+                    <td data-title="'Vérif nécessaire'" data-sortable="'needToRecheck'">
+                        {{ pro.newNeedToRecheck}}
+                    </td>
                     <td class="checkbox">
                         <label>
                             <input type="checkbox" data-ng-model="pro.selected" value="">
                             <i class="input-helper"></i>
                         </label>
+                    </td>
+                    <td data-title="'Bloquer'">
+                    <button class="btn btn-warning waves-effect"
+                            data-ng-click="vm.invalidatePro(pro.id, pro.user.name)">Bloquer
+                    </button>
                     </td>
                 </tr>
             </table>

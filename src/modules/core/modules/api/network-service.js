@@ -318,6 +318,9 @@
             adminValidateProPOST: function (data, success, error) {
                 httpService.post(baseUrl + '/admin/pro/validate', data).success(success).error(error)
             },
+            adminInvalidateProPOST: function (id, data, success, error) {
+                httpService.post(baseUrl + '/admin/pro/' + id + '/invalidate', data).success(success).error(error)
+            },
             adminProProfilePUT: function (id, data, success, error) {
                 httpService.put(baseUrl + '/admin/pro/' + id + '/profile', data).success(success).error(error)
             },
