@@ -91,8 +91,18 @@
     padding-right: 0 !important;
 }
 
+.proHomeRegButton {
+    margin-top: 2px;
+}
+
 .proHomeSection1AboutButton {
-    margin-left: 20px;
+    background-color: transparent;
+    border: 1px white solid;
+}
+
+.proHomeSection1AboutButton:hover {
+    background-color: rgba(255,255,255, 0.2);
+    color:white;
 }
 
 .proHomeSection2 {
@@ -483,10 +493,6 @@
         width: 390px !important;
     }
 
-    .proHomeSection1AboutButton {
-        width: 160px;
-    }
-
     .proHomeSection1RegisterButton {
         width: 160px;
     }
@@ -743,11 +749,6 @@
         padding-top: 11px;
     }
 
-    .proHomeSection1AboutButton {
-        height: 40px;
-        padding-top: 11px;
-    }
-
     .proHomeSection2Title {
         margin-top: 25px !important;
         font-size: 17px !important;
@@ -803,10 +804,6 @@
         font-size: 12px;
     }
 
-    .proHomeSection1AboutButton {
-        font-size: 12px;
-    }
-
     .proHomeSection3aFreeTitle {
         font-size: 19px;
     }
@@ -855,8 +852,9 @@
         margin-left: 0 !important;
     }
 
-    .proHomeSection1AboutButton {
-        width: calc(50% - 10px) !important;
+    .proHomeSection1AboutButton     {
+        background-color: transparent;
+        border: 1px white solid;
     }
 
     .proHomeSection3aPricing {
