@@ -83,6 +83,19 @@
 
             return false;
         };
+
+        vm.isListEmpty = function() {
+
+            if (!vm.projectsToRecommend) {
+                return true;
+            }
+            for (var i = 0; i < vm.projectsToRecommend.length; i++) {
+                if (!vm.isInNetworkList(vm.projectsToRecommend[i])) {
+                    return false;
+                }
+            }
+            return true;
+        };
     }
 })
 ();

@@ -19,7 +19,7 @@ angular.module('Yaka')
                             'width': getPixelSize(1),
                             'height': getPixelSize(1),
                             'line-height': getPixelSize(1),
-                            'font-size': getPixelSize(0.4)
+                            'font-size': getPixelSize(0.35)
                         }
                     );
                 }

@@ -80,9 +80,12 @@
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.ongoing"
                      data-ui-sref="pro-proposal({proposalId: proposal.id})">
                     <div class="card-header">
-                        <yaka-avatar user="proposal.project.user" size="40" class="d-i-b v-align-middle"></yaka-avatar>
-                        <i class="unreadMessagesIndicator proProposalList ng-scope"
-                           data-ng-if="proposal.unreadMessages"></i>
+                        <div class="d-i-b v-align-middle">
+                            <yaka-avatar user="proposal.project.user" size="40" class="d-i-b v-align-middle"></yaka-avatar>
+                            <i class="unreadMessagesIndicator proProposalList ng-scope"
+                               data-ng-if="proposal.unreadMessages"></i>
+                        </div>
+
 
                         <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                             {{ proposal.project.title}}
@@ -123,7 +126,7 @@
                 <h2>Terminés</h2>
             </div>
 
-            <div class="col-xs-12 no-padding row no-margin" data-ng-if="vm.completed && vm.completed.length > 0">
+            <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0" data-ng-if="vm.completed && vm.completed.length > 0">
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.completed"
                      data-ui-sref="pro-proposal({proposalId: proposal.id})">
                     <div class="card-header">
@@ -131,7 +134,7 @@
                         <i class="unreadMessagesIndicator proProposalList ng-scope"
                            data-ng-if="proposal.unreadMessages"></i>
 
-                        <h2 class="d-i-b v-align-middle m-l-10 m-t-5">
+                        <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                             {{ proposal.project.title}}
                             <small>
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
