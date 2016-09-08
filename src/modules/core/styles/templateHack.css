@@ -324,6 +324,13 @@ section#main.yakaMain .content .card {
     }
 }
 
+@media (max-width: 991px) {
+    .unreadMessagesIndicator.proProposalList {
+        left: 49px !important;
+        top: 22px !important;
+    }
+}
+
 .on-avatar:hover {
     border-radius: 50%;
     box-shadow: 0 1px 3px rgba(3, 169, 244, 1), 0 -1px 3px rgba(3, 169, 244, 1);
@@ -387,6 +394,7 @@ section#main.yakaMain .content .card {
         padding-right: 33px !important;
         margin-left: calc(50% - 336px) !important;
     }
+
     body.sw-toggled .breadcrumb.noMenu {
         padding-top: 10px !important;
         padding-bottom: 11px !important;
