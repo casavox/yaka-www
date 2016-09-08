@@ -7,6 +7,7 @@ angular.module('Yaka')
                 user: '=',
                 invite: '=?',
                 clientRed: '=?',
+                clientBlue: '=?',
                 iconColor: '@'
             },
             link: function (scope, element, attr) {
@@ -15,6 +16,9 @@ angular.module('Yaka')
                 }
                 if (!scope.clientRed) {
                     scope.clientRed = false;
+                }
+                if (!scope.clientBlue) {
+                    scope.clientBlue = false;
                 }
                 scope.invite = function (relation) {
                     networkService.invitePOST(scope.user.id, relation, function (res) {
@@ -36,6 +40,7 @@ angular.module('Yaka')
                 user: '=',
                 invite: '=?',
                 clientRed: '=?',
+                clientBlue: '=?',
                 iconColor: '@'
             },
             link: function (scope, element, attr) {
@@ -44,6 +49,9 @@ angular.module('Yaka')
                 }
                 if (!scope.clientRed) {
                     scope.clientRed = false;
+                }
+                if (!scope.clientBlue) {
+                    scope.clientBlue = false;
                 }
             },
             templateUrl: "/modules/core/directives/views/casaNameAndContact.html"

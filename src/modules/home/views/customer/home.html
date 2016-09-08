@@ -4,7 +4,6 @@
             <div class="col-xs-12 homeSection1Header">
                 <div class="homeSection1YakaClub" ui-sref="home">
                     <span class="homeSection1Club">CASA</span><span class="homeSection1Yaka">VOX</span>
-                    <span class="titleBeta">Beta</span>
                 </div>
                 <div class="homeSection1ProLink waves-effect" ui-sref="pro-home">
                     ACCES PRO
@@ -24,10 +23,10 @@
             <div class="col-xs-12 homeSection1SubTitle">
                 Trouvez et partagez vos artisans en toute confiance
             </div>
-            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button waves-effect"
-                 data-ng-click="vm.openPopup(false)">
-                PUBLIER MON PROJET
-            </div>
+
+            <button class="col-xs-6 col-xs-offset-3 btn btn-lg bgm-lightblue waves-effect homeSection1Button"
+                    data-ng-click="vm.openPopup(false)">PUBLIER MON PROJET
+            </button>
 
             <div data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
 
@@ -112,7 +111,7 @@
                         </div>
                     </div>
                     <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Partagez en un clic votre projet avec vos amis et la communauté YakaClub, ils vous recommandent
+                        Partagez en un clic votre projet avec vos amis et la communauté CasaVox, ils vous recommandent
                         leurs meilleurs artisans pour vos travaux.
                     </div>
                 </div>
@@ -129,11 +128,10 @@
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Trouvez de nouveaux clients en passant moins de temps à prospecter.
                     </div>
-                    <div
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaOrange waves-effect"
-                        ui-sref="pro-home">
-                        DECOUVREZ NOS SERVICES
-                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
+                        ui-sref="pro-home">DECOUVREZ NOS SERVICES
+                    </button>
                 </div>
                 <div class="col-xs-12 col-sm-6 homeSection3Item">
                     <div class="col-xs-12 homeSection3ItemTitle">
@@ -142,11 +140,10 @@
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Entraidez vous pour trouver les Pro de qualité qu'il vous faut.
                     </div>
-                    <div
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue waves-effect"
-                        data-ng-click="vm.openPopup(false)">
-                        INVITEZ VOS AMIS ET VOS ARTISANS
-                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
+                        data-ng-click="vm.openPopup(false)">INVITEZ VOS AMIS ET VOS ARTISANS
+                    </button>
                 </div>
             </div>
         </div>
@@ -157,13 +154,13 @@
                 Suivez-nous !
             </div>
             <div class="homeSection4Items">
-                <a target="_blank" data-ng-href="https://www.facebook.com/yakaclub">
+                <a target="_blank" data-ng-href="https://www.facebook.com/hellocasavox">
                     <div class="homeSection4ItemSocial homeSection4ItemFacebook"></div>
                 </a>
                 <a target="_blank" data-ng-href="https://plus.google.com/117693956496667116327">
                     <div class="homeSection4ItemSocial homeSection4ItemGoogle"></div>
                 </a>
-                <a target="_blank" data-ng-href="https://twitter.com/yakaclub">
+                <a target="_blank" data-ng-href="https://twitter.com/hellocasavox">
                     <div class="homeSection4ItemSocial homeSection4ItemTwitter"></div>
                 </a>
             </div>
@@ -215,19 +212,28 @@
                         Google
                     </div>
 
-                    <input class="form-control" type="text" name="username" placeholder="Email"
+                    <input class="form-control"
+                           type="text"
+                           name="username"
+                           autocomplete="username"
+                           placeholder="Email"
                            data-ng-model="vm.loginUser.email"
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <input class="form-control" type="password" name="password" placeholder="Mot de passe"
+                    <input class="form-control"
+                           type="password"
+                           name="password"
+                           autocomplete="current-password"
+                           placeholder="Mot de passe"
                            data-ng-model="vm.loginUser.password"
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
-                         id="signInPopupButton">
-                        SE CONNECTER
-                    </div>
+                    <button
+                        class="col-xs-12 btn btn-lg bgm-cyan loginPopupButton waves-effect"
+                        data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
+                        id="signInPopupButton">SE CONNECTER
+                    </button>
+
                     <div class="col-xs-12 passwordForgotten">
                         <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
@@ -271,12 +277,16 @@
                                  data-ng-class="{'has-error': !vm.newUser.firstName}">
 
                                 <div class="fg-line">
-                                    <input type="text" name="firstName" class="form-control fg-input input-sm"
+                                    <input type="text"
+                                           name="fname"
+                                           autocomplete="given-name"
+                                           class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.firstName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           required="required"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
-                                <div data-ng-messages="registerForm.firstName.$error">
+                                <div data-ng-messages="registerForm.fname.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                         valide
                                     </small>
@@ -287,12 +297,16 @@
                                  data-ng-class="{'has-error': !vm.newUser.lastName}">
 
                                 <div class="fg-line">
-                                    <input type="text" name="lastName" class="form-control fg-input input-sm"
+                                    <input type="text"
+                                           name="lname"
+                                           autocomplete="family-name"
+                                           class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.lastName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           required="required"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
-                                <div data-ng-messages="registerForm.lastName.$error">
+                                <div data-ng-messages="registerForm.lname.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
@@ -300,9 +314,30 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.newUser.defaultAddress.address"
+                                           type="text"
+                                           name="address"
+                                           autocomplete="address-level2"
+                                           required="required"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
                                  data-ng-class="{'has-error': !vm.newUser.email}">
                                 <div class="fg-line">
-                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                                    <input type="text"
+                                           name="username"
+                                           autocomplete="username"
+                                           data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
                                            required="required" yaka-input-email>
@@ -316,26 +351,14 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input input-sm"
-                                           vs-google-autocomplete="vm.autocomplete.options"
-                                           vs-autocomplete-validator
-                                           data-ng-model="vm.newUser.defaultAddress.address"
-                                           type="text"
-                                           name="address"
-                                           required="required"
-                                           placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Ville</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group fg-float m-b-30"
                                  data-ng-class="{'has-error':! vm.newUser.password}">
                                 <div class="fg-line">
-                                    <input type="password" name="password" class="form-control fg-input input-sm"
-                                           data-ng-model="vm.newUser.password" data-ng-minlength="6">
+                                    <input type="password"
+                                           name="password"
+                                           autocomplete="new-password"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.password"
+                                           data-ng-minlength="6">
                                     <label class="fg-label">Mot de passe</label>
                                 </div>
                                 <div data-ng-messages="registerForm.password.$error">
@@ -382,13 +405,11 @@
                                 class="visible-xs col-xs-12 m-t-0 center recaptcha mobile"
                                 style="-moz-transform:scale(0.9); -ms-transform:scale(0.9); -o-transform:scale(0.9); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.9); transform:scale(0.9); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9,M12=0,M21=0,M22=0.9,SizingMethod='auto expand');"
                             ></div>
-
-                            <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                                 data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
-                                 data-ng-click="vm.register()">
-                                S'INSCRIRE
-                            </div>
-
+                            <button
+                                class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                                data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
+                                data-ng-click="vm.register()">S'INSCRIRE
+                            </button>
                             <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
                                 Vous êtes Pro ? Cliquez ici pour vous inscrire
                             </div>
@@ -402,10 +423,10 @@
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
                     sur <em>S'inscrire</em> puis <em>{{vm.socialNetwork}}</em>.
                 </div>
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     data-ng-click="vm.noSocialAccountMessage = false">
-                    OK
-                </div>
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-click="vm.noSocialAccountMessage = false">OK
+                </button>
             </div>
         </div>
     </div>
@@ -424,26 +445,28 @@
                     <div class="form-group fg-float m-t-30"
                          data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
-                            <input type="text" name="email" data-ng-disabled="vm.isSocialRegister()"
+                            <input type="text"
+                                   name="username"
+                                   autocomplete="username"
+                                   data-ng-disabled="vm.isSocialRegister()"
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
-                                   required="required" yaka-input-email>
+                                   required="required"
+                                   yaka-input-email>
                             <label class="fg-label">Email</label>
                         </div>
-                        <div data-ng-messages="recoverPassword.email.$error">
+                        <div data-ng-messages="recoverPassword.username.$error">
                             <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                 valide
                             </small>
                         </div>
                     </div>
                 </form>
-
-                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     data-ng-click="vm.forgottenPassword()">
-                    RÉINITIALISER MON MOT DE PASSE
-                </div>
-
+                <button
+                    class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                    data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
+                    data-ng-click="vm.forgottenPassword()">RÉINITIALISER MON MOT DE PASSE
+                </button>
             </div>
             <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
                 Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de

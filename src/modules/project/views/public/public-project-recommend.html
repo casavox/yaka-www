@@ -2,9 +2,8 @@
         data-ng-include="'/modules/core/views/header.html'"></header>
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
-                    up-state="dashboard"
-                    title="Recommander un pro"
-                    current-user="app.getUser()"></yaka-mobile-header>
+                    up-state="home"
+                    title="Recommander un pro"></yaka-mobile-header>
 
 <section id="main">
 
@@ -32,7 +31,7 @@
 
                         <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="dashboardRecommendProjectText">
+                        <div class="dashboardRecommendProjectText f-s-14 fw-bold">
                             {{vm.project.user.firstName}} {{vm.project.user.lastName}}
                         </div>
                     </div>
@@ -196,12 +195,12 @@
                                 Moi
                             </div>
 
-                            <div class="col-xs-12 registerFacebookGoogle m-t-30 p-l-0 p-r-0">
+                            <div class="col-xs-12 registerFacebookGoogle m-t-5 p-l-0 p-r-0">
                                 <span
                                     data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
 
                                 <div data-ng-if="vm.isSocialRegister()">
-                                    <div class="registerSocialConfirm p-l-0 p-r-0">
+                                    <div class="registerSocialConfirm m-t-0 p-l-0 p-r-0">
                                         Inscription via {{vm.socialNetwork}}
                                     </div>
                                 </div>

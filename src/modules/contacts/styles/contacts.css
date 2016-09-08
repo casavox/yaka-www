@@ -605,14 +605,6 @@
     .titleYakaClub {
         font-size: 20px;
     }
-
-    .titleContactsBeta {
-        font-size: 14px;
-        line-height: 16px;
-        top: 18px;
-        left: 104px !important;
-    }
-
 }
 
 @media (min-width: 768px) {

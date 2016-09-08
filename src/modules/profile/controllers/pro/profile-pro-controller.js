@@ -134,6 +134,9 @@
             if (vm.activities.length > 0) {
                 vm.error.activities.flag = false;
                 vm.updating = true;
+                angular.forEach(vm.activities, function (result) {
+                });
+
                 networkService.proActivitiesPUT(vm.activities, function (res) {
                     vm.activities = res.activities;
                     vm.profile.activities = res.activities;
@@ -233,9 +236,9 @@
         vm.indexOfObject = function (a, token, tab) {
             var res = [];
 
-            if (angular.isDefined(tab)) {
+            if (tab) {
                 for (var i = 0; i < tab.length; i++) {
-                    if (tab[i][token] == a)
+                    if (tab[i] && tab[i][token] == a)
                         res.push(i);
                 }
             }
@@ -298,7 +301,8 @@
             }
         };
 
-        vm.uploadVerifications = function (files, invalides, index) {
+        vm.uploadVerifications = function (files, invalides, index, verifName) {
+
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
@@ -324,13 +328,13 @@
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
-                        if (vm.verifications.length > 0 && vm.verifTmp.name) {
+                        if (vm.verifications.length > 0 && verifName) {
                             var removeExistingVerificationIndex = vm.verifications.map(function (v) {
                                 return v.name;
-                            }).indexOf(vm.verifTmp.name);
+                            }).indexOf(verifName);
                             ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
                         }
-                        vm.verifications.push({name: vm.verifTmp.name, cloudinaryPublicId: data.public_id});
+                        vm.verifications.push({name: verifName, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer ce fichier", "danger");
@@ -376,10 +380,6 @@
             });
         };
 
-        vm.setVerif = function setVerif(name) {
-            vm.verifTmp = {name: name};
-        };
-
         networkService.professionalGET(succesProfileGET, errorProfileGET);
         networkService.skillsGET(function (res) {
             vm.cat = res;
@@ -420,6 +420,15 @@
             vm.verifications = angular.copy(vm.profile.verifications);
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
+            vm.siretInfo = function () {
+                if (!vm.profile.company.name) {
+                    return "";
+                } else {
+                    var profileCompanyName = vm.profile.company.name;
+                    var companyName = profileCompanyName.replace(/ /g,"+");
+                    return "/cgi-bin/search?champs=" + companyName;
+                }
+            };
         }
 
         function errorProfileGET(res) {
@@ -545,10 +554,6 @@
             return (vm.pwd1 == vm.pwd2);
         };
 
-        vm.showButtonsWorkArea = function () {
-            return vm.mapEditing;
-        };
-
         vm.showButtonsPortfolio = function () {
             if (!vm.profile) {
                 return false;
@@ -659,8 +664,7 @@
                 vm.showButtonsPortfolio() ||
                 vm.showButtonsActivities() ||
                 vm.showButtonsNewPassword() ||
-                vm.showButtonsVerifications() ||
-                vm.showButtonsWorkArea()) {
+                vm.showButtonsVerifications()) {
                 if (confirm("Vous avez des modification en cours non sauvegardées. Voulez-vous vraiment quiter cette page ?\nCliquez sur Annuler pour rester sur cette page ou sur OK pour la quitter.")) {
                     return;
                 }
@@ -781,7 +785,7 @@
                         longitude: 2.4623584
                     },
                     bounds: {},
-                    zoom: 6,
+                    zoom: 9,
                     events: {
                         "idle": function () {
                             if (vm.mapEditing) {
@@ -852,29 +856,37 @@
                         ]
                     }
                 };
+
+                var firstZoomChange = 2;
+
                 $scope.$watch(
                     function () {
                         return vm.map.zoom;
                     },
                     function (newValue, oldValue) {
-                        if (vm.mapEditing) {
-                            if (newValue < 9) {
-                                vm.mapShowMinimumZoomMessage = true;
-                                vm.circle.visible = false;
+                        if (newValue != oldValue) {
+                            if (firstZoomChange > 0) {
+                                firstZoomChange--;
                             } else {
-                                vm.mapShowMinimumZoomMessage = false;
-                                vm.circle.visible = true;
+                                vm.mapEditing = true;
+                                setTimeout(function () {
+                                    var circleRadius = (getMinimumWidthOrHeight() / 2) * 0.9;
+                                    vm.circle.radius = circleRadius;
+                                    vm.circle.control.getCircle().setCenter(new google.maps.LatLng(vm.map.center.latitude, vm.map.center.longitude));
+                                    vm.circle.control.getCircle().setRadius(circleRadius);
+                                    vm.workArea.radius = circleRadius;
+                                    vm.workArea.latitude = vm.map.center.latitude;
+                                    vm.workArea.longitude = vm.map.center.longitude;
+                                    var bnds = vm.circle.control.getCircle().getBounds();
+                                    vm.workArea.swLatitude = bnds.getSouthWest().lat();
+                                    vm.workArea.swLongitude = bnds.getSouthWest().lng();
+                                    vm.workArea.neLatitude = bnds.getNorthEast().lat();
+                                    vm.workArea.neLongitude = bnds.getNorthEast().lng();
+                                    vm.workareaDiameter = Math.ceil((circleRadius * 2) / 1000);
+                                }, 0);
                             }
-                        } else {
-                            vm.mapShowMinimumZoomMessage = false;
-                            vm.circle.visible = true;
                         }
-                        if (!vm.mapEditing && newValue - oldValue > 1) {
-                            vm.map.zoom = newValue + 1;
-                            canStartEditionWithZoom = true;
-                        }
-                    }
-                );
+                    });
                 vm.map.bounds = {
                     'southwest': {
                         'latitude': vm.workArea.swLatitude,
@@ -1001,5 +1013,7 @@
                 componentRestrictions: {country: 'fr'}
             }
         };
+
+
     }
 })();

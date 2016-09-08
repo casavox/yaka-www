@@ -83,16 +83,23 @@
     width: 100% !important;
 }
 
+@media (min-width: 400px) {
+
+    .pmbb-body {
+        padding-left: 30px !important;
+    }
+}
+
 @media (max-width: 767px) {
 
     .proposalMainView.proMakeOffer .proAvatarProposalImage {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
     }
 
     .proposalMainView.proMakeOffer .yakaAvatarInitialsProposal {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
         line-height: 43px;
         font-size: 17px;
     }
@@ -160,9 +167,9 @@
 }
 
 .projectRecommendTopCard .dashboardRecommendProjectText.right {
-    left: 85px;
+    left: 80px;
     top: 17px;
-    width: calc(100% - 105px);
+    width: calc(100% - 85px);
 }
 
 .projectRecommendGrayHeader {
@@ -183,11 +190,9 @@
 
 .proToRecommendRight {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 15px;
     right: 15px;
-    left: 90px;
-    margin-top: 8px;
+    left: 65px;
 }
 
 .proToRecommend yaka-avatar {
@@ -248,16 +253,16 @@
 
 .dashboardRecommendProjectText.professional {
     position: absolute;
-    left: 85px;
+    left: 82px;
     top: 18px;
-    width: calc(100% - 115px);
+    width: calc(100% - 100px);
 }
 
 .dashboardRecommendProjectText.propartner {
     position: absolute;
-    left: 85px;
+    left: 82px;
     top: 18px;
-    width: calc(100% - 145px);
+    width: calc(100% - 85px);
 }
 
 .proSelectedPartner {
@@ -286,12 +291,6 @@
     right: -5px;
     border-radius: 50%;
 }
-.icon-comment {
-    font-size: 10px;
-    bottom: -15px;
-    margin-left:50%;
-    transform:translate(-50%);
-}
 
 .showRegisterFieldsReco {
     padding-left: 0 !important;
@@ -313,6 +312,7 @@
     -ms-transition-delay: 0s;
     transition-delay: 0s;
 }
+
 .proposalUnreadMessagesIndicatorOnPro {
     display: inline-block;
     font-style: normal;
@@ -322,4 +322,11 @@
     border-radius: 50%;
     margin-left: 32px;
     transform: translateY(-50px);
+}
+
+.icon-comment {
+    position: absolute;
+    left: -18px;
+    bottom: -18px;
+    margin-left: 50%;
 }

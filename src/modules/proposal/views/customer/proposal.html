@@ -5,8 +5,7 @@
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="proposals"
                     up-state-id="vm.proposal.project.id"
-                    title="{{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}"
-                    current-user="app.getUser()"></yaka-mobile-header>
+                    title="{{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}"></yaka-mobile-header>
 
 <section id="main" data-ng-cloak>
 
@@ -202,7 +201,7 @@
                                     <div>
                                         Messages
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="app.getUserchatsUnreadNumber() > 0""></i>
+                                           data-ng-if="vm.proposal.unreadMessages"></i>
                                     </div>
                                 </a>
                             </li>
@@ -427,14 +426,14 @@
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
-                                            data-ng-if="vm.proposal.professional.businessRegistrationOk || vm.proposal.professional.insuranceOk">
+                                            data-ng-if="vm.proposal.professional.status == 'VALIDATED' || vm.proposal.professional.status == 'COMPLETED'">
                                             <dt>Statut entreprise</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-if="vm.proposal.professional.businessRegistrationOk">
+                                                    <li>
                                                         Entreprise vérifiée
                                                     </li>
-                                                    <li data-ng-if="vm.proposal.professional.insuranceOk">
+                                                    <li>
                                                         Assuré
                                                     </li>
                                                 </ul>

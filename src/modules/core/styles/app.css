@@ -9248,6 +9248,10 @@ a.waves-effect .waves-ripple {
  * Generate Margin Class
  * margin, margin-top, margin-bottom, margin-left, margin-right
  */
+.m-l-m-15 {
+    margin-left: -15px !important;
+}
+
 .m-0 {
     margin: 0px !important;
 }
@@ -13939,6 +13943,16 @@ html:not(.ie9) .select.fg-line:before {
     color: #ffffff;
 }
 
+.fg-label-style {
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    color: #959595 !important;
+    pointer-events: none;
+    z-index: 0;
+    left: 0 !important;
+    white-space: nowrap !important;
+}
+
 .fg-float .fg-label {
     -webkit-transition: all;
     -o-transition: all;
@@ -15778,7 +15792,7 @@ body.login-content:before {
         display: inline-block;
         height: 180px;
         border-radius: 50%;
-        border: 4px solid #fff;
+        border: 2px solid #fff;
         box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     }
 }

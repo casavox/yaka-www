@@ -31,8 +31,7 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="{{vm.getUpState()}}"
-                    title="Détails du projet"
-                    current-user="app.getUser()"></yaka-mobile-header>
+                    title="Détails du projet"></yaka-mobile-header>
 
 <section id="main">
 
@@ -56,6 +55,47 @@
 
             <div class="block-header">
                 <h2>{{vm.project.title}}</h2>
+            </div>
+
+            <div class="topViewProfile">
+                <div class="card bgm-red c-white p-15"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs manquants dans votre
+                        profil afin de pouvoir répondre aux offres.
+                    </div>
+                </div>
+
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <b>Merci d’avoir complété votre profil</b>. Vous allez recevoir dans les prochaines heures un
+                        email vous confirmant que votre compte a bien été validé. Vous pourrez alors répondre aux
+                        offres.
+                    </div>
+                </div>
+
+                <div data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'"
+                     class="card bgm-red c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Nous n'avons pas pu vérifier votre profil
+                        <div data-ng-if="app.getUser().professional.refusedReason">
+                            Raison : {{app.getUser().professional.refusedReason}}
+                        </div>
+                        <div>
+                            Vous pourrez répondre aux offres une fois votre profil validé.
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="yakaMain proposalMainView">
@@ -145,6 +185,14 @@
                                              data-ng-if="vm.proposal.status == 'PRO_DECLINED' || vm.proposal.status == 'RECO_PRO_DECLINED'">
                                             Annulé par moi
                                         </div>
+                                        <div class="m-t-15"
+                                             data-ng-if="vm.proposal.status == 'RATE_PRO'">
+                                            Cloture client en cours
+                                        </div>
+                                        <div class="m-t-15"
+                                             data-ng-if="vm.proposal.status == 'COMPLETED'">
+                                            Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +213,7 @@
                                     <div>
                                         Messages
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="app.getUserchatsUnreadNumber() > 0"></i>
+                                           data-ng-if="vm.proposal.unreadMessages"></i>
                                     </div>
                                 </a>
                             </li>
@@ -214,7 +262,8 @@
 
                                             </div>
 
-                                            <div class="col-xs-12 no-padding pmo-stat proposalProName littleMargin clearfix">
+                                            <div
+                                                class="col-xs-12 no-padding pmo-stat proposalProName littleMargin clearfix">
                                                 <h2 class="yakaEllipsis">
                                                     <casa-name-and-contact user="vm.project.user"
                                                                            icon-color="c-white"></casa-name-and-contact>
@@ -263,6 +312,14 @@
                                                 <div class="col-xs-8 col-xs-offset-4 no-padding status"
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
+                                                </div>
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                     data-ng-if="vm.proposal.status == 'RATE_PRO'">
+                                                    Cloture client en cours
+                                                </div>
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                     data-ng-if="vm.proposal.status == 'COMPLETED'">
+                                                    Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
 
                                             </div>
@@ -333,7 +390,7 @@
                                         </p>
                                         <button class="btn btn-primary btn-block waves-effect"
                                                 data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
-                                            Envoyer la proposition
+                                            Prendre contact
                                         </button>
                                     </div>
                                 </div>
@@ -457,10 +514,11 @@
                                             <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                                  data-sub-html="#caption{{$index}}"
                                                  class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4 p-t-20"
-                                                 tooltip-placement="top"
-                                                 uib-tooltip="{{image.description}}"
                                                  data-ng-repeat="image in vm.projectTmp.images">
-                                                <div class="lightbox-item p-item">
+
+                                                <div class="lightbox-item p-item"
+                                                     tooltip-placement="top"
+                                                     uib-tooltip="{{image.description}}">
                                                     <img
                                                         data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                         alt=""/>

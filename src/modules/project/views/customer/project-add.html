@@ -203,7 +203,7 @@
                     </p>
 
                     <div class="col-xs-12 row no-margin w-900 center select-addr">
-                        <div class="col-xs-5 no-padding select" data-ng-if="vm.user.addresses.length>0">
+                        <div class="col-xs-12 col-sm-5 no-padding select" data-ng-if="vm.user.addresses.length>0">
                             <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
                                 <option value="new">- Nouvelle adresse -</option>
                                 <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"
@@ -212,14 +212,14 @@
                             </select>
                         </div>
                         <div
-                            data-ng-class="vm.user.addresses.length>0 ? 'col-xs-5 col-xs-offset-2 no-padding' : 'col-xs-5 center'"
+                            data-ng-class="vm.user.addresses.length>0 ? 'col-xs-12 col-sm-5 col-sm-offset-2 no-padding' : 'col-xs-5 center'"
                             data-ng-show="vm.newAddrFlag">
                             <input type="text" class="form-control" data-ng-model="vm.newAddr.name"
                                    data-ng-change="vm.verifNameAddr()"
                                    placeholder="Nom de l'adresse (Maison, Papa, ...)">
                         </div>
                     </div>
-                    <div class="col-xs-12 row no-margin w-900 center addr">
+                    <div class="col-xs-12 row no-margin w-900 center addr m-t-20">
                         <div class="no-padding mb-39" data-ng-class="col-xs-12">
                             <div class="col-xs-12 no-padding inner-addon right-addon">
                                 <div class="disabled-addr" data-ng-show="vm.disabledAddr"></div>
@@ -259,6 +259,10 @@
                         data-ng-disabled="!address.name">
                         Continuer
                     </button>
+
+                    <small class="col-xs-12 t-center m-t-15">Indiquez l'adresse complète, seule la ville
+                        sera visible par defaut
+                    </small>
 
                 </div>
                 <div class="card col-md-10 col-md-offset-1 clearfix p-b-20" id="slide6"

@@ -278,6 +278,11 @@
     width: 10px;
 }
 
+.unreadMessagesIndicator.proProposalList {
+    left: 55px !important;
+    top: 26px !important;
+}
+
 .proposalProName {
     background: #03a9f4 !important;
 }
@@ -316,6 +321,13 @@ section#main.yakaMain .content .card {
     section#main.yakaMain {
         padding-top: 56px !important;
         padding-bottom: 0 !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .unreadMessagesIndicator.proProposalList {
+        left: 49px !important;
+        top: 22px !important;
     }
 }
 
@@ -382,6 +394,7 @@ section#main.yakaMain .content .card {
         padding-right: 33px !important;
         margin-left: calc(50% - 336px) !important;
     }
+
     body.sw-toggled .breadcrumb.noMenu {
         padding-top: 10px !important;
         padding-bottom: 11px !important;

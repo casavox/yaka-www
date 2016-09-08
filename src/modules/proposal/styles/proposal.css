@@ -85,7 +85,6 @@
 }
 
 .scrollViewChatProposal {
-    overflow-y: scroll;
     position: absolute;
     bottom: 0;
     left: 250px;
@@ -110,7 +109,7 @@
 }
 
 .proposalMainView .pm-overview.pro {
-    min-height: 100px;
+    min-height: 80px;
 }
 
 .proposalProName {
@@ -164,7 +163,7 @@
     .yakaAvatarInitialsProposal {
         display: inline-block;
         border-radius: 50%;
-        border: 4px solid #fff;
+        border: 2px solid #fff;
         box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
         position: absolute !important;
         top: 0 !important;

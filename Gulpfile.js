@@ -216,6 +216,7 @@ gulp.task("css", function () {
 });
 
 gulp.task("serve", ["build"], function () {
+
     if (!argv.production) {
         var watchTranslate = gulp.watch(["src/i18n/**/*.json"], {interval: 500}, ["inject-dev"]);
         var watchJS = gulp.watch(["src/**/*.js"], {interval: 500}, ["copy-js"]);
