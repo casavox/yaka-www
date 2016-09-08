@@ -157,7 +157,9 @@
                             professionnel qu'il vous faut.
                         </div>
                         <div class="pti-footer">
-                            <button class="btn bgm-lightblue" data-ui-sref="contacts({'invite' : true})">Ajouter des contacts</button>
+                            <button class="btn bgm-lightblue" data-ui-sref="contacts({'invite' : true})">Ajouter des
+                                contacts
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -224,15 +226,19 @@
                         <div class="card-header bgm-orange">
                             <h2>
                                 Propositions
-                                <small>TEXTE A DEFINIR</small>
+                                <small>Échanges avec les Pro intéressés</small>
                             </h2>
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
                                 <div class="lv-item"
                                      data-ng-if="vm.displayProposalText()">
-                                    TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR
-                                    TEXTE A DEFINIR TEXTE A DEFINIR
+                                    Invitez votre entourage à vous rejoindre sur CasaVox pour vous recommander les Pro
+                                    qu'ils préfèrent
+                                    <br>
+                                    <a data-ui-sref="contacts">
+                                        Utiliser le bouche-à-oreille CasaVox
+                                    </a>
                                 </div>
                                 <div class="lv-item pointer" href="" data-ng-repeat="p in vm.project.proposals"
                                      data-ng-click="vm.selectProposal(p)">
@@ -333,15 +339,19 @@
                         <div class="card-header bgm-lightblue">
                             <h2>
                                 Recommandations
-                                <small>Pros recommandés par vos amis et la communauté</small>
+                                <small>Échanges avec les Pro qui vous sont recommandés</small>
                             </h2>
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
                                 <div class="lv-item"
                                      data-ng-if="vm.displayRecommendText()">
-                                    TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR TEXTE A DEFINIR
-                                    TEXTE A DEFINIR TEXTE A DEFINIR
+                                    Invitez votre entourage à vous rejoindre sur CasaVox pour vous recommander les Pro
+                                    qu'ils préfèrent
+                                    <br>
+                                    <a data-ui-sref="contacts">
+                                        Utiliser le bouche-à-oreille CasaVox
+                                    </a>
                                 </div>
                                 <div class="lv-item pointer" href="" data-ng-repeat="p in vm.project.recoProposals"
                                      data-ng-click="vm.selectProposal(p)">
