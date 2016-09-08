@@ -5081,6 +5081,18 @@ div.recaptcha.mobile > div {
     text-align: center !important;
 }
 
+.f-s-8 {
+    font-size: 8px !important;
+}
+
+.f-s-9 {
+    font-size: 9px !important;
+}
+
+.f-s-10 {
+    font-size: 10px !important;
+}
+
 .f-s-11 {
     font-size: 11px !important;
 }
