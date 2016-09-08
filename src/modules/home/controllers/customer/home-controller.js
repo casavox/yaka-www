@@ -19,7 +19,6 @@
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
-            $state.go("contacts");
         }
 
         var vm = this;
