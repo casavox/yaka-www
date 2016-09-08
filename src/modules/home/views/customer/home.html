@@ -23,10 +23,10 @@
             <div class="col-xs-12 homeSection1SubTitle">
                 Trouvez et partagez vos artisans en toute confiance
             </div>
-            <div class="col-xs-6 col-xs-offset-3 yakaButton yakaBlue homeSection1Button waves-effect"
-                 data-ng-click="vm.openPopup(false)">
-                PUBLIER MON PROJET
-            </div>
+
+            <button class="col-xs-6 col-xs-offset-3 btn btn-lg bgm-lightblue waves-effect homeSection1Button"
+                    data-ng-click="vm.openPopup(false)">PUBLIER MON PROJET
+            </button>
 
             <div data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
 
@@ -128,11 +128,10 @@
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Trouvez de nouveaux clients en passant moins de temps à prospecter.
                     </div>
-                    <div
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaOrange waves-effect"
-                        ui-sref="pro-home">
-                        DECOUVREZ NOS SERVICES
-                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
+                        ui-sref="pro-home">DECOUVREZ NOS SERVICES
+                    </button>
                 </div>
                 <div class="col-xs-12 col-sm-6 homeSection3Item">
                     <div class="col-xs-12 homeSection3ItemTitle">
@@ -141,11 +140,10 @@
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Entraidez vous pour trouver les Pro de qualité qu'il vous faut.
                     </div>
-                    <div
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton yakaButton yakaBlue waves-effect"
-                        data-ng-click="vm.openPopup(false)">
-                        INVITEZ VOS AMIS ET VOS ARTISANS
-                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
+                        data-ng-click="vm.openPopup(false)">INVITEZ VOS AMIS ET VOS ARTISANS
+                    </button>
                 </div>
             </div>
         </div>
@@ -230,11 +228,12 @@
                            data-ng-model="vm.loginUser.password"
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                    <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                         data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
-                         id="signInPopupButton">
-                        SE CONNECTER
-                    </div>
+                    <button
+                        class="col-xs-12 btn btn-lg bgm-cyan loginPopupButton waves-effect"
+                        data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
+                        id="signInPopupButton">SE CONNECTER
+                    </button>
+
                     <div class="col-xs-12 passwordForgotten">
                         <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
@@ -406,13 +405,11 @@
                                 class="visible-xs col-xs-12 m-t-0 center recaptcha mobile"
                                 style="-moz-transform:scale(0.9); -ms-transform:scale(0.9); -o-transform:scale(0.9); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.9); transform:scale(0.9); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9,M12=0,M21=0,M22=0.9,SizingMethod='auto expand');"
                             ></div>
-
-                            <div class="col-xs-12 yakaButton yakaBlue loginPopupButton waves-effect"
-                                 data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
-                                 data-ng-click="vm.register()">
-                                S'INSCRIRE
-                            </div>
-
+                            <button
+                                class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                                data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
+                                data-ng-click="vm.register()">S'INSCRIRE
+                            </button>
                             <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
                                 Vous êtes Pro ? Cliquez ici pour vous inscrire
                             </div>
@@ -426,10 +423,10 @@
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
                     sur <em>S'inscrire</em> puis <em>{{vm.socialNetwork}}</em>.
                 </div>
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     data-ng-click="vm.noSocialAccountMessage = false">
-                    OK
-                </div>
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-click="vm.noSocialAccountMessage = false">OK
+                </button>
             </div>
         </div>
     </div>
@@ -465,13 +462,11 @@
                         </div>
                     </div>
                 </form>
-
-                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     data-ng-click="vm.forgottenPassword()">
-                    RÉINITIALISER MON MOT DE PASSE
-                </div>
-
+                <button
+                    class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                    data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
+                    data-ng-click="vm.forgottenPassword()">RÉINITIALISER MON MOT DE PASSE
+                </button>
             </div>
             <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
                 Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
