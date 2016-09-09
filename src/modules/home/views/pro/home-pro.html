@@ -310,7 +310,7 @@
                     ></div>
                     <button
                         class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange waves-effect"
-                        data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">
+                        data-ng-disabled="!vm.formIsValid()" data-ng-click="vm.registerUser()">
                         S'INSCRIRE
                     </button>
                 </form>
@@ -393,7 +393,7 @@
 
                 <button
                     class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
-                    data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()">
+                    data-ng-disabled="!vm.loginFormIsValid()" data-ng-click="vm.login()">
                     SE CONNECTER
                 </button>
 
@@ -452,7 +452,7 @@
 
                 <button
                     class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
-                    data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
+                    data-ng-disabled="!vm.forgottenPasswordUser.email"
                     data-ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
                 </button>
