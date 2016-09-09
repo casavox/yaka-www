@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService) {
+    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService, smoothScroll) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -385,5 +385,11 @@
             }
             return true;
         };
+
+        vm.smoothScrollToSend = function () {
+            var element = document.getElementById('map_canvas');
+            smoothScroll(element);
+        };
+
     }
 })();
