@@ -9,17 +9,16 @@
     //Controller login
     function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
 
+        if ($stateParams.invitationId) {
+            $localStorage.invitationId = $stateParams.invitationId;
+        }
+
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('pro-dashboard');
             } else {
                 $state.go('dashboard');
             }
-        }
-
-        if ($stateParams.invitationId) {
-            $localStorage.invitationId = $stateParams.invitationId;
-            $state.go("contacts");
         }
 
         var vm = this;
@@ -65,16 +64,19 @@
         ];
 
         vm.showLoginPopup = false;
+        vm.loginTab = true;
 
         if ($stateParams.login) {
             vm.showLoginPopup = true;
+        }
+        if ($stateParams.register) {
+            vm.showLoginPopup = true;
+            vm.loginTab = false;
         }
 
         vm.currentYear = new Date().getFullYear();
 
         vm.noSocialAccountMessage = false;
-
-        vm.loginTab = true;
 
         vm.socialNetwork = "";
 
@@ -109,6 +111,10 @@
             password: "",
             email: ""
         };
+
+        if ($stateParams.email) {
+            vm.loginUser.email = $stateParams.email;
+        }
 
         vm.passwordConfirm = "";
 
