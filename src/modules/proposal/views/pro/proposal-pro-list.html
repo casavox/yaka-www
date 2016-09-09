@@ -11,8 +11,8 @@
 
             <div data-ng-if="vm.proposals && vm.proposals.length == 0" class="card" data-ng-cloak>
                 <div class="card-header">
-                    <h2>VOUS N'AVEZ AUCUN DEVIS EN COURS
-                        <small>Comment proposer un devis ?</small>
+                    <h2>VOUS N'AVEZ AUCUN ÉCHANGE EN COURS
+                        <small>Comment répondre aux offres ?</small>
                     </h2>
                 </div>
                 <div class="card-body card-padding">
@@ -50,7 +50,7 @@
             </div>
 
             <div class="col-xs-12 no-padding block-header" data-ng-if="vm.proposals && vm.proposals.length > 0">
-                <h2>Devis en cours</h2>
+                <h2>Échange en cours</h2>
             </div>
 
             <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0"
@@ -78,37 +78,40 @@
                     <div class="pl-body clearfix col-xs-12">
                         <div class="col-xs-12 pull-left no-padding min-w-175"
                              data-ng-if="proposal.firstRecommendation">
-                            Recommandé par
-                            <casa-name-and-contact
-                                user="proposal.firstRecommendation.recommender"
-                                icon-color="c-white"></casa-name-and-contact>
-                            <span
-                                data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">
-                                                        + {{vm.proposal.recommendations.length - 1}} autre<span
-                                data-ng-if="proposal.recommendations && proposal.recommendations.length > 2">s</span>
-                                                    </span>
+                            <strong>Recommandé par
+                                <casa-name-and-contact
+                                    user="proposal.firstRecommendation.recommender"
+                                    icon-color="c-white"></casa-name-and-contact>
+
+                            <span data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">+ {{proposal.recommendations.length - 1}} autre
+                                <span
+                                    data-ng-if="proposal.recommendations && proposal.recommendations.length > 2">s</span>
+                            </span>
+                            </strong>
                         </div>
                         <div class="col-xs-8 t-left no-padding m-t-5 m-b-10">
                             <div class="visible-xs">
-                                Date souhaitée par le client :<br/>
-                                {{vm.getWhen(proposal)}}
+                                Date client : <em>{{vm.getWhen(proposal)}}</em>
                                 <div class="col-xs-12 no-padding m-t-5">
-                                    Ma date d'intervention :<br/>
-                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
+                                    Ma date d'intervention : {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - ' }}
+                                </div>
+                                <div class="col-xs-12 no-padding m-t-5">
+                                    Mon prix : {{ proposal.price || '- - ' }} €
                                 </div>
                             </div>
                             <div class="hidden-xs">
-                                Date souhaitée par le client :
-                                {{vm.getWhen(proposal)}}
+                                Date souhaitée par le client : {{vm.getWhen(proposal)}}
                                 <div class="col-xs-12 no-padding m-t-5">
-                                    Ma date d'intervention :
-                                    {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
+                                    Ma date d'intervention : {{ (proposal.startDate | date:'dd MMMM yyyy') || '- - -' }}
                                 </div>
                             </div>
                         </div>
 
-                        <p class="col-xs-4 t-right no-padding proProposalListPrice">{{ proposal.price || '- - -' }}
-                            €</p>
+                        <div class="hidden-xs col-xs-4 t-right no-padding proProposalListPrice m-t-0 m-b-5">
+                            <span class="f-s-13 fw-norm">Mon prix</span>
+                            <br>
+                            {{ proposal.price || '---' }}<span class="f-s-18"> €</span>
+                        </div>
                     </div>
                 </div>
 
@@ -146,7 +149,7 @@
                                     icon-color="c-white"></casa-name-and-contact>
                                 <span
                                     data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">
-                                                        + {{vm.proposal.recommendations.length - 1}} autre<span
+                                                        + {{proposal.recommendations.length - 1}} autre<span
                                     data-ng-if="proposal.recommendations && proposal.recommendations.length > 2">s</span>
                                                     </span>
                             </div>
