@@ -7,16 +7,16 @@
 
     function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
 
+        if ($stateParams.invitationId) {
+            $localStorage.invitationId = $stateParams.invitationId;
+        }
+
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('pro-dashboard');
             } else {
                 $state.go('dashboard');
             }
-        }
-
-        if ($stateParams.invitationId) {
-            $localStorage.invitationId = $stateParams.invitationId;
         }
 
         var vm = this;
@@ -250,7 +250,18 @@
             email: ""
         };
 
-        vm.showLoginPopup = false;
+        if ($stateParams.email) {
+            vm.loginUser.email = $stateParams.email;
+        }
+
+        vm.showLoginPopup = false
+
+        if ($stateParams.login) {
+            vm.showLoginPopup = true;
+        }
+        if ($stateParams.register) {
+            vm.smoothScrollRegister();
+        }
 
         vm.openPopup = function () {
             vm.showLoginPopup = true;
