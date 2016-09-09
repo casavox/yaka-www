@@ -1036,5 +1036,30 @@
                 }
             });
         };
+
+        vm.invalidatePro = function (proId, requiredRefusedMessage) {
+            var data = {
+                "refusedReason" : requiredRefusedMessage
+            };
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Le professionnel sera bloqué",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, bloquer le professionnel",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.adminInvalidateProPOST(proId, data,
+                        function (res) {
+                            alertMsg.send("Le pro a été bloqué", "info");
+                            vm.getProDetails();                        }, function () {
+                            alertMsg.send("Impossible de bloquer le pro", "danger");
+                        }
+                    );
+
+                }
+            });
+        };
     }
 })();

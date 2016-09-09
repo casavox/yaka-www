@@ -96,7 +96,7 @@
                     </li>
                 </ol>
             </div>
-            <div class="" container>
+            <div class="clearfix">
 
                 <div class="col-xs-12 no-padding card">
                     <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
@@ -114,19 +114,21 @@
 
                                     <div class="form-group fg-float m-b-30 t-center">
 
-                                        <div class="col-xs-6">
-                                            <div class="col-xs-7">
+                                        <div class="col-xs-12 col-sm-6 no-padding">
+                                            <div class="col-xs-12 col-sm-6 p-5">
                                                 Statut actuel :
                                             </div>
-                                            <div class="col-xs-5" data-ng-class="{'bgm-green' : vm.profile.status == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue' : vm.profile.status == 'Complet', 'bgm-red' : vm.profile.status == 'Refusé'}">
-                                                 {{ vm.profile.status }}
+                                            <div class="col-xs-12 col-sm-6 p-5"
+                                                 data-ng-class="{'bgm-green c-white' : vm.profile.status == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue c-white' : vm.profile.status == 'Complet', 'bgm-red c-white' : vm.profile.status == 'Refusé'}">
+                                                {{ vm.profile.status }}
                                             </div>
                                         </div>
-                                        <div class="col-xs-6">
-                                            <div class="col-xs-7">
+                                        <div class="col-xs-12 col-sm-6 no-padding">
+                                            <div class="col-xs-12 col-sm-6 p-5">
                                                 Statut éligible :
                                             </div>
-                                            <div class="col-xs-5" data-ng-class="{'bgm-green' : vm.profile.eligibleStatus == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue' : vm.profile.status == 'Complet', 'bgm-red' : vm.profile.status == 'Refusé'}">
+                                            <div class="col-xs-12 col-sm-6 p-5"
+                                                 data-ng-class="{'bgm-green c-white' : vm.profile.eligibleStatus == 'Validé', 'bgm-yellow' : vm.profile.status == 'Incomplet', 'bgm-blue c-white' : vm.profile.status == 'Complet', 'bgm-red c-white' : vm.profile.status == 'Refusé'}">
                                                 {{ vm.profile.eligibleStatus }}
                                             </div>
                                         </div>
@@ -134,12 +136,40 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding profile-box-footer m-t-20 m-b-20 t-center">
+                            <div class="col-xs-12 profile-box-footer m-t-20 m-b-10 t-center">
+                                <div class="bgm-red c-white p-t-5 p-b-5" data-ng-if="vm.profile.status == 'Refusé'">
+                                    Motif du refus :
+                                    {{vm.profile.refusedReason}}
+                                </div>
+                            </div>
 
-                                <button class="btn btn-info bgm-lightblue waves-effect"
-                                        data-ng-click="vm.validatePro()">
-                                    VALIDER LE PRO
-                                </button>
+
+                            <div class="col-xs-12">
+                                <form class="row ng-pristine ng-valid" role="form">
+                                    <div class="col-xs-12 col-sm-6 m-b-20">
+                                        <div class="form-group fg-line">
+                                            <label class="sr-only" for="refusedReason">Motif du refus</label>
+                                            <input type="text" name="refusedReasonMessage"
+                                                   id="refusedReason"
+                                                   class="form-control input-sm col-xs-4"
+                                                   data-ng-model="requiredRefusedMessage"
+                                                   required="required"
+                                                   placeholder="Motif du refus"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 m-b-10">
+                                        <button class="col-xs-12 btn btn-warning bgm-red waves-effect waves-effect"
+                                                data-ng-disabled="!requiredRefusedMessage"
+                                                data-ng-click="vm.invalidatePro(vm.profile.id, requiredRefusedMessage)">
+                                            Bloquer
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 m-b-10">
+                                        <button class="col-xs-12 btn btn-info bgm-green waves-effect"
+                                                data-ng-click="vm.validatePro()">
+                                            VALIDER LE PRO
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
 
                         </form>

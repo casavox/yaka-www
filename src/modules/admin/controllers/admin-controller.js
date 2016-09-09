@@ -105,33 +105,6 @@
                 }
             });
         };
-
-        vm.invalidatePro = function (proId, proName) {
-            swal({
-                title: "Êtes-vous sûr ?",
-                text: "Le pro sera bloqué",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#03a9f4",
-                confirmButtonText: "Oui, bloquer le pro",
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    var data = {
-                        "refusedReason": proName + " n'est pas bon bla bla bla !"
-                    };
-                    networkService.adminInvalidateProPOST(proId, data,
-                        function (res) {
-                            alertMsg.send("Le pro a été bloqué", "info");
-                            loadProList();
-                        }, function () {
-                            alertMsg.send("Impossible de bloquer le pro", "danger");
-                        }
-                    );
-
-                }
-            });
-        };
     }
 })
 ();
