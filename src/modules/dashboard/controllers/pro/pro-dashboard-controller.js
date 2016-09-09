@@ -45,18 +45,12 @@
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
 
-        vm.showProDoesntCorrespondPopup = false;
 
         vm.networkProjectClicked = function (project) {
-            if (project.activityDoesntCorrespond) {
-                vm.selectedProject = project;
-                vm.showProDoesntCorrespondPopup = true;
+            if (project.recoProposals) {
+                $state.go('pro-proposal', {'proposalId': project.recoProposals[0].id});
             } else {
-                if (project.recoProposals) {
-                    $state.go('pro-proposal', {'proposalId': project.recoProposals[0].id});
-                } else {
-                    $state.go('pro-project-proposal-new', {'projectId': project.id});
-                }
+                $state.go('pro-project-proposal-new', {'projectId': project.id});
             }
         };
 
@@ -84,7 +78,7 @@
             return false;
         };
 
-        vm.isListEmpty = function() {
+        vm.isListEmpty = function () {
 
             if (!vm.projectsToRecommend) {
                 return true;
