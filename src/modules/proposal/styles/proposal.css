@@ -18,6 +18,10 @@
     color: #000;
 }
 
+.waitingReco {
+    transform: translateY(50%);
+}
+
 .projectTitleBar .media-heading .row {
     font-size: 17px !important;
 }
@@ -385,5 +389,9 @@
         margin-left: 30%;
         width: 70%;
         margin-bottom: -10px;
+    }
+
+    .recoProName {
+        margin-top: 37px !important;
     }
 }
