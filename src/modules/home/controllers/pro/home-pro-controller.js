@@ -15,7 +15,7 @@
             }
         }
 
-        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
+        if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
