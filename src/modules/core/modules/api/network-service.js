@@ -308,6 +308,57 @@
             },
             getProNetworkLeads: function (success, error) {
                 httpService.get(baseUrl + '/pro/projects/network').success(success).error(error)
+            },
+            adminProListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/pro/list').success(success).error(error)
+            },
+            adminProDetailsGET: function (id, success, error) {
+                httpService.get(baseUrl + '/admin/pro/' + id).success(success).error(error)
+            },
+            adminValidateProPOST: function (data, success, error) {
+                httpService.post(baseUrl + '/admin/pro/validate', data).success(success).error(error)
+            },
+            adminInvalidateProPOST: function (id, data, success, error) {
+                httpService.post(baseUrl + '/admin/pro/' + id + '/invalidate', data).success(success).error(error)
+            },
+            adminProProfilePUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + id + '/profile', data).success(success).error(error)
+            },
+            adminProAboutMePUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + id + '/about', data).success(success).error(error)
+            },
+            adminProWorkAreaPUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + id + '/workarea', data).success(success).error(error)
+            },
+            adminProActivitiesPUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + id + '/activities', data).success(success).error(error)
+            },
+            adminProVerificationsPUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + id + '/verifications', data).success(success).error(error)
+            },
+            adminProPortfolioPUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + id + '/portfolio', data).success(success).error(error)
+            },
+            adminChangePassword: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/' + id + '/password', data).success(success).error(error)
+            },
+            adminProjectsListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/projects').success(success).error(error)
+            },
+            adminProfileGET: function (id, success, error) {
+                httpService.get(baseUrl + '/admin/users/' + id).success(success).error(error)
+            },
+            adminProposalAcceptPOST: function (proposalId, success, error) {
+                httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept").success(success).error(error)
+            },
+            adminProjectGET: function (data, success, error) {
+                httpService.get(baseUrl + '/admin/projects/' + data).success(success).error(error)
+            },
+            adminProjectPUT: function (data, success, error) {
+                httpService.put(baseUrl + '/admin/projects/' + data.id, data).success(success).error(error);
+            },
+            adminDeleteProject: function (id, data, success, error) {
+                httpService.post(baseUrl + '/admin/projects/' + id + '/delete', data).success(success).error(error)
             }
         };
     }

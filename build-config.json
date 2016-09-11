@@ -108,7 +108,8 @@
             "modules/contacts/styles/contacts.css",
             "modules/proposal/styles/proposal.css",
             "modules/help/styles/help.css",
-            "modules/dashboard/styles/dashboard.css"
+            "modules/dashboard/styles/dashboard.css",
+            "modules/admin/styles/admin.css"
         ],
         "scss": [],
         "assets": [

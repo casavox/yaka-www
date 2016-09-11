@@ -193,6 +193,13 @@
             return app.getUser().professional;
         };
 
+        app.isAdmin = function () {
+            if (!app.getUser()) {
+                return false;
+            }
+            return app.getUser().isAdmin;
+        };
+
         app.getTheme = function () {
             if (app.isPro()) {
                 return "orange";
