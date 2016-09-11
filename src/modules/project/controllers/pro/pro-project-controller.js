@@ -93,8 +93,8 @@
                 }
                 if (!vm.offer.date && !vm.offer.price) {
                     swal({
-                        title: "Il est recommandé d'indiquer une date et/ou un prix estimatif",
-                        text: "Vous augmentez vos chances d'être retenu en indiquant une date ou un prix même estimatif dès que cela vous est possible",
+                        title: "Vous n'avez pas indiqué d'estimation de date ni de prix",
+                        text: "Augmentez vos chances d'être retenu en indiquant une date et/ou un prix même estimatif dès que cela vous est possible",
                         type: "warning",
                         confirmButtonColor: "#f44336",
                         confirmButtonText: "Envoyer quand même",
