@@ -1,0 +1,83 @@
+<style data-ng-if="app.isPro()">
+    .customerSupportWidget {
+        background: #FF9800;
+    }
+
+    .contactsItemNumberActive {
+        background: #FF9800;
+    }
+</style>
+
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    <div id="content" class="content">
+        <div class="container">
+            <div>
+                <input type="text" class="form-control di-block input-filter" ng-model="search.user.name"
+                       placeholder="Nom"/>
+                <input type="text" class="form-control di-block input-filter" ng-model="search.company.address.city"
+                       placeholder="Ville"/>
+                <input type="text" class="form-control di-block input-filter" ng-model="search.user.created"
+                       placeholder="Création"/>
+                <input type="text" class="form-control di-block input-filter" ng-model="search.user.updated"
+                       placeholder="Update"/>
+                <input type="text" class="form-control di-block input-filter" ng-model="search.eligibleStatus"
+                       placeholder="Eligible"/>
+                <input type="text" class="form-control di-block input-filter" ng-model="search.status"
+                       placeholder="Statut"/>
+                <button class="btn btn-success validateButton di-block input-filter waves-effect"
+                        data-ng-disabled="!vm.oneOrMorePro()"
+                        data-ng-click="vm.validatePro()">Valider
+                </button>
+            </div>
+            <table ng-table="usersTable" class="table table-striped" show-filter="true">
+
+                <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
+
+                    <td data-title="'Nom'" class="pointer c-blue" data-sortable="'user.name'"
+                    data-ui-sref="admin-pro-details({professionnalId: pro.id})">
+                        {{pro.user.name}}
+                    </td>
+                    <td data-title="'Ville'" data-sortable="'company.address.city'">
+                        {{ pro.company.address.city }}
+                    </td>
+                    <td data-title="'Création'" data-sortable="'user.created'">
+                        {{ pro.user.created | date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Mis à jour'" data-sortable="'user.updated'">
+                        {{ pro.user.updated| date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Eligible'"
+                        ng-class="{'bgm-green' : pro.eligibleStatus == 'Validé', 'bgm-yellow' : pro.eligibleStatus == 'Incomplet', 'bgm-blue' : pro.eligibleStatus == 'Complet', 'bgm-red' : pro.eligibleStatus == 'Refusé'}"
+                        data-sortable="'eligibleStatus'">
+                        {{ pro.eligibleStatus }}
+                    </td>
+                    <td data-title="'Statut'"
+                        ng-class="{'bgm-green' : pro.status == 'Validé', 'bgm-yellow' : pro.status == 'Incomplet', 'bgm-blue' : pro.status == 'Complet', 'bgm-red' : pro.status == 'Refusé'}"
+                        data-sortable="'status'">
+                        {{ pro.status }}
+                    </td>
+                    <td data-title="'Pièces jointes'">
+                        <div data-ng-repeat="file in pro.verifications">
+                            <a ng-href="{{ file.cloudinaryPublicId | yakaCloudinaryDownload }}">{{ file.name |
+                                casaProfessionalDoc }}</a>
+                        </div>
+                    </td>
+                    <td data-title="'Vérif nécessaire'" data-sortable="'needToRecheck'">
+                        {{ pro.newNeedToRecheck}}
+                    </td>
+                    <td class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="pro.selected" value="">
+                            <i class="input-helper"></i>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

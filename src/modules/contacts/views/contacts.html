@@ -325,7 +325,7 @@
 <div class="yakaPopup" data-ng-show="vm.showInvitFriendPopup" data-ng-click="vm.closeFriendPopup()" data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeFriendPopup()"
+            <img id="closePopupFriendImg" class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeFriendPopup()"
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
@@ -372,7 +372,7 @@
 <div class="yakaPopup" data-ng-show="vm.showInvitProPopup" data-ng-click="vm.closeProPopup()" data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton"
+            <img id="closePopupProImg" class="popupCloseButton"
                  src="icons/mdpi/ic_popup_close.png"
                  data-ng-click="vm.closeProPopup()"
                  alt=""/>
