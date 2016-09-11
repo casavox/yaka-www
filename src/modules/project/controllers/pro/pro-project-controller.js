@@ -79,7 +79,9 @@
         }
 
         function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
+            if (vm.offer.comment &&
+                vm.offer.comment.length > 40 &&
+                vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
                 var formData = {
                     project: {id: vm.projectTmp.id},
@@ -109,6 +111,13 @@
                                 alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
                             });
                         }
+                    });
+                } else {
+                    networkService.proposalPOST(formData, function (res) {
+                        alertMsg.send("Prise de contact envoyée avec succès", "success");
+                        $state.go('pro-proposals');
+                    }, function (res) {
+                        alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
                     });
                 }
             }
