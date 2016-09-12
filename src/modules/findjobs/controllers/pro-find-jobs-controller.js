@@ -9,7 +9,7 @@
     function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $localStorage, $state) {
         $scope.showList = false;
 
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+        if ($localStorage.invitationId) {
             $state.go("contacts");
         }
 
