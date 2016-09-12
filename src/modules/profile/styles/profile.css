@@ -36,3 +36,30 @@
 .infoGreffe {
     margin-top: -20px;
 }
+
+.commentBox {
+    margin-left: 50%;
+}
+
+
+
+@media (max-width: 570px) {
+
+    .commentPhotoBoxAddProject {
+        position: fixed;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+        top: 50% !important;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .commentPhotoBoxProPortfolio {
+        position: fixed;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+        top: 50% !important;
+    }
+}
+
