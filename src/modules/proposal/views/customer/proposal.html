@@ -486,18 +486,26 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
-                                        <div class="lightbox photos clearfix">
+                                        <div class="lightbox photos projectImageTooltip clearfix">
                                             <div
                                                 data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                                 class="lightboxItemAngular galleryEditingItem col-md-2 col-sm-3 col-xs-4"
+                                                data-sub-html="#caption{{$index}}"
                                                 data-ng-repeat="image in vm.proposal.professional.portfolio">
-                                                <div class="lightbox-item p-item">
+                                                <div class="lightbox-item p-item"
+                                                     tooltip-placement="top"
+                                                     uib-tooltip="{{image.description}}">
                                                     <img
                                                         data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                         alt=""/>
                                                     <div data-ng-if="image.description"
                                                          class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
                                                         <i class="zmdi zmdi-comment-text-alt"></i>
+                                                    </div>
+                                                </div>
+                                                <div id="caption{{$index}}" style="display:none">
+                                                    <div class="galleryCaption">
+                                                        <p>{{image.description}}</p>
                                                     </div>
                                                 </div>
                                             </div>
