@@ -13,6 +13,10 @@
             $state.go("pro-dashboard");
         }
 
+        if ($localStorage.invitationId) {
+            $state.go("contacts");
+        }
+
         $rootScope.pageName = "Accueil";
         $rootScope.updateProfile();
 

@@ -92,14 +92,6 @@ html {
 
 /*--------------------------------- HEADER -----------------------------------*/
 
-.header {
-    height: 55px;
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    z-index: 1;
-}
-
 .Flogo {
     font-weight: bold;
     display: inline-block;
@@ -5095,6 +5087,10 @@ div.recaptcha.mobile > div {
 
 .f-s-11 {
     font-size: 11px !important;
+}
+
+.f-s-13 {
+    font-size: 13px !important;
 }
 
 .f-s-14 {

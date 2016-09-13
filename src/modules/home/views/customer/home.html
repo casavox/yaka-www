@@ -229,8 +229,7 @@
                            data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
                     <button
-                        class="col-xs-12 btn btn-lg bgm-cyan loginPopupButton waves-effect"
-                        data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()"
+                        class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect" data-ng-click="vm.login()" data-ng-disabled="!vm.loginFormIsValid()"
                         id="signInPopupButton">SE CONNECTER
                     </button>
 
@@ -407,7 +406,7 @@
                             ></div>
                             <button
                                 class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
-                                data-ng-class="{yakaDisabled: !vm.registerFormIsValid()}"
+                                data-ng-disabled="!vm.registerFormIsValid()"
                                 data-ng-click="vm.register()">S'INSCRIRE
                             </button>
                             <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
@@ -464,7 +463,7 @@
                 </form>
                 <button
                     class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
-                    data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
+                    data-ng-disabled="!vm.forgottenPasswordUser.email"
                     data-ng-click="vm.forgottenPassword()">RÉINITIALISER MON MOT DE PASSE
                 </button>
             </div>

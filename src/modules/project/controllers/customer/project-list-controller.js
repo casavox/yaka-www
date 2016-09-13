@@ -12,7 +12,7 @@
             $state.go("home");
         }
 
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+        if ($localStorage.invitationId) {
             $state.go("contacts");
         }
 

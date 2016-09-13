@@ -149,11 +149,11 @@
 
                                         <div data-ng-if="vm.proposal.status == 'START'">
                                             <div class="t-center m-t-15">
-                                                Devis en cours
+                                                Échange en cours
                                             </div>
                                             <button data-ng-click="vm.cancelProposalModal()"
-                                                    class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect">
-                                                <i class="zmdi zmdi-close"></i> Annuler ce devis
+                                                    class="col-xs-offset-1 col-xs-10 btn btn-xs btn-danger btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-close"></i> abandonner l'offre
                                             </button>
                                         </div>
                                         <div data-ng-if="vm.proposal.status == 'SELECTED'">
@@ -166,15 +166,15 @@
                                             </button>
                                         </div>
                                         <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-                                            <div class="t-center m-t-15">
-                                                <strong>Vous avez été recommandé</strong>
+                                            <div class="t-center m-t-0">
+                                                <strong>Vous a été recommandé</strong>
                                             </div>
                                             <div class="t-center bgm-orange">
-                                                <strong>FAITES VOTRE PROPOSITION</strong>
+                                                <strong>Contactez le !</strong>
                                             </div>
                                             <button data-ng-click="vm.cancelRecommandationModal()"
-                                                    class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect">
-                                                <i class="zmdi zmdi-close"></i> Annuler
+                                                    class="center col-xs-11 btn btn-xs btn-danger btn-icon-text waves-effect">
+                                                <i class="zmdi zmdi-close"></i> Refuser
                                             </button>
                                         </div>
                                         <div class="m-t-15"
@@ -229,23 +229,22 @@
                         <div data-ng-show="!vm.showChat">
 
                             <div class="pm-overview pro visible-xs">
-                                <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
-                                     tabindex="0">
-                                    <div
-                                        style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                                    <div style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                                         <div class="pmo-pic">
 
-                                            <div class="t-center p-10 c-white f-s-14 m-b-15"
+                                            <div class="t-center c-white f-s-14 m-b-10"
                                                  data-ng-if="vm.proposal.firstRecommendation">
                                                 Recommandé par
                                                 <casa-name-and-contact
                                                     user="vm.proposal.firstRecommendation.recommender"
                                                     icon-color="c-white"></casa-name-and-contact>
                                                 <span
-                                                    data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 1">
-                                                    + {{vm.proposal.recommendations.length - 1}} autre<span
-                                                    data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
+                                                    data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 1">+ {{vm.proposal.recommendations.length - 1}} autre
+                                                    <span
+                                                        data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
                                                 </span>
+                                                <hr class="m-0 p-0">
                                             </div>
 
                                             <div class="p-relative">
@@ -271,11 +270,11 @@
 
                                                 <div data-ng-if="vm.proposal.status == 'START'">
                                                     <div class="proNetworkProjectButtonLabel t-center m-t-15">
-                                                        Devis en cours
+                                                        Échange en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close"></i> Annuler ce devis
+                                                            class="col-xs-offset-1 col-xs-10 btn btn-xs btn-danger btn-icon-text waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close"></i> Abandonner l'offre
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
@@ -288,14 +287,19 @@
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-                                                    <div class="proNetworkProjectButtonLabel t-center m-t-15">
-                                                        Vous avez été recommandé<br>
-                                                        <strong class="bgm-orange">FAITES VOTRE PROPOSITION</strong>
+                                                    <div class="proNetworkProjectButtonLabel t-center m-t-5">
+                                                        vous a été recommandé
                                                     </div>
-                                                    <button data-ng-click="vm.cancelRecommandationModal()"
-                                                            class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close"></i> Annuler
-                                                    </button>
+                                                    <div class="col-xs-offset-2 col-xs-10">
+                                                        <button data-ng-click="vm.smoothScrollToSend()"
+                                                                class="btn btn-primary btn-sm waves-effect zIndex1">
+                                                            CONTACTER !
+                                                        </button>
+                                                        <button data-ng-click="vm.cancelRecommandationModal()"
+                                                                class="btn btn-danger btn-sm waves-effect btn-icon-text">
+                                                            <i class="zmdi zmdi-close"></i> Refuser
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div class="col-xs-8 col-xs-offset-4 no-padding status"
                                                      data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
@@ -352,7 +356,8 @@
                             <div class="pmb-block"
                                  data-ng-if="vm.proposal.status && vm.proposal.status == 'RECOMMENDATION'">
                                 <div class="pmbb-header">
-                                    <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Faire une proposition</h2>
+                                    <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Prendre contact avec le client
+                                    </h2>
                                 </div>
                                 <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
                                     <div class="col-xs-12">
@@ -408,7 +413,7 @@
                                         </p>
                                         <button class="btn btn-primary btn-block waves-effect"
                                                 data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
-                                            Prendre contact
+                                            ENVOYER
                                         </button>
                                     </div>
                                 </div>
@@ -577,7 +582,7 @@
                                data-ng-model="vm.myPrice"
                                yaka-input-numbers-only>
                     </div>
-                    <div class="col-xs-2 sym-euro">
+                    <div class="col-xs-2">
                         €
                     </div>
                 </div>
