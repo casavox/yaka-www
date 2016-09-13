@@ -47,6 +47,10 @@
             }
         };
 
+        if ($stateParams.email) {
+            vm.newUser.email = $stateParams.email;
+        }
+
         vm.passwordConfirm = "";
 
         vm.phoneNumber = "";
@@ -273,7 +277,6 @@
 
         vm.loginFormIsValid = function () {
             return !(vm.loginUser.email == '' || vm.loginUser.password == '');
-
         };
 
         vm.login = function () {

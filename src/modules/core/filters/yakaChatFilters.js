@@ -24,7 +24,7 @@ angular.module('Yaka')
                 case 'CUSTOMER_RATED_PRO':
                     return customerUser.firstName + " " + customerUser.lastName + " a indiqué la fin des travaux";
                 case 'FIRST_RECOMMENDATION':
-                    return "Cette proposition est issue d'une recommandation de " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
+                    return "Vous avez été mis en relation grâce à une recommandation de " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 case 'NEW_RECOMMENDATION':
                     return "Nouvelle recommandation de " + proUser.firstName + " " + proUser.lastName + ", par " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 default :
