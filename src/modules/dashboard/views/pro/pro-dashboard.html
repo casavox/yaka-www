@@ -469,7 +469,7 @@
                             data-ng-repeat="project in vm.projectsToRecommend">
 
                             <div
-                                data-ng-if="!vm.isInNetworkList(project)"
+                                data-ng-show="!vm.isInNetworkList(project)"
                                 data-ui-sref="project-recommend({'projectId': project.id})">
 
                                 <yaka-avatar size="45" user="project.user"></yaka-avatar>
