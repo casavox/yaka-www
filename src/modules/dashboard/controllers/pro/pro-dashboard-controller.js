@@ -75,8 +75,15 @@
         });
 
         vm.isInNetworkList = function (project) {
+
             if (!vm.networkProjects) {
                 return false;
+            }
+
+            if (project.id == '39a6cb12-17fd-423a-913b-386e03ea1d69') {
+                console.log("---------------");
+                console.log("isInNetworkList");
+                console.log("---------------");
             }
 
             for (var i = 0; i < vm.networkProjects.length; i++) {
@@ -88,7 +95,7 @@
             return false;
         };
 
-        vm.isListEmpty = function() {
+        vm.isListEmpty = function () {
 
             if (!vm.projectsToRecommend) {
                 return true;
