@@ -84,11 +84,10 @@
                     return true;
                 }
             }
-
             return false;
         };
 
-        vm.isListEmpty = function() {
+        vm.isListEmpty = function () {
 
             if (!vm.projectsToRecommend) {
                 return true;
