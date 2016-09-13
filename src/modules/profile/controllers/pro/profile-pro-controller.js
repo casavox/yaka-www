@@ -301,7 +301,22 @@
             }
         };
 
-        vm.uploadVerifications = function (files, invalides, index, verifName) {
+        vm.updateLinks = function () {
+            var data = {
+                "myWebsite" : vm.profile.myWebsite,
+                "myLinkedin" : vm.profile.myLinkedin,
+                "myOtherSocial" : vm.profile.myOtherSocial
+            }
+                networkService.updateProLinksPUT(data, function (res) {
+                    alertMsg.send("Les liens ont été mis à jour", "success");
+                    vm.updating = false;
+                }, function (res) {
+                    vm.updating = false;
+                    alertMsg.send("Impossible de modifier les liens", "danger");
+                });
+        };
+
+            vm.uploadVerifications = function (files, invalides, index, verifName) {
 
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
@@ -379,7 +394,6 @@
                 }
             });
         };
-
         networkService.professionalGET(succesProfileGET, errorProfileGET);
         networkService.skillsGET(function (res) {
             vm.cat = res;
