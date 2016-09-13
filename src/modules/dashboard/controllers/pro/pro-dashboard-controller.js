@@ -75,31 +75,14 @@
         });
 
         vm.isInNetworkList = function (project) {
-
             if (!vm.networkProjects) {
                 return false;
             }
 
-            if (project.id == '39a6cb12-17fd-423a-913b-386e03ea1d69') {
-                console.log("----------------------------------------------------");
-                console.log("isInNetworkList");
-                console.log(project.id);
-                console.log("---------------");
-            }
-
             for (var i = 0; i < vm.networkProjects.length; i++) {
-                if (project.id == '39a6cb12-17fd-423a-913b-386e03ea1d69') {
-                    console.log(vm.networkProjects[i].id);
-                }
                 if (project.id == vm.networkProjects[i].id) {
-                    if (project.id == '39a6cb12-17fd-423a-913b-386e03ea1d69') {
-                        console.log("OOOOOOKKKKKK");
-                    }
                     return true;
                 }
-            }
-            if (project.id == '39a6cb12-17fd-423a-913b-386e03ea1d69') {
-                console.log("KKKKKKOOOOOOOOO :(");
             }
             return false;
         };

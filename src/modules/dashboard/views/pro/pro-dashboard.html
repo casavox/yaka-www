@@ -466,30 +466,28 @@
 
                         <div
                             class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-15 p-r-15"
-                            data-ng-repeat="project in vm.projectsToRecommend">
+                            data-ng-repeat="project in vm.projectsToRecommend"
+                            data-ng-if="!vm.isInNetworkList(project)"
+                            data-ui-sref="project-recommend({'projectId': project.id})">
 
-                            <div
-                                data-ng-show="!vm.isInNetworkList(project)"
-                                data-ui-sref="project-recommend({'projectId': project.id})">
+                            <yaka-avatar size="45" user="project.user"></yaka-avatar>
 
-                                <yaka-avatar size="45" user="project.user"></yaka-avatar>
-
-                                <div class="dashboardProRecommendProjectText">
-                                    <div class="yakaEllipsis c-lightblue">
-                                        {{project.title}}
-                                    </div>
-                                    <div class="yakaEllipsis">
-                                        <b>
-                                            <casa-contact user="project.user"></casa-contact>
-                                        </b>
-                                        <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
-                                        {{project.user.firstName}} {{project.user.lastName}}
-                                    </div>
-                                    <div class="yakaEllipsis">
-                                        {{project.address.locality}} - {{vm.getWhen(project)}}
-                                    </div>
+                            <div class="dashboardProRecommendProjectText">
+                                <div class="yakaEllipsis c-lightblue">
+                                    {{project.title}}
+                                </div>
+                                <div class="yakaEllipsis">
+                                    <b>
+                                        <casa-contact user="project.user"></casa-contact>
+                                    </b>
+                                    <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
+                                    {{project.user.firstName}} {{project.user.lastName}}
+                                </div>
+                                <div class="yakaEllipsis">
+                                    {{project.address.locality}} - {{vm.getWhen(project)}}
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
