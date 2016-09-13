@@ -508,9 +508,8 @@
         <div class="form-group">
             <div class="fg-line">
                 <div class="select">
-                    <select class="form-control" ng-model="partner.name"
-                            ng-options="partner.name for partner in vm.partner"
-                            ng-change="vm.partnerId(partner.name.id)">
+                    <select class="form-control" ng-model="vm.selectedPartner"
+                            ng-options="partner.name for partner in vm.partner">
                         <option value="" disabled>Partenaires</option>
                     </select>
                 </div>
@@ -521,7 +520,7 @@
 
         <div class="profile-box-footer mt-12 m-b-20">
             <button class="btn btn-info bgm-lightblue waves-effect"
-                    data-ng-click="vm.setMainPartner(vm.profile.id)"
+                    data-ng-click="vm.setMainPartner()"
                     data-ng-disabled="vm.updating">
                 Enregistrer
             </button>

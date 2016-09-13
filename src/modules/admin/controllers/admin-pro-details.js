@@ -1068,12 +1068,10 @@
             });
         };
 
-        vm.partnerId = function(id) {
-            vm.partnId = id;
-        };
 
-        vm.setMainPartner = function(proId) {
-            networkService.adminSetMainPartnerPUT(proId, vm.partnId,
+
+        vm.setMainPartner = function() {
+            networkService.adminSetMainPartnerPUT(vm.profile.id, vm.selectedPartner.id,
                 function (res) {
                     alertMsg.send("Le partenaire du professionnel a été mise à jour", "info");
                     vm.getProDetails();
