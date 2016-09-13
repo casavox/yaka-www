@@ -209,7 +209,7 @@
                             </div>
 
                             <div class="pmbb-body"
-                                 data-ng-if="vm.project.error != '!vm.project.activityDoesntCorrespond && ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                 data-ng-if="vm.project && !vm.project.activityDoesntCorrespond && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Date d'intervention estimée</dt>
