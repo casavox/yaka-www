@@ -180,6 +180,7 @@
             <div class="col-sm-6 p-l-0" data-ng-if="!vm.isXsmall()">
                 <div data-ng-include="'infos.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
+                <div data-ng-include="'partner.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
             <div class="col-sm-6 p-r-0" data-ng-if="!vm.isXsmall()">
@@ -197,6 +198,7 @@
                 <div data-ng-include="'activities.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
                 <div data-ng-include="'social.html'"></div>
+                <div data-ng-include="'partner.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
         </div>
@@ -495,6 +497,37 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="text/ng-template" id="partner.html">
+<div class="col-xs-12 no-padding card">
+    <div class="card-header ch-alt">
+        <h2>Partenaires</h2>
+    </div>
+    <div class="col-xs-12 card-body m-t-20">
+        <div class="form-group">
+            <div class="fg-line">
+                <div class="select">
+                    <select class="form-control" ng-model="partner.name"
+                            ng-options="partner.name for partner in vm.partner"
+                            ng-change="vm.partnerId(partner.name.id)">
+                        <option value="" disabled>Partenaires</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+
+        <div class="profile-box-footer mt-12 m-b-20">
+            <button class="btn btn-info bgm-lightblue waves-effect"
+                    data-ng-click="vm.setMainPartner(vm.profile.id)"
+                    data-ng-disabled="vm.updating">
+                Enregistrer
+            </button>
+        </div>
+    </div>
+</div>
 </script>
 
 <script type="text/ng-template" id="password.html">
