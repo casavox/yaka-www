@@ -302,11 +302,18 @@
         };
 
         vm.updateLinks = function () {
-            var data = {
-                "myWebsite" : vm.profile.myWebsite,
-                "myLinkedin" : vm.profile.myLinkedin,
-                "myOtherSocial" : vm.profile.myOtherSocial
-            }
+            var websiteReg = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/g;
+            var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*$/g;
+
+
+            if (!vm.profile.myWebsite.match(websiteReg) || !vm.profile.myLinkedin.match(linkedinReg) || !vm.profile.myOtherSocial.match(websiteReg)) {
+                alertMsg.send("L'URL du lien n'est pas valide", "danger");
+            } else {
+                var data = {
+                    "myWebsite" : vm.profile.myWebsite,
+                    "myLinkedin" : vm.profile.myLinkedin,
+                    "myOtherSocial" : vm.profile.myOtherSocial
+                }
                 networkService.updateProLinksPUT(data, function (res) {
                     alertMsg.send("Les liens ont été mis à jour", "success");
                     vm.updating = false;
@@ -314,6 +321,8 @@
                     vm.updating = false;
                     alertMsg.send("Impossible de modifier les liens", "danger");
                 });
+            }
+
         };
 
             vm.uploadVerifications = function (files, invalides, index, verifName) {
