@@ -26,6 +26,7 @@
         vm.now = new Date();
         networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);
         networkService.projectsGET("completed", 1, 2147483647, succesProjectsCompletedGET, errorProjectsCompletedGET);
+        networkService.projectsGET("canceled", 1, 2147483647, succesProjectsCanceledGET, errorProjectsCanceledGET);
 
         function dateDiff(d1, d2) {
             var h = 0;
@@ -84,10 +85,17 @@
             vm.projectsCompleted = res.items;
         }
 
+        function succesProjectsCanceledGET(res) {
+            vm.projectsCanceled = res.items;
+        }
+
         function errorProjectsGET(res) {
         }
 
         function errorProjectsCompletedGET(res) {
+        }
+
+        function errorProjectsCanceledGET(res) {
         }
     }
 })();

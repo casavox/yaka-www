@@ -274,6 +274,7 @@
 
         vm.autocomplete = {
             options: {
+                types: ['address'],
                 componentRestrictions: {country: 'fr'}
             }
         };
