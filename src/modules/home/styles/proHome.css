@@ -292,6 +292,7 @@
 
 .proHomeSection3a {
     height: auto;
+    background: #F4F7F8;
 }
 
 .proHomeSection3b {
@@ -324,25 +325,26 @@
 }
 
 .proHomeSection3aPaid {
-    height: 175px;
-    margin-top: 29px;
+    height: 185px;
+    margin-top: 20px;
     background: #EBF0F1;
 }
 
 .proHomeSection3aFreeTitle {
     font-size: 34px;
-    margin-top: 49px;
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
 .proHomeSection3aFreeDesc {
     font-size: 16px;
     color: #626262;
-    margin-top: 34px;
 }
 
 .proHomeSection3aPaidTitle {
     font-size: 34px;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .proHomeSection3aPaidSubTitle {
@@ -353,7 +355,12 @@
 .proHomeSection3aPaidDesc {
     font-size: 16px;
     color: #626262;
-    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.proHomeSection3aPaidDesc > small{
+    font-size: 11px;
 }
 
 .proHomeSection3bTitle {
@@ -582,20 +589,23 @@
     }
 
     .proHomeSection3aFree {
-        height: 170px;
+        height: 175px;
     }
 
     .proHomeSection3aPaid {
-        height: 141px;
+        height: 155px;
     }
 
     .proHomeSection3aPaidDesc {
         font-size: 13px;
     }
 
+    .proHomeSection3aPaidDesc > small{
+        font-size: 9px;
+    }
+
     .proHomeSection3aFreeDesc {
         font-size: 13px;
-        margin-top: 43px;
     }
 
     .proHomeSection3b {
@@ -699,7 +709,7 @@
     }
 
     .proHomeSection3aPaid {
-        height: 156px;
+        height: 164px;
     }
 
     .proHomeSection3aFree {
