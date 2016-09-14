@@ -94,7 +94,7 @@
                         <div class="row no-margin" data-ng-if="vm.project">
                             <div class="card-header col-md-12 p-b-10">
                                 <div><h2 class="pull-left p-t-5 m-b-10">{{vm.project.title}}</h2></div>
-                                <div class="col-xs-9 col-sm-4 pull-right p-0">
+                                <div class="col-xs-9 col-sm-4 pull-right p-0" data-ng-if="vm.project.status != 'CANCELED'">
                                     <button class="btn btn-default waves-effect pull-right m-l-10 m-b-10"
                                             data-ng-show="vm.editFlag"
                                             data-ng-click="vm.cancel()">
