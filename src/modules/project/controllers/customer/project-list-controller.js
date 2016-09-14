@@ -61,7 +61,7 @@
         };
 
         function selectProject(p) {
-          if (p.status == 'ONGOING_PROJECT_ONGOING' || p.status == 'ONGOING_RATE_PRO') {
+            if (p.status == 'ONGOING_PROJECT_ONGOING' || p.status == 'ONGOING_RATE_PRO') {
                 $state.go("proposal", {proposalId: p.proposal.id});
               } else {
                 $state.go("proposals", {projectId: p.id});
