@@ -52,6 +52,10 @@
 
         <div class="container">
 
+            <div class="block-header" data-ng-if="vm.project && vm.project.status == 'CANCELED'">
+                <h2 class="c-orange">Projet Annulé</h2>
+            </div>
+
             <div class="card pointer" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
                  data-ng-if="vm.project.proposal">
                 <div class="card-body card-padding row">
