@@ -138,6 +138,9 @@
             changePassword: function (data, success, error) {
                 httpService.put(baseUrl + '/me/password', data).success(success).error(error)
             },
+            updateProLinksPUT: function (data, success, error) {
+                httpService.put(baseUrl + '/pro/me/links', data).success(success).error(error)
+            },
             activitiesGET: function (success, error) {
                 httpService.get(baseUrl + '/projects/activities').success(success).error(error)
             },
