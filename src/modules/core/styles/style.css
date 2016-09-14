@@ -5200,6 +5200,31 @@ div.recaptcha.mobile > div {
     }
 }
 
+@media (max-width: 489px) {
+
+    .no-padding-mobile {
+        padding: 0 !important;
+    }
+    .floatingButtonImage {
+        width: 30px !important;
+        height: 30px !important;
+        padding: 0 !important;
+    }
+    .floatingButtonImage i {
+        font-size: 15px !important;
+        transform: translateY(-5px);
+    }
+    .icon-comment {
+        left: -18px;
+        bottom: -12px !important;
+        margin-left: 50%;
+    }
+    .galleryEditingItem {
+        padding: 3px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
 @media (max-width: 991px) and (min-width: 768px) {
 
     .no-padding-medium {

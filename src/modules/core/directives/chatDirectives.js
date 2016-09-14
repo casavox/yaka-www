@@ -253,10 +253,12 @@ angular.module('Yaka')
                 }
 
                 scope.getPlaceholder = function () {
-                    if (scope.disableSending) {
-                        return 'Cette discussion est close';
-                    } else {
-                        return 'Entrez votre message (chat privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName + ')';
+                    if (scope.userOther) {
+                        if (scope.disableSending) {
+                            return 'Cette discussion est close';
+                        } else {
+                            return 'Entrez votre message (chat privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName + ')';
+                        }
                     }
                 }
             },
