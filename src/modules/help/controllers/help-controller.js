@@ -6,7 +6,7 @@
         .controller('HelpController', HelpController);
 
     function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams) {
-        
+
         if ($localStorage.invitationId) {
             $state.go("contacts");
         }
@@ -21,7 +21,7 @@
         var vm = this;
 
         vm.showTuto = false;
-        vm.showNavigate = false;
+        vm.showBoucheAOreille = false;
         vm.showSupport = true;
         if ($localStorage.user && $localStorage.user.professional) {
             if ($stateParams.card && 1 <= $stateParams.card && $stateParams.card <= 3) {
@@ -32,7 +32,7 @@
                         break;
                     case "2":
                         vm.showSupport = false;
-                        vm.showNavigate = true;
+                        vm.showBoucheAOreille = true;
                         break;
                     case "3":
                         vm.showSupport = true;

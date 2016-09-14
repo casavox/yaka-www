@@ -174,33 +174,102 @@
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-show="vm.pro"
-                 data-ng-click="vm.showNavigate = !vm.showNavigate">
-                Naviguer dans CasaVox
+                 data-ng-click="vm.showBoucheAOreille = !vm.showBoucheAOreille">
+                <em>Bouche-à-oreille numérique</em>
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showNavigate, 'zmdi-chevron-up': vm.showNavigate}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showBoucheAOreille, 'zmdi-chevron-up': vm.showBoucheAOreille}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.showNavigate" data-ng-show="vm.pro" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showBoucheAOreille" data-ng-if="vm.pro" class="col-xs-12 no-padding">
                 <div class="block-header">
-                    <h2>Menu : Carte des offres</h2>
+                    <h2>Menu : MES CONTACTS</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Comment obtenir de nouveaux chantiers</h2>
+                            <h2>Comment fonctionne le bouche-à-oreille CasaVox ?</h2>
                         </div>
                         <div class="card-body card-padding">
-                            TEXTE A CHANGER TEXTE A CHANGER TEXTE A CHANGER TEXTE A CHANGER TEXTE A CHANGER
+                            <h5 class="m-0">
+                                CasaVox est la seule solution basée sur la confiance et la recommandation d'artisans
+                                entre particuliers !
+                            </h5>
+                            <p class="m-0 m-t-10">
+                                <strong>Développez votre business sans effort</strong>
+                            </p>
+                            <p class="m-0">
+                                Inutile de relancer sans cesse vos anciens clients : invitez-les dans CasaVox,
+                                lorsqu'ils auront à nouveau des travaux à faire, vous en serez automatiquement informé,
+                                par mail et depuis le menu <em>Accueil</em>. Ils ne risquent plus de perdre votre carte
+                                de visite !
+                            </p>
+                            <p class="m-0 m-t-10">
+                                CasaVox encourage vos connaissances - toutes vos connaissances : collègues, famille,
+                                amis et clients satisfaits - à vous recommander à tous leurs proches à la recherche d'un
+                                Pro du bâtiment, ainsi ils vous seront recommandés par des personnes qu'ils connaissent
+                                et à qui ils font confiance, cela fait toute la différence. <em>Les connaissances de vos
+                                connaissances sont vos prochains clients !</em>
+                            </p>
+                            <p class="m-l-10 m-r-0 m-t-5 m-b-0">
+                                <span class="underline">Exemple, s'aider entre collègues est toujours payant :</span>
+                                <br>
+                                <em>
+                                    Vous êtes plombier, le client d'un de vos amis architecte en cherche justement un,
+                                    CasaVox proposera à votre ami architecte de vous recommander à ce client, CasaVox
+                                    vous mettra alors en relation avec le client par l'intermédiaire de votre ami
+                                    architecte.
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Comment profiter efficacement du bouche-à-oreille CasaVox ?</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h5 class="m-b-10">
+                                Pour commencer, invitez vos connaissances à vous retrouver sur CasaVox
+                            </h5>
+                            <p class="m-0 m-b-5">
+                                Depuis le menu <em>Mes contacts</em>, cliquez sur :
+                            </p>
+                            <p class="m-0">
+                                <strong class="m-l-20">« Inviter un ami »</strong>
+                            </p>
+                            <p class="m-0 m-b-5">
+                                Indiquez les adresses mails de vos amis, familles, connaissances et surtout celles de
+                                vos anciens clients.
+                                <br>
+                                Vous pouvez les inviter un par un, ou plusieurs à la fois en séparant les adresses mails
+                                par une virgule (<em>monClient1@mail.com, monAmi@mail.com, ...</em>), ou - si vous
+                                utilisez la messagerie GMail de google - en cliquant sur le bouton <em>SÉLECTIONNER MES
+                                CONTACTS GMAIL</em> puis en cochant ceux à qui vous souhaitez envoyer une invitation.
+                            </p>
+                            <p class="m-0">
+                                <strong class="m-l-20">« Inviter un Pro »</strong>
+                            </p>
+                            <p class="m-0">
+                                Renseigner l'ensemble des informations demandées (le téléphone est facultatif), puis
+                                cliquez sur <em>INVITER</em>
+                            </p>
+                            <p class="m-0 m-t-10">
+                                Les personnes que vous invitez reçoivent automatiquement un mail contenant un lien
+                                personnalisé, une fois qu'ils se seront inscrit <strong>en cliquant sur ce lien</strong>,
+                                vous recevrez un mail vous indiquant qu'ils font maintenant partie de vos contacts
+                                CasaVox.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="!vm.pro && app.getUser()"
+                 data-ng-if="!vm.pro && app.getUser()"
                  data-ng-click="vm.customerCard1 = !vm.customerCard1">
-                Bla bla client 1
+                Menu aide 1
 
                 <i class="zmdi f-right f-18"
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard1, 'zmdi-chevron-up': vm.customerCard1}"></i>
@@ -208,15 +277,15 @@
 
             <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
                 <div class="block-header">
-                    <h2>Bla bla client 1</h2>
+                    <h2>Menu aide 1</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Bla bla client 1</h2>
+                            <h2>Menu aide 1</h2>
                         </div>
                         <div class="card-body card-padding">
-                            Bla bla client 1
+                            Menu aide 1
                         </div>
                     </div>
                 </div>
@@ -225,7 +294,7 @@
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-show="!vm.pro && app.getUser()"
                  data-ng-click="vm.customerCard2 = !vm.customerCard2">
-                Bla bla client 2
+                Menu aide 2
 
                 <i class="zmdi f-right f-18"
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard2, 'zmdi-chevron-up': vm.customerCard2}"></i>
@@ -233,15 +302,15 @@
 
             <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
                 <div class="block-header">
-                    <h2>Bla bla client 2</h2>
+                    <h2>Menu aide 2</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Bla bla client 2</h2>
+                            <h2>Menu aide 2</h2>
                         </div>
                         <div class="card-body card-padding">
-                            Bla bla client 2
+                            Menu aide 2
                         </div>
                     </div>
                 </div>

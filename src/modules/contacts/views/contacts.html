@@ -47,7 +47,8 @@
                                 data-ng-click="vm.openFriendPopup()">
                             Inviter un ami
                         </button>
-                        <button id="invite-pro-button" class="btn btn-default waves-effect c-orange" data-ng-click="vm.openProPopup()">
+                        <button id="invite-pro-button" class="btn btn-default waves-effect c-orange"
+                                data-ng-click="vm.openProPopup()">
                             Inviter un pro
                         </button>
                     </div>
@@ -58,7 +59,8 @@
                      data-ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
                      data-ng-swipe-left="vm.contactsMenuOpened = false">
 
-                    <button class="visible-xs btn bgm-bluegray btn-icon waves-effect waves-circle close-contact-button" data-ng-click="vm.contactsMenuOpened = false">
+                    <button class="visible-xs btn bgm-bluegray btn-icon waves-effect waves-circle close-contact-button"
+                            data-ng-click="vm.contactsMenuOpened = false">
                         <i class="zmdi zmdi-close"></i>
                     </button>
 
@@ -316,8 +318,15 @@
                             </span>
                         </div>
                     </div>
+                    <div class="col-xs-12 visible-xs bottomBlock">
+                        <a class="pull-right">En savoir plus</a>
+                    </div>
                 </div>
             </div>
+            <div class="col-xs-12 footer-card hidden-xs">
+                Une question ? <a>Consutez l'aide</a>
+            </div>
+
         </div>
     </div>
 </section>
@@ -325,7 +334,8 @@
 <div class="yakaPopup" data-ng-show="vm.showInvitFriendPopup" data-ng-click="vm.closeFriendPopup()" data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img id="closePopupFriendImg" class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeFriendPopup()"
+            <img id="closePopupFriendImg" class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.closeFriendPopup()"
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">
