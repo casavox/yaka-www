@@ -26,6 +26,7 @@
         vm.now = new Date();
         networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);
         networkService.projectsGET("completed", 1, 2147483647, succesProjectsCompletedGET, errorProjectsCompletedGET);
+        networkService.projectsGET("canceled", 1, 2147483647, succesProjectsCanceledGET, errorProjectsCanceledGET);
 
         function dateDiff(d1, d2) {
             var h = 0;
@@ -60,6 +61,9 @@
         };
 
         function selectProject(p) {
+            if (p.status == 'CANCELED') {
+                $state.go("proposal", {proposalId: p.id});
+            }
             if (p.status == 'ONGOING_PROJECT_ONGOING' || p.status == 'ONGOING_RATE_PRO') {
                 $state.go("proposal", {proposalId: p.proposal.id});
             } else {
@@ -84,10 +88,17 @@
             vm.projectsCompleted = res.items;
         }
 
+        function succesProjectsCanceledGET(res) {
+            vm.projectsCanceled = res.items;
+        }
+
         function errorProjectsGET(res) {
         }
 
         function errorProjectsCompletedGET(res) {
+        }
+
+        function errorProjectsCanceledGET(res) {
         }
     }
 })();
