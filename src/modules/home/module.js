@@ -15,7 +15,7 @@
             //Customer
 
             .state('home', {
-                url: "/?invitationId&login",
+                url: "/?invitationId&login&email&register",
                 templateUrl: "/modules/home/views/customer/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
@@ -24,7 +24,7 @@
             //Pro
 
             .state('pro-home', {
-                url: "/pro/?invitationId",
+                url: "/pro/?invitationId&login&email&register",
                 templateUrl: "/modules/home/views/pro/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'

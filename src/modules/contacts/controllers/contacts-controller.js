@@ -7,7 +7,8 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
+
 
         $rootScope.pageName = "Mes contacts";
         $rootScope.updateProfile();
@@ -147,6 +148,10 @@
         };
 
         vm.showInvitFriendPopup = false;
+
+        if ($stateParams.invite) {
+            vm.showInvitFriendPopup = true;
+        }
 
         vm.openFriendPopup = function () {
             vm.showInvitFriendPopup = true;
@@ -517,6 +522,7 @@
             }
             return "";
         };
+
     }
 })
 ();

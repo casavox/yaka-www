@@ -22,8 +22,8 @@ var InfoCustomer = function () {
     this.ProphoneNumber = "0187654321";
 
     // Fake mails and phones number
-    this.fakeNumber = '01' + this.timeStamp;
     this.timeStamp = new Date().getTime();
+    this.fakeNumber = '01' + this.timeStamp;
     this.fakeProMail = 'casavox.dev+pro' + this.timeStamp + '@gmail.com';
     this.fakeFriendMail = 'casavox.dev+f' + this.timeStamp + '@gmail.com';
     this.fakeMail = 'casavox.dev+reg' + this.timeStamp + '@gmail.com';

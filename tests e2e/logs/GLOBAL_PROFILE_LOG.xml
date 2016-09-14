@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
- <testsuite name="Window" timestamp="2016-08-29T10:40:12" hostname="localhost" time="3.584" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="Window" name="should open" time="3.583" />
+ <testsuite name="Window" timestamp="2016-09-14T15:53:02" hostname="localhost" time="3.683" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="Window" name="should open" time="3.681" />
  </testsuite>
- <testsuite name="The user" timestamp="2016-08-29T10:40:16" hostname="localhost" time="2.873" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="The user" name="should log in" time="2.872" />
+ <testsuite name="The user" timestamp="2016-09-14T15:53:05" hostname="localhost" time="2.613" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="2.613" />
  </testsuite>
- <testsuite name="The user" timestamp="2016-08-29T10:40:19" hostname="localhost" time="5.617" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="The user" name="should modify his profile" time="5.617" />
+ <testsuite name="The user" timestamp="2016-09-14T15:53:08" hostname="localhost" time="7.524" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should modify his pro profile" time="7.524" />
  </testsuite>
- <testsuite name="User" timestamp="2016-08-29T10:40:24" hostname="localhost" time="1.615" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="User" name="should log out" time="1.615" />
+ <testsuite name="User" timestamp="2016-09-14T15:53:15" hostname="localhost" time="1.293" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="1.293" />
  </testsuite>
- <testsuite name="The user" timestamp="2016-08-29T10:40:26" hostname="localhost" time="4.755" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="The user" name="should log in" time="4.755" />
+ <testsuite name="The user" timestamp="2016-09-14T15:53:17" hostname="localhost" time="4.118" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="4.118" />
  </testsuite>
- <testsuite name="The user" timestamp="2016-08-29T10:40:31" hostname="localhost" time="9.888" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="The user" name="should modify his profile" time="9.888" />
+ <testsuite name="The user" timestamp="2016-09-14T15:53:21" hostname="localhost" time="9.388" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should modify his pro profile" time="9.387" />
  </testsuite>
- <testsuite name="User" timestamp="2016-08-29T10:40:40" hostname="localhost" time="4.102" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="User" name="should log out" time="4.102" />
+ <testsuite name="User" timestamp="2016-09-14T15:53:30" hostname="localhost" time="3.688" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="3.687" />
  </testsuite>
 </testsuites>

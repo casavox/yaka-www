@@ -92,14 +92,6 @@ html {
 
 /*--------------------------------- HEADER -----------------------------------*/
 
-.header {
-    height: 55px;
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    z-index: 1;
-}
-
 .Flogo {
     font-weight: bold;
     display: inline-block;
@@ -147,26 +139,6 @@ html {
     cursor: pointer;
 }
 
-.titleBeta {
-    text-align: right;
-    background: #03A9F4;
-    margin-left: 5px;
-    font-size: 16px;
-    line-height: 17px;
-    position: absolute;
-    top: 11px;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    left: 115px;
-}
-
-.titleBetaPro {
-    background: #FF9800 !important;
-    left: 163px;
-}
-
 .titleYakaClub {
     font-size: 24px;
     float: left;
@@ -190,10 +162,6 @@ html {
 
 .titleClub {
     font-weight: 100;
-}
-
-.titleContactsBeta {
-    left: 116px !important;
 }
 
 .logout {
@@ -2135,6 +2103,10 @@ md-input-container {
 
 .fw-norm {
     font-weight: normal !important;
+}
+
+.fw-bold {
+    font-weight: bold !important;
 }
 
 .mt-10 {
@@ -4726,29 +4698,21 @@ ul[rn-carousel-buffered] > li {
 }
 
 .proDashboardListItemTitle {
-    font-size: 14px;
-    color: #000000;
-    line-height: 13px;
     text-align: left;
     position: absolute;
-    top: 15px;
+    top: 10px;
     left: 60px;
+    right: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
 
 .proDashboardListItemAddress {
-    font-size: 14px;
-    color: #9E9E9E;
-    line-height: 20px;
     text-align: left;
     position: absolute;
-    top: 45px;
+    top: 35px;
     left: 60px;
-    right: 90px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    right: 10px;
 }
 
 .proDashboardListItemChrono {
@@ -4757,7 +4721,7 @@ ul[rn-carousel-buffered] > li {
     line-height: 20px;
     text-align: justify;
     position: absolute;
-    top: 45px;
+    bottom: 5px;
     right: 10px;
     height: 20px;
 }
@@ -4893,10 +4857,6 @@ ul[rn-carousel-buffered] > li {
     left: auto !important;
 }
 
-.titleYakaClubBetaHeader {
-    top: 7px !important;
-}
-
 .yakaHeaderAvatar {
     margin-left: 5px;
 }
@@ -4927,17 +4887,9 @@ ul[rn-carousel-buffered] > li {
         font-size: 15px !important;
         position: relative !important;
         left: -8px !important;
-        top: -9px !important;
+        top: 0px !important;
         width: 81px !important;
     }
-
-    .titleContactsBeta.titleYakaClubBetaHeader {
-        position: relative !important;
-        left: -4px !important;
-        top: 0px !important;
-        font-size: 12px !important;
-    }
-
 }
 
 .proDashboard {
@@ -5121,12 +5073,32 @@ div.recaptcha.mobile > div {
     text-align: center !important;
 }
 
+.f-s-8 {
+    font-size: 8px !important;
+}
+
+.f-s-9 {
+    font-size: 9px !important;
+}
+
+.f-s-10 {
+    font-size: 10px !important;
+}
+
 .f-s-11 {
     font-size: 11px !important;
 }
 
+.f-s-13 {
+    font-size: 13px !important;
+}
+
 .f-s-14 {
     font-size: 14px !important;
+}
+
+.f-s-15 {
+    font-size: 15px !important;
 }
 
 .f-s-16 {

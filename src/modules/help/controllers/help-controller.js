@@ -6,6 +6,11 @@
         .controller('HelpController', HelpController);
 
     function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams) {
+        
+        if ($localStorage.invitationId) {
+            $state.go("contacts");
+        }
+
         $scope.showList = false;
 
         $rootScope.pageName = "Aide";

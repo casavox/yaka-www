@@ -35,14 +35,37 @@
                                          data-ui-sref="contacts">Développer mon réseau +
                                     </div>
                                 </div>
-                                <div class="col-sm-8 f-s-14 t-right dashboardStats visible-md visible-lg">
-                                    <button class="btn bgm-green waves-effect btn-xs m-b-5 m-t-5"
-                                            ui-sref="pro-proposals">
+                                <div class="col-sm-4 f-s-14 pull-right t-right dashboardStats visible-md visible-lg">
+                                    <button
+                                        class="col-sm-6 wl-95pe pull-right btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5"
+                                        ui-sref="pro-jobs">
+                                            <span
+                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
+                                        <span
+                                            data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers </span>
+                                        {{vm.data.ongoingProProjectNumber}}
+                                    </button>
+                                    <button
+                                        class="col-sm-6 wr-95pe pull-right btn bgm-green waves-effect btn-xs m-b-5 m-t-5"
+                                        ui-sref="pro-proposals">
+                                        Devis {{vm.data.ongoingProProposalNumber}}
+                                    </button>
+                                    <button
+                                        class="col-sm-12 pull-right btn bgm-orange waves-effect btn-sm m-b-5 m-t-5"
+                                        ui-sref="findjobs">
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber < 2">Carte des offres</span>
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres disponibles</span>
+                                    </button>
+                                </div>
+                                <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
+                                    <button class="col-sm-12 btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
                                         <div class="d-i-b">
-                                            Devis en cours {{vm.data.ongoingProProposalNumber}}
+                                            Échange en cours {{vm.data.ongoingProProposalNumber}}
                                         </div>
                                     </button>
-                                    <button class="btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5"
+                                    <button class="col-sm-12 btn bgm-lightblue waves-effect btn-xs m-t-5"
                                             ui-sref="pro-jobs">
                                         <div class="d-i-b">
                                             <span
@@ -52,35 +75,35 @@
                                             {{vm.data.ongoingProProjectNumber}}
                                         </div>
                                     </button>
-                                </div>
-                                <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
-                                    <button class="btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
-                                        <div class="d-i-b">
-                                            Devis en cours {{vm.data.ongoingProProposalNumber}}
-                                        </div>
-                                    </button>
-                                    <button class="btn bgm-lightblue waves-effect btn-xs m-t-5" ui-sref="pro-jobs">
-                                        <div class="d-i-b">
-                                            <span
-                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier en cours </span>
-                                            <span
-                                                data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers en cours </span>
-                                            {{vm.data.ongoingProProjectNumber}}
-                                        </div>
+                                    <button
+                                        class="col-sm-12 btn bgm-orange waves-effect btn-sm m-b-5 m-t-5"
+                                        ui-sref="findjobs">
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber < 2">Carte des offres</span>
+                                        <span
+                                            data-ng-show="vm.data.availableLeadsNumber > 1">Voir les {{vm.data.availableLeadsNumber}} offres dispo.</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="pull-left m-t-10 f-s-14 dashboardStats visible-xs-block">
-                            <button class="btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
+                        <div class="m-t-10 f-s-13 t-rx-10 dashboardStats visible-xs-block">
+                            <button class="col-xs-3 btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
                                 Devis {{vm.data.ongoingProProposalNumber}}
                             </button>
-                            <button class="btn bgm-lightblue waves-effect btn-xs" ui-sref="pro-jobs">
+                            <button class="col-xs-4 btn bgm-lightblue waves-effect btn-xs t-lx-5" ui-sref="pro-jobs">
                                 <span
                                     data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
                                 <span
                                     data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers </span>
                                 {{vm.data.ongoingProProjectNumber}}
+                            </button>
+                            <button
+                                class="col-xs-5 btn bgm-orange waves-effect btn-xs t-lx-10"
+                                ui-sref="findjobs">
+                                <span
+                                    data-ng-show="vm.data.availableLeadsNumber < 2">Voir les offres</span>
+                                <span
+                                    data-ng-show="vm.data.availableLeadsNumber > 1">Offres dispo {{vm.data.availableLeadsNumber}}</span>
                             </button>
                         </div>
                     </div>
@@ -92,9 +115,9 @@
                     <div class="card-header dashboardCommunityHeader"
                          data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                         <h2>
-                            Mon statut PRO sur CasaVox
+                            Mon statut Pro sur CasaVox
                             <small>
-                                Mon profil + Mon réseau + Mes offres
+                                Mon profil, mon réseau, mes offres
                             </small>
                         </h2>
                     </div>
@@ -124,7 +147,7 @@
                                     <input type="checkbox" onclick="return false" value=""
                                            data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                                     <i class="input-helper"></i>
-                                    <span">Accéder à mon profil</span>
+                                    <span>Accéder à mon profil</span>
                                 </label>
                             </div>
                         </div>
@@ -176,10 +199,10 @@
                 </div>
             </div>
 
-            <div class="col-md-8 p-l-0 no-padding-mobile no-padding-medium">
+            <div class="col-xs-12 col-md-8 p-l-0 no-padding-mobile no-padding-medium">
 
                 <div class="block-header">
-                    <h2>Chantiers en attente dans mon réseau</h2>
+                    <h2>Offres dans mon réseau</h2>
                 </div>
 
                 <div class="card clearfix" data-ng-if="vm.networkProjects && vm.networkProjects.length <= 0">
@@ -213,7 +236,7 @@
                                 Voir les offres disponibles
                             </button>
                             <button data-ng-show="vm.data.availableLeadsNumber > 1"
-                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    class="yakaEllipsis col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
                                     data-ui-sref="findjobs">
                                 Voir les {{vm.data.availableLeadsNumber}} offres disponibles
                             </button>
@@ -228,9 +251,9 @@
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.recoProposals[0].firstRecommendation.recommender"
-                                         size="40"></yaka-avatar>
+                                         size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-10 proNetworkProjectTitle f-s-14">
+                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
                                 <span class="c-lightblue">
                                     {{project.recoProposals[0].firstRecommendation.recommender.firstName}}
                                     {{project.recoProposals[0].firstRecommendation.recommender.lastName}}
@@ -259,15 +282,15 @@
                                 <span am-time-ago="project.updated"></span>
                             </div>
 
-                            <div class="m-t-20 visible-xs"></div>
+                            <div class="m-t-10 visible-xs"></div>
                         </div>
                         <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="!project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.user"
-                                         size="40"></yaka-avatar>
+                                         size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-10 proNetworkProjectTitle f-s-14">
+                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
                                 <span class="c-lightblue">
                                     {{project.user.firstName}}
                                     {{project.user.lastName}}
@@ -275,8 +298,7 @@
                                 <span class="c-darkgray">
                                     (
                                     <casa-contact
-                                        user="project.user"
-                                        icon-color="c-darkgray" client-red="true"></casa-contact>
+                                        user="project.user" client-blue="true"></casa-contact>
                                     )
                                     a un nouveau chantier
                                 </span>
@@ -286,14 +308,15 @@
                                 <span am-time-ago="project.updated"></span>
                             </div>
 
-                            <div class="m-t-20 visible-xs"></div>
+                            <div class="m-t-10 visible-xs"></div>
                         </div>
-                        <div class="card-body card-padding p-t-10 p-b-10 p-relative">
-                            <div class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b">
+                        <div class="card-body p-t-10 p-b-10 p-l-15 p-r-10 p-relative">
+                            <div
+                                class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b m-t-5">
                             </div>
                             <i data-ng-if="project.unreadMessages" class="proNetworkProjectUnreadIndicator"></i>
 
-                            <div class="proNetworkProjectInfos d-i-b f-s-14">
+                            <div class="proNetworkProjectInfos d-i-b f-s-14 m-l-5">
                                 <div class="c-lightblue yakaEllipsis">
                                     {{project.title}}
                                 </div>
@@ -311,7 +334,7 @@
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
                                         <span data-ng-if="!project.address.address">
-                                            {{project.address.postalCode}} {{project.address.locality}}
+                                            {{project.address.locality}} {{project.address.postalCode}}
                                         </span>
                                         <span data-ng-if="project.address.address">
                                             {{project.address.address}}
@@ -332,14 +355,14 @@
                 </div>
             </div>
 
-            <div class="col-md-4 p-r-0 no-padding-mobile no-padding-medium">
+            <div class="col-xs-12 col-md-4 p-r-0 no-padding-mobile no-padding-medium">
                 <div class="card hidden-xs hidden-sm">
                     <div class="card-header dashboardCommunityHeader"
                          data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                         <h2>
-                            Mon statut PRO sur CasaVox
+                            Mon statut Pro sur CasaVox
                             <small>
-                                Mon profil + Mon réseau + Mes offres
+                                Mon profil, mon réseau, mes offres
                             </small>
                         </h2>
                     </div>
@@ -429,37 +452,39 @@
                             </small>
                         </h2>
                     </div>
-                    <div class="clearfix card-body p-l-15 p-r-15">
+                    <div class="clearfix card-body">
 
-                        <div class="text-justify"
-                             data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length <= 0">
-                            <br>Retrouvez ici les offres ne correspondants pas à vos compétences, issues de votre
-                            entourage et de l'ensemble des clients CasoVox.
-                            <p>
-                                <br><b>S'aider entre collègues est toujours payant !</b>
-                                <br>Recommandez vos collègues en quelques clics, ils le sauront et feront pareil pour vous !
-                            </p>
+                        <div class="text-justify p-l-15 p-r-15 m-b-10"
+                             data-ng-if="vm.isListEmpty()">
+                            S'aider entre collègues est toujours payant !
+                            <br>Invitez et recommandez vos collègues, ils le sauront et feront pareil pour vous !
+                            <br>
+                            <a data-ui-sref="contacts">
+                                Utiliser le bouche-à-oreille CasaVox
+                            </a>
                         </div>
 
                         <div
-                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-10"
+                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-15 p-r-15"
                             data-ng-repeat="project in vm.projectsToRecommend"
                             data-ng-if="!vm.isInNetworkList(project)"
                             data-ui-sref="project-recommend({'projectId': project.id})">
 
-                            <yaka-avatar size="35" user="project.user"></yaka-avatar>
+                            <yaka-avatar size="45" user="project.user"></yaka-avatar>
 
-                            <div class="dashboardRecommendProjectText">
-                                <div class="yakaEllipsis">
-                                    <casa-name-and-contact user="project.user"></casa-name-and-contact>
-                                </div>
-
-                                <div class="yakaEllipsis">
-                                    {{project.address.locality}} - {{vm.getWhen(project)}}
-                                </div>
-
+                            <div class="dashboardProRecommendProjectText">
                                 <div class="yakaEllipsis c-lightblue">
                                     {{project.title}}
+                                </div>
+                                <div class="yakaEllipsis">
+                                    <b>
+                                        <casa-contact user="project.user"></casa-contact>
+                                    </b>
+                                    <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
+                                    {{project.user.firstName}} {{project.user.lastName}}
+                                </div>
+                                <div class="yakaEllipsis">
+                                    {{project.address.locality}} - {{vm.getWhen(project)}}
                                 </div>
                             </div>
 

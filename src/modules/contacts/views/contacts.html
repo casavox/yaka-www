@@ -227,21 +227,22 @@
                                 {{invit.inviter.professional.company.address.locality}}
                             </span>
                         </div>
-                        <span class="waves-effect">
+                        <div class="pull-right">
+                            <span class="waves-effect">
                             <img class="invitRefuse"
                                  src="icons/mdpi/ic_refuse_invitation.png"
-                                 data-ng-click="vm.refuseInvitation(invit.inviter.id)"/>
+                                 data-ng-click="vm.refuseInvitation(invit.inviter.inviteId)"/>
                         </span>
-                        <span class="waves-effect">
-                            <img class="invitAccept"
-                                 src="icons/mdpi/ic_accept_invitation.png"
-                                 data-ng-click="vm.acceptInvitation(invit.inviter.id)"/>
-                        </span>
+                            <span class="waves-effect">
+                                <img class="invitAccept"
+                                     src="icons/mdpi/ic_accept_invitation.png"
+                                     data-ng-click="vm.acceptInvitation(invit.inviter.inviteId)"/>
+                            </span>
+                        </div>
                     </div>
                     <div class="col-xs-12 contactItem contactItemInvitation"
                          data-ng-repeat="invit in vm.invitationsSent"
                          data-ng-if="vm.currentMenuItem == vm.MENU_INVIT_SENT">
-
                         <span data-ng-if="invit.firstName && invit.lastName">
                             {{invit.firstName}} {{invit.lastName}}
                             <span class="contactItemPro" data-ng-if="invit.isPro">

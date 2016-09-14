@@ -32,12 +32,34 @@
     display: inline-block;
     width: calc(100% - 40px);
 }
-.icon-comment {
-    position: absolute;
-    font-size: 30px;
-    width: 100%;
-    text-align: center;
-    bottom: 5px;
-    color: white;
-    text-shadow: 0px 0px 2px black;
+
+.infoGreffe {
+    margin-top: -20px;
 }
+
+.commentBox {
+    margin-left: 50%;
+}
+
+
+
+@media (max-width: 570px) {
+
+    .commentPhotoBoxAddProject {
+        position: fixed;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+        top: 50% !important;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .commentPhotoBoxProPortfolio {
+        position: fixed;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+        top: 50% !important;
+    }
+}
+

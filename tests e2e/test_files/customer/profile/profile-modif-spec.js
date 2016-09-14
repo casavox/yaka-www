@@ -24,7 +24,7 @@ describe('The user', function () {
             browser.wait(profilePage.EC.textToBePresentInElementValue(profilePage.profileMail, infoCustomer.userLogin), profilePage.waitHigh).then(function () {
                 profilePage.phoneNumber.clear();
                 console.log('Suppression du numéro de téléphone OK');
-                browser.sleep(1000);
+                browser.sleep(2000);
                 profilePage.phoneNumber.sendKeys(infoCustomer.fakeNumber);
                 newPhoneNumber = infoCustomer.fakeNumber;
                 console.log('Modification du numéro de téléphone OK');

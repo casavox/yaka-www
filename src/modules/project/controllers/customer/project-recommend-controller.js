@@ -193,7 +193,7 @@
                 }
                 swal({
                     title: "C'est fait !",
-                    text: "Vous avez bien recommandé ce professionel sur ce projet.",
+                    text: "Votre recommandation a été envoyée !",
                     type: "success",
                     showConfirmButton: true,
                     confirmButtonColor: "#03a9f4",

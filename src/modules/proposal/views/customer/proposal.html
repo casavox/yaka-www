@@ -5,8 +5,7 @@
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="proposals"
                     up-state-id="vm.proposal.project.id"
-                    title="{{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}"
-                    current-user="app.getUser()"></yaka-mobile-header>
+                    title="{{vm.proposal.professional.user.firstName}} {{vm.proposal.professional.user.lastName}}"></yaka-mobile-header>
 
 <section id="main" data-ng-cloak>
 
@@ -88,10 +87,12 @@
 
                                     <div class="bgm-lightblue t-center p-10 c-white f-s-14"
                                          data-ng-if="vm.proposal.firstRecommendation">
-                                        Recommandé par
-                                        <casa-name-and-contact
-                                            user="vm.proposal.firstRecommendation.recommender"
-                                            icon-color="c-white"></casa-name-and-contact>
+                                        <strong>
+                                            Recommandé par
+                                            <casa-name-and-contact
+                                                user="vm.proposal.firstRecommendation.recommender"
+                                                icon-color="c-white"></casa-name-and-contact>
+                                        </strong>
                                         <span
                                             data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 1">
                                                         + {{vm.proposal.recommendations.length - 1}} autre<span
@@ -202,7 +203,7 @@
                                     <div>
                                         Messages
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="app.getUserchatsUnreadNumber() > 0""></i>
+                                           data-ng-if="vm.proposal.unreadMessages"></i>
                                     </div>
                                 </a>
                             </li>
@@ -225,17 +226,20 @@
                                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
                                         <div class="pmo-pic">
 
-                                            <div class="t-center p-10 c-white f-s-14 m-b-15"
+                                            <div class="t-center p-10 c-white f-s-14 m-b-10"
                                                  data-ng-if="vm.proposal.firstRecommendation">
-                                                Recommandé par
-                                                <casa-name-and-contact
-                                                    user="vm.proposal.firstRecommendation.recommender"
-                                                    icon-color="c-white"></casa-name-and-contact>
+                                                <strong>
+                                                    Recommandé par
+                                                    <casa-name-and-contact
+                                                        user="vm.proposal.firstRecommendation.recommender"
+                                                        icon-color="c-white"></casa-name-and-contact>
+                                                </strong>
                                                 <span
                                                     data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 1">
                                                     + {{vm.proposal.recommendations.length - 1}} autre<span
                                                     data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
                                                 </span>
+                                                <hr class="m-0 p-0">
                                             </div>
 
                                             <div class="p-relative">
@@ -427,14 +431,14 @@
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
-                                            data-ng-if="vm.proposal.professional.businessRegistrationOk || vm.proposal.professional.insuranceOk">
+                                            data-ng-if="vm.proposal.professional.status == 'VALIDATED' || vm.proposal.professional.status == 'COMPLETED'">
                                             <dt>Statut entreprise</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-if="vm.proposal.professional.businessRegistrationOk">
+                                                    <li>
                                                         Entreprise vérifiée
                                                     </li>
-                                                    <li data-ng-if="vm.proposal.professional.insuranceOk">
+                                                    <li>
                                                         Assuré
                                                     </li>
                                                 </ul>

@@ -11,7 +11,6 @@
                 <div class="homeSection1YakaClub" ui-sref="home">
                     <span class="homeSection1Club">CASA</span><span class="homeSection1Yaka">VOX</span>
                     <span class="homeSection1Yaka">PRO</span>
-                    <span class="titleBeta titleBetaPro">Beta</span>
                 </div>
                 <div class="homeSection1ProLink proTopLink waves-effect" ui-sref="home">
                     ACCES CLIENT
@@ -29,22 +28,26 @@
                 confiance à un professionnel qui leur est recommandé.
             </div>
             <div class="col-xs-12 proHomeSection1Buttons">
-                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect hidden-xs hidden-sm"
-                     data-ng-click="vm.smoothScrollRegister()">
+                <button
+                    class="col-xs-4 col-sm-3 btn proHomeRegButton btn-lg bgm-orange waves-effect hidden-xs hidden-sm f-s-11"
+                    data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
-                </div>
-                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect visible-sm p-t-5 p-b-5 vertical-center"
-                     data-ng-click="vm.smoothScrollRegister()">
+                </button>
+                <button
+                    class="col-xs-4 col-sm-3 btn proHomeRegButton btn-lg bgm-orange waves-effect visible-sm vertical-center f-s-11"
+                    data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
-                </div>
-                <div class="col-xs-4 col-sm-3 proHomeSection1RegisterButton yakaButton yakaOrange waves-effect visible-xs hidden-sm p-t-5 p-b-5 vertical-center"
-                     data-ng-click="vm.smoothScrollRegister()">
+                </button>
+                <button
+                    class="col-xs-6 col-sm-3 proHomeRegButton btn btn-lg bgm-orange waves-effect visible-xs hidden-sm f-s-9"
+                    data-ng-click="vm.smoothScrollRegister()">
                     S'INSCRIRE GRATUITEMENT
-                </div>
-                <div class="col-xs-4 col-sm-3 proHomeSection1AboutButton yakaButton yakaBorderWhite waves-effect"
-                     data-ng-click="vm.smoothScrollAbout()">
+                </button>
+                <button
+                    class="col-xs-5 col-xs-offset-1 col-sm-3 proHomeSection1AboutButton btn btn-lg waves-effect yakaBorderWhite f-s-10"
+                    data-ng-click="vm.smoothScrollAbout()">
                     EN SAVOIR PLUS
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -200,91 +203,149 @@
                         data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                 </div>
 
-                <input class="form-control halfInput" placeholder="Prénom"
-                       data-ng-model="vm.newUser.firstName"
-                       data-ng-disabled="vm.isSocialRegister()"/>
+                <form>
 
-                <input class="form-control halfInput halfInputRight" placeholder="Nom du représentant"
-                       data-ng-model="vm.newUser.lastName"
-                       data-ng-disabled="vm.isSocialRegister()"/>
+                    <input class="form-control halfInput"
+                           name="fname"
+                           autocomplete="given-name"
+                           placeholder="Prénom"
+                           data-ng-model="vm.newUser.firstName"
+                           data-ng-disabled="vm.isSocialRegister()"/>
 
-                <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
-                    Ce prénom n'est pas valide
+                    <input class="form-control halfInput halfInputRight"
+                           name="lname"
+                           autocomplete="family-name"
+                           placeholder="Nom du représentant"
+                           data-ng-model="vm.newUser.lastName"
+                           data-ng-disabled="vm.isSocialRegister()"/>
+
+                    <div class="proHomeSection2InputError"
+                         data-ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
+                        Ce prénom n'est pas valide
+                    </div>
+
+                    <div class="proHomeSection2InputError"
+                         data-ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
+                        Ce nom n'est pas valide
+                    </div>
+
+                    <input class="form-control"
+                           type="email"
+                           name="username"
+                           autocomplete="username"
+                           placeholder="Email du représentant"
+                           data-ng-model="vm.newUser.email"
+                           data-ng-disabled="vm.needToHideEmail()"/>
+
+                    <div class="proHomeSection2InputError"
+                         data-ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
+                        Cet email n'est pas valide
+                    </div>
+
+                    <input class="form-control"
+                           type="password"
+                           name="password"
+                           autocomplete="new-password"
+                           placeholder="Mot de passe"
+                           data-ng-model="vm.newUser.password"/>
+
+                    <div class="proHomeSection2InputError"
+                         data-ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
+                        Trop court : 6 caractères minimum
+                    </div>
+
+                    <input class="form-control"
+                           type="password"
+                           placeholder="Confirmation de mot de passe"
+                           data-ng-model="vm.passwordConfirm"/>
+
+                    <div class="proHomeSection2InputError"
+                         data-ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
+                        Les mots de passe ne correspondent pas
+                    </div>
+
+                    <div class="col-xs-12 no-padding m-t-15">
+                        <input type="text"
+                               name="phone"
+                               autocomplete="tel"
+                               required="required"
+                               class="form-control proHomeSection2RegisterPhone"
+                               placeholder="Téléphone du représentant"
+                               data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
+                    </div>
+
+                    <div class="proHomeSection2InputError"
+                         data-ng-hide="vm.newUser.professional.phoneNumber">
+                        Cet numéro de téléphone n'est pas valide
+                    </div>
+
+                    <input
+                        vs-google-autocomplete="vm.autocomplete.options"
+                        vs-autocomplete-validator class="form-control"
+                        placeholder="Ville du siège de l'entreprise"
+                        name="address"
+                        autocomplete="address-level2"
+                        data-ng-model="vm.newUser.professional.company.address.address"/>
+
+                    <div class="proHomeSection2ActivitiesInput m-b-20" data-ng-dropdown-multiselect=""
+                         options="vm.multiChoiceInput.options"
+                         selected-model="vm.multiChoiceInput.selected"
+                         extra-settings="vm.multiChoiceInput.settings"
+                         translation-texts="vm.multiChoiceInput.translation"
+                         checkboxes="true"></div>
+
+                    <span class="col-xs-12 c-gray m-l-0">Cochez la case ci-dessous</span>
+                    <div
+                        vc-recaptcha
+                        data-ng-model="vm.newUser.recaptchaResponse"
+                        key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                        class="hidden-xs col-xs-12 m-t-0"
+                    ></div>
+                    <div
+                        vc-recaptcha
+                        data-ng-model="vm.newUser.recaptchaResponse"
+                        key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                        class="visible-xs col-xs-12 m-t-0"
+                        style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
+                    ></div>
+                    <button
+                        class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange waves-effect"
+                        data-ng-disabled="!vm.formIsValid()" data-ng-click="vm.registerUser()">
+                        S'INSCRIRE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="proHomeSection proHomeSection3">
+        <div class="proHomeSection3a">
+            <div class="container">
+                <div class="col-xs-12 proHomeSection3aTitle">
+                    SERVICES ET TARIFS
                 </div>
-
-                <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
-                    Ce nom n'est pas valide
+                <div class="col-xs-12 proHomeSection3aSubSubTitle">
+                    Dès maintenant, consultez l'ensemble des offres de chantiers, constituez votre
+                    réseau de bouche-à-oreille, faites vous recommander par votre entourage vers de nouveaux clients,
+                    ...
                 </div>
-
-                <input class="form-control" type="email" name="username" placeholder="Email du représentant"
-                       data-ng-model="vm.newUser.email"
-                       data-ng-disabled="vm.needToHideEmail()"/>
-
-                <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
-                    Cet email n'est pas valide
-                </div>
-
-                <input class="form-control" type="password" name="password" placeholder="Mot de passe"
-                       data-ng-model="vm.newUser.password"/>
-
-                <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
-                    Trop court : 6 caractères minimum
-                </div>
-
-                <input class="form-control" type="password" placeholder="Confirmation de mot de passe"
-                       data-ng-model="vm.passwordConfirm"/>
-
-                <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
-                    Les mots de passe ne correspondent pas
-                </div>
-
-                <div class="col-xs-12 no-padding m-t-15">
-                    <input type="text"
-                           required="required" class="form-control proHomeSection2RegisterPhone" placeholder="Téléphone du représentant"
-                           data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
-                </div>
-
-                <div class="proHomeSection2InputError"
-                     data-ng-hide="vm.newUser.professional.phoneNumber">
-                    Cet numéro de téléphone n'est pas valide
-                </div>
-
-                <input
-                    vs-google-autocomplete="vm.autocomplete.options"
-                    vs-autocomplete-validator class="form-control"
-                    placeholder="Ville du siège de l'entreprise"
-                    data-ng-model="vm.newUser.professional.company.address.address"/>
-
-                <div class="proHomeSection2ActivitiesInput m-b-20" data-ng-dropdown-multiselect=""
-                     options="vm.multiChoiceInput.options"
-                     selected-model="vm.multiChoiceInput.selected"
-                     extra-settings="vm.multiChoiceInput.settings"
-                     translation-texts="vm.multiChoiceInput.translation"
-                     checkboxes="true"></div>
-
-                <span class="col-xs-12 c-gray m-l-0">Cochez la case ci-dessous</span>
-                <div
-                    vc-recaptcha
-                    data-ng-model="vm.newUser.recaptchaResponse"
-                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                    class="hidden-xs col-xs-12 m-t-0"
-                ></div>
-                <div
-                    vc-recaptcha
-                    data-ng-model="vm.newUser.recaptchaResponse"
-                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                    class="visible-xs col-xs-12 m-t-0"
-                    style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
-                ></div>
-
-                <div class="col-xs-12 yakaButton yakaOrange proHomeSection2Button waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.formIsValid()}" data-ng-click="vm.registerUser()">
-                    S'INSCRIRE
+                <div class="col-xs-10 col-xs-offset-1 proHomeSection3aPricing">
+                    <div class="col-xs-6 proHomeSection3aFree">
+                        <div class="col-xs-12 proHomeSection3aFreeTitle">
+                            GRATUIT
+                        </div>
+                        <div class="col-xs-12 proHomeSection3aFreeDesc">
+                            Tous les services CasaVox sont gratuits jusqu'à la fin de l'année
+                        </div>
+                    </div>
+                    <div class="col-xs-6 proHomeSection3aPaid">
+                        <div class="col-xs-12 proHomeSection3aPaidTitle">
+                            2017
+                        </div>
+                        <div class="col-xs-12 proHomeSection3aPaidDesc">
+                            Accès à l'ensemble des services et des offres sur simple abonnement, sans engagement
+                            <div class="hidden-xs"><small>Pas de paiement pour des mises en relation, pas de commission</small></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -295,13 +356,13 @@
                 Suivez-nous !
             </div>
             <div class="homeSection4Items">
-                <a target="_blank" data-ng-href="https://www.facebook.com/yakaclub">
+                <a target="_blank" data-ng-href="https://www.facebook.com/hellocasavox">
                     <div class="homeSection4ItemSocial homeSection4ItemFacebook"></div>
                 </a>
                 <a target="_blank" data-ng-href="https://plus.google.com/117693956496667116327">
                     <div class="homeSection4ItemSocial homeSection4ItemGoogle"></div>
                 </a>
-                <a target="_blank" data-ng-href="https://twitter.com/yakaclub">
+                <a target="_blank" data-ng-href="https://twitter.com/hellocasavox">
                     <div class="homeSection4ItemSocial homeSection4ItemTwitter"></div>
                 </a>
             </div>
@@ -347,17 +408,28 @@
                     Google
                 </div>
 
-                <input class="form-control" type="text" name="username" placeholder="Email"
-                       data-ng-model="vm.loginUser.email"/>
+                <input class="form-control"
+                       type="text"
+                       name="username"
+                       autocomplete="username"
+                       placeholder="Email"
+                       data-ng-model="vm.loginUser.email"
+                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                <input class="form-control" type="password" name="password" placeholder="Mot de passe"
+                <input class="form-control"
+                       type="password"
+                       name="password"
+                       autocomplete="current-password"
+                       placeholder="Mot de passe"
                        data-ng-model="vm.loginUser.password"
                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
 
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.loginFormIsValid()}" data-ng-click="vm.login()">
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-disabled="!vm.loginFormIsValid()" data-ng-click="vm.login()">
                     SE CONNECTER
-                </div>
+                </button>
+
                 <div class="col-xs-12 passwordForgotten passwordForgottenPro">
                         <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
@@ -370,10 +442,11 @@
                     Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en bas de
                     cette page.
                 </div>
-                <div class="col-xs-12 yakaButton yakaOrange loginPopupButton waves-effect"
-                     data-ng-click="vm.noSocialAccountMessage = false">
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-click="vm.noSocialAccountMessage = false">
                     OK
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -392,13 +465,17 @@
                     <div class="form-group fg-float m-t-30"
                          data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
-                            <input type="text" name="email" data-ng-disabled="vm.isSocialRegister()"
+                            <input type="text"
+                                   name="username"
+                                   autocomplete="username"
+                                   data-ng-disabled="vm.isSocialRegister()"
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
-                                   required="required" yaka-input-email>
+                                   required="required"
+                                   yaka-input-email>
                             <label class="fg-label">Email</label>
                         </div>
-                        <div data-ng-messages="recoverPassword.email.$error">
+                        <div data-ng-messages="recoverPassword.username.$error">
                             <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                 valide
                             </small>
@@ -406,11 +483,12 @@
                     </div>
                 </form>
 
-                <div class="col-xs-12 yakaButton yakaBlue loginPopupButton passwordForgottenButton waves-effect"
-                     data-ng-class="{yakaDisabled: !vm.forgottenPasswordUser.email}"
-                     data-ng-click="vm.forgottenPassword()">
+                <button
+                    class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                    data-ng-disabled="!vm.forgottenPasswordUser.email"
+                    data-ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
-                </div>
+                </button>
 
             </div>
             <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">

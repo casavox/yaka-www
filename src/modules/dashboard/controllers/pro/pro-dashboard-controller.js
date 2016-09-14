@@ -11,6 +11,10 @@
             $state.go("dashboard");
         }
 
+        if ($localStorage.invitationId) {
+            $state.go("contacts");
+        }
+
         $rootScope.pageName = "Accueil";
         $rootScope.updateProfile();
 
@@ -41,7 +45,6 @@
 
         networkService.getProNetworkLeads(function (projects) {
             vm.networkProjects = projects;
-            console.log(projects);
         }, function (err) {
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
@@ -81,8 +84,20 @@
                     return true;
                 }
             }
-
             return false;
+        };
+
+        vm.isListEmpty = function () {
+
+            if (!vm.projectsToRecommend) {
+                return true;
+            }
+            for (var i = 0; i < vm.projectsToRecommend.length; i++) {
+                if (!vm.isInNetworkList(vm.projectsToRecommend[i])) {
+                    return false;
+                }
+            }
+            return true;
         };
     }
 })

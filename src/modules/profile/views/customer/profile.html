@@ -214,9 +214,11 @@
 
                             <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().facebookId">
                                 Compte Facebook associé
-                                <small>
-                                    {{app.getUser().facebookEmail}}
-                                </small>
+                                <div>
+                                    <small>
+                                        {{app.getUser().facebookEmail}}
+                                    </small>
+                                </div>
                             </div>
 
                             <button class="btn btn-default waves-effect m-t-4 m-l-20"
@@ -235,9 +237,11 @@
 
                             <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().googleId">
                                 Compte Google associé
-                                <small>
-                                    {{app.getUser().googleEmail}}
-                                </small>
+                                <div>
+                                    <small>
+                                        {{app.getUser().googleEmail}}
+                                    </small>
+                                </div>
                             </div>
 
                             <button class="btn btn-default waves-effect m-t-4 m-l-20"

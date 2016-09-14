@@ -3,8 +3,7 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="dashboard"
-                    title="Recommander un pro"
-                    current-user="app.getUser()"></yaka-mobile-header>
+                    title="Recommander un pro"></yaka-mobile-header>
 
 <section id="main">
 
@@ -19,13 +18,31 @@
         </ol>
     </div>
 
+
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
-
         <div class="container">
-
+            <div class="col-sm-12 topViewProfile pointer" data-ng-if="vm.project.activityCorrespond"
+                 ui-sref="pro-project-proposal-new({projectId: vm.project.id})">
+                <div class="card bgm-lightblue c-white p-10">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-check  zmdi-hc-3x"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <b>Cette offre correspond à vos compétences</b></br>
+                        Vous pouvez la recommander à un collègue, ou y
+                        <span class="c-white">
+                            <b>
+                                <u>
+                                    répondre vous même
+                                </u>
+                            </b>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="block-header">
                     <h2>Recommander à</h2>
@@ -35,9 +52,8 @@
 
                         <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="dashboardRecommendProjectText">
-                            <casa-name-and-contact class="yakaEllipsis" user="vm.project.user"
-                                                   invite="true"></casa-name-and-contact>
+                        <div class="dashboardRecommendProjectText f-s-14 fw-bold">
+                            <casa-name-and-contact user="vm.project.user" invite="true"></casa-name-and-contact>
                         </div>
                     </div>
                 </div>
@@ -53,7 +69,7 @@
                         </div>
 
                         <div class="dashboardRecommendProjectText right">
-                            <div class="yakaEllipsis f-s-16">
+                            <div class="yakaEllipsis f-s-15">
                                 {{vm.project.title}}
                             </div>
 
@@ -73,13 +89,21 @@
             </div>
             <div class="col-sm-6" data-ng-if="vm.professionals">
                 <div class="block-header">
-                    <h2>Mes Pro</h2>
+                    <h2>
+                        <span ng-if="app.isPro()">Mes Collègues</span>
+                        <span ng-if="!app.isPro()">Mes Pro</span>
+                    </h2>
                 </div>
                 <div class="card">
                     <div class="card-header projectRecommendGrayHeader">
-                        <h2>Recommander un Pro
+                        <h2>Recommander un
+                            <span ng-if="app.isPro()">Collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
                             <small>
-                                Liste de vos Pros ayant la compétence demandée
+                                Liste de vos
+                                <span ng-if="app.isPro()">Collègues</span>
+                                <span ng-if="!app.isPro()">Pros</span>
+                                ayant la compétence demandée
                             </small>
                         </h2>
                     </div>
@@ -90,7 +114,7 @@
                              data-ng-click="vm.smoothScrollPro(); vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
                              data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
 
-                            <yaka-avatar class="m-l-20" size="40" user="professional.user"></yaka-avatar>
+                            <yaka-avatar class="m-0" size="45" user="professional.user"></yaka-avatar>
 
                             <cl-image
                                 public-id="{{professional.mainPartner.cloudinaryPublicId}}"
@@ -102,21 +126,18 @@
                             <div class="proToRecommendRight">
 
                                 <div class="yakaEllipsis">
-                                    <b>
-                                        {{professional.user.firstName}} {{professional.user.firstName}}
-                                        (
-                                        <casa-contact user="professional.user"></casa-contact>
-                                        )
-                                    </b>
+                                    <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
+                                    (
+                                    <casa-contact user="professional.user"></casa-contact>
+                                    )
                                 </div>
 
-                                <div class="c-gray">
-                                    <div class=" yakaEllipsis">{{professional.company.name}}</div>
-                                    <div class=" yakaEllipsis">{{professional.company.address.postalCode}}
-                                        {{professional.company.address.locality}}
+                                <div>
+                                    <div class="yakaEllipsis">
+                                        <em>{{professional.company.name}}</em>
+                                        <span class="c-gray yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel1}}</span>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -124,7 +145,9 @@
                          data-ng-if="vm.professionals && vm.professionals.length > 0">
                         <button class="btn btn-default waves-effect c-orange m-15"
                                 data-ng-click="vm.openProPopup()">
-                            Ajouter un pro
+                            Ajouter un
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
                         </button>
                     </div>
                     <div class="f-s-16 t-center p-t-30 p-b-30 p-relative p-l-10 p-r-10"
@@ -133,7 +156,10 @@
                         <i class="zmdi zmdi-accounts zmdi-hc-4x c-gray"></i>
 
                         <div class="m-t-20">
-                            Aucun de vos Pros ne correspond.
+                            Aucun de vos
+                            <span ng-if="app.isPro()">collègues</span>
+                            <span ng-if="!app.isPro()">Pros</span>
+                            ne semble correspondre.
                         </div>
                     </div>
                 </div>
@@ -144,11 +170,18 @@
                         <span data-ng-if="vm.selectedProfessional">
                             RECOMMANDER
                         </span>
-                        <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
-                            Aucun Pro sélectionné
+                        <span
+                            data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
+                            Aucun
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
+                            sélectionné
                         </span>
-                        <span data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
-                            Ajouter un Pro
+                        <span
+                            data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
+                            Ajouter un
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">Pro</span>
                         </span>
                     </h2>
                 </div>
@@ -159,7 +192,10 @@
                     <i class="zmdi zmdi-account-box-o zmdi-hc-4x c-gray"></i>
 
                     <div class="m-t-20">
-                        Sélectionnez un pro et retrouvez ici
+                        Sélectionnez un
+                        <span ng-if="app.isPro()">collègue</span>
+                        <span ng-if="!app.isPro()">Pro</span>
+                        et retrouvez ici
                     </div>
                     <div>
                         le résumé de son profil.
@@ -169,45 +205,37 @@
 
                 <div class="card selectedProDetails" data-ng-if="vm.selectedProfessional">
 
-                    <div class="card-header clea rfix">
+                    <div class="card-header clearfix">
 
                         <yaka-avatar size="50" user="vm.selectedProfessional.user"></yaka-avatar>
 
                         <div class="dashboardRecommendProjectText professional"
                              data-ng-if="vm.selectedProfessional.mainPartner.cloudinaryPublicId">
                             <div class="yakaEllipsis f-s-14">
-                                <casa-name-and-contact user="vm.selectedProfessional.user"
-                                                       invite="true"></casa-name-and-contact>
+                                <strong>{{vm.selectedProfessional.user.firstName}}
+                                    {{vm.selectedProfessional.user.lastName}}</strong>
                             </div>
-
+                            <div class="yakaEllipsis">
+                                <b>{{vm.selectedProfessional.company.name}}</b>
+                                - {{vm.selectedProfessional.company.address.administrativeAreaLevel1}}
+                            </div>
                             <div>
-
-                                <div class=" yakaEllipsis">{{vm.selectedProfessional.company.name}}</div>
-                                <small>
-                                    <div class=" yakaEllipsis">
-                                        {{vm.selectedProfessional.company.address.postalCode}}
-                                        {{vm.selectedProfessional.company.address.locality}}
-                                    </div>
-                                </small>
+                                <casa-contact user="vm.selectedProfessional.user"></casa-contact>
                             </div>
                         </div>
 
                         <div class="dashboardRecommendProjectText propartner"
                              data-ng-if="!vm.selectedProfessional.mainPartner.cloudinaryPublicId">
                             <div class="yakaEllipsis f-s-14">
-                                <casa-name-and-contact user="vm.selectedProfessional.user"
-                                                       invite="true"></casa-name-and-contact>
+                                <strong>{{vm.selectedProfessional.user.firstName}}
+                                    {{vm.selectedProfessional.user.lastName}}</strong>
                             </div>
-
+                            <div class="yakaEllipsis">
+                                <b>{{vm.selectedProfessional.company.name}}</b>
+                                - {{vm.selectedProfessional.company.address.administrativeAreaLevel1}}
+                            </div>
                             <div>
-
-                                <div class=" yakaEllipsis">{{vm.selectedProfessional.company.name}}</div>
-                                <small>
-                                    <div class=" yakaEllipsis">
-                                        {{vm.selectedProfessional.company.address.postalCode}}
-                                        {{vm.selectedProfessional.company.address.locality}}
-                                    </div>
-                                </small>
+                                <casa-contact user="vm.selectedProfessional.user"></casa-contact>
                             </div>
                         </div>
 
@@ -231,7 +259,7 @@
 
                         <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
                                 data-ng-click="vm.recommendPro(vm.selectedProfessional.id)">
-                            Recommander le projet
+                            Lui recommander ce projet
                         </button>
                     </div>
 
@@ -309,14 +337,14 @@
                                         </dd>
                                     </dl>
                                     <dl class="dl-horizontal"
-                                        data-ng-if="vm.selectedProfessional.businessRegistrationOk || vm.selectedProfessional.insuranceOk">
+                                        data-ng-if="vm.selectedProfessional.status == 'VALIDATED' || vm.selectedProfessional.status == 'COMPLETED'">
                                         <dt>Statut entreprise</dt>
                                         <dd>
                                             <ul class="yaka-chips">
-                                                <li data-ng-if="vm.selectedProfessional.businessRegistrationOk">
+                                                <li>
                                                     Entreprise vérifiée
                                                 </li>
-                                                <li data-ng-if="vm.selectedProfessional.insuranceOk">
+                                                <li>
                                                     Assuré
                                                 </li>
                                             </ul>
@@ -359,9 +387,11 @@
 
                     <div class="card-header">
                         <h2>
-                            Invitez un professionnel
+                            Invitez un
+                            <span ng-if="app.isPro()">collègue</span>
+                            <span ng-if="!app.isPro()">professionnel</span>
                             <small>
-                                Ce Pro sera prévenu par email de ce projet.
+                                Il recevra votre recommandation par email
                             </small>
                         </h2>
                     </div>
@@ -374,7 +404,8 @@
                                 <div class="fg-line">
                                     <input type="text" name="firstName" class="form-control fg-input input-sm"
                                            data-ng-model="vm.invitPro.firstName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           required="required" data-ng-disabled="vm.isSocialRegister()"
+                                           yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
                                 <div data-ng-messages="inviteForm.firstName.$error">
@@ -390,7 +421,8 @@
                                 <div class="fg-line">
                                     <input type="text" name="lastName" class="form-control fg-input input-sm"
                                            data-ng-model="vm.invitPro.lastName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                           required="required" data-ng-disabled="vm.isSocialRegister()"
+                                           yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
                                 <div data-ng-messages="inviteForm.lastName.$error">
@@ -492,7 +524,7 @@
                 <h2>
                     Invitez un professionnel
                     <small>
-                        Ce Pro sera prévenu par email de ce projet.
+                        Il recevra votre recommandation par email
                     </small>
                 </h2>
             </div>

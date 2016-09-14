@@ -6,8 +6,7 @@ angular.module('Yaka')
             scope: {
                 upState: '@',
                 upStateId: '=',
-                title: '@',
-                currentUser: '='
+                title: '@'
             },
             link: function (scope, element, attr) {
 

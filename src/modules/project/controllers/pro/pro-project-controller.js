@@ -79,7 +79,9 @@
         }
 
         function sendOffer() {
-            if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
+            if (vm.offer.comment &&
+                vm.offer.comment.length > 40 &&
+                vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
                 var formData = {
                     project: {id: vm.projectTmp.id},
@@ -91,12 +93,33 @@
                 if (vm.offer.date && vm.offer.date) {
                     formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
                 }
-                networkService.proposalPOST(formData, function (res) {
-                    alertMsg.send("Proposition envoyée avec succès", "success");
-                    $state.go('pro-proposals');
-                }, function (res) {
-                    alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                });
+                if (!vm.offer.date && !vm.offer.price) {
+                    swal({
+                        title: "Vous n'avez pas indiqué d'estimation de date ni de prix",
+                        text: "Augmentez vos chances d'être retenu en indiquant une date et/ou un prix même estimatif dès que cela vous est possible",
+                        type: "warning",
+                        confirmButtonColor: "#f44336",
+                        confirmButtonText: "Envoyer quand même",
+                        showCancelButton: true,
+                        cancelButtonText: "Modifier avant envoi"
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            networkService.proposalPOST(formData, function (res) {
+                                alertMsg.send("Prise de contact envoyée avec succès", "success");
+                                $state.go('pro-proposals');
+                            }, function (res) {
+                                alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
+                            });
+                        }
+                    });
+                } else {
+                    networkService.proposalPOST(formData, function (res) {
+                        alertMsg.send("Prise de contact envoyée avec succès", "success");
+                        $state.go('pro-proposals');
+                    }, function (res) {
+                        alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
+                    });
+                }
             }
         }
 

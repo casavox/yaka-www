@@ -7,16 +7,16 @@
 
     function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
 
+        if ($stateParams.invitationId) {
+            $localStorage.invitationId = $stateParams.invitationId;
+        }
+
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('pro-dashboard');
             } else {
                 $state.go('dashboard');
             }
-        }
-
-        if (!angular.isUndefined($stateParams.invitationId) && $stateParams.invitationId && $stateParams.invitationId != '') {
-            $localStorage.invitationId = $stateParams.invitationId;
         }
 
         var vm = this;
@@ -46,6 +46,10 @@
                 cloudinaryPublicId: ""
             }
         };
+
+        if ($stateParams.email) {
+            vm.newUser.email = $stateParams.email;
+        }
 
         vm.passwordConfirm = "";
 
@@ -232,7 +236,7 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go('pro-dashboard');
+            $state.go("help", {'card': 1});
         }
 
         function failProRegister(err) {
@@ -250,7 +254,18 @@
             email: ""
         };
 
-        vm.showLoginPopup = false;
+        if ($stateParams.email) {
+            vm.loginUser.email = $stateParams.email;
+        }
+
+        vm.showLoginPopup = false
+
+        if ($stateParams.login) {
+            vm.showLoginPopup = true;
+        }
+        if ($stateParams.register) {
+            vm.smoothScrollRegister();
+        }
 
         vm.openPopup = function () {
             vm.showLoginPopup = true;
@@ -262,7 +277,6 @@
 
         vm.loginFormIsValid = function () {
             return !(vm.loginUser.email == '' || vm.loginUser.password == '');
-
         };
 
         vm.login = function () {

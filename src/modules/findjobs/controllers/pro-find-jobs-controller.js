@@ -9,15 +9,8 @@
     function FindJobsController($rootScope, $scope, networkService, alertMsg, uiGmapGoogleMapApi, $localStorage, $state) {
         $scope.showList = false;
 
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
+        if ($localStorage.invitationId) {
             $state.go("contacts");
-        }
-
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-            networkService.acceptInvitationPOST($localStorage.invitationId, function () {
-            }, function () {
-            });
-            $localStorage.invitationId = '';
         }
 
         $rootScope.pageName = "Carte des chantiers";
@@ -315,6 +308,14 @@
                 vm.workareaDiameter = Math.ceil((res.radius * 2) / 1000);
                 loadLeads(bounds);
             }, function errorProLeads() {
+                alertMsg.send("Imposible de récupérer les projets", "danger");
+            }
+        );
+
+        networkService.proDashboardDataGET(
+            function numberLeadProject(res) {
+                vm.numberLeadProject = res.availableLeadsNumber;
+            }, function errorProData() {
                 alertMsg.send("Imposible de récupérer les projets", "danger");
             }
         );

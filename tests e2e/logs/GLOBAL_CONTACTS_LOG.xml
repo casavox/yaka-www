@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
- <testsuite name="Window" timestamp="2016-08-29T10:23:13" hostname="localhost" time="5.653" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="Window" name="should open" time="5.649" />
+ <testsuite name="Window" timestamp="2016-09-14T15:45:36" hostname="localhost" time="3.239" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="Window" name="should open" time="3.237" />
  </testsuite>
- <testsuite name="The user" timestamp="2016-08-29T10:23:19" hostname="localhost" time="3.149" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="The user" name="should log in" time="3.148" />
+ <testsuite name="The user" timestamp="2016-09-14T15:45:39" hostname="localhost" time="2.744" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="The user" name="should log in" time="2.743" />
  </testsuite>
- <testsuite name="This test" timestamp="2016-08-29T10:23:22" hostname="localhost" time="6.51" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="This test" name="should add a Pro (FAMILY) contact" time="6.509" />
+ <testsuite name="This test" timestamp="2016-09-14T15:45:42" hostname="localhost" time="6.586" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="This test" name="should add a Pro (FAMILY) contact" time="6.586" />
  </testsuite>
- <testsuite name="This test" timestamp="2016-08-29T10:23:28" hostname="localhost" time="3.549" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="This test" name="should add a friend contact" time="3.549" />
+ <testsuite name="This test" timestamp="2016-09-14T15:45:48" hostname="localhost" time="3.569" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="This test" name="should add a friend contact" time="3.569" />
  </testsuite>
- <testsuite name="User" timestamp="2016-08-29T10:23:32" hostname="localhost" time="1.668" errors="0" tests="1" skipped="0" disabled="0" failures="0">
-  <testcase classname="User" name="should log out" time="1.668" />
+ <testsuite name="User" timestamp="2016-09-14T15:45:52" hostname="localhost" time="1.237" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="User" name="should log out" time="1.237" />
  </testsuite>
 </testsuites>

@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-    ></header>
+></header>
 
 <section id="main">
 
@@ -54,19 +54,24 @@
                                     <div class="proDashboardListItem"
                                          ui-sref="pro-project-proposal-new({projectId: lead.id})">
                                         <div class="proDashboardListItemLogo">
-                                            <img data-ng-show="lead.activities[0].code != 'AUTO_MULTI'" width="50" height="50"
+                                            <img data-ng-show="lead.activities[0].code != 'AUTO_MULTI'" width="50"
+                                                 height="50"
                                                  data-ng-src="{{vm.getIcon(lead)}}"/>
                                             <i data-ng-show="lead.activities[0].code == 'AUTO_MULTI'"
                                                class="zmdi zmdi-apps zmdi-hc-3x c-cyan center m-t-10"/>
                                         </div>
-                                        <div class="proDashboardListItemTitle">
+                                        <div class="proDashboardListItemTitle c-black yakaEllipsis">
                                             {{lead.title}}
                                         </div>
-                                        <div class="proDashboardListItemAddress">
-                                            {{lead.address.postalCode + ' ' + lead.address.locality}}
+                                        <div class="proDashboardListItemAddress c-black yakaEllipsis">
+                                            <casa-contact user="lead.user" client-blue="true"></casa-contact>
+                                            <span data-ng-if="lead.user.inContacts || lead.user.isInvited">
+                                                -
+                                            </span>
+                                            {{lead.user.firstName}} {{lead.user.lastName}}
+                                            <span class="c-darkgray">- {{lead.address.locality}}</span>
                                         </div>
                                         <div class="proDashboardListItemChrono">
-                                            <img width="20" height="20" data-ng-src="icons/mdpi/ic_time_default.png"/>
                                             <span am-time-ago="lead.published"></span>
                                         </div>
                                     </div>
@@ -88,27 +93,37 @@
                             <i data-ng-show="lead.activities[0].code == 'AUTO_MULTI'"
                                class="zmdi zmdi-apps zmdi-hc-3x c-cyan center"/>
                         </div>
-                        <div class="proDashboardListItemTitle">
+                        <div class="proDashboardListItemTitle c-black yakaEllipsis">
                             {{lead.title}}
                         </div>
-                        <div class="proDashboardListItemAddress">
-                            {{lead.address.postalCode + ' ' + lead.address.locality}}
+                        <div class="proDashboardListItemAddress c-black yakaEllipsis">
+                            <casa-contact user="lead.user" client-blue="true"></casa-contact>
+                            <span data-ng-if="lead.user.inContacts || lead.user.isInvited">
+                                -
+                            </span>
+                            {{lead.user.firstName}} {{lead.user.lastName}}
+                            <span class="c-darkgray">- {{lead.address.locality}}</span>
                         </div>
                         <div class="proDashboardListItemChrono">
-                            <img width="20" height="20" data-ng-src="icons/mdpi/ic_time_default.png"/>
                             <span am-time-ago="lead.published"></span>
                         </div>
                     </div>
                 </a>
 
-                <div class="col-xs-12 proDashboardListEmptyMessage" data-ng-if="vm.leads.length == 0">
+                <div class="col-xs-12 proDashboardListEmptyMessage"
+                     data-ng-if="vm.leads.length == 0 && vm.numberLeadProject == 0">
                     Il y n'a aucune offre pour le moment dans cette zone, déplacez vous dans la carte ou dézoomez pour
                     voir plus d'offres.
+                </div>
+                <div class="col-xs-12 proDashboardListEmptyMessage m-t-20" data-ng-if="vm.numberLeadProject > 0">
+                    {{vm.numberLeadProject}} projets disponibles dans vos compétences, déplacez vous dans la carte ou
+                    dézoomez pour
+                    voir toutes les offres !
                 </div>
             </div>
             <div class="col-xs-12 proDashboardBottomButton visible-xs waves-effect"
                  data-ng-click="showList = !showList">
-                {{ showList ? "Show Map" : "Show List" }}
+                {{ showList ? "Revenir à la carte des offres" : "Voir la liste des offres sur cette zone" }}
             </div>
         </div>
     </div>

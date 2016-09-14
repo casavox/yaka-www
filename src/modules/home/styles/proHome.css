@@ -91,8 +91,18 @@
     padding-right: 0 !important;
 }
 
+.proHomeRegButton {
+    margin-top: 2px;
+}
+
 .proHomeSection1AboutButton {
-    margin-left: 20px;
+    background-color: transparent;
+    border: 1px white solid;
+}
+
+.proHomeSection1AboutButton:hover {
+    background-color: rgba(255,255,255, 0.2);
+    color:white;
 }
 
 .proHomeSection2 {
@@ -282,6 +292,7 @@
 
 .proHomeSection3a {
     height: auto;
+    background: #F4F7F8;
 }
 
 .proHomeSection3b {
@@ -314,25 +325,26 @@
 }
 
 .proHomeSection3aPaid {
-    height: 175px;
-    margin-top: 29px;
+    height: 185px;
+    margin-top: 20px;
     background: #EBF0F1;
 }
 
 .proHomeSection3aFreeTitle {
     font-size: 34px;
-    margin-top: 49px;
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
 .proHomeSection3aFreeDesc {
     font-size: 16px;
     color: #626262;
-    margin-top: 34px;
 }
 
 .proHomeSection3aPaidTitle {
     font-size: 34px;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .proHomeSection3aPaidSubTitle {
@@ -343,7 +355,12 @@
 .proHomeSection3aPaidDesc {
     font-size: 16px;
     color: #626262;
-    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.proHomeSection3aPaidDesc > small{
+    font-size: 11px;
 }
 
 .proHomeSection3bTitle {
@@ -483,10 +500,6 @@
         width: 390px !important;
     }
 
-    .proHomeSection1AboutButton {
-        width: 160px;
-    }
-
     .proHomeSection1RegisterButton {
         width: 160px;
     }
@@ -576,20 +589,23 @@
     }
 
     .proHomeSection3aFree {
-        height: 170px;
+        height: 175px;
     }
 
     .proHomeSection3aPaid {
-        height: 141px;
+        height: 155px;
     }
 
     .proHomeSection3aPaidDesc {
         font-size: 13px;
     }
 
+    .proHomeSection3aPaidDesc > small{
+        font-size: 9px;
+    }
+
     .proHomeSection3aFreeDesc {
         font-size: 13px;
-        margin-top: 43px;
     }
 
     .proHomeSection3b {
@@ -693,7 +709,7 @@
     }
 
     .proHomeSection3aPaid {
-        height: 156px;
+        height: 164px;
     }
 
     .proHomeSection3aFree {
@@ -739,11 +755,6 @@
     }
 
     .proHomeSection1RegisterButton {
-        height: 40px;
-        padding-top: 11px;
-    }
-
-    .proHomeSection1AboutButton {
         height: 40px;
         padding-top: 11px;
     }
@@ -803,10 +814,6 @@
         font-size: 12px;
     }
 
-    .proHomeSection1AboutButton {
-        font-size: 12px;
-    }
-
     .proHomeSection3aFreeTitle {
         font-size: 19px;
     }
@@ -850,25 +857,14 @@
 
 @media (max-width: 439px) {
 
-    .proTopLink {
-        margin-top: 7px;
-    }
-
-    .proTopLink {
-        margin-top: 7px;
-    }
-
-    .proTopLink {
-        margin-top: 7px;
-    }
-
     .proHomeSection1RegisterButton {
         width: calc(50% - 10px) !important;
         margin-left: 0 !important;
     }
 
-    .proHomeSection1AboutButton {
-        width: calc(50% - 10px) !important;
+    .proHomeSection1AboutButton     {
+        background-color: transparent;
+        border: 1px white solid;
     }
 
     .proHomeSection3aPricing {

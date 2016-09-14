@@ -68,5 +68,25 @@
             </a>
         </li>
 
+        <!-- Admin -->
+
+        <li class="sub-menu" data-ng-if="app.isAdmin()">
+            <a href="" toggle-submenu>
+                <i class="zmdi zmdi-menu">
+                </i>Admin</a>
+            <ul>
+                <li>
+                    <a ui-sref="admin-pro" data-ng-click="app.sidebarStat($event)">
+                        Professionnals
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="admin-projects" data-ng-click="app.sidebarStat($event)">
+                        Projets
+                    </a>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </div>
