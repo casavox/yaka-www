@@ -42,7 +42,13 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <section id="content">
+
         <div class="container">
+
+            <div class="block-header" data-ng-if="vm.project && vm.project.status == 'CANCELED'">
+                <h2 class="c-orange">Projet Annulé</h2>
+            </div>
+
             <div class="card pointer" data-ng-click="vm.projectDetails()" data-ng-cloak>
                 <div class="card-header card-hover">
                     <div class="media">

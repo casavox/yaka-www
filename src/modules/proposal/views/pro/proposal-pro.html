@@ -54,7 +54,15 @@
         <div class="container">
 
             <div class="block-header">
-                <h2>{{vm.project.title}}</h2>
+                <h2>
+                    <span class="c-orange" data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                        Projet Annulé
+                    </span>
+                    <span data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                        -
+                    </span>
+                    {{vm.project.title}}
+                </h2>
             </div>
 
             <div class="topViewProfile">
