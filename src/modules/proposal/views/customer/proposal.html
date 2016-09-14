@@ -135,7 +135,12 @@
                                                                    icon-color="c-white"></casa-name-and-contact>
                                         </h2>
 
-                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                        <div class="col-xs-12 clearfix t-center bgm-orange c-white p-5 m-t-10"
+                                             data-ng-if="vm.proposal.firstRecommendation">Recommandation en attente
+                                        </div>
+
+                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                            data-ng-if="!vm.proposal.firstRecommendation">
                                             <li class="wa-stats center">
                                                 <span class="bgm-white">
                                                     <i class="zmdi zmdi-calendar"></i>
@@ -278,7 +283,14 @@
                                                                            icon-color="c-white"></casa-name-and-contact>
                                                 </h2>
 
-                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                                <div
+                                                    class="col-xs-7 col-xs-offset-4 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco"
+                                                    data-ng-if="vm.proposal.firstRecommendation">Recommandation en
+                                                    attente
+                                                </div>
+
+                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                                    data-ng-if="!vm.proposal.firstRecommendation">
                                                     <li class="wa-stats center">
                                                         <span class="bgm-white">
                                                             <i class="zmdi zmdi-calendar"></i>
