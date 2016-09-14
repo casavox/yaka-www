@@ -256,6 +256,92 @@ f
                     </div>
                 </div>
             </div>
+            <div data-ng-show="vm.projectsCanceled && vm.projectsCanceled.length > 0" data-ng-cloak>
+                <div class="block-header">
+                    <h2 data-ng-show="vm.projectsCanceledlength == 1">PROJET SUPPRIMÉ</h2>
+
+                    <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS SUPPRIMÉS</h2>
+                </div>
+                <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsCanceled"
+                     data-ng-click="vm.selectProject(p)">
+                    <div class="card-header p-b-15">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="proposalIconBackgroundOff lv-img v-icon-{{p.mainActivity.code}}-white">
+                                </div>
+                            </div>
+                            <div class="media-body projectTitleBar">
+                                <div class="media row">
+                                    <div class="col-sm-7">{{p.title}}</div>
+                                    <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                        <div>
+                                            <small class="c-gray">
+                                                Cloturé le {{p.updated | date:'d MMMM y'}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media m-t-5">
+                                    <div class="c-gray">
+                                        <strong>{{p.address.name}}</strong> -
+                                        <small>{{p.address.locality}}</small>
+                                    </div>
+                                    <div class="c-gray">
+                                        <small>Début souhaité {{vm.getDesiredPedriod(p)}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <ul class="actions m-t-20">
+                                    <li class="dropdown" uib-dropdown>
+                                        <a href="" uib-dropdown-toggle>
+                                            <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-ng-show="p.status == 'CANCELED' && p.proposal" class="card-body p-l-25 p-b-20"
+                         data-ui-sref="proposal({'proposalId': p.proposal.id})">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="btn-dpday pull-left on-avatar">
+                                    <div class="p-relative"
+                                         title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
+                                        <yaka-avatar class="on-avatar" size="42"
+                                                     user="p.proposal.professional.user"></yaka-avatar>
+                                        <i data-ng-show="p.proposal.unreadMessages"
+                                           class="proposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body pull-left" title="{{p.title}}"
+                                 data-ui-sref="proposal({'proposalId': p.proposal.id})">
+                                <div class="media-heading m-b-5">
+                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <strong>{{p.proposal.professional.user.firstName}}
+                                        {{p.proposal.professional.user.lastName}}</strong>
+                                </div>
+                                <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
+                                    <li class="wa-stats center">
+                                    <span class="bgm-white">
+                                        <i class="zmdi zmdi-calendar c-gray"></i>
+                                        <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                        <span data-ng-show="!p.proposal.startDate">- - -</span>
+                                    </span>
+                                        <span class="active bgm-white c-gray">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <span data-ng-show="p.proposal.price">{{p.proposals[0].price}} €</span>
+                                        <span data-ng-show="!p.proposal.price">- - - €</span>
+                                    </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </section>
