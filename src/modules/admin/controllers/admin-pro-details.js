@@ -385,6 +385,7 @@
             if ($stateParams.professionnalId) {
                 networkService.adminProDetailsGET($stateParams.professionnalId, succesProfileGET, errorProfileGET);
             }
+            networkService.adminPartnerListGET(succesPartnerListGET, errorProfileGET);
         };
 
         vm.getProDetails();
@@ -411,12 +412,15 @@
             alertMsg.send("Impossible de modifier la zone de notification", "danger");
         }
 
+        function succesPartnerListGET(res) {
+            vm.partner = res;
+        }
+
         function succesProfileGET(res) {
             vm.profile = res;
             if (!vm.profile.activityStartedYear) {
                 vm.profile.activityStartedYear = 0;
             }
-            console.log(vm.profile.status);
 
             vm.profile.status = $filter('casaProfessionalStatus')(vm.profile.status);
             vm.profile.eligibleStatus = $filter('casaProfessionalStatus')(vm.profile.eligibleStatus);
@@ -1053,13 +1057,29 @@
                     networkService.adminInvalidateProPOST(proId, data,
                         function (res) {
                             alertMsg.send("Le pro a été bloqué", "info");
-                            vm.getProDetails();                        }, function () {
+                            vm.getProDetails();
+                    },
+                        function () {
                             alertMsg.send("Impossible de bloquer le pro", "danger");
                         }
                     );
 
                 }
             });
+        };
+
+
+
+        vm.setMainPartner = function() {
+            networkService.adminSetMainPartnerPUT(vm.profile.id, vm.selectedPartner.id,
+                function (res) {
+                    alertMsg.send("Le partenaire du professionnel a été mise à jour", "info");
+                    vm.getProDetails();
+            },
+                function () {
+                    alertMsg.send("Impossible de modifier le partenaire", "danger");
+                }
+            );
         };
     }
 })();

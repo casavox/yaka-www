@@ -348,6 +348,12 @@
             adminProjectsListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/projects').success(success).error(error)
             },
+            adminPartnerListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/pro/partners').success(success).error(error)
+            },
+            adminSetMainPartnerPUT: function (proId, partnerId, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + proId + '/mainpartner/' + partnerId).success(success).error(error)
+            },
             adminProfileGET: function (id, success, error) {
                 httpService.get(baseUrl + '/admin/users/' + id).success(success).error(error)
             },
