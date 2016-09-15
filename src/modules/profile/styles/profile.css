@@ -1,6 +1,5 @@
 
 .profilePopupMessage {
-    font-family: 'raleway_medium', Arial, sans-serif;
     font-size: 15px;
     margin-bottom: 20px;
 }
@@ -10,3 +9,57 @@
     margin-right: 10px;
     width: calc(50% - 20px) !important;
 }
+
+.proCommentCounter {
+    float: right;
+}
+
+.profileAvatarEditButton {
+    position: absolute;
+    right: -15px;
+    bottom: -20px;
+    width: 30px;
+    height: 30px;
+}
+
+.topViewProfile .topViewProfileIcon {
+    display: inline-block;
+    width: 35px;
+    vertical-align: top;
+}
+
+.topViewProfile .topViewProfileContent {
+    display: inline-block;
+    width: calc(100% - 40px);
+}
+
+.infoGreffe {
+    margin-top: -20px;
+}
+
+.commentBox {
+    margin-left: 50%;
+}
+
+
+
+@media (max-width: 570px) {
+
+    .commentPhotoBoxAddProject {
+        position: fixed;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+        top: 50% !important;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .commentPhotoBoxProPortfolio {
+        position: fixed;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+        top: 50% !important;
+    }
+}
+

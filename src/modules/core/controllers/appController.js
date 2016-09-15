@@ -5,12 +5,10 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, CONFIG) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, CONFIG) {
 
         var app = this;
         var vm = this;
-        $scope.user = $localStorage.user;
-        var menuOpened = false;
         $rootScope.rate_watcher = true;
         $scope.projectFlag = false;
         $scope.project = null;
@@ -22,17 +20,25 @@
         $rootScope.pageName = "";
 
         app.getPageName = function () {
-            if ($rootScope.pageName == "") {
-                return "YakaClub : Trouvez et recommandez vos artisans pour vos travaux";
+            if (!$rootScope.pageName) {
+                return "CasaVox : Trouvez vos artisans en toute confiance";
             } else {
-                return $rootScope.pageName + " - YakaClub : Trouvez et recommandez vos artisans pour vos travaux"
+                return $rootScope.pageName + " - CasaVox : Trouvez vos artisans en toute confiance"
             }
         };
 
         $rootScope.updateProfile = function () {
             networkService.me(function (res) {
-                $localStorage.user = res;
-                $scope.user = $localStorage.user;
+                app.setUser(res);
+
+                if ($state.current.name == "contacts" && res.newContacts) {
+                    alertMsg.send("Du nouveaux dans vos contacts ! Vérifiez vos invitations reçues et votre liste de contacts.", 'success');
+                    networkService.setContactsRead(function () {
+                        app.getUser().newContacts = false;
+                    }, function () {
+                    });
+                }
+
             }, function () {
                 app.logout();
             });
@@ -43,21 +49,14 @@
 
             // frame = CONNECTED headers
             .then(function (frame) {
-                var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
-                    vm.messages.items.push(payload);
-                    vm.glue = true;
-                }, {
-                    'token': $localStorage.token
-                });
-            });
-
-        $scope.$watch(function () {
-            return $localStorage.user;
-        }, function (newVal, oldVal) {
-            if (newVal === oldVal)
-                return;
-            $scope.user = $localStorage.user;
-        });
+                    var subscription = $stomp.subscribe('/notif/', function (payload, headers, res) {
+                        vm.messages.items.push(payload);
+                        vm.glue = true;
+                    }, {
+                        'token': $localStorage.token
+                    });
+                }
+            );
 
         $scope.viewProposal = function () {
             $rootScope.rating = true;
@@ -80,8 +79,7 @@
                                 $scope.criteria = res;
                                 $scope.projectFlag = true;
                             }, function (res) {
-
-                                alertMsg.send("Error impossible to rate the pro.", "danger");
+                                alertMsg.send("Impossible d'effectuer la notation", "danger");
                             })
                         }
                     }, function (res) {
@@ -132,8 +130,8 @@
             return res;
         };
 
-        $scope.send = function () {
-            if ($scope.rating.criteria.length > 2 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10) || $scope.rating.positive == 'true')) {
+        $scope.sendRating = function () {
+            if ($scope.rating.criteria.length > 0 && $scope.rating.criteria.length < 4 && $scope.rating.positive != '' && (($scope.rating.positive == 'false' && $scope.rating.comment.length >= 10) || $scope.rating.positive == 'true')) {
                 $scope.disable = true;
                 $scope.error.criteria.flag = false;
                 $scope.rating.id = $scope.project.proposal.id;
@@ -142,57 +140,45 @@
                     $rootScope.rate_pro = false;
                     $scope.disable = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
+                    afterRatingSuccess()
                 }, function (res) {
-                    alertMsg.send("Error : impossible to rate the pro", "danger");
+                    alertMsg.send("Impossible d'effectuer la notation", "danger");
                     $scope.projectFlag = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
                     $scope.disable = false;
                 })
             }
             else if ($scope.rating.positive == 'false' && $scope.rating.comment.length < 10) {
-                $scope.error.criteria.message = "Please select at least 3 criteria and say why.";
+                $scope.error.criteria.message = "Merci de choisir 1 à 3 critères et d'ajouter un commentaire (10 caractères au moins).";
                 $scope.error.criteria.flag = true;
                 $scope.disable = false;
             }
             else {
-                $scope.error.criteria.message = "Please select at least 3 criteria";
+                $scope.error.criteria.message = "Merci de choisir 1 à 3 critères, vous pouvez également ajouter un commentaire";
                 $scope.error.criteria.flag = true;
                 $scope.disable = false;
             }
         };
 
-        app.menu = {
-            openMenu: function () {
-                menuOpened = true;
-            },
-            closeMenu: function () {
-                menuOpened = false;
-            },
-            getMenuClass: function () {
-                if (menuOpened) {
-                    return "opened";
-                } else {
-                    return "closed";
-                }
-            },
-            getOverlayClass: function () {
-                if (menuOpened) {
-                    return "overlayVisible";
-                } else {
-                    return "overlayInvisible";
-                }
-            },
-            getMenuItemClass: function () {
-                return "";
-            }
+        function afterRatingSuccess() {
+            swal({
+                title: "C'est fait !",
+                text: "La communauté CasaVox vous remercie d'avoir partagé votre avis sur ce Pro !",
+                type: "success",
+                showConfirmButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Fermer"
+            }, function () {
+                $state.go('dashboard');
+            });
+        }
+
+        app.setUser = function (user) {
+            $localStorage.user = user;
         };
 
         app.getUser = function () {
-            if ($scope.user == undefined) {
-                return {};
-            } else {
-                return $scope.user;
-            }
+            return $localStorage.user;
         };
 
         app.logout = function () {
@@ -200,31 +186,48 @@
             $state.go('home');
         };
 
-        app.getUserType = function () {
-            if ($scope.user == undefined ||
-                $scope.user.type == undefined) {
-                return "";
+        app.isPro = function () {
+            if (!app.getUser()) {
+                return false;
+            }
+            return app.getUser().professional;
+        };
+
+        app.isAdmin = function () {
+            if (!app.getUser()) {
+                return false;
+            }
+            return app.getUser().isAdmin;
+        };
+
+        app.getTheme = function () {
+            if (app.isPro()) {
+                return "orange";
             } else {
-                return $scope.user.type;
+                return "lightblue"
             }
         };
 
-        app.isPro = function () {
-            return app.getUserType() == "pro";
+        app.getThemeColor = function () {
+            if (app.isPro()) {
+                return "#FF9800";
+            } else {
+                return "#03A9F4"
+            }
         };
 
         app.getFirstName = function () {
-            if ($scope.user == undefined) {
-                return "";
+            if (app.getUser()) {
+                return app.getUser().firstName;
             }
-            return $scope.user.firstName;
+            return "";
         };
 
         app.getLastName = function () {
-            if ($scope.user == undefined) {
-                return "";
+            if (app.getUser()) {
+                return app.getUser().lastName;
             }
-            return $scope.user.lastName;
+            return "";
         };
 
         app.getFullName = function () {
@@ -237,43 +240,58 @@
         };
 
         app.getEmail = function () {
-            if ($scope.user == undefined) {
-                return "";
+            if (app.getUser()) {
+                return app.getUser().email.toLowerCase();
             }
-            return $scope.user.email.toLowerCase();
+            return "";
         };
 
-        app.showCustomerSupport = false;
-
-        app.closeCustomerSupport = function () {
-            app.showCustomerSupport = false;
-            smartsupp('chat:close');
+        app.getUserchats = function () {
+            if (app.getUser() && app.getUser().userChats) {
+                return app.getUser().userChats;
+            }
+            return [];
         };
 
-        app.openCustomerSupport = function () {
-            app.showCustomerSupport = true;
-            smartsupp('name', app.getFullName());
-            smartsupp('email', app.getEmail().toLowerCase());
-            smartsupp('variables',
-                {
-                    name: {
-                        label: 'Name',
-                        value: app.getFullName()
-                    },
-                    email: {
-                        label: 'Email',
-                        value: app.getEmail().toLowerCase()
-                    },
-                    userType: {
-                        label: 'User Type',
-                        value: app.getUserType()
-                    },
-                    version: {
-                        label: 'YakaClub Version',
-                        value: 'beta 0'
+        app.getUserchatsUnreadNumber = function () {
+            var num = 0;
+            if (app.getUserchats()) {
+                angular.forEach(app.getUserchats(), function (userChat) {
+                    if (userChat.unreadMessages) {
+                        num++;
                     }
-                });
-            smartsupp('chat:open');
+                })
+            }
+            return num;
         };
+
+
+        app.openHelp = function () {
+            $localStorage.lastUrlBeforeSupport = window.location.href;
+            $state.go("help");
+        };
+
+        //Template stuff
+
+        app.sidebarToggle = {
+            left: false
+        };
+
+        app.sidebarStat = function (event) {
+            if (!angular.element(event.target).parent().hasClass('active')) {
+                this.sidebarToggle.left = false;
+            }
+        };
+
+        app.getEnvironment = function () {
+            return CONFIG.ENV;
+        };
+
+        app.goToLogin = function () {
+            if ($state.current.name == "public-project-recommend") {
+                window.recoProjectId = $stateParams.projectId;
+            }
+            $state.go('home', {login: true});
+        }
     }
 })();

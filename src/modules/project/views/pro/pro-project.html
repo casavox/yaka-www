@@ -1,0 +1,414 @@
+<style type="text/css">
+    #map_canvas {
+        height: 120px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"
+></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="findjobs" title="Détails du projet"></yaka-mobile-header>
+
+<section id="main">
+
+    <div class="container p-l-25 p-r-25" data-ng-if="vm.project.title">
+        <ol class="breadcrumb hidden-xs">
+            <li class="pointer" data-ui-sref="findjobs">
+                Trouver des chantiers
+            </li>
+            <li class="active">
+                Détails du projet
+            </li>
+        </ol>
+    </div>
+
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+
+    <div id="content" class="content">
+
+        <div class="container">
+
+            <div class="block-header">
+                <h2>{{vm.project.title}}</h2>
+            </div>
+
+            <div class="topViewProfile">
+                <div class="card bgm-red c-white p-15"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs manquants dans votre
+                        profil afin de pouvoir répondre aux offres.
+                    </div>
+                </div>
+
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING'">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <b>Merci d’avoir complété votre profil</b>. Vous allez recevoir dans les prochaines heures un
+                        email vous confirmant que votre compte a bien été validé. Vous pourrez alors répondre aux
+                        offres.
+                    </div>
+                </div>
+
+                <div data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'"
+                     class="card bgm-red c-white p-15">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Nous n'avons pas pu vérifier votre profil
+                        <div data-ng-if="app.getUser().professional.refusedReason">
+                            Raison : {{app.getUser().professional.refusedReason}}
+                        </div>
+                        <div>
+                            Vous pourrez répondre aux offres une fois votre profil validé.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="yakaMain proposalMainView proMakeOffer">
+                <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                    <div class="pm-overview pro hidden-xs">
+                        <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                             tabindex="0">
+                            <div
+                                style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                <div class="pmo-pic">
+                                    <div class="p-relative">
+                                        <img class="img-responsive proAvatarProposalImage"
+                                             data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
+                                             data-ng-src="{{vm.project.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                             alt=""/>
+
+                                        <div class="yakaAvatarInitialsProposal"
+                                             data-ng-if="!vm.project.user.avatar.cloudinaryPublicId">
+                                            {{vm.project.user.firstName[0] | uppercase}}.
+                                            {{vm.project.user.lastName[0]| uppercase}}.
+                                        </div>
+
+                                        <cl-image
+                                            public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                            class="proposalProMainPartnerImg" format="png"
+                                            data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                            <cl-transformation height="55" width="55" crop="fill" radius="max"/>
+                                        </cl-image>
+
+                                    </div>
+
+                                    <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                        <h2 class="yakaEllipsis">
+                                            <casa-name-and-contact user="vm.project.user"
+                                                                   icon-color="c-white"></casa-name-and-contact>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pm-body clearfix">
+
+                        <div class="pm-overview pro visible-xs">
+                            <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                                 tabindex="0">
+                                <div
+                                    style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                    <div class="pmo-pic">
+                                        <div class="p-relative">
+                                            <img class="img-responsive proAvatarProposalImage"
+                                                 data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
+                                                 data-ng-src="{{vm.project.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                                 alt=""/>
+
+                                            <div class="yakaAvatarInitialsProposal"
+                                                 data-ng-if="!vm.project.user.avatar.cloudinaryPublicId">
+                                                {{vm.project.user.firstName[0] | uppercase}}.
+                                                {{vm.project.user.lastName[0]| uppercase}}.
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                            <h2 class="yakaEllipsis">
+                                                <casa-name-and-contact user="vm.project.user"
+                                                                       icon-color="c-white"></casa-name-and-contact>
+                                            </h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row no-margin">
+                            <div class="col-xs-12 ">
+                                <div id="map_canvas">
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                        dragging="false">
+                                        <ui-gmap-circle
+                                            data-ng-if="!vm.project.address.address"
+                                            center="vm.circle.center" stroke="vm.circle.stroke"
+                                            fill="vm.circle.fill" radius="vm.circle.radius"
+                                            bounds="vm.circle.bounds"
+                                            visible="vm.circle.visible" geodesic="true" editable="false"
+                                            draggable="false" clickable="true" control="vm.circle.control"
+                                            events="vm.circle.events"></ui-gmap-circle>
+                                        <ui-gmap-marker
+                                            data-ng-if="vm.project.address.address" idKey='1'
+                                            coords='vm.marker.coords' options="vm.marker.options"></ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Contacter le client</h2>
+                            </div>
+                            <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
+                                <div class="col-xs-12">
+                                    Les compétences que vous avez renseigné dans votre profil ne vous permettent pas
+                                    de faire une offre sur ce
+                                    projet.
+                                </div>
+                                <div class="col-xs-12 m-t-20 m-b-5 no-padding">
+                                    <button class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
+                                            data-ui-sref="pro-profile">
+                                        Modifier mon profil
+                                    </button>
+                                    <button class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
+                                            data-ui-sref="project-recommend({'projectId': vm.project.id})">
+                                        Recommander à un collègue
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="pmbb-body"
+                                 data-ng-if="vm.project && !vm.project.activityDoesntCorrespond && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Date d'intervention estimée</dt>
+                                        <dd class="l-h-18">
+                                            {{(vm.offer.date | date: 'dd MMMM yyyy') || '- - -'}} <i
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
+                                            data-ng-click="vm.editDate()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Prix estimatif</dt>
+                                        <dd class="l-h-18">
+                                            {{vm.offer.price || '- - -'}} € <i
+                                            class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
+                                            data-ng-click="vm.editPrice()"></i>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Message privé au client (obligatoire)
+                                        </dt>
+                                        <dd class="l-h-18">
+                                            <textarea class="form-control" data-auto-size=""
+                                                      placeholder="Mettez vous en avant, expliquez votre proposition, posez vos questions,..."
+                                                      data-autosize-on="true"
+                                                      data-ng-model="vm.offer.comment"></textarea>
+                                        </dd>
+                                    </dl>
+                                    <p class="error center makeOfferError"
+                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 40">
+                                        Message trop court (au moins 40 caractères)
+                                    </p>
+                                    <button class="btn btn-primary btn-block waves-effect"
+                                            data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
+                                        Prendre contact
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="pmbb-body"
+                                 data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                Votre profil doit être validé afin de pouvoir répondre aux offres.
+                            </div>
+                        </div>
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Informations</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Description</dt>
+                                        <dd>
+                                            {{vm.projectTmp.description}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.getTags() && vm.getTags().length > 0">
+                                        <dt class="yakaDisableEllipsis">Mots clés</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-repeat="tag in vm.getTags()">
+                                                    <span data-ng-show="tag == 'MATERIAL_TRUE'"
+                                                          uib-tooltip="Le client fournit certains matériaux">
+                                                        {{'ACTIVITY_' + tag | translate}}
+                                                    </span>
+                                                    <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                        {{'ACTIVITY_' + tag | translate}}
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Date des travaux</dt>
+                                        <dd>
+                                            Début souhaité {{vm.getWhen()}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Lieu du chantier</dt>
+                                        <dd>
+                                            <span data-ng-if="vm.projectTmp.address.address" class="whiteSpacePre">{{vm.projectTmp.address.address}}</span>
+                                            <span data-ng-if="!vm.projectTmp.address.address" class="whiteSpacePre">{{vm.projectTmp.address.postalCode}} {{vm.projectTmp.address.locality}}</span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block clearfix"
+                             data-ng-if="vm.projectTmp.images && vm.projectTmp.images.length > 0">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Photos</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
+                                        <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                             data-sub-html="#caption{{$index}}"
+                                             class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item"
+                                                 tooltip-placement="top"
+                                                 uib-tooltip="{{image.description}}">
+                                                <img
+                                                    data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                                <div data-ng-if="image.description"
+                                                     class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
+                                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                                </div>
+                                            </div>
+                                            <div id="caption{{$index}}" style="display:none">
+                                                <div class="galleryCaption">
+                                                    <p>{{image.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw"></i> Entraide entre Pros</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="m-t-5">Pas dispo, pas intéressé ?</dt>
+                                        <button
+                                            class="col-sm-6 col-md-4 col-lg-5 btn bgm-orange waves-effect btn-sm m-b-10"
+                                            ui-sref="project-recommend({projectId : vm.project.id})">
+                                            Recommander un collègue
+                                        </button>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="yakaPopup" data-ng-show="vm.myPriceFlag"
+             data-ng-click="vm.myPriceFlag = false" data-ng-cloak>
+            <div class="container">
+                <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+                    <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                         data-ng-click="vm.myPriceFlag = false" alt=""/>
+                    <h4>Estimation de prix</h4>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-xs-offset-4">
+                            <input type="text" class="form-control t-right f-s-18" id="exampleInputEmail2"
+                                   placeholder="Entrer un prix"
+                                   data-ng-model="vm.price"
+                                   yaka-input-numbers-only>
+                        </div>
+                        <div class="col-xs-2 sym-euro">
+                            €
+                        </div>
+                    </div>
+                    <p class="error center my-price-error" data-ng-show="vm.error.price.flag">
+                        {{vm.error.price.message}}
+                    </p>
+
+                    <div class="clearfix m-t-10 f-right">
+                        <button class="btn bgm-lightblue waves-effect"
+                                data-ng-disabled="!vm.isValidPrice()"
+                                data-ng-click="vm.selectPrice();">
+                            Enregistrer
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="yakaPopup" data-ng-show="vm.myDateFlag"
+             data-ng-click="vm.myDateFlag = false" data-ng-cloak>
+            <div class="container">
+                <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+                    <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                         data-ng-click="vm.myDateFlag = false" alt=""/>
+                    <h4>Début des travaux possible autours du</h4>
+
+                    <div style="display:inline-block" class="center custom-picker">
+                        <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
+                                        class="well well-sm custom-date"></uib-datepicker>
+                    </div>
+                    <div class="clearfix m-t-10 f-right">
+                        <button class="btn bgm-lightblue waves-effect"
+                                data-ng-click="vm.myDateFlag = false; vm.selectDate();">
+                            Enregistrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -5,8 +5,11 @@ angular.module('Yaka')
         service.responseError = function (response) {
             if (response.status == 401) {
                 $injector.get('$localStorage').$reset();
-                $injector.get('$localStorage').urlRedirect = window.location.href;
+                $injector.get('pendingRequests').cancelAll();
                 $injector.get('$state').go("home");
+                if (!window.yakaRedirectUrl) {
+                    window.yakaRedirectUrl = window.location.href;
+                }
             }
             return $q.reject(response);
         };
@@ -28,5 +31,10 @@ angular.module('Yaka')
     .config(['$translateProvider', function ($translateProvider) {
         $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.preferredLanguage('fr');
+    }])
+    .filter('trusted', ['$sce', function ($sce) {
+        return function (url) {
+            return $sce.trustAsResourceUrl(url);
+        };
     }])
 ;

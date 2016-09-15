@@ -1,0 +1,92 @@
+<div class="sidebar-inner c-overflow">
+    <ul class="main-menu">
+
+        <!-- Customer -->
+
+        <li ui-sref-active="active" data-ng-if="!app.isPro()">
+            <a ui-sref="new-project" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-plus"></i>
+                Publier un projet
+            </a>
+        </li>
+        <li class="separator" data-ng-if="!app.isPro()">
+        </li>
+        <li ui-sref-active="active" data-ng-if="!app.isPro()">
+            <a ui-sref="dashboard" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-home"></i>
+                Accueil
+            </a>
+        </li>
+        <li ui-sref-active="active" data-ng-if="!app.isPro()">
+            <a ui-sref="my-projects" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-assignment"></i>
+                Mes projets
+            </a>
+        </li>
+
+        <!-- Pro -->
+
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-dashboard" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-home"></i>
+                Accueil
+            </a>
+        </li>
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="findjobs" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-map"></i>
+                Carte des offres
+            </a>
+        </li>
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-proposals" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-assignment-o"></i>
+                Mes devis
+            </a>
+        </li>
+        <li ui-sref-active="active" data-ng-if="app.isPro()">
+            <a ui-sref="pro-jobs" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-roller"></i>
+                Mes chantiers
+            </a>
+        </li>
+
+        <!-- Both -->
+
+        <li ui-sref-active="active">
+            <a ui-sref="contacts" data-ng-click="app.sidebarStat($event)">
+                <i class="zmdi zmdi-accounts-alt"></i>
+                <i class="newContactsIndicator" data-ng-if="app.getUser().newContacts"></i>
+                Mes contacts
+            </a>
+        </li>
+
+        <li ui-sref-active="active">
+            <a ui-sref="help" data-ng-click="app.sidebarStat($event); app.openHelp()">
+                <i class="zmdi zmdi-help"></i>
+                Aide
+            </a>
+        </li>
+
+        <!-- Admin -->
+
+        <li class="sub-menu" data-ng-if="app.isAdmin()">
+            <a href="" toggle-submenu>
+                <i class="zmdi zmdi-menu">
+                </i>Admin</a>
+            <ul>
+                <li>
+                    <a ui-sref="admin-pro" data-ng-click="app.sidebarStat($event)">
+                        Professionnals
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="admin-projects" data-ng-click="app.sidebarStat($event)">
+                        Projets
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>

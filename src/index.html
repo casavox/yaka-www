@@ -3,33 +3,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title ng-bind="app.getPageName()">YakaClub : Trouvez et recommandez vos artisans pour vos travaux</title>
+    <title ng-bind="app.getPageName()">CasaVox : Trouvez vos artisans en toute confiance</title>
+    <meta name="description"
+          content="Confiez vos travaux aux artisans préférés de vos proches !"/>
+
+    <ng-include src="'/modules/core/views/rollbar-production.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'production'"></ng-include>
+    <ng-include src="'/modules/core/views/rollbar-staging.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'staging'"></ng-include>
+    <ng-include src="'/modules/core/views/rollbar-development.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'development'"></ng-include>
+    <ng-include src="'/modules/core/views/rollbar-local.html'"
+                data-ng-if="app.getEnvironment() && app.getEnvironment() == 'local'"></ng-include>
+
     <!-- inject:css -->
     <!-- endinject -->
 
-    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#222f45">
-    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#222f45">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="CasaVox">
+    <meta name="application-name" content="CasaVox">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="{{app.getThemeColor()}}">
+
 </head>
 
-<body>
-
-<!--<div ng-include src="'/modules/core/modules/menu/views/menu.html'" ng-show="showMenu"
-     ng-controller="AppController"></div>-->
+<body class="sw-toggled">
 
 <div ui-view></div>
 
@@ -45,85 +48,18 @@
     </a>{{alertMessage}}
 </div>
 
-<div class="popUp" ng-show="projectFlag" ng-cloak>
-    <div class="popUp-container center-middle">
-        <div class="popUp-content">
-            <h4>Rate your pro </h4>
-
-            <p class="rate-message-thx">
-                Merci d'avoir choisi YakaClub pour vos travaux
-            </p>
-
-            <div class="rate-box">
-                <p class="rate-project-title text-center">
-                    {{project.title}}
-                </p>
-
-                <p class="rate-link text-center">
-                    <a ng-click="viewProposal()" class="cursor-pointer">View details</a>
-                </p>
-                <cl-image public-id="{{project.professional.avatar.cloudinaryPublicId}}" class="img-circle center"
-                          format="png" ng-if="project.professional.avatar.cloudinaryPublicId">
-                    <cl-transformation height="80" width="80" crop="fill"/>
-                </cl-image>
-                <div class="img-default-preview center h-80 w-80"
-                     ng-if="!project.professional.avatar.cloudinaryPublicId">
-                    {{project.professional.firstName[0] | uppercase}} {{project.professional.lastName[0] | uppercase}}
-                </div>
-                <p class="rate-info">
-                    Would you recommend <b>{{project.professional.firstName}}</b> to your friends ?
-                </p>
-
-                <div class="rate-btn center">
-                    <div class=" img-circle f-l cursor-pointer" ng-class="{'select-pos': rating.positive == 'true'}"
-                         ng-click="rating.positive = 'true'">
-                        <img src="icons/mdpi/ic_thumb_up_defult.png" class="rate-like"/>
-                    </div>
-                    <div class="img-circle f-r cursor-pointer" ng-class="{'select-neg': rating.positive == 'false'}"
-                         ng-click="rating.positive = 'false'">
-                        <img src="icons/mdpi/ic_thumb_down_defult.png" class="rate-dislike "/>
-                    </div>
-                </div>
-            </div>
-            <p class="rate-cat-info">
-                Selectionnez 3 crtières qui définissent cet artisan
-            </p>
-
-            <div class="row">
-                <div class="col-md-6" ng-repeat="c in criteria">
-                    <div class="criteria"
-                         ng-class="{'criteria-selected-pos': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'true', 'criteria-selected-neg': indexOfObject(c, 'name', rating.criteria).length > 0 && rating.positive == 'false'}"
-                         ng-click="selectCriteria($index)">
-                        {{c}}
-                    </div>
-                </div>
-            </div>
-            <p class="error center my-price-error" ng-show="error.criteria.flag">
-                {{error.criteria.message}}
-            </p>
-            <textarea class="textarea-rating" placeholder="Ajouter un commentaire" ng-model="rating.comment"></textarea>
-            <button type="button" class="button btn btn-popUp" ng-click="send()" ng-disabled="disable">SEND</button>
-        </div>
-    </div>
-</div>
-
-<div class="yakaPopup" ng-show="app.showCustomerSupport" ng-click="app.closeCustomerSupport()" ng-cloak>
-    <div class="container">
-        <div class="yakaPopupWindow yakaPopupWindowCustomerService col-xs-12" ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" ng-click="app.closeCustomerSupport()"
-                 alt=""/>
-
-            <div id="customerService"></div>
-        </div>
-    </div>
-</div>
-<div class="customerSupportWidget hidden-xs" ng-click="app.openCustomerSupport()">
-    <div class="customerSupportWidgetText"> Contactez-nous</div>
-    <img class="customerSupportWidgetIcon" src="icons/mdpi/ic_chat_bubble.png"/>
-</div>
+<div data-ng-include="'/modules/core/views/rating-popup.html'"></div>
 
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtq1oFK_ku6rSm9OHM8Q0MlHeOYzOWgr8&libraries=places"></script>
+
+<script
+    src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=fr"
+    async defer
+    ></script>
+
+<script src="https://apis.google.com/js/client.js"></script>
+
 
 <!-- inject:js -->
 <!-- endinject -->
@@ -132,9 +68,18 @@
     _.contains = _.includes;
 </script>
 
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.6&appId=847913895334564";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <script type="text/javascript">
-    if (document.location.hostname.search("yakaclub.com") !== -1) {
+    if (document.location.hostname.search("casavox.com") !== -1) {
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
@@ -147,7 +92,7 @@
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-75365130-1', 'auto');
+        ga('create', 'UA-84157460-1', 'auto');
     }
 </script>
 

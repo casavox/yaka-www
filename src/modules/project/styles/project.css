@@ -1,0 +1,332 @@
+.proErrorMessage {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.projectImageTooltip .tooltip-inner {
+    background: #03a9f4 !important;
+    color: white !important;
+    word-wrap: break-word !important;
+}
+
+.projectImageTooltip .tooltip-arrow {
+    border-top-color: #03a9f4 !important;
+}
+
+.descriptionFormProject {
+    font-size: 16px !important;
+}
+
+.descriptionFormProject textarea {
+    font-size: 16px !important;
+}
+
+.descriptionFormProject .help-block {
+    font-size: 14px !important;
+}
+
+.makeAQuote {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: 100% !important;
+}
+
+.button.btn.send-offer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.makeOfferBox {
+    padding-top: 10px;
+}
+
+.error.makeOfferError {
+    margin-top: 29px !important;
+    margin-bottom: 0px !important;
+    font-size: 12px !important;
+}
+
+.projectRightBox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.descriptionFormProject .form-group {
+    margin-bottom: 0 !important;
+}
+
+.question-li.date:hover {
+    background-color: white;
+    color: #03A9F4;
+}
+
+.question-li.date {
+    height: auto;
+    font-size: 15px;
+    line-height: 36px;
+    cursor: initial;
+}
+
+.content-slide.new-project {
+    height: 100% !important;
+}
+
+.material-title.material-title-small {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dateEdit ul.questions-ul li {
+    width: 100% !important;
+}
+
+@media (min-width: 400px) {
+
+    .pmbb-body {
+        padding-left: 30px !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .proposalMainView.proMakeOffer .proAvatarProposalImage {
+        width: 55px !important;
+        height: 55px !important;
+    }
+
+    .proposalMainView.proMakeOffer .yakaAvatarInitialsProposal {
+        width: 55px !important;
+        height: 55px !important;
+        line-height: 43px;
+        font-size: 17px;
+    }
+
+    .proposalMainView.proMakeOffer .proposalProName h2 {
+        position: absolute;
+        left: 23%;
+        top: 17px;
+        width: 77%;
+    }
+
+    .proposalMainView.proMakeOffer .pm-overview.pro {
+        height: 80px;
+    }
+
+    .type-project-box {
+        width: calc(50% - 22px) !important;
+    }
+
+    .type-project-box-content {
+        height: 75px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .type-project-box-content .v-icon {
+        height: 40px;
+        width: 40px;
+    }
+
+    .multiDomainChoiceIcon {
+        margin-left: calc((50% + 11px) / 2) !important;
+    }
+
+    .multiDomainChoiceIcon4Icons {
+        width: 90px;
+    }
+
+    .col-sm-9.multiDomainChoiceDescription {
+        margin-top: 10px !important;
+        font-size: 11px;
+    }
+
+    .multiDomainChoiceDescription div {
+        margin-left: 0 !important;
+    }
+}
+
+.multiDomainChoiceDescription {
+    margin-top: 30px !important;
+}
+
+.projectRecommendTopCard {
+    height: 90px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.projectRecommendTopCard .dashboardRecommendProjectText {
+    left: 85px;
+    top: 23px;
+    width: calc(100% - 105px);
+}
+
+.projectRecommendTopCard .dashboardRecommendProjectText.right {
+    left: 80px;
+    top: 17px;
+    width: calc(100% - 85px);
+}
+
+.projectRecommendGrayHeader {
+    background-color: #F8F8F8 !important;
+}
+
+.proToRecommend {
+    height: 80px;
+}
+
+.proToRecommend:hover {
+    background-color: #F0F0F0;
+}
+
+.proToRecommend.selected {
+    background-color: #F0F0F0;
+}
+
+.proToRecommendRight {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    left: 65px;
+}
+
+.proToRecommend yaka-avatar {
+    margin-top: 9px;
+}
+
+.proposalProMainPartnerImg.proToRecommendPartner {
+    top: 7px !important;
+    left: 36px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.recommendProSelected {
+    width: 100%;
+    border: #B8B8B8 dashed 1px;
+}
+
+.recommendProSelected .leftArrow {
+    position: absolute;
+    top: 115px;
+    left: 41px;
+    font-size: 35px;
+}
+
+.selectedProDetails .pmbb-body {
+    padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+
+    .selectedProDetails .dl-horizontal dt {
+        width: 120px;
+    }
+
+    .selectedProDetails .dl-horizontal dd {
+        margin-left: 125px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .recommendProSelected .leftArrow {
+        left: 15px;
+    }
+
+}
+
+.selectedProDetails .pmbb-header h2, .h2 {
+    font-size: 18px !important;
+}
+
+.selectedProDetails .card-header h2 {
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dashboardRecommendProjectText.professional {
+    position: absolute;
+    left: 82px;
+    top: 18px;
+    width: calc(100% - 100px);
+}
+
+.dashboardRecommendProjectText.propartner {
+    position: absolute;
+    left: 82px;
+    top: 18px;
+    width: calc(100% - 85px);
+}
+
+.proSelectedPartner {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.linkHover:hover {
+    color: blue !important;
+}
+
+.proposalTypeTitle {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.projectProposalHeader {
+    width: 70px;
+    height: 70px;
+}
+
+.projectProposalHeader > img {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    border-radius: 50%;
+}
+
+.showRegisterFieldsReco {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height 0.3s linear;
+    -moz-transition: height 0.3s linear;
+    -o-transition: height 0.3s linear;
+    -ms-transition: height 0.3s linear;
+    transition: height 0.3s linear;
+}
+
+.showRegisterFieldsReco.showRegisterFieldsRecoVisible {
+    height: 465px;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+.proposalUnreadMessagesIndicatorOnPro {
+    display: inline-block;
+    font-style: normal;
+    background: #f44336;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    margin-left: 32px;
+    transform: translateY(-50px);
+}
+
+.icon-comment {
+    position: absolute;
+    left: -18px;
+    bottom: -18px;
+    margin-left: 50%;
+}

@@ -11,15 +11,21 @@
     function config($stateProvider) {
 
         $stateProvider
+
+            //Customer
+
             .state('home', {
-                url: "/?invitationId",
-                templateUrl: "/modules/home/views/home.html",
+                url: "/?invitationId&login&email&register",
+                templateUrl: "/modules/home/views/customer/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
+
+            //Pro
+
             .state('pro-home', {
-                url: "/pro/?invitationId",
-                templateUrl: "/modules/home/views/home-pro.html",
+                url: "/pro/?invitationId&login&email&register",
+                templateUrl: "/modules/home/views/pro/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
             })

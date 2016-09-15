@@ -1,0 +1,23 @@
+.tutoHeaderGray {
+    background-color: #DEDEDE;
+}
+
+.tutoHeaderGray h2 {
+    color: #4A4A4A;
+}
+
+.tutoHeaderGray h2 small {
+    color: #4A4A4A;
+}
+
+.tutoLeft {
+    width: 120px !important;
+    line-height: 20px !important;
+    font-size: 17px !important;
+    font-weight: 500 !important;
+}
+
+.tutoRight {
+    width: calc(100% - 140px) !important;
+    margin-left: 20px !important;
+}

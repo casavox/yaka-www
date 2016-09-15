@@ -8,7 +8,6 @@
     function RecoverPasswordController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
 
         $rootScope.pageName = "Réinitialiser mon mot de passe";
-        $rootScope.showMenu = false;
 
         if (angular.isUndefined($stateParams.token) ||
             !$stateParams.token &&

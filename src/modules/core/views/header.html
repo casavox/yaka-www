@@ -1,0 +1,130 @@
+<ul class="header-inner clearfix">
+    <li id="menu-trigger" data-target="mainmenu" data-toggle-sidebar data-model-left="app.sidebarToggle.left"
+        data-ng-if="app.getUser()"
+        data-ng-class="{ 'open': app.sidebarToggle.left === true }">
+        <div class="line-wrap">
+            <div class="line top"></div>
+            <div class="line center"></div>
+            <div class="line bottom"></div>
+        </div>
+    </li>
+    <li class="logo">
+        <a ui-sref="home" data-ng-click="app.sidebarStat($event)">
+            <div class="titleYakaClub titleYakaClubWhite" ui-sref="contacts">
+                <span class="titleClub">CASA</span><span class="titleYaka">VOX</span>
+            </div>
+        </a>
+    </li>
+    <li class="pull-right">
+        <ul class="top-menu">
+            <li class="dropdown yakaHeaderMessagesDropdown" uib-dropdown data-ng-if="app.getUser()">
+                <a uib-dropdown-toggle href="">
+                    <i class="tm-icon zmdi zmdi-email"></i>
+                    <i class="tmn-counts" data-ng-if="app.getUserchatsUnreadNumber() > 0">
+                        {{app.getUserchatsUnreadNumber()}}
+                    </i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-lg stop-propagate pull-right">
+                    <div class="listview">
+                        <div class="lv-header">Messages</div>
+                        <div class="lv-body">
+                            <a class="lv-item userChatItem" data-ng-href=""
+                               data-ng-repeat="userchat in app.getUserchats()"
+                               data-ng-class="{'unread': userchat.unreadMessages}">
+                                <div class="media" data-ng-if="!app.isPro()"
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <div class="pull-left">
+                                        <yaka-avatar class="m-t-9" size="35"
+                                                     user="userchat.chat.proposal.professional.user"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">
+                                            {{userchat.chat.proposal.professional.user.firstName}}
+                                            {{userchat.chat.proposal.professional.user.lastName}}
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposal.project.address.locality}} -
+                                            {{userchat.chat.proposal.project.title}}
+                                        </div>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
+                                            <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="media" data-ng-if="app.isPro()"
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <div class="pull-left">
+                                        <yaka-avatar class="m-t-9" size="35"
+                                                     user="userchat.chat.proposal.project.user"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">
+                                            {{userchat.chat.proposal.project.user.firstName}}
+                                            {{userchat.chat.proposal.project.user.lastName}}
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposal.project.address.locality}} -
+                                            {{userchat.chat.proposal.project.title}}
+                                        </div>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
+                                            <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                            <span class="vertical-center p-b-10" ng-show="!app.getUserchats().length">Vous n'avez pas de message</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="dropdown yakaHeaderAvatarDropdown" uib-dropdown data-ng-if="app.getUser()">
+                <a uib-dropdown-toggle href="">
+                    <yaka-avatar class="yakaHeaderAvatar" size="40" user="app.getUser()"></yaka-avatar>
+                    <span class="yakaHeaderFirstname" data-ng-class="{'t-0': !app.getUser().avatar.cloudinaryPublicId}">
+                        <span class="hidden-xs">{{app.getFirstName()}}</span>
+                        <i class="zmdi zmdi-caret-down"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu dm-icon pull-right">
+                    <li data-ng-if="!app.isPro()">
+                        <a ui-sref="profile">
+                            <i class="zmdi zmdi-face"></i>
+                            Mon profil
+                        </a>
+                    </li>
+                    <li data-ng-if="app.isPro()">
+                        <a ui-sref="pro-profile">
+                            <i class="zmdi zmdi-face"></i>
+                            Mon profil pro
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" data-ng-click="app.logout()">
+                            <i class="zmdi zmdi-close"></i>
+                            Déconnexion
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="m-t-3 m-r-15" data-ng-if="!app.getUser()">
+                <button class="btn btn-default waves-effect" data-ng-click="app.goToLogin()">
+                    Se connecter
+                </button>
+            </li>
+        </ul>
+    </li>
+</ul>

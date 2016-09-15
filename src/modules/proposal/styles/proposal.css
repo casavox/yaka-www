@@ -1,0 +1,397 @@
+.proposalIconBackground {
+    background-color: #03A9F4;
+    border-radius: 50%;
+}
+
+.proposalIconBackgroundOff {
+    background-color: #9E9E9E;
+    border-radius: 50%;
+}
+.proposalTitle {
+    width:calc(100% - 54px);
+}
+
+.projectTitleBar {
+    width: auto !important;
+    margin: 0 !important;
+    line-height: 100%;
+    color: #000;
+}
+
+.waitingReco {
+    transform: translateY(50%);
+}
+
+.projectTitleBar .media-heading .row {
+    font-size: 17px !important;
+}
+
+.projectTitleBar small {
+    font-size: 12px;
+}
+
+.projectCreated .pti-header {
+    padding: 30px 10px 60px !important;
+}
+
+.projectCreated h2 {
+    font-size: 40px !important;
+}
+
+.projectCreated h4 {
+    margin: auto;
+    width: 90%;
+}
+
+.projectCreated li {
+    text-align: justify !important;
+}
+
+.proposalUnreadMessagesIndicator {
+    display:inline-block;
+    font-style: normal;
+    background: #f44336;
+    height: 8px;
+    width: 8px;
+    border-radius:50%;
+    margin-left: -5px;
+    transform: translateY(-6px);
+}
+
+.proposalUnreadMessagesIndicatorOnList {
+    display:inline-block;
+    position: relative;
+    background: #f44336;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    left: 35px;
+    top: -3px;
+}
+
+.proposalProMainPartnerImg {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.scrollViewProposalDetail {
+    overflow-y: scroll;
+    position: absolute;
+    bottom: 0;
+    top: 48px;
+    padding-bottom: 40px;
+}
+
+.scrollViewChatProposal {
+    position: absolute;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    top: 48px;
+    width: auto;
+    height: auto;
+}
+
+@media (min-width: 1200px) {
+    .scrollViewChatProposal {
+        left: 300px;
+    }
+}
+
+.proposalMainView .content .card {
+    min-height: initial !important;
+}
+
+.proposalMainView .pm-overview {
+    min-height: 100px;
+}
+
+.proposalMainView .pm-overview.pro {
+    min-height: 80px;
+}
+
+.proposalProName {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+.proposalCounters {
+    color: #5e5e5e;
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+.proposalMainView .wa-stats > span.active {
+    color: #03a9f4 !important;
+}
+
+.proAvatarProposalImage {
+    height: 209px;
+}
+
+@media (min-width: 1200px) {
+    .proAvatarProposalImage {
+        height: 259px;
+    }
+}
+
+.proposalProName button {
+    margin-top: 10px;
+}
+
+.yakaAvatarInitialsProposal {
+    height: 209px;
+    width: 100%;
+    background: #607D8B;
+    color: #ffffff;
+    text-align: center;
+    line-height: 209px;
+    font-size: 50px;
+}
+
+@media (min-width: 1200px) {
+    .yakaAvatarInitialsProposal {
+        height: 259px;
+        line-height: 259px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .yakaAvatarInitialsProposal {
+        display: inline-block;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 70px !important;
+        height: 70px !important;
+        z-index: 1;
+        line-height: 62px;
+        font-size: 21px;
+    }
+
+    .scrollViewProposalDetail {
+        top: 198px;
+    }
+
+    .proposalMainView .content .card {
+        margin-bottom: 0 !important;
+    }
+
+    .scrollViewChatProposal {
+        left: 0;
+        top: 38px;
+    }
+
+    .proposalMainView yaka-chat .lv-footer {
+        height: 50px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .proposalMainView yaka-chat .lv-body {
+        height: calc(100% - 50px);
+    }
+
+    .proposalMainView yaka-chat .ms-reply textarea {
+        height: 40px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .proposalMainView .pmo-pic {
+        margin: 10px;
+    }
+
+    .proposalMainView .pm-overview {
+        background: #9E9E9E !important;
+    }
+
+    .proposalMainView .proAvatarProposalImage {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 70px !important;
+        height: 70px !important;
+        z-index: 1;
+    }
+
+    .proposalProMainPartnerImg {
+        position: absolute !important;
+        top: -2px !important;
+        left: 45px !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        border: 1px solid white !important;
+        z-index: 2;
+    }
+
+    .proposalProName {
+        background: #9E9E9E !important;
+    }
+
+    .proposalCounters {
+        position: absolute;
+        top: 36px;
+        left: 30%;
+        right: 0;
+        width: 70%;
+    }
+
+    .proposalProName button.right {
+        width: 45%;
+        margin-left: 5%;
+    }
+
+    .proposalProName button {
+        margin-top: 77px !important;
+    }
+
+    .proposalProName.littleMargin button {
+        margin-top: 20px !important;
+    }
+
+    .proposalProName div.status {
+        margin-top: 77px !important;
+    }
+
+    .proposalProName.littleMargin div.status {
+        margin-top: 20px !important;
+    }
+
+    .proposalProName button.cancelProposal {
+        margin-top: 22px;
+        margin-left: 35%;
+        width: 60%;
+    }
+
+    .proposalProName h2 {
+        position: absolute;
+        left: 30%;
+        top: 0;
+        width: 70%;
+    }
+
+    #profile-main .pmo-pic {
+        margin: 15px;
+    }
+
+    .wa-stats > span {
+        padding: 5px 6px;
+    }
+
+    .proposalHeader {
+        padding: 10px !important;
+    }
+
+    .card-header .actions {
+        right: 3px !important;
+        top: 3px !important;
+        margin-top: 0 !important;
+    }
+
+    .tab-nav.tab-nav-proposal > li > a {
+        padding: 10px 8px;
+    }
+
+    #profile-main.no-scroll {
+        height: calc(100vh - 150px) !important;
+    }
+
+    .proposalProjectTitle {
+        width: calc(100% - 25px);
+    }
+
+    .projectCreated .pti-header h2 {
+        font-size: 30px !important;
+        margin-bottom: 10px;
+    }
+
+    .projectCreated .pti-header {
+        padding: 20px 10px 60px !important;
+    }
+}
+
+.proposalProjectTitle {
+    height: 14px;
+}
+
+#profile-main {
+    min-height: initial;
+}
+
+#profile-main.no-scroll {
+    height: calc(100vh - 255px);
+}
+
+#profile-main.pro.no-scroll {
+    height: calc(100vh - 175px);
+}
+
+.proProposalListPrice {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+    .proNetworkProjectButtonLabel {
+        margin-left: 30%;
+        width: 70%;
+        margin-bottom: -10px;
+    }
+
+    .zIndex1 {
+        z-index: 1 !important;
+    }
+}

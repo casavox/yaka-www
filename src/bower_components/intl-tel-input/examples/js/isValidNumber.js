@@ -4,25 +4,27 @@ var telInput = $("#phone"),
 
 // initialise plugin
 telInput.intlTelInput({
-  utilsScript: "../../lib/libphonenumber/build/utils.js"
+  utilsScript: "../../build/js/utils.js"
 });
+
+var reset = function() {
+  telInput.removeClass("error");
+  errorMsg.addClass("hide");
+  validMsg.addClass("hide");
+};
 
 // on blur: validate
 telInput.blur(function() {
+  reset();
   if ($.trim(telInput.val())) {
     if (telInput.intlTelInput("isValidNumber")) {
       validMsg.removeClass("hide");
     } else {
       telInput.addClass("error");
       errorMsg.removeClass("hide");
-      validMsg.addClass("hide");
     }
   }
 });
 
-// on keydown: reset
-telInput.keydown(function() {
-  telInput.removeClass("error");
-  errorMsg.addClass("hide");
-  validMsg.addClass("hide");
-});
+// on keyup / change flag: reset
+telInput.on("keyup change", reset);

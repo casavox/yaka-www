@@ -1,18 +1,20 @@
 var input,
-  totalCountries = 233,
-  totalDialCodes = 227,
+  totalCountries = 243,
+  totalDialCodes = 228,
+  defaultPreferredCountries = 2,
   // don't call this "keys" as it will clash with the plugin
   keyCodes = {
     UP: 38,
     DOWN: 40,
     ENTER: 13,
     ESC: 27,
-    BACKSPACE: 8,
-    DELETE: 46,
-    CTRL: 17
+    SPACE: 32
   };
 
 var intlSetup = function(utilsScript) {
+  // by default put us in desktop mode
+  window.innerWidth = 1024;
+
   // this should only run the first time
   if (!window.intlTelInputUtilsBackup) {
     window.intlTelInputUtilsBackup = window.intlTelInputUtils;
@@ -66,7 +68,7 @@ var getSelectedFlagElement = function(i) {
 
 var getFlagsContainerElement = function(i) {
   i = i || input;
-  return i.parent().find(".flag-dropdown");
+  return i.parent().find(".flag-container");
 };
 
 var selectFlag = function(countryCode, i) {
@@ -108,4 +110,8 @@ var triggerKeyOnBody = function(key) {
   $("body").trigger(getKeyEvent(key, "keydown"));
   $("body").trigger(getKeyEvent(key, "keypress"));
   $("body").trigger(getKeyEvent(key, "keyup"));
+};
+
+var triggerKeyOnFlagsContainerElement = function(key) {
+  getFlagsContainerElement().trigger(getKeyEvent(key, "keydown"));
 };
