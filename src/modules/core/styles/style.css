@@ -5238,3 +5238,8 @@ div.recaptcha.mobile > div {
     margin-top: 10px;
     padding-bottom: 10px;
 }
+
+.hw25 {
+    height: 25px !important;
+    width: 25px !important;
+}

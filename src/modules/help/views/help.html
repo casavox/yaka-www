@@ -18,9 +18,9 @@
                    data-ng-class="{'zmdi-chevron-down': !vm.showTuto, 'zmdi-chevron-up': vm.showTuto}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.showTuto" data-ng-show="vm.pro" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showTuto" data-ng-if="vm.pro" class="col-xs-12 no-padding">
                 <div class="block-header">
-                    <h2>Bien débuter sur CasaVox</h2>
+                    <h2>Débuter sur CasaVox</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
@@ -269,23 +269,168 @@
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-if="!vm.pro && app.getUser()"
                  data-ng-click="vm.customerCard1 = !vm.customerCard1">
-                Menu aide 1
+                Bien démarrer sur CasaVox
 
                 <i class="zmdi f-right f-18"
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard1, 'zmdi-chevron-up': vm.customerCard1}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
+            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
                 <div class="block-header">
-                    <h2>Menu aide 1</h2>
+                    <h2>Mon profil</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Menu aide 1</h2>
+                            <h2>CasaVox est bâti sur la confiance !</h2>
                         </div>
                         <div class="card-body card-padding">
-                            Menu aide 1
+                            <p class="m-0">
+                                Aucune des informations relatives à vos projets de travaux (la nature de votre besoin,
+                                le lieu des travaux, la date, etc.) ne sont utilisés en dehors de CasaVox, autrement
+                                dit seuls les Pro inscrit sur CasaVox peuvent connaitre votre besoin.
+                            </p>
+                            <p class="m-0">
+                                CasaVox n'a pas l'intention de gagner de l'argent en revendant vos informations !
+                            </p>
+                            <p class="m-0 m-t-5">
+                                Il n'y a que vous qui décidez à qui et quand vos coordonnées précises (mail, téléphone,
+                                adresse complètes) sont rendues visible : Les Pro CasaVox qui ne font pas partie de vos
+                                « <em>Contacts CasaVox</em> » peuvent bien sûr voir les détails de votre projet de
+                                travaux, nécessaires pour vous répondre, mais ils ne verront de vos coordonnées
+                                personnelles que votre Avatar, votre prénom et initiale de votre nom, et uniquement la
+                                ville de votre projet.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                Le Pro que vous aurez explicitement invité à faire partie de vos « <em>Contacts
+                                CasaVox</em> » verra quant à lui l'ensemble de vos coordonnées : rendez-vous sur le menu
+                                « <em>Mes contacts</em> ».
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Complétez votre profil</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <p class="m-0">
+                                Depuis la barre du haut (fond bleu), cliquez sur votre prénom, puis sur « <em>Mon
+                                profil</em> ».
+                            </p>
+                            <p class="m-0">
+                                Dans le cadre « <em>Informations générales</em> », complétez et/ou modifiez votre
+                                civilité, prénom, nom, téléphone portable, adresse mail et votre adresse personnelle
+                                principale.
+                            </p>
+                            <p class="m-0">
+                                Cliquez sur le crayon
+                                <span class="hw25 btn bgm-lightblue btn-icon waves-effect waves-circle">
+                                    <i class="m-t-3 zmdi zmdi-edit"></i>
+                                </span> pour modifier votre avatar : c'est la première chose qui permettra de vous
+                                distinguer des autres utilisateurs.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                Dans le cadre « <em>Comptes sociaux associés</em> », cliquez sur le bouton « <em>ASSOCIER</em>
+                                » puis sélectionnez le compte Facebook ou Google que vous souhaitez utiliser pour vous
+                                connecter plus rapidement à CasaVox.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
+                <div class="block-header">
+                    <h2>Publier un projet</h2>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Trouver le Pro qu'il vous faut</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <p class="m-0">
+                                Depuis le menu « <em>Publier un projet</em> », laissez-vous guider par les différentes
+                                questions, elles permettrons aux professionnels du bâtiment de vous faire des
+                                propositions adaptées et les plus précises possible.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Quel type de travaux souhaitez-vous réaliser ?</em></strong>
+                            </p>
+                            <p class="m-0">
+                                Si vous hésitez entre plusieurs catégories, choississez « <em>Multitravaux</em> », vous
+                                pourrez ensuite préciser votre besoin grâce à la « <em>Description</em> » de votre
+                                projet.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Quelle prestation souhaitez-vous ?</em></strong>
+                            </p>
+                            <p class="m-0">
+                                Précisez si vous souhaitez fournir les principaux matériaux liés aux travaux ou non.
+                            </p>
+                            <p class="m-0">
+                                Cela ne concerne pas les petits matériaux tels que de la visserie, des joints de
+                                silicones, l'outillage, etc...
+                            </p>
+                            <p class="m-0">
+                                Par exemple, si vous souhaitez faire installer un chauffe-eau et l'avez déja acheté, ou
+                                si vous souhaitez faire repeindre une pièce et fournissez la peinture, indiquez-le en
+                                cliquant sur « <em>Pose uniquement</em> ».
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Décrivez votre projet</em></strong>
+                            </p>
+                            <p class="m-0">
+                                N'hésitez pas à apporter toute précision que vous jugerez utile sur votre besoin (nature
+                                du projet, type de finition attendue, qualité des matériaux, ...), les conditions de
+                                réalisation (dimension/surface, état général avant travaux, encombrement sur le lieu
+                                des travaux, ...), ainsi que sur les contraintes et exigences de réalisation (durée des
+                                travaux, bruit, nettoyage, ...).
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Ajoutez des photos</em></strong>
+                            </p>
+                            <p class="m-0">
+                                <em>Un dessin vos mieux qu'un long discours</em>, pour être sur d'avoir des réponses
+                                rapides et pertinentes joignez des photos du lieu des travaux (état général actuel,
+                                difficulté d'accès, ...), si vous fournissez des matériaux prenez des photos des parties
+                                les plus importantes (Exemple : embout de raccordement sur un chauffe-eau, serrure sur
+                                une porte, ...), vous pouvez également joindre des photos du résultat que vous
+                                souhaiteriez obtenir (Exemple : photo d'une cuisine installée, ...).
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Indiquez l'adresse des travaux</em></strong>
+                            </p>
+                            <p class="m-0">
+                                <em>CasaVox est bâti sur la confiance !</em> Donner un nom au lieu des travaux, il ne
+                                sera visible que de vous (Exemple : Maison vacance, Papa, ...), puis précisez l'adresse
+                                exacte du lieu des travaux : seul le professionnel que vous aurez retenu pour vos
+                                travaux, et les professionnels que vous aurez explicitement acceptés dans vos contacts y
+                                auront accès, tous les autres membres de CasaVox ne verront que la ville, ainsi ils
+                                pourront vous recommander des Pro à proximité.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20">
+                                    <em>Quand souhaitez-vous que les travaux commencent ?</em>
+                                </strong>
+                            </p>
+                            <p class="m-0">
+                                Choisissez la proposition la plus adaptée à votre besoin.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>PUBLIER</em></strong>
+                            </p>
+                            <p class="m-0">
+                                En cliquant sur ce bouton votre projet sera automatiquement diffusé vers les
+                                professionnels CasaVox : uniquement vers ceux ayant les compétences nécessaires pour le
+                                réaliser.
+                            </p>
+                            <p class="m-t-5">
+                                Vous pourrez à tout moment revenir sur votre projet publier pour le modifier ou
+                                compléter, depuis le menu « <em>Mes projets</em> ».
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -300,7 +445,7 @@
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard2, 'zmdi-chevron-up': vm.customerCard2}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
+            <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
                 <div class="block-header">
                     <h2>Menu aide 2</h2>
                 </div>
