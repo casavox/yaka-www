@@ -115,7 +115,7 @@
                     Il y n'a aucune offre pour le moment dans cette zone, déplacez vous dans la carte ou dézoomez pour
                     voir plus d'offres.
                 </div>
-                <div class="col-xs-12 proDashboardListEmptyMessage m-t-20" data-ng-if="vm.numberLeadProject > 0">
+                <div class="col-xs-12 proDashboardListEmptyMessage m-t-20" data-ng-if="vm.leads.length == 0 && vm.numberLeadProject > 0">
                     {{vm.numberLeadProject}} projets disponibles dans vos compétences, déplacez vous dans la carte ou
                     dézoomez pour
                     voir toutes les offres !
