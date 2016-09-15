@@ -51,6 +51,7 @@ var ProjectPage = function() {
     this.totoByC = "Toto by Customer ";
     this.sendText = element(by.css('[data-ng-click="sendMessage()"]'));
     this.lastText = element.all(by.repeater('message in messages')).get(-1);
+    this.recommendation = element.all(by.repeater('project in vm.projectsToRecommend')).get(0);
 
 
 
