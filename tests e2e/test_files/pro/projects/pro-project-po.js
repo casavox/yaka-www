@@ -52,10 +52,11 @@ var ProjectPage = function() {
     this.sendText = element(by.css('[data-ng-click="sendMessage()"]'));
     this.lastText = element.all(by.repeater('message in messages')).get(-1);
     this.recommendation = element.all(by.repeater('project in vm.projectsToRecommend')).get(0);
-
-
-
-
+    this.proToRecommend = element.all(by.repeater('professional in vm.professionals')).get(0);
+    this.messageToCustomer = element(by.model('vm.recommendMsg.text'));
+    this.messageContent = "Salut, je viens vers toi pour te recommander ce pro. Il est top pour pour ton projet !";
+    this.sendRecommendationButton = element(by.css('[data-ng-click="vm.recommendPro(vm.selectedProfessional.id)"]'));
+    this.confirmRecommendation = element(by.css('.confirm.btn.btn-lg.btn-success'));
 
 }
 
