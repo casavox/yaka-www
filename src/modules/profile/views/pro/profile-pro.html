@@ -84,6 +84,7 @@
             <div class="col-sm-6 p-l-0" data-ng-if="!vm.isXsmall()">
                 <div data-ng-include="'infos.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
+                <div data-ng-include="'websites.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
             <div class="col-sm-6 p-r-0" data-ng-if="!vm.isXsmall()">
@@ -101,6 +102,7 @@
                 <div data-ng-include="'activities.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
                 <div data-ng-include="'social.html'"></div>
+                <div data-ng-include="'websites.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
         </div>
@@ -417,6 +419,48 @@
     </div>
 </script>
 
+<script type="text/ng-template" id="websites.html">
+    <div class="col-xs-12 no-padding card">
+        <div class="card-header ch-alt">
+            <h2>Mes sites Web</h2>
+            <small>Indiquez les adresses de vos sites Web</small>
+        </div>
+        <div class="col-xs-12 card-body m-t-20">
+            <div class="form-group fg-float m-b-30">
+                <div class="fg-line">
+                    <input type="text" class="form-control fg-input"
+                           data-ng-model="vm.profile.myWebsite">
+                    <label class="fg-label">Mon site Web</label>
+                </div>
+            </div>
+
+            <div class="form-group fg-float m-b-30">
+                <div class="fg-line">
+                    <input type="text" class="form-control fg-input"
+                           data-ng-model="vm.profile.myLinkedin">
+                    <label class="fg-label">Mon Linkedin</label>
+                </div>
+            </div>
+
+            <div class="form-group fg-float m-b-30">
+                <div class="fg-line">
+                    <input type="text" class="form-control fg-input"
+                           data-ng-model="vm.profile.myOtherSocial">
+                    <label class="fg-label">Autre (Google+, Viadeo, ...)</label>
+                </div>
+            </div>
+
+            <div class="profile-box-footer mt-12 m-b-20">
+                <button class="btn btn-info bgm-lightblue waves-effect"
+                        data-ng-click="vm.updateLinks()"
+                        data-ng-disabled="vm.updating">
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+
 <script type="text/ng-template" id="password.html">
     <div class="col-xs-12 no-padding card">
         <div class="card-header ch-alt">
@@ -458,7 +502,6 @@
                         data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
                     Enregistrer
                 </button>
-
             </div>
         </div>
     </div>

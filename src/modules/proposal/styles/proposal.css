@@ -18,6 +18,10 @@
     color: #000;
 }
 
+.waitingReco {
+    transform: translateY(50%);
+}
+
 .projectTitleBar .media-heading .row {
     font-size: 17px !important;
 }
