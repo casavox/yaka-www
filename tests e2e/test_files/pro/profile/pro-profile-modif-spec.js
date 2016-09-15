@@ -92,25 +92,12 @@ describe('The user', function () {
             // Modification des domaines de compétence
             function changeSkill() {
                 browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
-                    profilePage.closeAlertMsg.isDisplayed().then(function (displayed) {
-                        if (displayed) {
-                            profilePage.closeAlertMsg.click();
-                            profilePage.skillCategory.get(profilePage.n).click();
-                            browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
-                                profilePage.updateActivitiesProfile.click();
-                                browser.sleep(1000);
-                            });
-                        } else {
-                            profilePage.skillCategory.get(profilePage.n).click();
-                            browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
-                                profilePage.updateActivitiesProfile.click();
-                                browser.sleep(1000);
-                            });
-                        }
+                    profilePage.skillCategory.get(profilePage.n).click();
+                    browser.wait(profilePage.EC.elementToBeClickable(profilePage.updateActivitiesProfile), 5000).then(function () {
+                        profilePage.updateActivitiesProfile.click();
+                        browser.sleep(1000);
                     });
-
                 });
-
             }
         }
     );
