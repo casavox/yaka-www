@@ -138,6 +138,9 @@
             changePassword: function (data, success, error) {
                 httpService.put(baseUrl + '/me/password', data).success(success).error(error)
             },
+            updateProLinksPUT: function (data, success, error) {
+                httpService.put(baseUrl + '/pro/me/links', data).success(success).error(error)
+            },
             activitiesGET: function (success, error) {
                 httpService.get(baseUrl + '/projects/activities').success(success).error(error)
             },
@@ -344,6 +347,12 @@
             },
             adminProjectsListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/projects').success(success).error(error)
+            },
+            adminPartnerListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/pro/partners').success(success).error(error)
+            },
+            adminSetMainPartnerPUT: function (proId, partnerId, success, error) {
+                httpService.put(baseUrl + '/admin/pro/' + proId + '/mainpartner/' + partnerId).success(success).error(error)
             },
             adminProfileGET: function (id, success, error) {
                 httpService.get(baseUrl + '/admin/users/' + id).success(success).error(error)

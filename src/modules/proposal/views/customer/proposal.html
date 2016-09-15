@@ -27,7 +27,13 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
+
         <div class="container">
+
+            <div class="block-header" data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                <h2 class="c-orange">Projet Annulé</h2>
+            </div>
+
             <div class="card pointer m-b-10" data-ng-click="vm.projectDetails()">
                 <div class="card-header card-hover proposalHeader">
                     <div class="media">
@@ -129,7 +135,12 @@
                                                                    icon-color="c-white"></casa-name-and-contact>
                                         </h2>
 
-                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                        <div class="col-xs-12 clearfix t-center bgm-orange c-white p-5 m-t-10"
+                                             data-ng-if="vm.proposal.firstRecommendation">Recommandation en attente
+                                        </div>
+
+                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                            data-ng-if="!vm.proposal.firstRecommendation">
                                             <li class="wa-stats center">
                                                 <span class="bgm-white">
                                                     <i class="zmdi zmdi-calendar"></i>
@@ -272,7 +283,14 @@
                                                                            icon-color="c-white"></casa-name-and-contact>
                                                 </h2>
 
-                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                                <div
+                                                    class="col-xs-7 col-xs-offset-4 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco"
+                                                    data-ng-if="vm.proposal.firstRecommendation">Recommandation en
+                                                    attente
+                                                </div>
+
+                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                                    data-ng-if="!vm.proposal.firstRecommendation">
                                                     <li class="wa-stats center">
                                                         <span class="bgm-white">
                                                             <i class="zmdi zmdi-calendar"></i>
@@ -486,18 +504,26 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
-                                        <div class="lightbox photos clearfix">
+                                        <div class="lightbox photos projectImageTooltip clearfix">
                                             <div
                                                 data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                                class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
+                                                class="lightboxItemAngular galleryEditingItem col-md-2 col-sm-3 col-xs-4"
+                                                data-sub-html="#caption{{$index}}"
                                                 data-ng-repeat="image in vm.proposal.professional.portfolio">
-                                                <div class="lightbox-item p-item">
+                                                <div class="lightbox-item p-item"
+                                                     tooltip-placement="top"
+                                                     uib-tooltip="{{image.description}}">
                                                     <img
                                                         data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                         alt=""/>
                                                     <div data-ng-if="image.description"
                                                          class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
                                                         <i class="zmdi zmdi-comment-text-alt"></i>
+                                                    </div>
+                                                </div>
+                                                <div id="caption{{$index}}" style="display:none">
+                                                    <div class="galleryCaption">
+                                                        <p>{{image.description}}</p>
                                                     </div>
                                                 </div>
                                             </div>
