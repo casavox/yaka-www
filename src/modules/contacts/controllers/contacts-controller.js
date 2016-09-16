@@ -518,7 +518,7 @@
 
         vm.getFacebookIframeUrl = function () {
             if ($localStorage.user) {
-                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.id + "&layout=button&size=large&mobile_iframe=true&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
+                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.inviteId + "&layout=button&size=large&mobile_iframe=false&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
             }
             return "";
         };
