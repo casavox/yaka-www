@@ -5,11 +5,9 @@
                     up-state="home"
                     title="Recommander un pro"></yaka-mobile-header>
 
-
 <section id="main" class="view">
     <div class="homeSection">
         <div class="container">
-
             <div class="col-xs-12 col-sm-8">
                 <div data-ng-repeat="activity in vm.activities | filter: {urlTitle: vm.type}">
                     <h2>{{activity.title}}</h2>
@@ -18,7 +16,6 @@
                             <img class="card-img-width" data-ng-src="{{activity.imgUrl}}"
                                  alt="">
                         </div>
-
                         <div class="p-10 p-l-30 p-r-30 s-p-button  text-justify">
                             <h4>{{activity.title}}</h4>
                             <p data-ng-repeat="intro in activity.intro">{{intro.p}}</p>
@@ -39,29 +36,31 @@
                     <div class="p-5 m-t-10">
                         <h2 class="p-l-25">Catégories</h2>
                         <ol class="card-body card-padding list-unstyled">
-                            <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})" data-ui-sref-active="activeClass">Peinture</a></li>
-                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})" data-ui-sref-active="activeClass">Salle de bain</a></li>
-                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})" data-ui-sref-active="activeClass">Cuisine</a></li>
+                            <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                       data-ui-sref-active="activeClass">Peinture</a></li>
+                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                             data-ui-sref-active="activeClass">Salle de bain</a></li>
+                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                             data-ui-sref-active="activeClass">Cuisine</a></li>
                         </ol>
                     </div>
                 </div>
             </div>
-
             <div class="visible-xs col-xs-12 m-t-30">
                 <div class="card p-5">
                     <h2 class="p-l-25">Catégories</h2>
                     <ol class="card-body card-padding list-unstyled">
-                        <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})" data-ui-sref-active="activeClass">Peinture</a></li>
-                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})" data-ui-sref-active="activeClass">Salle de bain</a></li>
-                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})" data-ui-sref-active="activeClass">Cuisine</a></li>
+                        <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                   data-ui-sref-active="activeClass">Peinture</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                         data-ui-sref-active="activeClass">Salle de bain</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                         data-ui-sref-active="activeClass">Cuisine</a></li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
-
     <div class="homeSection homeSection3">
         <div class="container">
             <div class="col-xs-12 homeSection3Items">

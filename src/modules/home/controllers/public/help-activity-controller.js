@@ -18,7 +18,6 @@
         vm.showLoginPopup = false;
         vm.loginTab = true;
 
-
         vm.activities = [
             {
                 "urlTitle": "peinture",
