@@ -54,7 +54,7 @@
             swal({
                 title: "Je suis partenaire de " + vm.proposal.professional.mainPartner.name,
                 text: vm.proposal.professional.mainPartner.aboutLong_Fr,
-                imageUrl: 'http://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
+                imageUrl: 'https://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
                 confirmButtonText: "Fermer"
             });
         };
@@ -63,7 +63,7 @@
             swal({
                 title: vm.proposal.professional.mainPartner.name,
                 text: vm.proposal.professional.mainPartner.aboutShort_Fr,
-                imageUrl: 'http://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
+                imageUrl: 'https://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
                 confirmButtonText: "Fermer"
             });
         };
