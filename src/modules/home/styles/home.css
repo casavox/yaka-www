@@ -922,3 +922,17 @@ body:after {
     background-color: rgba(255, 255, 255, 0);
     box-shadow: none;
 }
+
+.card-img-width {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.s-p-button {
+    padding-bottom: 55px !important;
+}
+
+.activeClass {
+    color: black!important;
+    cursor: default !important;
+}
