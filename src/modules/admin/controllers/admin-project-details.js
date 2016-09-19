@@ -410,7 +410,7 @@
                         longitude: res.address.longitude
                     },
                     options: {
-                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                        icon: "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
                     }
                 };
             }
