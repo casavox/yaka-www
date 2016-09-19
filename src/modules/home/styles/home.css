@@ -308,6 +308,23 @@ body:after {
     cursor: pointer;
 }
 
+.homeSection5FooterActivities {
+    margin-top: 20px;
+    line-height: 40px;
+}
+
+.CasaActivityLink {
+    color: #888888;
+}
+
+.CasaActivityLink:hover {
+    color: white;
+}
+
+.t-end {
+    text-align: end;
+}
+
 .homeSection5FooterContactUs {
     margin-top: 20px;
     line-height: 40px;
