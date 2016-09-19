@@ -1,81 +1,62 @@
-<section class="view">
-    <div class="homeSection homeSection1 m-t-30">
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="home"
+                    title="Recommander un pro"></yaka-mobile-header>
+
+<section id="main" class="view">
+    <div class="homeSection">
         <div class="container">
-            <div class="col-xs-12 homeSection1Header">
-                <div class="homeSection1YakaClub" ui-sref="home">
-                    <span class="homeSection1Club">CASA</span><span class="homeSection1Yaka">VOX</span>
-                </div>
-                <div class="homeSection1ProLink waves-effect" ui-sref="pro-home">
-                    ACCES PRO
-                </div>
-                <div class="homeSection1Register yakaLinkWhite"
-                     data-ng-click="vm.openPopup(false)">
-                    S'inscrire
-                </div>
-                <div class="homeSection1Login yakaLinkWhite"
-                     data-ng-click="vm.openPopup(true)">
-                    Se connecter
-                </div>
-            </div>
-            <div class="col-xs-12 homeSection1Title">
-                &ldquo; Tu connais un <span typewrite="" text="vm.jobs" initial-delay="1000"></span> ? &rdquo;
-            </div>
-            <div class="col-xs-12 homeSection1SubTitle">
-                Confiez vos travaux aux artisans préférés de vos proches !
-            </div>
+            <div class="col-xs-12 col-sm-8">
+                <div data-ng-repeat="activity in vm.activities | filter: {urlTitle: vm.type}">
+                    <h2>{{activity.title}}</h2>
+                    <div id="best-selling" class="dash-widget-item ng-scope">
+                        <div class="dash-widget-header">
+                            <img class="card-img-width" data-ng-src="{{activity.imgUrl}}"
+                                 alt="">
+                        </div>
+                        <div class="p-10 p-l-30 p-r-30 s-p-button  text-justify">
+                            <h4>{{activity.title}}</h4>
+                            <p data-ng-repeat="intro in activity.intro">{{intro.p}}</p>
 
-            <button class="col-xs-6 col-xs-offset-3 btn btn-lg bgm-lightblue waves-effect homeSection1Button"
-                    data-ng-click="vm.openPopup(false)">PUBLIER MON PROJET
-            </button>
-        </div>
-    </div>
-    <div class="homeSection homeSection2">
-        <div class="container">
-            <div class="col-xs-12 homeSection2Title">
-                Ensemble révolutionnons la confiance !
-            </div>
-            <div class="col-xs-12 homeSection2SubTitle">
-                Parce que le bouche à oreille reste le meilleur moyen de trouver de bons artisans.
-            </div>
-            <div class="col-xs-12 homeSection2Items">
-                <div class="col-xs-12 col-sm-4 homeSection2Item">
-                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeTrustBlue.png" alt=""/>
-
-                        <div class="homeSection2ItemTitle">
-                            CONFIANCE
+                            <div data-ng-repeat="line in activity.paragraphs">
+                                <p data-ng-repeat="b in line"><b>{{b.q}}</b></p>
+                                <p data-ng-repeat="b in line">{{b.p}}</p>
+                            </div>
+                            <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13"
+                                    data-ui-sref="home({register : true})">J'ai des travaux à faire
+                            </button>
                         </div>
                     </div>
-                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Réalisez vos travaux en toute sérénité grâce aux artisans recommandés par votre entourage
-                        (voisins, amis, collégues...).
+                </div>
+            </div>
+            <div class="container m-t-30">
+                <div class="hidden-xs card col-sm-3 col-sm-offset-1 m-t-30">
+                    <div class="p-5 m-t-10">
+                        <h2 class="p-l-25">Catégories</h2>
+                        <ol class="card-body card-padding list-unstyled">
+                            <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                       data-ui-sref-active="activeClass">Peinture</a></li>
+                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                             data-ui-sref-active="activeClass">Salle de bain</a></li>
+                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                             data-ui-sref-active="activeClass">Cuisine</a></li>
+                        </ol>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 homeSection2Item">
-                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeConfidentialityBlue.png" alt=""/>
-
-                        <div class="homeSection2ItemTitle">
-                            CONFIDENTIALITÉ
-                        </div>
-                    </div>
-                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Préservez votre vie privée. Vos échanges se font via une messagerie sécurisée. Vous choississez
-                        qui peut vous contacter et quand.
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 homeSection2Item">
-                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeShareBlue.png" alt=""/>
-
-                        <div class="homeSection2ItemTitle">
-                            PARTAGE
-                        </div>
-                    </div>
-                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Partagez en un clic votre projet avec vos amis et la communauté CasaVox, ils vous recommandent
-                        leurs meilleurs artisans pour vos travaux.
-                    </div>
+            </div>
+            <div class="visible-xs col-xs-12 m-t-30">
+                <div class="card p-5">
+                    <h2 class="p-l-25">Catégories</h2>
+                    <ol class="card-body card-padding list-unstyled">
+                        <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                   data-ui-sref-active="activeClass">Peinture</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                         data-ui-sref-active="activeClass">Salle de bain</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                         data-ui-sref-active="activeClass">Cuisine</a></li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -132,32 +113,20 @@
         <div class="container homeSection5Footer">
             <div class="homeSection5FooterLeft">
                 <div class="homeSection5FooterLeftCopyright">
-                    Travaux du moment
+                    &copy; CasaVox {{vm.currentYear}}
                 </div>
                 <div class="homeSection5FooterLeftText">
-                    <ul class="list-unstyled">
-                        <li class="CasaActivityLink pointer yakaLinkWhite" data-ui-sref="help-activities({activity: 'peinture'})">Peinture</li>
-                        <li class="CasaActivityLink pointer yakaLinkWhite" data-ui-sref="help-activities({activity: 'salle_de_bain'})">Salle de Bain</li>
-                        <li class="CasaActivityLink pointer yakaLinkWhite" data-ui-sref="help-activities({activity: 'cuisine'})">Cuisine</li>
-                    </ul>
+                    Tous droits réservés
                 </div>
             </div>
-            <div class="homeSection5FooterContactUs">
-                <ul class="list-unstyled">
-                    <li class="pointer yakaLinkWhite underline" data-ng-click="app.openHelp()">Contactez nous</li>
-                    <li class="pointer yakaLinkWhite underline" href="http://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
-                        CGU
-                    </li>
-                    <li>&copy; CasaVox {{vm.currentYear}}</li>
-                    <li>Tous droits réservés</li>
-                </ul>
+            <div class="homeSection5FooterContactUs yakaLinkWhite" data-ng-click="app.openHelp()">
+                Contactez-nous
             </div>
-            <a href="https://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
+            <a href="http://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
                 <div class="homeSection5FooterLogin yakaLinkWhite">
                     CGU
                 </div>
             </a>
-
         </div>
     </div>
 </section>

@@ -308,11 +308,23 @@ body:after {
     cursor: pointer;
 }
 
-.homeSection5FooterContactUs {
+.homeSection5FooterActivities {
     margin-top: 20px;
     line-height: 40px;
+}
+
+.CasaActivityLink {
+    color: #888888;
+}
+
+.t-end {
+    text-align: end;
+}
+
+.homeSection5FooterContactUs {
+    margin-top: 20px;
     float: right;
-    cursor: pointer;
+    text-align: end;
 }
 
 .homeSection5FooterGotop {
@@ -779,7 +791,7 @@ body:after {
 
     .homeSection5FooterContactUs {
         height: 28px;
-        font-size: 13px;
+        font-size: 11px;
         margin-top: 6px;
     }
 
@@ -791,7 +803,7 @@ body:after {
     }
 
     .homeSection5 {
-        height: 50px;
+        height: 90px;
     }
 
     .homeSection5FooterLeft {
@@ -921,4 +933,18 @@ body:after {
 .homeTransparentBox {
     background-color: rgba(255, 255, 255, 0);
     box-shadow: none;
+}
+
+.card-img-width {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.s-p-button {
+    padding-bottom: 55px !important;
+}
+
+.activeClass {
+    color: black!important;
+    cursor: default !important;
 }
