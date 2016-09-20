@@ -60,7 +60,6 @@
                                     <div class="form-group fg-float m-b-30"
                                          data-ng-class="{'has-error': !vm.profileInfo.gender}">
                                         <div class="fg-line">
-                                            {{vm.profileInfo.gender}}
                                             <div class="select">
                                                 <select name="gender"
                                                         required="required"
@@ -223,13 +222,16 @@
 
                             <button class="btn btn-default waves-effect m-t-4 m-l-20"
                                     data-ng-if="!app.getUser().facebookId"
-                                    data-ng-click="vm.attachFacebook()">
+                                    data-ng-click="vm.attachFacebook()"
+                                    disabled="disabled">
                                 Associer
                             </button>
 
-                            <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
-                               data-ng-if="app.getUser().facebookId"
-                               data-ng-click="vm.detachFacebook()"></i>
+                            <!-- <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
+                                data-ng-if="app.getUser().facebookId"
+                                data-ng-click="vm.detachFacebook()"
+                                disabled="disabled"></i>
+                             -->
                         </div>
                         <div class="row m-t-5">
                             <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-google p-l-25"
@@ -246,13 +248,16 @@
 
                             <button class="btn btn-default waves-effect m-t-4 m-l-20"
                                     data-ng-if="!app.getUser().googleId"
-                                    data-ng-click="vm.attachGoogle()">
+                                    data-ng-click="vm.attachGoogle()"
+                                    disabled="disabled">
                                 Associer
                             </button>
 
-                            <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
+                            <!-- <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
                                data-ng-if="app.getUser().googleId"
-                               data-ng-click="vm.detachGoogle()"></i>
+                               data-ng-click="vm.detachGoogle()"
+                               disabled="disabled"></i>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -261,13 +266,13 @@
             <div class="col-sm-6">
                 <div class="col-xs-12 no-padding card">
                     <div class="card-header ch-alt">
-                        <h2>Modifier le mot de passe</h2>
+                        <h2>Modifier le mot de passe (NE FONCTIONNE PAS)</h2>
                     </div>
                     <div class="col-xs-12 card-body m-t-20">
                         <div class="form-group fg-float m-b-30">
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
-                                       data-ng-model="vm.pwdCurrent">
+                                       data-ng-model="vm.pwdCurrent" disabled="disabled">
                                 <label class="fg-label">Mot de passe actuel</label>
                             </div>
                         </div>
@@ -275,7 +280,7 @@
                         <div class="form-group fg-float m-b-30">
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
-                                       data-ng-model="vm.pwd1">
+                                       data-ng-model="vm.pwd1" disabled="disabled">
                                 <label class="fg-label">Nouveau mot de passe</label>
                             </div>
                         </div>
@@ -284,7 +289,7 @@
                              data-ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
-                                       data-ng-model="vm.pwd2">
+                                       data-ng-model="vm.pwd2" disabled="disabled">
                                 <label class="fg-label">Confirmation</label>
                             </div>
                             <small class="help-block" data-ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
@@ -296,7 +301,7 @@
 
                             <button class="btn btn-info bgm-lightblue waves-effect"
                                     data-ng-click="vm.changePassword()"
-                                    data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                                    data-ng-disabled="!disabled">
                                 Enregistrer
                             </button>
 

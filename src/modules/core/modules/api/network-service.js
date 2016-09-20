@@ -345,24 +345,24 @@
             adminProPortfolioPUT: function (id, data, success, error) {
                 httpService.put(baseUrl + '/admin/pro/' + id + '/portfolio', data).success(success).error(error)
             },
-            adminChangePassword: function (id, data, success, error) {
-                httpService.put(baseUrl + '/admin/' + id + '/password', data).success(success).error(error)
-            },
             adminProjectsListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/projects').success(success).error(error)
             },
             adminPartnerListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/pro/partners').success(success).error(error)
             },
-            adminSetMainPartnerPUT: function (proId, partnerId, success, error) {ZZ
+            adminSetMainPartnerPUT: function (proId, partnerId, success, error) {
                 httpService.put(baseUrl + '/admin/pro/' + proId + '/mainpartner/' + partnerId).success(success).error(error)
             },
             adminProfileGET: function (id, success, error) {
                 httpService.get(baseUrl + '/admin/users/' + id).success(success).error(error)
             },
-            ///adminProfileGET: function (id, success, error) {
-             ///   httpService.get(baseUrl + '/admin/users/' + id + '/profile').success(success).error(error)
-            ///},
+            adminChangePassword: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/users/' + id + '/password', data).success(success).error(error)
+            },
+            adminProfilePUT: function (id, data, success, error) {
+                httpService.put(baseUrl + '/admin/users/' + id + '/profile', data).success(success).error(error)
+            },
             adminProposalAcceptPOST: function (proposalId, success, error) {
                 httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept").success(success).error(error)
             },

@@ -5,12 +5,15 @@
         .module('Yaka')
         .controller('AdminUserDetailsController', AdminUserDetailsController);
 
-    function AdminUserDetailsController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, Upload, cloudinary, $auth, $stateParams) {
+    function AdminUserDetailsController($rootScope, $scope, networkService, alertMsg, $state, $stateParams, $localStorage, Upload, cloudinary, $auth) {
 
         if ($localStorage.user && !$localStorage.user.isAdmin) {
             $state.go("home");
         }
-        $rootScope.pageName = "Admin";
+
+        $rootScope.pageName = "Profil User";
+        $rootScope.updateProfile();
+
         var vm = this;
 
         vm.updating = false;
@@ -22,7 +25,7 @@
         vm.cancelProfile = cancelProfile;
         vm.changePassword = changePassword;
 
-        networkService.adminProfileGET(succesProfileGET, errorProfileGET);
+        networkService.adminProfileGET($stateParams.userId, succesProfileGET, errorProfileGET);
 
         function changePassword() {
             vm.pwd1 = vm.pwd1 || "";
@@ -33,7 +36,7 @@
             };
             if (vm.pwd2 === vm.pwd1) {
                 vm.updating = true;
-                networkService.changePassword(formData, function (res) {
+                networkService.adminChangePassword(vm.profile.id, formData, function (res) {
                     alertMsg.send("Mot de passe modifié avec succès", "success");
                     vm.updating = false;
                 }, function (res) {
@@ -55,7 +58,9 @@
             }
             if (!f) {
                 vm.updating = true;
-                networkService.profilePUT(vm.profileInfo, function (res) {
+                console.log(vm.profileInfo);
+                console.log(vm.profile.id);
+                networkService.adminProfilePUT(vm.profile.id, vm.profileInfo, function (res) {
                     vm.updating = false;
                     vm.profileInfo = res;
                     vm.profile.firstName = res.firstName;
@@ -120,7 +125,8 @@
         }
 
         function succesProfileGET(res) {
-            console.log(res);
+            vm.profile = angular.copy(res);
+            vm.profileInfo = angular.copy(res);
         }
 
         function errorProfileGET(res) {
