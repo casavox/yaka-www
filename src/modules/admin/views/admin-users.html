@@ -1,0 +1,130 @@
+<style data-ng-if="app.isPro()">
+    .customerSupportWidget {
+        background: #FF9800;
+    }
+
+    .contactsItemNumberActive {
+        background: #FF9800;
+    }
+</style>
+
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+    <div id="content" class="content">
+        <div class="container">
+
+            <table class="table table-striped">
+                <tr>
+                    <td>
+                        <div class="select">
+                            <select class="form-control" ng-model="search.isPro"
+                                    ng-options="user for user in vm.possibleIsPro">
+                                <option value="">Pro ?</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.created"
+                               placeholder="Création"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.updated"
+                               placeholder="Updated"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.city"
+                               placeholder="Ville"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.name"
+                               placeholder="NB.P.EC"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.name"
+                               placeholder="NB.P.T"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.name"
+                               placeholder="NB.P.RE"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.name"
+                               placeholder="NB.CONT"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.name"
+                               placeholder="NB.INV"/>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control t-center" ng-model="search.name"
+                               placeholder="Nom"/>
+                    </td>
+                    <td>
+                        <button class="btn btn-success validateButton waves-effect"
+                                data-ng-disabled="!vm.oneOrMoreUser()"
+                                data-ng-click="openMailPopup()">
+                            Envoyer Mail
+                        </button>
+                    </td>
+
+                </tr>
+            </table>
+
+
+            <table ng-table="usersTable" class="table table-striped" show-filter="true">
+
+                <tr data-ng-repeat="user in $data | filter:search" class="t-center">
+
+                    <td data-title="'Pro'" class="pointer c-blue" data-sortable="'isPro'"
+                        data-ui-sref="admin-user-details({userId: user.id})">
+                        {{ user.isPro }}
+                    </td>
+                    <td data-title="'Created'" data-sortable="'created'">
+                        {{ user.created | date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Updated'" data-sortable="'updated'">
+                        {{ user.updated| date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Ville'" data-sortable="'defaultAddress.address'">
+                        {{ user.defaultAddress.address }}
+                    </td>
+                    <td data-title="'nb projet/offre en cours'" data-sortable="'user.updated'">
+                        A voir
+                    </td>
+                    <td data-title="'nb projet/offre terminé'"
+                        data-sortable="'eligibleStatus'">
+                        A voir
+                    </td>
+                    <td data-title="'nb projet/offre refusé'"
+                        data-sortable="'status'">
+                        A voir
+                    </td>
+                    <td data-title="'nb contact'"
+                        data-sortable="'status'">
+                        A voir
+
+                    </td>
+                    <td data-title="'nb invité'" data-sortable="'needToRecheck'">
+                        A voir
+                    </td>
+                    <td data-title="'Name'" data-sortable="'name'">
+                        {{ user.name }}
+                    </td>
+                    <td data-title="'id db'" data-sortable="'id'">
+                        {{ user.id }}
+                    </td>
+                    <td data-title="'Select'" class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="user.selected" value="">
+                            <i class="input-helper"></i>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

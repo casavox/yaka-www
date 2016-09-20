@@ -315,6 +315,9 @@
             adminProListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/pro/list').success(success).error(error)
             },
+            adminUserListGET: function (success, error) {
+                httpService.get(baseUrl + '/admin/user/list').success(success).error(error)
+            },
             adminProDetailsGET: function (id, success, error) {
                 httpService.get(baseUrl + '/admin/pro/' + id).success(success).error(error)
             },
@@ -351,12 +354,15 @@
             adminPartnerListGET: function (success, error) {
                 httpService.get(baseUrl + '/admin/pro/partners').success(success).error(error)
             },
-            adminSetMainPartnerPUT: function (proId, partnerId, success, error) {
+            adminSetMainPartnerPUT: function (proId, partnerId, success, error) {ZZ
                 httpService.put(baseUrl + '/admin/pro/' + proId + '/mainpartner/' + partnerId).success(success).error(error)
             },
             adminProfileGET: function (id, success, error) {
                 httpService.get(baseUrl + '/admin/users/' + id).success(success).error(error)
             },
+            ///adminProfileGET: function (id, success, error) {
+             ///   httpService.get(baseUrl + '/admin/users/' + id + '/profile').success(success).error(error)
+            ///},
             adminProposalAcceptPOST: function (proposalId, success, error) {
                 httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept").success(success).error(error)
             },

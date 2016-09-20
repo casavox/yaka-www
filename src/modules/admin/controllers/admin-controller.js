@@ -80,31 +80,6 @@
             });
             return idList;
         }
-
-
-        vm.validatePro = function () {
-            swal({
-                title: "Êtes-vous sûr ?",
-                text: "Le statut du pro sera modifié",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#03a9f4",
-                confirmButtonText: "Oui, modifier le statut",
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    networkService.adminValidateProPOST(createIdList(),
-                        function (res) {
-                            alertMsg.send("Le statut a été modifié", "info");
-                            loadProList();
-                        }, function () {
-                            alertMsg.send("Impossible de modifier le statut", "danger");
-                        }
-                    );
-
-                }
-            });
-        };
     }
 })
 ();
