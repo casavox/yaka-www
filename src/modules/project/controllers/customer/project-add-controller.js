@@ -539,7 +539,7 @@
 
         function errorProjectsGET() {
             alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
-            $state.go("home");
+            $state.go("home", {'login': true});
         }
 
         function succesProfileGET(res) {

@@ -6,9 +6,18 @@ angular.module('Yaka')
             if (response.status == 401) {
                 $injector.get('$localStorage').$reset();
                 $injector.get('pendingRequests').cancelAll();
-                $injector.get('$state').go("home");
-                if (!window.yakaRedirectUrl) {
-                    window.yakaRedirectUrl = window.location.href;
+                $injector.get('$state').go("home", {'login': true})
+                if ($injector.get('$state').current.name != "home") {
+                    $injector.get('alertMsg').disable();
+                    setTimeout(
+                        function () {
+                            $injector.get('alertMsg').enable();
+                            $injector.get('alertMsg').send("Vous devez vous connecter", "info");
+                        }, 100
+                    );
+                    if (!window.yakaRedirectUrl) {
+                        window.yakaRedirectUrl = window.location.href;
+                    }
                 }
             }
             return $q.reject(response);
@@ -16,6 +25,7 @@ angular.module('Yaka')
     })
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('apiInterceptor');
+        $httpProvider.interceptors.push('loadingInterceptor');
     }])
     .config(['cloudinaryProvider', function (cloudinaryProvider) {
         cloudinaryProvider
@@ -36,5 +46,4 @@ angular.module('Yaka')
         return function (url) {
             return $sce.trustAsResourceUrl(url);
         };
-    }])
-;
+    }]);
