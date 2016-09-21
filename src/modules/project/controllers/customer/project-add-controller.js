@@ -571,7 +571,7 @@
 
         function errorProjectsGET() {
             alertMsg.send("Error : Impossible de charger le module de publication de projet", "danger");
-            $state.go("home");
+            $state.go("home", {'login': true});
         }
 
         function succesProfileGET(res) {

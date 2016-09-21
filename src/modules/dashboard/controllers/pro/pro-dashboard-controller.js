@@ -65,7 +65,7 @@
             }
         }, function (err) {
             alertMsg.send("Impossible de récupérer le profil", "danger");
-            $state.go("home");
+            $state.go("home", {'login': true});
         });
 
         vm.isInNetworkList = function (project) {

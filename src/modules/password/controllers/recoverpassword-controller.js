@@ -9,9 +9,7 @@
 
         $rootScope.pageName = "Réinitialiser mon mot de passe";
 
-        if (angular.isUndefined($stateParams.token) ||
-            !$stateParams.token &&
-            $stateParams.token == '') {
+        if (!$stateParams.token) {
             $state.go("home");
         }
 
@@ -50,7 +48,7 @@
 
         vm.goToHomepage = function () {
             $localStorage.$reset();
-            $state.go("home");
+            $state.go("home", {'login': true});
         };
     }
 })();

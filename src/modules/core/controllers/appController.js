@@ -40,7 +40,6 @@
                 }
 
             }, function () {
-                app.logout();
             });
         };
 
