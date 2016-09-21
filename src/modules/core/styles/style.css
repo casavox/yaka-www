@@ -20,6 +20,54 @@ html {
     }
 }
 
+#loading-bar-spinner {
+    display: none !important;
+}
+
+.casaLoading #loading-bar-spinner {
+    display: block !important;
+    top: 200px;
+}
+
+.casaLoading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #edecec;
+    z-index: 9;
+}
+
+@media (min-width: 1200px) {
+    .casaLoading {
+        left: 268px;
+    }
+
+    .casaLoading .loading-icon {
+        margin-left: -134px;
+    }
+}
+
+.casaLoading .loading-icon {
+    top: 70px;
+}
+
+.casaLoadingFade.visible {
+    filter: alpha(opacity=100);
+    opacity: 1 !important;
+}
+
+.casaLoadingFade {
+    filter: alpha(opacity=0);
+    opacity: 0 !important;
+    -webkit-transition: opacity 0.3s linear !important;
+    -moz-transition: opacity 0.3s linear !important;
+    -o-transition: opacity 0.3s linear !important;
+    -ms-transition: opacity 0.3s linear !important;
+    transition: opacity 0.3s linear !important;
+}
+
 .multiselect-parent .dropdown-menu {
     -webkit-transform: scale(1) !important;
     -ms-transform: scale(1) !important;
@@ -5205,20 +5253,24 @@ div.recaptcha.mobile > div {
     .no-padding-mobile {
         padding: 0 !important;
     }
+
     .floatingButtonImage {
         width: 30px !important;
         height: 30px !important;
         padding: 0 !important;
     }
+
     .floatingButtonImage i {
         font-size: 15px !important;
         transform: translateY(-5px);
     }
+
     .icon-comment {
         left: -18px;
         bottom: -12px !important;
         margin-left: 50%;
     }
+
     .galleryEditingItem {
         padding: 3px !important;
         margin-bottom: 20px !important;

@@ -291,6 +291,23 @@
                 window.recoProjectId = $stateParams.projectId;
             }
             $state.go('home', {login: true});
-        }
+        };
+
+        var oldLoadingValue = false;
+
+        app.isLoading = function () {
+            if ($rootScope.loading && !oldLoadingValue) {
+                setTimeout(function () {
+                    app.showLoadingIcons = true;
+                }, 500);
+            } else if (!$rootScope.loading) {
+                app.showLoadingIcons = false;
+            }
+
+            oldLoadingValue = $rootScope.loading;
+            return $rootScope.loading;
+        };
+
+        app.showLoadingIcons = false;
     }
 })();

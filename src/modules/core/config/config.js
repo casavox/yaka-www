@@ -25,6 +25,7 @@ angular.module('Yaka')
     })
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('apiInterceptor');
+        $httpProvider.interceptors.push('loadingInterceptor');
     }])
     .config(['cloudinaryProvider', function (cloudinaryProvider) {
         cloudinaryProvider
@@ -45,5 +46,4 @@ angular.module('Yaka')
         return function (url) {
             return $sce.trustAsResourceUrl(url);
         };
-    }])
-;
+    }]);
