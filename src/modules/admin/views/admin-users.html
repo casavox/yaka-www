@@ -16,105 +16,59 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content">
         <div class="container">
-
-            <table class="table table-striped">
-                <tr>
-                    <td>
-                        <div class="select">
-                            <select class="form-control" ng-model="search.isPro"
-                                    ng-options="user for user in vm.possibleIsPro">
-                                <option value="">Pro ?</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.created"
-                               placeholder="Création"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.updated"
-                               placeholder="Updated"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.city"
-                               placeholder="Ville"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.name"
-                               placeholder="NB.P.EC"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.name"
-                               placeholder="NB.P.T"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.name"
-                               placeholder="NB.P.RE"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.name"
-                               placeholder="NB.CONT"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.name"
-                               placeholder="NB.INV"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control t-center" ng-model="search.name"
-                               placeholder="Nom"/>
-                    </td>
-                    <td>
-                        <button class="btn btn-success validateButton waves-effect"
-                                data-ng-disabled="!vm.oneOrMoreUser()"
-                                data-ng-click="openMailPopup()">
-                            Envoyer Mail
-                        </button>
-                    </td>
-
-                </tr>
-            </table>
-
+            <button class="visible-xs btn btn-success validateButton waves-effect"
+                    data-ng-disabled="!vm.oneOrMoreUser()"
+                    data-ng-click="openMailPopup()">
+                Envoyer Mail
+            </button>
 
             <table ng-table="usersTable" class="table table-striped" show-filter="true">
 
                 <tr data-ng-repeat="user in $data | filter:search" class="t-center">
 
-                    <td data-title="'Pro'" class="pointer c-blue" data-sortable="'isPro'"
-                        data-ui-sref="admin-user-details({userId: user.id})">
+                    <td data-title="'Type'" class="pointer" filter="{isPro: 'text'}" data-sortable="'isPro'"
+                        data-ui-sref="admin-user-details({userId: user.id})"
+                        ng-class="{'c-orange' : user.isPro == 'Professionnel', 'c-blue' : user.isPro == 'Particulier'}">
                         {{ user.isPro }}
                     </td>
-                    <td data-title="'Created'" data-sortable="'created'">
+                    <td data-title="'Created'" filter="{created: 'text'}" data-sortable="'created'">
                         {{ user.created | date:"dd/MM/yyyy" }}
                     </td>
-                    <td data-title="'Updated'" data-sortable="'updated'">
+                    <td data-title="'Updated'" filter="{updated: 'text'}" data-sortable="'updated'">
                         {{ user.updated| date:"dd/MM/yyyy" }}
                     </td>
-                    <td data-title="'Ville'" data-sortable="'defaultAddress.address'">
-                        {{ user.defaultAddress.address }}
+                    <td data-title="'Ville'" filter="{place: 'text'}"
+                        data-sortable="'place'">
+                        {{ user.place }}
                     </td>
-                    <td data-title="'nb projet/offre en cours'" data-sortable="'user.updated'">
-                        A voir
+                    <td data-title="'Recommandations'" filter="{recommendedProNumber: 'text'}"
+                        data-sortable="'recommendedProNumber'">
+                        {{ user.recommendedProNumber }}
                     </td>
-                    <td data-title="'nb projet/offre terminé'"
-                        data-sortable="'eligibleStatus'">
-                        A voir
+                    <td data-title="'Projet/offre en cours'" filter="{onGoingProjectNumber: 'text'}"
+                        data-sortable="'onGoingProjectNumber'">
+                        {{ user.onGoingProjectNumber }}
                     </td>
-                    <td data-title="'nb projet/offre refusé'"
-                        data-sortable="'status'">
-                        A voir
+                    <td data-title="'Projet/offre terminé'" filter="{completedProjectNumber: 'text'}"
+                        data-sortable="'completedProjectNumber'">
+                        {{ user.completedProjectNumber }}
                     </td>
-                    <td data-title="'nb contact'"
-                        data-sortable="'status'">
-                        A voir
-
+                    <td data-title="'Projet/offre refusé'" filter="{canceledProjectNumber: 'text'}"
+                        data-sortable="'canceledProjectNumber'">
+                        {{ user.canceledProjectNumber }}
                     </td>
-                    <td data-title="'nb invité'" data-sortable="'needToRecheck'">
-                        A voir
+                    <td data-title="'Contact'" filter="{contactNumber: 'text'}"
+                        data-sortable="'contactNumber'">
+                        {{ user.contactNumber }}
                     </td>
-                    <td data-title="'Name'" data-sortable="'name'">
+                    <td data-title="'Invité'" filter="{invitationSentNumber: 'text'}"
+                        data-sortable="'invitationSentNumber'">
+                        {{ user.invitationSentNumber }}
+                    </td>
+                    <td data-title="'Nom'" filter="{name: 'text'}" data-sortable="'name'">
                         {{ user.name }}
                     </td>
-                    <td data-title="'id db'" data-sortable="'id'">
+                    <td data-title="'id db'" filter="{id: 'text'}" data-sortable="'id'">
                         {{ user.id }}
                     </td>
                     <td data-title="'Select'" class="checkbox">

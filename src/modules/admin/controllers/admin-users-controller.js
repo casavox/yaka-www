@@ -12,6 +12,8 @@
         $rootScope.pageName = "Admin";
         var vm = this;
 
+        loadUserList();
+
 
         function loadUserList() {
             networkService.adminUserListGET(function (res) {
@@ -22,15 +24,39 @@
 
 
                 angular.forEach(vm.userData, function (user) {
+                    if (!user.recommendedProNumber) {
+                        user.recommendedProNumber = 0;
+                    }
+                    if (!user.onGoingProjectNumber) {
+                        user.onGoingProjectNumber = 0;
+                    }
+                    if (!user.completedProjectNumber) {
+                        user.completedProjectNumber = 0;
+                    }
+                    if (!user.canceledProjectNumber) {
+                        user.canceledProjectNumber = 0;
+                    }
+                    if (!user.contactNumber) {
+                        user.contactNumber = 0;
+                    }
+                    if (!user.invitationSentNumber) {
+                        user.invitationSentNumber = 0;
+                    }
                     user.selected = false;
                     user.name = user.firstName + " " + user.lastName;
                     if (!user.professional) {
-                        user.isPro = "Non";
+                        user.isPro = "Particulier";
                     } else {
-                        user.isPro = "Oui";
+                        user.isPro = "Professionnel";
                     }
                     if ($.inArray(user.isPro, vm.possibleIsPro) == -1) {
                         vm.possibleIsPro.push(user.isPro);
+                    }
+
+                    if (!user.defaultAddress) {
+                        user.place = "Non Précisé";
+                    } else {
+                        user.place = user.defaultAddress.address;
                     }
 
                 });
@@ -40,13 +66,12 @@
             });
         }
 
-        loadUserList();
         vm.tableData = [];
 
         function userSorting() {
             $scope.usersTable = new ngTableParams({
                 page: 1,
-                count: 10,
+                count: 9999999,
                 sorting: {name: "asc"}
             }, {
                 total: vm.userData.length,
