@@ -17,45 +17,59 @@
     <div id="content" class="content">
         <div class="container">
 
-            <table class="table table-striped">
-                <tr>
-                    <td>
-                        <input type="text" class="form-control" ng-model="search.user.name"
-                               placeholder="Nom"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control"
-                               ng-model="search.company.address.city"
-                               placeholder="Ville"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" ng-model="search.user.created"
-                               placeholder="Création"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" ng-model="search.user.updated"
-                               placeholder="Update"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" ng-model="search.eligibleStatus"
-                               placeholder="Eligible"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" ng-model="search.status"
-                               placeholder="Statut"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control invisible" ng-model="search.status"
-                               placeholder="Statut"/>
-                    </td>
-                    <td>
+            <div class="card col-xs-12 col-sm-5">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer" ng-click="reinitializeCreatedDate()"></i>
+                <h4>Recherche par date de création</h4>
+                <p>Entre le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="fromDate"
+                           is-open="status1.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="openFromDate($event)"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                </p>
+                <p>Et le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="toDate"
+                           is-open="status2.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="openToDate($event)"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                </p>
+            </div>
+            <div class="card col-xs-12 col-sm-5 col-sm-offset-2">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer" ng-click="reinitializeCreatedDate()"></i>
+                <h4>Recherche par date de mise à jour</h4>
+                <p>Entre le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="updatedFromDate"
+                           is-open="status3.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openUpdatedFromDate($event)"><i
+                      class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+                <p>Et le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="updatedToDate"
+                           is-open="status4.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openUpdatedToDate($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+            </div>
                         <button class="btn btn-success waves-effect"
                                 data-ng-disabled="!vm.oneOrMorePro()"
                                 data-ng-click="vm.validatePro()">Valider
                         </button>
-                    </td>
-                </tr>
-            </table>
+
 
             <table ng-table="usersTable" class="table table-striped" show-filter="true">
 
@@ -68,18 +82,20 @@
                     <td data-title="'Ville'" filter="{city: 'text'}" data-sortable="'city'">
                         {{ pro.city }}
                     </td>
-                    <td data-title="'Création'" data-sortable="'user.created'">
-                        {{ pro.user.created | date:"dd/MM/yyyy" }}
+                    <td data-title="'Création'" data-sortable="'created'">
+                        {{ pro.created | date:"dd/MM/yyyy" }}
                     </td>
-                    <td data-title="'Mis à jour'" data-sortable="'user.updated'">
-                        {{ pro.user.updated| date:"dd/MM/yyyy" }}
+                    <td data-title="'Mis à jour'" data-sortable="'updated'">
+                        {{ pro.updated| date:"dd/MM/yyyy" }}
                     </td>
                     <td data-title="'Eligible'"
+                        filter="{eligibleStatus: 'text'}"
                         ng-class="{'bgm-green' : pro.eligibleStatus == 'Validé', 'bgm-yellow' : pro.eligibleStatus == 'Incomplet', 'bgm-blue' : pro.eligibleStatus == 'Complet', 'bgm-red' : pro.eligibleStatus == 'Refusé'}"
                         data-sortable="'eligibleStatus'">
                         {{ pro.eligibleStatus }}
                     </td>
                     <td data-title="'Statut'"
+                        filter="{status: 'text'}"
                         ng-class="{'bgm-green' : pro.status == 'Validé', 'bgm-yellow' : pro.status == 'Incomplet', 'bgm-blue' : pro.status == 'Complet', 'bgm-red' : pro.status == 'Refusé'}"
                         data-sortable="'status'">
                         {{ pro.status }}
@@ -90,7 +106,7 @@
                                 casaProfessionalDoc }}</a>
                         </div>
                     </td>
-                    <td data-title="'Vérif nécessaire'" data-sortable="'needToRecheck'">
+                    <td data-title="'Vérif nécessaire'" filter="{needToRecheck: 'text'}" data-sortable="'needToRecheck'">
                         {{ pro.newNeedToRecheck}}
                     </td>
                     <td class="checkbox">
