@@ -159,7 +159,7 @@
                 }
                 swal({
                     title: "C'est fait !",
-                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet lui à également été envoyé.",
+                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
                     type: "success",
                     showConfirmButton: true,
                     confirmButtonColor: "#03a9f4",
@@ -167,7 +167,7 @@
                 });
             }, function (err) {
                 alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-            });
+            }, true);
         };
 
         vm.showInvitProPopup = false;
@@ -201,7 +201,7 @@
                 });
             }, function (err) {
                 alertMsg.send("Impossible de recommander ce professionnel", 'danger');
-            });
+            }, true);
         };
 
         var scrollOptions = {

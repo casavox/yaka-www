@@ -109,7 +109,7 @@
                                 $state.go('pro-proposals');
                             }, function (res) {
                                 alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                            });
+                            }, true);
                         }
                     });
                 } else {
@@ -118,7 +118,7 @@
                         $state.go('pro-proposals');
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                    });
+                    }, true);
                 }
             }
         }

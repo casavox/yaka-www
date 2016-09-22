@@ -39,8 +39,8 @@
             }, function () {
                 vm.delete = false;
                 alertMsg.send("Impossible de supprimer cette offre", "danger");
-            });
-        }
+            }, true);
+        };
 
         vm.getWhen = function (proposal) {
             switch (proposal.project.desiredDatePeriod) {

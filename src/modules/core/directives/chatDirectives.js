@@ -56,7 +56,7 @@ angular.module('Yaka')
                         };
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer le message", "danger");
-                    })
+                    }, true)
                 };
 
                 scope.showRight = function (message) {
@@ -105,7 +105,7 @@ angular.module('Yaka')
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
-                    });
+                    }, true);
                 }
 
                 function chatIdChanged() {
@@ -249,7 +249,7 @@ angular.module('Yaka')
                     apiSetChatRead(scope.chatId, function () {
                         $rootScope.updateProfile();
                     }, function () {
-                    });
+                    }, true);
                 }
 
                 scope.getPlaceholder = function () {

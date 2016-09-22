@@ -63,9 +63,9 @@
         };
 
         function reloadContactsAndInvitations() {
-            networkService.contactsGET(succesContactsGET, errorContactsGET);
-            networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
-            networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
+            networkService.contactsGET(succesContactsGET, errorContactsGET, true);
+            networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET, true);
+            networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET, true);
         }
 
         networkService.contactsGET(succesContactsGET, errorContactsGET);
@@ -188,7 +188,7 @@
                 return;
             }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
+            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         function hasDuplicates(array) {
@@ -229,7 +229,7 @@
         };
 
         vm.sendProInvit = function () {
-            networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST);
+            networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
         };
 
         function succesInviteProPOST(res) {
@@ -399,7 +399,7 @@
         };
 
         vm.refuseInvitation = function (inviterId) {
-            networkService.refuseInvitationPOST(inviterId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
+            networkService.refuseInvitationPOST(inviterId, succesRefuseInvitationPOST, errorRefuseInvitationPOST, true);
         };
 
         function succesRefuseInvitationPOST(res) {
@@ -416,7 +416,7 @@
         }
 
         vm.acceptInvitation = function (inviterId) {
-            networkService.acceptInvitationPOST(inviterId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            networkService.acceptInvitationPOST(inviterId, succesAcceptInvitationPOST, errorAcceptInvitationPOST, true);
         };
 
         function succesAcceptInvitationPOST(res) {
@@ -513,7 +513,7 @@
                 }
             }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
+            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         vm.getFacebookIframeUrl = function () {

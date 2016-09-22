@@ -259,7 +259,7 @@
 
                         <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
                                 data-ng-click="vm.recommendPro(vm.selectedProfessional.id)">
-                            Lui recommander ce projet
+                            Lui recommander ce chantier
                         </button>
                     </div>
 
@@ -289,15 +289,15 @@
                                     </dl>
                                     <dl class="dl-horizontal"
                                         data-ng-if="vm.selectedProfessional.yakaProjectNumber">
-                                        <dt>Projets réalisés</dt>
+                                        <dt>Chantiers réalisés</dt>
                                         <dd>
                                         <span
                                             data-ng-if="vm.selectedProfessional.yakaProjectNumber > 1">
-                                            <b>{{vm.selectedProfessional.yakaProjectNumber}} projets</b> réalisés sur CasaVox
+                                            <b>{{vm.selectedProfessional.yakaProjectNumber}} chantiers</b> réalisés sur CasaVox
                                         </span>
                                             <span
                                                 data-ng-if="vm.selectedProfessional.yakaProjectNumber == 1">
-                                            <b>1 projet</b> réalisé sur CasaVox
+                                            <b>1 chantier</b> réalisé sur CasaVox
                                         </span>
                                         </dd>
                                     </dl>

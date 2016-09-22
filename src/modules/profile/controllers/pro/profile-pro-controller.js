@@ -78,7 +78,7 @@
                     vm.profile.company.address = angular.copy(res.company.address);
                     vm.profile.company.phone = res.company.phone;
                     alertMsg.send("Profil mis à jour avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
@@ -96,12 +96,12 @@
             }, function () {
                 vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
-            });
+            }, true);
         };
 
         vm.updateWorkArea = function () {
             vm.updating = true;
-            networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT);
+            networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT, true);
         };
 
         vm.updateVerifications = function () {
@@ -122,7 +122,7 @@
                     vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Les vérifications ont été modifiées avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             } else {
                 vm.error.verif.message = "Merci de fournir un scan de votre KBIS et certificat d'assurance, " +
                     "une fois que nous les aurons vérifié, vous pourrez répondre à toutes les offres.";
@@ -143,7 +143,7 @@
                     vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Vos domaines d'activité ont été modifié avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 vm.error.activities.message = "Vous devez indiquer au moins une de vos compétences.";
@@ -160,7 +160,7 @@
                 vm.editFlag = false;
                 vm.updating = false;
                 alertMsg.send("Le portfolio à été modifié avec succès", "success");
-            }, errorProfilePUT);
+            }, errorProfilePUT, true);
         };
 
         vm.cancelProfile = function () {
@@ -292,7 +292,7 @@
                     }, function (res) {
                         vm.updating = false;
                         alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                    });
+                    }, true);
                 }
                 else {
                     vm.error.password.message = "Les deux mots de passe ne correspondent pas";
@@ -310,22 +310,22 @@
                 alertMsg.send("L'URL du lien n'est pas valide", "danger");
             } else {
                 var data = {
-                    "myWebsite" : vm.profile.myWebsite,
-                    "myLinkedin" : vm.profile.myLinkedin,
-                    "myOtherSocial" : vm.profile.myOtherSocial
-                }
+                    "myWebsite": vm.profile.myWebsite,
+                    "myLinkedin": vm.profile.myLinkedin,
+                    "myOtherSocial": vm.profile.myOtherSocial
+                };
                 networkService.updateProLinksPUT(data, function (res) {
                     alertMsg.send("Les liens ont été mis à jour", "success");
                     vm.updating = false;
                 }, function (res) {
                     vm.updating = false;
                     alertMsg.send("Impossible de modifier les liens", "danger");
-                });
+                }, true);
             }
 
         };
 
-            vm.uploadVerifications = function (files, invalides, index, verifName) {
+        vm.uploadVerifications = function (files, invalides, index, verifName) {
 
             if (invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
@@ -448,7 +448,7 @@
                     return "";
                 } else {
                     var profileCompanyName = vm.profile.company.name;
-                    var companyName = profileCompanyName.replace(/ /g,"+");
+                    var companyName = profileCompanyName.replace(/ /g, "+");
                     return "/cgi-bin/search?champs=" + companyName;
                 }
             };
@@ -1006,7 +1006,7 @@
                         $rootScope.updateProfile();
                     }, function () {
                         alertMsg.send("Impossible d'effectuer cette action", "danger");
-                    });
+                    }, true);
                 }
             });
         };
@@ -1026,7 +1026,7 @@
                         $rootScope.updateProfile();
                     }, function () {
                         alertMsg.send("Impossible d'effectuer cette action", "danger");
-                    });
+                    }, true);
                 }
             });
         };
