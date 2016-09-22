@@ -16,7 +16,7 @@
         var vm = this;
         vm.user = $localStorage.user;
 
-        $rootScope.pageName = "Publier un projet";
+        $rootScope.pageName = "Trouver un Pro";
         $rootScope.updateProfile();
         vm.multi = "";
         vm.newProject = {};
@@ -166,7 +166,7 @@
 
 
         vm.resetProject = function () {
-            networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
+            networkService.activitiesGET(succesProjectsGET, errorProjectsGET, true);
             vm.type = {};
             vm.continue = vm.continueImg = vm.service = vm.continueAddressFlag = false;
             vm.questions = [];
@@ -199,26 +199,6 @@
         };
 
         vm.post = function () {
-            if (!vm.dateType) {
-                vm.error.date.flag = true;
-                vm.error.date.message = "At least a slot is required";
-                return
-            }
-            else if (vm.dateType == 'SPECIFIC') {
-                if (vm.dt.getTime() == vm.default.getTime()) {
-                    vm.error.date.flag = true;
-                    vm.error.date.message = "At least a slot is required";
-                    return;
-                }
-                else {
-                    vm.error.date.flag = false;
-                    vm.error.date.message = "At least a slot is required";
-                }
-            }
-            else {
-                vm.error.date.flag = false;
-                vm.error.date.message = "At least a slot is required";
-            }
             var formData = {
                 title: vm.title,
                 description: vm.projectDescription,
@@ -247,7 +227,7 @@
             else {
                 if (angular.isUndefined(vm.newAddr) || !vm.newAddr.name || vm.newAddr.name.length < 3) {
                     vm.error.address.flag = true;
-                    vm.error.address.message = "A valid address name is required";
+                    vm.error.address.message = "Merci d'indiquer un NOM pour cette adresse";
                     $timeout(function () {
                         var element = document.getElementById('slide5');
                         smoothScroll(element, scrollOptions);
@@ -256,7 +236,7 @@
                 }
                 else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3) {
                     vm.error.address.flag = true;
-                    vm.error.address.message = "A valid address is required";
+                    vm.error.address.message = "Merci de saisir le debut de l'adresse puis de choisir dans la liste";
                     $timeout(function () {
                         var element = document.getElementById('slide5');
                         smoothScroll(element, scrollOptions);
@@ -268,7 +248,7 @@
             }
             formData.images = $rootScope.photos;
             if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
-                networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST);
+                networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST, true);
             else {
                 $rootScope.newProject = formData;
                 $state.go("login");
@@ -280,7 +260,7 @@
             vm.questions = [];
             vm.end = true;
             swal({
-                title: 'Félicitations, votre projet vient d’être publié !',
+                title: 'Félicitations, votre projet vient d’être envoyé aux meilleurs Pro autour de vous !',
                 text: 'Suivez son avancement dans le menu « Mes projets »',
                 type: 'success',
                 confirmButtonColor: '#03A9F4',
@@ -292,7 +272,7 @@
 
         function errorProjectsPOST() {
             vm.end = false;
-            alertMsg.send("Error : Impossible de publier le projet", "danger");
+            alertMsg.send("Oups ! une erreur s'est produite, merci de vérifier votre saisie avant de cliquer de nouveau sur ENVOYER (contactez le support en cas de besoin)", "danger");
             if (vm.error.description.flag || vm.error.material.flag)
                 $timeout(function () {
                     var element = document.getElementById('slide3');
@@ -354,12 +334,12 @@
                     else {
                         vm.continueAddressFlag = false;
                         vm.error.address.flag = true;
-                        vm.error.address.message = "A valid address is required";
+                        vm.error.address.message = "Merci de saisir le debut de l'adresse puis de choisir dans la liste";
                     }
                 }
                 else {
                     vm.continueAddressFlag = false;
-                    vm.error.address.message = "An address name is required";
+                    vm.error.address.message = "Merci d'indiquer un NOM pour cette adresse";
                     vm.error.address.flag = true;
                 }
             }
@@ -375,7 +355,7 @@
                 }
                 else {
                     vm.continueAddressFlag = false;
-                    vm.error.address.message = "An address is required";
+                    vm.error.address.message = "Merci de saisir le debut de l'adresse puis de choisir dans la liste";
                     vm.error.address.flag = true;
                 }
             }
@@ -411,7 +391,7 @@
 
         vm.continueProject = function () {
             if (vm.material == null && vm.type.code != 'COU_13900') {
-                vm.error.material.message = "Select YES or NO";
+                vm.error.material.message = "Merci d'indiquez si vous souhaitez que le professionnel fournisse ou non l'ensemble des matériaux";
                 vm.error.material.flag = true;
             }
             if (vm.projectDescription.length < 30) {
@@ -433,7 +413,7 @@
                 vm.continueImg = false;
                 swal({
                     title: "Votre projet ne contient pas de photos !",
-                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre projet !",
+                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre besoin !",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Ajouter une photo",
@@ -470,52 +450,40 @@
                 vm.newProject.childrenActivities[i].selected = "";
             }
 
-            if (item == 'AUTO_MULTI') {
-                $timeout(function () {
-                    vm.service = true;
-                    vm.title = "Multidomaines";
-                    vm.multi = "activate";
-                    vm.questions.push({code: 'AUTO_MULTI'});
-                    var element = document.getElementById('slide3');
-                    smoothScroll(element, scrollOptions);
-                }, 0);
-            } else {
-                vm.multi = "";
-                vm.title = item.name;
-                if (item.childrenActivities && item.childrenActivities.length > 0) {
-                    vm.questions.push(item);
-                    var childrenArray = [];
-                    for (var i = 0; i < item.childrenActivities.length; i++) {
-                        childrenArray.push(item.childrenActivities[i]);
-                    }
-                    item.childrenActivities = childrenArray;
-                    for (var i = 0; i < item.childrenActivities.length; i++) {
-                        item.childrenActivities[i].selected = "";
-                    }
-                    if (item.childrenActivities[item.childrenActivities.length - 1].code != "OTHER") {
-                        var otherChild = {code: "OTHER"};
-                        item.childrenActivities.push(otherChild);
-                    }
+            vm.title = item.name;
+            if (item.childrenActivities && item.childrenActivities.length > 0) {
+                vm.questions.push(item);
+                var childrenArray = [];
+                for (var i = 0; i < item.childrenActivities.length; i++) {
+                    childrenArray.push(item.childrenActivities[i]);
                 }
-                item.selected = "activate";
-                if (!angular.isUndefined(vm.user) && vm.user.addresses) {
-                    if (vm.user.addresses.length > 0) {
-                        vm.myAddress = vm.user.addresses[0].address;
-                        $scope.address.name = vm.myAddress;
-                        vm.continueAddress = true;
-                    } else {
-                        vm.continueAddress = false;
-                        vm.newAddrFlag = true;
-                    }
-                } else {
-                    vm.user = {};
-                    vm.user.addresses = [];
+                item.childrenActivities = childrenArray;
+                for (var i = 0; i < item.childrenActivities.length; i++) {
+                    item.childrenActivities[i].selected = "";
                 }
-                $timeout(function () {
-                    var element = document.getElementById('subSlide0');
-                    smoothScroll(element, scrollOptions);
-                }, 0);
+                if (item.childrenActivities[item.childrenActivities.length - 1].code != "OTHER") {
+                    var otherChild = {code: "OTHER"};
+                    item.childrenActivities.push(otherChild);
+                }
             }
+            item.selected = "activate";
+            if (!angular.isUndefined(vm.user) && vm.user.addresses) {
+                if (vm.user.addresses.length > 0) {
+                    vm.myAddress = vm.user.addresses[0].address;
+                    $scope.address.name = vm.myAddress;
+                    vm.continueAddress = true;
+                } else {
+                    vm.continueAddress = false;
+                    vm.newAddrFlag = true;
+                }
+            } else {
+                vm.user = {};
+                vm.user.addresses = [];
+            }
+            $timeout(function () {
+                var element = document.getElementById('subSlide0');
+                smoothScroll(element, scrollOptions);
+            }, 0);
         };
 
         vm.selectSubService = function (item, items, index) {
@@ -570,8 +538,8 @@
         }
 
         function errorProjectsGET() {
-            alertMsg.send("Error : Impossible de charger le module de publication de projet", "danger");
-            $state.go("home");
+            alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
+            $state.go("home", {'login': true});
         }
 
         function succesProfileGET(res) {

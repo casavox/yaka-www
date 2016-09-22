@@ -1,10 +1,10 @@
 <div class="modal-header">
-    <h3 class="modal-title">Vous êtes sur le point de supprimer votre projet. En êtes-vous sûr ?</h3>
+    <h3 class="modal-title">Vous êtes sur le point d'annuler votre projet. En êtes-vous sûr ?</h3>
 </div>
 <div class="modal-body">
     <strong>Cette décision est définitive</strong>
 
-    <p>Au lieu de supprimer un projet, il est généralement préférable de le modifier.</p>
+    <p>Au lieu d'annuler un projet, il est généralement préférable de le modifier.</p>
 </div>
 <div class="modal-footer p-t-0 p-b-10">
     <button class="btn btn-default m-b-5" type="button" data-ng-click="cancel()">
@@ -12,10 +12,10 @@
     </button>
     <button class="btn bgm-red m-b-5" type="button" data-ng-click="yesClicked()"
             data-ng-disabled="yesChoice">
-        Oui, supprimer mon projet
+        Oui, annuler mon projet
     </button>
     <div class="m-t-10 text-left" data-ng-show="yesChoice">
-        <strong class="c-red">Veuillez expliquer à votre artisan ({{professionalName}}) pourquoi vous supprimez ce
+        <strong class="c-red">Veuillez expliquer à votre artisan ({{professionalName}}) pourquoi vous annulez ce
             projet :</strong>
 
         <div class="lv-footer ms-reply ms-reply-modal" data-ng-show="yesChoice">

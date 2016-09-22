@@ -423,7 +423,7 @@ section#main.yakaMain .content .card {
 }
 
 #sidebar {
-    z-index: 6;
+    z-index: 10;
 }
 
 body.sw-toggled #content.noMenu {

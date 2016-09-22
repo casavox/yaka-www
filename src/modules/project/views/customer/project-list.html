@@ -16,14 +16,14 @@
                 </div>
                 <div class="card-body card-padding">
                     <ol>
-                        <li>Créez votre projet</li>
-                        <li>Recevez des offres et discutez avec nos professionnels</li>
+                        <li>Trouver votre Pro en créant votre projet de travaux</li>
+                        <li>Recevez des propositions et discutez avec nos professionnels</li>
                         <li>Sélectionnez celui qui vous convient</li>
-                        <li>Clôturez le projet et partagez votre recommandation</li>
+                        <li>Clôturez le chantier et partagez votre recommandation</li>
                     </ol>
                 </div>
                 <div class="panel-footer text-right">
-                    <button class="btn btn-lg btn-primary" data-ui-sref="new-project">CREER UN PROJET</button>
+                    <button class="btn btn-lg btn-primary" data-ui-sref="new-project">TROUVER MON PRO.</button>
                 </div>
             </div>
 
@@ -109,7 +109,7 @@
                             </div>
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
@@ -146,7 +146,7 @@
                             </div>
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-red"><strong>Notez votre Pro. pour ce projet</strong></div>
+                                    <div class="c-red"><strong>Notez votre Pro. pour ce chantier</strong></div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
@@ -232,7 +232,7 @@
                             <div class="media-body pull-left" title="{{pc.title}}"
                                  data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
                                     <strong>{{pc.proposal.professional.user.firstName}}
                                         {{pc.proposal.professional.user.lastName}}</strong>
                                 </div>
@@ -257,9 +257,9 @@
             </div>
             <div data-ng-show="vm.projectsCanceled && vm.projectsCanceled.length > 0" data-ng-cloak>
                 <div class="block-header">
-                    <h2 data-ng-show="vm.projectsCanceledlength == 1">PROJET SUPPRIMÉ</h2>
+                    <h2 data-ng-show="vm.projectsCanceledlength == 1">PROJET ANNULÉ</h2>
 
-                    <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS SUPPRIMÉS</h2>
+                    <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS ANNULÉS</h2>
                 </div>
                 <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsCanceled"
                      data-ng-click="vm.selectProject(p)">
@@ -318,7 +318,7 @@
                             <div class="media-body pull-left" title="{{p.title}}"
                                  data-ui-sref="proposal({'proposalId': p.proposal.id})">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>

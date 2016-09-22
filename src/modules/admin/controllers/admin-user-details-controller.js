@@ -42,7 +42,7 @@
                 }, function (res) {
                     vm.updating = false;
                     alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                });
+                }, true);
             }
         }
 
@@ -70,7 +70,7 @@
                     vm.profile.gender = res.gender;
                     vm.profile.email = res.email;
                     alertMsg.send("Profil mis à jour avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");

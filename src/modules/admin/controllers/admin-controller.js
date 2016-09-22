@@ -13,7 +13,7 @@
         var vm = this;
 
 
-        function loadProList() {
+        function loadProList(ignoreLoading) {
             networkService.adminProListGET(function (res) {
                 vm.proData = res;
                 angular.forEach(vm.proData, function (pro) {
@@ -34,10 +34,9 @@
                     }
                 });
 
-
                 proSorting();
             }, function () {
-            });
+            }, ignoreLoading);
         }
 
         $scope.reinitializeCreatedDate = function() {
@@ -108,7 +107,8 @@
             opened: false
         };
 
-        loadProList();
+        loadProList(false);
+
         vm.tableData = [];
 
         function proSorting() {
@@ -150,6 +150,30 @@
             });
             return idList;
         }
+
+        vm.validatePro = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Le statut du pro sera modifié",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Oui, modifier le statut",
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.adminValidateProPOST(createIdList(),
+                        function (res) {
+                            alertMsg.send("Le statut a été modifié", "info");
+                            loadProList(true);
+                        }, function () {
+                            alertMsg.send("Impossible de modifier le statut", "danger");
+                        }, true
+                    );
+
+                }
+            });
+        };
     }
 })
 ();
