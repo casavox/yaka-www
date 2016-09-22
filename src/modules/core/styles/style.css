@@ -39,16 +39,6 @@ html {
     z-index: 9;
 }
 
-@media (min-width: 1200px) {
-    .casaLoading {
-        left: 268px;
-    }
-
-    .casaLoading .loading-icon {
-        margin-left: -134px;
-    }
-}
-
 .casaLoading .loading-icon {
     top: 70px;
 }
@@ -5087,6 +5077,10 @@ div.recaptcha.mobile > div {
 
 .m-t-9 {
     margin-top: 9px !important;
+}
+
+.m-t-45 {
+    margin-top: 45px !important;
 }
 
 .p-l-25 {

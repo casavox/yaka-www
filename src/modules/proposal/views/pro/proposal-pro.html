@@ -252,7 +252,7 @@
                                                     <span
                                                         data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
                                                 </span>
-                                                <hr class="m-0 p-0">
+                                                <hr class="m-0 p-0 m-t-5">
                                             </div>
 
                                             <div class="p-relative">
@@ -271,7 +271,7 @@
 
                                             <div
                                                 class="col-xs-12 no-padding pmo-stat proposalProName littleMargin clearfix">
-                                                <h2 class="yakaEllipsis">
+                                                <h2>
                                                     <casa-name-and-contact user="vm.project.user"
                                                                            icon-color="c-white"></casa-name-and-contact>
                                                 </h2>
@@ -295,16 +295,14 @@
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-                                                    <div class="proNetworkProjectButtonLabel t-center m-t-5">
-                                                        vous a été recommandé
-                                                    </div>
-                                                    <div class="col-xs-offset-2 col-xs-10">
+
+                                                    <div class="col-xs-12 m-t-45">
                                                         <button data-ng-click="vm.smoothScrollToSend()"
-                                                                class="btn btn-primary btn-sm waves-effect zIndex1">
+                                                                class="col-xs-6 btn btn-primary btn-sm waves-effect zIndex1">
                                                             CONTACTER !
                                                         </button>
                                                         <button data-ng-click="vm.cancelRecommandationModal()"
-                                                                class="btn btn-danger btn-sm waves-effect btn-icon-text">
+                                                                class="right col-xs-6 btn btn-danger btn-sm waves-effect btn-icon-text">
                                                             <i class="zmdi zmdi-close"></i> Refuser
                                                         </button>
                                                     </div>
