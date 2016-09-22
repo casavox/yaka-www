@@ -229,7 +229,7 @@
         vm.registerUser = function () {
             if (vm.formIsValid()) {
 
-                networkService.proRegister(vm.newUser, successProRegister, failProRegister);
+                networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
             }
         };
 
@@ -351,7 +351,7 @@
 
         vm.forgottenPassword = function () {
             if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
-                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
             }
         };
 

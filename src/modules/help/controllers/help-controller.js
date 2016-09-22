@@ -44,7 +44,7 @@
                 vm.pro = pro;
             }, function (err) {
                 alertMsg.send("Impossible de récupérer le profil", "danger");
-                $state.go("home");
+                $state.go("home", {'login': true});
             });
         } else {
             vm.showSupport = true;
@@ -103,7 +103,7 @@
                 }, function error() {
                     vm.loading = false;
                     alertMsg.send("Impossible d'envoyer le message", "danger");
-                }
+                }, true
             );
         };
     }

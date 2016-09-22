@@ -21,11 +21,11 @@
                 &ldquo; Tu connais un <span typewrite="" text="vm.jobs" initial-delay="1000"></span> ? &rdquo;
             </div>
             <div class="col-xs-12 homeSection1SubTitle">
-                Confiez vos travaux aux artisans préférés de vos proches !
+                Confiez vos travaux aux professionnels préférés de vos proches !
             </div>
 
             <button class="col-xs-6 col-xs-offset-3 btn btn-lg bgm-lightblue waves-effect homeSection1Button"
-                    data-ng-click="vm.openPopup(false)">PUBLIER MON PROJET
+                    data-ng-click="vm.openPopup(false)">TROUVER MON PRO
             </button>
         </div>
     </div>
@@ -303,6 +303,9 @@
                                            id="address">
                                     <label class="fg-label">Ville</label>
                                 </div>
+                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
+                                    Veuillez saisir la ville, puis la sélectionner dans la liste
+                                </small>
                             </div>
 
                             <div class="form-group fg-float m-b-30"
@@ -311,7 +314,6 @@
                                     <input type="text"
                                            name="username"
                                            autocomplete="username"
-                                           data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
                                            required="required" yaka-input-email>

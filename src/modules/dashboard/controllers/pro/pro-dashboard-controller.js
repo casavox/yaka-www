@@ -23,7 +23,7 @@
         networkService.projectsToRecommendGET(function (projects) {
             vm.projectsToRecommend = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les projets", "danger");
+            alertMsg.send("Impossible de récupérer les offres", "danger");
         });
 
         networkService.proDashboardDataGET(function (data) {
@@ -46,7 +46,7 @@
         networkService.getProNetworkLeads(function (projects) {
             vm.networkProjects = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les projets", "danger");
+            alertMsg.send("Impossible de récupérer les offres", "danger");
         });
 
 
@@ -65,7 +65,7 @@
             }
         }, function (err) {
             alertMsg.send("Impossible de récupérer le profil", "danger");
-            $state.go("home");
+            $state.go("home", {'login': true});
         });
 
         vm.isInNetworkList = function (project) {

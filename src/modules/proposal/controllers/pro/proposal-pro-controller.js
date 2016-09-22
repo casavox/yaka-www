@@ -99,7 +99,7 @@
                     $state.go("pro-proposals");
                 }, function () {
                     alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
-                }
+                }, true
             );
         }
 
@@ -117,7 +117,7 @@
                     $state.go("pro-proposals");
                 }, function () {
                     alertMsg.send("Impossible de retirée l'offre (contactez le support)", "danger");
-                }
+                }, true
             );
         }
 
@@ -133,7 +133,7 @@
                 alertMsg.send("La proposition a bien été mise à jour", "success");
             }, function (res) {
                 alertMsg.send("Impossible de mettre à jour la proposition", "danger");
-            });
+            }, true);
             vm.editFlag = false;
         }
 
@@ -357,10 +357,9 @@
                     $state.go('pro-proposals');
                 }, function (res) {
                     alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                });
+                }, true);
             }
         };
-
 
         vm.selectDateOffer = function () {
             vm.offer.date = vm.dt;
