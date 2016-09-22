@@ -31,7 +31,7 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="{{vm.getUpState()}}"
-                    title="Détails du projet"></yaka-mobile-header>
+                    title="Détails du chantier"></yaka-mobile-header>
 
 <section id="main">
 
@@ -41,7 +41,7 @@
                 {{vm.getUpName()}}
             </li>
             <li class="active">
-                Détails du projet
+                Détails du chantier
             </li>
         </ol>
     </div>
@@ -55,8 +55,9 @@
 
             <div class="block-header">
                 <h2>
-                    <span class="c-orange" data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
-                        Projet Annulé
+                    <span class="c-orange"
+                          data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                        Chantier Annulé
                     </span>
                     <span data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
                         -
@@ -72,8 +73,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs manquants dans votre
-                        profil afin de pouvoir répondre aux offres.
+                        Attention, <b>votre profil est incomplet</b> ! Merci de compléter les champs manquants dans
+                        votre profil afin de pouvoir répondre aux offres.
                     </div>
                 </div>
 
@@ -83,9 +84,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        <b>Merci d’avoir complété votre profil</b>. Vous allez recevoir dans les prochaines heures un
-                        email vous confirmant que votre compte a bien été validé. Vous pourrez alors répondre aux
-                        offres.
+                        <b>Votre profil est en cours de validation</b>, vous pourrez répondre aux offres dès qu'il aura
+                        été validé (contactez le support CasaVox si nécessaire).
                     </div>
                 </div>
 
@@ -100,7 +100,8 @@
                             Raison : {{app.getUser().professional.refusedReason}}
                         </div>
                         <div>
-                            Vous pourrez répondre aux offres une fois votre profil validé.
+                            Vous pourrez répondre aux offres une fois que votre profil aura été correctement complété
+                            puis validé par CasaVox.
                         </div>
                     </div>
                 </div>
@@ -368,16 +369,17 @@
                                 <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
                                     <div class="col-xs-12">
                                         Les compétences que vous avez renseigné dans votre profil ne vous permettent pas
-                                        de faire une offre sur ce
-                                        projet.
+                                        de faire une offre pour ce chantier.
                                     </div>
                                     <div class="col-xs-12 m-t-20 m-b-5 no-padding">
-                                        <button class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
-                                                data-ui-sref="pro-profile">
+                                        <button
+                                            class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
+                                            data-ui-sref="pro-profile">
                                             Modifier mon profil
                                         </button>
-                                        <button class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
-                                                data-ui-sref="project-recommend({'projectId': vm.project.id})">
+                                        <button
+                                            class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
+                                            data-ui-sref="project-recommend({'projectId': vm.project.id})">
                                             Recommander à un collègue
                                         </button>
                                     </div>
@@ -539,7 +541,8 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
-                                        <div class="lightbox photos projectImageTooltip m-t-20" data-ng-show="!vm.editFlag">
+                                        <div class="lightbox photos projectImageTooltip m-t-20"
+                                             data-ng-show="!vm.editFlag">
                                             <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                                  data-sub-html="#caption{{$index}}"
                                                  class="lightboxItemAngular galleryEditingItem col-md-3 col-md-2 col-sm-3 col-xs-4 p-t-20"

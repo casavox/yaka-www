@@ -25,13 +25,13 @@
         networkService.projectsToRecommendGET(function (projects) {
             vm.projectsToRecommend = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les projets", "danger");
+            alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
         });
 
         networkService.dashboardDataGET(function (data) {
             vm.data = data;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les données", "danger");
+            alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
         });
     }
 })

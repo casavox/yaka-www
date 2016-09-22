@@ -159,7 +159,7 @@
                 }
                 swal({
                     title: "C'est fait !",
-                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet lui à également été envoyé.",
+                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
                     type: "success",
                     showConfirmButton: true,
                     confirmButtonColor: "#03a9f4",

@@ -158,7 +158,7 @@
                 function succesProLeads(res) {
                     onLeadsLoaded(res);
                 }, function errorProLeads() {
-                    alertMsg.send("Imposible de récupérer les projets", "danger");
+                    alertMsg.send("Imposible de récupérer les offres", "danger");
                 }
             );
         }
@@ -308,7 +308,7 @@
                 vm.workareaDiameter = Math.ceil((res.radius * 2) / 1000);
                 loadLeads(bounds);
             }, function errorProLeads() {
-                alertMsg.send("Imposible de récupérer les projets", "danger");
+                alertMsg.send("Imposible de récupérer les offres", "danger");
             }
         );
 
@@ -316,7 +316,7 @@
             function numberLeadProject(res) {
                 vm.numberLeadProject = res.availableLeadsNumber;
             }, function errorProData() {
-                alertMsg.send("Imposible de récupérer les projets", "danger");
+                alertMsg.send("Imposible de récupérer les offres", "danger");
             }
         );
     }
