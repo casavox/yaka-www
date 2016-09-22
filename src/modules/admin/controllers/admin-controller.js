@@ -20,11 +20,11 @@
                     pro.status = $filter('casaProfessionalStatus')(pro.status);
                     pro.eligibleStatus = $filter('casaProfessionalStatus')(pro.eligibleStatus);
                     pro.selected = false;
-                    pro.user.name = pro.user.firstName + " " + pro.user.lastName;
+                    pro.userName = pro.user.firstName + " " + pro.user.lastName;
                     if (pro.company.address.postalCode == undefined) {
                         pro.company.address.postalCode = "";
                     }
-                    pro.company.address.city = pro.company.address.postalCode + " " + pro.company.address.locality;
+                    pro.city = pro.company.address.postalCode + " " + pro.company.address.locality;
                     if (pro.needToRecheck) {
                         pro.newNeedToRecheck = "OUI";
                     } else {

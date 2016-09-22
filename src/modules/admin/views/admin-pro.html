@@ -61,12 +61,12 @@
 
                 <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
 
-                    <td data-title="'Nom'" class="pointer c-blue" data-sortable="'user.name'"
+                    <td data-title="'Nom'" class="pointer c-blue" filter="{userName: 'text'}" data-sortable="'userName'"
                         data-ui-sref="admin-pro-details({professionnalId: pro.id})">
-                        {{pro.user.name}}
+                        {{pro.userName}}
                     </td>
-                    <td data-title="'Ville'" data-sortable="'company.address.city'">
-                        {{ pro.company.address.city }}
+                    <td data-title="'Ville'" filter="{city: 'text'}" data-sortable="'city'">
+                        {{ pro.city }}
                     </td>
                     <td data-title="'Création'" data-sortable="'user.created'">
                         {{ pro.user.created | date:"dd/MM/yyyy" }}
