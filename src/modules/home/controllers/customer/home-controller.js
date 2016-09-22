@@ -114,6 +114,7 @@
 
         if ($stateParams.email) {
             vm.loginUser.email = $stateParams.email;
+            vm.newUser.email = $stateParams.email;
         }
 
         vm.passwordConfirm = "";
