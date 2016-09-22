@@ -131,7 +131,7 @@
                                     </div>
 
                                     <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                        <h2 class="yakaEllipsis">
+                                        <h2>
                                             <casa-name-and-contact user="vm.proposal.professional.user"
                                                                    icon-color="c-white"></casa-name-and-contact>
                                         </h2>
@@ -251,7 +251,7 @@
                                                     + {{vm.proposal.recommendations.length - 1}} autre<span
                                                     data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
                                                 </span>
-                                                <hr class="m-0 p-0">
+                                                <hr class="m-0 p-0 m-t-5">
                                             </div>
 
                                             <div class="p-relative">
@@ -279,16 +279,16 @@
                                             </div>
 
                                             <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                                <h2 class="yakaEllipsis">
+                                                <h2>
                                                     <casa-name-and-contact user="vm.proposal.professional.user"
                                                                            icon-color="c-white"></casa-name-and-contact>
-                                                </h2>
 
-                                                <div
-                                                    class="col-xs-7 col-xs-offset-4 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco"
-                                                    data-ng-if="vm.proposal.firstRecommendation">Recommandation en
-                                                    attente
-                                                </div>
+                                                    <div
+                                                        class="col-xs-12 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco f-13"
+                                                        data-ng-if="vm.proposal.firstRecommendation">
+                                                        Recommandation en attente
+                                                    </div>
+                                                </h2>
 
                                                 <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
                                                     data-ng-if="!vm.proposal.firstRecommendation">

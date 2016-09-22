@@ -257,9 +257,9 @@
             </div>
             <div data-ng-show="vm.projectsCanceled && vm.projectsCanceled.length > 0" data-ng-cloak>
                 <div class="block-header">
-                    <h2 data-ng-show="vm.projectsCanceledlength == 1">PROJET SUPPRIMÉ</h2>
+                    <h2 data-ng-show="vm.projectsCanceledlength == 1">PROJET ANNULÉ</h2>
 
-                    <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS SUPPRIMÉS</h2>
+                    <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS ANNULÉS</h2>
                 </div>
                 <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsCanceled"
                      data-ng-click="vm.selectProject(p)">

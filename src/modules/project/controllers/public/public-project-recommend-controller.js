@@ -159,7 +159,7 @@
                 });
             }, function (err) {
                 alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-            });
+            }, true);
         };
 
         vm.recommendMsg = {
@@ -266,7 +266,7 @@
         vm.register = function () {
             if (vm.registerFormIsValid()) {
                 vm.registering = true;
-                networkService.register(vm.newUser, successRegister, failRegister);
+                networkService.register(vm.newUser, successRegister, failRegister, true);
             }
         };
 

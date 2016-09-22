@@ -32,7 +32,7 @@
 
         vm.sendNewPassword = function () {
             if (vm.newPasswordFormIsValid) {
-                networkService.passwordNewPOST(vm.newPassword, successPasswordNew, failPasswordNew);
+                networkService.passwordNewPOST(vm.newPassword, successPasswordNew, failPasswordNew, true);
             }
         };
 

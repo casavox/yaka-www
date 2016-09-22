@@ -26,7 +26,7 @@ angular.module('Yaka')
                         alertMsg.send("Vous avez bien invité " + scope.user.firstName + " " + scope.user.lastName, "success");
                     }, function (err) {
                         alertMsg.send("Impossible d'inviter cette personne", "danger");
-                    });
+                    }, true);
                 };
             },
             templateUrl: "/modules/core/directives/views/casaContact.html"
