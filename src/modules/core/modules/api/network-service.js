@@ -222,6 +222,9 @@
             projectPUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/projects/' + data.id, data, ignoreLoading).success(success).error(error);
             },
+            me: function (success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/me', ignoreLoading).success(success).error(error)
+            },
             proposalPUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/pro/proposals/' + data.id, data, ignoreLoading).success(success).error(error);
             },
