@@ -320,8 +320,8 @@
     height: 8px;
     width: 8px;
     border-radius: 50%;
-    margin-left: 32px;
-    transform: translateY(-50px);
+    margin-left: -13px;
+    transform: translateY(-13px);
 }
 
 .icon-comment {
@@ -329,4 +329,8 @@
     left: -18px;
     bottom: -18px;
     margin-left: 50%;
+}
+
+.projectMainView .pm-body {
+    padding-left : 0px !important;
 }

@@ -131,7 +131,7 @@ angular.module('Yaka')
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
-                    });
+                    }, true);
                     setupStomp();
                     setupScrollTopDetection();
                 }
