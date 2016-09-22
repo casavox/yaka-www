@@ -3,45 +3,85 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="home"
-                    title="Recommander un pro"></yaka-mobile-header>
+                    title="{{vm.getActivity().title}}"></yaka-mobile-header>
 
 <section id="main" class="view">
     <div class="homeSection">
         <div class="container">
             <div class="col-xs-12 col-sm-8">
-                <div data-ng-repeat="activity in vm.activities | filter: {urlTitle: vm.type}">
-                    <h2>{{activity.title}}</h2>
+
+                <div>
+                    <h2>{{vm.getActivity().title}}</h2>
                     <div id="best-selling" class="dash-widget-item ng-scope">
                         <div class="dash-widget-header">
-                            <img class="card-img-width" data-ng-src="{{activity.imgUrl}}"
+                            <img class="card-img-width" data-ng-src="{{vm.getActivity().imgUrl}}"
                                  alt="">
                         </div>
                         <div class="p-10 p-l-30 p-r-30 s-p-button  text-justify">
-                            <h4>{{activity.title}}</h4>
-                            <p data-ng-repeat="intro in activity.intro">{{intro.p}}</p>
-
-                            <div data-ng-repeat="line in activity.paragraphs">
-                                <p data-ng-repeat="b in line"><b>{{b.q}}</b></p>
-                                <p data-ng-repeat="b in line">{{b.p}}</p>
+                            <h4>{{vm.getActivity().title}}</h4>
+                            <div data-ng-repeat="text in vm.getActivity().paragraphs">
+                                <p>{{text.p}}</p>
+                                <p><b>{{text.q}}</b></p>
                             </div>
-                            <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13"
+                            <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13 m-b-10"
                                     data-ui-sref="home({register : true})">J'ai des travaux à faire
                             </button>
+                            <div class="m-t-20" data-ng-repeat="text in vm.getActivity().subText">
+                                <p><b>{{text.q}}</b></p>
+                                <p>{{text.small}}</p>
+                                <p>{{text.p}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container m-t-30">
-                <div class="hidden-xs card col-sm-3 col-sm-offset-1 m-t-30">
-                    <div class="p-5 m-t-10">
+                <div class="hidden-xs card col-sm-3 col-sm-offset-1 m-t-25">
+                    <div class="m-t-10">
                         <h2 class="p-l-25">Catégories</h2>
-                        <ol class="card-body card-padding list-unstyled">
-                            <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
-                                                       data-ui-sref-active="activeClass">Peinture</a></li>
-                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
-                                                             data-ui-sref-active="activeClass">Salle de bain</a></li>
-                            <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
-                                                             data-ui-sref-active="activeClass">Cuisine</a></li>
+                        <ol class="card-body card-padding list-unstyled f-s-10">
+                            <li class=" pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                    data-ui-sref-active="activeClass">Peinture</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                         data-ui-sref-active="activeClass">Salle de bain</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                         data-ui-sref-active="activeClass">Cuisine</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'electricite'})"
+                                                         data-ui-sref-active="activeClass">Electricité</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'plomberie'})"
+                                                         data-ui-sref-active="activeClass">Plomberie</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'chauffage_climatisation'})"
+                                data-ui-sref-active="activeClass">Chauffage - Climatisation</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'menuiserie_fenetre_veranda'})"
+                                data-ui-sref-active="activeClass">Menuiserie - Fenetre - Véranda</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'serrurerie'})"
+                                                         data-ui-sref-active="activeClass">Serrurerie</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'revetement_sol'})"
+                                                         data-ui-sref-active="activeClass">Revetement de sol</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'cloison_plafond_combles'})"
+                                data-ui-sref-active="activeClass">Cloison - Plafond - Combles</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'isolation'})"
+                                                         data-ui-sref-active="activeClass">Isolation</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'toiture_charpentes'})"
+                                data-ui-sref-active="activeClass">Toiture - Charpentes</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'portail_portes_de_garage'})"
+                                data-ui-sref-active="activeClass">Portail - Portes de garage</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'jardin_terrasse_cloture'})"
+                                data-ui-sref-active="activeClass">Jardin - Terrasse - Cloture</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'conseil_architecte_paysagiste'})"
+                                data-ui-sref-active="activeClass">Conseil - Architecte - Paysagiste</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'renovation'})"
+                                                         data-ui-sref-active="activeClass">Rénovation</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'construction_gros_oeuvre'})"
+                                data-ui-sref-active="activeClass">Construction - Gros oeuvre</a></li>
                         </ol>
                     </div>
                 </div>
@@ -56,6 +96,42 @@
                                                          data-ui-sref-active="activeClass">Salle de bain</a></li>
                         <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
                                                          data-ui-sref-active="activeClass">Cuisine</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'electricite'})"
+                                                         data-ui-sref-active="activeClass">Electricité</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'plomberie'})"
+                                                         data-ui-sref-active="activeClass">Plomberie</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'chauffage_climatisation'})"
+                            data-ui-sref-active="activeClass">Chauffage - Climatisation</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'menuiserie_fenetre_veranda'})"
+                            data-ui-sref-active="activeClass">Menuiserie - Fenetre - Véranda</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'serrurerie'})"
+                                                         data-ui-sref-active="activeClass">Serrurerie</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'revetement_sol'})"
+                                                         data-ui-sref-active="activeClass">Revetement de sol</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'cloison_plafond_combles'})"
+                            data-ui-sref-active="activeClass">Cloison - Plafond - Combles</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'isolation'})"
+                                                         data-ui-sref-active="activeClass">Isolation</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'toiture_charpentes'})"
+                            data-ui-sref-active="activeClass">Toiture - Charpentes</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'portail_portes_de_garage'})"
+                            data-ui-sref-active="activeClass">Portail - Portes de garage</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'jardin_terrasse_cloture'})"
+                            data-ui-sref-active="activeClass">Jardin - Terrasse - Cloture</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'conseil_architecte_paysagiste'})"
+                            data-ui-sref-active="activeClass">Conseil - Architecte - Paysagiste</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'renovation'})"
+                                                         data-ui-sref-active="activeClass">Rénovation</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'construction_gros_oeuvre'})"
+                            data-ui-sref-active="activeClass">Construction - Gros oeuvre</a></li>
                     </ol>
                 </div>
             </div>
@@ -111,22 +187,90 @@
     </div>
     <div class="homeSection homeSection5">
         <div class="container homeSection5Footer">
-            <div class="homeSection5FooterLeft">
+            <div class="homeSection5FooterLeft col-xs-7 col-sm-9">
                 <div class="homeSection5FooterLeftCopyright">
-                    &copy; CasaVox {{vm.currentYear}}
+                    Travaux du moment
                 </div>
-                <div class="homeSection5FooterLeftText">
-                    Tous droits réservés
+                <div class="homeSection5FooterLeftText col-xs-12 no-padding f-s-10 m-t-5">
+                    <ul class="list-unstyled">
+                        <div class="col-xs-12 col-sm-4 p-l-0">
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'peinture'})">Peinture
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'salle_de_bain'})">Salle de Bain
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'cuisine'})">Cuisine
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'electricité'})">Electricité
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'renovation'})">Rénovation
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'jardin_terrasse_cloture'})">Jardin Terrasse
+                                Cloture
+                            </li>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 p-l-0">
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'plomberie'})">Plomberie
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'chauffage_climatisation'})">Chauffage -
+                                Climatisation
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'menuiserie_fenetre_veranda'})">Menuiserie
+                                Fenetre - Véranda
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'serrurerie'})">Serrurerie
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'conseil_architecte_paysagiste'})">Conseil
+                                Architecte Paysagiste
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'construction_gros_oeuvre'})">Construction -
+                                Gros oeuvre
+                            </li>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 p-l-0">
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'revetement_sol'})">Revetement de sol
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'cloison_plafond_combles'})">Cloison - Plafond
+                                - Combles
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'isolation'})">Isolation
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'toiture_charpentes'})">Toiture - Charpentes
+                            </li>
+                            <li class="CasaActivityLink pointer yakaLinkWhite"
+                                data-ui-sref="help-activities({activity: 'portail_portes_de_garage'})">Portail - Portes
+                                de garage
+                            </li>
+                        </div>
+                    </ul>
                 </div>
             </div>
-            <div class="homeSection5FooterContactUs yakaLinkWhite" data-ng-click="app.openHelp()">
-                Contactez-nous
+            <div class="homeSection5FooterContactUs col-xs-5 col-sm-3">
+                <ul class="list-unstyled">
+                    <li class="pointer yakaLinkWhite underline" data-ng-click="app.openHelp()">Contactez nous</li>
+                    <li class="pointer yakaLinkWhite underline"
+                        href="http://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
+                        CGU
+                    </li>
+                    <li>&copy; CasaVox {{vm.currentYear}}</li>
+                    <li>Tous droits réservés</li>
+                </ul>
             </div>
-            <a href="http://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
-                <div class="homeSection5FooterLogin yakaLinkWhite">
-                    CGU
-                </div>
-            </a>
         </div>
     </div>
 </section>

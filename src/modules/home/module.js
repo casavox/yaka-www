@@ -33,7 +33,7 @@
             // Help activities
 
             .state('help-activities', {
-                url: "/help/:activity",
+                url: "/travaux/:activity",
                 templateUrl: "/modules/home/views/public/help-activity.html",
                 controller: 'HelpActivityController',
                 controllerAs: 'vm'

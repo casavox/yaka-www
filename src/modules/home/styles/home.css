@@ -322,7 +322,7 @@ body:after {
 }
 
 .homeSection5FooterContactUs {
-    margin-top: 20px;
+    margin-top: 40px;
     float: right;
     text-align: end;
 }
@@ -597,7 +597,7 @@ body:after {
     }
 
     .homeSection5FooterContactUs {
-        margin-top: 17px;
+        margin-top: 34px;
     }
 }
 
@@ -792,7 +792,7 @@ body:after {
     .homeSection5FooterContactUs {
         height: 28px;
         font-size: 11px;
-        margin-top: 6px;
+        margin-top: 9px;
     }
 
     .homeSection5FooterLogin {
@@ -802,9 +802,6 @@ body:after {
         margin-top: 6px;
     }
 
-    .homeSection5 {
-        height: 90px;
-    }
 
     .homeSection5FooterLeft {
         margin-top: 10px;
