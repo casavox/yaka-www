@@ -15,26 +15,79 @@
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content">
-        <div class="container">
-            <button class="visible-xs btn btn-success validateButton waves-effect"
-                    data-ng-disabled="!vm.oneOrMoreUser()"
-                    data-ng-click="openMailPopup()">
-                Envoyer Mail
-            </button>
+        <div class="container-fluid">
+
+
+            <div class="card col-xs-12 col-sm-5">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer" ng-click="reinitializeCreatedDate()"></i>
+                <h4>Recherche par date de création</h4>
+                <p>Entre le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="fromDate"
+                           is-open="status1.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="openFromDate($event)"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                </p>
+                <p>Et le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="toDate"
+                           is-open="status2.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="openToDate($event)"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                </p>
+            </div>
+            <div class="card col-xs-12 col-sm-5 col-sm-offset-2">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer" ng-click="reinitializeCreatedDate()"></i>
+                <h4>Recherche par date de mise à jour</h4>
+                <p>Entre le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="updatedFromDate"
+                           is-open="status3.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openUpdatedFromDate($event)"><i
+                      class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+                <p>Et le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="updatedToDate"
+                           is-open="status4.opened" max-date="maxDate" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openUpdatedToDate($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+            </div>
 
             <table ng-table="usersTable" class="table table-striped" show-filter="true">
-
-                <tr data-ng-repeat="user in $data | filter:search" class="t-center">
-
+                <tr data-ng-repeat="user in $data | filter:search | casaDateRangePicker:fromDate:toDate:'created' | casaDateRangePicker:updatedFromDate:updatedToDate:'updated'"
+                    class="t-center">
                     <td data-title="'Type'" class="pointer" filter="{isPro: 'text'}" data-sortable="'isPro'"
                         data-ui-sref="admin-user-details({userId: user.id})"
                         ng-class="{'c-orange' : user.isPro == 'Professionnel', 'c-blue' : user.isPro == 'Particulier'}">
                         {{ user.isPro }}
                     </td>
-                    <td data-title="'Created'" filter="{created: 'text'}" data-sortable="'created'">
+                    <td data-title="'Select'" class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="user.selected" value="">
+                            <i class="input-helper"></i>
+                        </label>
+                    </td>
+                    <td data-title="'Nom'" filter="{name: 'text'}" data-sortable="'name'">
+                        {{ user.name }}
+                    </td>
+                    <td data-title="'Created'" data-sortable="'created'">
                         {{ user.created | date:"dd/MM/yyyy" }}
                     </td>
-                    <td data-title="'Updated'" filter="{updated: 'text'}" data-sortable="'updated'">
+                    <td data-title="'Updated'" data-sortable="'updated'">
                         {{ user.updated| date:"dd/MM/yyyy" }}
                     </td>
                     <td data-title="'Ville'" filter="{place: 'text'}"
@@ -65,17 +118,8 @@
                         data-sortable="'invitationSentNumber'">
                         {{ user.invitationSentNumber }}
                     </td>
-                    <td data-title="'Nom'" filter="{name: 'text'}" data-sortable="'name'">
-                        {{ user.name }}
-                    </td>
                     <td data-title="'id db'" filter="{id: 'text'}" data-sortable="'id'">
                         {{ user.id }}
-                    </td>
-                    <td data-title="'Select'" class="checkbox">
-                        <label>
-                            <input type="checkbox" data-ng-model="user.selected" value="">
-                            <i class="input-helper"></i>
-                        </label>
                     </td>
                 </tr>
             </table>
