@@ -161,7 +161,7 @@
 
         vm.login = function () {
             if (vm.loginFormIsValid()) {
-                networkService.login(vm.loginUser, succesLogin, errorLogin);
+                networkService.login(vm.loginUser, succesLogin, errorLogin, true);
             }
         };
 
@@ -271,7 +271,7 @@
         vm.register = function () {
             if (vm.registerFormIsValid()) {
                 vm.registering = true;
-                networkService.register(vm.newUser, successRegister, failRegister);
+                networkService.register(vm.newUser, successRegister, failRegister, true);
             }
         };
 
@@ -306,7 +306,7 @@
 
         vm.forgottenPassword = function () {
             if (vm.forgottenPasswordUser.email) {
-                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
             }
         };
 

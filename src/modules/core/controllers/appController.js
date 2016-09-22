@@ -36,7 +36,7 @@
                     networkService.setContactsRead(function () {
                         app.getUser().newContacts = false;
                     }, function () {
-                    });
+                    }, true);
                 }
 
             }, function () {
@@ -145,7 +145,7 @@
                     $scope.projectFlag = false;
                     $scope.rating = {positive: true, comment: "", criteria: []};
                     $scope.disable = false;
-                })
+                }, true)
             }
             else if ($scope.rating.positive == 'false' && $scope.rating.comment.length < 10) {
                 $scope.error.criteria.message = "Merci de choisir 1 à 3 critères et d'ajouter un commentaire (10 caractères au moins).";

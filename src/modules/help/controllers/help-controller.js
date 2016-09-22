@@ -103,7 +103,7 @@
                 }, function error() {
                     vm.loading = false;
                     alertMsg.send("Impossible d'envoyer le message", "danger");
-                }
+                }, true
             );
         };
     }

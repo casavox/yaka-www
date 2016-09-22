@@ -88,7 +88,7 @@
                     },
                     function () {
                         alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
-                    }
+                    }, true
                 );
             }
         };
@@ -98,7 +98,7 @@
                 id: vm.proposal.id,
                 text: vm.hireMessage
             };
-            networkService.adminProposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
+            networkService.adminProposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST, true);
         };
 
         function succesProposalAcceptPOST(res) {
@@ -309,7 +309,7 @@
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            networkService.adminProjectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
+            networkService.adminProjectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT, true);
         };
 
         function succesProfilePUT(res) {
@@ -317,7 +317,7 @@
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.adminProfileGET(succesProfileGET, errorProfileGET);
+            networkService.adminProfileGET(succesProfileGET, errorProfileGET, true);
         }
 
         function errorProfilePUT() {

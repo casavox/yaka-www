@@ -167,7 +167,7 @@
                 });
             }, function (err) {
                 alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-            });
+            }, true);
         };
 
         vm.showInvitProPopup = false;
@@ -201,7 +201,7 @@
                 });
             }, function (err) {
                 alertMsg.send("Impossible de recommander ce professionnel", 'danger');
-            });
+            }, true);
         };
 
         var scrollOptions = {

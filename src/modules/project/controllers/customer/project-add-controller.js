@@ -166,7 +166,7 @@
 
 
         vm.resetProject = function () {
-            networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
+            networkService.activitiesGET(succesProjectsGET, errorProjectsGET, true);
             vm.type = {};
             vm.continue = vm.continueImg = vm.service = vm.continueAddressFlag = false;
             vm.questions = [];
@@ -268,7 +268,7 @@
             }
             formData.images = $rootScope.photos;
             if (angular.isUndefined($localStorage.token) == false && $localStorage.token)
-                networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST);
+                networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST, true);
             else {
                 $rootScope.newProject = formData;
                 $state.go("login");

@@ -29,7 +29,7 @@
             vm.scrollBottom = 1;
         }
 
-        function loadProposal() {
+        function loadProposal(ignoreLoading) {
             networkService.proposalGET($stateParams.proposalId, function (res) {
                 vm.proposal = res;
                 $rootScope.pageName = vm.proposal.professional.user.firstName + " " + vm.proposal.professional.user.lastName +
@@ -40,7 +40,7 @@
             }, function (err) {
                 alertMsg.send("Impossible de récupérer l'offre", "danger");
                 $state.go("my-projects");
-            });
+            }, ignoreLoading);
         }
 
         vm.getExperienceYearNumber = function () {
@@ -85,7 +85,7 @@
                             $state.go("proposals", {projectId: vm.proposal.project.id});
                         }, function () {
                             alertMsg.send("Impossible d'annuler la proposition, réessayez puis contactez le support si besoin", "danger");
-                        }
+                        }, true
                     );
                 }
             });
@@ -106,10 +106,10 @@
                     networkService.proposalAcceptPOST(vm.proposal.id,
                         function (res) {
                             alertMsg.send("Félicitations, vous avez choisi cette proposition pour vos travaux", "info");
-                            loadProposal();
+                            loadProposal(true);
                         }, function () {
                             alertMsg.send("Impossible de sélectionner cette proposition, réessayez puis contactez le support si besoin", "danger");
-                        }
+                        }, true
                     );
                 }
             });
@@ -129,12 +129,12 @@
                     networkService.closeProject(vm.proposal.id,
                         function (res) {
                             alertMsg.send("Merci d'avoir indiqué la fin des travaux. Vous allez pouvoir noter ce Pro !", "info");
-                            loadProposal();
+                            loadProposal(true);
                             $rootScope.rating = false;
                             $rootScope.rate_watcher = !$rootScope.rate_watcher;
                         }, function () {
                             alertMsg.send("Impossible d'indiquer la fin des travaux, réessayez puis contactez le support si besoin", "danger");
-                        }
+                        }, true
                     );
                 }
             });

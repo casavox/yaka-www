@@ -22,7 +22,7 @@
             }
         };
 
-        function loadProList() {
+        function loadProList(ignoreLoading) {
             networkService.adminProjectsListGET(function (res) {
                 vm.projectsList = res;
                 vm.possibleProposalNbr = [];
@@ -77,16 +77,24 @@
                     }
 
                 });
-                vm.possibleValidProNbr.sort(function(a, b){return a-b});
-                vm.possibleRecoNbr.sort(function(a, b){return a-b});
-                vm.possibleValidProNbr.sort(function(a, b){return a-b});
-                vm.possibleInvalidProNbr.sort(function(a, b){return a-b});
+                vm.possibleValidProNbr.sort(function (a, b) {
+                    return a - b
+                });
+                vm.possibleRecoNbr.sort(function (a, b) {
+                    return a - b
+                });
+                vm.possibleValidProNbr.sort(function (a, b) {
+                    return a - b
+                });
+                vm.possibleInvalidProNbr.sort(function (a, b) {
+                    return a - b
+                });
                 proSorting();
             }, function () {
-            });
+            }, ignoreLoading);
         }
 
-        loadProList();
+        loadProList(false);
         vm.tableData = [];
 
         function proSorting() {
@@ -132,10 +140,10 @@
                     networkService.adminValidateProPOST(createIdList(),
                         function (res) {
                             alertMsg.send("Le statut a été modifié", "info");
-                            loadProList();
+                            loadProList(true);
                         }, function () {
                             alertMsg.send("Impossible de modifier le statut", "danger");
-                        }
+                        }, true
                     );
 
                 }

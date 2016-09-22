@@ -18,25 +18,31 @@
 
             return {
                 request: function (config) {
-                    xhrCreations++;
+                    if (!config.ignoreLoading) {
+                        xhrCreations++;
+                    }
                     updateStatus();
                     return config;
                 },
                 requestError: function (rejection) {
-                    xhrResolutions++;
+                    if (!rejection.config.ignoreLoading) {
+                        xhrResolutions++;
+                    }
                     updateStatus();
-                    $log.error('Request error:', rejection);
                     return $q.reject(rejection);
                 },
                 response: function (response) {
-                    xhrResolutions++;
+                    if (!response.config.ignoreLoading) {
+                        xhrResolutions++;
+                    }
                     updateStatus();
                     return response;
                 },
                 responseError: function (rejection) {
-                    xhrResolutions++;
+                    if (!rejection.config.ignoreLoading) {
+                        xhrResolutions++;
+                    }
                     updateStatus();
-                    $log.error('Response error:', rejection);
                     return $q.reject(rejection);
                 }
             };
