@@ -2632,16 +2632,13 @@ md-input-container {
     list-style: none;
     border: 2px solid #03A9F4;
     width: 100%;
-    height: 40px;
     margin-top: 10px;
     font-size: 14px;
     color: #03A9F4;
-    line-height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     text-align: center;
-    text-overflow: ellipsis;
-    overflow: hidden;
     cursor: pointer;
-    white-space: nowrap;
 }
 
 .question-li:hover {
