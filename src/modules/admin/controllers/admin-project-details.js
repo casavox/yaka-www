@@ -83,11 +83,11 @@
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                 networkService.adminDeleteProject($stateParams.projectId, message,
                     function () {
-                        alertMsg.send("Votre projet à bien été supprimé", "success");
+                        alertMsg.send("Votre projet à bien été annulé", "success");
                         $state.go("admin-projects");
                     },
                     function () {
-                        alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
+                        alertMsg.send("Impossible d'annuler le projet, réessayez puis contactez le support si besoin", "danger");
                     }, true
                 );
             }
