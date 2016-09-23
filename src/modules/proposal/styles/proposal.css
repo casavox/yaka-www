@@ -364,9 +364,21 @@
         font-weight: normal;
         font-size: 15px;
     }
+    .pr-list-text {
+        text-align: left;
+    }
 }
 
 @media (max-width: 767px) {
+    .pr-list-icon {
+        margin-left: -12px !important;
+    }
+
+    .pr-list-text {
+        text-align: center;
+        padding-right: 0px;
+    }
+
     .noProposalYetContentRubric1TitleJ {
         text-align: justify;
         font-weight: normal;
@@ -395,3 +407,4 @@
         z-index: 1 !important;
     }
 }
+
