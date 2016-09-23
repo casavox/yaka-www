@@ -189,7 +189,7 @@
                    data-ng-class="{'zmdi-chevron-down': !vm.customerCard1, 'zmdi-chevron-up': vm.customerCard1}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
+            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-if="!vm.pro && app.getUser()">
                 <div class="block-header">
                     <h2>Mon profil</h2>
                 </div>
@@ -255,7 +255,7 @@
                 </div>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
+            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-if="!vm.pro && app.getUser()">
                 <div class="block-header">
                     <h2>Trouver un professionnel</h2>
                 </div>
@@ -368,6 +368,7 @@
             </div>
 
             <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-if="vm.pro"
                  data-ng-click="vm.showBoucheAOreille = !vm.showBoucheAOreille">
                 <em>Bouche-à-oreille CasaVox</em>
 

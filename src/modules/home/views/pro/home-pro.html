@@ -374,24 +374,7 @@
         </div>
     </div>
     <div class="homeSection homeSection5">
-        <div class="container homeSection5Footer">
-            <div class="homeSection5FooterLeft">
-                <div class="homeSection5FooterLeftCopyright">
-                    &copy; CasaVox {{vm.currentYear}}
-                </div>
-                <div class="homeSection5FooterLeftText">
-                    Tous droits réservés
-                </div>
-            </div>
-            <div class="homeSection5FooterContactUs yakaLinkWhite" data-ng-click="app.openHelp()">
-                Contactez-nous
-            </div>
-            <a href="https://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
-                <div class="homeSection5FooterLogin yakaLinkWhite">
-                    CGU
-                </div>
-            </a>
-        </div>
+        <ng-include src="'/modules/core/views/footer.html'"></ng-include>
     </div>
 </section>
 

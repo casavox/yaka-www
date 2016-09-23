@@ -1,86 +1,193 @@
-<section class="view">
-    <div class="homeSection homeSection1">
-        <div class="container">
-            <div class="col-xs-12 homeSection1Header">
-                <div class="homeSection1YakaClub" ui-sref="home">
-                    <span class="homeSection1Club">CASA</span><span class="homeSection1Yaka">VOX</span>
-                </div>
-                <div class="homeSection1ProLink waves-effect" ui-sref="pro-home">
-                    ACCES PRO
-                </div>
-                <div class="homeSection1Register yakaLinkWhite"
-                     data-ng-click="vm.openPopup(false)">
-                    S'inscrire
-                </div>
-                <div class="homeSection1Login yakaLinkWhite"
-                     data-ng-click="vm.openPopup(true)">
-                    Se connecter
-                </div>
-            </div>
-            <div class="col-xs-12 homeSection1Title">
-                &ldquo; Tu connais un <span typewrite="" text="vm.jobs" initial-delay="1000"></span> ? &rdquo;
-            </div>
-            <div class="col-xs-12 homeSection1SubTitle">
-                Confiez vos travaux aux professionnels préférés de vos proches !
-            </div>
+<header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
+        data-ng-include="'/modules/core/views/header.html'"></header>
 
-            <button class="col-xs-6 col-xs-offset-3 btn btn-lg bgm-lightblue waves-effect homeSection1Button"
-                    data-ng-click="vm.openPopup(false)">TROUVER MON PRO
-            </button>
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
+                    up-state="home"
+                    title="{{vm.getActivity().title}}"></yaka-mobile-header>
+
+<section id="main" class="view">
+    <div class="homeSection">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8">
+
+                <div>
+                    <h2>{{vm.getActivity().title}}</h2>
+                    <div id="best-selling" class="dash-widget-item ng-scope">
+                        <div class="dash-widget-header">
+                            <img class="card-img-width" data-ng-src="{{vm.getActivity().imgUrl}}"
+                                 alt="">
+                        </div>
+                        <div class="p-10 p-l-30 p-r-30 s-p-button  text-justify">
+                            <h4>{{vm.getActivity().title}}</h4>
+                            <div data-ng-repeat="text in vm.getActivity().paragraphs">
+                                <p>{{text.p}}</p>
+                                <p><b>{{text.q}}</b></p>
+                            </div>
+                            <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13 m-b-10"
+                                    data-ui-sref="home({register : true})">J'ai des travaux à faire
+                            </button>
+                            <div class="m-t-20" data-ng-repeat="text in vm.getActivity().subText">
+                                <p><b>{{text.q}}</b></p>
+                                <p>{{text.small}}</p>
+                                <p>{{text.p}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container m-t-30">
+                <div class="hidden-xs card col-sm-3 col-sm-offset-1 m-t-25">
+                    <div class="m-t-10">
+                        <h2 class="p-l-25">Catégories</h2>
+                        <ol class="card-body card-padding list-unstyled f-s-10">
+                            <li class=" pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                    data-ui-sref-active="activeClass">Peinture</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                         data-ui-sref-active="activeClass">Salle de bain</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                         data-ui-sref-active="activeClass">Cuisine</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'electricite'})"
+                                                         data-ui-sref-active="activeClass">Electricité</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'plomberie'})"
+                                                         data-ui-sref-active="activeClass">Plomberie</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'chauffage_climatisation'})"
+                                data-ui-sref-active="activeClass">Chauffage - Climatisation</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'menuiserie_fenetre_veranda'})"
+                                data-ui-sref-active="activeClass">Menuiserie - Fenetre - Véranda</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'serrurerie'})"
+                                                         data-ui-sref-active="activeClass">Serrurerie</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'revetement_sol'})"
+                                                         data-ui-sref-active="activeClass">Revetement de sol</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'cloison_plafond_combles'})"
+                                data-ui-sref-active="activeClass">Cloison - Plafond - Combles</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'isolation'})"
+                                                         data-ui-sref-active="activeClass">Isolation</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'toiture_charpentes'})"
+                                data-ui-sref-active="activeClass">Toiture - Charpentes</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'portail_portes_de_garage'})"
+                                data-ui-sref-active="activeClass">Portail - Portes de garage</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'jardin_terrasse_cloture'})"
+                                data-ui-sref-active="activeClass">Jardin - Terrasse - Cloture</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'conseil_architecte_paysagiste'})"
+                                data-ui-sref-active="activeClass">Conseil - Architecte - Paysagiste</a></li>
+                            <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'renovation'})"
+                                                         data-ui-sref-active="activeClass">Rénovation</a></li>
+                            <li class="m-t-5 pointer"><a
+                                data-ui-sref="help-activities({activity: 'construction_gros_oeuvre'})"
+                                data-ui-sref-active="activeClass">Construction - Gros oeuvre</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="visible-xs col-xs-12 m-t-30">
+                <div class="card p-5">
+                    <h2 class="p-l-25">Catégories</h2>
+                    <ol class="card-body card-padding list-unstyled">
+                        <li class="p-5 pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
+                                                   data-ui-sref-active="activeClass">Peinture</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"
+                                                         data-ui-sref-active="activeClass">Salle de bain</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'cuisine'})"
+                                                         data-ui-sref-active="activeClass">Cuisine</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'electricite'})"
+                                                         data-ui-sref-active="activeClass">Electricité</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'plomberie'})"
+                                                         data-ui-sref-active="activeClass">Plomberie</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'chauffage_climatisation'})"
+                            data-ui-sref-active="activeClass">Chauffage - Climatisation</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'menuiserie_fenetre_veranda'})"
+                            data-ui-sref-active="activeClass">Menuiserie - Fenetre - Véranda</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'serrurerie'})"
+                                                         data-ui-sref-active="activeClass">Serrurerie</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'revetement_sol'})"
+                                                         data-ui-sref-active="activeClass">Revetement de sol</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'cloison_plafond_combles'})"
+                            data-ui-sref-active="activeClass">Cloison - Plafond - Combles</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'isolation'})"
+                                                         data-ui-sref-active="activeClass">Isolation</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'toiture_charpentes'})"
+                            data-ui-sref-active="activeClass">Toiture - Charpentes</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'portail_portes_de_garage'})"
+                            data-ui-sref-active="activeClass">Portail - Portes de garage</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'jardin_terrasse_cloture'})"
+                            data-ui-sref-active="activeClass">Jardin - Terrasse - Cloture</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'conseil_architecte_paysagiste'})"
+                            data-ui-sref-active="activeClass">Conseil - Architecte - Paysagiste</a></li>
+                        <li class="m-t-5 p-5 pointer"><a data-ui-sref="help-activities({activity: 'renovation'})"
+                                                         data-ui-sref-active="activeClass">Rénovation</a></li>
+                        <li class="m-t-5 p-5 pointer"><a
+                            data-ui-sref="help-activities({activity: 'construction_gros_oeuvre'})"
+                            data-ui-sref-active="activeClass">Construction - Gros oeuvre</a></li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="homeSection homeSection2">
+    <div class="homeSection homeSection3">
         <div class="container">
-            <div class="col-xs-12 homeSection2Title">
-                Ensemble révolutionnons la confiance !
-            </div>
-            <div class="col-xs-12 homeSection2SubTitle">
-                Parce que le bouche à oreille reste le meilleur moyen de trouver de bons artisans.
-            </div>
-            <div class="col-xs-12 homeSection2Items">
-                <div class="col-xs-12 col-sm-4 homeSection2Item">
-                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeTrustBlue.png" alt=""/>
-
-                        <div class="homeSection2ItemTitle">
-                            CONFIANCE
-                        </div>
+            <div class="col-xs-12 homeSection3Items">
+                <div class="col-xs-12 col-sm-6 homeSection3Item">
+                    <div class="col-xs-12 homeSection3ItemTitle">
+                        Vous êtes un Pro du bâtiment ?
                     </div>
-                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Réalisez vos travaux en toute sérénité grâce aux artisans recommandés par votre entourage
-                        (voisins, amis, collégues...).
+                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
+                        Trouvez de nouveaux clients en passant moins de temps à prospecter.
                     </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
+                        ui-sref="pro-home">DECOUVREZ NOS SERVICES
+                    </button>
                 </div>
-                <div class="col-xs-12 col-sm-4 homeSection2Item">
-                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeConfidentialityBlue.png" alt=""/>
-
-                        <div class="homeSection2ItemTitle">
-                            CONFIDENTIALITÉ
-                        </div>
+                <div class="col-xs-12 col-sm-6 homeSection3Item">
+                    <div class="col-xs-12 homeSection3ItemTitle">
+                        Faites découvrir CasaVox à vos amis
                     </div>
-                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Préservez votre vie privée. Vos échanges se font via une messagerie sécurisée. Vous choississez
-                        qui peut vous contacter et quand.
+                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
+                        Entraidez vous pour trouver les Pro de qualité qu'il vous faut.
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 homeSection2Item">
-                    <div class="col-xs-3 col-sm-12 homeSection2ItemIconTitle">
-                        <img src="icons/mdpi/ic_homeShareBlue.png" alt=""/>
-
-                        <div class="homeSection2ItemTitle">
-                            PARTAGE
-                        </div>
-                    </div>
-                    <div class="col-xs-9 col-sm-12 homeSection2ItemDescription">
-                        Partagez en un clic votre projet avec vos amis et la communauté CasaVox, ils vous recommandent
-                        leurs meilleurs artisans pour vos travaux.
-                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
+                        data-ng-click="vm.openPopup(false)">INVITEZ VOS AMIS ET VOS ARTISANS
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <ng-include src="'/modules/core/views/footer.html'"></ng-include>
+    <div class="homeSection homeSection4">
+        <div class="container">
+            <div class="homeSection4Title">
+                Suivez-nous !
+            </div>
+            <div class="homeSection4Items">
+                <a target="_blank" data-ng-href="https://www.facebook.com/hellocasavox">
+                    <div class="homeSection4ItemSocial homeSection4ItemFacebook"></div>
+                </a>
+                <a target="_blank" data-ng-href="https://plus.google.com/117693956496667116327">
+                    <div class="homeSection4ItemSocial homeSection4ItemGoogle"></div>
+                </a>
+                <a target="_blank" data-ng-href="https://twitter.com/hellocasavox">
+                    <div class="homeSection4ItemSocial homeSection4ItemTwitter"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="homeSection homeSection5">
+        <ng-include src="'/modules/core/views/footer.html'"></ng-include>
+    </div>
 </section>
 
 <div class="yakaPopup" data-ng-show="vm.showLoginPopup" data-ng-click="vm.closePopup()" data-ng-cloak>
@@ -224,9 +331,6 @@
                                            id="address">
                                     <label class="fg-label">Ville</label>
                                 </div>
-                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
-                                    Veuillez saisir la ville, puis la sélectionner dans la liste
-                                </small>
                             </div>
 
                             <div class="form-group fg-float m-b-30"
@@ -235,6 +339,7 @@
                                     <input type="text"
                                            name="username"
                                            autocomplete="username"
+                                           data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
                                            required="required" yaka-input-email>
