@@ -3972,6 +3972,26 @@ md-input-container {
     text-align: left;
 }
 
+.p-1 {
+    padding: 1px !important;
+}
+
+.p-2 {
+    padding: 2px !important;
+}
+
+.p-3 {
+    padding: 3px !important;
+}
+
+.p-4 {
+    padding: 4px !important;
+}
+
+.p-5 {
+    padding: 5px !important;
+}
+
 .p-25 {
     padding: 25px !important;
 }
