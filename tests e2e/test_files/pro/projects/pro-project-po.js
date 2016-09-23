@@ -55,7 +55,6 @@ var ProjectPage = function() {
 
 
 
-
 }
 
 module.exports = ProjectPage;

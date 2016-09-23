@@ -131,7 +131,7 @@ angular.module('Yaka')
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
-                    });
+                    }, true);
                     setupStomp();
                     setupScrollTopDetection();
                 }
@@ -247,7 +247,7 @@ angular.module('Yaka')
                         apiSetChatRead = networkService.proSetChatRead;
                     }
                     apiSetChatRead(scope.chatId, function () {
-                        $rootScope.updateProfile();
+                        $rootScope.updateProfile(true);
                     }, function () {
                     }, true);
                 }

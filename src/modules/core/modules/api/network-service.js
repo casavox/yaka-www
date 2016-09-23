@@ -139,10 +139,10 @@
                 httpService.post(baseUrl + '/login', data, ignoreLoading).success(success).error(error)
             },
             loginGoogleDetach: function (success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/login/google/detach', ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/login/google/detach', null, ignoreLoading).success(success).error(error)
             },
             loginFacebookDetach: function (success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/login/facebook/detach', ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/login/facebook/detach', null, ignoreLoading).success(success).error(error)
             },
             register: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/register', data, ignoreLoading).success(success).error(error)
@@ -208,10 +208,10 @@
                 httpService.get(baseUrl + '/pro/proposals/' + id + '/archive', ignoreLoading).success(success).error(error)
             },
             proposalAcceptPOST: function (proposalId, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/proposals/' + proposalId + "/accept", ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/proposals/' + proposalId + "/accept", null, ignoreLoading).success(success).error(error)
             },
             proposalDeclinePOST: function (proposalId, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/proposals/' + proposalId + "/decline", ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/proposals/' + proposalId + "/decline", null, ignoreLoading).success(success).error(error)
             },
             proposalPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/pro/proposals', data, ignoreLoading).success(success).error(error)
@@ -277,7 +277,7 @@
                 httpService.post(baseUrl + '/invite/pro', data, ignoreLoading).success(success).error(error)
             },
             invitePOST: function (id, relation, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/invite/' + id + '/' + relation, ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/invite/' + id + '/' + relation, null, ignoreLoading).success(success).error(error)
             },
             invitationsReceivedGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/invitations/received', ignoreLoading).success(success).error(error)
@@ -286,10 +286,10 @@
                 httpService.get(baseUrl + '/invitations/sent', ignoreLoading).success(success).error(error)
             },
             refuseInvitationPOST: function (id, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/invitations/' + id + '/refuse', ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/invitations/' + id + '/refuse', null, ignoreLoading).success(success).error(error)
             },
             acceptInvitationPOST: function (id, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/invitations/' + id + '/accept', ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/invitations/' + id + '/accept', null, ignoreLoading).success(success).error(error)
             },
             passwordForgottenPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/password/forgotten', data, ignoreLoading).success(success).error(error)
@@ -298,10 +298,10 @@
                 httpService.post(baseUrl + '/password/new', data, ignoreLoading).success(success).error(error)
             },
             setChatRead: function (chatId, success, error, ignoreLoading) {
-                httpService.put(baseUrl + '/chat/' + chatId + '/read', ignoreLoading).success(success).error(error)
+                httpService.put(baseUrl + '/chat/' + chatId + '/read', null, ignoreLoading).success(success).error(error)
             },
             proSetChatRead: function (chatId, success, error, ignoreLoading) {
-                httpService.put(baseUrl + '/pro/chat/' + chatId + '/read', ignoreLoading).success(success).error(error)
+                httpService.put(baseUrl + '/pro/chat/' + chatId + '/read', null, ignoreLoading).success(success).error(error)
             },
             sendSupportMessage: function (supportMessage, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/support/message', supportMessage, ignoreLoading).success(success).error(error)
@@ -391,7 +391,7 @@
                 httpService.put(baseUrl + '/admin/users/' + id + '/profile', data, ignoreLoading).success(success).error(error)
             },
             adminProposalAcceptPOST: function (proposalId, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept", ignoreLoading).success(success).error(error)
+                httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept", null, ignoreLoading).success(success).error(error)
             },
             adminProjectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/projects/' + data, ignoreLoading).success(success).error(error)
