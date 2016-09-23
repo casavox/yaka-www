@@ -26,10 +26,18 @@
                             <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13 m-b-10"
                                     data-ui-sref="home({register : true})">J'ai des travaux à faire
                             </button>
-                            <div class="m-t-20" data-ng-repeat="text in vm.getActivity().subText">
-                                <p><b>{{text.q}}</b></p>
-                                <p>{{text.small}}</p>
-                                <p>{{text.p}}</p>
+                            <div data-ng-repeat="text in vm.getActivity().subText">
+                                <p class="m-t-20" data-ng-if="text.q"><b>{{text.q}}</b></p>
+                                <p class="m-t-20" data-ng-if="text.small">{{text.small}}</p>
+                                <p data-ng-if="text.tags">
+                                    <ul class="yaka-chips clearfix" data-ng-if="text.tags">
+                                        <li data-ng-repeat="tag in text.tags">
+                                            <span>
+                                                {{tag}}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </p>
                             </div>
                         </div>
                     </div>
