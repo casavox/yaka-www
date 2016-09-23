@@ -33,7 +33,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Peinture", "papier peint", "carrelage mural", "parement", "lambris", "enduit"]}
+                    {"tags": ["Peinture", "Papier peint", "Carrelage mural", "Parement", "Lambris", "Enduit"]}
                 ]
             },
             {
@@ -51,7 +51,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Cuisine complète", "meubles de cuisine", "plan de travail de cuisine"]}
+                    {"tags": ["Cuisine complète", "Meubles de cuisine", "Plan de travail de cuisine"]}
                 ]
             },
             {
@@ -69,7 +69,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Salle de bain complète", "meubles de salle de bain", "douche", "cabine de douche", "baignoire", "lavabo"]}
+                    {"tags": ["Salle de bain complète", "Meubles de salle de bain", "Douche", "Cabine de douche", "Baignoire", "Lavabo"]}
                 ]
             },
             {
@@ -88,7 +88,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Prise - câblage électrique", "éclairage", "Radiateur sèche-serviettes", "Chauffe-eau", "tableau électrique", "compteur électrique", "Domotique", "sécurité - Alarmes - Interphone …"]}
+                    {"tags": ["Prise - câblage électrique", "Eclairage", "Radiateur sèche-serviettes", "Chauffe-eau", "Tableau électrique", "Compteur électrique", "Domotique", "Sécurité - Alarmes - Interphone …"]}
                 ]
             },
             {
@@ -107,7 +107,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Toilettes", "douche", "baignoire", "lavabo-évier", "tuyauterie-canalisations", "chaudière", "chauffe-eau", "adoucisseur d’eau"]}
+                    {"tags": ["Toilettes", "Douche", "Baignoire", "Lavabo-évier", "Tuyauterie-canalisations", "Chaudière", "Chauffe-eau", "Adoucisseur d’eau"]}
                 ]
             },
             {
@@ -126,7 +126,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Chaudière", "chauffe-eau", "radiateur sèche-serviette", "Chauffage au sol", "Therrmostat", "Climatisation", "pompe à chaleur", "Poêle-insert-Cheminée", "VMC"]}
+                    {"tags": ["Chaudière", "Chauffe-eau", "Radiateur sèche-serviette", "Chauffage au sol", "Thermostat", "Climatisation", "Pompe à chaleur", "Poêle-insert-Cheminée", "VMC"]}
                 ]
             },
             {
@@ -144,7 +144,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Porte simple", "porte multipoints", "fenêtre de toit - velux", "fenêtre", "porte-fenêtre", "volets", "escalier", "mezzanine", "Placards-rangements", "Véranda"]}
+                    {"tags": ["Porte simple", "Porte multipoints", "Fenêtre de toit - velux", "Fenêtre", "Porte-fenêtre", "Volets", "Escalier", "Mezzanine", "Placards-rangements", "Véranda"]}
                 ]
             },
             {
@@ -164,7 +164,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Serrure classique", "serrure multipoint", "serrurerie gâche électrique", "verrou pour volets roulants", "verrou pour rideau métalliques"]}
+                    {"tags": ["Serrure classique", "Serrure multipoint", "Serrurerie gâche électrique", "Verrou pour volets roulants", "Verrou pour rideau métalliques"]}
                 ]
             },
             {
@@ -183,7 +183,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Carrelage", "faïence", "parquet", "moquette", "sol plastique (PVC)", "Pierre", "béton", "enduit"]}
+                    {"tags": ["Carrelage", "Faïence", "Parquet", "Moquette", "Sol plastique (PVC)", "Pierre", "Béton", "Enduit"]}
                 ]
             },
             {
@@ -202,7 +202,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Cloisons", "plafonds", "combles"]}
+                    {"tags": ["Cloisons", "Plafonds", "Combles"]}
                 ]
             },
             {
@@ -221,7 +221,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Isolation thermique intérieure", "isolation thermique extérieure", "isolation des combles", "isolation phonique"]}
+                    {"tags": ["Isolation thermique intérieure", "Isolation thermique extérieure", "Isolation des combles", "Isolation phonique"]}
                 ]
             },
             {
@@ -239,7 +239,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Toiture", "charpente en bois", "charpente métallique"]}
+                    {"tags": ["Toiture", "Charpente en bois", "Charpente métallique"]}
                 ]
             },
             {
@@ -257,7 +257,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Portail", "portail électrique", "porte de garage", "porte de garage électrique"]}
+                    {"tags": ["Portail", "Portail électrique", "Porte de garage", "Porte de garage électrique"]}
                 ]
             },
             {
@@ -276,7 +276,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Jardin et espaces verts", "terrasse (bois et pvc)"]}
+                    {"tags": ["Jardin et espaces verts", "Terrasse (bois et pvc)"]}
                 ]
             },
             {
@@ -294,7 +294,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Conseil d’architecte", "décoration/aménagement d’intérieur", "home staging", "aménagement extérieur"]}
+                    {"tags": ["Conseil d’architecte", "Décoration/aménagement d’intérieur", "Home staging", "Aménagement extérieur"]}
                 ]
             },
             {
@@ -312,7 +312,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Salon", "séjour", "bureau", "chambre", "salle de bain", "cuisine", "combles", "garage"]}
+                    {"tags": ["Salon", "Séjour", "Bureau", "Chambre", "Salle de bain", "Cuisine", "Combles", "Garage"]}
                 ]
             },
             {
@@ -330,7 +330,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Construction rénovation d’une maison", "construction/rénovation d’un garage", "construction d’une extension", "construction de fondations", "construction d’une piscine"]}
+                    {"tags": ["Construction rénovation d’une maison", "Construction/rénovation d’un garage", "Construction d’une extension", "Construction de fondations", "Construction d’une piscine"]}
                 ]
             }
         ];
