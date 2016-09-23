@@ -332,5 +332,9 @@
 }
 
 .projectMainView .pm-body {
-    padding-left : 0px !important;
+    padding-left: 0px !important;
+}
+
+.projectMainView yaka-chat {
+    left: 0 !important;
 }
