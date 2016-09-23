@@ -10,7 +10,6 @@
     function HelpActivityController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
 
 
-
         var vm = this;
         vm.type = $stateParams.activity;
 
@@ -34,7 +33,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Peinture, papier peint, carrelage mural, parement, lambris, enduit..."}
+                    {"tags": ["Peinture", "papier peint", "carrelage mural", "parement", "lambris", "enduit"]}
                 ]
             },
             {
@@ -42,7 +41,7 @@
                 "title": "Cuisine",
                 "imgUrl": "../../../img/works_categories/Cuisine.jpg",
                 "paragraphs": [
-                    {"p": "Qu'elle soit en kit ou sur mesure, vous n'aurez aucun problème à trouver 'votre' cuisine et ce, quels que soient le budget et la surface dont vous disposez. En revanche, aménager une cuisine nécessite de connaître quelques règles de bases. Éclairage, choix des matériaux, positionnement des équipements, etc..."},
+                    {"p": "Qu'elle soit en kit ou sur mesure, vous n'aurez aucun problème à trouver 'votre' cuisine et ce, quels que soient le budget et la surface dont vous disposez. En revanche, aménager une cuisine nécessite de connaître quelques règles de bases. Éclairage, choix des matériaux, positionnement des équipements, etc"},
                     {"p": "Pour vous aider à réaliser vos travaux, Casavox  vous met en contact avec des professionnels agréés et vérifiés mais aussi recommandés par la communauté Casavox pour la qualité de leurs interventions."},
                     {"p": "Casavox vous aide à choisir le meilleur professionnel dans votre région et vous permet d’échanger simplement avec chaque Pro susceptible d’intervenir chez vous par l’intermédiaire de notre messagerie privée. Vous pouvez alors choisir en toute confiance le Pro qui correspond le plus à vos attentes."},
                     {"p": "La plupart de nos Professionnels offrent des services au-delà de l’aménagement de cuisine, n’hésitez pas à leur poser vos questions lors de vos échanges."},
@@ -52,7 +51,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Cuisine complète, meubles de cuisine, plan de travail de cuisine..."}
+                    {"tags": ["Cuisine complète", "meubles de cuisine", "plan de travail de cuisine"]}
                 ]
             },
             {
@@ -70,7 +69,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Salle de bain complète, meubles de salle de bain, douche, cabine de douche, baignoire, lavabo..."}
+                    {"tags": ["Salle de bain complète", "meubles de salle de bain", "douche", "cabine de douche", "baignoire", "lavabo"]}
                 ]
             },
             {
@@ -89,7 +88,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Prise - câblage électrique, éclairage, Radiateur sèche-serviettes, Chauffe-eau, tableau électrique, compteur électrique, Domotique, sécurité - Alarmes - Interphone …"}
+                    {"tags": ["Prise - câblage électrique", "éclairage", "Radiateur sèche-serviettes", "Chauffe-eau", "tableau électrique", "compteur électrique", "Domotique", "sécurité - Alarmes - Interphone …"]}
                 ]
             },
             {
@@ -108,7 +107,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Toilettes, douche, baignoire, lavabo-évier, tuyauterie-canalisations, chaudière, chauffe-eau, adoucisseur d’eau"}
+                    {"tags": ["Toilettes", "douche", "baignoire", "lavabo-évier", "tuyauterie-canalisations", "chaudière", "chauffe-eau", "adoucisseur d’eau"]}
                 ]
             },
             {
@@ -127,7 +126,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Chaudière, chauffe-eau, radiateur sèche-serviette, Chauffage au sol, Therrmostat, Climatisation, pompe à chaleur, Poêle-insert-Cheminée, VMC..."}
+                    {"tags": ["Chaudière", "chauffe-eau", "radiateur sèche-serviette", "Chauffage au sol", "Therrmostat", "Climatisation", "pompe à chaleur", "Poêle-insert-Cheminée", "VMC"]}
                 ]
             },
             {
@@ -145,7 +144,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Porte simple, porte multipoints, fenêtre de toit - velux, fenêtre, porte-fenêtre, volets, escalier, mezzanine, Placards-rangements, Véranda..."}
+                    {"tags": ["Porte simple", "porte multipoints", "fenêtre de toit - velux", "fenêtre", "porte-fenêtre", "volets", "escalier", "mezzanine", "Placards-rangements", "Véranda"]}
                 ]
             },
             {
@@ -165,7 +164,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Serrure classique, serrure multipoint, serrurerie gâche électrique, verrou pour volets roulants, verrou pour rideau métalliques..."}
+                    {"tags": ["Serrure classique", "serrure multipoint", "serrurerie gâche électrique", "verrou pour volets roulants", "verrou pour rideau métalliques"]}
                 ]
             },
             {
@@ -184,7 +183,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Carrelage, faïence, parquet, moquette, sol plastique (PVC), Pierre, béton, enduit..."}
+                    {"tags": ["Carrelage", "faïence", "parquet", "moquette", "sol plastique (PVC)", "Pierre", "béton", "enduit"]}
                 ]
             },
             {
@@ -203,7 +202,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Cloisons, plafonds, combles..."}
+                    {"tags": ["Cloisons", "plafonds", "combles"]}
                 ]
             },
             {
@@ -222,7 +221,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Isolation thermique intérieure, isolation thermique extérieure, isolation des combles, isolation phonique..."}
+                    {"tags": ["Isolation thermique intérieure", "isolation thermique extérieure", "isolation des combles", "isolation phonique"]}
                 ]
             },
             {
@@ -240,7 +239,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Toiture, charpente en bois, charpente métallique..."}
+                    {"tags": ["Toiture", "charpente en bois", "charpente métallique"]}
                 ]
             },
             {
@@ -258,7 +257,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Portail, portail électrique, porte de garage, porte de garage électrique..."}
+                    {"tags": ["Portail", "portail électrique", "porte de garage", "porte de garage électrique"]}
                 ]
             },
             {
@@ -277,7 +276,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Jardin et espaces verts, terrasse (bois et pvc)..."}
+                    {"tags": ["Jardin et espaces verts", "terrasse (bois et pvc)"]}
                 ]
             },
             {
@@ -295,7 +294,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Conseil d’architecte, décoration/aménagement d’intérieur, home staging, aménagement extérieur..."}
+                    {"tags": ["Conseil d’architecte", "décoration/aménagement d’intérieur", "home staging", "aménagement extérieur"]}
                 ]
             },
             {
@@ -313,7 +312,7 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Salon, séjour, bureau, chambre, salle de bain, cuisine, combles, garage..."}
+                    {"tags": ["Salon", "séjour", "bureau", "chambre", "salle de bain", "cuisine", "combles", "garage"]}
                 ]
             },
             {
@@ -331,16 +330,16 @@
                 "subText": [
                     {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"p": "Construction rénovation d’une maison, construction/rénovation d’un garage, construction d’une extension, construction de fondations, construction d’une piscine..."}
+                    {"tags": ["Construction rénovation d’une maison", "construction/rénovation d’un garage", "construction d’une extension", "construction de fondations", "construction d’une piscine"]}
                 ]
             }
         ];
         vm.getActivity = function () {
-                for (var i=0; i<vm.activities.length; i++) {
-                    if (vm.activities[i].urlTitle == vm.type) {
-                        return vm.activities[i];
-                    }
+            for (var i = 0; i < vm.activities.length; i++) {
+                if (vm.activities[i].urlTitle == vm.type) {
+                    return vm.activities[i];
                 }
+            }
         };
 
         if (!vm.getActivity()) {
@@ -348,8 +347,6 @@
         }
 
         $rootScope.pageName = vm.getActivity().title;
-
-
 
 
     }
