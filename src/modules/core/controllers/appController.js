@@ -27,7 +27,7 @@
             }
         };
 
-        $rootScope.updateProfile = function () {
+        $rootScope.updateProfile = function (ignoreLoading) {
             networkService.me(function (res) {
                 app.setUser(res);
 
@@ -40,7 +40,7 @@
                 }
 
             }, function () {
-            });
+            }, ignoreLoading);
         };
 
         $stomp
