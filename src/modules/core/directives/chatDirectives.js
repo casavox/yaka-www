@@ -247,7 +247,7 @@ angular.module('Yaka')
                         apiSetChatRead = networkService.proSetChatRead;
                     }
                     apiSetChatRead(scope.chatId, function () {
-                        $rootScope.updateProfile();
+                        $rootScope.updateProfile(true);
                     }, function () {
                     }, true);
                 }

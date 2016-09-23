@@ -18,6 +18,8 @@
 
             return {
                 request: function (config) {
+                    console.log(config.url);
+                    console.log(config.ignoreLoading);
                     if (!config.ignoreLoading) {
                         xhrCreations++;
                     }
