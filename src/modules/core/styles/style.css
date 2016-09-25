@@ -5229,10 +5229,6 @@ div.recaptcha.mobile > div {
     white-space: nowrap !important;
 }
 
-.c-darkgray {
-    color: #5e5e5e !important;
-}
-
 @media (max-width: 767px) {
 
     .no-padding-mobile {
@@ -5312,3 +5308,14 @@ div.recaptcha.mobile > div {
     height: 25px !important;
     width: 25px !important;
 }
+
+/*/*---------------------------- Texts styles ----------------------------*/
+
+.subtitle-color{
+    color: #5e5e5e;
+}
+
+.subtitle-color-forced{
+    color: #5e5e5e !important;
+}
+

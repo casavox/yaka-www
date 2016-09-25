@@ -9870,6 +9870,18 @@ a.waves-effect .waves-ripple {
 /*
  * Background Colors
  */
+.border-c-red {
+    border-color: #f44336 !important;
+}
+
+.border-c-lightblue {
+    border-color: #03a9f4 !important;
+}
+
+
+/*
+ * Background Colors
+ */
 .bg-black-trp {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
