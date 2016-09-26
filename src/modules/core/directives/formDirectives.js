@@ -57,7 +57,7 @@ angular.module('Yaka')
                     var deferred = $q.defer();
 
                     if (phone && phone != '') {
-                        if (phone.length != 14 || !element.intlTelInput("isValidNumber")) {
+                        if (!element.intlTelInput("isValidNumber")) {
                             deferred.reject();
                         }
                     }
@@ -66,41 +66,11 @@ angular.module('Yaka')
                     return deferred.promise;
                 };
 
-                element.attr('maxlength', '14');
-
                 element.intlTelInput({
                     utilsScript: "https://cdn.rawgit.com/jackocnr/intl-tel-input/master/build/js/utils.js",
                     initialCountry: "fr",
                     onlyCountries: ["fr"]
                 });
-
-                element.keypress(function (e) {
-                    var code = (e.keyCode || e.which);
-
-                    if (code == 37 || code == 38 || code == 39 || code == 40) {
-                        return;
-                    }
-
-                    if ($.trim(element.val())) {
-                        var phoneNumber = element.val();
-                        phoneNumber = phoneNumber.replace(/\D/g, '');
-                        phoneNumber = addCharEveryNChar(phoneNumber, 2, ' ');
-                        element.val(phoneNumber);
-                    }
-                });
-
-                function addCharEveryNChar(str, n, char) {
-                    var ret = [];
-                    var i;
-                    var len;
-
-                    for (i = 0, len = str.length; i < len; i += n) {
-                        ret.push(str.substr(i, n));
-                    }
-
-                    return ret.join(char);
-                }
-
             }
         }
     })
