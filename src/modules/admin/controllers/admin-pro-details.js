@@ -418,10 +418,30 @@
 
         function succesProfileGET(res) {
             vm.profile = res;
-            console.log(vm.profile);
             if (!vm.profile.activityStartedYear) {
                 vm.profile.activityStartedYear = 0;
             }
+
+            vm.contactClientNumber = 0;
+            vm.contactFriendNumber = 0;
+            vm.contactFamilyNumber = 0;
+            vm.contactColleagueNumber = 0;
+
+            for (var i=0; i<vm.profile.user.contacts.length; i++) {
+                if (vm.profile.user.contacts[i].relation == "CLIENT") {
+                    vm.contactClientNumber++;
+                }
+                if (vm.profile.user.contacts[i].relation == "FRIEND") {
+                    vm.contactFriendNumber++;
+                }
+                if (vm.profile.user.contacts[i].relation == "FAMILY") {
+                    vm.contactFamilyNumber++;
+                }
+                if (vm.profile.user.contacts[i].relation == "COLLEAGUE") {
+                    vm.contactColleagueNumber++;
+                }
+            }
+
 
             vm.profile.status = $filter('casaProfessionalStatus')(vm.profile.status);
             vm.profile.eligibleStatus = $filter('casaProfessionalStatus')(vm.profile.eligibleStatus);

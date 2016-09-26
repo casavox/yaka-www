@@ -127,6 +127,26 @@
         function succesProfileGET(res) {
             vm.profile = angular.copy(res);
             vm.profileInfo = angular.copy(res);
+
+            vm.contactClientNumber = 0;
+            vm.contactFriendNumber = 0;
+            vm.contactFamilyNumber = 0;
+            vm.contactColleagueNumber = 0;
+
+            for (var i=0; i<vm.profile.contacts.length; i++) {
+                if (vm.profile.contacts[i].relation == "CLIENT") {
+                    vm.contactClientNumber++;
+                }
+                if (vm.profile.contacts[i].relation == "FRIEND") {
+                    vm.contactFriendNumber++;
+                }
+                if (vm.profile.contacts[i].relation == "FAMILY") {
+                    vm.contactFamilyNumber++;
+                }
+                if (vm.profile.contacts[i].relation == "COLLEAGUE") {
+                    vm.contactColleagueNumber++;
+                }
+            }
         }
 
         function errorProfileGET(res) {

@@ -201,117 +201,151 @@
                 <div data-ng-include="'partner.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
-        </div>
-    </div>
-</section>
 
-<div class="container">
-    <div class="col-xs-12 card">
-        <div class="col-xs-12">
-            <h4>Professional Info field</h4>
-            <div class="col-xs-3">
-                <div> Profile ID : {{vm.profile.id}}
+
+            <div class="col-xs-12 no-padding card">
+                <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+                    <h2>
+                        Professional Info field
+                    </h2>
                 </div>
-                <div> Profiles Likes :{{vm.profile.likes}}
-                </div>
-                <div> Activity Started Year : {{vm.profile.activityStartedYear}}
-                </div>
-                <div>
-                    <button class="btn" ng-hide="div == 1" ng-click="div = 1">Voir Description</button>
-                    <div class="pointer" ng-show="div == 1" ng-click="div = 0"> Description : {{vm.profile.aboutMe}}
+                <div class="col-xs-12 m-t-15 p-b-15">
+                    <div class="col-sm-12">
+                        <div> Profile ID : {{vm.profile.id}}
+                        </div>
+                        <div> Profiles Likes :{{vm.profile.likes}}
+                        </div>
+                        <div> Activity Started Year : {{vm.profile.activityStartedYear}}
+                        </div>
+                        <div>
+                            <button class="btn" ng-hide="div == 1" ng-click="div = 1">Voir Description</button>
+                            <div class="pointer" ng-show="div == 1" ng-click="div = 0"> Description :
+                                {{vm.profile.aboutMe}}
+                            </div>
+                        </div>
+                        <div> WorkArea Id : {{vm.profile.workArea.id}}
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div> Nombre de projet : {{vm.profile.yakaProjectNumber}}
+                        </div>
+                        <div> Numéro de Téléphone : {{vm.profile.phoneNumber}}
+                        </div>
+                        <div> Company ID : {{vm.profile.company.id}}
+                        </div>
+                        <div> Main Partner Id : {{vm.profile.mainPartner.id}}
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div> Status du Pro : {{vm.profile.status}}
+                        </div>
+                        <div> Raison du refus : {{vm.profile.refusedReason}}
+                        </div>
+                        <div> Step 2 : {{vm.profile.step2}}
+                        </div>
+                        <div> Step 3 : {{vm.profile.step3}}
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div> Need to Recheck : {{vm.profile.needToRecheck}}
+                        </div>
+                        <div> My Website : {{vm.profile.myWebsite}}
+                        </div>
+                        <div> My Linkedin : {{vm.profile.myLinkedin}}
+                        </div>
+                        <div> My Other Social : {{vm.profile.myOtherSocial}}
+                        </div>
                     </div>
                 </div>
-                <div> WorkArea Id : {{vm.profile.workArea.id}}
-                </div>
             </div>
-            <div class="col-xs-3">
-                <div> Nombre de projet : {{vm.profile.yakaProjectNumber}}
+            <div class="col-xs-12 no-padding card">
+                <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+                    <h2>
+                        User Infos field
+                    </h2>
                 </div>
-                <div> Numéro de Téléphone : {{vm.profile.phoneNumber}}
-                </div>
-                <div> Company ID : {{vm.profile.company.id}}
-                </div>
-                <div> Main Partner Id : {{vm.profile.mainPartner.id}}
-                </div>
-            </div>
-            <div class="col-xs-3">
-                <div> Status du Pro : {{vm.profile.status}}
-                </div>
-                <div> Raison du refus : {{vm.profile.refusedReason}}
-                </div>
-                <div> Step 2 : {{vm.profile.step2}}
-                </div>
-                <div> Step 3 : {{vm.profile.step3}}
-                </div>
-            </div>
-            <div class="col-xs-3">
-                <div> Need to Recheck : {{vm.profile.needToRecheck}}
-                </div>
-                <div> My Website : {{vm.profile.myWebsite}}
-                </div>
-                <div> My Linkedin : {{vm.profile.myLinkedin}}
-                </div>
-                <div> My Other Social : {{vm.profile.myOtherSocial}}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 card">
-        <div class="col-xs-12">
-            <h4>User Infos field</h4>
-            <div class="col-xs-3">
-                <div>User Id : {{vm.profile.user.id}}</div>
-                <div>PassWord : {{vm.profile.user.password}}</div>
-                <div>Token : {{vm.profile.user.token}}</div>
-                <div>GCM_TOKEN : !!!!</div>
-                <div>Pro_ID : ????</div>
-                <div>Facebook ID : {{vm.profile.user.facebookId}}</div>
-            </div>
-            <div class="col-xs-3">
-                <div>Google ID : {{vm.profile.user.googleId}}</div>
-                <div>Gender : {{vm.profile.user.gender}}</div>
-                <div>Firstname : {{vm.profile.user.firstName}}</div>
-                <div>Lastname : {{vm.profile.user.lastName}}</div>
-                <div>Recover Password Token : ???</div>
-                <div>Email : {{vm.profile.user.email}}</div>
+                <div class="col-xs-12 m-t-15 p-b-15">
+                    <div class="col-sm-12">
+                        <div>User Id : {{vm.profile.user.id}}</div>
+                        <div>PassWord : {{vm.profile.user.password}}</div>
+                        <div style="word-wrap: break-word;">Token : {{vm.profile.user.token}}</div>
+                        <div>GCM_TOKEN : !!!!</div>
+                        <div>Pro_ID : ????</div>
+                        <div>Facebook ID : {{vm.profile.user.facebookId}}</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div>Google ID : {{vm.profile.user.googleId}}</div>
+                        <div>Gender : {{vm.profile.user.gender}}</div>
+                        <div>Firstname : {{vm.profile.user.firstName}}</div>
+                        <div>Lastname : {{vm.profile.user.lastName}}</div>
+                        <div>Recover Password Token : ???</div>
+                        <div>Email : {{vm.profile.user.email}}</div>
 
+                    </div>
+                    <div class="col-sm-12">
+                        <div>Phone Number : {{vm.profile.user.phoneNumber}}</div>
+                        <div>Birthday : {{vm.profile.user.birthday}}</div>
+                        <div>Avatar ID : ???</div>
+                        <div>Default Address ID : ????</div>
+                        <div>is Admin : {{vm.profile.user.isAdmin}}</div>
+                        <div>New Contacts : {{vm.profile.user.newContacts}}</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div>Google Email : {{vm.profile.user.googleEmail}}</div>
+                        <div>Facebook Email : {{vm.profile.user.facebookEmail}}</div>
+                        <div>Invitation Email : ???</div>
+                        <div>Created : {{vm.profile.user.created | date:"dd/MM/yyyy"}}</div>
+                        <div>Updated : {{vm.profile.user.updated | date:"dd/MM/yyyy"}}</div>
+                        <div>Invite ID : {{vm.profile.user.inviteId}}</div>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-3">
-                <div>Phone Number : {{vm.profile.user.phoneNumber}}</div>
-                <div>Birthday : {{vm.profile.user.birthday}}</div>
-                <div>Avatar ID : ???</div>
-                <div>Default Address ID : ????</div>
-                <div>is Admin : {{vm.profile.user.isAdmin}}</div>
-                <div>New Contacts : {{vm.profile.user.newContacts}}</div>
+            <div class="col-xs-12 no-padding card">
+                <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+                    <h2>
+                        Projets du Pro
+                    </h2>
+                </div>
+                <div class="col-xs-12 m-t-15 p-b-15">
+                    <table ng-table="usersTable" class="table table-striped" show-filter="true">
+                        <tr class="t-center pointer" data-ng-repeat="project in vm.profile.projects"
+                            data-ui-sref="admin-project-details({projectId: project.id})">
+                            <td data-title="'ID'">{{project.id}}</td>
+                            <td data-title="'Status'">{{project.status | casaProjectStatus}}</td>
+                            <td data-title="'Published'">{{project.published | date:"dd/MM/yyyy"}}</td>
+                            <td data-title="'Updated'">{{project.updated | date:"dd/MM/yyyy"}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="col-xs-3">
-                <div>Google Email : {{vm.profile.user.googleEmail}}</div>
-                <div>Facebook Email : {{vm.profile.user.facebookEmail}}</div>
-                <div>Invitation Email : ???</div>
-                <div>Created : {{vm.profile.user.created | date:"dd/MM/yyyy"}}</div>
-                <div>Updated : {{vm.profile.user.updated | date:"dd/MM/yyyy"}}</div>
-                <div>Invite ID : {{vm.profile.user.inviteId}}</div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="container" data-ng-if="vm.profile.projects">
-    <div class="col-xs-12 card">
-        <div class="col-xs-12">
-                <table ng-table="usersTable" class="table table-striped" show-filter="true">
-                    <h4>Projets du Pro</h4>
-                    <tr class="t-center pointer" data-ng-repeat="project in vm.profile.projects" data-ui-sref="admin-project-details({projectId: project.id})">
-                        <td>{{project.id}}</td>
-                        <td>{{project.status | casaProjectStatus}}</td>
-                        <td>{{project.published | date:"dd/MM/yyyy"}}</td>
-                        <td>{{project.updated | date:"dd/MM/yyyy"}}</td>
-                    </tr>
-                 </table>
-            <div>
+            <div class="col-xs-12 no-padding card">
+                <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+                    <h2>
+                        Contacts
+                    </h2>
+                </div>
+                <div class="col-xs-12 m-t-15 p-b-15">
+                    <div class="col-xs-6 col-sm-3 t-center">
+                        <h4>Clients</h4>
+                        <p>{{vm.contactClientNumber}}</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 t-center">
+                        <h4>Amis</h4>
+                        <p>{{vm.contactFriendNumber}}</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 t-center">
+                        <h4>Famille</h4>
+                        <p>{{vm.contactFamilyNumber}}</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 t-center">
+                        <h4>Collègues</h4>
+                        <p>{{vm.contactColleagueNumber}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+</section>
 
 
 <div class="yakaPopup" data-ng-show="vm.showProfileEditPopup || vm.showVerificationsEditPopup"
