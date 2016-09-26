@@ -312,3 +312,67 @@
         </div>
     </div>
 </section>
+
+<div class="container">
+    <div class="col-xs-12">
+        <div class="col-xs-12 card">
+            <div class="col-xs-12">
+                <h4>User Infos field</h4>
+                <div class="col-xs-3">
+                    <div>User Id : {{vm.profile.id}}</div>
+                    <div>PassWord : {{vm.profile.password}}</div>
+                    <div style="word-wrap: break-word;">Token : {{vm.profile.token}}</div>
+                    <div>GCM_TOKEN : !!!!</div>
+                    <div>Pro_ID : ????</div>
+                    <div>Facebook ID : {{vm.profile.facebookId}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div>Google ID : {{vm.profile.googleId}}</div>
+                    <div>Gender : {{vm.profile.gender}}</div>
+                    <div>Firstname : {{vm.profile.firstName}}</div>
+                    <div>Lastname : {{vm.profile.lastName}}</div>
+                    <div>Recover Password Token : {{vm.profile.recoverPasswordToken}}</div>
+                    <div>Email : {{vm.profile.email}}</div>
+
+                </div>
+                <div class="col-xs-3">
+                    <div>Phone Number : {{vm.profile.phoneNumber}}</div>
+                    <div>Birthday : {{vm.profile.birthday}}</div>
+                    <div>Avatar ID : ???</div>
+                    <div>Default Address ID : ????</div>
+                    <div>is Admin : {{vm.profile.isAdmin}}</div>
+                    <div>New Contacts : {{vm.profile.newContacts}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div>Google Email : {{vm.profile.googleEmail}}</div>
+                    <div>Facebook Email : {{vm.profile.facebookEmail}}</div>
+                    <div>Invitation Email : ???</div>
+                    <div>Created : {{vm.profile.created | date:"dd/MM/yyyy"}}</div>
+                    <div>Updated : {{vm.profile.updated | date:"dd/MM/yyyy"}}</div>
+                    <div>Invite ID : {{vm.profile.inviteId}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" data-ng-if="vm.profile.projects">
+    <div class="col-xs-12">
+        <div class="col-xs-12 card">
+            <div class="col-xs-12">
+                <table ng-table="usersTable" class="table table-striped" show-filter="true">
+                    <h4>Projets de l'Utilisateur</h4>
+                    <tr class="t-center pointer" data-ng-repeat="project in vm.profile.projects"
+                        data-ui-sref="admin-project-details({projectId: project.id})">
+                        <td>{{project.id}}</td>
+                        <td>{{project.status | casaProjectStatus}}</td>
+                        <td>{{project.published | date:"dd/MM/yyyy"}}</td>
+                        <td>{{project.updated | date:"dd/MM/yyyy"}}</td>
+                    </tr>
+                </table>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

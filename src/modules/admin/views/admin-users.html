@@ -18,8 +18,9 @@
         <div class="container-fluid">
 
 
-            <div class="card col-xs-12 col-sm-5">
-                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer" ng-click="reinitializeCreatedDate()"></i>
+            <div class="card col-xs-12 col-sm-4">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer"
+                   ng-click="reinitializeCreatedDate()"></i>
                 <h4>Recherche par date de création</h4>
                 <p>Entre le :</p>
                 <p class="input-group">
@@ -42,8 +43,9 @@
         </span>
                 </p>
             </div>
-            <div class="card col-xs-12 col-sm-5 col-sm-offset-2">
-                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer" ng-click="reinitializeCreatedDate()"></i>
+            <div class="card col-xs-12 col-sm-4 col-sm-offset-1">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer"
+                   ng-click="reinitializeCreatedDate()"></i>
                 <h4>Recherche par date de mise à jour</h4>
                 <p>Entre le :</p>
                 <p class="input-group">
@@ -66,12 +68,19 @@
                 </span>
                 </p>
             </div>
-
+            <div class="card col-xs-12 col-sm-2 col-sm-offset-1 t-center">
+                <h4>Envoyer E-mail aux utilisateurs sélectionnés</h4>
+                <button class="btn btn-success waves-effect m-b-10"
+                        data-ng-disabled="!vm.oneOrMoreUser()"
+                        data-toggle="modal" data-target="#myModal">
+                    Envoyer
+                </button>
+            </div>
             <table ng-table="usersTable" class="table table-striped" show-filter="true">
                 <tr data-ng-repeat="user in $data | filter:search | casaDateRangePicker:fromDate:toDate:'created' | casaDateRangePicker:updatedFromDate:updatedToDate:'updated'"
                     class="t-center">
                     <td data-title="'Type'" class="pointer" filter="{isPro: 'text'}" data-sortable="'isPro'"
-                        data-ui-sref="admin-user-details({userId: user.id})"
+                        data-ng-click="vm.userClicked(user)"
                         ng-class="{'c-orange' : user.isPro == 'Professionnel', 'c-blue' : user.isPro == 'Particulier'}">
                         {{ user.isPro }}
                     </td>
@@ -88,7 +97,7 @@
                         {{ user.created | date:"dd/MM/yyyy" }}
                     </td>
                     <td data-title="'Updated'" data-sortable="'updated'">
-                        {{ user.updated| date:"dd/MM/yyyy" }}
+                        {{ user.updatedcc}}
                     </td>
                     <td data-title="'Ville'" filter="{place: 'text'}"
                         data-sortable="'place'">
@@ -126,3 +135,20 @@
         </div>
     </div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Liste utilisateurs sélectionnés</h4>
+            </div>
+            <div class="modal-body">
+                <pre>{{vm.userSelectedEmailList()}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

@@ -418,6 +418,7 @@
 
         function succesProfileGET(res) {
             vm.profile = res;
+            console.log(vm.profile);
             if (!vm.profile.activityStartedYear) {
                 vm.profile.activityStartedYear = 0;
             }

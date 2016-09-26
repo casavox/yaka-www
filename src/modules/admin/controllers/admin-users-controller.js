@@ -65,7 +65,7 @@
             });
         }
 
-        $scope.reinitializeCreatedDate = function() {
+        $scope.reinitializeCreatedDate = function () {
             $scope.toDate = new Date();
             $scope.fromDate = new Date(2016, 7, 11);
             $scope.updatedToDate = new Date();
@@ -165,15 +165,42 @@
             return false;
         };
 
-        function createIdList() {
-            var idList = [];
+        vm.userSelectedEmailList = function () {
+            var idList = '"email","firstName","lastName","isPro","update","created","onGoingProject" \n';
             angular.forEach(vm.userData, function (user) {
+                if (!user.professional) {
+                    var userIsPro = "No"
+                } else {
+                    var userIsPro = "Yes"
+                }
+                var TmpUserCreated = moment(user.created).format("DD-MM-YYYY");
+                var TmpUserUpdated = moment(user.updated).format("DD-MM-YYYY");
+
                 if (user.selected == true) {
-                    idList.push(user.id);
+
+                    idList += '"' + user.email + '","' +
+                        user.email + '","' +
+                        user.firstName + '","' +
+                        user.lastName + '","' +
+                        userIsPro + '","' +
+                        TmpUserUpdated + '","' +
+                        TmpUserCreated + '","' +
+                        user.onGoingProjectNumber + '"\n';
                 }
             });
             return idList;
         }
+
+        vm.userClicked = function(user) {
+            console.log(user);
+            if (!user.professional) {
+                $state.go("admin-user-details", {'userId': user.id});
+            } else {
+                console.log(user.professional.id);
+                $state.go("admin-pro-details", {'professionnalId': user.professional.id});
+            }
+        }
+
     }
 })
 ();
