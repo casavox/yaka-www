@@ -416,7 +416,7 @@
                 vm.continueImg = false;
                 swal({
                     title: "Votre projet ne contient pas de photos !",
-                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre besoin !",
+                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre besoin (vous pourrez à tout moment modifier votre projet pour rajouter des photos) !",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Ajouter une photo",
