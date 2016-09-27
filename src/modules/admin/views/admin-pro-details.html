@@ -1185,46 +1185,46 @@
 
             <div class="row">
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-facebook-box p-l-25"
-                   data-ng-class="{'c-facebook-blue': app.getUser().facebookId}"></i>
+                   data-ng-class="{'c-facebook-blue': vm.profile.user.facebookId}"></i>
 
-                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().facebookId">
+                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="vm.profile.user.facebookId">
                     Compte Facebook associé
                     <small>
-                        {{app.getUser().facebookEmail}}
+                        {{vm.profile.user.facebookEmail}}
                     </small>
                 </div>
 
                 <button class="btn btn-default waves-effect m-t-4 m-l-20"
-                        data-ng-if="!app.getUser().facebookId"
+                        data-ng-if="!vm.profile.user.facebookId"
                         data-ng-click="vm.attachFacebook()"
                         disabled="disabled">
                     Associer
                 </button>
 
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
-                   data-ng-if="app.getUser().facebookId"
+                   data-ng-if="vm.profile.user.facebookId"
                    data-ng-click="vm.detachFacebook()"></i>
             </div>
             <div class="row m-t-5">
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-google p-l-25"
-                   data-ng-class="{'c-google-red': app.getUser().googleId}"></i>
+                   data-ng-class="{'c-google-red': vm.profile.user.googleId}"></i>
 
-                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().googleId">
+                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="vm.profile.user.googleId">
                     Compte Google associé
                     <small>
-                        {{app.getUser().googleEmail}}
+                        {{vm.profile.user.googleEmail}}
                     </small>
                 </div>
 
                 <button class="btn btn-default waves-effect m-t-4 m-l-20"
-                        data-ng-if="!app.getUser().googleId"
+                        data-ng-if="!vm.profile.user.googleId"
                         data-ng-click="vm.attachGoogle()"
                         disabled="disabled">
                     Associer
                 </button>
 
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
-                   data-ng-if="app.getUser().googleId"
+                   data-ng-if="vm.profile.user.googleId"
                    data-ng-click="vm.detachGoogle()"></i>
             </div>
         </div>
