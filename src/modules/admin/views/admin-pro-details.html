@@ -210,7 +210,7 @@
                     </h2>
                 </div>
                 <div class="col-xs-12 m-t-15 p-b-15">
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div> Profile ID : {{vm.profile.id}}
                         </div>
                         <div> Profiles Likes :{{vm.profile.likes}}
@@ -226,7 +226,7 @@
                         <div> WorkArea Id : {{vm.profile.workArea.id}}
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div> Nombre de projet : {{vm.profile.yakaProjectNumber}}
                         </div>
                         <div> Numéro de Téléphone : {{vm.profile.phoneNumber}}
@@ -236,7 +236,7 @@
                         <div> Main Partner Id : {{vm.profile.mainPartner.id}}
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div> Status du Pro : {{vm.profile.status}}
                         </div>
                         <div> Raison du refus : {{vm.profile.refusedReason}}
@@ -246,7 +246,7 @@
                         <div> Step 3 : {{vm.profile.step3}}
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div> Need to Recheck : {{vm.profile.needToRecheck}}
                         </div>
                         <div> My Website : {{vm.profile.myWebsite}}
@@ -265,35 +265,34 @@
                     </h2>
                 </div>
                 <div class="col-xs-12 m-t-15 p-b-15">
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div>User Id : {{vm.profile.user.id}}</div>
-                        <div>PassWord : {{vm.profile.user.password}}</div>
+                        <div>PassWord : Non récupéré</div>
                         <div style="word-wrap: break-word;">Token : {{vm.profile.user.token}}</div>
-                        <div>GCM_TOKEN : !!!!</div>
-                        <div>Pro_ID : ????</div>
+                        <div>GCM_TOKEN : Non récupéré</div>
+                        <div>Pro_ID : {{vm.profile.id}}</div>
                         <div>Facebook ID : {{vm.profile.user.facebookId}}</div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div>Google ID : {{vm.profile.user.googleId}}</div>
                         <div>Gender : {{vm.profile.user.gender}}</div>
                         <div>Firstname : {{vm.profile.user.firstName}}</div>
                         <div>Lastname : {{vm.profile.user.lastName}}</div>
-                        <div>Recover Password Token : ???</div>
+                        <div>Recover Password Token : {{vm.profile.recoverPasswordToken}}</div>
                         <div>Email : {{vm.profile.user.email}}</div>
 
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div>Phone Number : {{vm.profile.user.phoneNumber}}</div>
                         <div>Birthday : {{vm.profile.user.birthday}}</div>
-                        <div>Avatar ID : ???</div>
-                        <div>Default Address ID : ????</div>
+                        <div>Avatar ID : {{vm.profile.avatar.id}}</div>
+                        <div>Default Address ID : {{vm.profile.user.defaultAddress.id}}</div>
                         <div>is Admin : {{vm.profile.user.isAdmin}}</div>
                         <div>New Contacts : {{vm.profile.user.newContacts}}</div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-xs-12 col-sm-3">
                         <div>Google Email : {{vm.profile.user.googleEmail}}</div>
                         <div>Facebook Email : {{vm.profile.user.facebookEmail}}</div>
-                        <div>Invitation Email : ???</div>
                         <div>Created : {{vm.profile.user.created | date:"dd/MM/yyyy"}}</div>
                         <div>Updated : {{vm.profile.user.updated | date:"dd/MM/yyyy"}}</div>
                         <div>Invite ID : {{vm.profile.user.inviteId}}</div>
