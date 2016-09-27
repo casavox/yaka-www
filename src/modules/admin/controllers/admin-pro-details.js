@@ -442,6 +442,26 @@
                 }
             }
 
+            vm.invitationClientNumber = 0;
+            vm.invitationFriendNumber = 0;
+            vm.invitationFamilyNumber = 0;
+            vm.invitationColleagueNumber = 0;
+
+            for (var i=0; i<vm.profile.user.invitations.length; i++) {
+                if (vm.profile.user.invitations[i].relation == "CLIENT") {
+                    vm.invitationClientNumber++;
+                }
+                if (vm.profile.user.invitations[i].relation == "FRIEND") {
+                    vm.invitationFriendNumber++;
+                }
+                if (vm.profile.user.invitations[i].relation == "FAMILY") {
+                    vm.invitationFamilyNumber++;
+                }
+                if (vm.profile.user.invitations[i].relation == "COLLEAGUE") {
+                    vm.invitationColleagueNumber++;
+                }
+            }
+
 
             vm.profile.status = $filter('casaProfessionalStatus')(vm.profile.status);
             vm.profile.eligibleStatus = $filter('casaProfessionalStatus')(vm.profile.eligibleStatus);

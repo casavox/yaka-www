@@ -147,6 +147,26 @@
                     vm.contactColleagueNumber++;
                 }
             }
+
+            vm.invitationClientNumber = 0;
+            vm.invitationFriendNumber = 0;
+            vm.invitationFamilyNumber = 0;
+            vm.invitationColleagueNumber = 0;
+
+            for (var i=0; i<vm.profile.invitations.length; i++) {
+                if (vm.profile.invitations[i].relation == "CLIENT") {
+                    vm.invitationClientNumber++;
+                }
+                if (vm.profile.invitations[i].relation == "FRIEND") {
+                    vm.invitationFriendNumber++;
+                }
+                if (vm.profile.invitations[i].relation == "FAMILY") {
+                    vm.invitationFamilyNumber++;
+                }
+                if (vm.profile.invitations[i].relation == "COLLEAGUE") {
+                    vm.invitationColleagueNumber++;
+                }
+            }
         }
 
         function errorProfileGET(res) {
