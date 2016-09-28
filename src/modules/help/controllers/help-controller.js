@@ -112,37 +112,33 @@
                 vm.showTuto = !vm.showTuto;
                 vm.showBoucheAOreille = false;
                 vm.showSupport = false;
-                var element = document.getElementById('pro1');
                 setTimeout(function () {
-                    smoothScroll(element);
-                }, 100);
+                    smoothScroll(document.getElementById('pro1'));
+                }, 400);
             }
             else if (situation == "p2") {
                 vm.showTuto = false;
                 vm.showBoucheAOreille = !vm.showBoucheAOreille;
                 vm.showSupport = false;
-                var element = document.getElementById('pro2');
                 setTimeout(function () {
-                    smoothScroll(element);
-                }, 100);
+                    smoothScroll(document.getElementById('pro2'));
+                }, 400);
             }
             else if (situation == "contact") {
                 vm.customerCard1 = false;
                 vm.showTuto = false;
                 vm.showBoucheAOreille = false;
                 vm.showSupport = !vm.showSupport;
-                var element = document.getElementById('support');
                 setTimeout(function () {
-                    smoothScroll(element);
-                }, 100);
+                    smoothScroll(document.getElementById('support'));
+                }, 400);
             }
             else if (situation == "c1") {
                 vm.showSupport = false;
                 vm.customerCard1 = !vm.customerCard1;
-                var element = document.getElementById('cust1');
                 setTimeout(function () {
-                    smoothScroll(element);
-                }, 100);
+                    smoothScroll(document.getElementById('cust1'));
+                }, 400);
             }
         };
     }
