@@ -96,13 +96,14 @@
                     </div>
 
                     <div class="col-xs-12">
-                        <textarea
-                            autogrow rows="1"
-                            placeholder="... préciser mon projet ici ..."
-                            data-ng-class="vm.error.description.flag  && vm.projectDescription.length > 0 && vm.projectDescription.length < 50 ? 'form-control border-c-red' : 'form-control border-c-lightblue'"
-                            data-ng-model="vm.projectDescription"
-                            data-ng-blur="vm.verifDescription()">
-                        </textarea>
+
+                        <textarea class="form-control" data-auto-size=""
+                                  rows="2"
+                                  data-ng-model="vm.projectDescription"
+                                  data-ng-blur="vm.verifDescription()"
+                                  placeholder="Préciser mon projet ici ..."
+                                  data-autosize-on="true"></textarea>
+
                     </div>
 
                     <p class="col-xs-12 error center m-b-0 p-0"
