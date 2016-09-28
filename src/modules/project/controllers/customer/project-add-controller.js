@@ -101,13 +101,16 @@
         };
 
         vm.verifDescription = function () {
+            if (vm.projectDescription) {
+                vm.projectDescription = vm.projectDescription.trim();
+            }
             if (vm.projectDescription.length < 50) {
                 vm.continue = false;
                 vm.continueImg = false;
                 vm.img = [];
                 vm.continueAddressFlag = false;
                 vm.error.description.flag = true;
-                vm.error.description.message = "Merci de préciser votre besoin (au moins 50 caractères)";
+                vm.error.description.message = "Dites-nous en plus sur votre besoin, vos contraintes : état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit,...";
             }
         };
 
@@ -377,10 +380,10 @@
         };
 
         vm.verif = function () {
-            if (vm.projectDescription.length < 30) {
+            if (vm.projectDescription.length < 50) {
                 vm.continueImg = vm.continueAddressFlag = vm.continue = false;
                 vm.img = [];
-                vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
+                vm.error.description.message = "Merci de précisez votre besoin et vos contraintes (état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit, etc.).";
                 vm.error.description.flag = true;
             }
             else {
@@ -391,13 +394,13 @@
 
         vm.continueProject = function () {
             if (vm.material == null && vm.type.code != 'COU_13900') {
-                vm.error.material.message = "Merci d'indiquez si vous souhaitez que le professionnel fournisse ou non l'ensemble des matériaux";
+                vm.error.material.message = "Merci d'indiquez si vous souhaitez que le professionnel fournisse ou non les principaux matériaux";
                 vm.error.material.flag = true;
             }
-            if (vm.projectDescription.length < 30) {
-                vm.error.description.message = "Merci de préciser votre besoin (au moins 30 caractères)";
+            if (vm.projectDescription.length < 50) {
+                vm.error.description.message = "Merci de précisez votre besoin et vos contraintes (état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit, etc.).";
                 vm.error.description.flag = true;
-            } else if ((vm.material != null || vm.type.code == 'COU_13900') && vm.projectDescription.length >= 30) {
+            } else if ((vm.material != null || vm.type.code == 'COU_13900') && vm.projectDescription.length >= 50) {
                 vm.continue = vm.error.material.flag = true;
                 vm.error.description.message = vm.error.material.message = "";
                 vm.error.description.flag = false;
@@ -413,7 +416,7 @@
                 vm.continueImg = false;
                 swal({
                     title: "Votre projet ne contient pas de photos !",
-                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre besoin !",
+                    text: "Nous vous conseillons de joindre des photos pour améliorer la compréhension de votre besoin (vous pourrez à tout moment modifier votre projet pour rajouter des photos) !",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Ajouter une photo",

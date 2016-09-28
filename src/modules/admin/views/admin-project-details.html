@@ -293,7 +293,38 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card">
+                <table ng-table="usersTable" class="table table-striped" show-filter="true">
+                    <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
+                        <td data-title="'Nom'" class="pointer c-blue" filter="{name: 'text'}" data-sortable="'name'"
+                            data-ui-sref="admin-pro-details({professionnalId: pro.id})">
+                            {{ pro.name }}
+                        </td>
+                        <td data-title="'Relation'" filter="{contactRelation: 'text'}"
+                            data-sortable="'contactRelation'">
+                            {{ pro.contactRelation }}
+                        </td>
+                        <td data-title="'Invité'" filter="{isInvited: 'text'}" data-sortable="'isInvited'">
+                            {{ pro.isInvited }}
+                        </td>
+                        <td data-title="'Lieu'" filter="{place: 'text'}" data-sortable="'place'">
+                            {{ pro.place }}
+                        </td>
+                        <td data-title="'Distance'" filter="{distance: 'text'}"
+                            data-sortable="'distance'">
+                            {{ pro.distance + " km" }}
+                        </td>
+                        <td data-title="'Statut'" filter="{status: 'text'}"
+                            data-sortable="'status'">
+                            {{ pro.status }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
+
+
     </div>
 
     <div class="yakaPopup" data-ng-show="vm.whereFlag"
@@ -421,51 +452,3 @@
         </div>
     </div>
 </section>
-
-<section id="main">
-    <div id="content" class="content">
-        <div class="container">
-            <div class="t-center">
-                <input type="text" class="form-control di-block input-filter-projectD" ng-model="search.name"
-                       placeholder="Nom"/>
-                <input type="text" class="form-control di-block input-filter-projectD" ng-model="search.user.contactRelation"
-                       placeholder="Relation"/>
-                <input type="text" class="form-control di-block input-filter-projectD" ng-model="search.user.isInvited"
-                       placeholder="Invité"/>
-                <input type="text" class="form-control di-block input-filter-projectD" ng-model="search.place"
-                       placeholder="Lieu"/>
-                <input type="text" class="form-control di-block input-filter-projectD" ng-model="search.distance"
-                       placeholder="Distance"/>
-                <input type="text" class="form-control di-block input-filter-projectD" ng-model="search.status"
-                       placeholder="Statut"/>
-            </div>
-            <table ng-table="usersTable" class="table table-striped" show-filter="true">
-
-                <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
-
-                    <td data-title="'Nom'" class="pointer c-blue" data-sortable="'name'" data-ui-sref="admin-pro-details({professionnalId: pro.id})">
-                         {{ pro.name }}
-                    </td>
-                    <td data-title="'Relation'" data-sortable="'user.contactRelation'">
-                        {{ pro.user.contactRelation }}
-                    </td>
-                    <td data-title="'Invité'" data-sortable="'user.isInvited'">
-                        {{ pro.user.isInvited }}
-                    </td>
-                    <td data-title="'Lieu'" data-sortable="'place'">
-                        {{ pro.place }}
-                    </td>
-                    <td data-title="'Distance'"
-                        data-sortable="'distance'">
-                        {{ pro.distance + " km" }}
-                    </td>
-                    <td data-title="'Statut'"
-                        data-sortable="'status'">
-                        {{ pro.status }}
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</section>
-

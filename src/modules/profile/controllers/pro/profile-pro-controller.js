@@ -444,10 +444,10 @@
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
             vm.siretInfo = function () {
-                if (!vm.profile.company.name) {
+                if (!vm.profileInfo.company.name) {
                     return "";
                 } else {
-                    var profileCompanyName = vm.profile.company.name;
+                    var profileCompanyName = vm.profileInfo.company.name;
                     var companyName = profileCompanyName.replace(/ /g, "+");
                     return "/cgi-bin/search?champs=" + companyName;
                 }
