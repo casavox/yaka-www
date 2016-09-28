@@ -352,14 +352,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12" data-ng-if="vm.profile.projects">
+            <div class="col-xs-12">
                 <div class="col-xs-12 no-padding card">
                     <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
                         <h2>
                             Projets de l'Utilisateur
                         </h2>
                     </div>
-                    <div class="col-xs-12 m-t-15 p-b-15">
+                    <div class="col-xs-12 m-t-15 p-b-15 t-center" data-ng-if="!vm.profile.projects">
+                        <h4>Cet utilisateur n'a aucun projet</h4>
+                    </div>
+                    <div class="col-xs-12 m-t-15 p-b-15" data-ng-if="vm.profile.projects">
                         <table ng-table="usersTable" class="table table-striped" show-filter="true">
                             <tr class="t-center pointer" data-ng-repeat="project in vm.profile.projects"
                                 data-ui-sref="admin-project-details({projectId: project.id})">
@@ -381,7 +384,10 @@
                             Contacts
                         </h2>
                     </div>
-                    <div class="col-xs-12 m-t-15 p-b-15">
+                    <div class="col-xs-12 m-t-15 p-b-15 t-center" data-ng-if="!vm.profile.contacts">
+                        <h4>Cet utilisateur n'a aucun contact</h4>
+                    </div>
+                    <div class="col-xs-12 m-t-15 p-b-15" data-ng-if="vm.profile.contacts">
                         <div class="col-xs-6 col-sm-3 t-center">
                             <h4>Clients</h4>
                             <p>{{vm.contactClientNumber}}</p>
@@ -408,7 +414,10 @@
                             Invitations
                         </h2>
                     </div>
-                    <div class="col-xs-12 m-t-15 p-b-15">
+                    <div class="col-xs-12 m-t-15 p-b-15 t-center" data-ng-if="!vm.profile.invitations">
+                        <h4>Cet utilisateur n'a aucune invitation</h4>
+                    </div>
+                    <div class="col-xs-12 m-t-15 p-b-15" data-ng-if="vm.profile.invitations">
                         <div class="col-xs-6 col-sm-3 t-center">
                             <h4>Clients</h4>
                             <p>{{vm.invitationClientNumber}}</p>

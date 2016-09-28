@@ -39,71 +39,71 @@
             }, ignoreLoading);
         }
 
-        $scope.reinitializeCreatedDate = function() {
-            $scope.toDate = new Date();
-            $scope.fromDate = new Date(2016, 7, 11);
-            $scope.updatedToDate = new Date();
-            $scope.updatedFromDate = new Date(2016, 7, 11);
+        vm.reinitializeCreatedDate = function() {
+            vm.toDate = new Date();
+            vm.fromDate = new Date(2016, 7, 11);
+            vm.updatedToDate = new Date();
+            vm.updatedFromDate = new Date(2016, 7, 11);
         };
 
-        $scope.today = function () {
-            $scope.toDate = new Date();
-            $scope.fromDate = new Date(2016, 7, 11);
-            $scope.updatedToDate = new Date();
-            $scope.updatedFromDate = new Date(2016, 7, 11);
+        vm.today = function () {
+            vm.toDate = new Date();
+            vm.fromDate = new Date(2016, 7, 11);
+            vm.updatedToDate = new Date();
+            vm.updatedFromDate = new Date(2016, 7, 11);
         };
 
-        $scope.today();
-        $scope.toggleMin = function () {
-            $scope.minDate = $scope.minDate ? null : new Date();
+        vm.today();
+        vm.toggleMin = function () {
+            vm.minDate = vm.minDate ? null : new Date();
         };
-        $scope.toggleMin();
-        $scope.maxDate = new Date(2018, 5, 22);
+        vm.toggleMin();
+        vm.maxDate = new Date(2018, 5, 22);
 
-        $scope.openFromDate = function ($event) {
-            $scope.status1.opened = true;
-        };
-
-        $scope.openUpdatedFromDate = function ($event) {
-            $scope.status3.opened = true;
+        vm.openFromDate = function ($event) {
+            vm.status1.opened = true;
         };
 
-        $scope.openToDate = function ($event) {
-            $scope.status2.opened = true;
+        vm.openUpdatedFromDate = function ($event) {
+            vm.status3.opened = true;
         };
 
-        $scope.openUpdatedToDate = function ($event) {
-            $scope.status4.opened = true;
+        vm.openToDate = function ($event) {
+            vm.status2.opened = true;
         };
 
-        $scope.setDate = function (year, month, day) {
-            $scope.fromDate = new Date(year, month, day);
-            $scope.toDate = new Date(year, month, day);
-            $scope.updatedFromDate = new Date(year, month, day);
-            $scope.updatedToDate = new Date(year, month, day);
+        vm.openUpdatedToDate = function ($event) {
+            vm.status4.opened = true;
         };
 
-        $scope.dateOptions = {
+        vm.setDate = function (year, month, day) {
+            vm.fromDate = new Date(year, month, day);
+            vm.toDate = new Date(year, month, day);
+            vm.updatedFromDate = new Date(year, month, day);
+            vm.updatedToDate = new Date(year, month, day);
+        };
+
+        vm.dateOptions = {
             formatYear: 'yy',
             startingDay: 1
         };
 
-        $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[0];
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
 
-        $scope.status1 = {
+        vm.status1 = {
             opened: false
         };
 
-        $scope.status3 = {
+        vm.status3 = {
             opened: false
         };
 
-        $scope.status2 = {
+        vm.status2 = {
             opened: false
         };
 
-        $scope.status4 = {
+        vm.status4 = {
             opened: false
         };
 
@@ -112,7 +112,7 @@
         vm.tableData = [];
 
         function proSorting() {
-            $scope.usersTable = new ngTableParams({
+            vm.usersTable = new ngTableParams({
                 page: 1,
                 count: 99999999,
                 sorting: {name: "asc"}
@@ -123,7 +123,6 @@
                     vm.tableData = vm.proData;
                     vm.tableData = params.sorting() ? $filter('orderBy')(vm.tableData, params.orderBy()) : vm.tableData;
                     vm.tableData = params.filter() ? $filter('filter')(vm.tableData, params.filter()) : vm.tableData;
-                    console.log(params.filter());
                     vm.tableData = vm.tableData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                     $defer.resolve(vm.tableData);
                 }

@@ -58,8 +58,6 @@
             }
             if (!f) {
                 vm.updating = true;
-                console.log(vm.profileInfo);
-                console.log(vm.profile.id);
                 networkService.adminProfilePUT(vm.profile.id, vm.profileInfo, function (res) {
                     vm.updating = false;
                     vm.profileInfo = res;
@@ -133,18 +131,20 @@
             vm.contactFamilyNumber = 0;
             vm.contactColleagueNumber = 0;
 
-            for (var i=0; i<vm.profile.contacts.length; i++) {
-                if (vm.profile.contacts[i].relation == "CLIENT") {
-                    vm.contactClientNumber++;
-                }
-                if (vm.profile.contacts[i].relation == "FRIEND") {
-                    vm.contactFriendNumber++;
-                }
-                if (vm.profile.contacts[i].relation == "FAMILY") {
-                    vm.contactFamilyNumber++;
-                }
-                if (vm.profile.contacts[i].relation == "COLLEAGUE") {
-                    vm.contactColleagueNumber++;
+            if (vm.profile.contacts) {
+                for (var i=0; i<vm.profile.contacts.length; i++) {
+                    if (vm.profile.contacts[i].relation == "CLIENT") {
+                        vm.contactClientNumber++;
+                    }
+                    if (vm.profile.contacts[i].relation == "FRIEND") {
+                        vm.contactFriendNumber++;
+                    }
+                    if (vm.profile.contacts[i].relation == "FAMILY") {
+                        vm.contactFamilyNumber++;
+                    }
+                    if (vm.profile.contacts[i].relation == "COLLEAGUE") {
+                        vm.contactColleagueNumber++;
+                    }
                 }
             }
 
@@ -153,18 +153,20 @@
             vm.invitationFamilyNumber = 0;
             vm.invitationColleagueNumber = 0;
 
-            for (var i=0; i<vm.profile.invitations.length; i++) {
-                if (vm.profile.invitations[i].relation == "CLIENT") {
-                    vm.invitationClientNumber++;
-                }
-                if (vm.profile.invitations[i].relation == "FRIEND") {
-                    vm.invitationFriendNumber++;
-                }
-                if (vm.profile.invitations[i].relation == "FAMILY") {
-                    vm.invitationFamilyNumber++;
-                }
-                if (vm.profile.invitations[i].relation == "COLLEAGUE") {
-                    vm.invitationColleagueNumber++;
+            if (vm.profile.invitations) {
+                for (var i=0; i<vm.profile.invitations.length; i++) {
+                    if (vm.profile.invitations[i].relation == "CLIENT") {
+                        vm.invitationClientNumber++;
+                    }
+                    if (vm.profile.invitations[i].relation == "FRIEND") {
+                        vm.invitationFriendNumber++;
+                    }
+                    if (vm.profile.invitations[i].relation == "FAMILY") {
+                        vm.invitationFamilyNumber++;
+                    }
+                    if (vm.profile.invitations[i].relation == "COLLEAGUE") {
+                        vm.invitationColleagueNumber++;
+                    }
                 }
             }
         }

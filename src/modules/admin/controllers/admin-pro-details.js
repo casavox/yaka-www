@@ -427,18 +427,20 @@
             vm.contactFamilyNumber = 0;
             vm.contactColleagueNumber = 0;
 
-            for (var i=0; i<vm.profile.user.contacts.length; i++) {
-                if (vm.profile.user.contacts[i].relation == "CLIENT") {
-                    vm.contactClientNumber++;
-                }
-                if (vm.profile.user.contacts[i].relation == "FRIEND") {
-                    vm.contactFriendNumber++;
-                }
-                if (vm.profile.user.contacts[i].relation == "FAMILY") {
-                    vm.contactFamilyNumber++;
-                }
-                if (vm.profile.user.contacts[i].relation == "COLLEAGUE") {
-                    vm.contactColleagueNumber++;
+            if (vm.profile.user.contacts) {
+                for (var i=0; i<vm.profile.user.contacts.length; i++) {
+                    if (vm.profile.user.contacts[i].relation == "CLIENT") {
+                        vm.contactClientNumber++;
+                    }
+                    if (vm.profile.user.contacts[i].relation == "FRIEND") {
+                        vm.contactFriendNumber++;
+                    }
+                    if (vm.profile.user.contacts[i].relation == "FAMILY") {
+                        vm.contactFamilyNumber++;
+                    }
+                    if (vm.profile.user.contacts[i].relation == "COLLEAGUE") {
+                        vm.contactColleagueNumber++;
+                    }
                 }
             }
 
@@ -447,21 +449,22 @@
             vm.invitationFamilyNumber = 0;
             vm.invitationColleagueNumber = 0;
 
-            for (var i=0; i<vm.profile.user.invitations.length; i++) {
-                if (vm.profile.user.invitations[i].relation == "CLIENT") {
-                    vm.invitationClientNumber++;
-                }
-                if (vm.profile.user.invitations[i].relation == "FRIEND") {
-                    vm.invitationFriendNumber++;
-                }
-                if (vm.profile.user.invitations[i].relation == "FAMILY") {
-                    vm.invitationFamilyNumber++;
-                }
-                if (vm.profile.user.invitations[i].relation == "COLLEAGUE") {
-                    vm.invitationColleagueNumber++;
+            if (vm.profile.user.invitations) {
+                for (var i=0; i<vm.profile.user.invitations.length; i++) {
+                    if (vm.profile.user.invitations[i].relation == "CLIENT") {
+                        vm.invitationClientNumber++;
+                    }
+                    if (vm.profile.user.invitations[i].relation == "FRIEND") {
+                        vm.invitationFriendNumber++;
+                    }
+                    if (vm.profile.user.invitations[i].relation == "FAMILY") {
+                        vm.invitationFamilyNumber++;
+                    }
+                    if (vm.profile.user.invitations[i].relation == "COLLEAGUE") {
+                        vm.invitationColleagueNumber++;
+                    }
                 }
             }
-
 
             vm.profile.status = $filter('casaProfessionalStatus')(vm.profile.status);
             vm.profile.eligibleStatus = $filter('casaProfessionalStatus')(vm.profile.eligibleStatus);
@@ -494,7 +497,6 @@
                 if (isConfirm) {
                     networkService.adminValidateProPOST([$stateParams.professionnalId],
                         function (res) {
-                            console.log(res);
                             alertMsg.send("Le statut a été modifié", "info");
                             vm.getProDetails(true);
                         }, function () {

@@ -417,15 +417,16 @@
             vm.project = res;
             angular.forEach(vm.project.compatiblePros, function (pro) {
                 pro.name = pro.user.firstName + " " + pro.user.lastName;
+                pro.contactRelation = pro.user.contactRelation;
                 if (pro.company.address.postalCode == undefined) {
                     pro.company.address.postalCode = "";
                 }
                 pro.place = pro.company.address.postalCode + " " + pro.company.address.locality;
 
                 if (pro.user.isInvited == undefined) {
-                    pro.user.isInvited = "NON";
+                    pro.isInvited = "NON";
                 } else {
-                    pro.user.isInvited == "OUI";
+                    pro.isInvited == "OUI";
                 }
                 pro.distance = (pro.distance / 1000).toFixed(2);
                 pro.status = $filter('casaProfessionalStatus')(pro.status);
