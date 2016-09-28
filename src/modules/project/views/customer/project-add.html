@@ -70,16 +70,16 @@
                         <div class="col-sm-4 col-sm-offset-2 text-center">
                             <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'"
                                  data-ng-class="{activate: vm.material == 'yes'}">
-                                Pose uniquement
+                                Travaux
                             </div>
                             <small>Je fournis certains matériaux, à préciser</small>
                         </div>
                         <div class="col-sm-4 text-center">
                             <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no'"
                                  data-ng-class="{activate: vm.material == 'no'}">
-                                Pose + matériaux
+                                Travaux + matériaux
                             </div>
-                            <small>Le Pro doit fournir les matériaux</small>
+                            <small>Le Pro doit fournir tous les matériaux</small>
                         </div>
                         <p class="error center" data-ng-show="vm.error.material.flag">
                             {{vm.error.material.message}}
@@ -88,21 +88,26 @@
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
                             Décrivez votre projet
+                            <small
+                                data-ng-class="vm.error.description.flag  && vm.projectDescription.length > 0 && vm.projectDescription.length < 50 ? 'c-red': 'subtitle-color-forced'">
+                                Au moins 50 caractères
+                            </small>
                         </h2>
                     </div>
 
                     <div class="col-xs-12">
-                        <textarea class="form-control" data-auto-size=""
-                                  rows="4"
-                                  data-ng-model="vm.projectDescription"
-                                  data-ng-blur="vm.verifDescription()"
-                                  placeholder="Au moins 50 caractères - Ajoutez toutes précisions que vous jugez utiles sur votre projet et ses particularités (dimensions, état du lieu des travaux, le cas échéant le type de matériel fournit, etc.). Précisez si vous avez des contraintes ou souhaits particuliers. Etc."
-                                  data-autosize-on="true"></textarea>
+                        <textarea
+                            autogrow rows="1"
+                            placeholder="... préciser mon projet ici ..."
+                            data-ng-class="vm.error.description.flag  && vm.projectDescription.length > 0 && vm.projectDescription.length < 50 ? 'form-control border-c-red' : 'form-control border-c-lightblue'"
+                            data-ng-model="vm.projectDescription"
+                            data-ng-blur="vm.verifDescription()">
+                        </textarea>
                     </div>
 
-                    <p class="col-xs-12 error center"
-                       data-ng-show="vm.error.description.flag  && (vm.projectDescription.length < 50)">
-                        {{vm.error.description.message}}
+                    <p class="col-xs-12 error center m-b-0 p-0"
+                       data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
+                        <small>{{vm.error.description.message}}</small>
                     </p>
 
                     <button
@@ -118,9 +123,11 @@
                         <h2 class="t-center">
                             Ajoutez des photos
                         </h2>
-                        <p class="t-center">Joindre des photos avec un commentaire pour améliorer la compréhension de
-                            votre projet et ses éventuelles contraintes (état général actuel, difficulté d'accès,
-                            matériel fourni le cas échéant, ...)</p>
+                        <p class="t-center">
+                            Joindre des photos et un commentaire améliore la compréhension de votre projet
+                            <br>
+                            (état général actuel, difficulté d'accès, matériel fourni le cas échéant, ...)
+                        </p>
                     </div>
                     <div class="col-xs-12 no-padding">
                         <div class="galleryEditingItem col-md-2 col-sm-3 col-xs-4"
