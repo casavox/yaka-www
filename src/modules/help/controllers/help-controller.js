@@ -115,7 +115,7 @@
                 var element = document.getElementById('pro1');
                 setTimeout(function () {
                     smoothScroll(element);
-                }, 500);
+                }, 100);
             }
             else if (situation == "p2") {
                 vm.showTuto = false;
@@ -124,7 +124,7 @@
                 var element = document.getElementById('pro2');
                 setTimeout(function () {
                     smoothScroll(element);
-                }, 500);
+                }, 100);
             }
             else if (situation == "contact") {
                 vm.customerCard1 = false;
@@ -134,7 +134,7 @@
                 var element = document.getElementById('support');
                 setTimeout(function () {
                     smoothScroll(element);
-                }, 500);
+                }, 100);
             }
             else if (situation == "c1") {
                 vm.showSupport = false;
@@ -142,7 +142,7 @@
                 var element = document.getElementById('cust1');
                 setTimeout(function () {
                     smoothScroll(element);
-                }, 500);
+                }, 100);
             }
         };
     }
