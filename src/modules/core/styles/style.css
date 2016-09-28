@@ -5319,3 +5319,7 @@ div.recaptcha.mobile > div {
     color: #5e5e5e !important;
 }
 
+.yakaLinkWhite:focus {
+    color: white;
+}
+

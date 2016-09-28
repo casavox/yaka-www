@@ -342,6 +342,9 @@
             adminProListGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/pro/list', ignoreLoading).success(success).error(error)
             },
+            adminUserListGET: function (success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/admin/user/list', ignoreLoading).success(success).error(error)
+            },
             adminProDetailsGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/pro/' + id, ignoreLoading).success(success).error(error)
             },
@@ -369,9 +372,6 @@
             adminProPortfolioPUT: function (id, data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/admin/pro/' + id + '/portfolio', data, ignoreLoading).success(success).error(error)
             },
-            adminChangePassword: function (id, data, success, error, ignoreLoading) {
-                httpService.put(baseUrl + '/admin/' + id + '/password', data, ignoreLoading).success(success).error(error)
-            },
             adminProjectsListGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/projects', ignoreLoading).success(success).error(error)
             },
@@ -383,6 +383,12 @@
             },
             adminProfileGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/users/' + id, ignoreLoading).success(success).error(error)
+            },
+            adminChangePassword: function (id, data, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/admin/users/' + id + '/password', data, ignoreLoading).success(success).error(error)
+            },
+            adminProfilePUT: function (id, data, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/admin/users/' + id + '/profile', data, ignoreLoading).success(success).error(error)
             },
             adminProposalAcceptPOST: function (proposalId, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/admin/proposals/' + proposalId + "/accept", null, ignoreLoading).success(success).error(error)

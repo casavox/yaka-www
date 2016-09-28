@@ -15,59 +15,14 @@
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggleguk.left }"></aside>
     <div id="content" class="content m-l-5">
-            <div>
-                <input type="text" class="form-control di-block input-filter-project" ng-model="search.title"
-                       placeholder="Titre"/>
-                <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.frenchStatus"
-                            ng-options="status for status in vm.possibleStatus">
-                        <option value="">Status</option>
-                    </select>
-                </div>
-                <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.mainActivity.code"
-                            ng-options="type for type in vm.possibleMainActivity">
-                        <option value="">Code</option>
-                    </select>
-                </div>
-                <input type="text" class="form-control di-block input-filter-project" ng-model="search.place"
-                       placeholder="Lieu"/>
-                <input type="text" class="form-control di-block input-filter-project" ng-model="search.name"
-                       placeholder="Client"/>
-                <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.proposalsNbr"
-                            ng-options="propNbr for propNbr in vm.possibleProposalNbr">
-                        <option value="">Props</option>
-                    </select>
-                </div>
-                <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.recoProposalsNbr"
-                            ng-options="recoNbr for recoNbr in vm.possibleRecoNbr">
-                        <option value="">RecoP</option>
-                    </select>
-                </div>
-                <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.compatibleValidatedProsNumber"
-                            ng-options="validProNbr for validProNbr in vm.possibleValidProNbr">
-                        <option value="">CPV</option>
-                    </select>
-                </div>
-                <div class="select di-block input-filter-project">
-                    <select class="form-control" ng-model="search.compatibleNotValidatedProsNumber"
-                            ng-options="invalidProNbr for invalidProNbr in vm.possibleInvalidProNbr">
-                        <option value="">CPNV</option>
-                    </select>
-                </div>
-            </div>
-
-            <table ng-table="usersTable" class="table table-striped" show-filter="true">
+        <table ng-table="usersTable" class="table table-striped" show-filter="true">
 
                 <tr data-ng-repeat="project in $data | filter:search:vm.filterAllowNullValue" class="t-center">
 
-                    <td data-title="'Titre'" class="pointer c-blue" data-sortable="'title'" data-ui-sref="admin-project-details({projectId: project.id})">
+                    <td data-title="'Titre'" class="pointer c-blue" filter="{title: 'text'}" data-sortable="'title'" data-ui-sref="admin-project-details({projectId: project.id})">
                         {{ project.title }}
                     </td>
-                    <td data-title="'Statut'" data-sortable="'frenchStatus'">
+                    <td data-title="'Statut'" filter="{frenchStatus: 'text'}" data-sortable="'frenchStatus'">
                         {{ project.frenchStatus }}
                     </td>
                     <td data-title="'Type'" data-sortable="'mainActivity.code'">
@@ -80,25 +35,25 @@
                     <td data-title="'Mis à jour le'" data-sortable="'updated'">
                         <span am-time-ago="project.updated"></span>
                     </td>
-                    <td data-title="'Lieu'" data-sortable="'place'">
+                    <td data-title="'Lieu'" filter="{place: 'text'}" data-sortable="'place'">
                         {{ project.place }}
                     </td>
                     <td data-title="'Date souhaitée'" data-sortable="'desiredDate'">
                         {{ vm.getWhen(project) }}
                     </td>
-                    <td data-title="'Client'" data-sortable="'name'">
+                    <td data-title="'Client'" filter="{name: 'text'}" data-sortable="'name'">
                         {{ project.name }}
                     </td>
-                    <td data-title="'Nbr Propositions'" data-sortable="'proposalsNbr'">
+                    <td data-title="'Nbr Propositions'" filter="{proposalsNbr: 'text'}" data-sortable="'proposalsNbr'">
                         {{ project.proposalsNbr }}
                     </td>
-                    <td data-title="'Nbr Recommandations'" data-sortable="'recoProposalsNbr'">
+                    <td data-title="'Nbr Recommandations'" filter="{recoProposalsNbr: 'text'}" data-sortable="'recoProposalsNbr'">
                         {{ project.recoProposalsNbr }}
                     </td>
-                    <td data-title="'Nbr Pros validés'" data-sortable="'compatibleValidatedProsNumber'">
+                    <td data-title="'Nbr Pros validés'" filter="{compatibleValidatedProsNumber: 'text'}" data-sortable="'compatibleValidatedProsNumber'">
                         {{ project.compatibleValidatedProsNumber }}
                     </td>
-                    <td data-title="'Nbr Pros non validés'" data-sortable="'compatibleNotValidatedProsNumber'">
+                    <td data-title="'Nbr Pros non validés'" filter="{compatibleNotValidatedProsNumber: 'text'}" data-sortable="'compatibleNotValidatedProsNumber'">
                         {{ project.compatibleNotValidatedProsNumber }}
                     </td>
                 </tr>

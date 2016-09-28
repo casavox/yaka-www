@@ -98,7 +98,7 @@
         vm.tableData = [];
 
         function proSorting() {
-            $scope.usersTable = new ngTableParams({
+            vm.usersTable = new ngTableParams({
                 page: 1,
                 count: 99999999,
                 sorting: {name: "asc"}
