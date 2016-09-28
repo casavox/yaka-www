@@ -262,16 +262,16 @@
                                     {{project.recoProposals[0].firstRecommendation.recommender.firstName}}
                                     {{project.recoProposals[0].firstRecommendation.recommender.lastName}}
                                 </span>
-                                <span class="c-darkgray">
+                                <span class="c-gray-dark">
                                     (
                                     <casa-contact
                                         user="project.recoProposals[0].firstRecommendation.recommender"
-                                        icon-color="c-darkgray" client-red="true"></casa-contact>
+                                        icon-color="c-graydark" client-red="true"></casa-contact>
                                     )
                                     vous a recommandé
                                 </span>
                                 <small
-                                    class="c-darkgray"
+                                    class="c-gray-dark"
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
                                     + {{project.recoProposals[0].recommendations.length - 1}} autre<span
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
@@ -299,7 +299,7 @@
                                     {{project.user.firstName}}
                                     {{project.user.lastName}}
                                 </span>
-                                <span class="c-darkgray">
+                                <span class="c-gray-dark">
                                     (
                                     <casa-contact
                                         user="project.user" client-blue="true"></casa-contact>

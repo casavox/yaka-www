@@ -2,16 +2,15 @@
 ></header>
 
 <section id="main">
-
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }" data-ng-if="app.getUser()"></aside>
 
     <div id="content" class="content" data-ng-class="{ 'noMenu': !app.getUser() }">
         <div id="accordion" class="container" data-ng-cloak>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+            <div id="pro1" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-show="vm.pro"
-                 data-ng-click="vm.showTuto = !vm.showTuto">
+                 data-ng-click="vm.smoothScroll('p1')">
                 Bien démarrer sur CasaVox
 
                 <i class="zmdi f-right f-18"
@@ -180,9 +179,9 @@
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+            <div id="cust1" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-if="!vm.pro && app.getUser()"
-                 data-ng-click="vm.customerCard1 = !vm.customerCard1">
+                 data-ng-click="vm.smoothScroll('c1')">
                 Bien démarrer sur CasaVox
 
                 <i class="zmdi f-right f-18"
@@ -367,9 +366,9 @@
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+            <div id="pro2" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-if="vm.pro"
-                 data-ng-click="vm.showBoucheAOreille = !vm.showBoucheAOreille">
+                 data-ng-click="vm.smoothScroll('p2')">
                 <em>Bouche-à-oreille CasaVox</em>
 
                 <i class="zmdi f-right f-18"
@@ -528,9 +527,9 @@
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+            <div id="support" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-show="app.getUser()"
-                 data-ng-click="vm.showSupport = !vm.showSupport">
+                 data-ng-click="vm.smoothScroll('contact')">
                 Contacter CasaVox
 
                 <i class="zmdi f-right f-18"

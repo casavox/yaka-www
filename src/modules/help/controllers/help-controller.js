@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('HelpController', HelpController);
 
-    function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams) {
+    function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams, smoothScroll) {
 
         if ($localStorage.invitationId) {
             $state.go("contacts");
@@ -105,6 +105,41 @@
                     alertMsg.send("Impossible d'envoyer le message", "danger");
                 }, true
             );
+        };
+
+        vm.smoothScroll = function (situation) {
+            if (situation == "p1") {
+                vm.showTuto = !vm.showTuto;
+                vm.showBoucheAOreille = false;
+                vm.showSupport = false;
+                setTimeout(function () {
+                    smoothScroll(document.getElementById('pro1'));
+                }, 400);
+            }
+            else if (situation == "p2") {
+                vm.showTuto = false;
+                vm.showBoucheAOreille = !vm.showBoucheAOreille;
+                vm.showSupport = false;
+                setTimeout(function () {
+                    smoothScroll(document.getElementById('pro2'));
+                }, 400);
+            }
+            else if (situation == "contact") {
+                vm.customerCard1 = false;
+                vm.showTuto = false;
+                vm.showBoucheAOreille = false;
+                vm.showSupport = !vm.showSupport;
+                setTimeout(function () {
+                    smoothScroll(document.getElementById('support'));
+                }, 400);
+            }
+            else if (situation == "c1") {
+                vm.showSupport = false;
+                vm.customerCard1 = !vm.customerCard1;
+                setTimeout(function () {
+                    smoothScroll(document.getElementById('cust1'));
+                }, 400);
+            }
         };
     }
 })();

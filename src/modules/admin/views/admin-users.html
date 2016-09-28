@@ -15,7 +15,9 @@
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content">
-        <div class="container">
+        <div class="container-fluid">
+
+
             <div class="card col-xs-12 col-sm-4">
                 <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer"
                    ng-click="vm.reinitializeCreatedDate()"></i>
@@ -67,59 +69,86 @@
                 </p>
             </div>
             <div class="card col-xs-12 col-sm-2 col-sm-offset-1 t-center">
-                <h4>Valider le(s) pro(s)</h4>
+                <h4>Envoyer E-mail aux utilisateurs sélectionnés</h4>
                 <button class="btn btn-success waves-effect m-b-10"
-                        data-ng-disabled="!vm.oneOrMorePro()"
-                        data-ng-click="vm.validatePro()">Valider
+                        data-ng-disabled="!vm.oneOrMoreUser()"
+                        data-toggle="modal" data-target="#myModal">
+                    Envoyer
                 </button>
             </div>
             <table ng-table="vm.usersTable" class="table table-striped" show-filter="true">
-                <tr data-ng-repeat="pro in $data | filter:search | casaDateRangePicker:vm.fromDate:vm.toDate:'created' | casaDateRangePicker:vm.updatedFromDate:vm.updatedToDate:'updated'"
+                <tr data-ng-repeat="user in $data | filter:search | casaDateRangePicker:vm.fromDate:vm.toDate:'created' | casaDateRangePicker:vm.updatedFromDate:vm.updatedToDate:'updated'"
                     class="t-center">
-
-                    <td data-title="'Nom'" class="pointer c-blue" filter="{userName: 'text'}" data-sortable="'userName'"
-                        data-ui-sref="admin-pro-details({professionnalId: pro.id})">
-                        {{pro.userName}}
+                    <td data-title="'Type'" class="pointer" filter="{isPro: 'text'}" data-sortable="'isPro'"
+                        data-ng-click="vm.userClicked(user)"
+                        ng-class="{'c-orange' : user.isPro == 'Professionnel', 'c-blue' : user.isPro == 'Particulier'}">
+                        {{ user.isPro }}
                     </td>
-                    <td data-title="'Ville'" filter="{city: 'text'}" data-sortable="'city'">
-                        {{ pro.city }}
-                    </td>
-                    <td data-title="'Création'" data-sortable="'created'">
-                        {{ pro.created | date:"dd/MM/yyyy" }}
-                    </td>
-                    <td data-title="'Mis à jour'" data-sortable="'updated'">
-                        {{ pro.updated| date:"dd/MM/yyyy" }}
-                    </td>
-                    <td data-title="'Eligible'"
-                        filter="{eligibleStatus: 'text'}"
-                        ng-class="{'bgm-green' : pro.eligibleStatus == 'Validé', 'bgm-yellow' : pro.eligibleStatus == 'Incomplet', 'bgm-blue' : pro.eligibleStatus == 'Complet', 'bgm-red' : pro.eligibleStatus == 'Refusé'}"
-                        data-sortable="'eligibleStatus'">
-                        {{ pro.eligibleStatus }}
-                    </td>
-                    <td data-title="'Statut'"
-                        filter="{status: 'text'}"
-                        ng-class="{'bgm-green' : pro.status == 'Validé', 'bgm-yellow' : pro.status == 'Incomplet', 'bgm-blue' : pro.status == 'Complet', 'bgm-red' : pro.status == 'Refusé'}"
-                        data-sortable="'status'">
-                        {{ pro.status }}
-                    </td>
-                    <td data-title="'Pièces jointes'">
-                        <div data-ng-repeat="file in pro.verifications">
-                            <a ng-href="{{ file.cloudinaryPublicId | yakaCloudinaryDownload }}">{{ file.name |
-                                casaProfessionalDoc }}</a>
-                        </div>
-                    </td>
-                    <td data-title="'Vérif nécessaire'" filter="{needToRecheck: 'text'}"
-                        data-sortable="'needToRecheck'">
-                        {{ pro.newNeedToRecheck}}
-                    </td>
-                    <td class="checkbox">
+                    <td data-title="'Select'" class="checkbox">
                         <label>
-                            <input type="checkbox" data-ng-model="pro.selected" value="">
+                            <input type="checkbox" data-ng-model="user.selected" value="">
                             <i class="input-helper"></i>
                         </label>
+                    </td>
+                    <td data-title="'Nom'" filter="{name: 'text'}" data-sortable="'name'">
+                        {{ user.name }}
+                    </td>
+                    <td data-title="'Created'" data-sortable="'created'">
+                        {{ user.created | date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Updated'" data-sortable="'updated'">
+                        {{ user.updated | date:"dd/MM/yyyy" }}
+                    </td>
+                    <td data-title="'Ville'" filter="{place: 'text'}"
+                        data-sortable="'place'">
+                        {{ user.place }}
+                    </td>
+                    <td data-title="'Recommandations'" filter="{recommendedProNumber: 'text'}"
+                        data-sortable="'recommendedProNumber'">
+                        {{ user.recommendedProNumber }}
+                    </td>
+                    <td data-title="'Projet/offre en cours'" filter="{onGoingProjectNumber: 'text'}"
+                        data-sortable="'onGoingProjectNumber'">
+                        {{ user.onGoingProjectNumber }}
+                    </td>
+                    <td data-title="'Projet/offre terminé'" filter="{completedProjectNumber: 'text'}"
+                        data-sortable="'completedProjectNumber'">
+                        {{ user.completedProjectNumber }}
+                    </td>
+                    <td data-title="'Projet/offre refusé'" filter="{canceledProjectNumber: 'text'}"
+                        data-sortable="'canceledProjectNumber'">
+                        {{ user.canceledProjectNumber }}
+                    </td>
+                    <td data-title="'Contact'" filter="{contactNumber: 'text'}"
+                        data-sortable="'contactNumber'">
+                        {{ user.contactNumber }}
+                    </td>
+                    <td data-title="'Invité'" filter="{invitationSentNumber: 'text'}"
+                        data-sortable="'invitationSentNumber'">
+                        {{ user.invitationSentNumber }}
+                    </td>
+                    <td data-title="'id db'" filter="{id: 'text'}" data-sortable="'id'">
+                        {{ user.id }}
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Liste utilisateurs sélectionnés</h4>
+            </div>
+            <div class="modal-body">
+                <pre>{{vm.userSelectedEmailList()}}</pre>
+            </div>
+        </div>
+    </div>
+</div>
