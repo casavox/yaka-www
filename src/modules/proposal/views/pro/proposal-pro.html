@@ -228,6 +228,36 @@
                             </li>
                         </ul>
 
+                        <div class="col-xs-12 chatChoice no-padding bgm-white c-gray"
+                             data-ng-if="vm.showChat">
+                            <div class="col-xs-12 col-sm-5 col-md-3 no-padding">
+                                <div class="col-xs-6 chatTab p-b-5 t-center pointer"
+                                     data-ng-class="{'p-border' : !vm.chatWithAdmin}"
+                                     data-ng-click="vm.changeUserDialog('admin')">
+                                    <div class="p-relative center divAvatarIcon">
+                                        <cl-image class="m-t-5"
+                                                  public-id="casavox/logo"
+                                                  format="png">
+                                            <cl-transformation height="48" width="48" crop="fill" radius="max"/>
+                                        </cl-image>
+                                        <i class="proposalUnreadMessagesIndicatorChatTabCasaVox"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 chatTab p-b-5 t-center pointer"
+                                     data-ng-class="{'p-border' : vm.chatWithAdmin}"
+                                     data-ng-click="vm.changeUserDialog('customer')">
+                                    <div class="p-relative center divAvatarIcon">
+                                        <yaka-avatar class="m-t-5"
+                                                     size="44" user="vm.project.user"></yaka-avatar>
+                                        <i class="proposalUnreadMessagesIndicatorChatTab"
+                                           data-ng-if="vm.proposal.unreadMessages"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="hidden-xs col-sm-7 col-md-9 no-padding bgm-gray-lighter emptyCol p-border"></div>
+                        </div>
+
                         <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.proposal.chat.id}}"

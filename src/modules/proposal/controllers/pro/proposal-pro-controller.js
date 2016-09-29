@@ -13,6 +13,11 @@
             $state.go("home");
         }
 
+        if ($stateParams.chat) {
+            vm.showChat = true;
+            vm.scrollBottom = 1;
+        }
+
         $rootScope.updateProfile();
 
         var vm = this;
@@ -47,11 +52,6 @@
             customClass: getDayClass
         };
         vm.error = {};
-
-        if ($stateParams.chat) {
-            vm.showChat = true;
-            vm.scrollBottom = 1;
-        }
 
         uiGmapGoogleMapApi.then(function (maps) {
 
@@ -235,11 +235,19 @@
                 $state.go("pro-proposal", {'proposalId': vm.proposal.id});
             }
 
+            if (vm.proposal.unreadMessages || $stateParams.chat) {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            } else {
+                vm.chatWithAdmin = false;
+            }
+
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             setMinMaxDate();
         }
+
 
         function setMinMaxDate() {
             var minDate = new Date();
@@ -388,6 +396,14 @@
         vm.smoothScrollToSend = function () {
             var element = document.getElementById('map_canvas');
             smoothScroll(element);
+        };
+
+        vm.changeUserDialog = function(user) {
+            if (user == 'admin') {
+                vm.chatWithAdmin = true;
+            } else {
+                vm.chatWithAdmin = false;
+            }
         };
 
     }

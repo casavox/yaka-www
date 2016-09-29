@@ -15,7 +15,7 @@
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggleguk.left }"></aside>
     <div id="content" class="content m-l-5">
-        <table ng-table="usersTable" class="table table-striped" show-filter="true">
+        <table ng-table="vm.usersTable" class="table table-striped" show-filter="true">
 
                 <tr data-ng-repeat="project in $data | filter:search:vm.filterAllowNullValue" class="t-center">
 
