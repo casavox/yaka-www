@@ -415,6 +415,24 @@
                 };
             }
             vm.project = res;
+
+            if (!vm.project.proposals) {
+                vm.project.proposals = [];
+            }
+
+            if (!vm.project.recoProposals) {
+                vm.project.recoProposals = [];
+            }
+
+            vm.project.proposalsRecommendations = vm.project.proposals.concat(vm.project.recoProposals);
+            console.log(vm.project.proposalsRecommendations);
+
+            angular.forEach(vm.project.proposalsRecommendations, function (project) {
+                project.name = project.professional.user.firstName + " " + project.professional.user.lastName;
+            });
+            projectSorting();
+
+
             angular.forEach(vm.project.compatiblePros, function (pro) {
                 pro.name = pro.user.firstName + " " + pro.user.lastName;
                 pro.contactRelation = pro.user.contactRelation;
@@ -470,6 +488,25 @@
             networkService.adminProfileGET(vm.project.user.id, succesProfileGET, errorProfileGET);
             proSorting();
             vm.tableData = [];
+            vm.tableDataProject = [];
+        }
+
+        function projectSorting() {
+            $scope.projectTable = new ngTableParams({
+                page: 1,
+                count: 99999999,
+                sorting: {updated: "desc"}
+            }, {
+                total: vm.project.proposalsRecommendations.length,
+                counts: [],
+                getData: function ($defer, params) {
+                    vm.tableDataProject = vm.project.proposalsRecommendations;
+                    vm.tableDataProject = params.sorting() ? $filter('orderBy')(vm.tableDataProject, params.orderBy()) : vm.tableDataProject;
+                    vm.tableDataProject = params.filter() ? $filter('filter')(vm.tableDataProject, params.filter()) : vm.tableDataProject;
+                    vm.tableDataProject = vm.tableDataProject.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(vm.tableDataProject);
+                }
+            });
         }
 
         function proSorting() {

@@ -353,9 +353,49 @@
                 </div>
             </div>
 
+            <div class="card" data-ng-if="vm.project.proposalsRecommendations.length > 0">
+                <table ng-table="projectTable" class="table table-striped" show-filter="true">
+                    <h4 class="p-15">Liste des réponses des Pros</h4>
+                    <tr data-ng-repeat="project in $data | filter:search" class="t-center pointer" data-ui-sref="admin-proposal({proposalId: project.id})">
+                        <td data-title="'Dernier MSG C>P'" filter="{id: 'text'}"
+                            data-sortable="'id'">
+                            Client / Pro
+                        </td>
+                        <td data-title="'Dernier MSG C>A'" filter="{id: 'text'}"
+                            data-sortable="'id'">
+                            Client / Admin
+                        </td>
+                        <td data-title="'Statut'" filter="{status: 'text'}"
+                            data-sortable="'status'">
+                            {{ project.status | casaProposalStatus }}
+                        </td>
+                        <td data-title="'Updated'" filter="{updated: 'text'}"
+                            data-sortable="'updated'">
+                            {{ project.updated | date:"dd/MM/yyyy" }}
+                        </td>
+                        <td data-title="'Created'" filter="{created: 'text'}"
+                            data-sortable="'created'">
+                            {{ project.created | date:"dd/MM/yyyy" }}
+                        </td>
+                        <td data-title="'Relation'" filter="{relation: 'text'}"
+                            data-sortable="'relation'">
+                            {{ project.professional.user.contactRelation }}
+                        </td>
+                        <td data-title="'Nom'" filter="{name: 'text'}"
+                            data-sortable="'name'">
+                            {{ project.name }}
+                        </td>
+                        <td data-title="'ID'" filter="{id: 'text'}"
+                            data-sortable="'id'">
+                            {{ project.id }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
             <div class="card">
                 <table ng-table="usersTable" class="table table-striped" show-filter="true">
-                        <h4 class="p-15">Pros Compatibles avec le projet</h4>
+                    <h4 class="p-15">Pros Compatibles avec le projet</h4>
                     <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
                         <td data-title="'Nom'" class="pointer c-blue" filter="{name: 'text'}" data-sortable="'name'"
                             data-ui-sref="admin-pro-details({professionnalId: pro.id})">
