@@ -8,7 +8,7 @@
              data-ng-class="{'right': showRight(message)}" yaka-scroll-item>
 
             <div class="lv-avatar"
-                 data-ng-if="message.author != 'AUTO' && message.author != 'YAKA'"
+                 data-ng-if="message.author != 'AUTO' && message.author != 'CASAVOX'"
                  data-ng-class="{'pull-left': !showRight(message), 'pull-right': showRight(message)}">
 
                 <yaka-avatar data-ng-if="!showRight(message)" user="userOther" size="35"></yaka-avatar>
@@ -18,7 +18,7 @@
             <div class="media-body">
 
                 <div class="ms-item"
-                     data-ng-class="{'messageAuto': message.author == 'AUTO' || message.author == 'YAKA'}">
+                     data-ng-class="{'messageAuto': message.author == 'AUTO' || message.author == 'CASAVOX'}">
 
                     <div class="lightbox photos"
                          data-ng-if="message.cloudinaryPublicId && message.resourceType && message.resourceType == 'image'">
@@ -44,7 +44,7 @@
 
                     <div class="m-b-20" data-ng-if="message.cloudinaryPublicId && message.text"></div>
                     <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
-                    <span class="msg yaka" data-ng-if="message.author == 'YAKA'">{{message.text}}</span>
+                    <span class="msg yaka" data-ng-if="message.author == 'CASAVOX'">{{message.text}}</span>
                     <span
                         data-ng-if="message.author == 'AUTO' && message.text != 'FIRST_RECOMMENDATION' && message.text != 'NEW_RECOMMENDATION'">
                         <i class="zmdi {{message | yakaAutoMsgIcon : getCustomerUser() : getProUser()}} yakaMessageIcon"></i>

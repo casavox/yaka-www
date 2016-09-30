@@ -253,11 +253,15 @@ angular.module('Yaka')
                 }
 
                 scope.getPlaceholder = function () {
+                    if (scope.disableSending) {
+                        return 'Cette discussion est close';
+                    }
+                    console.log(scope.userOther);
                     if (scope.userOther) {
-                        if (scope.disableSending) {
-                            return 'Cette discussion est close';
-                        } else {
-                            return 'Entrez votre message (chat privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName + ')';
+                        if (scope.userOther == "admin") {
+                            return 'Discutez en privé avec votre assistant CasaVox';
+                        } else if (scope.userOther.firstName && scope.userOther.lastName) {
+                            return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
                         }
                     }
                 }
