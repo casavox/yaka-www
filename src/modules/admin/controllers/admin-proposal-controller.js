@@ -3,13 +3,13 @@
 
     angular
         .module('Yaka')
-        .controller('ProProposalController', ProProposalController);
+        .controller('AdminProposalController', AdminProposalController);
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService, smoothScroll) {
+    function AdminProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService, smoothScroll) {
 
-        if ($localStorage.user && !$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.isAdmin) {
             $state.go("home");
         }
 
@@ -53,13 +53,6 @@
         };
         vm.error = {};
 
-        if ($stateParams.chat) {
-            setTimeout(function () {
-                vm.showChat = true;
-                vm.scrollBottom = 1;
-            }, 500);
-        }
-
         uiGmapGoogleMapApi.then(function (maps) {
 
             vm.circle =
@@ -93,7 +86,7 @@
         });
 
         if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
-            networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
+            networkService.adminProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         } else {
             $state.go('home');
         }

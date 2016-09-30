@@ -39,8 +39,6 @@
                         <div class="media">
                             <div class="pull-left">
                                 <div class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
-                                    <i class="proposalUnreadMessagesIndicatorOnList"
-                                       data-ng-show="p.unreadMessages"></i>
                                 </div>
 
                             </div>
@@ -69,6 +67,20 @@
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                    <div class="p-b-20 clearfix m-l-65" data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
+                        <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue">
+                            <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+                                <b class="l-h-30">Nouveau<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
+                                    Message<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-8 no-padding">
+                                <button class="btn bgm-orange c-white" data-ng-if="p.unreadMessages">PRO</button>
+                                <button class="btn bgm-lightblue c-white" data-ng-if="p.unreadMessagesSupport">CasaVox</button>
+                            </div>
+
+
                         </div>
                     </div>
 

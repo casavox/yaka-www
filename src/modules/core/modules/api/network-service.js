@@ -401,6 +401,9 @@
             },
             adminDeleteProject: function (id, data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/admin/projects/' + id + '/delete', data, ignoreLoading).success(success).error(error)
+            },
+            adminProposalGET: function (id, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/admin/proposals/' + id, ignoreLoading).success(success).error(error)
             }
         };
     }
