@@ -256,7 +256,6 @@ angular.module('Yaka')
                     if (scope.disableSending) {
                         return 'Cette discussion est close';
                     }
-                    console.log(scope.userOther);
                     if (scope.userOther) {
                         if (scope.userOther == "admin") {
                             return 'Discutez en privé avec votre assistant CasaVox';
