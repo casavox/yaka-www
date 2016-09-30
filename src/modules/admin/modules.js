@@ -44,5 +44,11 @@
                 controller: 'AdminProjectController',
                 controllerAs: 'vm'
             })
+            .state('admin-proposal', {
+                url: "/admin/proposal/:proposalId",
+                templateUrl: "/modules/admin/views/admin-proposal.html",
+                controller: 'AdminProposalController',
+                controllerAs: 'vm'
+            })
     }
 })();
