@@ -79,8 +79,6 @@
                                 <button class="btn bgm-orange c-white" data-ng-if="p.unreadMessages">PRO</button>
                                 <button class="btn bgm-lightblue c-white" data-ng-if="p.unreadMessagesSupport">CasaVox</button>
                             </div>
-
-
                         </div>
                     </div>
 
@@ -119,6 +117,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="p-b-20 clearfix m-l-65" data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue">
+                                    <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+                                        <b class="l-h-30">Nouveau<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8 no-padding">
+                                        <button class="btn bgm-orange c-white" data-ng-if="p.proposal.unreadMessages">PRO</button>
+                                        <button class="btn bgm-lightblue c-white" data-ng-if="p.proposal.unreadMessagesSupport">CasaVox</button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
                                     <div class="c-gray">Votre Pro. pour ce chantier</div>
@@ -151,8 +161,18 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="p.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-b-20 clearfix m-l-65" data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue">
+                                    <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+                                        <b class="l-h-30">Nouveau<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8 no-padding">
+                                        <button class="btn bgm-orange c-white" data-ng-if="p.proposal.unreadMessages">PRO</button>
+                                        <button class="btn bgm-lightblue c-white" data-ng-if="p.proposal.unreadMessagesSupport">CasaVox</button>
                                     </div>
                                 </div>
                             </div>
@@ -236,8 +256,18 @@
                                          title="{{pc.proposal.professional.user.firstName}} {{pc.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="pc.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="pc.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-b-20 clearfix m-l-65" data-ng-if="pc.proposal.unreadMessages || pc.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue">
+                                    <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+                                        <b class="l-h-30">Nouveau<span data-ng-if="pc.proposal.unreadMessages && pc.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="pc.proposal.unreadMessages && pc.proposal.unreadMessagesSupport">s</span></b>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8 no-padding">
+                                        <button class="btn bgm-orange c-white" data-ng-if="pc.proposal.unreadMessages">PRO</button>
+                                        <button class="btn bgm-lightblue c-white" data-ng-if="pc.proposal.unreadMessagesSupport">CasaVox</button>
                                     </div>
                                 </div>
                             </div>
@@ -322,8 +352,18 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="p.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-b-20 clearfix m-l-65" data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue">
+                                    <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+                                        <b class="l-h-30">Nouveau<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8 no-padding">
+                                        <button class="btn bgm-orange c-white" data-ng-if="p.proposal.unreadMessages">PRO</button>
+                                        <button class="btn bgm-lightblue c-white" data-ng-if="p.proposal.unreadMessagesSupport">CasaVox</button>
                                     </div>
                                 </div>
                             </div>
