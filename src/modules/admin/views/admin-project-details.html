@@ -132,7 +132,7 @@
                                     <div>
                                         Assistance CasaVox
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="vm.project.unreadMessages"></i>
+                                           data-ng-if="vm.proposal.supportChat.AdminUnreadMessages"></i>
                                     </div>
                                 </a>
                             </li>
@@ -311,7 +311,6 @@
                                                           data-auto-size
                                                           data-ng-trim="false"
                                                           data-ng-change="vm.descriptionChanged(image)"></textarea>
-
                                                         <div class="descriptionCounter">
                                                             {{vm.getStringLength(image.description)}} / 140 caractères
                                                         </div>
@@ -357,7 +356,7 @@
                 <h4 class="p-15" data-ng-show="vm.project.proposalsRecommendations.length == 0">La liste des réponses de pro est vide !</h4>
                 <table ng-table="projectTable" class="table table-striped" show-filter="true" data-ng-show="vm.project.proposalsRecommendations.length > 0">
                     <h4 class="p-15" data-ng-show="vm.project.proposalsRecommendations.length > 0">Liste des réponses des Pros</h4>
-                    <tr data-ng-repeat="project in $data | filter:search" class="t-center pointer" data-ui-sref="admin-proposal({proposalId: project.id})">git
+                    <tr data-ng-repeat="project in $data | filter:search" class="t-center pointer" data-ui-sref="admin-proposal({proposalId: project.id})">
                         <td data-title="'Dernier MSG C>P'" filter="{id: 'text'}"
                             data-sortable="'id'">
                             Client / Pro
