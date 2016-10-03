@@ -85,7 +85,7 @@
             };
         });
 
-        if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
+        if ($stateParams.proposalId) {
             networkService.adminProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         } else {
             $state.go('home');
@@ -230,10 +230,6 @@
             }
             $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
                 " - " + vm.project.title;
-
-            if (vm.proposal.status != 'START') {
-                $state.go("pro-proposal", {'proposalId': vm.proposal.id});
-            }
 
             if (vm.proposal.unreadMessages || $stateParams.chat) {
                 vm.showChat = true;

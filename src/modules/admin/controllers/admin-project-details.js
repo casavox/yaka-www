@@ -447,6 +447,7 @@
                     pro.isInvited == "OUI";
                 }
                 pro.distance = (pro.distance / 1000).toFixed(2);
+                pro.numberDistance = Number(pro.distance);
                 pro.status = $filter('casaProfessionalStatus')(pro.status);
 
             });
