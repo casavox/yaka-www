@@ -601,5 +601,16 @@
                 }
             });
         };
+
+        vm.showChat = false;
+        vm.scrollBottom = 0;
+
+        if ($stateParams.chat) {
+
+            setTimeout(function() {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
     }
 })();

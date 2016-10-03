@@ -45,7 +45,9 @@ angular.module('Yaka')
                         return;
                     }
                     var sendMessageApi;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == "admin") {
+                        sendMessageApi = networkService.sendMessageAdmin;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         sendMessageApi = networkService.sendMessage;
                     } else {
                         sendMessageApi = networkService.sendMessagePro;
@@ -61,16 +63,16 @@ angular.module('Yaka')
 
                 scope.showRight = function (message) {
                     if (message.author && message.author == 'CUSTOMER') {
-                        if ($localStorage.user && $localStorage.user.professional) {
-                            return false;
-                        } else {
+                        if (scope.userMe != "admin" && !$localStorage.user || !$localStorage.user.professional) {
                             return true;
                         }
                     } else if (message.author && message.author == 'PRO') {
                         if ($localStorage.user && $localStorage.user.professional) {
                             return true;
-                        } else {
-                            return false;
+                        }
+                    } else if (message.author && message.author == 'CASAVOX') {
+                        if (scope.userMe == "admin") {
+                            return true;
                         }
                     }
                     return false;
@@ -258,7 +260,9 @@ angular.module('Yaka')
                     }
                     if (scope.userOther) {
                         if (scope.userOther == "admin") {
-                            return 'Discutez en privé avec votre assistant CasaVox';
+                            return 'Discutez en privé avec Victor, votre assistant CasaVox';
+                        } else if (scope.userMe == "admin") {
+                            return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
                         } else if (scope.userOther.firstName && scope.userOther.lastName) {
                             return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
                         }

@@ -130,7 +130,7 @@
                                 data-ng-class="{'active': vm.showChat}">
                                 <a class="" href="" data-ng-click="vm.showChat = true; vm.scrollBottom = 1">
                                     <div>
-                                        Messages
+                                        Assistance CasaVox
                                         <i class="proposalUnreadMessagesIndicator"
                                            data-ng-if="vm.project.unreadMessages"></i>
                                     </div>
@@ -140,10 +140,10 @@
 
                         <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
-                                   chat-id="{{vm.project.chat.id}}"
+                                   chat-id="{{vm.project.supportChat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
-                                   user-me="app.getUser()"
-                                   user-other="vm.proposal.professional.user"></yaka-chat>
+                                   user-me="'admin'"
+                                   user-other="vm.project.user"></yaka-chat>
 
                         <div data-ng-show="!vm.showChat">
 
@@ -356,7 +356,8 @@
             <div class="card" data-ng-if="vm.project.proposalsRecommendations.length > 0">
                 <table ng-table="projectTable" class="table table-striped" show-filter="true">
                     <h4 class="p-15">Liste des réponses des Pros</h4>
-                    <tr data-ng-repeat="project in $data | filter:search" class="t-center pointer" data-ui-sref="admin-proposal({proposalId: project.id})">
+                    <tr data-ng-repeat="project in $data | filter:search" class="t-center pointer"
+                        data-ui-sref="admin-proposal({proposalId: project.id})">
                         <td data-title="'Dernier MSG C>P'" filter="{id: 'text'}"
                             data-sortable="'id'">
                             Client / Pro

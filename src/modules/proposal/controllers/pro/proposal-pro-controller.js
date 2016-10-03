@@ -199,7 +199,7 @@
                 return false;
             }
             return true;
-        }
+        };
 
         function selectImagePreview(media) {
             vm.imgTmpPreview = media;

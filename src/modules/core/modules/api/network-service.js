@@ -404,6 +404,9 @@
             },
             adminProposalGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/proposals/' + id, ignoreLoading).success(success).error(error)
+            },
+            sendMessageAdmin: function (id, data, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/admin/chat/' + id + "/message", data, ignoreLoading).success(success).error(error)
             }
         };
     }
