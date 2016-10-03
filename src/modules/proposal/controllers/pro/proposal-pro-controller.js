@@ -53,6 +53,13 @@
         };
         vm.error = {};
 
+        if ($stateParams.chat) {
+            setTimeout(function () {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
+
         uiGmapGoogleMapApi.then(function (maps) {
 
             vm.circle =
@@ -192,7 +199,7 @@
                 return false;
             }
             return true;
-        }
+        };
 
         function selectImagePreview(media) {
             vm.imgTmpPreview = media;

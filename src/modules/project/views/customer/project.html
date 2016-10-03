@@ -145,10 +145,10 @@
 
                         <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
-                                   chat-id="{{vm.project.chat.id}}"
+                                   chat-id="{{vm.project.supportChat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
                                    user-me="app.getUser()"
-                                   user-other="vm.proposal.professional.user"></yaka-chat>
+                                   user-other="'admin'"></yaka-chat>
 
                         <div data-ng-show="!vm.showChat">
 

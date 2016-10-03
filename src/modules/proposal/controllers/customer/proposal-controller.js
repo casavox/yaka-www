@@ -25,8 +25,10 @@
         }
 
         if ($stateParams.chat) {
-            vm.showChat = true;
-            vm.scrollBottom = 1;
+            setTimeout(function() {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
         }
 
         function loadProposal(ignoreLoading) {
