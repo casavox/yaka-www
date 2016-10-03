@@ -235,12 +235,11 @@
                                      data-ng-class="{'p-border' : !vm.chatWithAdmin}"
                                      data-ng-click="vm.changeUserDialog('admin')">
                                     <div class="p-relative center divAvatarIcon">
-                                        <cl-image class="m-t-5"
-                                                  public-id="casavox/logo"
-                                                  format="png">
-                                            <cl-transformation height="48" width="48" crop="fill" radius="max"/>
+                                        <yaka-avatar class="m-t-5"
+                                                     size="44" user="vm.proposal.professional.user"></yaka-avatar>
                                         </cl-image>
-                                        <i class="proposalUnreadMessagesIndicatorChatTabCasaVox"></i>
+                                        <i class="proposalUnreadMessagesIndicatorChatTab"></i>
+                                        <p class="assistanceTxt">ASSISTANCE</p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"

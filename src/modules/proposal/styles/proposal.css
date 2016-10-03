@@ -23,16 +23,13 @@
     border-right: 1px white solid;
 }
 
-.proposalUnreadMessagesIndicatorChatTabCasaVox {
-    display: inline-block;
-    font-style: normal;
-    background: #f44336;
-    height: 8px;
-    width: 8px;
-    border-radius: 50%;
-    top: 9px;
-    right: 9px;
+.assistanceTxt {
     position: absolute;
+    color: black;
+    font-size: 13px;
+    top: 43px;
+    left: -14px;
+    font-weight: 500;
 }
 
 .proposalUnreadMessagesIndicatorChatTab {
@@ -161,6 +158,16 @@
     height: auto;
 }
 
+.scrollViewChatProposalAdminAndPro {
+    position: absolute;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    top: 106px;
+    width: auto;
+    height: auto;
+}
+
 @media (min-width: 1200px) {
     .scrollViewChatProposal {
         left: 300px;
@@ -253,6 +260,11 @@
     .scrollViewChatProposal {
         left: 0;
         top: 38px;
+    }
+
+    .scrollViewChatProposalAdminAndPro {
+        left: 0;
+        top: 96px;
     }
 
     .proposalMainView yaka-chat .lv-footer {
