@@ -352,30 +352,18 @@
                                         <casa-name-and-contact user="project.user"></casa-name-and-contact>
                                     </div>
                                 </div>
-                                <div class="hidden-xs p-b-5 clearfix" data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
-                                    <div class="col-xs-12 p-l-0 c-lightblue">
-                                        <div class="col-sm-3 no-padding">
-                                            <b class="l-h-30">Nouveau<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
+                                <div class="clearfix"
+                                     data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
+                                    <div class="col-xs-12 col-sm-7 col-md-7 c-lightblue no-padding">
+                                        <div class="no-padding">
+                                            <b class="l-h-30">Nouveau<span
+                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
                                                 Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
+                                            <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="project.unreadMessages">Client</button>
+                                            <button class="btn btn-xs bgm-orange c-white" data-ng-if="project.unreadMessagesSupport">
+                                                CasaVox
+                                            </button>
                                         </div>
-                                        <div class="col-sm-9 no-padding">
-                                            <button class="btn bgm-orange c-white" data-ng-if="project.unreadMessages">PRO</button>
-                                            <button class="btn bgm-lightblue c-white" data-ng-if="project.unreadMessagesSupport">CasaVox</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="visible-xs clearfix m-t-5" data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
-                                <div class="col-xs-12 center c-lightblue no-padding">
-                                    <div class="col-xs-6 no-padding"
-                                            data-ng-class="{'col-xs-6 col-xs-offset-2': (!project.unreadMessages || !project.unreadMessagesSupport)}">
-                                        <b class="l-h-30">Nouveau<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
-                                            Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
-                                    </div>
-                                    <div class="col-xs-6 no-padding"
-                                         data-ng-class="{'col-xs-4': (!project.unreadMessages || !project.unreadMessagesSupport)}">
-                                    <button class="btn bgm-orange c-white" data-ng-if="project.unreadMessages">PRO</button>
-                                        <button class="btn bgm-lightblue c-white" data-ng-if="project.unreadMessagesSupport">CasaVox</button>
                                     </div>
                                 </div>
                             </div>

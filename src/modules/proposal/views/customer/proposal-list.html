@@ -82,11 +82,13 @@
                                 <div class="c-gray">
                                     <small>Publié le {{vm.project.published | date:'d MMMM y'}}</small>
                                 </div>
-                                <div class="clearfix p-r-0 m-t-5 hidden-xs"git>
-                                    <div class="col-xs-12 c-lightblue no-padding">
+                                <div class="clearfix p-r-0" data-ng-if="vm.project.unreadMessagesSupport">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue no-padding">
                                         <div class="no-padding">
-                                            <b class="l-h-30">Nouveau Message</b>
-                                            <button class="btn bgm-lightblue c-white">CasaVox</button>
+                                            <b>Nouveau Message</b>
+                                            <button class="btn btn-xs bgm-lightblue c-white">
+                                                CasaVox
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -100,14 +102,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="clearfix p-r-0 m-t-5 visible-xs">
-                            <div class="col-xs-12 c-lightblue no-padding">
-                                <div class="no-padding">
-                                    <b class="l-h-30">Nouveau Message</b>
-                                    <button class="btn bgm-lightblue c-white">CasaVox</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -230,17 +224,20 @@
                                                 <span am-time-ago="vm.project.proposal.updated"></span>
                                             </small>
                                         </div>
-                                        <div class="clearfix p-r-0 m-t-5"
+
+                                        <div class="clearfix p-r-0"
                                              data-ng-if="vm.project.unreadMessages || vm.project.unreadMessagesSupport">
-                                            <div class="col-xs-12 c-lightblue no-padding">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
                                                 <div class="no-padding">
-                                                    <b class="l-h-30">Nouveau<span
+                                                    <b>Nouveau<span
                                                         data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">x</span>
-                                                        Message<span
-                                                            data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">s</span></b>
-                                                    <button class="btn bgm-orange c-white" data-ng-if="vm.project.unreadMessages">PRO
+                                                        Message<span data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">s</span></b>
+                                                    <button class="btn btn-xs bgm-orange c-white" data-ng-if="vm.project.unreadMessages">
+                                                        Pro
                                                     </button>
-                                                    <button class="btn bgm-lightblue c-white">CasaVox</button>
+                                                    <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="vm.project.unreadMessagesSupport">
+                                                        CasaVox
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -372,12 +369,15 @@
                                                 </small>
                                             </div>
                                         </div>
+
                                         <div class="clearfix p-r-0"
                                              data-ng-if="p.unreadMessages">
-                                            <div class="col-xs-10 c-lightblue no-padding">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue no-padding">
                                                 <div class="no-padding">
-                                                    <b class="l-h-30">Nouveau Message</b>
-                                                    <button class="btn bgm-orange c-white">PRO</button>
+                                                    <b>Nouveau Message</b>
+                                                    <button class="btn btn-xs bgm-orange c-white">
+                                                        PRO
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -442,12 +442,13 @@
                                                 </small>
                                             </div>
                                         </div>
+
                                         <div class="clearfix p-r-0"
                                              data-ng-if="p.unreadMessages">
                                             <div class="col-xs-10 c-lightblue no-padding">
                                                 <div class="no-padding">
                                                     <b class="l-h-30">Nouveau Message</b>
-                                                    <button class="btn bgm-orange c-white">PRO</button>
+                                                    <button class="btn btn-xs bgm-orange c-white">PRO</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -508,17 +509,20 @@
                                                     <span am-time-ago="p.updated"></span>
                                                 </small>
                                             </div>
-                                            <div class="clearfix p-r-0 m-t-5"
+
+                                            <div class="clearfix p-r-0"
                                                  data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
-                                                <div class="col-xs-12 c-lightblue no-padding">
+                                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
                                                     <div class="no-padding">
-                                                        <b class="l-h-30">Nouveau<span
+                                                        <b>Nouveau<span
                                                             data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
-                                                            Message<span
-                                                                data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
-                                                        <button class="btn bgm-orange c-white" data-ng-if="p.unreadMessages">PRO
+                                                            Message<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.unreadMessages">
+                                                            Pro
                                                         </button>
-                                                        <button class="btn bgm-lightblue c-white">CasaVox</button>
+                                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="p.unreadMessagesSupport">
+                                                            CasaVox
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -578,17 +582,18 @@
                                                     <span am-time-ago="p.updated"></span>
                                                 </small>
                                             </div>
+
                                             <div class="clearfix p-r-0 m-t-5"
                                                  data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
                                                 <div class="col-xs-12 c-lightblue no-padding">
                                                     <div class="no-padding">
-                                                        <b class="l-h-30">Nouveau<span
+                                                        <b>Nouveau<span
                                                             data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
                                                             Message<span
                                                                 data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
-                                                        <button class="btn bgm-orange c-white" data-ng-if="p.unreadMessages">PRO
+                                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.unreadMessages">PRO
                                                         </button>
-                                                        <button class="btn bgm-lightblue c-white">CasaVox</button>
+                                                        <button class="btn btn-xs bgm-lightblue c-white">CasaVox</button>
                                                     </div>
                                                 </div>
                                             </div>
