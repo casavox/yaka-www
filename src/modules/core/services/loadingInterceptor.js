@@ -18,7 +18,6 @@
 
             return {
                 request: function (config) {
-                    console.log(config);
                     if (!config.ignoreLoading && !_.contains(config.url, "api.cloudinary.com")) {
                         xhrCreations++;
                     }
