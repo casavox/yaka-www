@@ -18,28 +18,29 @@
 
             return {
                 request: function (config) {
-                    if (!config.ignoreLoading) {
+                    console.log(config);
+                    if (!config.ignoreLoading && !_.contains(config.url, "api.cloudinary.com")) {
                         xhrCreations++;
                     }
                     updateStatus();
                     return config;
                 },
                 requestError: function (rejection) {
-                    if (!rejection.config.ignoreLoading) {
+                    if (!rejection.config.ignoreLoading && !_.contains(rejection.config.url, "api.cloudinary.com")) {
                         xhrResolutions++;
                     }
                     updateStatus();
                     return $q.reject(rejection);
                 },
                 response: function (response) {
-                    if (!response.config.ignoreLoading) {
+                    if (!response.config.ignoreLoading && !_.contains(response.config.url, "api.cloudinary.com")) {
                         xhrResolutions++;
                     }
                     updateStatus();
                     return response;
                 },
                 responseError: function (rejection) {
-                    if (!rejection.config.ignoreLoading) {
+                    if (!rejection.config.ignoreLoading && !_.contains(rejection.config.url, "api.cloudinary.com")) {
                         xhrResolutions++;
                     }
                     updateStatus();
