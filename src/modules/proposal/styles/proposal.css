@@ -30,6 +30,8 @@
     top: 43px;
     left: -14px;
     font-weight: 500;
+    overflow: visible;
+    width: 80px;
 }
 
 .proposalUnreadMessagesIndicatorChatTab {
@@ -185,6 +187,7 @@
     .scrollViewChatProposal {
         left: 300px;
     }
+
     .scrollViewChatProposalAdminAndPro {
         position: absolute;
         bottom: 0;

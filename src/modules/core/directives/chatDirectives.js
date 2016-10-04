@@ -38,7 +38,8 @@ angular.module('Yaka')
                 scope.getCustomerUser = function () {
                     if (scope.userMe == 'admin') {
                         return scope.userOther;
-                    } if ($localStorage.user && !$localStorage.user.professional) {
+                    }
+                    if ($localStorage.user && !$localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -235,6 +236,7 @@ angular.module('Yaka')
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('proposalStatus', function () {
                     if (scope.userMe != 'admin' &&
+                        scope.userOther != 'admin' &&
                         (scope.proposalStatus == "PRO_DECLINED" ||
                         scope.proposalStatus == "CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RECO_PRO_DECLINED" ||
