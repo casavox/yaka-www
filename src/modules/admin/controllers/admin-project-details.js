@@ -439,9 +439,9 @@
 
             // Unread Messages Customer / Admin, Admin Side
             if (vm.project.supportChat.adminUnreadMessages == true) {
-                vm.project.lastCustAdminCusAdmintMsg = vm.project.supportChat.updated;
+                vm.project.lastCustAdminAdminMsg = vm.project.supportChat.updated;
             } else {
-                vm.project.lastCustAdminAdminCustMsg = "-";
+                vm.project.lastCustAdminAdminMsg = "-";
             }
 
             if (!vm.project.recoProposals) {
