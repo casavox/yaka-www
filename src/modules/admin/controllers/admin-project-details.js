@@ -420,12 +420,35 @@
                 vm.project.proposals = [];
             }
 
+            console.log(vm.project.proposals);
+
+            angular.forEach(vm.project.proposals, function (projectProposals) {
+                if (projectProposals.unreadMessages == true) {
+                    vm.project.lastCustProMsg = projectProposals.updated;
+                } else {
+                    vm.project.lastCustProMsg = "-";
+                }
+            });
+
+            // Unread Messages Customer / Admin, Customer Side
+            if (vm.project.unreadMessagesSupport == true) {
+                vm.project.lastCustAdminCustMsg = vm.project.supportChat.updated;
+            } else {
+                vm.project.lastCustAdminCustMsg = "-";
+            }
+
+            // Unread Messages Customer / Admin, Admin Side
+            if (vm.project.supportChat.adminUnreadMessages == true) {
+                vm.project.lastCustAdminCusAdmintMsg = vm.project.supportChat.updated;
+            } else {
+                vm.project.lastCustAdminAdminCustMsg = "-";
+            }
+
             if (!vm.project.recoProposals) {
                 vm.project.recoProposals = [];
             }
 
             vm.project.proposalsRecommendations = vm.project.proposals.concat(vm.project.recoProposals);
-            console.log(vm.project.proposalsRecommendations);
 
             angular.forEach(vm.project.proposalsRecommendations, function (project) {
                 project.name = project.professional.user.firstName + " " + project.professional.user.lastName;
@@ -608,7 +631,7 @@
 
         if ($stateParams.chat) {
 
-            setTimeout(function() {
+            setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
