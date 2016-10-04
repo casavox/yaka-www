@@ -132,7 +132,7 @@
                                     <div>
                                         Assistance CasaVox
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="vm.proposal.supportChat.AdminUnreadMessages"></i>
+                                           data-ng-if="vm.project.supportChat.AdminUnreadMessages"></i>
                                     </div>
                                 </a>
                             </li>
@@ -388,6 +388,18 @@
                         <td data-title="'ID'" filter="{id: 'text'}"
                             data-sortable="'id'">
                             {{ project.id }}
+                        </td>
+                        <td data-title="'Last unread cust pro msg'" filter="{lastCustProMsg: 'text'}"
+                            data-sortable="'id'">
+                            {{ vm.project.lastCustProMsg | date:'dd/MM/yyyy @ HH:mm' }}
+                        </td>
+                        <td data-title="'Last unread cust/Admin (CUST)'" filter="{lastCustAdminCustMsg: 'text'}"
+                            data-sortable="'id'">
+                            {{ vm.project.lastCustAdminCustMsg | date:'dd/MM/yyyy @ HH:mm' }}
+                        </td>
+                        <td data-title="'Last unread cust/Admin (ADM)'" filter="{lastCustAdminAdminMsg: 'text'}"
+                            data-sortable="'id'">
+                            {{ vm.project.lastCustAdminAdminMsg | date:'dd/MM/yyyy @ HH:mm' }}
                         </td>
                     </tr>
                 </table>

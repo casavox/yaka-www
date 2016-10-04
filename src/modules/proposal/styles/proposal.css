@@ -185,6 +185,15 @@
     .scrollViewChatProposal {
         left: 300px;
     }
+    .scrollViewChatProposalAdminAndPro {
+        position: absolute;
+        bottom: 0;
+        left: 279px;
+        right: 0;
+        top: 106px;
+        width: auto;
+        height: auto;
+    }
 }
 
 .proposalMainView .content .card {
