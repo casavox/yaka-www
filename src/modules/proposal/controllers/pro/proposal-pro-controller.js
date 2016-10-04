@@ -23,6 +23,7 @@
         if ($stateParams.chat) {
 
             setTimeout(function() {
+
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
@@ -59,13 +60,6 @@
             customClass: getDayClass
         };
         vm.error = {};
-
-        if ($stateParams.chat) {
-            setTimeout(function () {
-                vm.showChat = true;
-                vm.scrollBottom = 1;
-            }, 500);
-        }
 
         uiGmapGoogleMapApi.then(function (maps) {
 
@@ -247,13 +241,6 @@
 
             if (vm.proposal.status != 'START') {
                 $state.go("pro-proposal", {'proposalId': vm.proposal.id});
-            }
-
-            if (vm.proposal.unreadMessages || $stateParams.chat) {
-                vm.showChat = true;
-                vm.scrollBottom = 1;
-            } else {
-                vm.chatWithAdmin = false;
             }
 
             vm.proposalTmp = angular.copy(vm.proposal);

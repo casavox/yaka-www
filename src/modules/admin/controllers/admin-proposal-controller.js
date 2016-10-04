@@ -236,13 +236,6 @@
             $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
                 " - " + vm.project.title;
 
-            if (vm.proposal.unreadMessages || $stateParams.chat) {
-                vm.showChat = true;
-                vm.scrollBottom = 1;
-            } else {
-                vm.chatWithAdmin = false;
-            }
-
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
