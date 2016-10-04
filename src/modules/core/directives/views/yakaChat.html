@@ -11,11 +11,21 @@
                  data-ng-if="message.author != 'AUTO'"
                  data-ng-class="{'pull-left': !showRight(message), 'pull-right': showRight(message)}">
 
-                <yaka-avatar data-ng-if="!showRight(message) && userMe != 'admin'" user="userOther"
+                <yaka-avatar data-ng-if="!showRight(message) && message.author != 'CASAVOX' && userMe != 'admin'"
+                             user="userOther"
                              size="35"></yaka-avatar>
-                <yaka-avatar data-ng-if="showRight(message) && userMe != 'admin'" user="userMe"
+                <yaka-avatar
+                    data-ng-if="!showRight(message) && message.author != 'CASAVOX' && userMe == 'admin' && message.author == 'PRO'"
+                    user="userPro"
+                    size="35"></yaka-avatar>
+                <yaka-avatar
+                    data-ng-if="!showRight(message) && message.author != 'CASAVOX' && userMe == 'admin' && message.author == 'CUSTOMER'"
+                    user="userOther"
+                    size="35"></yaka-avatar>
+                <yaka-avatar data-ng-if="showRight(message) && message.author != 'CASAVOX'" user="userMe"
                              size="35"></yaka-avatar>
-                <yaka-avatar data-ng-if="userMe == 'admin'" user="userMe" size="35"></yaka-avatar>
+                <yaka-avatar data-ng-if="message.author == 'CASAVOX'" user="'admin'"
+                             size="35"></yaka-avatar>
 
             </div>
             <div class="media-body">

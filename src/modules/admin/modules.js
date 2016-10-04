@@ -45,7 +45,7 @@
                 controllerAs: 'vm'
             })
             .state('admin-proposal', {
-                url: "/admin/proposal/:proposalId",
+                url: "/admin/proposal/:proposalId?chat",
                 templateUrl: "/modules/admin/views/admin-proposal.html",
                 controller: 'AdminProposalController',
                 controllerAs: 'vm'

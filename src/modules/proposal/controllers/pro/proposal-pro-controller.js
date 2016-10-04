@@ -13,14 +13,21 @@
             $state.go("home");
         }
 
-        if ($stateParams.chat) {
-            vm.showChat = true;
-            vm.scrollBottom = 1;
-        }
-
         $rootScope.updateProfile();
 
         var vm = this;
+
+        vm.showChat = false;
+        vm.scrollBottom = 0;
+
+        if ($stateParams.chat) {
+
+            setTimeout(function() {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
+
         vm.scrollBottom = 0;
         vm.showChat = false;
         vm.getWhen = getWhen;

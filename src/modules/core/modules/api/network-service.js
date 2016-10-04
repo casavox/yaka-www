@@ -395,6 +395,7 @@
             },
             adminProjectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/projects/' + data, ignoreLoading).success(success).error(error)
+                httpService.get(baseUrl + '/admin/projects/' + data, ignoreLoading).success(success).error(error)
             },
             adminProjectPUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/admin/projects/' + data.id, data, ignoreLoading).success(success).error(error);
@@ -407,6 +408,12 @@
             },
             sendMessageAdmin: function (id, data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/admin/chat/' + id + "/message", data, ignoreLoading).success(success).error(error)
+            },
+            adminMessagesGET: function (id, page, limit, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/admin/chat/' + id + "/messages?page=" + page + "&limit=" + limit, ignoreLoading).success(success).error(error)
+            },
+            adminSetChatRead: function (chatId, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/admin/chat/' + chatId + '/read', null, ignoreLoading).success(success).error(error)
             }
         };
     }

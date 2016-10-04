@@ -258,12 +258,21 @@
                                 class="hidden-xs col-sm-7 col-md-9 no-padding bgm-gray-lighter emptyCol p-border"></div>
                         </div>
 
-                        <yaka-chat class="scrollViewChatProposalAdminAndPro" data-ng-show="vm.showChat"
+                        <yaka-chat class="scrollViewChatProposalAdminAndPro" data-ng-show="vm.showChat && vm.chatWithAdmin"
+                                   scroll-bottom="{{vm.scrollBottom}}"
+                                   chat-id="{{vm.proposal.supportChat.id}}"
+                                   proposal-status="{{vm.proposal.status}}"
+                                   user-me="'admin'"
+                                   user-other="vm.proposal.professional.user"
+                                   user-pro="vm.proposal.professional.user"></yaka-chat>
+
+                        <yaka-chat class="scrollViewChatProposalAdminAndPro" data-ng-show="vm.showChat && !vm.chatWithAdmin"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.proposal.chat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
-                                   user-me="app.getUser()"
-                                   user-other="vm.proposal.project.user"></yaka-chat>
+                                   user-me="'admin'"
+                                   user-other="vm.proposal.project.user"
+                                   user-pro="vm.proposal.professional.user"></yaka-chat>
 
                         <div data-ng-show="!vm.showChat">
 

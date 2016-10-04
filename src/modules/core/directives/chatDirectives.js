@@ -8,6 +8,7 @@ angular.module('Yaka')
                 scrollBottom: '@',
                 userMe: '=',
                 userOther: '=',
+                userPro: '=',
                 proposalStatus: '@'
             },
             link: function (scope, element, attr) {
@@ -25,7 +26,9 @@ angular.module('Yaka')
                 scope.disableSending = false;
 
                 scope.getProUser = function () {
-                    if ($localStorage.user && $localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        return scope.userPro;
+                    } else if ($localStorage.user && $localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -33,7 +36,9 @@ angular.module('Yaka')
                 };
 
                 scope.getCustomerUser = function () {
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        return scope.userOther;
+                    } if ($localStorage.user && !$localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -63,7 +68,7 @@ angular.module('Yaka')
 
                 scope.showRight = function (message) {
                     if (message.author && message.author == 'CUSTOMER') {
-                        if (scope.userMe != "admin" && !$localStorage.user || !$localStorage.user.professional) {
+                        if (scope.userMe != "admin" && (!$localStorage.user || !$localStorage.user.professional)) {
                             return true;
                         }
                     } else if (message.author && message.author == 'PRO') {
@@ -90,7 +95,9 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        apiGetMessages = networkService.adminMessagesGET;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -116,7 +123,9 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        apiGetMessages = networkService.adminMessagesGET;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -225,12 +234,13 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('proposalStatus', function () {
-                    if (scope.proposalStatus == "PRO_DECLINED" ||
+                    if (scope.userMe != 'admin' &&
+                        (scope.proposalStatus == "PRO_DECLINED" ||
                         scope.proposalStatus == "CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RECO_PRO_DECLINED" ||
                         scope.proposalStatus == "RECO_CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
-                        scope.proposalStatus == "COMPLETED") {
+                        scope.proposalStatus == "COMPLETED")) {
                         scope.disableSending = true;
                     }
                 });
@@ -243,7 +253,9 @@ angular.module('Yaka')
 
                 function setChatRead() {
                     var apiSetChatRead;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        apiSetChatRead = networkService.adminSetChatRead;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         apiSetChatRead = networkService.setChatRead;
                     } else {
                         apiSetChatRead = networkService.proSetChatRead;
