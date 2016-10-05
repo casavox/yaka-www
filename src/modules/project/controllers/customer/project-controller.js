@@ -452,6 +452,14 @@
                     vm.child3 = "activate";
                     break;
             }
+
+            if (vm.project.unreadMessagesSupport) {
+
+                setTimeout(function () {
+                    vm.showChat = true;
+                    vm.scrollBottom = 1;
+                }, 500);
+            }
         }
 
         function errorProjectGET(res) {
@@ -534,7 +542,7 @@
 
         if ($stateParams.chat) {
 
-            setTimeout(function() {
+            setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);

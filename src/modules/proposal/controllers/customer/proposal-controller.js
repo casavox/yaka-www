@@ -25,7 +25,7 @@
         }
 
         if ($stateParams.chat) {
-            setTimeout(function() {
+            setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
@@ -38,6 +38,13 @@
                     " - " + vm.proposal.project.title;
                 if (vm.proposal.professional.company.address.address) {
                     vm.proposal.professional.company.address.address = vm.proposal.professional.company.address.address.replace(/, /g, "\n");
+                }
+                if (vm.proposal.unreadMessages) {
+
+                    setTimeout(function () {
+                        vm.showChat = true;
+                        vm.scrollBottom = 1;
+                    }, 500);
                 }
             }, function (err) {
                 alertMsg.send("Impossible de récupérer l'offre", "danger");
