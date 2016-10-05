@@ -240,6 +240,15 @@
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             setMinMaxDate();
+
+            if (vm.proposal.supportChat.AdminUnreadMessages || vm.proposal.unreadMessages) {
+
+                setTimeout(function() {
+
+                    vm.showChat = true;
+                    vm.scrollBottom = 1;
+                }, 500);
+            }
         }
 
 
