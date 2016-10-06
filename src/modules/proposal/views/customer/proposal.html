@@ -137,11 +137,11 @@
                                         </h2>
 
                                         <div class="col-xs-12 clearfix t-center bgm-orange c-white p-5 m-t-10"
-                                             data-ng-if="vm.proposal.firstRecommendation">Recommandation en attente
+                                             data-ng-if="vm.proposal.firstRecommendation && !vm.proposal.status == 'START'">Recommandation en attente
                                         </div>
 
                                         <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
-                                            data-ng-if="!vm.proposal.firstRecommendation">
+                                            data-ng-if="!vm.proposal.firstRecommendation || vm.proposal.status == 'START'">
                                             <li class="wa-stats center">
                                                 <span class="bgm-white">
                                                     <i class="zmdi zmdi-calendar"></i>
@@ -284,13 +284,13 @@
 
                                                     <div
                                                         class="col-xs-12 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco f-13"
-                                                        data-ng-if="vm.proposal.firstRecommendation">
+                                                        data-ng-if="vm.proposal.firstRecommendation && !vm.proposal.status == 'START'">
                                                         Recommandation en attente
                                                     </div>
                                                 </h2>
 
                                                 <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
-                                                    data-ng-if="!vm.proposal.firstRecommendation">
+                                                    data-ng-if="!vm.proposal.firstRecommendation || vm.proposal.status == 'START'">
                                                     <li class="wa-stats center">
                                                         <span class="bgm-white">
                                                             <i class="zmdi zmdi-calendar"></i>
