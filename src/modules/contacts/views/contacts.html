@@ -227,13 +227,18 @@
                                 {{invit.inviter.professional.company.address.locality}}
                             </span>
                         </div>
+
                         <div class="pull-right">
-                            <span class="waves-effect">
+                            <span class="waves-effect"
+                                  tooltip-placement="left"
+                                  uib-tooltip="Refuser l'invitation">
                             <img class="invitRefuse"
                                  src="icons/mdpi/ic_refuse_invitation.png"
                                  data-ng-click="vm.refuseInvitation(invit.inviter.inviteId)"/>
                         </span>
-                            <span class="waves-effect">
+                            <span class="waves-effect"
+                                  tooltip-placement="left"
+                                  uib-tooltip="Accepter l'invitation">
                                 <img class="invitAccept"
                                      src="icons/mdpi/ic_accept_invitation.png"
                                      data-ng-click="vm.acceptInvitation(invit.inviter.inviteId)"/>
