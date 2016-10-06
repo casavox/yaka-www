@@ -318,7 +318,6 @@
                             <div
                                 class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b m-t-5">
                             </div>
-                            <i data-ng-if="project.unreadMessages" class="proNetworkProjectUnreadIndicator"></i>
 
                             <div class="proNetworkProjectInfos d-i-b f-s-14 m-l-5">
                                 <div class="c-lightblue yakaEllipsis">
@@ -351,6 +350,20 @@
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
                                         <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                    </div>
+                                </div>
+                                <div class="clearfix"
+                                     data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
+                                    <div class="col-xs-12 col-sm-7 col-md-7 c-lightblue no-padding">
+                                        <div class="no-padding">
+                                            <b class="l-h-30">Nouveau<span
+                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
+                                                Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
+                                            <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="project.unreadMessages">Client</button>
+                                            <button class="btn btn-xs bgm-orange c-white" data-ng-if="project.unreadMessagesSupport">
+                                                CasaVox
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

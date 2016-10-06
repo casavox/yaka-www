@@ -61,11 +61,7 @@
                         <div class="d-i-b v-align-middle">
                             <yaka-avatar user="proposal.project.user" size="40"
                                          class="d-i-b v-align-middle"></yaka-avatar>
-                            <i class="unreadMessagesIndicator proProposalList ng-scope"
-                               data-ng-if="proposal.unreadMessages"></i>
                         </div>
-
-
                         <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                             {{ proposal.project.title}}
                             <small>
@@ -73,6 +69,21 @@
                                 {{proposal.project.address.locality}}
                             </small>
                         </h2>
+                    </div>
+
+                    <div class="clearfix p-r-0"
+                         data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
+                        <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                            <div class="no-padding">
+                                <b>Nouveau<span
+                                    data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
+                                    Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
+                                <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="proposal.unreadMessages">Client</button>
+                                <button class="btn btn-xs bgm-orange c-white" data-ng-if="proposal.unreadMessagesSupport">
+                                    CasaVox
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pl-body clearfix col-xs-12">
@@ -83,7 +94,7 @@
                                     user="proposal.firstRecommendation.recommender"
                                     icon-color="c-white"></casa-name-and-contact>
 
-                            <span data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">+ {{proposal.recommendations.length - 1}} autre
+                                <span data-ng-if="proposal.recommendations && proposal.recommendations.length > 1">+ {{proposal.recommendations.length - 1}} autre
                                 <span
                                     data-ng-if="proposal.recommendations && proposal.recommendations.length > 2">s</span>
                             </span>
@@ -126,10 +137,7 @@
                             <div class="d-i-b v-align-middle">
                                 <yaka-avatar user="proposal.project.user" size="40"
                                              class="d-i-b v-align-middle"></yaka-avatar>
-                                <i class="unreadMessagesIndicator proProposalList ng-scope"
-                                   data-ng-if="proposal.unreadMessages"></i>
                             </div>
-
 
                             <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                                 {{ proposal.project.title}}
@@ -138,6 +146,24 @@
                                     {{proposal.project.address.locality}}
                                 </small>
                             </h2>
+                        </div>
+
+                        <div class="p-b-10 clearfix p-r-0"
+                             data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
+                            <div class="clearfix p-r-0"
+                                 data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="proposal.unreadMessages">Client</button>
+                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="pl-body clearfix col-xs-12">

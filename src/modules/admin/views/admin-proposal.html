@@ -222,7 +222,7 @@
                                     <div>
                                         Messages
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="vm.proposal.unreadMessages || vm.proposal.unreadMessagesSupport"></i>
+                                           data-ng-if="vm.proposal.supportChat.AdminUnreadMessages || vm.proposal.unreadMessages"></i>
                                     </div>
                                 </a>
                             </li>
@@ -235,13 +235,12 @@
                                      data-ng-class="{'p-border' : !vm.chatWithAdmin}"
                                      data-ng-click="vm.changeUserDialog('admin')">
                                     <div class="p-relative center divAvatarIcon">
-                                        <cl-image class="m-t-5"
-                                                  public-id="casavox/logo"
-                                                  format="png">
-                                            <cl-transformation height="48" width="48" crop="fill" radius="max"/>
+                                        <yaka-avatar class="m-t-5"
+                                                     size="44" user="vm.proposal.professional.user"></yaka-avatar>
                                         </cl-image>
-                                        <i class="proposalUnreadMessagesIndicatorChatTabAdmin"
-                                           data-ng-if="vm.proposal.unreadMessagesSupport"></i>
+                                        <i class="proposalUnreadMessagesIndicatorChatTab"
+                                           data-ng-if="vm.proposal.supportChat.adminUnreadMessages"></i>
+                                        <p class="assistanceTxt">PRO</p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
@@ -252,6 +251,7 @@
                                                      size="44" user="vm.project.user"></yaka-avatar>
                                         <i class="proposalUnreadMessagesIndicatorChatTab"
                                            data-ng-if="vm.proposal.unreadMessages"></i>
+                                        <p class="assistanceTxt">CLIENT-PRO</p>
                                     </div>
                                 </div>
                             </div>
@@ -264,8 +264,8 @@
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.proposal.supportChat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
-                                   user-me="app.getUser()"
-                                   user-other="'admin'"
+                                   user-me="'admin'"
+                                   user-other="vm.proposal.professional.user"
                                    user-pro="vm.proposal.professional.user"></yaka-chat>
 
                         <yaka-chat class="scrollViewChatProposalAdminAndPro"
@@ -273,7 +273,7 @@
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.proposal.chat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
-                                   user-me="app.getUser()"
+                                   user-me="'admin'"
                                    user-other="vm.proposal.project.user"
                                    user-pro="vm.proposal.professional.user"></yaka-chat>
 

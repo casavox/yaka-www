@@ -39,8 +39,6 @@
                         <div class="media">
                             <div class="pull-left">
                                 <div class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
-                                    <i class="proposalUnreadMessagesIndicatorOnList"
-                                       data-ng-show="p.unreadMessages"></i>
                                 </div>
 
                             </div>
@@ -68,6 +66,22 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix p-r-0 m-l-65"
+                         data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
+                        <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                            <div class="no-padding">
+                                <b>Nouveau<span
+                                    data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
+                                    Message<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                                <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.unreadMessages">
+                                    Pro
+                                </button>
+                                <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="p.unreadMessagesSupport">
+                                    CasaVox
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -102,8 +116,22 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i class="proposalUnreadMessagesIndicatorOnPro ng-scope"
-                                           data-ng-if="p.proposal.unreadMessages"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="p.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -139,11 +167,27 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="p.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="p.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
                                     <div class="c-red"><strong>Notez votre Pro. pour ce chantier</strong></div>
@@ -224,11 +268,27 @@
                                          title="{{pc.proposal.professional.user.firstName}} {{pc.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="pc.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="pc.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="pc.proposal.unreadMessages || pc.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="pc.proposal.unreadMessages && pc.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="pc.proposal.unreadMessages && pc.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="pc.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="pc.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="media-body pull-left" title="{{pc.title}}"
                                  data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                                 <div class="media-heading m-b-5">
@@ -310,11 +370,27 @@
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="p.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="p.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="media-body pull-left" title="{{p.title}}"
                                  data-ui-sref="proposal({'proposalId': p.proposal.id})">
                                 <div class="media-heading m-b-5">

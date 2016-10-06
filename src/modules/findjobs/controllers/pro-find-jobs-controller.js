@@ -159,7 +159,7 @@
                     onLeadsLoaded(res);
                 }, function errorProLeads() {
                     alertMsg.send("Imposible de récupérer les offres", "danger");
-                }
+                }, true
             );
         }
 

@@ -452,6 +452,14 @@
                     vm.child3 = "activate";
                     break;
             }
+
+            if (vm.project.unreadMessagesSupport) {
+
+                setTimeout(function () {
+                    vm.showChat = true;
+                    vm.scrollBottom = 1;
+                }, 500);
+            }
         }
 
         function errorProjectGET(res) {
@@ -528,5 +536,16 @@
                 }
             });
         };
+
+        vm.showChat = false;
+        vm.scrollBottom = 0;
+
+        if ($stateParams.chat) {
+
+            setTimeout(function () {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
     }
 })();

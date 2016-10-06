@@ -3,34 +3,31 @@
 
     angular
         .module('Yaka')
-        .controller('ProProposalController', ProProposalController);
+        .controller('AdminProposalController', AdminProposalController);
 
     //
     //Controller login
-    function ProProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService, smoothScroll) {
+    function AdminProposalController($rootScope, $scope, $localStorage, $state, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi, modalService, smoothScroll) {
 
-        if ($localStorage.user && !$localStorage.user.professional) {
+        if ($localStorage.user && !$localStorage.user.isAdmin) {
             $state.go("home");
         }
 
-        $rootScope.updateProfile();
-
         var vm = this;
+
+        $rootScope.updateProfile();
 
         vm.showChat = false;
         vm.scrollBottom = 0;
 
         if ($stateParams.chat) {
 
-            setTimeout(function() {
-
+            setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
         }
 
-        vm.scrollBottom = 0;
-        vm.showChat = false;
         vm.getWhen = getWhen;
         vm.selectImagePreview = selectImagePreview;
         vm.selectPrice = selectPrice;
@@ -93,8 +90,8 @@
             };
         });
 
-        if (!angular.isUndefined($stateParams.proposalId) && $stateParams.proposalId) {
-            networkService.proProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
+        if ($stateParams.proposalId) {
+            networkService.adminProposalGET($stateParams.proposalId, succesProjectGET, errorProjectGET);
         } else {
             $state.go('home');
         }
@@ -200,7 +197,7 @@
                 return false;
             }
             return true;
-        };
+        }
 
         function selectImagePreview(media) {
             vm.imgTmpPreview = media;
@@ -239,24 +236,19 @@
             $rootScope.pageName = vm.project.user.firstName + " " + vm.project.user.lastName +
                 " - " + vm.project.title;
 
-            if (vm.proposal.status != 'START') {
-                $state.go("pro-proposal", {'proposalId': vm.proposal.id});
-            }
-
             vm.proposalTmp = angular.copy(vm.proposal);
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             setMinMaxDate();
 
-            if (vm.proposal.unreadMessages || vm.proposal.unreadMessagesSupport) {
+            if (vm.proposal.supportChat.AdminUnreadMessages || vm.proposal.unreadMessages) {
 
-                setTimeout(function() {
+                setTimeout(function () {
 
                     vm.showChat = true;
                     vm.scrollBottom = 1;
                 }, 500);
             }
-
         }
 
 
@@ -409,7 +401,7 @@
             smoothScroll(element);
         };
 
-        vm.changeUserDialog = function(user) {
+        vm.changeUserDialog = function (user) {
             if (user == 'admin') {
                 vm.chatWithAdmin = true;
             } else {
