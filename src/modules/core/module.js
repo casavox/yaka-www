@@ -85,7 +85,9 @@ angular.module('Yaka', [
         })
         .config(config);
 
-    function config($urlRouterProvider, $httpProvider, $authProvider, CONFIG) {
+    function config($urlRouterProvider, $httpProvider, $authProvider, $locationProvider, CONFIG) {
+
+        $locationProvider.html5Mode(true);
 
         $authProvider.oauth2({
             name: "googleLogin",
