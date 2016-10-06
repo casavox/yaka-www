@@ -22,7 +22,7 @@
 
         if ($stateParams.chat) {
 
-            setTimeout(function() {
+            setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
@@ -243,7 +243,7 @@
 
             if (vm.proposal.supportChat.AdminUnreadMessages || vm.proposal.unreadMessages) {
 
-                setTimeout(function() {
+                setTimeout(function () {
 
                     vm.showChat = true;
                     vm.scrollBottom = 1;
@@ -401,7 +401,7 @@
             smoothScroll(element);
         };
 
-        vm.changeUserDialog = function(user) {
+        vm.changeUserDialog = function (user) {
             if (user == 'admin') {
                 vm.chatWithAdmin = true;
             } else {
