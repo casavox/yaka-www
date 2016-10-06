@@ -356,11 +356,11 @@
                                      data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
                                     <div class="col-xs-12 col-sm-7 col-md-7 c-lightblue no-padding">
                                         <div class="no-padding">
-                                            <b class="l-h-30">Nouveau<span
+                                            <b>Nouveau<span
                                                 data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
                                                 Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
-                                            <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="project.unreadMessages">Client</button>
-                                            <button class="btn btn-xs bgm-orange c-white" data-ng-if="project.unreadMessagesSupport">
+                                            <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="project.unreadMessages">Client</button>
+                                            <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="project.unreadMessagesSupport">
                                                 CasaVox
                                             </button>
                                         </div>
@@ -529,7 +529,7 @@
             <div>
                 <button class="btn bgm-orange waves-effect m-t-15 center"
                         data-ui-sref="project-recommend({'projectId': vm.selectedProject.id})">
-                    Recommander à un collègue
+                    Recommander à un pro
                 </button>
             </div>
         </div>

@@ -270,6 +270,9 @@
             contactsGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/contacts', ignoreLoading).success(success).error(error)
             },
+            contactDeletePOST: function (id, success, error, ignoreLoading) {
+                httpService.delete(baseUrl + '/contact/' + id, ignoreLoading).success(success).error(error)
+            },
             inviteCustomerPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invite/customer', data, ignoreLoading).success(success).error(error)
             },
