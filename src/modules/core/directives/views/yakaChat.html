@@ -103,7 +103,7 @@
                 ngf-max-size="20MB"
                 data-ng-disabled="disableSending"
                 data-ng-class="{'pointer-not-allowed': disableSending}">
-            <i class="zmdi zmdi-attachment-alt"
+            <i class="zmdi zmdi-attachment-alt c-lightblue"
                data-ng-class="{'c-gray': disableSending}"></i>
         </button>
 
@@ -115,7 +115,7 @@
         <button data-ng-click="sendMessage()"
                 data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)"
                 data-ng-class="{'pointer-not-allowed': disableSending}">
-            <i class="zmdi zmdi-mail-send"
+            <i class="zmdi zmdi-mail-send c-lightblue"
                data-ng-class="{'c-gray': disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)}"></i>
         </button>
     </div>
