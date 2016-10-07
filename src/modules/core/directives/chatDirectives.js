@@ -62,6 +62,9 @@ angular.module('Yaka')
                         scope.newMessage = {
                             text: ""
                         };
+                        if (scope.userMe == 'admin') {
+                            setChatRead();
+                        }
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer le message", "danger");
                     }, true)
@@ -171,7 +174,9 @@ angular.module('Yaka')
 
                                 scope.$apply(function () {
                                     scrollDown();
-                                    setChatRead();
+                                    if (scope.userMe != 'admin') {
+                                        setChatRead();
+                                    }
                                 });
                             }, {
                                 'token': $localStorage.token
@@ -253,7 +258,9 @@ angular.module('Yaka')
                 attr.$observe('scrollBottom', function () {
                     if (scope.scrollBottom == 1 && scope.chatId) {
                         scrollDown();
-                        setChatRead();
+                        if (scope.userMe != 'admin') {
+                            setChatRead();
+                        }
                     }
                 });
 
