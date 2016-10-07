@@ -178,7 +178,6 @@
                     res.push("MATERIAL_FALSE");
                 }
             }
-            console.log(res);
             return res;
         }
 
