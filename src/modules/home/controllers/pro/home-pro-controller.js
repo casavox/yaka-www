@@ -236,7 +236,7 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go("help", {'card': 1});
+            $state.go("help", {'card': 'tuto'});
         }
 
         function failProRegister(err) {
