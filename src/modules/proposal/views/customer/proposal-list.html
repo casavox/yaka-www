@@ -82,6 +82,16 @@
                                 <div class="c-gray">
                                     <small>Publié le {{vm.project.published | date:'d MMMM y'}}</small>
                                 </div>
+                                <div class="clearfix p-r-0" data-ng-if="vm.project.unreadMessagesSupport">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue no-padding">
+                                        <div class="no-padding">
+                                            <b>Nouveau Message</b>
+                                            <button class="btn btn-xs bgm-lightblue c-white">
+                                                CasaVox
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="pull-right">
@@ -186,8 +196,6 @@
                                         <div class="p-relative">
                                             <yaka-avatar size="35"
                                                          user="vm.project.proposal.professional.user"></yaka-avatar>
-                                            <i data-ng-if="vm.project.proposal.unreadMessages"
-                                               class="proposalUnreadMessagesIndicatorOnPro"></i>
                                         </div>
                                     </div>
                                     <div class="media-body">
@@ -215,6 +223,23 @@
                                             <small class="c-gray">
                                                 <span am-time-ago="vm.project.proposal.updated"></span>
                                             </small>
+                                        </div>
+
+                                        <div class="clearfix p-r-0"
+                                             data-ng-if="vm.project.unreadMessages || vm.project.unreadMessagesSupport">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                                <div class="no-padding">
+                                                    <b>Nouveau<span
+                                                        data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">x</span>
+                                                        Message<span data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">s</span></b>
+                                                    <button class="btn btn-xs bgm-orange c-white" data-ng-if="vm.project.unreadMessages">
+                                                        Pro
+                                                    </button>
+                                                    <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="vm.project.unreadMessagesSupport">
+                                                        CasaVox
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -264,6 +289,7 @@
                                                         <casa-name-and-contact
                                                             user="p.professional.user"></casa-name-and-contact>
                                                     </span>
+
 
                                                     <div class="c-gray m-t-0 m-b-0"
                                                          data-ng-if="p.status == 'PRO_DECLINED'">
@@ -343,6 +369,18 @@
                                                 </small>
                                             </div>
                                         </div>
+
+                                        <div class="clearfix p-r-0"
+                                             data-ng-if="p.unreadMessages">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue no-padding">
+                                                <div class="no-padding">
+                                                    <b>Nouveau Message</b>
+                                                    <button class="btn btn-xs bgm-orange c-white">
+                                                        PRO
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -377,8 +415,6 @@
                                             <div class="p-relative">
                                                 <yaka-avatar size="35"
                                                              user="p.professional.user"></yaka-avatar>
-                                                <i data-ng-show="p.unreadMessages"
-                                                   class="porposalUnreadMessagesIndicator"></i>
                                             </div>
                                         </div>
                                         <div class="media-body">
@@ -404,6 +440,16 @@
                                                 <small class="c-gray">
                                                     <span am-time-ago="p.updated"></span>
                                                 </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix p-r-0"
+                                             data-ng-if="p.unreadMessages">
+                                            <div class="col-xs-10 c-lightblue no-padding">
+                                                <div class="no-padding">
+                                                    <b class="l-h-30">Nouveau Message</b>
+                                                    <button class="btn btn-xs bgm-orange c-white">PRO</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -436,8 +482,6 @@
                                             <div class="p-relative">
                                                 <yaka-avatar size="35"
                                                              user="p.professional.user"></yaka-avatar>
-                                                <i data-ng-show="p.unreadMessages"
-                                                   class="porposalUnreadMessagesIndicator"></i>
                                             </div>
                                         </div>
                                         <div class="media-body">
@@ -464,6 +508,23 @@
                                                 <small class="c-gray">
                                                     <span am-time-ago="p.updated"></span>
                                                 </small>
+                                            </div>
+
+                                            <div class="clearfix p-r-0"
+                                                 data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
+                                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                                    <div class="no-padding">
+                                                        <b>Nouveau<span
+                                                            data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
+                                                            Message<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.unreadMessages">
+                                                            Pro
+                                                        </button>
+                                                        <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="p.unreadMessagesSupport">
+                                                            CasaVox
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -494,8 +555,6 @@
                                             <div class="p-relative">
                                                 <yaka-avatar size="35"
                                                              user="p.professional.user"></yaka-avatar>
-                                                <i data-ng-show="p.unreadMessages"
-                                                   class="porposalUnreadMessagesIndicator"></i>
                                             </div>
                                         </div>
                                         <div class="media-body">
@@ -522,6 +581,21 @@
                                                 <small class="c-gray">
                                                     <span am-time-ago="p.updated"></span>
                                                 </small>
+                                            </div>
+
+                                            <div class="clearfix p-r-0 m-t-5"
+                                                 data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
+                                                <div class="col-xs-12 c-lightblue no-padding">
+                                                    <div class="no-padding">
+                                                        <b>Nouveau<span
+                                                            data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
+                                                            Message<span
+                                                                data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                                                        <button class="btn btn-xs bgm-orange c-white" data-ng-if="p.unreadMessages">PRO
+                                                        </button>
+                                                        <button class="btn btn-xs bgm-lightblue c-white">CasaVox</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

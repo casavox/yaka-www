@@ -39,9 +39,15 @@
                 controllerAs: 'vm'
             })
             .state('admin-project-details', {
-                url: "/admin/projects/:projectId/details",
+                url: "/admin/projects/:projectId/details?chat",
                 templateUrl: "/modules/admin/views/admin-project-details.html",
                 controller: 'AdminProjectController',
+                controllerAs: 'vm'
+            })
+            .state('admin-proposal', {
+                url: "/admin/proposal/:proposalId?chat",
+                templateUrl: "/modules/admin/views/admin-proposal.html",
+                controller: 'AdminProposalController',
                 controllerAs: 'vm'
             })
     }

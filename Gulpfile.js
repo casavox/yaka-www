@@ -32,9 +32,7 @@ var sort = require('gulp-sort');
 var log = gutil.log;
 var colors = gutil.colors;
 
-
 var buildConfig = require("./build-config.json");
-
 
 gulp.task("build", function (cb) {
     if (argv.production) {
@@ -248,7 +246,8 @@ gulp.task("serve", ["build"], function () {
     connect.server({
         root: 'dist',
         port: 8000,
-        livereload: !argv.production
+        livereload: !argv.production,
+        fallback: 'dist/index.html'
     });
 });
 
