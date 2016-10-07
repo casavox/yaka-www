@@ -242,7 +242,11 @@ angular.module('Yaka')
                         scope.proposalStatus == "RECO_PRO_DECLINED" ||
                         scope.proposalStatus == "RECO_CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
-                        scope.proposalStatus == "COMPLETED")) {
+                        scope.proposalStatus == "COMPLETED" ||
+                        (
+                            scope.userMe.professional &&
+                            scope.proposalStatus == 'RECOMMENDATION'
+                        ))) {
                         scope.disableSending = true;
                     }
                 });
@@ -269,7 +273,9 @@ angular.module('Yaka')
                 }
 
                 scope.getPlaceholder = function () {
-                    if (scope.disableSending) {
+                    if (scope.disableSending && scope.userMe.professional && scope.proposalStatus == 'RECOMMENDATION') {
+                        return 'Vous devez faire une offre dans l\'onglet "Détails" afin de commencer à discuter avec le client. Si vous n\'êtes pas intéressé, refusez l\'offre via le bouton "Refuser';
+                    } else if (scope.disableSending) {
                         return 'Cette discussion est close';
                     }
                     if (scope.userOther) {
