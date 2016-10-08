@@ -9,11 +9,12 @@
         <div id="accordion" class="container" data-ng-cloak>
 
             <div id="tuto" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="vm.pro"
+                 data-ng-class="{'c-lightblue': vm.showTuto}"
+                 data-ng-show="vm.user"
                  data-ng-click="vm.smoothScroll('tuto')">
                 Bien démarrer sur CasaVox
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showTuto, 'zmdi-chevron-up': vm.showTuto}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showTuto, 'zmdi-chevron-up c-lightblue': vm.showTuto}"></i>
             </div>
 
             <div data-uib-collapse="!vm.showTuto" data-ng-if="vm.pro" class="col-xs-12 no-padding">
@@ -341,12 +342,13 @@
             </div>
 
             <div id="bao" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-if="vm.pro"
+                 data-ng-class="{'c-lightblue': vm.showBoucheAOreille}"
+                 data-ng-show="vm.user"
                  data-ng-click="vm.smoothScroll('bao')">
                 <em>Bouche-à-oreille CasaVox</em>
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showBoucheAOreille, 'zmdi-chevron-up': vm.showBoucheAOreille}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showBoucheAOreille, 'zmdi-chevron-up c-lightblue': vm.showBoucheAOreille}"></i>
             </div>
 
             <div data-uib-collapse="!vm.showBoucheAOreille" data-ng-if="vm.pro" class="col-xs-12 no-padding">
@@ -502,12 +504,13 @@
             </div>
 
             <div id="support" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-class="{'c-lightblue': vm.showSupport}"
                  data-ng-if="app.getUser()"
                  data-ng-click="vm.smoothScroll('support')">
                 Contacter CasaVox
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showSupport, 'zmdi-chevron-up': vm.showSupport}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showSupport, 'zmdi-chevron-up c-lightblue': vm.showSupport}"></i>
             </div>
 
             <div data-uib-collapse="!vm.showSupport" class="col-xs-12 no-padding">
