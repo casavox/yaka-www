@@ -10,7 +10,7 @@
 
             <div id="tuto" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-class="{'c-lightblue': vm.showTuto}"
-                 data-ng-show="vm.user"
+                 data-ng-if="app.getUser()"
                  data-ng-click="vm.smoothScroll('tuto')">
                 Bien démarrer sur CasaVox
                 <i class="zmdi f-right f-18"
@@ -343,7 +343,7 @@
 
             <div id="bao" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
                  data-ng-class="{'c-lightblue': vm.showBoucheAOreille}"
-                 data-ng-show="vm.user"
+                 data-ng-if="app.getUser()"
                  data-ng-click="vm.smoothScroll('bao')">
                 <em>Bouche-à-oreille CasaVox</em>
 
