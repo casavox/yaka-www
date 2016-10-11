@@ -26,13 +26,12 @@
                                     <div>
                                         <a class="pointer visible-xs" data-ui-sref="profile"><u>Mes communautés</u></a>
                                     </div>
-                                    <div class="col-xs-12 no-padding visible-xs">
-                                        <button class="btn btn-xs m-t-5 m-r-5 community-tag d-inline yakaEllipsis"
-                                                data-ng-repeat="community in vm.communities"
-                                                data-ng-class="{'bgm-orange': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                    <ul class="yaka-chips m-t-5 no-padding visible-xs">
+                                        <li data-ng-repeat="community in vm.communities" class="yakaEllipsis c-white community-tag"
+                                            data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                             {{community.text}}
-                                        </button>
-                                    </div>
+                                        </li>
+                                    </ul>
                                     <div class="col-xs-12 no-padding">
                                         <a class="pointer"><u>
                                             {{vm.data.contactsNumber}}
@@ -54,13 +53,12 @@
                                     <div>
                                         <a class="pointer" data-ui-sref="profile"><u>Mes communautés</u></a>
                                     </div>
-                                    <div class="col-xs-8 col-xs-offset-4 no-padding">
-                                        <button class="btn pull-right btn-xs m-t-5 m-l-5 d-inline yakaEllipsis"
-                                                data-ng-repeat="community in vm.communities"
-                                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                    <ul class="yaka-chips m-t-5 no-padding">
+                                        <li data-ng-repeat="community in vm.communities" class="c-white community-tag"
+                                            data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                             {{community.text}}
-                                        </button>
-                                    </div>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
 
@@ -111,15 +109,26 @@
                         </small>
                     </h2>
                 </div>
-                <div class="clearfix card-body p-t-0 p-b-0 p-l-15">
+                <div class="clearfix card-body no-padding p-l-15 p-r-15">
 
-                    <div class="col-xs-12 dashboardRecommendProject pointer no-padding m-t-10 m-b-10"
+                    <div class="col-xs-12 dashboardRecommendProject pointer no-padding m-t-10"
                          data-ng-repeat="project in vm.projectsToRecommend"
                          data-ui-sref="project-recommend({'projectId': project.id})">
 
                         <yaka-avatar class="m-t-5 pull-left" size="45" user="project.user"></yaka-avatar>
+                        <ul class="yaka-chips m-t-5 no-padding visible-xs actu-community-tag-xs">
+                            <li class="yakaEllipsis c-white bgm-black actu-community-tag"
+                                data-ng-if="!isContact">
+                                <i class="zmdi zmdi-accounts"></i>
+                                Ami
+                            </li>
+                            <li data-ng-repeat="community in vm.communities" class="yakaEllipsis c-white"
+                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                {{community.text}}
+                            </li>
+                        </ul>
+                        <div class="col-xs-12 dashboardRecommendProjectText">
 
-                        <div class="col-xs-4 dashboardRecommendProjectText">
                             <div class="yakaEllipsis">
                                 <b>
                                     <casa-contact user="project.user"></casa-contact>
@@ -136,17 +145,17 @@
                                 à {{project.address.locality}}
                             </div>
                         </div>
-                        <div class="col-xs-offset-4 col-sm-4 col-sm-offset-7 p-r-0 communities-tag">
-                            <button class="btn btn-xs pull-right m-t-5 m-l-5 community-tag d-inline yakaEllipsis c-white bgm-black" data-ng-if="!isContact">
+                        <ul class="yaka-chips m-t-5 pull-right no-padding actu-communities-tag hidden-xs">
+                            <li data-ng-repeat="community in vm.communities" class="yakaEllipsis c-white actu-community-tag"
+                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                {{community.text}}
+                            </li>
+                            <li class="yakaEllipsis c-white bgm-black actu-community-tag"
+                                data-ng-if="!isContact">
                                 <i class="zmdi zmdi-accounts"></i>
                                 Ami
-                            </button>
-                            <button class="btn pull-right btn-xs m-t-5 m-l-5 community-tag d-inline yakaEllipsis"
-                                    data-ng-repeat="community in vm.communities"
-                                    data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                {{community.text}}
-                            </button>
-                        </div>
+                            </li>
+                        </ul>
                         <div class="col-xs-12 m-t-15 m-b-0 p-r-30">
                             <hr>
                         </div>
