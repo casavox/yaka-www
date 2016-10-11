@@ -33,6 +33,25 @@
         }, function (err) {
             alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
         });
+
+        vm.communities = [
+            {
+                "type": "ville",
+                "text": "Paris - 13ème arrondissement"
+            },
+            {
+                "type": "entreprise",
+                "text": "Okabé"
+            },
+            {
+                "type": "cercle",
+                "text": "Famille"
+            },
+            {
+                "type": "member",
+                "text": "Prenium"
+            }
+        ];
     }
 })
 ();

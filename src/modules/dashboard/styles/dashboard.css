@@ -1,3 +1,7 @@
+hr {
+    margin: 0;
+}
+
 .dashboardStats {
     font-size: 12px !important;
     font-weight: 500;
@@ -13,7 +17,7 @@
 }
 
 .dashboardRecommendProject {
-    height: 55px;
+    max-height: 80px;
 }
 
 .proDashboardRecommendProject {
@@ -29,10 +33,9 @@
 }
 
 .dashboardRecommendProjectText {
-    position: absolute;
+    position:absolute;
     left: 55px;
     top: 0px;
-    width: calc(100% - 65px);
 }
 
 .dashboardProRecommendProjectText {
@@ -106,4 +109,21 @@
     transform: translateX(-10px);
 }
 
+@media (max-width: 767px) {
+    .communities-tag {
+        margin-right:15px;
+    }
+    .community-tag {
+        min-width: 50px;
+        max-width: 150px;
+        height: 20px;
+    }
+}
 
+@media (max-width: 500px) {
+
+    .community-tag {
+        width: 50px;
+        height: 20px;
+    }
+}

@@ -9711,6 +9711,14 @@ a.waves-effect .waves-ripple {
     color: #f44336 !important;
 }
 
+.bgm-crimson {
+    background-color: crimson !important;
+}
+
+.c-crimson {
+    color: crimson !important;
+}
+
 .bgm-blue {
     background-color: #2196f3 !important;
 }
