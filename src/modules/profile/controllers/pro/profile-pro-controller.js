@@ -396,6 +396,9 @@
                         file.result = data;
                         var res = null;
                         vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
+                        networkService.updateAvatarPUT(vm.profileInfo.user, function (res) {
+                            alertMsg.send("La photo a été mise à jour", "success");
+                        }, errorAvatarPUT, true);
                     }).error(function (data, status, headers, config) {
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
@@ -412,6 +415,10 @@
         function errorProfilePUT() {
             vm.updating = false;
             alertMsg.send("Impossible de modifier le profil", "danger");
+        }
+
+        function errorAvatarPUT() {
+            alertMsg.send("Impossible de mettre à jour votre photo", "danger");
         }
 
         function succesWorkareaPUT(res) {
@@ -529,7 +536,6 @@
                 vm.profileInfo.user.lastName != vm.profile.user.lastName ||
                 vm.profileInfo.phoneNumber != vm.profile.phoneNumber ||
                 vm.profileInfo.user.email != vm.profile.user.email ||
-                vm.profileInfo.user.avatar.cloudinaryPublicId != vm.profile.user.avatar.cloudinaryPublicId ||
                 vm.profileInfo.activityStartedYear != vm.profile.activityStartedYear ||
                 vm.profileInfo.company.name != vm.profile.company.name ||
                 vm.profileInfo.company.siret != vm.profile.company.siret ||

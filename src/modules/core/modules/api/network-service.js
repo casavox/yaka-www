@@ -231,6 +231,9 @@
             profilePUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/me/profile', data, ignoreLoading).success(success).error(error)
             },
+            updateAvatarPUT: function (data, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/me/profile/avatar', data, ignoreLoading).success(success).error(error)
+            },
             proProfilePUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/pro/me/profile', data, ignoreLoading).success(success).error(error)
             },
