@@ -212,5 +212,24 @@
             var element = document.getElementById('pro');
             smoothScroll(element, scrollOptions);
         };
+
+        vm.communities = [
+            {
+                "type": "ville",
+                "text": "Paris - 13ème arrondissement"
+            },
+            {
+                "type": "entreprise",
+                "text": "Okabé"
+            },
+            {
+                "type": "cercle",
+                "text": "Famille"
+            },
+            {
+                "type": "member",
+                "text": "Prenium"
+            }
+        ];
     }
 })();
