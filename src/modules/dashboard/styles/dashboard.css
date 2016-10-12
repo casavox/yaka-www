@@ -1,3 +1,12 @@
+hr {
+    margin: 0;
+}
+
+.community-tag {
+    margin: 5px 0px 0px 3px !important;
+    float: right !important;
+}
+
 .dashboardStats {
     font-size: 12px !important;
     font-weight: 500;
@@ -13,7 +22,7 @@
 }
 
 .dashboardRecommendProject {
-    height: 55px;
+    max-height: 120px;
 }
 
 .proDashboardRecommendProject {
@@ -29,10 +38,9 @@
 }
 
 .dashboardRecommendProjectText {
-    position: absolute;
+    position:absolute;
     left: 55px;
     top: 0px;
-    width: calc(100% - 65px);
 }
 
 .dashboardProRecommendProjectText {
@@ -106,4 +114,33 @@
     transform: translateX(-10px);
 }
 
+.actu-communities-tag {
+    margin: 3px 3px 0px 0px !important;
+    float: right !important;
+}
 
+@media (max-width: 991px) {
+    .actu-community-tag {
+        max-width: 100px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .community-tag {
+        margin: 3px 3px 0px 0px !important;
+        float: left !important;
+    }
+
+    .actu-community-tag-xs {
+        margin-left: 68px;
+        max-width: 400px;
+    }
+
+    .dashboardRecommendProject {
+        max-height: 180px;
+    }
+
+    .dashboardRecommendProjectText {
+        position: relative;
+    }
+}

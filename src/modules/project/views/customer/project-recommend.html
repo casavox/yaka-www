@@ -47,13 +47,32 @@
                 <div class="block-header">
                     <h2>Recommander à</h2>
                 </div>
-                <div class="projectRecommendTopCard card">
+                <div class="card p-l-20 p-t-20 p-b-5">
                     <div class="clearfix">
 
-                        <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
+                        <yaka-avatar class="col-xs-3" size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="dashboardRecommendProjectText f-s-14 fw-bold">
-                            <casa-name-and-contact user="vm.project.user" invite="true"></casa-name-and-contact>
+                        <div class="col-xs-8 col-sm-9 col-xs-offset-1 p-r-0 p-l-0">
+                            <div class="f-s-14 fw-bold">
+                                <casa-name-and-contact class="pull-left l-h-24" user="vm.project.user"></casa-name-and-contact>
+                                <div class="yakaEllipsis c-white bgm-black friend-tag m-l-5 visible-xs"
+                                    data-ng-if="!isContact">
+                                    <i class="zmdi zmdi-accounts"></i>
+                                    Ami
+                                </div>
+                            </div>
+
+                            <ul class="col-xs-12 col-sm-8 yaka-chips m-t-5 no-padding actu-communities-tag">
+                                <li data-ng-repeat="community in vm.communities" class=" pull-right yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                    data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                    {{community.text}}
+                                </li>
+                                <li class="yakaEllipsis pull-right c-white bgm-black actu-community-tag hidden-xs"
+                                    data-ng-if="!isContact">
+                                    <i class="zmdi zmdi-accounts"></i>
+                                    Ami
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -68,7 +87,7 @@
                         <div class="proposalIconBackground lv-img v-icon-{{vm.project.mainActivity.code}}-white">
                         </div>
 
-                        <div class="dashboardRecommendProjectText right">
+                        <div class="dashboardRecommendProjectText right p-absolute">
                             <div class="yakaEllipsis f-s-15">
                                 {{vm.project.title}}
                             </div>
@@ -87,11 +106,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" data-ng-if="vm.professionals">
+            <div class="col-sm-6 clearBoth" data-ng-if="vm.professionals">
                 <div class="block-header">
                     <h2>
                         <span ng-if="app.isPro()">Mes Collègues</span>
-                        <span ng-if="!app.isPro()">Mes Pro</span>
+                        <span ng-if="!app.isPro()">Mes Pros</span>
                     </h2>
                 </div>
                 <div class="card">
@@ -125,19 +144,30 @@
 
                             <div class="proToRecommendRight">
 
-                                <div class="yakaEllipsis">
-                                    <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
-                                    (
-                                    <casa-contact user="professional.user"></casa-contact>
-                                    )
-                                </div>
-
-                                <div>
+                                <div class="col-xs-12 col-sm-8 col-md-6 p-r-0">
                                     <div class="yakaEllipsis">
-                                        <em>{{professional.company.name}}</em>
-                                        <span class="c-gray yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel2}}</span>
+                                    <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
+                                </div>
+                                    <div>
+                                        <div class="yakaEllipsis">
+                                            <em>{{professional.company.name}}</em>
+                                            <span class="c-gray yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel2}}</span>
+                                        </div>
                                     </div>
                                 </div>
+
+
+                                <ul class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
+                                    <li data-ng-repeat="community in vm.communities | limitTo:1:2" class=" pull-right yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                    <li class="yakaEllipsis pull-right commu-tag-float c-white bgm-black actu-community-tag"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -219,9 +249,6 @@
                                 <b>{{vm.selectedProfessional.company.name}}</b>
                                 - {{vm.selectedProfessional.company.address.administrativeAreaLevel2}}
                             </div>
-                            <div>
-                                <casa-contact user="vm.selectedProfessional.user"></casa-contact>
-                            </div>
                         </div>
 
                         <div class="dashboardRecommendProjectText propartner"
@@ -265,6 +292,26 @@
 
                     <div class="card-body card-padding">
                         <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <ul class="yaka-chips clearfix m-t-5 no-padding">
+                                            <li data-ng-repeat="community in vm.communities | limitTo:1:2" class="yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                                {{community.text}}
+                                            </li>
+                                            <li class="yakaEllipsis commu-tag-float c-white bgm-black actu-community-tag"
+                                                data-ng-if="!isClient">
+                                                <i class="zmdi zmdi-accounts"></i>
+                                                Client
+                                            </li>
+                                        </ul>
+                                    </dl>
+                                </div>
+                            </div>
                             <div class="pmbb-header">
                                 <h2><i class="zmdi zmdi-star zmdi-hc-fw"></i> Expérience et qualités</h2>
                             </div>
