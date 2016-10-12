@@ -92,13 +92,13 @@
                     </td>
                     <td data-title="'Eligible'"
                         filter="{eligibleStatus: 'text'}"
-                        ng-class="{'bgm-green' : pro.eligibleStatus == 'Validé', 'bgm-yellow' : pro.eligibleStatus == 'Incomplet', 'bgm-blue' : pro.eligibleStatus == 'Complet', 'bgm-red' : pro.eligibleStatus == 'Refusé'}"
+                        ng-class="{'c-blue' : pro.eligibleStatus == 'Incomplet', 'c-red f-bold' : pro.eligibleStatus == 'En attente', 'c-purple' : pro.eligibleStatus == 'Refusé'}"
                         data-sortable="'eligibleStatus'">
                         {{ pro.eligibleStatus }}
                     </td>
                     <td data-title="'Statut'"
                         filter="{status: 'text'}"
-                        ng-class="{'bgm-green' : pro.status == 'Validé', 'bgm-yellow' : pro.status == 'Incomplet', 'bgm-blue' : pro.status == 'Complet', 'bgm-red' : pro.status == 'Refusé'}"
+                        ng-class="{'c-blue' : pro.status == 'Incomplet', 'c-red f-bold' : pro.status == 'En attente', 'c-purple' : pro.status == 'Refusé'}"
                         data-sortable="'status'">
                         {{ pro.status }}
                     </td>
