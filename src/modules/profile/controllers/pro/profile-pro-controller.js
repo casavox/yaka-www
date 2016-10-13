@@ -376,7 +376,6 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
-                    vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -390,7 +389,6 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.updating = false;
                         vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
@@ -400,7 +398,6 @@
                             alertMsg.send("La photo a été mise à jour", "success");
                         }, errorAvatarPUT, true);
                     }).error(function (data, status, headers, config) {
-                        vm.updating = false;
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
