@@ -271,14 +271,14 @@
                                         <dt class="yakaDisableEllipsis">Mots clés</dt>
                                         <dd>
                                             <ul class="yaka-chips">
-                                                <li data-ng-repeat="tag in vm.getTags()">
-                                                    <span data-ng-show="tag == 'MATERIAL_TRUE'"
-                                                          uib-tooltip="Le client fournit certains matériaux">
-                                                        {{'ACTIVITY_' + tag | translate}}
-                                                    </span>
+                                                <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}" data-ng-repeat="tag in vm.getTags()">
+                                                        <span data-ng-if="tag == 'MATERIAL_TRUE'"
+                                                              uib-tooltip="Le client fournit certains matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
                                                     <span data-ng-hide="tag == 'MATERIAL_TRUE'">
-                                                        {{'ACTIVITY_' + tag | translate}}
-                                                    </span>
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
                                                 </li>
                                             </ul>
                                         </dd>
