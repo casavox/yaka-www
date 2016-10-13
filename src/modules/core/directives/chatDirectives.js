@@ -62,6 +62,9 @@ angular.module('Yaka')
                         scope.newMessage = {
                             text: ""
                         };
+                        if (scope.userMe == 'admin') {
+                            setChatRead();
+                        }
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer le message", "danger");
                     }, true)
@@ -171,7 +174,9 @@ angular.module('Yaka')
 
                                 scope.$apply(function () {
                                     scrollDown();
-                                    setChatRead();
+                                    if (scope.userMe != 'admin') {
+                                        setChatRead();
+                                    }
                                 });
                             }, {
                                 'token': $localStorage.token
@@ -242,14 +247,20 @@ angular.module('Yaka')
                         scope.proposalStatus == "RECO_PRO_DECLINED" ||
                         scope.proposalStatus == "RECO_CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
-                        scope.proposalStatus == "COMPLETED")) {
+                        scope.proposalStatus == "COMPLETED" ||
+                        (
+                            scope.userMe.professional &&
+                            scope.proposalStatus == 'RECOMMENDATION'
+                        ))) {
                         scope.disableSending = true;
                     }
                 });
                 attr.$observe('scrollBottom', function () {
                     if (scope.scrollBottom == 1 && scope.chatId) {
                         scrollDown();
-                        setChatRead();
+                        if (scope.userMe != 'admin') {
+                            setChatRead();
+                        }
                     }
                 });
 
@@ -269,7 +280,9 @@ angular.module('Yaka')
                 }
 
                 scope.getPlaceholder = function () {
-                    if (scope.disableSending) {
+                    if (scope.disableSending && scope.userMe.professional && scope.proposalStatus == 'RECOMMENDATION') {
+                        return 'Vous devez faire une offre dans l\'onglet "Détails" afin de commencer à discuter avec le client. Si vous n\'êtes pas intéressé, refusez l\'offre via le bouton "Refuser';
+                    } else if (scope.disableSending) {
                         return 'Cette discussion est close';
                     }
                     if (scope.userOther) {
