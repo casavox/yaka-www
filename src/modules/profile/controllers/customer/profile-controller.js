@@ -98,7 +98,6 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.updating = false;
                         vm.profileInfo.avatar = vm.profileInfo.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
@@ -108,7 +107,6 @@
                             alertMsg.send("Profil mis à jour avec succès", "success");
                         }, errorProfilePUT, true);
                     }).error(function (data, status, headers, config) {
-                        vm.updating = false;
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
