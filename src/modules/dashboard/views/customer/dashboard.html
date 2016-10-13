@@ -104,7 +104,7 @@
 
                     <h2 class="d-i-b">
                         Actualité de la communauté
-                        <small>
+                        <small class="subtitle-color-forced">
                             Entraide entre particuliers, recommandez-vous vos Pros préférés
                         </small>
                     </h2>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <ul class="yaka-chips m-t-5 pull-right no-padding actu-communities-tag hidden-xs">
-                            <li data-ng-repeat="community in vm.communities" class="yakaEllipsis c-white actu-community-tag"
+                            <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white actu-community-tag"
                                 data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                 {{community.text}}
                             </li>

@@ -23,7 +23,7 @@
                                     <div class="f-s-16 yakaEllipsis">
                                         {{app.getUser().firstName}} {{app.getUser().lastName}}
                                     </div>
-                                    <div class="c-gray">
+                                    <div class=subtitle-color-forced>
                                         {{vm.data.contactsNumber}}
                                         <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
                                         <span data-ng-show="vm.data.contactsNumber > 1">Contacts</span> -
@@ -282,7 +282,7 @@
                                 </small>
                             </h2>
 
-                            <div class="proNetworkProjectUpdated c-gray">
+                            <div class="proNetworkProjectUpdated subtitle-color-forced">
                                 <span am-time-ago="project.updated"></span>
                             </div>
 
@@ -300,15 +300,24 @@
                                     {{project.user.lastName}}
                                 </span>
                                 <span class="c-gray-dark">
-                                    (
-                                    <casa-contact
-                                        user="project.user" client-blue="true"></casa-contact>
-                                    )
                                     a un nouveau chantier
                                 </span>
+                                <ul class="yaka-chips m-t-5 no-padding">
+                                    <li class="yakaEllipsis relation c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:3"
+                                        class="pull-left yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
                             </h2>
 
-                            <div class="proNetworkProjectUpdated c-gray">
+
+                            <div class="proNetworkProjectUpdated subtitle-color-forced">
                                 <span am-time-ago="project.updated"></span>
                             </div>
 
@@ -324,7 +333,7 @@
                                     {{project.title}}
                                 </div>
                                 <div class="yakaEllipsis">
-                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                    <div class="subtitle-color-forced d-i-b proNetworkProjectInfosLabel">
                                         Délai :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
@@ -332,7 +341,7 @@
                                     </div>
                                 </div>
                                 <div class="yakaEllipsis">
-                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                    <div class="subtitle-color-forced d-i-b proNetworkProjectInfosLabel">
                                         Lieu :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
@@ -345,7 +354,7 @@
                                     </div>
                                 </div>
                                 <div class="yakaEllipsis" data-ng-if="project.recoProposals">
-                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                    <div class="subtitle-color-forced d-i-b proNetworkProjectInfosLabel">
                                         Client :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
@@ -358,9 +367,13 @@
                                         <div class="no-padding">
                                             <b class="l-h-30">Nouveau<span
                                                 data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
-                                                Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
-                                            <button class="btn btn-xs bgm-lightblue c-white" data-ng-if="project.unreadMessages">Client</button>
-                                            <button class="btn btn-xs bgm-orange c-white" data-ng-if="project.unreadMessagesSupport">
+                                                Message<span
+                                                    data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
+                                            <button class="btn btn-xs bgm-lightblue c-white"
+                                                    data-ng-if="project.unreadMessages">Client
+                                            </button>
+                                            <button class="btn btn-xs bgm-orange c-white"
+                                                    data-ng-if="project.unreadMessagesSupport">
                                                 CasaVox
                                             </button>
                                         </div>
@@ -378,7 +391,7 @@
                          data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                         <h2>
                             Mon statut Pro sur CasaVox
-                            <small>
+                            <small class="subtitle-color-forced">
                                 Mon profil, mon réseau, mes offres
                             </small>
                         </h2>
@@ -464,7 +477,7 @@
                     <div class="card-header dashboardCommunityHeader">
                         <h2>
                             Recommander un collègue
-                            <small>
+                            <small class="subtitle-color-forced">
                                 Entraide entre Pros
                             </small>
                         </h2>
@@ -494,13 +507,21 @@
                                     {{project.title}}
                                 </div>
                                 <div class="yakaEllipsis">
-                                    <b>
-                                        <casa-contact user="project.user"></casa-contact>
-                                    </b>
-                                    <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
                                     {{project.user.firstName}} {{project.user.lastName}}
                                 </div>
-                                <div class="yakaEllipsis">
+                                <ul class="yaka-chips m-t-5 m-b-0 no-padding clearfix">
+                                    <li class="yakaEllipsis relation c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:1"
+                                        class="pull-left yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
+                                <div class="yakaEllipsis clearfix">
                                     {{project.address.locality}} - {{vm.getWhen(project)}}
                                 </div>
                             </div>

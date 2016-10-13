@@ -9337,6 +9337,10 @@ a.waves-effect .waves-ripple {
     margin-left: 15px !important;
 }
 
+.m-l-50 {
+    margin-left: 50px !important;
+}
+
 .m-r-15 {
     margin-right: 15px !important;
 }
@@ -9821,6 +9825,10 @@ a.waves-effect .waves-ripple {
 
 .c-deeporange {
     color: #ff5722 !important;
+}
+
+.c-obsidian-gray {
+    color: #5e5e5e !important;
 }
 
 .bgm-gray-lighter {

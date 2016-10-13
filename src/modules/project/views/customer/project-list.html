@@ -46,15 +46,15 @@
                                 <div class="media row">
                                     <div class="col-sm-7">{{p.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
-                                        <small class="c-gray">
+                                        <small class= subtitle-color-forced>
                                             Mis à jour <span am-time-ago="p.updated"></span>
                                         </small>
                                     </div>
                                 </div>
-                                <div class="c-gray m-t-5">
+                                <div class="subtitle-color-forced m-t-5">
                                     <strong>{{p.address.name}}</strong> - {{p.address.locality}}
                                 </div>
-                                <div class="c-gray">
+                                <div class= subtitle-color-forced>
                                     Début souhaité {{vm.getDesiredPedriod(p)}}
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                     <div class="p-b-20 clearfix m-l-65"
                          data-ng-hide="p.status == 'ONGOING_PROJECT_ONGOING' && p.proposal">
                         <div class="col-xs-12 col-sm-6"
-                             data-ng-class="{'c-gray': !p.proposals.length || p.proposals.length == 0}">
+                             data-ng-class="{'subtitle-color-forced' : !p.proposals.length || p.proposals.length == 0}">
                             <span class="f-20">
                                 {{p.proposals.length || 0}}
                             </span>
@@ -97,7 +97,7 @@
                             en attente
                         </div>
                         <div class="col-xs-12 col-sm-6"
-                             data-ng-class="{'c-gray': !p.recoProposals.length || p.recoProposals.length == 0}">
+                             data-ng-class="{'subtitle-color-forced' : !p.recoProposals.length || p.recoProposals.length == 0}">
                             <span class="f-20">
                                 {{p.recoProposals.length || 0}}
                             </span>
@@ -137,10 +137,21 @@
                             </div>
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
+                                    <div class= subtitle-color-forced>Votre Pro. pour ce chantier</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
+                                <ul class="yaka-chips m-t-5 no-padding">
+                                    <li class="yakaEllipsis c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
                                 <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
                                     <li class="wa-stats center">
                                     <span class="bgm-white">
@@ -194,6 +205,17 @@
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
+                                <ul class="yaka-chips m-t-5 no-padding">
+                                    <li class="yakaEllipsis c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
                                 <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
                                     <li class="wa-stats center">
                                     <span class="bgm-white">
@@ -232,18 +254,18 @@
                                     <div class="col-sm-7">{{pc.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                         <div>
-                                            <small class="c-gray">
+                                            <small class= subtitle-color-forced>
                                                 Cloturé le {{pc.updated | date:'d MMMM y'}}
                                             </small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="media m-t-5">
-                                    <div class="c-gray">
+                                    <div class= subtitle-color-forced>
                                         <strong>{{pc.address.name}}</strong> -
                                         <small>{{pc.address.locality}}</small>
                                     </div>
-                                    <div class="c-gray">
+                                    <div class= subtitle-color-forced>
                                         <small>Début souhaité {{vm.getDesiredPedriod(pc)}}</small>
                                     </div>
                                 </div>
@@ -292,18 +314,29 @@
                             <div class="media-body pull-left" title="{{pc.title}}"
                                  data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
+                                    <div class= subtitle-color-forced>Votre Pro. pour ce chantier</div>
                                     <strong>{{pc.proposal.professional.user.firstName}}
                                         {{pc.proposal.professional.user.lastName}}</strong>
                                 </div>
+                                <ul class="yaka-chips m-t-5 no-padding">
+                                    <li class="yakaEllipsis c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
                                 <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
                                     <li class="wa-stats center">
                                     <span class="bgm-white">
-                                        <i class="zmdi zmdi-calendar c-gray"></i>
+                                        <i class="zmdi zmdi-calendar subtitle-color-forced"></i>
                                         <span data-ng-show="pc.proposal.startDate">{{pc.proposal.startDate | date:'dd/MM/yy'}}</span>
                                         <span data-ng-show="!pc.proposal.startDate">- - -</span>
                                     </span>
-                                        <span class="active bgm-white c-gray">
+                                        <span class="active bgm-white subtitle-color-forced">
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                         <span data-ng-show="pc.proposal.price">{{pc.proposals[0].price}} €</span>
                                         <span data-ng-show="!pc.proposal.price">- - - €</span>
@@ -317,7 +350,7 @@
             </div>
             <div data-ng-show="vm.projectsCanceled && vm.projectsCanceled.length > 0" data-ng-cloak>
                 <div class="block-header">
-                    <h2 data-ng-show="vm.projectsCanceledlength == 1">PROJET ANNULÉ</h2>
+                    <h2 data-ng-show="vm.projectsCanceled.length == 1">PROJET ANNULÉ</h2>
 
                     <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS ANNULÉS</h2>
                 </div>
@@ -334,18 +367,18 @@
                                     <div class="col-sm-7">{{p.title}}</div>
                                     <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                         <div>
-                                            <small class="c-gray">
+                                            <small class= subtitle-color-forced>
                                                 Cloturé le {{p.updated | date:'d MMMM y'}}
                                             </small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="media m-t-5">
-                                    <div class="c-gray">
+                                    <div class= subtitle-color-forced>
                                         <strong>{{p.address.name}}</strong> -
                                         <small>{{p.address.locality}}</small>
                                     </div>
-                                    <div class="c-gray">
+                                    <div class= subtitle-color-forced>
                                         <small>Début souhaité {{vm.getDesiredPedriod(p)}}</small>
                                     </div>
                                 </div>
@@ -394,18 +427,18 @@
                             <div class="media-body pull-left" title="{{p.title}}"
                                  data-ui-sref="proposal({'proposalId': p.proposal.id})">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
+                                    <div class= subtitle-color-forced>Votre Pro. pour ce chantier</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
                                 <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
                                     <li class="wa-stats center">
                                     <span class="bgm-white">
-                                        <i class="zmdi zmdi-calendar c-gray"></i>
+                                        <i class="zmdi zmdi-calendar subtitle-color-forced"></i>
                                         <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
                                         <span data-ng-show="!p.proposal.startDate">- - -</span>
                                     </span>
-                                        <span class="active bgm-white c-gray">
+                                        <span class="active bgm-white subtitle-color-forced">
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                         <span data-ng-show="p.proposal.price">{{p.proposals[0].price}} €</span>
                                         <span data-ng-show="!p.proposal.price">- - - €</span>

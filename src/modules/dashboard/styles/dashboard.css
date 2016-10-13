@@ -2,6 +2,10 @@ hr {
     margin: 0;
 }
 
+ul.yaka-chips li {
+    line-height: 14px !important;
+}
+
 .community-tag {
     margin: 5px 0px 0px 3px !important;
     float: right !important;
@@ -26,7 +30,7 @@ hr {
 }
 
 .proDashboardRecommendProject {
-    height: 70px;
+    height: 100px;
 }
 
 .dashboardRecommendProject yaka-avatar {
