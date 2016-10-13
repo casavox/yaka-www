@@ -2,6 +2,10 @@
     line-height: 30px;
 }
 
+.m-b-1 {
+    margin-bottom: 1px;
+}
+
 .chatChoice {
     z-index: 1;
 }
