@@ -284,13 +284,13 @@
 
                                                     <div
                                                         class="col-xs-12 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco f-13"
-                                                        data-ng-if="vm.proposal.firstRecommendation && !vm.proposal.status == 'START'">
+                                                        data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
                                                         Recommandation en attente
                                                     </div>
                                                 </h2>
 
                                                 <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
-                                                    data-ng-if="!vm.proposal.firstRecommendation || vm.proposal.status == 'START'">
+                                                    data-ng-if="vm.proposal.status != 'RECOMMENDATION'">
                                                     <li class="wa-stats center">
                                                         <span class="bgm-white">
                                                             <i class="zmdi zmdi-calendar"></i>
