@@ -98,25 +98,25 @@
         </button>
     </div>
 
-    <div class="lv-footer ms-reply" data-ng-class="{'pointer-not-allowed': disableSending}">
-        <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+    <div class="lv-footer ms-reply p-t-0" data-ng-class="{'pointer-not-allowed': disableSending}">
+        <button class="leftButton bgm-lightblue" ngf-select="uploadFiles($files, $invalidFiles, 0)"
                 ngf-max-size="20MB"
                 data-ng-disabled="disableSending"
                 data-ng-class="{'pointer-not-allowed': disableSending}">
-            <i class="zmdi zmdi-attachment-alt"
+            <i class="zmdi zmdi-attachment-alt c-white"
                data-ng-class="{'c-gray': disableSending}"></i>
         </button>
 
         <textarea data-ng-model="newMessage.text"
                   data-ng-placeholder="getPlaceholder()"
                   data-ng-disabled="disableSending"
-                  data-ng-class="{'pointer-not-allowed': disableSending}"></textarea>
+                  data-ng-class="{'pointer-not-allowed': disableSending, 'placeholder-red': userMe.professional && proposalStatus == 'RECOMMENDATION'}"></textarea>
 
-        <button data-ng-click="sendMessage()"
+        <button class="bgm-lightblue"
+                data-ng-click="sendMessage()"
                 data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)"
                 data-ng-class="{'pointer-not-allowed': disableSending}">
-            <i class="zmdi zmdi-mail-send"
-               data-ng-class="{'c-gray': disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)}"></i>
+            <i class="zmdi zmdi-mail-send c-white"></i>
         </button>
     </div>
 </div>

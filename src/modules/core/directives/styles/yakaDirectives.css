@@ -51,6 +51,7 @@ yaka-chat .ms-reply .leftButton {
 yaka-chat .ms-reply textarea {
     padding: 8px 60px;
     line-height: normal;
+    height: 75px;
 }
 
 yaka-chat .imgPreview {
@@ -123,4 +124,24 @@ casa-contact .contactRelationIcon {
 
 .recoType-text {
     width: calc(100% - 60px);
+}
+
+/* Placeholder color */
+
+.placeholder-red::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #F44336;
+}
+
+.placeholder-red:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #F44336;
+    opacity: 1;
+}
+
+.placeholder-red::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #F44336;
+    opacity: 1;
+}
+
+.placeholder-red:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #F44336;
 }

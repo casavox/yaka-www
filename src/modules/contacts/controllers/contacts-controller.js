@@ -523,6 +523,31 @@
             return "";
         };
 
+        vm.deleteContact = function (id) {
+            console.log(id);
+            swal({
+                title: "Supprimer un contact",
+                text: "Attention, vous ne pourrez plus bénéficier de son réseau de bouche-à-oreille !",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Confirmer",
+                cancelButtonText: "Annuler"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.contactDeletePOST(id,
+                        function (res) {
+                            alertMsg.send("Le contact a été supprimé", "info");
+                            reloadContactsAndInvitations();
+                        }, function () {
+                            alertMsg.send("Impossible de supprimer le contact", "danger");
+                        }, true
+                    );
+
+                }
+            });
+        };
+
     }
 })
 ();

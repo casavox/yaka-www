@@ -2,6 +2,10 @@
     line-height: 30px;
 }
 
+.m-b-1 {
+    margin-bottom: 1px;
+}
+
 .chatChoice {
     z-index: 1;
 }
@@ -305,7 +309,7 @@
     }
 
     .proposalMainView yaka-chat .ms-reply textarea {
-        height: 40px;
+        height: 49px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
