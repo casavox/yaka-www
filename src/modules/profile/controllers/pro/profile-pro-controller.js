@@ -421,9 +421,13 @@
             alertMsg.send("La zone de notification à été modifiée avec succès", "success");
         }
 
-        function errorWorkareaPUT() {
+        function errorWorkareaPUT(status) {
             vm.updating = false;
-            alertMsg.send("Impossible de modifier la zone de notification", "danger");
+            if (status.error == "ERROR_BAD_LOCATION") {
+                alertMsg.send("La zone de recherche doit être située en France", "danger");
+            } else {
+                alertMsg.send("Impossible de modifier la zone de notification", "danger");
+            }
         }
 
         function succesProfileGET(res) {
