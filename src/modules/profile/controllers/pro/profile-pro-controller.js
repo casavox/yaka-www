@@ -807,6 +807,7 @@
             }, 1000);
         }, 1000);
 
+
         function loadMap() {
             uiGmapGoogleMapApi.then(function (maps) {
                 vm.map = {
@@ -916,6 +917,18 @@
                                 }, 0);
                             }
                         }
+                        if (vm.mapEditing) {
+                            if (vm.map.zoom < 9 || vm.map.zoom > 11) {
+                                vm.mapShowMinimumZoomMessage = true;
+                                vm.circle.visible = false;
+                            } else {
+                                vm.mapShowMinimumZoomMessage = false;
+                                vm.circle.visible = true;
+                            }
+                        } else {
+                            vm.mapShowMinimumZoomMessage = false;
+                            vm.circle.visible = true;
+                        }
                     });
                 vm.map.bounds = {
                     'southwest': {
@@ -927,18 +940,6 @@
                         'longitude': vm.workArea.neLongitude
                     }
                 };
-                if (vm.mapEditing) {
-                    if (vm.map.zoom < 9) {
-                        vm.mapShowMinimumZoomMessage = true;
-                        vm.circle.visible = false;
-                    } else {
-                        vm.mapShowMinimumZoomMessage = false;
-                        vm.circle.visible = true;
-                    }
-                } else {
-                    vm.mapShowMinimumZoomMessage = false;
-                    vm.circle.visible = true;
-                }
             });
         }
 
