@@ -9622,6 +9622,9 @@ a.waves-effect .waves-ripple {
 .f-700 {
     font-weight: 700 !important;
 }
+.f-bold {
+    font-weight: bold;
+}
 
 /*
  * Position Classes
