@@ -54,16 +54,18 @@
 
                         <div class="col-xs-8 col-sm-9 col-xs-offset-1 p-r-0 p-l-0">
                             <div class="f-s-14 fw-bold">
-                                <casa-name-and-contact class="pull-left l-h-24" user="vm.project.user"></casa-name-and-contact>
+                                <casa-name-and-contact class="pull-left l-h-24"
+                                                       user="vm.project.user"></casa-name-and-contact>
                                 <div class="yakaEllipsis c-white bgm-black friend-tag m-l-5 visible-xs"
-                                    data-ng-if="!isContact">
+                                     data-ng-if="!isContact">
                                     <i class="zmdi zmdi-accounts"></i>
                                     Ami
                                 </div>
                             </div>
 
                             <ul class="col-xs-12 col-sm-8 yaka-chips m-t-5 no-padding actu-communities-tag">
-                                <li data-ng-repeat="community in vm.communities" class=" pull-right yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                <li data-ng-repeat="community in vm.communities"
+                                    class=" pull-right yakaEllipsis commu-tag-float c-white actu-community-tag"
                                     data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                     {{community.text}}
                                 </li>
@@ -140,8 +142,8 @@
 
                                 <div class="col-xs-12 col-sm-8 col-md-6 p-r-0">
                                     <div class="yakaEllipsis">
-                                    <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
-                                </div>
+                                        <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
+                                    </div>
                                     <div>
                                         <div class="yakaEllipsis">
                                             <em>{{professional.company.name}}</em>
@@ -152,7 +154,8 @@
 
 
                                 <ul class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
-                                    <li data-ng-repeat="community in vm.communities | limitTo:1:2" class=" pull-right yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                    <li data-ng-repeat="community in vm.communities | limitTo:1:2"
+                                        class=" pull-right yakaEllipsis commu-tag-float c-white actu-community-tag"
                                         data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                         {{community.text}}
                                     </li>
@@ -280,7 +283,8 @@
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
                                         <ul class="yaka-chips clearfix m-t-5 no-padding">
-                                            <li data-ng-repeat="community in vm.communities | limitTo:1:2" class="yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                            <li data-ng-repeat="community in vm.communities | limitTo:1:2"
+                                                class="yakaEllipsis commu-tag-float c-white actu-community-tag"
                                                 data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                                 {{community.text}}
                                             </li>
