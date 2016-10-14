@@ -25,11 +25,13 @@
         }
 
         if ($stateParams.chat) {
-            vm.showChat = true;
-            vm.scrollBottom = 1;
+            setTimeout(function () {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
         }
 
-        function loadProposal() {
+        function loadProposal(ignoreLoading) {
             networkService.proposalGET($stateParams.proposalId, function (res) {
                 vm.proposal = res;
                 $rootScope.pageName = vm.proposal.professional.user.firstName + " " + vm.proposal.professional.user.lastName +
@@ -37,10 +39,17 @@
                 if (vm.proposal.professional.company.address.address) {
                     vm.proposal.professional.company.address.address = vm.proposal.professional.company.address.address.replace(/, /g, "\n");
                 }
+                if (vm.proposal.unreadMessages) {
+
+                    setTimeout(function () {
+                        vm.showChat = true;
+                        vm.scrollBottom = 1;
+                    }, 500);
+                }
             }, function (err) {
                 alertMsg.send("Impossible de récupérer l'offre", "danger");
                 $state.go("my-projects");
-            });
+            }, ignoreLoading);
         }
 
         vm.getExperienceYearNumber = function () {
@@ -54,7 +63,7 @@
             swal({
                 title: "Je suis partenaire de " + vm.proposal.professional.mainPartner.name,
                 text: vm.proposal.professional.mainPartner.aboutLong_Fr,
-                imageUrl: 'http://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
+                imageUrl: 'https://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
                 confirmButtonText: "Fermer"
             });
         };
@@ -63,7 +72,7 @@
             swal({
                 title: vm.proposal.professional.mainPartner.name,
                 text: vm.proposal.professional.mainPartner.aboutShort_Fr,
-                imageUrl: 'http://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
+                imageUrl: 'https://res.cloudinary.com/yaka/image/upload/' + vm.proposal.professional.mainPartner.cloudinaryPublicId + '_Popup.png',
                 confirmButtonText: "Fermer"
             });
         };
@@ -85,7 +94,7 @@
                             $state.go("proposals", {projectId: vm.proposal.project.id});
                         }, function () {
                             alertMsg.send("Impossible d'annuler la proposition, réessayez puis contactez le support si besoin", "danger");
-                        }
+                        }, true
                     );
                 }
             });
@@ -106,10 +115,10 @@
                     networkService.proposalAcceptPOST(vm.proposal.id,
                         function (res) {
                             alertMsg.send("Félicitations, vous avez choisi cette proposition pour vos travaux", "info");
-                            loadProposal();
+                            loadProposal(true);
                         }, function () {
                             alertMsg.send("Impossible de sélectionner cette proposition, réessayez puis contactez le support si besoin", "danger");
-                        }
+                        }, true
                     );
                 }
             });
@@ -129,12 +138,12 @@
                     networkService.closeProject(vm.proposal.id,
                         function (res) {
                             alertMsg.send("Merci d'avoir indiqué la fin des travaux. Vous allez pouvoir noter ce Pro !", "info");
-                            loadProposal();
+                            loadProposal(true);
                             $rootScope.rating = false;
                             $rootScope.rate_watcher = !$rootScope.rate_watcher;
                         }, function () {
                             alertMsg.send("Impossible d'indiquer la fin des travaux, réessayez puis contactez le support si besoin", "danger");
-                        }
+                        }, true
                     );
                 }
             });

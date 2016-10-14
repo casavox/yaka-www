@@ -47,7 +47,8 @@
                                 data-ng-click="vm.openFriendPopup()">
                             Inviter un ami
                         </button>
-                        <button id="invite-pro-button" class="btn btn-default waves-effect c-orange" data-ng-click="vm.openProPopup()">
+                        <button id="invite-pro-button" class="btn btn-default waves-effect c-orange"
+                                data-ng-click="vm.openProPopup()">
                             Inviter un pro
                         </button>
                     </div>
@@ -58,7 +59,8 @@
                      data-ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
                      data-ng-swipe-left="vm.contactsMenuOpened = false">
 
-                    <button class="visible-xs btn bgm-bluegray btn-icon waves-effect waves-circle close-contact-button" data-ng-click="vm.contactsMenuOpened = false">
+                    <button class="visible-xs btn bgm-bluegray btn-icon waves-effect waves-circle close-contact-button"
+                            data-ng-click="vm.contactsMenuOpened = false">
                         <i class="zmdi zmdi-close"></i>
                     </button>
 
@@ -87,10 +89,10 @@
                         PROFESSIONNELS
                     </span>
                         <span data-ng-if="!app.isPro()" class="visible-xs">
-                        PRO.
+                        PRO
                     </span>
                         <span data-ng-if="app.isPro()">
-                        COLLÈGUES
+                        PROS
                     </span>
 
                         <div class="contactsItemNumber"
@@ -168,15 +170,7 @@
                         <span class="contactItemName">
                             {{contact.user.firstName}} {{contact.user.lastName}}
                             <span class="contactItemPro" data-ng-if="contact.user.professional">
-                                <span data-ng-if="!app.isPro()">
                                     PRO
-                                </span>
-                                <span data-ng-if="app.isPro()">
-                                    COLLÈGUE
-                                </span>
-                            </span>
-                            <span class="contactItemEmail">
-                                ({{contact.user.email}})
                             </span>
                         </span>
 
@@ -188,6 +182,17 @@
                               data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
                             {{contact.user.professional.company.address.locality}}
                         </span>
+
+                        <div class="lightbox-item p-item pull-right"
+                             tooltip-placement="left"
+                             uib-tooltip="Supprimer le contact">
+                            <img class="invitRefuse"
+                                 src="icons/mdpi/ic_refuse_invitation.png"
+                                 data-ng-click="vm.deleteContact(contact.user.id)"/>
+                        </div>
+
+
+
                     </div>
                     <div class="col-xs-12 contactItem"
                          data-ng-repeat="invit in vm.invitationsReceived"
@@ -207,12 +212,7 @@
                             <span class="contactItemName contactItemNameInvitReceived">
                                 {{invit.inviter.firstName}} {{invit.inviter.lastName}}
                                 <span class="contactItemPro" data-ng-if="invit.inviter.professional">
-                                    <span data-ng-if="!app.isPro()">
                                         PRO
-                                    </span>
-                                    <span data-ng-if="app.isPro()">
-                                        COLLÈGUE
-                                    </span>
                                 </span>
                                 <span class="contactItemEmail">
                                     ({{invit.inviter.email}})
@@ -227,13 +227,18 @@
                                 {{invit.inviter.professional.company.address.locality}}
                             </span>
                         </div>
+
                         <div class="pull-right">
-                            <span class="waves-effect">
+                            <span class="waves-effect"
+                                  tooltip-placement="left"
+                                  uib-tooltip="Refuser l'invitation">
                             <img class="invitRefuse"
                                  src="icons/mdpi/ic_refuse_invitation.png"
                                  data-ng-click="vm.refuseInvitation(invit.inviter.inviteId)"/>
                         </span>
-                            <span class="waves-effect">
+                            <span class="waves-effect"
+                                  tooltip-placement="left"
+                                  uib-tooltip="Accepter l'invitation">
                                 <img class="invitAccept"
                                      src="icons/mdpi/ic_accept_invitation.png"
                                      data-ng-click="vm.acceptInvitation(invit.inviter.inviteId)"/>
@@ -246,12 +251,7 @@
                         <span data-ng-if="invit.firstName && invit.lastName">
                             {{invit.firstName}} {{invit.lastName}}
                             <span class="contactItemPro" data-ng-if="invit.isPro">
-                                <span data-ng-if="!app.isPro()">
                                     PRO
-                                </span>
-                                <span data-ng-if="app.isPro()">
-                                    COLLÈGUE
-                                </span>
                             </span>
                             <span class="contactItemEmail">
                                 ({{invit.email}})
@@ -260,15 +260,9 @@
                         <span data-ng-if="!invit.firstName || !invit.lastName">
                             {{invit.email}}
                             <span class="contactItemPro" data-ng-if="invit.isPro">
-                                <span data-ng-if="!app.isPro()">
                                     PRO
-                                </span>
-                                <span data-ng-if="app.isPro()">
-                                    COLLÈGUE
-                                </span>
                             </span>
                         </span>
-
                     </div>
                     <div class="col-xs-12 contactsEmpty"
                          data-ng-if="vm.getCurrentContactListNumber() == 0 && vm.currentMenuItem != 'INVIT_RECEIVED' && vm.currentMenuItem != 'INVIT_SENT'">
@@ -291,13 +285,12 @@
                             </div>
                             <div class="m-b-5" data-ng-show="app.isPro()">
                                 Parce qu'une de vos connaissances - personnelle, ancien client ou collègue - à un ami à
-                                la
-                                recherche de vos compétences. CasaVox encourage vos relations à vous recommander auprès
+                                la recherche de vos compétences. CasaVox encourage vos relations à vous recommander auprès
                                 de leurs connaissances « <em>les amis de mes amis sont mes nouveaux clients !</em> ».
                             </div>
                             <div class="m-b-20" data-ng-show="app.isPro()">
                                 Parce que s'aider entre collègues est toujours payant ! En quelques clics, recommandez
-                                vos collègues à vos connaissances (par exemple, sur les projets qui ne correspondent pas
+                                vos collègues à vos connaissances (par exemple, sur les offres qui ne correspondent pas
                                 à vos compétences ou zones d'activités), ils feront pareil avec vous !
                             </div>
                         </div>
@@ -316,8 +309,15 @@
                             </span>
                         </div>
                     </div>
+                    <div class="col-xs-12 visible-xs bottomBlock">
+                        <a class="pull-right" data-ui-sref="help({'card': 'bao'})">En savoir plus</a>
+                    </div>
                 </div>
             </div>
+            <div class="col-xs-12 footer-card hidden-xs">
+                Une question ? <a data-ui-sref="help({'card': 'bao'})">Consultez l'aide</a>
+            </div>
+
         </div>
     </div>
 </section>
@@ -325,7 +325,8 @@
 <div class="yakaPopup" data-ng-show="vm.showInvitFriendPopup" data-ng-click="vm.closeFriendPopup()" data-ng-cloak>
     <div class="container">
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img id="closePopupFriendImg" class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeFriendPopup()"
+            <img id="closePopupFriendImg" class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.closeFriendPopup()"
                  alt=""/>
 
             <div class="col-xs-12 yakaPopupInvitTitle">

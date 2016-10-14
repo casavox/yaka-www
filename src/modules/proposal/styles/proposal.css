@@ -1,3 +1,81 @@
+.l-h-30 {
+    line-height: 30px;
+}
+
+.m-b-1 {
+    margin-bottom: 1px;
+}
+
+.chatChoice {
+    z-index: 1;
+}
+
+.divAvatarIcon {
+    width: 50px;
+}
+
+.p-border {
+    box-shadow: inset 0 -2px 0 0 #eee;
+    background-color: #eee;
+}
+
+.emptyCol {
+    height: 58px;
+}
+
+.chatTab {
+    border-right: 1px white solid;
+}
+
+.assistanceTxt {
+    position: absolute;
+    color: black;
+    font-size: 13px;
+    top: 43px;
+    left: -14px;
+    font-weight: 500;
+    overflow: visible;
+    width: 80px;
+}
+
+.proposalUnreadMessagesIndicatorChatTab {
+    display: inline-block;
+    font-style: normal;
+    background: #f44336;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    top: 9px;
+    right: 3px;
+    position: absolute;
+}
+
+.proposalUnreadMessagesIndicatorChatTabAdmin {
+    display: inline-block;
+    font-style: normal;
+    background: #f44336;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    top: 9px;
+    right: 9px;
+    position: absolute;
+}
+
+.behindLogo {
+    width: 41px;
+    height: 41px;
+    height: 41px;
+    position: absolute;
+    top: 3px;
+    left: 18px;
+}
+
+.selectedChat {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #03A9F4;
+}
+
 .proposalIconBackground {
     background-color: #03A9F4;
     border-radius: 50%;
@@ -7,8 +85,9 @@
     background-color: #9E9E9E;
     border-radius: 50%;
 }
+
 .proposalTitle {
-    width:calc(100% - 54px);
+    width: calc(100% - 54px);
 }
 
 .projectTitleBar {
@@ -16,6 +95,10 @@
     margin: 0 !important;
     line-height: 100%;
     color: #000;
+}
+
+.waitingReco {
+    transform: translateY(50%);
 }
 
 .projectTitleBar .media-heading .row {
@@ -44,18 +127,18 @@
 }
 
 .proposalUnreadMessagesIndicator {
-    display:inline-block;
+    display: inline-block;
     font-style: normal;
     background: #f44336;
     height: 8px;
     width: 8px;
-    border-radius:50%;
+    border-radius: 50%;
     margin-left: -5px;
     transform: translateY(-6px);
 }
 
 .proposalUnreadMessagesIndicatorOnList {
-    display:inline-block;
+    display: inline-block;
     position: relative;
     background: #f44336;
     border-radius: 50%;
@@ -94,9 +177,29 @@
     height: auto;
 }
 
+.scrollViewChatProposalAdminAndPro {
+    position: absolute;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    top: 106px;
+    width: auto;
+    height: auto;
+}
+
 @media (min-width: 1200px) {
     .scrollViewChatProposal {
         left: 300px;
+    }
+
+    .scrollViewChatProposalAdminAndPro {
+        position: absolute;
+        bottom: 0;
+        left: 279px;
+        right: 0;
+        top: 106px;
+        width: auto;
+        height: auto;
     }
 }
 
@@ -188,6 +291,11 @@
         top: 38px;
     }
 
+    .scrollViewChatProposalAdminAndPro {
+        left: 0;
+        top: 96px;
+    }
+
     .proposalMainView yaka-chat .lv-footer {
         height: 50px;
         position: absolute;
@@ -201,7 +309,7 @@
     }
 
     .proposalMainView yaka-chat .ms-reply textarea {
-        height: 40px;
+        height: 49px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
@@ -360,9 +468,22 @@
         font-weight: normal;
         font-size: 15px;
     }
+
+    .pr-list-text {
+        text-align: left;
+    }
 }
 
 @media (max-width: 767px) {
+    .pr-list-icon {
+        margin-left: -12px !important;
+    }
+
+    .pr-list-text {
+        text-align: center;
+        padding-right: 0px;
+    }
+
     .noProposalYetContentRubric1TitleJ {
         text-align: justify;
         font-weight: normal;
@@ -391,3 +512,4 @@
         z-index: 1 !important;
     }
 }
+

@@ -16,48 +16,89 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content">
         <div class="container">
-            <div>
-                <input type="text" class="form-control di-block input-filter" ng-model="search.user.name"
-                       placeholder="Nom"/>
-                <input type="text" class="form-control di-block input-filter" ng-model="search.company.address.city"
-                       placeholder="Ville"/>
-                <input type="text" class="form-control di-block input-filter" ng-model="search.user.created"
-                       placeholder="Création"/>
-                <input type="text" class="form-control di-block input-filter" ng-model="search.user.updated"
-                       placeholder="Update"/>
-                <input type="text" class="form-control di-block input-filter" ng-model="search.eligibleStatus"
-                       placeholder="Eligible"/>
-                <input type="text" class="form-control di-block input-filter" ng-model="search.status"
-                       placeholder="Statut"/>
-                <button class="btn btn-success validateButton di-block input-filter waves-effect"
+            <div class="card col-xs-12 col-sm-4">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer"
+                   ng-click="vm.reinitializeCreatedDate()"></i>
+                <h4>Recherche par date de création</h4>
+                <p>Entre le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.fromDate"
+                           is-open="vm.status1.opened" max-date="vm.maxDate" datepicker-options="vm.dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="vm.openFromDate($event)"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                </p>
+                <p>Et le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.toDate"
+                           is-open="vm.status2.opened" max-date="vm.maxDate" datepicker-options="vm.dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="vm.openToDate($event)"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                </p>
+            </div>
+            <div class="card col-xs-12 col-sm-4 col-sm-offset-1">
+                <i class="zmdi zmdi-hc-2x zmdi-close  t-right c-black m-t-5 f-right pointer"
+                   ng-click="vm.reinitializeCreatedDate()"></i>
+                <h4>Recherche par date de mise à jour</h4>
+                <p>Entre le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.updatedFromDate"
+                           is-open="vm.status3.opened" max-date="vm.maxDate" datepicker-options="vm.dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openUpdatedFromDate($event)"><i
+                      class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+                <p>Et le :</p>
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.updatedToDate"
+                           is-open="vm.status4.opened" max-date="vm.maxDate" datepicker-options="vm.dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.openUpdatedToDate($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+            </div>
+            <div class="card col-xs-12 col-sm-2 col-sm-offset-1 t-center">
+                <h4>Valider le(s) pro(s)</h4>
+                <button class="btn btn-success waves-effect m-b-10"
                         data-ng-disabled="!vm.oneOrMorePro()"
                         data-ng-click="vm.validatePro()">Valider
                 </button>
             </div>
-            <table ng-table="usersTable" class="table table-striped" show-filter="true">
+            <table ng-table="vm.usersTable" class="table table-striped" show-filter="true">
+                <tr data-ng-repeat="pro in $data | filter:search | casaDateRangePicker:vm.fromDate:vm.toDate:'created' | casaDateRangePicker:vm.updatedFromDate:vm.updatedToDate:'updated'"
+                    class="t-center">
 
-                <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
-
-                    <td data-title="'Nom'" class="pointer c-blue" data-sortable="'user.name'"
-                    data-ui-sref="admin-pro-details({professionnalId: pro.id})">
-                        {{pro.user.name}}
+                    <td data-title="'Nom'" class="pointer c-blue" filter="{userName: 'text'}" data-sortable="'userName'"
+                        data-ui-sref="admin-pro-details({professionnalId: pro.id})">
+                        {{pro.userName}}
                     </td>
-                    <td data-title="'Ville'" data-sortable="'company.address.city'">
-                        {{ pro.company.address.city }}
+                    <td data-title="'Ville'" filter="{city: 'text'}" data-sortable="'city'">
+                        {{ pro.city }}
                     </td>
-                    <td data-title="'Création'" data-sortable="'user.created'">
-                        {{ pro.user.created | date:"dd/MM/yyyy" }}
+                    <td data-title="'Création'" data-sortable="'created'">
+                        {{ pro.created | date:"dd/MM/yyyy" }}
                     </td>
-                    <td data-title="'Mis à jour'" data-sortable="'user.updated'">
-                        {{ pro.user.updated| date:"dd/MM/yyyy" }}
+                    <td data-title="'Mis à jour'" data-sortable="'updated'">
+                        {{ pro.updated| date:"dd/MM/yyyy" }}
                     </td>
                     <td data-title="'Eligible'"
-                        ng-class="{'bgm-green' : pro.eligibleStatus == 'Validé', 'bgm-yellow' : pro.eligibleStatus == 'Incomplet', 'bgm-blue' : pro.eligibleStatus == 'Complet', 'bgm-red' : pro.eligibleStatus == 'Refusé'}"
+                        filter="{eligibleStatus: 'text'}"
+                        ng-class="{'c-blue' : pro.eligibleStatus == 'Incomplet', 'c-red f-bold' : pro.eligibleStatus == 'En attente', 'c-purple' : pro.eligibleStatus == 'Refusé'}"
                         data-sortable="'eligibleStatus'">
                         {{ pro.eligibleStatus }}
                     </td>
                     <td data-title="'Statut'"
-                        ng-class="{'bgm-green' : pro.status == 'Validé', 'bgm-yellow' : pro.status == 'Incomplet', 'bgm-blue' : pro.status == 'Complet', 'bgm-red' : pro.status == 'Refusé'}"
+                        filter="{status: 'text'}"
+                        ng-class="{'c-blue' : pro.status == 'Incomplet', 'c-red f-bold' : pro.status == 'En attente', 'c-purple' : pro.status == 'Refusé'}"
                         data-sortable="'status'">
                         {{ pro.status }}
                     </td>
@@ -67,7 +108,8 @@
                                 casaProfessionalDoc }}</a>
                         </div>
                     </td>
-                    <td data-title="'Vérif nécessaire'" data-sortable="'needToRecheck'">
+                    <td data-title="'Vérif nécessaire'" filter="{needToRecheck: 'text'}"
+                        data-sortable="'needToRecheck'">
                         {{ pro.newNeedToRecheck}}
                     </td>
                     <td class="checkbox">

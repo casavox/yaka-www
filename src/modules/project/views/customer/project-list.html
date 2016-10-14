@@ -1,4 +1,3 @@
-f
 <header id="header" data-current-skin='lightblue' data-ng-include="'/modules/core/views/header.html'"
 ></header>
 
@@ -12,19 +11,19 @@ f
             <div data-ng-show="vm.projectsOnGoing && vm.projectsOnGoing.length == 0" class="card" data-ng-cloak>
                 <div class="card-header">
                     <h2>VOUS N'AVEZ ENCORE DE PROJET
-                        <small>Comment fonctionne YakaClub ?</small>
+                        <small>Comment fonctionne CasaVox ?</small>
                     </h2>
                 </div>
                 <div class="card-body card-padding">
                     <ol>
-                        <li>Créez votre projet</li>
-                        <li>Recevez des offres et discutez avec nos professionnels</li>
+                        <li>Trouver votre Pro en créant votre projet de travaux</li>
+                        <li>Recevez des propositions et discutez avec nos professionnels</li>
                         <li>Sélectionnez celui qui vous convient</li>
-                        <li>Clôturez le projet et partagez votre recommandation</li>
+                        <li>Clôturez le chantier et partagez votre recommandation</li>
                     </ol>
                 </div>
                 <div class="panel-footer text-right">
-                    <button class="btn btn-lg btn-primary" data-ui-sref="new-project">CREER UN PROJET</button>
+                    <button class="btn btn-lg btn-primary" data-ui-sref="new-project">TROUVER MON PRO.</button>
                 </div>
             </div>
 
@@ -40,8 +39,6 @@ f
                         <div class="media">
                             <div class="pull-left">
                                 <div class="proposalIconBackground lv-img v-icon-{{p.mainActivity.code}}-white">
-                                    <i class="proposalUnreadMessagesIndicatorOnList"
-                                       data-ng-show="p.unreadMessages"></i>
                                 </div>
 
                             </div>
@@ -69,6 +66,22 @@ f
                                         </a>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix p-r-0 m-l-65"
+                         data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
+                        <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                            <div class="no-padding">
+                                <b>Nouveau<span
+                                    data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
+                                    Message<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                                <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="p.unreadMessages">
+                                    Pro
+                                </button>
+                                <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="p.unreadMessagesSupport">
+                                    CasaVox
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -103,14 +116,28 @@ f
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i class="proposalUnreadMessagesIndicatorOnPro ng-scope"
-                                           data-ng-if="p.proposal.unreadMessages"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="p.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="p.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
@@ -140,14 +167,30 @@ f
                                          title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="p.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="p.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="p.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="p.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="media-body pull-left" title="{{p.title}}">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-red"><strong>Notez votre Pro. pour ce projet</strong></div>
+                                    <div class="c-red"><strong>Notez votre Pro. pour ce chantier</strong></div>
                                     <strong>{{p.proposal.professional.user.firstName}}
                                         {{p.proposal.professional.user.lastName}}</strong>
                                 </div>
@@ -225,15 +268,31 @@ f
                                          title="{{pc.proposal.professional.user.firstName}} {{pc.proposal.professional.user.lastName}}">
                                         <yaka-avatar class="on-avatar" size="42"
                                                      user="pc.proposal.professional.user"></yaka-avatar>
-                                        <i data-ng-show="pc.proposal.unreadMessages"
-                                           class="proposalUnreadMessagesIndicator"></i>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="pc.proposal.unreadMessages || pc.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="pc.proposal.unreadMessages && pc.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="pc.proposal.unreadMessages && pc.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="pc.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="pc.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="media-body pull-left" title="{{pc.title}}"
                                  data-ui-sref="proposal({'proposalId': pc.proposal.id})">
                                 <div class="media-heading m-b-5">
-                                    <div class="c-gray">Votre Pro. pour ce projet</div>
+                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
                                     <strong>{{pc.proposal.professional.user.firstName}}
                                         {{pc.proposal.professional.user.lastName}}</strong>
                                 </div>
@@ -248,6 +307,108 @@ f
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                         <span data-ng-show="pc.proposal.price">{{pc.proposals[0].price}} €</span>
                                         <span data-ng-show="!pc.proposal.price">- - - €</span>
+                                    </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-show="vm.projectsCanceled && vm.projectsCanceled.length > 0" data-ng-cloak>
+                <div class="block-header">
+                    <h2 data-ng-show="vm.projectsCanceled.length == 1">PROJET ANNULÉ</h2>
+
+                    <h2 data-ng-show="vm.projectsCanceled.length > 1">PROJETS ANNULÉS</h2>
+                </div>
+                <div class="card card-hover pointer" data-ng-repeat="p in vm.projectsCanceled"
+                     data-ng-click="vm.selectProject(p)">
+                    <div class="card-header p-b-15">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="proposalIconBackgroundOff lv-img v-icon-{{p.mainActivity.code}}-white">
+                                </div>
+                            </div>
+                            <div class="media-body projectTitleBar">
+                                <div class="media row">
+                                    <div class="col-sm-7">{{p.title}}</div>
+                                    <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
+                                        <div>
+                                            <small class="c-gray">
+                                                Cloturé le {{p.updated | date:'d MMMM y'}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media m-t-5">
+                                    <div class="c-gray">
+                                        <strong>{{p.address.name}}</strong> -
+                                        <small>{{p.address.locality}}</small>
+                                    </div>
+                                    <div class="c-gray">
+                                        <small>Début souhaité {{vm.getDesiredPedriod(p)}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <ul class="actions m-t-20">
+                                    <li class="dropdown" uib-dropdown>
+                                        <a href="" uib-dropdown-toggle>
+                                            <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-ng-show="p.status == 'CANCELED' && p.proposal" class="card-body p-l-25 p-b-20"
+                         data-ui-sref="proposal({'proposalId': p.proposal.id})">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div class="btn-dpday pull-left on-avatar">
+                                    <div class="p-relative"
+                                         title="{{p.proposal.professional.user.firstName}} {{p.proposal.professional.user.lastName}}">
+                                        <yaka-avatar class="on-avatar" size="42"
+                                                     user="p.proposal.professional.user"></yaka-avatar>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix p-r-0 m-l-65"
+                                 data-ng-if="p.proposal.unreadMessages || p.proposal.unreadMessagesSupport">
+                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                                    <div class="no-padding">
+                                        <b>Nouveau<span
+                                            data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">x</span>
+                                            Message<span data-ng-if="p.proposal.unreadMessages && p.proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="p.proposal.unreadMessages">
+                                            Pro
+                                        </button>
+                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="p.proposal.unreadMessagesSupport">
+                                            CasaVox
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="media-body pull-left" title="{{p.title}}"
+                                 data-ui-sref="proposal({'proposalId': p.proposal.id})">
+                                <div class="media-heading m-b-5">
+                                    <div class="c-gray">Votre Pro. pour ce chantier</div>
+                                    <strong>{{p.proposal.professional.user.firstName}}
+                                        {{p.proposal.professional.user.lastName}}</strong>
+                                </div>
+                                <ul class="pull-left wall-attrs clearfix list-inline list-unstyled">
+                                    <li class="wa-stats center">
+                                    <span class="bgm-white">
+                                        <i class="zmdi zmdi-calendar c-gray"></i>
+                                        <span data-ng-show="p.proposal.startDate">{{p.proposal.startDate | date:'dd/MM/yy'}}</span>
+                                        <span data-ng-show="!p.proposal.startDate">- - -</span>
+                                    </span>
+                                        <span class="active bgm-white c-gray">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <span data-ng-show="p.proposal.price">{{p.proposals[0].price}} €</span>
+                                        <span data-ng-show="!p.proposal.price">- - - €</span>
                                     </span>
                                     </li>
                                 </ul>

@@ -2,25 +2,24 @@
 ></header>
 
 <section id="main">
-
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }" data-ng-if="app.getUser()"></aside>
 
     <div id="content" class="content" data-ng-class="{ 'noMenu': !app.getUser() }">
         <div id="accordion" class="container" data-ng-cloak>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="vm.pro"
-                 data-ng-click="vm.showTuto = !vm.showTuto">
+            <div id="tuto" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-class="{'c-lightblue': vm.showTuto}"
+                 data-ng-if="app.getUser()"
+                 data-ng-click="vm.smoothScroll('tuto')">
                 Bien démarrer sur CasaVox
-
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showTuto, 'zmdi-chevron-up': vm.showTuto}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showTuto, 'zmdi-chevron-up c-lightblue': vm.showTuto}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.showTuto" data-ng-show="vm.pro" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showTuto" data-ng-if="vm.pro" class="col-xs-12 no-padding">
                 <div class="block-header">
-                    <h2>Bien débuter sur CasaVox</h2>
+                    <h2>Débuter sur CasaVox</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
@@ -38,8 +37,7 @@
                             </span>
                                 <small>
                                     Vous pouvez compléter votre profil en cliquant sur votre logo avatar depuis la barre
-                                    de
-                                    menu.
+                                    de menu.
                                 </small>
                             </h2>
                             <h2 data-ng-switch-when="COMPLETED">
@@ -48,8 +46,7 @@
                             </span>
                                 <small>
                                     Vous pouvez toujours mettre à jour votre profil en cliquant sur votre logo avatar
-                                    depuis
-                                    la barre de menu.
+                                    depuis la barre de menu.
                                 </small>
                             </h2>
                             <h2 data-ng-switch-when="WAITING">
@@ -74,9 +71,19 @@
                             </h2>
                         </div>
                         <div class="col-xs-12 p-18">
-                            Précisez ce que vous faites et le secteur dans lequel vous cherchez des chantiers.<br/>
-                            Toutes les informations sont vérifiées pour garantir à nos utilisateurs d’être bien mis en
-                            contact avec des professionnels sérieux.
+                            <p class="m-0">
+                                Précisez ce que vous faites et le secteur dans lequel vous cherchez des chantiers.
+                            </p>
+                            <p class="m-0">
+                                Toutes les informations sont vérifiées pour garantir à nos utilisateurs d’être bien mis
+                                en contact avec des professionnels sérieux.
+                            </p>
+                            <p class="m-0">
+                                Pour modifier votre avatar, cliquez sur le crayon
+                                <span class="hw25 btn bgm-lightblue btn-icon waves-effect waves-circle">
+                                    <i class="m-t-3 zmdi zmdi-edit"></i>
+                                </span> : c'est la première chose qui permettra de vous distinguer des autres Pros.
+                            </p>
                         </div>
                         <div class="col-xs-12 p-18">
                             <button class="btn bgm-orange waves-effect f-right" data-ui-sref="pro-profile">
@@ -172,88 +179,338 @@
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="vm.pro"
-                 data-ng-click="vm.showNavigate = !vm.showNavigate">
-                Naviguer dans CasaVox
-
-                <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showNavigate, 'zmdi-chevron-up': vm.showNavigate}"></i>
-            </div>
-
-            <div data-uib-collapse="!vm.showNavigate" data-ng-show="vm.pro" class="col-xs-12 no-padding">
+            <div data-uib-collapse="!vm.showTuto" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
                 <div class="block-header">
-                    <h2>Menu : Carte des offres</h2>
+                    <h2>Mon profil</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Comment obtenir de nouveaux chantiers</h2>
+                            <h2>CasaVox est bâti sur la confiance !</h2>
                         </div>
                         <div class="card-body card-padding">
-                            TEXTE A CHANGER TEXTE A CHANGER TEXTE A CHANGER TEXTE A CHANGER TEXTE A CHANGER
+                            <p class="m-0">
+                                Aucune des informations relatives à vos projets de travaux (la nature de votre besoin,
+                                le lieu des travaux, la date, etc.) ne sont utilisés en dehors de CasaVox, autrement
+                                dit seuls les Pros inscrit sur CasaVox peuvent connaitre votre besoin.
+                            </p>
+                            <p class="m-0">
+                                CasaVox n'a pas l'intention de gagner de l'argent en revendant vos informations !
+                            </p>
+                            <p class="m-0 m-t-5">
+                                Il n'y a que vous qui décidez à qui et quand vos coordonnées précises (mail, téléphone,
+                                adresse complète) sont rendues visible : Les Pros CasaVox qui ne font pas partie de vos
+                                « <em>Contacts CasaVox</em> » peuvent bien sûr voir les détails de votre projet de
+                                travaux (autrement ils ne pourraient pas vous faire de propositions), mais ils ne
+                                pourront voir de vos coordonnées personnelles que votre avatar, votre prénom et initiale
+                                de votre nom, et uniquement la ville de votre projet.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                Le Pro que vous aurez explicitement invité à faire partie de vos « <em>Contacts
+                                CasaVox</em> » verra quant à lui l'ensemble de vos coordonnées : rendez-vous sur le menu
+                                « <em>Mes contacts</em> ».
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Complétez votre profil</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <p class="m-0">
+                                Depuis la barre du haut (fond bleu), cliquez sur votre prénom, puis sur « <em>Mon
+                                profil</em> ».
+                            </p>
+                            <p class="m-0">
+                                Dans le cadre « <em>Informations générales</em> », complétez et/ou modifiez votre
+                                civilité, prénom, nom, téléphone portable, adresse mail et votre adresse personnelle
+                                principale.
+                            </p>
+                            <p class="m-0">
+                                Cliquez sur le crayon
+                                <span class="hw25 btn bgm-lightblue btn-icon waves-effect waves-circle">
+                                    <i class="m-t-3 zmdi zmdi-edit"></i>
+                                </span> pour modifier votre avatar : c'est la première chose qui permettra de vous
+                                distinguer des autres utilisateurs.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                Dans le cadre « <em>Comptes sociaux associés</em> », cliquez sur le bouton « <em>ASSOCIER</em>
+                                » puis sélectionnez le compte Facebook ou Google que vous souhaitez utiliser pour vous
+                                connecter plus rapidement à CasaVox.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="!vm.pro && app.getUser()"
-                 data-ng-click="vm.customerCard1 = !vm.customerCard1">
-                Bla bla client 1
-
-                <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.customerCard1, 'zmdi-chevron-up': vm.customerCard1}"></i>
-            </div>
-
-            <div data-uib-collapse="!vm.customerCard1" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
+            <div data-uib-collapse="!vm.showTuto" class="col-xs-12 no-padding" data-ng-if="!vm.pro && app.getUser()">
                 <div class="block-header">
-                    <h2>Bla bla client 1</h2>
+                    <h2>Trouver un professionnel</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Bla bla client 1</h2>
+                            <h2>Trouver le Pro qu'il vous faut</h2>
                         </div>
                         <div class="card-body card-padding">
-                            Bla bla client 1
+                            <p class="m-0">
+                                Depuis le menu « <em>Trouver un Pro</em> », laissez-vous guider par les différentes
+                                questions, elles permettrons aux professionnels du bâtiment de vous faire des
+                                propositions adaptées et les plus précises possible.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Quel type de travaux souhaitez-vous réaliser ?</em></strong>
+                            </p>
+                            <p class="m-0">
+                                Si vous hésitez entre plusieurs catégories, choississez « <em>Multitravaux</em> », vous
+                                pourrez ensuite préciser votre besoin grâce à la « <em>Description</em> » de votre
+                                projet.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Quelle prestation souhaitez-vous ?</em></strong>
+                            </p>
+                            <p class="m-0">
+                                Précisez si vous souhaitez fournir les principaux matériaux liés aux travaux ou non.
+                            </p>
+                            <p class="m-0">
+                                Cela ne concerne pas les petits matériaux tels que de la visserie, des joints de
+                                silicones, l'outillage, etc...
+                            </p>
+                            <p class="m-0">
+                                Par exemple, si vous souhaitez faire installer un chauffe-eau et l'avez déja acheté, ou
+                                si vous souhaitez faire repeindre une pièce et fournissez la peinture, indiquez-le en
+                                cliquant sur « <em>Pose uniquement</em> ».
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Décrivez votre projet</em></strong>
+                            </p>
+                            <p class="m-0">
+                                N'hésitez pas à apporter toute précision que vous jugerez utile sur votre besoin (nature
+                                du projet, type de finition attendue, qualité des matériaux, ...), les conditions de
+                                réalisation (dimension/surface, état général avant travaux, encombrement sur le lieu
+                                des travaux, ...), ainsi que sur les contraintes et exigences de réalisation (durée des
+                                travaux, bruit, nettoyage, ...).
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Ajoutez des photos</em></strong>
+                            </p>
+                            <p class="m-0">
+                                <em>Un dessin vos mieux qu'un long discours</em>, pour être sur d'avoir des réponses
+                                rapides et pertinentes joignez des photos du lieu des travaux (état général actuel,
+                                difficulté d'accès, ...), si vous fournissez des matériaux prenez des photos des parties
+                                les plus importantes (Exemple : embout de raccordement sur un chauffe-eau, serrure sur
+                                une porte, ...), vous pouvez également joindre des photos du résultat que vous
+                                souhaiteriez obtenir (Exemple : photo d'une cuisine installée, ...).
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>Indiquez l'adresse des travaux</em></strong>
+                            </p>
+                            <p class="m-0">
+                                <em>CasaVox est bâti sur la confiance !</em> Donner un nom au lieu des travaux, il ne
+                                sera visible que de vous (Exemple : maison vacances, appartement papa, ...), puis
+                                précisez l'adresse
+                                exacte du lieu des travaux : seul le professionnel que vous aurez retenu pour vos
+                                travaux, et les professionnels que vous aurez explicitement acceptés dans vos contacts y
+                                auront accès, tous les autres membres de CasaVox ne verront que la ville, ainsi ils
+                                pourront vous recommander des Pros à proximité.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20">
+                                    <em>Quand souhaitez-vous que les travaux commencent ?</em>
+                                </strong>
+                            </p>
+                            <p class="m-0">
+                                Choisissez la proposition la plus adaptée à votre besoin.
+                            </p>
+                            <p class="m-0 m-t-5">
+                                <strong class="m-l-20"><em>ENVOYER</em></strong>
+                            </p>
+                            <p class="m-0">
+                                En cliquant sur ce bouton votre projet sera automatiquement diffusé vers les
+                                professionnels CasaVox : uniquement vers ceux ayant les compétences nécessaires pour le
+                                réaliser.
+                            </p>
+                            <p class="m-t-5">
+                                Vous pourrez à tout moment revenir sur votre projet publié pour le modifier ou
+                                le compléter, depuis le menu « <em>Mes projets</em> ».
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="!vm.pro && app.getUser()"
-                 data-ng-click="vm.customerCard2 = !vm.customerCard2">
-                Bla bla client 2
+            <div id="bao" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-class="{'c-lightblue': vm.showBoucheAOreille}"
+                 data-ng-if="app.getUser()"
+                 data-ng-click="vm.smoothScroll('bao')">
+                <em>Bouche-à-oreille CasaVox</em>
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.customerCard2, 'zmdi-chevron-up': vm.customerCard2}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showBoucheAOreille, 'zmdi-chevron-up c-lightblue': vm.showBoucheAOreille}"></i>
             </div>
 
-            <div data-uib-collapse="!vm.customerCard2" class="col-xs-12 no-padding" data-ng-show="app.getUser()">
+            <div data-uib-collapse="!vm.showBoucheAOreille" data-ng-if="vm.pro" class="col-xs-12 no-padding">
                 <div class="block-header">
-                    <h2>Bla bla client 2</h2>
+                    <h2>Menu : MES CONTACTS</h2>
                 </div>
                 <div class="col-xs-12 no-padding">
                     <div class="col-xs-12 card no-padding">
                         <div class="card-header">
-                            <h2>Bla bla client 2</h2>
+                            <h2>Comment fonctionne le bouche-à-oreille CasaVox ?</h2>
                         </div>
                         <div class="card-body card-padding">
-                            Bla bla client 2
+                            <h5 class="m-0">
+                                CasaVox est la seule solution basée sur la confiance et la recommandation d'artisans
+                                entre particuliers !
+                            </h5>
+                            <p class="m-0 m-t-10">
+                                <strong>Développez votre business sans effort</strong>
+                            </p>
+                            <p class="m-0">
+                                Inutile de relancer sans cesse vos anciens clients : invitez-les dans CasaVox,
+                                lorsqu'ils auront à nouveau des travaux à faire, vous en serez automatiquement informé,
+                                par mail et depuis le menu <em>Accueil</em>. Ils ne risquent plus de perdre votre carte
+                                de visite !
+                            </p>
+                            <p class="m-0 m-t-10">
+                                CasaVox encourage vos connaissances - toutes vos connaissances : collègues, famille,
+                                amis et clients satisfaits - à vous recommander à tous leurs proches à la recherche d'un
+                                Pro du bâtiment, ainsi ils vous seront recommandés par des personnes qu'ils connaissent
+                                et à qui ils font confiance, cela fait toute la différence. <em>Les connaissances de vos
+                                connaissances sont vos prochains clients !</em>
+                            </p>
+                            <p class="m-l-10 m-r-0 m-t-5 m-b-0">
+                                <span class="underline">Exemple, s'aider entre collègues est toujours payant :</span>
+                                <br>
+                                <em>
+                                    Vous êtes plombier, le client d'un de vos amis architecte en cherche justement un,
+                                    CasaVox proposera à votre ami architecte de vous recommander à ce client, CasaVox
+                                    vous mettra alors en relation avec le client par l'intermédiaire de votre ami
+                                    architecte.
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Comment profiter efficacement du bouche-à-oreille CasaVox ?</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h5 class="m-b-10">
+                                Pour commencer, invitez vos connaissances à vous retrouver sur CasaVox
+                            </h5>
+                            <p class="m-0 m-b-5">
+                                Depuis le menu <em>Mes contacts</em>, cliquez sur :
+                            </p>
+                            <p class="m-0">
+                                <strong class="m-l-20">« Inviter un ami »</strong>
+                            </p>
+                            <p class="m-0 m-b-5">
+                                Indiquez les adresses mails de vos amis, familles, connaissances et surtout celles de
+                                vos anciens clients.
+                                <br>
+                                Vous pouvez les inviter un par un, ou plusieurs à la fois en séparant les adresses mails
+                                par une virgule (<em>monClient1@mail.com, monAmi@mail.com, ...</em>), ou - si vous
+                                utilisez la messagerie GMail de google - en cliquant sur le bouton <em>SÉLECTIONNER MES
+                                CONTACTS GMAIL</em> puis en cochant ceux à qui vous souhaitez envoyer une invitation.
+                            </p>
+                            <p class="m-0">
+                                <strong class="m-l-20">« Inviter un Pro »</strong>
+                            </p>
+                            <p class="m-0">
+                                Renseigner l'ensemble des informations demandées (le téléphone est facultatif), puis
+                                cliquez sur <em>INVITER</em>
+                            </p>
+                            <p class="m-0 m-t-10">
+                                Les personnes que vous invitez reçoivent automatiquement un mail contenant un lien
+                                personnalisé, une fois qu'ils se seront inscrit <strong>en cliquant sur ce lien</strong>,
+                                vous recevrez un mail vous indiquant qu'ils font maintenant partie de vos contacts
+                                CasaVox.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
-                 data-ng-show="app.getUser()"
-                 data-ng-click="vm.showSupport = !vm.showSupport">
+            <div data-uib-collapse="!vm.showBoucheAOreille" data-ng-if="!vm.pro && app.getUser()" class="col-xs-12 no-padding">
+                <div class="block-header">
+                    <h2>Menu : MES CONTACTS</h2>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Utilisez les Pros préférés de votre entourage</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h5 class="m-0">
+                                CasaVox est la seule solution basée sur la confiance et la recommandation d'artisans
+                                entre particuliers !
+                            </h5>
+                            <p class="m-0 m-t-10">
+                                Quelqu'un parmi vos amis, collègues ou voisins connaît le Pro qu'il vous faut ! C'est ce
+                                que l'on appelle le <em>bouche-à-oreille CasaVox</em> !
+                            </p>
+                            <p class="m-0">
+                                Seul CasaVox vous permet de vous faire aider - sans effort - de l'ensemble de vos
+                                relations de confiance pour trouver des Pros fiables, qui soient adaptés à vos besoins
+                                et contraintes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="col-xs-12 card no-padding">
+                        <div class="card-header">
+                            <h2>Profitez efficacement du bouche-à-oreille CasaVox</h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h5 class="m-b-10">
+                                Le bouche-à-oreille CasaVox fonctionne comme un réseau social (tel que Facebook par
+                                exemple) : invitez vos connaissances à vous retrouver sur CasaVox
+                            </h5>
+                            <p class="m-0 m-b-5">
+                                Depuis le menu <em>Mes contacts</em>, cliquez sur :
+                            </p>
+                            <p class="m-0">
+                                <strong class="m-l-20">« Inviter un ami »</strong>
+                            </p>
+                            <p class="m-0 m-b-5">
+                                Indiquez les adresses mails de votre entourage (amis, familles, voisins, ...).
+                                <br>
+                                Vous pouvez les inviter un par un, ou plusieurs à la fois en séparant les adresses mails
+                                par une virgule (<em>maConcierge@mail.com, monAmi@mail.com, monVoisin@mail.com, ...</em>),
+                                ou - si vous utilisez la messagerie GMail de google - en cliquant sur le bouton <em>SÉLECTIONNER
+                                MES CONTACTS GMAIL</em> puis en cochant ceux à qui vous souhaitez envoyer une
+                                invitation.
+                            </p>
+                            <p class="m-0">
+                                <strong class="m-l-20">« Inviter un Pro »</strong>
+                            </p>
+                            <p class="m-0">
+                                Les professionnels du bâtiment que vous avez pu solliciter par le passé ont ... des
+                                relations !
+                                <br>
+                                Profitez de leur réseau de professionnelles pour être mis automatiquement en relation
+                                avec les meilleurs d'entre eux : renseigner l'ensemble des informations demandées (le
+                                téléphone est facultatif), puis cliquez sur <em>INVITER</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="support" class="card col-xs-12 no-padding pointer p-l-10 p-r-10 p-t-5 p-b-5"
+                 data-ng-class="{'c-lightblue': vm.showSupport}"
+                 data-ng-if="app.getUser()"
+                 data-ng-click="vm.smoothScroll('support')">
                 Contacter CasaVox
 
                 <i class="zmdi f-right f-18"
-                   data-ng-class="{'zmdi-chevron-down': !vm.showSupport, 'zmdi-chevron-up': vm.showSupport}"></i>
+                   data-ng-class="{'zmdi-chevron-down': !vm.showSupport, 'zmdi-chevron-up c-lightblue': vm.showSupport}"></i>
             </div>
 
             <div data-uib-collapse="!vm.showSupport" class="col-xs-12 no-padding">

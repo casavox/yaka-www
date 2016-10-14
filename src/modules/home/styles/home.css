@@ -308,11 +308,23 @@ body:after {
     cursor: pointer;
 }
 
-.homeSection5FooterContactUs {
+.homeSection5FooterActivities {
     margin-top: 20px;
     line-height: 40px;
+}
+
+.CasaActivityLink {
+    color: #888888;
+}
+
+.t-end {
+    text-align: end;
+}
+
+.homeSection5FooterContactUs {
+    margin-top: 40px;
     float: right;
-    cursor: pointer;
+    text-align: end;
 }
 
 .homeSection5FooterGotop {
@@ -444,7 +456,7 @@ body:after {
 }
 
 .showRegisterFields.showRegisterFieldsVisible {
-    height: 510px;
+    height: 525px;
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
     -o-transition-delay: 0s;
@@ -585,7 +597,7 @@ body:after {
     }
 
     .homeSection5FooterContactUs {
-        margin-top: 17px;
+        margin-top: 34px;
     }
 }
 
@@ -779,8 +791,8 @@ body:after {
 
     .homeSection5FooterContactUs {
         height: 28px;
-        font-size: 13px;
-        margin-top: 6px;
+        font-size: 11px;
+        margin-top: 9px;
     }
 
     .homeSection5FooterLogin {
@@ -790,9 +802,6 @@ body:after {
         margin-top: 6px;
     }
 
-    .homeSection5 {
-        height: 50px;
-    }
 
     .homeSection5FooterLeft {
         margin-top: 10px;
@@ -809,7 +818,7 @@ body:after {
     }
 
     .showRegisterFields.showRegisterFieldsVisible {
-        height: 495px;
+        height: 515px;
     }
 }
 
@@ -921,4 +930,18 @@ body:after {
 .homeTransparentBox {
     background-color: rgba(255, 255, 255, 0);
     box-shadow: none;
+}
+
+.card-img-width {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.s-p-button {
+    padding-bottom: 20px !important;
+}
+
+.activeClass {
+    color: black!important;
+    cursor: default !important;
 }

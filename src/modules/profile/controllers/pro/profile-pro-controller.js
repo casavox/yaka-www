@@ -78,7 +78,7 @@
                     vm.profile.company.address = angular.copy(res.company.address);
                     vm.profile.company.phone = res.company.phone;
                     alertMsg.send("Profil mis à jour avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
@@ -96,12 +96,12 @@
             }, function () {
                 vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
-            });
+            }, true);
         };
 
         vm.updateWorkArea = function () {
             vm.updating = true;
-            networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT);
+            networkService.proWorkAreaPUT(vm.workArea, succesWorkareaPUT, errorWorkareaPUT, true);
         };
 
         vm.updateVerifications = function () {
@@ -122,7 +122,7 @@
                     vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Les vérifications ont été modifiées avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             } else {
                 vm.error.verif.message = "Merci de fournir un scan de votre KBIS et certificat d'assurance, " +
                     "une fois que nous les aurons vérifié, vous pourrez répondre à toutes les offres.";
@@ -143,7 +143,7 @@
                     vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Vos domaines d'activité ont été modifié avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 vm.error.activities.message = "Vous devez indiquer au moins une de vos compétences.";
@@ -160,7 +160,7 @@
                 vm.editFlag = false;
                 vm.updating = false;
                 alertMsg.send("Le portfolio à été modifié avec succès", "success");
-            }, errorProfilePUT);
+            }, errorProfilePUT, true);
         };
 
         vm.cancelProfile = function () {
@@ -292,13 +292,37 @@
                     }, function (res) {
                         vm.updating = false;
                         alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                    });
+                    }, true);
                 }
                 else {
                     vm.error.password.message = "Les deux mots de passe ne correspondent pas";
                     vm.error.password.flag = true;
                 }
             }
+        };
+
+        vm.updateLinks = function () {
+            var websiteReg = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/g;
+            var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*$/g;
+
+
+            if (!vm.profile.myWebsite.match(websiteReg) || !vm.profile.myLinkedin.match(linkedinReg) || !vm.profile.myOtherSocial.match(websiteReg)) {
+                alertMsg.send("L'URL du lien n'est pas valide", "danger");
+            } else {
+                var data = {
+                    "myWebsite": vm.profile.myWebsite,
+                    "myLinkedin": vm.profile.myLinkedin,
+                    "myOtherSocial": vm.profile.myOtherSocial
+                };
+                networkService.updateProLinksPUT(data, function (res) {
+                    alertMsg.send("Les liens ont été mis à jour", "success");
+                    vm.updating = false;
+                }, function (res) {
+                    vm.updating = false;
+                    alertMsg.send("Impossible de modifier les liens", "danger");
+                }, true);
+            }
+
         };
 
         vm.uploadVerifications = function (files, invalides, index, verifName) {
@@ -352,7 +376,6 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
-                    vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -366,20 +389,20 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.updating = false;
                         vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         var res = null;
                         vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
+                        networkService.updateAvatarPUT(vm.profileInfo.user, function (res) {
+                            alertMsg.send("La photo a été mise à jour", "success");
+                        }, errorAvatarPUT, true);
                     }).error(function (data, status, headers, config) {
-                        vm.updating = false;
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
             });
         };
-
         networkService.professionalGET(succesProfileGET, errorProfileGET);
         networkService.skillsGET(function (res) {
             vm.cat = res;
@@ -391,6 +414,10 @@
             alertMsg.send("Impossible de modifier le profil", "danger");
         }
 
+        function errorAvatarPUT() {
+            alertMsg.send("Impossible de mettre à jour votre photo", "danger");
+        }
+
         function succesWorkareaPUT(res) {
             vm.mapEditing = false;
             vm.updating = false;
@@ -398,9 +425,13 @@
             alertMsg.send("La zone de notification à été modifiée avec succès", "success");
         }
 
-        function errorWorkareaPUT() {
+        function errorWorkareaPUT(status) {
             vm.updating = false;
-            alertMsg.send("Impossible de modifier la zone de notification", "danger");
+            if (status.error == "ERROR_BAD_LOCATION") {
+                alertMsg.send("La zone de recherche doit être située en France", "danger");
+            } else {
+                alertMsg.send("Impossible de modifier la zone de notification", "danger");
+            }
         }
 
         function succesProfileGET(res) {
@@ -421,11 +452,11 @@
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
             vm.siretInfo = function () {
-                if (!vm.profile.company.name) {
+                if (!vm.profileInfo.company.name) {
                     return "";
                 } else {
-                    var profileCompanyName = vm.profile.company.name;
-                    var companyName = profileCompanyName.replace(/ /g,"+");
+                    var profileCompanyName = vm.profileInfo.company.name;
+                    var companyName = profileCompanyName.replace(/ /g, "+");
                     return "/cgi-bin/search?champs=" + companyName;
                 }
             };
@@ -506,7 +537,6 @@
                 vm.profileInfo.user.lastName != vm.profile.user.lastName ||
                 vm.profileInfo.phoneNumber != vm.profile.phoneNumber ||
                 vm.profileInfo.user.email != vm.profile.user.email ||
-                vm.profileInfo.user.avatar.cloudinaryPublicId != vm.profile.user.avatar.cloudinaryPublicId ||
                 vm.profileInfo.activityStartedYear != vm.profile.activityStartedYear ||
                 vm.profileInfo.company.name != vm.profile.company.name ||
                 vm.profileInfo.company.siret != vm.profile.company.siret ||
@@ -777,6 +807,7 @@
             }, 1000);
         }, 1000);
 
+
         function loadMap() {
             uiGmapGoogleMapApi.then(function (maps) {
                 vm.map = {
@@ -886,6 +917,18 @@
                                 }, 0);
                             }
                         }
+                        if (vm.mapEditing) {
+                            if (vm.map.zoom < 9 || vm.map.zoom > 11) {
+                                vm.mapShowMinimumZoomMessage = true;
+                                vm.circle.visible = false;
+                            } else {
+                                vm.mapShowMinimumZoomMessage = false;
+                                vm.circle.visible = true;
+                            }
+                        } else {
+                            vm.mapShowMinimumZoomMessage = false;
+                            vm.circle.visible = true;
+                        }
                     });
                 vm.map.bounds = {
                     'southwest': {
@@ -897,18 +940,6 @@
                         'longitude': vm.workArea.neLongitude
                     }
                 };
-                if (vm.mapEditing) {
-                    if (vm.map.zoom < 9) {
-                        vm.mapShowMinimumZoomMessage = true;
-                        vm.circle.visible = false;
-                    } else {
-                        vm.mapShowMinimumZoomMessage = false;
-                        vm.circle.visible = true;
-                    }
-                } else {
-                    vm.mapShowMinimumZoomMessage = false;
-                    vm.circle.visible = true;
-                }
             });
         }
 
@@ -983,7 +1014,7 @@
                         $rootScope.updateProfile();
                     }, function () {
                         alertMsg.send("Impossible d'effectuer cette action", "danger");
-                    });
+                    }, true);
                 }
             });
         };
@@ -1003,7 +1034,7 @@
                         $rootScope.updateProfile();
                     }, function () {
                         alertMsg.send("Impossible d'effectuer cette action", "danger");
-                    });
+                    }, true);
                 }
             });
         };

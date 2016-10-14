@@ -39,16 +39,16 @@
                                     <button
                                         class="col-sm-6 wl-95pe pull-right btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5"
                                         ui-sref="pro-jobs">
-                                            <span
-                                                data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
+                                        {{vm.data.ongoingProProjectNumber}}
+                                        <span
+                                            data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
                                         <span
                                             data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers </span>
-                                        {{vm.data.ongoingProProjectNumber}}
                                     </button>
                                     <button
                                         class="col-sm-6 wr-95pe pull-right btn bgm-green waves-effect btn-xs m-b-5 m-t-5"
                                         ui-sref="pro-proposals">
-                                        Devis {{vm.data.ongoingProProposalNumber}}
+                                        {{vm.data.ongoingProProposalNumber}} Devis
                                     </button>
                                     <button
                                         class="col-sm-12 pull-right btn bgm-orange waves-effect btn-sm m-b-5 m-t-5"
@@ -62,17 +62,21 @@
                                 <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
                                     <button class="col-sm-12 btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
                                         <div class="d-i-b">
-                                            Échange en cours {{vm.data.ongoingProProposalNumber}}
+                                            {{vm.data.ongoingProProposalNumber}}
+                                            <span
+                                                data-ng-show="vm.data.ongoingProProposalNumber < 2">Échange en cours</span>
+                                            <span
+                                                data-ng-show="vm.data.ongoingProProposalNumber > 1">Échanges en cours</span>
                                         </div>
                                     </button>
                                     <button class="col-sm-12 btn bgm-lightblue waves-effect btn-xs m-t-5"
                                             ui-sref="pro-jobs">
                                         <div class="d-i-b">
+                                            {{vm.data.ongoingProProjectNumber}}
                                             <span
                                                 data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier en cours </span>
                                             <span
                                                 data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers en cours </span>
-                                            {{vm.data.ongoingProProjectNumber}}
                                         </div>
                                     </button>
                                     <button
@@ -88,14 +92,14 @@
                         </div>
                         <div class="m-t-10 f-s-13 t-rx-10 dashboardStats visible-xs-block">
                             <button class="col-xs-3 btn bgm-green waves-effect btn-xs" ui-sref="pro-proposals">
-                                Devis {{vm.data.ongoingProProposalNumber}}
+                                {{vm.data.ongoingProProposalNumber}} Devis
                             </button>
                             <button class="col-xs-4 btn bgm-lightblue waves-effect btn-xs t-lx-5" ui-sref="pro-jobs">
+                                {{vm.data.ongoingProProjectNumber}}
                                 <span
                                     data-ng-show="vm.data.ongoingProProjectNumber < 2">Chantier </span>
                                 <span
                                     data-ng-show="vm.data.ongoingProProjectNumber > 1">Chantiers </span>
-                                {{vm.data.ongoingProProjectNumber}}
                             </button>
                             <button
                                 class="col-xs-5 btn bgm-orange waves-effect btn-xs t-lx-10"
@@ -103,7 +107,7 @@
                                 <span
                                     data-ng-show="vm.data.availableLeadsNumber < 2">Voir les offres</span>
                                 <span
-                                    data-ng-show="vm.data.availableLeadsNumber > 1">Offres dispo {{vm.data.availableLeadsNumber}}</span>
+                                    data-ng-show="vm.data.availableLeadsNumber > 1">{{vm.data.availableLeadsNumber}} Offres dispo</span>
                             </button>
                         </div>
                     </div>
@@ -193,7 +197,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="c-lightblue pointer t-right m-r-15 p-b-5" data-ui-sref="help({'card': 1})">
+                    <div class="c-lightblue pointer t-right m-r-15 p-b-5" data-ui-sref="help({'card': 'tuto'})">
                         Aide
                     </div>
                 </div>
@@ -258,16 +262,16 @@
                                     {{project.recoProposals[0].firstRecommendation.recommender.firstName}}
                                     {{project.recoProposals[0].firstRecommendation.recommender.lastName}}
                                 </span>
-                                <span class="c-darkgray">
+                                <span class="c-gray-dark">
                                     (
                                     <casa-contact
                                         user="project.recoProposals[0].firstRecommendation.recommender"
-                                        icon-color="c-darkgray" client-red="true"></casa-contact>
+                                        icon-color="c-graydark" client-red="true"></casa-contact>
                                     )
                                     vous a recommandé
                                 </span>
                                 <small
-                                    class="c-darkgray"
+                                    class="c-gray-dark"
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
                                     + {{project.recoProposals[0].recommendations.length - 1}} autre<span
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
@@ -295,7 +299,7 @@
                                     {{project.user.firstName}}
                                     {{project.user.lastName}}
                                 </span>
-                                <span class="c-darkgray">
+                                <span class="c-gray-dark">
                                     (
                                     <casa-contact
                                         user="project.user" client-blue="true"></casa-contact>
@@ -314,7 +318,6 @@
                             <div
                                 class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b m-t-5">
                             </div>
-                            <i data-ng-if="project.unreadMessages" class="proNetworkProjectUnreadIndicator"></i>
 
                             <div class="proNetworkProjectInfos d-i-b f-s-14 m-l-5">
                                 <div class="c-lightblue yakaEllipsis">
@@ -347,6 +350,20 @@
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
                                         <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                    </div>
+                                </div>
+                                <div class="clearfix"
+                                     data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
+                                    <div class="col-xs-12 col-sm-7 col-md-7 c-lightblue no-padding">
+                                        <div class="no-padding">
+                                            <b>Nouveau<span
+                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
+                                                Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
+                                            <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="project.unreadMessages">Client</button>
+                                            <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="project.unreadMessagesSupport">
+                                                CasaVox
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -439,7 +456,7 @@
                         </div>
                     </div>
                     <div class="c-lightblue t-right m-r-15 p-b-5">
-                        <span class="pointer" data-ui-sref="help({'card': 1})">Aide</span>
+                        <span class="pointer" data-ui-sref="help({'card': 'tuto'})">Aide</span>
                     </div>
                 </div>
 
@@ -502,10 +519,8 @@
         <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
                  data-ng-click="vm.showProDoesntCorrespondPopup = false" alt=""/>
-
-            Les compétences que vous avez renseigné dans votre profil ne vous permettent pas de faire une offre sur ce
-            projet.
-
+            Les compétences que vous avez renseigné dans votre profil ne vous permettent pas de faire une offre pour ce
+            chantier.
             <div>
                 <button class="btn bgm-lightblue waves-effect m-t-30 center" data-ui-sref="pro-profile">
                     Modifier mon profil
@@ -514,7 +529,7 @@
             <div>
                 <button class="btn bgm-orange waves-effect m-t-15 center"
                         data-ui-sref="project-recommend({'projectId': vm.selectedProject.id})">
-                    Recommander à un collègue
+                    Recommander à un pro
                 </button>
             </div>
         </div>

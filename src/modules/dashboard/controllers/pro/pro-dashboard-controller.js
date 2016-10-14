@@ -23,7 +23,7 @@
         networkService.projectsToRecommendGET(function (projects) {
             vm.projectsToRecommend = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les projets", "danger");
+            alertMsg.send("Impossible de récupérer les offres", "danger");
         });
 
         networkService.proDashboardDataGET(function (data) {
@@ -46,21 +46,15 @@
         networkService.getProNetworkLeads(function (projects) {
             vm.networkProjects = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les projets", "danger");
+            alertMsg.send("Impossible de récupérer les offres", "danger");
         });
 
-        vm.showProDoesntCorrespondPopup = false;
 
         vm.networkProjectClicked = function (project) {
-            if (project.activityDoesntCorrespond) {
-                vm.selectedProject = project;
-                vm.showProDoesntCorrespondPopup = true;
+            if (project.recoProposals) {
+                $state.go('pro-proposal', {'proposalId': project.recoProposals[0].id});
             } else {
-                if (project.recoProposals) {
-                    $state.go('pro-proposal', {'proposalId': project.recoProposals[0].id});
-                } else {
-                    $state.go('pro-project-proposal-new', {'projectId': project.id});
-                }
+                $state.go('pro-project-proposal-new', {'projectId': project.id});
             }
         };
 
@@ -71,7 +65,7 @@
             }
         }, function (err) {
             alertMsg.send("Impossible de récupérer le profil", "danger");
-            $state.go("home");
+            $state.go("home", {'login': true});
         });
 
         vm.isInNetworkList = function (project) {

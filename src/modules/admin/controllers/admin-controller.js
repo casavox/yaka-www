@@ -13,18 +13,20 @@
         var vm = this;
 
 
-        function loadProList() {
+        function loadProList(ignoreLoading) {
             networkService.adminProListGET(function (res) {
                 vm.proData = res;
                 angular.forEach(vm.proData, function (pro) {
                     pro.status = $filter('casaProfessionalStatus')(pro.status);
                     pro.eligibleStatus = $filter('casaProfessionalStatus')(pro.eligibleStatus);
                     pro.selected = false;
-                    pro.user.name = pro.user.firstName + " " + pro.user.lastName;
+                    pro.userName = pro.user.firstName + " " + pro.user.lastName;
                     if (pro.company.address.postalCode == undefined) {
                         pro.company.address.postalCode = "";
                     }
-                    pro.company.address.city = pro.company.address.postalCode + " " + pro.company.address.locality;
+                    pro.city = pro.company.address.postalCode + " " + pro.company.address.locality;
+                    pro.created = pro.user.created;
+                    pro.updated = pro.user.updated;
                     if (pro.needToRecheck) {
                         pro.newNeedToRecheck = "OUI";
                     } else {
@@ -32,17 +34,85 @@
                     }
                 });
 
-
                 proSorting();
             }, function () {
-            });
+            }, ignoreLoading);
         }
 
-        loadProList();
+        vm.reinitializeCreatedDate = function() {
+            vm.toDate = new Date();
+            vm.fromDate = new Date(2016, 7, 11);
+            vm.updatedToDate = new Date();
+            vm.updatedFromDate = new Date(2016, 7, 11);
+        };
+
+        vm.today = function () {
+            vm.toDate = new Date();
+            vm.fromDate = new Date(2016, 7, 11);
+            vm.updatedToDate = new Date();
+            vm.updatedFromDate = new Date(2016, 7, 11);
+        };
+
+        vm.today();
+        vm.toggleMin = function () {
+            vm.minDate = vm.minDate ? null : new Date();
+        };
+        vm.toggleMin();
+        vm.maxDate = new Date(2018, 5, 22);
+
+        vm.openFromDate = function ($event) {
+            vm.status1.opened = true;
+        };
+
+        vm.openUpdatedFromDate = function ($event) {
+            vm.status3.opened = true;
+        };
+
+        vm.openToDate = function ($event) {
+            vm.status2.opened = true;
+        };
+
+        vm.openUpdatedToDate = function ($event) {
+            vm.status4.opened = true;
+        };
+
+        vm.setDate = function (year, month, day) {
+            vm.fromDate = new Date(year, month, day);
+            vm.toDate = new Date(year, month, day);
+            vm.updatedFromDate = new Date(year, month, day);
+            vm.updatedToDate = new Date(year, month, day);
+        };
+
+        vm.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+
+        vm.status1 = {
+            opened: false
+        };
+
+        vm.status3 = {
+            opened: false
+        };
+
+        vm.status2 = {
+            opened: false
+        };
+
+        vm.status4 = {
+            opened: false
+        };
+
+        loadProList(false);
+
         vm.tableData = [];
 
         function proSorting() {
-            $scope.usersTable = new ngTableParams({
+            vm.usersTable = new ngTableParams({
                 page: 1,
                 count: 99999999,
                 sorting: {name: "asc"}
@@ -53,7 +123,6 @@
                     vm.tableData = vm.proData;
                     vm.tableData = params.sorting() ? $filter('orderBy')(vm.tableData, params.orderBy()) : vm.tableData;
                     vm.tableData = params.filter() ? $filter('filter')(vm.tableData, params.filter()) : vm.tableData;
-                    console.log(params.filter());
                     vm.tableData = vm.tableData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                     $defer.resolve(vm.tableData);
                 }
@@ -81,7 +150,6 @@
             return idList;
         }
 
-
         vm.validatePro = function () {
             swal({
                 title: "Êtes-vous sûr ?",
@@ -96,10 +164,10 @@
                     networkService.adminValidateProPOST(createIdList(),
                         function (res) {
                             alertMsg.send("Le statut a été modifié", "info");
-                            loadProList();
+                            loadProList(true);
                         }, function () {
                             alertMsg.send("Impossible de modifier le statut", "danger");
-                        }
+                        }, true
                     );
 
                 }

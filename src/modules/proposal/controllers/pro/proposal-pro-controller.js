@@ -16,6 +16,19 @@
         $rootScope.updateProfile();
 
         var vm = this;
+
+        vm.showChat = false;
+        vm.scrollBottom = 0;
+
+        if ($stateParams.chat) {
+
+            setTimeout(function() {
+
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
+
         vm.scrollBottom = 0;
         vm.showChat = false;
         vm.getWhen = getWhen;
@@ -47,11 +60,6 @@
             customClass: getDayClass
         };
         vm.error = {};
-
-        if ($stateParams.chat) {
-            vm.showChat = true;
-            vm.scrollBottom = 1;
-        }
 
         uiGmapGoogleMapApi.then(function (maps) {
 
@@ -99,7 +107,7 @@
                     $state.go("pro-proposals");
                 }, function () {
                     alertMsg.send("Impossible de retirée la proposition (contactez le support)", "danger");
-                }
+                }, true
             );
         }
 
@@ -117,7 +125,7 @@
                     $state.go("pro-proposals");
                 }, function () {
                     alertMsg.send("Impossible de retirée l'offre (contactez le support)", "danger");
-                }
+                }, true
             );
         }
 
@@ -133,7 +141,7 @@
                 alertMsg.send("La proposition a bien été mise à jour", "success");
             }, function (res) {
                 alertMsg.send("Impossible de mettre à jour la proposition", "danger");
-            });
+            }, true);
             vm.editFlag = false;
         }
 
@@ -166,6 +174,8 @@
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
+                } else {
+                    res.push("MATERIAL_FALSE");
                 }
             }
             return res;
@@ -192,7 +202,7 @@
                 return false;
             }
             return true;
-        }
+        };
 
         function selectImagePreview(media) {
             vm.imgTmpPreview = media;
@@ -216,7 +226,7 @@
                         longitude: vm.project.address.longitude
                     },
                     options: {
-                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                        icon: "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
                     }
                 };
                 vm.circle.center = {
@@ -239,7 +249,18 @@
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
             setMinMaxDate();
+
+            if (vm.proposal.unreadMessages || vm.proposal.unreadMessagesSupport) {
+
+                setTimeout(function() {
+
+                    vm.showChat = true;
+                    vm.scrollBottom = 1;
+                }, 500);
+            }
+
         }
+
 
         function setMinMaxDate() {
             var minDate = new Date();
@@ -357,10 +378,9 @@
                     $state.go('pro-proposals');
                 }, function (res) {
                     alertMsg.send("Impossible d'envoyer la proposition", "danger");
-                });
+                }, true);
             }
         };
-
 
         vm.selectDateOffer = function () {
             vm.offer.date = vm.dt;
@@ -389,6 +409,14 @@
         vm.smoothScrollToSend = function () {
             var element = document.getElementById('map_canvas');
             smoothScroll(element);
+        };
+
+        vm.changeUserDialog = function(user) {
+            if (user == 'admin') {
+                vm.chatWithAdmin = true;
+            } else {
+                vm.chatWithAdmin = false;
+            }
         };
 
     }

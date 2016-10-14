@@ -29,5 +29,14 @@
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
             })
+
+            // Help activities
+
+            .state('help-activities', {
+                url: "/travaux/:activity",
+                templateUrl: "/modules/home/views/public/help-activity.html",
+                controller: 'HelpActivityController',
+                controllerAs: 'vm'
+            })
     }
 })();

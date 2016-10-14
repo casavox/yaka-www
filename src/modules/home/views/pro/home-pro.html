@@ -234,8 +234,7 @@
                            name="username"
                            autocomplete="username"
                            placeholder="Email du représentant"
-                           data-ng-model="vm.newUser.email"
-                           data-ng-disabled="vm.needToHideEmail()"/>
+                           data-ng-model="vm.newUser.email"/>
 
                     <div class="proHomeSection2InputError"
                          data-ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
@@ -274,10 +273,10 @@
                                data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
                     </div>
 
-                    <div class="proHomeSection2InputError"
+                    <small class="proHomeSection2InputError"
                          data-ng-hide="vm.newUser.professional.phoneNumber">
-                        Cet numéro de téléphone n'est pas valide
-                    </div>
+                        Ce numéro de téléphone n'est pas valide
+                    </small>
 
                     <input
                         vs-google-autocomplete="vm.autocomplete.options"
@@ -286,6 +285,10 @@
                         name="address"
                         autocomplete="address-level2"
                         data-ng-model="vm.newUser.professional.company.address.address"/>
+
+                    <small class="proHomeSection2InputError" data-ng-if="!vm.newUser.professional.company.address.address">
+                        Veuillez saisir la ville, puis la sélectionner dans la liste
+                    </small>
 
                     <div class="proHomeSection2ActivitiesInput m-b-20" data-ng-dropdown-multiselect=""
                          options="vm.multiChoiceInput.options"
@@ -343,7 +346,9 @@
                         </div>
                         <div class="col-xs-12 proHomeSection3aPaidDesc">
                             Accès à l'ensemble des services et des offres sur simple abonnement, sans engagement
-                            <div class="hidden-xs"><small>Pas de paiement pour des mises en relation, pas de commission</small></div>
+                            <div class="hidden-xs">
+                                <small>Pas de paiement pour des mises en relation, pas de commission</small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -369,24 +374,7 @@
         </div>
     </div>
     <div class="homeSection homeSection5">
-        <div class="container homeSection5Footer">
-            <div class="homeSection5FooterLeft">
-                <div class="homeSection5FooterLeftCopyright">
-                    &copy; CasaVox {{vm.currentYear}}
-                </div>
-                <div class="homeSection5FooterLeftText">
-                    Tous droits réservés
-                </div>
-            </div>
-            <div class="homeSection5FooterContactUs yakaLinkWhite" data-ng-click="app.openHelp()">
-                Contactez-nous
-            </div>
-            <a href="http://res.cloudinary.com/yaka/image/upload/casavox/CGU/CGU.pdf" target="_blank">
-                <div class="homeSection5FooterLogin yakaLinkWhite">
-                    CGU
-                </div>
-            </a>
-        </div>
+        <ng-include src="'/modules/core/views/footer.html'"></ng-include>
     </div>
 </section>
 

@@ -46,11 +46,39 @@ angular.module('Yaka')
         }
     })
 
-    .directive('yakaInputPhone', function ($q) {
+    .directive('yakaInputPhone', function ($q, $filter, $browser) {
         return {
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, element, attr, ngModel) {
+
+                var listener = function () {
+                    var value = element.val().replace(/[^0-9]/g, '');
+                    element.val($filter('tel')(value, false));
+                };
+
+                // This runs when we update the text field
+                ngModel.$parsers.push(function (viewValue) {
+                    return viewValue.replace(/[^0-9]/g, '').slice(0, 10);
+                });
+
+                // This runs when the model gets updated on the scope directly and keeps our view in sync
+                ngModel.$render = function () {
+                    element.val($filter('tel')(ngModel.$viewValue, false));
+                };
+
+                element.bind('change', listener);
+                element.bind('keydown', function (event) {
+                    var key = event.keyCode;
+                    if (key == 91 || (15 < key && key < 19)) {
+                        return;
+                    }
+                    $browser.defer(listener);
+                });
+
+                element.bind('paste cut', function () {
+                    $browser.defer(listener);
+                });
 
                 ngModel.$asyncValidators.invalidPhone = function (modelValue, viewValue) {
                     var phone = viewValue;
@@ -74,35 +102,41 @@ angular.module('Yaka')
                     onlyCountries: ["fr"]
                 });
 
-                element.keypress(function (e) {
-                    var code = (e.keyCode || e.which);
-
-                    if (code == 37 || code == 38 || code == 39 || code == 40) {
-                        return;
-                    }
-
-                    if ($.trim(element.val())) {
-                        var phoneNumber = element.val();
-                        phoneNumber = phoneNumber.replace(/\D/g, '');
-                        phoneNumber = addCharEveryNChar(phoneNumber, 2, ' ');
-                        element.val(phoneNumber);
-                    }
-                });
-
-                function addCharEveryNChar(str, n, char) {
-                    var ret = [];
-                    var i;
-                    var len;
-
-                    for (i = 0, len = str.length; i < len; i += n) {
-                        ret.push(str.substr(i, n));
-                    }
-
-                    return ret.join(char);
-                }
-
             }
         }
+    })
+
+
+    .filter('tel', function () {
+        return function (tel) {
+            if (!tel) {
+                return '';
+            }
+
+            var value = tel.toString().trim().replace(/^\+/, '');
+
+            if (value.match(/[^0-9]/)) {
+                return tel;
+            }
+
+            if (value) {
+                if (value.length > 2) {
+                    value = value.slice(0, 2) + ' ' + value.slice(2);
+                }
+                if (value.length > 5) {
+                    value = value.slice(0, 5) + ' ' + value.slice(5);
+                }
+                if (value.length > 8) {
+                    value = value.slice(0, 8) + ' ' + value.slice(8);
+                }
+                if (value.length > 11) {
+                    value = value.slice(0, 11) + ' ' + value.slice(11);
+                }
+
+                return value.trim();
+            }
+
+        };
     })
 
     .directive('yakaInputSiret', function ($q) {

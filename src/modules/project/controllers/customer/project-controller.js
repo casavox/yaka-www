@@ -83,12 +83,12 @@
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                 networkService.deleteProject($stateParams.projectId, message,
                     function () {
-                        alertMsg.send("Votre projet à bien été supprimé", "success");
+                        alertMsg.send("Votre projet à bien été annulé", "success");
                         $state.go("my-projects");
                     },
                     function () {
-                        alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
-                    }
+                        alertMsg.send("Impossible de annuler le projet, réessayez puis contactez le support si besoin", "danger");
+                    }, true
                 );
             }
         };
@@ -100,7 +100,7 @@
                 id: vm.proposal.id,
                 text: vm.hireMessage
             };
-            networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
+            networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST, true);
         };
 
         function succesProposalAcceptPOST(res) {
@@ -311,7 +311,7 @@
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
+            networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT, true);
         };
 
         function succesProfilePUT(res) {
@@ -319,7 +319,7 @@
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.profileGET(succesProfileGET, errorProfileGET);
+            networkService.profileGET(succesProfileGET, errorProfileGET, true);
         }
 
         function errorProfilePUT() {
@@ -412,7 +412,7 @@
                         longitude: res.address.longitude
                     },
                     options: {
-                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                        icon: "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
                     }
                 };
             }
@@ -451,6 +451,14 @@
                     vm.projectTmp.desiredDatePeriod = "NONE";
                     vm.child3 = "activate";
                     break;
+            }
+
+            if (vm.project.unreadMessagesSupport) {
+
+                setTimeout(function () {
+                    vm.showChat = true;
+                    vm.scrollBottom = 1;
+                }, 500);
             }
         }
 
@@ -528,5 +536,16 @@
                 }
             });
         };
+
+        vm.showChat = false;
+        vm.scrollBottom = 0;
+
+        if ($stateParams.chat) {
+
+            setTimeout(function () {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
     }
 })();

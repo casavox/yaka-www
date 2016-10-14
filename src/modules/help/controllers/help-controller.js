@@ -5,8 +5,7 @@
         .module('Yaka')
         .controller('HelpController', HelpController);
 
-    function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams) {
-        
+    function HelpController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, $stateParams, smoothScroll) {
         if ($localStorage.invitationId) {
             $state.go("contacts");
         }
@@ -21,34 +20,36 @@
         var vm = this;
 
         vm.showTuto = false;
-        vm.showNavigate = false;
+        vm.showBoucheAOreille = false;
         vm.showSupport = true;
-        if ($localStorage.user && $localStorage.user.professional) {
-            if ($stateParams.card && 1 <= $stateParams.card && $stateParams.card <= 3) {
-                switch ($stateParams.card) {
-                    case "1":
-                        vm.showSupport = false;
-                        vm.showTuto = true;
-                        break;
-                    case "2":
-                        vm.showSupport = false;
-                        vm.showNavigate = true;
-                        break;
-                    case "3":
-                        vm.showSupport = true;
-                        break;
-                }
+        if ($localStorage.user) {
+            switch ($stateParams.card) {
+                case "tuto":
+                    vm.showTuto = true;
+                    vm.showBoucheAOreille = false;
+                    vm.showSupport = false;
+                    break;
+                case "bao":
+                    vm.showTuto = false;
+                    vm.showBoucheAOreille = true;
+                    vm.showSupport = false;
+                    break;
+                case "support":
+                    vm.showTuto = false;
+                    vm.showBoucheAOreille = false;
+                    vm.showSupport = true;
+                    break;
             }
-
-            networkService.professionalGET(function (pro) {
-                vm.pro = pro;
-            }, function (err) {
-                alertMsg.send("Impossible de récupérer le profil", "danger");
-                $state.go("home");
-            });
-        } else {
-            vm.showSupport = true;
+            if ($localStorage.user.professional) {
+                networkService.professionalGET(function (pro) {
+                    vm.pro = pro;
+                }, function (err) {
+                    alertMsg.send("Impossible de récupérer le profil", "danger");
+                    $state.go("home", {'login': true});
+                });
+            }
         }
+
         vm.supportMessage = {
             gender: '',
             firstName: '',
@@ -103,8 +104,38 @@
                 }, function error() {
                     vm.loading = false;
                     alertMsg.send("Impossible d'envoyer le message", "danger");
-                }
+                }, true
             );
+        };
+
+        vm.smoothScroll = function (situation) {
+            switch (situation) {
+                case "tuto":
+                    vm.showTuto = !vm.showTuto;
+                    vm.showBoucheAOreille = false;
+                    vm.showSupport = false;
+                    setTimeout(function () {
+                        smoothScroll(document.getElementById('tuto'));
+                    }, 400);
+                    break;
+                case "bao":
+                    vm.showTuto = false;
+                    vm.showBoucheAOreille = !vm.showBoucheAOreille;
+                    vm.showSupport = false;
+                    setTimeout(function () {
+                        smoothScroll(document.getElementById('bao'));
+                    }, 400);
+                    break;
+                case "support":
+                    vm.customerTuto = false;
+                    vm.showTuto = false;
+                    vm.showBoucheAOreille = false;
+                    vm.showSupport = !vm.showSupport;
+                    setTimeout(function () {
+                        smoothScroll(document.getElementById('support'));
+                    }, 400);
+                    break;
+            }
         };
     }
 })();

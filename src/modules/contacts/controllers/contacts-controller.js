@@ -63,9 +63,9 @@
         };
 
         function reloadContactsAndInvitations() {
-            networkService.contactsGET(succesContactsGET, errorContactsGET);
-            networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET);
-            networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET);
+            networkService.contactsGET(succesContactsGET, errorContactsGET, true);
+            networkService.invitationsReceivedGET(succesInvitationsReceivedGET, errorInvitationsReceivedGET, true);
+            networkService.invitationsSentGET(succesInvitationsSentGET, errorInvitationsSentGET, true);
         }
 
         networkService.contactsGET(succesContactsGET, errorContactsGET);
@@ -188,7 +188,7 @@
                 return;
             }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
+            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         function hasDuplicates(array) {
@@ -229,7 +229,7 @@
         };
 
         vm.sendProInvit = function () {
-            networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST);
+            networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
         };
 
         function succesInviteProPOST(res) {
@@ -399,7 +399,7 @@
         };
 
         vm.refuseInvitation = function (inviterId) {
-            networkService.refuseInvitationPOST(inviterId, succesRefuseInvitationPOST, errorRefuseInvitationPOST);
+            networkService.refuseInvitationPOST(inviterId, succesRefuseInvitationPOST, errorRefuseInvitationPOST, true);
         };
 
         function succesRefuseInvitationPOST(res) {
@@ -416,7 +416,7 @@
         }
 
         vm.acceptInvitation = function (inviterId) {
-            networkService.acceptInvitationPOST(inviterId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            networkService.acceptInvitationPOST(inviterId, succesAcceptInvitationPOST, errorAcceptInvitationPOST, true);
         };
 
         function succesAcceptInvitationPOST(res) {
@@ -513,14 +513,39 @@
                 }
             }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST);
+            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         vm.getFacebookIframeUrl = function () {
             if ($localStorage.user) {
-                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.id + "&layout=button&size=large&mobile_iframe=true&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
+                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.inviteId + "&layout=button&size=large&mobile_iframe=false&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
             }
             return "";
+        };
+
+        vm.deleteContact = function (id) {
+            console.log(id);
+            swal({
+                title: "Supprimer un contact",
+                text: "Attention, vous ne pourrez plus bénéficier de son réseau de bouche-à-oreille !",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Confirmer",
+                cancelButtonText: "Annuler"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    networkService.contactDeletePOST(id,
+                        function (res) {
+                            alertMsg.send("Le contact a été supprimé", "info");
+                            reloadContactsAndInvitations();
+                        }, function () {
+                            alertMsg.send("Impossible de supprimer le contact", "danger");
+                        }, true
+                    );
+
+                }
+            });
         };
 
     }

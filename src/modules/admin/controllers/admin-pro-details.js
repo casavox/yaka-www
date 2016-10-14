@@ -78,7 +78,7 @@
                     vm.profile.company.address = angular.copy(res.company.address);
                     vm.profile.company.phone = res.company.phone;
                     alertMsg.send("Profil mis à jour avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
@@ -96,12 +96,12 @@
             }, function () {
                 vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
-            });
+            }, true);
         };
 
         vm.updateWorkArea = function () {
             vm.updating = true;
-            networkService.adminProWorkAreaPUT($stateParams.professionnalId, vm.workArea, succesWorkareaPUT, errorWorkareaPUT);
+            networkService.adminProWorkAreaPUT($stateParams.professionnalId, vm.workArea, succesWorkareaPUT, errorWorkareaPUT, true);
         };
 
         vm.updateVerifications = function () {
@@ -122,7 +122,7 @@
                     vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Les vérifications ont été modifiées avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             } else {
                 vm.error.verif.message = "Merci de fournir un scan de votre KBIS et certificat d'assurance, " +
                     "une fois que nous les aurons vérifié, vous pourrez répondre à toutes les offres.";
@@ -140,7 +140,7 @@
                     vm.profile.status = res.status;
                     vm.updating = false;
                     alertMsg.send("Vos domaines d'activité ont été modifié avec succès", "success");
-                }, errorProfilePUT);
+                }, errorProfilePUT, true);
             }
             else {
                 vm.error.activities.message = "Vous devez indiquer au moins une de vos compétences.";
@@ -157,7 +157,7 @@
                 vm.editFlag = false;
                 vm.updating = false;
                 alertMsg.send("Le portfolio à été modifié avec succès", "success");
-            }, errorProfilePUT);
+            }, errorProfilePUT, true);
         };
 
         vm.cancelProfile = function () {
@@ -290,7 +290,7 @@
                     }, function (res) {
                         vm.updating = false;
                         alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                    });
+                    }, true);
                 }
                 else {
                     vm.error.password.message = "Les deux mots de passe ne correspondent pas";
@@ -381,13 +381,14 @@
             vm.verifTmp = {name: name};
         };
 
-        vm.getProDetails = function() {
+        vm.getProDetails = function (ignoreLoading) {
             if ($stateParams.professionnalId) {
-                networkService.adminProDetailsGET($stateParams.professionnalId, succesProfileGET, errorProfileGET);
+                networkService.adminProDetailsGET($stateParams.professionnalId, succesProfileGET, errorProfileGET, ignoreLoading);
             }
+            networkService.adminPartnerListGET(succesPartnerListGET, errorProfileGET, ignoreLoading);
         };
 
-        vm.getProDetails();
+        vm.getProDetails(false);
 
         networkService.skillsGET(function (res) {
             vm.cat = res;
@@ -411,12 +412,59 @@
             alertMsg.send("Impossible de modifier la zone de notification", "danger");
         }
 
+        function succesPartnerListGET(res) {
+            vm.partner = res;
+        }
+
         function succesProfileGET(res) {
             vm.profile = res;
             if (!vm.profile.activityStartedYear) {
                 vm.profile.activityStartedYear = 0;
             }
-            console.log(vm.profile.status);
+
+            vm.contactClientNumber = 0;
+            vm.contactFriendNumber = 0;
+            vm.contactFamilyNumber = 0;
+            vm.contactColleagueNumber = 0;
+
+            if (vm.profile.user.contacts) {
+                for (var i=0; i<vm.profile.user.contacts.length; i++) {
+                    if (vm.profile.user.contacts[i].relation == "CLIENT") {
+                        vm.contactClientNumber++;
+                    }
+                    if (vm.profile.user.contacts[i].relation == "FRIEND") {
+                        vm.contactFriendNumber++;
+                    }
+                    if (vm.profile.user.contacts[i].relation == "FAMILY") {
+                        vm.contactFamilyNumber++;
+                    }
+                    if (vm.profile.user.contacts[i].relation == "COLLEAGUE") {
+                        vm.contactColleagueNumber++;
+                    }
+                }
+            }
+
+            vm.invitationClientNumber = 0;
+            vm.invitationFriendNumber = 0;
+            vm.invitationFamilyNumber = 0;
+            vm.invitationColleagueNumber = 0;
+
+            if (vm.profile.user.invitations) {
+                for (var i=0; i<vm.profile.user.invitations.length; i++) {
+                    if (vm.profile.user.invitations[i].relation == "CLIENT") {
+                        vm.invitationClientNumber++;
+                    }
+                    if (vm.profile.user.invitations[i].relation == "FRIEND") {
+                        vm.invitationFriendNumber++;
+                    }
+                    if (vm.profile.user.invitations[i].relation == "FAMILY") {
+                        vm.invitationFamilyNumber++;
+                    }
+                    if (vm.profile.user.invitations[i].relation == "COLLEAGUE") {
+                        vm.invitationColleagueNumber++;
+                    }
+                }
+            }
 
             vm.profile.status = $filter('casaProfessionalStatus')(vm.profile.status);
             vm.profile.eligibleStatus = $filter('casaProfessionalStatus')(vm.profile.eligibleStatus);
@@ -449,12 +497,11 @@
                 if (isConfirm) {
                     networkService.adminValidateProPOST([$stateParams.professionnalId],
                         function (res) {
-                        console.log(res);
                             alertMsg.send("Le statut a été modifié", "info");
-                            vm.getProDetails();
+                            vm.getProDetails(true);
                         }, function () {
                             alertMsg.send("Impossible de modifier le statut", "danger");
-                        }
+                        }, true
                     );
 
                 }
@@ -1012,7 +1059,7 @@
                         $rootScope.updateProfile();
                     }, function () {
                         alertMsg.send("Impossible d'effectuer cette action", "danger");
-                    });
+                    }, true);
                 }
             });
         };
@@ -1032,14 +1079,14 @@
                         $rootScope.updateProfile();
                     }, function () {
                         alertMsg.send("Impossible d'effectuer cette action", "danger");
-                    });
+                    }, true);
                 }
             });
         };
 
         vm.invalidatePro = function (proId, requiredRefusedMessage) {
             var data = {
-                "refusedReason" : requiredRefusedMessage
+                "refusedReason": requiredRefusedMessage
             };
             swal({
                 title: "Êtes-vous sûr ?",
@@ -1053,13 +1100,26 @@
                     networkService.adminInvalidateProPOST(proId, data,
                         function (res) {
                             alertMsg.send("Le pro a été bloqué", "info");
-                            vm.getProDetails();                        }, function () {
+                            vm.getProDetails(true);
+                        }, function () {
                             alertMsg.send("Impossible de bloquer le pro", "danger");
-                        }
+                        }, true
                     );
 
                 }
             });
+        };
+
+        vm.setMainPartner = function () {
+            networkService.adminSetMainPartnerPUT(vm.profile.id, vm.selectedPartner.id,
+                function (res) {
+                    alertMsg.send("Le partenaire du professionnel a été mise à jour", "info");
+                    vm.getProDetails(true);
+                },
+                function () {
+                    alertMsg.send("Impossible de modifier le partenaire", "danger");
+                }, true
+            );
         };
     }
 })();

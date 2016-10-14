@@ -6162,10 +6162,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     list-style: none;
     background-color: transparent;
     border-radius: 2px;
+    color: #5c5c5c;
 }
 
 .breadcrumb > li {
     display: inline-block;
+}
+
+.breadcrumb > li:hover {
+    color: #03a9f4;
 }
 
 .breadcrumb > li + li:before {
@@ -6175,6 +6180,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 
 .breadcrumb > .active {
+    color: #7c7c7c;
+}
+
+.breadcrumb > .active:hover {
     color: #7c7c7c;
 }
 
@@ -9476,6 +9485,10 @@ a.waves-effect .waves-ripple {
     padding-right: 15px !important;
 }
 
+.p-l-19 {
+    padding-left: 19px !important;
+}
+
 .p-20 {
     padding: 20px !important;
 }
@@ -9608,6 +9621,9 @@ a.waves-effect .waves-ripple {
 
 .f-700 {
     font-weight: 700 !important;
+}
+.f-bold {
+    font-weight: bold;
 }
 
 /*
@@ -9857,6 +9873,18 @@ a.waves-effect .waves-ripple {
 .c-indigo {
     color: #3f51b5 !important;
 }
+
+/*
+ * Background Colors
+ */
+.border-c-red {
+    border-color: #f44336 !important;
+}
+
+.border-c-lightblue {
+    border-color: #03a9f4 !important;
+}
+
 
 /*
  * Background Colors
@@ -16553,7 +16581,6 @@ body.login-content:before {
 
 .block-header > h2 {
     font-size: 15px;
-    color: #777;
     margin: 0;
     font-weight: 400;
     text-transform: uppercase;

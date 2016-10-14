@@ -18,19 +18,18 @@
                 <div class="card-body card-padding">
                     <strong>Faire une offre</strong>
                     <ul>
-                        <li class="list-left-alignment">Vérifiez la validité de votre profil en cliquant sur votre logo
-                            avatar depuis
-                            la barre de menu <a
-                                data-ui-sref="pro-profile">Mon profil Pro</a></li>
-                        <li class="list-left-alignment">Sélectionnez un projet depuis la <a data-ui-sref="findjobs">Carte
-                            des offres</a>
+                        <li class="list-left-alignment">
+                            Vérifiez la validité de votre profil en cliquant sur votre logo avatar depuis la barre de
+                            menu <a data-ui-sref="pro-profile">Mon profil Pro</a></li>
+                        <li class="list-left-alignment">
+                            Sélectionnez un projet de chantier depuis la <a data-ui-sref="findjobs">Carte des offres</a>
                             <ul>
                                 <li class="list-left-alignment">
                                     Naviguer et zoomer dans cette carte pour retrouver les offres correspondant à votre
                                     profil
                                 </li>
                                 <li class="list-left-alignment">
-                                    Sélectionnez un projet pour en voir les détails
+                                    Sélectionnez un chantier pour en voir les détails
                                 </li>
                                 <li class="list-left-alignment">
                                     Faites votre proposition : Si vous avez assez d'élément, indiquez un montant
@@ -46,8 +45,8 @@
                     <strong>Suivre mon chantier</strong>
                     <ul>
                         <li class="list-left-alignment">
-                            Vous pourrez retrouver les coordonnées complètes du client sur la fiche projet (même une
-                            fois le projet clot)
+                            Vous pourrez retrouver les coordonnées complètes du client sur la fiche chantier (même une
+                            fois le chantier clot)
                         </li>
                         <li class="list-left-alignment">
                             Vous pouvez à tout moment mettre à jour la date d'intervention et le prix définitif convenu
@@ -56,10 +55,10 @@
                         <li class="list-left-alignment">
                             Vous pourrez biensûr continuer d'utiliser les services CasaVox pour vos échanges privés avec
                             le client pendant toute la durée des travaux (messages, photos, plans, devis, factures,
-                            etc.), l'historique de ces échanges reste accessible même une fois le projet clot
+                            etc.), l'historique de ces échanges reste accessible même une fois le chantier clot
                         </li>
                         <li class="list-left-alignment">
-                            Dès qu'un chantier est terminé, pensez à relancer votre client pour qu'il clot son projet,
+                            Dès qu'un chantier est terminé, pensez à relancer votre client pour qu'il clot son chantier,
                             cette action augmente votre visibilité sur CasaVox en permettant de vous faire connaitre
                             auprès des connaissances de ce client !
                         </li>
@@ -83,10 +82,7 @@
                         <div class="d-i-b v-align-middle">
                             <yaka-avatar user="proposal.project.user" size="40"
                                          class="d-i-b v-align-middle"></yaka-avatar>
-                            <i class="unreadMessagesIndicator proProposalList ng-scope"
-                               data-ng-if="proposal.unreadMessages"></i>
                         </div>
-
 
                         <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                             {{ proposal.project.title}}
@@ -95,6 +91,24 @@
                                 {{proposal.project.address.locality}}
                             </small>
                         </h2>
+                    </div>
+
+                    <div class="clearfix p-r-0"
+                         data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
+                        <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                            <div class="no-padding">
+                                <b>Nouveau<span
+                                    data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
+                                    Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
+                                <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="proposal.unreadMessages">
+                                    Client
+                                </button>
+                                <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                        data-ng-if="proposal.unreadMessagesSupport">
+                                    CasaVox
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pl-body clearfix col-xs-12">
@@ -145,8 +159,6 @@
                      data-ui-sref="pro-proposal({proposalId: proposal.id})">
                     <div class="card-header">
                         <yaka-avatar user="proposal.project.user" size="40" class="d-i-b v-align-middle"></yaka-avatar>
-                        <i class="unreadMessagesIndicator proProposalList ng-scope"
-                           data-ng-if="proposal.unreadMessages"></i>
 
                         <h2 class="d-i-b v-align-middle m-l-10 m-t-5 yakaEllipsis proposalTitle">
                             {{ proposal.project.title}}
@@ -155,6 +167,21 @@
                                 {{proposal.project.address.locality}}
                             </small>
                         </h2>
+                    </div>
+
+                    <div class="clearfix p-r-0"
+                         data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
+                        <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
+                            <div class="no-padding">
+                                <b>Nouveau<span
+                                    data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
+                                    Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
+                                <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="proposal.unreadMessages">Client</button>
+                                <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="proposal.unreadMessagesSupport">
+                                    CasaVox
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pl-body clearfix col-xs-12">

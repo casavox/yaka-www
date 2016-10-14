@@ -229,14 +229,14 @@
         vm.registerUser = function () {
             if (vm.formIsValid()) {
 
-                networkService.proRegister(vm.newUser, successProRegister, failProRegister);
+                networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
             }
         };
 
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go("help", {'card': 1});
+            $state.go("help", {'card': 'tuto'});
         }
 
         function failProRegister(err) {
@@ -351,7 +351,7 @@
 
         vm.forgottenPassword = function () {
             if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
-                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten);
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
             }
         };
 

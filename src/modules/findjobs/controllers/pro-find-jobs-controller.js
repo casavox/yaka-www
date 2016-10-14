@@ -113,7 +113,7 @@
 
         function onLeadsLoaded(args) {
             angular.forEach(args, function (lead) {
-                lead.icon = "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png";
+                lead.icon = "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png";
             });
             vm.leads = args;
 
@@ -158,8 +158,8 @@
                 function succesProLeads(res) {
                     onLeadsLoaded(res);
                 }, function errorProLeads() {
-                    alertMsg.send("Imposible de récupérer les projets", "danger");
-                }
+                    alertMsg.send("Imposible de récupérer les offres", "danger");
+                }, true
             );
         }
 
@@ -175,9 +175,9 @@
 
         function onLeadSelected(lead) {
             for (var i = 0; i < vm.leads.length; i++) {
-                vm.leads[i].icon = "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png";
+                vm.leads[i].icon = "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png";
             }
-            lead.icon = "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSelectedProject.png";
+            lead.icon = "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSelectedProject.png";
             vm.showSlider = true;
         }
 
@@ -308,7 +308,7 @@
                 vm.workareaDiameter = Math.ceil((res.radius * 2) / 1000);
                 loadLeads(bounds);
             }, function errorProLeads() {
-                alertMsg.send("Imposible de récupérer les projets", "danger");
+                alertMsg.send("Imposible de récupérer les offres", "danger");
             }
         );
 
@@ -316,7 +316,7 @@
             function numberLeadProject(res) {
                 vm.numberLeadProject = res.availableLeadsNumber;
             }, function errorProData() {
-                alertMsg.send("Imposible de récupérer les projets", "danger");
+                alertMsg.send("Imposible de récupérer les offres", "danger");
             }
         );
     }

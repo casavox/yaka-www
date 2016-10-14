@@ -83,12 +83,12 @@
             if (!angular.isUndefined($stateParams.projectId) && $stateParams.projectId) {
                 networkService.adminDeleteProject($stateParams.projectId, message,
                     function () {
-                        alertMsg.send("Votre projet à bien été supprimé", "success");
+                        alertMsg.send("Votre projet à bien été annulé", "success");
                         $state.go("admin-projects");
                     },
                     function () {
-                        alertMsg.send("Impossible de supprimer le projet, réessayez puis contactez le support si besoin", "danger");
-                    }
+                        alertMsg.send("Impossible d'annuler le projet, réessayez puis contactez le support si besoin", "danger");
+                    }, true
                 );
             }
         };
@@ -98,7 +98,7 @@
                 id: vm.proposal.id,
                 text: vm.hireMessage
             };
-            networkService.adminProposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST);
+            networkService.adminProposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST, true);
         };
 
         function succesProposalAcceptPOST(res) {
@@ -309,7 +309,7 @@
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            networkService.adminProjectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT);
+            networkService.adminProjectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT, true);
         };
 
         function succesProfilePUT(res) {
@@ -317,7 +317,7 @@
             alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.adminProfileGET(succesProfileGET, errorProfileGET);
+            networkService.adminProfileGET(succesProfileGET, errorProfileGET, true);
         }
 
         function errorProfilePUT() {
@@ -410,24 +410,67 @@
                         longitude: res.address.longitude
                     },
                     options: {
-                        icon: "http://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
+                        icon: "https://res.cloudinary.com/yaka/image/upload/yakaclub/pinSmallProject.png"
                     }
                 };
             }
             vm.project = res;
+
+            if (!vm.project.proposals) {
+                vm.project.proposals = [];
+            }
+
+            console.log(vm.project.proposals);
+
+            angular.forEach(vm.project.proposals, function (projectProposals) {
+                if (projectProposals.unreadMessages == true) {
+                    vm.project.lastCustProMsg = projectProposals.updated;
+                } else {
+                    vm.project.lastCustProMsg = "-";
+                }
+            });
+
+            // Unread Messages Customer / Admin, Customer Side
+            if (vm.project.unreadMessagesSupport == true) {
+                vm.project.lastCustAdminCustMsg = vm.project.supportChat.updated;
+            } else {
+                vm.project.lastCustAdminCustMsg = "-";
+            }
+
+            // Unread Messages Customer / Admin, Admin Side
+            if (vm.project.supportChat.adminUnreadMessages == true) {
+                vm.project.lastCustAdminAdminMsg = vm.project.supportChat.updated;
+            } else {
+                vm.project.lastCustAdminAdminMsg = "-";
+            }
+
+            if (!vm.project.recoProposals) {
+                vm.project.recoProposals = [];
+            }
+
+            vm.project.proposalsRecommendations = vm.project.proposals.concat(vm.project.recoProposals);
+
+            angular.forEach(vm.project.proposalsRecommendations, function (project) {
+                project.name = project.professional.user.firstName + " " + project.professional.user.lastName;
+            });
+            projectSorting();
+
+
             angular.forEach(vm.project.compatiblePros, function (pro) {
                 pro.name = pro.user.firstName + " " + pro.user.lastName;
+                pro.contactRelation = pro.user.contactRelation;
                 if (pro.company.address.postalCode == undefined) {
                     pro.company.address.postalCode = "";
                 }
                 pro.place = pro.company.address.postalCode + " " + pro.company.address.locality;
 
                 if (pro.user.isInvited == undefined) {
-                    pro.user.isInvited = "NON";
+                    pro.isInvited = "NON";
                 } else {
-                    pro.user.isInvited == "OUI";
+                    pro.isInvited == "OUI";
                 }
                 pro.distance = (pro.distance / 1000).toFixed(2);
+                pro.numberDistance = Number(pro.distance);
                 pro.status = $filter('casaProfessionalStatus')(pro.status);
 
             });
@@ -469,6 +512,25 @@
             networkService.adminProfileGET(vm.project.user.id, succesProfileGET, errorProfileGET);
             proSorting();
             vm.tableData = [];
+            vm.tableDataProject = [];
+        }
+
+        function projectSorting() {
+            $scope.projectTable = new ngTableParams({
+                page: 1,
+                count: 99999999,
+                sorting: {updated: "desc"}
+            }, {
+                total: vm.project.proposalsRecommendations.length,
+                counts: [],
+                getData: function ($defer, params) {
+                    vm.tableDataProject = vm.project.proposalsRecommendations;
+                    vm.tableDataProject = params.sorting() ? $filter('orderBy')(vm.tableDataProject, params.orderBy()) : vm.tableDataProject;
+                    vm.tableDataProject = params.filter() ? $filter('filter')(vm.tableDataProject, params.filter()) : vm.tableDataProject;
+                    vm.tableDataProject = vm.tableDataProject.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(vm.tableDataProject);
+                }
+            });
         }
 
         function proSorting() {
@@ -563,5 +625,16 @@
                 }
             });
         };
+
+        vm.showChat = false;
+        vm.scrollBottom = 0;
+
+        if ($stateParams.chat) {
+
+            setTimeout(function () {
+                vm.showChat = true;
+                vm.scrollBottom = 1;
+            }, 500);
+        }
     }
 })();

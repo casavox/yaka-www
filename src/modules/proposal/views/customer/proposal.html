@@ -27,7 +27,14 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <div id="content" class="content">
+
         <div class="container">
+
+            <div class="block-header"
+                 data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                <h2 class="c-orange">Projet Annulé</h2>
+            </div>
+
             <div class="card pointer m-b-10" data-ng-click="vm.projectDetails()">
                 <div class="card-header card-hover proposalHeader">
                     <div class="media">
@@ -124,12 +131,17 @@
                                     </div>
 
                                     <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                        <h2 class="yakaEllipsis">
+                                        <h2>
                                             <casa-name-and-contact user="vm.proposal.professional.user"
                                                                    icon-color="c-white"></casa-name-and-contact>
                                         </h2>
 
-                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                        <div class="col-xs-12 clearfix t-center bgm-orange c-white p-5 m-t-10"
+                                             data-ng-if="vm.proposal.status == 'RECOMMENDATION'">Recommandation en attente
+                                        </div>
+
+                                        <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                            data-ng-if="vm.proposal.status != 'RECOMMENDATION'">
                                             <li class="wa-stats center">
                                                 <span class="bgm-white">
                                                     <i class="zmdi zmdi-calendar"></i>
@@ -209,7 +221,6 @@
                             </li>
                         </ul>
 
-
                         <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.proposal.chat.id}}"
@@ -239,7 +250,7 @@
                                                     + {{vm.proposal.recommendations.length - 1}} autre<span
                                                     data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
                                                 </span>
-                                                <hr class="m-0 p-0">
+                                                <hr class="m-0 p-0 m-t-5">
                                             </div>
 
                                             <div class="p-relative">
@@ -267,12 +278,19 @@
                                             </div>
 
                                             <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                                <h2 class="yakaEllipsis">
+                                                <h2>
                                                     <casa-name-and-contact user="vm.proposal.professional.user"
                                                                            icon-color="c-white"></casa-name-and-contact>
+
+                                                    <div
+                                                        class="col-xs-12 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco f-13"
+                                                        data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
+                                                        Recommandation en attente
+                                                    </div>
                                                 </h2>
 
-                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled">
+                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                                    data-ng-if="vm.proposal.status != 'RECOMMENDATION'">
                                                     <li class="wa-stats center">
                                                         <span class="bgm-white">
                                                             <i class="zmdi zmdi-calendar"></i>
@@ -376,15 +394,15 @@
                                         </dl>
                                         <dl class="dl-horizontal"
                                             data-ng-if="vm.proposal.professional.yakaProjectNumber">
-                                            <dt>Projets réalisés</dt>
+                                            <dt>Chantiers réalisés</dt>
                                             <dd>
                                         <span
                                             data-ng-if="vm.proposal.professional.yakaProjectNumber > 1">
-                                            <b>{{vm.proposal.professional.yakaProjectNumber}} projets</b> réalisés sur YakaClub
+                                            <b>{{vm.proposal.professional.yakaProjectNumber}} chantiers</b> réalisés sur CasaVox
                                         </span>
                                                 <span
                                                     data-ng-if="vm.proposal.professional.yakaProjectNumber == 1">
-                                            <b>1 projet</b> réalisé sur YakaClub
+                                            <b>1 chantier</b> réalisé sur CasaVox
                                         </span>
                                             </dd>
                                         </dl>
@@ -486,18 +504,26 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
-                                        <div class="lightbox photos clearfix">
+                                        <div class="lightbox photos projectImageTooltip clearfix">
                                             <div
                                                 data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
-                                                class="lightboxItemAngular col-md-2 col-sm-3 col-xs-4"
+                                                class="lightboxItemAngular galleryEditingItem col-md-2 col-sm-3 col-xs-4"
+                                                data-sub-html="#caption{{$index}}"
                                                 data-ng-repeat="image in vm.proposal.professional.portfolio">
-                                                <div class="lightbox-item p-item">
+                                                <div class="lightbox-item p-item"
+                                                     tooltip-placement="top"
+                                                     uib-tooltip="{{image.description}}">
                                                     <img
                                                         data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
                                                         alt=""/>
                                                     <div data-ng-if="image.description"
                                                          class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
                                                         <i class="zmdi zmdi-comment-text-alt"></i>
+                                                    </div>
+                                                </div>
+                                                <div id="caption{{$index}}" style="display:none">
+                                                    <div class="galleryCaption">
+                                                        <p>{{image.description}}</p>
                                                     </div>
                                                 </div>
                                             </div>

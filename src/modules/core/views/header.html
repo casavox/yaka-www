@@ -12,6 +12,7 @@
         <a ui-sref="home" data-ng-click="app.sidebarStat($event)">
             <div class="titleYakaClub titleYakaClubWhite" ui-sref="contacts">
                 <span class="titleClub">CASA</span><span class="titleYaka">VOX</span>
+                <span class="titleYaka hidden-xs" data-ng-if="app.isPro()">PRO</span>
             </div>
         </a>
     </li>
@@ -32,18 +33,22 @@
                             <a class="lv-item userChatItem" data-ng-href=""
                                data-ng-repeat="userchat in app.getUserchats()"
                                data-ng-class="{'unread': userchat.unreadMessages}">
-                                <div class="media" data-ng-if="!app.isPro()"
+                                <div class="media" data-ng-if="!app.isPro() && userchat.chat.proposal"
                                      ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <!-- Customer : Customer-Pro Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
                                                      user="userchat.chat.proposal.professional.user"></yaka-avatar>
-                                        <i class="unreadMessagesIndicator"
+                                        <i class="unreadMessagesIndicator" git
                                            data-ng-if="userchat.unreadMessages"></i>
                                     </div>
                                     <div class="media-body">
                                         <div class="lv-title">
                                             {{userchat.chat.proposal.professional.user.firstName}}
                                             {{userchat.chat.proposal.professional.user.lastName}}
+                                            <small class=" pull-right c-gray">
+                                                <span am-time-ago="userchat.chat.updated"></span>
+                                            </small>
                                         </div>
                                         <div class="lv-title lv-subtitle">
                                             {{userchat.chat.proposal.project.address.locality}} -
@@ -57,8 +62,34 @@
                                         </small>
                                     </div>
                                 </div>
-                                <div class="media" data-ng-if="app.isPro()"
+                                <div class="media" data-ng-if="!app.isPro() && userchat.chat.project"
+                                     ui-sref="project({'projectId': userchat.chat.project.id, 'chat': 'true'})">
+                                    <!-- Customer : Customer-Admin Chat -->
+                                    <div class="pull-left">
+                                        <yaka-avatar class="m-t-9" size="35"
+                                                     user="'admin'"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator" git
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">
+                                            Victor : votre assistant CasaVox
+                                            <small class=" pull-right c-gray">
+                                                <span am-time-ago="userchat.chat.updated"></span>
+                                            </small>
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.project.address.locality}} -
+                                            {{userchat.chat.project.title}}
+                                        </div>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="media" data-ng-if="app.isPro() && userchat.chat.proposal"
                                      ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <!-- Pro : Pro-Customer Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
                                                      user="userchat.chat.proposal.project.user"></yaka-avatar>
@@ -69,6 +100,9 @@
                                         <div class="lv-title">
                                             {{userchat.chat.proposal.project.user.firstName}}
                                             {{userchat.chat.proposal.project.user.lastName}}
+                                            <small class=" pull-right c-gray">
+                                                <span am-time-ago="userchat.chat.updated"></span>
+                                            </small>
                                         </div>
                                         <div class="lv-title lv-subtitle">
                                             {{userchat.chat.proposal.project.address.locality}} -
@@ -79,6 +113,31 @@
                                         </small>
                                         <small class="lv-small" data-ng-if="userchat.chat.messages[0].author == 'AUTO'">
                                             <span class="msg yaka">{{userchat.chat.messages[0] | yakaAutoMsg : userchat.chat.proposal.project.user : userchat.chat.proposal.professional.user}}</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="media" data-ng-if="app.isPro() && userchat.chat.proposalSupport"
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                    <!-- Pro : Pro-Admin Chat -->
+                                    <div class="pull-left">
+                                        <yaka-avatar class="m-t-9" size="35"
+                                                     user="'admin'"></yaka-avatar>
+                                        <i class="unreadMessagesIndicator"
+                                           data-ng-if="userchat.unreadMessages"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">
+                                            Victor : votre assistant CasaVox
+                                            <small class=" pull-right c-gray">
+                                                <span am-time-ago="userchat.chat.updated"></span>
+                                            </small>
+                                        </div>
+                                        <div class="lv-title lv-subtitle">
+                                            {{userchat.chat.proposalSupport.project.address.locality}} -
+                                            {{userchat.chat.proposalSupport.project.title}}
+                                        </div>
+                                        <small class="lv-small" data-ng-if="userchat.chat.messages[0].author != 'AUTO'">
+                                            {{userchat.chat.messages[0].text}}
                                         </small>
                                     </div>
                                 </div>

@@ -31,7 +31,7 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="{{vm.getUpState()}}"
-                    title="Détails du projet"></yaka-mobile-header>
+                    title="Détails du chantier"></yaka-mobile-header>
 
 <section id="main">
 
@@ -41,7 +41,7 @@
                 {{vm.getUpName()}}
             </li>
             <li class="active">
-                Détails du projet
+                Détails du chantier
             </li>
         </ol>
     </div>
@@ -54,7 +54,16 @@
         <div class="container">
 
             <div class="block-header">
-                <h2>{{vm.project.title}}</h2>
+                <h2>
+                    <span class="c-orange"
+                          data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                        Chantier Annulé
+                    </span>
+                    <span data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
+                        -
+                    </span>
+                    {{vm.project.title}}
+                </h2>
             </div>
 
             <div class="topViewProfile">
@@ -64,8 +73,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs manquants dans votre
-                        profil afin de pouvoir répondre aux offres.
+                        Attention, <b>votre profil est incomplet</b> ! Merci de compléter les champs manquants dans
+                        votre profil afin de pouvoir répondre aux offres.
                     </div>
                 </div>
 
@@ -75,9 +84,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        <b>Merci d’avoir complété votre profil</b>. Vous allez recevoir dans les prochaines heures un
-                        email vous confirmant que votre compte a bien été validé. Vous pourrez alors répondre aux
-                        offres.
+                        <b>Votre profil est en cours de validation</b>, vous pourrez répondre aux offres dès qu'il aura
+                        été validé (contactez le support CasaVox si nécessaire).
                     </div>
                 </div>
 
@@ -92,7 +100,8 @@
                             Raison : {{app.getUser().professional.refusedReason}}
                         </div>
                         <div>
-                            Vous pourrez répondre aux offres une fois votre profil validé.
+                            Vous pourrez répondre aux offres une fois que votre profil aura été correctement complété
+                            puis validé par CasaVox.
                         </div>
                     </div>
                 </div>
@@ -213,18 +222,60 @@
                                     <div>
                                         Messages
                                         <i class="proposalUnreadMessagesIndicator"
-                                           data-ng-if="vm.proposal.unreadMessages"></i>
+                                           data-ng-if="vm.proposal.unreadMessages || vm.proposal.unreadMessagesSupport"></i>
                                     </div>
                                 </a>
                             </li>
                         </ul>
 
-                        <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
+                        <div class="col-xs-12 chatChoice no-padding bgm-white c-gray"
+                             data-ng-if="vm.showChat">
+                            <div class="col-xs-12 col-sm-5 col-md-3 no-padding emptyCol">
+                                <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
+                                     data-ng-class="{'p-border' : !vm.chatWithAdmin}"
+                                     data-ng-click="vm.changeUserDialog('admin')">
+                                    <div class="p-relative center divAvatarIcon">
+                                        <cl-image class="m-t-5"
+                                                  public-id="casavox/logo"
+                                                  format="png">
+                                            <cl-transformation height="48" width="48" crop="fill" radius="max"/>
+                                        </cl-image>
+                                        <i class="proposalUnreadMessagesIndicatorChatTabAdmin"
+                                           data-ng-if="vm.proposal.unreadMessagesSupport"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
+                                     data-ng-class="{'p-border' : vm.chatWithAdmin}"
+                                     data-ng-click="vm.changeUserDialog('customer')">
+                                    <div class="p-relative center divAvatarIcon">
+                                        <yaka-avatar class="m-t-5"
+                                                     size="44" user="vm.project.user"></yaka-avatar>
+                                        <i class="proposalUnreadMessagesIndicatorChatTab"
+                                           data-ng-if="vm.proposal.unreadMessages"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="hidden-xs col-sm-7 col-md-9 no-padding bgm-gray-lighter emptyCol p-border"></div>
+                        </div>
+
+                        <yaka-chat class="scrollViewChatProposalAdminAndPro"
+                                   data-ng-show="vm.showChat && vm.chatWithAdmin"
+                                   scroll-bottom="{{vm.scrollBottom}}"
+                                   chat-id="{{vm.proposal.supportChat.id}}"
+                                   proposal-status="{{vm.proposal.status}}"
+                                   user-me="app.getUser()"
+                                   user-other="'admin'"
+                                   user-pro="vm.proposal.professional.user"></yaka-chat>
+
+                        <yaka-chat class="scrollViewChatProposalAdminAndPro"
+                                   data-ng-show="vm.showChat && !vm.chatWithAdmin"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.proposal.chat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
                                    user-me="app.getUser()"
-                                   user-other="vm.proposal.project.user"></yaka-chat>
+                                   user-other="vm.proposal.project.user"
+                                   user-pro="vm.proposal.professional.user"></yaka-chat>
 
                         <div data-ng-show="!vm.showChat">
 
@@ -244,7 +295,7 @@
                                                     <span
                                                         data-ng-if="vm.proposal.recommendations && vm.proposal.recommendations.length > 2">s</span>
                                                 </span>
-                                                <hr class="m-0 p-0">
+                                                <hr class="m-0 p-0 m-t-5">
                                             </div>
 
                                             <div class="p-relative">
@@ -263,7 +314,7 @@
 
                                             <div
                                                 class="col-xs-12 no-padding pmo-stat proposalProName littleMargin clearfix">
-                                                <h2 class="yakaEllipsis">
+                                                <h2>
                                                     <casa-name-and-contact user="vm.project.user"
                                                                            icon-color="c-white"></casa-name-and-contact>
                                                 </h2>
@@ -287,16 +338,14 @@
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-                                                    <div class="proNetworkProjectButtonLabel t-center m-t-5">
-                                                        vous a été recommandé
-                                                    </div>
-                                                    <div class="col-xs-offset-2 col-xs-10">
+
+                                                    <div class="col-xs-12 m-t-45">
                                                         <button data-ng-click="vm.smoothScrollToSend()"
-                                                                class="btn btn-primary btn-sm waves-effect zIndex1">
+                                                                class="col-xs-6 btn btn-primary btn-sm waves-effect zIndex1">
                                                             CONTACTER !
                                                         </button>
                                                         <button data-ng-click="vm.cancelRecommandationModal()"
-                                                                class="btn btn-danger btn-sm waves-effect btn-icon-text">
+                                                                class="right col-xs-6 btn btn-danger btn-sm waves-effect btn-icon-text">
                                                             <i class="zmdi zmdi-close"></i> Refuser
                                                         </button>
                                                     </div>
@@ -359,7 +408,26 @@
                                     <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Prendre contact avec le client
                                     </h2>
                                 </div>
-                                <div class="pmbb-body p-l-30"
+                                <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
+                                    <div class="col-xs-12">
+                                        Les compétences que vous avez renseigné dans votre profil ne vous permettent pas
+                                        de faire une offre pour ce chantier.
+                                    </div>
+                                    <div class="col-xs-12 m-t-20 m-b-5 no-padding">
+                                        <button
+                                            class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
+                                            data-ui-sref="pro-profile">
+                                            Modifier mon profil
+                                        </button>
+                                        <button
+                                            class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
+                                            data-ui-sref="project-recommend({'projectId': vm.project.id})">
+                                            Recommander à un pro
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="pmbb-body p-l-30" data-ng-if="!vm.project.activityDoesntCorrespond"
                                      data-ng-if="vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
@@ -474,8 +542,8 @@
                                             <dt class="yakaDisableEllipsis">Mots clés</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-repeat="tag in vm.getTags()">
-                                                        <span data-ng-show="tag == 'MATERIAL_TRUE'"
+                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}" data-ng-repeat="tag in vm.getTags()">
+                                                        <span data-ng-if="tag == 'MATERIAL_TRUE'"
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
@@ -515,10 +583,11 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
-                                        <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
+                                        <div class="lightbox photos projectImageTooltip m-t-20"
+                                             data-ng-show="!vm.editFlag">
                                             <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
                                                  data-sub-html="#caption{{$index}}"
-                                                 class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4 p-t-20"
+                                                 class="lightboxItemAngular galleryEditingItem col-md-3 col-md-2 col-sm-3 col-xs-4 p-t-20"
                                                  data-ng-repeat="image in vm.projectTmp.images">
 
                                                 <div class="lightbox-item p-item"

@@ -8,6 +8,7 @@ angular.module('Yaka')
                 scrollBottom: '@',
                 userMe: '=',
                 userOther: '=',
+                userPro: '=',
                 proposalStatus: '@'
             },
             link: function (scope, element, attr) {
@@ -25,7 +26,9 @@ angular.module('Yaka')
                 scope.disableSending = false;
 
                 scope.getProUser = function () {
-                    if ($localStorage.user && $localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        return scope.userPro;
+                    } else if ($localStorage.user && $localStorage.user.professional) {
                         return scope.userMe;
                     } else {
                         return scope.userOther;
@@ -33,6 +36,9 @@ angular.module('Yaka')
                 };
 
                 scope.getCustomerUser = function () {
+                    if (scope.userMe == 'admin') {
+                        return scope.userOther;
+                    }
                     if ($localStorage.user && !$localStorage.user.professional) {
                         return scope.userMe;
                     } else {
@@ -45,7 +51,9 @@ angular.module('Yaka')
                         return;
                     }
                     var sendMessageApi;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == "admin") {
+                        sendMessageApi = networkService.sendMessageAdmin;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         sendMessageApi = networkService.sendMessage;
                     } else {
                         sendMessageApi = networkService.sendMessagePro;
@@ -54,23 +62,26 @@ angular.module('Yaka')
                         scope.newMessage = {
                             text: ""
                         };
+                        if (scope.userMe == 'admin') {
+                            setChatRead();
+                        }
                     }, function (res) {
                         alertMsg.send("Impossible d'envoyer le message", "danger");
-                    })
+                    }, true)
                 };
 
                 scope.showRight = function (message) {
                     if (message.author && message.author == 'CUSTOMER') {
-                        if ($localStorage.user && $localStorage.user.professional) {
-                            return false;
-                        } else {
+                        if (scope.userMe != "admin" && (!$localStorage.user || !$localStorage.user.professional)) {
                             return true;
                         }
                     } else if (message.author && message.author == 'PRO') {
                         if ($localStorage.user && $localStorage.user.professional) {
                             return true;
-                        } else {
-                            return false;
+                        }
+                    } else if (message.author && message.author == 'CASAVOX') {
+                        if (scope.userMe == "admin") {
+                            return true;
                         }
                     }
                     return false;
@@ -88,7 +99,9 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        apiGetMessages = networkService.adminMessagesGET;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -105,7 +118,7 @@ angular.module('Yaka')
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
-                    });
+                    }, true);
                 }
 
                 function chatIdChanged() {
@@ -114,7 +127,9 @@ angular.module('Yaka')
                     }
 
                     var apiGetMessages;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        apiGetMessages = networkService.adminMessagesGET;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         apiGetMessages = networkService.messagesGET;
                     } else {
                         apiGetMessages = networkService.messagesProGET;
@@ -131,7 +146,7 @@ angular.module('Yaka')
                     }, function () {
                         alertMsg.send("Imposible de récupérer les messages", "danger");
                         scope.loadingMessages = false;
-                    });
+                    }, true);
                     setupStomp();
                     setupScrollTopDetection();
                 }
@@ -159,7 +174,9 @@ angular.module('Yaka')
 
                                 scope.$apply(function () {
                                     scrollDown();
-                                    setChatRead();
+                                    if (scope.userMe != 'admin') {
+                                        setChatRead();
+                                    }
                                 });
                             }, {
                                 'token': $localStorage.token
@@ -223,40 +240,59 @@ angular.module('Yaka')
 
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('proposalStatus', function () {
-                    if (scope.proposalStatus == "PRO_DECLINED" ||
+                    if (scope.userMe != 'admin' &&
+                        scope.userOther != 'admin' &&
+                        (scope.proposalStatus == "PRO_DECLINED" ||
                         scope.proposalStatus == "CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RECO_PRO_DECLINED" ||
                         scope.proposalStatus == "RECO_CUSTOMER_DECLINED" ||
                         scope.proposalStatus == "RATE_PRO" ||
-                        scope.proposalStatus == "COMPLETED") {
+                        scope.proposalStatus == "COMPLETED" ||
+                        (
+                            scope.userMe.professional &&
+                            scope.proposalStatus == 'RECOMMENDATION'
+                        ))) {
                         scope.disableSending = true;
                     }
                 });
                 attr.$observe('scrollBottom', function () {
                     if (scope.scrollBottom == 1 && scope.chatId) {
                         scrollDown();
-                        setChatRead();
+                        if (scope.userMe != 'admin') {
+                            setChatRead();
+                        }
                     }
                 });
 
                 function setChatRead() {
                     var apiSetChatRead;
-                    if ($localStorage.user && !$localStorage.user.professional) {
+                    if (scope.userMe == 'admin') {
+                        apiSetChatRead = networkService.adminSetChatRead;
+                    } else if ($localStorage.user && !$localStorage.user.professional) {
                         apiSetChatRead = networkService.setChatRead;
                     } else {
                         apiSetChatRead = networkService.proSetChatRead;
                     }
                     apiSetChatRead(scope.chatId, function () {
-                        $rootScope.updateProfile();
+                        $rootScope.updateProfile(true);
                     }, function () {
-                    });
+                    }, true);
                 }
 
                 scope.getPlaceholder = function () {
-                    if (scope.disableSending) {
+                    if (scope.disableSending && scope.userMe.professional && scope.proposalStatus == 'RECOMMENDATION') {
+                        return 'Vous devez faire une offre dans l\'onglet "Détails" afin de commencer à discuter avec le client. Si vous n\'êtes pas intéressé, refusez l\'offre via le bouton "Refuser';
+                    } else if (scope.disableSending) {
                         return 'Cette discussion est close';
-                    } else {
-                        return 'Entrez votre message (chat privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName + ')';
+                    }
+                    if (scope.userOther) {
+                        if (scope.userOther == "admin") {
+                            return 'Discutez en privé avec Victor, votre assistant CasaVox';
+                        } else if (scope.userMe == "admin") {
+                            return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
+                        } else if (scope.userOther.firstName && scope.userOther.lastName) {
+                            return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
+                        }
                     }
                 }
             },

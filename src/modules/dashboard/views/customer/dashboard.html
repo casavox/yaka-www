@@ -38,47 +38,47 @@
                                 <div class="col-sm-8 f-s-14 t-right dashboardStats visible-md visible-lg">
                                     <button class="btn bgm-green waves-effect btn-xs m-b-5 m-t-5" ui-sref="my-projects">
                                         <div class="d-i-b">
+                                            {{vm.data.ongoingProjectsNumber}}
                                             <span
                                                 data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet en cours </span>
                                             <span
                                                 data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets en cours </span>
-                                            {{vm.data.ongoingProjectsNumber}}
                                         </div>
                                     </button>
                                     <button class="btn bgm-gray waves-effect btn-xs m-b-5 m-t-5" ui-sref="my-projects">
                                         <div class="d-i-b">
+                                            {{vm.data.completedProjectsNumber}}
                                             <span
                                                 data-ng-show="vm.data.completedProjectsNumber < 2">Projet terminé </span>
                                             <span
                                                 data-ng-show="vm.data.completedProjectsNumber > 1">Projets terminés </span>
-                                            {{vm.data.completedProjectsNumber}}
                                         </div>
                                     </button>
                                     <button class="btn bgm-orange waves-effect btn-xs m-b-5 m-t-5" ui-sref="contacts">
                                         <div class="d-i-b">
+                                            {{vm.data.recommendedProNumber}}
                                             <span data-ng-show="vm.data.recommendedProNumber < 2">Pro recommandé </span>
                                             <span
                                                 data-ng-show="vm.data.recommendedProNumber > 1">Pros recommandés </span>
-                                            {{vm.data.recommendedProNumber}}
                                         </div>
                                     </button>
                                 </div>
                                 <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
                                     <button class="btn bgm-green waves-effect btn-xs" ui-sref="my-projects">
                                         <div class="d-i-b">
+                                            {{vm.data.ongoingProjectsNumber}}
                                             <span
                                                 data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet en cours </span>
                                             <span
                                                 data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets en cours </span>
-                                            {{vm.data.ongoingProjectsNumber}}
                                         </div>
                                     </button>
                                     <button class="btn bgm-orange waves-effect btn-xs m-t-5" ui-sref="contacts">
                                         <div class="d-i-b">
+                                            {{vm.data.recommendedProNumber}}
                                             <span data-ng-show="vm.data.recommendedProNumber < 2">Recommandation </span>
                                             <span
                                                 data-ng-show="vm.data.recommendedProNumber > 1">Recommandations </span>
-                                            {{vm.data.recommendedProNumber}}
                                         </div>
                                     </button>
                                 </div>
@@ -86,14 +86,14 @@
                         </div>
                         <div class="pull-left m-t-10 f-s-14 dashboardStats visible-xs-block">
                             <button class="btn bgm-green waves-effect btn-xs" ui-sref="my-projects">
+                                {{vm.data.ongoingProjectsNumber}}
                                 <span data-ng-show="vm.data.ongoingProjectsNumber < 2">Projet </span>
                                 <span data-ng-show="vm.data.ongoingProjectsNumber > 1">Projets </span>
-                                {{vm.data.ongoingProjectsNumber}}
                             </button>
                             <button class="btn bgm-orange waves-effect btn-xs" ui-sref="contacts">
+                                {{vm.data.recommendedProNumber}}
                                 <span data-ng-show="vm.data.recommendedProNumber < 2">Recommandation </span>
                                 <span data-ng-show="vm.data.recommendedProNumber > 1">Recommandations </span>
-                                {{vm.data.recommendedProNumber}}
                             </button>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                 <div class="t-right bgm-lightgray">
                     <button class="btn btn-default waves-effect c-lightblue btn-sm m-r-10 m-b-10 m-t-10"
                             data-ui-sref="new-project">
-                        Nouveau projet
+                        TROUVER UN PRO
                     </button>
                 </div>
             </div>
