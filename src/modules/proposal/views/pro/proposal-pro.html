@@ -513,14 +513,16 @@
                                                     <i class="zmdi zmdi-accounts"></i>
                                                     Client
                                                 </li>
-                                                <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis commu-tag-float c-white actu-community-tag"
+                                                <li data-ng-repeat="community in vm.communities | limitTo:3"
+                                                    class="yakaEllipsis commu-tag-float c-white actu-community-tag"
                                                     data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                                     {{community.text}}
                                                 </li>
                                             </ul>
                                         </dl>
                                     </div>
-                                </div></div>
+                                </div>
+                            </div>
 
                             <div class="pmb-block"
                                  data-ng-if="vm.projectTmp.user.email && vm.projectTmp.user.phoneNumber">
