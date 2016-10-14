@@ -89,7 +89,20 @@
                             <small class="subtitle-color-forced">
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                 {{proposal.project.address.locality}}
+                                <ul class="yaka-chips m-t-5 m-b-0 no-padding clearfix">
+                                    <li class="yakaEllipsis c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:3"
+                                        class="pull-left yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
                             </small>
+
                         </h2>
                     </div>
 
@@ -165,6 +178,18 @@
                             <small class="subtitle-color-forced">
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                 {{proposal.project.address.locality}}
+                                <ul class="yaka-chips m-t-5 m-b-0 no-padding clearfix">
+                                    <li class="yakaEllipsis c-white bgm-black pull-left"
+                                        data-ng-if="!isClient">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                        Client
+                                    </li>
+                                    <li data-ng-repeat="community in vm.communities | limitTo:3"
+                                        class="pull-left yakaEllipsis c-white floating-tags"
+                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
+                                        {{community.text}}
+                                    </li>
+                                </ul>
                             </small>
                         </h2>
                     </div>
