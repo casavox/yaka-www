@@ -18,6 +18,7 @@
     "CRITERION_ADVICES": "Qualité des conseils",
     "CRITERION_CLEAN": "Propreté du chantier",
     "ACTIVITY_MATERIAL_TRUE": "Matériel fourni",
+    "ACTIVITY_MATERIAL_FALSE": "Matériel non fourni",
     "ACTIVITY_OTHER": "Autres (à préciser)",
     "ACTIVITY_REN_500": "Multitravaux - Rénovation",
     "ACTIVITY_ELE_1000": "Électricité",

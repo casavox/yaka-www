@@ -15,8 +15,9 @@
 .aligned-content > [class*=" col-"] {
     display: flex;
     align-items: center;
-    justify-content: center; /* Optional, to align inner items
-                              horizontally inside the column */
+    justify-content: center;
+    /* Optional, to align inner items
+                                 horizontally inside the column */
 }
 
 /**
@@ -31,10 +32,9 @@
     flex-grow: 1;
 }
 
-
-
-
-
+.m-b-1 {
+    margin-bottom: 1px;
+}
 
 .chatChoice {
     z-index: 1;
