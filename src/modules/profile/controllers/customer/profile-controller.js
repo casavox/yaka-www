@@ -91,7 +91,6 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
-                    vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
@@ -105,14 +104,15 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.updating = false;
                         vm.profileInfo.avatar = vm.profileInfo.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
                         var res = null;
                         vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
+                        networkService.errorAvatarPUT(vm.profileInfo, function (res) {
+                            alertMsg.send("Profil mis à jour avec succès", "success");
+                        }, errorProfilePUT, true);
                     }).error(function (data, status, headers, config) {
-                        vm.updating = false;
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
                 }
@@ -126,6 +126,10 @@
         function errorProfilePUT() {
             vm.updating = false;
             alertMsg.send("Impossible de modifier le profil", "danger");
+        }
+
+        function errorAvatarPUT() {
+            alertMsg.send("Impossible de mettre à jour votre photo", "danger");
         }
 
         function succesProfileGET(res) {
@@ -165,8 +169,7 @@
                 vm.profileInfo.lastName != vm.profile.lastName ||
                 vm.profileInfo.gender != vm.profile.gender ||
                 vm.profileInfo.phoneNumber != vm.profile.phoneNumber ||
-                vm.profileInfo.email != vm.profile.email ||
-                vm.profileInfo.avatar.cloudinaryPublicId != vm.profile.avatar.cloudinaryPublicId
+                vm.profileInfo.email != vm.profile.email
             );
         };
 

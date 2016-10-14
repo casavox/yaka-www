@@ -237,6 +237,9 @@
             profilePUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/me/profile', data, ignoreLoading).success(success).error(error)
             },
+            updateAvatarPUT: function (data, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/me/profile/avatar', data, ignoreLoading).success(success).error(error)
+            },
             proProfilePUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/pro/me/profile', data, ignoreLoading).success(success).error(error)
             },
@@ -275,6 +278,9 @@
             },
             contactsGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/contacts', ignoreLoading).success(success).error(error)
+            },
+            contactDeletePOST: function (id, success, error, ignoreLoading) {
+                httpService.delete(baseUrl + '/contact/' + id, ignoreLoading).success(success).error(error)
             },
             inviteCustomerPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invite/customer', data, ignoreLoading).success(success).error(error)
