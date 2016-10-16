@@ -109,9 +109,9 @@
                         file.result = data;
                         var res = null;
                         vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
-                        networkService.errorAvatarPUT(vm.profileInfo, function (res) {
-                            alertMsg.send("Profil mis à jour avec succès", "success");
-                        }, errorProfilePUT, true);
+                        networkService.updateAvatarPUT(vm.profileInfo, function (res) {
+                            alertMsg.send("L'image a été mise à jour avec succès", "success");
+                        }, errorAvatarPUT, true);
                     }).error(function (data, status, headers, config) {
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });

@@ -10,7 +10,7 @@
     function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
 
 
-        $rootScope.pageName = "Mes contacts";
+        $rootScope.pageName = "Mon entourage";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -51,6 +51,8 @@
                 return "Invitations envoyées";
             }
         };
+
+        vm.user  = $localStorage.user;
 
         vm.getCurrentContactListNumber = function () {
             var count = 0;
@@ -547,6 +549,23 @@
                 }
             });
         };
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+        }
+
+        vm.getCommunityByType = function (type) {
+            for (var i = 0; i < vm.communities.length; i++) {
+                if (type == vm.communities[i].type) {
+                    return vm.communities[i];
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
 
     }
 })

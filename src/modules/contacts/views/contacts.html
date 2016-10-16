@@ -17,6 +17,56 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content contacts">
         <div class="container">
+
+            <div class="card p-15 aligned-content">
+                <cl-image public-id="{{vm.user.avatar.cloudinaryPublicId}}"
+                          class="img-circle userAvatar d-block m-0 p-0" format="png"
+                          data-ng-if="vm.user.avatar.cloudinaryPublicId">
+                    <cl-transformation height="50" width="50" crop="fill"/>
+                </cl-image>
+                <div class="img-default userItemInitials d-block m-0 p-0"
+                     data-ng-if="!vm.user.avatar.cloudinaryPublicId">
+                    {{vm.user.firstName[0] | uppercase}}.
+                    {{vm.user.lastName[0]| uppercase}}.
+                </div>
+                <div class="col-xs-6 d-block">
+                    <div class="c-obsidian-gray userNameInContact">
+                        {{vm.user.firstName}} {{vm.user.lastName}}
+                    </div>
+                    <div>
+                        {{vm.user.defaultAddress.address}}
+                    </div>
+                    <div>
+                        Inscrit depuis le 12 Aout 2016
+                    </div>
+                    <div>
+                        <a data-ui-sref="profile"><u>Modifier</u></a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 d-block t-right">
+                    <div>
+                        Mes communautés :
+                    </div>
+
+                    <div class="d-block col-xs-6 pull-right p-r-0 m-t-5">
+                        <div class="yakaEllipsis pull-right c-white bgm-gray d-block p-5">
+                            {{vm.getCommunityByType('PROFILE_CITY').neighborhood}}
+                        </div>
+                        <div class="yakaEllipsis pull-right c-white bgm-bluegray d-block p-5 m-t-5">
+                            {{vm.getCommunityByType('JOB').name}} - {{vm.getCommunityByType('JOB').address.address}}
+                        </div>
+                        <div class="yakaEllipsis pull-right c-white bgm-lightblue d-block p-5 m-t-5">
+                            {{vm.getCommunityByType('OTHER').name}} - {{vm.getCommunityByType('OTHER').address.address}}
+                        </div>
+                        <div class="yakaEllipsis pull-right m-t-10 d-block t-right">
+                            + 2 autres...
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
             <div class="block-header visible-xs m-b-5">
                 <h2>Développer votre réseau</h2>
                 <small>
@@ -54,6 +104,141 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-7 card p-0">
+                <div class="lv-header-alt clearfix">
+                    <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Mon entourage</h2>
+                </div>
+                <div class="pm-body clearfix">
+                    <ul class="tab-nav tn-justified">
+                        <li class="btn-wave" data-ui-sref-active="active">
+                            <a data-ui-sref="pages.profile.profile-about"
+                               href="#/pages/profile/profile-about">Tous</a>
+                        </li>
+                        <li class="btn-wave" data-ui-sref-active="active">
+                            <a data-ui-sref="pages.profile.profile-about"
+                               href="#/pages/profile/profile-about">Amis</a>
+                        </li>
+                        <li class="btn-wave" data-ui-sref-active="active">
+                            <a data-ui-sref="pages.profile.profile-about"
+                               href="#/pages/profile/profile-about">Pros</a>
+                        </li>
+                    </ul>
+
+                    <div class="col-xs-12 contactItem" data-ng-repeat="contact in vm.contacts"
+                         data-ng-if="vm.showContactOrNot(contact)">
+
+                        <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
+                                  class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                                  data-ng-if="contact.user.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default fl contactItemInitials"
+                             data-ng-if="!contact.user.avatar.cloudinaryPublicId">
+                            {{contact.user.firstName[0] | uppercase}}.
+                            {{contact.user.lastName[0]| uppercase}}.
+                        </div>
+
+                        <div class="col-xs-10 col-sm-3 m-t-5 p-l-0">
+                            <span class="contactItemName">
+                            {{contact.user.firstName}} {{contact.user.lastName}}
+                            <span class="contactItemPro c-black" data-ng-if="contact.user.professional">
+                                    (
+                                <i class="c-orange zmdi zmdi-accounts zmdi"></i> Pro)
+                            </span>
+                                <span class="contactItemPro c-black" data-ng-if="!contact.user.professional">
+                                    (
+                                <i class="c-lightblue zmdi zmdi-accounts zmdi"></i> Ami)
+                            </span>
+                        </span>
+                            <div class="col-xs-12 p-l-0">
+                                <span class="contactItemCity"
+                                      data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                            ({{contact.user.defaultAddress.locality}})
+                        </span>
+                                <span class="contactItemCity contactItemCityInvitReceived"
+                                      data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                            ({{contact.user.professional.company.address.locality}})
+                        </span></div>
+                        </div>
+
+
+                        <div class="d-block col-xs-12 col-sm-2 contactTags pull-right p-r-0 m-t-5">
+                            <div class="yakaEllipsis pull-right c-white bgm-gray d-block p-5">
+                                {{vm.getCommunityByType('PROFILE_CITY').neighborhood}}
+                            </div>
+                            <div class="yakaEllipsis pull-right c-white bgm-bluegray d-block p-5 m-t-5">
+                                {{vm.getCommunityByType('JOB').name}} - {{vm.getCommunityByType('JOB').address.address}}
+                            </div>
+                            <div class="yakaEllipsis pull-right c-white bgm-lightblue d-block p-5 m-t-5 m-b-5">
+                                {{vm.getCommunityByType('OTHER').name}} -
+                                {{vm.getCommunityByType('OTHER').address.address}}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-xs-offset-1 card p-0">
+                <div class="lv-header-alt clearfix">
+                    <h2>Mes invitations</h2>
+                </div>
+                <div class="pm-body clearfix">
+                    <ul class="tab-nav tn-justified">
+                        <li class="btn-wave" data-ui-sref-active="active">
+                            <a data-ui-sref="pages.profile.profile-about"
+                               href="#/pages/profile/profile-about">Reçue
+                                <span data-ng-if="vm.invitationsReceived.length > 1">s</span>
+                                <span data-ng-if="vm.invitationsReceived.length > 0">{{vm.invitationsReceived.length}}
+                                </span></a>
+                        </li>
+                        <li class="btn-wave" data-ui-sref-active="active">
+                            <a data-ui-sref="pages.profile.profile-about"
+                               href="#/pages/profile/profile-about">Envoyée<span data-ng-if="vm.invitationsSent.length > 1">s</span>
+                                <span data-ng-if="vm.invitationsSent.length > 0">{{vm.invitationsSent.length}}
+                                </span></a>
+                        </li>
+                    </ul>
+
+                    <div class="col-xs-12 contactItem" data-ng-repeat="contact in vm.contacts"
+                         data-ng-if="vm.showContactOrNot(contact)">
+
+                        <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
+                                  class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                                  data-ng-if="contact.user.avatar.cloudinaryPublicId">
+                            <cl-transformation height="40" width="40" crop="fill"/>
+                        </cl-image>
+                        <div class="img-default fl contactItemInitials"
+                             data-ng-if="!contact.user.avatar.cloudinaryPublicId">
+                            {{contact.user.firstName[0] | uppercase}}.
+                            {{contact.user.lastName[0]| uppercase}}.
+                        </div>
+
+                        <div class="col-xs-3 m-t-5 p-l-0">
+                            <span class="contactItemName">
+                            {{contact.user.firstName}} {{contact.user.lastName}}
+                        </span>
+                            <div class="col-xs-12 p-l-0">
+                                <span class="contactItemCity"
+                                      data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                            ({{contact.user.defaultAddress.locality}})
+                        </span>
+                                <span class="contactItemCity contactItemCityInvitReceived"
+                                      data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                            ({{contact.user.professional.company.address.locality}})
+                        </span></div>
+                        </div>
+                    </div>
+                    <hr>
+
+
+                </div>
+            </div>
+
+            <!--
             <div class="col-xs-12 contactsMain">
                 <div class="col-xs-4 contactsMenu"
                      data-ng-class="{'opened': vm.contactsMenuOpened, 'fixed': vm.contactsMenuFixed}"
@@ -192,7 +377,6 @@
                         </div>
 
 
-
                     </div>
                     <div class="col-xs-12 contactItem"
                          data-ng-repeat="invit in vm.invitationsReceived"
@@ -285,7 +469,8 @@
                             </div>
                             <div class="m-b-5" data-ng-show="app.isPro()">
                                 Parce qu'une de vos connaissances - personnelle, ancien client ou collègue - à un ami à
-                                la recherche de vos compétences. CasaVox encourage vos relations à vous recommander auprès
+                                la recherche de vos compétences. CasaVox encourage vos relations à vous recommander
+                                auprès
                                 de leurs connaissances « <em>les amis de mes amis sont mes nouveaux clients !</em> ».
                             </div>
                             <div class="m-b-20" data-ng-show="app.isPro()">
@@ -313,7 +498,9 @@
                         <a class="pull-right" data-ui-sref="help({'card': 'bao'})">En savoir plus</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+
             <div class="col-xs-12 footer-card hidden-xs">
                 Une question ? <a data-ui-sref="help({'card': 'bao'})">Consultez l'aide</a>
             </div>
