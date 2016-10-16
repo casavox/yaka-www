@@ -150,7 +150,7 @@
 }
 
 .userItemInitials {
-    width: 80px;
+    width: 90px;
     height: 80px;
     font-size: 14px;
     line-height: 40px;
@@ -172,7 +172,7 @@
 }
 
 .userAvatar {
-    width: 80px;
+    width: 90px;
     height: 80px;
     margin-top: 7px;
     margin-right: 10px !important;

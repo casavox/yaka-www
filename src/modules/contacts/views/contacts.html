@@ -120,16 +120,19 @@
                         <li heading="Home"
                             data-ng-class="{'active': vm.selectContactTab == 'all'}">
                             <a href="" data-ng-click="vm.selectContactTab = 'all'">Tous
+                                <span>{{vm.contacts.length}}</span>
                             </a>
                         </li>
                         <li heading="Home"
                             data-ng-class="{'active': vm.selectContactTab == 'friend'}">
                             <a href="" data-ng-click="vm.selectContactTab = 'friend'">Amis
+                                <span>{{vm.friendsNumber}}</span>
                             </a>
                         </li>
                         <li heading="Home"
                             data-ng-class="{'active': vm.selectContactTab == 'pros'}">
                             <a href="" data-ng-click="vm.selectContactTab = 'pros'">Pros
+                                <span>{{vm.prosNumber}}</span>
                             </a>
                         </li>
                     </ul>
@@ -264,10 +267,8 @@
                                      data-ng-click="vm.acceptInvitation(invit.inviter.inviteId)"/>
                             </span>
                         </div>
+                        <hr>
                     </div>
-
-
-
 
                     <div class="col-xs-12 contactItem contactItemInvitation"
                          data-ng-repeat="invit in vm.invitationsSent"
@@ -289,9 +290,9 @@
                         </span>
                     </div>
                     <hr>
-
-
                 </div>
+
+
             </div>
 
             <!--
