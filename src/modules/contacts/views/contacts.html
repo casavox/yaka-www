@@ -49,13 +49,16 @@
                     </div>
 
                     <div class="d-block col-xs-6 pull-right p-r-0 m-t-5">
-                        <div class="yakaEllipsis pull-right c-white bgm-gray d-block p-5">
+                        <div class="yakaEllipsis pull-right c-white bgm-gray d-block p-5"
+                             data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                             {{vm.getCommunityByType('PROFILE_CITY').neighborhood}}
                         </div>
-                        <div class="yakaEllipsis pull-right c-white bgm-bluegray d-block p-5 m-t-5">
+                        <div class="yakaEllipsis pull-right c-white bgm-bluegray d-block p-5 m-t-5"
+                             data-ng-if="vm.getCommunityByType('JOB').name">
                             {{vm.getCommunityByType('JOB').name}} - {{vm.getCommunityByType('JOB').address.address}}
                         </div>
-                        <div class="yakaEllipsis pull-right c-white bgm-lightblue d-block p-5 m-t-5">
+                        <div class="yakaEllipsis pull-right c-white bgm-lightblue d-block p-5 m-t-5"
+                             data-ng-if="vm.getCommunityByType('OTHER').name">
                             {{vm.getCommunityByType('OTHER').name}} - {{vm.getCommunityByType('OTHER').address.address}}
                         </div>
                         <div class="yakaEllipsis pull-right m-t-10 d-block t-right">
@@ -114,22 +117,25 @@
                 </div>
                 <div class="pm-body clearfix">
                     <ul class="tab-nav tn-justified">
-                        <li class="btn-wave" data-ui-sref-active="active">
-                            <a data-ui-sref="pages.profile.profile-about"
-                               href="#/pages/profile/profile-about">Tous</a>
+                        <li heading="Home"
+                            data-ng-class="{'active': vm.selectContactTab == 'all'}">
+                            <a href="" data-ng-click="vm.selectContactTab = 'all'">Tous
+                            </a>
                         </li>
-                        <li class="btn-wave" data-ui-sref-active="active">
-                            <a data-ui-sref="pages.profile.profile-about"
-                               href="#/pages/profile/profile-about">Amis</a>
+                        <li heading="Home"
+                            data-ng-class="{'active': vm.selectContactTab == 'friend'}">
+                            <a href="" data-ng-click="vm.selectContactTab = 'friend'">Amis
+                            </a>
                         </li>
-                        <li class="btn-wave" data-ui-sref-active="active">
-                            <a data-ui-sref="pages.profile.profile-about"
-                               href="#/pages/profile/profile-about">Pros</a>
+                        <li heading="Home"
+                            data-ng-class="{'active': vm.selectContactTab == 'pros'}">
+                            <a href="" data-ng-click="vm.selectContactTab = 'pros'">Pros
+                            </a>
                         </li>
                     </ul>
 
                     <div class="col-xs-12 contactItem" data-ng-repeat="contact in vm.contacts"
-                         data-ng-if="vm.showContactOrNot(contact)">
+                         data-ng-if="vm.showContactOrNot(contact) && vm.selectContactTab == 'all'">
 
                         <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
                                   class="f-l proposal-icon img-circle contactItemAvatar" format="png"
@@ -191,49 +197,96 @@
                 </div>
                 <div class="pm-body clearfix">
                     <ul class="tab-nav tn-justified">
-                        <li class="btn-wave" data-ui-sref-active="active">
-                            <a data-ui-sref="pages.profile.profile-about"
-                               href="#/pages/profile/profile-about">Reçue
+                        <li heading="Home"
+                            data-ng-class="{'active': vm.selectTab == 'received'}">
+                            <a href="" data-ng-click="vm.selectTab = 'received'">Reçue
                                 <span data-ng-if="vm.invitationsReceived.length > 1">s</span>
                                 <span data-ng-if="vm.invitationsReceived.length > 0">{{vm.invitationsReceived.length}}
                                 </span></a>
                         </li>
-                        <li class="btn-wave" data-ui-sref-active="active">
-                            <a data-ui-sref="pages.profile.profile-about"
-                               href="#/pages/profile/profile-about">Envoyée<span data-ng-if="vm.invitationsSent.length > 1">s</span>
+
+                        <li heading="Home"
+                            data-ng-class="{'active': vm.selectTab == 'sent'}">
+                            <a href="" data-ng-click="vm.selectTab = 'sent'">Envoyée<span
+                                data-ng-if="vm.invitationsSent.length > 1">s</span>
                                 <span data-ng-if="vm.invitationsSent.length > 0">{{vm.invitationsSent.length}}
                                 </span></a>
                         </li>
                     </ul>
 
-                    <div class="col-xs-12 contactItem" data-ng-repeat="contact in vm.contacts"
-                         data-ng-if="vm.showContactOrNot(contact)">
+                    <div class="col-xs-12 contactItem"
+                         data-ng-repeat="invit in vm.invitationsReceived"
+                         data-ng-if="vm.selectTab == 'received'">
 
-                        <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
+                        <cl-image public-id="{{invit.inviter.avatar.cloudinaryPublicId}}"
                                   class="f-l proposal-icon img-circle contactItemAvatar" format="png"
-                                  data-ng-if="contact.user.avatar.cloudinaryPublicId">
+                                  data-ng-if="invit.inviter.avatar.cloudinaryPublicId">
                             <cl-transformation height="40" width="40" crop="fill"/>
                         </cl-image>
                         <div class="img-default fl contactItemInitials"
-                             data-ng-if="!contact.user.avatar.cloudinaryPublicId">
-                            {{contact.user.firstName[0] | uppercase}}.
-                            {{contact.user.lastName[0]| uppercase}}.
+                             data-ng-if="!invit.inviter.avatar.cloudinaryPublicId">
+                            {{invit.inviter.firstName[0] | uppercase}}.
+                            {{invit.inviter.lastName[0] | uppercase}}.
+                        </div>
+                        <div class="invitReceivedSpanHolder">
+                            <span class="contactItemName contactItemNameInvitReceived">
+                                {{invit.inviter.firstName}} {{invit.inviter.lastName}}
+                                <span class="contactItemPro" data-ng-if="invit.inviter.professional">
+                                        PRO
+                                </span>
+                                <span class="contactItemEmail">
+                                    ({{invit.inviter.email}})
+                                </span>
+                            </span>
+                            <span class="contactItemCity contactItemCityInvitReceived"
+                                  data-ng-if="!invit.inviter.professional && invit.inviter.defaultAddress && invit.inviter.defaultAddress.locality">
+                                {{invit.inviter.defaultAddress.locality}}
+                            </span>
+                            <span class="contactItemCity contactItemCityInvitReceived"
+                                  data-ng-if="invit.inviter.professional && invit.inviter.professional.company && invit.inviter.professional.company.address && invit.inviter.professional.company.address.locality">
+                                {{invit.inviter.professional.company.address.locality}}
+                            </span>
                         </div>
 
-                        <div class="col-xs-3 m-t-5 p-l-0">
-                            <span class="contactItemName">
-                            {{contact.user.firstName}} {{contact.user.lastName}}
+                        <div class="pull-right">
+                            <span class="waves-effect"
+                                  tooltip-placement="left"
+                                  uib-tooltip="Refuser l'invitation">
+                            <img class="invitRefuse"
+                                 src="icons/mdpi/ic_refuse_invitation.png"
+                                 data-ng-click="vm.refuseInvitation(invit.inviter.inviteId)"/>
                         </span>
-                            <div class="col-xs-12 p-l-0">
-                                <span class="contactItemCity"
-                                      data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
-                            ({{contact.user.defaultAddress.locality}})
-                        </span>
-                                <span class="contactItemCity contactItemCityInvitReceived"
-                                      data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
-                            ({{contact.user.professional.company.address.locality}})
-                        </span></div>
+                            <span class="waves-effect"
+                                  tooltip-placement="left"
+                                  uib-tooltip="Accepter l'invitation">
+                                <img class="invitAccept"
+                                     src="icons/mdpi/ic_accept_invitation.png"
+                                     data-ng-click="vm.acceptInvitation(invit.inviter.inviteId)"/>
+                            </span>
                         </div>
+                    </div>
+
+
+
+
+                    <div class="col-xs-12 contactItem contactItemInvitation"
+                         data-ng-repeat="invit in vm.invitationsSent"
+                         data-ng-if="vm.selectTab == 'sent'">
+                        <span data-ng-if="invit.firstName && invit.lastName">
+                            {{invit.firstName}} {{invit.lastName}}
+                            <span class="contactItemPro" data-ng-if="invit.isPro">
+                                    PRO
+                            </span>
+                            <span class="contactItemEmail">
+                                ({{invit.email}})
+                            </span>
+                        </span>
+                        <span data-ng-if="!invit.firstName || !invit.lastName">
+                            {{invit.email}}
+                            <span class="contactItemPro" data-ng-if="invit.isPro">
+                                    PRO
+                            </span>
+                        </span>
                     </div>
                     <hr>
 

@@ -565,7 +565,10 @@
 
         function errorCommunitiesGET(res) {
             alertMsg.send("Impossible de récupérer les communautés", "danger");
-        }
+        };
+
+        vm.selectContactTab = "all";
+        vm.selectTab = "received";
 
     }
 })
