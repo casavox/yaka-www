@@ -43,7 +43,7 @@
                         <a data-ui-sref="profile"><u>Modifier</u></a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 d-block t-right">
+                <div class="col-xs-12 col-sm-6 p-r-0 d-block t-right">
                     <div>
                         Mes communautés :
                     </div>
@@ -168,15 +168,15 @@
                             </div>
                         </div>
                         <div class="d-block col-xs-12 col-sm-2 contactTags pull-right p-r-0 m-t-5">
-                            <div class="yakaEllipsis pull-right c-white bgm-gray d-block p-5"
+                            <div class="yakaEllipsis limitTagWidth pull-right c-white bgm-gray d-block p-5"
                                 data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                                 {{vm.getCommunityByType('PROFILE_CITY').neighborhood}}
                             </div>
-                            <div class="yakaEllipsis pull-right c-white bgm-bluegray d-block p-5 m-t-5"
+                            <div class="yakaEllipsis limitTagWidth pull-right c-white bgm-bluegray d-block p-5 m-t-5"
                                 data-ng-if="vm.getCommunityByType('JOB').name">
                                 {{vm.getCommunityByType('JOB').name}} - {{vm.getCommunityByType('JOB').address.address}}
                             </div>
-                            <div class="yakaEllipsis pull-right c-white bgm-lightblue d-block p-5 m-t-5 m-b-5"
+                            <div class="yakaEllipsis limitTagWidth pull-right c-white bgm-lightblue d-block p-5 m-t-5 m-b-5"
                                 data-ng-if="vm.getCommunityByType('OTHER').name">
                                 {{vm.getCommunityByType('OTHER').name}} -
                                 {{vm.getCommunityByType('OTHER').address.address}}

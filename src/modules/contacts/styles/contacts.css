@@ -373,6 +373,12 @@
     font-size: 13px;
 }
 
+@media (max-width: 992px) {
+    .limitTagWidth {
+        max-width: 120px;
+    }
+}
+
 @media (max-width: 849px) {
 
     .contactsHeaderLeftDesc {
