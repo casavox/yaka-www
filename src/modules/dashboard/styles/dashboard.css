@@ -42,7 +42,7 @@ ul.yaka-chips li {
 }
 
 .dashboardRecommendProjectText {
-    position:absolute;
+    position: absolute;
     left: 55px;
     top: 0px;
 }
@@ -146,5 +146,11 @@ ul.yaka-chips li {
 
     .dashboardRecommendProjectText {
         position: relative;
+    }
+
+    .dashboardUserInfos {
+        position: absolute !important;
+        left: 90px !important;
+        top: 25px !important;
     }
 }

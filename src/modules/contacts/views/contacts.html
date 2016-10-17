@@ -43,15 +43,15 @@
                         </div>
                         <div class="d-block col-xs-6 p-r-0 m-t-5 contact-communities-tag">
 
-                            <casa-community-tag class="contact-community-tag"
+                            <casa-community-tag class="contact-community-tag" data-ng-if="vm.getCommunityByType('PROFILE_CITY').name"
                                                 community="vm.getCommunityByType('PROFILE_CITY')">
                             </casa-community-tag>
 
-                            <casa-community-tag class="contact-community-tag"
+                            <casa-community-tag class="contact-community-tag" data-ng-if="vm.getCommunityByType('JOB').name"
                                                 community="vm.getCommunityByType('JOB')">
                             </casa-community-tag>
 
-                            <casa-community-tag class="contact-community-tag"
+                            <casa-community-tag class="contact-community-tag" data-ng-if="vm.getCommunityByType('OTHER').name"
                                                 community="vm.getCommunityByType('OTHER')">
                             </casa-community-tag>
 
