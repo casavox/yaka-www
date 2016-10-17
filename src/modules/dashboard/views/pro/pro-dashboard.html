@@ -265,8 +265,7 @@
                                 <span class="c-gray-dark">
                                     (
                                     <casa-contact
-                                        user="project.recoProposals[0].firstRecommendation.recommender"
-                                        icon-color="c-graydark" client-red="true"></casa-contact>
+                                        user="project.recoProposals[0].firstRecommendation.recommender" client-red="true"></casa-contact>
                                     )
                                     vous a recommandé
                                 </span>
@@ -302,18 +301,10 @@
                                 <span class="c-gray-dark">
                                     a un nouveau chantier
                                 </span>
-                                <ul class="yaka-chips m-t-5 no-padding">
-                                    <li class="yakaEllipsis relation c-white bgm-black pull-left"
-                                        data-ng-if="!isClient">
-                                        <i class="zmdi zmdi-accounts"></i>
-                                        Client
-                                    </li>
-                                    <li data-ng-repeat="community in vm.communities | limitTo:3"
-                                        class="pull-left yakaEllipsis c-white floating-tags"
-                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                        {{community.text}}
-                                    </li>
-                                </ul>
+                                    <casa-community-tag class="contact-community-tag"
+                                                        community="community"
+                                                        ng-repeat="community in project.user.communities">
+                                    </casa-community-tag>
                             </h2>
 
 
@@ -509,18 +500,10 @@
                                 <div class="yakaEllipsis">
                                     {{project.user.firstName}} {{project.user.lastName}}
                                 </div>
-                                <ul class="yaka-chips m-t-5 m-b-0 no-padding clearfix">
-                                    <li class="yakaEllipsis relation c-white bgm-black pull-left"
-                                        data-ng-if="!isClient">
-                                        <i class="zmdi zmdi-accounts"></i>
-                                        Client
-                                    </li>
-                                    <li data-ng-repeat="community in vm.communities | limitTo:1"
-                                        class="pull-left yakaEllipsis c-white floating-tags"
-                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                        {{community.text}}
-                                    </li>
-                                </ul>
+                                <casa-community-tag class="contact-community-tag"
+                                                    community="community"
+                                                    ng-repeat="community in project.user.communities">
+                                </casa-community-tag>
                                 <div class="yakaEllipsis clearfix">
                                     {{project.address.locality}} - {{vm.getWhen(project)}}
                                 </div>
