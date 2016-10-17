@@ -233,13 +233,17 @@
                                    href="" data-ng-click="vm.selectTab = 'received'">Reçue
                                     <span data-ng-if="vm.invitationsReceived.length > 1">s</span>
                                     <span data-ng-if="vm.invitationsReceived.length > 0">({{vm.invitationsReceived.length}})
-                                </span></a>
+                                     </span>
+                                    <span data-ng-if="vm.invitationsReceived.length == 0">(0)
+                                     </span></a>
                             </li>
                             <li heading="Home"
                                 data-ng-class="{'active': vm.selectTab == 'sent'}">
                                 <a href="" data-ng-click="vm.selectTab = 'sent'">Envoyée<span
                                     data-ng-if="vm.invitationsSent.length > 1">s</span>
                                     <span data-ng-if="vm.invitationsSent.length > 0">({{vm.invitationsSent.length}})
+                                </span>
+                                    <span data-ng-if="vm.invitationsSent.length == 0">(0)
                                 </span>
                                 </a>
                             </li>
@@ -313,7 +317,18 @@
                             </span>
                         </span>
                         </div>
-                        <hr>
+                    </div>
+                    <div class="col-xs-12 contactsEmpty m-b-10"
+                         data-ng-if="vm.invitationsReceived.length == 0">
+                        <div class="contactsEmptySubtitle p-t-10 center">
+                            <div class="m-t-10 m-b-5"><strong>Vous n'avez pas reçu d'invitation</strong></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 contactsEmpty m-b-10"
+                         data-ng-if="vm.invitationsSent.length == 0">
+                        <div class="contactsEmptySubtitle p-t-10 center">
+                            <div class="m-t-10 m-b-5"><strong>Vous n'avez invité personne</strong></div>
+                        </div>
                     </div>
                 </div>
             </div>
