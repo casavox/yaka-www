@@ -15,72 +15,108 @@
                 <div class="card-header p-b-0">
                     <div class="media">
                         <div class="pull-left">
-                            <yaka-avatar size="50" user="app.getUser()"></yaka-avatar>
+                            <yaka-avatar size="75" user="app.getUser()"></yaka-avatar>
+
+                            <div class="f-s-16 yakaEllipsis hidden-xs">
+                                {{app.getUser().firstName}} {{app.getUser().lastName}}
+                            </div>
+
+                            <div class="p-r-0 m-t-5 t-left m-b-5 visible-xs clearfix">
+
+                                <div data-ng-if="!vm.getCommunityByType('JOB').name">
+                                    <div class="pull-left">
+                                        <b>Mes collègues</b>
+                                    </div>
+
+                                    <a class="c-orange pull-left clearBoth underline m-b-5"
+                                       data-ui-sref="profile">
+                                        Ajouter mon entourage professionel
+                                    </a>
+                                </div>
+
+                                <div data-ng-if="vm.getCommunityByType('PROFILE_CITY').name">
+                                    <div class="pull-left clearBoth"
+                                         data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
+                                        Mes voisins
+                                    </div>
+                                    <div class="pull-left clearBoth c-lightblue underline pointer"
+                                         data-ui-sref="profile"
+                                         data-ng-if="!vm.getCommunityByType('PROFILE_CITY').neighborhood">
+                                        Mes voisins : préciser moin quartier !
+                                    </div>
+                                    <casa-community-tag class="pull-left clearBoth"
+                                                        community="vm.getCommunityByType('PROFILE_CITY')">
+                                    </casa-community-tag>
+                                </div>
+
+                                <div data-ng-if="vm.getCommunityByType('JOB').name">
+                                    <div class="pull-left clearBoth">
+                                        Mes collègues
+                                    </div>
+                                    <casa-community-tag class="pull-left clearBoth"
+                                                        community="vm.getCommunityByType('JOB')">
+                                    </casa-community-tag>
+                                </div>
+
+                                <div data-ng-if="vm.getCommunityByType('OTHER').name">
+                                    <div class="pull-left clearBoth">
+                                        Autre communauté
+                                    </div>
+                                    <casa-community-tag class="pull-left clearBoth"
+                                                        community="vm.getCommunityByType('OTHER')">
+                                    </casa-community-tag>
+                                </div>
+
+                                <div data-ng-if="!vm.getCommunityByType('OTHER').name">
+                                    <div class="pull-left clearBoth">
+                                        <b>Autre communauté</b>
+                                    </div>
+
+                                    <a class="c-orange pull-left clearBoth underline m-b-5"
+                                       data-ui-sref="profile">
+                                        Ajouter une communauté
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-xs-12 no-padding hidden-xs">
+                                <a class="pointer underline" data-ui-sref="contacts">
+                                    {{vm.data.contactsNumber}}
+                                    <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
+                                    <span data-ng-show="vm.data.contactsNumber > 1">Contacts</span> -
+                                    {{vm.data.contactsProNumber}}
+                                    <span data-ng-show="vm.data.contactsNumber < 2">Pro</span>
+                                    <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 no-padding hidden-xs"
+                                 data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
+                                <a class="pointer underline" data-ui-sref="contacts">
+                                    {{vm.data.incomingInvitationNumber}}
+                                    <span
+                                        data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
+                                    <span
+                                        data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span>
+                                </a>
+                            </div>
+
+                            <div>
+                                <a class="pointer hidden-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
+                                    invitation<span
+                                        data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
+                            </div>
                         </div>
                         <div class="media-body">
                             <div class="media row">
-                                <div class="col-sm-4">
-                                    <div class="f-s-16 yakaEllipsis">
+                                <div class="col-sm-4 dashboardUserInfos">
+
+                                    <div class="f-s-16 yakaEllipsis visible-xs">
                                         {{app.getUser().firstName}} {{app.getUser().lastName}}
                                     </div>
-                                    <div>
-                                        <a class="pointer visible-xs" data-ui-sref="profile"><u>Mes communautés</u></a>
-                                    </div>
 
-                                    <div class="p-r-0 m-t-5 t-left m-b-5 visible-xs">
-
-                                        <div data-ng-if="!vm.getCommunityByType('JOB').name">
-                                            <div class="pull-left">
-                                                <b>Mes collègues</b>
-                                            </div>
-
-                                            <a class="c-orange pull-left clearBoth underline m-b-5"
-                                               data-ui-sref="profile">
-                                                Ajouter mon entourage professionel
-                                            </a>
-                                        </div>
-
-                                        <div data-ng-if="vm.getCommunityByType('JOB').name">
-                                            <div class="pull-left clearBoth">
-                                                Mes collègues
-                                            </div>
-                                            <casa-community-tag class="pull-left clearBoth"
-                                                                community="vm.getCommunityByType('JOB')">
-                                            </casa-community-tag>
-                                        </div>
-
-                                        <div data-ng-if="vm.getCommunityByType('PROFILE_CITY').name">
-                                            <div class="pull-left">
-                                                Mes voisins
-                                            </div>
-                                            <casa-community-tag class="pull-left clearBoth"
-                                                                community="vm.getCommunityByType('PROFILE_CITY')">
-                                            </casa-community-tag>
-                                        </div>
-
-                                        <div data-ng-if="vm.getCommunityByType('OTHER').name">
-                                            <div class="pull-left">
-                                                Autre communauté
-                                            </div>
-                                            <casa-community-tag class="pull-left clearBoth"
-                                                                community="vm.getCommunityByType('OTHER')">
-                                            </casa-community-tag>
-                                        </div>
-
-                                        <div data-ng-if="!vm.getCommunityByType('OTHER').name">
-                                            <div class="pull-left clearBoth">
-                                                <b>Autre communauté</b>
-                                            </div>
-
-                                            <a class="c-orange pull-left clearBoth underline m-b-5"
-                                               data-ui-sref="profile">
-                                                Ajouter une communauté
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-xs-12 no-padding">
+                                    <div class="col-xs-12 no-padding visible-xs">
                                         <a class="pointer underline" data-ui-sref="contacts">
                                             {{vm.data.contactsNumber}}
                                             <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
@@ -90,23 +126,26 @@
                                             <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
                                         </a>
                                     </div>
-                                    <div class="col-xs-12 no-padding"
+                                    <div class="col-xs-12 no-padding visible-xs"
                                          data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
                                         <a class="pointer underline" data-ui-sref="contacts">
                                             {{vm.data.incomingInvitationNumber}}
-                                            <span data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
-                                            <span data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span>
+                                            <span
+                                                data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
+                                            <span
+                                                data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span>
                                         </a>
                                     </div>
 
                                     <div>
-                                        <a class="pointer hidden-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
+                                        <a class="pointer visible-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
                                             invitation<span
                                                 data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-sm-offset-2 f-s-14 t-right dashboardStats hidden-xs">
-                                    <div class="d-block col-xs-7 pull-right p-r-0 m-t-5 t-left m-b-5">
+                                <div
+                                    class="col-sm-7 col-md-6 col-xs-offset-4 col-sm-offset-1 col-md-offset-2 f-s-14 t-right dashboardStats hidden-xs">
+                                    <div class="d-block col-sm-12 col-md-10 pull-right p-r-0 m-t-5 t-left m-b-5">
 
                                         <div data-ng-if="!vm.getCommunityByType('JOB').name">
                                             <div class="pull-left">
@@ -119,6 +158,21 @@
                                             </a>
                                         </div>
 
+                                        <div data-ng-if="vm.getCommunityByType('PROFILE_CITY').name">
+                                            <div class="pull-left clearBoth"
+                                                 data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
+                                                Mes voisins
+                                            </div>
+                                            <div class="pull-left clearBoth c-lightblue underline pointer"
+                                                 data-ui-sref="profile"
+                                                 data-ng-if="!vm.getCommunityByType('PROFILE_CITY').neighborhood">
+                                                Mes voisins : préciser moin quartier !
+                                            </div>
+                                            <casa-community-tag class="pull-left clearBoth"
+                                                                community="vm.getCommunityByType('PROFILE_CITY')">
+                                            </casa-community-tag>
+                                        </div>
+
                                         <div data-ng-if="vm.getCommunityByType('JOB').name">
                                             <div class="pull-left clearBoth">
                                                 Mes collègues
@@ -128,17 +182,8 @@
                                             </casa-community-tag>
                                         </div>
 
-                                        <div data-ng-if="vm.getCommunityByType('PROFILE_CITY').name">
-                                            <div class="pull-left">
-                                                Mes voisins
-                                            </div>
-                                            <casa-community-tag class="pull-left clearBoth"
-                                                                community="vm.getCommunityByType('PROFILE_CITY')">
-                                            </casa-community-tag>
-                                        </div>
-
                                         <div data-ng-if="vm.getCommunityByType('OTHER').name">
-                                            <div class="pull-left">
+                                            <div class="pull-left clearBoth">
                                                 Autre communauté
                                             </div>
                                             <casa-community-tag class="pull-left clearBoth"
