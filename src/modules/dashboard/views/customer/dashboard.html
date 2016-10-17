@@ -27,7 +27,8 @@
                                         <a class="pointer visible-xs" data-ui-sref="profile"><u>Mes communautés</u></a>
                                     </div>
                                     <ul class="yaka-chips m-t-5 no-padding visible-xs">
-                                        <li data-ng-repeat="community in vm.communities" class="yakaEllipsis c-white community-tag"
+                                        <li data-ng-repeat="community in vm.communities"
+                                            class="yakaEllipsis c-white community-tag"
                                             data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                             {{community.text}}
                                         </li>
@@ -45,20 +46,35 @@
 
 
                                     <div>
-                                        <a class="pointer hidden-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}} invitation<span
-                                            data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
+                                        <a class="pointer hidden-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
+                                            invitation<span
+                                                data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-2 f-s-14 t-right dashboardStats hidden-xs">
                                     <div>
                                         <a class="pointer" data-ui-sref="profile"><u>Mes communautés</u></a>
                                     </div>
-                                    <ul class="yaka-chips m-t-5 no-padding">
-                                        <li data-ng-repeat="community in vm.communities" class="c-white community-tag"
-                                            data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                            {{community.text}}
-                                        </li>
-                                    </ul>
+
+                                    <div class="d-block col-xs-6 pull-right p-r-0 m-t-5">
+
+                                        <div>
+                                            Mes collègues
+                                            <casa-community-tag data-ng-if="vm.getCommunityByType('PROFILE_CITY')"
+                                                                class="pull-right"
+                                                                community="vm.getCommunityByType('PROFILE_CITY')" }}>
+                                            </casa-community-tag>
+                                        </div>
+
+                                        <casa-community-tag data-ng-if="vm.getCommunityByType('JOB')"
+                                                            class="pull-right" community="vm.getCommunityByType('JOB')">
+                                        </casa-community-tag>
+
+                                        <casa-community-tag data-ng-if="vm.getCommunityByType('OTHER')"
+                                                            class="pull-right"
+                                                            community="vm.getCommunityByType('OTHER')">
+                                        </casa-community-tag>
+                                    </div>
                                 </div>
                                 <div class="pull-right col-sm-4 f-s-14 t-right dashboardStats visible-sm-block">
 
@@ -81,8 +97,9 @@
                     </button>
                 </div>
                 <div class="visible-xs t-right">
-                    <a class="pull-left m-l-10 m-b-5 m-t-15" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}} invitation<span
-                        data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
+                    <a class="pull-left m-l-10 m-b-5 m-t-15" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
+                        invitation<span
+                            data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
                     <button data-ng-if="vm.data.ongoingProjectsNumber > 0"
                             class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
                             data-ui-sref="my-projects">
@@ -146,7 +163,8 @@
                             </div>
                         </div>
                         <ul class="yaka-chips m-t-5 pull-right no-padding actu-communities-tag hidden-xs">
-                            <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white actu-community-tag"
+                            <li data-ng-repeat="community in vm.communities | limitTo:3"
+                                class="yakaEllipsis c-white actu-community-tag"
                                 data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
                                 {{community.text}}
                             </li>

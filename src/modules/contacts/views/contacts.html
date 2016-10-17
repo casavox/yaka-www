@@ -48,21 +48,16 @@
                         Mes communautés :
                     </div>
                     <div class="d-block col-xs-6 pull-right p-r-0 m-t-5">
-                        <div class="yakaEllipsis pull-right c-white bgm-gray d-block p-5"
-                             data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
-                            {{vm.getCommunityByType('PROFILE_CITY').neighborhood}}
-                        </div>
-                        <div class="yakaEllipsis pull-right c-white bgm-bluegray d-block p-5 m-t-5"
-                             data-ng-if="vm.getCommunityByType('JOB').name">
-                            {{vm.getCommunityByType('JOB').name}} - {{vm.getCommunityByType('JOB').address.address}}
-                        </div>
-                        <div class="yakaEllipsis pull-right c-white bgm-lightblue d-block p-5 m-t-5"
-                             data-ng-if="vm.getCommunityByType('OTHER').name">
-                            {{vm.getCommunityByType('OTHER').name}} - {{vm.getCommunityByType('OTHER').address.address}}
-                        </div>
-                        <div class="yakaEllipsis pull-right m-t-10 d-block t-right">
-                            + 2 autres...
-                        </div>
+
+                        <casa-community-tag class="pull-right" community="vm.getCommunityByType('PROFILE_CITY')">
+                        </casa-community-tag>
+
+                        <casa-community-tag class="pull-right" community="vm.getCommunityByType('JOB')">
+                        </casa-community-tag>
+
+                        <casa-community-tag class="pull-right" community="vm.getCommunityByType('OTHER')">
+                        </casa-community-tag>
+
                     </div>
                 </div>
             </div>
@@ -120,7 +115,8 @@
                         </li>
                         <li heading="Home"
                             data-ng-class="{'active': vm.selectContactTab == 'friend'}">
-                            <a href="" data-ng-click="vm.selectContactTab = 'friend'; vm.currentMenuItem = vm.MENU_FRIENDS">Amis
+                            <a href=""
+                               data-ng-click="vm.selectContactTab = 'friend'; vm.currentMenuItem = vm.MENU_FRIENDS">Amis
                                 <span>({{vm.friendsNumber}})</span>
                             </a>
                         </li>
@@ -169,14 +165,15 @@
                         </div>
                         <div class="d-block col-xs-12 col-sm-2 contactTags pull-right p-r-0 m-t-5">
                             <div class="yakaEllipsis limitTagWidth pull-right c-white bgm-gray d-block p-5"
-                                data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
+                                 data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                                 {{vm.getCommunityByType('PROFILE_CITY').neighborhood}}
                             </div>
                             <div class="yakaEllipsis limitTagWidth pull-right c-white bgm-bluegray d-block p-5 m-t-5"
-                                data-ng-if="vm.getCommunityByType('JOB').name">
+                                 data-ng-if="vm.getCommunityByType('JOB').name">
                                 {{vm.getCommunityByType('JOB').name}} - {{vm.getCommunityByType('JOB').address.address}}
                             </div>
-                            <div class="yakaEllipsis limitTagWidth pull-right c-white bgm-lightblue d-block p-5 m-t-5 m-b-5"
+                            <div
+                                class="yakaEllipsis limitTagWidth pull-right c-white bgm-lightblue d-block p-5 m-t-5 m-b-5"
                                 data-ng-if="vm.getCommunityByType('OTHER').name">
                                 {{vm.getCommunityByType('OTHER').name}} -
                                 {{vm.getCommunityByType('OTHER').address.address}}
@@ -195,7 +192,7 @@
                         <li heading="Home"
                             data-ng-class="{'active': vm.selectTab == 'received'}">
                             <a data-ng-class="{'fw-bold' : vm.invitationsReceived.length > 0}"
-                                href="" data-ng-click="vm.selectTab = 'received'">Reçue
+                               href="" data-ng-click="vm.selectTab = 'received'">Reçue
                                 <span data-ng-if="vm.invitationsReceived.length > 1">s</span>
                                 <span data-ng-if="vm.invitationsReceived.length > 0">({{vm.invitationsReceived.length}})
                                 </span></a>
