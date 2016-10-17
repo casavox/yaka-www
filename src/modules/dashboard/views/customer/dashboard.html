@@ -266,20 +266,9 @@
                          data-ng-repeat="project in vm.projectsToRecommend"
                          data-ui-sref="project-recommend({'projectId': project.id})">
 
-                        <yaka-avatar class="m-t-5 pull-left" size="45" user="project.user"></yaka-avatar>
-                        <ul class="yaka-chips m-t-5 no-padding visible-xs actu-community-tag-xs">
-                            <li class="yakaEllipsis c-white bgm-black actu-community-tag"
-                                data-ng-if="!isContact">
-                                <i class="zmdi zmdi-accounts"></i>
-                                Ami
-                            </li>
-                            <li data-ng-repeat="community in vm.communities" class="yakaEllipsis c-white"
-                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                {{community.text}}
-                            </li>
-                        </ul>
-                        <div class="col-xs-12 dashboardRecommendProjectText">
+                        <yaka-avatar class="m-t-5 pull-left m-b-5" size="45" user="project.user"></yaka-avatar>
 
+                        <div class="col-xs-11 col-sm-6 dashboardRecommendProjectText">
                             <div class="yakaEllipsis">
                                 <b>
                                     <casa-contact user="project.user"></casa-contact>
@@ -287,7 +276,6 @@
                                 <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
                                 {{project.user.firstName}} {{project.user.lastName}}
                             </div>
-
                             <div class="yakaEllipsis c-lightblue">
                                 <u>{{project.title}}</u>
                             </div>
@@ -296,20 +284,11 @@
                                 à {{project.address.locality}}
                             </div>
                         </div>
-                        <ul class="yaka-chips m-t-5 pull-right no-padding actu-communities-tag hidden-xs">
-                            <li data-ng-repeat="community in vm.communities | limitTo:3"
-                                class="yakaEllipsis c-white actu-community-tag"
-                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                {{community.text}}
-                            </li>
-                            <li class="yakaEllipsis c-white bgm-black actu-community-tag"
-                                data-ng-if="!isContact">
-                                <i class="zmdi zmdi-accounts"></i>
-                                Ami
-                            </li>
-                        </ul>
-                        <div class="col-xs-12 m-t-15 m-b-0 p-r-30">
-                            <hr>
+                        <div class="col-xs-12 col-sm-6 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
+                            <casa-community-tag class="contact-community-tag"
+                                                community="community"
+                                                ng-repeat="community in project.user.communities">
+                            </casa-community-tag>
                         </div>
                     </div>
                 </div>

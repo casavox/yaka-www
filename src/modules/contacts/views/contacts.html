@@ -41,7 +41,7 @@
                         <div>
                             Mes communautés :
                         </div>
-                        <div class="d-block col-xs-6 p-r-0 m-t-5 contact-communities-tag">
+                        <div class="d-block col-xs-6 p-r-0 contact-communities-tag">
 
                             <casa-community-tag class="contact-community-tag"
                                                 data-ng-if="vm.getCommunityByType('PROFILE_CITY').name"
@@ -133,7 +133,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="col-xs-12 p-b-5 contactItem" data-ng-repeat="contact in vm.contacts"
+                        <div class="col-xs-12 p-b-5 contactItem border-bottom" data-ng-repeat="contact in vm.contacts"
                              data-ng-if="vm.showContactOrNot(contact)">
 
                             <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
@@ -146,46 +146,30 @@
                                 {{contact.user.firstName[0] | uppercase}}.
                                 {{contact.user.lastName[0]| uppercase}}.
                             </div>
-                            <div class="col-xs-10 col-sm-3 m-t-5 p-l-0">
-                            <span class="contactItemName">
-                            {{contact.user.firstName}} {{contact.user.lastName}}
-                            <span class="contactItemPro c-black" data-ng-if="contact.user.professional">
-                                    (
-                                <i class="c-orange zmdi zmdi-accounts zmdi"></i> Pro)
-                            </span>
-                                <span class="contactItemPro c-black" data-ng-if="!contact.user.professional">
-                                    (
-                                <i class="c-lightblue zmdi zmdi-accounts zmdi"></i> Ami)
-                            </span>
-                        </span>
+                            <div class="col-xs-10 col-sm-5 m-t-5 p-l-0">
+                                <span class="contactItemName">
+                                    <casa-name-and-contact user="contact.user"
+                                                           icon-color="c-orange"></casa-name-and-contact>
+                                </span>
                                 <div class="col-xs-12 p-l-0">
-                                <span class="contactItemCity"
-                                      data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                                    <span class="contactItemCity"
+                                          data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
                             ({{contact.user.defaultAddress.locality}})
-                        </span>
+                                     </span>
                                     <span class="contactItemCity contactItemCityInvitReceived"
                                           data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
                             ({{contact.user.professional.company.address.locality}})
-                        </span>
+                                     </span>
                                 </div>
                             </div>
 
-                            <div class="d-block col-xs-12 col-sm-2 contactTags pull-right p-r-0 m-t-5">
-                                <casa-community-tag class="yakaEllipsis order-tag c-white bgm-gray d-block p-5"
-                                                    community="vm.getCommunityByType('PROFILE_CITY')"
-                                                    data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
-                                </casa-community-tag>
-                                <casa-community-tag class="yakaEllipsis order-tag c-white bgm-bluegray d-block p-5"
-                                                    community="vm.getCommunityByType('JOB')"
-                                                    data-ng-if="vm.getCommunityByType('JOB').name">
-                                </casa-community-tag>
-                                <casa-community-tag class="yakaEllipsis order-tag c-white bgm-lightblue d-block p-5"
-                                                    community="vm.getCommunityByType('OTHER')"
-                                                    data-ng-if="vm.getCommunityByType('OTHER').name">
+                            <div class="d-block col-xs-12 col-sm-4 contactTags pull-right p-r-0">
+                                <casa-community-tag class="yakaEllipsis order-tag c-white d-block p-5"
+                                                    community="community"
+                                                    ng-repeat="community in contact.user.communities">
                                 </casa-community-tag>
                             </div>
                         </div>
-                        <hr>
                     </div>
                     <div class="col-xs-12 contactsEmpty m-b-10"
                          data-ng-if="vm.getCurrentContactListNumber() == 0">
@@ -249,13 +233,17 @@
                                    href="" data-ng-click="vm.selectTab = 'received'">Reçue
                                     <span data-ng-if="vm.invitationsReceived.length > 1">s</span>
                                     <span data-ng-if="vm.invitationsReceived.length > 0">({{vm.invitationsReceived.length}})
-                                </span></a>
+                                     </span>
+                                    <span data-ng-if="vm.invitationsReceived.length == 0">(0)
+                                     </span></a>
                             </li>
                             <li heading="Home"
                                 data-ng-class="{'active': vm.selectTab == 'sent'}">
                                 <a href="" data-ng-click="vm.selectTab = 'sent'">Envoyée<span
                                     data-ng-if="vm.invitationsSent.length > 1">s</span>
                                     <span data-ng-if="vm.invitationsSent.length > 0">({{vm.invitationsSent.length}})
+                                </span>
+                                    <span data-ng-if="vm.invitationsSent.length == 0">(0)
                                 </span>
                                 </a>
                             </li>
@@ -329,7 +317,18 @@
                             </span>
                         </span>
                         </div>
-                        <hr>
+                    </div>
+                    <div class="col-xs-12 contactsEmpty m-b-10"
+                         data-ng-if="vm.invitationsReceived.length == 0">
+                        <div class="contactsEmptySubtitle p-t-10 center">
+                            <div class="m-t-10 m-b-5"><strong>Vous n'avez pas reçu d'invitation</strong></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 contactsEmpty m-b-10"
+                         data-ng-if="vm.invitationsSent.length == 0">
+                        <div class="contactsEmptySubtitle p-t-10 center">
+                            <div class="m-t-10 m-b-5"><strong>Vous n'avez invité personne</strong></div>
+                        </div>
                     </div>
                 </div>
             </div>

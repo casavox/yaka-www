@@ -1,9 +1,9 @@
-hr {
-    margin: 0;
-}
-
 ul.yaka-chips li {
     line-height: 14px !important;
+}
+
+.actu-community-tag {
+    padding: 3px 5px 4px 5px;
 }
 
 .community-tag {
@@ -142,10 +142,6 @@ ul.yaka-chips li {
 
     .dashboardRecommendProject {
         max-height: 180px;
-    }
-
-    .dashboardRecommendProjectText {
-        position: relative;
     }
 
     .dashboardUserInfos {

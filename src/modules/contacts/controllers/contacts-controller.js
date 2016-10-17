@@ -87,6 +87,7 @@
             vm.contacts = res;
             vm.prosNumber = prosNum;
             vm.friendsNumber = friendsNum;
+            vm.myContacts = res;
         }
 
         function errorContactsGET(err) {
@@ -554,6 +555,19 @@
         function successCommunitiesGET(res) {
             vm.communities = res;
         }
+
+        vm.getContactCommunityByType = function (type) {
+
+            for (var i = 0; i < vm.myContacts.length; i++) {
+                if (vm.myContacts[i].user.communities) {
+                    for (var j = 0; j < vm.myContacts[i].user.communities.length; j++) {
+                        if (type == vm.myContacts[i].user.communities[j].type) {
+                            return vm.myContacts[i].user.communities[j];
+                        }
+                    }
+                }
+            }
+        };
 
         vm.getCommunityByType = function (type) {
             if (vm.communities) {
