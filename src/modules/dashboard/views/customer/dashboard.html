@@ -81,16 +81,23 @@
                                     </div>
 
                                     <div class="col-xs-12 no-padding">
-                                        <a class="pointer"><u>
+                                        <a class="pointer underline" data-ui-sref="contacts">
                                             {{vm.data.contactsNumber}}
                                             <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
                                             <span data-ng-show="vm.data.contactsNumber > 1">Contacts</span> -
                                             {{vm.data.contactsProNumber}}
                                             <span data-ng-show="vm.data.contactsNumber < 2">Pro</span>
-                                            <span data-ng-show="vm.data.contactsNumber > 1">Pros</span></u>
+                                            <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
                                         </a>
                                     </div>
-
+                                    <div class="col-xs-12 no-padding"
+                                         data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
+                                        <a class="pointer underline" data-ui-sref="contacts">
+                                            {{vm.data.incomingInvitationNumber}}
+                                            <span data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
+                                            <span data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span>
+                                        </a>
+                                    </div>
 
                                     <div>
                                         <a class="pointer hidden-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
