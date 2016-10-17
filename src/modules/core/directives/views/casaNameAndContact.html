@@ -1,6 +1,7 @@
 {{user.firstName}} {{user.lastName}}
 <span class="w-s-nowrap d-i-b" data-ng-if="(invite && user.id) || (user.inContacts || user.isInvited)">
     (
-    <casa-contact user="user" invite="invite" icon-color="{{iconColor}}" client-red="clientRed" client-blue="clientBlue"></casa-contact>
-    )
+    <casa-contact user="user" invite="invite" icon-color="{{iconColor}}" client-red="clientRed"
+                  client-blue="clientBlue"></casa-contact>
+   )
 </span>
