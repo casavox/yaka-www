@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, screenSize, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
 
 
         $rootScope.pageName = "Mon entourage";
@@ -571,6 +571,11 @@
 
         vm.selectContactTab = "all";
         vm.selectTab = "received";
+
+        vm.isXsmall = function () {
+            return screenSize.is('xs');
+        }
+
 
     }
 })
