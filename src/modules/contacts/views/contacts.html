@@ -49,13 +49,16 @@
                     </div>
                     <div class="d-block col-xs-6 pull-right p-r-0 m-t-5">
 
-                        <casa-community-tag class="pull-right" community="vm.getCommunityByType('PROFILE_CITY')">
+                        <casa-community-tag class="pull-right" data-ng-if="vm.getCommunityByType('PROFILE_CITY').name"
+                                            community="vm.getCommunityByType('PROFILE_CITY')">
                         </casa-community-tag>
 
-                        <casa-community-tag class="pull-right" community="vm.getCommunityByType('JOB')">
+                        <casa-community-tag class="pull-right" data-ng-if="vm.getCommunityByType('JOB').name"
+                                            community="vm.getCommunityByType('JOB')">
                         </casa-community-tag>
 
-                        <casa-community-tag class="pull-right" community="vm.getCommunityByType('OTHER')">
+                        <casa-community-tag class="pull-right" data-ng-if="vm.getCommunityByType('OTHER').name"
+                                            community="vm.getCommunityByType('OTHER')">
                         </casa-community-tag>
 
                     </div>
