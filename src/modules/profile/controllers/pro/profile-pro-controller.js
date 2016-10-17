@@ -1043,7 +1043,45 @@
             options: {
                 types: ['address'],
                 componentRestrictions: {country: 'fr'}
+            },
+            cityOptions: {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
             }
+        };
+
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+        }
+
+        vm.getCommunityByType = function (type) {
+            for (var i = 0; i < vm.communities.length; i++) {
+                if (type == vm.communities[i].type) {
+                    return vm.communities[i];
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
+
+        vm.updateCommunities = function () {
+            networkService.communitiesPUT(vm.communities, function (res) {
+                alertMsg.send("Les communautés ont été mises à jour", "success");
+            }, errorProfilePUT, true);
+        };
+
+        vm.cancelCommunitiesUpdate = function () {
+            networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+        };
+
+        vm.disabledCom = function () {
+            return !(vm.getCommunityByType('PROFILE_CITY').address.address &&
+            ((!vm.getCommunityByType('JOB').name && !vm.getCommunityByType('JOB').address.address) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address.address)) &&
+            ((!vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address) || (vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address)) );
         };
 
 

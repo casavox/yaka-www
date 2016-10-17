@@ -326,11 +326,6 @@
             ((!vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address) || (vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address)) );
         };
 
-        vm.errorCheck = function (name, city) {
-            if (name && !city) {
-                return c - red;
-            }
-        }
 
     }
 })();
