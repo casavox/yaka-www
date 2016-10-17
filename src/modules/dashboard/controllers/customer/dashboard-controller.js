@@ -40,6 +40,18 @@
             vm.communities = res;
         }
 
+        vm.getRecommendCommunityByType = function (type) {
+            for (var i = 0; i < vm.projectsToRecommend.length; i++) {
+                if (vm.projectsToRecommend[i].user.communities) {
+                    for (var j = 0; j < vm.projectsToRecommend[i].user.communities.length; j++) {
+                        if (type == vm.projectsToRecommend[i].user.communities[j].type) {
+                            return vm.projectsToRecommend[i].user.communities[j];
+                        }
+                    }
+                }
+            }
+        };
+
         vm.getCommunityByType = function (type) {
             if (vm.communities) {
                 for (var i = 0; i < vm.communities.length; i++) {

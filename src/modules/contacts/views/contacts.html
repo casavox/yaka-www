@@ -133,7 +133,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="col-xs-12 p-b-5 contactItem" data-ng-repeat="contact in vm.contacts"
+                        <div class="col-xs-12 p-b-5 contactItem border-bottom" data-ng-repeat="contact in vm.contacts"
                              data-ng-if="vm.showContactOrNot(contact)">
 
                             <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
@@ -148,36 +148,28 @@
                             </div>
                             <div class="col-xs-10 col-sm-5 m-t-5 p-l-0">
                                 <span class="contactItemName">
-                                    <casa-name-and-contact user="contact.user" icon-color="c-orange"></casa-name-and-contact>
+                                    <casa-name-and-contact user="contact.user"
+                                                           icon-color="c-orange"></casa-name-and-contact>
                                 </span>
                                 <div class="col-xs-12 p-l-0">
-                                <span class="contactItemCity"
-                                      data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                                    <span class="contactItemCity"
+                                          data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
                             ({{contact.user.defaultAddress.locality}})
-                        </span>
+                                     </span>
                                     <span class="contactItemCity contactItemCityInvitReceived"
                                           data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
                             ({{contact.user.professional.company.address.locality}})
-                        </span>
+                                     </span>
                                 </div>
                             </div>
 
-                            <div class="d-block col-xs-12 col-sm-4 contactTags pull-right p-r-0 m-t-5">
-                                <casa-community-tag class="yakaEllipsis order-tag c-white bgm-gray d-block p-5"
-                                                    community="vm.getCommunityByType('PROFILE_CITY')"
-                                                    data-ng-if="vm.getCommunityByType('PROFILE_CITY').neighborhood">
-                                </casa-community-tag>
-                                <casa-community-tag class="yakaEllipsis order-tag c-white bgm-bluegray d-block p-5"
-                                                    community="vm.getCommunityByType('JOB')"
-                                                    data-ng-if="vm.getCommunityByType('JOB').name">
-                                </casa-community-tag>
-                                <casa-community-tag class="yakaEllipsis order-tag c-white bgm-lightblue d-block p-5"
-                                                    community="vm.getCommunityByType('OTHER')"
-                                                    data-ng-if="vm.getCommunityByType('OTHER').name">
+                            <div class="d-block col-xs-12 col-sm-4 contactTags pull-right p-r-0">
+                                <casa-community-tag class="yakaEllipsis order-tag c-white d-block p-5"
+                                                    community="community"
+                                                    ng-repeat="community in contact.user.communities">
                                 </casa-community-tag>
                             </div>
                         </div>
-                        <hr>
                     </div>
                     <div class="col-xs-12 contactsEmpty m-b-10"
                          data-ng-if="vm.getCurrentContactListNumber() == 0">
