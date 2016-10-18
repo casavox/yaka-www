@@ -32,7 +32,7 @@
 
             <div class="block-header"
                  data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
-                <h2 class="c-orange">Projet Annulé</h2>
+                <h2 class="sorange">Projet Annulé</h2>
             </div>
 
             <div class="card pointer m-b-10" data-ng-click="vm.projectDetails()">
@@ -52,21 +52,21 @@
                                 </div>
                                 <div class="col-sm-5 textAlignRightFullDesktop paddingRightFullDesktop">
                                     <div class="hidden-xs">
-                                        <small class="c-gray">
+                                        <small class="subtitle-color-forced">
                                             Mis à jour <span am-time-ago="vm.proposal.project.updated"></span>
                                         </small>
                                     </div>
                                 </div>
                             </div>
                             <div class="media m-t-5 hidden-xs">
-                                <div class="c-gray">
+                                <div class="subtitle-color-forced">
                                     <strong>{{vm.proposal.project.address.name}}</strong> -
                                     <small>{{vm.proposal.project.address.locality}}</small>
                                 </div>
-                                <div class="c-gray">
+                                <div class="subtitle-color-forced">
                                     <small>Début souhaité {{vm.getWhen()}}</small>
                                 </div>
-                                <div class="c-gray">
+                                <div class="subtitle-color-forced">
                                     <small>Publié le {{vm.proposal.project.published | date:'d MMMM y'}}</small>
                                 </div>
                             </div>

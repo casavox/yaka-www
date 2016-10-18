@@ -281,7 +281,7 @@ angular.module('Yaka')
 
                 scope.getPlaceholder = function () {
                     if (scope.disableSending && scope.userMe.professional && scope.proposalStatus == 'RECOMMENDATION') {
-                        return 'Vous devez faire une offre dans l\'onglet "Détails" afin de commencer à discuter avec le client. Si vous n\'êtes pas intéressé, refusez l\'offre via le bouton "Refuser';
+                        return 'Allez dans l\'onglet "Détails" pour prendre un 1er contact avec le client (si vous n\'êtes pas intéressé, cliquez sur le bouton "Refuser")';
                     } else if (scope.disableSending) {
                         return 'Cette discussion est close';
                     }
