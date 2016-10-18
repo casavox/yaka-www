@@ -67,11 +67,16 @@
                             <small class="subtitle-color-forced">
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                 {{proposal.project.address.locality}}
-                                <casa-community-tag class="contact-community-tag"
+                                <casa-community-tag class="contact-community-tag hidden-xs"
                                                     community="community"
                                                     ng-repeat="community in proposal.project.user.communities">
                                 </casa-community-tag>
                             </small>
+                            <casa-community-tag class="contact-community-tag visible-xs"
+                                                community="community"
+                                                ng-repeat="community in proposal.project.user.communities">
+                            </casa-community-tag>
+
                         </h2>
                     </div>
 
@@ -82,8 +87,11 @@
                                 <b>Nouveau<span
                                     data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
                                     Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
-                                <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="proposal.unreadMessages">Client</button>
-                                <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="proposal.unreadMessagesSupport">
+                                <button class="btn btn-xs bgm-lightblue c-white m-b-1"
+                                        data-ng-if="proposal.unreadMessages">Client
+                                </button>
+                                <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                        data-ng-if="proposal.unreadMessagesSupport">
                                     CasaVox
                                 </button>
                             </div>
@@ -164,9 +172,13 @@
                                     <div class="no-padding">
                                         <b>Nouveau<span
                                             data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
-                                            Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
-                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="proposal.unreadMessages">Client</button>
-                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="proposal.unreadMessagesSupport">
+                                            Message<span
+                                                data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
+                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1"
+                                                data-ng-if="proposal.unreadMessages">Client
+                                        </button>
+                                        <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                                data-ng-if="proposal.unreadMessagesSupport">
                                             CasaVox
                                         </button>
                                     </div>

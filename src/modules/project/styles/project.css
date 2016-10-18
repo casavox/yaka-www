@@ -6,6 +6,14 @@
     line-height: 24px;
 }
 
+casa-community-tag div {
+    border-radius: 2px;
+}
+
+.tag-margin-bottom {
+    height: 20px;
+}
+
 .reco-community-tag {
     margin: 0px 0px 5px 3px !important;
     float: right !important;
