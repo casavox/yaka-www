@@ -319,13 +319,13 @@
                         </div>
                     </div>
                     <div class="col-xs-12 contactsEmpty m-b-10"
-                         data-ng-if="vm.invitationsReceived.length == 0">
+                         data-ng-if="vm.invitationsReceived.length == 0 && vm.selectTab == 'received'">
                         <div class="contactsEmptySubtitle p-t-10 center">
                             <div class="m-t-10 m-b-5"><strong>Vous n'avez pas reçu d'invitation</strong></div>
                         </div>
                     </div>
                     <div class="col-xs-12 contactsEmpty m-b-10"
-                         data-ng-if="vm.invitationsSent.length == 0">
+                         data-ng-if="vm.invitationsSent.length == 0 && vm.selectTab == 'sent'">
                         <div class="contactsEmptySubtitle p-t-10 center">
                             <div class="m-t-10 m-b-5"><strong>Vous n'avez invité personne</strong></div>
                         </div>

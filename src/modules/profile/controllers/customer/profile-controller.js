@@ -299,9 +299,11 @@
         }
 
         vm.getCommunityByType = function (type) {
-            for (var i = 0; i < vm.communities.length; i++) {
-                if (type == vm.communities[i].type) {
-                    return vm.communities[i];
+            if (vm.communities) {
+                for (var i = 0; i < vm.communities.length; i++) {
+                    if (type == vm.communities[i].type) {
+                        return vm.communities[i];
+                    }
                 }
             }
         };
