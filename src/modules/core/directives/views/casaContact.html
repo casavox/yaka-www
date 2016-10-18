@@ -1,7 +1,6 @@
 <!-- In contacts -->
 <i class="zmdi zmdi-accounts" data-ng-class="{'c-lightblue': !iconColor, iconColor: iconColor}"
    data-ng-if="user.inContacts"></i>
-{{iconColor}}
 <span data-ng-if="user.inContacts" data-ng-switch="user.contactRelation">
     <span data-ng-switch-when="CLIENT" data-ng-class="{'c-red': clientRed, 'c-lightblue': clientBlue}">
         Client
