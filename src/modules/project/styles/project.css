@@ -6,6 +6,18 @@
     line-height: 24px;
 }
 
+.m-t-2 {
+    margin-top: 2px !important;
+}
+
+casa-community-tag div {
+    border-radius: 2px;
+}
+
+.tag-margin-bottom {
+    height: 20px;
+}
+
 .reco-community-tag {
     margin: 0px 0px 5px 3px !important;
     float: right !important;
@@ -168,7 +180,7 @@
 }
 
 .projectRecommendTopCard {
-    height: 90px;
+    min-height: 90px;
     padding-left: 20px;
     padding-top: 20px;
 }
@@ -353,6 +365,10 @@
 }
 
 @media (max-width: 767px) {
+    .reco-community-float {
+        float: left !important;
+    }
+
     .reco-communities-tag {
         width: 70%;
         margin-left: 70px;

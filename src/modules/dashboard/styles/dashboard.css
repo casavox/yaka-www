@@ -2,13 +2,24 @@ ul.yaka-chips li {
     line-height: 14px !important;
 }
 
-.actu-community-tag {
-    padding: 3px 5px 4px 5px;
+.casa-tag-list {
+    margin-top: 5px;
 }
 
-.community-tag {
-    margin: 5px 0px 0px 3px !important;
-    float: right !important;
+.recommend-pro-community-tag{
+    margin: 0px 1px 0px 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: right;
+}
+
+.dashboard-community-tag {
+    margin: 0px 1px 0px 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
 }
 
 .dashboardStats {
@@ -24,13 +35,8 @@ ul.yaka-chips li {
     vertical-align: top;
     margin-left: 10px;
 }
-
-.dashboardRecommendProject {
-    max-height: 120px;
-}
-
-.proDashboardRecommendProject {
-    height: 100px;
+.border-bottom-lightgray {
+    border-bottom: 1px lightgray solid;
 }
 
 .dashboardRecommendProject yaka-avatar {
@@ -48,7 +54,6 @@ ul.yaka-chips li {
 }
 
 .dashboardProRecommendProjectText {
-    position: absolute;
     left: 70px;
     top: 10px;
     width: calc(100% - 80px)
@@ -95,9 +100,6 @@ ul.yaka-chips li {
 }
 
 .proNetworkProjectUpdated {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
     font-size: 12px;
 }
 

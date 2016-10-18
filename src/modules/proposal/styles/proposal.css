@@ -2,6 +2,14 @@
     line-height: 30px;
 }
 
+.job-community-tag {
+    margin: 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+}
+
 .floating-tags {
     max-width: 70px !important;
 }

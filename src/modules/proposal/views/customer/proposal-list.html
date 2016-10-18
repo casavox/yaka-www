@@ -208,17 +208,12 @@
                                                     ({{vm.project.proposal.professional.company.name}})
                                                 </span>
                                             </div>
-                                            <ul class="yaka-chips m-t-5 no-padding">
-                                                <li class="yakaEllipsis c-white bgm-black pull-left"
-                                                    data-ng-if="!isClient">
-                                                    <i class="zmdi zmdi-accounts"></i>
-                                                    Client
-                                                </li>
-                                                <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
-                                                    data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                                    {{community.text}}
-                                                </li>
-                                            </ul>
+                                            <div class="m-t-5">
+                                                <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                    community="community"
+                                                                    ng-repeat="community in vm.project.proposal.professional.user.communities">
+                                                </casa-community-tag>
+                                            </div>
                                             <div>
                                                 <small class="lv-small  subtitle-color-forced"
                                                        data-ng-show="vm.project.proposal.price">
@@ -242,11 +237,14 @@
                                                 <div class="no-padding">
                                                     <b>Nouveau<span
                                                         data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">x</span>
-                                                        Message<span data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">s</span></b>
-                                                    <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="vm.project.unreadMessages">
+                                                        Message<span
+                                                            data-ng-if="vm.project.unreadMessages && vm.project.unreadMessagesSupport">s</span></b>
+                                                    <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                                            data-ng-if="vm.project.unreadMessages">
                                                         Pro
                                                     </button>
-                                                    <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="vm.project.unreadMessagesSupport">
+                                                    <button class="btn btn-xs bgm-lightblue c-white m-b-1"
+                                                            data-ng-if="vm.project.unreadMessagesSupport">
                                                         CasaVox
                                                     </button>
                                                 </div>
@@ -354,7 +352,8 @@
                                                 </div>
                                                 <div
                                                     data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
-                                                    <small class="lv-small  subtitle-color-forced" data-ng-show="p.price">
+                                                    <small class="lv-small  subtitle-color-forced"
+                                                           data-ng-show="p.price">
                                                         Estimation actuelle <span
                                                         class="c-lightblue">{{p.price}} €</span>
                                                     </small>
@@ -446,17 +445,12 @@
                                                     {{p.professional.user.lastName}}
                                                 </div>
                                             </div>
-                                            <ul class="col-xs-12 yaka-chips m-t-5 no-padding">
-                                            <li class="yakaEllipsis c-white bgm-black pull-left"
-                                                data-ng-if="!isClient">
-                                                <i class="zmdi zmdi-accounts"></i>
-                                                Client
-                                            </li>
-                                            <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
-                                                data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                                {{community.text}}
-                                            </li>
-                                        </ul>
+                                            <div class="m-t-5">
+                                                <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                    community="community"
+                                                                    ng-repeat="community in p.professional.user.communities">
+                                                </casa-community-tag>
+                                            </div>
                                         </div>
 
                                         <div class="col-xs-12 clearfix p-r-0">
@@ -518,17 +512,12 @@
                                                             {{p.professional.user.lastName}}</p>
                                                     </div>
                                                 </div>
-                                                <ul class="yaka-chips m-t-5 no-padding">
-                                                    <li class="yakaEllipsis c-white bgm-black pull-left"
-                                                        data-ng-if="!isClient">
-                                                        <i class="zmdi zmdi-accounts"></i>
-                                                        Client
-                                                    </li>
-                                                    <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
-                                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                                        {{community.text}}
-                                                    </li>
-                                                </ul>
+                                                <div class="m-t-5">
+                                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                        community="community"
+                                                                        ng-repeat="community in p.professional.user.communities">
+                                                    </casa-community-tag>
+                                                </div>
                                                 <div>
                                                     <small class="lv-small" data-ng-show="p.price">
                                                         Estimation actuelle {{p.price}} €
@@ -550,11 +539,14 @@
                                                     <div class="no-padding">
                                                         <b>Nouveau<span
                                                             data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
-                                                            Message<span data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
-                                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="p.unreadMessages">
+                                                            Message<span
+                                                                data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
+                                                        <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                                                data-ng-if="p.unreadMessages">
                                                             Pro
                                                         </button>
-                                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="p.unreadMessagesSupport">
+                                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1"
+                                                                data-ng-if="p.unreadMessagesSupport">
                                                             CasaVox
                                                         </button>
                                                     </div>
@@ -602,17 +594,12 @@
                                                             {{p.professional.user.lastName}}</p>
                                                     </div>
                                                 </div>
-                                                <ul class="yaka-chips m-t-5 no-padding">
-                                                    <li class="yakaEllipsis c-white bgm-black pull-left"
-                                                        data-ng-if="!isClient">
-                                                        <i class="zmdi zmdi-accounts"></i>
-                                                        Client
-                                                    </li>
-                                                    <li data-ng-repeat="community in vm.communities | limitTo:3" class="yakaEllipsis c-white floating-tags"
-                                                        data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                                        {{community.text}}
-                                                    </li>
-                                                </ul>
+                                                <div class="m-t-5">
+                                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                        community="community"
+                                                                        ng-repeat="community in p.professional.user.communities">
+                                                    </casa-community-tag>
+                                                </div>
                                                 <div>
                                                     <small class="lv-small" data-ng-show="p.price">
                                                         Estimation actuelle {{p.price}} €
@@ -636,9 +623,11 @@
                                                             data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
                                                             Message<span
                                                                 data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
-                                                        <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="p.unreadMessages">PRO
+                                                        <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                                                data-ng-if="p.unreadMessages">PRO
                                                         </button>
-                                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1">CasaVox</button>
+                                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1">CasaVox
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
