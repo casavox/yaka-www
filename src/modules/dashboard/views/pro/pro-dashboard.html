@@ -121,7 +121,7 @@
                         <h2>
                             Mon statut Pro sur CasaVox
                             <small>
-                                Mon profil, mon réseau, mes offres
+                                Profil, Réseau, Entourage, Offres
                             </small>
                         </h2>
                     </div>
@@ -176,6 +176,19 @@
                                     <span>Voir mon profil (validation en cours)</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class="checkbox" data-ui-sref="pro-profile">
+                            <label
+                                data-ng-class="{'c-lightblue': vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name}">
+                                <input type="checkbox" onclick="return false" value=""
+                                       data-ng-checked="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">
+                                <i class="input-helper"></i>
+                                <span
+                                    data-ng-show="!vm.getCommunityByType('JOB').name || !vm.getCommunityByType('PROFILE_CITY').name"
+                                    class="c-orange underline">Compléter mon entourage</span>
+                                <span
+                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mon entourage</span>
+                            </label>
                         </div>
                         <div class="checkbox" data-ui-sref="contacts">
                             <label data-ng-class="{'c-lightblue': vm.pro.step2}">
@@ -392,7 +405,7 @@
                         <h2>
                             Mon statut Pro sur CasaVox
                             <small class="subtitle-color-forced">
-                                Mon profil, mon réseau, mes offres
+                                Profil, Réseau, Entourage, Offres
                             </small>
                         </h2>
                     </div>
@@ -447,6 +460,19 @@
                                     <span>Voir mon profil (validation en cours)</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class="checkbox" data-ui-sref="pro-profile">
+                            <label
+                                data-ng-class="{'c-lightblue': vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name}">
+                                <input type="checkbox" onclick="return false" value=""
+                                       data-ng-checked="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">
+                                <i class="input-helper"></i>
+                                <span
+                                    data-ng-show="!vm.getCommunityByType('JOB').name || !vm.getCommunityByType('PROFILE_CITY').name"
+                                    class="c-orange underline">Compléter mon entourage</span>
+                                <span
+                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mon entourage</span>
+                            </label>
                         </div>
                         <div class="checkbox" data-ui-sref="contacts">
                             <label data-ng-class="{'c-lightblue': vm.pro.step2}">
