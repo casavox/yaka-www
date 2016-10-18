@@ -507,18 +507,10 @@
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
-                                            <ul class="yaka-chips clearfix m-t-5 no-padding">
-                                                <li class="yakaEllipsis commu-tag-float c-white bgm-black actu-community-tag"
-                                                    data-ng-if="!isClient">
-                                                    <i class="zmdi zmdi-accounts"></i>
-                                                    Client
-                                                </li>
-                                                <li data-ng-repeat="community in vm.communities | limitTo:3"
-                                                    class="yakaEllipsis commu-tag-float c-white actu-community-tag"
-                                                    data-ng-class="{'bgm-crimson': community.type == 'ville', 'bgm-green':community.type == 'entreprise', 'bgm-blue':community.type == 'cercle', 'bgm-yellow':community.type == 'member'}">
-                                                    {{community.text}}
-                                                </li>
-                                            </ul>
+                                            <casa-community-tag class="contact-community-tag"
+                                                                community="community"
+                                                                ng-repeat="community in vm.projectTmp.user.communities">
+                                            </casa-community-tag>
                                         </dl>
                                     </div>
                                 </div>
