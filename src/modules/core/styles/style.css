@@ -5400,3 +5400,7 @@ div.recaptcha.mobile > div {
 .has-colleagues .fg-line:after {
     background: #3f51b5 !important;
 }
+
+.top-25 {
+    top: 25px !important;
+}

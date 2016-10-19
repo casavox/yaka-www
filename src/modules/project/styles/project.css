@@ -10,6 +10,22 @@
     margin-top: 2px !important;
 }
 
+.map-findjob-communities {
+    position: absolute;
+    top: 42px !important;
+    left: 59px;
+}
+
+.map-findjob-communities .job-community-tag {
+    line-height: 6px;
+}
+
+.map-findjob-communities .job-community-tag div {
+    padding: 3px !important;
+    height: 14px;
+    margin-bottom: 0px !important;
+}
+
 casa-community-tag div {
     border-radius: 2px;
 }
@@ -365,6 +381,10 @@ casa-community-tag div {
 }
 
 @media (max-width: 767px) {
+    .map-findjob-communities .job-community-tag div {
+        max-width: 100px;
+    }
+
     .reco-community-float {
         float: left !important;
     }
