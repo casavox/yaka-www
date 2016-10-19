@@ -262,6 +262,8 @@
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
+                } else {
+                    res.push("MATERIAL_FALSE");
                 }
             }
             return res;
