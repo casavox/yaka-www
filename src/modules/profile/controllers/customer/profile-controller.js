@@ -333,6 +333,5 @@
             (vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address)) );
         };
 
-
     }
 })();

@@ -1084,11 +1084,10 @@
             if (!vm.communities) {
                 return false;
             }
-            return !(vm.getCommunityByType('PROFILE_CITY').address.address &&
-            ((!vm.getCommunityByType('JOB').name && !vm.getCommunityByType('JOB').address.address) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address.address)) &&
-            ((!vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address) || (vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address)) );
+            return !(vm.getCommunityByType('PROFILE_CITY').address && vm.getCommunityByType('PROFILE_CITY').address.address &&
+            ((!vm.getCommunityByType('JOB').name && !(vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) &&
+            ((!vm.getCommunityByType('OTHER').name && !(vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address)) || (vm.getCommunityByType('OTHER').name && (vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address))));
         };
-
 
     }
 })();
