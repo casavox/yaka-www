@@ -60,6 +60,11 @@
 
                 f = true;
             }
+            if (vm.profile.company.name) {
+                vm.getCommunityByType('JOB').name = vm.profile.company.name;
+                vm.getCommunityByType('JOB').address.address = vm.profile.company.address.address;
+                vm.updateCommunities();
+            }
             if (!f) {
                 vm.error.profile.flag = false;
                 vm.updating = true;
@@ -78,6 +83,7 @@
                     vm.profile.company.address = angular.copy(res.company.address);
                     vm.profile.company.phone = res.company.phone;
                     alertMsg.send("Profil mis à jour avec succès", "success");
+                    networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
                 }, errorProfilePUT, true);
             }
             else {
