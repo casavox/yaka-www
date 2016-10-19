@@ -47,14 +47,24 @@
                 <div class="block-header">
                     <h2>Recommander à</h2>
                 </div>
-                <div class="projectRecommendTopCard card">
+                <div class="card projectRecommendTopCard p-l-20 p-t-20 p-b-5">
                     <div class="clearfix">
 
-                        <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
+                        <yaka-avatar class="col-xs-3 no-padding" size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="dashboardRecommendProjectText f-s-14 fw-bold">
-                            <casa-name-and-contact user="vm.project.user" invite="true"></casa-name-and-contact>
+                        <div class="col-xs-8 col-sm-9 col-xs-offset-1 p-r-0 p-l-0">
+                            <div class="f-s-14 fw-bold">
+                                <casa-name-and-contact class="pull-left l-h-24"
+                                                       user="vm.project.user"></casa-name-and-contact>
+                                <div class="col-xs-12 p-l-0">
+                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                        community="community"
+                                                        ng-repeat="community in vm.project.user.communities">
+                                    </casa-community-tag>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -68,7 +78,7 @@
                         <div class="proposalIconBackground lv-img v-icon-{{vm.project.mainActivity.code}}-white">
                         </div>
 
-                        <div class="dashboardRecommendProjectText right">
+                        <div class="dashboardRecommendProjectText right p-absolute">
                             <div class="yakaEllipsis f-s-15">
                                 {{vm.project.title}}
                             </div>
@@ -87,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" data-ng-if="vm.professionals">
+            <div class="col-sm-6 clearBoth" data-ng-if="vm.professionals">
                 <div class="block-header">
                     <h2>
                         Mes Pro
@@ -96,7 +106,7 @@
                 <div class="card">
                     <div class="card-header projectRecommendGrayHeader">
                         <h2>Recommander un Pro
-                            <small>
+                            <small class="c-obsidian-gray">
                                 Liste de vos Pros ayant la compétence demandée
                             </small>
                         </h2>
@@ -108,7 +118,7 @@
                              data-ng-click="vm.smoothScrollPro(); vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
                              data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
 
-                            <yaka-avatar class="m-0" size="45" user="professional.user"></yaka-avatar>
+                            <yaka-avatar class="m-0 pull-left" size="45" user="professional.user"></yaka-avatar>
 
                             <cl-image
                                 public-id="{{professional.mainPartner.cloudinaryPublicId}}"
@@ -117,20 +127,26 @@
                                 <cl-transformation height="25" width="25" crop="fill" radius="max"/>
                             </cl-image>
 
-                            <div class="proToRecommendRight">
+                            <div class="col-xs-9 col-sm-10 p-r-0">
 
-                                <div class="yakaEllipsis">
-                                    <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
-                                    (
-                                    <casa-contact user="professional.user"></casa-contact>
-                                    )
+                                <div class="col-xs-12 col-sm-8 col-md-6 p-r-0">
+                                    <div class="yakaEllipsis">
+                                        <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
+                                    </div>
+                                    <div>
+                                        <div class="yakaEllipsis">
+                                            <em>{{professional.company.name}}</em>
+                                            <span class="subtitle-color-forced yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel2}}</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <div class="yakaEllipsis">
-                                        <em>{{professional.company.name}}</em>
-                                        <span class="c-gray yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel2}}</span>
-                                    </div>
+
+                                <div class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
+                                    <casa-community-tag class="recommend-pro-community-tag reco-community-float"
+                                                        community="community"
+                                                        ng-repeat="community in professional.user.communities">
+                                    </casa-community-tag>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +161,7 @@
                     <div class="f-s-16 t-center p-t-30 p-b-30 p-relative p-l-10 p-r-10"
                          data-ng-if="vm.professionals && vm.professionals.length == 0">
 
-                        <i class="zmdi zmdi-accounts zmdi-hc-4x c-gray"></i>
+                        <i class="zmdi zmdi-accounts zmdi-hc-4x subtitle-color-forced"></i>
 
                         <div class="m-t-20">
                             Aucun de vos Pros ne semble correspondre.
@@ -173,7 +189,7 @@
                 <div class="recommendProSelected f-s-16 t-center p-t-30 p-b-30 p-relative"
                      data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
 
-                    <i class="zmdi zmdi-account-box-o zmdi-hc-4x c-gray"></i>
+                    <i class="zmdi zmdi-account-box-o zmdi-hc-4x subtitle-color-forced"></i>
 
                     <div class="m-t-20">
                         Sélectionnez un Pro et retrouvez ici
@@ -199,9 +215,6 @@
                             <div class="yakaEllipsis">
                                 <b>{{vm.selectedProfessional.company.name}}</b>
                                 - {{vm.selectedProfessional.company.address.administrativeAreaLevel2}}
-                            </div>
-                            <div>
-                                <casa-contact user="vm.selectedProfessional.user"></casa-contact>
                             </div>
                         </div>
 
@@ -245,6 +258,21 @@
                     </div>
 
                     <div class="card-body card-padding">
+                        <div class="pmb-block clearfix">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                            community="community"
+                                                            ng-repeat="community in vm.selectedProfessional.user.communities">
+                                        </casa-community-tag>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
                         <div class="pmb-block">
                             <div class="pmbb-header">
                                 <h2><i class="zmdi zmdi-star zmdi-hc-fw"></i> Expérience et qualités</h2>

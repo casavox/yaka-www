@@ -14,14 +14,17 @@ angular.module('Yaka')
                 }
 
                 function sizeChanged() {
-                    element.css(
-                        {
-                            'width': getPixelSize(1),
-                            'height': getPixelSize(1),
-                            'line-height': getPixelSize(1),
-                            'font-size': getPixelSize(0.35)
-                        }
-                    );
+                    element.css({
+                        'width': getPixelSize(1),
+                        'height': getPixelSize(1),
+                        'line-height': getPixelSize(1),
+                        'font-size': getPixelSize(0.35)
+                    });
+                    var toto = element.children();
+                    toto.css({
+                        'width': getPixelSize(1),
+                        'height': getPixelSize(1)
+                    });
                 }
 
                 attr.$observe('size', sizeChanged);
