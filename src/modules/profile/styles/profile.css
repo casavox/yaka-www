@@ -46,8 +46,6 @@
     margin-left: 50%;
 }
 
-
-
 @media (max-width: 570px) {
 
     .commentPhotoBoxAddProject {
@@ -68,3 +66,6 @@
     }
 }
 
+.communityTitleWithButton {
+    width: calc(100% - 70px);
+}
