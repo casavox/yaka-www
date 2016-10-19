@@ -266,12 +266,14 @@
             <script type="text/ng-template" id="userCommunities.html">
                 <div class="col-xs-12 no-padding card">
                     <div class="card-header ch-alt"
-                         data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+                         data-ng-class="{'bgm-lightblue': vm.hasCommunity}">
                         <h2>
-                            <i class="zmdi zmdi-hc-2x zmdi-accounts-alt v-align-sub m-r-10"></i>
+                            <i class="zmdi zmdi-hc-2x zmdi-accounts-alt v-align-sub m-r-10"
+                               data-ng-if="!vm.hasCommunity"></i>
+                            <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
+                               data-ng-if="vm.hasCommunity"></i>
                             Mes communautés
-                            <small class="c-white"
-                                   data-ng-if="vm.infosCardIsComplete() && !vm.profileInfo.user.avatar.cloudinaryPublicId">
+                            <small data-ng-class="{'subtitle-color-forced' : !vm.hasCommunity, 'c-white : vm.hasCommunity'}">
                                 <b>Votre entourage vous recommande leurs meilleurs Pros</b>
                             </small>
                         </h2>
