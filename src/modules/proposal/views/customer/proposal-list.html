@@ -308,6 +308,12 @@
                                                 <div class="lv-title">
                                                     <span data-ng-if="p.status == 'START' || p.status == 'SELECTED'">
                                                         {{p.professional.user.firstName}} {{p.professional.user.lastName}}
+                                                        <div class="col-xs-12 p-l-0">
+                                                        <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                            community="community"
+                                                                            ng-repeat="community in p.professional.user.communities">
+                                                        </casa-community-tag>
+                                                        </div>
                                                     </span>
 
 
