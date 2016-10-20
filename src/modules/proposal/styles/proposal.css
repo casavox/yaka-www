@@ -418,6 +418,14 @@
         height: calc(100vh - 100px) !important;
     }
 
+    #profile-main.good-height {
+        height: calc(100vh - 145px) !important;
+    }
+
+    #profile-main.no-scroll-good {
+        height: calc(100vh - 140px) !important;
+    }
+
     .proposalProjectTitle {
         width: calc(100% - 25px);
     }
@@ -442,6 +450,14 @@
 
 #profile-main.no-scroll {
     height: calc(100vh - 130px);
+}
+
+#profile-main.no-scroll-good {
+    height: calc(100vh - 170px);
+}
+
+#profile-main.good-height {
+    height: calc(100vh - 245px);
 }
 
 #profile-main.pro.no-scroll {

@@ -52,7 +52,7 @@
 
         <div class="container">
 
-            <div class="card pointer hidden-xs" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
+            <div class="card pointer hidden-xs  m-b-10 height-fixed-pro-card" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
                  data-ng-if="vm.project.proposal">
                 <div class="card-body card-padding row proposalHeader">
 
@@ -117,7 +117,7 @@
             </div>
 
             <div class="yakaMain projectMainView">
-                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat && !vm.project.proposal, 'good-height' : vm.showChat && vm.project.proposal}"}">
                     <div class="pm-body clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">

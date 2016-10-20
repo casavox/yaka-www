@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="yakaMain proposalMainView">
-                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat && !vm.proposal, 'good-height' : vm.showChat && vm.proposal}">
                     <div class="pm-overview hidden-xs">
                         <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                              tabindex="0">
