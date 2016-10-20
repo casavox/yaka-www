@@ -296,6 +296,15 @@
 
         function successCommunitiesGET(res) {
             vm.communities = res;
+            if (vm.getCommunityByType('PROFILE_CITY').name &&
+                vm.getCommunityByType('PROFILE_CITY').address.address &&
+                vm.getCommunityByType('JOB').name &&
+                vm.getCommunityByType('JOB').address.address &&
+                vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address) {
+                vm.hasCommunity = true;
+            } else {
+                vm.hasCommunity = false;
+            };
         }
 
         vm.getCommunityByType = function (type) {
@@ -314,6 +323,7 @@
 
         vm.updateCommunities = function () {
             networkService.communitiesPUT(vm.communities, function (res) {
+                networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
                 alertMsg.send("Les communautés ont été mises à jour", "success");
             }, errorProfilePUT, true);
         };
@@ -330,6 +340,5 @@
             ((!vm.getCommunityByType('JOB').name && !(vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) &&
             ((!vm.getCommunityByType('OTHER').name && !(vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address)) || (vm.getCommunityByType('OTHER').name && (vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address))));
         };
-
     }
 })();
