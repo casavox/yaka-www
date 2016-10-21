@@ -60,11 +60,6 @@
 
                 f = true;
             }
-            if (vm.profile.company.name) {
-                vm.getCommunityByType('JOB').name = vm.profile.company.name;
-                vm.getCommunityByType('JOB').address.address = vm.profile.company.address.address;
-                vm.updateCommunities();
-            }
             if (!f) {
                 vm.error.profile.flag = false;
                 vm.updating = true;
