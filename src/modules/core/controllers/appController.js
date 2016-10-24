@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, CONFIG) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -38,7 +38,7 @@
                     }, function () {
                     }, true);
                 }
-
+                $analytics.setUsername($localStorage.user.id);
             }, function () {
             }, ignoreLoading);
         };
