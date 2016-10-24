@@ -101,6 +101,7 @@
             "modules/core/styles/templateHack.css",
             "modules/core/directives/styles/yakaDirectives.css",
             "modules/home/styles/home.css",
+            "modules/home/styles/home2.css",
             "modules/home/styles/proHome.css",
             "modules/password/styles/recoverpassword.css",
             "modules/profile/styles/profile.css",

@@ -1,0 +1,316 @@
+.home-section {
+    height: auto;
+    padding-bottom: 0px;
+    background-size: cover;
+}
+
+.navbar-element {
+    background-color: white;
+}
+
+.home-navbar {
+    height: 50px;
+    padding: 8px 0px 8px 0px;
+    top: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    background-color: white;
+    box-shadow: 1px 0px 3px black;
+    z-index: 1;
+}
+
+.logo-img {
+    float: left;
+    width: 48px;
+    margin-top: -5px;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+.navbar-casavox {
+    font-size: 25px;
+    float: left;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.navbar-casa {
+    font-weight: 100;
+}
+
+.navbar-vox {
+    font-weight: 900;
+}
+
+.button-connexion {
+    float: right;
+    font-size: 13px;
+    margin-right: 25px;
+    line-height: 40px;
+    cursor: pointer;
+    height: 50px;
+    margin-top: -8px;
+    padding: 6px;
+    border-right: 1px lightgray solid;
+    border-left: 1px lightgray solid;
+    transition: 0.2s;
+}
+
+.button-connexion:hover {
+    background-color: lightblue;
+    color: white;
+}
+
+.button-pro-access {
+    float: right;
+    height: 35px;
+    font-size: 12px;
+    border: solid orange 1px;
+    border-radius: 4px;
+    padding-top: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button-pro-access:hover {
+    color: white !important;
+    background-color: orange;
+}
+
+.animation-and-background-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    background: url('../../../img/home-casavox.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+}
+
+.animedTitle {
+    margin-top: 140px;
+    font-size: 50px;
+    line-height: 1.2;
+    text-align: justify;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-weight: bold;
+}
+
+.animedSubtitle {
+    margin-top: 45px;
+    font-size: 26px;
+    text-align: left;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 60px;
+}
+
+.button-find-pro {
+    margin-bottom: 140px !important;
+}
+
+.network-image {
+    height: 320px;
+    background-image: url('https://cloud.githubusercontent.com/assets/4113162/19553016/b87dd482-96b2-11e6-850d-d65b0d1ed06e.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.communication-image {
+    height: 320px;
+    background-image: url('https://cloud.githubusercontent.com/assets/4113162/19553019/ba1ec04e-96b2-11e6-989f-3c5288cf56e1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.network-and-communication-text {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: dimgray;
+}
+
+.objectives-title {
+    font-size: 18px;
+    color: #5e5e5e !important;
+    height: 100px;
+}
+
+.objective-head {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.objective-text {
+    font-size: 12px;
+    padding-left: 54px;
+    text-align: justify;
+}
+
+.help-text {
+    text-align: center;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 15px 0px 15px 0px;
+}
+
+.section-pro {
+    height: auto;
+    padding-top: 79px;
+    padding-bottom: 74px;
+    background-image: url('../../../img/homeWork.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.section-pro-description {
+    margin-top: 11px;
+    font-size: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.section-pro-button {
+    font-size: 15px;
+    margin-top: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.section-pro-title {
+    font-size: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.home-footer {
+    height: auto;
+    margin-top: -8px;
+    background-color: white;
+    color: black;
+}
+
+.footer-activity-text {
+    color: #595969;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.footer-activity-link {
+
+    color: #1a61ff;
+    line-height: 35px;
+}
+
+.footer-social-link {
+    height: auto;
+    padding-bottom: 25px;
+    background: #1E2E40;
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .objectives-title {
+        font-size: 18px;
+        color: #5e5e5e !important;
+        height: 130px !important;
+    }
+
+    .animation-and-background-image {
+        background: url('../../../img/home-casavox.jpg') no-repeat center;
+    }
+}
+
+@media (max-width: 399px) {
+    .navbar-casavox {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .home-navbar {
+        height: 45px;
+    }
+
+    .navbar-casavox {
+        font-size: 21px;
+    }
+
+    .logo-img {
+        width: 45px;
+    }
+
+    .button-connexion {
+        height: 45px;
+        padding-top: 4px;
+    }
+
+    .button-pro-access {
+        height: 30px;
+        padding-top: 6px;
+    }
+
+    .animation-and-background-image {
+        margin-top: 44px;
+        max-height: 445px;
+        background: url('http://www.addventures.com/sites/default/files/livewire-320-x-320_0.png') no-repeat center;
+        background-size: cover;
+    }
+
+    .animedTitle {
+        font-size: 1.7em;
+        text-align: center;
+        text-shadow: 1px 1px 3px black;
+        margin-top: 60px;
+    }
+
+    .animedSubtitle {
+        font-size: 17px;
+        text-align: center;
+        text-shadow: 1px 1px 3px black;
+    }
+
+    .button-find-pro {
+        font-size: 14px;
+        margin-bottom: 40px !important;
+    }
+
+    .network-and-communication-text {
+        margin-bottom: 15px;
+    }
+
+    .objectives-title {
+        height: 100px;
+    }
+
+    .footer-activity-text {
+        text-align: center;
+    }
+
+    .footer-activity-link {
+        line-height: 20px;
+    }
+
+    .footer-activity-column {
+        text-align: center;
+    }
+
+}

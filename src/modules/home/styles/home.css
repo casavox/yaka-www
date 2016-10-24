@@ -82,7 +82,7 @@
     float: right;
     height: 40px;
     font-size: 13px;
-    border: solid white 1px;
+    border: solid orange 1px;
     border-radius: 4px;
     padding-top: 11px;
     padding-left: 12px;
@@ -311,10 +311,6 @@ body:after {
 .homeSection5FooterActivities {
     margin-top: 20px;
     line-height: 40px;
-}
-
-.CasaActivityLink {
-    color: #888888;
 }
 
 .t-end {

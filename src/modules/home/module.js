@@ -21,6 +21,14 @@
                 controllerAs: 'vm'
             })
 
+            .state('homeV2', {
+                url: "/V2?invitationId&login&email&register",
+                templateUrl: "/modules/home/views/customer/home2.html",
+                controller: 'HomeController',
+                controllerAs: 'vm'
+            })
+
+
             //Pro
 
             .state('pro-home', {
