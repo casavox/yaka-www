@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams, $analytics) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
@@ -237,6 +237,7 @@
             $localStorage.token = res.token;
             $localStorage.user = res;
             $state.go("help", {'card': 'tuto'});
+            $analytics.setUsername($localStorage.user.id);
         }
 
         function failProRegister(err) {
@@ -298,6 +299,7 @@
                         $state.go('dashboard');
                     }
                 }
+                $analytics.setUsername($localStorage.user.id);
             }
         }
 
