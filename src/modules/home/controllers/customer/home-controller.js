@@ -185,7 +185,6 @@
                         }
                     }
                 }
-                $analytics.setUsername($localStorage.user.id);
             }
         }
 
@@ -287,7 +286,6 @@
             } else {
                 $state.go('dashboard');
             }
-            $analytics.setUsername($localStorage.user.id);
         }
 
         function failRegister(err) {
