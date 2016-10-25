@@ -2,6 +2,10 @@
     border-bottom: 1px solid #2e2e2e;
 }
 
+.h-25 {
+    height: 25px !important;
+}
+
 .order-tag {
     height: 21px;
     line-height: 7px;

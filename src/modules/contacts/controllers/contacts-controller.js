@@ -191,6 +191,12 @@
                 return;
             }
 
+            var invitation = {
+                invitList: invits,
+                invitMessage: vm.invitMessage
+            };
+            console.log(invitation);
+
             networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
