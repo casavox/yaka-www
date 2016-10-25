@@ -118,7 +118,7 @@
 
             <div class="yakaMain projectMainView">
                 <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat && !vm.project.proposal, 'good-height' : vm.showChat && vm.project.proposal}"}">
-                    <div class="pm-body clearfix">
+                    <div class="pm-body admin-chat clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
                             <li heading="Home"
@@ -138,7 +138,7 @@
                             </li>
                         </ul>
 
-                        <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
+                        <yaka-chat class="scrollViewChatProposalAdmin" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.project.supportChat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
