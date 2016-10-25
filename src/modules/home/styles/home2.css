@@ -24,7 +24,6 @@
     float: left;
     width: 48px;
     margin-top: -5px;
-    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 }
 
 .navbar-casavox {
@@ -90,7 +89,7 @@
     width: 100%;
     height: auto;
     margin-top: 50px;
-    background: url('../../../img/home-casavox.jpg') no-repeat center;
+    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/CasaVox_homeMain2.jpeg') no-repeat center;
     background-size: cover;
     color: white;
 }
@@ -142,10 +141,9 @@
     color: dimgray;
 }
 
-.objectives-title {
-    font-size: 18px;
-    color: #5e5e5e !important;
-    height: 100px;
+.objective-section {
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .objective-head {
@@ -155,7 +153,7 @@
 
 .objective-text {
     font-size: 12px;
-    padding-left: 54px;
+    padding-left: 37px;
     text-align: justify;
 }
 
@@ -216,7 +214,7 @@
 .footer-activity-link {
 
     color: #1a61ff;
-    line-height: 35px;
+    line-height: 25px;
 }
 
 .footer-social-link {
@@ -227,15 +225,19 @@
     text-align: center;
 }
 
-@media (max-width: 992px) {
+@media (min-width: 993px) {
     .objectives-title {
         font-size: 18px;
         color: #5e5e5e !important;
-        height: 130px !important;
+        height: 75px !important;
+        min-height: auto !important;
     }
+}
 
-    .animation-and-background-image {
-        background: url('../../../img/home-casavox.jpg') no-repeat center;
+@media (min-width: 768px) {
+    .objectives-title {
+        min-height: 100px;
+        max-height: 130px;
     }
 }
 
@@ -271,21 +273,19 @@
     .animation-and-background-image {
         margin-top: 44px;
         max-height: 445px;
-        background: url('http://www.addventures.com/sites/default/files/livewire-320-x-320_0.png') no-repeat center;
-        background-size: cover;
     }
 
     .animedTitle {
         font-size: 1.7em;
         text-align: center;
-        text-shadow: 1px 1px 3px black;
         margin-top: 60px;
     }
 
     .animedSubtitle {
         font-size: 17px;
         text-align: center;
-        text-shadow: 1px 1px 3px black;
+        margin-top: 30px;
+        margin-bottom: 45px;
     }
 
     .button-find-pro {
@@ -298,7 +298,7 @@
     }
 
     .objectives-title {
-        height: 100px;
+        margin-bottom: 15px;
     }
 
     .footer-activity-text {
