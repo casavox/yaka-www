@@ -192,12 +192,11 @@
             }
 
             var invitation = {
-                invitList: invits,
-                invitMessage: vm.invitMessage
+                mailList: invits,
+                message: vm.invitMessage
             };
-            console.log(invitation);
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         function hasDuplicates(array) {
