@@ -20,3 +20,16 @@
     text-overflow: ellipsis;
 }
 
+.scrollViewChatProposalAdmin {
+    position: absolute;
+    bottom: 0;
+    top: 48px;
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .admin-chat {
+        padding-left: 0px !important;
+    }
+}
