@@ -172,6 +172,7 @@
 }
 
 .invitReceivedSpanHolder {
+    margin-top: 5px;
     width: calc(100% - 190px);
     white-space: nowrap;
     overflow: hidden;
