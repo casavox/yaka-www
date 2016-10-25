@@ -145,3 +145,9 @@ casa-contact .contactRelationIcon {
 .placeholder-red:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #F44336;
 }
+
+/* CommunityTag */
+
+casa-community-tag {
+    max-width: 100%;
+}

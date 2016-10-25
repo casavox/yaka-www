@@ -2,6 +2,44 @@
     line-height: 30px;
 }
 
+.job-community-tag {
+    margin: 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+}
+
+.floating-tags {
+    max-width: 70px !important;
+}
+
+.aligned-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.aligned-content > [class^="col-"],
+.aligned-content > [class*=" col-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Optional, to align inner items
+                                 horizontally inside the column */
+}
+
+/**
+ *  Do NOT include this part into your stylesheet.
+ *  "flex: 1" or "flex-grow: 1" is added to make the inner div
+ *  - Which is also a flex-item - take up all the horizontal space
+ *  available space inside the flex container (.col-* elements)
+ */
+.aligned-content > [class^="col-"] > div,
+.aligned-content > [class*=" col-"] > div {
+    /* flex: 1; */
+    flex-grow: 1;
+}
+
 .m-b-1 {
     margin-bottom: 1px;
 }
@@ -492,44 +530,44 @@
     .pr-list-text {
         text-align: left;
     }
-}
 
-@media (max-width: 767px) {
-    .pr-list-icon {
-        margin-left: -12px !important;
-    }
+    @media (max-width: 767px) {
+        .pr-list-icon {
+            margin-left: -12px !important;
+        }
 
-    .pr-list-text {
-        text-align: center;
-        padding-right: 0px;
-    }
+        .pr-list-text {
+            text-align: center;
+            padding-right: 0px;
+        }
 
-    .noProposalYetContentRubric1TitleJ {
-        text-align: justify;
-        font-weight: normal;
-        font-size: 14px;
-    }
+        .noProposalYetContentRubric1TitleJ {
+            text-align: justify;
+            font-weight: normal;
+            font-size: 14px;
+        }
 
-    .noProposalYetContentRubric1TitleC {
-        text-align: center;
-        font-weight: normal;
-        font-size: 14px;
-    }
+        .noProposalYetContentRubric1TitleC {
+            text-align: center;
+            font-weight: normal;
+            font-size: 14px;
+        }
 
-    .noProposalYetContentSubTitleJ {
-        text-align: justify;
-        font-weight: normal;
-        font-size: 13px;
-    }
+        .noProposalYetContentSubTitleJ {
+            text-align: justify;
+            font-weight: normal;
+            font-size: 13px;
+        }
 
-    .proNetworkProjectButtonLabel {
-        margin-left: 30%;
-        width: 70%;
-        margin-bottom: -10px;
-    }
+        .proNetworkProjectButtonLabel {
+            margin-left: 30%;
+            width: 70%;
+            margin-bottom: -10px;
+        }
 
-    .zIndex1 {
-        z-index: 1 !important;
+        .zIndex1 {
+            z-index: 1 !important;
+        }
     }
 }
 

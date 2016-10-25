@@ -173,6 +173,5 @@
         vm.projectDetails = function () {
             $state.go('project', {projectId: vm.proposal.project.id});
         }
-
     }
 })();

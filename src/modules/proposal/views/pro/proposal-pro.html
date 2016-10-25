@@ -228,7 +228,7 @@
                             </li>
                         </ul>
 
-                        <div class="col-xs-12 chatChoice no-padding bgm-white c-gray"
+                        <div class="col-xs-12 chatChoice no-padding bgm-white subtitle-color-forced"
                              data-ng-if="vm.showChat">
                             <div class="col-xs-12 col-sm-5 col-md-3 no-padding emptyCol">
                                 <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
@@ -495,6 +495,22 @@
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
                                                 data-ng-click="vm.editDate()"></i>
                                             </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pmb-block clearfix" data-ng-if="vm.projectTmp.user.communities">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
+                                </div>
+                                <div class="pmbb-body">
+                                    <div class="pmbb-view">
+                                        <dl class="dl-horizontal tag-margin-bottom">
+                                                <casa-community-tag class="contact-community-tag pull-left"
+                                                                    community="community"
+                                                                    ng-repeat="community in vm.projectTmp.user.communities">
+                                                </casa-community-tag>
                                         </dl>
                                     </div>
                                 </div>
