@@ -5404,3 +5404,15 @@ div.recaptcha.mobile > div {
 .top-25 {
     top: 25px !important;
 }
+
+.bgm-tag-community-city {
+    background-color: #1565c0 !important;
+}
+
+.bgm-tag-community-job {
+    background-color: #3c7fc9 !important;
+}
+
+.bgm-tag-community-other {
+    background-color: #1e88e5 !important;
+}
