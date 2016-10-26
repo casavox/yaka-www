@@ -1,3 +1,11 @@
+.proposal-padding-bottom {
+    padding-bottom: 0px !important;
+}
+
+.lv-item hr {
+    margin-bottom: 0px !important;
+}
+
 .l-h-30 {
     line-height: 30px;
 }
