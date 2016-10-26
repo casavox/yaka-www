@@ -5406,13 +5406,13 @@ div.recaptcha.mobile > div {
 }
 
 .bgm-tag-community-city {
-    background-color: #294a65 !important;
+    background-color: #1565c0 !important; /* 294a65*/
 }
 
 .bgm-tag-community-job {
-    background-color: #1565c0 !important;
+    background-color: #3c7fc9 !important;
 }
 
 .bgm-tag-community-other {
-    background-color: #3c7fc9 !important;
+    background-color: #447daf !important;
 }
