@@ -1,3 +1,13 @@
+.recommendTo {
+    margin-left: 60px;
+}
+
+.projectRecommendTopCard {
+    min-height: 90px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
 .height-fixed-pro-card {
     height: 104px;
 

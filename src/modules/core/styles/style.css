@@ -5416,3 +5416,7 @@ div.recaptcha.mobile > div {
 .bgm-tag-community-other {
     background-color: #447daf !important;
 }
+
+.gray-header {
+    background-color: #f8f8f8;
+}
