@@ -325,7 +325,7 @@
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
 
-        $(function() {
+        $(function () {
             $('.chart').easyPieChart({
                 scaleColor: false,
                 lineWidth: 5,
@@ -337,17 +337,30 @@
 
             function showPieCharts() {
                 $('.chart1').data('easyPieChart').update(25);
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.chart2').data('easyPieChart').update(50);
                 }, 500);
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.chart3').data('easyPieChart').update(75);
-                }, 1000);
-                setTimeout(function() {
-                    $('.chart4').data('easyPieChart').update(100);
                 }, 1500);
+                setTimeout(function () {
+                    $('.chart4').data('easyPieChart').update(100);
+                }, 2400);
             }
-            showPieCharts();
+
+            $(function () {
+                var oTop = $('.chart').offset().top - window.innerHeight + 90;
+                $(window).scroll(function () {
+
+                    var pTop = $('body').scrollTop();
+                    console.log(pTop + ' - ' + oTop);   //just for your debugging
+                    if (pTop > oTop) {
+                        showPieCharts();
+                    }
+                });
+            });
+
+
         });
 
     }
