@@ -539,7 +539,7 @@
             $scope.usersTable = new ngTableParams({
                 page: 1,
                 count: 99999999,
-                sorting: {distance: "asc"}
+                sorting: {numberDistance: "asc"}
             }, {
                 total: vm.project.compatiblePros.length,
                 counts: [],
