@@ -280,7 +280,8 @@
                                         Utiliser le bouche-à-oreille CasaVox
                                     </a>
                                 </div>
-                                <div class="lv-item pointer" href="" data-ng-repeat="p in vm.project.proposals"
+                                <div class="lv-item pointer proposal-padding-bottom" href=""
+                                     data-ng-repeat="p in vm.project.proposals"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div data-ng-if="p.firstRecommendation">
                                         <casa-name-and-contact
@@ -309,9 +310,10 @@
                                                     <span data-ng-if="p.status == 'START' || p.status == 'SELECTED'">
                                                         {{p.professional.user.firstName}} {{p.professional.user.lastName}}
                                                         <div class="col-xs-12 p-l-0">
-                                                        <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                            community="community"
-                                                                            ng-repeat="community in p.professional.user.communities">
+                                                        <casa-community-tag
+                                                            class="recommend-pro-community-tag pull-left"
+                                                            community="community"
+                                                            ng-repeat="community in p.professional.user.communities">
                                                         </casa-community-tag>
                                                         </div>
                                                     </span>
@@ -397,6 +399,7 @@
                                             </small>
                                         </div>
                                     </div>
+                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +425,7 @@
                                         Utiliser le bouche-à-oreille CasaVox
                                     </a>
                                 </div>
-                                <div class="lv-item pointer" href=""
+                                <div class="lv-item proposal-padding-bottom pointer" href=""
                                      data-ng-repeat="p in vm.project.recoProposals"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div>
@@ -473,9 +476,8 @@
                                                 </small>
                                             </div>
                                         </div>
-
-
                                     </div>
+                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -497,7 +499,8 @@
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
-                                <div class="lv-item pointer" href="" data-ng-repeat="p in vm.project.proposals"
+                                <div class="lv-item proposal-padding-bottom pointer" href=""
+                                     data-ng-repeat="p in vm.project.proposals"
                                      data-ng-if="p.id != vm.project.proposal.id"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div class="media">
@@ -560,6 +563,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -578,7 +582,7 @@
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
-                                <div class="lv-item pointer" href=""
+                                <div class="lv-item proposal-padding-bottom pointer" href=""
                                      data-ng-repeat="p in vm.project.recoProposals"
                                      data-ng-if="p.id != vm.project.proposal.id"
                                      data-ng-click="vm.selectProposal(p)">
@@ -639,6 +643,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
                                 </div>
                             </div>
                         </div>
