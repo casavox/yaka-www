@@ -1,5 +1,6 @@
 .height-fixed-pro-card {
     height: 104px;
+}
 
 .clearBoth {
     clear: both;
@@ -297,7 +298,7 @@ casa-community-tag div {
 
 .dashboardRecommendProjectText.professional {
     position: absolute;
-    left: 80px;
+    left: 82px;
     top: 18px;
     width: calc(100% - 100px);
 }
@@ -427,3 +428,4 @@ casa-community-tag div {
         padding-left: 15px !important;
     }
 }
+
