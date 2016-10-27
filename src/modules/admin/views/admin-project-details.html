@@ -406,9 +406,9 @@
             </div>
 
             <div class="card" data-ng-if="!vm.showChat">
-                <h4 class="p-15" data-ng-show="vm.project.proposalsRecommendations.length == 0">La liste des Pros compatibles est vide !</h4>
-                <table ng-table="usersTable" class="table table-striped" show-filter="true" data-ng-show="vm.project.proposalsRecommendations.length > 0">
-                    <h4 class="p-15" data-ng-show="vm.project.proposalsRecommendations.length > 0">Pros Compatibles avec le projet</h4>
+                <h4 class="p-15" data-ng-show="vm.project.compatiblePros.length == 0">La liste des Pros compatibles est vide !</h4>
+                <table ng-table="usersTable" class="table table-striped" show-filter="true" data-ng-show="vm.project.compatiblePros.length > 0">
+                    <h4 class="p-15" data-ng-show="vm.project.compatiblePros.length > 0">Pros Compatibles avec le projet</h4>
                     <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
                         <td data-title="'Nom'" class="pointer c-blue" filter="{name: 'text'}" data-sortable="'name'"
                             data-ui-sref="admin-pro-details({professionnalId: pro.id})">
