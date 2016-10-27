@@ -325,5 +325,30 @@
             alertMsg.send("Impossible de récupérer les projets", "danger");
         });
 
+        $(function() {
+            $('.chart').easyPieChart({
+                scaleColor: false,
+                lineWidth: 5,
+                lineCap: 'square',
+                barColor: '#03a9f4',
+                size: 100,
+                animate: 500
+            });
+
+            function showPieCharts() {
+                $('.chart1').data('easyPieChart').update(25);
+                setTimeout(function() {
+                    $('.chart2').data('easyPieChart').update(50);
+                }, 500);
+                setTimeout(function() {
+                    $('.chart3').data('easyPieChart').update(75);
+                }, 1000);
+                setTimeout(function() {
+                    $('.chart4').data('easyPieChart').update(100);
+                }, 1500);
+            }
+            showPieCharts();
+        });
+
     }
 })();

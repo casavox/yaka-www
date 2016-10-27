@@ -117,6 +117,83 @@
     margin-bottom: 140px !important;
 }
 
+.find-my-pro {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 100;
+    font-size: 30px;
+}
+
+.circles-section {
+    margin-bottom: 100px;
+}
+
+.chart {
+    position: relative;
+    display: inline-block;
+    margin-top: 65px;
+    color: #03a9f4;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    transition: 1s ease-out;
+}
+
+canvas {
+    position: absolute;
+    margin-top: -20px;
+    margin-left: -74px;
+}
+
+.arrow-to-right {
+    position: absolute;
+    right: -16px;
+    top: 7px;
+}
+
+.subtext-circle {
+    padding-left: 6px;
+    padding-right: 6px;
+    position: absolute;
+    top: 90px;
+    font-size: 12px;
+}
+
+.center-forced {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.icon-service {
+    padding: 20px 7px 20px 7px;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+.euro-icon-service {
+    font-size: 37px;
+    font-weight: 500;
+    padding-left: 21px;
+    padding-right: 20px;
+    margin-right: 8px;
+}
+
+.img-devices-service {
+    padding: 24px 8px 24px 8px;
+    border-radius: 7px;
+    width: 60px;
+}
+
+.historic-service {
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+
+
+
 .network-image {
     height: 320px;
     background-image: url('https://cloud.githubusercontent.com/assets/4113162/19553016/b87dd482-96b2-11e6-850d-d65b0d1ed06e.png');
