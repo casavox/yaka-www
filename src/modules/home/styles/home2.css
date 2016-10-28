@@ -1,3 +1,11 @@
+.p-l-80 {
+    padding-left: 80px;
+}
+
+.translateY {
+    transform: translateY(1px);
+}
+
 .homepage-background-color {
     background-color: #435f71;
 }
@@ -37,7 +45,7 @@
     cursor: pointer;
     top: 0;
     left: 0;
-    margin-top: 1px;
+    margin-top: 2px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -151,6 +159,7 @@
 
 canvas {
     position: absolute;
+    color: darkgreen;
     margin-top: -20px;
     margin-left: -74px;
 }
@@ -176,6 +185,7 @@ canvas {
 
 .service-box {
     border-radius: 5px;
+    padding-bottom: 5px !important;
 }
 
 .icon-service {
@@ -205,7 +215,6 @@ canvas {
     padding-left: 12px;
     padding-right: 12px;
 }
-
 
 .help-text {
     text-align: center;
@@ -255,6 +264,7 @@ canvas {
     color: white;
     font-weight: 500;
     font-size: 17px;
+    margin-left: 57px;
 }
 
 .footer-activity-link {
@@ -265,7 +275,6 @@ canvas {
 
 .footer-social-link {
     height: auto;
-    padding-bottom: 25px;
     color: white;
     text-align: center;
 }
@@ -276,6 +285,12 @@ canvas {
         color: #5e5e5e !important;
         height: 75px !important;
         min-height: auto !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer-activity-text {
+        margin-left: 0px;
     }
 }
 
@@ -293,26 +308,8 @@ canvas {
 }
 
 @media (max-width: 767px) {
-    .home-navbar {
-        height: 45px;
-    }
-
     .navbar-casavox {
         font-size: 21px;
-    }
-
-    .logo-img {
-        width: 45px;
-    }
-
-    .button-connexion {
-        height: 45px;
-        padding-top: 4px;
-    }
-
-    .button-pro-access {
-        height: 30px;
-        padding-top: 6px;
     }
 
     .animation-and-background-image {
@@ -356,6 +353,35 @@ canvas {
 
     .footer-activity-column {
         text-align: center;
+    }
+
+    .find-my-pro {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    .arrow-to-right {
+        display: none;
+    }
+
+    .subtext-circle {
+        width:100%
+    }
+
+    .circle-1-m-b {
+        margin-bottom: 25px;
+    }
+
+    .circle-2-m-b {
+        margin-bottom: 40px;
+    }
+
+    .circle-3-m-b {
+        margin-bottom: 55px;
+    }
+
+    .service-mobile-bottom {
+        padding-bottom: 15px;
     }
 
 }

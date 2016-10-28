@@ -331,6 +331,7 @@
                 lineWidth: 5,
                 lineCap: 'square',
                 barColor: '#03a9f4',
+                trackColor: '#ededed',
                 size: 100,
                 animate: 500
             });
