@@ -287,7 +287,7 @@ angular.module('Yaka')
                     }
                     if (scope.userOther) {
                         if (scope.userOther == "admin") {
-                            return 'Discutez en privé avec Victor, votre assistant CasaVox';
+                            return 'Discutez en privé avec votre assistant CasaVox';
                         } else if (scope.userMe == "admin") {
                             return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
                         } else if (scope.userOther.firstName && scope.userOther.lastName) {
