@@ -1092,7 +1092,7 @@ body:after {
     width: 100%;
     height: auto;
     margin-top: 50px;
-    background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/CasaVox_homeMain2.jpeg') no-repeat center;
+    background: linear-gradient(rgba(4, 28, 36, 0.30), rgba(4, 28, 36, 0.30)), url('../../../img/CasaVox_homeMain2.jpeg') no-repeat center;
     background-size: cover;
     color: white;
 }
@@ -1241,7 +1241,6 @@ canvas {
 
 .home-footer {
     height: auto;
-    margin-top: -8px;
     background-color: white;
     color: black;
 }
@@ -1285,6 +1284,15 @@ canvas {
         min-height: 100px;
         max-height: 130px;
     }
+
+    .animedTitle {
+        padding-left: 50px !important;
+    }
+
+    .animedSubtitle {
+        padding-left: 50px !important;
+    }
+
 }
 
 @media (max-width: 399px) {
@@ -1371,3 +1379,5 @@ canvas {
     }
 
 }
+
+
