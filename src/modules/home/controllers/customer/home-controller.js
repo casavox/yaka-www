@@ -349,7 +349,7 @@
                 }, 1500);
             }
 
-            $.fn.isOnScreen = function() {
+            $.fn.isOnScreen = function () {
                 var win = $(window);
                 var viewport = {
                     top: win.scrollTop(),
@@ -365,13 +365,15 @@
 
             var pieChartsShown = false;
 
-            $scope.$watch(function() {
-                return $('.chart1').isOnScreen();
-            }, function(newValue, oldValue) {
-                if (newValue != oldValue && newValue && !pieChartsShown) {
-                    pieChartsShown = true;
-                    showPieCharts();
-                }
+            $(window).load(function () {
+                $scope.$watch(function () {
+                    return $('.chart1').isOnScreen();
+                }, function (newValue, oldValue) {
+                    if (newValue && !pieChartsShown) {
+                        pieChartsShown = true;
+                        showPieCharts();
+                    }
+                });
             });
 
 
