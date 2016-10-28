@@ -384,7 +384,8 @@
                     $scope.$watch(function () {
                         return $('.chart1').isOnScreen();
                     }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown) {
+                        if (newValue && !pieChartsShown1) {
+                            pieChartsShown1 = true;
                             $('.chart1').data('easyPieChart').update(25);
                         }
                     });
@@ -392,7 +393,8 @@
                     $scope.$watch(function () {
                         return $('.chart2').isOnScreen();
                     }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown) {
+                        if (newValue && !pieChartsShown2) {
+                            pieChartsShown2 = true;
                             $('.chart2').data('easyPieChart').update(50);
                         }
                     });
@@ -400,14 +402,16 @@
                     $scope.$watch(function () {
                         return $('.chart3').isOnScreen();
                     }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown) {
+                        if (newValue && !pieChartsShown3) {
+                            pieChartsShown3 = true;
                             $('.chart3').data('easyPieChart').update(75);
                         }
                     });
                     $scope.$watch(function () {
                         return $('.chart4').isOnScreen();
                     }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown) {
+                        if (newValue && !pieChartsShown4) {
+                            pieChartsShown4 = true;
                             $('.chart4').data('easyPieChart').update(100);
                         }
                     });
