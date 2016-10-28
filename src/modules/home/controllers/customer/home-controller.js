@@ -363,8 +363,13 @@
                 return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
             };
 
-            $(window).scroll(function() {
-                if ($('.chart1').isOnScreen()) {
+            var pieChartsShown = false;
+
+            $scope.$watch(function() {
+                return $('.chart1').isOnScreen();
+            }, function(newValue, oldValue) {
+                if (newValue != oldValue && newValue && !pieChartsShown) {
+                    pieChartsShown = true;
                     showPieCharts();
                 }
             });
