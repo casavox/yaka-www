@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams, $analytics) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;

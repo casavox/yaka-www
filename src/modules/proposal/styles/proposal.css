@@ -1,3 +1,11 @@
+.proposal-padding-bottom {
+    padding-bottom: 0px !important;
+}
+
+.lv-item hr {
+    margin-bottom: 0px !important;
+}
+
 .l-h-30 {
     line-height: 30px;
 }
@@ -237,7 +245,7 @@
     .scrollViewChatProposalAdminAndPro {
         position: absolute;
         bottom: 0;
-        left: 279px;
+        left: 300px;
         right: 0;
         top: 106px;
         width: auto;
@@ -339,15 +347,19 @@
     }
 
     .proposalMainView yaka-chat .lv-footer {
-        height: 50px;
+        height: 76px !important;
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
     }
 
+    yaka-chat .lv-footer {
+        height: 55px !important;
+    }
+
     .proposalMainView yaka-chat .lv-body {
-        height: calc(100% - 50px);
+        height: calc(100% - 55px);
     }
 
     .proposalMainView yaka-chat .ms-reply textarea {
@@ -453,7 +465,15 @@
     }
 
     #profile-main.no-scroll {
-        height: calc(100vh - 150px) !important;
+        height: calc(100vh - 100px) !important;
+    }
+
+    #profile-main.good-height {
+        height: calc(100vh - 145px) !important;
+    }
+
+    #profile-main.no-scroll-good {
+        height: calc(100vh - 140px) !important;
     }
 
     .proposalProjectTitle {
@@ -479,7 +499,15 @@
 }
 
 #profile-main.no-scroll {
-    height: calc(100vh - 255px);
+    height: calc(100vh - 130px);
+}
+
+#profile-main.no-scroll-good {
+    height: calc(100vh - 170px);
+}
+
+#profile-main.good-height {
+    height: calc(100vh - 245px);
 }
 
 #profile-main.pro.no-scroll {

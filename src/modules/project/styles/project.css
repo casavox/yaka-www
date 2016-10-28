@@ -1,3 +1,57 @@
+@media (min-width: 1200px) {
+    .proposal-project-pm-body {
+         padding-left: 300px !important;
+     }
+    .customer-proposal-pm-body {
+        padding-left: 300px !important;
+    }
+    .pro-proposal-project-pm-body {
+        padding-left: 300px !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .proposal-project-pm-body {
+        padding-left: 300px !important;
+    }
+    .customer-proposal-pm-body {
+        padding-left: 250px !important;
+    }
+    .pro-proposal-project-pm-body {
+        padding-left: 250px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .proposal-project-pm-body {
+        padding-left: 300px !important;
+    }
+    .customer-proposal-pm-body {
+        padding-left: 0px !important;
+    }
+    .pro-proposal-project-pm-body {
+        padding-left: 0px !important;
+
+    }
+}
+
+
+.scrollViewChatProposalProject {
+    position: absolute;
+    bottom: 0;
+    top: 48px;
+    width: 100%;
+    height: auto;
+}
+
+#profile-main .pm-body {
+    padding: 0px;
+}
+
+.height-fixed-pro-card {
+    height: 104px;
+}
+
 .clearBoth {
     clear: both;
 }
@@ -420,7 +474,9 @@ casa-community-tag div {
     .commu-tag-float {
         float: left !important;
     }
+
     .commu-tag-padding {
         padding-left: 15px !important;
     }
 }
+

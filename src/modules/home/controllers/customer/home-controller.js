@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
+    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams, $analytics) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;

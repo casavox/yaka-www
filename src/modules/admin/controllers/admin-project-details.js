@@ -381,6 +381,8 @@
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
+                } else {
+                    res.push("MATERIAL_FALSE");
                 }
             }
             return res;
@@ -537,7 +539,7 @@
             $scope.usersTable = new ngTableParams({
                 page: 1,
                 count: 99999999,
-                sorting: {distance: "asc"}
+                sorting: {numberDistance: "asc"}
             }, {
                 total: vm.project.compatiblePros.length,
                 counts: [],
