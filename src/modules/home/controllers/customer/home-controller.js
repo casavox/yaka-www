@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams) {
+    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams, screenSize) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
@@ -364,18 +364,55 @@
             };
 
             var pieChartsShown = false;
+            var pieChartsShown1 = false;
+            var pieChartsShown2 = false;
+            var pieChartsShown3 = false;
+            var pieChartsShown4 = false;
 
+            // Desktop
             $(window).load(function () {
-                $scope.$watch(function () {
-                    return $('.chart1').isOnScreen();
-                }, function (newValue, oldValue) {
-                    if (newValue && !pieChartsShown) {
-                        pieChartsShown = true;
-                        showPieCharts();
-                    }
-                });
-            });
+                if (!screenSize.is('xs')) {
+                    $scope.$watch(function () {
+                        return $('.chart1').isOnScreen();
+                    }, function (newValue, oldValue) {
+                        if (newValue && !pieChartsShown) {
+                            pieChartsShown = true;
+                            showPieCharts();
+                        }
+                    });
+                } else {
+                    $scope.$watch(function () {
+                        return $('.chart1').isOnScreen();
+                    }, function (newValue, oldValue) {
+                        if (newValue && !pieChartsShown) {
+                            $('.chart1').data('easyPieChart').update(25);
+                        }
+                    });
 
+                    $scope.$watch(function () {
+                        return $('.chart2').isOnScreen();
+                    }, function (newValue, oldValue) {
+                        if (newValue && !pieChartsShown) {
+                            $('.chart2').data('easyPieChart').update(50);
+                        }
+                    });
+
+                    $scope.$watch(function () {
+                        return $('.chart3').isOnScreen();
+                    }, function (newValue, oldValue) {
+                        if (newValue && !pieChartsShown) {
+                            $('.chart3').data('easyPieChart').update(75);
+                        }
+                    });
+                    $scope.$watch(function () {
+                        return $('.chart4').isOnScreen();
+                    }, function (newValue, oldValue) {
+                        if (newValue && !pieChartsShown) {
+                            $('.chart4').data('easyPieChart').update(100);
+                        }
+                    });
+                }
+            });
 
         });
 
