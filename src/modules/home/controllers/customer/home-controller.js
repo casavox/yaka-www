@@ -343,22 +343,30 @@
                 }, 500);
                 setTimeout(function () {
                     $('.chart3').data('easyPieChart').update(75);
-                }, 1500);
+                }, 1000);
                 setTimeout(function () {
                     $('.chart4').data('easyPieChart').update(100);
-                }, 2400);
+                }, 1500);
             }
 
-            $(function () {
-                var oTop = $('.chart').offset().top - window.innerHeight + 90;
-                $(window).scroll(function () {
+            $.fn.isOnScreen = function() {
+                var win = $(window);
+                var viewport = {
+                    top: win.scrollTop(),
+                    left: win.scrollLeft()
+                };
+                viewport.right = viewport.left + win.width();
+                viewport.bottom = viewport.top + win.height();
+                var bounds = this.offset();
+                bounds.right = bounds.left + this.outerWidth();
+                bounds.bottom = bounds.top + this.outerHeight();
+                return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+            };
 
-                    var pTop = $('body').scrollTop();
-                    console.log(pTop + ' - ' + oTop);   //just for your debugging
-                    if (pTop > oTop) {
-                        showPieCharts();
-                    }
-                });
+            $(window).scroll(function() {
+                if ($('.chart1').isOnScreen()) {
+                    showPieCharts();
+                }
             });
 
 
