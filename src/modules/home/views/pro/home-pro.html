@@ -7,18 +7,23 @@
 <section id="main-scroll-container" class="view">
     <div class="proHomeSection proHomeSection1">
         <div class="container proHomeSection1Container">
-            <div class="col-xs-12 homeSection1Header">
-                <div class="homeSection1YakaClub" ui-sref="home">
-                    <span class="homeSection1Club">CASA</span><span class="homeSection1Yaka">VOX</span>
-                    <span class="homeSection1Yaka">PRO</span>
+            <div class="col-xs-12 home-navbar p-l-10">
+                <div class="logo-casavox pointer" ui-sref="pro-home">
+                    <img class="logo-img" src="../../../img/logoSansFond_PRO_40w.png" alt="CasaVox"/>
                 </div>
-                <div class="homeSection1ProLink proTopLink waves-effect" ui-sref="home">
+                <div class="navbar-casavox m-l-5 c-orange" ui-sref="pro-home">
+                    <span class="navbar-casa">CASA</span><span class="navbar-vox">VOX</span>
+                </div>
+                <div class="button-cust-access c-lightblue waves-effect" ui-sref="home">
                     ACCES CLIENT
                 </div>
-                <div class="homeSection1Login proTopLink yakaLinkWhite" data-ng-click="vm.openPopup()">
-                    Se connecter
+                <div class="button-pro-connexion subtitle-color-forced"
+                     data-ng-click="vm.openPopup()">
+                    CONNEXION
                 </div>
             </div>
+
+
             <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-0 proHomeSection1Title">
                 Developpez votre réseau, trouvez de nouveaux clients.
             </div>
@@ -274,7 +279,7 @@
                     </div>
 
                     <small class="proHomeSection2InputError"
-                         data-ng-hide="vm.newUser.professional.phoneNumber">
+                           data-ng-hide="vm.newUser.professional.phoneNumber">
                         Ce numéro de téléphone n'est pas valide
                     </small>
 
@@ -297,7 +302,7 @@
                          translation-texts="vm.multiChoiceInput.translation"
                          checkboxes="true"></div>
 
-                    <span class="col-xs-12 c-gray m-l-0">Cochez la case ci-dessous</span>
+                    <span class="col-xs-12 subtitle-color-forced m-l-0">Cochez la case ci-dessous</span>
                     <div
                         vc-recaptcha
                         data-ng-model="vm.newUser.recaptchaResponse"
@@ -352,24 +357,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="homeSection homeSection4">
-        <div class="container">
-            <div class="homeSection4Title">
-                Suivez-nous !
-            </div>
-            <div class="homeSection4Items">
-                <a target="_blank" data-ng-href="https://www.facebook.com/hellocasavox">
-                    <div class="homeSection4ItemSocial homeSection4ItemFacebook"></div>
-                </a>
-                <a target="_blank" data-ng-href="https://plus.google.com/117693956496667116327">
-                    <div class="homeSection4ItemSocial homeSection4ItemGoogle"></div>
-                </a>
-                <a target="_blank" data-ng-href="https://twitter.com/hellocasavox">
-                    <div class="homeSection4ItemSocial homeSection4ItemTwitter"></div>
-                </a>
             </div>
         </div>
     </div>

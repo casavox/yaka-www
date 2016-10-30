@@ -82,7 +82,7 @@
     float: right;
     height: 40px;
     font-size: 13px;
-    border: solid white 1px;
+    border: solid orange 1px;
     border-radius: 4px;
     padding-top: 11px;
     padding-left: 12px;
@@ -311,10 +311,6 @@ body:after {
 .homeSection5FooterActivities {
     margin-top: 20px;
     line-height: 40px;
-}
-
-.CasaActivityLink {
-    color: #888888;
 }
 
 .t-end {
@@ -945,3 +941,443 @@ body:after {
     color: black!important;
     cursor: default !important;
 }
+
+.p-l-80 {
+    padding-left: 80px;
+}
+
+.translateY {
+    transform: translateY(1px);
+}
+
+.homepage-background-color {
+    background-color: #435f71;
+}
+
+.home-section {
+    height: auto;
+    padding-bottom: 0px;
+    background-size: cover;
+}
+
+.navbar-element {
+    background-color: white;
+}
+
+.home-navbar {
+    height: 50px;
+    padding: 8px 0px 8px 0px;
+    top: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    background-color: white;
+    box-shadow: 1px 0px 3px black;
+    z-index: 2;
+}
+
+.logo-img {
+    float: left;
+    width: 40px;
+    margin-top: -1px;
+    margin-right: 5px
+}
+
+.navbar-casavox {
+    font-size: 23px;
+    float: left;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    margin-top: 2px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.navbar-casa {
+    font-weight: 100;
+}
+
+.navbar-vox {
+    font-weight: 900;
+}
+
+.button-connexion {
+    float: right;
+    font-size: 13px;
+    margin-right: 19px;
+    line-height: 40px;
+    cursor: pointer;
+    height: 50px;
+    margin-top: -8px;
+    padding: 6px;
+    border-right: 1px lightgray solid;
+    border-left: 1px lightgray solid;
+    transition: 0.2s;
+    padding-right: 19px;
+    padding-left: 19px;
+}
+
+.button-connexion:hover {
+    background-color: lightblue;
+    color: white;
+}
+
+.button-pro-connexion {
+    float: right;
+    font-size: 13px;
+    margin-right: 19px;
+    line-height: 40px;
+    cursor: pointer;
+    height: 50px;
+    margin-top: -8px;
+    padding: 6px;
+    border-right: 1px lightgray solid;
+    border-left: 1px lightgray solid;
+    transition: 0.2s;
+    padding-right: 19px;
+    padding-left: 19px;
+}
+
+.button-pro-connexion:hover {
+    background-color: orange;
+    color: white !important;
+}
+
+
+
+.button-pro-access {
+    float: right;
+    height: 35px;
+    font-size: 12px;
+    border: solid orange 1px;
+    border-radius: 4px;
+    padding-top: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-right: 19px;
+}
+
+.button-pro-access:hover {
+    color: white !important;
+    background-color: orange;
+}
+
+.button-cust-access {
+    float: right;
+    height: 35px;
+    font-size: 12px;
+    border: solid lightblue 1px;
+    border-radius: 4px;
+    padding-top: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-right: 19px;
+}
+
+.button-cust-access:hover {
+    color: white !important;
+    background-color: lightblue;
+}
+
+.animation-and-background-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    background: linear-gradient(rgba(4, 28, 36, 0.30), rgba(4, 28, 36, 0.30)), url('../../../img/CasaVox_homeMain2.jpeg') no-repeat center;
+    background-size: cover;
+    color: white;
+}
+
+.animedTitle {
+    margin-top: 140px;
+    font-size: 50px;
+    line-height: 1.2;
+    text-align: justify;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-weight: bold;
+}
+
+.animedSubtitle {
+    margin-top: 45px;
+    font-size: 26px;
+    text-align: left;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 60px;
+}
+
+.button-find-pro {
+    margin-bottom: 140px !important;
+}
+
+.find-my-pro {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 100;
+    font-size: 30px;
+}
+
+.circles-section {
+    margin-bottom: 100px;
+}
+
+.chart {
+    position: relative;
+    display: inline-block;
+    margin-top: 65px;
+    color: #03a9f4;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+canvas {
+    position: absolute;
+    color: darkgreen;
+    margin-top: -20px;
+    margin-left: -74px;
+}
+
+.arrow-to-right {
+    position: absolute;
+    right: -16px;
+    top: 7px;
+}
+
+.subtext-circle {
+    padding-left: 6px;
+    padding-right: 6px;
+    position: absolute;
+    top: 90px;
+    font-size: 12px;
+}
+
+.center-forced {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.service-box {
+    border-radius: 5px;
+    padding-bottom: 5px !important;
+}
+
+.icon-service {
+    padding: 10px 7px 10px 7px;
+    margin: 15px;
+    border-radius: 5px;
+    font-size: 40px;
+}
+
+.euro-icon-service {
+    font-size: 40px;
+    font-weight: 500;
+    padding-left: 15px;
+    padding-right: 14px;
+    margin-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+}
+
+.img-devices-service {
+    padding: 13px 8px 13px 8px;
+    border-radius: 7px;
+    width: 50px;
+}
+
+.historic-service {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.help-text {
+    text-align: center;
+    background-color: #487890;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 15px 0px 15px 0px;
+}
+
+.section-pro {
+    background-color: white;
+    height: auto;
+    padding-top: 79px;
+    padding-bottom: 74px;
+    text-align: center;
+}
+
+.section-pro-description {
+    margin-top: 11px;
+    font-size: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.section-pro-button {
+    font-size: 15px;
+    margin-top: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.section-pro-title {
+    font-size: 25px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.home-footer {
+    height: auto;
+    background-color: white;
+    color: black;
+}
+
+.footer-activity-text {
+    color: white;
+    font-weight: 500;
+    font-size: 17px;
+    margin-left: 57px;
+}
+
+.footer-activity-link {
+    color: white;
+    line-height: 15px;
+    text-decoration: underline;
+}
+
+.footer-social-link {
+    height: auto;
+    color: white;
+    text-align: center;
+}
+
+@media (min-width: 993px) {
+    .objectives-title {
+        font-size: 18px;
+        color: #5e5e5e !important;
+        height: 75px !important;
+        min-height: auto !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer-activity-text {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 768px) {
+    .objectives-title {
+        min-height: 100px;
+        max-height: 130px;
+    }
+
+    .animedTitle {
+        padding-left: 50px !important;
+    }
+
+    .animedSubtitle {
+        padding-left: 50px !important;
+    }
+
+}
+
+@media (max-width: 399px) {
+    .navbar-casavox {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-casavox {
+        font-size: 21px;
+    }
+
+    .animation-and-background-image {
+        margin-top: 44px;
+        max-height: 445px;
+    }
+
+    .animedTitle {
+        font-size: 1.7em;
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .animedSubtitle {
+        font-size: 17px;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 45px;
+    }
+
+    .button-find-pro {
+        font-size: 14px;
+        margin-bottom: 40px !important;
+    }
+
+    .network-and-communication-text {
+        margin-bottom: 15px;
+    }
+
+    .objectives-title {
+        margin-bottom: 15px;
+    }
+
+    .footer-activity-text {
+        text-align: center;
+    }
+
+    .footer-activity-link {
+        line-height: 20px;
+    }
+
+    .footer-activity-column {
+        text-align: center;
+    }
+
+    .find-my-pro {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    .arrow-to-right {
+        display: none;
+    }
+
+    .subtext-circle {
+        width:100%
+    }
+
+    .circle-1-m-b {
+        margin-bottom: 25px;
+    }
+
+    .circle-2-m-b {
+        margin-bottom: 40px;
+    }
+
+    .circle-3-m-b {
+        margin-bottom: 55px;
+    }
+
+    .service-mobile-bottom {
+        padding-bottom: 15px;
+    }
+
+}
+
+
