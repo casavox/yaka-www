@@ -1,12 +1,12 @@
 <div class="yakaEllipsis c-white bgm-tag-community-city d-block p-5 m-b-5"
-     data-ng-if="community.type && community.type == 'PROFILE_CITY'">
+     data-ng-if="community.type && community.type == 'PROFILE_CITY' && community.name">
     <span data-ng-if="community.neighborhood">{{community.neighborhood}} - </span>{{community.address.locality}}
 </div>
 <div class="yakaEllipsis c-white bgm-tag-community-job d-block p-5 m-b-5"
-     data-ng-if="community.type && community.type == 'JOB'">
+     data-ng-if="community.type && community.type == 'JOB' && community.name">
     {{community.name}} - {{community.address.locality}}
 </div>
 <div class="yakaEllipsis c-white bgm-tag-community-other d-block p-5 m-b-5"
-     data-ng-if="community.type && community.type == 'OTHER'">
+     data-ng-if="community.type && community.type == 'OTHER' && community.name">
     {{community.name}} - {{community.address.locality}}
 </div>

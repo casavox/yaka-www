@@ -10,6 +10,10 @@
     line-height: 30px;
 }
 
+.refused-background-color {
+    background-color: #f1f1f1;
+}
+
 .job-community-tag {
     margin: 1px;
     line-height: 10px;
