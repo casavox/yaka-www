@@ -383,7 +383,7 @@
 
                 if (!screenSize.is('xs')) { //Desktop
                     $scope.$watch(function () {
-                        return $('.chart1').isOnScreen();
+                        return $('.chart1 div').isOnScreen();
                     }, function (newValue, oldValue) {
                         if (newValue && !pieChartsShown) {
                             pieChartsShown = true;
@@ -392,7 +392,7 @@
                     });
                 } else {  //Mobile
                     $scope.$watch(function () {
-                        return $('.chart1').isOnScreen();
+                        return $('.chart1 div').isOnScreen();
                     }, function (newValue, oldValue) {
                         if (newValue && !pieChartsShown1) {
                             pieChartsShown1 = true;
@@ -401,7 +401,7 @@
                     });
 
                     $scope.$watch(function () {
-                        return $('.chart2').isOnScreen();
+                        return $('.chart2 div').isOnScreen();
                     }, function (newValue, oldValue) {
                         if (newValue && !pieChartsShown2) {
                             pieChartsShown2 = true;
@@ -410,7 +410,7 @@
                     });
 
                     $scope.$watch(function () {
-                        return $('.chart3').isOnScreen();
+                        return $('.chart3 div').isOnScreen();
                     }, function (newValue, oldValue) {
                         if (newValue && !pieChartsShown3) {
                             pieChartsShown3 = true;
@@ -418,7 +418,7 @@
                         }
                     });
                     $scope.$watch(function () {
-                        return $('.chart4').isOnScreen();
+                        return $('.chart4 div').isOnScreen();
                     }, function (newValue, oldValue) {
                         if (newValue && !pieChartsShown4) {
                             pieChartsShown4 = true;
