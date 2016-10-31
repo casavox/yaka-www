@@ -214,11 +214,13 @@
                                             <div>
                                                 <small class="lv-small  subtitle-color-forced"
                                                        data-ng-show="vm.project.proposal.price">
-                                                    Estimation actuelle <strong class="c-darkgray">{{vm.project.proposal.price}} €</strong>
+                                                    Estimation actuelle <strong class="c-darkgray">{{vm.project.proposal.price}}
+                                                    €</strong>
                                                 </small>
                                                 <small class="lv-small  subtitle-color-forced"
                                                        data-ng-show="vm.project.proposal.startDate">
-                                                    Disponible à partir du <strong class="c-darkgray">{{vm.project.proposal.startDate | date:'d MMMM'}}</strong>
+                                                    Disponible à partir du <strong class="c-darkgray">{{vm.project.proposal.startDate
+                                                    | date:'d MMMM'}}</strong>
                                                 </small>
                                             </div>
                                         </div>
@@ -281,14 +283,23 @@
                                      data-ng-repeat="p in vm.project.proposals"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div data-ng-if="p.firstRecommendation">
-                                            <casa-name-and-contact
-                                                user="p.firstRecommendation.recommender"></casa-name-and-contact>
-                                            <span data-ng-if="p.recommendations && p.recommendations.length > 1">
-                                                        + {{p.recommendations.length - 1}} autre
-                                                <span
-                                                    data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
-                                            </span>
-                                            <span class=" subtitle-color-forced">vous recommande :</span>
+                                            <span class=" subtitle-color-forced">
+                                                        Recommandé par
+                                                    </span>
+                                        <casa-name-and-contact
+                                            user="p.firstRecommendation.recommender"></casa-name-and-contact>
+                                        <span
+                                            data-ng-if="p.recommendations && p.recommendations.length > 1">
+                                                        + {{p.recommendations.length - 1}} autre<span
+                                            data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
+                                                    </span>
+                                        <div class="m-t-5 clearfix">
+                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                community="community"
+                                                                ng-repeat="community in p.firstRecommendation.recommender.communities"
+                                                                data-ng-if="community.name">
+                                            </casa-community-tag>
+                                        </div>
                                     </div>
                                     <div class="media m-t-5">
                                         <div class="pull-left">
@@ -357,11 +368,13 @@
                                                     data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
                                                     <small class="lv-small  subtitle-color-forced"
                                                            data-ng-show="p.price">
-                                                        Estimation actuelle <strong class="c-darkgray">{{p.price}} €</strong>
+                                                        Estimation actuelle <strong class="c-darkgray">{{p.price}}
+                                                        €</strong>
                                                     </small>
                                                     <small class="lv-small  subtitle-color-forced"
                                                            data-ng-show="p.startDate">
-                                                        Disponible à partir du <strong class="c-darkgray">{{p.startDate | date:'d MMMM'}}</strong>
+                                                        Disponible à partir du <strong class="c-darkgray">{{p.startDate
+                                                        | date:'d MMMM'}}</strong>
                                                     </small>
                                                 </div>
                                                 <div
@@ -376,7 +389,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="clearfix p-r-0">
+                                        <div class="clearfix p-r-0 p-l-50">
                                             <div class="col-xs-7 col-sm-6 col-md-6 c-lightblue m-t-5 no-padding"
                                                  data-ng-if="p.unreadMessages">
                                                 <div class="no-padding">
@@ -386,14 +399,13 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="pull-right m-t-5 textAlignRightFullDesktop">
-                                            <small class=" subtitle-color-forced text-ago">
-                                                <span am-time-ago="p.updated"></span>
-                                            </small>
+                                            <div class="pull-right m-t-5 textAlignRightFullDesktop">
+                                                <small class=" subtitle-color-forced text-ago">
+                                                    <span am-time-ago="p.updated"></span>
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
-                                    <hr class="m-t-5">
                                 </div>
                             </div>
                         </div>
@@ -423,6 +435,9 @@
                                      data-ng-repeat="p in vm.project.recoProposals"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div>
+                                         <span class=" subtitle-color-forced">
+                                                        Recommandé par
+                                                    </span>
                                         <casa-name-and-contact
                                             user="p.firstRecommendation.recommender"></casa-name-and-contact>
                                         <span
@@ -430,9 +445,14 @@
                                                         + {{p.recommendations.length - 1}} autre<span
                                             data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
                                                     </span>
-                                        <span class=" subtitle-color-forced">
-                                                        vous recommande :
-                                                    </span>
+                                        <div class="m-t-5 clearfix">
+                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                community="community"
+                                                                ng-repeat="community in p.firstRecommendation.recommender.communities"
+                                                                data-ng-if="community.name">
+                                            </casa-community-tag>
+                                        </div>
+
                                     </div>
                                     <div class="media">
                                         <div class="pull-left">
@@ -443,31 +463,32 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="pull-left">
-                                                <div class="lv-title">
-                                                    {{p.professional.user.firstName}}
-                                                    {{p.professional.user.lastName}}
+                                                <div class="lv-title col-xs-12 p-l-0">
+                                                    <span>
+                                                        {{p.professional.user.firstName}} {{p.professional.user.lastName}}
+                                                        <div class="col-xs-12 p-l-0">
+                                                        <casa-community-tag
+                                                            class="recommend-pro-community-tag pull-left"
+                                                            community="community"
+                                                            ng-repeat="community in p.professional.user.communities">
+                                                        </casa-community-tag>
+                                                        </div>
+                                                    </span>
                                                 </div>
-                                            </div>
-                                            <div class="m-t-5">
-                                                <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                    community="community"
-                                                                    ng-repeat="community in p.professional.user.communities">
-                                                </casa-community-tag>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 clearfix p-r-0">
-                                            <div class="col-xs-10 c-lightblue no-padding"
-                                                 data-ng-if="p.unreadMessages">
-                                                <div class="no-padding">
-                                                    <b class="l-h-30">Nouveau Message</b>
-                                                    <button class="btn btn-xs bgm-orange c-white m-b-1">PRO</button>
+                                                <div class="col-xs-12 clearfix p-l-0 p-r-0">
+                                                    <div class="col-xs-10 c-lightblue no-padding"
+                                                         data-ng-if="p.unreadMessages">
+                                                        <div class="no-padding">
+                                                            <b class="l-h-30">Nouveau Message</b>
+                                                            <button class="btn btn-xs bgm-orange c-white m-b-1">PRO</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pull-right textAlignRightFullDesktop">
+                                                        <small class=" subtitle-color-forced text-ago">
+                                                            <span am-time-ago="p.updated"></span>
+                                                        </small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="pull-right textAlignRightFullDesktop">
-                                                <small class=" subtitle-color-forced text-ago">
-                                                    <span am-time-ago="p.updated"></span>
-                                                </small>
                                             </div>
                                         </div>
                                     </div>
