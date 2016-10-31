@@ -277,10 +277,16 @@
                                         Utilisez le bouche-à-oreille CasaVox
                                     </a>
                                 </div>
-                                <div class="lv-item pointer proposal-padding-bottom" href=""
+                                <div class="lv-item pointer border-bottom-lightgray" href=""
                                      data-ng-repeat="p in vm.project.proposals"
+                                     data-ng-class="{'refused-background-color' : p.status == 'CUSTOMER_DECLINED' ||
+                                     p.status == 'PRO_DECLINED' ||
+                                     p.status == 'RECO_CUSTOMER_DECLINED'}"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div data-ng-if="p.firstRecommendation">
+                                        <span class=" subtitle-color-forced">
+                                                        Recommandé par
+                                                    </span>
                                         <casa-name-and-contact
                                             user="p.firstRecommendation.recommender"></casa-name-and-contact>
                                         <span
@@ -288,11 +294,17 @@
                                                         + {{p.recommendations.length - 1}} autre<span
                                             data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
                                                     </span>
-                                        <span class=" subtitle-color-forced">
-                                                        vous recommande :
-                                                    </span>
+                                        <div class="m-t-5 clearfix">
+                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                community="community"
+                                                                ng-repeat="community in p.firstRecommendation.recommender.communities"
+                                                                data-ng-if="community.name">
+                                            </casa-community-tag>
+                                        </div>
+
+
                                     </div>
-                                    <div class="media">
+                                    <div class="media m-t-20">
                                         <div class="pull-left">
                                             <div class="p-relative">
                                                 <yaka-avatar size="35"
@@ -336,7 +348,7 @@
                                                         </p>
                                                     </div>
                                                     <div class=" subtitle-color-forced m-t-0 m-b-0"
-                                                         data-ng-if="p.status == 'RECO_PRO_DECLINED'">
+                                                         data-ng-if="p.status == c">
                                                         <p class="m-b-0"><strong>Annulée par le Pro</strong></p>
 
                                                         <p class="m-b-0">
@@ -389,11 +401,11 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="pull-right m-t-10 textAlignRightFullDesktop">
-                                            <small class=" subtitle-color-forced text-ago">
-                                                <span am-time-ago="p.updated"></span>
-                                            </small>
+                                            <div class="pull-right m-t-10 textAlignRightFullDesktop">
+                                                <small class=" subtitle-color-forced text-ago">
+                                                    <span am-time-ago="p.updated"></span>
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>
@@ -422,10 +434,14 @@
                                         Utilisez le bouche-à-oreille CasaVox
                                     </a>
                                 </div>
-                                <div class="lv-item proposal-padding-bottom pointer" href=""
+                                <div class="lv-item pointer border-bottom-lightgray" href=""
                                      data-ng-repeat="p in vm.project.recoProposals"
+                                     data-ng-class="{'refused-background-color' : p.status == 'RECO_CUSTOMER_DECLINED' || p.status == 'RECO_PRO_DECLINED'}"
                                      data-ng-click="vm.selectProposal(p)">
-                                    <div>
+                                    <div class="clearfix">
+                                        <span class=" subtitle-color-forced">
+                                                        Recommandé par
+                                                    </span>
                                         <casa-name-and-contact
                                             user="p.firstRecommendation.recommender"></casa-name-and-contact>
                                         <span
@@ -433,9 +449,14 @@
                                                         + {{p.recommendations.length - 1}} autre<span
                                             data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
                                                     </span>
-                                        <span class=" subtitle-color-forced">
-                                                        vous recommande :
-                                                    </span>
+
+                                        <div class="m-t-5">
+                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                                community="community"
+                                                                ng-repeat="community in p.professional.user.communities">
+                                            </casa-community-tag>
+                                        </div>
+
                                     </div>
                                     <div class="media">
                                         <div class="pull-left">
@@ -445,17 +466,11 @@
                                             </div>
                                         </div>
                                         <div class="media-body">
-                                            <div class="pull-left">
+                                            <div class="">
                                                 <div class="lv-title">
                                                     {{p.professional.user.firstName}}
                                                     {{p.professional.user.lastName}}
                                                 </div>
-                                            </div>
-                                            <div class="m-t-5">
-                                                <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                    community="community"
-                                                                    ng-repeat="community in p.professional.user.communities">
-                                                </casa-community-tag>
                                             </div>
                                         </div>
 
