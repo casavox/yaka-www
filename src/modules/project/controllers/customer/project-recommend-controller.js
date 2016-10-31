@@ -56,8 +56,7 @@
 
         vm.invitPro = {
             email: "",
-            firstName: "",
-            lastName: "",
+            name: "",
             phone: "",
             activities: [],
             address: {}
@@ -124,18 +123,10 @@
         });
 
         vm.formIsValid = function () {
-            vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
-            angular.forEach(vm.invitPro.activities, function (activity) {
-                activity.code = vm.multiChoiceInput.options[activity.id].label;
-                delete activity.id;
-            });
 
-            return (vm.invitPro.firstName &&
-                vm.invitPro.lastName &&
+            return (vm.invitPro.name &&
                 vm.invitPro.email &&
-                vm.invitPro.activities.length > 0 &&
-                vm.invitPro.relation &&
-                vm.invitPro.address.address
+                vm.invitPro.relation
             );
         };
 
@@ -143,8 +134,7 @@
             networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
                 vm.invitPro = {
                     email: "",
-                    firstName: "",
-                    lastName: "",
+                    name: "",
                     phone: "",
                     activities: [],
                     address: {}
@@ -212,5 +202,15 @@
             var element = document.getElementById('pro');
             smoothScroll(element, scrollOptions);
         };
+
+        console.log($localStorage.user);
+
+        vm.optionSelected = function() {
+            if ($localStorage.user.professional) {
+                return 'COLLEAGUE';
+            } else {
+                return 'CLIENT';
+            }
+        }
     }
 })();

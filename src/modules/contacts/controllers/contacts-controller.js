@@ -224,7 +224,7 @@
 
         vm.invitPro = {
             email: "",
-            lastName: "",
+            name: "",
             phone: "",
             address: {}
         };
@@ -237,8 +237,7 @@
             vm.closeProPopup();
             vm.invitPro = {
                 email: "",
-                firstName: "",
-                lastName: "",
+                name: "",
                 phone: "",
                 activities: [],
                 address: {}
@@ -382,7 +381,7 @@
         }
 
         vm.formIsValid = function () {
-            if (vm.invitPro.lastName == '' || !vm.isNameValid(vm.invitPro.lastName) ||
+            if (vm.invitPro.name == '' || !vm.isNameValid(vm.invitPro.name) ||
                 vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) ||
                 !vm.invitPro.relation
             ) {
