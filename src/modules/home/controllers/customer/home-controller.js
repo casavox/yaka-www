@@ -369,9 +369,19 @@
             var pieChartsShown3 = false;
             var pieChartsShown4 = false;
 
-            // Desktop
-            $(window).load(function () {
-                if (!screenSize.is('xs')) {
+
+            $scope.$watch(function () {
+                return document.readyState
+            }, function (newValue, oldValue) {
+                if (newValue == "complete") {
+                    animateCircles();
+                }
+            });
+
+
+            function animateCircles() {
+
+                if (!screenSize.is('xs')) { //Desktop
                     $scope.$watch(function () {
                         return $('.chart1').isOnScreen();
                     }, function (newValue, oldValue) {
@@ -380,7 +390,7 @@
                             showPieCharts();
                         }
                     });
-                } else {
+                } else {  //Mobile
                     $scope.$watch(function () {
                         return $('.chart1').isOnScreen();
                     }, function (newValue, oldValue) {
@@ -416,7 +426,7 @@
                         }
                     });
                 }
-            });
+            }
 
         });
 
