@@ -527,10 +527,17 @@
         </div>
         <div class="col-xs-12 card-body m-t-15">
             <div>
-                <h2 class="community-h2 d-block">
+                <h2 class="community-h2 pull-left communityTitleWithButton">
                     <i class="zmdi zmdi-account-circle c-teal m-r-5"></i> Mes voisins<br>
                     <small class="m-l-25">Ville et quartier principal</small>
                 </h2>
+                <span class="waves-effect pull-right m-t-5"
+                      tooltip-placement="left"
+                      uib-tooltip="Supprimer cette communauté">
+                    <img class="invitRefuse m-t-0"
+                         src="icons/mdpi/ic_refuse_invitation.png"
+                         data-ng-click="vm.getCommunityByType('PROFILE_CITY').name = ''; vm.getCommunityByType('PROFILE_CITY').address.address = ''"/>
+                </span>
             </div>
 
             <div class="col-xs-12 card-body m-l-10">
@@ -575,33 +582,23 @@
         </div>
         <div class="col-xs-12 card-body m-t-15">
             <div>
-                <h2 class="community-h2 pull-left communityTitleWithButton">
+                <h2 class="community-h2 pull-left">
                     <i class="zmdi zmdi-account-circle c-indigo m-r-5"></i> Mes collègues<br>
                     <small class="m-l-25">Nom et ville de mon entreprise</small>
                 </h2>
-                <span class="waves-effect pull-right m-t-5"
-                      tooltip-placement="left"
-                      uib-tooltip="Supprimer cette communauté"
-                      data-ng-if="!vm.profile.company.name">
-                    <img class="invitRefuse m-t-0"
-                         src="icons/mdpi/ic_refuse_invitation.png"
-                         data-ng-click="vm.getCommunityByType('JOB').name = ''; vm.getCommunityByType('JOB').address.address = ''"/>
-                </span>
             </div>
 
             <div class="col-xs-12 card-body m-l-10">
                 <div class="col-xs-12 card-body m-t-20 m-l-0  p-l-0 p-r-15">
                     <div class="form-group fg-float m-l-0 has-colleagues"
-                         data-ng-if="!vm.profile.company.name">
+                         data-ng-if="!vm.getCommunityByType('JOB').name">
                         <div class="fg-line c-orange text-justify">
                             Vous devez indiquer votre entreprise et son adresse dans le cadre <i>Informations
                             générales</i>
                         </div>
                     </div>
                     <casa-community-tag class="job-community-tag"
-                                        community="community"
-                                        data-ng-if="vm.profile.company.name && community.type == 'JOB'"
-                                        ng-repeat="community in vm.communities">
+                                        community="vm.getCommunityByType('JOB')">
                     </casa-community-tag>
                 </div>
             </div>
