@@ -43,6 +43,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 topViewProfile pointer" data-ng-if="!vm.project.activityCorrespond"
+                 ui-sref="pro-profile">
+                <div class="card bgm-gray c-white p-10">
+                    <b>Cette offre ne correspond pas à vos compétences</b></br>
+                    Vous pouvez la recommander à un collègue, ou
+                    <span class="c-white">
+                        <b><u>modifier votre profil</u></b>
+                    </span>
+                    pour pouvoir y répondre
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="block-header">
                     <h2>Recommander à</h2>
@@ -143,7 +154,8 @@
                                 </div>
 
 
-                                <div class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
+                                <div
+                                    class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
                                     <casa-community-tag class="recommend-pro-community-tag reco-community-float"
                                                         community="community"
                                                         ng-repeat="community in professional.user.communities">
@@ -479,7 +491,6 @@
                                     <label class="fg-label">Ville</label>
                                 </div>
                             </div>
-
 
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30">
