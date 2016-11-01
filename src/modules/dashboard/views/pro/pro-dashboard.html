@@ -264,23 +264,26 @@
                 <div data-ng-repeat="project in vm.networkProjects">
                     <div class="card pointer proNetworkProject"
                          data-ng-click="vm.networkProjectClicked(project)">
-                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="project.recoProposals">
+                        <div class="card-header p-t-10 p-b-10 ch-alt bgm-lightblue c-white"
+                             data-ng-if="project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.recoProposals[0].firstRecommendation.recommender"
                                          size="45"></yaka-avatar>
 
                             <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
-                                <casa-name-and-contact
-                                    user="project.recoProposals[0].firstRecommendation.recommender"></casa-name-and-contact>
-                                vous a recommandé
+                                <span class="fw-bold">
+                                    <casa-name-and-contact icon-color="c-white"
+                                                       user="project.recoProposals[0].firstRecommendation.recommender">
+                                    </casa-name-and-contact>
+                                    vous a recommandé
                                 </span>
                                 <span
-                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs"
+                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs c-white"
                                     am-time-ago="project.updated"></span>
 
                                 <small
-                                    class="c-gray-dark"
+                                    class="c-white"
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
                                     + {{project.recoProposals[0].recommendations.length - 1}} autre<span
                                     data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
@@ -299,7 +302,7 @@
 
                             <div class="col-xs-12">
                                 <span
-                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs"
+                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs c-white"
                                     am-time-ago="project.updated"></span>
                             </div>
 
