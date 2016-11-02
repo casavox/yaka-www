@@ -283,23 +283,17 @@
                                      data-ng-repeat="p in vm.project.proposals"
                                      data-ng-click="vm.selectProposal(p)">
                                     <div data-ng-if="p.firstRecommendation">
-                                            <span class=" subtitle-color-forced">
-                                                        Recommandé par
-                                                    </span>
                                         <casa-name-and-contact
                                             user="p.firstRecommendation.recommender"></casa-name-and-contact>
-                                        <span
-                                            data-ng-if="p.recommendations && p.recommendations.length > 1">
-                                                        + {{p.recommendations.length - 1}} autre<span
-                                            data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
-                                                    </span>
-                                        <div class="m-t-5 clearfix">
-                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                community="community"
-                                                                ng-repeat="community in p.firstRecommendation.recommender.communities"
-                                                                data-ng-if="community.name">
-                                            </casa-community-tag>
-                                        </div>
+                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1">
+                                                        + {{p.recommendations.length - 1}} autre
+                                        </span>
+                                        <span data-ng-if="p.recommendations && p.recommendations.length > 2">s
+                                        </span>
+                                        <span data-ng-if="p.recommendations && p.recommendations.length < 1"
+                                              class=" subtitle-color-forced">vous recommande :</span>
+                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1"
+                                              class=" subtitle-color-forced">vous recommandent :</span>
                                     </div>
                                     <div class="media m-t-5">
                                         <div class="pull-left">
@@ -445,14 +439,11 @@
                                                         + {{p.recommendations.length - 1}} autre<span
                                             data-ng-if="p.recommendations && p.recommendations.length > 2">s</span>
                                                     </span>
-                                        <div class="m-t-5 clearfix">
-                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                community="community"
-                                                                ng-repeat="community in p.firstRecommendation.recommender.communities"
-                                                                data-ng-if="community.name">
-                                            </casa-community-tag>
-                                        </div>
 
+                                        <span data-ng-if="p.recommendations && p.recommendations.length < 1"
+                                              class=" subtitle-color-forced">vous recommande :</span>
+                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1"
+                                              class=" subtitle-color-forced">vous recommandent :</span>
                                     </div>
                                     <div class="media">
                                         <div class="pull-left">

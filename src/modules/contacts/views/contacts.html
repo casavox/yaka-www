@@ -34,7 +34,10 @@
                             Inscrit depuis le 12 Aout 2016
                         </div>
                         <div>
-                            <a data-ui-sref="profile"><u>Modifier</u></a>
+                            <a data-ng-if="app.isPro()"
+                               data-ui-sref="pro-profile"><u>Modifier</u></a>
+                            <a data-ng-if="!app.isPro()"
+                               data-ui-sref="profile"><u>Modifier</u></a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-5 p-r-0 d-block contact-communities-tag t-align-tags">
