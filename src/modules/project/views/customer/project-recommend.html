@@ -489,6 +489,9 @@
                                            placeholder=""
                                            id="address">
                                     <label class="fg-label">Ville</label>
+                                    <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                                        Veuillez saisir la ville, puis la sélectionner dans la liste
+                                    </small>
                                 </div>
                             </div>
 
@@ -577,7 +580,10 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Localité</label>
+                        <label class="fg-label">Ville</label>
+                        <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                            Veuillez saisir la ville, puis la sélectionner dans la liste
+                        </small>
                     </div>
                 </div>
 

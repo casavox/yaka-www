@@ -57,7 +57,7 @@
                         {{ project.compatibleNotValidatedProsNumber }}
                     </td>
                     <td data-title="'Last unread message'" filter="{custProLastUnreadMessage: 'text'}" data-sortable="'compatibleNotValidatedProsNumber'">
-                        {{ project.custProLastUnreadMessage }} aa
+                        {{ project.lastUnreadMessagesDate | date:"dd/MM/yyyy" }}
                     </td>
                 </tr>
             </table>

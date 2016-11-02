@@ -1,3 +1,39 @@
+.row-button-find-pro {
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.invitationNumber {
+    font-weight: bold;
+}
+
+.left-col-width {
+    width: 100px;
+}
+
+.add-community {
+    margin-left: 50%;
+    transform: translateX(-50%) translateY(-34px);
+    width: 31px;
+    height: 31px;
+    /* border-radius: 50%; */
+    color: white;
+    font-size: 28px;
+    background-color: #524e4e;
+    text-align: center;
+    line-height: 28px;
+}
+
+.community-height {
+    height: 32px;
+}
+
+.tag-community {
+    width: 100%;
+    text-align: center;
+    border-radius: 0px;
+}
+
 ul.yaka-chips li {
     line-height: 14px !important;
 }
@@ -150,5 +186,10 @@ ul.yaka-chips li {
         position: absolute !important;
         left: 90px !important;
         top: 25px !important;
+    }
+
+    .left-col-width {
+        width: 100%;
+        padding-right: 0px !important;
     }
 }

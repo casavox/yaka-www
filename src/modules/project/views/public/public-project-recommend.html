@@ -142,6 +142,9 @@
                                                placeholder=""
                                                id="address">
                                         <label class="fg-label">Ville</label>
+                                        <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                                            Veuillez saisir la ville, puis la sélectionner dans la liste
+                                        </small>
                                     </div>
                                 </div>
 
@@ -266,6 +269,9 @@
                                                    placeholder=""
                                                    id="address">
                                             <label class="fg-label">Ville</label>
+                                            <small class="help-block c-red" data-ng-if="!vm.newUser.defaultAddress.address">
+                                                Veuillez saisir la ville, puis la sélectionner dans la liste
+                                            </small>
                                         </div>
                                     </div>
 
