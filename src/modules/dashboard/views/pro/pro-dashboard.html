@@ -264,7 +264,7 @@
                 <div data-ng-repeat="project in vm.networkProjects">
                     <div class="card pointer proNetworkProject"
                          data-ng-click="vm.networkProjectClicked(project)">
-                        <div class="card-header p-t-10 p-b-10 ch-alt bgm-lightblue c-white"
+                        <div class="card-header p-t-5 p-b-5 ch-alt bgm-lightblue c-white"
                              data-ng-if="project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
@@ -279,7 +279,6 @@
                                                                user="project.recoProposals[0].firstRecommendation.recommender">
                                         </casa-name-and-contact>
                                     </span>
-
                                     <span
                                         class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs c-white"
                                         am-time-ago="project.updated"></span>
@@ -292,9 +291,9 @@
                                     </casa-community-tag>
                                 </div>
 
-                                <div>
-                                    <small class="c-white m-l-5"
-                                           data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
+                                <div class="m-t-M5 pull-left">
+                                    <span class="c-white m-l-5"
+                                          data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
                                         + {{project.recoProposals[0].recommendations.length - 1}} autre
                                         <span
                                             data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s
@@ -303,19 +302,18 @@
                                         <span
                                             data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s
                                         </span>
-                                    </small>
-                                    <div class="m-b-5 visible-xs"></div>
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <span
-                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs c-white"
+                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5 c-white"
                                     am-time-ago="project.updated"></span>
                             </div>
 
                             <div class="m-t-10 visible-xs"></div>
                         </div>
-                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="!project.recoProposals">
+                        <div class="card-header p-t-5 p-b-5 ch-alt" data-ng-if="!project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.user"
@@ -337,12 +335,10 @@
                                 </div>
                                 <div class="col-xs-12">
                                     <span
-                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs"
+                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5"
                                         am-time-ago="project.updated"></span>
                                 </div>
                             </h2>
-
-                            <div class="m-t-10 visible-xs"></div>
                         </div>
                         <div class="card-body p-t-10 p-b-10 p-l-15 p-r-10 p-relative">
                             <div
