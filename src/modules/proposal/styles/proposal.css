@@ -347,9 +347,8 @@
     }
 
     .proposalMainView yaka-chat .lv-footer {
-        height: 65px !important;
+        height: 55px !important;
         position: absolute;
-        bottom: 0;
         left: 0;
         right: 0;
     }
@@ -359,11 +358,11 @@
     }
 
     .proposalMainView yaka-chat .lv-body {
-        height: calc(100% - 55px);
+        height: calc(100% - 40px);
     }
 
     .proposalMainView yaka-chat .ms-reply textarea {
-        height: 64px;
+        height: 54px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
