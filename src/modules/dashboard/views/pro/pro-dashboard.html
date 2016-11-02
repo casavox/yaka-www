@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+        xmlns="http://www.w3.org/1999/html"></header>
 
 <section id="main">
 
@@ -264,48 +264,56 @@
                 <div data-ng-repeat="project in vm.networkProjects">
                     <div class="card pointer proNetworkProject"
                          data-ng-click="vm.networkProjectClicked(project)">
-                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="project.recoProposals">
+                        <div class="card-header p-t-5 p-b-5 ch-alt bgm-lightblue c-white"
+                             data-ng-if="project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.recoProposals[0].firstRecommendation.recommender"
                                          size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
-                                <casa-name-and-contact
-                                    user="project.recoProposals[0].firstRecommendation.recommender"></casa-name-and-contact>
-                                vous a recommandé
-                                </span>
-                                <span
-                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs"
-                                    am-time-ago="project.updated"></span>
+                            <div class="d-i-b v-align-middle proNetworkProjectTitle">
 
-                                <small
-                                    class="c-gray-dark"
-                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
-                                    + {{project.recoProposals[0].recommendations.length - 1}} autre<span
-                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
+                                <h2 class="m-l-5 f-s-14 clearfix">
+                                    <span class="f-400 pull-left">Vous êtes recommandé par
+                                        <casa-name-and-contact icon-color="c-white"
+                                                               user="project.recoProposals[0].firstRecommendation.recommender">
+                                        </casa-name-and-contact>
                                     </span>
-                                    personne<span
-                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
-                                    </span>
-                                </small>
-                                <div class="casa-tag-list">
+                                    <span
+                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs c-white"
+                                        am-time-ago="project.updated"></span>
+                                </h2>
+
+                                <div class="casa-tag-list m-l-5 clearfix">
                                     <casa-community-tag class="dashboard-community-tag"
                                                         community="community"
                                                         ng-repeat="community in project.recoProposals[0].firstRecommendation.recommender.communities">
                                     </casa-community-tag>
                                 </div>
-                            </h2>
 
+                                <div class="m-t-M5 pull-left">
+                                    <span class="c-white m-l-5"
+                                          data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
+                                        + {{project.recoProposals[0].recommendations.length - 1}} autre
+                                        <span
+                                            data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s
+                                        </span>
+                                            personne
+                                        <span
+                                            data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
                             <div class="col-xs-12">
                                 <span
-                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs"
+                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5 c-white"
                                     am-time-ago="project.updated"></span>
                             </div>
 
                             <div class="m-t-10 visible-xs"></div>
                         </div>
-                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="!project.recoProposals">
+                        <div class="card-header p-t-5 p-b-5 ch-alt" data-ng-if="!project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.user"
@@ -314,9 +322,7 @@
                             <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
                                 <div>
                                     <casa-name-and-contact user="project.user"></casa-name-and-contact>
-                                    <span class="c-gray-dark">
                                     a un nouveau chantier
-                                    </span>
                                     <span
                                         class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs"
                                         am-time-ago="project.updated"></span>
@@ -329,12 +335,10 @@
                                 </div>
                                 <div class="col-xs-12">
                                     <span
-                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs"
+                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5"
                                         am-time-ago="project.updated"></span>
                                 </div>
                             </h2>
-
-                            <div class="m-t-10 visible-xs"></div>
                         </div>
                         <div class="card-body p-t-10 p-b-10 p-l-15 p-r-10 p-relative">
                             <div
@@ -513,8 +517,8 @@
                             S'aider entre collègues est toujours payant !
                             <br>Invitez et recommandez vos collègues, ils le sauront et feront pareil pour vous !
                             <br>
-                            <a data-ui-sref="contacts">
-                                Utiliser le bouche-à-oreille CasaVox
+                            <a data-ui-sref="contacts" class="underline">
+                                Utilisez le bouche-à-oreille CasaVox
                             </a>
                         </div>
 

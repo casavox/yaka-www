@@ -56,14 +56,10 @@
                 !vm.profileInfo.activityStartedYear || //
                 !vm.profileInfo.company.name || //
                 !vm.profileInfo.company.siret || //
+                !vm.profileInfo.company.address || //
                 !vm.profileInfo.company.address.address) {
 
                 f = true;
-            }
-            if (vm.profile.company.name) {
-                vm.getCommunityByType('JOB').name = vm.profile.company.name;
-                vm.getCommunityByType('JOB').address.address = vm.profile.company.address.address;
-                vm.updateCommunities();
             }
             if (!f) {
                 vm.error.profile.flag = false;
@@ -1061,14 +1057,17 @@
         function successCommunitiesGET(res) {
             vm.communities = res;
             if (vm.getCommunityByType('PROFILE_CITY').name &&
+                vm.getCommunityByType('PROFILE_CITY').address &&
                 vm.getCommunityByType('PROFILE_CITY').address.address &&
                 vm.getCommunityByType('JOB').name &&
+                vm.getCommunityByType('JOB').address &&
                 vm.getCommunityByType('JOB').address.address &&
+                vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address &&
                 vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address) {
                 vm.hasCommunity = true;
             } else {
                 vm.hasCommunity = false;
-            };
+            }
         }
 
         vm.getCommunityByType = function (type) {

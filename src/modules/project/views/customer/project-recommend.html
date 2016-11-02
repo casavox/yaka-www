@@ -43,6 +43,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 topViewProfile pointer" data-ng-if="!vm.project.activityCorrespond"
+                 ui-sref="pro-profile">
+                <div class="card bgm-gray c-white p-10">
+                    <b>Cette offre ne correspond pas à vos compétences</b></br>
+                    Vous pouvez la recommander à un collègue, ou
+                    <span class="c-white">
+                        <b><u>modifier votre profil</u></b>
+                    </span>
+                    pour pouvoir y répondre
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="block-header">
                     <h2>Recommander à</h2>
@@ -143,7 +154,8 @@
                                 </div>
 
 
-                                <div class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
+                                <div
+                                    class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
                                     <casa-community-tag class="recommend-pro-community-tag reco-community-float"
                                                         community="community"
                                                         ng-repeat="community in professional.user.communities">
@@ -418,34 +430,18 @@
 
                     <div class="card-body card-padding clearfix">
                         <form name="inviteForm">
-                            <div class="col-xs-6 no-padding form-group fg-float m-b-10 halfInput"
-                                 data-ng-class="{'has-error': !vm.invitPro.firstName}">
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-15"
+                                 data-ng-class="{'has-error': !vm.invitPro.name}">
 
                                 <div class="fg-line">
-                                    <input type="text" name="firstName" class="form-control fg-input input-sm"
-                                           data-ng-model="vm.invitPro.firstName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()"
-                                           yaka-input-name>
-                                    <label class="fg-label">Prénom</label>
-                                </div>
-                                <div data-ng-messages="inviteForm.firstName.$error">
-                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
-                                        valide
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 no-padding form-group fg-float m-b-15 halfInput halfInputRight"
-                                 data-ng-class="{'has-error': !vm.invitPro.lastName}">
-
-                                <div class="fg-line">
-                                    <input type="text" name="lastName" class="form-control fg-input input-sm"
-                                           data-ng-model="vm.invitPro.lastName"
+                                    <input type="text" name="name" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.name"
                                            required="required" data-ng-disabled="vm.isSocialRegister()"
                                            yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
-                                <div data-ng-messages="inviteForm.lastName.$error">
+                                <div data-ng-messages="inviteForm.name.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
@@ -453,40 +449,16 @@
                             </div>
 
                             <div class="col-xs-12 no-padding select m-b-15">
-                                <select class="form-control c-red"
+                                <select class="form-control"
                                         onchange="this.className='form-control form-control-underline-ok'"
-                                        data-ng-model="vm.invitPro.relation">
+                                        data-ng-model="vm.invitPro.relation"
+                                        ng-init="vm.invitPro.relation = vm.optionSelected()">
                                     <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                                     <option value="CLIENT">Client</option>
                                     <option value="FRIEND">Ami</option>
                                     <option value="FAMILY">Famille</option>
                                     <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
                                 </select>
-                            </div>
-
-                            <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
-                                 data-ng-dropdown-multiselect=""
-                                 events="vm.updateMultiChoiceInputColor"
-                                 options="vm.multiChoiceInput.options"
-                                 selected-model="vm.multiChoiceInput.selected"
-                                 extra-settings="vm.multiChoiceInput.settings"
-                                 translation-texts="vm.multiChoiceInput.translation"
-                                 checkboxes="true"></div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.invitPro.address.address}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input input-sm"
-                                           vs-google-autocomplete="vm.autocomplete.options"
-                                           vs-autocomplete-validator
-                                           data-ng-model="vm.invitPro.address.address"
-                                           type="text"
-                                           name="address"
-                                           required="required"
-                                           placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Localité</label>
-                                </div>
                             </div>
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30"
@@ -504,6 +476,22 @@
                                     </small>
                                 </div>
                             </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.invitPro.address.address"
+                                           type="text"
+                                           name="address"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                            </div>
+
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30">
                                 <div class="fg-line">
@@ -550,32 +538,16 @@
             </div>
 
             <form name="inviteForm">
-                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput"
-                     data-ng-class="{'has-error': !vm.invitPro.firstName}">
+                <div class="col-xs-12 no-padding form-group fg-float m-t-15"
+                     data-ng-class="{'has-error': !vm.invitPro.name}">
 
                     <div class="fg-line">
-                        <input type="text" name="firstName" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.firstName"
-                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label">Prénom</label>
-                    </div>
-                    <div data-ng-messages="inviteForm.firstName.$error">
-                        <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
-                            valide
-                        </small>
-                    </div>
-                </div>
-
-                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput halfInputRight"
-                     data-ng-class="{'has-error': !vm.invitPro.lastName}">
-
-                    <div class="fg-line">
-                        <input type="text" name="lastName" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.lastName"
+                        <input type="text" name="name" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.name"
                                required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                         <label class="fg-label">Nom</label>
                     </div>
-                    <div data-ng-messages="inviteForm.lastName.$error">
+                    <div data-ng-messages="inviteForm.name.$error">
                         <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                             valide
                         </small>
@@ -583,7 +555,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding select m-b-15">
-                    <select class="form-control c-red"
+                    <select class="form-control"
                             onchange="this.className='form-control form-control-underline-ok'"
                             data-ng-model="vm.invitPro.relation">
                         <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
@@ -594,15 +566,6 @@
                     </select>
                 </div>
 
-                <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
-                     events="vm.updateMultiChoiceInputColor"
-                     data-ng-dropdown-multiselect=""
-                     options="vm.multiChoiceInput.options"
-                     selected-model="vm.multiChoiceInput.selected"
-                     extra-settings="vm.multiChoiceInput.settings"
-                     translation-texts="vm.multiChoiceInput.translation"
-                     checkboxes="true"></div>
-
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                      data-ng-class="{'has-error': !vm.invitPro.address.address}">
                     <div class="fg-line">
@@ -612,7 +575,6 @@
                                data-ng-model="vm.invitPro.address.address"
                                type="text"
                                name="address"
-                               required="required"
                                placeholder=""
                                id="address">
                         <label class="fg-label">Localité</label>

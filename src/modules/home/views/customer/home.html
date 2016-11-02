@@ -118,7 +118,8 @@
 
                                     <div class="service-mobile-bottom p-t-15 p-l-80 p-r-15">
                                         <h2 class="c-lightblue text-uppercase m-b-5">échanges optimisés</h2>
-                                        Fini les échanges par répondeurs interposés, contactez les Pros via la messagerie intégrée !
+                                        Fini les échanges par répondeurs interposés, contactez les Pros via la
+                                        messagerie intégrée !
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +248,7 @@
                         id="signInPopupButton">SE CONNECTER
                     </button>
 
-                    <div class="col-xs-12 passwordForgotten">
+                    <div class="col-xs-12 passwordForgotten underline">
                         <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
                          vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
@@ -279,7 +280,7 @@
 
                     <div class="col-xs-12 registerMail">
                         <span class="registerWithEmailMessage pointer" data-ng-if="!vm.isSocialRegister()"
-                              data-ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
+                              data-ng-click="vm.showRegisterFields = true">- <span class="underline">Ou inscription par email</span> -</span>
                         <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                     </div>
                     <form name="registerForm">
@@ -424,11 +425,11 @@
                                 data-ng-disabled="!vm.registerFormIsValid()"
                                 data-ng-click="vm.register()">S'INSCRIRE
                             </button>
-                            <div class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
-                                Vous êtes Pro ? Cliquez ici pour vous inscrire
-                            </div>
                         </div>
                     </form>
+                    <small class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
+                        Vous êtes Pro ? <span class="underline">Cliquez ici pour vous inscrire</span>
+                    </small>
                 </div>
             </div>
             <div data-ng-if="vm.noSocialAccountMessage">

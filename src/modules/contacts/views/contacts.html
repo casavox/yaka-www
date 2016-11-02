@@ -34,7 +34,10 @@
                             Inscrit depuis le 12 Aout 2016
                         </div>
                         <div>
-                            <a data-ui-sref="profile"><u>Modifier</u></a>
+                            <a data-ng-if="app.isPro()"
+                               data-ui-sref="pro-profile"><u>Modifier</u></a>
+                            <a data-ng-if="!app.isPro()"
+                               data-ui-sref="profile"><u>Modifier</u></a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-5 p-r-0 d-block contact-communities-tag t-align-tags">
@@ -416,15 +419,15 @@
 
             <form name="inviteForm">
                 <div class="col-xs-12 no-padding form-group fg-float m-t-15"
-                     data-ng-class="{'has-error': !vm.invitPro.lastName}">
+                     data-ng-class="{'has-error': !vm.invitPro.name}">
 
                     <div class="fg-line">
-                        <input type="text" name="lastName" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.lastName"
+                        <input type="text" name="name" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.name"
                                required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                         <label class="fg-label">Nom</label>
                     </div>
-                    <div data-ng-messages="inviteForm.lastName.$error">
+                    <div data-ng-messages="inviteForm.name.$error">
                         <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                             valide
                         </small>
@@ -432,7 +435,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding select m-b-15">
-                    <select class="form-control c-red"
+                    <select class="form-control"
                             onchange="this.className='form-control form-control-underline-ok'"
                             data-ng-model="vm.invitPro.relation"
                             ng-init="vm.invitPro.relation = vm.optionSelected()">
