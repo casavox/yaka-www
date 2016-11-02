@@ -92,11 +92,13 @@
                         </small>
                     </h2>
                     <div class="col-sm-6 t-right m-t-5">
-                        <button id="invite-friend-button" class="invite-contact btn btn-default waves-effect c-white bgm-lightblue m-r-15"
+                        <button id="invite-friend-button"
+                                class="invite-contact btn btn-default waves-effect c-white bgm-lightblue m-r-15"
                                 data-ng-click="vm.openFriendPopup()">
                             Inviter un ami
                         </button>
-                        <button id="invite-pro-button" class="invite-contact btn btn-default waves-effect c-white bgm-orange"
+                        <button id="invite-pro-button"
+                                class="invite-contact btn btn-default waves-effect c-white bgm-orange"
                                 data-ng-click="vm.openProPopup()">
                             Inviter un pro
                         </button>
@@ -144,7 +146,8 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="col-xs-12  m-t-5 p-b-5 contactItem border-bottom" data-ng-repeat="contact in vm.contacts"
+                        <div class="col-xs-12  m-t-5 p-b-5 contactItem border-bottom"
+                             data-ng-repeat="contact in vm.contacts"
                              data-ng-if="vm.showContactOrNot(contact)">
 
                             <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
@@ -217,15 +220,11 @@
                             <strong><em>Invitez vos connaissances à vous retrouver sur CasaVox !</em></strong><br>
                         </div>
                         <div class="contactsEmptyLinks">
-                                            <span class="contactsEmptyLink" data-ng-click="vm.openFriendPopup()">
-                                Inviter des amis
-                             </span>
+                            <span class="underline contactsEmptyLink" data-ng-click="vm.openFriendPopup()">Inviter des amis</span>
                             <span class="contactsEmptyLinkOr">
 
-                             </span>
-                            <span class="contactsEmptyLink" data-ng-click="vm.openProPopup()">
-                                 Invitez des professionnels
-                             </span>
+                            </span>
+                            <span class="underline contactsEmptyLink" data-ng-click="vm.openProPopup()">Inviter des professionnels</span>
                         </div>
                     </div>
                 </div>

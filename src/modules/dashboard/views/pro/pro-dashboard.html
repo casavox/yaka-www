@@ -385,10 +385,13 @@
                                      data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
                                     <div class="col-xs-12 col-sm-7 col-md-7 c-lightblue no-padding">
                                         <div class="no-padding">
-                                            <b>Nouveau<span
-                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
+                                            <b>
+                                                <span class="hidden-xs">
+                                                    Nouveau<span
+                                                    data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
+                                                </span>
                                                 Message<span
-                                                    data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
+                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
                                             <button class="btn btn-xs bgm-lightblue c-white m-b-1"
                                                     data-ng-if="project.unreadMessages">Client
                                             </button>
