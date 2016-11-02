@@ -1,3 +1,8 @@
+.row-button-find-pro {
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
 .invitationNumber {
     font-weight: bold;
 }
@@ -181,5 +186,10 @@ ul.yaka-chips li {
         position: absolute !important;
         left: 90px !important;
         top: 25px !important;
+    }
+
+    .left-col-width {
+        width: 100%;
+        padding-right: 0px !important;
     }
 }
