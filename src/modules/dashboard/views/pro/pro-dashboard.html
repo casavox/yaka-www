@@ -274,7 +274,8 @@
                             <div class="d-i-b v-align-middle proNetworkProjectTitle">
 
                                 <h2 class="m-l-5 f-s-14 clearfix">
-                                    <span class="f-400 pull-left">Vous êtes recommandé par
+                                    <span class="f-400 pull-left">
+                                        Vous êtes recommandé par
                                         <casa-name-and-contact icon-color="c-white"
                                                                user="project.recoProposals[0].firstRecommendation.recommender">
                                         </casa-name-and-contact>
@@ -305,7 +306,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 p-r-0">
                                 <span
                                     class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5 c-white"
                                     am-time-ago="project.updated"></span>
@@ -314,31 +315,34 @@
                             <div class="m-t-10 visible-xs"></div>
                         </div>
                         <div class="card-header p-t-5 p-b-5 ch-alt" data-ng-if="!project.recoProposals">
-
                             <yaka-avatar class="v-align-middle"
                                          user="project.user"
                                          size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
-                                <div>
-                                    <casa-name-and-contact user="project.user"></casa-name-and-contact>
-                                    a un nouveau chantier
+                            <div class="d-i-b v-align-middle proNetworkProjectTitle">
+                                <h2 class="m-l-5 f-s-14 clearfix">
+                                    <span class="pull-left">
+                                        <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                        a un nouveau chantier
+                                    </span>
                                     <span
                                         class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs"
                                         am-time-ago="project.updated"></span>
-                                </div>
-                                <div class="casa-tag-list">
+                                </h2>
+                                <div class="casa-tag-list m-l-5 clearfix">
                                     <casa-community-tag class="dashboard-community-tag"
                                                         community="community"
                                                         ng-repeat="community in project.user.communities">
                                     </casa-community-tag>
                                 </div>
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 p-r-0">
                                     <span
                                         class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5"
                                         am-time-ago="project.updated"></span>
                                 </div>
-                            </h2>
+
+                                <div class="m-t-10 visible-xs"></div>
+                            </div>
                         </div>
                         <div class="card-body p-t-10 p-b-10 p-l-15 p-r-10 p-relative">
                             <div
