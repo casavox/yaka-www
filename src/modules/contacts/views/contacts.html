@@ -293,8 +293,8 @@
                                 {{invit.inviter.professional.company.address.locality}}
                             </span>
                                 </div>
-
                             </div>
+
                             <div class="pull-right m-t-5">
                             <span class="waves-effect"
                                   tooltip-placement="left"
@@ -311,7 +311,12 @@
                                      data-ng-click="vm.acceptInvitation(invit.inviter.inviteId)"/>
                             </span>
                             </div>
-                            <hr>
+                            <div class="col-xs-12 p-l-0">
+                                <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                    community="community"
+                                                    ng-repeat="community in invit.inviter.communities">
+                                </casa-community-tag>
+                            </div>
                         </div>
                         <div class="col-xs-12 contactItem contactItemInvitation p-5"
                              data-ng-repeat="invit in vm.invitationsSent"

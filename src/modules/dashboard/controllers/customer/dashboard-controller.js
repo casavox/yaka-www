@@ -44,6 +44,11 @@
             if (vm.communities) {
                 for (var i = 0; i < vm.communities.length; i++) {
                     if (type == vm.communities[i].type) {
+                        if (!vm.communities[i].name && !vm.communities[i].address) {
+                            vm.communities[i].name = " ";
+                            vm.communities[i].address.address = " ";
+                            vm.communities[i].address.locality = " ";
+                        }
                         return vm.communities[i];
                     }
                 }

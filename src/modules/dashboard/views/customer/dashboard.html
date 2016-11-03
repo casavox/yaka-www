@@ -147,19 +147,19 @@
                                             <casa-community-tag class="tag-community t-center"
                                                                 community="vm.getCommunityByType('PROFILE_CITY')">
                                             </casa-community-tag>
-                                            <div class="add-community pointer" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">+</div>
+                                            <div class="add-community pointer" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address">+</div>
                                         </div>
                                         <div class="col-xs-8 col-xs-offset-4 community-height">
                                             <casa-community-tag class="tag-community t-center"
                                                                 community="vm.getCommunityByType('JOB')">
                                             </casa-community-tag>
-                                            <div class="add-community pointer" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('JOB').name">+</div>
+                                            <div class="add-community pointer" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('JOB').name == ' '">+</div>
                                         </div>
                                         <div class="col-xs-8 col-xs-offset-4 community-height">
                                             <casa-community-tag class="tag-community t-center"
                                                                 community="vm.getCommunityByType('OTHER')">
                                             </casa-community-tag>
-                                            <div class="add-community pointer" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('OTHER').name">+</div>
+                                            <div class="add-community pointer" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('OTHER').name == ' '">+</div>
                                         </div>
                                     </div>
                                 </div>
