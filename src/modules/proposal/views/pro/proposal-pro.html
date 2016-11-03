@@ -53,7 +53,7 @@
 
         <div class="container">
 
-            <div class="block-header">
+            <div class="block-header m-b-10">
                 <h2>
                     <span class="c-orange"
                           data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
@@ -350,27 +350,27 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>

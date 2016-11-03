@@ -87,11 +87,11 @@
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
 
-                        <div class="proposalIconBackground lv-img v-icon-{{vm.project.mainActivity.code}}-white">
+                        <div class="proposalIconBackground pull-left lv-img v-icon-{{vm.project.mainActivity.code}}-white">
                         </div>
 
-                        <div class="dashboardRecommendProjectText right p-absolute">
-                            <div class="yakaEllipsis f-s-15">
+                        <div class="right p-l-60 p-b-10">
+                            <div class="f-s-15">
                                 {{vm.project.title}}
                             </div>
 
@@ -489,6 +489,9 @@
                                            placeholder=""
                                            id="address">
                                     <label class="fg-label">Ville</label>
+                                    <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                                        Veuillez saisir la ville, puis la sélectionner dans la liste
+                                    </small>
                                 </div>
                             </div>
 
@@ -577,7 +580,10 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Localité</label>
+                        <label class="fg-label">Ville</label>
+                        <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                            Veuillez saisir la ville, puis la sélectionner dans la liste
+                        </small>
                     </div>
                 </div>
 
