@@ -10,6 +10,14 @@
     line-height: 30px;
 }
 
+.p-l-50 {
+    padding-left: 50px;
+}
+
+.recommend-hr-padding {
+    margin-top: 5px !important
+}
+
 .refused-background-color {
     background-color: #f1f1f1;
 }

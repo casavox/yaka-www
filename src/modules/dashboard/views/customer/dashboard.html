@@ -201,15 +201,15 @@
                         </small>
                     </h2>
                 </div>
-                <div class="clearfix card-body no-padding p-l-15 p-r-15">
+                <div class="clearfix card-body no-padding">
 
-                    <div class="col-xs-12 dashboardRecommendProject pointer no-padding m-t-10"
+                    <div class="col-xs-12 dashboardRecommendProject p-15 pointer no-padding"
                          data-ng-repeat="project in vm.projectsToRecommend"
                          data-ui-sref="project-recommend({'projectId': project.id})">
 
                         <yaka-avatar class="m-t-5 pull-left m-b-5" size="45" user="project.user"></yaka-avatar>
 
-                        <div class="col-xs-11 col-sm-6 dashboardRecommendProjectText">
+                        <div class="col-xs-9 col-sm-6 commu-user-infos">
                             <div class="yakaEllipsis">
                                 <b>
                                     <casa-contact user="project.user"></casa-contact>
@@ -217,7 +217,7 @@
                                 <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
                                 {{project.user.firstName}} {{project.user.lastName}}
                             </div>
-                            <div class="yakaEllipsis c-lightblue">
+                            <div class="c-lightblue">
                                 <u>{{project.title}}</u>
                             </div>
 
@@ -225,12 +225,13 @@
                                 à {{project.address.locality}}
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
+                        <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
                             <casa-community-tag class="contact-community-tag"
                                                 community="community"
                                                 ng-repeat="community in project.user.communities">
                             </casa-community-tag>
                         </div>
+                        <hr class="dash-board-actu-hr">
                     </div>
                 </div>
             </div>
