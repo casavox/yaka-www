@@ -46,8 +46,7 @@
                     if (type == vm.communities[i].type) {
                         if (!vm.communities[i].name && !vm.communities[i].address) {
                             vm.communities[i].name = " ";
-                            vm.communities[i].address.address = " ";
-                            vm.communities[i].address.locality = " ";
+                            vm.communities[i].address = " ";
                         }
                         return vm.communities[i];
                     }

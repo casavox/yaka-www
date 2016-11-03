@@ -6,6 +6,11 @@
     color: black;
 }
 
+.community-invit-received {
+    padding-left: 69px !important;
+    padding-right: 0px;
+}
+
 .invite-contact {
     font-weight: 100 !important;
 }
@@ -487,8 +492,13 @@
 }
 
 @media (max-width: 767px) {
+    .community-invit-received {
+        padding-left: 50px !important;
+        padding-right: 0px;
+    }
+
     .contactTags {
-        padding: 0px 5px 0px 5px;
+        padding: 0px 5px 0px 54px;
         margin-right: 0px;
     }
 
