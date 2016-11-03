@@ -63,9 +63,9 @@
 
                         <yaka-avatar class="col-xs-3 no-padding" size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="col-xs-8 col-sm-9 col-xs-offset-1 p-r-0 p-l-0">
-                            <div class="f-s-14 fw-bold">
-                                <casa-name-and-contact class="pull-left l-h-24"
+                        <div class="col-xs-8 col-sm-9 p-r-0 p-l-0 m-l-15">
+                            <div>
+                                <casa-name-and-contact class="pull-left fw-bold l-h-24"
                                                        invite="true"
                                                        user="vm.project.user"></casa-name-and-contact>
                                 <div class="col-xs-12 p-l-0">
@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="proToRecommendList" data-ng-if="vm.professionals && vm.professionals.length > 0">
-                        <div class="p-10 p-relative proToRecommend pointer"
+                        <div class="p-10 p-relative clearfix pointer"
                              data-ng-repeat="professional in vm.professionals"
                              data-ng-click="vm.smoothScrollPro(); vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
                              data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
@@ -139,9 +139,9 @@
                                 <cl-transformation height="25" width="25" crop="fill" radius="max"/>
                             </cl-image>
 
-                            <div class="col-xs-9 col-sm-10 p-r-0 p-l-5 p-t-5">
+                            <div class="col-xs-9 col-sm-10 p-r-0 p-l-15 p-t-5">
 
-                                <div class="col-xs-12 p-0">
+                                <div class="col-xs-12 col-md-7 p-0">
                                     <div class="yakaEllipsis">
                                         <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
                                     </div>
@@ -155,8 +155,8 @@
 
 
                                 <div
-                                    class="col-xs-12 col-sm-3 col-md-5 yaka-chips m-t-5 no-padding commu-tag-padding actu-communities-tag">
-                                    <casa-community-tag class="recommend-pro-community-tag reco-community-float"
+                                    class="col-xs-12 col-md-5 yaka-chips m-t-5 no-padding">
+                                    <casa-community-tag class="recommend-pro-community-tag reco-community-float reco-pro-tags"
                                                         community="community"
                                                         ng-repeat="community in professional.user.communities">
                                     </casa-community-tag>

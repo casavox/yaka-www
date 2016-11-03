@@ -62,7 +62,7 @@ ul.yaka-chips li {
     line-height: 10px;
     font-size: 13px;
     border-radius: 2px;
-    float: right;
+    float: left;
 }
 
 .dashboard-community-tag {
@@ -179,6 +179,15 @@ ul.yaka-chips li {
 .actu-communities-tag {
     margin: 3px 3px 0px 0px !important;
     float: right !important;
+}
+
+@media (min-width: 992px) {
+    .reco-pro-tags {
+        float: right;
+        width: 100%;
+        text-align: center;
+    }
+
 }
 
 @media (max-width: 991px) {
