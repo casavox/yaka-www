@@ -186,11 +186,11 @@
                                                 <i class="zmdi zmdi-close"></i> Refuser
                                             </button>
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 fw-bold bgm-orange"
                                              data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED' || vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                             Refusé par le client
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 fw-bold bgm-orange"
                                              data-ng-if="vm.proposal.status == 'PRO_DECLINED' || vm.proposal.status == 'RECO_PRO_DECLINED'">
                                             Annulé par moi
                                         </div>
@@ -350,19 +350,19 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
@@ -370,7 +370,7 @@
                                                      data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15"
                                                      data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
