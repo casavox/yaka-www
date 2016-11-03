@@ -31,11 +31,11 @@ yaka-chat .lv-message {
 }
 
 yaka-chat .lv-footer {
-    height: 76px;
+    height: 55px;
 }
 
 yaka-chat .lv-body {
-    height: calc(100% - 76px);
+    height: calc(100% - 55px);
     overflow-y: auto;
 }
 
@@ -51,7 +51,7 @@ yaka-chat .ms-reply .leftButton {
 yaka-chat .ms-reply textarea {
     padding: 8px 60px;
     line-height: normal;
-    height: 75px;
+    height: 54px;
 }
 
 yaka-chat .imgPreview {
@@ -144,4 +144,10 @@ casa-contact .contactRelationIcon {
 
 .placeholder-red:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #F44336;
+}
+
+/* CommunityTag */
+
+casa-community-tag {
+    max-width: 100%;
 }

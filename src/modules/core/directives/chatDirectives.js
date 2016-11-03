@@ -281,13 +281,13 @@ angular.module('Yaka')
 
                 scope.getPlaceholder = function () {
                     if (scope.disableSending && scope.userMe.professional && scope.proposalStatus == 'RECOMMENDATION') {
-                        return 'Vous devez faire une offre dans l\'onglet "Détails" afin de commencer à discuter avec le client. Si vous n\'êtes pas intéressé, refusez l\'offre via le bouton "Refuser';
+                        return 'Allez dans l\'onglet "Détails" pour prendre un 1er contact avec le client (si vous n\'êtes pas intéressé, cliquez sur le bouton "Refuser")';
                     } else if (scope.disableSending) {
                         return 'Cette discussion est close';
                     }
                     if (scope.userOther) {
                         if (scope.userOther == "admin") {
-                            return 'Discutez en privé avec Victor, votre assistant CasaVox';
+                            return 'Discutez en privé avec votre assistant CasaVox';
                         } else if (scope.userMe == "admin") {
                             return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
                         } else if (scope.userOther.firstName && scope.userOther.lastName) {

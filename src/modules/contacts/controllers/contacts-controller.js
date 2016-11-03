@@ -7,10 +7,10 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, screenSize, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
 
 
-        $rootScope.pageName = "Mes contacts";
+        $rootScope.pageName = "Mon entourage";
         $rootScope.updateProfile();
 
         var vm = this;
@@ -52,6 +52,8 @@
             }
         };
 
+        vm.user = $localStorage.user;
+
         vm.getCurrentContactListNumber = function () {
             var count = 0;
             angular.forEach(vm.contacts, function (contact) {
@@ -85,6 +87,7 @@
             vm.contacts = res;
             vm.prosNumber = prosNum;
             vm.friendsNumber = friendsNum;
+            vm.myContacts = res;
         }
 
         function errorContactsGET(err) {
@@ -221,10 +224,8 @@
 
         vm.invitPro = {
             email: "",
-            firstName: "",
-            lastName: "",
+            name: "",
             phone: "",
-            activities: [],
             address: {}
         };
 
@@ -236,8 +237,7 @@
             vm.closeProPopup();
             vm.invitPro = {
                 email: "",
-                firstName: "",
-                lastName: "",
+                name: "",
                 phone: "",
                 activities: [],
                 address: {}
@@ -381,17 +381,9 @@
         }
 
         vm.formIsValid = function () {
-            vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
-            angular.forEach(vm.invitPro.activities, function (activity) {
-                activity.code = vm.multiChoiceInput.options[activity.id].label;
-                delete activity.id;
-            });
-
-            if (vm.invitPro.firstName == '' || !vm.isNameValid(vm.invitPro.firstName) ||
-                vm.invitPro.lastName == '' || !vm.isNameValid(vm.invitPro.lastName) ||
+            if (vm.invitPro.name == '' || !vm.isNameValid(vm.invitPro.name) ||
                 vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) ||
-                vm.invitPro.activities.length == 0 || !vm.invitPro.relation ||
-                vm.invitPro.address.address == undefined || vm.invitPro.address.address == ''
+                !vm.invitPro.relation
             ) {
                 return false;
             }
@@ -547,6 +539,40 @@
                 }
             });
         };
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+        }
+
+        vm.getCommunityByType = function (type) {
+            if (vm.communities) {
+                for (var i = 0; i < vm.communities.length; i++) {
+                    if (type == vm.communities[i].type) {
+                        return vm.communities[i];
+                    }
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
+
+        vm.selectContactTab = "all";
+        vm.selectTab = "received";
+
+        vm.isXsmall = function () {
+            return screenSize.is('xs');
+        }
+
+        vm.optionSelected = function() {
+            if (vm.user.professional) {
+                return 'COLLEAGUE';
+            } else {
+                return 'CLIENT';
+            }
+        }
 
     }
 })

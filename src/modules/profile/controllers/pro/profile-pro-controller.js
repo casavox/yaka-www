@@ -56,6 +56,7 @@
                 !vm.profileInfo.activityStartedYear || //
                 !vm.profileInfo.company.name || //
                 !vm.profileInfo.company.siret || //
+                !vm.profileInfo.company.address || //
                 !vm.profileInfo.company.address.address) {
 
                 f = true;
@@ -78,6 +79,7 @@
                     vm.profile.company.address = angular.copy(res.company.address);
                     vm.profile.company.phone = res.company.phone;
                     alertMsg.send("Profil mis à jour avec succès", "success");
+                    networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
                 }, errorProfilePUT, true);
             }
             else {
@@ -1043,9 +1045,64 @@
             options: {
                 types: ['address'],
                 componentRestrictions: {country: 'fr'}
+            },
+            cityOptions: {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
             }
         };
 
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+            if (vm.getCommunityByType('PROFILE_CITY').name &&
+                vm.getCommunityByType('PROFILE_CITY').address &&
+                vm.getCommunityByType('PROFILE_CITY').address.address &&
+                vm.getCommunityByType('JOB').name &&
+                vm.getCommunityByType('JOB').address &&
+                vm.getCommunityByType('JOB').address.address &&
+                vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address &&
+                vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address) {
+                vm.hasCommunity = true;
+            } else {
+                vm.hasCommunity = false;
+            }
+        }
+
+        vm.getCommunityByType = function (type) {
+            if (vm.communities) {
+                for (var i = 0; i < vm.communities.length; i++) {
+                    if (type == vm.communities[i].type) {
+                        return vm.communities[i];
+                    }
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
+
+        vm.updateCommunities = function () {
+            networkService.communitiesPUT(vm.communities, function (res) {
+                networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+                alertMsg.send("Les communautés ont été mises à jour", "success");
+            }, errorProfilePUT, true);
+        };
+
+        vm.cancelCommunitiesUpdate = function () {
+            networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+        };
+
+        vm.disabledCom = function () {
+            if (!vm.communities) {
+                return false;
+            }
+            return !(vm.getCommunityByType('PROFILE_CITY').address && vm.getCommunityByType('PROFILE_CITY').address.address &&
+            ((!vm.getCommunityByType('JOB').name && !(vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) &&
+            ((!vm.getCommunityByType('OTHER').name && !(vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address)) || (vm.getCommunityByType('OTHER').name && (vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address))));
+        };
 
     }
 })();

@@ -1,3 +1,63 @@
+.row-button-find-pro {
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.invitationNumber {
+    font-weight: bold;
+}
+
+.left-col-width {
+    width: 100px;
+}
+
+.add-community {
+    margin-left: 50%;
+    transform: translateX(-50%) translateY(-34px);
+    width: 31px;
+    height: 31px;
+    /* border-radius: 50%; */
+    color: white;
+    font-size: 28px;
+    background-color: #524e4e;
+    text-align: center;
+    line-height: 28px;
+}
+
+.community-height {
+    height: 32px;
+}
+
+.tag-community {
+    width: 100%;
+    text-align: center;
+    border-radius: 0px;
+}
+
+ul.yaka-chips li {
+    line-height: 14px !important;
+}
+
+.casa-tag-list {
+    margin-top: 5px;
+}
+
+.recommend-pro-community-tag{
+    margin: 0px 1px 0px 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: right;
+}
+
+.dashboard-community-tag {
+    margin: 0px 1px 0px 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+}
+
 .dashboardStats {
     font-size: 12px !important;
     font-weight: 500;
@@ -11,13 +71,8 @@
     vertical-align: top;
     margin-left: 10px;
 }
-
-.dashboardRecommendProject {
-    height: 55px;
-}
-
-.proDashboardRecommendProject {
-    height: 70px;
+.border-bottom-lightgray {
+    border-bottom: 1px lightgray solid;
 }
 
 .dashboardRecommendProject yaka-avatar {
@@ -30,13 +85,11 @@
 
 .dashboardRecommendProjectText {
     position: absolute;
-    left: 55px;
+    left: 45px;
     top: 0px;
-    width: calc(100% - 65px);
 }
 
 .dashboardProRecommendProjectText {
-    position: absolute;
     left: 70px;
     top: 10px;
     width: calc(100% - 80px)
@@ -83,9 +136,6 @@
 }
 
 .proNetworkProjectUpdated {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
     font-size: 12px;
 }
 
@@ -106,4 +156,40 @@
     transform: translateX(-10px);
 }
 
+.actu-communities-tag {
+    margin: 3px 3px 0px 0px !important;
+    float: right !important;
+}
 
+@media (max-width: 991px) {
+    .actu-community-tag {
+        max-width: 100px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .community-tag {
+        margin: 3px 3px 0px 0px !important;
+        float: left !important;
+    }
+
+    .actu-community-tag-xs {
+        margin-left: 68px;
+        max-width: 400px;
+    }
+
+    .dashboardRecommendProject {
+        max-height: 180px;
+    }
+
+    .dashboardUserInfos {
+        position: absolute !important;
+        left: 90px !important;
+        top: 25px !important;
+    }
+
+    .left-col-width {
+        width: 100%;
+        padding-right: 0px !important;
+    }
+}

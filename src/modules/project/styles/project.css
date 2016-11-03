@@ -1,3 +1,94 @@
+@media (min-width: 1200px) {
+    .proposal-project-pm-body {
+         padding-left: 300px !important;
+     }
+    .customer-proposal-pm-body {
+        padding-left: 300px !important;
+    }
+    .pro-proposal-project-pm-body {
+        padding-left: 300px !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .proposal-project-pm-body {
+        padding-left: 300px !important;
+    }
+    .customer-proposal-pm-body {
+        padding-left: 250px !important;
+    }
+    .pro-proposal-project-pm-body {
+        padding-left: 250px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .proposal-project-pm-body {
+        padding-left: 300px !important;
+    }
+    .customer-proposal-pm-body {
+        padding-left: 0px !important;
+    }
+    .pro-proposal-project-pm-body {
+        padding-left: 0px !important;
+
+    }
+}
+
+
+.scrollViewChatProposalProject {
+    position: absolute;
+    bottom: 0;
+    top: 48px;
+    width: 100%;
+    height: auto;
+}
+
+#profile-main .pm-body {
+    padding: 0px;
+}
+
+.height-fixed-pro-card {
+    height: 104px;
+}
+
+.clearBoth {
+    clear: both;
+}
+
+.l-h-24 {
+    line-height: 24px;
+}
+
+.m-t-2 {
+    margin-top: 2px !important;
+}
+
+.map-findjob-communities {
+    position: absolute;
+    top: 42px !important;
+    left: 59px;
+}
+
+.map-findjob-communities .job-community-tag {
+    line-height: 6px;
+}
+
+.map-findjob-communities .job-community-tag div {
+    padding: 3px !important;
+    height: 14px;
+    margin-bottom: 0px !important;
+}
+
+.tag-margin-bottom {
+    height: 20px;
+}
+
+.reco-community-tag {
+    margin: 0px 0px 5px 3px !important;
+    float: right !important;
+}
+
 .proErrorMessage {
     font-size: 14px;
     margin-top: 15px;
@@ -155,7 +246,7 @@
 }
 
 .projectRecommendTopCard {
-    height: 90px;
+    min-height: 90px;
     padding-left: 20px;
     padding-top: 20px;
 }
@@ -338,3 +429,50 @@
 .projectMainView yaka-chat {
     left: 0 !important;
 }
+
+@media (max-width: 767px) {
+    .map-findjob-communities .job-community-tag div {
+        max-width: 100px;
+    }
+
+    .reco-community-float {
+        float: left !important;
+    }
+
+    .reco-communities-tag {
+        width: 70%;
+        margin-left: 70px;
+        margin-top: -30px;
+    }
+
+    .reco-community-tag {
+        max-width: 55% !important;
+        margin: 2px 3px 3px 0px !important;
+        float: left !important;
+    }
+
+    .friend-tag {
+        position: relative;
+        margin: 0 4px 4px 0;
+        padding: 5px 8px 5px 8px;
+        max-width: 100%;
+        border-radius: 2px;
+        background-size: 100% 19px;
+        background-repeat: repeat-x;
+        background-clip: padding-box;
+        color: #333;
+        line-height: 13px;
+        cursor: default;
+        float: left;
+        list-style: none;
+    }
+
+    .commu-tag-float {
+        float: left !important;
+    }
+
+    .commu-tag-padding {
+        padding-left: 15px !important;
+    }
+}
+

@@ -208,7 +208,7 @@
                         </div>
                     </div>
 
-                    <div class="pm-body clearfix">
+                    <div class="pm-body admin-chat clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
                             <li heading="Home"
@@ -228,7 +228,7 @@
                             </li>
                         </ul>
 
-                        <div class="col-xs-12 chatChoice no-padding bgm-white c-gray"
+                        <div class="col-xs-12 chatChoice no-padding bgm-white subtitle-color-forced"
                              data-ng-if="vm.showChat">
                             <div class="col-xs-12 col-sm-5 col-md-3 no-padding emptyCol">
                                 <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
@@ -350,27 +350,27 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>

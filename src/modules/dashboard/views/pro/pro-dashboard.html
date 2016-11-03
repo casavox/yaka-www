@@ -1,5 +1,5 @@
 <header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
-></header>
+        xmlns="http://www.w3.org/1999/html"></header>
 
 <section id="main">
 
@@ -23,7 +23,7 @@
                                     <div class="f-s-16 yakaEllipsis">
                                         {{app.getUser().firstName}} {{app.getUser().lastName}}
                                     </div>
-                                    <div class="c-gray">
+                                    <div class="subtitle-color-forced">
                                         {{vm.data.contactsNumber}}
                                         <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
                                         <span data-ng-show="vm.data.contactsNumber > 1">Contacts</span> -
@@ -121,7 +121,7 @@
                         <h2>
                             Mon statut Pro sur CasaVox
                             <small>
-                                Mon profil, mon réseau, mes offres
+                                Profil, Réseau, Entourage, Offres
                             </small>
                         </h2>
                     </div>
@@ -176,6 +176,19 @@
                                     <span>Voir mon profil (validation en cours)</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class="checkbox" data-ui-sref="pro-profile">
+                            <label
+                                data-ng-class="{'c-lightblue': vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name}">
+                                <input type="checkbox" onclick="return false" value=""
+                                       data-ng-checked="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">
+                                <i class="input-helper"></i>
+                                <span
+                                    data-ng-show="!vm.getCommunityByType('JOB').name || !vm.getCommunityByType('PROFILE_CITY').name"
+                                    class="c-orange underline">Compléter mon entourage</span>
+                                <span
+                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mon entourage</span>
+                            </label>
                         </div>
                         <div class="checkbox" data-ui-sref="contacts">
                             <label data-ng-class="{'c-lightblue': vm.pro.step2}">
@@ -251,80 +264,96 @@
                 <div data-ng-repeat="project in vm.networkProjects">
                     <div class="card pointer proNetworkProject"
                          data-ng-click="vm.networkProjectClicked(project)">
-                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="project.recoProposals">
+                        <div class="card-header p-t-5 p-b-5 ch-alt bgm-lightblue c-white"
+                             data-ng-if="project.recoProposals">
 
                             <yaka-avatar class="v-align-middle"
                                          user="project.recoProposals[0].firstRecommendation.recommender"
                                          size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
-                                <span class="c-lightblue">
-                                    {{project.recoProposals[0].firstRecommendation.recommender.firstName}}
-                                    {{project.recoProposals[0].firstRecommendation.recommender.lastName}}
-                                </span>
-                                <span class="c-gray-dark">
-                                    (
-                                    <casa-contact
-                                        user="project.recoProposals[0].firstRecommendation.recommender"
-                                        icon-color="c-graydark" client-red="true"></casa-contact>
-                                    )
-                                    vous a recommandé
-                                </span>
-                                <small
-                                    class="c-gray-dark"
-                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
-                                    + {{project.recoProposals[0].recommendations.length - 1}} autre<span
-                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
-                                    </span>
-                                    personne<span
-                                    data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s</span>
-                                    </span>
-                                </small>
-                            </h2>
+                            <div class="d-i-b v-align-middle proNetworkProjectTitle">
 
-                            <div class="proNetworkProjectUpdated c-gray">
-                                <span am-time-ago="project.updated"></span>
+                                <h2 class="m-l-5 f-s-14 clearfix">
+                                    <span class="f-400 pull-left">
+                                        Vous êtes recommandé par
+                                        <casa-name-and-contact icon-color="c-white"
+                                                               user="project.recoProposals[0].firstRecommendation.recommender">
+                                        </casa-name-and-contact>
+                                    </span>
+                                    <span
+                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs c-white"
+                                        am-time-ago="project.updated"></span>
+                                </h2>
+
+                                <div class="casa-tag-list m-l-5 clearfix">
+                                    <casa-community-tag class="dashboard-community-tag"
+                                                        community="community"
+                                                        ng-repeat="community in project.recoProposals[0].firstRecommendation.recommender.communities">
+                                    </casa-community-tag>
+                                </div>
+
+                                <div class="m-t-M5 pull-left">
+                                    <span class="c-white m-l-5"
+                                          data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 1">
+                                        + {{project.recoProposals[0].recommendations.length - 1}} autre
+                                        <span
+                                            data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s
+                                        </span>
+                                            personne
+                                        <span
+                                            data-ng-if="project.recoProposals[0].recommendations && project.recoProposals[0].recommendations.length > 2">s
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 p-r-0">
+                                <span
+                                    class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5 c-white"
+                                    am-time-ago="project.updated"></span>
                             </div>
 
                             <div class="m-t-10 visible-xs"></div>
                         </div>
-                        <div class="card-header p-t-10 p-b-10 ch-alt" data-ng-if="!project.recoProposals">
-
+                        <div class="card-header p-t-5 p-b-5 ch-alt" data-ng-if="!project.recoProposals">
                             <yaka-avatar class="v-align-middle"
                                          user="project.user"
                                          size="45"></yaka-avatar>
 
-                            <h2 class="d-i-b v-align-middle m-l-5 proNetworkProjectTitle f-s-14">
-                                <span class="c-lightblue">
-                                    {{project.user.firstName}}
-                                    {{project.user.lastName}}
-                                </span>
-                                <span class="c-gray-dark">
-                                    (
-                                    <casa-contact
-                                        user="project.user" client-blue="true"></casa-contact>
-                                    )
-                                    a un nouveau chantier
-                                </span>
-                            </h2>
+                            <div class="d-i-b v-align-middle proNetworkProjectTitle">
+                                <h2 class="m-l-5 f-s-14 clearfix">
+                                    <span class="pull-left">
+                                        <casa-name-and-contact user="project.user"></casa-name-and-contact>
+                                        a un nouveau chantier
+                                    </span>
+                                    <span
+                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right hidden-xs"
+                                        am-time-ago="project.updated"></span>
+                                </h2>
+                                <div class="casa-tag-list m-l-5 clearfix">
+                                    <casa-community-tag class="dashboard-community-tag"
+                                                        community="community"
+                                                        ng-repeat="community in project.user.communities">
+                                    </casa-community-tag>
+                                </div>
+                                <div class="col-xs-12 p-r-0">
+                                    <span
+                                        class="proNetworkProjectUpdated p-relative subtitle-color-forced pull-right visible-xs m-t-M5"
+                                        am-time-ago="project.updated"></span>
+                                </div>
 
-                            <div class="proNetworkProjectUpdated c-gray">
-                                <span am-time-ago="project.updated"></span>
+                                <div class="m-t-10 visible-xs"></div>
                             </div>
-
-                            <div class="m-t-10 visible-xs"></div>
                         </div>
                         <div class="card-body p-t-10 p-b-10 p-l-15 p-r-10 p-relative">
                             <div
                                 class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b m-t-5">
                             </div>
-
                             <div class="proNetworkProjectInfos d-i-b f-s-14 m-l-5">
                                 <div class="c-lightblue yakaEllipsis">
                                     {{project.title}}
                                 </div>
                                 <div class="yakaEllipsis">
-                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                    <div class="subtitle-color-forced d-i-b proNetworkProjectInfosLabel">
                                         Délai :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
@@ -332,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div class="yakaEllipsis">
-                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                    <div class="subtitle-color-forced d-i-b proNetworkProjectInfosLabel">
                                         Lieu :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
@@ -345,7 +374,7 @@
                                     </div>
                                 </div>
                                 <div class="yakaEllipsis" data-ng-if="project.recoProposals">
-                                    <div class="c-gray d-i-b proNetworkProjectInfosLabel">
+                                    <div class="subtitle-color-forced d-i-b proNetworkProjectInfosLabel">
                                         Client :
                                     </div>
                                     <div class="d-i-b proNetworkProjectInfosLabel">
@@ -356,11 +385,18 @@
                                      data-ng-if="project.unreadMessages || project.unreadMessagesSupport">
                                     <div class="col-xs-12 col-sm-7 col-md-7 c-lightblue no-padding">
                                         <div class="no-padding">
-                                            <b>Nouveau<span
-                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
-                                                Message<span data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
-                                            <button class="btn btn-xs bgm-lightblue c-white m-b-1" data-ng-if="project.unreadMessages">Client</button>
-                                            <button class="btn btn-xs bgm-orange c-white m-b-1" data-ng-if="project.unreadMessagesSupport">
+                                            <b>
+                                                <span class="hidden-xs">
+                                                    Nouveau<span
+                                                    data-ng-if="project.unreadMessages && project.unreadMessagesSupport">x</span>
+                                                </span>
+                                                Message<span
+                                                data-ng-if="project.unreadMessages && project.unreadMessagesSupport">s</span></b>
+                                            <button class="btn btn-xs bgm-lightblue c-white m-b-1"
+                                                    data-ng-if="project.unreadMessages">Client
+                                            </button>
+                                            <button class="btn btn-xs bgm-orange c-white m-b-1"
+                                                    data-ng-if="project.unreadMessagesSupport">
                                                 CasaVox
                                             </button>
                                         </div>
@@ -378,8 +414,8 @@
                          data-ng-show="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                         <h2>
                             Mon statut Pro sur CasaVox
-                            <small>
-                                Mon profil, mon réseau, mes offres
+                            <small class="subtitle-color-forced">
+                                Profil, Réseau, Entourage, Offres
                             </small>
                         </h2>
                     </div>
@@ -435,6 +471,19 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="checkbox" data-ui-sref="pro-profile">
+                            <label
+                                data-ng-class="{'c-lightblue': vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name}">
+                                <input type="checkbox" onclick="return false" value=""
+                                       data-ng-checked="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">
+                                <i class="input-helper"></i>
+                                <span
+                                    data-ng-show="!vm.getCommunityByType('JOB').name || !vm.getCommunityByType('PROFILE_CITY').name"
+                                    class="c-orange underline">Compléter mon entourage</span>
+                                <span
+                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mon entourage</span>
+                            </label>
+                        </div>
                         <div class="checkbox" data-ui-sref="contacts">
                             <label data-ng-class="{'c-lightblue': vm.pro.step2}">
                                 <input type="checkbox" onclick="return false" value="" data-ng-checked="vm.pro.step2">
@@ -464,32 +513,29 @@
                     <div class="card-header dashboardCommunityHeader">
                         <h2>
                             Recommander un collègue
-                            <small>
+                            <small class="subtitle-color-forced">
                                 Entraide entre Pros
                             </small>
                         </h2>
                     </div>
                     <div class="clearfix card-body">
-
                         <div class="text-justify p-l-15 p-r-15 m-b-10"
                              data-ng-if="vm.isListEmpty()">
                             S'aider entre collègues est toujours payant !
                             <br>Invitez et recommandez vos collègues, ils le sauront et feront pareil pour vous !
                             <br>
-                            <a data-ui-sref="contacts">
-                                Utiliser le bouche-à-oreille CasaVox
+                            <a data-ui-sref="contacts" class="underline">
+                                Utilisez le bouche-à-oreille CasaVox
                             </a>
                         </div>
 
                         <div
-                            class="col-xs-12 dashboardRecommendProject proDashboardRecommendProject pointer no-padding p-l-15 p-r-15"
+                            class="col-xs-12 dashboardRecommendProject border-bottom-lightgray pointer no-padding p-l-15 p-r-15 p-b-5"
                             data-ng-repeat="project in vm.projectsToRecommend"
                             data-ng-if="!vm.isInNetworkList(project)"
                             data-ui-sref="project-recommend({'projectId': project.id})">
-
-                            <yaka-avatar size="45" user="project.user"></yaka-avatar>
-
-                            <div class="dashboardProRecommendProjectText">
+                            <yaka-avatar class="pull-left" size="45" user="project.user"></yaka-avatar>
+                            <div class="col-xs-9 p-r-0 m-t-15">
                                 <div class="yakaEllipsis c-lightblue">
                                     {{project.title}}
                                 </div>
@@ -500,11 +546,16 @@
                                     <span data-ng-if="project.user.inContacts || project.user.isInvited">-</span>
                                     {{project.user.firstName}} {{project.user.lastName}}
                                 </div>
-                                <div class="yakaEllipsis">
+                                <div class="col-xs-12 p-l-0 m-t-5 ">
+                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                        community="community"
+                                                        ng-repeat="community in project.user.communities">
+                                    </casa-community-tag>
+                                </div>
+                                <div class="yakaEllipsis clearfix">
                                     {{project.address.locality}} - {{vm.getWhen(project)}}
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

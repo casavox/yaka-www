@@ -53,7 +53,7 @@
 
         <div class="container">
 
-            <div class="block-header">
+            <div class="block-header m-b-10">
                 <h2>
                     <span class="c-orange"
                           data-ng-if="vm.proposal && vm.proposal.project && vm.proposal.project.status == 'CANCELED'">
@@ -108,7 +108,7 @@
             </div>
 
             <div class="yakaMain proposalMainView">
-                <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll-good': vm.showChat}">
                     <div class="pm-overview pro hidden-xs">
                         <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                              tabindex="0">
@@ -208,7 +208,7 @@
                         </div>
                     </div>
 
-                    <div class="pm-body clearfix">
+                    <div class="pm-body pro-proposal-project-pm-body clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
                             <li heading="Home"
@@ -228,7 +228,7 @@
                             </li>
                         </ul>
 
-                        <div class="col-xs-12 chatChoice no-padding bgm-white c-gray"
+                        <div class="col-xs-12 chatChoice no-padding bgm-white subtitle-color-forced"
                              data-ng-if="vm.showChat">
                             <div class="col-xs-12 col-sm-5 col-md-3 no-padding emptyCol">
                                 <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
@@ -350,27 +350,27 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
                                                      data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
@@ -452,7 +452,7 @@
                                             </dt>
                                             <dd class="l-h-18">
                                             <textarea class="form-control" data-auto-size=""
-                                                      placeholder="Mettez vous en avant, expliquez votre proposition."
+                                                      placeholder="Précisez votre proposition, posez vos questions,..."
                                                       data-autosize-on="true"
                                                       data-ng-model="vm.offer.comment"></textarea>
                                             </dd>
@@ -495,6 +495,22 @@
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-botttom m-l-10"
                                                 data-ng-click="vm.editDate()"></i>
                                             </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pmb-block clearfix" data-ng-if="vm.projectTmp.user.communities">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
+                                </div>
+                                <div class="pmbb-body">
+                                    <div class="pmbb-view">
+                                        <dl class="dl-horizontal tag-margin-bottom">
+                                                <casa-community-tag class="contact-community-tag pull-left"
+                                                                    community="community"
+                                                                    ng-repeat="community in vm.projectTmp.user.communities">
+                                                </casa-community-tag>
                                         </dl>
                                     </div>
                                 </div>
