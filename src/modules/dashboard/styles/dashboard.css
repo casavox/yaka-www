@@ -1,3 +1,11 @@
+.button-community {
+    left: 0;
+    top: -10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 
 .p-l-60 {
     padding-left: 60px;
