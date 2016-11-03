@@ -11,6 +11,10 @@
     padding-right: 0px;
 }
 
+.contactItem:hover {
+    background-color: #f3f3f3;
+}
+
 .invite-contact {
     font-weight: 100 !important;
 }
@@ -20,12 +24,11 @@
 }
 
 .order-tag {
-    height: 21px;
+    height: auto;
     line-height: 7px;
-    font-size: 13px;
-    border-radius: 2px;
+    border-radius: 0px;
     float: right;
-    margin: 3px 1px 3px 1px;
+    margin: 0;
 }
 
 .t-align-tags {
@@ -432,12 +435,6 @@
     font-size: 13px;
 }
 
-@media (max-width: 992px) {
-    .order-tag {
-        max-width: 120px;
-    }
-}
-
 @media (max-width: 849px) {
 
     .contactsHeaderLeftDesc {
@@ -461,7 +458,11 @@
         margin-right: 20px;
     }
 }
-
+@media (max-width: 992px) {
+    .invitReceivedSpanHolder {
+        width: calc(100% - 174px);
+    }
+}
 @media (min-width: 768px) {
 
     .aligned-content-contact {
@@ -492,6 +493,15 @@
 }
 
 @media (max-width: 767px) {
+    .invitReceivedSpanHolder {
+        margin-top: 5px;
+        width: calc(100% - 135px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: left;
+    }
+
     .community-invit-received {
         padding-left: 50px !important;
         padding-right: 0px;
