@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .p-l-60 {
     padding-left: 60px;
 }
@@ -11,7 +11,8 @@
     clear: both;
     margin-top: 10px;
     margin-bottom: 0px;
-=======
+}
+
 .row-button-find-pro {
     text-align: center;
     background-color: #f8f8f8;
@@ -46,7 +47,6 @@
     width: 100%;
     text-align: center;
     border-radius: 0px;
->>>>>>> c057c0e56a2f24ec10a2071a1089d641ca7a62e4
 }
 
 ul.yaka-chips li {
@@ -223,7 +223,6 @@ ul.yaka-chips li {
         top: 25px !important;
     }
 
-<<<<<<< HEAD
     .commu-user-infos {
         margin-bottom: 5px;
     }
@@ -232,10 +231,10 @@ ul.yaka-chips li {
         left: 80px;
         top: 5px;
         width: calc(100% - 85px);
-=======
+    }
+
     .left-col-width {
         width: 100%;
         padding-right: 0px !important;
->>>>>>> c057c0e56a2f24ec10a2071a1089d641ca7a62e4
     }
 }
