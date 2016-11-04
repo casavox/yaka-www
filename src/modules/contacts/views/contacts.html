@@ -235,7 +235,7 @@
                             </li>
                         </ul>
                         <div class="col-xs-12 contactItem p-t-5"
-                             data-ng-repeat="contact in vm.contacts"
+                             data-ng-repeat="contact in vm.contacts | orderBy: 'user.firstName'"
                              data-ng-if="vm.showContactOrNot(contact)">
 
                             <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
@@ -248,29 +248,49 @@
                                 {{contact.user.firstName[0] | uppercase}}.
                                 {{contact.user.lastName[0]| uppercase}}.
                             </div>
-                            <div class="col-xs-10 col-sm-5 m-t-5 p-l-0">
+                            <div class="col-xs-8 col-sm-5 m-t-5 p-l-0">
                                 <span class="contactItemName">
                                     {{contact.user.firstName}} {{contact.user.lastName}}
                                         <span class="c-orange m-l-5" data-ng-if="contact.user.professional"> PRO</span>
                                 </span>
                                 <div class="col-xs-12 p-l-0">
-                                    <span class="contactItemCity"
-                                          data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
+                                        <span class="contactItemCity"
+                                              data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
                             ({{contact.user.defaultAddress.locality}})
                                      </span>
-                                    <span class="contactItemCity contactItemCityInvitReceived"
-                                          data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                                        <span class="contactItemCity contactItemCityInvitReceived"
+                                              data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
                             ({{contact.user.professional.company.address.locality}})
                                      </span>
                                 </div>
                             </div>
+                            <div class="col-xs-2 no-padding visible-xs">
+                                        <span class="waves-effect m-l-15 m-t-5"
+                                              tooltip-placement="left"
+                                              uib-tooltip="Supprimer le contact">
+                                <i class="invitRefuse m-t-0 zmdi zmdi-close-circle zmdi-hc-2x p-0 c-deeporange"
+                                   data-ng-click="vm.deleteContact(contact.user.id)"></i>
+                        </span>
+                            </div>
 
                             <div class="d-block col-xs-12 col-sm-4 contactTags pull-right p-r-10">
-                                <casa-community-tag class="yakaEllipsis order-tag c-white d-block"
-                                                    community="community"
-                                                    ng-repeat="community in contact.user.communities">
-                                </casa-community-tag>
+
+                                <div class="col-xs-10 no-padding">
+                                    <casa-community-tag class="yakaEllipsis order-tag c-white d-block"
+                                                        community="community"
+                                                        ng-repeat="community in contact.user.communities">
+                                    </casa-community-tag>
+                                </div>
+                                <div class="col-xs-2 no-padding hidden-xs">
+                                    <span class="waves-effect m-l-15"
+                                          tooltip-placement="left"
+                                          uib-tooltip="Supprimer le contact">
+                                <i class="invitRefuse m-t-0 zmdi zmdi-close-circle zmdi-hc-2x p-0 c-deeporange"
+                                   data-ng-click="vm.deleteContact(contact.user.id)"></i>
+                        </span>
+                                </div>
                             </div>
+
                             <hr class="contact-hr">
                         </div>
                     </div>
