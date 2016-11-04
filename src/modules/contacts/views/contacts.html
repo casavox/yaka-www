@@ -234,16 +234,16 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="border-bottom col-xs-12 contactItem p-b-5 p-t-5"
+                        <div class="col-xs-12 contactItem p-t-5"
                              data-ng-repeat="contact in vm.contacts"
                              data-ng-if="vm.showContactOrNot(contact)">
 
                             <cl-image public-id="{{contact.user.avatar.cloudinaryPublicId}}"
-                                      class="f-l proposal-icon img-circle contactItemAvatar" format="png"
+                                      class="f-l proposal-icon img-circle contactItemAvatar contact-item" format="png"
                                       data-ng-if="contact.user.avatar.cloudinaryPublicId">
                                 <cl-transformation height="40" width="40" crop="fill"/>
                             </cl-image>
-                            <div class="img-default fl contactItemInitials"
+                            <div class="img-default fl contactItemInitials contact contact-item"
                                  data-ng-if="!contact.user.avatar.cloudinaryPublicId">
                                 {{contact.user.firstName[0] | uppercase}}.
                                 {{contact.user.lastName[0]| uppercase}}.
@@ -265,12 +265,13 @@
                                 </div>
                             </div>
 
-                            <div class="d-block col-xs-12 col-sm-4 contactTags p-t-10 pull-right p-r-10">
+                            <div class="d-block col-xs-12 col-sm-4 contactTags pull-right p-r-10">
                                 <casa-community-tag class="yakaEllipsis order-tag c-white d-block"
                                                     community="community"
                                                     ng-repeat="community in contact.user.communities">
                                 </casa-community-tag>
                             </div>
+                            <hr class="contact-hr">
                         </div>
                     </div>
                     <div class="col-xs-12 contactsEmpty m-b-10"
@@ -351,7 +352,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="col-xs-12 contactItem p-t-5 p-b-5"
+                        <div class="col-xs-12 contactItem"
                              data-ng-repeat="invit in vm.invitationsReceived"
                              data-ng-if="vm.selectTab == 'received'">
                             <cl-image public-id="{{invit.inviter.avatar.cloudinaryPublicId}}"
@@ -404,11 +405,12 @@
                                                     ng-repeat="community in invit.inviter.communities">
                                 </casa-community-tag>
                             </div>
+                            <hr class="contact-hr">
                         </div>
-                        <div class="col-xs-12 contactItem contactItemInvitation p-5"
+                        <div class="col-xs-12 contactItem contactItemInvitation p-t-15 p-b-0"
                              data-ng-repeat="invit in vm.invitationsSent"
                              data-ng-if="vm.selectTab == 'sent'">
-                        <span data-ng-if="invit.firstName && invit.lastName">
+                        <span class="p-l-30" data-ng-if="invit.firstName && invit.lastName">
                             {{invit.firstName}} {{invit.lastName}}
                             <span class="contactItemPro" data-ng-if="invit.isPro">
                                     PRO
@@ -417,12 +419,13 @@
                                 ({{invit.email}})
                             </span>
                         </span>
-                            <span data-ng-if="!invit.firstName || !invit.lastName">
+                            <span class="p-l-30" data-ng-if="!invit.firstName || !invit.lastName">
                             {{invit.email}}
                             <span class="contactItemPro" data-ng-if="invit.isPro">
                                     PRO
                             </span>
                         </span>
+                            <hr class="contact-hr">
                         </div>
                     </div>
                     <div class="col-xs-12 contactsEmpty m-b-10"

@@ -1,3 +1,13 @@
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-hr {
+    width: 95%;
+    clear: both;
+    margin-bottom: 0px !important;
+}
+
 .contact-section {
     font-size: 19px;
     font-weight: 400;
@@ -171,7 +181,6 @@
 .contactItem {
     font-size: 13px;
     color: #626262;
-    border-bottom: solid 1px #F9F9F9;
     padding-left: 0 !important;
     padding-right: 0 !important;
     white-space: nowrap;
@@ -305,7 +314,7 @@
 }
 
 .contactItemInvitation {
-    padding-left: 20px !important;
+    padding-left: 0px !important;
 }
 
 .invitAccept {
@@ -430,6 +439,7 @@
 }
 
 .contactTags {
+    padding-top: 10px;
     line-height: 10px;
     margin-right: 15px;
     font-size: 13px;
@@ -493,6 +503,10 @@
 }
 
 @media (max-width: 767px) {
+    .contact-item {
+        margin-bottom: 0px;
+    }
+
     .invitReceivedSpanHolder {
         margin-top: 5px;
         width: calc(100% - 135px);
