@@ -34,7 +34,7 @@
                                data-ng-repeat="userchat in app.getUserchats()"
                                data-ng-class="{'unread': userchat.unreadMessages}">
                                 <div class="media" data-ng-if="!app.isPro() && userchat.chat.proposal"
-                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'pro'})">
                                     <!-- Customer : Customer-Pro Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="!app.isPro() && userchat.chat.project"
-                                     ui-sref="project({'projectId': userchat.chat.project.id, 'chat': 'true'})">
+                                     ui-sref="project({'projectId': userchat.chat.project.id, 'chat': 'assistance'})">
                                     <!-- Customer : Customer-Admin Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro() && userchat.chat.proposal"
-                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'customer'})">
                                     <!-- Pro : Pro-Customer Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro() && userchat.chat.proposalSupport"
-                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposalSupport.id, 'chat': 'true'})">
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposalSupport.id, 'chat': 'assistance'})">
                                     <!-- Pro : Pro-Admin Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
