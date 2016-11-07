@@ -1,6 +1,4 @@
-/**
- * Created by Vincent on 30/04/2016.
- */
+
 (function () {
     'use strict';
 
@@ -24,7 +22,7 @@
             //Pro
 
             .state('pro-home', {
-                url: "/pro/?invitationId&login&email&register",
+                url: "/pro?invitationId&login&email&register",
                 templateUrl: "/modules/home/views/pro/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'
