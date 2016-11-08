@@ -8,6 +8,37 @@
     background-color: #f5f5f5;
 }
 
+.recommend-infos {
+    max-width: calc(100% - 85px);
+    padding-left: 15px;
+}
+
+.recommendations-right {
+    max-width: calc(100% - 50px);
+}
+
+.estimation-price {
+    float: right;
+    text-align: center;
+}
+
+.message-and-ago {
+    padding-left: 50px;
+}
+
+.bgm-lightest-gray {
+    background-color: #f5f5f5;
+}
+
+.card-proposal {
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.card-proposal:hover {
+    background-color: #f0faff;
+}
+
 .proposal-padding-bottom {
     padding-bottom: 0px !important;
 }
@@ -329,6 +360,17 @@
     }
 }
 
+@media (max-width: 991px) {
+    .estimation-price {
+        float: left;
+        text-align: left;
+    }
+    .recommend-infos {
+        max-width: calc(100% - 20px);
+        padding-left: 15px;
+    }
+}
+
 @media (max-width: 767px) {
 
     .yakaAvatarInitialsProposal {
@@ -559,44 +601,49 @@
     .pr-list-text {
         text-align: left;
     }
+}
 
-    @media (max-width: 767px) {
-        .pr-list-icon {
-            margin-left: -12px !important;
-        }
+@media (max-width: 767px) {
+    .message-and-ago {
+        padding-left: 0px;
+    }
 
-        .pr-list-text {
-            text-align: center;
-            padding-right: 0px;
-        }
+    .pr-list-icon {
+        margin-left: -12px !important;
+    }
 
-        .noProposalYetContentRubric1TitleJ {
-            text-align: justify;
-            font-weight: normal;
-            font-size: 14px;
-        }
+    .pr-list-text {
+        text-align: center;
+        padding-right: 0px;
+    }
 
-        .noProposalYetContentRubric1TitleC {
-            text-align: center;
-            font-weight: normal;
-            font-size: 14px;
-        }
+    .noProposalYetContentRubric1TitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 14px;
+    }
 
-        .noProposalYetContentSubTitleJ {
-            text-align: justify;
-            font-weight: normal;
-            font-size: 13px;
-        }
+    .noProposalYetContentRubric1TitleC {
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+    }
 
-        .proNetworkProjectButtonLabel {
-            margin-left: 30%;
-            width: 70%;
-            margin-bottom: -10px;
-        }
+    .noProposalYetContentSubTitleJ {
+        text-align: justify;
+        font-weight: normal;
+        font-size: 13px;
+    }
 
-        .zIndex1 {
-            z-index: 1 !important;
-        }
+    .proNetworkProjectButtonLabel {
+        margin-left: 30%;
+        width: 70%;
+        margin-bottom: -10px;
+    }
+
+    .zIndex1 {
+        z-index: 1 !important;
     }
 }
+
 
