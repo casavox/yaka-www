@@ -26,6 +26,10 @@
             vm.completed = res;
         }, function () {
         });
+        networkService.proProposalsGET('declined_job', function (res) {
+            vm.decline = res;
+        }, function () {
+        });
 
         vm.selectProposal = function (index) {
             vm.index = index;
