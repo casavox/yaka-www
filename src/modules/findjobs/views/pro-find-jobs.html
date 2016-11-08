@@ -87,7 +87,7 @@
             <div class="col-xs-12 col-sm-4 proDashboardList"
                  data-ng-class="{'proDashboardListWithTopView':$parent.vm.showTopView}"
                  data-ng-show="showList">
-                <a class="clearfix" data-ng-repeat="lead in vm.leads track by lead.id" title="{{lead.title}}">
+                <a class="clearfix pointer" data-ng-repeat="lead in vm.leads track by lead.id" title="{{lead.title}}">
                     <div class="one-job" ui-sref="pro-project-proposal-new({projectId: lead.id})">
 
                         <div class="aligned-content">
