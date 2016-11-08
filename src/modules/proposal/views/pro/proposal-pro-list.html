@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-xs-12 no-padding row m-t-0 m-l-0 m-r-0"
-                 data-ng-if="vm.proposals && vm.proposals.length > 0 || vm.decline && vm.decline.length > 0">
+                 data-ng-if="(vm.proposals && vm.proposals.length > 0) || (vm.decline && vm.decline.length > 0)">
                 <div class="card pointer clearfix" data-ng-repeat="proposal in vm.proposals"
                      data-ng-click="vm.quoteClicked(proposal.id)">
                     <div class="card-header">
