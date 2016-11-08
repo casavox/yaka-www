@@ -268,7 +268,7 @@
                             </h2>
                         </div>
                         <div class="lv-body">
-                            <div class="listview media">
+                            <div class="listview media bgm-lightest-gray">
                                 <div class="lv-item"
                                      data-ng-if="vm.displayProposalText()">
                                     Invitez votre entourage à vous rejoindre sur CasaVox pour vous recommander
@@ -279,136 +279,126 @@
                                         Utilisez le bouche-à-oreille CasaVox
                                     </a>
                                 </div>
-                                <div class="lv-item pointer proposal-padding-bottom p-t-5" href=""
-                                     data-ng-repeat="p in vm.project.proposals"
-                                     data-ng-click="vm.selectProposal(p)">
-                                    <div data-ng-if="p.firstRecommendation">
-                                        <casa-name-and-contact
-                                            user="p.firstRecommendation.recommender"></casa-name-and-contact>
-                                        <div class="m-t-5 clearfix">
-                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                community="community"
-                                                                ng-repeat="community in p.firstRecommendation.recommender.communities"
-                                                                data-ng-if="community.name">
-                                            </casa-community-tag>
-                                        </div>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1">
-                                                        + {{p.recommendations.length - 1}} autre
-                                        </span>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length > 2">s
-                                        </span>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length == 1"
-                                              class=" subtitle-color-forced">vous recommande :</span>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1"
-                                              class=" subtitle-color-forced">vous recommandent :</span>
-                                    </div>
-                                    <div class="media m-t-5">
-                                        <div class="pull-left">
-                                            <div class="p-relative">
-                                                <yaka-avatar size="35"
-                                                             user="p.professional.user"></yaka-avatar>
-                                                <i data-ng-show="p.unreadMessages"
-                                                   class="porposalUnreadMessagesIndicator"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-left">
-                                                <div class="lv-title">
+                                <div class="col-xs-12">
+                                    <div class="card pointer m-t-10 p-10 m-b-10 card-proposal" href=""
+                                         data-ng-repeat="p in vm.project.proposals"
+                                         data-ng-click="vm.selectProposal(p)"
+                                         data-ng-class="{'bgm-lightest-gray' : p.status != 'START'}">
+                                        <div class="media m-t-5">
+                                            <div class="col-xs-12 no-padding">
+                                                <div class="pull-left">
+                                                    <div class="p-relative">
+                                                        <yaka-avatar size="35"
+                                                                     user="p.professional.user"></yaka-avatar>
+                                                        <i data-ng-show="p.unreadMessages"
+                                                           class="porposalUnreadMessagesIndicator"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="p-l-15 p-r-0">
+                                                    <div class="pull-left recommend-infos">
+                                                        <div class="c-black">
                                                     <span data-ng-if="p.status == 'START' || p.status == 'SELECTED'">
                                                         {{p.professional.user.firstName}} {{p.professional.user.lastName}}
                                                         <div class="col-xs-12 p-l-0">
-                                                        <casa-community-tag
-                                                            class="recommend-pro-community-tag pull-left"
-                                                            community="community"
-                                                            ng-repeat="community in p.professional.user.communities">
-                                                        </casa-community-tag>
                                                         </div>
                                                     </span>
+                                                            <div class=" subtitle-color-forced m-t-0 m-b-0"
+                                                                 data-ng-if="p.status == 'PRO_DECLINED'">
+                                                                <p class="m-b-0"><strong>Annulée par le Pro</strong></p>
 
+                                                                <p class="m-b-0">
+                                                                    <casa-name-and-contact
+                                                                        user="p.professional.user"></casa-name-and-contact>
+                                                                </p>
+                                                            </div>
+                                                            <div class=" subtitle-color-forced m-t-0 m-b-0"
+                                                                 data-ng-if="p.status == 'CUSTOMER_DECLINED'">
+                                                                <p class="m-b-0"><strong>Proposition refusée</strong>
+                                                                </p>
 
-                                                    <div class=" subtitle-color-forced m-t-0 m-b-0"
-                                                         data-ng-if="p.status == 'PRO_DECLINED'">
-                                                        <p class="m-b-0"><strong>Annulée par le Pro</strong></p>
+                                                                <p class="m-b-0">
+                                                                    <casa-name-and-contact
+                                                                        user="p.professional.user"></casa-name-and-contact>
+                                                                </p>
+                                                            </div>
+                                                            <div class=" subtitle-color-forced m-t-0 m-b-0"
+                                                                 data-ng-if="p.status == 'RECO_PRO_DECLINED'">
+                                                                <p class="m-b-0"><strong>Annulée par le Pro</strong></p>
 
-                                                        <p class="m-b-0">
-                                                            <casa-name-and-contact
-                                                                user="p.professional.user"></casa-name-and-contact>
-                                                        </p>
-                                                    </div>
-                                                    <div class=" subtitle-color-forced m-t-0 m-b-0"
-                                                         data-ng-if="p.status == 'CUSTOMER_DECLINED'">
-                                                        <p class="m-b-0"><strong>Proposition refusée</strong>
-                                                        </p>
+                                                                <p class="m-b-0">
+                                                                    <casa-name-and-contact
+                                                                        user="p.professional.user"></casa-name-and-contact>
+                                                                </p>
+                                                            </div>
+                                                            <div class=" subtitle-color-forced m-t-0 m-b-0"
+                                                                 data-ng-if="p.status == 'RECO_CUSTOMER_DECLINED'">
+                                                                <p class="m-b-0"><strong>Proposition refusée</strong>
+                                                                </p>
 
-                                                        <p class="m-b-0">
-                                                            <casa-name-and-contact
-                                                                user="p.professional.user"></casa-name-and-contact>
-                                                        </p>
-                                                    </div>
-                                                    <div class=" subtitle-color-forced m-t-0 m-b-0"
-                                                         data-ng-if="p.status == 'RECO_PRO_DECLINED'">
-                                                        <p class="m-b-0"><strong>Annulée par le Pro</strong></p>
+                                                                <p class="m-b-0">
+                                                                    <casa-name-and-contact
+                                                                        user="p.professional.user"></casa-name-and-contact>
+                                                                </p>
+                                                            </div>
+                                                        </div>
 
-                                                        <p class="m-b-0">
-                                                            <casa-name-and-contact
-                                                                user="p.professional.user"></casa-name-and-contact>
-                                                        </p>
-                                                    </div>
-                                                    <div class=" subtitle-color-forced m-t-0 m-b-0"
-                                                         data-ng-if="p.status == 'RECO_CUSTOMER_DECLINED'">
-                                                        <p class="m-b-0"><strong>Proposition refusée</strong>
-                                                        </p>
+                                                        <div data-ng-if="p.firstRecommendation">
 
-                                                        <p class="m-b-0">
-                                                            <casa-name-and-contact
-                                                                user="p.professional.user"></casa-name-and-contact>
-                                                        </p>
+                                                            <div> Recommandé par
+                                                                <casa-name-and-contact
+                                                                    user="p.firstRecommendation.recommender"></casa-name-and-contact>
+                                                            </div>
+                                                            <div class="m-t-5 clearfix">
+                                                                <casa-community-tag
+                                                                    class="recommend-pro-community-tag pull-left"
+                                                                    community="community"
+                                                                    ng-repeat="community in p.firstRecommendation.recommender.communities"
+                                                                    data-ng-if="community.name">
+                                                                </casa-community-tag>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                                <div
-                                                    data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
-                                                    <small class="lv-small  subtitle-color-forced"
-                                                           data-ng-show="p.price">
-                                                        Estimation actuelle <strong class="c-darkgray">{{p.price}}
-                                                        €</strong>
-                                                    </small>
-                                                    <small class="lv-small  subtitle-color-forced"
-                                                           data-ng-show="p.startDate">
-                                                        Disponible à partir du <strong class="c-darkgray">{{p.startDate
-                                                        | date:'d MMMM'}}</strong>
-                                                    </small>
+
+                                                <div class="p-l-0 p-r-0 estimation-price"
+                                                     data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                                     <span class="lv-small  subtitle-color-forced"
+                                                      data-ng-show="p.price">
+                                                         <div class="visible-md">
+                                                        Estimation
+                                                         </div>
+                                                          <div class="visible-md">
+                                                              <strong class="c-lightblue f-s-14">{{p.price}} €
+                                                              </strong>
+                                                          </div>
+                                                      </span>
                                                 </div>
-                                                <div
-                                                    data-ng-if="p.status == 'PRO_DECLINED' || p.status == 'CUSTOMER_DECLINED'">
-                                                    <small class="lv-small" data-ng-show="p.price">
-                                                        Estimation actuelle {{p.price}} €
-                                                    </small>
-                                                    <small class="lv-small" data-ng-show="p.startDate">
-                                                        Disponible à partir du {{p.startDate | date:'d MMMM'}}
-                                                    </small>
+                                                <div class="hidden-md col-xs-12 p-l-50"
+                                                     data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED' &&  p.price">
+                                                    Estimation : <span
+                                                    class="c-lightblue f-s-14 fw-bold">{{p.price}} €</span>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="clearfix p-r-0 p-l-50">
-                                            <div class="col-xs-9 col-sm-6 col-md-6 c-lightblue m-t-5 no-padding"
-                                                 data-ng-if="p.unreadMessages">
-                                                <div class="no-padding">
-                                                    <b>Nouveau Message</b>
-                                                    <button class="btn btn-xs bgm-orange c-white m-b-1">
-                                                        PRO
-                                                    </button>
+
+                                            <div class="clearfix col-xs-12 p-r-0 message-and-ago">
+                                                <div class="col-xs-6 col-sm-6 col-md-9 c-lightblue no-padding m-t-5"
+                                                     data-ng-if="p.unreadMessages">
+                                                    <div class="no-padding underline">
+                                                        <b>Nouveau Message</b>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="pull-right m-t-5 textAlignRightFullDesktop">
-                                                <small class=" subtitle-color-forced text-ago">
-                                                    <span am-time-ago="p.updated"></span>
-                                                </small>
+                                                <div class="pull-right m-t-5 textAlignRightFullDesktop">
+                                                    <small class=" subtitle-color-forced text-ago">
+                                                        <span am-time-ago="p.updated"></span>
+                                                    </small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr class="recommend-hr-padding">
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -422,7 +412,7 @@
                             </h2>
                         </div>
                         <div class="lv-body">
-                            <div class="listview media">
+                            <div class="listview media bgm-lightest-gray">
                                 <div class="lv-item"
                                      data-ng-if="vm.displayRecommendText()">
                                     Invitez votre entourage à vous rejoindre sur CasaVox pour vous recommander
@@ -433,67 +423,70 @@
                                         Utilisez le bouche-à-oreille CasaVox
                                     </a>
                                 </div>
-                                <div class="lv-item proposal-padding-bottom pointer" href=""
-                                     data-ng-repeat="p in vm.project.recoProposals"
-                                     data-ng-click="vm.selectProposal(p)">
-                                    <div>
-                                        <casa-name-and-contact
-                                            user="p.firstRecommendation.recommender"></casa-name-and-contact>
-                                        <div class="m-t-5 clearfix">
-                                            <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                <div class="col-xs-12">
+                                    <div class="card pointer m-t-10 p-10 m-b-10 card-proposal" href=""
+                                         data-ng-repeat="p in vm.project.recoProposals"
+                                         data-ng-click="vm.selectProposal(p)">
+                                        <div class="media m-t-5">
+                                            <div class="pull-left">
+                                                <div class="p-relative">
+                                                    <yaka-avatar size="35"
+                                                                 user="p.professional.user"></yaka-avatar>
+                                                    <i data-ng-show="p.unreadMessages"
+                                                       class="porposalUnreadMessagesIndicator"></i>
+                                                </div>
+                                            </div>
+                                            <div class="p-l-0 p-r-0">
+                                                <div class="pull-left recommendations-right">
+                                                    <div class="c-black">
+                                                    <span>
+                                                        {{p.professional.user.firstName}} {{p.professional.user.lastName}}
+                                                    </span>
+                                                        <div class=" subtitle-color-forced m-t-0 m-b-0"
+                                                             data-ng-if="p.status == 'RECO_PRO_DECLINED'">
+                                                            <p class="m-b-0"><strong>Annulée par le Pro</strong></p>
+                                                        </div>
+                                                        <div class=" subtitle-color-forced m-t-0 m-b-0"
+                                                             data-ng-if="p.status == 'RECO_CUSTOMER_DECLINED'">
+                                                            <p class="m-b-0"><strong>Recommandation refusée</strong>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div data-ng-if="p.firstRecommendation">
+
+                                                        <div> Recommandé par
+                                                            <casa-name-and-contact
+                                                                user="p.firstRecommendation.recommender"></casa-name-and-contact>
+                                                        </div>
+                                                        <div class="m-t-5 clearfix">
+                                                            <casa-community-tag
+                                                                class="recommend-pro-community-tag pull-left"
                                                                 community="community"
                                                                 ng-repeat="community in p.firstRecommendation.recommender.communities"
                                                                 data-ng-if="community.name">
-                                            </casa-community-tag>
-                                        </div>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1">
-                                                        + {{p.recommendations.length - 1}} autre
-                                        </span>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length > 2">s
-                                        </span>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length == 1"
-                                              class=" subtitle-color-forced">vous recommande :</span>
-                                        <span data-ng-if="p.recommendations && p.recommendations.length > 1"
-                                              class=" subtitle-color-forced">vous recommandent :</span>
-                                    </div>
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <div class="p-relative">
-                                                <yaka-avatar size="35"
-                                                             user="p.professional.user"></yaka-avatar>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-left col-xs-12 no-padding">
-                                                <div class="lv-title col-xs-12 p-l-0">
-                                                    <span>
-                                                        {{p.professional.user.firstName}} {{p.professional.user.lastName}}
-                                                        <div class="col-xs-12 p-l-0">
-                                                        <casa-community-tag
-                                                            class="recommend-pro-community-tag pull-left"
-                                                            community="community"
-                                                            ng-repeat="community in p.professional.user.communities">
-                                                        </casa-community-tag>
+                                                            </casa-community-tag>
                                                         </div>
-                                                    </span>
+                                                    </div>
+
                                                 </div>
-                                                <div class="col-xs-12 clearfix p-l-0 p-r-0">
-                                                    <div class="col-xs-8 c-lightblue no-padding"
-                                                         data-ng-if="p.unreadMessages">
-                                                        <div class="no-padding">
-                                                            <b class="l-h-30">Nouveau Message</b>
-                                                        </div>
+                                            </div>
+
+                                            <div class="clearfix col-xs-12 p-r-10 message-and-ago">
+                                                <div class="col-xs-6 col-sm-6 col-md-9 c-lightblue no-padding m-t-5"
+                                                     data-ng-if="p.unreadMessages">
+                                                    <div class="no-padding underline">
+                                                        <b>Nouveau Message</b>
                                                     </div>
-                                                    <div class="pull-right textAlignRightFullDesktop">
-                                                        <small class=" subtitle-color-forced text-ago">
-                                                            <span am-time-ago="p.updated"></span>
-                                                        </small>
-                                                    </div>
+                                                </div>
+                                                <div class="pull-right m-t-5 textAlignRightFullDesktop">
+                                                    <small class=" subtitle-color-forced text-ago">
+                                                        <span am-time-ago="p.updated"></span>
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr class="recommend-hr-padding">
                                 </div>
                             </div>
                         </div>
@@ -515,71 +508,70 @@
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
-                                <div class="lv-item proposal-padding-bottom pointer" href=""
-                                     data-ng-repeat="p in vm.project.proposals"
-                                     data-ng-if="p.id != vm.project.proposal.id"
-                                     data-ng-click="vm.selectProposal(p)">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <div class="p-relative">
-                                                <yaka-avatar size="35"
-                                                             user="p.professional.user"></yaka-avatar>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
+                                <div class="col-xs-12">
+                                    <div class="card pointer m-t-10 p-10 m-b-10 card-proposal" href=""
+                                         data-ng-repeat="p in vm.project.proposals"
+                                         data-ng-if="p.id != vm.project.proposal.id"
+                                         data-ng-click="vm.selectProposal(p)">
+                                        <div class="media m-t-5">
                                             <div class="pull-left">
-                                                <div class="lv-title">
-                                                    <div class=" subtitle-color-forced m-t-0 m-b-0">
-                                                        <p class="m-b-0"><strong>Proposition refusée</strong>
-                                                        </p>
-
-                                                        <p class="m-b-0">{{p.professional.user.firstName}}
-                                                            {{p.professional.user.lastName}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="m-t-5">
-                                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                        community="community"
-                                                                        ng-repeat="community in p.professional.user.communities">
-                                                    </casa-community-tag>
-                                                </div>
-                                                <div>
-                                                    <small class="lv-small" data-ng-show="p.price">
-                                                        Estimation actuelle {{p.price}} €
-                                                    </small>
-                                                    <small class="lv-small" data-ng-show="p.startDate">
-                                                        Disponible à partir du {{p.startDate | date:'d MMMM'}}
-                                                    </small>
+                                                <div class="p-relative">
+                                                    <yaka-avatar size="35"
+                                                                 user="p.professional.user"></yaka-avatar>
+                                                    <i data-ng-show="p.unreadMessages"
+                                                       class="porposalUnreadMessagesIndicator"></i>
                                                 </div>
                                             </div>
-                                            <div class="pull-right textAlignRightFullDesktop">
-                                                <small class=" subtitle-color-forced">
-                                                    <span am-time-ago="p.updated"></span>
-                                                </small>
-                                            </div>
+                                            <div class="media-body col-xs-6 p-l-0">
+                                                <div class="pull-left">
+                                                    <div class="lv-title">
+                                                        <div class=" subtitle-color-forced m-t-0 m-b-0">
+                                                            <p class="m-b-0"><strong>Proposition refusée</strong>
+                                                            </p>
 
-                                            <div class="clearfix p-r-0"
-                                                 data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
-                                                <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
-                                                    <div class="no-padding">
-                                                        <b>Nouveau<span
-                                                            data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
-                                                            Message<span
-                                                                data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
-                                                        <button class="btn btn-xs bgm-orange c-white m-b-1"
-                                                                data-ng-if="p.unreadMessages">
-                                                            Pro
-                                                        </button>
-                                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1"
-                                                                data-ng-if="p.unreadMessagesSupport">
-                                                            CasaVox
-                                                        </button>
+                                                            <p class="m-b-0">{{p.professional.user.firstName}}
+                                                                {{p.professional.user.lastName}}</p>
+                                                        </div>
                                                     </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-2 p-l-0 p-r-0 pull-right t-center"
+                                                 data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                                <span class="lv-small  subtitle-color-forced"
+                                                      data-ng-show="p.price">
+
+                                                    <div class="visible-md">
+                                                        Estimation
+                                                    </div>
+                                                    <div class="visible-md">
+                                                        <strong class="c-lightblue f-s-14">{{p.price}} €
+                                                        </strong>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="hidden-md col-xs-12 p-l-50"
+                                                 data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                                <div ng-show="p.price">
+                                                    Estimation : <span
+                                                    class="c-lightblue f-s-14 fw-bold">{{p.price}} €</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix col-xs-12 p-r-10 message-and-ago">
+                                                <div class="col-xs-6 col-sm-6 col-md-9 c-lightblue no-padding m-t-5"
+                                                     data-ng-if="p.unreadMessages">
+                                                    <div class="no-padding underline">
+                                                        <b>Nouveau Message</b>
+                                                    </div>
+                                                </div>
+                                                <div class="pull-right m-t-5 textAlignRightFullDesktop">
+                                                    <small class=" subtitle-color-forced text-ago">
+                                                        <span am-time-ago="p.updated"></span>
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -598,68 +590,64 @@
                         </div>
                         <div class="lv-body">
                             <div class="listview media">
-                                <div class="lv-item proposal-padding-bottom pointer" href=""
-                                     data-ng-repeat="p in vm.project.recoProposals"
-                                     data-ng-if="p.id != vm.project.proposal.id"
-                                     data-ng-click="vm.selectProposal(p)">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <div class="p-relative">
-                                                <yaka-avatar size="35"
-                                                             user="p.professional.user"></yaka-avatar>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
+                                <div class="col-xs-12">
+                                    <div class="card pointer m-t-10 p-10 m-b-10 card-proposal" href=""
+                                         data-ng-repeat="p in vm.project.recoProposals"
+                                         data-ng-if="p.id != vm.project.proposal.id"
+                                         data-ng-click="vm.selectProposal(p)">
+                                        <div class="media m-t-5">
                                             <div class="pull-left">
-                                                <div class="lv-title">
-                                                    <div class=" subtitle-color-forced m-t-0 m-b-0">
-                                                        <p class="m-b-0"><strong>Recommandation refusée</strong>
-                                                        </p>
-
-                                                        <p class="m-b-0">{{p.professional.user.firstName}}
-                                                            {{p.professional.user.lastName}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="m-t-5">
-                                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
-                                                                        community="community"
-                                                                        ng-repeat="community in p.professional.user.communities">
-                                                    </casa-community-tag>
-                                                </div>
-                                                <div>
-                                                    <small class="lv-small" data-ng-show="p.price">
-                                                        Estimation actuelle {{p.price}} €
-                                                    </small>
-                                                    <small class="lv-small" data-ng-show="p.startDate">
-                                                        Disponible à partir du {{p.startDate | date:'d MMMM'}}
-                                                    </small>
+                                                <div class="p-relative">
+                                                    <yaka-avatar size="35"
+                                                                 user="p.professional.user"></yaka-avatar>
+                                                    <i data-ng-show="p.unreadMessages"
+                                                       class="porposalUnreadMessagesIndicator"></i>
                                                 </div>
                                             </div>
-                                            <div class="no-padding pull-right textAlignRightFullDesktop">
-                                                <small class=" subtitle-color-forced">
-                                                    <span am-time-ago="p.updated"></span>
-                                                </small>
+                                            <div class="media-body col-xs-6 p-l-0">
+                                                <div class="pull-left">
+                                                    <div class="lv-title">
+                                                        <div class=" subtitle-color-forced m-t-0 m-b-0">
+                                                            <p class="m-b-0"><strong>Recommandation refusée</strong>
+                                                            </p>
+
+                                                            <p class="m-b-0">{{p.professional.user.firstName}}
+                                                                {{p.professional.user.lastName}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-2 p-l-0 p-r-0 pull-right t-center"
+                                                 data-ng-if="p.status != 'PRO_DECLINED' && p.status != 'CUSTOMER_DECLINED'">
+                                                <span class="lv-small  subtitle-color-forced"
+                                                      data-ng-show="p.price">
+                                                    <div class="">
+                                                        Estimation
+                                                    </div>
+                                                    <div class="">
+                                                        <strong class="c-lightblue">{{p.price}}
+                                                            €
+                                                        </strong>
+                                                    </div>
+                                                </span>
                                             </div>
 
-                                            <div class="clearfix p-r-0 m-t-5"
-                                                 data-ng-if="p.unreadMessages || p.unreadMessagesSupport">
-                                                <div class="col-xs-12 c-lightblue no-padding">
-                                                    <div class="no-padding">
-                                                        <b>Nouveau<span
-                                                            data-ng-if="p.unreadMessages && p.unreadMessagesSupport">x</span>
-                                                            Message<span
-                                                                data-ng-if="p.unreadMessages && p.unreadMessagesSupport">s</span></b>
-                                                        <button class="btn btn-xs bgm-orange c-white m-b-1"
-                                                                data-ng-if="p.unreadMessages">PRO
-                                                        </button>
-                                                        <button class="btn btn-xs bgm-lightblue c-white m-b-1">CasaVox
-                                                        </button>
+                                            <div class="clearfix col-xs-12 p-r-10 message-and-ago">
+                                                <div class="col-xs-6 col-sm-6 col-md-9 c-lightblue no-padding m-t-5"
+                                                     data-ng-if="p.unreadMessages">
+                                                    <div class="no-padding underline">
+                                                        <b>Nouveau Message</b>
                                                     </div>
+                                                </div>
+                                                <div class="pull-right m-t-5 textAlignRightFullDesktop">
+                                                    <small class=" subtitle-color-forced text-ago">
+                                                        <span am-time-ago="p.updated"></span>
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
                                 </div>
                             </div>
                         </div>
