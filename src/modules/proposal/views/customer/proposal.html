@@ -489,6 +489,10 @@
                                 </div>
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
+                                        <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.company.name">
+                                            <dt>Nom de l'entreprise</dt>
+                                            <dd>{{vm.proposal.professional.company.name}}</dd>
+                                        </dl>
                                         <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.phoneNumber">
                                             <dt>Téléphone</dt>
                                             <dd>{{vm.proposal.professional.phoneNumber}}</dd>
