@@ -194,11 +194,11 @@
                                              data-ng-if="vm.proposal.status == 'PRO_DECLINED' || vm.proposal.status == 'RECO_PRO_DECLINED'">
                                             Annulé par moi
                                         </div>
-                                        <div class="m-t-15 fw-bold"
+                                        <div class="m-t-15 fw-bold bgm-orange"
                                              data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                             Cloture client en cours
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 bgm-orange"
                                              data-ng-if="vm.proposal.status == 'COMPLETED'">
                                             Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                         </div>
@@ -366,11 +366,11 @@
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>

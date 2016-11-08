@@ -22,7 +22,7 @@
             vm.proposals = res;
         }, function () {
         });
-        networkService.proProposalsGET('declined', function (res) {
+        networkService.proProposalsGET('declined_proposal', function (res) {
             vm.decline = res;
         }, function () {
         });

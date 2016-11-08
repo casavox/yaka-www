@@ -337,15 +337,23 @@
             });
 
             function showPieCharts() {
-                $('.chart1').data('easyPieChart').update(25);
+                if ($('.chart1').data('easyPieChart')) {
+                    $('.chart1').data('easyPieChart').update(25);
+                }
                 setTimeout(function () {
-                    $('.chart2').data('easyPieChart').update(50);
+                    if ($('.chart2').data('easyPieChart')) {
+                        $('.chart2').data('easyPieChart').update(50);
+                    }
                 }, 500);
                 setTimeout(function () {
-                    $('.chart3').data('easyPieChart').update(75);
+                    if ($('.chart3').data('easyPieChart')) {
+                        $('.chart3').data('easyPieChart').update(75);
+                    }
                 }, 1000);
                 setTimeout(function () {
-                    $('.chart4').data('easyPieChart').update(100);
+                    if ($('.chart4').data('easyPieChart')) {
+                        $('.chart4').data('easyPieChart').update(100);
+                    }
                 }, 1500);
             }
 
