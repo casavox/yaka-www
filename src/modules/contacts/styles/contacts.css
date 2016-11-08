@@ -1,3 +1,13 @@
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-hr {
+    width: 95%;
+    clear: both;
+    margin-bottom: 0px !important;
+}
+
 .contact-section {
     font-size: 19px;
     font-weight: 400;
@@ -11,6 +21,10 @@
     padding-right: 0px;
 }
 
+.contactItem:hover {
+    background-color: #f3f3f3;
+}
+
 .invite-contact {
     font-weight: 100 !important;
 }
@@ -20,12 +34,11 @@
 }
 
 .order-tag {
-    height: 21px;
+    height: auto;
     line-height: 7px;
-    font-size: 13px;
-    border-radius: 2px;
+    border-radius: 0px;
     float: right;
-    margin: 3px 1px 3px 1px;
+    margin: 0;
 }
 
 .t-align-tags {
@@ -168,7 +181,6 @@
 .contactItem {
     font-size: 13px;
     color: #626262;
-    border-bottom: solid 1px #F9F9F9;
     padding-left: 0 !important;
     padding-right: 0 !important;
     white-space: nowrap;
@@ -302,7 +314,7 @@
 }
 
 .contactItemInvitation {
-    padding-left: 20px !important;
+    padding-left: 0px !important;
 }
 
 .invitAccept {
@@ -317,7 +329,6 @@
 .invitRefuse {
     float: right;
     margin-top: 13px;
-    margin-right: 20px;
     cursor: pointer;
     width: 30px;
     padding: 5px;
@@ -427,15 +438,10 @@
 }
 
 .contactTags {
+    padding-top: 10px;
     line-height: 10px;
     margin-right: 15px;
     font-size: 13px;
-}
-
-@media (max-width: 992px) {
-    .order-tag {
-        max-width: 120px;
-    }
 }
 
 @media (max-width: 849px) {
@@ -461,7 +467,11 @@
         margin-right: 20px;
     }
 }
-
+@media (max-width: 992px) {
+    .invitReceivedSpanHolder {
+        width: calc(100% - 174px);
+    }
+}
 @media (min-width: 768px) {
 
     .aligned-content-contact {
@@ -492,6 +502,19 @@
 }
 
 @media (max-width: 767px) {
+    .contact-item {
+        margin-bottom: 0px;
+    }
+
+    .invitReceivedSpanHolder {
+        margin-top: 5px;
+        width: calc(100% - 135px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: left;
+    }
+
     .community-invit-received {
         padding-left: 50px !important;
         padding-right: 0px;

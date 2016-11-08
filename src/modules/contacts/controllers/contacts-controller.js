@@ -516,7 +516,6 @@
         };
 
         vm.deleteContact = function (id) {
-            console.log(id);
             swal({
                 title: "Supprimer un contact",
                 text: "Attention, vous ne pourrez plus bénéficier de son réseau de bouche-à-oreille !",
