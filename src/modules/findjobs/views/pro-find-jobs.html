@@ -89,35 +89,36 @@
                  data-ng-show="showList">
                 <a class="clearfix pointer" data-ng-repeat="lead in vm.leads track by lead.id" title="{{lead.title}}">
                     <div class="one-job" ui-sref="pro-project-proposal-new({projectId: lead.id})">
+                        <div class="lead-item clearfix clearBoth">
+                            <div class="aligned-content">
+                                <div class="col-xs-3">
+                                    <img data-ng-show="lead.activities[0].code != 'AUTO_MULTI'" width="50" height="50"
+                                         data-ng-src="{{vm.getIcon(lead)}}"/>
+                                    <i data-ng-show="lead.activities[0].code == 'AUTO_MULTI'"
+                                       class="zmdi zmdi-apps zmdi-hc-3x c-cyan center"/>
+                                </div>
 
-                        <div class="aligned-content">
-                            <div class="col-xs-3 p-r-0">
-                                <img data-ng-show="lead.activities[0].code != 'AUTO_MULTI'" width="50" height="50"
-                                     data-ng-src="{{vm.getIcon(lead)}}"/>
-                                <i data-ng-show="lead.activities[0].code == 'AUTO_MULTI'"
-                                   class="zmdi zmdi-apps zmdi-hc-3x c-cyan center"/>
-                            </div>
-
-                            <div class="col-xs-9 p-l-0 p-t-10 p-r-10 p-b-10">
-                                <div class="full-width">
-                                    <div class=" c-black yakaEllipsis">
-                                        {{lead.title}}
-                                    </div>
-                                    <div class=" c-black yakaEllipsis">
-                                        {{lead.user.firstName}} {{lead.user.lastName}}
-                                        <span class="c-gray-dark">- {{lead.address.locality}}</span>
-                                    </div>
-                                    <div class="c-black">
-                                        <span am-time-ago="lead.published"></span>
+                                <div class="col-xs-9 p-10">
+                                    <div class="no-align">
+                                        <div class=" c-black yakaEllipsis">
+                                            {{lead.title}}
+                                        </div>
+                                        <div class=" c-black yakaEllipsis">
+                                            {{lead.user.firstName}} {{lead.user.lastName}}
+                                            <span class="c-gray-dark">- {{lead.address.locality}}</span>
+                                        </div>
+                                        <div class="c-black">
+                                            <span am-time-ago="lead.published"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 border-bottom-lightgray">
-                            <casa-community-tag class="job-community-tag"
-                                                community="community"
-                                                ng-repeat="community in lead.user.communities">
-                            </casa-community-tag>
+                            <div class="col-xs-12 border-bottom-lightgray">
+                                <casa-community-tag class="job-community-tag"
+                                                    community="community"
+                                                    ng-repeat="community in lead.user.communities">
+                                </casa-community-tag>
+                            </div>
                         </div>
                     </div>
                 </a>
