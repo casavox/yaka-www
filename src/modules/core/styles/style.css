@@ -5420,3 +5420,7 @@ div.recaptcha.mobile > div {
 .gray-header {
     background-color: #f8f8f8;
 }
+
+.full-width {
+    width: 100%;
+}

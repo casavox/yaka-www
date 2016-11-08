@@ -21,11 +21,12 @@
         vm.scrollBottom = 0;
 
         if ($stateParams.chat) {
-
             setTimeout(function() {
-
                 vm.showChat = true;
                 vm.scrollBottom = 1;
+                if ($stateParams.chat == 'assistance') {
+                    vm.chatWithAdmin = true;
+                }
             }, 500);
         }
 
