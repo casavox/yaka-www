@@ -17,13 +17,18 @@
         vm.user = $localStorage.user;
 
         $rootScope.pageName = "Trouver un Pro";
-        $rootScope.updateProfile();
         vm.multi = "";
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
         vm.countdown = 5;
         vm.service = vm.continueAddressFlag = vm.continue = vm.dateFlag = vm.wait = false;
-        vm.newAddrFlag = vm.continueImg = vm.popUpImg = false;
+        if (vm.user) {
+            vm.newAddrFlag = vm.continueImg = vm.popUpImg = false;
+            vm.sendButton = 'ENVOYER';
+        } else {
+            vm.newAddrFlag = true;
+            vm.sendButton = 'CONTINUER';
+        }
         vm.selectCategory = vm.disabledAddr = true;
         vm.questions = [];
         vm.material = null;
@@ -91,8 +96,14 @@
 
         // ---------------------------------------
 
+
+        if (vm.user) {
+            console.log(vm.user);
+            $rootScope.updateProfile();
+            networkService.profileGET(succesProfileGET, errorProfileGET);
+        }
+
         networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
-        networkService.profileGET(succesProfileGET, errorProfileGET);
 
         vm.limitLength = function (obj, token, limit) {
             if (obj[token].length >= limit) {
@@ -322,7 +333,7 @@
         };
 
         vm.continueAddr = function () {
-            if (vm.continueAddress == false) {
+            if (vm.continueAddress == false || !$localStorage.user) {
                 if (vm.newAddr.name) {
                     if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR") {
                         vm.newAddr.address = $scope.address.name;
