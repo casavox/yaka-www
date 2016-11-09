@@ -41,6 +41,7 @@
             lastName: "",
             googleId: "",
             facebookId: "",
+            referral: "",
             recaptchaResponse: "",
             avatar: {
                 cloudinaryPublicId: ""
@@ -228,7 +229,9 @@
 
         vm.registerUser = function () {
             if (vm.formIsValid()) {
-
+                if (vm.newUser.referral == 'REFERRAL_OTHER' && vm.referralOther) {
+                    vm.newUser.referral = vm.referralOther;
+                }
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
             }
         };
