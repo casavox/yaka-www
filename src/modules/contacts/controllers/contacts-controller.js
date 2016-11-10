@@ -192,7 +192,12 @@
                 return;
             }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            var invitation = {
+                mailList: invits,
+                message: vm.invitMessage
+            };
+
+            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         function hasDuplicates(array) {
