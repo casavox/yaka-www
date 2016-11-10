@@ -193,7 +193,7 @@
             }
 
             var invitation = {
-                mailList: invits,
+                mails: invits,
                 message: vm.invitMessage
             };
 
