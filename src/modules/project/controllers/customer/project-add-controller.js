@@ -98,7 +98,6 @@
 
 
         if (vm.user) {
-            console.log(vm.user);
             $rootScope.updateProfile();
             networkService.profileGET(succesProfileGET, errorProfileGET);
         }
