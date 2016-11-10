@@ -7,7 +7,7 @@ angular.module('Yaka')
                 $injector.get('$localStorage').$reset();
                 $injector.get('pendingRequests').cancelAll();
                 $injector.get('$state').go("home", {'login': true})
-                if ($injector.get('$state').current.name != "home") {
+                if ($injector.get('$state').current.name != "home" && $injector.get('$state').current.name != "new-project") {
                     $injector.get('alertMsg').disable();
                     setTimeout(
                         function () {
