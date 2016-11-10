@@ -397,7 +397,32 @@
                                 </small>
                             </div>
 
-                            <div class="c-red center m-b-0 t-center">
+                            <div class="col-xs-12 no-padding select m-b-15">
+                                <select class="form-control"
+                                        data-ng-model="vm.newUser.referral">
+                                    <option value="" disabled="disabled">Comment nous avez-vous connu ?</option>
+                                    <option value="REFERRAL_SEARCH">Recherche internet</option>
+                                    <option value="REFERRAL_FRIEND">Par connaissance</option>
+                                    <option value="REFERRAL_SOCIAL">Réseaux sociaux</option>
+                                    <option value="REFERRAL_LM">Leroy Merlin</option>
+                                    <option value="REFERRAL_INVITATION">Invitation Casavox</option>
+                                    <option value="REFERRAL_OTHER">Autre</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-10 m-t-10" data-ng-if="vm.newUser.referral == 'REFERRAL_OTHER'">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="BY_OTHER"
+                                           autocomplete="given-name"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.referralOther">
+                                    <label class="fg-label">Entrez votre source</label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 center c-red m-b-0 t-center">
                                 Cochez la case ci-dessous
                             </div>
                             <div
