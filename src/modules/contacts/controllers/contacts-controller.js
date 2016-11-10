@@ -17,6 +17,7 @@
 
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
             networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            vm.bigAlert = true;
             $localStorage.invitationId = '';
         }
 
@@ -191,7 +192,12 @@
                 return;
             }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            var invitation = {
+                emails: invits,
+                message: vm.invitMessage
+            };
+
+            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         function hasDuplicates(array) {
@@ -382,8 +388,7 @@
 
         vm.formIsValid = function () {
             if (vm.invitPro.name == '' || !vm.isNameValid(vm.invitPro.name) ||
-                vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) ||
-                !vm.invitPro.relation
+                vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) || !vm.invitPro.relation
             ) {
                 return false;
             }
@@ -413,7 +418,11 @@
 
         function succesAcceptInvitationPOST(res) {
             reloadContactsAndInvitations();
-            alertMsg.send("Invitation acceptée avec succes", "success");
+            if (vm.bigAlert) {
+                alertMsg.send("Félicitations ! " + res.user.firstName + " " + res.user.lastName + " fait maintenant partie de vos contacts CasaVox", "success");
+            } else {
+                swal("Félicitations !", res.user.firstName + " " + res.user.lastName + " fait maintenant partie de vos contacts CasaVox", "success")
+            }
         }
 
         function errorAcceptInvitationPOST(err) {
@@ -563,9 +572,9 @@
 
         vm.isXsmall = function () {
             return screenSize.is('xs');
-        }
+        };
 
-        vm.optionSelected = function() {
+        vm.optionSelected = function () {
             if (vm.user.professional) {
                 return 'COLLEAGUE';
             } else {
