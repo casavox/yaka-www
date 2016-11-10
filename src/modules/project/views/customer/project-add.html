@@ -5,9 +5,9 @@
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"
-           data-ng-if="vm.user"></aside>
+           data-ng-if="app.getUser()"></aside>
 
-    <div id="content" class="page-content">
+    <div id="content" class="page-content" data-ng-class="{'noMenu' : !app.getUser()}">
         <div class="content-slide new-project" id="main-scroll-container">
             <div class="container">
                 <div class="slide-main" id="slide1" data-ng-show="vm.selectCategory">
