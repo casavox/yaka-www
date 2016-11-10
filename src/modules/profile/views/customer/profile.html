@@ -273,7 +273,8 @@
                             <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
                                data-ng-if="vm.hasCommunity"></i>
                             Mes communautés
-                            <small data-ng-class="{'subtitle-color-forced' : !vm.hasCommunity, 'c-white' : vm.hasCommunity}">
+                            <small
+                                data-ng-class="{'subtitle-color-forced' : !vm.hasCommunity, 'c-white' : vm.hasCommunity}">
                                 <b>Votre entourage vous recommande leurs meilleurs Pros</b>
                             </small>
                         </h2>
@@ -300,8 +301,9 @@
                                         <label class="fg-label bold"
                                                data-ng-class="{'c-red' : !vm.getCommunityByType('PROFILE_CITY').address.address, 'c-green' : vm.getCommunityByType('PROFILE_CITY').address.address}">Adresse
                                             principale</label>
-                                        <small class="help-block c-red" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">
-                                            Renseignez l'adresse complète, puis la sélectionner dans la liste
+                                        <small class="help-block c-red"
+                                               data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">
+                                            Renseignez l'adresse complète, puis sélectionnez-la dans la liste
                                         </small>
                                     </div>
                                 </div>
@@ -313,7 +315,8 @@
                                                class="form-control fg-input"
                                                data-ng-model="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                                         <label class="fg-label"
-                                               data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom du quartier/voisinnage</label>
+                                               data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom
+                                            du quartier/voisinnage</label>
                                     </div>
                                 </div>
                             </div>
@@ -357,6 +360,10 @@
                                                vs-autocomplete-validator>
                                         <label class="fg-label"
                                                data-ng-class="{'c-red' : !vm.getCommunityByType('JOB').address.address && vm.getCommunityByType('JOB').name, 'c-indigo' : vm.getCommunityByType('JOB').address.address}">Ville</label>
+                                        <small class="help-block c-red"
+                                               data-ng-if="!vm.getCommunityByType('JOB').address.address && vm.getCommunityByType('JOB').name">
+                                            Renseignez la ville, puis sélectionnez-la dans la liste
+                                        </small>
                                     </div>
                                 </div>
                             </div>
@@ -398,6 +405,10 @@
                                                vs-autocomplete-validator>
                                         <label class="fg-label"
                                                data-ng-class="{'c-red' : !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
+                                        <small class="help-block c-red"
+                                               data-ng-if="!vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
+                                            Renseignez la ville, puis sélectionnez-la dans la liste
+                                        </small>
                                     </div>
                                 </div>
                             </div>

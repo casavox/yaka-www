@@ -556,7 +556,7 @@
                                 principale</label>
                             <small class="help-block c-red"
                                    data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">
-                                Renseignez l'adresse complète, puis la sélectionner dans la liste
+                                Renseignez l'adresse complète, puis sélectionnez-la dans la liste
                             </small>
                         </div>
                     </div>
@@ -634,6 +634,10 @@
                                    vs-autocomplete-validator>
                             <label class="fg-label"
                                    data-ng-class="{'c-red' : !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
+                            <small class="help-block c-red"
+                                   data-ng-if="!vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
+                                Renseignez la ville, puis sélectionnez-la dans la liste
+                            </small>
                         </div>
                     </div>
                 </div>
