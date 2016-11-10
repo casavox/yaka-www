@@ -16,6 +16,8 @@
         $rootScope.updateProfile();
         var vm = this;
 
+        vm.user = $localStorage.user;
+
         networkService.projectRecommendGET($stateParams.projectId,
             function (project) {
                 vm.project = project;
@@ -203,10 +205,8 @@
             smoothScroll(element, scrollOptions);
         };
 
-        console.log($localStorage.user);
-
         vm.optionSelected = function() {
-            if ($localStorage.user.professional) {
+            if (vm.user.professional) {
                 return 'COLLEAGUE';
             } else {
                 return 'CLIENT';

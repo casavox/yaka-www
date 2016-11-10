@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 topViewProfile pointer" data-ng-if="!vm.project.activityCorrespond"
+            <div class="col-sm-12 topViewProfile pointer" data-ng-if="!vm.project.activityCorrespond && vm.user.professional"
                  ui-sref="pro-profile">
                 <div class="card bgm-gray c-white p-10">
                     <b>Cette offre ne correspond pas à vos compétences</b></br>
@@ -560,7 +560,8 @@
                 <div class="col-xs-12 no-padding select m-b-15">
                     <select class="form-control"
                             onchange="this.className='form-control form-control-underline-ok'"
-                            data-ng-model="vm.invitPro.relation">
+                            data-ng-model="vm.invitPro.relation"
+                            ng-init="vm.invitPro.relation = vm.optionSelected()">
                         <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
                         <option value="CLIENT">Client</option>
                         <option value="FRIEND">Ami</option>
@@ -603,8 +604,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float"
-                     data-ng-class="{'has-error': !vm.invitPro.phone}">
+                <div class="col-xs-12 no-padding form-group fg-float">
                     <div class="fg-line">
                         <input type="text" name="phoneNumber"
                                class="form-control fg-input"
