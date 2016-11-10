@@ -1,3 +1,8 @@
+.com-tag-proproposallist {
+    float: right;
+    max-width: 400px;
+}
+
 .lead-item {
     background-color: white;
     width: 100%;

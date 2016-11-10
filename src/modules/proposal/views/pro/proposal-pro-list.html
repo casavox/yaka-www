@@ -67,10 +67,13 @@
                             <small class="subtitle-color-forced">
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                 {{proposal.project.address.locality}}
-                                <casa-community-tag class="contact-community-tag hidden-xs"
-                                                    community="community"
-                                                    ng-repeat="community in proposal.project.user.communities">
-                                </casa-community-tag>
+                                <div class="com-tag-proproposallist hidden-xs">
+                                    <casa-community-tag class="contact-community-tag"
+                                                        community="community"
+                                                        ng-repeat="community in proposal.project.user.communities">
+                                    </casa-community-tag>
+                                </div>
+
                             </small>
                             <casa-community-tag class="contact-community-tag visible-xs"
                                                 community="community"
@@ -156,11 +159,18 @@
                                 <small class="subtitle-color-forced">
                                     {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                     {{proposal.project.address.locality}}
-                                    <casa-community-tag class="contact-community-tag"
-                                                        community="community"
-                                                        ng-repeat="community in proposal.project.user.communities">
-                                    </casa-community-tag>
+                                    <div class="com-tag-proproposallist hidden-xs">
+                                        <casa-community-tag class="contact-community-tag"
+                                                            community="community"
+                                                            ng-repeat="community in proposal.project.user.communities">
+                                        </casa-community-tag>
+                                    </div>
+
                                 </small>
+                                <casa-community-tag class="contact-community-tag visible-xs"
+                                                    community="community"
+                                                    ng-repeat="community in proposal.project.user.communities">
+                                </casa-community-tag>
                             </h2>
                         </div>
 
