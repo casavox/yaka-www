@@ -429,3 +429,11 @@ section#main.yakaMain .content .card {
 body.sw-toggled #content.noMenu {
     padding-left: 0 !important;
 }
+
+.alert {
+    background-image: none;
+}
+
+.alert-success {
+    background-color: rgba(76, 175, 80, 0.9);
+}
