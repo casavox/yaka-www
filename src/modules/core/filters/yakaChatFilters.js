@@ -12,7 +12,7 @@ angular.module('Yaka')
                 case 'CUSTOMER_DATE_UPDATED':
                     return customerUser.firstName + " " + customerUser.lastName + " a mis à jour la date souhaitée de début de chantier";
                 case 'CUSTOMER_ADDRESS_UPDATED':
-                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour l'addresse du chantier au " + autoMessage.varAddress;
+                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour l'adresse du chantier au " + autoMessage.varAddress;
                 case 'CUSTOMER_DESCRIPTION_UPDATED':
                     return customerUser.firstName + " " + customerUser.lastName + " a mis à jour la description du projet";
                 case 'CUSTOMER_PHOTOS_UPDATED':
