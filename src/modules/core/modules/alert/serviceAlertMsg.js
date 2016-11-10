@@ -2,54 +2,27 @@
 //Service alert message
 
 angular.module('Yaka')
-    .factory('alertMsg', function ($rootScope, $timeout, $localStorage) {
+    .factory('alertMsg', function ($rootScope, $timeout, $localStorage, growlService) {
             return {
                 send: function (msg, type) {
                     if ($localStorage.disableAlertMsg) {
                         return;
                     }
-                    if (angular.isUndefined($rootScope.msgQueu) || !$rootScope.msgQueu)
-                        $rootScope.msgQueu = [];
-                    var self = this;
-                    if (!$rootScope.alertMsgFlag) {
-                        $rootScope.alertMessage = msg;
-                        switch (type) {
-                            case "danger":
-                                $rootScope.alertMsgStyle = "alert-" + type;
-                                $rootScope.alertMsgStylIcon = "glyphicon glyphicon-exclamation-sign";
-                                break;
-                            case "info":
-                                $rootScope.alertMsgStyle = "alert-" + type;
-                                $rootScope.alertMsgStylIcon = "glyphicon glyphicon-info-sign";
-                                break;
-                            case "warning":
-                                $rootScope.alertMsgStyle = "alert-" + type;
-                                $rootScope.alertMsgStylIcon = "glyphicon glyphicon-warning-sign";
-                                break;
-                            case "success":
-                                $rootScope.alertMsgStyle = "alert-" + type;
-                                $rootScope.alertMsgStylIcon = "glyphicon glyphicon-ok-sign";
-                                break;
-                            default:
-                                $rootScope.alertMsgStyle = "alert-danger";
-                        }
-                        $rootScope.alertMsgFlag = true;
-                        $timeout(function () {
-                        }, 0);
-                        $timeout(function () {
-                            $rootScope.alertMsgFlag = false;
-                            $timeout(function () {
-                                if ($rootScope.msgQueu && $rootScope.msgQueu.length > 0) {
-                                    self.send($rootScope.msgQueu[0].msg, $rootScope.msgQueu[0].type);
-                                    $rootScope.msgQueu.splice(0, 1);
-                                }
-                            }, 200);
-                        }, 3000);
-                    } else
-                        $rootScope.msgQueu.push({
-                            msg: msg,
-                            type: type
-                        });
+
+                    $.growl({
+                        message: msg,
+                        url: ''
+                    }, {
+                        type: type,
+                        offset: {
+                            x: 20,
+                            y: 85
+                        },
+                        spacing: 10,
+                        z_index: 1031,
+                        delay: 5000
+                    });
+
                 },
                 stop: function () {
                     $rootScope.alertMsgFlag = false;

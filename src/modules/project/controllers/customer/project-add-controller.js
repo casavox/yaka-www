@@ -391,6 +391,7 @@
             }
             else {
                 $scope.address.name = vm.myAddress;
+                vm.error.address.flag = false;
                 vm.continueAddress = true;
                 vm.newAddrFlag = false;
                 vm.newAddr.name = "";

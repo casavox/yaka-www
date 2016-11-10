@@ -1,6 +1,3 @@
-.proHomeSection {
-}
-
 .proHomeSection1 {
     height: 700px;
     background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
@@ -107,7 +104,7 @@
 }
 
 .proHomeSection2 {
-    height: 1435px;
+    height: auto;
     color: black;
     background-color: white;
     text-align: center;
@@ -439,9 +436,17 @@
 }
 
 .oldFormControl .form-control {
-    margin-top: 15px !important;
-    height: 40px !important;
+    margin-top: 15px;
+    height: 40px;
     float: left;
+}
+
+.select-pro-register {
+    margin-top: 0px !important;
+}
+
+.input-pro-other {
+    height: auto !important;
 }
 
 .proRegisterPhone .intl-tel-input {
