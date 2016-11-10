@@ -307,17 +307,13 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 card-body m-t-20 m-l-0 p-l-0 p-r-15">
-                                <div class="form-group fg-float has-success"
-                                     data-ng-class="{'has-error' : !vm.getCommunityByType('PROFILE_CITY').neighborhood}">
+                                <div class="form-group fg-float has-success">
                                     <div class="fg-line fg-toggled">
                                         <input type="text"
                                                class="form-control fg-input"
                                                data-ng-model="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                                         <label class="fg-label"
-                                               data-ng-class="{'c-red' : !vm.getCommunityByType('PROFILE_CITY').neighborhood, 'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom du quartier/voisinnage</label>
-                                        <small class="help-block c-red" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').neighborhood">
-                                            Veuillez saisir la ville, puis la sélectionner dans la liste
-                                        </small>
+                                               data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom du quartier/voisinnage</label>
                                     </div>
                                 </div>
                             </div>
