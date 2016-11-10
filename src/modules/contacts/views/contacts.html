@@ -51,7 +51,11 @@
                                                             data-ui-sref="profile"
                                                             community="vm.getCommunityByType('PROFILE_CITY')">
                                         </casa-community-tag>
-                                        <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address"><i class="zmdi zmdi-plus"></i></button>
+                                        <button
+                                            class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                            data-ui-sref="profile"
+                                            data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address">
+                                            <i class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -61,7 +65,11 @@
                                                             data-ui-sref="profile"
                                                             community="vm.getCommunityByType('JOB')">
                                         </casa-community-tag>
-                                        <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                        <button
+                                            class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                            data-ui-sref="profile"
+                                            data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i
+                                            class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -71,7 +79,11 @@
                                                             data-ui-sref="profile"
                                                             community="vm.getCommunityByType('OTHER')">
                                         </casa-community-tag>
-                                        <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                        <button
+                                            class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                            data-ui-sref="profile"
+                                            data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i
+                                            class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -110,21 +122,33 @@
                                                                 data-ui-sref="profile"
                                                                 community="vm.getCommunityByType('PROFILE_CITY')">
                                             </casa-community-tag>
-                                            <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address"><i class="zmdi zmdi-plus"></i></button>
+                                            <button
+                                                class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                                data-ui-sref="profile"
+                                                data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address">
+                                                <i class="zmdi zmdi-plus"></i></button>
                                         </div>
                                         <div class="col-xs-8 col-xs-offset-4 community-height">
                                             <casa-community-tag class="tag-community t-center pointer"
                                                                 data-ui-sref="profile"
                                                                 community="vm.getCommunityByType('JOB')">
                                             </casa-community-tag>
-                                            <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                            <button
+                                                class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                                data-ui-sref="profile"
+                                                data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i
+                                                class="zmdi zmdi-plus"></i></button>
                                         </div>
                                         <div class="col-xs-8 col-xs-offset-4 community-height">
                                             <casa-community-tag class="tag-community t-center pointer"
                                                                 data-ui-sref="profile"
                                                                 community="vm.getCommunityByType('OTHER')">
                                             </casa-community-tag>
-                                            <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                            <button
+                                                class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                                data-ui-sref="profile"
+                                                data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i
+                                                class="zmdi zmdi-plus"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -258,8 +282,8 @@
                                               data-ng-if="!contact.user.professional && contact.user.defaultAddress && contact.user.defaultAddress.locality">
                             ({{contact.user.defaultAddress.locality}})
                                      </span>
-                                        <span class="contactItemCity contactItemCityInvitReceived"
-                                              data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
+                                    <span class="contactItemCity contactItemCityInvitReceived"
+                                          data-ng-if="contact.user.professional && contact.user.professional.company && contact.user.professional.company.address && contact.user.professional.company.address.locality">
                             ({{contact.user.professional.company.address.locality}})
                                      </span>
                                 </div>
@@ -506,7 +530,6 @@
             <div class="col-xs-12 yakaPopupInvitSubTitle">
                 Accompagnez votre invitation d'un message personnalisé.
             </div>
-
 
             <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
                     data-ng-disabled="vm.invitCustomer == ''"
