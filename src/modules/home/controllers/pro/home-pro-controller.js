@@ -283,7 +283,7 @@
         };
 
         vm.login = function () {
-            networkService.login(vm.loginUser, succesLogin, errorLogin);
+            networkService.login(vm.loginUser, succesLogin, errorLogin, true);
         };
 
         function succesLogin(res) {

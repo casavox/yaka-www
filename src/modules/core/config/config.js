@@ -6,8 +6,8 @@ angular.module('Yaka')
             if (response.status == 401) {
                 $injector.get('$localStorage').$reset();
                 $injector.get('pendingRequests').cancelAll();
-                $injector.get('$state').go("home", {'login': true})
-                if ($injector.get('$state').current.name != "home" && $injector.get('$state').current.name != "new-project") {
+                if ($injector.get('$state').current.name != "home" && $injector.get('$state').current.name != "pro-home" && $injector.get('$state').current.name != "new-project") {
+                    $injector.get('$state').go("home", {'login': true});
                     $injector.get('alertMsg').disable();
                     setTimeout(
                         function () {

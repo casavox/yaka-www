@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function NewProjectController($scope, networkService, $rootScope, $stateParams, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll, $translate) {
+    function NewProjectController($scope, networkService, $rootScope, $stateParams, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll, $translate, $auth) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -714,7 +714,6 @@
         }
 
         function errorLogin(err) {
-            console.log("Prout Victor !");
             if (err.error != undefined && err.error != "ERROR") {
                 alertMsg.send($translate.instant(err.error), 'danger');
             } else {
@@ -727,6 +726,7 @@
             $auth.authenticate('googleLogin').then(function (res) {
                 succesLogin(res.data);
             }).catch(function (res) {
+                console.log(res);
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
