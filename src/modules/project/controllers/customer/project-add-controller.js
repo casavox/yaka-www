@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function NewProjectController($scope, networkService, $rootScope, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll) {
+    function NewProjectController($scope, networkService, $rootScope, $stateParams, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll, $translate, $auth) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -17,13 +17,18 @@
         vm.user = $localStorage.user;
 
         $rootScope.pageName = "Trouver un Pro";
-        $rootScope.updateProfile();
         vm.multi = "";
         vm.newProject = {};
         vm.projectDescription = vm.dateType = vm.child2 = vm.child1 = vm.child3 = vm.child0 = "";
         vm.countdown = 5;
         vm.service = vm.continueAddressFlag = vm.continue = vm.dateFlag = vm.wait = false;
-        vm.newAddrFlag = vm.continueImg = vm.popUpImg = false;
+        if (vm.user) {
+            vm.newAddrFlag = vm.continueImg = vm.popUpImg = false;
+            vm.sendButton = 'ENVOYER';
+        } else {
+            vm.newAddrFlag = true;
+            vm.sendButton = 'CONTINUER';
+        }
         vm.selectCategory = vm.disabledAddr = true;
         vm.questions = [];
         vm.material = null;
@@ -91,8 +96,14 @@
 
         // ---------------------------------------
 
+
+        if (vm.user) {
+            console.log(vm.user);
+            $rootScope.updateProfile();
+            networkService.profileGET(succesProfileGET, errorProfileGET);
+        }
+
         networkService.activitiesGET(succesProjectsGET, errorProjectsGET);
-        networkService.profileGET(succesProfileGET, errorProfileGET);
 
         vm.limitLength = function (obj, token, limit) {
             if (obj[token].length >= limit) {
@@ -201,6 +212,14 @@
             }
         };
 
+        vm.publishProject = function () {
+            if (angular.isUndefined($localStorage.token) == false && $localStorage.token) {
+                vm.post();
+            } else {
+                vm.openPopup(false);
+            }
+        };
+
         vm.post = function () {
             var formData = {
                 title: vm.title,
@@ -254,7 +273,7 @@
                 networkService.projectPOST(formData, succesProjectsPOST, errorProjectsPOST, true);
             else {
                 $rootScope.newProject = formData;
-                $state.go("login");
+                $state.go('home');
             }
         };
 
@@ -322,7 +341,7 @@
         };
 
         vm.continueAddr = function () {
-            if (vm.continueAddress == false) {
+            if (vm.continueAddress == false || !$localStorage.user) {
                 if (vm.newAddr.name) {
                     if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR") {
                         vm.newAddr.address = $scope.address.name;
@@ -372,6 +391,7 @@
             }
             else {
                 $scope.address.name = vm.myAddress;
+                vm.error.address.flag = false;
                 vm.continueAddress = true;
                 vm.newAddrFlag = false;
                 vm.newAddr.name = "";
@@ -600,5 +620,224 @@
                 }
             });
         };
+
+        vm.openPopup = function (showLoginTab) {
+            vm.loginTab = showLoginTab;
+            vm.showLoginPopup = true;
+        };
+
+        vm.closePopup = function () {
+            vm.showLoginPopup = false;
+        };
+
+        vm.newUser = {
+            password: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            googleId: "",
+            facebookId: "",
+            defaultAddress: {
+                address: ""
+            },
+            recaptchaResponse: "",
+            avatar: {
+                cloudinaryPublicId: ""
+            }
+        };
+
+        vm.loginUser = {
+            password: "",
+            email: ""
+        };
+
+        if ($stateParams.email) {
+            vm.loginUser.email = $stateParams.email;
+            vm.newUser.email = $stateParams.email;
+        }
+
+        vm.passwordConfirm = "";
+
+        vm.autocomplete = {
+            options: {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
+            }
+        };
+
+        var doNotHide = false;
+
+        vm.needToHideEmail = function () {
+            if (doNotHide) {
+                return false;
+            }
+            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
+                if (vm.newUser.email == '') {
+                    doNotHide = true;
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        vm.isSocialRegister = function () {
+            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
+            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
+
+        };
+
+        vm.registerFormIsValid = function () {
+            return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
+            vm.newUser.password == '' || vm.newUser.password < 6 ||
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address || !vm.newUser.recaptchaResponse);
+        };
+
+        vm.loginFormIsValid = function () {
+            return !(vm.loginUser.email == '' || vm.loginUser.password == '');
+        };
+
+        vm.login = function () {
+            if (vm.loginFormIsValid()) {
+                networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            }
+        };
+
+        function succesLogin(res) {
+            if (res.token && res.token != "") {
+                $localStorage.user = res;
+                $localStorage.token = res.token;
+                vm.publishProject();
+            }
+        }
+
+        function errorLogin(err) {
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de se connecter", 'danger');
+            }
+        }
+
+        vm.googleLogin = function () {
+            vm.socialNetwork = "Google";
+            $auth.authenticate('googleLogin').then(function (res) {
+                succesLogin(res.data);
+            }).catch(function (res) {
+                console.log(res);
+                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
+                    vm.noSocialAccountMessage = true;
+                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Google", 'danger');
+                }
+            });
+        };
+
+        vm.facebookLogin = function () {
+            vm.socialNetwork = "Facebook";
+            $auth.authenticate('facebookLogin').then(function (res) {
+                succesLogin(res.data);
+            }).catch(function (res) {
+                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
+                    vm.noSocialAccountMessage = true;
+                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                }
+            });
+        };
+
+        vm.googlePreRegister = function () {
+            vm.socialNetwork = "Google";
+            $auth.authenticate('googleRegister').then(function (res) {
+                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                    onPreRegisterOK(res.data);
+                }
+            }).catch(function (res) {
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Google", 'danger');
+                }
+            });
+        };
+
+        vm.facebookPreRegister = function () {
+            vm.socialNetwork = "Facebook";
+            $auth.authenticate('facebookRegister').then(function (res) {
+                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                    onPreRegisterOK(res.data);
+                }
+            }).catch(function (res) {
+                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
+                    alertMsg.send($translate.instant(res.data.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                }
+            });
+        };
+
+        function onPreRegisterOK(user) {
+            vm.newUser.firstName = user.firstName;
+            vm.newUser.lastName = user.lastName;
+            if (user.email != undefined) {
+                vm.newUser.email = user.email.toLowerCase();
+            }
+            vm.newUser.googleId = user.googleId;
+            vm.newUser.facebookId = user.facebookId;
+            vm.newUser.avatar = user.avatar;
+        }
+
+        vm.registering = false;
+
+        vm.register = function () {
+            if (vm.registerFormIsValid()) {
+                vm.registering = true;
+                networkService.register(vm.newUser, successRegister, failRegister, true);
+            }
+        };
+
+        function successRegister(res) {
+            vm.registering = false;
+            $localStorage.token = res.token;
+            $localStorage.user = res;
+            vm.publishProject();
+        }
+
+        function failRegister(err) {
+            vm.registering = false;
+            if (err.error != undefined && err.error != "ERROR") {
+                alertMsg.send($translate.instant(err.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de créer le compte", 'danger');
+            }
+        }
+
+        vm.showForgottenPasswordPopup = false;
+
+        vm.passwordForgottenMessageSent = false;
+
+        vm.forgottenPasswordUser = {
+            email: ""
+        };
+
+        vm.forgottenPassword = function () {
+            if (vm.forgottenPasswordUser.email) {
+                networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            }
+        };
+
+        function successPasswordForgotten(res) {
+            vm.passwordForgottenMessageSent = true;
+        }
+
+        function failPasswordForgotten(err) {
+            alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
+        }
     }
 })();

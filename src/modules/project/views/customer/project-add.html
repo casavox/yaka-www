@@ -4,7 +4,8 @@
 <section id="view">
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
-           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"
+           data-ng-if="vm.user"></aside>
 
     <div id="content" class="page-content">
         <div class="content-slide new-project" id="main-scroll-container">
@@ -261,11 +262,10 @@
                             <input type="text" class="form-control" data-ng-model="vm.newAddr.name"
                                    placeholder="Nom de l'adresse (Maison, Papa, ...)">
                         </div>
+                        <p class="error t-left m-t-0 f-s-13" data-ng-show="vm.error.address.flag">
+                            {{vm.error.address.message}}
+                        </p>
                     </div>
-
-                    <p class="error center" data-ng-show="vm.error.address.flag">
-                        {{vm.error.address.message}}
-                    </p>
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
@@ -325,9 +325,9 @@
 
                     <button id="publish"
                             class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                            data-ng-click="vm.post()"
+                            data-ng-click="vm.publishProject()"
                             data-ng-disabled="!vm.dateType">
-                        ENVOYER
+                        {{vm.sendButton}}
                     </button>
 
                 </div>
@@ -335,3 +335,292 @@
         </div>
     </div>
 </section>
+
+<div class="yakaPopup" data-ng-show="vm.showLoginPopup" data-ng-click="vm.closePopup()" data-ng-cloak>
+    <div class="container">
+        <div id="loginPopup" class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.closePopup()" alt=""/>
+
+            <div data-ng-if="!vm.noSocialAccountMessage">
+                <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: vm.loginTab}"
+                     data-ng-click="vm.loginTab = true">
+                    CONNEXION
+                </div>
+                <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: !vm.loginTab}"
+                     data-ng-click="vm.loginTab = false">
+                    INSCRIPTION
+                </div>
+
+                <div data-ng-show="vm.loginTab">
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
+                        Facebook
+                    </div>
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
+                        Google
+                    </div>
+
+                    <input class="form-control"
+                           type="text"
+                           name="username"
+                           autocomplete="username"
+                           placeholder="Email"
+                           data-ng-model="vm.loginUser.email"
+                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+
+                    <input class="form-control"
+                           type="password"
+                           name="password"
+                           autocomplete="current-password"
+                           placeholder="Mot de passe"
+                           data-ng-model="vm.loginUser.password"
+                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+
+                    <button
+                        class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                        data-ng-click="vm.login()" data-ng-disabled="!vm.loginFormIsValid()"
+                        id="signInPopupButton">SE CONNECTER
+                    </button>
+
+                    <div class="col-xs-12 passwordForgotten underline">
+                        <span data-ng-click="vm.closePopup();
+                         vm.forgottenPasswordUser.email = vm.loginUser.email;
+                         vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
+                    </div>
+                </div>
+
+                <div data-ng-show="!vm.loginTab">
+
+                    <div class="col-xs-12 registerFacebookGoogle p-l-0 p-r-0">
+                        <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
+
+                        <div data-ng-if="vm.isSocialRegister()">
+                            <div class="registerSocialConfirm p-l-0 p-r-0">
+                                Inscription via {{vm.socialNetwork}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookPreRegister()"
+                         data-ng-if="!vm.isSocialRegister()">
+                        Facebook
+                    </div>
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googlePreRegister()"
+                         data-ng-if="!vm.isSocialRegister()">
+                        Google
+                    </div>
+
+                    <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
+
+                    <div class="col-xs-12 registerMail">
+                        <span class="registerWithEmailMessage pointer" data-ng-if="!vm.isSocialRegister()"
+                              data-ng-click="vm.showRegisterFields = true">- <span class="underline">Ou inscription par email</span> -</span>
+                        <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
+                    </div>
+                    <form name="registerForm">
+                        <div class="col-xs-12 showRegisterFields"
+                             data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
+
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
+                                 data-ng-class="{'has-error': !vm.newUser.firstName}">
+
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="fname"
+                                           autocomplete="given-name"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.firstName"
+                                           required="required"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                    <label class="fg-label">Prénom</label>
+                                </div>
+                                <div data-ng-messages="registerForm.fname.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
+                                 data-ng-class="{'has-error': !vm.newUser.lastName}">
+
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="lname"
+                                           autocomplete="family-name"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.lastName"
+                                           required="required"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                    <label class="fg-label">Nom</label>
+                                </div>
+                                <div data-ng-messages="registerForm.lname.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.newUser.defaultAddress.address"
+                                           type="text"
+                                           name="address"
+                                           autocomplete="address-level2"
+                                           required="required"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
+                                    Veuillez saisir la ville, puis la sélectionner dans la liste
+                                </small>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': !vm.newUser.email}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="username"
+                                           autocomplete="username"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.email"
+                                           required="required" yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <div data-ng-messages="registerForm.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error':! vm.newUser.password}">
+                                <div class="fg-line">
+                                    <input type="password"
+                                           name="password"
+                                           autocomplete="new-password"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.password"
+                                           data-ng-minlength="6">
+                                    <label class="fg-label">Mot de passe</label>
+                                </div>
+                                <div data-ng-messages="registerForm.password.$error">
+                                    <small class="help-block" data-ng-message="minlength">
+                                        Le mot de passe doit faire au moins 6 caractères
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-15"
+                                 data-ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
+                                    <label class="fg-label">Confirmation</label>
+                                </div>
+                                <small class="help-block"
+                                       data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
+                                    Les deux mots de passe ne correspondent pas
+                                </small>
+                            </div>
+
+                            <div class="c-red center m-b-0 t-center">
+                                Cochez la case ci-dessous
+                            </div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-lg visible-md col-xs-12 m-t-0 center recaptcha"
+                            ></div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-sm col-xs-12 m-t-0 center recaptcha mobile"
+                                style="-moz-transform:scale(0.95); -ms-transform:scale(0.95); -o-transform:scale(0.95); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.95); transform:scale(0.95); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.95,M12=0,M21=0,M22=0.95,SizingMethod='auto expand');"
+                            ></div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-xs col-xs-12 m-t-0 center recaptcha mobile"
+                                style="-moz-transform:scale(0.9); -ms-transform:scale(0.9); -o-transform:scale(0.9); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.9); transform:scale(0.9); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9,M12=0,M21=0,M22=0.9,SizingMethod='auto expand');"
+                            ></div>
+                            <button
+                                class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                                data-ng-disabled="!vm.registerFormIsValid()"
+                                data-ng-click="vm.register()">S'INSCRIRE
+                            </button>
+                        </div>
+                    </form>
+                    <small class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
+                        Vous êtes Pro ? <span class="underline">Cliquez ici pour vous inscrire</span>
+                    </small>
+                </div>
+            </div>
+            <div data-ng-if="vm.noSocialAccountMessage">
+                <div class="noSocialAccountMessage">
+                    Ce compte {{vm.socialNetwork}} nous est inconnu.<br/>
+                    Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
+                    sur <em>S'inscrire</em> puis <em>{{vm.socialNetwork}}</em>.
+                </div>
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-click="vm.noSocialAccountMessage = false">OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" data-ng-show="vm.showForgottenPasswordPopup"
+     data-ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" data-ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
+
+            <div data-ng-if="!vm.passwordForgottenMessageSent">
+
+                <form name="recoverPassword">
+                    <div class="form-group fg-float m-t-30"
+                         data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
+                        <div class="fg-line">
+                            <input type="text"
+                                   name="username"
+                                   autocomplete="username"
+                                   data-ng-disabled="vm.isSocialRegister()"
+                                   class="form-control fg-input input-sm"
+                                   data-ng-model="vm.forgottenPasswordUser.email"
+                                   required="required"
+                                   yaka-input-email>
+                            <label class="fg-label">Email</label>
+                        </div>
+                        <div data-ng-messages="recoverPassword.username.$error">
+                            <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                valide
+                            </small>
+                        </div>
+                    </div>
+                </form>
+                <button
+                    class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                    data-ng-disabled="!vm.forgottenPasswordUser.email"
+                    data-ng-click="vm.forgottenPassword()">RÉINITIALISER MON MOT DE PASSE
+                </button>
+            </div>
+            <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
+                Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
+                passe.
+            </div>
+        </div>
+    </div>
+</div>
