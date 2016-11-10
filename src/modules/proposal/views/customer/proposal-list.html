@@ -421,7 +421,9 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-12">
-                                    <div class="card pointer m-t-10 p-10 m-b-10 card-proposal" href=""
+                                    <div class="card pointer m-t-10 p-10 m-b-10 card-proposal"
+                                         data-ng-class="{'bgm-lightest-gray': p.status == 'RECO_PRO_DECLINED' || p.status == 'RECO_CUSTOMER_DECLINED'}"
+                                         href=""
                                          data-ng-repeat="p in vm.project.recoProposals"
                                          data-ng-click="vm.selectProposal(p)">
                                         <div class="media m-t-5">
