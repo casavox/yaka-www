@@ -302,6 +302,30 @@
                          translation-texts="vm.multiChoiceInput.translation"
                          checkboxes="true"></div>
 
+                    <div class="col-xs-12 no-padding select m-b-15">
+                        <select class="form-control select-pro-register"
+                                data-ng-model="vm.newUser.referral">
+                            <option value="" disabled="disabled">Comment nous avez-vous connu ?</option>
+                            <option value="REFERRAL_SEARCH">Recherche internet</option>
+                            <option value="REFERRAL_FRIEND">Par connaissance</option>
+                            <option value="REFERRAL_SOCIAL">Réseaux sociaux</option>
+                            <option value="REFERRAL_LM">Leroy Merlin</option>
+                            <option value="REFERRAL_INVITATION">Invitation Casavox</option>
+                            <option value="REFERRAL_OTHER">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="col-xs-12 no-padding form-group fg-float m-b-10 m-t-10" data-ng-if="vm.newUser.referral == 'REFERRAL_OTHER'">
+                        <div class="fg-line">
+                            <input type="text"
+                                   name="BY_OTHER"
+                                   autocomplete="given-name"
+                                   class="form-control fg-input input-sm input-pro-other"
+                                   data-ng-model="vm.referralOther">
+                            <label class="fg-label">Entrez votre source</label>
+                        </div>
+                    </div>
+
                     <span class="col-xs-12 subtitle-color-forced m-l-0">Cochez la case ci-dessous</span>
                     <div
                         vc-recaptcha
@@ -317,7 +341,7 @@
                         style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
                     ></div>
                     <button
-                        class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange waves-effect"
+                        class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange m-b-15 waves-effect"
                         data-ng-disabled="!vm.formIsValid()" data-ng-click="vm.registerUser()">
                         S'INSCRIRE
                     </button>
