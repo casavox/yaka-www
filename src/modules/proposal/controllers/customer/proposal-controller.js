@@ -103,7 +103,7 @@
         vm.acceptProposal = function () {
             swal({
                 title: "Vous êtes sur le point de sélectionner ce Pro pour vos travaux",
-                text: "Votre projet de travaux ne sera plus visible par les autres professionels",
+                text: "Votre projet de travaux ne sera plus visible par les autres professionnels",
                 type: "warning",
                 showConfirmButton: true,
                 showCancelButton: true,
