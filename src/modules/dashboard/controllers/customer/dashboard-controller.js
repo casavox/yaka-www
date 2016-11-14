@@ -58,6 +58,14 @@
             alertMsg.send("Impossible de récupérer les communautés", "danger");
         }
 
+        networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);
+        function successProjectsGET(res) {
+            vm.userOnGoingProjectNumber = res.totalItemNumber;
+        }
+
+        function errorProjectsGET(res) {
+        }
+
     }
 })
 ();
