@@ -1,3 +1,7 @@
+.onGoing-find-buttons {
+    width: 230px;
+}
+
 .button-community {
     left: 0;
     top: -10px;
@@ -5,6 +9,10 @@
     transform: translateX(-50%);
     background-color: transparent !important;
     box-shadow: none !important;
+}
+
+.p-l-85 {
+    padding-left: 85px !important;
 }
 
 .p-l-60 {
@@ -214,6 +222,9 @@ ul.yaka-chips li {
 }
 
 @media (max-width: 767px) {
+    .dashboard-avatar {
+        float: left;
+    }
 
     .community-tag {
         margin: 3px 3px 0px 0px !important;
