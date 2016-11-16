@@ -15,16 +15,43 @@
                 <div class="card-header p-b-0">
                     <div class="media">
                         <div class="pull-left left-col-width">
-                            <yaka-avatar size="75" user="app.getUser()"></yaka-avatar>
-                            <div class="hidden-xs">
-                                <button data-ng-if="vm.data.ongoingProjectsNumber > 0"
-                                        class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
+                            <yaka-avatar class="dashboard-avatar" size="75" user="app.getUser()"></yaka-avatar>
+                            <div class="visible-xs no-padding p-l-85">
+                                <div class="f-s-16">
+                                    {{app.getUser().firstName}} {{app.getUser().lastName}}
+                                </div>
+
+                                <div class="no-padding">
+                                    <a class="pointer underline" data-ui-sref="contacts">
+                                        {{vm.data.contactsNumber}}
+                                        <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
+                                        <span data-ng-show="vm.data.contactsNumber > 1">Contacts</span> -
+                                        {{vm.data.contactsProNumber}}
+                                        <span data-ng-show="vm.data.contactsNumber < 2">Pro</span>
+                                        <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
+                                    </a>
+                                </div>
+                                <div class="no-padding"
+                                     data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
+                                    <a class="pointer underline" data-ui-sref="contacts"><b>
+                                        {{vm.data.incomingInvitationNumber}}
+                                        <span
+                                            data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
+                                        <span
+                                            data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span></b>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <div class="hidden-xs onGoing-find-buttons">
+                                <button data-ng-if="vm.userOnGoingProjectNumber > 0"
+                                        class="btn btn-default pull-left waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
                                         data-ui-sref="my-projects">
-                                    {{vm.data.ongoingProjectsNumber}} PROJET<span
-                                    data-ng-if="vm.data.ongoingProjectsNumber > 1">S</span>
+                                    {{vm.userOnGoingProjectNumber}} PROJET<span
+                                    data-ng-if="vm.userOnGoingProjectNumber > 1">S</span>
                                 </button>
-                                <button data-ng-if="vm.data.ongoingProjectsNumber == 0"
-                                        class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
+                                <button class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
                                         data-ui-sref="new-project">
                                     TROUVER UN PRO
                                 </button>
@@ -71,7 +98,7 @@
                         </div>
                         <div class="media-body">
                             <div class="media row">
-                                <div class="col-xs-4 hidden-xs">
+                                <div class="col-xs-6 hidden-xs">
                                     <div class="f-s-16 yakaEllipsis">
                                         {{app.getUser().firstName}} {{app.getUser().lastName}}
                                     </div>
@@ -108,41 +135,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4 dashboardUserInfos">
-
-                                    <div class="f-s-16 yakaEllipsis visible-xs">
-                                        {{app.getUser().firstName}} {{app.getUser().lastName}}
-                                    </div>
-
-                                    <div class="col-xs-12 no-padding visible-xs">
-                                        <a class="pointer underline" data-ui-sref="contacts">
-                                            {{vm.data.contactsNumber}}
-                                            <span data-ng-show="vm.data.contactsNumber < 2">Contact</span>
-                                            <span data-ng-show="vm.data.contactsNumber > 1">Contacts</span> -
-                                            {{vm.data.contactsProNumber}}
-                                            <span data-ng-show="vm.data.contactsNumber < 2">Pro</span>
-                                            <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-12 no-padding visible-xs"
-                                         data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
-                                        <a class="pointer underline" data-ui-sref="contacts">
-                                            {{vm.data.incomingInvitationNumber}}
-                                            <span
-                                                data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
-                                            <span
-                                                data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a class="pointer visible-xs" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
-                                            invitation<span
-                                                data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
-                                    </div>
-                                </div>
                                 <div
-                                    class="col-sm-7 col-md-6 col-xs-offset-4 col-sm-offset-1 col-md-offset-2 f-s-14 t-right dashboardStats hidden-xs">
+                                    class="col-sm-6 col-xs-offset-4 col-sm-offset-0 f-s-14 t-right dashboardStats hidden-xs">
                                     <div class="col-xs-12 p-l-0 p-r-0 t-center">
                                         <div class="col-xs-8 col-xs-offset-4">
                                             <span class="text-uppercase">Mes communautés</span>
@@ -183,13 +177,13 @@
                         <a class="pull-left m-l-10 m-b-5 m-t-15" data-ng-if="vm.data.invitationNumber > 0"><u><b>{{vm.data.invitationNumber}}
                             invitation<span
                                 data-ng-if="vm.data.invitationNumber > 1">s</span> à valider</b></u></a>
-                        <button data-ng-if="vm.data.ongoingProjectsNumber > 0"
+                        <button data-ng-if="vm.userOnGoingProjectNumber > 0"
                                 class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10 m-l-10"
                                 data-ui-sref="my-projects">
-                            {{vm.data.ongoingProjectsNumber}} PROJET<span
-                            data-ng-if="vm.data.ongoingProjectsNumber > 1">S</span>
+                            {{vm.userOnGoingProjectNumber}} PROJET<span
+                            data-ng-if="vm.userOnGoingProjectNumber > 1">S</span>
                         </button>
-                        <button data-ng-if="vm.data.ongoingProjectsNumber == 0"
+                        <button data-ng-if="vm.userOnGoingProjectNumber == 0"
                                 class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10 m-l-10"
                                 data-ui-sref="new-project">
                             TROUVER UN PRO
