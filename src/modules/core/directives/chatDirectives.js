@@ -169,10 +169,7 @@ angular.module('Yaka')
                                 if (subscription != null) {
                                     subscription.unsubscribe();
                                 }
-                                console.log("Setting Subscribe");
                                 subscription = $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
-
-                                    console.log("New Message");
 
                                     scope.messages.push(payload);
 
