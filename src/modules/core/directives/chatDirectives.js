@@ -163,27 +163,32 @@ angular.module('Yaka')
                     var subscription = null;
 
                     $stomp.connect(CONFIG.API_BASE_URL + '/connect',
-                        {token: $localStorage.token},
-                        function () {
-                            if (subscription != null) {
-                                subscription.unsubscribe();
-                            }
-                            subscription = $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
+                        {token: $localStorage.token})
+                        .then(
+                            function () {
+                                if (subscription != null) {
+                                    subscription.unsubscribe();
+                                }
+                                console.log("Setting Subscribe");
+                                subscription = $stomp.subscribe('/chat/' + scope.chatId, function (payload, headers, res) {
 
-                                scope.messages.push(payload);
+                                    console.log("New Message");
 
-                                scope.$apply(function () {
-                                    scrollDown();
-                                    if (scope.userMe != 'admin') {
-                                        setChatRead();
-                                    }
+                                    scope.messages.push(payload);
+
+                                    scope.$apply(function () {
+                                        scrollDown();
+                                        if (scope.userMe != 'admin') {
+                                            setChatRead();
+                                        }
+                                    });
+                                }, {
+                                    'token': $localStorage.token
                                 });
-                            }, {
-                                'token': $localStorage.token
-                            });
-                        }, function () {
-                            alertMsg.send("Connexion au chat impossible, nouvelle tentative en cours...", "danger")
-                        });
+                            }, function () {
+                                alertMsg.send("Connexion au chat impossible, nouvelle tentative en cours...", "danger")
+                            }
+                        );
                 }
 
                 function setupScrollTopDetection() {
