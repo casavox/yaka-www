@@ -67,15 +67,8 @@
                             <small class="subtitle-color-forced">
                                 {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                 {{proposal.project.address.locality}}
-                                <div class="com-tag-proproposallist hidden-xs">
-                                    <casa-community-tag class="contact-community-tag"
-                                                        community="community"
-                                                        ng-repeat="community in proposal.project.user.communities">
-                                    </casa-community-tag>
-                                </div>
-
                             </small>
-                            <casa-community-tag class="contact-community-tag visible-xs"
+                            <casa-community-tag class="contact-community-tag pull-left"
                                                 community="community"
                                                 ng-repeat="community in proposal.project.user.communities">
                             </casa-community-tag>
@@ -86,7 +79,7 @@
                     <div class="clearfix p-r-0"
                          data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
                         <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
-                            <div class="no-padding">
+                            <div class="no-padding underline">
                                 <b>Nouveau<span
                                     data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
                                     Message<span data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">s</span></b>
@@ -152,15 +145,8 @@
                                 <small class="subtitle-color-forced">
                                     {{proposal.project.user.firstName}} {{proposal.project.user.lastName}} -
                                     {{proposal.project.address.locality}}
-                                    <div class="com-tag-proproposallist hidden-xs">
-                                        <casa-community-tag class="contact-community-tag"
-                                                            community="community"
-                                                            ng-repeat="community in proposal.project.user.communities">
-                                        </casa-community-tag>
-                                    </div>
-
                                 </small>
-                                <casa-community-tag class="contact-community-tag visible-xs"
+                                <casa-community-tag class="contact-community-tag pull-left"
                                                     community="community"
                                                     ng-repeat="community in proposal.project.user.communities">
                                 </casa-community-tag>
@@ -172,7 +158,7 @@
                             <div class="clearfix p-r-0"
                                  data-ng-if="proposal.unreadMessages || proposal.unreadMessagesSupport">
                                 <div class="col-xs-12 col-sm-6 col-md-6 c-lightblue p-r-0">
-                                    <div class="no-padding">
+                                    <div class="no-padding underline">
                                         <b>Nouveau<span
                                             data-ng-if="proposal.unreadMessages && proposal.unreadMessagesSupport">x</span>
                                             Message<span
