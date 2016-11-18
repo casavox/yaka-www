@@ -286,7 +286,7 @@
                              data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
 
                             <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
-                                 data-ng-class="{'has-error': !vm.newUser.firstName}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.firstName}">
 
                                 <div class="fg-line">
                                     <input type="text"
@@ -294,7 +294,6 @@
                                            autocomplete="given-name"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.firstName"
-                                           required="required"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
@@ -306,7 +305,7 @@
                             </div>
 
                             <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
-                                 data-ng-class="{'has-error': !vm.newUser.lastName}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.lastName}">
 
                                 <div class="fg-line">
                                     <input type="text"
@@ -314,7 +313,6 @@
                                            autocomplete="family-name"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.lastName"
-                                           required="required"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
@@ -326,7 +324,7 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.defaultAddress.address}">
                                 <div class="fg-line">
                                     <input type="text"
                                            class="form-control fg-input input-sm"
@@ -336,7 +334,6 @@
                                            type="text"
                                            name="address"
                                            autocomplete="address-level2"
-                                           required="required"
                                            placeholder=""
                                            id="address">
                                     <label class="fg-label">Ville</label>
@@ -347,14 +344,13 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.newUser.email}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.email}">
                                 <div class="fg-line">
                                     <input type="text"
                                            name="username"
                                            autocomplete="username"
                                            class="form-control fg-input input-sm"
-                                           data-ng-model="vm.newUser.email"
-                                           required="required" yaka-input-email>
+                                           data-ng-model="vm.newUser.email" yaka-input-email>
                                     <label class="fg-label">Email</label>
                                 </div>
                                 <div data-ng-messages="registerForm.username.$error">
@@ -365,7 +361,7 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error':! vm.newUser.password}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.password}">
                                 <div class="fg-line">
                                     <input type="password"
                                            name="password"
@@ -383,7 +379,7 @@
                             </div>
 
                             <div class="form-group fg-float m-b-15"
-                                 data-ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input input-sm"
                                            data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
@@ -421,7 +417,7 @@
                             </div>
 
 
-                            <div class="col-xs-12 center c-red m-b-0 t-center">
+                            <div class="col-xs-12 center m-b-0 t-center">
                                 Cochez la case ci-dessous
                             </div>
                             <div
@@ -446,7 +442,6 @@
                             ></div>
                             <button
                                 class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
-                                data-ng-disabled="!vm.registerFormIsValid()"
                                 data-ng-click="vm.register()">S'INSCRIRE
                             </button>
                         </div>

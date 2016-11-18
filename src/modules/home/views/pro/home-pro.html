@@ -208,15 +208,15 @@
                         data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                 </div>
 
-                <form>
-
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.firstName}">
                     <input class="form-control halfInput"
                            name="fname"
                            autocomplete="given-name"
                            placeholder="Prénom"
                            data-ng-model="vm.newUser.firstName"
                            data-ng-disabled="vm.isSocialRegister()"/>
-
+                </form>
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.lastName}">
                     <input class="form-control halfInput halfInputRight"
                            name="lname"
                            autocomplete="family-name"
@@ -224,16 +224,22 @@
                            data-ng-model="vm.newUser.lastName"
                            data-ng-disabled="vm.isSocialRegister()"/>
 
+                </form>
+                <form>
                     <div class="proHomeSection2InputError"
                          data-ng-hide="vm.newUser.firstName == '' || vm.isNameValid(vm.newUser.firstName)">
                         Ce prénom n'est pas valide
                     </div>
 
+                </form>
+                <form>
                     <div class="proHomeSection2InputError"
                          data-ng-hide="vm.newUser.lastName == '' || vm.isNameValid(vm.newUser.lastName)">
                         Ce nom n'est pas valide
                     </div>
 
+                </form>
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.email}">
                     <input class="form-control"
                            type="email"
                            name="username"
@@ -241,11 +247,15 @@
                            placeholder="Email du représentant"
                            data-ng-model="vm.newUser.email"/>
 
+                </form>
+                <form>
                     <div class="proHomeSection2InputError"
                          data-ng-hide="vm.newUser.email == '' || vm.isEmailValid(vm.newUser.email)">
                         Cet email n'est pas valide
                     </div>
 
+                </form>
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.password}">
                     <input class="form-control"
                            type="password"
                            name="password"
@@ -253,36 +263,47 @@
                            placeholder="Mot de passe"
                            data-ng-model="vm.newUser.password"/>
 
+                </form>
+                <form>
                     <div class="proHomeSection2InputError"
                          data-ng-hide="vm.newUser.password.length == '' ||vm.newUser.password.length >= 6">
                         Trop court : 6 caractères minimum
                     </div>
 
+                </form>
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.passwordConfirm}">
                     <input class="form-control"
                            type="password"
                            placeholder="Confirmation de mot de passe"
                            data-ng-model="vm.passwordConfirm"/>
 
+                </form>
+                <form>
                     <div class="proHomeSection2InputError"
                          data-ng-hide="vm.passwordConfirm == '' || vm.newUser.password == vm.passwordConfirm">
                         Les mots de passe ne correspondent pas
                     </div>
 
+                </form>
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.phoneNumber}">
                     <div class="col-xs-12 no-padding m-t-15">
                         <input type="text"
                                name="phone"
                                autocomplete="tel"
-                               required="required"
                                class="form-control proHomeSection2RegisterPhone"
                                placeholder="Téléphone du représentant"
                                data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
                     </div>
 
+                </form>
+                <form>
                     <small class="proHomeSection2InputError"
                            data-ng-hide="vm.newUser.professional.phoneNumber">
                         Ce numéro de téléphone n'est pas valide
                     </small>
 
+                </form>
+                <form data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.company.address.address}">
                     <input
                         vs-google-autocomplete="vm.autocomplete.options"
                         vs-autocomplete-validator class="form-control"
@@ -291,17 +312,25 @@
                         autocomplete="address-level2"
                         data-ng-model="vm.newUser.professional.company.address.address"/>
 
+                </form>
+                <form>
                     <small class="proHomeSection2InputError" data-ng-if="!vm.newUser.professional.company.address.address">
                         Veuillez saisir la ville, puis sélectionnez-la dans la liste
                     </small>
 
-                    <div class="proHomeSection2ActivitiesInput m-b-20" data-ng-dropdown-multiselect=""
+                </form>
+                <form>
+                    <div class="proHomeSection2ActivitiesInput m-b-20"
+                         data-ng-dropdown-multiselect=""
                          options="vm.multiChoiceInput.options"
                          selected-model="vm.multiChoiceInput.selected"
                          extra-settings="vm.multiChoiceInput.settings"
                          translation-texts="vm.multiChoiceInput.translation"
+                         data-ng-click="vm.deleteErrorIfSelected()"
                          checkboxes="true"></div>
 
+                </form>
+                <form>
                     <div class="col-xs-12 no-padding select m-b-15">
                         <select class="form-control select-pro-register"
                                 data-ng-model="vm.newUser.referral">
@@ -315,6 +344,8 @@
                         </select>
                     </div>
 
+                </form>
+                <form>
                     <div class="col-xs-12 no-padding form-group fg-float m-b-10 m-t-10" data-ng-if="vm.newUser.referral == 'REFERRAL_OTHER'">
                         <div class="fg-line">
                             <input type="text"
@@ -326,6 +357,8 @@
                         </div>
                     </div>
 
+                </form>
+                <form>
                     <span class="col-xs-12 subtitle-color-forced m-l-0">Cochez la case ci-dessous</span>
                     <div
                         vc-recaptcha
@@ -341,8 +374,7 @@
                         style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
                     ></div>
                     <button
-                        class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange m-b-15 waves-effect"
-                        data-ng-disabled="!vm.formIsValid()" data-ng-click="vm.registerUser()">
+                        class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange m-b-15 waves-effect" data-ng-click="vm.registerUser()">
                         S'INSCRIRE
                     </button>
                 </form>

@@ -271,13 +271,15 @@
         vm.registering = false;
 
         vm.register = function () {
-            console.log(vm.newUser.referral);
             if (vm.registerFormIsValid()) {
                 if (vm.newUser.referral == 'REFERRAL_OTHER' && vm.referralOther) {
                     vm.newUser.referral = vm.referralOther;
                 }
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
+            } else {
+                vm.formRegisterError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
