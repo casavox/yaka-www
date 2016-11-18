@@ -335,7 +335,8 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30">
+                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                     data-ng-class="{'has-error' : vm.formError}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input"
                                vs-google-autocomplete="vm.autocomplete.options"
@@ -345,15 +346,15 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Adresse de l'entreprise</label>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red' : vm.formError}">Adresse de l'entreprise</label>
                     </div>
                     <div data-ng-messages="profileForm.address.$error">
-                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.address.address">Ce champ est requis</small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30">
-
                     <div class="fg-line">
                         <input type="text" name="companyPhoneNumber"
                                class="form-control fg-input"
@@ -487,7 +488,8 @@
             <h2>Modifier le mot de passe</h2>
         </div>
         <div class="col-xs-12 card-body m-t-20">
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30"
+                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2)}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwdCurrent">
@@ -495,7 +497,8 @@
                 </div>
             </div>
 
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30"
+                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwd1">
@@ -504,7 +507,7 @@
             </div>
 
             <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                 data-ng-class="{'has-error': vm.formPasswordError && !vm.pwd2 || vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwd2">
@@ -518,8 +521,7 @@
             <div class="profile-box-footer mt-12 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.changePassword()"
-                        data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                        data-ng-click="vm.changePassword()">
                     Enregistrer
                 </button>
             </div>
@@ -579,7 +581,7 @@
                                    data-ng-model="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                             <label class="fg-label"
                                    data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom
-                                du quartier/voisinnage</label>
+                                du quartier/voisinnage (optionnel)</label>
                         </div>
                     </div>
                 </div>
@@ -634,7 +636,7 @@
                 </div>
                 <div class="col-xs-12 col-md-6 card-body m-t-20 m-l-0 p-l-0 p-r-15">
                     <div class="form-group fg-float"
-                         data-ng-class="{'has-error' : vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address}">
+                         data-ng-class="{'has-error' : vm.formCommunitiesError && vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address}">
                         <div class="fg-line">
                             <input type="text"
                                    class="form-control fg-input"
@@ -643,9 +645,9 @@
                                    placeholder=""
                                    vs-autocomplete-validator>
                             <label class="fg-label"
-                                   data-ng-class="{'c-red' : !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
+                                   data-ng-class="{'c-red' : vm.formCommunitiesError && !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
                             <small class="help-block c-red"
-                                   data-ng-if="!vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
+                                   data-ng-if="vm.formCommunitiesError && !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
                                 Renseignez la ville, puis sélectionnez-la dans la liste
                             </small>
                         </div>
@@ -679,8 +681,7 @@
 
         <div class="col-xs-12 no-padding profile-box-footer m-20">
             <button class="btn btn-info bgm-lightblue waves-effect"
-                    data-ng-click="vm.updateCommunities()"
-                    data-ng-disabled="vm.disabledCom()">
+                    data-ng-click="vm.updateCommunities()">
                 Enregistrer
             </button>
             <button class="btn btn-link waves-effect"
@@ -876,7 +877,7 @@
 
             <form name="aboutMeForm">
                 <div class="form-group"
-                     data-ng-class="{'has-error': !vm.about.aboutMe}">
+                     data-ng-class="{'has-error': vm.formDescError}">
                     <div class="fg-line">
                         <textarea class="form-control" rows="4" name="aboutMe" data-ng-model="vm.about.aboutMe"
                                   required="required" data-ng-minlength="100" data-auto-size data-autosize-on="true"
@@ -886,7 +887,7 @@
                         <small class="help-block" data-ng-message="minlength">
                             Description trop courte (100 caractères min)
                         </small>
-                        <small class="help-block" data-ng-message="required">
+                        <small class="help-block" data-ng-if="vm.formDescError" data-ng-message="required">
                             Ce champ est requis
                         </small>
                     </div>
@@ -897,11 +898,11 @@
             <div class="profile-box-footer m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateAboutMe()" data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                        data-ng-click="vm.updateAboutMe()">
                     Enregistrer
                 </button>
                 <button class="btn btn-link waves-effect"
-                        data-ng-click="vm.cancelAboutMe()" data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                        data-ng-click="vm.cancelAboutMe()">
                     Annuler
                 </button>
 

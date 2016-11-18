@@ -97,6 +97,7 @@
                 vm.updating = false;
                 alertMsg.send("Description enregistrée avec succès", "success");
             }, function () {
+                vm.formDescError = true;
                 vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
             }, true);
@@ -275,33 +276,41 @@
         };
 
         vm.changePassword = function () {
-            vm.pwd1 = vm.pwd1 || "";
-            vm.pwd2 = vm.pwd2 || "";
-            if (vm.pwd1.length < 6) {
-                vm.error.password.message = "Password min length 6.";
-                vm.error.password.flag = true;
-            }
-            else {
-                vm.error.password.flag = false;
-                var formData = {
-                    currentPassword: vm.pwdCurrent,
-                    newPassword: vm.pwd1
-                };
-                if (vm.pwd2 === vm.pwd1) {
-                    vm.updating = true;
-                    networkService.changePassword(formData, function (res) {
-                        alertMsg.send("Mot de passe modifié avec succès", "success");
-                        vm.updating = false;
-                    }, function (res) {
-                        vm.updating = false;
-                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                    }, true);
-                }
-                else {
-                    vm.error.password.message = "Les deux mots de passe ne correspondent pas";
+
+            if (!vm.pwdCurrent || !vm.pwd1 || !vm.pwd2) {
+                vm.formPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                vm.pwd1 = vm.pwd1 || "";
+                vm.pwd2 = vm.pwd2 || "";
+                if (vm.pwd1.length < 6) {
+                    vm.error.password.message = "Password min length 6.";
                     vm.error.password.flag = true;
                 }
+                else {
+                    vm.error.password.flag = false;
+                    var formData = {
+                        currentPassword: vm.pwdCurrent,
+                        newPassword: vm.pwd1
+                    };
+                    if (vm.pwd2 === vm.pwd1) {
+                        vm.updating = true;
+                        networkService.changePassword(formData, function (res) {
+                            alertMsg.send("Mot de passe modifié avec succès", "success");
+                            vm.updating = false;
+                        }, function (res) {
+                            vm.updating = false;
+                            alertMsg.send("Impossible de modifier le mot de passe", "danger");
+                        }, true);
+                    }
+                    else {
+                        vm.error.password.message = "Les deux mots de passe ne correspondent pas";
+                        vm.error.password.flag = true;
+                    }
+                }
             }
+
+
         };
 
         vm.updateLinks = function () {
@@ -1086,10 +1095,16 @@
         }
 
         vm.updateCommunities = function () {
-            networkService.communitiesPUT(vm.communities, function (res) {
-                networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
-                alertMsg.send("Les communautés ont été mises à jour", "success");
-            }, errorProfilePUT, true);
+            if (vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address) {
+                vm.formCommunitiesError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                networkService.communitiesPUT(vm.communities, function (res) {
+                    networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+                    alertMsg.send("Les communautés ont été mises à jour", "success");
+                }, errorProfilePUT, true);
+            }
+
         };
 
         vm.cancelCommunitiesUpdate = function () {
