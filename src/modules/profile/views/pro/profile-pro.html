@@ -311,13 +311,13 @@
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error' : vm.formError}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.company.siret}">
                     <div class="fg-line">
                         <input name="siret" type="text"
                                class="form-control fg-input"
                                data-ng-model="vm.profileInfo.company.siret" yaka-input-siret>
                         <label class="fg-label"
-                               data-ng-class="{'c-red' : vm.formError}">
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.company.siret}">
                             SIRET (sans espace)
                         </label>
                     </div>
@@ -326,7 +326,7 @@
                            data-ng-if="!vm.profileInfo.company.siret"
                            data-ng-href="http://www.societe.com{{vm.siretInfo()}}" target="_blank">Retrouver rapidement
                             mon numéro de SIRET sur societe.com</a>
-                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.name">Ce champ est
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.siret">Ce champ est
                             requis
                         </small>
                         <small class="help-block" data-ng-if="invalidSiret">Ce SIRET n'est pas
@@ -336,7 +336,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error' : vm.formError}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.company.address.address}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input"
                                vs-google-autocomplete="vm.autocomplete.options"
@@ -347,7 +347,7 @@
                                placeholder=""
                                id="address">
                         <label class="fg-label"
-                               data-ng-class="{'c-red' : vm.formError}">Adresse de l'entreprise</label>
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.company.address.address}">Adresse de l'entreprise</label>
                     </div>
                     <div data-ng-messages="profileForm.address.$error">
                         <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.address.address">Ce champ est requis</small>
@@ -877,7 +877,7 @@
 
             <form name="aboutMeForm">
                 <div class="form-group"
-                     data-ng-class="{'has-error': vm.formDescError}">
+                     data-ng-class="{'has-error': vm.formDescError && !vm.about.aboutMe}">
                     <div class="fg-line">
                         <textarea class="form-control" rows="4" name="aboutMe" data-ng-model="vm.about.aboutMe"
                                   required="required" data-ng-minlength="100" data-auto-size data-autosize-on="true"

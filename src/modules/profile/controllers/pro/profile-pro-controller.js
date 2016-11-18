@@ -63,6 +63,7 @@
                 vm.formError = true;
             }
             if (!f) {
+                vm.formError = false;
                 vm.error.profile.flag = false;
                 vm.updating = true;
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
