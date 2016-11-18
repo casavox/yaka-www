@@ -60,6 +60,7 @@
                 !vm.profileInfo.company.address.address) {
 
                 f = true;
+                vm.formError = true;
             }
             if (!f) {
                 vm.error.profile.flag = false;
@@ -83,7 +84,7 @@
                 }, errorProfilePUT, true);
             }
             else {
-                alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
