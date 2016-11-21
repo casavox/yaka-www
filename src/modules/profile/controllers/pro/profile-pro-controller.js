@@ -304,11 +304,11 @@
         };
 
         vm.updateLinks = function () {
-            var websiteReg = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/g;
-            var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*$/g;
+            var websiteReg = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
+            var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*/;
 
 
-            if (!vm.profile.myWebsite.match(websiteReg) || !vm.profile.myLinkedin.match(linkedinReg) || !vm.profile.myOtherSocial.match(websiteReg)) {
+            if ((vm.profile.myWebsite && !websiteReg.test(vm.profile.myWebsite)) || (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin)) || (vm.profile.myOtherSocial && !websiteReg.test(vm.profile.myOtherSocial))) {
                 alertMsg.send("L'URL du lien n'est pas valide", "danger");
             } else {
                 var data = {
