@@ -162,8 +162,13 @@
         };
 
         vm.login = function () {
+
+
             if (vm.loginFormIsValid()) {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            } else {
+                vm.formLoginError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
@@ -315,6 +320,9 @@
         vm.forgottenPassword = function () {
             if (vm.forgottenPasswordUser.email) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formLostPasswordError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 

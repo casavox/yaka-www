@@ -447,34 +447,45 @@
             <small class="subtitle-color-forced">Indiquez les adresses de vos sites Web</small>
         </div>
         <div class="col-xs-12 card-body m-t-20">
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)}">
                 <div class="fg-line">
                     <input type="text" class="form-control fg-input"
                            data-ng-model="vm.profile.myWebsite">
-                    <label class="fg-label">Mon site Web</label>
+                    <label class="fg-label" data-ng-class="{'c-red' : vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)}">Mon site Web</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)">
+                    L'adresse indiquée n'est pas valide
+                </small>
             </div>
 
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)}">
                 <div class="fg-line">
                     <input type="text" class="form-control fg-input"
                            data-ng-model="vm.profile.myLinkedin">
-                    <label class="fg-label">Mon Linkedin</label>
+                    <label class="fg-label" data-ng-class="{'c-red' : vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)}">Mon Linkedin</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)">
+                    L'adresse indiquée n'est pas valide
+                </small>
             </div>
 
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)}">
                 <div class="fg-line">
                     <input type="text" class="form-control fg-input"
                            data-ng-model="vm.profile.myOtherSocial">
-                    <label class="fg-label">Autre (Google+, Viadeo, ...)</label>
+                    <label class="fg-label" data-ng-class="{'c-red' : vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)}">Autre (Google+, Viadeo, ...)</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)">
+                    L'adresse indiquée n'est pas valide
+                </small>
             </div>
 
             <div class="profile-box-footer mt-12 m-b-20">
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateLinks()"
-                        data-ng-disabled="vm.updating">
+                        data-ng-click="vm.updateLinks()">
                     Enregistrer
                 </button>
             </div>
@@ -489,21 +500,31 @@
         </div>
         <div class="col-xs-12 card-body m-t-20">
             <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2)}">
+                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2) || vm.formPasswordError && (vm.pwdCurrent.length < 6)}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwdCurrent">
-                    <label class="fg-label">Mot de passe actuel</label>
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2) || vm.formPasswordError && (vm.pwdCurrent.length < 6)}">Mot de passe actuel</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2)">
+                    Ce champs est requis
+                </small>
             </div>
 
             <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2}">
+                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2 || vm.formPasswordError && (vm.pwd1.length < 6)}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwd1">
-                    <label class="fg-label">Nouveau mot de passe</label>
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2 || vm.formPasswordError && (vm.pwd1.length < 6)}">Nouveau mot de passe (6 caractères minimum)</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2">
+                    Ce champs est requis
+                </small>
             </div>
 
             <div class="form-group fg-float m-b-30"
@@ -511,10 +532,15 @@
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwd2">
-                    <label class="fg-label">Confirmation</label>
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwd2 || vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">Confirmation</label>
                 </div>
                 <small class="help-block" data-ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
                     Les deux mots de passe ne correspondent pas
+                </small>
+                <small class="help-block"
+                       data-ng-show="vm.formPasswordError && vm.pwd1 && !vm.pwd2 || vm.formPasswordError && !vm.pwd1 && !vm.pwd2">
+                    Ce champs est requis
                 </small>
             </div>
 
