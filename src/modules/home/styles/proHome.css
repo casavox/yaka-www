@@ -1,3 +1,15 @@
+.pro-register-phone:not(.disabled):after, .pro-register-phone:not(.readonly):after {
+    bottom: 3px;
+}
+
+.form-pro-register {
+    height: 20px !important;
+}
+
+.pro-phone-reg-input {
+    height: 30px !important;
+}
+
 .proHomeSection1 {
     height: 700px;
     background: linear-gradient(rgba(4, 28, 36, 0.49), rgba(4, 28, 36, 0.49)), url('../../../img/homeBackground.jpg') no-repeat center;
