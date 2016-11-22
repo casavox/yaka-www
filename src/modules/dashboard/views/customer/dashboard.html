@@ -7,6 +7,47 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content contacts">
         <div class="container">
+
+            <div class="topViewProfile">
+                <div class="card bgm-orange c-white p-15 pointer" data-ng-if="vm.showTopViewInvits()"
+                     data-ui-sref="contacts">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Vous avez des invitations en attente, cliquez ici pour les accepter ou les refuser
+                    </div>
+                </div>
+                <div class="card bgm-orange c-white p-15" data-ng-if="vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-comment-alert"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <span class="v-align-middle">Vous avez des messages non lus, cliquez sur l'icone</span>
+                        <i class="zmdi zmdi-local-post-office f-s-16 v-align-middle"></i>
+                        <span class="v-align-middle">en haut à droite pour les visualiser</span>
+                    </div>
+                </div>
+                <div class="card bgm-lightblue c-white p-15 pointer" data-ng-if="vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                     data-ui-sref="new-project">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-assignment-o"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Cliquez sur TROUVER UN PRO pour être contacté par les meilleurs professionnels
+                    </div>
+                </div>
+                <div class="card bgm-lightblue c-white p-15 pointer" data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                     data-ui-sref="contacts">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Cliquez sur MON ENTOURAGE dans le menu pour profiter du bouche-à-oreille CasaVox
+                    </div>
+                </div>
+            </div>
+
             <div class="block-header">
                 <h2>Tableau de bord</h2>
             </div>
@@ -31,6 +72,7 @@
                                         <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
                                     </a>
                                 </div>
+
                                 <div class="no-padding"
                                      data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
                                     <a class="pointer underline" data-ui-sref="contacts"><b>
@@ -51,8 +93,9 @@
                                     {{vm.userOnGoingProjectNumber}} PROJET<span
                                     data-ng-if="vm.userOnGoingProjectNumber > 1">S</span>
                                 </button>
-                                <button class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
-                                        data-ui-sref="new-project">
+                                <button
+                                    class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
+                                    data-ui-sref="new-project">
                                     TROUVER UN PRO
                                 </button>
                             </div>
@@ -70,7 +113,11 @@
                                                             data-ui-sref="profile"
                                                             community="vm.getCommunityByType('PROFILE_CITY')">
                                         </casa-community-tag>
-                                        <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address"><i class="zmdi zmdi-plus"></i></button>
+                                        <button
+                                            class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                            data-ui-sref="profile"
+                                            data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address">
+                                            <i class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -80,7 +127,11 @@
                                                             data-ui-sref="profile"
                                                             community="vm.getCommunityByType('JOB')">
                                         </casa-community-tag>
-                                        <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                        <button
+                                            class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                            data-ui-sref="profile"
+                                            data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i
+                                            class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -90,7 +141,11 @@
                                                             data-ui-sref="profile"
                                                             community="vm.getCommunityByType('OTHER')">
                                         </casa-community-tag>
-                                        <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                        <button
+                                            class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                            data-ui-sref="profile"
+                                            data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i
+                                            class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -148,21 +203,33 @@
                                                                 data-ui-sref="profile"
                                                                 community="vm.getCommunityByType('PROFILE_CITY')">
                                             </casa-community-tag>
-                                            <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address"><i class="zmdi zmdi-plus"></i></button>
+                                            <button
+                                                class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                                data-ui-sref="profile"
+                                                data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address">
+                                                <i class="zmdi zmdi-plus"></i></button>
                                         </div>
                                         <div class="col-xs-8 col-xs-offset-4 community-height">
                                             <casa-community-tag class="tag-community t-center pointer"
                                                                 data-ui-sref="profile"
                                                                 community="vm.getCommunityByType('JOB')">
                                             </casa-community-tag>
-                                            <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                            <button
+                                                class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                                data-ui-sref="profile"
+                                                data-ng-if="vm.getCommunityByType('JOB').name == ' '"><i
+                                                class="zmdi zmdi-plus"></i></button>
                                         </div>
                                         <div class="col-xs-8 col-xs-offset-4 community-height">
                                             <casa-community-tag class="tag-community t-center pointer"
                                                                 data-ui-sref="profile"
                                                                 community="vm.getCommunityByType('OTHER')">
                                             </casa-community-tag>
-                                            <button class="btn bgm-cyan btn-float waves-effect waves-circle button-community" data-ui-sref="profile" data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i class="zmdi zmdi-plus"></i></button>
+                                            <button
+                                                class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
+                                                data-ui-sref="profile"
+                                                data-ng-if="vm.getCommunityByType('OTHER').name == ' '"><i
+                                                class="zmdi zmdi-plus"></i></button>
                                         </div>
                                     </div>
                                 </div>

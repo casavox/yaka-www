@@ -86,7 +86,6 @@
                 <div data-ng-include="'infos.html'"></div>
                 <div data-ng-include="'userCommunities.html'"></div>
                 <div data-ng-include="'workarea.html'"></div>
-                <div data-ng-include="'websites.html'"></div>
                 <div data-ng-include="'password.html'"></div>
             </div>
             <div class="col-sm-6 p-r-0" data-ng-if="!vm.isXsmall()">
@@ -95,6 +94,7 @@
                 <div data-ng-include="'portfolio.html'"></div>
                 <div data-ng-include="'activities.html'"></div>
                 <div data-ng-include="'social.html'"></div>
+                <div data-ng-include="'websites.html'"></div>
             </div>
             <div class="col-sm-12 no-padding clearfix" data-ng-if="vm.isXsmall()">
                 <div data-ng-include="'infos.html'"></div>
@@ -1062,7 +1062,7 @@
             </p>
 
             <div class="row">
-                <div class="col-sm-6 mb-15 cursor-pointer" data-ng-repeat="s in vm.cat"
+                <div class="col-md-6 mb-15 cursor-pointer" data-ng-repeat="s in vm.cat"
                      data-ng-show="s != 'AUTO_MULTI'"
                      data-ng-click="vm.actionActivities(s)">
                     <div class="row profile-activities no-margin">

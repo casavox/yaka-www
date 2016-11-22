@@ -177,6 +177,19 @@ html {
     cursor: pointer;
 }
 
+.logo-header-casavox {
+    float: left;
+    width: 45px;
+}
+
+#header .logo a {
+    padding: 0px !important;
+}
+
+.casavox-title {
+    margin-top: 3px;
+}
+
 .titleYakaClub {
     font-size: 24px;
     float: left;
@@ -184,7 +197,7 @@ html {
     color: black;
     line-height: 55px;
     margin-left: 20px;
-    position: absolute;
+    position: relative !important;
     top: 0;
     left: 0;
     -webkit-touch-callout: none;
@@ -4908,7 +4921,6 @@ ul[rn-carousel-buffered] > li {
     line-height: normal !important;
     margin-left: 0 !important;
     position: absolute !important;
-    top: 11px !important;
     left: auto !important;
 }
 
