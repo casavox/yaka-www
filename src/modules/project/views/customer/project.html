@@ -82,6 +82,15 @@
                             {{vm.project.proposal.professional.user.firstName}}
                         </div>
                     </div>
+                    <div class="pull-right">
+                        <ul class="actions m-t-20">
+                            <li class="dropdown" uib-dropdown>
+                                <a href="" uib-dropdown-toggle>
+                                    <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -373,7 +382,8 @@
                 <div class="row no-margin w-900 center select-addr m-t-20 m-b-5"
                      data-ng-show="vm.user.addresses.length > 0">
                     <div class="col-xs-5 no-padding select">
-                        <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
+                        <select class="form-control" data-ng-model="vm.myAddress"
+                                data-ng-change="vm.setAddress()">
                             <option value="new">Nouvelle adresse</option>
                             <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"
                                     data-ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}

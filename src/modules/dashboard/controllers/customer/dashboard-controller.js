@@ -58,6 +58,45 @@
             alertMsg.send("Impossible de récupérer les communautés", "danger");
         }
 
+        networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);
+        function successProjectsGET(res) {
+            vm.userOnGoingProjectNumber = res.totalItemNumber;
+        }
+
+        function errorProjectsGET(res) {
+        }
+
+        vm.getUserchatsUnreadNumber = function () {
+            var num = 0;
+            if ($localStorage.user.userChats) {
+                angular.forEach($localStorage.user.userChats, function (userChat) {
+                    if (userChat.unreadMessages) {
+                        num++;
+                    }
+                })
+            }
+            return num;
+        };
+
+        vm.showTopViewInvits = function () {
+            if (!vm.data) {
+                return false;
+            }
+            return vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0;
+        };
+
+        vm.showTopViewUnreadMessages = function () {
+            return vm.getUserchatsUnreadNumber() > 0;
+        };
+
+        vm.showTopViewNoProject = function () {
+            return !vm.userOnGoingProjectNumber || vm.userOnGoingProjectNumber == 0;
+        };
+
+        vm.showTopViewNoContact = function () {
+            return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
+        };
+
     }
 })
 ();

@@ -1,3 +1,11 @@
+.p-l-56 {
+    padding-left: 56px !important;
+}
+
+.m-l-49 {
+    margin-left: 49px;
+}
+
 @media (min-width: 1200px) {
     .proposal-project-pm-body {
          padding-left: 300px !important;
