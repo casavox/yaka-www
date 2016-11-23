@@ -18,7 +18,8 @@
                         Vous avez des invitations en attente, cliquez ici pour les accepter ou les refuser
                     </div>
                 </div>
-                <div class="card bgm-orange c-white p-15" data-ng-if="vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-comment-alert"></i>
                     </div>
@@ -28,7 +29,8 @@
                         <span class="v-align-middle">en haut à droite pour les visualiser</span>
                     </div>
                 </div>
-                <div class="card bgm-lightblue c-white p-15 pointer" data-ng-if="vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                <div class="card bgm-lightblue c-white p-15 pointer"
+                     data-ng-if="vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
                      data-ui-sref="new-project">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-assignment-o"></i>
@@ -37,7 +39,8 @@
                         Cliquez sur TROUVER UN PRO pour être contacté par les meilleurs professionnels
                     </div>
                 </div>
-                <div class="card bgm-lightblue c-white p-15 pointer" data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                <div class="card bgm-lightblue c-white p-15 pointer"
+                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
                      data-ui-sref="contacts">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
