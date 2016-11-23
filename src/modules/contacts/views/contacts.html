@@ -515,7 +515,7 @@
             <div class="form-group fg-float m-t-30"
                  data-ng-class="{'has-error': vm.formCustInvitError && !vm.invitCustomer}">
                 <div class="fg-line">
-            <textarea class="col-xs-12 form-control m-t-20"
+            <textarea class="col-xs-12 form-control m-t-10"
                       rows="1"
                       data-auto-size=""
                       data-autosize-on="true"
@@ -524,6 +524,10 @@
                            data-ng-class="{'c-red' : vm.formCustInvitError && !vm.invitCustomer}">exemple1@mail.fr,
                         exemple2@mail.fr, ...</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formCustInvitError && !vm.invitCustomer">
+                    Ce champs est requis
+                </small>
             </div>
 
 
@@ -533,7 +537,7 @@
 
             <div class="form-group fg-float m-t-30">
                 <div class="fg-line">
-            <textarea class="col-xs-12 form-control m-t-20"
+            <textarea class="col-xs-12 form-control m-t-10"
                       rows="1"
                       data-auto-size=""
                       data-autosize-on="true"
@@ -603,7 +607,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding select m-b-15">
+                <div class="col-xs-12 no-padding select m-b-20">
                     <select class="form-control"
                             onchange="this.className='form-control form-control-underline-ok'"
                             data-ng-model="vm.invitPro.relation"
@@ -616,7 +620,7 @@
                     </select>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                <div class="col-xs-12 no-padding form-group fg-float m-b-20"
                      data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.email}">
                     <div class="fg-line">
                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
@@ -636,7 +640,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                <div class="col-xs-12 no-padding form-group fg-float m-b-20"
                      data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.address.address}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input input-sm"
@@ -660,7 +664,7 @@
                         <input type="text" name="phoneNumber"
                                class="form-control fg-input"
                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone</label>
+                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                     </div>
                     <div data-ng-messages="inviteForm.phoneNumber.$error">
                         <small class="help-block" data-ng-message="invalidPhone">

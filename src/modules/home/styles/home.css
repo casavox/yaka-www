@@ -1,3 +1,7 @@
+.form-group {
+    margin-bottom: 20px;
+}
+
 .intl-tel-input .country-list .iti-flag, .intl-tel-input .country-list .country-name {
     margin-top: 4px;
 }
@@ -452,7 +456,7 @@ body:after {
 }
 
 .showRegisterFields.showRegisterFieldsVisible {
-    height: 550px;
+    height: auto;
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
     -o-transition-delay: 0s;
