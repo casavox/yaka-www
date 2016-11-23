@@ -293,7 +293,12 @@
         };
 
         vm.login = function () {
-            networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            if (!vm.loginUser.email || !vm.loginUser.password) {
+                vm.formProLoginError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            }
         };
 
         function succesLogin(res) {
@@ -365,6 +370,9 @@
         vm.forgottenPassword = function () {
             if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formLostPasswordError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 

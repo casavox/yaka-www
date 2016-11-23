@@ -97,14 +97,19 @@
                     </div>
 
                     <div class="col-xs-12">
-
+                        <form data-ng-class="{'has-error': vm.formAddProjectError && vm.projectDescription.length < 50}">
+                            <div class="form-group fg-float m-t-30">
+                                <div class="fg-line">
                         <textarea class="form-control" data-auto-size=""
                                   rows="2"
                                   data-ng-model="vm.projectDescription"
                                   data-ng-blur="vm.verifDescription()"
-                                  placeholder="Préciser mon projet ici ..."
                                   data-autosize-on="true"></textarea>
-
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red' : vm.formAddProjectError && vm.projectDescription.length < 50}">Préciser mon projet ici ...</label>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
                     <p class="col-xs-12 error center m-b-0 p-0"
@@ -114,8 +119,7 @@
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.continueProject()"
-                        data-ng-disabled="(!vm.material && vm.type.code != 'COU_13900') || vm.projectDescription.length < 50">
+                        data-ng-click="vm.continueProject()">
                         Continuer
                     </button>
 

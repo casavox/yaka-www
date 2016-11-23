@@ -260,7 +260,7 @@
                         <input class="form-control form-pro-register"
                                name="email"
                                autocomplete="username"
-                               data-ng-model="vm.newUser.email"  yaka-input-email/>
+                               data-ng-model="vm.newUser.email" yaka-input-email/>
                         <label class="fg-label"
                                data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.email}">Email du
                             représentant</label>
@@ -483,25 +483,54 @@
                     Google
                 </div>
 
-                <input class="form-control"
-                       type="text"
-                       name="username"
-                       autocomplete="username"
-                       placeholder="Email"
-                       data-ng-model="vm.loginUser.email"
-                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                <form name="loginPro">
+                    <div class="form-group fg-float m-t-30"
+                         data-ng-class="{'has-error': vm.formProLoginError && !vm.loginUser.email}">
+                        <div class="fg-line m-t-10">
 
-                <input class="form-control"
-                       type="password"
-                       name="password"
-                       autocomplete="current-password"
-                       placeholder="Mot de passe"
-                       data-ng-model="vm.loginUser.password"
-                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                            <input class="form-control form-pro-register"
+                                   type="text"
+                                   name="email"
+                                   autocomplete="username"
+                                   data-ng-model="vm.loginUser.email"
+                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
+                            <label class="fg-label"
+                                   data-ng-class="{'c-red' : vm.formProLoginError && !vm.loginUser.email}">Email</label>
+                        </div>
+                        <div data-ng-messages="loginPro.email.$error">
+                            <small class="help-block t-left"
+                                   data-ng-show="vm.formProLoginError && vm.loginUser.email.length < 1">
+                                Ce champ est requis
+                            </small>
+                            <small class="help-block c-red" data-ng-message="invalidEmail">
+                                Cette addresse Email n'est pas valide
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group fg-float m-t-30"
+                         data-ng-class="{'has-error': vm.formProLoginError && !vm.loginUser.password}">
+                        <div class="fg-line">
+                            <input class="form-control form-pro-register"
+                                   type="password"
+                                   name="password"
+                                   autocomplete="current-password"
+                                   data-ng-model="vm.loginUser.password"
+                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                            <label class="fg-label"
+                                   data-ng-class="{'c-red' : vm.formProLoginError && !vm.loginUser.password}">Mot de
+                                passe</label>
+                        </div>
+                        <small class="help-block t-left"
+                               data-ng-show="vm.formProLoginError && vm.loginUser.password.length < 1">
+                            Ce champ est requis
+                        </small>
+                    </div>
+                </form>
+
 
                 <button
-                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
-                    data-ng-disabled="!vm.loginFormIsValid()" data-ng-click="vm.login()">
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect" data-ng-click="vm.login()">
                     SE CONNECTER
                 </button>
 
@@ -538,7 +567,7 @@
 
                 <form name="recoverPassword">
                     <div class="form-group fg-float m-t-30"
-                         data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
+                         data-ng-class="{'has-error': vm.formLostPasswordError && !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
                             <input type="text"
                                    name="username"
@@ -546,11 +575,15 @@
                                    data-ng-disabled="vm.isSocialRegister()"
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
-                                   required="required"
                                    yaka-input-email>
-                            <label class="fg-label">Email</label>
+                            <label class="fg-label"
+                                   data-ng-class="{'c-red' : vm.formLostPasswordError && !vm.forgottenPasswordUser.email}">Email</label>
                         </div>
                         <div data-ng-messages="recoverPassword.username.$error">
+                            <small class="help-block t-left"
+                                   data-ng-show="vm.formLostPasswordError && vm.forgottenPasswordUser.email.length < 1">
+                                Ce champ est requis
+                            </small>
                             <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                 valide
                             </small>
@@ -560,7 +593,6 @@
 
                 <button
                     class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
-                    data-ng-disabled="!vm.forgottenPasswordUser.email"
                     data-ng-click="vm.forgottenPassword()">
                     RÉINITIALISER MON MOT DE PASSE
                 </button>
