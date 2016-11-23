@@ -5436,3 +5436,10 @@ div.recaptcha.mobile > div {
 .full-width {
     width: 100%;
 }
+
+@media (max-width: 767px) {
+    .logo-header-casavox {
+        margin-top: 3px;
+        width: 35px;
+    }
+}
