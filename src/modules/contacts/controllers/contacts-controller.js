@@ -178,26 +178,31 @@
         vm.invitCustomer = "";
 
         vm.sendCustomerInvit = function () {
-            vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
-            var invits = vm.invitCustomer.split(",");
-            for (var i = 0; i < invits.length; i++) {
-                invits[i] = invits[i].trim();
-                if (!vm.isEmailValid(invits[i])) {
-                    alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
+            if (!vm.invitCustomer) {
+                vm.formCustInvitError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
+                var invits = vm.invitCustomer.split(",");
+                for (var i = 0; i < invits.length; i++) {
+                    invits[i] = invits[i].trim();
+                    if (!vm.isEmailValid(invits[i])) {
+                        alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
+                        return;
+                    }
+                }
+                if (hasDuplicates(invits)) {
+                    alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
                     return;
                 }
-            }
-            if (hasDuplicates(invits)) {
-                alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
-                return;
-            }
 
-            var invitation = {
-                emails: invits,
-                message: vm.invitMessage
-            };
+                var invitation = {
+                    emails: invits,
+                    message: vm.invitMessage
+                };
 
-            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+                networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            }
         };
 
         function hasDuplicates(array) {
@@ -236,7 +241,12 @@
         };
 
         vm.sendProInvit = function () {
-            networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+                vm.formProInvitError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+            }
         };
 
         function succesInviteProPOST(res) {

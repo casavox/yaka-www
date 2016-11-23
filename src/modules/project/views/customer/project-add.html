@@ -69,20 +69,20 @@
                             </h2>
                         </div>
                         <div class="col-sm-4 col-sm-offset-2 text-center">
-                            <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'"
+                            <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'; vm.error.material.flag = false"
                                  data-ng-class="{activate: vm.material == 'yes'}">
                                 Travaux
                             </div>
                             <small>Je fournis certains matériaux, à préciser</small>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no'"
+                            <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no' vm.error.material.flag = false"
                                  data-ng-class="{activate: vm.material == 'no'}">
                                 Travaux + matériaux
                             </div>
                             <small>Le Pro doit fournir tous les matériaux</small>
                         </div>
-                        <p class="error center" data-ng-show="vm.error.material.flag">
+                        <p class="col-xs-12 error f-s-13 center" data-ng-show="vm.error.material.flag">
                             {{vm.error.material.message}}
                         </p>
                     </div>
@@ -97,7 +97,8 @@
                     </div>
 
                     <div class="col-xs-12">
-                        <form data-ng-class="{'has-error': vm.formAddProjectError && vm.projectDescription.length < 50}">
+                        <form
+                            data-ng-class="{'has-error': vm.formAddProjectError && vm.projectDescription.length < 50}">
                             <div class="form-group fg-float m-t-30">
                                 <div class="fg-line">
                         <textarea class="form-control" data-auto-size=""
@@ -106,16 +107,18 @@
                                   data-ng-blur="vm.verifDescription()"
                                   data-autosize-on="true"></textarea>
                                     <label class="fg-label"
-                                           data-ng-class="{'c-red' : vm.formAddProjectError && vm.projectDescription.length < 50}">Préciser mon projet ici ...</label>
+                                           data-ng-class="{'c-red' : vm.formAddProjectError && vm.projectDescription.length < 50}">Préciser
+                                        mon projet ici ...</label>
                                 </div>
+                                <p class="col-xs-12 error t-left m-b-0 p-0"
+                                          data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
+                                <small>{{vm.error.description.message}}</small>
+                            </p>
                             </div>
                         </form>
                     </div>
 
-                    <p class="col-xs-12 error center m-b-0 p-0"
-                       data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
-                        <small>{{vm.error.description.message}}</small>
-                    </p>
+
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
@@ -253,10 +256,18 @@
                                            name="address"
                                            id="address"
                                            class="form-control"
+                                           placeholder=""
                                            data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag">
                                     <label class="fg-label"
-                                           data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}">Indiquez votre adresse complète</label>
+                                           data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}"
+                                            data-ng-hide="address.name">
+                                        Indiquez
+                                        votre adresse complète</label>
                                 </div>
+                                <small class="help-block center"
+                                       data-ng-show="vm.formAddAddressError && !address.name">
+                                    Merci de saisir le debut de l'adresse puis de choisir dans la liste
+                                </small>
 
                             </div>
                         </div>
@@ -266,14 +277,21 @@
                         Saisir un nom pour cette adresse :
                     </p>
 
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr">
-                        <div data-ng-show="vm.newAddrFlag && address.name">
-                            <input type="text" class="form-control" data-ng-model="vm.newAddr.name"
-                                   placeholder="Nom de l'adresse (Maison, Papa, ...)">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float">
+                        <div data-ng-show="vm.newAddrFlag && address.name"
+                             data-ng-class="{'has-error': vm.formAddAddressError && !vm.newAddr.name}">
+                            <div class="fg-line">
+
+                                <input type="text" class="form-control" data-ng-model="vm.newAddr.name">
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formAddAddressError && !vm.newAddr.name}">Nom de
+                                    l'adresse (Maison, Papa, ...)</label>
+                            </div>
+                            <small class="help-block center"
+                                   data-ng-show="vm.formAddAddressError && !vm.newAddr.name">
+                                Merci d'indiquer le nom du domicile ajouté
+                            </small>
                         </div>
-                        <p class="error t-left m-t-0 f-s-13" data-ng-show="vm.error.address.flag">
-                            {{vm.error.address.message}}
-                        </p>
                     </div>
 
                     <button
