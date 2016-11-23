@@ -341,6 +341,11 @@
 
         vm.continueAddr = function () {
             if (vm.continueAddress == false || !$localStorage.user) {
+                if (!$scope.address.name || !vm.newAddr.name) {
+                    vm.continueAddressFlag = false;
+                    vm.formAddAddressError = true;
+                    alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                }
                 if (vm.newAddr.name) {
                     if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR") {
                         vm.newAddr.address = $scope.address.name;
@@ -357,12 +362,6 @@
                         vm.error.address.flag = true;
                         vm.error.address.message = "Merci de saisir le debut de l'adresse puis de choisir dans la liste";
                     }
-                }
-                else {
-                    vm.continueAddressFlag = false;
-                    vm.error.address.message = "Merci d'indiquer un NOM pour cette adresse";
-                    vm.error.address.flag = true;
-                    vm.formAddAddressError = true;
                 }
             }
             else {
@@ -413,6 +412,9 @@
         };
 
         vm.continueProject = function () {
+            if (vm.material == null && vm.type.code != 'COU_13900' && vm.projectDescription.length < 50) {
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            }
             if (vm.material == null && vm.type.code != 'COU_13900') {
                 vm.error.material.message = "Merci d'indiquez si vous souhaitez que le professionnel fournisse ou non les principaux matériaux";
                 vm.formAddProjectError = true;
