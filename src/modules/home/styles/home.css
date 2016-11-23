@@ -814,7 +814,8 @@ body:after {
     }
 
     .showRegisterFields.showRegisterFieldsVisible {
-        height: 540px;
+        max-height: 650px;
+        height: auto;
     }
 }
 
