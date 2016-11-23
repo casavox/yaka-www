@@ -511,28 +511,42 @@
                 Ou
             </h4>
 
-            <textarea class="col-xs-12 form-control m-t-20" placeholder="exemple1@mail.fr, exemple2@mail.fr, ..."
+
+            <div class="form-group fg-float m-t-30"
+                 data-ng-class="{'has-error': vm.formCustInvitError && !vm.invitCustomer}">
+                <div class="fg-line">
+            <textarea class="col-xs-12 form-control m-t-20"
                       rows="1"
                       data-auto-size=""
                       data-autosize-on="true"
                       data-ng-model="vm.invitCustomer"></textarea>
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formCustInvitError && !vm.invitCustomer}">exemple1@mail.fr,
+                        exemple2@mail.fr, ...</label>
+                </div>
+            </div>
+
 
             <div class="col-xs-12 yakaPopupInvitSubTitle">
                 Vous pouvez ajouter plusieurs emails en les séparant par une virgule.
             </div>
 
-            <textarea class="col-xs-12 form-control m-t-20" placeholder="Votre message... (facultatif)"
+            <div class="form-group fg-float m-t-30">
+                <div class="fg-line">
+            <textarea class="col-xs-12 form-control m-t-20"
                       rows="1"
                       data-auto-size=""
                       data-autosize-on="true"
                       data-ng-model="vm.invitMessage"></textarea>
+                    <label class="fg-label">Votre message... (facultatif)</label>
+                </div>
+            </div>
 
             <div class="col-xs-12 yakaPopupInvitSubTitle">
                 Accompagnez votre invitation d'un message personnalisé.
             </div>
 
             <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
-                    data-ng-disabled="vm.invitCustomer == ''"
                     data-ng-click="vm.sendCustomerInvit()">
                 Inviter
             </button>
@@ -570,14 +584,18 @@
 
             <form name="inviteForm">
                 <div class="col-xs-12 no-padding form-group fg-float m-t-15"
-                     data-ng-class="{'has-error': !vm.invitPro.name}">
-
+                     data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.name}">
                     <div class="fg-line">
                         <input type="text" name="name" class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.name"
-                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label">Nom</label>
+                               data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.name}">Nom</label>
                     </div>
+                    <small class="help-block t-left"
+                           data-ng-show="vm.formProInvitError && vm.invitPro.name.length < 1">
+                        Ce champ est requis
+                    </small>
                     <div data-ng-messages="inviteForm.name.$error">
                         <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                             valide
@@ -599,14 +617,18 @@
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.invitPro.email}">
+                     data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.email}">
                     <div class="fg-line">
                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.email"
-                               required="required" yaka-input-email>
-                        <label class="fg-label">Email</label>
+                               data-ng-model="vm.invitPro.email" yaka-input-email>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.email}">Email</label>
                     </div>
+                    <small class="help-block t-left"
+                           data-ng-show="vm.formProInvitError && vm.invitPro.email.length < 1">
+                        Ce champ est requis
+                    </small>
                     <div data-ng-messages="inviteForm.username.$error">
                         <small class="help-block" data-ng-message="invalidEmail">
                             Cet email n'est pas valide
@@ -615,7 +637,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                     data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.address.address}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input input-sm"
                                vs-google-autocomplete="vm.autocomplete.options"
@@ -625,8 +647,9 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Ville</label>
-                        <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.address.address}">Ville</label>
+                        <small class="help-block c-red" data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">
                             Veuillez saisir la ville, puis sélectionnez-la dans la liste
                         </small>
                     </div>
@@ -647,7 +670,6 @@
                 </div>
 
                 <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
-                        data-ng-disabled="!vm.formIsValid()"
                         data-ng-click="vm.sendProInvit()">
                     Inviter
                 </button>

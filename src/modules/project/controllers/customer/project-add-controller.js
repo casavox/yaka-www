@@ -422,7 +422,7 @@
             }
             if (vm.projectDescription.length < 50) {
                 vm.formAddProjectError = true;
-                vm.error.description.message = "Merci de préciser votre besoin et vos contraintes (état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit, etc.).";
+                vm.error.description.message = "Dites-nous en plus sur votre besoin, vos contraintes : état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit,...";
                 vm.error.description.flag = true;
             } else if ((vm.material != null || vm.type.code == 'COU_13900') && vm.projectDescription.length >= 50) {
                 vm.continue = vm.error.material.flag = true;

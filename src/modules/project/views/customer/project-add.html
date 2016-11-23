@@ -82,7 +82,7 @@
                             </div>
                             <small>Le Pro doit fournir tous les matériaux</small>
                         </div>
-                        <p class="col-xs-12 error center" data-ng-show="vm.error.material.flag">
+                        <p class="col-xs-12 error f-s-13 center" data-ng-show="vm.error.material.flag">
                             {{vm.error.material.message}}
                         </p>
                     </div>
@@ -110,14 +110,15 @@
                                            data-ng-class="{'c-red' : vm.formAddProjectError && vm.projectDescription.length < 50}">Préciser
                                         mon projet ici ...</label>
                                 </div>
+                                <p class="col-xs-12 error t-left m-b-0 p-0"
+                                          data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
+                                <small>{{vm.error.description.message}}</small>
+                            </p>
                             </div>
                         </form>
                     </div>
 
-                    <p class="col-xs-12 error center m-b-0 p-0"
-                       data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
-                        <small>{{vm.error.description.message}}</small>
-                    </p>
+
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
@@ -258,7 +259,9 @@
                                            placeholder=""
                                            data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag">
                                     <label class="fg-label"
-                                           data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}">Indiquez
+                                           data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}"
+                                            data-ng-hide="address.name">
+                                        Indiquez
                                         votre adresse complète</label>
                                 </div>
                                 <small class="help-block center"
