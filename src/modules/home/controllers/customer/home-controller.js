@@ -162,8 +162,13 @@
         };
 
         vm.login = function () {
+
+
             if (vm.loginFormIsValid()) {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            } else {
+                vm.formLoginError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
@@ -271,13 +276,15 @@
         vm.registering = false;
 
         vm.register = function () {
-            console.log(vm.newUser.referral);
             if (vm.registerFormIsValid()) {
                 if (vm.newUser.referral == 'REFERRAL_OTHER' && vm.referralOther) {
                     vm.newUser.referral = vm.referralOther;
                 }
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
+            } else {
+                vm.formRegisterError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
@@ -313,6 +320,9 @@
         vm.forgottenPassword = function () {
             if (vm.forgottenPasswordUser.email) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formLostPasswordError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 

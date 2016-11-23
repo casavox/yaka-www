@@ -44,7 +44,6 @@
                 vm.updating = true;
                 networkService.changePassword(formData, function (res) {
                     alertMsg.send("Mot de passe modifié avec succès", "success");
-                    vm.updating = false;
                 }, function (res) {
                     vm.updating = false;
                     alertMsg.send("Impossible de modifier le mot de passe", "danger");

@@ -7,6 +7,90 @@
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
     <div id="content" class="content contacts">
         <div class="container">
+
+            <div class="topViewProfile">
+
+                <div data-ng-if="vm.showTopViewProfileNotValidated()">
+
+                    <div data-ng-if="app.getUser().professional.status == 'REGISTERED'"
+                         class="card bgm-red c-white p-15 pointer" data-ui-sref="pro-profile">
+                        <div class="topViewProfileIcon">
+                            <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                        </div>
+                        <div class="topViewProfileContent">
+                            Attention, <b>votre profil est incomplet</b>. Merci de compléter votre profil afin de pouvoir répondre aux offres.
+                        </div>
+                    </div>
+
+                    <div data-ng-if="app.getUser().professional.status == 'WAITING'"
+                         class="card bgm-orange c-white p-15 pointer" data-ui-sref="pro-profile">
+                        <div class="topViewProfileIcon">
+                            <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                        </div>
+                        <div class="topViewProfileContent">
+                            Votre profil est en cours de vérification par l'équipe CasaVox, vous recevrez bientôt un
+                            email vous indiquant s'il a été validé ou non.
+                        </div>
+                    </div>
+
+                    <div data-ng-if="app.getUser().professional.status == 'REFUSED'"
+                         class="card bgm-red c-white p-15 pointer" data-ui-sref="pro-profile">
+                        <div class="topViewProfileIcon">
+                            <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
+                        </div>
+                        <div class="topViewProfileContent">
+                            Nous n'avons pas pu vérifier votre profil
+                            <div data-ng-if="vm.profile.refusedReason != ''">
+                                Raison : {{app.getUser().professional.refusedReason}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -->
+
+                <div class="card bgm-orange c-white p-15 pointer" data-ng-if="!vm.showTopViewProfileNotValidated() && vm.showTopViewInvits()"
+                     data-ui-sref="contacts">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Vous avez des invitations en attente, cliquez ici pour les accepter ou les refuser
+                    </div>
+                </div>
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="!vm.showTopViewProfileNotValidated() && vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-comment-alert"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <span class="v-align-middle">Vous avez des messages non lus, cliquez sur l'icone</span>
+                        <i class="zmdi zmdi-local-post-office f-s-16 v-align-middle"></i>
+                        <span class="v-align-middle">en haut à droite pour les visualiser</span>
+                    </div>
+                </div>
+                <div class="card bgm-lightblue c-white p-15 pointer"
+                     data-ng-if="!vm.showTopViewProfileNotValidated() && vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                     data-ui-sref="new-project">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-assignment-o"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Cliquez sur TROUVER UN PRO pour être contacté par les meilleurs professionnels
+                    </div>
+                </div>
+                <div class="card bgm-lightblue c-white p-15 pointer"
+                     data-ng-if="!vm.showTopViewProfileNotValidated() && vm.showTopViewNoContact() && !vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                     data-ui-sref="contacts">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Cliquez sur MON ENTOURAGE dans le menu pour profiter du bouche-à-oreille CasaVox
+                    </div>
+                </div>
+            </div>
+
             <div class="block-header">
                 <h2>Tableau de bord</h2>
             </div>
