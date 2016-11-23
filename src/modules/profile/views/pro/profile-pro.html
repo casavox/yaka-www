@@ -158,7 +158,7 @@
                 <i class="zmdi zmdi-hc-2x zmdi-check v-align-sub m-r-10"
                    data-ng-if="vm.infosCardIsComplete()"></i>
                 Informations générales
-                <small class="c-red" data-ng-if="!vm.infosCardIsComplete()">
+                <small class="c-red" data-ng-if="lalaa">
                     Informations en rouge obligatoires
                 </small>
                 <small class="c-white"
@@ -186,18 +186,19 @@
                     <div class="col-xs-9 no-padding-right">
 
                         <div class="form-group fg-float m-b-30"
-                             data-ng-class="{'has-error': !vm.profileInfo.user.firstName}">
-
+                             data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.user.firstName}">
                             <div class="fg-line">
                                 <input type="text" name="firstName" class="form-control fg-input"
-                                       data-ng-model="vm.profileInfo.user.firstName"
-                                       required="required" yaka-input-name>
-                                <label class="fg-label">Prénom</label>
+                                       data-ng-model="vm.profileInfo.user.firstName" yaka-input-name>
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.user.firstName}">
+                                    Prénom
+                                </label>
                             </div>
                             <div data-ng-messages="profileForm.firstName.$error">
-                                <small class="help-block" data-ng-message="required">Ce champ est requis
+                                <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.firstName">Ce champ est requis
                                 </small>
-                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est
+                                <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidName">Ce prénom n'est
                                     pas
                                     valide
                                 </small>
@@ -205,18 +206,17 @@
                         </div>
 
                         <div class="form-group fg-float m-b-30"
-                             data-ng-class="{'has-error': !vm.profileInfo.user.lastName}">
-
+                             data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.user.lastName}">
                             <div class="fg-line">
                                 <input type="text" name="lastName" class="form-control fg-input"
-                                       data-ng-model="vm.profileInfo.user.lastName"
-                                       required="required" yaka-input-name>
-                                <label class="fg-label">Nom</label>
+                                       data-ng-model="vm.profileInfo.user.lastName" yaka-input-name>
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.user.lastName}">Nom</label>
                             </div>
                             <div data-ng-messages="profileForm.lastName.$error">
-                                <small class="help-block" data-ng-message="required">Ce champ est requis
+                                <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.lastName">Ce champ est requis
                                 </small>
-                                <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidName">Ce nom n'est pas
                                     valide
                                 </small>
                             </div>
@@ -226,45 +226,53 @@
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.profileInfo.phoneNumber}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.phoneNumber}">
                     <div class="fg-line">
                         <input type="text" name="phoneNumber"
-                               required="required" class="form-control fg-input"
+                               class="form-control fg-input"
                                data-ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone</label>
+                        <label class="fg-label fg-label-phone"
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.phoneNumber}">
+                            Téléphone
+                        </label>
                     </div>
                     <div data-ng-messages="profileForm.phoneNumber.$error">
-                        <small class="help-block" data-ng-message="required">Ce champ est requis
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.phoneNumber">Ce champ est
+                            requis
                         </small>
-                        <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
-                            n'est
-                            pas valide
+                        <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidPhone">Ce numéro de
+                            téléphone
+                            n'est pas valide
                         </small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.profileInfo.user.email}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.user.email}">
                     <div class="fg-line">
                         <input type="text" name="email" class="form-control fg-input"
-                               data-ng-model="vm.profileInfo.user.email"
-                               required="required" yaka-input-email>
-                        <label class="fg-label">Email</label>
+                               data-ng-model="vm.profileInfo.user.email" yaka-input-email>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.user.email}">
+                            Email
+                        </label>
                     </div>
                     <div data-ng-messages="profileForm.email.$error">
-                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
-                        <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.email">Ce champ est
+                            requis
+                        </small>
+                        <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidEmail">Cet email
+                            n'est pas
                             valide
                         </small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.profileInfo.activityStartedYear}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.activityStartedYear}">
                     <div class="fg-line">
                         <div class="select">
                             <select name="activityStartedYear"
-                                    required="required"
                                     data-ng-model="vm.profileInfo.activityStartedYear"
                                     class="form-control" convert-to-number>
                                 <option value="0" disabled selected></option>
@@ -274,49 +282,61 @@
                                     {{year}}
                                 </option>
                             </select>
-                            <label class="fg-label">Première année d'expérience</label>
+                            <label class="fg-label"
+                                   data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.activityStartedYear}">
+                                Première année d'expérience
+                            </label>
                         </div>
                     </div>
                     <div data-ng-messages="profileForm.activityStartedYear.$error">
-                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.activityStartedYear">Ce champ est requis</small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.profileInfo.company.name}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.company.name}">
                     <div class="fg-line">
-                        <input type="text" name="companyName" required="required"
+                        <input type="text" name="companyName"
                                class="form-control fg-input"
                                data-ng-model="vm.profileInfo.company.name">
-                        <label class="fg-label">Nom de l'entreprise</label>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.company.name}">
+                            Nom de l'entreprise</label>
                     </div>
-                    <div data-ng-messages="profileForm.companyName.$error">
-                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                    <div>
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.name">Ce champ est
+                            requis
+                        </small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.profileInfo.company.siret}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.company.siret}">
                     <div class="fg-line">
-                        <input name="siret" type="text" required="required"
+                        <input name="siret" type="text"
                                class="form-control fg-input"
                                data-ng-model="vm.profileInfo.company.siret" yaka-input-siret>
-                        <label class="fg-label">SIRET (sans espace)</label>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.company.siret}">
+                            SIRET (sans espace)
+                        </label>
                     </div>
-                    <div data-ng-messages="profileForm.siret.$error">
-                        <a class="pointer col-xs-12 no-padding form-group m-b-5 fg-float"
+                    <div data-ng-if="!vm.profileInfo.company.siret">
+                        <a class="pointer underline col-xs-12 no-padding form-group m-b-5 fg-float"
                            data-ng-if="!vm.profileInfo.company.siret"
                            data-ng-href="http://www.societe.com{{vm.siretInfo()}}" target="_blank">Retrouver rapidement
                             mon numéro de SIRET sur societe.com</a>
-                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
-                        <small class="help-block" data-ng-message="invalidSiret">Ce SIRET n'est pas
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.siret">Ce champ est
+                            requis
+                        </small>
+                        <small class="help-block" data-ng-if="invalidSiret">Ce SIRET n'est pas
                             valide
                         </small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.profileInfo.company.address.address}">
+                     data-ng-class="{'has-error' : vm.formError && !vm.profileInfo.company.address.address}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input"
                                vs-google-autocomplete="vm.autocomplete.options"
@@ -324,23 +344,22 @@
                                data-ng-model="vm.profileInfo.company.address.address"
                                type="text"
                                name="address"
-                               required="required"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Adresse de l'entreprise</label>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red' : vm.formError && !vm.profileInfo.company.address.address}">Adresse de l'entreprise</label>
                     </div>
                     <div data-ng-messages="profileForm.address.$error">
-                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.address.address">Ce champ est requis</small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30">
-
                     <div class="fg-line">
                         <input type="text" name="companyPhoneNumber"
                                class="form-control fg-input"
                                data-ng-model="vm.profileInfo.company.phone" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone de l'entreprise</label>
+                        <label class="fg-label fg-label-phone">Téléphone de l'entreprise (optionnel)</label>
                     </div>
                     <div data-ng-messages="profileForm.companyPhoneNumber.$error">
                         <small class="help-block" data-ng-message="invalidPhone">Ce numéro de téléphone
@@ -354,8 +373,7 @@
                 <div class="col-xs-12 no-padding profile-box-footer m-b-20">
 
                     <button class="btn btn-info bgm-lightblue waves-effect"
-                            data-ng-click="vm.profileSaveButtonClicked()"
-                            data-ng-disabled="vm.updating || !vm.showButtonsProfile()">
+                            data-ng-click="vm.profileSaveButtonClicked()">
                         Enregistrer
                     </button>
                     <button class="btn btn-link waves-effect"
@@ -429,34 +447,45 @@
             <small class="subtitle-color-forced">Indiquez les adresses de vos sites Web</small>
         </div>
         <div class="col-xs-12 card-body m-t-20">
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)}">
                 <div class="fg-line">
                     <input type="text" class="form-control fg-input"
                            data-ng-model="vm.profile.myWebsite">
-                    <label class="fg-label">Mon site Web</label>
+                    <label class="fg-label" data-ng-class="{'c-red' : vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)}">Mon site Web</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)">
+                    L'adresse indiquée n'est pas valide
+                </small>
             </div>
 
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)}">
                 <div class="fg-line">
                     <input type="text" class="form-control fg-input"
                            data-ng-model="vm.profile.myLinkedin">
-                    <label class="fg-label">Mon Linkedin</label>
+                    <label class="fg-label" data-ng-class="{'c-red' : vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)}">Mon Linkedin</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)">
+                    L'adresse indiquée n'est pas valide
+                </small>
             </div>
 
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)}">
                 <div class="fg-line">
                     <input type="text" class="form-control fg-input"
                            data-ng-model="vm.profile.myOtherSocial">
-                    <label class="fg-label">Autre (Google+, Viadeo, ...)</label>
+                    <label class="fg-label" data-ng-class="{'c-red' : vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)}">Autre (Google+, Viadeo, ...)</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)">
+                    L'adresse indiquée n'est pas valide
+                </small>
             </div>
 
             <div class="profile-box-footer mt-12 m-b-20">
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateLinks()"
-                        data-ng-disabled="vm.updating">
+                        data-ng-click="vm.updateLinks()">
                     Enregistrer
                 </button>
             </div>
@@ -470,39 +499,55 @@
             <h2>Modifier le mot de passe</h2>
         </div>
         <div class="col-xs-12 card-body m-t-20">
-            <div class="form-group fg-float m-b-30">
+            <div class="form-group fg-float m-b-30"
+                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2) || vm.formPasswordError && (vm.pwdCurrent.length < 6)}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwdCurrent">
-                    <label class="fg-label">Mot de passe actuel</label>
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2) || vm.formPasswordError && (vm.pwdCurrent.length < 6)}">Mot de passe actuel</label>
                 </div>
-            </div>
-
-            <div class="form-group fg-float m-b-30">
-                <div class="fg-line">
-                    <input type="password" class="form-control fg-input"
-                           data-ng-model="vm.pwd1">
-                    <label class="fg-label">Nouveau mot de passe</label>
-                </div>
+                <small class="help-block"
+                       data-ng-show="vm.formPasswordError && !vm.pwdCurrent || !vm.pwdCurrent && (vm.pwd1 || vm.pwd2)">
+                    Ce champs est requis
+                </small>
             </div>
 
             <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error': vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
+                 data-ng-class="{'has-error' : vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2 || vm.formPasswordError && (vm.pwd1.length < 6)}">
+                <div class="fg-line">
+                    <input type="password" class="form-control fg-input"
+                           data-ng-model="vm.pwd1">
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2 || vm.formPasswordError && (vm.pwd1.length < 6)}">Nouveau mot de passe (6 caractères minimum)</label>
+                </div>
+                <small class="help-block"
+                       data-ng-show="vm.formPasswordError && !vm.pwd1 || !vm.pwd1 && vm.pwd2">
+                    Ce champs est requis
+                </small>
+            </div>
+
+            <div class="form-group fg-float m-b-30"
+                 data-ng-class="{'has-error': vm.formPasswordError && !vm.pwd2 || vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">
                 <div class="fg-line">
                     <input type="password" class="form-control fg-input"
                            data-ng-model="vm.pwd2">
-                    <label class="fg-label">Confirmation</label>
+                    <label class="fg-label"
+                           data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwd2 || vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)}">Confirmation</label>
                 </div>
                 <small class="help-block" data-ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
                     Les deux mots de passe ne correspondent pas
+                </small>
+                <small class="help-block"
+                       data-ng-show="vm.formPasswordError && vm.pwd1 && !vm.pwd2 || vm.formPasswordError && !vm.pwd1 && !vm.pwd2">
+                    Ce champs est requis
                 </small>
             </div>
 
             <div class="profile-box-footer mt-12 m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.changePassword()"
-                        data-ng-disabled="vm.updating || !vm.showButtonsNewPassword()">
+                        data-ng-click="vm.changePassword()">
                     Enregistrer
                 </button>
             </div>
@@ -562,7 +607,7 @@
                                    data-ng-model="vm.getCommunityByType('PROFILE_CITY').neighborhood">
                             <label class="fg-label"
                                    data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom
-                                du quartier/voisinnage</label>
+                                du quartier/voisinnage (optionnel)</label>
                         </div>
                     </div>
                 </div>
@@ -617,7 +662,7 @@
                 </div>
                 <div class="col-xs-12 col-md-6 card-body m-t-20 m-l-0 p-l-0 p-r-15">
                     <div class="form-group fg-float"
-                         data-ng-class="{'has-error' : vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address}">
+                         data-ng-class="{'has-error' : vm.formCommunitiesError && vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address}">
                         <div class="fg-line">
                             <input type="text"
                                    class="form-control fg-input"
@@ -626,9 +671,9 @@
                                    placeholder=""
                                    vs-autocomplete-validator>
                             <label class="fg-label"
-                                   data-ng-class="{'c-red' : !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
+                                   data-ng-class="{'c-red' : vm.formCommunitiesError && !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
                             <small class="help-block c-red"
-                                   data-ng-if="!vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
+                                   data-ng-if="vm.formCommunitiesError && !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
                                 Renseignez la ville, puis sélectionnez-la dans la liste
                             </small>
                         </div>
@@ -662,8 +707,7 @@
 
         <div class="col-xs-12 no-padding profile-box-footer m-20">
             <button class="btn btn-info bgm-lightblue waves-effect"
-                    data-ng-click="vm.updateCommunities()"
-                    data-ng-disabled="vm.disabledCom()">
+                    data-ng-click="vm.updateCommunities()">
                 Enregistrer
             </button>
             <button class="btn btn-link waves-effect"
@@ -859,7 +903,7 @@
 
             <form name="aboutMeForm">
                 <div class="form-group"
-                     data-ng-class="{'has-error': !vm.about.aboutMe}">
+                     data-ng-class="{'has-error': vm.formDescError && !vm.about.aboutMe}">
                     <div class="fg-line">
                         <textarea class="form-control" rows="4" name="aboutMe" data-ng-model="vm.about.aboutMe"
                                   required="required" data-ng-minlength="100" data-auto-size data-autosize-on="true"
@@ -869,7 +913,7 @@
                         <small class="help-block" data-ng-message="minlength">
                             Description trop courte (100 caractères min)
                         </small>
-                        <small class="help-block" data-ng-message="required">
+                        <small class="help-block" data-ng-if="vm.formDescError" data-ng-message="required">
                             Ce champ est requis
                         </small>
                     </div>
@@ -880,11 +924,11 @@
             <div class="profile-box-footer m-b-20">
 
                 <button class="btn btn-info bgm-lightblue waves-effect"
-                        data-ng-click="vm.updateAboutMe()" data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                        data-ng-click="vm.updateAboutMe()">
                     Enregistrer
                 </button>
                 <button class="btn btn-link waves-effect"
-                        data-ng-click="vm.cancelAboutMe()" data-ng-disabled="vm.updating || !vm.showButtonsAbout()">
+                        data-ng-click="vm.cancelAboutMe()">
                     Annuler
                 </button>
 

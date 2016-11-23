@@ -227,12 +227,22 @@
             smoothScroll(element, scrollOptions);
         };
 
+        vm.deleteErrorIfSelected = function() {
+            $('button.dropdown-toggle.btn.btn-default').removeClass('c-red');
+        };
+
         vm.registerUser = function () {
             if (vm.formIsValid()) {
                 if (vm.newUser.referral == 'REFERRAL_OTHER' && vm.referralOther) {
                     vm.newUser.referral = vm.referralOther;
                 }
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
+            } else {
+                vm.formRegisterError = true;
+                if (vm.multiChoiceInput.selected.length == 0 && vm.formRegisterError) {
+                    $('button.dropdown-toggle.btn.btn-default').addClass('c-red');
+                }
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
@@ -283,7 +293,12 @@
         };
 
         vm.login = function () {
-            networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            if (!vm.loginUser.email || !vm.loginUser.password) {
+                vm.formProLoginError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            }
         };
 
         function succesLogin(res) {
@@ -355,6 +370,9 @@
         vm.forgottenPassword = function () {
             if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formLostPasswordError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 

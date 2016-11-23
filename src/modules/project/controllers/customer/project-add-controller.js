@@ -362,6 +362,7 @@
                     vm.continueAddressFlag = false;
                     vm.error.address.message = "Merci d'indiquer un NOM pour cette adresse";
                     vm.error.address.flag = true;
+                    vm.formAddAddressError = true;
                 }
             }
             else {
@@ -414,10 +415,12 @@
         vm.continueProject = function () {
             if (vm.material == null && vm.type.code != 'COU_13900') {
                 vm.error.material.message = "Merci d'indiquez si vous souhaitez que le professionnel fournisse ou non les principaux matériaux";
+                vm.formAddProjectError = true;
                 vm.error.material.flag = true;
             }
             if (vm.projectDescription.length < 50) {
-                vm.error.description.message = "Merci de précisez votre besoin et vos contraintes (état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit, etc.).";
+                vm.formAddProjectError = true;
+                vm.error.description.message = "Merci de préciser votre besoin et vos contraintes (état du lieu des travaux, dimensions, le cas échéant le type de matériel fournit, etc.).";
                 vm.error.description.flag = true;
             } else if ((vm.material != null || vm.type.code == 'COU_13900') && vm.projectDescription.length >= 50) {
                 vm.continue = vm.error.material.flag = true;

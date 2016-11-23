@@ -60,8 +60,10 @@
                 !vm.profileInfo.company.address.address) {
 
                 f = true;
+                vm.formError = true;
             }
             if (!f) {
+                vm.formError = false;
                 vm.error.profile.flag = false;
                 vm.updating = true;
                 networkService.proProfilePUT(vm.profileInfo, function (res) {
@@ -83,7 +85,7 @@
                 }, errorProfilePUT, true);
             }
             else {
-                alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
@@ -96,6 +98,7 @@
                 vm.updating = false;
                 alertMsg.send("Description enregistrée avec succès", "success");
             }, function () {
+                vm.formDescError = true;
                 vm.updating = false;
                 alertMsg.send("Votre description est trop courte", "danger");
             }, true);
@@ -274,42 +277,62 @@
         };
 
         vm.changePassword = function () {
-            vm.pwd1 = vm.pwd1 || "";
-            vm.pwd2 = vm.pwd2 || "";
-            if (vm.pwd1.length < 6) {
-                vm.error.password.message = "Password min length 6.";
-                vm.error.password.flag = true;
-            }
-            else {
-                vm.error.password.flag = false;
-                var formData = {
-                    currentPassword: vm.pwdCurrent,
-                    newPassword: vm.pwd1
-                };
-                if (vm.pwd2 === vm.pwd1) {
-                    vm.updating = true;
-                    networkService.changePassword(formData, function (res) {
-                        alertMsg.send("Mot de passe modifié avec succès", "success");
-                        vm.updating = false;
-                    }, function (res) {
-                        vm.updating = false;
-                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                    }, true);
-                }
-                else {
-                    vm.error.password.message = "Les deux mots de passe ne correspondent pas";
+
+            if (!vm.pwdCurrent || !vm.pwd1 || !vm.pwd2) {
+                vm.formPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                vm.pwd1 = vm.pwd1 || "";
+                vm.pwd2 = vm.pwd2 || "";
+                if (vm.pwd1.length < 6) {
+                    vm.error.password.message = "Password min length 6.";
                     vm.error.password.flag = true;
                 }
+                else {
+                    vm.error.password.flag = false;
+                    var formData = {
+                        currentPassword: vm.pwdCurrent,
+                        newPassword: vm.pwd1
+                    };
+                    if (vm.pwd2 === vm.pwd1) {
+                        vm.updating = true;
+                        networkService.changePassword(formData, function (res) {
+                            alertMsg.send("Mot de passe modifié avec succès", "success");
+                            vm.updating = false;
+                        }, function (res) {
+                            if (res = "ERROR_WRONG_PASSWORD") {
+                                vm.currentPasswordError = true;
+                                alertMsg.send("Le mot de passe actuel est invalide", "danger");
+                            } else {
+                                alertMsg.send("Impossible de modifier le mot de passe", "danger");
+                            }
+                        }, true);
+                    }
+                    else {
+                        vm.error.password.message = "Les deux mots de passe ne correspondent pas";
+                        vm.error.password.flag = true;
+                    }
+                }
             }
+
+
         };
 
         vm.updateLinks = function () {
             var websiteReg = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
             var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*/;
 
-
-            if ((vm.profile.myWebsite && !websiteReg.test(vm.profile.myWebsite)) || (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin)) || (vm.profile.myOtherSocial && !websiteReg.test(vm.profile.myOtherSocial))) {
-                alertMsg.send("L'URL du lien n'est pas valide", "danger");
+            if (vm.profile.myWebsite && !websiteReg.test(vm.profile.myWebsite)) {
+                vm.formWebsiteError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            }
+            else if (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin)) {
+                vm.formLinkedinError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            }
+            else if (vm.profile.myOtherSocial && !websiteReg.test(vm.profile.myOtherSocial)) {
+                vm.formOtherSocialError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 var data = {
                     "myWebsite": vm.profile.myWebsite,
@@ -317,10 +340,9 @@
                     "myOtherSocial": vm.profile.myOtherSocial
                 };
                 networkService.updateProLinksPUT(data, function (res) {
+                    vm.formWebsiteError = false;
                     alertMsg.send("Les liens ont été mis à jour", "success");
-                    vm.updating = false;
                 }, function (res) {
-                    vm.updating = false;
                     alertMsg.send("Impossible de modifier les liens", "danger");
                 }, true);
             }
@@ -1085,10 +1107,16 @@
         }
 
         vm.updateCommunities = function () {
-            networkService.communitiesPUT(vm.communities, function (res) {
-                networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
-                alertMsg.send("Les communautés ont été mises à jour", "success");
-            }, errorProfilePUT, true);
+            if (vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address) {
+                vm.formCommunitiesError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                networkService.communitiesPUT(vm.communities, function (res) {
+                    networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+                    alertMsg.send("Les communautés ont été mises à jour", "success");
+                }, errorProfilePUT, true);
+            }
+
         };
 
         vm.cancelCommunitiesUpdate = function () {
