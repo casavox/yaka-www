@@ -34,20 +34,26 @@
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
         function changePassword() {
-            vm.pwd1 = vm.pwd1 || "";
-            vm.pwd2 = vm.pwd2 || "";
-            var formData = {
-                currentPassword: vm.pwdCurrent,
-                newPassword: vm.pwd1
-            };
-            if (vm.pwd2 === vm.pwd1) {
-                vm.updating = true;
-                networkService.changePassword(formData, function (res) {
-                    alertMsg.send("Mot de passe modifié avec succès", "success");
-                }, function (res) {
-                    vm.updating = false;
-                    alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                }, true);
+            if (!vm.pwdCurrent || !vm.pwd1 || !vm.pwd2) {
+                vm.formPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            }
+            else {
+                vm.pwd1 = vm.pwd1 || "";
+                vm.pwd2 = vm.pwd2 || "";
+                var formData = {
+                    currentPassword: vm.pwdCurrent,
+                    newPassword: vm.pwd1
+                };
+                if (vm.pwd2 === vm.pwd1) {
+                    vm.updating = true;
+                    networkService.changePassword(formData, function (res) {
+                        alertMsg.send("Mot de passe modifié avec succès", "success");
+                    }, function (res) {
+                        vm.updating = false;
+                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
+                    }, true);
+                }
             }
         }
 
@@ -58,7 +64,6 @@
                 !vm.profileInfo.phoneNumber || //
                 !vm.profileInfo.gender || //
                 !vm.profileInfo.email) {
-
                 f = true;
             }
             if (!f) {
@@ -76,7 +81,8 @@
                 }, errorProfilePUT, true);
             }
             else {
-                alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
+                vm.formInfosError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         }
 
