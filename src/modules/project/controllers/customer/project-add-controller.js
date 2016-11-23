@@ -362,6 +362,7 @@
                     vm.continueAddressFlag = false;
                     vm.error.address.message = "Merci d'indiquer un NOM pour cette adresse";
                     vm.error.address.flag = true;
+                    vm.formAddAddressError = true;
                 }
             }
             else {
