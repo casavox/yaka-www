@@ -69,14 +69,16 @@
                             </h2>
                         </div>
                         <div class="col-sm-4 col-sm-offset-2 text-center">
-                            <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'; vm.error.material.flag = false"
+                            <div id="materialYes" class="v-btn"
+                                 data-ng-click="vm.material = 'yes'; vm.error.material.flag = false"
                                  data-ng-class="{activate: vm.material == 'yes'}">
                                 Travaux
                             </div>
                             <small>Je fournis certains matériaux, à préciser</small>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no' vm.error.material.flag = false"
+                            <div id="materialNo" class="v-btn"
+                                 data-ng-click="vm.material = 'no'; vm.error.material.flag = false"
                                  data-ng-class="{activate: vm.material == 'no'}">
                                 Travaux + matériaux
                             </div>
@@ -111,13 +113,12 @@
                                         mon projet ici ...</label>
                                 </div>
                                 <p class="col-xs-12 error t-left m-b-0 p-0"
-                                          data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
-                                <small>{{vm.error.description.message}}</small>
-                            </p>
+                                   data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
+                                    <small>{{vm.error.description.message}}</small>
+                                </p>
                             </div>
                         </form>
                     </div>
-
 
 
                     <button
@@ -260,7 +261,7 @@
                                            data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag">
                                     <label class="fg-label"
                                            data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}"
-                                            data-ng-hide="address.name">
+                                           data-ng-hide="address.name">
                                         Indiquez
                                         votre adresse complète</label>
                                 </div>
@@ -277,7 +278,8 @@
                         Saisir un nom pour cette adresse :
                     </p>
 
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float">
+                    <div
+                        class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float">
                         <div data-ng-show="vm.newAddrFlag && address.name"
                              data-ng-class="{'has-error': vm.formAddAddressError && !vm.newAddr.name}">
                             <div class="fg-line">
@@ -386,25 +388,52 @@
                         Google
                     </div>
 
-                    <input class="form-control"
-                           type="text"
-                           name="username"
-                           autocomplete="username"
-                           placeholder="Email"
-                           data-ng-model="vm.loginUser.email"
-                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                    <form name="loginPro">
+                        <div class="form-group fg-float m-t-30"
+                             data-ng-class="{'has-error': vm.formPublicProjectLoginError && !vm.loginUser.email}">
+                            <div class="fg-line m-t-10">
+                                <input class="form-control"
+                                       type="text"
+                                       name="username"
+                                       autocomplete="username"
+                                       data-ng-model="vm.loginUser.email"
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formPublicProjectLoginError && !vm.loginUser.email}">Email</label>
+                            </div>
+                            <div data-ng-messages="loginPro.username.$error">
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectLoginError && vm.loginUser.email.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <small class="help-block c-red" data-ng-message="invalidEmail">
+                                    Cette addresse Email n'est pas valide
+                                </small>
+                            </div>
+                        </div>
 
-                    <input class="form-control"
-                           type="password"
-                           name="password"
-                           autocomplete="current-password"
-                           placeholder="Mot de passe"
-                           data-ng-model="vm.loginUser.password"
-                           data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                        <div class="form-group fg-float m-t-30"
+                             data-ng-class="{'has-error': vm.formPublicProjectLoginError && !vm.loginUser.password}">
+                            <div class="fg-line m-t-10">
+                                <input class="form-control"
+                                       type="password"
+                                       name="password"
+                                       autocomplete="current-password"
+                                       data-ng-model="vm.loginUser.password"
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formPublicProjectLoginError && !vm.loginUser.password}">Mot de passe</label>
+                            </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectLoginError && vm.loginUser.password.length < 1">
+                                    Ce champ est requis
+                                </small>
+                        </div>
+                    </form>
 
                     <button
                         class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
-                        data-ng-click="vm.login()" data-ng-disabled="!vm.loginFormIsValid()"
+                        data-ng-click="vm.login()"
                         id="signInPopupButton">SE CONNECTER
                     </button>
 

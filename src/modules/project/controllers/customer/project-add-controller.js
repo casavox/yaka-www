@@ -706,6 +706,9 @@
         vm.login = function () {
             if (vm.loginFormIsValid()) {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            } else {
+                vm.formPublicProjectLoginError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
