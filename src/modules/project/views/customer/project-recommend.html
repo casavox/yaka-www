@@ -439,7 +439,7 @@
                                            data-ng-disabled="vm.isSocialRegister()"
                                            yaka-input-name>
                                     <label class="fg-label"
-                                           data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">Nom</label>
+                                           data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.name}">Nom</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
@@ -473,7 +473,7 @@
                                            data-ng-model="vm.invitPro.email"
                                            yaka-input-email>
                                     <label class="fg-label"
-                                           data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">Email</label>
+                                           data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.email}">Email</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
@@ -498,7 +498,7 @@
                                            placeholder=""
                                            id="address">
                                     <label class="fg-label"
-                                           data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">Ville</label>
+                                           data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.address.address}">Ville</label>
                                     <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
                                         Veuillez saisir la ville, puis sélectionnez-la dans la liste
                                     </small>
@@ -558,7 +558,7 @@
                                data-ng-model="vm.invitPro.name"
                                data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                         <label class="fg-label"
-                               data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">Nom</label>
+                               data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.name}">Nom</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
@@ -596,8 +596,8 @@
                                placeholder=""
                                id="address">
                         <label class="fg-label"
-                               data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">Ville</label>
-                        <small class="help-block c-red" data-ng-if="vm.formProRecoInvitError && !vm.invitPro.address.address">
+                               data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.address.address}">Ville</label>
+                        <small class="help-block" data-ng-show="vm.formProRecoInvitError && !vm.invitPro.address.address">
                             Veuillez saisir la ville, puis sélectionnez-la dans la liste
                         </small>
                     </div>
@@ -611,7 +611,7 @@
                                data-ng-model="vm.invitPro.email"
                                yaka-input-email>
                         <label class="fg-label"
-                               data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">Email</label>
+                               data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.email}">Email</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
