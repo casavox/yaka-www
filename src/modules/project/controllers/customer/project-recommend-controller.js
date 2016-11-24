@@ -133,33 +133,38 @@
         };
 
         vm.sendProInvit = function () {
-            networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
-                vm.invitPro = {
-                    email: "",
-                    name: "",
-                    phone: "",
-                    activities: [],
-                    address: {}
-                };
-                vm.phoneNumber = "";
-                vm.multiChoiceInput.selected = [];
-                vm.closeProPopup();
-                if ($localStorage.user && $localStorage.user.professional) {
-                    $state.go('pro-dashboard');
-                } else {
-                    $state.go('dashboard');
-                }
-                swal({
-                    title: "C'est fait !",
-                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
-                    type: "success",
-                    showConfirmButton: true,
-                    confirmButtonColor: "#03a9f4",
-                    confirmButtonText: "Fermer"
-                });
-            }, function (err) {
-                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-            }, true);
+            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+                vm.formProRecoInvitError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
+                    vm.invitPro = {
+                        email: "",
+                        name: "",
+                        phone: "",
+                        activities: [],
+                        address: {}
+                    };
+                    vm.phoneNumber = "";
+                    vm.multiChoiceInput.selected = [];
+                    vm.closeProPopup();
+                    if ($localStorage.user && $localStorage.user.professional) {
+                        $state.go('pro-dashboard');
+                    } else {
+                        $state.go('dashboard');
+                    }
+                    swal({
+                        title: "C'est fait !",
+                        text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
+                        type: "success",
+                        showConfirmButton: true,
+                        confirmButtonColor: "#03a9f4",
+                        confirmButtonText: "Fermer"
+                    });
+                }, function (err) {
+                    alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+                }, true);
+            }
         };
 
         vm.showInvitProPopup = false;
@@ -205,7 +210,7 @@
             smoothScroll(element, scrollOptions);
         };
 
-        vm.optionSelected = function() {
+        vm.optionSelected = function () {
             if (vm.user.professional) {
                 return 'COLLEAGUE';
             } else {
