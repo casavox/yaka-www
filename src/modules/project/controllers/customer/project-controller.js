@@ -520,19 +520,24 @@
         }
 
         vm.openSavePopup = function () {
-            swal({
-                title: "Êtes-vous sûr ?",
-                text: "Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
-                type: "warning",
-                confirmButtonColor: "#f44336",
-                confirmButtonText: "Oui, mettre à jour mon projet",
-                showCancelButton: true,
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    vm.update();
-                }
-            });
+            if (!vm.projectTmp.description) {
+                vm.formProjectDetailsError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                swal({
+                    title: "Êtes-vous sûr ?",
+                    text: "Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
+                    type: "warning",
+                    confirmButtonColor: "#f44336",
+                    confirmButtonText: "Oui, mettre à jour mon projet",
+                    showCancelButton: true,
+                    cancelButtonText: "Non"
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        vm.update();
+                    }
+                });
+            }
         };
 
         vm.showChat = false;
