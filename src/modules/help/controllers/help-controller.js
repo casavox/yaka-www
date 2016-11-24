@@ -87,25 +87,35 @@
 
         vm.sendSupportMessage = function () {
             vm.loading = true;
-            networkService.sendSupportMessage(vm.supportMessage,
-                function success(res) {
-                    swal({
-                        title: "Message envoyé avec succès !",
-                        text: "Vous allez recevoir par mail une copie du message qui nous a été adressé",
-                        type: "success",
-                        confirmButtonText: "OK",
-                        closeOnConfirm: true
-                    });
-                    if ($localStorage.lastUrlBeforeSupport) {
-                        window.location.href = $localStorage.lastUrlBeforeSupport;
-                    } else {
-                        $state.go("home");
-                    }
-                }, function error() {
-                    vm.loading = false;
-                    alertMsg.send("Impossible d'envoyer le message", "danger");
-                }, true
-            );
+            if (!vm.supportMessage.gender ||
+                !vm.supportMessage.firstName ||
+                !vm.supportMessage.lastName ||
+                !vm.supportMessage.email || 
+                !vm.supportMessage.message ||
+                !vm.supportMessage.recaptchaResponse) {
+                vm.formSupportError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+            } else {
+                networkService.sendSupportMessage(vm.supportMessage,
+                    function success(res) {
+                        swal({
+                            title: "Message envoyé avec succès !",
+                            text: "Vous allez recevoir par mail une copie du message qui nous a été adressé",
+                            type: "success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: true
+                        });
+                        if ($localStorage.lastUrlBeforeSupport) {
+                            window.location.href = $localStorage.lastUrlBeforeSupport;
+                        } else {
+                            $state.go("home");
+                        }
+                    }, function error() {
+                        vm.loading = false;
+                        alertMsg.send("Impossible d'envoyer le message", "danger");
+                    }, true
+                );
+            }
         };
 
         vm.smoothScroll = function (situation) {

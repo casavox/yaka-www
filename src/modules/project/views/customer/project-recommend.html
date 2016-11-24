@@ -432,15 +432,19 @@
                         <form name="inviteForm">
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-15"
-                                 data-ng-class="{'has-error': !vm.invitPro.name}">
-
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
                                 <div class="fg-line">
                                     <input type="text" name="name" class="form-control fg-input input-sm"
                                            data-ng-model="vm.invitPro.name"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()"
+                                           data-ng-disabled="vm.isSocialRegister()"
                                            yaka-input-name>
-                                    <label class="fg-label">Nom</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.name}">Nom</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="inviteForm.name.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
@@ -448,7 +452,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding select m-b-15">
+                            <div class="col-xs-12 no-padding select m-b-30">
                                 <select class="form-control"
                                         onchange="this.className='form-control form-control-underline-ok'"
                                         data-ng-model="vm.invitPro.relation"
@@ -462,14 +466,19 @@
                             </div>
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.invitPro.email}">
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
                                 <div class="fg-line">
                                     <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.invitPro.email"
-                                           required="required" yaka-input-email>
-                                    <label class="fg-label">Email</label>
+                                           yaka-input-email>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.email}">Email</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="inviteForm.username.$error">
                                     <small class="help-block" data-ng-message="invalidEmail">
                                         Cet email n'est pas valide
@@ -478,7 +487,7 @@
                             </div>
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
                                 <div class="fg-line">
                                     <input type="text" class="form-control fg-input input-sm"
                                            vs-google-autocomplete="vm.autocomplete.options"
@@ -488,7 +497,8 @@
                                            name="address"
                                            placeholder=""
                                            id="address">
-                                    <label class="fg-label">Ville</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.address.address}">Ville</label>
                                     <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
                                         Veuillez saisir la ville, puis sélectionnez-la dans la liste
                                     </small>
@@ -501,7 +511,7 @@
                                     <input type="text" name="phoneNumber"
                                            class="form-control fg-input"
                                            data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                                    <label class="fg-label fg-label-phone">Téléphone</label>
+                                    <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                                 </div>
                                 <div data-ng-messages="inviteForm.phoneNumber.$error">
                                     <small class="help-block" data-ng-message="invalidPhone">
@@ -511,7 +521,6 @@
                             </div>
 
                             <button class="btn bgm-orange btn-block btn-lg waves-effect"
-                                    data-ng-disabled="!vm.formIsValid()"
                                     data-ng-click="vm.sendProInvit()">
                                 Inviter
                             </button>
@@ -542,14 +551,19 @@
 
             <form name="inviteForm">
                 <div class="col-xs-12 no-padding form-group fg-float m-t-15"
-                     data-ng-class="{'has-error': !vm.invitPro.name}">
+                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
 
                     <div class="fg-line">
                         <input type="text" name="name" class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.name"
-                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label">Nom</label>
+                               data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.name}">Nom</label>
                     </div>
+                    <small class="help-block t-left"
+                           data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
+                        Ce champ est requis
+                    </small>
                     <div data-ng-messages="inviteForm.name.$error">
                         <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                             valide
@@ -557,7 +571,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding select m-b-15">
+                <div class="col-xs-12 no-padding select m-b-30">
                     <select class="form-control"
                             onchange="this.className='form-control form-control-underline-ok'"
                             data-ng-model="vm.invitPro.relation"
@@ -571,7 +585,7 @@
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input input-sm"
                                vs-google-autocomplete="vm.autocomplete.options"
@@ -581,22 +595,28 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Ville</label>
-                        <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.address.address}">Ville</label>
+                        <small class="help-block" data-ng-show="vm.formProRecoInvitError && !vm.invitPro.address.address">
                             Veuillez saisir la ville, puis sélectionnez-la dans la liste
                         </small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.invitPro.email}">
+                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
                     <div class="fg-line">
                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.email"
-                               required="required" yaka-input-email>
-                        <label class="fg-label">Email</label>
+                               yaka-input-email>
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProRecoInvitError && !vm.invitPro.email}">Email</label>
                     </div>
+                    <small class="help-block t-left"
+                           data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
+                        Ce champ est requis
+                    </small>
                     <div data-ng-messages="inviteForm.username.$error">
                         <small class="help-block" data-ng-message="invalidEmail">
                             Cet email n'est pas valide
@@ -609,17 +629,16 @@
                         <input type="text" name="phoneNumber"
                                class="form-control fg-input"
                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone</label>
+                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                     </div>
                     <div data-ng-messages="inviteForm.phoneNumber.$error">
-                        <small class="help-block" data-ng-message="invalidPhone">
+                        <small class="help-block c-red" data-ng-message="invalidPhone">
                             Ce numéro de téléphone n'est pas valide
                         </small>
                     </div>
                 </div>
 
                 <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
-                        data-ng-disabled="!vm.formIsValid()"
                         data-ng-click="vm.sendProInvit()">
                     Inviter
                 </button>

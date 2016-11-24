@@ -404,7 +404,7 @@
 }
 
 .showRegisterFieldsReco.showRegisterFieldsRecoVisible {
-    height: 465px;
+    height: auto;
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
     -o-transition-delay: 0s;

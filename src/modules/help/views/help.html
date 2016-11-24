@@ -530,11 +530,10 @@
                         <div class="card-body card-padding">
 
                             <div class="col-sm-2 no-padding form-group fg-float m-b-30 supportGenderR"
-                                 data-ng-class="{'has-error': !vm.supportMessage.gender}">
+                                 data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.gender}">
                                 <div class="fg-line">
                                     <div class="select">
                                         <select name="gender"
-                                                required="required"
                                                 data-ng-model="vm.supportMessage.gender"
                                                 class="form-control">
                                             <option value="" disabled selected></option>
@@ -549,24 +548,22 @@
                                     </div>
                                     <label class="fg-label">Civilité</label>
                                 </div>
-                                <div data-ng-messages="supportForm.gender.$error">
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis
+                                    <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.gender">Ce champ est requis
                                     </small>
-                                </div>
                             </div>
                             <div class="col-sm-5 no-padding form-group fg-float m-b-30 supportNameLR"
-                                 data-ng-class="{'has-error': !vm.supportMessage.firstName}">
+                                 data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.firstName}">
 
                                 <div class="fg-line">
                                     <input type="text" name="firstName" class="form-control fg-input"
-                                           data-ng-model="vm.supportMessage.firstName"
-                                           required="required" yaka-input-name>
-                                    <label class="fg-label">Prénom</label>
+                                           data-ng-model="vm.supportMessage.firstName" yaka-input-name>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formSupportError && !vm.supportMessage.firstName}">Prénom</label>
                                 </div>
-                                <div data-ng-messages="supportForm.firstName.$error">
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis
+                                    <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.firstName">Ce champ est requis
                                     </small>
-                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                <div data-ng-messages="supportForm.firstName.$error">
+                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                         valide
                                     </small>
                                 </div>
@@ -574,18 +571,18 @@
                             </div>
                             <div
                                 class="col-sm-5 no-padding form-group fg-float m-b-30 supportNameL"
-                                data-ng-class="{'has-error': !vm.supportMessage.lastName}">
+                                data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.lastName}">
 
                                 <div class="fg-line">
                                     <input type="text" name="lastName" class="form-control fg-input"
-                                           data-ng-model="vm.supportMessage.lastName"
-                                           required="required" yaka-input-name>
-                                    <label class="fg-label">Nom</label>
+                                           data-ng-model="vm.supportMessage.lastName" yaka-input-name>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formSupportError && !vm.supportMessage.lastName}">Nom</label>
                                 </div>
-                                <div data-ng-messages="supportForm.lastName.$error">
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis
+                                    <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.lastName">Ce champ est requis
                                     </small>
-                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                <div data-ng-messages="supportForm.lastName.$error">
+                                <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
                                 </div>
@@ -595,17 +592,17 @@
                             <div class="col-xs-12 no-padding row m-l-0 m-r-0">
                                 <div
                                     class="col-xs-12 no-padding form-group fg-float m-b-30 halfInput halfInputNotInMobile"
-                                    data-ng-class="{'has-error': !vm.supportMessage.email}">
+                                    data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.email}">
                                     <div class="fg-line">
                                         <input type="text" name="email" class="form-control fg-input"
                                                data-ng-model="vm.supportMessage.email"
-                                               data-ng-disabled="vm.supportMessage.email && app.getUser()"
-                                               required="required" yaka-input-email>
-                                        <label class="fg-label">Email</label>
+                                               data-ng-disabled="vm.supportMessage.email && app.getUser()" yaka-input-email>
+                                        <label class="fg-label"
+                                               data-ng-class="{'c-red': vm.formSupportError && !vm.supportMessage.email}">Email</label>
                                     </div>
+                                        <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.email">Ce champ est requis</small>
                                     <div data-ng-messages="supportForm.email.$error">
-                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                    <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                             valide
                                         </small>
                                     </div>
@@ -617,7 +614,7 @@
                                         <input type="text" name="phoneNumber"
                                                class="form-control fg-input"
                                                data-ng-model="vm.supportMessage.phoneNumber" yaka-input-phone>
-                                        <label class="fg-label fg-label-phone">Téléphone</label>
+                                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                                     </div>
                                     <div data-ng-messages="supportForm.phoneNumber.$error">
                                         <small class="help-block" data-ng-message="invalidPhone">
@@ -629,29 +626,30 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-12 card-header m-b-20">
+                        <div class="col-xs-12 card-header m-b-10">
                             <h2>Votre message</h2>
                         </div>
 
                         <div class="card-body card-padding">
 
-                            <div class="form-group"
-                                 data-ng-class="{'has-error': !vm.supportMessage.message}">
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': vm.formSupportError && (!vm.supportMessage.message || vm.supportMessage.message.length < 100)}">
                                 <div class="fg-line">
-                                    <textarea class="form-control" rows="4"
+                                    <textarea class="form-control" rows="2"
                                               name="aboutMe"
                                               data-ng-model="vm.supportMessage.message"
-                                              required="required"
                                               data-auto-size
                                               data-ng-minlength="100"
-                                              data-autosize-on="true"
-                                              placeholder="Tapez ici votre message"></textarea>
+                                              data-autosize-on="true"></textarea>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formSupportError && (!vm.supportMessage.message || vm.supportMessage.message.length < 100)}">Tapez ici votre message</label>
                                 </div>
+                                <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.message">Ce champ est requis</small>
+
                                 <div data-ng-messages="supportForm.aboutMe.$error">
                                     <small class="help-block" data-ng-message="minlength">Le message est trop court (100
                                         caractères min)
                                     </small>
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                                 </div>
                             </div>
 
@@ -673,7 +671,6 @@
                             ></div>
 
                             <button class="btn bgm-lightblue waves-effect m-t-20"
-                                    data-ng-disabled="!vm.formIsValid() || vm.loading"
                                     data-ng-click="vm.sendSupportMessage()">
                                 Envoyer
                             </button>

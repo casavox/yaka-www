@@ -56,7 +56,8 @@
                 <h2 class="c-orange">Projet Annulé</h2>
             </div>
 
-            <div class="card pointer hidden-xs m-b-10 height-fixed-pro-card" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
+            <div class="card pointer hidden-xs m-b-10 height-fixed-pro-card"
+                 data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
                  data-ng-if="vm.project.proposal">
                 <div class="card-body card-padding row proposalHeader">
 
@@ -131,7 +132,8 @@
 
 
             <div class="yakaMain projectMainView">
-                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat && !vm.project.proposal, 'good-height' : vm.showChat && vm.project.proposal}">
+                <div class="card m-b-15" id="profile-main"
+                     data-ng-class="{'no-scroll': vm.showChat && !vm.project.proposal, 'good-height' : vm.showChat && vm.project.proposal}">
                     <div class="pm-body clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
@@ -174,7 +176,6 @@
 
                                         <button class="btn bgm-lightblue waves-effect pull-right m-b-10"
                                                 data-ng-show="vm.editFlag"
-                                                data-ng-disabled="!vm.projectTmp.description"
                                                 data-ng-click="vm.openSavePopup()">
                                             Enregistrer
                                         </button>
@@ -218,10 +219,20 @@
                                                 {{vm.projectTmp.description}}
                                             </dd>
                                             <dd data-ng-if="vm.editFlag">
-                                            <textarea class="form-control" data-auto-size=""
-                                                      placeholder="Description du projet"
-                                                      data-ng-model="vm.projectTmp.description"
-                                                      data-autosize-on="true"></textarea>
+                                                <div class="form-group fg-float m-t-30"
+                                                     data-ng-class="{'has-error': vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">
+                                                    <div class="fg-line">
+                                                    <textarea class="form-control" data-auto-size=""
+                                                              data-ng-model="vm.projectTmp.description"
+                                                              data-autosize-on="true"></textarea>
+                                                        <label class="fg-label"
+                                                               data-ng-class="{'c-red' : vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">Description du projet</label>
+                                                    </div>
+                                                    <small class="help-block t-left"
+                                                           data-ng-show="vm.formProjectDetailsError && (vm.projectTmp.description.length < 50)">
+                                                        Ce champ est requis (50 caractères minimum)
+                                                    </small>
+                                                </div>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
@@ -229,7 +240,8 @@
                                             <dt class="yakaDisableEllipsis">Mots clés</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}" data-ng-repeat="tag in vm.getTags()">
+                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}"
+                                                        data-ng-repeat="tag in vm.getTags()">
                                                         <span data-ng-if="tag == 'MATERIAL_TRUE'"
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}

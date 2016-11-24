@@ -267,6 +267,9 @@
             if (vm.registerFormIsValid()) {
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
+            } else {
+                vm.formPublicRecoError = true;
+                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
             }
         };
 
