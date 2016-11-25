@@ -94,7 +94,7 @@
                 !vm.supportMessage.message ||
                 !vm.supportMessage.recaptchaResponse) {
                 vm.formSupportError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 networkService.sendSupportMessage(vm.supportMessage,
                     function success(res) {

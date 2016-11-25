@@ -522,7 +522,7 @@
         vm.openSavePopup = function () {
             if (!vm.projectTmp.description) {
                 vm.formProjectDetailsError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 swal({
                     title: "Êtes-vous sûr ?",

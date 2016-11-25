@@ -171,7 +171,7 @@
                     satisfait est encouragé à vous recommander à ses connaissances pour de futurs travaux.
                 </div>
             </div>
-            <form name="registerForm" class="col-xs-12 col-sm-6 col-md-5 proHomeSection2RegisterForm oldFormControl">
+            <form id="registerForm" class="col-xs-12 col-sm-6 col-md-5 proHomeSection2RegisterForm oldFormControl">
 
                 <div class="col-xs-12 proHomeSection2RegisterFormTitle">
                     Inscription gratuite
@@ -208,7 +208,7 @@
                         data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
                 </div>
 
-                <div class="form-group fg-float halfInput"
+                <div class="form-group fg-float halfInput m-b-20"
                      data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.firstName}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
@@ -230,7 +230,7 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group fg-float halfInput halfInputRight"
+                <div class="form-group fg-float halfInput halfInputRight m-b-20"
                      data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.lastName}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
@@ -254,7 +254,7 @@
                 </div>
 
 
-                <div class="form-group fg-float"
+                <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
                      data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.email}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
@@ -278,7 +278,7 @@
                 </div>
 
 
-                <div class="form-group fg-float"
+                <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
                      data-ng-class="{'has-error' : vm.formRegisterError && vm.newUser.password.length < 6}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
@@ -301,7 +301,7 @@
                 </div>
 
 
-                <div class="form-group fg-float"
+                <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
                      data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
@@ -321,18 +321,18 @@
                     </small>
                 </div>
 
-                <div class="form-group fg-float p-static clearfix"
-                     data-ng-class="{'has-error': vm.formRegisterError && !vm.profileInfo.phoneNumber}">
+                <div class="form-group fg-float p-static clearfix m-b-20 col-xs-12 no-padding"
+                     data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.professional.phoneNumber}">
                     <div class="fg-line pro-register-phone">
                         <input type="text" name="phoneNumber"
                                class="form-control pro-phone-reg-input"
-                               data-ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
+                               data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
                         <label class="fg-label fg-label-phone"
-                               data-ng-class="{'c-red': vm.formRegisterError && !vm.profileInfo.phoneNumber}">Téléphone</label>
+                               data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.professional.phoneNumber}">Téléphone</label>
                     </div>
                     <div data-ng-messages="profileForm.phoneNumber.$error">
                         <small class="help-block t-left"
-                               data-ng-show="vm.formRegisterError && !vm.profileInfo.phoneNumber">
+                               data-ng-show="vm.formRegisterError && !vm.newUser.professional.phoneNumber">
                             Ce champ est requis
                         </small>
                         <small class="help-block" data-ng-message="invalidPhone">
@@ -341,7 +341,7 @@
                     </div>
                 </div>
 
-                <div class="form-group fg-float"
+                <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
                      data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.company.address.address}">
                     <div class="fg-line">
                         <input
@@ -476,15 +476,15 @@
                     CONNEXION
                 </div>
 
-                <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
+                <div class="loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
                     Facebook
                 </div>
-                <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
+                <div class="loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
                     Google
                 </div>
 
                 <form name="loginPro">
-                    <div class="form-group fg-float m-t-30"
+                    <div class="form-group fg-float"
                          data-ng-class="{'has-error': vm.formProLoginError && !vm.loginUser.email}">
                         <div class="fg-line m-t-10">
 
@@ -508,7 +508,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group fg-float m-t-30"
+                    <div class="form-group fg-float m-t-30 m-b-10"
                          data-ng-class="{'has-error': vm.formProLoginError && !vm.loginUser.password}">
                         <div class="fg-line">
                             <input class="form-control form-pro-register"

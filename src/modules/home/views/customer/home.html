@@ -223,47 +223,48 @@
                     <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
                         Google
                     </div>
-                    <form name="loginForm"
-                        class="form-group fg-float p-static m-b-30"
-                          data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.email}">
-                        <div class="fg-line m-t-10">
-                            <input class="form-control fg-input"
-                                   type="text"
-                                   name="email"
-                                   autocomplete="username"
-                                   data-ng-model="vm.loginUser.email"
-                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.email}">Email</label>
+                    <form name="loginForm" class="col-xs-12 no-padding">
+                        <div class="form-group fg-float"
+                             data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.email}">
+                            <div class="fg-line m-t-10">
+                                <input class="form-control fg-input"
+                                       type="text"
+                                       name="email"
+                                       autocomplete="username"
+                                       data-ng-model="vm.loginUser.email"
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.email}">Email</label>
+                            </div>
                             <small class="help-block"
-                                   data-ng-show="vm.formLoginError && !vm.loginUser.email">
+                                   data-ng-show="vm.formLoginError && vm.loginUser.email.length < 1">
                                 Ce champs est requis
                             </small>
-                            <div data-ng-messages="loginForm.userMail.$error">
+                            <div data-ng-messages="loginForm.email.$error">
                                 <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                     valide
                                 </small>
                             </div>
                         </div>
-                    </form>
 
-                    <form class="form-group fg-float p-static m-b-30"
-                          data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.password}">
-                        <div class="fg-line">
-                            <input class="form-control"
-                                   data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.password}"
-                                   type="password"
-                                   name="password"
-                                   autocomplete="current-password"
-                                   data-ng-model="vm.loginUser.password"
-                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.password}">Mot de
-                                passe</label>
-                            <small class="help-block"
-                                   data-ng-show="vm.formLoginError && !vm.loginUser.password">
-                                Ce champs est requis
-                            </small>
+                        <div class="form-group fg-float m-b-10"
+                             data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.password}">
+                            <div class="fg-line m-t-20">
+                                <input class="form-control"
+                                       data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.password}"
+                                       type="password"
+                                       name="password"
+                                       autocomplete="current-password"
+                                       data-ng-model="vm.loginUser.password"
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                                <label class="fg-label"
+                                       data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.password}">Mot de
+                                    passe</label>
+                                <small class="help-block"
+                                       data-ng-show="vm.formLoginError && !vm.loginUser.password">
+                                    Ce champs est requis
+                                </small>
+                            </div>
                         </div>
                     </form>
 
