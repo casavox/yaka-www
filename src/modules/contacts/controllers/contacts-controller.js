@@ -180,7 +180,7 @@
         vm.sendCustomerInvit = function () {
             if (!vm.invitCustomer) {
                 vm.formCustInvitError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
                 var invits = vm.invitCustomer.split(",");
@@ -243,7 +243,7 @@
         vm.sendProInvit = function () {
             if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
                 vm.formProInvitError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
             }

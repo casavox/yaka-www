@@ -135,7 +135,7 @@
         vm.sendProInvit = function () {
             if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
                 vm.formProRecoInvitError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
                     vm.invitPro = {

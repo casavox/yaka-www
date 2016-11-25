@@ -85,7 +85,7 @@
                 }, errorProfilePUT, true);
             }
             else {
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
