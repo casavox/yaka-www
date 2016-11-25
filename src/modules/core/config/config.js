@@ -12,7 +12,6 @@ angular.module('Yaka')
                     setTimeout(
                         function () {
                             $injector.get('alertMsg').enable();
-                            $injector.get('alertMsg').send("Vous devez vous connecter", "info");
                         }, 100
                     );
                     if (!window.yakaRedirectUrl) {

@@ -25,7 +25,7 @@
         vm.profileInfo = {};
         vm.workArea = {};
         vm.aboutMe = "";
-        vm.portfolio = {};
+        vm.portfolio = [];
         vm.verifications = {};
         vm.activities = {};
         vm.now = new Date();
@@ -158,9 +158,10 @@
 
         vm.updatePortfolio = function () {
             vm.updating = true;
+            console.log(vm.portfolio);
             networkService.proPortfolioPUT(vm.portfolio, function (res) {
-                vm.portfolio = res.portfolio;
-                vm.profile.portfolio = res.portfolio;
+                vm.portfolio = res.portfolio || [];
+                vm.profile.portfolio = res.portfolio || [];
                 vm.profile.status = res.status;
                 vm.editFlag = false;
                 vm.updating = false;
@@ -198,7 +199,7 @@
         };
 
         vm.cancelPortfolio = function () {
-            vm.portfolio = angular.copy(vm.profile.portfolio);
+            vm.portfolio = angular.copy(vm.profile.portfolio) || [];
             vm.editFlag = false;
         };
 
@@ -471,7 +472,7 @@
             };
             vm.workArea = angular.copy(vm.profile.workArea);
             vm.about = {aboutMe: angular.copy(vm.profile.aboutMe)};
-            vm.portfolio = angular.copy(vm.profile.portfolio);
+            vm.portfolio = angular.copy(vm.profile.portfolio) || [];
             vm.verifications = angular.copy(vm.profile.verifications);
             vm.activities = angular.copy(vm.profile.activities);
             displayWorkArea();
@@ -613,9 +614,7 @@
                 return false;
             }
 
-            if (!vm.portfolio) {
-                vm.portfolio = [];
-            }
+            vm.portfolio = vm.portfolio || [];
 
             if (!vm.profile.portfolio) {
                 vm.profile.portfolio = [];

@@ -48,29 +48,19 @@
 
 @media (max-width: 570px) {
 
-    .commentPhotoBoxAddProject {
+    .commentPhotoBox {
         width: 0px !important;
         height: 0px !important;
 
-        -moz-transition: none;
-        -webkit-transition: none;
-        -o-transition: all 0 ease-in;
-        transition: none;
+        -moz-transition: none !important;
+        -webkit-transition: none !important;
+        -o-transition: all 0 ease-in !important;
+        transition: none !important;
     }
 
-    .open > .commentPhotoBoxAddProject {
-        width: 228px;
-        position: fixed;
-        left: 50% !important;
-        transform: translateX(-50%) translateY(-50%) !important;
-        top: 50% !important;
-    }
-}
-
-@media (max-width: 400px) {
-
-    .commentPhotoBoxProPortfolio {
-        position: fixed;
+    .open > .commentPhotoBox {
+        width: 228px !important;
+        position: fixed !important;
         left: 50% !important;
         transform: translateX(-50%) translateY(-50%) !important;
         top: 50% !important;
