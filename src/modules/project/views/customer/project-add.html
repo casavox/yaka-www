@@ -388,7 +388,7 @@
                         Google
                     </div>
 
-                    <form name="loginPro">
+                    <form name="loginPro" class="p-t-30">
                         <div class="form-group fg-float m-t-30"
                              data-ng-class="{'has-error': vm.formPublicProjectLoginError && !vm.loginUser.email}">
                             <div class="fg-line m-t-10">
@@ -397,7 +397,7 @@
                                        name="username"
                                        autocomplete="username"
                                        data-ng-model="vm.loginUser.email"
-                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
                                 <label class="fg-label"
                                        data-ng-class="{'c-red' : vm.formPublicProjectLoginError && !vm.loginUser.email}">Email</label>
                             </div>
@@ -477,7 +477,7 @@
                              data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
 
                             <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
-                                 data-ng-class="{'has-error': !vm.newUser.firstName}">
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.firstName}">
 
                                 <div class="fg-line">
                                     <input type="text"
@@ -485,10 +485,14 @@
                                            autocomplete="given-name"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.firstName"
-                                           required="required"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                                    <label class="fg-label">Prénom</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.firstName}">Prénom</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.firstName.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="registerForm.fname.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                         valide
@@ -497,7 +501,7 @@
                             </div>
 
                             <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
-                                 data-ng-class="{'has-error': !vm.newUser.lastName}">
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.lastName}">
 
                                 <div class="fg-line">
                                     <input type="text"
@@ -505,10 +509,14 @@
                                            autocomplete="family-name"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.lastName"
-                                           required="required"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                                    <label class="fg-label">Nom</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.lastName}">Nom</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.lastName.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="registerForm.lname.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
@@ -517,7 +525,7 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.defaultAddress.address}">
                                 <div class="fg-line">
                                     <input type="text"
                                            class="form-control fg-input input-sm"
@@ -527,27 +535,36 @@
                                            type="text"
                                            name="address"
                                            autocomplete="address-level2"
-                                           required="required"
                                            placeholder=""
                                            id="address">
-                                    <label class="fg-label">Ville</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.defaultAddress.address}">Ville</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.defaultAddress.address.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
                                     Veuillez saisir la ville, puis sélectionnez-la dans la liste
                                 </small>
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.newUser.email}">
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.email}">
                                 <div class="fg-line">
                                     <input type="text"
                                            name="username"
                                            autocomplete="username"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
-                                           required="required" yaka-input-email>
-                                    <label class="fg-label">Email</label>
+                                           yaka-input-email>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.email}">Email</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.email.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="registerForm.username.$error">
                                     <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                         valide
@@ -556,7 +573,7 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error':! vm.newUser.password}">
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.password}">
                                 <div class="fg-line">
                                     <input type="password"
                                            name="password"
@@ -564,8 +581,13 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.password"
                                            data-ng-minlength="6">
-                                    <label class="fg-label">Mot de passe</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.password}">Mot de passe</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.password.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="registerForm.password.$error">
                                     <small class="help-block" data-ng-message="minlength">
                                         Le mot de passe doit faire au moins 6 caractères
@@ -574,12 +596,17 @@
                             </div>
 
                             <div class="form-group fg-float m-b-15"
-                                 data-ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                 data-ng-class="{'has-error': (vm.formPublicProjectRegError && !vm.passwordConfirm) || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input input-sm"
                                            data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
-                                    <label class="fg-label">Confirmation</label>
+                                    <label class="fg-label"
+                                           data-ng-class="{'c-red': (vm.formPublicProjectRegError && !vm.passwordConfirm) || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">Confirmation</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.passwordConfirm.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <small class="help-block"
                                        data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
                                     Les deux mots de passe ne correspondent pas
@@ -611,14 +638,11 @@
                             ></div>
                             <button
                                 class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
-                                data-ng-disabled="!vm.registerFormIsValid()"
                                 data-ng-click="vm.register()">S'INSCRIRE
                             </button>
                         </div>
                     </form>
-                    <small class="col-xs-12 customerRegisterProLink" ui-sref="pro-home">
-                        Vous êtes Pro ? <span class="underline">Cliquez ici pour vous inscrire</span>
-                    </small>
+
                 </div>
             </div>
             <div data-ng-if="vm.noSocialAccountMessage">
@@ -647,7 +671,7 @@
 
                 <form name="recoverPassword">
                     <div class="form-group fg-float m-t-30"
-                         data-ng-class="{'has-error': !vm.forgottenPasswordUser.email}">
+                         data-ng-class="{'has-error': vm.formProjectForgottenPasswordError && !vm.forgottenPasswordUser.email}">
                         <div class="fg-line">
                             <input type="text"
                                    name="username"
@@ -655,10 +679,14 @@
                                    data-ng-disabled="vm.isSocialRegister()"
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
-                                   required="required"
                                    yaka-input-email>
-                            <label class="fg-label">Email</label>
+                            <label class="fg-label"
+                                   data-ng-class="{'c-red': vm.formProjectForgottenPasswordError && !vm.forgottenPasswordUser.email}">Email</label>
                         </div>
+                        <small class="help-block t-left"
+                               data-ng-show="vm.formProjectForgottenPasswordError && vm.forgottenPasswordUser.email.length < 1">
+                            Ce champ est requis
+                        </small>
                         <div data-ng-messages="recoverPassword.username.$error">
                             <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                 valide
@@ -668,7 +696,6 @@
                 </form>
                 <button
                     class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
-                    data-ng-disabled="!vm.forgottenPasswordUser.email"
                     data-ng-click="vm.forgottenPassword()">RÉINITIALISER MON MOT DE PASSE
                 </button>
             </div>
