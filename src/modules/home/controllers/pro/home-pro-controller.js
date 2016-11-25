@@ -239,9 +239,6 @@
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
             } else {
                 vm.formRegisterError = true;
-                if (vm.multiChoiceInput.selected.length == 0 && vm.formRegisterError) {
-                    $('button.dropdown-toggle.btn.btn-default').addClass('c-red');
-                }
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
