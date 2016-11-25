@@ -708,7 +708,7 @@
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
             } else {
                 vm.formPublicProjectLoginError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -806,6 +806,9 @@
             if (vm.registerFormIsValid()) {
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
+            } else {
+                vm.formPublicProjectRegError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -836,6 +839,9 @@
         vm.forgottenPassword = function () {
             if (vm.forgottenPasswordUser.email) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formProjectForgottenPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 

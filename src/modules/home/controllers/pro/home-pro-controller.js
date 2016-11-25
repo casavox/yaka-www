@@ -242,7 +242,7 @@
                 if (vm.multiChoiceInput.selected.length == 0 && vm.formRegisterError) {
                     $('button.dropdown-toggle.btn.btn-default').addClass('c-red');
                 }
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -295,7 +295,7 @@
         vm.login = function () {
             if (!vm.loginUser.email || !vm.loginUser.password) {
                 vm.formProLoginError = true;
-                alertMsg.send("Merci de remplir les champs indiqués en rouge", "danger");
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
             }
