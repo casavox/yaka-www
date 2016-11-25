@@ -1,3 +1,14 @@
+[data-ng-dropdown-multiselect] .btn {
+    color: #5E5E5E !important;
+}
+
+.fg-float .fg-label {
+    color: #5E5E5E;
+}
+
+.form-control {
+    color: #5E5E5E;
+}
 
 .card-hover:hover {
     opacity: 0.85;
