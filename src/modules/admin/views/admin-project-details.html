@@ -377,10 +377,6 @@
                             data-sortable="'created'">
                             {{ project.created | date:"dd/MM/yyyy" }}
                         </td>
-                        <td data-title="'Relation'" filter="{relation: 'text'}"
-                            data-sortable="'relation'">
-                            {{ project.professional.user.contactRelation }}
-                        </td>
                         <td data-title="'Nom'" filter="{name: 'text'}"
                             data-sortable="'name'">
                             {{ project.name }}
@@ -413,10 +409,6 @@
                         <td data-title="'Nom'" class="pointer c-blue" filter="{name: 'text'}" data-sortable="'name'"
                             data-ui-sref="admin-pro-details({professionnalId: pro.id})">
                             {{ pro.name }}
-                        </td>
-                        <td data-title="'Relation'" filter="{contactRelation: 'text'}"
-                            data-sortable="'contactRelation'">
-                            {{ pro.contactRelation }}
                         </td>
                         <td data-title="'Invité'" filter="{isInvited: 'text'}" data-sortable="'isInvited'">
                             {{ pro.isInvited }}

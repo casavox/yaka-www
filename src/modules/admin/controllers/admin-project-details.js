@@ -460,7 +460,6 @@
 
             angular.forEach(vm.project.compatiblePros, function (pro) {
                 pro.name = pro.user.firstName + " " + pro.user.lastName;
-                pro.contactRelation = pro.user.contactRelation;
                 if (pro.company.address.postalCode == undefined) {
                     pro.company.address.postalCode = "";
                 }

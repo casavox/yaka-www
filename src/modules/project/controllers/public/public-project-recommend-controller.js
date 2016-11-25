@@ -127,7 +127,6 @@
                 vm.invitPro.lastName &&
                 vm.invitPro.email &&
                 vm.invitPro.activities.length > 0 &&
-                vm.invitPro.relation &&
                 vm.invitPro.address.address
             );
         };

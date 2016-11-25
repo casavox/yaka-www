@@ -126,46 +126,28 @@
             vm.profile = angular.copy(res);
             vm.profileInfo = angular.copy(res);
 
-            vm.contactClientNumber = 0;
             vm.contactFriendNumber = 0;
-            vm.contactFamilyNumber = 0;
-            vm.contactColleagueNumber = 0;
+            vm.contactProNumber = 0;
 
-            if (vm.profile.contacts) {
-                for (var i=0; i<vm.profile.contacts.length; i++) {
-                    if (vm.profile.contacts[i].relation == "CLIENT") {
-                        vm.contactClientNumber++;
-                    }
-                    if (vm.profile.contacts[i].relation == "FRIEND") {
+            if (vm.profile.user.contacts) {
+                for (var i = 0; i < vm.profile.user.contacts.length; i++) {
+                    if (vm.profile.user.contacts[i].isPro) {
+                        vm.contactProNumber++;
+                    } else {
                         vm.contactFriendNumber++;
-                    }
-                    if (vm.profile.contacts[i].relation == "FAMILY") {
-                        vm.contactFamilyNumber++;
-                    }
-                    if (vm.profile.contacts[i].relation == "COLLEAGUE") {
-                        vm.contactColleagueNumber++;
                     }
                 }
             }
 
-            vm.invitationClientNumber = 0;
             vm.invitationFriendNumber = 0;
-            vm.invitationFamilyNumber = 0;
-            vm.invitationColleagueNumber = 0;
+            vm.invitationProNumber = 0;
 
-            if (vm.profile.invitations) {
-                for (var i=0; i<vm.profile.invitations.length; i++) {
-                    if (vm.profile.invitations[i].relation == "CLIENT") {
-                        vm.invitationClientNumber++;
-                    }
-                    if (vm.profile.invitations[i].relation == "FRIEND") {
+            if (vm.profile.user.invitations) {
+                for (var i = 0; i < vm.profile.user.invitations.length; i++) {
+                    if (vm.profile.user.invitations[i].isPro) {
+                        vm.invitationProNumber++;
+                    } else {
                         vm.invitationFriendNumber++;
-                    }
-                    if (vm.profile.invitations[i].relation == "FAMILY") {
-                        vm.invitationFamilyNumber++;
-                    }
-                    if (vm.profile.invitations[i].relation == "COLLEAGUE") {
-                        vm.invitationColleagueNumber++;
                     }
                 }
             }

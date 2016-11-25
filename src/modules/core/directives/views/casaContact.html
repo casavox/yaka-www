@@ -1,17 +1,11 @@
 <!-- In contacts -->
 <i class="zmdi zmdi-accounts" data-ng-class="{'c-lightblue': !iconColor, iconColor: iconColor}"
    data-ng-if="user.inContacts"></i>
-<span data-ng-if="user.inContacts" data-ng-switch="user.contactRelation">
-    <span data-ng-switch-when="CLIENT" data-ng-class="{'c-red': clientRed, 'c-lightblue': clientBlue}">
-        Client
-    </span>
-    <span data-ng-switch-when="FRIEND">
+<span data-ng-if="user.inContacts">
+    <span data-ng-if="!user.isPro">
         Ami
     </span>
-    <span data-ng-switch-when="FAMILY">
-        Famille
-    </span>
-    <span data-ng-switch-when="COLLEAGUE">
+    <span data-ng-if="user.isPro">
         Collègue
     </span>
 </span>
@@ -25,17 +19,10 @@
 
 <!-- Not in contacts and not invited -->
 <span class="dropdown" uib-dropdown="" data-ng-if="!user.inContacts && !user.isInvited && invite && user.id">
-    <span uib-dropdown-toggle>
+    <span data-ng-click="invite()">
         <span class="pointer" data-ng-class="{'c-green': !iconColor, iconColor: iconColor}">
             Ajouter
         </span>
         <i class="zmdi zmdi-accounts-add pointer" data-ng-class="{'c-green': !iconColor, iconColor: iconColor}"></i>
     </span>
-
-    <ul class="dropdown-menu">
-        <li data-ng-click="invite('FRIEND')"><a href="">Ami</a></li>
-        <li data-ng-click="invite('FAMILY')"><a href="">Famille</a></li>
-        <li data-ng-click="invite('CLIENT')"><a href="">Client</a></li>
-        <li data-ng-click="invite('COLLEAGUE')" data-ng-if="app.isPro()"><a href="">Collègue</a></li>
-    </ul>
 </span>

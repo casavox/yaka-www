@@ -288,8 +288,8 @@
             inviteProPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invite/pro', data, ignoreLoading).success(success).error(error)
             },
-            invitePOST: function (id, relation, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/invite/' + id + '/' + relation, null, ignoreLoading).success(success).error(error)
+            invitePOST: function (id, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/invite/' + id, null, ignoreLoading).success(success).error(error)
             },
             invitationsReceivedGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/invitations/received', ignoreLoading).success(success).error(error)

@@ -107,18 +107,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 no-padding select m-b-30">
-                                    <select class="form-control"
-                                            onchange="this.className='form-control form-control-underline-ok'"
-                                            data-ng-model="vm.invitPro.relation">
-                                        <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
-                                        <option value="CLIENT">Client</option>
-                                        <option value="FRIEND">Ami</option>
-                                        <option value="FAMILY">Famille</option>
-                                        <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
-                                    </select>
-                                </div>
-
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
                                      data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.email}">
                                     <div class="fg-line">

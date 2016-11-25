@@ -127,8 +127,7 @@
         vm.formIsValid = function () {
 
             return (vm.invitPro.name &&
-                vm.invitPro.email &&
-                vm.invitPro.relation
+                vm.invitPro.email
             );
         };
 
