@@ -151,6 +151,30 @@
             return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
         };
 
+        vm.showTopViewRecommendation = function () {
+            return getRecommendationNumber();
+        };
+
+        function getRecommendationNumber () {
+            if (vm.networkProjects) {
+                var recoNumber = 0;
+                for (var i = 0; i < vm.networkProjects.length; i++) {
+                    if (vm.networkProjects[i].recoProposals) {
+                        recoNumber++;
+                    }
+                }
+                return recoNumber;
+
+            } else {
+                return 0;
+            }
+        }
+
+        vm.showTopViewNoNetworkProject = function () {
+            return !vm.networkProjects || vm.networkProjects.length == 0;
+        };
+
+
     }
 })
 ();
