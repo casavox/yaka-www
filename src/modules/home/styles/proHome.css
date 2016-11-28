@@ -99,8 +99,8 @@
 }
 
 .proHomeSection1AboutButton:hover {
-    background-color: rgba(255,255,255, 0.2);
-    color:white;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .proHomeSection2 {
@@ -323,8 +323,8 @@
 }
 
 .proHomeSection3aPaid {
-    height: 185px;
-    margin-top: 20px;
+    height: 235px;
+    /*margin-top: 20px;*/
     background: #EBF0F1;
 }
 
@@ -346,19 +346,19 @@
 }
 
 .proHomeSection3aPaidSubTitle {
-    font-size: 14px;
+    font-size: 18px;
     color: #9B9B9B;
 }
 
 .proHomeSection3aPaidDesc {
-    font-size: 16px;
+    font-size: 20px;
     color: #626262;
     margin-left: 0px;
     margin-right: 0px;
 }
 
-.proHomeSection3aPaidDesc > small{
-    font-size: 11px;
+.proHomeSection3aPaidDesc > small {
+    font-size: 16px;
 }
 
 .proHomeSection3bTitle {
@@ -599,14 +599,14 @@
     }
 
     .proHomeSection3aPaid {
-        height: 155px;
+        height: 185px;
     }
 
     .proHomeSection3aPaidDesc {
-        font-size: 13px;
+        font-size: 15px;
     }
 
-    .proHomeSection3aPaidDesc > small{
+    .proHomeSection3aPaidDesc > small {
         font-size: 9px;
     }
 
@@ -639,16 +639,19 @@
         width: calc(16.66666667% - 10px);
         margin-right: 10px;
     }
+
     .supportNameLR {
         width: calc(41.66666667% - 20px);
         margin-left: 10px;
         margin-right: 10px;
     }
+
     .supportNameL {
         width: calc(41.66666667% - 10px);
         margin-left: 10px;
     }
 }
+
 @media (max-width: 767px) {
     .proHomeSection1Container {
         background: none;
@@ -715,7 +718,7 @@
     }
 
     .proHomeSection3aPaid {
-        height: 164px;
+        height: 265px;
     }
 
     .proHomeSection3aFree {
@@ -803,7 +806,7 @@
     }
 
     .proHomeSection3aPaidDesc {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .proHomeSection3bTitle {
@@ -839,7 +842,7 @@
     }
 
     .proHomeSection3aPaidDesc {
-        font-size: 12px;
+        font-size: 14px;
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
@@ -868,7 +871,7 @@
         margin-left: 0 !important;
     }
 
-    .proHomeSection1AboutButton     {
+    .proHomeSection1AboutButton {
         background-color: transparent;
         border: 1px white solid;
     }
@@ -912,4 +915,13 @@
     .proTopLink {
         margin-top: 35px;
     }
+
+}
+
+@media (max-width: 400px) {
+
+    .proHomeSection3aPaid {
+        height: 315px;
+    }
+
 }
