@@ -323,8 +323,6 @@
 }
 
 .proHomeSection3aPaid {
-    height: 235px;
-    /*margin-top: 20px;*/
     background: #EBF0F1;
 }
 
@@ -598,10 +596,6 @@
         height: 175px;
     }
 
-    .proHomeSection3aPaid {
-        height: 185px;
-    }
-
     .proHomeSection3aPaidDesc {
         font-size: 15px;
     }
@@ -715,10 +709,6 @@
 
     .proHomeSection2RegisterExplain .col-xs-1 {
         width: 56px;
-    }
-
-    .proHomeSection3aPaid {
-        height: 265px;
     }
 
     .proHomeSection3aFree {
@@ -914,14 +904,6 @@
 
     .proTopLink {
         margin-top: 35px;
-    }
-
-}
-
-@media (max-width: 400px) {
-
-    .proHomeSection3aPaid {
-        height: 315px;
     }
 
 }
