@@ -218,6 +218,7 @@
         }
 
         function succesInviteCustomerPOST(res) {
+            vm.formCustInvitError = false;
             vm.invitCustomer = "";
             vm.closeFriendPopup();
             vm.closeGmailPopup();
@@ -250,6 +251,7 @@
         };
 
         function succesInviteProPOST(res) {
+            vm.formProInvitError = false;
             vm.closeProPopup();
             vm.invitPro = {
                 email: "",

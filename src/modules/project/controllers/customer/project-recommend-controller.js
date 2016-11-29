@@ -137,6 +137,7 @@
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
+                    vm.formProRecoInvitError = false;
                     vm.invitPro = {
                         email: "",
                         name: "",
