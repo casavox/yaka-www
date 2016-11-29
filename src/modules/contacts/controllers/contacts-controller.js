@@ -523,8 +523,12 @@
                     invits.push(vm.gmailContacts[i].address);
                 }
             }
+            var invitation = {
+                emails: invits,
+                message: vm.invitMessage
+            };
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         vm.getFacebookIframeUrl = function () {
