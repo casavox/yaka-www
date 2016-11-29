@@ -974,7 +974,7 @@ body:after {
     position: fixed;
     background-color: white;
     box-shadow: 1px 0px 3px black;
-    z-index: 2;
+    z-index: 6;
 }
 
 .logo-img {
