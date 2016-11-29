@@ -57,23 +57,29 @@
             }
         };
 
-        vm.communities = [
-            {
-                "type": "ville",
-                "text": "Paris - 13ème arrondissement"
-            },
-            {
-                "type": "entreprise",
-                "text": "Okabé"
-            },
-            {
-                "type": "cercle",
-                "text": "Famille"
-            },
-            {
-                "type": "member",
-                "text": "Prenium"
-            }
-        ];
+        networkService.getProNetworkLeads(function (projects) {
+            vm.networkProjects = projects;
+        }, function (err) {
+            console.log("Impossible de récupérer les offres", "danger");
+        });
+
+        vm.showTopViewRecommendation = function () {
+            return getRecommendationNumber();
+        };
+
+        function getRecommendationNumber() {
+            if (vm.networkProjects) {
+                var recoNumber = 0;
+                for (var i = 0; i < vm.networkProjects.length; i++) {
+                    if (vm.networkProjects[i].recoProposals) {
+                        recoNumber++;
+                    }
+                }
+                return recoNumber;
+            } else
+                return 0;
+        }
     }
-})();
+
+})
+();
