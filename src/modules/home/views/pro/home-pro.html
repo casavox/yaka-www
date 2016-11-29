@@ -363,6 +363,7 @@
 
                 <div>
                     <div class="proHomeSection2ActivitiesInput m-b-20"
+                         data-ng-class="{'multi-select-red' : vm.formRegisterError && vm.multiChoiceInput.selected.length == 0}"
                          data-ng-dropdown-multiselect=""
                          options="vm.multiChoiceInput.options"
                          selected-model="vm.multiChoiceInput.selected"
@@ -376,7 +377,7 @@
                     <div class="col-xs-12 no-padding select m-b-15">
                         <select class="form-control select-pro-register"
                                 data-ng-model="vm.newUser.referral">
-                            <option value="" disabled="disabled">Comment nous avez-vous connu ?</option>
+                            <option value="" disabled="disabled">Comment nous avez-vous connu ? (facultatif)</option>
                             <option value="REFERRAL_SEARCH">Recherche internet</option>
                             <option value="REFERRAL_FRIEND">Par connaissance</option>
                             <option value="REFERRAL_SOCIAL">Réseaux sociaux</option>
@@ -402,7 +403,8 @@
 
                 </div>
                 <div>
-                    <span class="col-xs-12 subtitle-color-forced m-l-0">Cochez la case ci-dessous</span>
+                    <span class="col-xs-12 subtitle-color-forced m-l-0"
+                        data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">Cochez la case ci-dessous</span>
                     <div
                         vc-recaptcha
                         data-ng-model="vm.newUser.recaptchaResponse"

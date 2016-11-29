@@ -2,6 +2,10 @@
     color: #5E5E5E !important;
 }
 
+[data-ng-dropdown-multiselect].multi-select-red .btn {
+    color: #f44336 !important;
+}
+
 .fg-float .fg-label {
     color: #5E5E5E;
 }

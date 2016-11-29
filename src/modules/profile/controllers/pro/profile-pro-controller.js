@@ -323,16 +323,8 @@
             var websiteReg = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
             var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*/;
 
-            if (vm.profile.myWebsite && !websiteReg.test(vm.profile.myWebsite)) {
+            if ((vm.profile.myWebsite && !websiteReg.test(vm.profile.myWebsite)) || (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin)) || (vm.profile.myOtherSocial && !websiteReg.test(vm.profile.myOtherSocial))) {
                 vm.formWebsiteError = true;
-                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            }
-            else if (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin)) {
-                vm.formLinkedinError = true;
-                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            }
-            else if (vm.profile.myOtherSocial && !websiteReg.test(vm.profile.myOtherSocial)) {
-                vm.formOtherSocialError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
                 var data = {
