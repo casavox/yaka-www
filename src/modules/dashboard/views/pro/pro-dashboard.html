@@ -71,18 +71,59 @@
                     </div>
                 </div>
 
-                <!-- Manque 4 Bandeaux -->
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="(vm.showTopViewRecommendation() == 1) && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Vous avez une recommandation en attente, veuillez y répondre ci dessous
+                    </div>
+                </div>
+
+                <div class="card bgm-orange c-white p-15"
+                     data-ng-if="(vm.showTopViewRecommendation() > 1) && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Vous avez des recommendations en attente, veuillez y répondre ci dessous
+                    </div>
+                </div>
 
                 <div class="card bgm-lightblue c-white p-15 pointer"
-                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits() && !vm.showTopViewRecommendation()"
                      data-ui-sref="contacts">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Cliquez sur MON ENTOURAGE dans le menu pour profiter du bouche-à-oreille CasaVox
+                        Cliquez sur « MON ENTOURAGE » dans le menu pour profiter du bouche-à-oreille CasaVox
                     </div>
                 </div>
+
+                <div class="card bgm-lightblue c-white p-15 pointer"
+                     data-ng-if="vm.showTopViewNoNetworkProject() && !vm.showTopViewNoContact() && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
+                     data-ui-sref="findjobs">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-assignment-o"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Cliquez sur « CARTE DES OFFRES » pour trouver un chantier
+                    </div>
+                </div>
+
+                <div class="card bgm-lightblue c-white p-15 pointer"
+                     data-ng-if="!vm.showTopViewNoNetworkProject() && !vm.showTopViewNoContact() && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits() && !vm.showTopViewRecommendation()">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-assignment-o"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        Cliquez sur une offre dans la zone « OFFRES DANS MON RESEAU » ou sur le menu « CARTE DES OFFRES » pour contacter un client
+                    </div>
+                </div>
+
+
 
             </div>
 
