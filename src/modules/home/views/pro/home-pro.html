@@ -302,7 +302,7 @@
 
 
                 <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
-                     data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6}">
+                     data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6 || vm.formRegisterError && vm.newUser.password != vm.passwordConfirm}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
                                type="password"
@@ -315,7 +315,7 @@
                            data-ng-show="vm.formRegisterError && vm.passwordConfirm == 0">
                         Ce champs est requis
                     </small>
-                    <small class="help-block t-left"
+                    <small class="help-block c-red t-left"
                            data-ng-hide="vm.passwordConfirm.length < 1 || vm.newUser.password == vm.passwordConfirm">
                         Les mots de passe ne correspondent pas
                     </small>
