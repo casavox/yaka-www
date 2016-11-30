@@ -113,36 +113,6 @@
             alertMsg.send("Impossible de selectionner la proposition, réessayez puis contactez le support si besoin", "danger");
         }
 
-        vm.verifNameAddr = function () {
-            vm.continueAddressFlag = false;
-            if (vm.newAddr.name.length > 0) {
-                vm.disabledAddr = vm.continueAddress = false;
-                vm.myAddress = "new";
-                $scope.address = {
-                    name: '',
-                    place: '',
-                    components: {
-                        placeId: '',
-                        streetNumber: '',
-                        street: '',
-                        city: '',
-                        state: '',
-                        countryCode: '',
-                        country: '',
-                        postCode: '',
-                        district: '',
-                        location: {
-                            lat: '',
-                            long: ''
-                        }
-                    }
-                };
-            }
-            else {
-                vm.newAddr.name = "";
-                vm.disabledAddr = true;
-            }
-        };
 
         vm.indexOfObject = function (a, token, array) {
             var res = [];
@@ -211,12 +181,17 @@
 
         vm.changeWhere = function () {
             if (vm.myAddress == "new") {
-                vm.projectTmp.address.name = vm.newAddr.name;
-                vm.projectTmp.address.address = $scope.address.name;
-                vm.projectTmp.address.streetNumber = $scope.address.components.streetNumber;
-                vm.projectTmp.address.route = $scope.address.components.street;
-                vm.projectTmp.address.postalCode = $scope.address.components.postCode;
-                vm.whereFlag = false;
+                if (!vm.newAddr.name || !$scope.address.name) {
+                    vm.formProjectPlaceError = true;
+                    alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+                } else {
+                    vm.projectTmp.address.name = vm.newAddr.name;
+                    vm.projectTmp.address.address = $scope.address.name;
+                    vm.projectTmp.address.streetNumber = $scope.address.components.streetNumber;
+                    vm.projectTmp.address.route = $scope.address.components.street;
+                    vm.projectTmp.address.postalCode = $scope.address.components.postCode;
+                    vm.whereFlag = false;
+                }
             } else {
                 for (var i = 0; i < vm.user.addresses.length; i++) {
                     if (vm.user.addresses[i].address == vm.myAddress) {
@@ -535,6 +510,8 @@
                 }, function (isConfirm) {
                     if (isConfirm) {
                         vm.update();
+                        vm.formProjectPlaceError = false;
+                        vm.newAddr.name = "";
                     }
                 });
             }

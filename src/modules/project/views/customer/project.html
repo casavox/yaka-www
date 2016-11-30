@@ -226,7 +226,8 @@
                                                               data-ng-model="vm.projectTmp.description"
                                                               data-autosize-on="true"></textarea>
                                                         <label class="fg-label"
-                                                               data-ng-class="{'c-red' : vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">Description du projet</label>
+                                                               data-ng-class="{'c-red' : vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">Description
+                                                            du projet</label>
                                                     </div>
                                                     <small class="help-block t-left"
                                                            data-ng-show="vm.formProjectDetailsError && (vm.projectTmp.description.length < 50)">
@@ -250,7 +251,8 @@
                                                               uib-tooltip="Le Pro doit fournir les matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
+                                                        <span
+                                                            data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>
@@ -406,48 +408,61 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-xs-6 col-xs-offset-1 no-padding">
-                        <input type="text" class="select-custom" data-ng-if="vm.newAddrFlag"
-                               data-ng-model="vm.newAddr.name"
-                               data-ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse Ex: Maison">
-                    </div>
-                </div>
-                <div class="row no-margin w-900 center addr">
-                    <div class="no-padding mb-39"
-                         data-ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
-                        <div class="inner-addon right-addon">
-                            <div class="disabled-addr" data-ng-show="vm.disabledAddr"></div>
-                            <i class="glyphicon glyphicon-map-marker"></i>
-                            <input vs-google-autocomplete="options"
-                                   options="options"
-                                   data-ng-model="address.name"
-                                   vs-autocomplete-validator
-                                   vs-place="address.place"
-                                   vs-place-id="address.components.placeId"
-                                   vs-street-number="address.components.streetNumber"
-                                   vs-street="address.components.street"
-                                   vs-city="address.components.city"
-                                   vs-state="address.components.state"
-                                   vs-country-short="address.components.countryCode"
-                                   vs-country="address.components.country"
-                                   vs-post-code="address.components.postCode"
-                                   vs-district="address.components.district"
-                                   vs-latitude="address.components.location.lat"
-                                   vs-longitude="address.components.location.long"
 
-                                   type="text"
-                                   name="address"
-                                   id="address"
-                                   placeholder="Indiquer l'adresse" class="input-custom">
+                    <div class="col-xs-6 col-xs-offset-1 no-padding form-group fg-float m-b-30"
+                         data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.newAddr.name}"
+                        data-ng-show="vm.newAddrFlag">
+                        <div class="fg-line">
+                            <input type="text"
+                                   class="form-control fg-input input-sm"
+                                   data-ng-model="vm.newAddr.name">
+                            <label class="fg-label  yakaEllipsis"
+                                   data-ng-class="{'c-red': vm.formProjectPlaceError && !vm.newAddr.name}">Nom de l'adresse Ex: Maison</label>
                         </div>
+                        <small class="help-block" data-ng-show="vm.formProjectPlaceError && !vm.newAddr.name">
+                            Ce champs est requis
+                        </small>
                     </div>
                 </div>
+                <div class="form-group fg-float m-t-20 m-b-30"
+                     data-ng-class="{'has-error': vm.formProjectPlaceError && !address.name, 'has-filled' : !vm.newAddrFlag}">
+                    <div class="fg-line">
+                        <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
+                        <input type="text"
+                               class="form-control fg-input input-sm"
+                               vs-google-autocomplete="options"
+                               vs-autocomplete-validator
+                               vs-place="address.place"
+                               vs-place-id="address.components.placeId"
+                               vs-street-number="address.components.streetNumber"
+                               vs-street="address.components.street"
+                               vs-city="address.components.city"
+                               vs-state="address.components.state"
+                               vs-country-short="address.components.countryCode"
+                               vs-country="address.components.country"
+                               vs-post-code="address.components.postCode"
+                               vs-district="address.components.district"
+                               vs-latitude="address.components.location.lat"
+                               vs-longitude="address.components.location.long"
+                               data-ng-model="address.name"
+                               data-ng-disabled="!vm.newAddrFlag"
+                               type="text"
+                               name="address"
+                               placeholder=""
+                               id="address">
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer l'adresse</label>
+                    </div>
+                    <small class="help-block" data-ng-if="!address.name">
+                        Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                    </small>
+                </div>
+
                 <div class="t-right">
                     <button class="btn btn-link waves-effect c-red" data-ng-click="vm.whereFlag = false">
                         ANNULER
                     </button>
-                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhere()"
-                            data-ng-disabled="!address.name && !vm.newAddr.name">
+                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhere()">
                         CONFIRMER
                     </button>
                 </div>

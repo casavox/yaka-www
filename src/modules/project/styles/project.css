@@ -484,3 +484,10 @@
     }
 }
 
+.address-marker-project {
+    position: absolute;
+    z-index: 2;
+    top: 8px;
+    right: 10px;
+}
+
