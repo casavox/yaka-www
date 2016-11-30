@@ -527,5 +527,16 @@
                 vm.scrollBottom = 1;
             }, 500);
         }
+
+        vm.reinitializeNewAddress = function () {
+            vm.whereFlag = false;
+            vm.formProjectPlaceError = false;
+            vm.newAddr.name = "";
+            if (vm.myAddress == "new") {
+                $scope.address.name = "";
+
+            }
+
+        }
     }
 })();
