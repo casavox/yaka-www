@@ -520,8 +520,7 @@
                       data-auto-size=""
                       data-autosize-on="true"
                       data-ng-model="vm.invitCustomer"></textarea>
-                    <label class="fg-label"
-                           data-ng-class="{'c-red' : vm.formCustInvitError && !vm.invitCustomer}">exemple1@mail.fr,
+                    <label class="fg-label">exemple1@mail.fr,
                         exemple2@mail.fr, ...</label>
                 </div>
                 <small class="help-block"
@@ -593,8 +592,7 @@
                         <input type="text" name="name" class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.name"
                                data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.name}">Nom</label>
+                        <label class="fg-label">Nom</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formProInvitError && vm.invitPro.name.length < 1">
@@ -613,8 +611,7 @@
                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.email" yaka-input-email>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.email}">Email</label>
+                        <label class="fg-label">Email</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formProInvitError && vm.invitPro.email.length < 1">
@@ -638,8 +635,7 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.address.address}">Ville</label>
+                        <label class="fg-label">Ville</label>
                         <small class="help-block c-red" data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">
                             Veuillez saisir la ville, puis sélectionnez-la dans la liste
                         </small>
