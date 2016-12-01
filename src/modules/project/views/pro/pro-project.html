@@ -232,19 +232,30 @@
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Message privé au client (obligatoire)
                                         </dt>
-                                        <dd class="l-h-18">
-                                            <textarea class="form-control" data-auto-size=""
-                                                      placeholder="Précisez votre proposition, posez vos questions,..."
-                                                      data-autosize-on="true"
-                                                      data-ng-model="vm.offer.comment"></textarea>
+                                        <dd class="l-h-18 m-t-20">
+                                            <div class="form-group fg-float"
+                                                 data-ng-class="{'has-error': vm.formProProjectError && (!vm.offer.comment || vm.offer.comment.length < 40)}">
+                                                <div class="fg-line">
+                                                    <textarea class="form-control" data-auto-size=""
+                                                              data-autosize-on="true"
+                                                              placeholder=""
+                                                              data-ng-model="vm.offer.comment"></textarea>
+                                                    <label class="fg-label yakaEllipsis">
+                                                        Précisez votre proposition, posez vos questions,...</label>
+                                                </div>
+                                                <small class="help-block"
+                                                       data-ng-show="vm.formProProjectError && !vm.offer.comment">
+                                                    Ce champs est requis
+                                                </small>
+                                                <small class="help-block"
+                                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 40">
+                                                    Message trop court (au moins 40 caractères)
+                                                </small>
+                                            </div>
                                         </dd>
                                     </dl>
-                                    <p class="error center makeOfferError"
-                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 40">
-                                        Message trop court (au moins 40 caractères)
-                                    </p>
                                     <button class="btn btn-primary btn-block waves-effect"
-                                            data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
+                                            data-ng-click="vm.sendOffer()">
                                         Prendre contact
                                     </button>
                                 </div>
@@ -299,7 +310,8 @@
                                                           uib-tooltip="Le Pro doit fournir les matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                    <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
+                                                    <span
+                                                        data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                 </li>
