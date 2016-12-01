@@ -404,7 +404,7 @@
                 </div>
                 <div>
                     <span class="col-xs-12 subtitle-color-forced m-l-0"
-                        data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">Cochez la case ci-dessous</span>
+                          data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">Cochez la case ci-dessous</span>
                     <div
                         vc-recaptcha
                         data-ng-model="vm.newUser.recaptchaResponse"
@@ -476,7 +476,8 @@
                                    name="email"
                                    autocomplete="username"
                                    data-ng-model="vm.loginUser.email"
-                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
+                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"
+                                   yaka-input-email/>
                             <label class="fg-label"
                                    data-ng-class="{'c-red' : vm.formProLoginError && !vm.loginUser.email}">Email</label>
                         </div>

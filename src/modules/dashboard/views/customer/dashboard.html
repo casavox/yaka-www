@@ -93,8 +93,8 @@
                                 <button data-ng-if="vm.userOnGoingProjectNumber > 0"
                                         class="btn btn-default pull-left waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
                                         data-ui-sref="my-projects">
-                                    {{vm.userOnGoingProjectNumber}} PROJET<span
-                                    data-ng-if="vm.userOnGoingProjectNumber > 1">S</span>
+                                    <span data-ng-if="vm.userOnGoingProjectNumber == 1">MON PROJET</span>
+                                    <span data-ng-if="vm.userOnGoingProjectNumber > 1">MES PROJETS</span>
                                 </button>
                                 <button
                                     class="btn btn-default waves-effect bgm-lightblue c-white btn-sm m-r-10 m-b-10 m-t-10"
