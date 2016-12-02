@@ -30,14 +30,6 @@
         $rootScope.updateProfile = function (ignoreLoading) {
             networkService.me(function (res) {
                 app.setUser(res);
-
-                if ($state.current.name == "contacts" && res.newContacts) {
-                    alertMsg.send("Du nouveaux dans vos contacts ! Vérifiez vos invitations reçues et votre liste de contacts.", 'success');
-                    networkService.setContactsRead(function () {
-                        app.getUser().newContacts = false;
-                    }, function () {
-                    }, true);
-                }
                 $analytics.setUsername($localStorage.user.id);
             }, function () {
             }, ignoreLoading);
