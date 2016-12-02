@@ -464,3 +464,8 @@ body.sw-toggled #content.noMenu {
 .alert-danger {
     background-color: rgba(244, 67, 54, 0.9);
 }
+
+.alert-orange {
+    background-color: rgba(255, 152, 0, 0.9);
+    color: white;
+}

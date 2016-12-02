@@ -298,7 +298,7 @@
 
 
                 <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
-                     data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6}">
+                     data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6 || vm.formRegisterError && vm.newUser.password != vm.passwordConfirm}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
                                type="password"
@@ -310,7 +310,7 @@
                            data-ng-show="vm.formRegisterError && vm.passwordConfirm == 0">
                         Ce champs est requis
                     </small>
-                    <small class="help-block t-left"
+                    <small class="help-block c-red t-left"
                            data-ng-hide="vm.passwordConfirm.length < 1 || vm.newUser.password == vm.passwordConfirm">
                         Les mots de passe ne correspondent pas
                     </small>
@@ -397,7 +397,7 @@
                 </div>
                 <div>
                     <span class="col-xs-12 subtitle-color-forced m-l-0"
-                        data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">Cochez la case ci-dessous</span>
+                          data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">Cochez la case ci-dessous</span>
                     <div
                         vc-recaptcha
                         data-ng-model="vm.newUser.recaptchaResponse"
@@ -469,7 +469,8 @@
                                    name="email"
                                    autocomplete="username"
                                    data-ng-model="vm.loginUser.email"
-                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
+                                   data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"
+                                   yaka-input-email/>
                             <label class="fg-label">Email</label>
                         </div>
                         <div data-ng-messages="loginPro.email.$error">

@@ -5413,6 +5413,70 @@ div.recaptcha.mobile > div {
     background: #3f51b5 !important;
 }
 
+
+/* form filled */
+.has-filled .help-block,
+.has-filled .control-label,
+.has-filled .radio,
+.has-filled .checkbox,
+.has-filled .radio-inline,
+.has-filled .checkbox-inline,
+.has-filled.radio label,
+.has-filled.checkbox label,
+.has-filled.radio-inline label,
+.has-filled.checkbox-inline label {
+    color: #e8e8e8 !important;
+}
+
+.has-filled .form-control {
+    background-color: #e8e8e8 !important;
+    border-color: #e8e8e8 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-filled .form-control:focus {
+    border-color: #e8e8e8 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #e8e8e8;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #e8e8e8;
+}
+
+.has-filled .input-group-addon {
+    color: #e8e8e8 !important;
+    border-color: #e8e8e8 !important;
+    background-color: #e8e8e8 !important;
+}
+
+.has-filled .form-control-feedback {
+    color: #e8e8e8 !important;
+}
+
+.form-group.has-filled .fileinput .fileinput-preview {
+    color: #e8e8e8 !important;
+}
+
+.form-group.has-filled .fileinput .thumbnail {
+    border-color: #e8e8e8 !important;
+}
+
+.has-filled .checkbox .input-helper:before {
+    border-color: #e8e8e8 !important;
+}
+
+.has-filled .checkbox .input-helper:after {
+    border-bottom-color: #e8e8e8 !important;
+    border-left-color: #e8e8e8 !important;
+}
+
+.has-filled .fg-line:after {
+    background: #e8e8e8 !important;
+}
+
+.fg-line:not([class=has-filled]):after {
+    background: #2196f3;
+}
+
+
 .top-25 {
     top: 25px !important;
 }
