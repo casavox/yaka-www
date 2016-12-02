@@ -557,8 +557,7 @@
                                 <div class="fg-line">
                                     <input type="text" name="firstName" class="form-control fg-input"
                                            data-ng-model="vm.supportMessage.firstName" yaka-input-name>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formSupportError && !vm.supportMessage.firstName}">Prénom</label>
+                                    <label class="fg-label">Prénom</label>
                                 </div>
                                     <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.firstName">Ce champ est requis
                                     </small>
@@ -576,8 +575,7 @@
                                 <div class="fg-line">
                                     <input type="text" name="lastName" class="form-control fg-input"
                                            data-ng-model="vm.supportMessage.lastName" yaka-input-name>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formSupportError && !vm.supportMessage.lastName}">Nom</label>
+                                    <label class="fg-label">Nom</label>
                                 </div>
                                     <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.lastName">Ce champ est requis
                                     </small>
@@ -597,8 +595,7 @@
                                         <input type="text" name="email" class="form-control fg-input"
                                                data-ng-model="vm.supportMessage.email"
                                                data-ng-disabled="vm.supportMessage.email && app.getUser()" yaka-input-email>
-                                        <label class="fg-label"
-                                               data-ng-class="{'c-red': vm.formSupportError && !vm.supportMessage.email}">Email</label>
+                                        <label class="fg-label">Email</label>
                                     </div>
                                         <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.email">Ce champ est requis</small>
                                     <div data-ng-messages="supportForm.email.$error">
@@ -641,8 +638,7 @@
                                               data-auto-size
                                               data-ng-minlength="100"
                                               data-autosize-on="true"></textarea>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formSupportError && (!vm.supportMessage.message || vm.supportMessage.message.length < 100)}">Tapez ici votre message</label>
+                                    <label class="fg-label">Tapez ici votre message</label>
                                 </div>
                                 <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.message">Ce champ est requis</small>
 

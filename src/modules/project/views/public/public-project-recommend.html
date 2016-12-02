@@ -93,8 +93,7 @@
                                                data-ng-model="vm.invitPro.name"
                                                data-ng-disabled="vm.isSocialRegister()"
                                                yaka-input-name>
-                                        <label class="fg-label"
-                                               data-ng-class="{'c-red': vm.formPublicRecoError && !vm.invitPro.name}">Nom</label>
+                                        <label class="fg-label">Nom</label>
                                     </div>
                                     <small class="help-block t-left"
                                            data-ng-show="vm.formPublicRecoError && vm.invitPro.name.length < 1">
@@ -114,8 +113,7 @@
                                                class="form-control fg-input input-sm"
                                                data-ng-model="vm.invitPro.email"
                                                yaka-input-email>
-                                        <label class="fg-label"
-                                               data-ng-class="{'c-red': vm.formPublicRecoError && !vm.invitPro.email}">Email</label>
+                                        <label class="fg-label">Email</label>
                                     </div>
                                     <small class="help-block t-left"
                                            data-ng-show="vm.formPublicRecoError && vm.invitPro.email.length < 1">
@@ -139,8 +137,7 @@
                                                name="address"
                                                placeholder=""
                                                id="address">
-                                        <label class="fg-label"
-                                               data-ng-class="{'c-red': vm.formPublicRecoError && !vm.invitPro.address.address}">Ville</label>
+                                        <label class="fg-label">Ville</label>
                                         <small class="help-block c-red" data-ng-if="vm.formPublicRecoError && !vm.invitPro.address.address">
                                             Veuillez saisir la ville, puis sélectionnez-la dans la liste
                                         </small>
@@ -212,8 +209,7 @@
                                                    data-ng-model="vm.newUser.firstName"
                                                    data-ng-disabled="vm.isSocialRegister()"
                                                    yaka-input-name>
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formPublicRecoError && !vm.newUser.firstName}">Prénom</label>
+                                            <label class="fg-label">Prénom</label>
                                         </div>
                                         <small class="help-block t-left"
                                                data-ng-show="vm.formPublicRecoError && vm.newUser.firstName.length < 1">
@@ -235,8 +231,7 @@
                                                    data-ng-model="vm.newUser.lastName"
                                                    data-ng-disabled="vm.isSocialRegister()"
                                                    yaka-input-name>
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formPublicRecoError && !vm.newUser.lastName}">Nom</label>
+                                            <label class="fg-label">Nom</label>
                                         </div>
                                         <small class="help-block t-left"
                                                data-ng-show="vm.formPublicRecoError && vm.newUser.lastName.length < 1">
@@ -256,8 +251,7 @@
                                                    class="form-control fg-input input-sm"
                                                    data-ng-model="vm.newUser.email"
                                                    yaka-input-email>
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formPublicRecoError && !vm.newUser.email}">Email</label>
+                                            <label class="fg-label">Email</label>
                                         </div>
                                         <small class="help-block t-left"
                                                data-ng-show="vm.formPublicRecoError && vm.newUser.email.length < 1">
@@ -281,8 +275,7 @@
                                                    name="address"
                                                    placeholder=""
                                                    id="address">
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formPublicRecoError && !vm.newUser.defaultAddress.address}">Ville</label>
+                                            <label class="fg-label">Ville</label>
                                             <small class="help-block c-red" data-ng-if="vm.formPublicRecoError && !vm.newUser.defaultAddress.address">
                                                 Veuillez saisir la ville, puis sélectionnez-la dans la liste
                                             </small>
@@ -295,8 +288,7 @@
                                             <input type="password" name="password"
                                                    class="form-control fg-input input-sm"
                                                    data-ng-model="vm.newUser.password" data-ng-minlength="6">
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formPublicRecoError && !vm.newUser.password}">Mot de passe</label>
+                                            <label class="fg-label">Mot de passe</label>
                                         </div>
                                         <small class="help-block t-left"
                                                data-ng-show="vm.formPublicRecoError && vm.newUser.password.length < 1">
@@ -316,8 +308,7 @@
                                         <div class="fg-line">
                                             <input type="password" class="form-control fg-input input-sm"
                                                    data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formPublicRecoError && !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">Confirmation</label>
+                                            <label class="fg-label">Confirmation</label>
                                         </div>
                                         <small class="help-block t-left"
                                                data-ng-show="vm.formPublicRecoError && vm.passwordConfirm.length < 1">

@@ -108,8 +108,7 @@
                                   data-ng-model="vm.projectDescription"
                                   data-ng-blur="vm.verifDescription()"
                                   data-autosize-on="true"></textarea>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red' : vm.formAddProjectError && vm.projectDescription.length < 50}">Préciser
+                                    <label class="fg-label">Préciser
                                         mon projet ici ...</label>
                                 </div>
                                 <p class="col-xs-12 error t-left m-b-0 p-0"
@@ -260,7 +259,6 @@
                                            placeholder=""
                                            data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag">
                                     <label class="fg-label"
-                                           data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}"
                                            data-ng-hide="address.name">
                                         Indiquez
                                         votre adresse complète</label>
@@ -285,8 +283,7 @@
                             <div class="fg-line">
 
                                 <input type="text" class="form-control" data-ng-model="vm.newAddr.name">
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formAddAddressError && !vm.newAddr.name}">Nom de
+                                <label class="fg-label">Nom de
                                     l'adresse (Maison, Papa, ...)</label>
                             </div>
                             <small class="help-block center"
@@ -398,8 +395,7 @@
                                        autocomplete="username"
                                        data-ng-model="vm.loginUser.email"
                                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formPublicProjectLoginError && !vm.loginUser.email}">Email</label>
+                                <label class="fg-label">Email</label>
                             </div>
                             <div data-ng-messages="loginPro.username.$error">
                                 <small class="help-block t-left"
@@ -421,8 +417,7 @@
                                        autocomplete="current-password"
                                        data-ng-model="vm.loginUser.password"
                                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formPublicProjectLoginError && !vm.loginUser.password}">Mot de passe</label>
+                                <label class="fg-label">Mot de passe</label>
                             </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectLoginError && vm.loginUser.password.length < 1">
@@ -486,8 +481,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.firstName"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.firstName}">Prénom</label>
+                                    <label class="fg-label">Prénom</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectRegError && vm.newUser.firstName.length < 1">
@@ -510,8 +504,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.lastName"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.lastName}">Nom</label>
+                                    <label class="fg-label">Nom</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectRegError && vm.newUser.lastName.length < 1">
@@ -537,8 +530,7 @@
                                            autocomplete="address-level2"
                                            placeholder=""
                                            id="address">
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.defaultAddress.address}">Ville</label>
+                                    <label class="fg-label">Ville</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectRegError && vm.newUser.defaultAddress.address.length < 1">
@@ -558,8 +550,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email"
                                            yaka-input-email>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.email}">Email</label>
+                                    <label class="fg-label">Email</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectRegError && vm.newUser.email.length < 1">
@@ -581,8 +572,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.password"
                                            data-ng-minlength="6">
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formPublicProjectRegError && !vm.newUser.password}">Mot de passe</label>
+                                    <label class="fg-label">Mot de passe</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectRegError && vm.newUser.password.length < 1">
@@ -600,8 +590,7 @@
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input input-sm"
                                            data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': (vm.formPublicProjectRegError && !vm.passwordConfirm) || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">Confirmation</label>
+                                    <label class="fg-label">Confirmation</label>
                                 </div>
                                 <small class="help-block t-left"
                                        data-ng-show="vm.formPublicProjectRegError && vm.passwordConfirm.length < 1">
@@ -680,8 +669,7 @@
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
                                    yaka-input-email>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red': vm.formProjectForgottenPasswordError && !vm.forgottenPasswordUser.email}">Email</label>
+                            <label class="fg-label">Email</label>
                         </div>
                         <small class="help-block t-left"
                                data-ng-show="vm.formProjectForgottenPasswordError && vm.forgottenPasswordUser.email.length < 1">

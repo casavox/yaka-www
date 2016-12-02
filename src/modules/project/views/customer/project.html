@@ -225,9 +225,7 @@
                                                     <textarea class="form-control" data-auto-size=""
                                                               data-ng-model="vm.projectTmp.description"
                                                               data-autosize-on="true"></textarea>
-                                                        <label class="fg-label"
-                                                               data-ng-class="{'c-red' : vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">Description
-                                                            du projet</label>
+                                                        <label class="fg-label">Description du projet</label>
                                                     </div>
                                                     <small class="help-block t-left"
                                                            data-ng-show="vm.formProjectDetailsError && (vm.projectTmp.description.length < 50)">
@@ -411,13 +409,14 @@
 
                     <div class="col-xs-6 col-xs-offset-1 no-padding form-group fg-float m-b-30"
                          data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.newAddr.name}"
-                        data-ng-show="vm.newAddrFlag">
+                         data-ng-show="vm.newAddrFlag">
                         <div class="fg-line">
                             <input type="text"
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.newAddr.name">
                             <label class="fg-label  yakaEllipsis"
-                                   data-ng-class="{'c-red': vm.formProjectPlaceError && !vm.newAddr.name}">Nom de l'adresse Ex: Maison</label>
+                                   data-ng-class="{'c-red': vm.formProjectPlaceError && !vm.newAddr.name}">Nom de
+                                l'adresse Ex: Maison</label>
                         </div>
                         <small class="help-block" data-ng-show="vm.formProjectPlaceError && !vm.newAddr.name">
                             Ce champs est requis
@@ -451,7 +450,8 @@
                                placeholder=""
                                id="address">
                         <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer l'adresse</label>
+                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer
+                            l'adresse</label>
                     </div>
                     <small class="help-block" data-ng-if="!address.name">
                         Veuillez saisir la ville, puis sélectionnez-la dans la liste
