@@ -9,6 +9,19 @@
     <div id="content" class="content">
         <div class="container">
 
+            <div class="topViewProfile">
+                <div class="card bgm-orange c-white p-15"
+                data-ng-if="vm.showTopViewRecommendation()">
+                    <div class="topViewProfileIcon">
+                        <i class="zmdi zmdi-hc-2x zmdi-accounts-alt"></i>
+                    </div>
+                    <div class="topViewProfileContent">
+                        <span class="v-align-middle" data-ng-if="vm.showTopViewRecommendation() == 1">Vous avez 1 recommandation en attente, faites une proposition au client en cliquant <a class="underline f-500 c-white" data-ui-sref="pro-dashboard">ici</a></span>
+                        <span class="v-align-middle" data-ng-if="vm.showTopViewRecommendation() > 1">Vous avez {{vm.showTopViewRecommendation()}} recommandations en attente, faites une proposition aux clients en cliquant  <a class="underline f-500 c-white" data-ui-sref="pro-dashboard">ici</a></span>
+                    </div>
+                </div>
+            </div>
+
             <div data-ng-if="vm.proposals && vm.proposals.length == 0" class="card" data-ng-cloak>
                 <div class="card-header">
                     <h2>VOUS N'AVEZ AUCUN ÉCHANGE EN COURS
@@ -21,7 +34,8 @@
                             Vérifiez la validité de votre profil en cliquant sur votre logo avatar depuis la barre de
                             menu <a class="underline" data-ui-sref="pro-profile">Mon profil Pro</a></li>
                         <li class="list-left-alignment">
-                            Sélectionnez un chantier depuis la <a class="underline" data-ui-sref="findjobs">Carte des offres</a>
+                            Sélectionnez un chantier depuis la <a class="underline" data-ui-sref="findjobs">Carte des
+                            offres</a>
                             <ul>
                                 <li class="list-left-alignment">
                                     Naviguer et zoomer dans cette carte pour retrouver les offres correspondant à votre
@@ -38,7 +52,8 @@
                             </ul>
                         </li>
                         <li class="list-left-alignment">
-                            Losrque vous remportez une offre, retrouvez-la dans <a class="underline" data-ui-sref="pro-jobs">Mes
+                            Losrque vous remportez une offre, retrouvez-la dans <a class="underline"
+                                                                                   data-ui-sref="pro-jobs">Mes
                             chantiers</a>
                         </li>
                     </ol>
@@ -210,13 +225,13 @@
                             <span data-ng-switch-when="CUSTOMER_DECLINED">
                                 Désolé, vous n'avez pas été sélectionné pour ce chantier
                             </span>
-                            <span data-ng-switch-when="RECO_CUSTOMER_DECLINED">
+                                <span data-ng-switch-when="RECO_CUSTOMER_DECLINED">
                                 Désolé, vous n'avez pas été sélectionné pour ce chantier
                             </span>
-                            <span data-ng-switch-when="PRO_DECLINED">
+                                <span data-ng-switch-when="PRO_DECLINED">
                                 Vous avez annulé votre proposition
                             </span>
-                            <span data-ng-switch-when="RECO_PRO_DECLINED">
+                                <span data-ng-switch-when="RECO_PRO_DECLINED">
                                 Vous avez annulé votre proposition
                             </span>
                             </div>
