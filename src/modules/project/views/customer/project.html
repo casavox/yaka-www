@@ -451,10 +451,44 @@
                                placeholder=""
                                id="address">
                         <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer l'adresse</label>
+                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer le code postal</label>
                     </div>
                     <small class="help-block" data-ng-if="!address.name">
-                        Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                        Veuillez saisir le code postal et sélectionner la ville dans la liste
+                    </small>
+                </div>
+
+                <div class="form-group fg-float m-t-20 m-b-30"
+                     data-ng-class="{'has-error': vm.formProjectPlaceError && !address.name, 'has-filled' : !vm.newAddrFlag}">
+                    <div class="fg-line">
+                        <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
+                        <input type="text"
+                               class="form-control fg-input input-sm"
+                               vs-google-autocomplete="options"
+                               vs-autocomplete-validator
+                               vs-place="address.place"
+                               vs-place-id="address.components.placeId"
+                               vs-street-number="address.components.streetNumber"
+                               vs-street="address.components.street"
+                               vs-city="address.components.city"
+                               vs-state="address.components.state"
+                               vs-country-short="address.components.countryCode"
+                               vs-country="address.components.country"
+                               vs-post-code="address.components.postCode"
+                               vs-district="address.components.district"
+                               vs-latitude="address.components.location.lat"
+                               vs-longitude="address.components.location.long"
+                               data-ng-model="address.name"
+                               data-ng-disabled="!vm.newAddrFlag"
+                               type="text"
+                               name="address"
+                               placeholder=""
+                               id="address">
+                        <label class="fg-label"
+                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Adresse complète (optionnel)</label>
+                    </div>
+                    <small class="help-block" data-ng-if="!address.name">
+                        Veuillez saisir l'adresse et la sélectionner dans la liste
                     </small>
                 </div>
 

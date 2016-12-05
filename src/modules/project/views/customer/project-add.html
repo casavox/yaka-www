@@ -208,9 +208,12 @@
 
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
-                            Indiquez l'adresse des travaux
-                            <small>
+                            Indiquez le lieu des travaux
+                            <small data-ng-if="vm.user.addresses.length>0">
                                 Choisissez une de vos adresses ou créez-en une nouvelle
+                            </small>
+                            <small data-ng-if="vm.user.addresses.length == 0">
+                                Indiquez votre code postal, puis sélectionnez votre commune
                             </small>
                         </h2>
                     </div>
@@ -225,8 +228,8 @@
                         </select>
                     </div>
 
-                    <p class="col-xs-12 text-center" data-ng-show="vm.newAddrFlag">
-                        Indiquez votre adresse :
+                    <p class="col-xs-12 text-center m-t-30" data-ng-show="vm.newAddrFlag && vm.user.addresses.length > 0">
+                        Indiquez votre code postal puis sélectionnez votre commune
                     </p>
 
                     <div
@@ -236,38 +239,38 @@
                                  data-ng-class="{'has-error': vm.formAddAddressError && !address.name}">
                                 <div data-ng-show="vm.disabledAddr"></div>
                                 <i class="glyphicon glyphicon-map-marker"></i>
-                                <div class="fg-line">
-                                    <input vs-google-autocomplete="options"
-                                           vs-autocomplete-validator
-                                           options="options"
-                                           data-ng-model="address.name"
-                                           vs-place="address.place"
-                                           vs-place-id="address.components.placeId"
-                                           vs-street-number="address.components.streetNumber"
-                                           vs-street="address.components.street"
-                                           vs-city="address.components.city"
-                                           vs-state="address.components.state"
-                                           vs-country-short="address.components.countryCode"
-                                           vs-country="address.components.country"
-                                           vs-post-code="address.components.postCode"
-                                           vs-district="address.components.district"
-                                           vs-latitude="address.components.location.lat"
-                                           vs-longitude="address.components.location.long"
-                                           type="text"
+                                <div class="fg-line"
+                                    data-ng-class="{'has-filled' : !vm.newAddrFlag}">
+
+                                    <input type="text"
+                                           class="form-control"
                                            name="address"
                                            id="address"
-                                           class="form-control"
+                                           data-ng-if="vm.user.addresses.length > 0 && !vm.newAddrFlag"
+                                           ng-model="address.name"
                                            placeholder=""
-                                           data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag">
+                                           data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag"/>
+
+
+                                           <input type="text"
+                                           class="form-control"
+                                           name="address"
+                                           id="address"
+                                           data-ng-if="vm.newAddrFlag"
+                                           ng-model="address.name"
+                                           data-ng-maxlength="5"
+                                           maxlength="5"
+                                           placeholder=""
+                                           uib-typeahead="address for address in getLocation($viewValue)"/>
+
+
                                     <label class="fg-label"
-                                           data-ng-class="{'c-red' : vm.formAddAddressError && !address.name}"
                                            data-ng-hide="address.name">
-                                        Indiquez
-                                        votre adresse complète</label>
+                                        Votre code postal</label>
                                 </div>
                                 <small class="help-block center"
                                        data-ng-show="vm.formAddAddressError && !address.name">
-                                    Merci de saisir le debut de l'adresse puis de choisir dans la liste
+                                    Merci d'indiquer le code postal puis de sélectionner la commune
                                 </small>
 
                             </div>
@@ -279,15 +282,14 @@
                     </p>
 
                     <div
-                        class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float">
-                        <div data-ng-show="vm.newAddrFlag && address.name"
-                             data-ng-class="{'has-error': vm.formAddAddressError && !vm.newAddr.name}">
+                        class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float"
+                        data-ng-if="vm.newAddrFlag && address.name">
+                        <div data-ng-class="{'has-error': vm.formAddAddressError && !vm.newAddr.name}">
                             <div class="fg-line">
 
                                 <input type="text" class="form-control" data-ng-model="vm.newAddr.name">
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formAddAddressError && !vm.newAddr.name}">Nom de
-                                    l'adresse (Maison, Papa, ...)</label>
+                                <label class="fg-label yakaEllipsis">Nom de
+                                    l'adresse (Maison, Appartement, ...)</label>
                             </div>
                             <small class="help-block center"
                                    data-ng-show="vm.formAddAddressError && !vm.newAddr.name">
@@ -302,8 +304,7 @@
                         Continuer
                     </button>
 
-                    <small class="col-xs-12 t-center m-t-15">Indiquez l'adresse complète, seule la ville
-                        sera visible par defaut
+                    <small class="col-xs-12 t-center m-t-15">Seul le code postal sera visible par defaut
                     </small>
                 </div>
 

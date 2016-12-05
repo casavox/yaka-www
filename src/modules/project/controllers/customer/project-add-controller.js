@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function NewProjectController($scope, networkService, $rootScope, $stateParams, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll, $translate, $auth) {
+    function NewProjectController($scope, networkService, $rootScope, $stateParams, $timeout, $localStorage, $filter, $state, Upload, cloudinary, alertMsg, smoothScroll, $translate, $auth, CONFIG, $http) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -70,9 +70,21 @@
         vm.newAddr = {};
         var scrollOptions = {containerId: 'main-scroll-container'};
         $scope.options = {
-            types: ['address'],
+            types: ['(regions)'],
             componentRestrictions: {country: 'fr'}
         };
+
+
+        $scope.getLocation = function(val) {
+            if(val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
+                    return response.data.map(function(item){
+                        return item.postalCode + " " + item.name;
+                    });
+                });
+            }
+        };
+
         $scope.address = {
             name: '',
             place: '',
@@ -347,7 +359,7 @@
                     alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
                 }
                 if (vm.newAddr.name) {
-                    if ($scope.address.components.placeId && !angular.isUndefined($scope.address.components.street) && !angular.isUndefined($scope.address.components.city) && !angular.isUndefined($scope.address.components.countryCode) && $scope.address.components.countryCode == "FR") {
+                    if ($scope.address.name && vm.newAddr.name) {
                         vm.newAddr.address = $scope.address.name;
                         vm.continueAddressFlag = vm.continueAdress = true;
                         vm.error.address.flag = false;
