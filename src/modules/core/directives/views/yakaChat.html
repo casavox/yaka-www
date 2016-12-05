@@ -83,19 +83,20 @@
     </div>
     <div class="clearfix"></div>
 
-    <div class="imgPreview" data-ng-if="newMessage.cloudinaryPublicId">
-        <div class="img-preview-case center">
-            <img width="200" height="200" data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-                 alt=""
-                 data-ng-if="newMessage.cloudinaryPublicId && newMessage.resourceType && newMessage.resourceType == 'image'"/>
-
-            <div class="chatFilePreview ">
-                <i class="zmdi zmdi-file"></i> {{newMessage.filename}}<span data-ng-if="newMessage.format">.{{newMessage.format}}</span><span
-                data-ng-if="extension">.{{extension}}</span>
-            </div>
-            <button class="btn bgm-red btn-icon waves-effect waves-circle"
-                    data-ng-click="newMessage.cloudinaryPublicId = ''">
-                <i class="zmdi zmdi-close"></i>
+    <div class="imgPreview center" data-ng-if="newMessage.cloudinaryPublicId">
+        <div class="chatFilePreview ">
+            <i class="zmdi zmdi-file"></i> {{newMessage.filename}}<span data-ng-if="newMessage.format">.{{newMessage.format}}</span><span
+            data-ng-if="extension">.{{extension}}</span>
+        </div>
+        <img width="200" height="200" data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+             alt=""
+             data-ng-if="newMessage.cloudinaryPublicId && newMessage.resourceType && newMessage.resourceType == 'image'"/>
+        <div class="col-xs-12 m-t-10 m-b-10">
+            <button class="col-xs-12 col-sm-6 wl-95pe btn bgm-red waves-effect btn-xs m-b-5 m-t-5 p-relative"
+                    data-ng-click="newMessage.cloudinaryPublicId = ''">ANNULER
+            </button>
+            <button class="col-xs-12 col-sm-6 wl-95pe btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5 p-relative"
+                    data-ng-click="sendMessage()">ENVOYER
             </button>
         </div>
     </div>

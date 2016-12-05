@@ -55,20 +55,16 @@ yaka-chat .ms-reply textarea {
 }
 
 yaka-chat .imgPreview {
-    width:100%;
+    width: 240px;
     position: absolute;
-    bottom: 54px;
+    bottom: 70px;
     z-index: 1;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
     background: #eee;
-}
-
-yaka-chat .imgPreview button {
-    position: absolute;
-    top: -19px;
-    right: -19px;
+    border: 1px #eee solid !important;
+    border-radius: 5px;
 }
 
 .img-preview-case {
@@ -94,7 +90,7 @@ yaka-chat .chatImg {
 
 @media (max-width: 767px) {
     yaka-chat .imgPreview {
-        bottom: 39px;
+        bottom: 60px;
     }
 
     yaka-chat .ms-item {
@@ -120,8 +116,7 @@ yaka-chat .yakaMessageIcon {
 }
 
 yaka-chat .chatFilePreview {
-    margin-bottom: 20px;
-    margin-top: 25px;
+    margin-bottom: 10px;
     max-width: 200px;
     word-break: break-all;
 }
