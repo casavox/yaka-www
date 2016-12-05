@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService) {
+    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, CONFIG, $http) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -42,8 +42,10 @@
             material: {flag: false, message: ""}
         };
         $scope.options = {
-            types: ['address'],
-            componentRestrictions: {country: 'fr'}
+            types: ['(cities)'],
+            componentRestrictions: {
+                country: 'fr'
+            }
         };
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
@@ -176,6 +178,17 @@
             else {
                 vm.imgTmpPreview = media;
                 vm.imagePreviewFlag = true;
+            }
+        };
+
+        $scope.getLocation = function(val) {
+            if(val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
+                    return response.data.map(function(item){
+                        vm.citySearched = item.postalCode;
+                        return item.postalCode + " " + item.name;
+                    });
+                });
             }
         };
 

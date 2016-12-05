@@ -427,35 +427,19 @@
                      data-ng-class="{'has-error': vm.formProjectPlaceError && !address.name, 'has-filled' : !vm.newAddrFlag}">
                     <div class="fg-line">
                         <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
+
                         <input type="text"
                                class="form-control fg-input input-sm"
-                               vs-google-autocomplete="options"
-                               vs-autocomplete-validator
-                               vs-place="address.place"
-                               vs-place-id="address.components.placeId"
-                               vs-street-number="address.components.streetNumber"
-                               vs-street="address.components.street"
-                               vs-city="address.components.city"
-                               vs-state="address.components.state"
-                               vs-country-short="address.components.countryCode"
-                               vs-country="address.components.country"
-                               vs-post-code="address.components.postCode"
-                               vs-district="address.components.district"
-                               vs-latitude="address.components.location.lat"
-                               vs-longitude="address.components.location.long"
-                               data-ng-model="address.name"
-                               data-ng-disabled="!vm.newAddrFlag"
-                               type="text"
                                name="address"
+                               id="address"
+                               data-ng-disabled="!vm.newAddrFlag"
+                               ng-model="address.name"
+                               data-ng-maxlength="5"
+                               maxlength="5"
                                placeholder=""
-                               id="address">
+                               uib-typeahead="address for address in getLocation($viewValue)"/>
                         <label class="fg-label"
-<<<<<<< HEAD
                                data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer le code postal</label>
-=======
-                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Indiquer
-                            l'adresse</label>
->>>>>>> 4d562106ad61fdd50735a962b15dd96be7145cda
                     </div>
                     <small class="help-block" data-ng-if="!address.name">
                         Veuillez saisir le code postal et sélectionner la ville dans la liste
@@ -463,7 +447,7 @@
                 </div>
 
                 <div class="form-group fg-float m-t-20 m-b-30"
-                     data-ng-class="{'has-error': vm.formProjectPlaceError && !address.name, 'has-filled' : !vm.newAddrFlag}">
+                     data-ng-class="{'has-error': vm.formProjectPlaceError && !address.name}">
                     <div class="fg-line">
                         <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
                         <input type="text"
@@ -482,14 +466,12 @@
                                vs-district="address.components.district"
                                vs-latitude="address.components.location.lat"
                                vs-longitude="address.components.location.long"
-                               data-ng-model="address.name"
-                               data-ng-disabled="!vm.newAddrFlag"
+                               data-ng-model="completeAddress"
                                type="text"
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProjectPlaceError && !address.name}">Adresse complète (optionnel)</label>
+                        <label class="fg-label">Complément d'adresse (optionnel)</label>
                     </div>
                     <small class="help-block" data-ng-if="!address.name">
                         Veuillez saisir l'adresse et la sélectionner dans la liste
