@@ -109,12 +109,10 @@
 
             vm.invitationsReceived = res;
             if (vm.invitationsReceived.length == 0) {
-                if (vm.invitationAccepted || vm.invitationRefused) {
-                    networkService.setContactsRead(function () {
-                        vm.user.newContacts = false;
-                    }, function () {
-                    }, true);
-                }
+                networkService.setContactsRead(function () {
+                    vm.user.newContacts = false;
+                }, function () {
+                }, true);
             }
 
             if (vm.invitationsReceived.length == 1) {
