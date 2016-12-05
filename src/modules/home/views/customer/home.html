@@ -233,8 +233,7 @@
                                        autocomplete="username"
                                        data-ng-model="vm.loginUser.email"
                                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.email}">Email</label>
+                                <label class="fg-label">Email</label>
                             </div>
                             <small class="help-block"
                                    data-ng-show="vm.formLoginError && vm.loginUser.email.length < 1">
@@ -251,14 +250,12 @@
                              data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.password}">
                             <div class="fg-line m-t-20">
                                 <input class="form-control"
-                                       data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.password}"
                                        type="password"
                                        name="password"
                                        autocomplete="current-password"
                                        data-ng-model="vm.loginUser.password"
                                        data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formLoginError && !vm.loginUser.password}">Mot de
+                                <label class="fg-label">Mot de
                                     passe</label>
                                 <small class="help-block"
                                        data-ng-show="vm.formLoginError && !vm.loginUser.password">
@@ -323,8 +320,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.firstName"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.firstName}">Prénom</label>
+                                    <label class="fg-label">Prénom</label>
                                 </div>
                                 <small class="help-block"
                                        data-ng-show="vm.formRegisterError && !vm.newUser.firstName">
@@ -347,8 +343,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.lastName"
                                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.lastName}">Nom</label>
+                                    <label class="fg-label">Nom</label>
                                 </div>
                                 <small class="help-block"
                                        data-ng-show="vm.formRegisterError && !vm.newUser.lastName">
@@ -374,8 +369,7 @@
                                            autocomplete="address-level2"
                                            placeholder=""
                                            id="address">
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.defaultAddress.address}">Ville</label>
+                                    <label class="fg-label">Ville</label>
                                 </div>
                                 <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
                                     Veuillez saisir la ville, puis sélectionnez-la dans la liste
@@ -390,8 +384,7 @@
                                            autocomplete="username"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.email" yaka-input-email>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.email}">Email</label>
+                                    <label class="fg-label">Email</label>
                                 </div>
                                 <small class="help-block"
                                        data-ng-show="vm.formRegisterError && vm.newUser.email.length < 1">
@@ -413,8 +406,7 @@
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.newUser.password"
                                            data-ng-minlength="6">
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.password}">Mot
+                                    <label class="fg-label">Mot
                                         de passe</label>
                                 </div>
                                 <small class="help-block"
@@ -433,8 +425,7 @@
                                 <div class="fg-line">
                                     <input type="password" class="form-control fg-input input-sm"
                                            data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formRegisterError && !vm.passwordConfirm}">Confirmation</label>
+                                    <label class="fg-label">Confirmation</label>
                                 </div>
                                 <small class="help-block"
                                        data-ng-show="vm.formRegisterError && !vm.passwordConfirm">
@@ -449,7 +440,7 @@
                             <div class="col-xs-12 no-padding select m-b-15">
                                 <select class="form-control"
                                         data-ng-model="vm.newUser.referral">
-                                    <option value="" disabled="disabled">Comment nous avez-vous connu ?</option>
+                                    <option value="" disabled="disabled">Comment nous avez-vous connu ? (facultatif)</option>
                                     <option value="REFERRAL_SEARCH">Recherche internet</option>
                                     <option value="REFERRAL_FRIEND">Par connaissance</option>
                                     <option value="REFERRAL_SOCIAL">Réseaux sociaux</option>
@@ -472,7 +463,8 @@
                             </div>
 
 
-                            <div class="col-xs-12 center m-b-0 t-center">
+                            <div class="col-xs-12 center m-b-0 t-center"
+                                 data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">
                                 Cochez la case ci-dessous
                             </div>
                             <div
@@ -541,8 +533,7 @@
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
                                    yaka-input-email>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red': vm.formLostPasswordError && !vm.forgottenPasswordUser.email}">Email</label>
+                            <label class="fg-label">Email</label>
                         </div>
                         <small class="help-block"
                                data-ng-show="vm.formLostPasswordError && vm.forgottenPasswordUser.email.length < 1">

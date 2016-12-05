@@ -93,8 +93,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formInfosError && !vm.profileInfo.gender}">Civilité</label>
+                                            <label class="fg-label">Civilité</label>
                                         </div>
                                         <small class="help-block"
                                                data-ng-show="vm.formInfosError && !vm.profileInfo.gender">Ce champ est
@@ -108,8 +107,7 @@
                                         <div class="fg-line">
                                             <input type="text" name="firstName" class="form-control fg-input"
                                                    data-ng-model="vm.profileInfo.firstName" yaka-input-name>
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formInfosError && !vm.profileInfo.firstName}">Prénom</label>
+                                            <label class="fg-label">Prénom</label>
                                         </div>
                                         <small class="help-block"
                                                data-ng-show="vm.formInfosError && vm.profileInfo.firstName.length < 1">Ce champ est requis
@@ -128,8 +126,7 @@
                                         <div class="fg-line">
                                             <input type="text" name="lastName" class="form-control fg-input"
                                                    data-ng-model="vm.profileInfo.lastName" yaka-input-name>
-                                            <label class="fg-label"
-                                                   data-ng-class="{'c-red': vm.formInfosError && !vm.profileInfo.lastName}">Nom</label>
+                                            <label class="fg-label">Nom</label>
                                         </div>
                                             <small class="help-block" data-ng-show="vm.formInfosError && vm.profileInfo.lastName.length < 1">Ce champ est requis
                                             </small>
@@ -150,8 +147,7 @@
                                     <input type="text" name="phoneNumber"
                                            class="form-control fg-input"
                                            data-ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
-                                    <label class="fg-label fg-label-phone"
-                                           data-ng-class="{'c-red': vm.formInfosError && !vm.profileInfo.phoneNumber}">Téléphone</label>
+                                    <label class="fg-label fg-label-phone">Téléphone</label>
                                 </div>
                                     <small class="help-block" data-ng-show="vm.formInfosError && vm.profileInfo.phoneNumber.length < 1">
                                         Ce champ est requis
@@ -168,8 +164,7 @@
                                 <div class="fg-line">
                                     <input type="text" name="email" class="form-control fg-input"
                                            data-ng-model="vm.profileInfo.email" yaka-input-email>
-                                    <label class="fg-label"
-                                           data-ng-class="{'c-red': vm.formInfosError && !vm.profileInfo.email}">Email</label>
+                                    <label class="fg-label">Email</label>
                                 </div>
                                     <small class="help-block" data-ng-show="vm.formInfosError && vm.profileInfo.email.length < 1">Ce champ est requis</small>
                                 <div data-ng-messages="profileForm.email.$error">
@@ -225,8 +220,7 @@
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
                                        data-ng-model="vm.pwdCurrent">
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formPasswordError && !vm.pwdCurrent}">Mot de passe actuel</label>
+                                <label class="fg-label">Mot de passe actuel</label>
                             </div>
                             <small class="help-block" data-ng-show="vm.formPasswordError && !vm.pwdCurrent">Ce champ est requis</small>
                         </div>
@@ -236,8 +230,7 @@
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
                                        data-ng-model="vm.pwd1">
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.formPasswordError && (vm.pwd1.length < 6 || !vm.pwd1)}">Nouveau mot de passe</label>
+                                <label class="fg-label">Nouveau mot de passe</label>
                             </div>
                             <small class="help-block" data-ng-show="vm.formPasswordError && !vm.pwd1">Ce champ est requis</small>
                         </div>
@@ -247,8 +240,7 @@
                             <div class="fg-line">
                                 <input type="password" class="form-control fg-input"
                                        data-ng-model="vm.pwd2">
-                                <label class="fg-label"
-                                       data-ng-class="{'c-red' : vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2) || vm.formPasswordError && !vm.pwd2}">Confirmation</label>
+                                <label class="fg-label">Confirmation</label>
                             </div>
                             <small class="help-block" data-ng-show="vm.formPasswordError && !vm.pwd2">Ce champ est requis</small>
                             <small class="help-block" data-ng-show="vm.pwd1 && vm.pwd2 && (vm.pwd1 != vm.pwd2)">
@@ -305,7 +297,7 @@
                                                placeholder=""
                                                vs-autocomplete-validator>
                                         <label class="fg-label bold"
-                                               data-ng-class="{'c-red' : !vm.getCommunityByType('PROFILE_CITY').address.address, 'c-green' : vm.getCommunityByType('PROFILE_CITY').address.address}">Adresse
+                                               data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').address.address}">Adresse
                                             principale</label>
                                         <small class="help-block c-red"
                                                data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">
@@ -365,7 +357,7 @@
                                                placeholder=""
                                                vs-autocomplete-validator>
                                         <label class="fg-label"
-                                               data-ng-class="{'c-red' : !vm.getCommunityByType('JOB').address.address && vm.getCommunityByType('JOB').name, 'c-indigo' : vm.getCommunityByType('JOB').address.address}">Ville</label>
+                                               data-ng-class="{'c-indigo' : vm.getCommunityByType('JOB').address.address}">Ville</label>
                                         <small class="help-block c-red"
                                                data-ng-if="!vm.getCommunityByType('JOB').address.address && vm.getCommunityByType('JOB').name">
                                             Renseignez la ville, puis sélectionnez-la dans la liste
@@ -409,8 +401,7 @@
                                                vs-google-autocomplete="vm.autocomplete.cityOptions"
                                                placeholder=""
                                                vs-autocomplete-validator>
-                                        <label class="fg-label"
-                                               data-ng-class="{'c-red' : !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name}">Ville</label>
+                                        <label class="fg-label">Ville</label>
                                         <small class="help-block c-red"
                                                data-ng-if="!vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
                                             Renseignez la ville, puis sélectionnez-la dans la liste

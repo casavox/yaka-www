@@ -497,7 +497,7 @@
                  data-ng-click="vm.closeFriendPopup()"
                  alt=""/>
 
-            <div class="col-xs-12 yakaPopupInvitTitle">
+            <div class="col-xs-12 yakaPopupInvitTitle no-padding">
                 Invitez vos connaissances à faire partie de vos relations CasaVox
             </div>
 
@@ -512,7 +512,7 @@
             </h4>
 
 
-            <div class="form-group fg-float m-t-30"
+            <div class="form-group fg-float m-t-30 m-b-0"
                  data-ng-class="{'has-error': vm.formCustInvitError && !vm.invitCustomer}">
                 <div class="fg-line">
             <textarea class="col-xs-12 form-control m-t-10"
@@ -520,8 +520,7 @@
                       data-auto-size=""
                       data-autosize-on="true"
                       data-ng-model="vm.invitCustomer"></textarea>
-                    <label class="fg-label"
-                           data-ng-class="{'c-red' : vm.formCustInvitError && !vm.invitCustomer}">exemple1@mail.fr,
+                    <label class="fg-label">exemple1@mail.fr,
                         exemple2@mail.fr, ...</label>
                 </div>
                 <small class="help-block"
@@ -535,7 +534,7 @@
                 Vous pouvez ajouter plusieurs emails en les séparant par une virgule.
             </div>
 
-            <div class="form-group fg-float m-t-30">
+            <div class="form-group fg-float m-t-30 m-b-0">
                 <div class="fg-line">
             <textarea class="col-xs-12 form-control m-t-10"
                       rows="1"
@@ -593,8 +592,7 @@
                         <input type="text" name="name" class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.name"
                                data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.name}">Nom</label>
+                        <label class="fg-label">Nom</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formProInvitError && vm.invitPro.name.length < 1">
@@ -613,8 +611,7 @@
                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.email" yaka-input-email>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.email}">Email</label>
+                        <label class="fg-label">Email</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formProInvitError && vm.invitPro.email.length < 1">
@@ -638,9 +635,9 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formProInvitError && !vm.invitPro.address.address}">Ville</label>
-                        <small class="help-block c-red" data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">
+                        <label class="fg-label">Ville</label>
+                        <small class="help-block c-red"
+                               data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">
                             Veuillez saisir la ville, puis sélectionnez-la dans la liste
                         </small>
                     </div>
@@ -703,7 +700,7 @@
                 </div>
             </div>
 
-            <div class="form-group fg-float m-t-30">
+            <div class="form-group fg-float m-t-30 m-b-0">
                 <div class="fg-line">
             <textarea class="col-xs-12 form-control m-t-10"
                       rows="1"

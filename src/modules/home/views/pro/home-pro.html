@@ -216,8 +216,7 @@
                                autocomplete="given-name"
                                data-ng-model="vm.newUser.firstName"
                                data-ng-disabled="vm.isSocialRegister()" yaka-input-name/>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.firstName}">Prénom</label>
+                        <label class="fg-label">Prénom</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formRegisterError && vm.newUser.firstName.length < 1">
@@ -238,8 +237,7 @@
                                autocomplete="family-name"
                                data-ng-model="vm.newUser.lastName"
                                data-ng-disabled="vm.isSocialRegister()" yaka-input-name/>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.lastName}">Nom</label>
+                        <label class="fg-label">Nom</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formRegisterError && vm.newUser.lastName.length < 1">
@@ -261,8 +259,7 @@
                                name="email"
                                autocomplete="username"
                                data-ng-model="vm.newUser.email" yaka-input-email/>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.email}">Email du
+                        <label class="fg-label">Email du
                             représentant</label>
                     </div>
                     <small class="help-block t-left"
@@ -286,8 +283,7 @@
                                name="password"
                                autocomplete="new-password"
                                data-ng-model="vm.newUser.password"/>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formRegisterError && vm.newUser.password.length < 6}">Mot de
+                        <label class="fg-label">Mot de
                             passe</label>
                     </div>
                     <small class="help-block t-left"
@@ -302,20 +298,19 @@
 
 
                 <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
-                     data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6}">
+                     data-ng-class="{'has-error' : vm.formRegisterError && vm.passwordConfirm.length < 6 || vm.formRegisterError && vm.newUser.password != vm.passwordConfirm}">
                     <div class="fg-line">
                         <input class="form-control form-pro-register"
                                type="password"
                                data-ng-model="vm.passwordConfirm"/>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formRegisterError && vm.passwordConfirm.length < 6 }">Confirmation
+                        <label class="fg-label">Confirmation
                             de mot de passe</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-show="vm.formRegisterError && vm.passwordConfirm == 0">
                         Ce champs est requis
                     </small>
-                    <small class="help-block t-left"
+                    <small class="help-block c-red t-left"
                            data-ng-hide="vm.passwordConfirm.length < 1 || vm.newUser.password == vm.passwordConfirm">
                         Les mots de passe ne correspondent pas
                     </small>
@@ -327,8 +322,7 @@
                         <input type="text" name="phoneNumber"
                                class="form-control pro-phone-reg-input"
                                data-ng-model="vm.newUser.professional.phoneNumber" yaka-input-phone>
-                        <label class="fg-label fg-label-phone"
-                               data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.professional.phoneNumber}">Téléphone</label>
+                        <label class="fg-label fg-label-phone">Téléphone</label>
                     </div>
                     <div data-ng-messages="profileForm.phoneNumber.$error">
                         <small class="help-block t-left"
@@ -350,8 +344,7 @@
                             name="address"
                             autocomplete="address-level2"
                             data-ng-model="vm.newUser.professional.company.address.address"/>
-                        <label class="fg-label"
-                               data-ng-class="{'c-red': vm.formRegisterError && !vm.newUser.professional.company.address.address}">Ville
+                        <label class="fg-label">Ville
                             du siège de l'entreprise</label>
                     </div>
                     <small class="help-block t-left"
@@ -459,10 +452,10 @@
                     CONNEXION
                 </div>
 
-                <div class="loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
+                <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
                     Facebook
                 </div>
-                <div class="loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
+                <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
                     Google
                 </div>
 
@@ -478,8 +471,7 @@
                                    data-ng-model="vm.loginUser.email"
                                    data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"
                                    yaka-input-email/>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red' : vm.formProLoginError && !vm.loginUser.email}">Email</label>
+                            <label class="fg-label">Email</label>
                         </div>
                         <div data-ng-messages="loginPro.email.$error">
                             <small class="help-block t-left"
@@ -501,8 +493,7 @@
                                    autocomplete="current-password"
                                    data-ng-model="vm.loginUser.password"
                                    data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red' : vm.formProLoginError && !vm.loginUser.password}">Mot de
+                            <label class="fg-label">Mot de
                                 passe</label>
                         </div>
                         <small class="help-block t-left"
@@ -560,8 +551,7 @@
                                    class="form-control fg-input input-sm"
                                    data-ng-model="vm.forgottenPasswordUser.email"
                                    yaka-input-email>
-                            <label class="fg-label"
-                                   data-ng-class="{'c-red' : vm.formLostPasswordError && !vm.forgottenPasswordUser.email}">Email</label>
+                            <label class="fg-label">Email</label>
                         </div>
                         <div data-ng-messages="recoverPassword.username.$error">
                             <small class="help-block t-left"

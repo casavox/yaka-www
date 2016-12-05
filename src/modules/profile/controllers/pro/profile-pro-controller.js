@@ -477,7 +477,13 @@
                     return "/cgi-bin/search?champs=" + companyName;
                 }
             };
+            if (vm.profile.status == 'REGISTERED') {
+                vm.formError = true;
+                vm.formDescError = true;
+            }
         }
+
+
 
         function errorProfileGET(res) {
             alertMsg.send("Impossible de récupérer le profil", "danger");

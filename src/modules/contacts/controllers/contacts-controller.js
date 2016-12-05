@@ -21,6 +21,7 @@
             $localStorage.invitationId = '';
         }
 
+
         vm.MENU_ALL = "ALL";
         vm.MENU_PROS = "PROS";
         vm.MENU_FRIENDS = "FRIENDS";
@@ -107,7 +108,24 @@
         function succesInvitationsReceivedGET(res) {
 
             vm.invitationsReceived = res;
+            if (vm.invitationsReceived.length == 0) {
+                if (vm.invitationAccepted || vm.invitationRefused) {
+                    networkService.setContactsRead(function () {
+                        vm.user.newContacts = false;
+                    }, function () {
+                    }, true);
+                }
+            }
+
+            if (vm.invitationsReceived.length == 1) {
+                alertMsg.send("Vous avez une invitation en attente", 'orange');
+
+            }
+            if (vm.invitationsReceived.length > 1) {
+                alertMsg.send("Vous avez plusieurs invitations en attente", 'orange');
+            }
         }
+
 
         function errorInvitationsReceivedGET(err) {
             if (err.error != undefined && err.error != "ERROR") {
@@ -242,7 +260,7 @@
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
                 vm.formProInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
@@ -412,6 +430,7 @@
         };
 
         function succesRefuseInvitationPOST(res) {
+            vm.invitationRefused = true;
             reloadContactsAndInvitations();
             alertMsg.send("Invitation refusée avec succes", "success");
         }
@@ -429,6 +448,7 @@
         };
 
         function succesAcceptInvitationPOST(res) {
+            vm.invitationAccepted = true;
             reloadContactsAndInvitations();
             if (vm.bigAlert) {
                 alertMsg.send("Félicitations ! " + res.user.firstName + " " + res.user.lastName + " fait maintenant partie de vos contacts CasaVox", "success");

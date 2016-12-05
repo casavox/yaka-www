@@ -293,7 +293,7 @@
             vm.questions = [];
             vm.end = true;
             swal({
-                title: 'Félicitations, votre projet vient d’être envoyé aux meilleurs Pro autour de vous !',
+                title: 'Félicitations, votre projet vient d’être envoyé aux meilleurs Pros autour de vous !',
                 text: 'Suivez son avancement dans le menu « Mes projets »',
                 type: 'success',
                 confirmButtonColor: '#03A9F4',
