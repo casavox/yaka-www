@@ -1,4 +1,5 @@
 <div class="listview lv-message">
+    <div class="" data-ng-class="{'ChatMaskDuringSend' : newMessage.cloudinaryPublicId}"></div>
 
     <div class="lv-body" yaka-keep-scroll>
         <div class="m-t-10 m-b-10 moreMessagesLoading" data-ng-show="loadingMessages">
@@ -93,7 +94,7 @@
              data-ng-if="newMessage.cloudinaryPublicId && newMessage.resourceType && newMessage.resourceType == 'image'"/>
         <div class="col-xs-12 m-t-10 m-b-10">
             <button class="col-xs-12 col-sm-6 wl-95pe btn bgm-red waves-effect btn-xs m-b-5 m-t-5 p-relative"
-                    data-ng-click="newMessage.cloudinaryPublicId = ''">ANNULER
+                    data-ng-click="cancelSending()">ANNULER
             </button>
             <button class="col-xs-12 col-sm-6 wl-95pe btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5 p-relative"
                     data-ng-click="sendMessage()">ENVOYER
