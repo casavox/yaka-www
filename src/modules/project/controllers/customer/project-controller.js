@@ -42,7 +42,7 @@
             material: {flag: false, message: ""}
         };
         $scope.options = {
-            types: ['(cities)'],
+            types: ['geocode'],
             componentRestrictions: {
                 country: 'fr'
             }
@@ -104,6 +104,7 @@
             };
             networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST, true);
         };
+
 
         function succesProposalAcceptPOST(res) {
             vm.proposal = res;
@@ -181,49 +182,81 @@
             }
         };
 
-        $scope.getLocation = function(val) {
-            if(val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
-                    return response.data.map(function(item){
-                        vm.citySearched = item.postalCode;
+        $scope.getLocation = function (val) {
+            if (val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
+                    return response.data.map(function (item) {
                         return item.postalCode + " " + item.name;
                     });
                 });
             }
         };
 
+        $('.inputAddress').click(function () {
+                vm.pcodeAndCity = "";
+            }
+        );
+
         vm.changeWhere = function () {
+            vm.tmpAddressName = $scope.address.name.split(' ');
+            vm.newAddressAddress = vm.tmpAddressName.slice(1).toString().replace(/,/g, " ");
+            vm.postalCode = vm.tmpAddressName[0];
+            vm.projectTmp.address.postalCode = vm.postalCode;
+            vm.projectTmp.address.route = vm.route.toString();
             if (vm.myAddress == "new") {
-                if (!vm.newAddr.name || !$scope.address.name) {
+                if (!vm.newAddr.name || !vm.pcodeAndCity) {
                     vm.formProjectPlaceError = true;
                     alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
                 } else {
+                    if (vm.projectTmp.address.route) {
+                        vm.projectTmp.address.address = vm.projectTmp.address.route + ", " + vm.pcodeAndCity + ", France";
+                    } else {
+                        vm.projectTmp.address.address = vm.pcodeAndCity + ", France";
+                    }
                     vm.projectTmp.address.name = vm.newAddr.name;
-                    vm.projectTmp.address.address = $scope.address.name;
-                    vm.projectTmp.address.streetNumber = $scope.address.components.streetNumber;
-                    vm.projectTmp.address.route = $scope.address.components.street;
-                    vm.projectTmp.address.postalCode = $scope.address.components.postCode;
                     vm.whereFlag = false;
                 }
             } else {
-                for (var i = 0; i < vm.user.addresses.length; i++) {
-                    if (vm.user.addresses[i].address == vm.myAddress) {
-                        vm.projectTmp.address.name = vm.user.addresses[i].name;
-                        vm.projectTmp.address.address = vm.myAddress;
-                        vm.whereFlag = false;
-                        break;
+                if (!vm.pcodeAndCity) {
+                    vm.formProjectPlaceError = true;
+                    alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+                } else {
+                    for (var i = 0; i < vm.user.addresses.length; i++) {
+                        if (vm.user.addresses[i].address == vm.myAddress) {
+                            vm.projectTmp.address.name = vm.user.addresses[i].name;
+                            if (vm.projectTmp.address.route) {
+                                vm.projectTmp.address.address = vm.projectTmp.address.route + ", " + vm.pcodeAndCity + ", France";
+                            } else {
+                                vm.projectTmp.address.address = vm.pcodeAndCity + ", France";
+                            }
+                            vm.verifAddress = vm.projectTmp.address.address;
+                            vm.whereFlag = false;
+                            break;
+                        }
                     }
                 }
             }
         };
 
         vm.setAddress = function () {
+            vm.formProjectPlaceError = false;
             if (vm.myAddress == "new") {
                 vm.newAddrFlag = true;
-                $scope.address.name = "";
+                vm.pcodeAndCity = "";
+                vm.route = "";
                 vm.continueAddress = false;
             } else {
-                $scope.address.name = vm.myAddress;
+                vm.selectExistingAddress = vm.myAddress.split(", ");
+                if (vm.selectExistingAddress.length == 3) {
+                    vm.pcodeAndCity = vm.selectExistingAddress.slice(1, 2);
+                } else {
+                    vm.pcodeAndCity = vm.selectExistingAddress.slice(0, 1);
+                }
+                if (vm.selectExistingAddress.length == 3) {
+                    vm.route = vm.selectExistingAddress.slice(0, 1);
+                } else {
+                    vm.route = "";
+                }
                 vm.continueAddress = true;
                 vm.newAddrFlag = false;
                 vm.newAddr.name = "";
@@ -246,6 +279,14 @@
         }
 
         vm.editWhere = function () {
+            vm.formProjectPlaceError = false;
+            vm.pcodeAndCity = vm.project.address.postalCode + " " + vm.project.address.locality;
+            vm.selectExistingAddress = vm.projectTmp.address.address.split(", ");
+            if (vm.selectExistingAddress.length == 3) {
+                vm.route = vm.selectExistingAddress.slice(0, 1);
+            } else {
+                vm.route = "";
+            }
             vm.whereFlag = true;
         };
 
@@ -296,18 +337,33 @@
         };
 
         vm.update = function () {
+            console.log(vm.projectTmp.address.address);
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
+            console.log(vm.projectTmp);
             networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT, true);
         };
 
         function succesProfilePUT(res) {
+            console.log(vm.projectTmp.address.address);
             vm.cancel();
-            alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.profileGET(succesProfileGET, errorProfileGET, true);
+            if (vm.verifAddress) {
+                console.log(vm.verifAddress);
+                console.log(vm.projectTmp.address.address);
+                if (vm.verifAddress.toLowerCase() ==  vm.projectTmp.address.address.toLowerCase()) {
+                    alertMsg.send("Le projet à bien été modifié", "success");
+                    networkService.profileGET(succesProfileGET, errorProfileGET, true);
+
+                } else {
+                    alertMsg.send("Nous avons corrigé votre adresse", "danger");
+                }
+            } else {
+                alertMsg.send("Le projet à bien été modifié", "success");
+                networkService.profileGET(succesProfileGET, errorProfileGET, true);
+            }
         }
 
         function errorProfilePUT() {
@@ -407,6 +463,9 @@
                 };
             }
             vm.project = res;
+
+            console.log(vm.project.address);
+
 
             $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
@@ -514,7 +573,7 @@
             } else {
                 swal({
                     title: "Êtes-vous sûr ?",
-                    text: "Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
+                    text: "Si des propositions vous ont déjà été faites, les Pros concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Oui, mettre à jour mon projet",

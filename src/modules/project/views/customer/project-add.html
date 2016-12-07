@@ -276,13 +276,13 @@
                         </div>
                     </div>
 
-                    <p class="col-xs-12 text-center m-t-30" data-ng-show="vm.newAddrFlag && address.name">
+                    <p class="col-xs-12 text-center m-t-30" data-ng-show="vm.newAddrFlag && (address.name.length > 5)">
                         Saisir un nom pour cette adresse :
                     </p>
 
                     <div
                         class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float"
-                        data-ng-if="vm.newAddrFlag && address.name">
+                        data-ng-if="vm.newAddrFlag && (address.name.length > 5)">
                         <div data-ng-class="{'has-error': vm.formAddAddressError && !vm.newAddr.name}">
                             <div class="fg-line">
 
