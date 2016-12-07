@@ -337,23 +337,18 @@
         };
 
         vm.update = function () {
-            console.log(vm.projectTmp.address.address);
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
-            console.log(vm.projectTmp);
             networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT, true);
         };
 
         function succesProfilePUT(res) {
-            console.log(vm.projectTmp.address.address);
             vm.cancel();
             succesProjectGET(res);
             vm.newAddrFlag = false;
             if (vm.verifAddress) {
-                console.log(vm.verifAddress);
-                console.log(vm.projectTmp.address.address);
-                if (vm.verifAddress.toLowerCase() ==  vm.projectTmp.address.address.toLowerCase()) {
+                if (vm.verifAddress.toLowerCase() == vm.projectTmp.address.address.toLowerCase()) {
                     alertMsg.send("Le projet à bien été modifié", "success");
                     networkService.profileGET(succesProfileGET, errorProfileGET, true);
 
@@ -463,10 +458,6 @@
                 };
             }
             vm.project = res;
-
-            console.log(vm.project.address);
-
-
             $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
@@ -499,7 +490,6 @@
             }
 
             if (vm.project.unreadMessagesSupport) {
-
                 setTimeout(function () {
                     vm.showChat = true;
                     vm.scrollBottom = 1;
