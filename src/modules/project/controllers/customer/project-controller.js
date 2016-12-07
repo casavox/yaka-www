@@ -441,6 +441,13 @@
         };
 
         function succesProjectGET(res) {
+            if ($stateParams.incompleteAddress) {
+                setTimeout(function () {
+                    vm.edit();
+                    vm.editWhere();
+                    vm.incompleteAddr = true;
+                }, 500);
+            }
             if (res.address.latitude && res.address.longitude) {
                 $scope.map.center = {
                     latitude: res.address.latitude,
@@ -583,12 +590,12 @@
         vm.scrollBottom = 0;
 
         if ($stateParams.chat) {
-
             setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
         }
+
 
         vm.reinitializeNewAddress = function () {
             vm.whereFlag = false;

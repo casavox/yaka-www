@@ -444,7 +444,7 @@
                 </div>
 
                 <div class="form-group fg-float m-t-20 m-b-30"
-                     data-ng-class="{'has-error': vm.formProjectPlaceError && !address.name}">
+                     data-ng-class="{'has-error': (vm.formProjectPlaceError && !address.name) || (vm.incompleteAddr && !vm.route)}">
                     <div class="fg-line">
                         <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
                         <input type="text"
@@ -454,8 +454,11 @@
                                name="address"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Numéro ET nom de la rue (optionnel)</label>
+                        <label class="fg-label">Complément d'adresse (optionnel)</label>
                     </div>
+                    <small class="help-block" data-ng-if="vm.incompleteAddr && !vm.route">
+                        Merci de compléter votre adresse
+                    </small>
                 </div>
 
                 <div class="t-right">
