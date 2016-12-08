@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, CONFIG, $http) {
+    function ProjectController($scope, $localStorage, $state, $location, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, CONFIG, $http) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -290,6 +290,8 @@
             vm.whereFlag = true;
         };
 
+
+
         vm.changeWhen = function () {
             vm.projectTmp.desiredDatePeriod = vm.dateType;
             if (vm.dateType == "SPECIFIC") {
@@ -410,6 +412,7 @@
         vm.edit = function () {
             vm.editFlag = true;
             $rootScope.editMode = true;
+            wherePopupDisplayed = true;
         };
 
         vm.getTags = function () {
@@ -441,13 +444,6 @@
         };
 
         function succesProjectGET(res) {
-            if ($stateParams.incompleteAddress) {
-                setTimeout(function () {
-                    vm.edit();
-                    vm.editWhere();
-                    vm.incompleteAddr = true;
-                }, 500);
-            }
             if (res.address.latitude && res.address.longitude) {
                 $scope.map.center = {
                     latitude: res.address.latitude,
@@ -502,7 +498,14 @@
                     vm.scrollBottom = 1;
                 }, 500);
             }
+            if ($stateParams.incompleteAddress && !wherePopupDisplayed) {
+                vm.edit();
+                vm.editWhere();
+                vm.incompleteAddr = true;
+            }
         }
+
+        var wherePopupDisplayed = false;
 
         function errorProjectGET(res) {
             alertMsg.send("Impossible de récupérer ce projet, réessayez puis contactez le support si besoin", "danger");
