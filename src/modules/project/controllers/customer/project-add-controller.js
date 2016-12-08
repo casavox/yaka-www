@@ -56,7 +56,7 @@
             minDate: vm.dt,
             maxDate: vm.maxDate,
             showWeeks: false
-        };35841911
+        };
 
         var d = new Date();
         $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
