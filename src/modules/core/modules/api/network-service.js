@@ -153,6 +153,9 @@
             projectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/' + data, ignoreLoading).success(success).error(error)
             },
+            localitiesGET : function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/localities/' + data, ignoreLoading).success(success).error(error)
+            },
             skillsGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/pro/availableactivities', ignoreLoading).success(success).error(error)
             },

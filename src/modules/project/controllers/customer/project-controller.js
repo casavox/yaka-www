@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService) {
+    function ProjectController($scope, $localStorage, $state, $location, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, CONFIG, $http) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -42,8 +42,10 @@
             material: {flag: false, message: ""}
         };
         $scope.options = {
-            types: ['address'],
-            componentRestrictions: {country: 'fr'}
+            types: ['geocode'],
+            componentRestrictions: {
+                country: 'fr'
+            }
         };
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
@@ -102,6 +104,7 @@
             };
             networkService.proposalAcceptPOST(formData, succesProposalAcceptPOST, errorProposalAcceptPOST, true);
         };
+
 
         function succesProposalAcceptPOST(res) {
             vm.proposal = res;
@@ -179,38 +182,81 @@
             }
         };
 
+        $scope.getLocation = function (val) {
+            if (val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
+                    return response.data.map(function (item) {
+                        return item.postalCode + " " + item.name;
+                    });
+                });
+            }
+        };
+
+        $('.inputAddress').click(function () {
+                vm.pcodeAndCity = "";
+            }
+        );
+
         vm.changeWhere = function () {
+            vm.tmpAddressName = $scope.address.name.split(' ');
+            vm.newAddressAddress = vm.tmpAddressName.slice(1).toString().replace(/,/g, " ");
+            vm.postalCode = vm.tmpAddressName[0];
+            vm.projectTmp.address.postalCode = vm.postalCode;
+            vm.projectTmp.address.route = vm.route.toString();
             if (vm.myAddress == "new") {
-                if (!vm.newAddr.name || !$scope.address.name) {
+                if (!vm.newAddr.name || !vm.pcodeAndCity) {
                     vm.formProjectPlaceError = true;
                     alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
                 } else {
+                    if (vm.projectTmp.address.route) {
+                        vm.projectTmp.address.address = vm.projectTmp.address.route + ", " + vm.pcodeAndCity + ", France";
+                    } else {
+                        vm.projectTmp.address.address = vm.pcodeAndCity + ", France";
+                    }
                     vm.projectTmp.address.name = vm.newAddr.name;
-                    vm.projectTmp.address.address = $scope.address.name;
-                    vm.projectTmp.address.streetNumber = $scope.address.components.streetNumber;
-                    vm.projectTmp.address.route = $scope.address.components.street;
-                    vm.projectTmp.address.postalCode = $scope.address.components.postCode;
                     vm.whereFlag = false;
                 }
             } else {
-                for (var i = 0; i < vm.user.addresses.length; i++) {
-                    if (vm.user.addresses[i].address == vm.myAddress) {
-                        vm.projectTmp.address.name = vm.user.addresses[i].name;
-                        vm.projectTmp.address.address = vm.myAddress;
-                        vm.whereFlag = false;
-                        break;
+                if (!vm.pcodeAndCity) {
+                    vm.formProjectPlaceError = true;
+                    alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+                } else {
+                    for (var i = 0; i < vm.user.addresses.length; i++) {
+                        if (vm.user.addresses[i].address == vm.myAddress) {
+                            vm.projectTmp.address.name = vm.user.addresses[i].name;
+                            if (vm.projectTmp.address.route) {
+                                vm.projectTmp.address.address = vm.projectTmp.address.route + ", " + vm.pcodeAndCity + ", France";
+                            } else {
+                                vm.projectTmp.address.address = vm.pcodeAndCity + ", France";
+                            }
+                            vm.verifAddress = vm.projectTmp.address.address;
+                            vm.whereFlag = false;
+                            break;
+                        }
                     }
                 }
             }
         };
 
         vm.setAddress = function () {
+            vm.formProjectPlaceError = false;
             if (vm.myAddress == "new") {
                 vm.newAddrFlag = true;
-                $scope.address.name = "";
+                vm.pcodeAndCity = "";
+                vm.route = "";
                 vm.continueAddress = false;
             } else {
-                $scope.address.name = vm.myAddress;
+                vm.selectExistingAddress = vm.myAddress.split(", ");
+                if (vm.selectExistingAddress.length == 3) {
+                    vm.pcodeAndCity = vm.selectExistingAddress.slice(1, 2);
+                } else {
+                    vm.pcodeAndCity = vm.selectExistingAddress.slice(0, 1);
+                }
+                if (vm.selectExistingAddress.length == 3) {
+                    vm.route = vm.selectExistingAddress.slice(0, 1);
+                } else {
+                    vm.route = "";
+                }
                 vm.continueAddress = true;
                 vm.newAddrFlag = false;
                 vm.newAddr.name = "";
@@ -233,8 +279,18 @@
         }
 
         vm.editWhere = function () {
+            vm.formProjectPlaceError = false;
+            vm.pcodeAndCity = vm.project.address.postalCode + " " + vm.project.address.locality;
+            vm.selectExistingAddress = vm.projectTmp.address.address.split(", ");
+            if (vm.selectExistingAddress.length == 3) {
+                vm.route = vm.selectExistingAddress.slice(0, 1);
+            } else {
+                vm.route = "";
+            }
             vm.whereFlag = true;
         };
+
+
 
         vm.changeWhen = function () {
             vm.projectTmp.desiredDatePeriod = vm.dateType;
@@ -291,10 +347,20 @@
 
         function succesProfilePUT(res) {
             vm.cancel();
-            alertMsg.send("Le projet à bien été modifié", "success");
             succesProjectGET(res);
             vm.newAddrFlag = false;
-            networkService.profileGET(succesProfileGET, errorProfileGET, true);
+            if (vm.verifAddress) {
+                if (vm.verifAddress.toLowerCase() == vm.projectTmp.address.address.toLowerCase()) {
+                    alertMsg.send("Le projet à bien été modifié", "success");
+                    networkService.profileGET(succesProfileGET, errorProfileGET, true);
+
+                } else {
+                    alertMsg.send("Nous avons corrigé votre adresse", "danger");
+                }
+            } else {
+                alertMsg.send("Le projet à bien été modifié", "success");
+                networkService.profileGET(succesProfileGET, errorProfileGET, true);
+            }
         }
 
         function errorProfilePUT() {
@@ -346,6 +412,7 @@
         vm.edit = function () {
             vm.editFlag = true;
             $rootScope.editMode = true;
+            wherePopupDisplayed = true;
         };
 
         vm.getTags = function () {
@@ -394,7 +461,6 @@
                 };
             }
             vm.project = res;
-
             $rootScope.pageName = vm.project.title;
             vm.projectTmp = angular.copy(vm.project);
             vm.dateType = vm.projectTmp.desiredDatePeriod;
@@ -427,13 +493,19 @@
             }
 
             if (vm.project.unreadMessagesSupport) {
-
                 setTimeout(function () {
                     vm.showChat = true;
                     vm.scrollBottom = 1;
                 }, 500);
             }
+            if ($stateParams.incompleteAddress && !wherePopupDisplayed) {
+                vm.edit();
+                vm.editWhere();
+                vm.incompleteAddr = true;
+            }
         }
+
+        var wherePopupDisplayed = false;
 
         function errorProjectGET(res) {
             alertMsg.send("Impossible de récupérer ce projet, réessayez puis contactez le support si besoin", "danger");
@@ -501,7 +573,7 @@
             } else {
                 swal({
                     title: "Êtes-vous sûr ?",
-                    text: "Si des propositions vous ont déjà été faites, les Pro concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
+                    text: "Si des propositions vous ont déjà été faites, les Pros concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
                     type: "warning",
                     confirmButtonColor: "#f44336",
                     confirmButtonText: "Oui, mettre à jour mon projet",
@@ -521,12 +593,12 @@
         vm.scrollBottom = 0;
 
         if ($stateParams.chat) {
-
             setTimeout(function () {
                 vm.showChat = true;
                 vm.scrollBottom = 1;
             }, 500);
         }
+
 
         vm.reinitializeNewAddress = function () {
             vm.whereFlag = false;
