@@ -240,6 +240,10 @@ angular.module('Yaka')
                     });
                 };
 
+                scope.cancelSending = function() {
+                    scope.newMessage.cloudinaryPublicId = '';
+                };
+
                 attr.$observe('chatId', chatIdChanged);
                 attr.$observe('proposalStatus', function () {
                     if (scope.userMe != 'admin' &&
