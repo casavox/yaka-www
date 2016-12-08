@@ -235,7 +235,9 @@
         vm.googlePreRegister = function () {
             vm.socialNetwork = "Google";
             $auth.authenticate('googleRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -250,7 +252,9 @@
         vm.facebookPreRegister = function () {
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
