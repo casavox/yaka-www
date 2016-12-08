@@ -14,7 +14,7 @@
             .state('concours', {
                 url: "/concours",
                 onEnter: function ($window) {
-                    $window.open('http://res.cloudinary.com/yaka/image/upload/v1481106960/casavox/Jeu_Concours_-_Pose_300_%C3%A0_Gagner_D%C3%A9c2016.pdf', '_self');
+                    $window.open('http://res.cloudinary.com/yaka/image/upload/v1481207905/casavox/Reglement_Concours_Dec2016.pdf', '_self');
                 }
             })
 
