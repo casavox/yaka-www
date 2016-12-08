@@ -279,6 +279,7 @@
         }
 
         vm.editWhere = function () {
+            vm.alertCorrectedAddress = false;
             vm.formProjectPlaceError = false;
             vm.pcodeAndCity = vm.project.address.postalCode + " " + vm.project.address.locality;
             vm.selectExistingAddress = vm.projectTmp.address.address.split(", ");
@@ -355,7 +356,8 @@
                     networkService.profileGET(succesProfileGET, errorProfileGET, true);
 
                 } else {
-                    alertMsg.send("Nous avons corrigé votre adresse", "danger");
+                    vm.alertCorrectedAddress = true;
+                    alertMsg.send("Votre adresse a été corrigée et enregistrée", "orange");
                 }
             } else {
                 alertMsg.send("Le projet à bien été modifié", "success");
@@ -369,6 +371,7 @@
         }
 
         vm.editWhen = function () {
+            vm.alertCorrectedAddress = false;
             vm.whenFlag = true;
         };
 
