@@ -151,7 +151,9 @@
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googleProRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -165,7 +167,9 @@
 
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebookProRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -227,7 +231,7 @@
             smoothScroll(element, scrollOptions);
         };
 
-        vm.deleteErrorIfSelected = function() {
+        vm.deleteErrorIfSelected = function () {
             $('button.dropdown-toggle.btn.btn-default').removeClass('c-red');
         };
 
