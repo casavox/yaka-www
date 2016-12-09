@@ -151,6 +151,16 @@
                                         <span data-ng-show="vm.data.contactsNumber < 2">Pro</span>
                                         <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
                                     </div>
+                                    <div class="no-padding"
+                                         data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
+                                        <a class="pointer underline" data-ui-sref="contacts"><b>
+                                            {{vm.data.incomingInvitationNumber}}
+                                            <span
+                                                data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
+                                            <span
+                                                data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span></b>
+                                        </a>
+                                    </div>
                                     <div class="c-lightblue pointer"
                                          data-ui-sref="contacts">Développer mon réseau +
                                     </div>
