@@ -313,27 +313,26 @@
                                             </div>
 
                                             <div
-                                                class="col-xs-12 no-padding pmo-stat proposalProName littleMargin clearfix">
-                                                <h2>
-                                                    <casa-name-and-contact user="vm.project.user"
-                                                                           icon-color="c-white"></casa-name-and-contact>
-                                                </h2>
+                                                class="no-padding t-center pmo-stat proposalProName littleMargin clearfix">
+                                                <casa-name-and-contact class="f-bold f-s-15"
+                                                                       user="vm.project.user"
+                                                                       icon-color="c-white"></casa-name-and-contact>
 
                                                 <div data-ng-if="vm.proposal.status == 'START'">
-                                                    <div class="proNetworkProjectButtonLabel t-center m-t-15">
+                                                    <div class="proNetworkProjectButtonLabel m-t-15">
                                                         Échange en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="col-xs-offset-1 col-xs-10 btn btn-xs btn-danger btn-icon-text waves-effect cancelProposal">
+                                                            class="btn btn-xs btn-danger btn-icon-text waves-effect cancelProposal">
                                                         <i class="zmdi zmdi-close"></i> Abandonner l'offre
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
-                                                    <div class="proNetworkProjectButtonLabel t-center m-t-15">
+                                                    <div class="proNetworkProjectButtonLabel m-t-15">
                                                         Chantier en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="col-xs-offset-1 col-xs-10 btn btn-danger btn-icon-text waves-effect cancelProposal">
+                                                            class="btn btn-danger btn-icon-text waves-effect cancelProposal">
                                                         <i class="zmdi zmdi-close"></i> Annuler chantier
                                                     </button>
                                                 </div>
@@ -580,7 +579,8 @@
                                                               uib-tooltip="Le Pro doit fournir les matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
+                                                        <span
+                                                            data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>
