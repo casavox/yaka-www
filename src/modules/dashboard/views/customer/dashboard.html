@@ -263,14 +263,15 @@
             </div>
 
             <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
-                <div class="card-header dashboardCommunityHeader">
+                <div class="card-header bgm-blue">
 
-                    <i class="zmdi zmdi-hc-3x zmdi-accounts c-black d-i-b hidden-xs"></i>
+                    <i class="zmdi zmdi-hc-3x zmdi-pin-account c-white d-i-b hidden-xs"></i>
 
-                    <h2 class="d-i-b">
-                        Actualité de la communauté
-                        <small class="subtitle-color-forced">
-                            Entraide entre particuliers, recommandez mes Pros préférés
+                    <h2 class="m-l-10 d-i-b">
+                        Recommander un Pro
+                        <small>
+                            Gagnez 10€ en recommandant vos meilleurs Pros <i
+                            class="zmdi zmdi-help zmdi-hc-lg pointer c-white" data-ng-click="vm.recommandInfos()"></i>
                         </small>
                     </h2>
                 </div>
@@ -303,6 +304,9 @@
                                                 community="community"
                                                 ng-repeat="community in project.user.communities">
                             </casa-community-tag>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
+                            <button class="btn btn-sm pull-right c-white bgm-lightblue">JE CONNAIS {{vm.displayActivity(project.mainActivity.code)}}</button>
                         </div>
                         <hr class="dash-board-actu-hr">
                     </div>
