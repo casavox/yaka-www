@@ -99,7 +99,7 @@
 
         vm.recommandInfos = function () {
             swal({
-                title: 'CLIQUEZ SUR "JE CONNAIS UN..."',
+                title: 'CLIQUEZ SUR "JE CONNAIS..."',
                 text: '\nC\'est le bouche-à-oreille CasaVox !\nRecommandez directement vos artisans préférés à votre entourage et gagnez 10€ de chèques-cadeaux à chaque fois que le client suit votre recommandation.\n\nInvitez vos meilleurs Pros directement depuis le menu "Mon entourage".\nConsultez les détails dans les CGU.',
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "FERMER"
