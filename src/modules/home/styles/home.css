@@ -10,8 +10,34 @@
     width: 100% !important;
 }
 
-.homeSection {
+.homepage-background-color > hr {
+    width: 80%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
+.LM-section {
+    transform: translateY(2px);
+}
+
+.LM-info {
+    color: white;
+    font-weight: bold !important;
+    font-size: 18px !important;
+    margin-bottom: 30px;
+    display: inline-block;
+    text-align: left !important;
+    text-transform: none !important;
+}
+
+.LM-logo {
+    background-color: white;
+    width: 100px;
+    height: 72px;
+    margin-top: -25px;
+    margin-left: 60px;
+    box-shadow: 1px 1px 2px 1px black;
+    padding: 5px;
 }
 
 .warningText {
@@ -798,7 +824,6 @@ body:after {
         margin-top: 6px;
     }
 
-
     .homeSection5FooterLeft {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -887,6 +912,7 @@ body:after {
     .homeSection1Title {
         font-size: 19px;
     }
+
     .homeSection1ProLink {
         margin-top: 35px;
     }
@@ -939,7 +965,7 @@ body:after {
 }
 
 .activeClass {
-    color: black!important;
+    color: black !important;
     cursor: default !important;
 }
 
@@ -1047,8 +1073,6 @@ body:after {
     background-color: orange;
     color: white !important;
 }
-
-
 
 .button-pro-access {
     float: right;
@@ -1360,7 +1384,7 @@ body:after {
     }
 
     .subtext-circle {
-        width:100%
+        width: 100%
     }
 
     .circle-1-m-b {
@@ -1377,6 +1401,27 @@ body:after {
 
     .service-mobile-bottom {
         padding-bottom: 15px;
+    }
+
+    .homepage-background-color > hr {
+        width: 90%;
+    }
+
+    .LM-info {
+        width: 100%;
+        text-align: center !important;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .LM-logo {
+        width: 100px;
+        height: 72px;
+        padding: 5px;
+        margin-top: -10px;
+        margin-bottom: 15px;
+        margin-left: 0px;
+        box-shadow: 1px 1px 2px 1px black;
     }
 
 }
