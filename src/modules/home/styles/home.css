@@ -21,7 +21,7 @@
 }
 
 .LM-info {
-    width: calc(100% - 200px);
+    width: calc(100% - 400px);
     color: white;
     font-weight: bold !important;
     font-size: 18px !important;
@@ -35,10 +35,10 @@
     background-color: white;
     width: 100px;
     height: 60px;
-    margin-top: -59px;
-    margin-left: 0px;
-    box-shadow: 1px 1px 2px 1px black;
-    padding: 5px
+    margin-top: -64px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 7px 0px black;
+    padding: 3px
 }
 
 .warningText {
@@ -1327,6 +1327,24 @@ body:after {
     }
 }
 
+@media (min-width: 1404px) {
+    .LM-logo {
+        background-color: white;
+        width: 100px;
+        height: 60px;
+        margin-top: -80px;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 909px) {
+    .LM-logo {
+        background-color: white;
+        width: 100px;
+        height: 60px;
+        margin-top: -80px;
+    }
+}
+
 @media (max-width: 767px) {
     .navbar-casavox {
         font-size: 21px;
@@ -1418,7 +1436,7 @@ body:after {
     .LM-logo {
         width: 100px;
         height: 60px;
-        padding: 5px;
+        padding: 3px;
         margin-top: -10px;
         margin-bottom: 15px;
         margin-left: 0px;

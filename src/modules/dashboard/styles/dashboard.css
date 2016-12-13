@@ -11,6 +11,10 @@
     box-shadow: none !important;
 }
 
+.button-recommend {
+    float: right;
+}
+
 .p-l-85 {
     padding-left: 85px !important;
 }
@@ -222,6 +226,10 @@ ul.yaka-chips li {
 }
 
 @media (max-width: 767px) {
+    .button-recommend {
+        float: none;
+    }
+
     .dashboard-avatar {
         float: left;
     }
@@ -235,6 +243,12 @@ ul.yaka-chips li {
         padding: 0px 3px 0px 57px !important;
         clear: both !important;
         float: none !important;
+    }
+
+    .recommend-row {
+        margin-top: 30px !important;
+        padding: 0px !important;
+        text-align: center;
     }
 
     .actu-community-tag-xs {

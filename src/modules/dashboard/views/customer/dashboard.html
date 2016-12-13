@@ -263,10 +263,8 @@
             </div>
 
             <div class="card" data-ng-if="vm.projectsToRecommend && vm.projectsToRecommend.length > 0">
-                <div class="card-header bgm-blue">
-
+                <div class="card-header bgm-darkblue">
                     <i class="zmdi zmdi-hc-3x zmdi-pin-account c-white d-i-b hidden-xs"></i>
-
                     <h2 class="m-l-10 d-i-b">
                         Recommander un Pro
                         <small>
@@ -305,8 +303,8 @@
                                                 ng-repeat="community in project.user.communities">
                             </casa-community-tag>
                         </div>
-                        <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
-                            <button class="btn btn-sm pull-right c-white bgm-lightblue">JE CONNAIS {{vm.displayActivity(project.mainActivity.code)}}</button>
+                        <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 recommend-row pull-right no-padding actu-communities-tag">
+                            <button class="btn btn-sm button-recommend c-white bgm-lightblue">JE CONNAIS {{vm.displayActivity(project.mainActivity.code)}}</button>
                         </div>
                         <hr class="dash-board-actu-hr">
                     </div>
