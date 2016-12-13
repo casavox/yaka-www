@@ -148,7 +148,9 @@
         };
 
         vm.showTopViewNoContact = function () {
-            return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
+            if (vm.data) {
+                return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
+            }
         };
 
         vm.showTopViewRecommendation = function () {
