@@ -1332,7 +1332,7 @@ body:after {
         background-color: white;
         width: 100px;
         height: 60px;
-        margin-top: -80px;
+        margin-top: -40px;
     }
 }
 
@@ -1440,7 +1440,7 @@ body:after {
         margin-top: -10px;
         margin-bottom: 15px;
         margin-left: 0px;
-        box-shadow: 1px 1px 2px 1px black;
+        box-shadow: 0px 0px 7px 0px black;
     }
 
 }
