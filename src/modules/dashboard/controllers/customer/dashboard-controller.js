@@ -121,7 +121,7 @@
                     return "UN CHAUFFAGISTE";
                     break;
                 case "CAR_4000":
-                    return "UN MENUISIER/VITRIER";
+                    return "UN MENUISIER";
                     break;
                 case "LOC_5000":
                     return "UN SERRURIER";
