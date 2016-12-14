@@ -5249,6 +5249,10 @@ div.recaptcha.mobile > div {
     background-color: #F8F8F8 !important;
 }
 
+.bgm-darkblue {
+    background-color: #1565C0 !important;
+}
+
 .d-i-b {
     display: inline-block;
 }
