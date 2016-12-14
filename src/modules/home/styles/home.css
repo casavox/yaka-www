@@ -11,7 +11,7 @@
 }
 
 .homepage-background-color > hr {
-    width: 80%;
+    width: 100%;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -21,7 +21,7 @@
 }
 
 .LM-info {
-    width: calc(100% - 400px);
+    width: calc(100% - 200px);
     color: white;
     font-weight: bold !important;
     font-size: 18px !important;
