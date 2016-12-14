@@ -547,7 +547,9 @@
                                             data-ng-if="vm.projectTmp.user.phoneNumber">
                                             <dt class="yakaDisableEllipsis">Téléphone</dt>
                                             <dd>
+                                                <a href="tel:{{vm.projectTmp.user.phoneNumber}}">
                                                 {{vm.projectTmp.user.phoneNumber}}
+                                                </a>
                                             </dd>
                                         </dl>
                                     </div>
@@ -581,7 +583,8 @@
                                                               uib-tooltip="Le Pro doit fournir les matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
+                                                        <span
+                                                            data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>
