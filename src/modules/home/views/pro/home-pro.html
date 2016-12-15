@@ -338,18 +338,20 @@
                 <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
                      data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.company.address.address}">
                     <div class="fg-line">
-                        <input
-                            vs-google-autocomplete="vm.autocomplete.options"
-                            vs-autocomplete-validator class="form-control form-pro-register"
-                            name="address"
-                            autocomplete="address-level2"
-                            data-ng-model="vm.newUser.professional.company.address.address"/>
-                        <label class="fg-label">Ville
-                            du siège de l'entreprise</label>
+                        <input type="text"
+                               class="form-control form-pro-register"
+                               name="address"
+                               id="address"
+                               ng-model="vm.newUser.professional.company.address.address"
+                               data-ng-maxlength="5"
+                               maxlength="5"
+                               placeholder=""
+                               uib-typeahead="address for address in getLocation($viewValue)"/>
+                        <label class="fg-label">Code postal de l'entreprise</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-if="vm.formRegisterError && !vm.newUser.professional.company.address.address">
-                        Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                        Merci d'indiquer le code postal puis de sélectionner la commune
                     </small>
                 </div>
 

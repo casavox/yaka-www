@@ -372,18 +372,17 @@
                                 <div class="fg-line">
                                     <input type="text"
                                            class="form-control fg-input input-sm"
-                                           vs-google-autocomplete="vm.autocomplete.options"
-                                           vs-autocomplete-validator
-                                           data-ng-model="vm.newUser.defaultAddress.address"
-                                           type="text"
                                            name="address"
-                                           autocomplete="address-level2"
+                                           id="address"
+                                           ng-model="vm.newUser.defaultAddress.address"
+                                           data-ng-maxlength="5"
+                                           maxlength="5"
                                            placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Ville</label>
+                                           uib-typeahead="address for address in getLocation($viewValue)"/>
+                                    <label class="fg-label">Votre code postal</label>
                                 </div>
                                 <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
-                                    Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                                    Merci d'indiquer le code postal puis de sélectionner la commune
                                 </small>
                             </div>
 
