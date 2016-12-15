@@ -1,6 +1,9 @@
 .onGoing-find-buttons {
     width: 245px;
 }
+.no-float {
+    float: none !important
+}
 
 .button-community {
     left: 0;
