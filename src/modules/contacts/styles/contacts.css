@@ -3,10 +3,18 @@
     left: auto !important;
     margin-left: 50% !important;
     transform: translateX(-50%) !important;
-    padding-top: 23px !important;
-    padding-bottom: 23px !important;
-    padding-left: 45px !important;
-    padding-right: 45px !important;
+    padding: 0px !important;
+}
+
+.invite-header {
+    background: #424242;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+    height: 40px;
+    line-height: 18px;
+    outline: 1px solid transparent;
+    padding: 11px 20px;
 }
 
 .contact-item {
