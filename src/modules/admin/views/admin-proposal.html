@@ -350,34 +350,28 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
-                                                    data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                     data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
-                                                    data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                     data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
-                                                    data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                     data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
-                                                    data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                     data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
-                                                    data-ng-if="vm.proposal.status == 'RATE_PRO'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                     data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 bgm-orange"
-                                                    data-ng-if="vm.proposal.status == 'COMPLETED'">
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 bgm-orange"
+                                                     data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
 
@@ -524,9 +518,7 @@
                                             data-ng-if="vm.projectTmp.user.phoneNumber">
                                             <dt class="yakaDisableEllipsis">Téléphone</dt>
                                             <dd>
-                                                <a class="underline" href="tel:{{vm.projectTmp.user.phoneNumber}}">
-                                                    {{vm.projectTmp.user.phoneNumber}}
-                                                </a>
+                                                {{vm.projectTmp.user.phoneNumber}}
                                             </dd>
                                         </dl>
                                     </div>
@@ -550,8 +542,7 @@
                                             <dt class="yakaDisableEllipsis">Mots clés</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}"
-                                                        data-ng-repeat="tag in vm.getTags()">
+                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}" data-ng-repeat="tag in vm.getTags()">
                                                         <span data-ng-if="tag == 'MATERIAL_TRUE'"
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
@@ -560,8 +551,7 @@
                                                               uib-tooltip="Le Pro doit fournir les matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span
-                                                            data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
+                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>
