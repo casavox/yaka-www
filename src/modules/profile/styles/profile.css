@@ -70,3 +70,7 @@
 .communityTitleWithButton {
     width: calc(100% - 70px);
 }
+
+.isChecked {
+    border-color: red;
+}

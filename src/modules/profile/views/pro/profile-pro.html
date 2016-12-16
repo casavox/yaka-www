@@ -707,7 +707,9 @@
         </div>
         <div class="col-xs-12 card-body m-t-20">
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25">
+                <div class="col-xs-2 profile-verif p-l-25"
+                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
+                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                     <input id="profile-back-verif-1" class="default-cursor" type="checkbox"
                            data-ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
                            disabled="disabled">
@@ -739,7 +741,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25">
+                <div class="col-xs-2 profile-verif p-l-25"
+                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
+                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                     <input id="profile-back-verif-2" type="checkbox"
                            data-ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
                            disabled="disabled">
@@ -771,7 +775,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25">
+                <div class="col-xs-2 profile-verif p-l-25"
+                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
+                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                     <input id="profile-back-verif-3" type="checkbox"
                            data-ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
                            disabled="disabled">
@@ -803,7 +809,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25">
+                <div class="col-xs-2 profile-verif p-l-25"
+                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
+                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                     <input id="profile-back-verif-4" type="checkbox"
                            data-ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
                            disabled="disabled">
