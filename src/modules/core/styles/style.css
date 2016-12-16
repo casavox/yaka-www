@@ -5249,6 +5249,10 @@ div.recaptcha.mobile > div {
     background-color: #F8F8F8 !important;
 }
 
+.bgm-darkblue {
+    background-color: #1565C0 !important;
+}
+
 .d-i-b {
     display: inline-block;
 }
@@ -5367,50 +5371,177 @@ div.recaptcha.mobile > div {
 .has-colleagues.checkbox label,
 .has-colleagues.radio-inline label,
 .has-colleagues.checkbox-inline label {
-    color: #3f51b5 !important;
+    color: #3c7fc9 !important;
 }
 
 .has-colleagues .form-control {
-    border-color: #3f51b5 !important;
+    border-color: #3c7fc9 !important;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .has-colleagues .form-control:focus {
-    border-color: #3f51b5 !important;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #3f51b5;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #3f51b5;
+    border-color: #3c7fc9 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #3c7fc9;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #3c7fc9;
 }
 
 .has-colleagues .input-group-addon {
-    color: #3f51b5 !important;
-    border-color: #3f51b5 !important;
-    background-color: #3f51b5 !important;
+    color: #3c7fc9 !important;
+    border-color: #3c7fc9 !important;
+    background-color: #3c7fc9 !important;
 }
 
 .has-colleagues .form-control-feedback {
-    color: #3f51b5 !important;
+    color: #3c7fc9 !important;
 }
 
 .form-group.has-colleagues .fileinput .fileinput-preview {
-    color: #3f51b5 !important;
+    color: #3c7fc9 !important;
 }
 
 .form-group.has-colleagues .fileinput .thumbnail {
-    border-color: #3f51b5 !important;
+    border-color: #3c7fc9 !important;
 }
 
 .has-colleagues .checkbox .input-helper:before {
-    border-color: #3f51b5 !important;
+    border-color: #3c7fc9 !important;
 }
 
 .has-colleagues .checkbox .input-helper:after {
-    border-bottom-color: #3f51b5 !important;
-    border-left-color: #3f51b5 !important;
+    border-bottom-color: #3c7fc9 !important;
+    border-left-color: #3c7fc9 !important;
 }
 
 .has-colleagues .fg-line:after {
-    background: #3f51b5 !important;
+    background: #3c7fc9 !important;
+}
+
+.c-colleagues {
+    color: #3c7fc9 !important;
+}
+
+/* form Neighboor */
+.has-neighboor .help-block,
+.has-neighboor .control-label,
+.has-neighboor .radio,
+.has-neighboor .checkbox,
+.has-neighboor .radio-inline,
+.has-neighboor .checkbox-inline,
+.has-neighboor.radio label,
+.has-neighboor.checkbox label,
+.has-neighboor.radio-inline label,
+.has-neighboor.checkbox-inline label {
+    color: #1565c0 !important;
+}
+
+.has-neighboor .form-control {
+    border-color: #1565c0 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-neighboor .form-control:focus {
+    border-color: #1565c0 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #1565c0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #1565c0;
+}
+
+.has-neighboor .input-group-addon {
+    color: #1565c0 !important;
+    border-color: #1565c0 !important;
+    background-color: #1565c0 !important;
+}
+
+.has-neighboor .form-control-feedback {
+    color: #1565c0 !important;
+}
+
+.form-group.has-neighboor .fileinput .fileinput-preview {
+    color: #1565c0 !important;
+}
+
+.form-group.has-neighboor .fileinput .thumbnail {
+    border-color: #1565c0 !important;
+}
+
+.has-neighboor .checkbox .input-helper:before {
+    border-color: #1565c0 !important;
+}
+
+.has-neighboor .checkbox .input-helper:after {
+    border-bottom-color: #1565c0 !important;
+    border-left-color: #1565c0 !important;
+}
+
+.has-neighboor .fg-line:after {
+    background: #1565c0 !important;
+}
+
+.c-neighboor {
+    color: #1565c0 !important;
+}
+
+
+/* form Other Community */
+.has-other .help-block,
+.has-other .control-label,
+.has-other .radio,
+.has-other .checkbox,
+.has-other .radio-inline,
+.has-other .checkbox-inline,
+.has-other.radio label,
+.has-other.checkbox label,
+.has-other.radio-inline label,
+.has-other.checkbox-inline label {
+    color: #447daf !important;
+}
+
+.has-other .form-control {
+    border-color: #447daf !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-other .form-control:focus {
+    border-color: #447daf !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #447daf;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #447daf;
+}
+
+.has-other .input-group-addon {
+    color: #447daf !important;
+    border-color: #447daf !important;
+    background-color: #447daf !important;
+}
+
+.has-other .form-control-feedback {
+    color: #447daf !important;
+}
+
+.form-group.has-other .fileinput .fileinput-preview {
+    color: #447daf !important;
+}
+
+.form-group.has-other .fileinput .thumbnail {
+    border-color: #447daf !important;
+}
+
+.has-other .checkbox .input-helper:before {
+    border-color: #447daf !important;
+}
+
+.has-other .checkbox .input-helper:after {
+    border-bottom-color: #447daf !important;
+    border-left-color: #447daf !important;
+}
+
+.has-other .fg-line:after {
+    background: #447daf !important;
+}
+
+.c-other {
+    color: #447daf !important;
 }
 
 
