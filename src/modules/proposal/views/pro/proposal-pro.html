@@ -410,7 +410,7 @@
                             <div class="pmb-block"
                                  data-ng-if="vm.proposal.status && vm.proposal.status == 'RECOMMENDATION'">
                                 <div class="pmbb-header">
-                                    <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Prendre contact avec le client
+                                    <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Contacter le client
                                     </h2>
                                 </div>
                                 <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
@@ -422,18 +422,18 @@
                                         <button
                                             class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                             data-ui-sref="pro-profile">
-                                            Modifier mon profil
+                                            Compléter mon profil
                                         </button>
                                         <button
                                             class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
                                             data-ui-sref="project-recommend({'projectId': vm.project.id})">
-                                            Recommander à un pro
+                                            Recommander un collègue
                                         </button>
                                     </div>
                                 </div>
 
-                                <div class="pmbb-body p-l-30" data-ng-if="!vm.project.activityDoesntCorrespond"
-                                     data-ng-if="vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                <div class="pmbb-body p-l-30"
+                                     data-ng-if="!vm.project.activityDoesntCorrespond && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
                                             <dt class="yakaDisableEllipsis">Date d'intervention estimée</dt>
@@ -459,10 +459,11 @@
                                                 <div class="form-group fg-float"
                                                      data-ng-class="{'has-error': vm.formProProposalError && (!vm.offer.comment || vm.offer.comment.length < 40)}">
                                                     <div class="fg-line">
-                                                    <textarea class="form-control" data-auto-size=""
-                                                              data-autosize-on="true"
-                                                              data-ng-model="vm.offer.comment"></textarea>
-                                                        <label class="fg-label">Contactez le client, posez vos questions,...</label>
+                                                        <textarea class="form-control" data-auto-size=""
+                                                                  data-autosize-on="true"
+                                                                  data-ng-model="vm.offer.comment"></textarea>
+                                                        <label class="fg-label">Présentez vous, posez une
+                                                            question</label>
                                                     </div>
                                                 </div>
                                             </dd>
@@ -472,14 +473,21 @@
                                             Message trop court (au moins 40 caractères)
                                         </p>
                                         <button class="btn btn-primary btn-block waves-effect"
+                                                data-ng-if="!vm.project.error"
                                                 data-ng-click="vm.sendOffer()">
                                             ENVOYER
                                         </button>
+
                                     </div>
                                 </div>
                                 <div class="pmbb-body p-l-30"
-                                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
-                                    Votre profil doit être validé afin de pouvoir répondre aux offres.
+                                     data-ng-if="!(vm.proposal.status && vm.proposal.status == 'RECOMMENDATION' && vm.project.activityDoesntCorrespond) && vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                    <button class="btn bgm-orange btn-block waves-effect"
+                                            data-ui-sref="pro-profile">
+                                        Compléter mon profil
+                                    </button>
+                                    <label class="fg-label center">Complétez votre profil pour contacter directement le
+                                        client.</label>
                                 </div>
                             </div>
 
