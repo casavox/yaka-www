@@ -3,6 +3,17 @@
     left: auto !important;
     margin-left: 50% !important;
     transform: translateX(-50%) !important;
+    padding-top: 23px !important;
+    padding-bottom: 23px !important;
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+}
+
+.CasaPopupWindow {
+    width: 410px !important;
+    left: auto !important;
+    margin-left: 50% !important;
+    transform: translateX(-50%) !important;
     padding: 0px !important;
 }
 
@@ -15,6 +26,54 @@
     line-height: 18px;
     outline: 1px solid transparent;
     padding: 11px 20px;
+    display: inline-flex;
+    font-size: 15px;
+}
+
+.destination {
+    width: 100%;
+    display: inline-flex;
+    background-color: white;
+    border-bottom: 1px #cecece solid;
+}
+
+.email-invite {
+    width: 100%;
+}
+
+.form-object {
+    font-weight: bold;
+    padding: 10px;
+    text-align: justify;
+}
+
+.destination-message {
+    width: 100%;
+    display: inline-flex;
+    background-color: white;
+    height: 250px;
+}
+
+.invite-message {
+    width: 100%;
+}
+
+.message-body {
+    max-height: 220px;
+}
+
+.send-email-invitation {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.close-icon-invit {
+    margin-left: 200px;
+}
+
+.no-form-border {
+    border-bottom: none !important;
 }
 
 .contact-item {

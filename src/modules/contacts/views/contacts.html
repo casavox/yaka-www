@@ -492,15 +492,35 @@
 
 <div class="yakaPopup" data-ng-show="vm.showInvitFriendPopup" data-ng-click="vm.closeFriendPopup()" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12 no-padding" data-ng-click="$event.stopPropagation()">
+        <div class="CasaPopupWindow col-xs-12 no-padding" data-ng-click="$event.stopPropagation()">
             <div class="col-xs-12 invite-header">
-                Invitez des amis
+                <div><i class="zmdi zmdi-email-open c-white f-s-20"></i></div>
+                <div class="c-white m-l-15">INVITER DES AMIS</div>
+                <div class="c-white close-icon-invit">X</div>
             </div>
-            <div class="col-xs-12 destination">
-                A
+            <div class="destination m-b-0">
+                <div class="p-20">A</div>
+                <div class="email-invite p-5 p-l-10 p-r-10">
+                    <textarea class="form-control no-form-border p-t-15" data-auto-size="" placeholder="Exemple1@mail.fr, exemple2@mail.com..." data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                </div>
+                <i class="zmdi zmdi-google-plus-box zmdi-hc-3x c-red p-10"></i>
             </div>
-            <div class="col-xs-12 bgm-crimson">
-                De
+            <div class="destination m-b-0">
+                <div class="p-20">De</div>
+                <div class="p-t-20">
+                   Amine Mohamed Benhalima (via Casavox)
+                </div>
+            </div>
+            <div class="form-group destination m-b-0">
+                <div class="fg-line form-object">
+                    Amine Mohamed Benhalima vous invite à rejoindre son réseau d'entraide Casavox
+                </div>
+            </div>
+            <div class="destination-message m-b-0">
+                <div class="invite-message p-t-20 p-r-10 p-l-10">
+                    <textarea class="form-control no-form-border message-body" data-auto-size="" placeholder="Rédigez votre message ici (facultatif)" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                </div>
+                <button class="btn bgm-lightblue c-white send-email-invitation">ENVOYER</button>
             </div>
         </div>
 
