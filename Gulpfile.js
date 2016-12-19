@@ -119,14 +119,14 @@ gulp.task("inject-dev", ["copy-js"], function () {
     var css = getCleanedCssSources();
 
     return target.pipe(inject(sources, {
-        addRootSlash: true,
+        addRootSlash: false,
         removeTags: true
     }))
         .pipe(inject(css, {
             addRootSlash: true,
             removeTags: true,
             transform: function (filepath) {
-                return "<link rel=\"stylesheet\" href=\"/" +
+                return "<link rel=\"stylesheet\" href=\"" +
                     filepath.substring(filepath.indexOf("/", 1) + 1) +
                     "\">";
             }
@@ -151,7 +151,7 @@ gulp.task("inject-prod", ["compile-js"], function () {
             removeTags: true,
             transform: function (filepath) {
                 console.log("FilePath : " + filepath);
-                return "<link rel=\"stylesheet\" href=\"/" +
+                return "<link rel=\"stylesheet\" href=\"" +
                     filepath.substring(filepath.indexOf("/", 1) + 1) +
                     "\">";
             }

@@ -9,6 +9,6 @@ angular.module('Yaka')
             link: function (scope, element, attr) {
 
             },
-            templateUrl: "/modules/core/directives/views/casaCommunityTag.html"
+            templateUrl: "modules/core/directives/views/casaCommunityTag.html"
         }
     });

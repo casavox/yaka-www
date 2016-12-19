@@ -9,7 +9,7 @@
         $stateProvider
             .state('help', {
                 url: "/help?card",
-                templateUrl: "/modules/help/views/help.html",
+                templateUrl: "modules/help/views/help.html",
                 controller: 'HelpController',
                 controllerAs: 'vm'
             });

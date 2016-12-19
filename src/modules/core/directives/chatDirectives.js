@@ -302,7 +302,7 @@ angular.module('Yaka')
                     }
                 }
             },
-            templateUrl: "/modules/core/directives/views/yakaChat.html"
+            templateUrl: "modules/core/directives/views/yakaChat.html"
         }
     })
 

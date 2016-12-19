@@ -268,43 +268,43 @@
 
 body:after {
     display: none;
-    content: url('/icons/mdpi/ic_facebook_active.png') url('/icons/mdpi/ic_facebook_hover.png') url('/icons/mdpi/ic_facebook_default.png') url('/icons/mdpi/ic_google_active.png') url('/icons/mdpi/ic_google_hover.png') url('/icons/mdpi/ic_google_default.png') url('/icons/mdpi/ic_twitter_active.png') url('/icons/mdpi/ic_twitter_hover.png') url('/icons/mdpi/ic_twitter_default.png');
+    content: url('icons/mdpi/ic_facebook_active.png') url('icons/mdpi/ic_facebook_hover.png') url('icons/mdpi/ic_facebook_default.png') url('icons/mdpi/ic_google_active.png') url('icons/mdpi/ic_google_hover.png') url('icons/mdpi/ic_google_default.png') url('icons/mdpi/ic_twitter_active.png') url('icons/mdpi/ic_twitter_hover.png') url('icons/mdpi/ic_twitter_default.png');
 }
 
 .homeSection4ItemFacebook {
-    background-image: url('/icons/mdpi/ic_facebook_default.png');
+    background-image: url('icons/mdpi/ic_facebook_default.png');
 }
 
 .homeSection4ItemFacebook:hover {
-    background-image: url('/icons/mdpi/ic_facebook_hover.png');
+    background-image: url('icons/mdpi/ic_facebook_hover.png');
 }
 
 .homeSection4ItemFacebook:active {
-    background-image: url('/icons/mdpi/ic_facebook_active.png');
+    background-image: url('icons/mdpi/ic_facebook_active.png');
 }
 
 .homeSection4ItemGoogle {
-    background-image: url('/icons/mdpi/ic_google_default.png');
+    background-image: url('icons/mdpi/ic_google_default.png');
 }
 
 .homeSection4ItemGoogle:hover {
-    background-image: url('/icons/mdpi/ic_google_hover.png');
+    background-image: url('icons/mdpi/ic_google_hover.png');
 }
 
 .homeSection4ItemGoogle:active {
-    background-image: url('/icons/mdpi/ic_google_active.png');
+    background-image: url('icons/mdpi/ic_google_active.png');
 }
 
 .homeSection4ItemTwitter {
-    background-image: url('/icons/mdpi/ic_twitter_default.png');
+    background-image: url('icons/mdpi/ic_twitter_default.png');
 }
 
 .homeSection4ItemTwitter:hover {
-    background-image: url('/icons/mdpi/ic_twitter_hover.png');
+    background-image: url('icons/mdpi/ic_twitter_hover.png');
 }
 
 .homeSection4ItemTwitter:active {
-    background-image: url('/icons/mdpi/ic_twitter_active.png');
+    background-image: url('icons/mdpi/ic_twitter_active.png');
 }
 
 .homeSection5 {
@@ -1118,7 +1118,7 @@ body:after {
     width: 100%;
     height: auto;
     margin-top: 50px;
-    background: linear-gradient(rgba(4, 28, 36, 0.30), rgba(4, 28, 36, 0.30)), url('../../../img/CasaVox_homeMain2.jpeg') no-repeat center;
+    background: linear-gradient(rgba(4, 28, 36, 0.30), rgba(4, 28, 36, 0.30)), url('img/CasaVox_homeMain2.jpeg') no-repeat center;
     background-size: cover;
     color: white;
 }

@@ -24,6 +24,6 @@ angular.module('Yaka')
                 };
 
             },
-            templateUrl: "/modules/core/directives/views/yakaMobileHeader.html"
+            templateUrl: "modules/core/directives/views/yakaMobileHeader.html"
         }
     });

@@ -3,7 +3,7 @@ angular.module('Yaka')
         return {
             proCancelProposal: function (proposalStatus, onOkClicked) {
                 return $uibModal.open({
-                    templateUrl: "/modules/core/modules/modal/views/proCancelProposal.html",
+                    templateUrl: "modules/coremodules/modal/views/proCancelProposal.html",
                     backdrop: true,
                     windowClass: "animated",
                     size: '',
@@ -34,7 +34,7 @@ angular.module('Yaka')
             },
             proCancelRecommandation: function (proposalStatus, onOkClicked) {
                 return $uibModal.open({
-                    templateUrl: "/modules/core/modules/modal/views/proCancelRecommandation.html",
+                    templateUrl: "modules/coremodules/modal/views/proCancelRecommandation.html",
                     backdrop: true,
                     windowClass: "animated",
                     size: '',
@@ -60,7 +60,7 @@ angular.module('Yaka')
             },
             cancelProject: function (professionalName, onOkClicked) {
                 return $uibModal.open({
-                    templateUrl: "/modules/core/modules/modal/views/cancelProject.html",
+                    templateUrl: "modules/coremodules/modal/views/cancelProject.html",
                     backdrop: true,
                     windowClass: "animated",
                     size: '',

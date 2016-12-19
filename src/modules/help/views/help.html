@@ -1,8 +1,8 @@
-<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'/modules/core/views/header.html'"
+<header id="header" data-current-skin="{{app.getTheme()}}" data-ng-include="'modules/core/views/header.html'"
 ></header>
 
 <section id="main">
-    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+    <aside id="sidebar" data-ng-include="'modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }" data-ng-if="app.getUser()"></aside>
 
     <div id="content" class="content" data-ng-class="{ 'noMenu': !app.getUser() }">

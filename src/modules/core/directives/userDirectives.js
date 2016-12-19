@@ -29,7 +29,7 @@ angular.module('Yaka')
                     }, true);
                 };
             },
-            templateUrl: "/modules/core/directives/views/casaContact.html"
+            templateUrl: "modules/core/directives/views/casaContact.html"
         }
     })
 
@@ -54,6 +54,6 @@ angular.module('Yaka')
                     scope.clientBlue = false;
                 }
             },
-            templateUrl: "/modules/core/directives/views/casaNameAndContact.html"
+            templateUrl: "modules/core/directives/views/casaNameAndContact.html"
         }
     });

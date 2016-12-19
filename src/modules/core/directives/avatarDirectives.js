@@ -30,6 +30,6 @@ angular.module('Yaka')
                 attr.$observe('size', sizeChanged);
 
             },
-            templateUrl: "/modules/core/directives/views/yakaAvatar.html"
+            templateUrl: "modules/core/directives/views/yakaAvatar.html"
         }
     });

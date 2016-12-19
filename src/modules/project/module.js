@@ -16,31 +16,31 @@
 
             .state('my-projects', {
                 url: "/my-projects",
-                templateUrl: "/modules/project/views/customer/project-list.html",
+                templateUrl: "modules/project/views/customer/project-list.html",
                 controller: 'MyProjectsController',
                 controllerAs: 'vm'
             })
             .state('new-project', {
                 url: "/new-project",
-                templateUrl: "/modules/project/views/customer/project-add.html",
+                templateUrl: "modules/project/views/customer/project-add.html",
                 controller: 'NewProjectController',
                 controllerAs: 'vm'
             })
             .state('project', {
                 url: "/project/:projectId/details?chat?incompleteAddress",
-                templateUrl: "/modules/project/views/customer/project.html",
+                templateUrl: "modules/project/views/customer/project.html",
                 controller: 'ProjectController',
                 controllerAs: 'vm'
             })
             .state('project-recommend', {
                 url: "/project/recommend/:projectId",
-                templateUrl: "/modules/project/views/customer/project-recommend.html",
+                templateUrl: "modules/project/views/customer/project-recommend.html",
                 controller: 'ProjectRecommendController',
                 controllerAs: 'vm'
             })
             .state('public-project-recommend', {
                 url: "/public/project/recommend/:projectId",
-                templateUrl: "/modules/project/views/public/public-project-recommend.html",
+                templateUrl: "modules/project/views/public/public-project-recommend.html",
                 controller: 'PublicProjectRecommendController',
                 controllerAs: 'vm'
             })
@@ -49,7 +49,7 @@
 
             .state('pro-project-proposal-new', {
                 url: "/pro/project/:projectId",
-                templateUrl: "/modules/project/views/pro/pro-project.html",
+                templateUrl: "modules/project/views/pro/pro-project.html",
                 controller: 'ProProjectController',
                 controllerAs: 'vm'
             });

@@ -10,7 +10,7 @@
         $stateProvider
             .state('recoverpassword', {
                 url: "/recoverpassword/?token",
-                templateUrl: "/modules/password/views/recoverpassword.html",
+                templateUrl: "modules/password/views/recoverpassword.html",
                 controller: 'RecoverPasswordController',
                 controllerAs: 'vm'
             })

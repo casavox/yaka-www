@@ -16,13 +16,13 @@
 
             .state('proposal', {
                 url: "/proposal/:proposalId?chat",
-                templateUrl: "/modules/proposal/views/customer/proposal.html",
+                templateUrl: "modules/proposal/views/customer/proposal.html",
                 controller: 'ProposalController',
                 controllerAs: 'vm'
             })
             .state('proposals', {
                 url: "/project/:projectId/proposals",
-                templateUrl: "/modules/proposal/views/customer/proposal-list.html",
+                templateUrl: "modules/proposal/views/customer/proposal-list.html",
                 controller: 'ProposalsController',
                 controllerAs: 'vm'
             })
@@ -31,19 +31,19 @@
 
             .state('pro-proposal', {
                 url: "/pro/proposal/:proposalId?chat",
-                templateUrl: "/modules/proposal/views/pro/proposal-pro.html",
+                templateUrl: "modules/proposal/views/pro/proposal-pro.html",
                 controller: 'ProProposalController',
                 controllerAs: 'vm'
             })
             .state('pro-proposals', {
                 url: "/pro/proposals/quotes",
-                templateUrl: "/modules/proposal/views/pro/proposal-pro-list.html",
+                templateUrl: "modules/proposal/views/pro/proposal-pro-list.html",
                 controller: 'ProProposalsController',
                 controllerAs: 'vm'
             })
             .state('pro-jobs', {
                 url: "/pro/proposals/jobs",
-                templateUrl: "/modules/proposal/views/pro/job-pro-list.html",
+                templateUrl: "modules/proposal/views/pro/job-pro-list.html",
                 controller: 'ProJobsController',
                 controllerAs: 'vm'
             });

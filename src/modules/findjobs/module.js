@@ -9,7 +9,7 @@
         $stateProvider
             .state('findjobs', {
                 url: "/pro/jobs",
-                templateUrl: "/modules/findjobs/views/pro-find-jobs.html",
+                templateUrl: "modules/findjobs/views/pro-find-jobs.html",
                 controller: 'FindJobsController',
                 controllerAs: 'vm'
             });

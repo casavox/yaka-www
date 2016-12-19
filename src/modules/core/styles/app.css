@@ -10302,7 +10302,7 @@ h6 small,
     position: absolute;
     width: 100%;
     height: calc(100% - 70px);
-    background: url(../img/notifications.png) no-repeat center;
+    background: url(img/notifications.png) no-repeat center;
     -webkit-transition: all;
     -o-transition: all;
     transition: all;
@@ -10679,7 +10679,7 @@ h6 small,
     height: 129px;
     margin-bottom: 5px;
     width: 100%;
-    background: url(../img/profile-menu.png) no-repeat left top;
+    background: url(img/profile-menu.png) no-repeat left top;
     background-size: 100%;
 }
 

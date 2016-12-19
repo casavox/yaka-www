@@ -16,7 +16,7 @@
 
             .state('profile', {
                 url: "/profile/me",
-                templateUrl: "/modules/profile/views/customer/profile.html",
+                templateUrl: "modules/profile/views/customer/profile.html",
                 controller: 'ProfileCustomerController',
                 controllerAs: 'vm'
             })
@@ -25,7 +25,7 @@
 
             .state('pro-profile', {
                 url: "/pro/profile/me",
-                templateUrl: "/modules/profile/views/pro/profile-pro.html",
+                templateUrl: "modules/profile/views/pro/profile-pro.html",
                 controller: 'ProfileController',
                 controllerAs: 'vm'
             });

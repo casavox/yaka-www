@@ -20,7 +20,7 @@
 </style>
 
 <header id="header" class="hidden-xs" data-current-skin="{{app.getTheme()}}"
-        data-ng-include="'/modules/core/views/header.html'"></header>
+        data-ng-include="'modules/core/views/header.html'"></header>
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="my-projects" title="Propositions"></yaka-mobile-header>
@@ -38,7 +38,7 @@
         </ol>
     </div>
 
-    <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
+    <aside id="sidebar" data-ng-include="'modules/core/views/sidebar-left.html'"
            data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
 
     <section id="content">
