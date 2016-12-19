@@ -317,14 +317,13 @@
                                                 <casa-name-and-contact class="f-bold f-s-15"
                                                                        user="vm.project.user"
                                                                        icon-color="c-white"></casa-name-and-contact>
-
                                                 <div data-ng-if="vm.proposal.status == 'START'">
                                                     <div class="proNetworkProjectButtonLabel m-t-15">
                                                         Échange en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="btn btn-xs btn-danger btn-icon-text waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close"></i> Abandonner l'offre
+                                                            class="btn btn-xs btn-danger btn-icon-text width-auto waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close no-margin m-r-5"></i> Abandonner l'offre
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
@@ -332,50 +331,49 @@
                                                         Chantier en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="btn btn-danger btn-icon-text waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close"></i> Annuler chantier
+                                                            class="btn btn-danger width-auto f-s-10 btn-icon-text waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close no-margin m-r-5"></i> Annuler chantier
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-
-                                                    <div class="col-xs-12 m-t-45">
+                                                    <div class="m-t-0">
                                                         <button data-ng-click="vm.smoothScrollToSend()"
-                                                                class="col-xs-6 btn btn-primary btn-sm waves-effect zIndex1">
-                                                            CONTACTER !
+                                                                class="btn f-s-10 btn-primary btn-sm waves-effect zIndex1">
+                                                            CONTACTER
                                                         </button>
                                                         <button data-ng-click="vm.cancelRecommandationModal()"
-                                                                class="right col-xs-6 btn btn-danger btn-sm waves-effect btn-icon-text">
-                                                            <i class="zmdi zmdi-close"></i> Refuser
+                                                                class="right f-s-10 btn btn-danger btn-sm waves-effect btn-icon-text">
+                                                            <i class="zmdi zmdi-close no-margin"></i> Refuser
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
@@ -522,7 +520,7 @@
                                 <div class="pmbb-header">
                                     <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
                                 </div>
-                                <div class="pmbb-body">
+                                <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal tag-margin-bottom">
                                             <casa-community-tag class="contact-community-tag pull-left"
