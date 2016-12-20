@@ -18,7 +18,6 @@
 }
 
 .invite-header {
-    background: #424242;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     color: #fff;
@@ -62,14 +61,21 @@
     max-height: 220px;
 }
 
+.send-button-line {
+    height: 40px;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .send-email-invitation {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
+    bottom: 10px;
+    right: 10px;
 }
 
 .close-icon-invit {
-    margin-left: 200px;
+    margin-left: 198px;
 }
 
 .no-form-border {
@@ -876,6 +882,14 @@
         padding-left: 20px !important;
         padding-right: 20px !important;
         transform: initial !important;
+    }
+
+    .CasaPopupWindow {
+        width: 305px !important;
+    }
+
+    .close-icon-invit {
+        margin-left: 93px;
     }
 }
 

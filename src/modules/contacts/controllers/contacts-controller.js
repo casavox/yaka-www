@@ -193,27 +193,29 @@
 
         vm.invitCustomer = "";
 
+        vm.mails = [];
+
         vm.sendCustomerInvit = function () {
             if (!vm.invitCustomer) {
                 vm.formCustInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
-                vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
-                var invits = vm.invitCustomer.split(",");
-                for (var i = 0; i < invits.length; i++) {
-                    invits[i] = invits[i].trim();
-                    if (!vm.isEmailValid(invits[i])) {
-                        alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
-                        return;
-                    }
-                }
-                if (hasDuplicates(invits)) {
-                    alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
-                    return;
-                }
+                /*vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
+                 var invits = vm.invitCustomer.split(",");
+                 for (var i = 0; i < invits.length; i++) {
+                 invits[i] = invits[i].trim();
+                 if (!vm.isEmailValid(invits[i])) {
+                 alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
+                 return;
+                 }
+                 }
+                 if (hasDuplicates(invits)) {
+                 alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
+                 return;
+                 }*/
 
                 var invitation = {
-                    emails: invits,
+                    emails: vm.mails,
                     message: vm.invitMessage
                 };
 
@@ -236,6 +238,7 @@
         function succesInviteCustomerPOST(res) {
             vm.formCustInvitError = false;
             vm.invitCustomer = "";
+            vm.mails = [];
             vm.closeFriendPopup();
             vm.closeGmailPopup();
             reloadContactsAndInvitations();
@@ -618,7 +621,31 @@
             } else {
                 return 'CLIENT';
             }
-        }
+        };
+
+
+        vm.onKeyPress = function (e) {
+            vm.duplicateMail = false;
+            if (e.keyCode == 32) {
+
+                for (var i = 0; i < vm.mails.length; i++) {
+                    if (vm.invitCustomer == vm.mails[i]) {
+                        vm.duplicateMail = true;
+                        alertMsg.send("L'email que vous souhaitez ajouter est déjà dans la liste", "danger");
+                    }
+                }
+                if (!vm.duplicateMail) {
+                    vm.mails.push(vm.invitCustomer);
+                    vm.invitCustomer = "";
+                }
+
+
+            }
+        };
+
+        vm.deleteMailFromList = function (index) {
+            vm.mails.splice(index, 1);
+        };
 
     }
 })
