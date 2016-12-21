@@ -641,7 +641,8 @@
 
         vm.onKeyPress = function (e) {
             vm.duplicateMail = false;
-            if (e.keyCode == 32 || e.keyCode == 13) {
+            console.log(e.keyCode);
+            if (e.keyCode == 32 || e.keyCode == 13 || e.keyCode == 44 || e.keyCode == 59) {
                 event.preventDefault();
                 for (var i = 0; i < vm.mails.length; i++) {
                     if (vm.invitCustomer == vm.mails[i]) {

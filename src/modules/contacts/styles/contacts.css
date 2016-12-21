@@ -9,12 +9,27 @@
     padding-right: 45px !important;
 }
 
+.p-l-53 {
+    padding-left: 53px !important;
+}
+
+.m-l-2 {
+    margin-left: 2px !important;
+}
+
 .CasaPopupWindow {
+    margin-top: 5px;
     width: 410px !important;
     left: auto !important;
     margin-left: 50% !important;
     transform: translateX(-50%) !important;
     padding: 0px !important;
+}
+
+.gmail-window {
+    background-color: white;
+    padding: 20px !important;
+    border-radius: 5px;
 }
 
 .invite-header {
@@ -36,8 +51,17 @@
     border-bottom: 1px #cecece solid;
 }
 
+.destination-mails {
+    width: 100%;
+    display: inline-flex;
+    background-color: white;
+    border-bottom: none;
+}
+
 .email-invite {
     width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .form-object {
@@ -50,7 +74,8 @@
     width: 100%;
     display: inline-flex;
     background-color: white;
-    height: 250px;
+    min-height: 100px;
+    max-height: 250px;
 }
 
 .invite-message {
@@ -62,7 +87,7 @@
 }
 
 .send-button-line {
-    height: 40px;
+    height: 50px;
     background-color: white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -885,11 +910,15 @@
     }
 
     .CasaPopupWindow {
-        width: 305px !important;
+        width: 310px !important;
     }
 
     .close-icon-invit {
         margin-left: 93px;
+    }
+
+    .gmail-window {
+        padding: 10px !important;
     }
 }
 
