@@ -511,7 +511,7 @@
 
                     <textarea class="form-control no-form-border p-t-15"
                               data-auto-size=""
-                              placeholder="Exemple1@mail.fr, exemple2@mail.com..."
+                              placeholder="Exemple1@mail.fr exemple2@mail.com..."
                               data-autosize-on="true"
                               style="overflow: hidden; word-wrap: break-word; height: 37px;"
                               ng-keypress="vm.onKeyPress($event)"
@@ -527,7 +527,7 @@
                 </div>
             </div>
             <div class="form-group destination m-b-0">
-                <div class="fg-line form-object">
+                <div class="fg-line form-object p-l-20 p-r-20">
                     {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide Casavox
                 </div>
             </div>
@@ -761,17 +761,6 @@
                 </div>
             </div>
 
-            <div class="form-group fg-float m-t-30 m-b-0">
-                <div class="fg-line">
-            <textarea class="col-xs-12 form-control m-t-10"
-                      rows="1"
-                      data-auto-size=""
-                      data-autosize-on="true"
-                      data-ng-model="vm.invitMessage"></textarea>
-                    <label class="fg-label">Votre message... (facultatif)</label>
-                </div>
-            </div>
-
             <div class="col-xs-12 yakaPopupInvitSubTitle">
                 Accompagnez votre invitation d'un message personnalisé.
             </div>
@@ -780,7 +769,7 @@
                     data-ng-disabled="!vm.showGmailInviteButton()"
                     data-ng-if="vm.gmailContacts && vm.gmailContacts.length > 0"
                     data-ng-click="vm.sendGoogleCustomerInvit()">
-                Inviter
+                Ajouter
             </button>
         </div>
     </div>

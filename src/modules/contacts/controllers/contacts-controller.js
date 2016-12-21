@@ -193,26 +193,24 @@
 
         vm.invitCustomer = "";
 
-        vm.mails = [];
-
         vm.sendCustomerInvit = function () {
-            if (!vm.invitCustomer) {
+            if (!vm.mails) {
                 vm.formCustInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            } else {
-                /*vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
-                 var invits = vm.invitCustomer.split(",");
-                 for (var i = 0; i < invits.length; i++) {
-                 invits[i] = invits[i].trim();
-                 if (!vm.isEmailValid(invits[i])) {
-                 alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
-                 return;
-                 }
-                 }
-                 if (hasDuplicates(invits)) {
-                 alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
-                 return;
-                 }*/
+            } else {/*
+             vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
+             var invits = vm.invitCustomer.split(",");
+             for (var i = 0; i < invits.length; i++) {
+             invits[i] = invits[i].trim();
+             if (!vm.isEmailValid(invits[i])) {
+             alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
+             return;
+             }
+             }
+             if (hasDuplicates(invits)) {
+             alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
+             return;
+             }*/
 
                 var invitation = {
                     emails: vm.mails,
@@ -494,6 +492,7 @@
 
         vm.loadGmailContacts = function () {
             vm.openGmailPopup();
+            console.log(vm.mails);
             gmailContacts.getGmailContacts(function (contacts) {
                 vm.gmailContacts = contacts;
                 $scope.$applyAsync();
@@ -537,21 +536,37 @@
             return false;
         };
 
+        vm.mails = [];
+        vm.mailTmp = [];
+        vm.trashMail = [];
+
         vm.sendGoogleCustomerInvit = function () {
+            console.log(vm.mails);
 
-            var invits = [];
-
-            for (var i = 0; i < vm.gmailContacts.length; ++i) {
-                if (vm.gmailContacts[i].selected) {
-                    invits.push(vm.gmailContacts[i].address);
+            if (vm.mails.length > 0) {
+                for (var i = 0; i < vm.mails.length; i++) {
+                    for (var j = 0; j < vm.gmailContacts.length; j++) {
+                        if (vm.gmailContacts[j].selected) {
+                            if (vm.gmailContacts[j].address == vm.mails[i]) {
+                                vm.trashMail.push(vm.gmailContacts[j].address);
+                            } else {
+                                vm.mailTmp.push(vm.gmailContacts[j].address);
+                            }
+                        }
+                    }
                 }
+                console.log(vm.mailTmp);
+                vm.mails = vm.mailTmp;
+            } else {
+                for (var i = 0; i < vm.gmailContacts.length; ++i) {
+                    if (vm.gmailContacts[i].selected) {
+                        vm.mailTmp.push(vm.gmailContacts[i].address);
+                    }
+                }
+                vm.mails = vm.mailTmp;
             }
-            var invitation = {
-                emails: invits,
-                message: vm.invitMessage
-            };
-
-            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            vm.closeGmailPopup();
+            vm.showInvitFriendPopup = true;
         };
 
         vm.getFacebookIframeUrl = function () {
@@ -626,8 +641,8 @@
 
         vm.onKeyPress = function (e) {
             vm.duplicateMail = false;
-            if (e.keyCode == 32) {
-
+            if (e.keyCode == 32 || e.keyCode == 13) {
+                event.preventDefault();
                 for (var i = 0; i < vm.mails.length; i++) {
                     if (vm.invitCustomer == vm.mails[i]) {
                         vm.duplicateMail = true;
@@ -635,11 +650,14 @@
                     }
                 }
                 if (!vm.duplicateMail) {
-                    vm.mails.push(vm.invitCustomer);
-                    vm.invitCustomer = "";
+                    if (!vm.isEmailValid(vm.invitCustomer)) {
+                        vm.invitCustomer = "";
+                        alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
+                    } else {
+                        vm.mails.push(vm.invitCustomer);
+                        vm.invitCustomer = "";
+                    }
                 }
-
-
             }
         };
 
