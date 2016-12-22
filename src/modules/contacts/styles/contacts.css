@@ -17,6 +17,18 @@
     margin-left: 2px !important;
 }
 
+.pro-form-field {
+    width: 94px;
+}
+
+.pro-form-field-phone {
+    width: 85px;
+}
+
+.pro-form-field-from {
+    width: 82px;
+}
+
 .CasaPopupWindow {
     margin-top: 5px;
     width: 410px !important;
@@ -101,6 +113,10 @@
 
 .close-icon-invit {
     margin-left: 198px;
+}
+
+.close-icon-invit-pro {
+    margin-left: 212px;
 }
 
 .no-form-border {
@@ -915,6 +931,10 @@
 
     .close-icon-invit {
         margin-left: 93px;
+    }
+
+    .close-icon-invit-pro {
+        margin-left: 112px;
     }
 
     .gmail-window {

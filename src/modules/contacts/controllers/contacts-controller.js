@@ -179,6 +179,9 @@
 
         vm.closeFriendPopup = function () {
             vm.showInvitFriendPopup = false;
+            vm.formCustInvitError = false;
+            vm.mails = [];
+            vm.invitMessage = "";
         };
 
         vm.showInvitProPopup = false;
@@ -189,29 +192,21 @@
 
         vm.closeProPopup = function () {
             vm.showInvitProPopup = false;
+            vm.formProInvitError = false;
+            vm.invitPro.name = "";
+            vm.invitPro.email = "";
+            vm.invitPro.address.address = "";
+            vm.invitPro.phone = "";
+            vm.invitProMessage = "";
         };
 
         vm.invitCustomer = "";
 
         vm.sendCustomerInvit = function () {
-            if (!vm.mails) {
+            if (vm.mails.length < 1) {
                 vm.formCustInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            } else {/*
-             vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
-             var invits = vm.invitCustomer.split(",");
-             for (var i = 0; i < invits.length; i++) {
-             invits[i] = invits[i].trim();
-             if (!vm.isEmailValid(invits[i])) {
-             alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
-             return;
-             }
-             }
-             if (hasDuplicates(invits)) {
-             alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
-             return;
-             }*/
-
+            } else {
                 var invitation = {
                     emails: vm.mails,
                     message: vm.invitMessage
@@ -255,7 +250,8 @@
             email: "",
             name: "",
             phone: "",
-            address: {}
+            address: {},
+            message: vm.invitProMessage
         };
 
         vm.sendProInvit = function () {
@@ -505,6 +501,7 @@
 
         vm.closeGmailPopup = function () {
             vm.showGmailPopup = false;
+            vm.showInvitFriendPopup = true;
             vm.gmailContacts = [];
             vm.selectAll = false;
         };
