@@ -1,3 +1,89 @@
+.yakaPopupWindow {
+    width: 410px !important;
+    left: auto !important;
+    margin-left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding-top: 23px !important;
+    padding-bottom: 23px !important;
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+}
+
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-item-infos {
+    white-space: normal;
+}
+
+.contact-hr {
+    width: 95%;
+    clear: both;
+    margin-bottom: 0px !important;
+}
+
+.contact-section {
+    font-size: 19px;
+    font-weight: 400;
+    padding: 5px;
+    margin-bottom: 0px;
+    color: black;
+}
+
+.community-invit-received {
+    padding-left: 69px !important;
+    padding-right: 0px;
+}
+
+.contactItem:hover {
+    background-color: #f3f3f3;
+}
+
+.invite-contact {
+    font-weight: 100 !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #2e2e2e;
+}
+
+.h-25 {
+    height: 25px !important;
+}
+
+.order-tag {
+    height: auto;
+    line-height: 7px;
+    border-radius: 0px;
+    float: right;
+    margin: 0;
+}
+
+.t-align-tags {
+    text-align: right;
+}
+
+.padding-left-columns {
+    padding-left: 15px;
+}
+
+.padding-right-columns {
+    padding-right: 15px;
+}
+
+.contact-communities-tag {
+    float: right;
+}
+
+.contact-community-tag {
+    margin: 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: right;
+}
+
 .headerFirstname {
     position: absolute;
     right: 190px;
@@ -112,23 +198,16 @@
 }
 
 .contactItem {
-    height: 55px;
-    font-size: 16px;
+    font-size: 13px;
     color: #626262;
-    line-height: 55px;
-    border-bottom: solid 1px #F9F9F9;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .invitReceivedSpanHolder {
+    margin-top: 5px;
     width: calc(100% - 190px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     float: left;
 }
 
@@ -148,8 +227,18 @@
 }
 
 .contactItemCity {
-    margin-left: 20px;
     opacity: 0.6;
+}
+
+.userItemInitials {
+    width: 90px;
+    height: 80px;
+    font-size: 14px;
+    line-height: 40px;
+    letter-spacing: 0;
+    margin-top: 7px;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
 }
 
 .contactItemInitials {
@@ -159,16 +248,33 @@
     line-height: 40px;
     letter-spacing: 0;
     margin-top: 7px;
-    margin-right: 20px !important;
+    margin-right: 10px !important;
     margin-left: 20px !important;
+}
+
+.userAvatar {
+    width: 90px;
+    height: 80px;
+    margin-top: 7px;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
 }
 
 .contactItemAvatar {
     width: 40px;
     height: 40px;
     margin-top: 7px;
-    margin-right: 20px !important;
+    margin-right: 10px !important;
     margin-left: 20px !important;
+}
+
+.contactItemAvatar {
+    background: none !important;
+}
+
+.userNameInContact {
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .yakaPopupInvitTitle {
@@ -222,7 +328,7 @@
 }
 
 .contactItemInvitation {
-    padding-left: 20px !important;
+    padding-left: 0px !important;
 }
 
 .invitAccept {
@@ -237,7 +343,6 @@
 .invitRefuse {
     float: right;
     margin-top: 13px;
-    margin-right: 20px;
     cursor: pointer;
     width: 30px;
     padding: 5px;
@@ -346,6 +451,13 @@
     }
 }
 
+.contactTags {
+    padding-top: 10px;
+    line-height: 10px;
+    margin-right: 15px;
+    font-size: 13px;
+}
+
 @media (max-width: 849px) {
 
     .contactsHeaderLeftDesc {
@@ -370,16 +482,115 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
+    .invitReceivedSpanHolder {
+        width: calc(100% - 174px);
+    }
+}
 
+@media (min-width: 768px) {
+
+    .aligned-content-contact {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .aligned-content-contact > [class^="col-"],
+    .aligned-content-contact > [class*=" col-"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Optional, to align inner items
+                                     horizontally inside the column */
+    }
+
+    /**
+     *  Do NOT include this part into your stylesheet.
+     *  "flex: 1" or "flex-grow: 1" is added to make the inner div
+     *  - Which is also a flex-item - take up all the horizontal space
+     *  available space inside the flex container (.col-* elements)
+     */
+    .aligned-content-contact > [class^="col-"] > div,
+    .aligned-content-contact > [class*=" col-"] > div {
+        /* flex: 1; */
+        flex-grow: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .modify-link {
+        position: absolute;
+        left: -58px;
+        top: 70px;
+    }
+
+    .contact-item {
+        margin-bottom: 0px;
+    }
+
+    .invitReceivedSpanHolder {
+        margin-top: 5px;
+        width: calc(100% - 135px);
+        white-space: normal;
+        float: left;
+    }
+
+    .community-invit-received {
+        padding-left: 50px !important;
+        padding-right: 0px;
+    }
+
+    .contactTags {
+        padding: 0px 5px 0px 54px;
+        margin-right: 0px;
+    }
+
+    .order-tag {
+        float: left;
+        margin: 2px 1px 2px 1px;
+    }
+
+    .aligned-content-contact > yaka-avatar {
+        float: left;
+    }
+
+    .t-align-tags {
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .padding-user-contact {
+        padding-right: 0px;
+    }
+
+    .contact-communities-tag {
+        padding-left: 0px;
+        float: left;
+    }
+
+    .contact-community-tag {
+        line-height: 10px;
+        font-size: 13px;
+        border-radius: 2px;
+        float: left;
+    }
+
+    .padding-left-columns {
+        padding-left: 0px;
+    }
+
+    .padding-right-columns {
+        padding-right: 0px;
+    }
 
     .close-contact-button {
         position: absolute;
         top: -15px;
         right: -15px;
         line-height: 45px;
-        z-index : 1;
+        z-index: 1;
     }
+
     .contactsContacts {
         max-height: calc(100vh - 180px) !important;
         width: 100% !important;
@@ -461,8 +672,6 @@
     }
 
     .contactItem {
-        height: 50px;
-        line-height: 50px;
         font-size: 13px;
     }
 
@@ -486,23 +695,17 @@
     }
 
     .contactItemName {
-        position: absolute;
-        line-height: normal !important;
-        top: 8px;
-        left: 50px;
-        width: calc(100% - 60px) !important;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        margin-left: 10px;
+        display: inline-block;
+    }
+
+    .icon-position {
+        margin-right: 26px;
+        width: 20px;
     }
 
     .contactItemCity {
-        position: absolute;
-        line-height: normal !important;
-        top: 25px;
-        left: 50px;
-        margin-left: 0;
-        width: calc(100% - 60px) !important;
+        margin-left: 10px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -531,7 +734,7 @@
     }
 
     .contactItemNameInvitReceived {
-        width: calc(100% - 130px) !important;
+        width: calc(100% - 10px) !important;
     }
 
     .contactItemCityInvitReceived {
@@ -604,6 +807,17 @@
 
     .titleYakaClub {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 459px) {
+    .yakaPopupWindow {
+        width: 100% !important;
+        margin-left: 0 !important;
+        left: 0 !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        transform: initial !important;
     }
 }
 

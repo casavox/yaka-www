@@ -4,9 +4,10 @@
 <section id="view">
 
     <aside id="sidebar" data-ng-include="'/modules/core/views/sidebar-left.html'"
-           data-ng-class="{ 'toggled': app.sidebarToggle.left }"></aside>
+           data-ng-class="{ 'toggled': app.sidebarToggle.left }"
+           data-ng-if="app.getUser()"></aside>
 
-    <div id="content" class="page-content">
+    <div id="content" class="page-content" data-ng-class="{'noMenu' : !app.getUser()}">
         <div class="content-slide new-project" id="main-scroll-container">
             <div class="container">
                 <div class="slide-main" id="slide1" data-ng-show="vm.selectCategory">
@@ -68,20 +69,22 @@
                             </h2>
                         </div>
                         <div class="col-sm-4 col-sm-offset-2 text-center">
-                            <div id="materialYes" class="v-btn" data-ng-click="vm.material = 'yes'"
+                            <div id="materialYes" class="v-btn"
+                                 data-ng-click="vm.material = 'yes'; vm.error.material.flag = false"
                                  data-ng-class="{activate: vm.material == 'yes'}">
                                 Travaux
                             </div>
                             <small>Je fournis certains matériaux, à préciser</small>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <div id="materialNo" class="v-btn" data-ng-click="vm.material = 'no'"
+                            <div id="materialNo" class="v-btn"
+                                 data-ng-click="vm.material = 'no'; vm.error.material.flag = false"
                                  data-ng-class="{activate: vm.material == 'no'}">
                                 Travaux + matériaux
                             </div>
                             <small>Le Pro doit fournir tous les matériaux</small>
                         </div>
-                        <p class="error center" data-ng-show="vm.error.material.flag">
+                        <p class="col-xs-12 error f-s-13 center" data-ng-show="vm.error.material.flag">
                             {{vm.error.material.message}}
                         </p>
                     </div>
@@ -89,32 +92,37 @@
                         <h2 class="t-center">
                             Décrivez votre projet
                             <small
-                                data-ng-class="vm.error.description.flag  && vm.projectDescription.length > 0 && vm.projectDescription.length < 50 ? 'c-red': 'subtitle-color-forced'">
+                                data-ng-class="vm.error.description.flag  && vm.projectDescription.length > 0 && vm.projectDescription.length < 50 ? 'c-red': ' subtitle-color-forced'">
                                 Au moins 50 caractères
                             </small>
                         </h2>
                     </div>
 
                     <div class="col-xs-12">
-
+                        <form
+                            data-ng-class="{'has-error': vm.formAddProjectError && vm.projectDescription.length < 50}">
+                            <div class="form-group fg-float m-t-30">
+                                <div class="fg-line">
                         <textarea class="form-control" data-auto-size=""
                                   rows="2"
                                   data-ng-model="vm.projectDescription"
                                   data-ng-blur="vm.verifDescription()"
-                                  placeholder="Préciser mon projet ici ..."
                                   data-autosize-on="true"></textarea>
-
+                                    <label class="fg-label">Préciser
+                                        mon projet ici ...</label>
+                                </div>
+                                <p class="col-xs-12 error t-left m-b-0 p-0"
+                                   data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
+                                    <small>{{vm.error.description.message}}</small>
+                                </p>
+                            </div>
+                        </form>
                     </div>
 
-                    <p class="col-xs-12 error center m-b-0 p-0"
-                       data-ng-show="vm.error.description.flag && (vm.projectDescription.length < 50)">
-                        <small>{{vm.error.description.message}}</small>
-                    </p>
 
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.continueProject()"
-                        data-ng-disabled="(!vm.material && vm.type.code != 'COU_13900') || vm.projectDescription.length < 50">
+                        data-ng-click="vm.continueProject()">
                         Continuer
                     </button>
 
@@ -146,7 +154,7 @@
                                     <i class="zmdi zmdi-comment-text-alt"></i>
                                 </button>
 
-                                <div class="dropdown-menu stop-propagate commentPhotoBoxAddProject">
+                                <div class="dropdown-menu stop-propagate commentPhotoBox">
                                                 <textarea placeholder="Ajouter un commentaire"
                                                           data-ng-model="image.description"
                                                           data-ng-maxlength="140"
@@ -199,9 +207,12 @@
 
                     <div class="col-xs-12 card-header">
                         <h2 class="t-center">
-                            Indiquez l'adresse des travaux
-                            <small>
+                            Indiquez le lieu des travaux
+                            <small data-ng-if="vm.user.addresses.length>0">
                                 Choisissez une de vos adresses ou créez-en une nouvelle
+                            </small>
+                            <small data-ng-if="vm.user.addresses.length == 0">
+                                Indiquez votre code postal, puis sélectionnez votre commune
                             </small>
                         </h2>
                     </div>
@@ -216,66 +227,83 @@
                         </select>
                     </div>
 
-                    <p class="col-xs-12 text-center" data-ng-show="vm.newAddrFlag">
-                        Indiquez votre adresse :
+                    <p class="col-xs-12 text-center m-t-30" data-ng-show="vm.newAddrFlag && vm.user.addresses.length > 0">
+                        Indiquez votre code postal puis sélectionnez votre commune
                     </p>
 
                     <div
                         class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 row no-padding no-margin w-900 center addr">
                         <div class="no-padding mb-39" data-ng-class="col-xs-12">
-                            <div class="col-xs-12 no-padding inner-addon right-addon">
+                            <div class="col-xs-12 no-padding inner-addon right-addon form-group fg-float"
+                                 data-ng-class="{'has-error': vm.formAddAddressError && !address.name}">
                                 <div data-ng-show="vm.disabledAddr"></div>
                                 <i class="glyphicon glyphicon-map-marker"></i>
-                                <input vs-google-autocomplete="options"
-                                       vs-autocomplete-validator
-                                       options="options"
-                                       data-ng-model="address.name"
-                                       vs-place="address.place"
-                                       vs-place-id="address.components.placeId"
-                                       vs-street-number="address.components.streetNumber"
-                                       vs-street="address.components.street"
-                                       vs-city="address.components.city"
-                                       vs-state="address.components.state"
-                                       vs-country-short="address.components.countryCode"
-                                       vs-country="address.components.country"
-                                       vs-post-code="address.components.postCode"
-                                       vs-district="address.components.district"
-                                       vs-latitude="address.components.location.lat"
-                                       vs-longitude="address.components.location.long"
-                                       type="text"
-                                       name="address"
-                                       id="address"
-                                       placeholder="Indiquez votre adresse complète (vous seul décidez quand et par qui elle sera visible)"
-                                       class="form-control"
-                                       data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag">
+                                <div class="fg-line"
+                                    data-ng-class="{'has-filled' : !vm.newAddrFlag}">
+
+                                    <input type="text"
+                                           class="form-control"
+                                           name="address"
+                                           id="address"
+                                           data-ng-if="vm.user.addresses.length > 0 && !vm.newAddrFlag"
+                                           ng-model="address.name"
+                                           placeholder=""
+                                           data-ng-disabled="vm.user.addresses.length > 0 && !vm.newAddrFlag"/>
+
+
+                                           <input type="text"
+                                           class="form-control"
+                                           name="address"
+                                           id="address"
+                                           data-ng-if="vm.newAddrFlag"
+                                           ng-model="address.name"
+                                           data-ng-maxlength="5"
+                                           maxlength="5"
+                                           placeholder=""
+                                           uib-typeahead="address for address in getLocation($viewValue)"/>
+
+
+                                    <label class="fg-label"
+                                           data-ng-hide="address.name">
+                                        Votre code postal</label>
+                                </div>
+                                <small class="help-block center"
+                                       data-ng-show="vm.formAddAddressError && !address.name">
+                                    Merci d'indiquer le code postal puis de sélectionner la commune
+                                </small>
+
                             </div>
                         </div>
                     </div>
 
-                    <p class="col-xs-12 text-center m-t-30" data-ng-show="vm.newAddrFlag && address.name">
+                    <p class="col-xs-12 text-center m-t-30" data-ng-show="vm.newAddrFlag && (address.name.length > 5)">
                         Saisir un nom pour cette adresse :
                     </p>
 
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr">
-                        <div data-ng-show="vm.newAddrFlag && address.name">
-                            <input type="text" class="form-control" data-ng-model="vm.newAddr.name"
-                                   placeholder="Nom de l'adresse (Maison, Papa, ...)">
+                    <div
+                        class="col-xs-12 col-sm-6 col-sm-offset-3 row no-margin w-900 center select-addr form-group fg-float"
+                        data-ng-if="vm.newAddrFlag && (address.name.length > 5)">
+                        <div data-ng-class="{'has-error': vm.formAddAddressError && !vm.newAddr.name}">
+                            <div class="fg-line">
+
+                                <input type="text" class="form-control" data-ng-model="vm.newAddr.name">
+                                <label class="fg-label yakaEllipsis">Nom de
+                                    l'adresse (Maison, Appartement, ...)</label>
+                            </div>
+                            <small class="help-block center"
+                                   data-ng-show="vm.formAddAddressError && !vm.newAddr.name">
+                                Merci d'indiquer le nom du domicile ajouté
+                            </small>
                         </div>
                     </div>
 
-                    <p class="error center" data-ng-show="vm.error.address.flag">
-                        {{vm.error.address.message}}
-                    </p>
-
                     <button
                         class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.continueAddr()"
-                        data-ng-disabled="!address.name">
+                        data-ng-click="vm.continueAddr()">
                         Continuer
                     </button>
 
-                    <small class="col-xs-12 t-center m-t-15">Indiquez l'adresse complète, seule la ville
-                        sera visible par defaut
+                    <small class="col-xs-12 t-center m-t-15">Seul le code postal sera visible par defaut
                     </small>
                 </div>
 
@@ -325,9 +353,9 @@
 
                     <button id="publish"
                             class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 btn bgm-lightblue btn-lg waves-effect m-t-20"
-                            data-ng-click="vm.post()"
+                            data-ng-click="vm.publishProject()"
                             data-ng-disabled="!vm.dateType">
-                        ENVOYER
+                        {{vm.sendButton}}
                     </button>
 
                 </div>
@@ -335,3 +363,337 @@
         </div>
     </div>
 </section>
+
+<div class="yakaPopup" data-ng-show="vm.showLoginPopup" data-ng-click="vm.closePopup()" data-ng-cloak>
+    <div class="container">
+        <div id="loginPopup" class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.closePopup()" alt=""/>
+
+            <div data-ng-if="!vm.noSocialAccountMessage">
+                <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: vm.loginTab}"
+                     data-ng-click="vm.loginTab = true">
+                    CONNEXION
+                </div>
+                <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: !vm.loginTab}"
+                     data-ng-click="vm.loginTab = false">
+                    INSCRIPTION
+                </div>
+
+                <div data-ng-show="vm.loginTab">
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
+                        Facebook
+                    </div>
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
+                        Google
+                    </div>
+
+                    <form name="loginPro" class="p-t-30">
+                        <div class="form-group fg-float m-t-30"
+                             data-ng-class="{'has-error': vm.formPublicProjectLoginError && !vm.loginUser.email}">
+                            <div class="fg-line m-t-10">
+                                <input class="form-control"
+                                       type="text"
+                                       name="username"
+                                       autocomplete="username"
+                                       data-ng-model="vm.loginUser.email"
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()" yaka-input-email/>
+                                <label class="fg-label">Email</label>
+                            </div>
+                            <div data-ng-messages="loginPro.username.$error">
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectLoginError && vm.loginUser.email.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <small class="help-block c-red" data-ng-message="invalidEmail">
+                                    Cette addresse Email n'est pas valide
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-t-30"
+                             data-ng-class="{'has-error': vm.formPublicProjectLoginError && !vm.loginUser.password}">
+                            <div class="fg-line m-t-10">
+                                <input class="form-control"
+                                       type="password"
+                                       name="password"
+                                       autocomplete="current-password"
+                                       data-ng-model="vm.loginUser.password"
+                                       data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                                <label class="fg-label">Mot de passe</label>
+                            </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectLoginError && vm.loginUser.password.length < 1">
+                                    Ce champ est requis
+                                </small>
+                        </div>
+                    </form>
+
+                    <button
+                        class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                        data-ng-click="vm.login()"
+                        id="signInPopupButton">SE CONNECTER
+                    </button>
+
+                    <div class="col-xs-12 passwordForgotten underline">
+                        <span data-ng-click="vm.closePopup();
+                         vm.forgottenPasswordUser.email = vm.loginUser.email;
+                         vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
+                    </div>
+                </div>
+
+                <div data-ng-show="!vm.loginTab">
+
+                    <div class="col-xs-12 registerFacebookGoogle p-l-0 p-r-0">
+                        <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
+
+                        <div data-ng-if="vm.isSocialRegister()">
+                            <div class="registerSocialConfirm p-l-0 p-r-0">
+                                Inscription via {{vm.socialNetwork}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookPreRegister()"
+                         data-ng-if="!vm.isSocialRegister()">
+                        Facebook
+                    </div>
+                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googlePreRegister()"
+                         data-ng-if="!vm.isSocialRegister()">
+                        Google
+                    </div>
+
+                    <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
+
+                    <div class="col-xs-12 registerMail">
+                        <span class="registerWithEmailMessage pointer" data-ng-if="!vm.isSocialRegister()"
+                              data-ng-click="vm.showRegisterFields = true">- <span class="underline">Ou inscription par email</span> -</span>
+                        <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
+                    </div>
+                    <form name="registerForm">
+                        <div class="col-xs-12 showRegisterFields"
+                             data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
+
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.firstName}">
+
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="fname"
+                                           autocomplete="given-name"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.firstName"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                    <label class="fg-label">Prénom</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.firstName.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="registerForm.fname.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.lastName}">
+
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="lname"
+                                           autocomplete="family-name"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.lastName"
+                                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                    <label class="fg-label">Nom</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.lastName.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="registerForm.lname.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.defaultAddress.address}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.newUser.defaultAddress.address"
+                                           type="text"
+                                           name="address"
+                                           autocomplete="address-level2"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.defaultAddress.address.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
+                                    Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                                </small>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.email}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="username"
+                                           autocomplete="username"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.email"
+                                           yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.email.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="registerForm.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': vm.formPublicProjectRegError && !vm.newUser.password}">
+                                <div class="fg-line">
+                                    <input type="password"
+                                           name="password"
+                                           autocomplete="new-password"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.newUser.password"
+                                           data-ng-minlength="6">
+                                    <label class="fg-label">Mot de passe</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.newUser.password.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="registerForm.password.$error">
+                                    <small class="help-block" data-ng-message="minlength">
+                                        Le mot de passe doit faire au moins 6 caractères
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group fg-float m-b-15"
+                                 data-ng-class="{'has-error': (vm.formPublicProjectRegError && !vm.passwordConfirm) || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                <div class="fg-line">
+                                    <input type="password" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
+                                    <label class="fg-label">Confirmation</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formPublicProjectRegError && vm.passwordConfirm.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <small class="help-block"
+                                       data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
+                                    Les deux mots de passe ne correspondent pas
+                                </small>
+                            </div>
+
+                            <div class="c-red center m-b-0 t-center">
+                                Cochez la case ci-dessous
+                            </div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-lg visible-md col-xs-12 m-t-0 center recaptcha"
+                            ></div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-sm col-xs-12 m-t-0 center recaptcha mobile"
+                                style="-moz-transform:scale(0.95); -ms-transform:scale(0.95); -o-transform:scale(0.95); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.95); transform:scale(0.95); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.95,M12=0,M21=0,M22=0.95,SizingMethod='auto expand');"
+                            ></div>
+                            <div
+                                vc-recaptcha
+                                data-ng-model="vm.newUser.recaptchaResponse"
+                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                class="visible-xs col-xs-12 m-t-0 center recaptcha mobile"
+                                style="-moz-transform:scale(0.9); -ms-transform:scale(0.9); -o-transform:scale(0.9); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.9); transform:scale(0.9); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9,M12=0,M21=0,M22=0.9,SizingMethod='auto expand');"
+                            ></div>
+                            <button
+                                class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                                data-ng-click="vm.register()">S'INSCRIRE
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div data-ng-if="vm.noSocialAccountMessage">
+                <div class="noSocialAccountMessage">
+                    Ce compte {{vm.socialNetwork}} nous est inconnu.<br/>
+                    Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en cliquant
+                    sur <em>S'inscrire</em> puis <em>{{vm.socialNetwork}}</em>.
+                </div>
+                <button
+                    class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                    data-ng-click="vm.noSocialAccountMessage = false">OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yakaPopup" data-ng-show="vm.showForgottenPasswordPopup"
+     data-ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" data-ng-cloak>
+    <div class="container">
+        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+            <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.showForgottenPasswordPopup = false; vm.passwordForgottenMessageSent = false" alt=""/>
+
+            <div data-ng-if="!vm.passwordForgottenMessageSent">
+
+                <form name="recoverPassword">
+                    <div class="form-group fg-float m-t-30"
+                         data-ng-class="{'has-error': vm.formProjectForgottenPasswordError && !vm.forgottenPasswordUser.email}">
+                        <div class="fg-line">
+                            <input type="text"
+                                   name="username"
+                                   autocomplete="username"
+                                   data-ng-disabled="vm.isSocialRegister()"
+                                   class="form-control fg-input input-sm"
+                                   data-ng-model="vm.forgottenPasswordUser.email"
+                                   yaka-input-email>
+                            <label class="fg-label">Email</label>
+                        </div>
+                        <small class="help-block t-left"
+                               data-ng-show="vm.formProjectForgottenPasswordError && vm.forgottenPasswordUser.email.length < 1">
+                            Ce champ est requis
+                        </small>
+                        <div data-ng-messages="recoverPassword.username.$error">
+                            <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                valide
+                            </small>
+                        </div>
+                    </div>
+                </form>
+                <button
+                    class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                    data-ng-click="vm.forgottenPassword()">RÉINITIALISER MON MOT DE PASSE
+                </button>
+            </div>
+            <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
+                Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre mot de
+                passe.
+            </div>
+        </div>
+    </div>
+</div>

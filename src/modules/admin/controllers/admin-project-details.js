@@ -381,6 +381,8 @@
                 }
                 if (vm.project.hasMaterial) {
                     res.push("MATERIAL_TRUE");
+                } else {
+                    res.push("MATERIAL_FALSE");
                 }
             }
             return res;
@@ -458,7 +460,6 @@
 
             angular.forEach(vm.project.compatiblePros, function (pro) {
                 pro.name = pro.user.firstName + " " + pro.user.lastName;
-                pro.contactRelation = pro.user.contactRelation;
                 if (pro.company.address.postalCode == undefined) {
                     pro.company.address.postalCode = "";
                 }
@@ -537,7 +538,7 @@
             $scope.usersTable = new ngTableParams({
                 page: 1,
                 count: 99999999,
-                sorting: {distance: "asc"}
+                sorting: {numberDistance: "asc"}
             }, {
                 total: vm.project.compatiblePros.length,
                 counts: [],

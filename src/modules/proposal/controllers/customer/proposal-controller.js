@@ -99,29 +99,46 @@
                 }
             });
         };
-
         vm.acceptProposal = function () {
-            swal({
-                title: "Vous êtes sur le point de sélectionner ce Pro pour vos travaux",
-                text: "Votre projet de travaux ne sera plus visible par les autres professionels",
-                type: "warning",
-                showConfirmButton: true,
-                showCancelButton: true,
-                confirmButtonColor: "#03a9f4",
-                confirmButtonText: "Oui, sélectionner ce Pro",
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    networkService.proposalAcceptPOST(vm.proposal.id,
-                        function (res) {
-                            alertMsg.send("Félicitations, vous avez choisi cette proposition pour vos travaux", "info");
-                            loadProposal(true);
-                        }, function () {
-                            alertMsg.send("Impossible de sélectionner cette proposition, réessayez puis contactez le support si besoin", "danger");
-                        }, true
-                    );
-                }
-            });
+            if (vm.proposal.project.address.streetNumber || vm.proposal.project.address.route) {
+                swal({
+                    title: "Vous êtes sur le point de sélectionner ce Pro pour vos travaux",
+                    text: "Votre projet de travaux ne sera plus visible par les autres professionnels",
+                    type: "warning",
+                    showConfirmButton: true,
+                    showCancelButton: true,
+                    confirmButtonColor: "#03a9f4",
+                    confirmButtonText: "Oui, sélectionner ce Pro",
+                    cancelButtonText: "Non"
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        networkService.proposalAcceptPOST(vm.proposal.id,
+                            function (res) {
+                                alertMsg.send("Félicitations, vous avez choisi cette proposition pour vos travaux", "info");
+                                loadProposal(true);
+                            }, function () {
+                                alertMsg.send("Impossible de sélectionner cette proposition, réessayez puis contactez le support si besoin", "danger");
+                            }, true
+                        );
+                    }
+                });
+            } else {
+                swal({
+                    title: "Votre adresse est incomplète",
+                    text: "Merci de renseigner votre adresse complète avant de confirmer votre sélection",
+                    type: "warning",
+                    showConfirmButton: true,
+                    confirmButtonColor: "#03a9f4",
+                    confirmButtonText: "Compléter l'adresse",
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        $state.go('project', {
+                            'projectId': vm.proposal.project.id,
+                            'incompleteAddress': true
+                        });
+                    }
+                });
+            }
         };
 
         vm.completeProposal = function () {
@@ -173,6 +190,5 @@
         vm.projectDetails = function () {
             $state.go('project', {projectId: vm.proposal.project.id});
         }
-
     }
 })();

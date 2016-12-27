@@ -1,3 +1,8 @@
+.community-h2 {
+    margin: 0 !important;
+    font-weight: 100;
+    font-size: 18px;
+}
 
 .profilePopupMessage {
     font-size: 15px;
@@ -41,25 +46,31 @@
     margin-left: 50%;
 }
 
-
-
 @media (max-width: 570px) {
 
-    .commentPhotoBoxAddProject {
-        position: fixed;
+    .commentPhotoBox {
+        width: 0px !important;
+        height: 0px !important;
+
+        -moz-transition: none !important;
+        -webkit-transition: none !important;
+        -o-transition: all 0 ease-in !important;
+        transition: none !important;
+    }
+
+    .open > .commentPhotoBox {
+        width: 228px !important;
+        position: fixed !important;
         left: 50% !important;
         transform: translateX(-50%) translateY(-50%) !important;
         top: 50% !important;
     }
 }
 
-@media (max-width: 400px) {
-
-    .commentPhotoBoxProPortfolio {
-        position: fixed;
-        left: 50% !important;
-        transform: translateX(-50%) translateY(-50%) !important;
-        top: 50% !important;
-    }
+.communityTitleWithButton {
+    width: calc(100% - 70px);
 }
 
+.isChecked {
+    border-color: red;
+}

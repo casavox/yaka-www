@@ -1,6 +1,3 @@
-/**
- * Created by Vincent on 30/04/2016.
- */
 (function () {
     'use strict';
 
@@ -11,6 +8,15 @@
     function config($stateProvider) {
 
         $stateProvider
+
+        //Redirects
+
+            .state('concours', {
+                url: "/concours",
+                onEnter: function ($window) {
+                    $window.open('http://res.cloudinary.com/yaka/image/upload/v1481207905/casavox/Reglement_Concours_Dec2016.pdf', '_self');
+                }
+            })
 
             //Customer
 
@@ -24,7 +30,7 @@
             //Pro
 
             .state('pro-home', {
-                url: "/pro/?invitationId&login&email&register",
+                url: "/pro?invitationId&login&email&register",
                 templateUrl: "/modules/home/views/pro/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'

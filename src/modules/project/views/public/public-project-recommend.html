@@ -69,7 +69,7 @@
             <div class="col-sm-12">
                 <div class="block-header">
                     <h2>
-                        Recommander un professionel
+                        Recommander un professionnel
                     </h2>
                 </div>
 
@@ -84,86 +84,41 @@
                             </div>
 
                             <form name="inviteForm" class="m-t-20">
-                                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput"
-                                     data-ng-class="{'has-error': !vm.invitPro.firstName}">
+
+                                <div class="col-xs-12 no-padding form-group fg-float m-t-15"
+                                     data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.name}">
 
                                     <div class="fg-line">
-                                        <input type="text" name="firstName" class="form-control fg-input input-sm"
-                                               data-ng-model="vm.invitPro.firstName"
-                                               required="required" data-ng-disabled="vm.isSocialRegister()"
-                                               yaka-input-name>
-                                        <label class="fg-label">Prénom</label>
-                                    </div>
-                                    <div data-ng-messages="inviteForm.firstName.$error">
-                                        <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
-                                            valide
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput halfInputRight"
-                                     data-ng-class="{'has-error': !vm.invitPro.lastName}">
-
-                                    <div class="fg-line">
-                                        <input type="text" name="lastName" class="form-control fg-input input-sm"
-                                               data-ng-model="vm.invitPro.lastName"
-                                               required="required" data-ng-disabled="vm.isSocialRegister()"
+                                        <input type="text" name="name" class="form-control fg-input input-sm"
+                                               data-ng-model="vm.invitPro.name"
+                                               data-ng-disabled="vm.isSocialRegister()"
                                                yaka-input-name>
                                         <label class="fg-label">Nom</label>
                                     </div>
-                                    <div data-ng-messages="inviteForm.lastName.$error">
+                                    <small class="help-block t-left"
+                                           data-ng-show="vm.formPublicRecoError && vm.invitPro.name.length < 1">
+                                        Ce champ est requis
+                                    </small>
+                                    <div data-ng-messages="inviteForm.name.$error">
                                         <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                             valide
                                         </small>
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 no-padding select m-b-15">
-                                    <select class="form-control c-red"
-                                            onchange="this.className='form-control form-control-underline-ok'"
-                                            data-ng-model="vm.invitPro.relation">
-                                        <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
-                                        <option value="CLIENT">Client</option>
-                                        <option value="FRIEND">Ami</option>
-                                        <option value="FAMILY">Famille</option>
-                                        <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
-                                     events="vm.updateMultiChoiceInputColor"
-                                     data-ng-dropdown-multiselect=""
-                                     options="vm.multiChoiceInput.options"
-                                     selected-model="vm.multiChoiceInput.selected"
-                                     extra-settings="vm.multiChoiceInput.settings"
-                                     translation-texts="vm.multiChoiceInput.translation"
-                                     checkboxes="true"></div>
-
                                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     data-ng-class="{'has-error': !vm.invitPro.address.address}">
-                                    <div class="fg-line">
-                                        <input type="text" class="form-control fg-input input-sm"
-                                               vs-google-autocomplete="vm.autocomplete.options"
-                                               vs-autocomplete-validator
-                                               data-ng-model="vm.invitPro.address.address"
-                                               type="text"
-                                               name="address"
-                                               required="required"
-                                               placeholder=""
-                                               id="address">
-                                        <label class="fg-label">Localité</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     data-ng-class="{'has-error': !vm.invitPro.email}">
+                                     data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.email}">
                                     <div class="fg-line">
                                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                                class="form-control fg-input input-sm"
                                                data-ng-model="vm.invitPro.email"
-                                               required="required" yaka-input-email>
+                                               yaka-input-email>
                                         <label class="fg-label">Email</label>
                                     </div>
+                                    <small class="help-block t-left"
+                                           data-ng-show="vm.formPublicRecoError && vm.invitPro.email.length < 1">
+                                        Ce champ est requis
+                                    </small>
                                     <div data-ng-messages="inviteForm.username.$error">
                                         <small class="help-block" data-ng-message="invalidEmail">
                                             Cet email n'est pas valide
@@ -171,15 +126,34 @@
                                     </div>
                                 </div>
 
+                                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                     data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.address.address}">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control fg-input input-sm"
+                                               vs-google-autocomplete="vm.autocomplete.options"
+                                               vs-autocomplete-validator
+                                               data-ng-model="vm.invitPro.address.address"
+                                               type="text"
+                                               name="address"
+                                               placeholder=""
+                                               id="address">
+                                        <label class="fg-label">Ville</label>
+                                        <small class="help-block c-red" data-ng-if="vm.formPublicRecoError && !vm.invitPro.address.address">
+                                            Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                                        </small>
+                                    </div>
+                                </div>
+
+
                                 <div class="col-xs-12 no-padding form-group fg-float">
                                     <div class="fg-line">
                                         <input type="text" name="phoneNumber"
                                                class="form-control fg-input"
                                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                                        <label class="fg-label fg-label-phone">Téléphone</label>
+                                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                                     </div>
                                     <div data-ng-messages="inviteForm.phoneNumber.$error">
-                                        <small class="help-block" data-ng-message="invalidPhone">
+                                        <small class="help-block c-red" data-ng-message="invalidPhone">
                                             Ce numéro de téléphone n'est pas valide
                                         </small>
                                     </div>
@@ -228,15 +202,19 @@
                                      data-ng-class="{showRegisterFieldsRecoVisible: vm.isSocialRegister() || vm.showRegisterFields}">
 
                                     <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
-                                         data-ng-class="{'has-error': !vm.newUser.firstName}">
+                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.firstName}">
 
                                         <div class="fg-line">
                                             <input type="text" name="firstName" class="form-control fg-input input-sm"
                                                    data-ng-model="vm.newUser.firstName"
-                                                   required="required" data-ng-disabled="vm.isSocialRegister()"
+                                                   data-ng-disabled="vm.isSocialRegister()"
                                                    yaka-input-name>
                                             <label class="fg-label">Prénom</label>
                                         </div>
+                                        <small class="help-block t-left"
+                                               data-ng-show="vm.formPublicRecoError && vm.newUser.firstName.length < 1">
+                                            Ce champ est requis
+                                        </small>
                                         <div data-ng-messages="registerForm.firstName.$error">
                                             <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                                 valide
@@ -246,15 +224,19 @@
 
                                     <div
                                         class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
-                                        data-ng-class="{'has-error': !vm.newUser.lastName}">
+                                        data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.lastName}">
 
                                         <div class="fg-line">
                                             <input type="text" name="lastName" class="form-control fg-input input-sm"
                                                    data-ng-model="vm.newUser.lastName"
-                                                   required="required" data-ng-disabled="vm.isSocialRegister()"
+                                                   data-ng-disabled="vm.isSocialRegister()"
                                                    yaka-input-name>
                                             <label class="fg-label">Nom</label>
                                         </div>
+                                        <small class="help-block t-left"
+                                               data-ng-show="vm.formPublicRecoError && vm.newUser.lastName.length < 1">
+                                            Ce champ est requis
+                                        </small>
                                         <div data-ng-messages="registerForm.lastName.$error">
                                             <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                                 valide
@@ -263,14 +245,18 @@
                                     </div>
 
                                     <div class="form-group fg-float m-b-30"
-                                         data-ng-class="{'has-error': !vm.newUser.email}">
+                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.email}">
                                         <div class="fg-line">
                                             <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                                    class="form-control fg-input input-sm"
                                                    data-ng-model="vm.newUser.email"
-                                                   required="required" yaka-input-email>
+                                                   yaka-input-email>
                                             <label class="fg-label">Email</label>
                                         </div>
+                                        <small class="help-block t-left"
+                                               data-ng-show="vm.formPublicRecoError && vm.newUser.email.length < 1">
+                                            Ce champ est requis
+                                        </small>
                                         <div data-ng-messages="registerForm.username.$error">
                                             <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                                 valide
@@ -279,7 +265,7 @@
                                     </div>
 
                                     <div class="form-group fg-float m-b-30"
-                                         data-ng-class="{'has-error': !vm.newUser.defaultAddress.address}">
+                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.defaultAddress.address}">
                                         <div class="fg-line">
                                             <input type="text" class="form-control fg-input input-sm"
                                                    vs-google-autocomplete="vm.autocomplete.options"
@@ -287,21 +273,27 @@
                                                    data-ng-model="vm.newUser.defaultAddress.address"
                                                    type="text"
                                                    name="address"
-                                                   required="required"
                                                    placeholder=""
                                                    id="address">
                                             <label class="fg-label">Ville</label>
+                                            <small class="help-block c-red" data-ng-if="vm.formPublicRecoError && !vm.newUser.defaultAddress.address">
+                                                Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                                            </small>
                                         </div>
                                     </div>
 
-                                    <div class="form-group fg-float m-b-15"
-                                         data-ng-class="{'has-error':! vm.newUser.password}">
+                                    <div class="form-group fg-float m-b-30"
+                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.password}">
                                         <div class="fg-line">
                                             <input type="password" name="password"
                                                    class="form-control fg-input input-sm"
                                                    data-ng-model="vm.newUser.password" data-ng-minlength="6">
                                             <label class="fg-label">Mot de passe</label>
                                         </div>
+                                        <small class="help-block t-left"
+                                               data-ng-show="vm.formPublicRecoError && vm.newUser.password.length < 1">
+                                            Ce champ est requis
+                                        </small>
                                         <div data-ng-messages="registerForm.password.$error">
                                             <small class="help-block" data-ng-message="minlength">Le mot de passe doit
                                                 faire au
@@ -311,13 +303,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group fg-float m-b-15"
-                                         data-ng-class="{'has-error': !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                    <div class="form-group fg-float m-b-30"
+                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
                                         <div class="fg-line">
                                             <input type="password" class="form-control fg-input input-sm"
                                                    data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
                                             <label class="fg-label">Confirmation</label>
                                         </div>
+                                        <small class="help-block t-left"
+                                               data-ng-show="vm.formPublicRecoError && vm.passwordConfirm.length < 1">
+                                            Ce champ est requis
+                                        </small>
                                         <small class="help-block"
                                                data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
                                             Les deux mots de passe ne correspondent pas
@@ -349,7 +345,6 @@
                                     ></div>
 
                                     <button class="btn bgm-lightblue btn-lg waves-effect center m-t-10 w-s-normal"
-                                            data-ng-disabled="!vm.registerFormIsValid() || !vm.proFormIsValid()"
                                             data-ng-click="vm.register()">
                                         S'INSCRIRE ET RECOMMANDER
                                     </button>

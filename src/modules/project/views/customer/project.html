@@ -56,7 +56,8 @@
                 <h2 class="c-orange">Projet Annulé</h2>
             </div>
 
-            <div class="card pointer hidden-xs" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
+            <div class="card pointer hidden-xs m-b-10 height-fixed-pro-card"
+                 data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
                  data-ng-if="vm.project.proposal">
                 <div class="card-body card-padding row proposalHeader">
 
@@ -81,6 +82,15 @@
                             {{vm.project.proposal.professional.user.lastName}}
                             {{vm.project.proposal.professional.user.firstName}}
                         </div>
+                    </div>
+                    <div class="pull-right">
+                        <ul class="actions m-t-20">
+                            <li class="dropdown" uib-dropdown>
+                                <a href="" uib-dropdown-toggle>
+                                    <i class="zmdi zmdi-chevron-right zmdi-hc-fw c-lightblue"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -122,7 +132,8 @@
 
 
             <div class="yakaMain projectMainView">
-                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                <div class="card m-b-15" id="profile-main"
+                     data-ng-class="{'no-scroll': vm.showChat && !vm.project.proposal, 'good-height' : vm.showChat && vm.project.proposal}">
                     <div class="pm-body clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
@@ -143,7 +154,7 @@
                             </li>
                         </ul>
 
-                        <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
+                        <yaka-chat class="scrollViewChatProposalProject" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.project.supportChat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
@@ -165,7 +176,6 @@
 
                                         <button class="btn bgm-lightblue waves-effect pull-right m-b-10"
                                                 data-ng-show="vm.editFlag"
-                                                data-ng-disabled="!vm.projectTmp.description"
                                                 data-ng-click="vm.openSavePopup()">
                                             Enregistrer
                                         </button>
@@ -209,10 +219,19 @@
                                                 {{vm.projectTmp.description}}
                                             </dd>
                                             <dd data-ng-if="vm.editFlag">
-                                            <textarea class="form-control" data-auto-size=""
-                                                      placeholder="Description du projet"
-                                                      data-ng-model="vm.projectTmp.description"
-                                                      data-autosize-on="true"></textarea>
+                                                <div class="form-group fg-float"
+                                                     data-ng-class="{'has-error': vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">
+                                                    <div class="fg-line">
+                                                    <textarea class="form-control" data-auto-size=""
+                                                              data-ng-model="vm.projectTmp.description"
+                                                              data-autosize-on="true"></textarea>
+                                                        <label class="fg-label">Description du projet</label>
+                                                    </div>
+                                                    <small class="help-block t-left"
+                                                           data-ng-show="vm.formProjectDetailsError && (vm.projectTmp.description.length < 50)">
+                                                        Ce champ est requis (50 caractères minimum)
+                                                    </small>
+                                                </div>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal"
@@ -220,12 +239,18 @@
                                             <dt class="yakaDisableEllipsis">Mots clés</dt>
                                             <dd>
                                                 <ul class="yaka-chips">
-                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}" data-ng-repeat="tag in vm.getTags()">
+                                                    <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}"
+                                                        data-ng-repeat="tag in vm.getTags()">
                                                         <span data-ng-if="tag == 'MATERIAL_TRUE'"
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                        <span data-ng-if="tag == 'MATERIAL_FALSE'"
+                                                              uib-tooltip="Le Pro doit fournir les matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                        <span
+                                                            data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>
@@ -249,6 +274,9 @@
                                                     <i data-ng-show="vm.editFlag"
                                                        class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
                                                        data-ng-click="vm.editWhere()"></i>
+                                                </div>
+                                                <div class="help-block c-orange f" data-ng-show="vm.alertCorrectedAddress">
+                                                    Votre adresse a été corrigée
                                                 </div>
                                             </dd>
                                         </dl>
@@ -308,7 +336,7 @@
                                                         <i class="zmdi zmdi-comment-text-alt"></i>
                                                     </button>
 
-                                                    <div class="dropdown-menu stop-propagate">
+                                                    <div class="dropdown-menu stop-propagate commentPhotoBox">
                                                 <textarea placeholder="Ajouter un commentaire"
                                                           data-ng-model="image.description"
                                                           data-ng-maxlength="140"
@@ -373,55 +401,74 @@
                 <div class="row no-margin w-900 center select-addr m-t-20 m-b-5"
                      data-ng-show="vm.user.addresses.length > 0">
                     <div class="col-xs-5 no-padding select">
-                        <select class="form-control" data-ng-model="vm.myAddress" data-ng-change="vm.setAddress()">
+                        <select class="form-control" data-ng-model="vm.myAddress"
+                                data-ng-change="vm.setAddress()">
                             <option value="new">Nouvelle adresse</option>
                             <option data-ng-repeat="a in vm.user.addresses" value="{{a.address}}"
                                     data-ng-selected="{{a.address.toString() == vm.myAddress.toString()}}">{{a.name}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-xs-6 col-xs-offset-1 no-padding">
-                        <input type="text" class="select-custom" data-ng-if="vm.newAddrFlag"
-                               data-ng-model="vm.newAddr.name"
-                               data-ng-change="vm.verifNameAddr()" placeholder="Nom de l'adresse Ex: Maison">
-                    </div>
-                </div>
-                <div class="row no-margin w-900 center addr">
-                    <div class="no-padding mb-39"
-                         data-ng-class="{'col-xs-12': !vm.newAddrFlag, 'col-xs-9': vm.newAddrFlag}">
-                        <div class="inner-addon right-addon">
-                            <div class="disabled-addr" data-ng-show="vm.disabledAddr"></div>
-                            <i class="glyphicon glyphicon-map-marker"></i>
-                            <input vs-google-autocomplete="options"
-                                   options="options"
-                                   data-ng-model="address.name"
-                                   vs-autocomplete-validator
-                                   vs-place="address.place"
-                                   vs-place-id="address.components.placeId"
-                                   vs-street-number="address.components.streetNumber"
-                                   vs-street="address.components.street"
-                                   vs-city="address.components.city"
-                                   vs-state="address.components.state"
-                                   vs-country-short="address.components.countryCode"
-                                   vs-country="address.components.country"
-                                   vs-post-code="address.components.postCode"
-                                   vs-district="address.components.district"
-                                   vs-latitude="address.components.location.lat"
-                                   vs-longitude="address.components.location.long"
 
-                                   type="text"
-                                   name="address"
-                                   id="address"
-                                   placeholder="Indiquer l'adresse" class="input-custom">
+                    <div class="col-xs-6 col-xs-offset-1 no-padding form-group fg-float m-b-30"
+                         data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.newAddr.name}"
+                         data-ng-show="vm.newAddrFlag">
+                        <div class="fg-line">
+                            <input type="text"
+                                   class="form-control fg-input input-sm"
+                                   data-ng-model="vm.newAddr.name">
+                            <label class="fg-label  yakaEllipsis">Nom de
+                                l'adresse Ex: Maison</label>
                         </div>
+                        <small class="help-block" data-ng-show="vm.formProjectPlaceError && !vm.newAddr.name">
+                            Ce champs est requis
+                        </small>
                     </div>
                 </div>
+                <div class="form-group fg-float m-t-20 m-b-30"
+                     data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.pcodeAndCity}">
+                    <div class="fg-line">
+                        <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
+
+                        <input type="text"
+                               class="form-control fg-input input-sm inputAddress"
+                               name="address"
+                               id="address"
+                               ng-model="vm.pcodeAndCity"
+                               data-ng-maxlength="5"
+                               maxlength="5"
+                               placeholder=""
+                               uib-typeahead="address for address in getLocation($viewValue)"/>
+                        <label class="fg-label">Indiquer le code postal</label>
+                    </div>
+                    <small class="help-block" data-ng-if="!vm.pcodeAndCity">
+                        Veuillez saisir le code postal et sélectionner la ville dans la liste
+                    </small>
+                </div>
+
+                <div class="form-group fg-float m-t-20 m-b-30"
+                     data-ng-class="{'has-error': (vm.formProjectPlaceError && !address.name) || (vm.incompleteAddr && !vm.route)}">
+                    <div class="fg-line">
+                        <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
+                        <input type="text"
+                               class="form-control fg-input input-sm"
+                               data-ng-model="vm.route"
+                               type="text"
+                               name="address"
+                               placeholder=""
+                               id="address">
+                        <label class="fg-label">Complément d'adresse (optionnel)</label>
+                    </div>
+                    <small class="help-block" data-ng-if="vm.incompleteAddr && !vm.route">
+                        Merci de compléter votre adresse
+                    </small>
+                </div>
+
                 <div class="t-right">
-                    <button class="btn btn-link waves-effect c-red" data-ng-click="vm.whereFlag = false">
+                    <button class="btn btn-link waves-effect c-red" data-ng-click="vm.reinitializeNewAddress()">
                         ANNULER
                     </button>
-                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhere()"
-                            data-ng-disabled="!address.name && !vm.newAddr.name">
+                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhere()">
                         CONFIRMER
                     </button>
                 </div>

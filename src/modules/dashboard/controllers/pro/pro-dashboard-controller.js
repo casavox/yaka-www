@@ -93,6 +93,100 @@
             }
             return true;
         };
+
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+        }
+
+        vm.getCommunityByType = function (type) {
+            if (vm.communities) {
+                for (var i = 0; i < vm.communities.length; i++) {
+                    if (type == vm.communities[i].type) {
+                        return vm.communities[i];
+                    }
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
+
+        vm.getUserchatsUnreadNumber = function () {
+            var num = 0;
+            if ($localStorage.user.userChats) {
+                angular.forEach($localStorage.user.userChats, function (userChat) {
+                    if (userChat.unreadMessages) {
+                        num++;
+                    }
+                })
+            }
+            return num;
+        };
+
+        vm.showTopViewProfileNotValidated = function () {
+            return ($localStorage.user.professional.status == 'REGISTERED' ||
+            $localStorage.user.professional.status == 'WAITING' ||
+            $localStorage.user.professional.status == 'REFUSED');
+        };
+
+        vm.showTopViewInvits = function () {
+            if (!vm.data) {
+                return false;
+            }
+            return vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0;
+        };
+
+        vm.showTopViewUnreadMessages = function () {
+            if (!vm.data) {
+                return false;
+            }
+            return vm.getUserchatsUnreadNumber() > 0;
+        };
+
+        vm.showTopViewNoProposal = function () {
+            if (!vm.data) {
+                return false;
+            }
+            return !vm.userOnGoingProjectNumber || vm.userOnGoingProjectNumber == 0;
+        };
+
+        vm.showTopViewNoContact = function () {
+            if (!vm.data) {
+                return false;
+            }
+            return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
+        };
+
+        vm.showTopViewRecommendation = function () {
+            if (!vm.data) {
+                return false;
+            }
+            return getRecommendationNumber();
+        };
+
+        function getRecommendationNumber () {
+            if (vm.networkProjects) {
+                var recoNumber = 0;
+                for (var i = 0; i < vm.networkProjects.length; i++) {
+                    if (vm.networkProjects[i].recoProposals) {
+                        recoNumber++;
+                    }
+                }
+                return recoNumber;
+
+            } else {
+                return 0;
+            }
+        }
+
+        vm.showTopViewNoNetworkProject = function () {
+            return !vm.networkProjects || vm.networkProjects.length == 0;
+        };
+
+
     }
 })
 ();

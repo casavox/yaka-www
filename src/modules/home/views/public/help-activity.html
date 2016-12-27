@@ -6,6 +6,36 @@
                     title="{{vm.getActivity().title}}"></yaka-mobile-header>
 
 <section id="main" class="view">
+    <div class="homeSection homeSection3">
+        <div class="container">
+            <div class="col-xs-12 homeSection3Items">
+                <div class="col-xs-12 col-sm-6 homeSection3Item">
+                    <div class="col-xs-12 homeSection3ItemTitle f-bold">
+                        Contacter les meilleurs professionnels autour de vous
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
+                        Mes travaux sont réalisés par les professionnels du batiment préférés de mes proches
+                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
+                        ui-sref="home">DÉCOUVRIR LA MEILLEURE<br>FAÇON DE TROUVER UN PROFESSIONNEL
+                    </button>
+                </div>
+                <div class="col-xs-12 col-sm-6 homeSection3Item">
+                    <div class="col-xs-12 homeSection3ItemTitle f-bold">
+                        Professionnel du bâtiment - Trouver de nouveaux clients
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
+                        Utiliser des services internet réellement efficaces pour trouver de nouveaux clients
+                    </div>
+                    <button
+                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
+                        ui-sref="pro-home">DÉCOUVRIR LA MEILLEURE<br>FAÇON DE TROUVER DES CLIENTS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="homeSection">
         <div class="container">
             <div class="col-xs-12 col-sm-8">
@@ -24,7 +54,7 @@
                                 <p><b>{{text.q}}</b></p>
                             </div>
                             <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13 m-b-10"
-                                    data-ui-sref="home({register : true})">J'ai des travaux à faire
+                                    data-ui-sref="new-project">J'ai des travaux à faire
                             </button>
                             <div data-ng-repeat="text in vm.getActivity().subText">
                                 <p class="m-t-20" data-ng-if="text.q"><b>{{text.q}}</b></p>
@@ -46,7 +76,7 @@
             <div class="container m-t-30">
                 <div class="hidden-xs card col-sm-3 col-sm-offset-1 m-t-25">
                     <div class="m-t-10">
-                        <h2 class="p-l-25">Catégories</h2>
+                        <h2 class="p-l-25">Travaux</h2>
                         <ol class="card-body card-padding list-unstyled f-s-10">
                             <li class=" pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
                                                     data-ui-sref-active="activeClass">Peinture</a></li>
@@ -151,36 +181,6 @@
             </div>
         </div>
     </div>
-    <div class="homeSection homeSection3">
-        <div class="container">
-            <div class="col-xs-12 homeSection3Items">
-                <div class="col-xs-12 col-sm-6 homeSection3Item">
-                    <div class="col-xs-12 homeSection3ItemTitle">
-                        Contactez les meilleurs professionels autour de vous
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
-                        Utilisez les professionels du batiment préférés de vos proches
-                    </div>
-                    <button
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
-                        ui-sref="home">DÉCOUVREZ CASAVOX
-                    </button>
-                </div>
-                <div class="col-xs-12 col-sm-6 homeSection3Item">
-                    <div class="col-xs-12 homeSection3ItemTitle">
-                        Pro du bâtiment ? CasaVox-Pro est pensé pour vous
-                    </div>
-                    <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
-                        Utilisez des outils réellement utiles, conçus avec des professionnels.
-                    </div>
-                    <button
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
-                        ui-sref="pro-home">DÉCOUVREZ NOS SERVICES
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="homeSection homeSection5">
         <ng-include src="'/modules/core/views/footer.html'"></ng-include>
     </div>
@@ -232,7 +232,7 @@
                         id="signInPopupButton">SE CONNECTER
                     </button>
 
-                    <div class="col-xs-12 passwordForgotten">
+                    <div class="col-xs-12 passwordForgotten underline">
                         <span data-ng-click="vm.closePopup();
                          vm.forgottenPasswordUser.email = vm.loginUser.email;
                          vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>

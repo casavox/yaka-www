@@ -127,7 +127,6 @@
                 vm.invitPro.lastName &&
                 vm.invitPro.email &&
                 vm.invitPro.activities.length > 0 &&
-                vm.invitPro.relation &&
                 vm.invitPro.address.address
             );
         };
@@ -267,6 +266,9 @@
             if (vm.registerFormIsValid()) {
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
+            } else {
+                vm.formPublicRecoError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 

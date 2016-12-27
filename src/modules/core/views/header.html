@@ -10,7 +10,8 @@
     </li>
     <li class="logo">
         <a ui-sref="home" data-ng-click="app.sidebarStat($event)">
-            <div class="titleYakaClub titleYakaClubWhite" ui-sref="contacts">
+            <img class="logo-header-casavox" src="../../../img/logoBlancSansFond.png"/>
+            <div class="titleYakaClub casavox-title m-l-10 p-relative titleYakaClubWhite hidden-xs" ui-sref="home">
                 <span class="titleClub">CASA</span><span class="titleYaka">VOX</span>
                 <span class="titleYaka hidden-xs" data-ng-if="app.isPro()">PRO</span>
             </div>
@@ -34,7 +35,7 @@
                                data-ng-repeat="userchat in app.getUserchats()"
                                data-ng-class="{'unread': userchat.unreadMessages}">
                                 <div class="media" data-ng-if="!app.isPro() && userchat.chat.proposal"
-                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                     ui-sref="proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'pro'})">
                                     <!-- Customer : Customer-Pro Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -46,7 +47,7 @@
                                         <div class="lv-title">
                                             {{userchat.chat.proposal.professional.user.firstName}}
                                             {{userchat.chat.proposal.professional.user.lastName}}
-                                            <small class=" pull-right c-gray">
+                                            <small class=" pull-right subtitle-color-forced">
                                                 <span am-time-ago="userchat.chat.updated"></span>
                                             </small>
                                         </div>
@@ -63,7 +64,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="!app.isPro() && userchat.chat.project"
-                                     ui-sref="project({'projectId': userchat.chat.project.id, 'chat': 'true'})">
+                                     ui-sref="project({'projectId': userchat.chat.project.id, 'chat': 'assistance'})">
                                     <!-- Customer : Customer-Admin Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -74,7 +75,7 @@
                                     <div class="media-body">
                                         <div class="lv-title">
                                             Victor : votre assistant CasaVox
-                                            <small class=" pull-right c-gray">
+                                            <small class=" pull-right subtitle-color-forced">
                                                 <span am-time-ago="userchat.chat.updated"></span>
                                             </small>
                                         </div>
@@ -88,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro() && userchat.chat.proposal"
-                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'customer'})">
                                     <!-- Pro : Pro-Customer Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -100,7 +101,7 @@
                                         <div class="lv-title">
                                             {{userchat.chat.proposal.project.user.firstName}}
                                             {{userchat.chat.proposal.project.user.lastName}}
-                                            <small class=" pull-right c-gray">
+                                            <small class=" pull-right subtitle-color-forced">
                                                 <span am-time-ago="userchat.chat.updated"></span>
                                             </small>
                                         </div>
@@ -117,7 +118,7 @@
                                     </div>
                                 </div>
                                 <div class="media" data-ng-if="app.isPro() && userchat.chat.proposalSupport"
-                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposal.id, 'chat': 'true'})">
+                                     ui-sref="pro-proposal({'proposalId': userchat.chat.proposalSupport.id, 'chat': 'assistance'})">
                                     <!-- Pro : Pro-Admin Chat -->
                                     <div class="pull-left">
                                         <yaka-avatar class="m-t-9" size="35"
@@ -128,7 +129,7 @@
                                     <div class="media-body">
                                         <div class="lv-title">
                                             Victor : votre assistant CasaVox
-                                            <small class=" pull-right c-gray">
+                                            <small class=" pull-right subtitle-color-forced">
                                                 <span am-time-ago="userchat.chat.updated"></span>
                                             </small>
                                         </div>

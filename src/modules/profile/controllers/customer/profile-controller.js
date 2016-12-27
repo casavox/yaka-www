@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileCustomerController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, $localStorage, Upload, cloudinary, $auth) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, $state, screenSize, $localStorage, Upload, cloudinary, $auth) {
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("home");
@@ -16,7 +16,13 @@
 
         var vm = this;
 
+        vm.isXsmall = function () {
+            return screenSize.is('xs');
+        };
+
         vm.updating = false;
+        vm.updatingcommu = false;
+
 
         vm.profileInfo = {};
         vm.now = new Date();
@@ -28,21 +34,26 @@
         networkService.profileGET(succesProfileGET, errorProfileGET);
 
         function changePassword() {
-            vm.pwd1 = vm.pwd1 || "";
-            vm.pwd2 = vm.pwd2 || "";
-            var formData = {
-                currentPassword: vm.pwdCurrent,
-                newPassword: vm.pwd1
-            };
-            if (vm.pwd2 === vm.pwd1) {
-                vm.updating = true;
-                networkService.changePassword(formData, function (res) {
-                    alertMsg.send("Mot de passe modifié avec succès", "success");
-                    vm.updating = false;
-                }, function (res) {
-                    vm.updating = false;
-                    alertMsg.send("Impossible de modifier le mot de passe", "danger");
-                }, true);
+            if (!vm.pwdCurrent || !vm.pwd1 || !vm.pwd2) {
+                vm.formPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            }
+            else {
+                vm.pwd1 = vm.pwd1 || "";
+                vm.pwd2 = vm.pwd2 || "";
+                var formData = {
+                    currentPassword: vm.pwdCurrent,
+                    newPassword: vm.pwd1
+                };
+                if (vm.pwd2 === vm.pwd1) {
+                    vm.updating = true;
+                    networkService.changePassword(formData, function (res) {
+                        alertMsg.send("Mot de passe modifié avec succès", "success");
+                    }, function (res) {
+                        vm.updating = false;
+                        alertMsg.send("Impossible de modifier le mot de passe", "danger");
+                    }, true);
+                }
             }
         }
 
@@ -53,7 +64,6 @@
                 !vm.profileInfo.phoneNumber || //
                 !vm.profileInfo.gender || //
                 !vm.profileInfo.email) {
-
                 f = true;
             }
             if (!f) {
@@ -71,7 +81,8 @@
                 }, errorProfilePUT, true);
             }
             else {
-                alertMsg.send("Veuillez vérifier les informations que vous avez renseigné", "danger");
+                vm.formInfosError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         }
 
@@ -103,9 +114,9 @@
                         file.result = data;
                         var res = null;
                         vm.profileInfo.avatar.cloudinaryPublicId = data.public_id;
-                        networkService.errorAvatarPUT(vm.profileInfo, function (res) {
-                            alertMsg.send("Profil mis à jour avec succès", "success");
-                        }, errorProfilePUT, true);
+                        networkService.updateAvatarPUT(vm.profileInfo, function (res) {
+                            alertMsg.send("L'image a été mise à jour avec succès", "success");
+                        }, errorAvatarPUT, true);
                     }).error(function (data, status, headers, config) {
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
@@ -279,7 +290,60 @@
             options: {
                 types: ['address'],
                 componentRestrictions: {country: 'fr'}
+            },
+            cityOptions: {
+                types: ['(cities)'],
+                componentRestrictions: {country: 'fr'}
             }
+        };
+
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+            if (vm.getCommunityByType('PROFILE_CITY').name &&
+                vm.getCommunityByType('PROFILE_CITY').address.address &&
+                vm.getCommunityByType('JOB').name &&
+                vm.getCommunityByType('JOB').address.address &&
+                vm.getCommunityByType('OTHER').name && vm.getCommunityByType('OTHER').address.address) {
+                vm.hasCommunity = true;
+            } else {
+                vm.hasCommunity = false;
+            };
+        }
+
+        vm.getCommunityByType = function (type) {
+            if (vm.communities) {
+                for (var i = 0; i < vm.communities.length; i++) {
+                    if (type == vm.communities[i].type) {
+                        return vm.communities[i];
+                    }
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
+
+        vm.updateCommunities = function () {
+            networkService.communitiesPUT(vm.communities, function (res) {
+                networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+                alertMsg.send("Les communautés ont été mises à jour", "success");
+            }, errorProfilePUT, true);
+        };
+
+        vm.cancelCommunitiesUpdate = function () {
+            networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET, true);
+        };
+
+        vm.disabledCom = function () {
+            if (!vm.communities) {
+                return false;
+            }
+            return !(vm.getCommunityByType('PROFILE_CITY').address && vm.getCommunityByType('PROFILE_CITY').address.address &&
+            ((!vm.getCommunityByType('JOB').name && !(vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) &&
+            ((!vm.getCommunityByType('OTHER').name && !(vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address)) || (vm.getCommunityByType('OTHER').name && (vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address))));
         };
     }
 })();

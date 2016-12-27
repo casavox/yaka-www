@@ -50,16 +50,6 @@
 <div ui-view></div>
 
 <div class="transparentLeftSwipe" ng-swipe-right="app.menu.openMenu()" visible-xs></div>
-<div class="alert alert-coord alert-message dark" ng-class="alertMsgStyle" ng-show="alertMsgFlag == true" ng-cloak><span
-    class="glyphicon btn-circle" ng-class="alertMsgStylIcon" aria-hidden="true">
-
-</span>
-    <a class="close"
-       data-dismiss="alert"
-       aria-label="close"
-       ng-click="alertMsgFlag = false">&times;
-    </a>{{alertMessage}}
-</div>
 
 <div data-ng-include="'/modules/core/views/rating-popup.html'"></div>
 

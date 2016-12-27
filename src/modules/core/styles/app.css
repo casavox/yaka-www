@@ -9285,6 +9285,10 @@ a.waves-effect .waves-ripple {
     margin: 5px !important;
 }
 
+.m-t-M5 {
+    margin-top: -5px !important;
+}
+
 .m-t-5 {
     margin-top: 5px !important;
 }
@@ -9335,6 +9339,10 @@ a.waves-effect .waves-ripple {
 
 .m-l-15 {
     margin-left: 15px !important;
+}
+
+.m-l-50 {
+    margin-left: 50px !important;
 }
 
 .m-r-15 {
@@ -9714,6 +9722,14 @@ a.waves-effect .waves-ripple {
     color: #f44336 !important;
 }
 
+.bgm-crimson {
+    background-color: crimson !important;
+}
+
+.c-crimson {
+    color: crimson !important;
+}
+
 .bgm-blue {
     background-color: #2196f3 !important;
 }
@@ -9816,6 +9832,10 @@ a.waves-effect .waves-ripple {
 
 .c-deeporange {
     color: #ff5722 !important;
+}
+
+.c-obsidian-gray {
+    color: #5e5e5e !important;
 }
 
 .bgm-gray-lighter {
@@ -11590,7 +11610,7 @@ a.lv-footer:hover {
 .card-header h2 small {
     display: block;
     margin-top: 5px;
-    color: #AEAEAE;
+    color: #5e5e5e;
     line-height: 160%;
 }
 

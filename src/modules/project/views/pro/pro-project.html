@@ -51,8 +51,9 @@
             </div>
 
             <div class="topViewProfile">
-                <div class="card bgm-red c-white p-15"
-                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'">
+                <div class="card bgm-red c-white p-15 pointer"
+                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED'"
+                     data-ui-sref="pro-profile">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
                     </div>
@@ -131,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="pm-body clearfix">
+                    <div class="pm-body customer-proposal-pm-body clearfix">
 
                         <div class="pm-overview pro visible-xs">
                             <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
@@ -199,12 +200,12 @@
                                     <button
                                         class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                         data-ui-sref="pro-profile">
-                                        Modifier mon profil
+                                        Compléter mon profil
                                     </button>
                                     <button
                                         class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
                                         data-ui-sref="project-recommend({'projectId': vm.project.id})">
-                                        Recommander à un pro
+                                        Recommander un collègue
                                     </button>
                                 </div>
                             </div>
@@ -231,26 +232,54 @@
                                     <dl class="dl-horizontal">
                                         <dt class="yakaDisableEllipsis">Message privé au client (obligatoire)
                                         </dt>
-                                        <dd class="l-h-18">
-                                            <textarea class="form-control" data-auto-size=""
-                                                      placeholder="Mettez vous en avant, expliquez votre proposition, posez vos questions,..."
-                                                      data-autosize-on="true"
-                                                      data-ng-model="vm.offer.comment"></textarea>
+                                        <dd class="l-h-18 m-t-20">
+                                            <div class="form-group fg-float"
+                                                 data-ng-class="{'has-error': vm.formProProjectError && (!vm.offer.comment || vm.offer.comment.length < 40)}">
+                                                <div class="fg-line">
+                                                    <textarea class="form-control" data-auto-size=""
+                                                              data-autosize-on="true"
+                                                              placeholder=""
+                                                              data-ng-model="vm.offer.comment"></textarea>
+                                                    <label class="fg-label yakaEllipsis">
+                                                        Contactez le client, posez vos questions</label>
+                                                </div>
+                                                <small class="help-block"
+                                                       data-ng-show="vm.formProProjectError && !vm.offer.comment">
+                                                    Ce champs est requis
+                                                </small>
+                                                <small class="help-block"
+                                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 40">
+                                                    Message trop court (au moins 40 caractères)
+                                                </small>
+                                            </div>
                                         </dd>
                                     </dl>
-                                    <p class="error center makeOfferError"
-                                       data-ng-show="vm.offer.comment && vm.offer.comment.length < 40">
-                                        Message trop court (au moins 40 caractères)
-                                    </p>
                                     <button class="btn btn-primary btn-block waves-effect"
-                                            data-ng-click="vm.sendOffer()" data-ng-disabled="!vm.formIsValid()">
+                                            data-ng-click="vm.sendOffer()">
                                         Prendre contact
                                     </button>
                                 </div>
                             </div>
-                            <div class="pmbb-body"
+                            <div class="pmbb-body c-red"
                                  data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                 Votre profil doit être validé afin de pouvoir répondre aux offres.
+                            </div>
+                        </div>
+
+                        <div class="pmb-block clearfix" data-ng-if="vm.projectTmp.user.communities">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <casa-community-tag class="contact-community-tag pull-left"
+                                                            community="community"
+                                                            ng-repeat="community in vm.projectTmp.user.communities">
+                                        </casa-community-tag>
+
+                                    </dl>
+                                </div>
                             </div>
                         </div>
 
@@ -271,12 +300,18 @@
                                         <dt class="yakaDisableEllipsis">Mots clés</dt>
                                         <dd>
                                             <ul class="yaka-chips">
-                                                <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}" data-ng-repeat="tag in vm.getTags()">
+                                                <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}"
+                                                    data-ng-repeat="tag in vm.getTags()">
                                                         <span data-ng-if="tag == 'MATERIAL_TRUE'"
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                    <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                    <span data-ng-if="tag == 'MATERIAL_FALSE'"
+                                                          uib-tooltip="Le Pro doit fournir les matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                    <span
+                                                        data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                 </li>
@@ -335,7 +370,8 @@
                         </div>
                         <div class="pmb-block">
                             <div class="pmbb-header">
-                                <h2><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw"></i> Entraide entre Pros</h2>
+                                <h2><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw subtitle-color-forced"></i>
+                                    Entraide entre Pros</h2>
                             </div>
                             <div class="pmbb-body">
                                 <div class="pmbb-view">
@@ -344,7 +380,7 @@
                                         <button
                                             class="col-sm-6 col-md-4 col-lg-5 btn bgm-orange waves-effect btn-sm m-b-10"
                                             ui-sref="project-recommend({projectId : vm.project.id})">
-                                            Recommander un pro
+                                            Recommander un collègue
                                         </button>
                                     </dl>
                                 </div>

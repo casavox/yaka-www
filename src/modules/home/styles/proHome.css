@@ -1,4 +1,13 @@
-.proHomeSection {
+.pro-register-phone:not(.disabled):after, .pro-register-phone:not(.readonly):after {
+    bottom: 3px;
+}
+
+.form-pro-register {
+    height: 20px !important;
+}
+
+.pro-phone-reg-input {
+    height: 30px !important;
 }
 
 .proHomeSection1 {
@@ -102,12 +111,12 @@
 }
 
 .proHomeSection1AboutButton:hover {
-    background-color: rgba(255,255,255, 0.2);
-    color:white;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .proHomeSection2 {
-    height: 1435px;
+    height: auto;
     color: black;
     background-color: white;
     text-align: center;
@@ -326,8 +335,6 @@
 }
 
 .proHomeSection3aPaid {
-    height: 185px;
-    margin-top: 20px;
     background: #EBF0F1;
 }
 
@@ -349,19 +356,19 @@
 }
 
 .proHomeSection3aPaidSubTitle {
-    font-size: 14px;
+    font-size: 18px;
     color: #9B9B9B;
 }
 
 .proHomeSection3aPaidDesc {
-    font-size: 16px;
+    font-size: 20px;
     color: #626262;
     margin-left: 0px;
     margin-right: 0px;
 }
 
-.proHomeSection3aPaidDesc > small{
-    font-size: 11px;
+.proHomeSection3aPaidDesc > small {
+    font-size: 16px;
 }
 
 .proHomeSection3bTitle {
@@ -439,9 +446,17 @@
 }
 
 .oldFormControl .form-control {
-    margin-top: 15px !important;
-    height: 40px !important;
+    margin-top: 15px;
+    height: 40px;
     float: left;
+}
+
+.select-pro-register {
+    margin-top: 0px !important;
+}
+
+.input-pro-other {
+    height: auto !important;
 }
 
 .proRegisterPhone .intl-tel-input {
@@ -593,15 +608,11 @@
         height: 175px;
     }
 
-    .proHomeSection3aPaid {
-        height: 155px;
-    }
-
     .proHomeSection3aPaidDesc {
-        font-size: 13px;
+        font-size: 15px;
     }
 
-    .proHomeSection3aPaidDesc > small{
+    .proHomeSection3aPaidDesc > small {
         font-size: 9px;
     }
 
@@ -634,16 +645,19 @@
         width: calc(16.66666667% - 10px);
         margin-right: 10px;
     }
+
     .supportNameLR {
         width: calc(41.66666667% - 20px);
         margin-left: 10px;
         margin-right: 10px;
     }
+
     .supportNameL {
         width: calc(41.66666667% - 10px);
         margin-left: 10px;
     }
 }
+
 @media (max-width: 767px) {
     .proHomeSection1Container {
         background: none;
@@ -707,10 +721,6 @@
 
     .proHomeSection2RegisterExplain .col-xs-1 {
         width: 56px;
-    }
-
-    .proHomeSection3aPaid {
-        height: 164px;
     }
 
     .proHomeSection3aFree {
@@ -798,7 +808,7 @@
     }
 
     .proHomeSection3aPaidDesc {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .proHomeSection3bTitle {
@@ -834,7 +844,7 @@
     }
 
     .proHomeSection3aPaidDesc {
-        font-size: 12px;
+        font-size: 14px;
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
@@ -863,7 +873,7 @@
         margin-left: 0 !important;
     }
 
-    .proHomeSection1AboutButton     {
+    .proHomeSection1AboutButton {
         background-color: transparent;
         border: 1px white solid;
     }
@@ -907,4 +917,5 @@
     .proTopLink {
         margin-top: 35px;
     }
+
 }

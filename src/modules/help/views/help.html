@@ -153,7 +153,7 @@
                         <div class="col-xs-12 p-18">
                             <b>1/</b> Sélectionnez le Menu « <b>Carte des offres</b> »<br/>
                             <br/>
-                            <b>2/</b> Naviguez dans la carte et sélectionnez un offre en cliquant dessus.<br/>
+                            <b>2/</b> Naviguez dans la carte et sélectionnez une offre en cliquant dessus.<br/>
                             <br/>
                             <b>3/</b> Si l'offre de chantier vous intéresse, vous pouvez :<br/>
                             <ul>
@@ -179,7 +179,7 @@
                 </div>
             </div>
 
-            <div data-uib-collapse="!vm.showTuto" class="col-xs-12 no-padding" data-ng-if="app.getUser()">
+            <div data-uib-collapse="!vm.showTuto" class="col-xs-12 no-padding" data-ng-if="!vm.pro && app.getUser()">
                 <div class="block-header">
                     <h2>Mon profil</h2>
                 </div>
@@ -191,15 +191,15 @@
                         <div class="card-body card-padding">
                             <p class="m-0">
                                 Aucune des informations relatives à vos projets de travaux (la nature de votre besoin,
-                                le lieu des travaux, la date, etc.) ne sont utilisés en dehors de CasaVox, autrement
-                                dit seuls les Pros inscrit sur CasaVox peuvent connaitre votre besoin.
+                                le lieu des travaux, la date, etc.) n'est utilisée en dehors de CasaVox, autrement
+                                dit seuls les Pros inscrits sur CasaVox peuvent connaitre votre besoin.
                             </p>
                             <p class="m-0">
                                 CasaVox n'a pas l'intention de gagner de l'argent en revendant vos informations !
                             </p>
                             <p class="m-0 m-t-5">
                                 Il n'y a que vous qui décidez à qui et quand vos coordonnées précises (mail, téléphone,
-                                adresse complète) sont rendues visible : Les Pros CasaVox qui ne font pas partie de vos
+                                adresse complète) sont rendues visibles : Les Pros CasaVox qui ne font pas partie de vos
                                 « <em>Contacts CasaVox</em> » peuvent bien sûr voir les détails de votre projet de
                                 travaux (autrement ils ne pourraient pas vous faire de propositions), mais ils ne
                                 pourront voir de vos coordonnées personnelles que votre avatar, votre prénom et initiale
@@ -257,8 +257,8 @@
                         <div class="card-body card-padding">
                             <p class="m-0">
                                 Depuis le menu « <em>Trouver un Pro</em> », laissez-vous guider par les différentes
-                                questions, elles permettrons aux professionnels du bâtiment de vous faire des
-                                propositions adaptées et les plus précises possible.
+                                questions, elles permettront aux professionnels du bâtiment de vous faire des
+                                propositions adaptées et les plus précises possibles.
                             </p>
                             <p class="m-0 m-t-5">
                                 <strong class="m-l-20"><em>Quel type de travaux souhaitez-vous réaliser ?</em></strong>
@@ -297,7 +297,7 @@
                                 <strong class="m-l-20"><em>Ajoutez des photos</em></strong>
                             </p>
                             <p class="m-0">
-                                <em>Un dessin vos mieux qu'un long discours</em>, pour être sur d'avoir des réponses
+                                <em>Un dessin vaut mieux qu'un long discours</em>, pour être sur d'avoir des réponses
                                 rapides et pertinentes joignez des photos du lieu des travaux (état général actuel,
                                 difficulté d'accès, ...), si vous fournissez des matériaux prenez des photos des parties
                                 les plus importantes (Exemple : embout de raccordement sur un chauffe-eau, serrure sur
@@ -530,11 +530,10 @@
                         <div class="card-body card-padding">
 
                             <div class="col-sm-2 no-padding form-group fg-float m-b-30 supportGenderR"
-                                 data-ng-class="{'has-error': !vm.supportMessage.gender}">
+                                 data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.gender}">
                                 <div class="fg-line">
                                     <div class="select">
                                         <select name="gender"
-                                                required="required"
                                                 data-ng-model="vm.supportMessage.gender"
                                                 class="form-control">
                                             <option value="" disabled selected></option>
@@ -549,24 +548,21 @@
                                     </div>
                                     <label class="fg-label">Civilité</label>
                                 </div>
-                                <div data-ng-messages="supportForm.gender.$error">
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis
+                                    <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.gender">Ce champ est requis
                                     </small>
-                                </div>
                             </div>
                             <div class="col-sm-5 no-padding form-group fg-float m-b-30 supportNameLR"
-                                 data-ng-class="{'has-error': !vm.supportMessage.firstName}">
+                                 data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.firstName}">
 
                                 <div class="fg-line">
                                     <input type="text" name="firstName" class="form-control fg-input"
-                                           data-ng-model="vm.supportMessage.firstName"
-                                           required="required" yaka-input-name>
+                                           data-ng-model="vm.supportMessage.firstName" yaka-input-name>
                                     <label class="fg-label">Prénom</label>
                                 </div>
-                                <div data-ng-messages="supportForm.firstName.$error">
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis
+                                    <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.firstName">Ce champ est requis
                                     </small>
-                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                <div data-ng-messages="supportForm.firstName.$error">
+                                <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
                                         valide
                                     </small>
                                 </div>
@@ -574,18 +570,17 @@
                             </div>
                             <div
                                 class="col-sm-5 no-padding form-group fg-float m-b-30 supportNameL"
-                                data-ng-class="{'has-error': !vm.supportMessage.lastName}">
+                                data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.lastName}">
 
                                 <div class="fg-line">
                                     <input type="text" name="lastName" class="form-control fg-input"
-                                           data-ng-model="vm.supportMessage.lastName"
-                                           required="required" yaka-input-name>
+                                           data-ng-model="vm.supportMessage.lastName" yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
-                                <div data-ng-messages="supportForm.lastName.$error">
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis
+                                    <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.lastName">Ce champ est requis
                                     </small>
-                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                <div data-ng-messages="supportForm.lastName.$error">
+                                <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
                                 </div>
@@ -595,17 +590,16 @@
                             <div class="col-xs-12 no-padding row m-l-0 m-r-0">
                                 <div
                                     class="col-xs-12 no-padding form-group fg-float m-b-30 halfInput halfInputNotInMobile"
-                                    data-ng-class="{'has-error': !vm.supportMessage.email}">
+                                    data-ng-class="{'has-error': vm.formSupportError && !vm.supportMessage.email}">
                                     <div class="fg-line">
                                         <input type="text" name="email" class="form-control fg-input"
                                                data-ng-model="vm.supportMessage.email"
-                                               data-ng-disabled="vm.supportMessage.email && app.getUser()"
-                                               required="required" yaka-input-email>
+                                               data-ng-disabled="vm.supportMessage.email && app.getUser()" yaka-input-email>
                                         <label class="fg-label">Email</label>
                                     </div>
+                                        <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.email">Ce champ est requis</small>
                                     <div data-ng-messages="supportForm.email.$error">
-                                        <small class="help-block" data-ng-message="required">Ce champ est requis</small>
-                                        <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                    <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
                                             valide
                                         </small>
                                     </div>
@@ -617,7 +611,7 @@
                                         <input type="text" name="phoneNumber"
                                                class="form-control fg-input"
                                                data-ng-model="vm.supportMessage.phoneNumber" yaka-input-phone>
-                                        <label class="fg-label fg-label-phone">Téléphone</label>
+                                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                                     </div>
                                     <div data-ng-messages="supportForm.phoneNumber.$error">
                                         <small class="help-block" data-ng-message="invalidPhone">
@@ -629,29 +623,29 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-12 card-header m-b-20">
+                        <div class="col-xs-12 card-header m-b-10">
                             <h2>Votre message</h2>
                         </div>
 
                         <div class="card-body card-padding">
 
-                            <div class="form-group"
-                                 data-ng-class="{'has-error': !vm.supportMessage.message}">
+                            <div class="form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': vm.formSupportError && (!vm.supportMessage.message || vm.supportMessage.message.length < 100)}">
                                 <div class="fg-line">
-                                    <textarea class="form-control" rows="4"
+                                    <textarea class="form-control" rows="2"
                                               name="aboutMe"
                                               data-ng-model="vm.supportMessage.message"
-                                              required="required"
                                               data-auto-size
                                               data-ng-minlength="100"
-                                              data-autosize-on="true"
-                                              placeholder="Tapez ici votre message"></textarea>
+                                              data-autosize-on="true"></textarea>
+                                    <label class="fg-label">Tapez ici votre message</label>
                                 </div>
+                                <small class="help-block" data-ng-show="vm.formSupportError && !vm.supportMessage.message">Ce champ est requis</small>
+
                                 <div data-ng-messages="supportForm.aboutMe.$error">
                                     <small class="help-block" data-ng-message="minlength">Le message est trop court (100
                                         caractères min)
                                     </small>
-                                    <small class="help-block" data-ng-message="required">Ce champ est requis</small>
                                 </div>
                             </div>
 
@@ -673,7 +667,6 @@
                             ></div>
 
                             <button class="btn bgm-lightblue waves-effect m-t-20"
-                                    data-ng-disabled="!vm.formIsValid() || vm.loading"
                                     data-ng-click="vm.sendSupportMessage()">
                                 Envoyer
                             </button>

@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function HomeController($scope, $rootScope, networkService, alertMsg, $localStorage, $state, $translate, $auth, $stateParams, screenSize) {
+    function HomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
@@ -101,6 +101,7 @@
             defaultAddress: {
                 address: ""
             },
+            referral: "",
             recaptchaResponse: "",
             avatar: {
                 cloudinaryPublicId: ""
@@ -161,8 +162,13 @@
         };
 
         vm.login = function () {
+
+
             if (vm.loginFormIsValid()) {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            } else {
+                vm.formLoginError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -229,7 +235,9 @@
         vm.googlePreRegister = function () {
             vm.socialNetwork = "Google";
             $auth.authenticate('googleRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -244,7 +252,9 @@
         vm.facebookPreRegister = function () {
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -271,8 +281,14 @@
 
         vm.register = function () {
             if (vm.registerFormIsValid()) {
+                if (vm.newUser.referral == 'REFERRAL_OTHER' && vm.referralOther) {
+                    vm.newUser.referral = vm.referralOther;
+                }
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
+            } else {
+                vm.formRegisterError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -308,6 +324,9 @@
         vm.forgottenPassword = function () {
             if (vm.forgottenPasswordUser.email) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formLostPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -337,15 +356,23 @@
             });
 
             function showPieCharts() {
-                $('.chart1').data('easyPieChart').update(25);
+                if ($('.chart1').data('easyPieChart')) {
+                    $('.chart1').data('easyPieChart').update(25);
+                }
                 setTimeout(function () {
-                    $('.chart2').data('easyPieChart').update(50);
+                    if ($('.chart2').data('easyPieChart')) {
+                        $('.chart2').data('easyPieChart').update(50);
+                    }
                 }, 500);
                 setTimeout(function () {
-                    $('.chart3').data('easyPieChart').update(75);
+                    if ($('.chart3').data('easyPieChart')) {
+                        $('.chart3').data('easyPieChart').update(75);
+                    }
                 }, 1000);
                 setTimeout(function () {
-                    $('.chart4').data('easyPieChart').update(100);
+                    if ($('.chart4').data('easyPieChart')) {
+                        $('.chart4').data('easyPieChart').update(100);
+                    }
                 }, 1500);
             }
 
@@ -429,6 +456,16 @@
             }
 
         });
+
+        $scope.getLocation = function(val) {
+            if(val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
+                    return response.data.map(function(item){
+                        return item.postalCode + " " + item.name;
+                    });
+                });
+            }
+        };
 
     }
 })();

@@ -20,8 +20,8 @@ angular.module('Yaka')
                 if (!scope.clientBlue) {
                     scope.clientBlue = false;
                 }
-                scope.invite = function (relation) {
-                    networkService.invitePOST(scope.user.id, relation, function (res) {
+                scope.invite = function () {
+                    networkService.invitePOST(scope.user.id, function (res) {
                         scope.user.isInvited = true;
                         alertMsg.send("Vous avez bien invité " + scope.user.firstName + " " + scope.user.lastName, "success");
                     }, function (err) {

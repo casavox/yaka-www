@@ -1,5 +1,109 @@
+.com-tag-proproposallist {
+    float: right;
+    max-width: 400px;
+}
+
+.lead-item {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.lead-item:hover {
+    background-color: #f5f5f5;
+}
+
+.recommend-infos {
+    max-width: calc(100% - 85px);
+    padding-left: 15px;
+}
+
+.recommendations-right {
+    max-width: calc(100% - 50px);
+}
+
+.estimation-price {
+    float: right;
+    text-align: center;
+}
+
+.message-and-ago {
+    padding-left: 50px;
+}
+
+.bgm-lightest-gray {
+    background-color: #f5f5f5;
+}
+
+.card-proposal {
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.card-proposal:hover {
+    background-color: #f0faff;
+}
+
+.proposal-padding-bottom {
+    padding-bottom: 0px !important;
+}
+
+.lv-item hr {
+    margin-bottom: 0px !important;
+}
+
 .l-h-30 {
     line-height: 30px;
+}
+
+.p-l-50 {
+    padding-left: 50px;
+}
+
+.recommend-hr-padding {
+    margin-top: 5px !important
+}
+
+.refused-background-color {
+    background-color: #f1f1f1;
+}
+
+.job-community-tag {
+    margin: 1px;
+    line-height: 10px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+}
+
+.floating-tags {
+    max-width: 70px !important;
+}
+
+.aligned-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.aligned-content > [class^="col-"],
+.aligned-content > [class*=" col-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Optional, to align inner items
+                                 horizontally inside the column */
+}
+
+/**
+ *  Do NOT include this part into your stylesheet.
+ *  "flex: 1" or "flex-grow: 1" is added to make the inner div
+ *  - Which is also a flex-item - take up all the horizontal space
+ *  available space inside the flex container (.col-* elements)
+ */
+.aligned-content > [class^="col-"] > div,
+.aligned-content > [class*=" col-"] > div {
+    /* flex: 1; */
+    flex-grow: 1;
 }
 
 .m-b-1 {
@@ -195,7 +299,7 @@
     .scrollViewChatProposalAdminAndPro {
         position: absolute;
         bottom: 0;
-        left: 279px;
+        left: 300px;
         right: 0;
         top: 106px;
         width: auto;
@@ -261,6 +365,17 @@
     }
 }
 
+@media (max-width: 991px) {
+    .estimation-price {
+        float: left;
+        text-align: left;
+    }
+    .recommend-infos {
+        max-width: calc(100% - 20px);
+        padding-left: 15px;
+    }
+}
+
 @media (max-width: 767px) {
 
     .yakaAvatarInitialsProposal {
@@ -297,19 +412,22 @@
     }
 
     .proposalMainView yaka-chat .lv-footer {
-        height: 50px;
+        height: 55px !important;
         position: absolute;
-        bottom: 0;
         left: 0;
         right: 0;
     }
 
+    yaka-chat .lv-footer {
+        height: 55px !important;
+    }
+
     .proposalMainView yaka-chat .lv-body {
-        height: calc(100% - 50px);
+        height: calc(100% - 40px);
     }
 
     .proposalMainView yaka-chat .ms-reply textarea {
-        height: 49px;
+        height: 54px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
@@ -343,6 +461,9 @@
     }
 
     .proposalProName {
+        max-width: 300px;
+        padding-left: 85px !important;
+        padding-top: 0px !important;
         background: #9E9E9E !important;
     }
 
@@ -377,8 +498,6 @@
 
     .proposalProName button.cancelProposal {
         margin-top: 22px;
-        margin-left: 35%;
-        width: 60%;
     }
 
     .proposalProName h2 {
@@ -411,7 +530,15 @@
     }
 
     #profile-main.no-scroll {
-        height: calc(100vh - 150px) !important;
+        height: calc(100vh - 100px) !important;
+    }
+
+    #profile-main.good-height {
+        height: calc(100vh - 145px) !important;
+    }
+
+    #profile-main.no-scroll-good {
+        height: calc(100vh - 140px) !important;
     }
 
     .proposalProjectTitle {
@@ -437,7 +564,15 @@
 }
 
 #profile-main.no-scroll {
-    height: calc(100vh - 255px);
+    height: calc(100vh - 130px);
+}
+
+#profile-main.no-scroll-good {
+    height: calc(100vh - 170px);
+}
+
+#profile-main.good-height {
+    height: calc(100vh - 245px);
 }
 
 #profile-main.pro.no-scroll {
@@ -475,6 +610,10 @@
 }
 
 @media (max-width: 767px) {
+    .message-and-ago {
+        padding-left: 0px;
+    }
+
     .pr-list-icon {
         margin-left: -12px !important;
     }
@@ -503,8 +642,6 @@
     }
 
     .proNetworkProjectButtonLabel {
-        margin-left: 30%;
-        width: 70%;
         margin-bottom: -10px;
     }
 
@@ -512,4 +649,5 @@
         z-index: 1 !important;
     }
 }
+
 

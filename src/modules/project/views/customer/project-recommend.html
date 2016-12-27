@@ -43,18 +43,40 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 topViewProfile pointer" data-ng-if="!vm.project.activityCorrespond && vm.user.professional"
+                 ui-sref="pro-profile">
+                <div class="card bgm-gray c-white p-10">
+                    <b>Cette offre ne correspond pas à vos compétences</b></br>
+                    Vous pouvez la recommander à un collègue, ou
+                    <span class="c-white">
+                        <b><u>modifier votre profil</u></b>
+                    </span>
+                    pour pouvoir y répondre
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="block-header">
                     <h2>Recommander à</h2>
                 </div>
-                <div class="projectRecommendTopCard card">
+                <div class="card projectRecommendTopCard p-l-20 p-t-20 p-b-5">
                     <div class="clearfix">
 
-                        <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
+                        <yaka-avatar class="col-xs-3 no-padding" size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="dashboardRecommendProjectText f-s-14 fw-bold">
-                            <casa-name-and-contact user="vm.project.user" invite="true"></casa-name-and-contact>
+                        <div class="col-xs-8 col-sm-9 p-r-0 p-l-0 m-l-15">
+                            <div>
+                                <casa-name-and-contact class="pull-left fw-bold l-h-24"
+                                                       invite="true"
+                                                       user="vm.project.user"></casa-name-and-contact>
+                                <div class="col-xs-12 p-l-0">
+                                    <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                        community="community"
+                                                        ng-repeat="community in vm.project.user.communities">
+                                    </casa-community-tag>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -65,11 +87,11 @@
                 <div class="projectRecommendTopCard card">
                     <div class="clearfix">
 
-                        <div class="proposalIconBackground lv-img v-icon-{{vm.project.mainActivity.code}}-white">
+                        <div class="proposalIconBackground pull-left lv-img v-icon-{{vm.project.mainActivity.code}}-white">
                         </div>
 
-                        <div class="dashboardRecommendProjectText right">
-                            <div class="yakaEllipsis f-s-15">
+                        <div class="right p-l-60 p-b-10">
+                            <div class="f-s-15">
                                 {{vm.project.title}}
                             </div>
 
@@ -87,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" data-ng-if="vm.professionals">
+            <div class="col-sm-6 clearBoth" data-ng-if="vm.professionals">
                 <div class="block-header">
                     <h2>
                         Mes Pro
@@ -96,19 +118,19 @@
                 <div class="card">
                     <div class="card-header projectRecommendGrayHeader">
                         <h2>Recommander un Pro
-                            <small>
+                            <small class="c-obsidian-gray">
                                 Liste de vos Pros ayant la compétence demandée
                             </small>
                         </h2>
                     </div>
 
                     <div class="proToRecommendList" data-ng-if="vm.professionals && vm.professionals.length > 0">
-                        <div class="p-10 p-relative proToRecommend pointer"
+                        <div class="p-10 p-relative clearfix pointer"
                              data-ng-repeat="professional in vm.professionals"
                              data-ng-click="vm.smoothScrollPro(); vm.selectedProfessional = professional; vm.recommendMsg.text = ''"
                              data-ng-class="{'selected': vm.selectedProfessional && vm.selectedProfessional.user && vm.selectedProfessional.user.id == professional.user.id}">
 
-                            <yaka-avatar class="m-0" size="45" user="professional.user"></yaka-avatar>
+                            <yaka-avatar class="m-0 pull-left" size="45" user="professional.user"></yaka-avatar>
 
                             <cl-image
                                 public-id="{{professional.mainPartner.cloudinaryPublicId}}"
@@ -117,20 +139,27 @@
                                 <cl-transformation height="25" width="25" crop="fill" radius="max"/>
                             </cl-image>
 
-                            <div class="proToRecommendRight">
+                            <div class="col-xs-9 col-sm-10 p-r-0 p-l-15 p-t-5">
 
-                                <div class="yakaEllipsis">
-                                    <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
-                                    (
-                                    <casa-contact user="professional.user"></casa-contact>
-                                    )
+                                <div class="col-xs-12 col-md-7 p-0">
+                                    <div class="yakaEllipsis">
+                                        <b>{{professional.user.firstName}} {{professional.user.lastName}}</b>
+                                    </div>
+                                    <div>
+                                        <div class="yakaEllipsis">
+                                            <em>{{professional.company.name}}</em>
+                                            <span class="subtitle-color-forced yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel2}}</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <div class="yakaEllipsis">
-                                        <em>{{professional.company.name}}</em>
-                                        <span class="c-gray yakaEllipsis"> - {{professional.company.address.administrativeAreaLevel2}}</span>
-                                    </div>
+
+                                <div
+                                    class="col-xs-12 col-md-5 yaka-chips m-t-5 no-padding">
+                                    <casa-community-tag class="recommend-pro-community-tag reco-community-float reco-pro-tags"
+                                                        community="community"
+                                                        ng-repeat="community in professional.user.communities">
+                                    </casa-community-tag>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +174,7 @@
                     <div class="f-s-16 t-center p-t-30 p-b-30 p-relative p-l-10 p-r-10"
                          data-ng-if="vm.professionals && vm.professionals.length == 0">
 
-                        <i class="zmdi zmdi-accounts zmdi-hc-4x c-gray"></i>
+                        <i class="zmdi zmdi-accounts zmdi-hc-4x subtitle-color-forced"></i>
 
                         <div class="m-t-20">
                             Aucun de vos Pros ne semble correspondre.
@@ -173,7 +202,7 @@
                 <div class="recommendProSelected f-s-16 t-center p-t-30 p-b-30 p-relative"
                      data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length > 0">
 
-                    <i class="zmdi zmdi-account-box-o zmdi-hc-4x c-gray"></i>
+                    <i class="zmdi zmdi-account-box-o zmdi-hc-4x subtitle-color-forced"></i>
 
                     <div class="m-t-20">
                         Sélectionnez un Pro et retrouvez ici
@@ -199,9 +228,6 @@
                             <div class="yakaEllipsis">
                                 <b>{{vm.selectedProfessional.company.name}}</b>
                                 - {{vm.selectedProfessional.company.address.administrativeAreaLevel2}}
-                            </div>
-                            <div>
-                                <casa-contact user="vm.selectedProfessional.user"></casa-contact>
                             </div>
                         </div>
 
@@ -233,7 +259,7 @@
                         <div class="form-group m-t-25">
                             <div class="fg-line">
                                 <textarea class="form-control" data-ng-model="vm.recommendMsg.text" data-auto-size=""
-                                          placeholder="Envoyer un message privé à {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
+                                          placeholder="Envoyer un message privé AU CLIENT {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
                                           data-autosize-on="true"></textarea>
                             </div>
                         </div>
@@ -245,6 +271,21 @@
                     </div>
 
                     <div class="card-body card-padding">
+                        <div class="pmb-block clearfix" data-ng-if="vm.selectedProfessional.user.communities">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <casa-community-tag class="recommend-pro-community-tag pull-left"
+                                                            community="community"
+                                                            ng-repeat="community in vm.selectedProfessional.user.communities">
+                                        </casa-community-tag>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
                         <div class="pmb-block">
                             <div class="pmbb-header">
                                 <h2><i class="zmdi zmdi-star zmdi-hc-fw"></i> Expérience et qualités</h2>
@@ -389,86 +430,40 @@
 
                     <div class="card-body card-padding clearfix">
                         <form name="inviteForm">
-                            <div class="col-xs-6 no-padding form-group fg-float m-b-10 halfInput"
-                                 data-ng-class="{'has-error': !vm.invitPro.firstName}">
 
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-15"
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
                                 <div class="fg-line">
-                                    <input type="text" name="firstName" class="form-control fg-input input-sm"
-                                           data-ng-model="vm.invitPro.firstName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()"
-                                           yaka-input-name>
-                                    <label class="fg-label">Prénom</label>
-                                </div>
-                                <div data-ng-messages="inviteForm.firstName.$error">
-                                    <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
-                                        valide
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 no-padding form-group fg-float m-b-15 halfInput halfInputRight"
-                                 data-ng-class="{'has-error': !vm.invitPro.lastName}">
-
-                                <div class="fg-line">
-                                    <input type="text" name="lastName" class="form-control fg-input input-sm"
-                                           data-ng-model="vm.invitPro.lastName"
-                                           required="required" data-ng-disabled="vm.isSocialRegister()"
+                                    <input type="text" name="name" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.name"
+                                           data-ng-disabled="vm.isSocialRegister()"
                                            yaka-input-name>
                                     <label class="fg-label">Nom</label>
                                 </div>
-                                <div data-ng-messages="inviteForm.lastName.$error">
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="inviteForm.name.$error">
                                     <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                                         valide
                                     </small>
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding select m-b-15">
-                                <select class="form-control c-red"
-                                        onchange="this.className='form-control form-control-underline-ok'"
-                                        data-ng-model="vm.invitPro.relation">
-                                    <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
-                                    <option value="CLIENT">Client</option>
-                                    <option value="FRIEND">Ami</option>
-                                    <option value="FAMILY">Famille</option>
-                                    <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
-                                </select>
-                            </div>
-
-                            <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
-                                 data-ng-dropdown-multiselect=""
-                                 events="vm.updateMultiChoiceInputColor"
-                                 options="vm.multiChoiceInput.options"
-                                 selected-model="vm.multiChoiceInput.selected"
-                                 extra-settings="vm.multiChoiceInput.settings"
-                                 translation-texts="vm.multiChoiceInput.translation"
-                                 checkboxes="true"></div>
-
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.invitPro.address.address}">
-                                <div class="fg-line">
-                                    <input type="text" class="form-control fg-input input-sm"
-                                           vs-google-autocomplete="vm.autocomplete.options"
-                                           vs-autocomplete-validator
-                                           data-ng-model="vm.invitPro.address.address"
-                                           type="text"
-                                           name="address"
-                                           required="required"
-                                           placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Localité</label>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': !vm.invitPro.email}">
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
                                 <div class="fg-line">
                                     <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                            class="form-control fg-input input-sm"
                                            data-ng-model="vm.invitPro.email"
-                                           required="required" yaka-input-email>
+                                           yaka-input-email>
                                     <label class="fg-label">Email</label>
                                 </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
+                                    Ce champ est requis
+                                </small>
                                 <div data-ng-messages="inviteForm.username.$error">
                                     <small class="help-block" data-ng-message="invalidEmail">
                                         Cet email n'est pas valide
@@ -476,12 +471,31 @@
                                 </div>
                             </div>
 
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control fg-input input-sm"
+                                           vs-google-autocomplete="vm.autocomplete.options"
+                                           vs-autocomplete-validator
+                                           data-ng-model="vm.invitPro.address.address"
+                                           type="text"
+                                           name="address"
+                                           placeholder=""
+                                           id="address">
+                                    <label class="fg-label">Ville</label>
+                                    <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
+                                        Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                                    </small>
+                                </div>
+                            </div>
+
+
                             <div class="col-xs-12 no-padding form-group fg-float m-b-30">
                                 <div class="fg-line">
                                     <input type="text" name="phoneNumber"
                                            class="form-control fg-input"
                                            data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                                    <label class="fg-label fg-label-phone">Téléphone</label>
+                                    <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                                 </div>
                                 <div data-ng-messages="inviteForm.phoneNumber.$error">
                                     <small class="help-block" data-ng-message="invalidPhone">
@@ -491,7 +505,6 @@
                             </div>
 
                             <button class="btn bgm-orange btn-block btn-lg waves-effect"
-                                    data-ng-disabled="!vm.formIsValid()"
                                     data-ng-click="vm.sendProInvit()">
                                 Inviter
                             </button>
@@ -521,61 +534,28 @@
             </div>
 
             <form name="inviteForm">
-                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput"
-                     data-ng-class="{'has-error': !vm.invitPro.firstName}">
+                <div class="col-xs-12 no-padding form-group fg-float m-t-15"
+                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
 
                     <div class="fg-line">
-                        <input type="text" name="firstName" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.firstName"
-                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label">Prénom</label>
-                    </div>
-                    <div data-ng-messages="inviteForm.firstName.$error">
-                        <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
-                            valide
-                        </small>
-                    </div>
-                </div>
-
-                <div class="col-xs-6 no-padding form-group fg-float m-t-15 halfInput halfInputRight"
-                     data-ng-class="{'has-error': !vm.invitPro.lastName}">
-
-                    <div class="fg-line">
-                        <input type="text" name="lastName" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.lastName"
-                               required="required" data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                        <input type="text" name="name" class="form-control fg-input input-sm"
+                               data-ng-model="vm.invitPro.name"
+                               data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                         <label class="fg-label">Nom</label>
                     </div>
-                    <div data-ng-messages="inviteForm.lastName.$error">
+                    <small class="help-block t-left"
+                           data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
+                        Ce champ est requis
+                    </small>
+                    <div data-ng-messages="inviteForm.name.$error">
                         <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
                             valide
                         </small>
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding select m-b-15">
-                    <select class="form-control c-red"
-                            onchange="this.className='form-control form-control-underline-ok'"
-                            data-ng-model="vm.invitPro.relation">
-                        <option value="" disabled="disabled">Ma relation avec ce pro ?</option>
-                        <option value="CLIENT">Client</option>
-                        <option value="FRIEND">Ami</option>
-                        <option value="FAMILY">Famille</option>
-                        <option value="COLLEAGUE" data-ng-if="app.isPro()">Collègue</option>
-                    </select>
-                </div>
-
-                <div class="col-xs-12 no-padding proHomeSection2ActivitiesInput m-b-30"
-                     events="vm.updateMultiChoiceInputColor"
-                     data-ng-dropdown-multiselect=""
-                     options="vm.multiChoiceInput.options"
-                     selected-model="vm.multiChoiceInput.selected"
-                     extra-settings="vm.multiChoiceInput.settings"
-                     translation-texts="vm.multiChoiceInput.translation"
-                     checkboxes="true"></div>
-
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.invitPro.address.address}">
+                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
                     <div class="fg-line">
                         <input type="text" class="form-control fg-input input-sm"
                                vs-google-autocomplete="vm.autocomplete.options"
@@ -583,22 +563,28 @@
                                data-ng-model="vm.invitPro.address.address"
                                type="text"
                                name="address"
-                               required="required"
                                placeholder=""
                                id="address">
-                        <label class="fg-label">Localité</label>
+                        <label class="fg-label">Ville</label>
+                        <small class="help-block" data-ng-show="vm.formProRecoInvitError && !vm.invitPro.address.address">
+                            Veuillez saisir la ville, puis sélectionnez-la dans la liste
+                        </small>
                     </div>
                 </div>
 
                 <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': !vm.invitPro.email}">
+                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
                     <div class="fg-line">
                         <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
                                class="form-control fg-input input-sm"
                                data-ng-model="vm.invitPro.email"
-                               required="required" yaka-input-email>
+                               yaka-input-email>
                         <label class="fg-label">Email</label>
                     </div>
+                    <small class="help-block t-left"
+                           data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
+                        Ce champ est requis
+                    </small>
                     <div data-ng-messages="inviteForm.username.$error">
                         <small class="help-block" data-ng-message="invalidEmail">
                             Cet email n'est pas valide
@@ -606,23 +592,21 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float"
-                     data-ng-class="{'has-error': !vm.invitPro.phone}">
+                <div class="col-xs-12 no-padding form-group fg-float">
                     <div class="fg-line">
                         <input type="text" name="phoneNumber"
                                class="form-control fg-input"
                                data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone</label>
+                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
                     </div>
                     <div data-ng-messages="inviteForm.phoneNumber.$error">
-                        <small class="help-block" data-ng-message="invalidPhone">
+                        <small class="help-block c-red" data-ng-message="invalidPhone">
                             Ce numéro de téléphone n'est pas valide
                         </small>
                     </div>
                 </div>
 
                 <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
-                        data-ng-disabled="!vm.formIsValid()"
                         data-ng-click="vm.sendProInvit()">
                     Inviter
                 </button>

@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams, $analytics) {
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams, $http, CONFIG) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
@@ -41,6 +41,7 @@
             lastName: "",
             googleId: "",
             facebookId: "",
+            referral: "",
             recaptchaResponse: "",
             avatar: {
                 cloudinaryPublicId: ""
@@ -150,7 +151,9 @@
 
         vm.googlePreRegister = function () {
             $auth.authenticate('googleProRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -164,7 +167,9 @@
 
         vm.facebookPreRegister = function () {
             $auth.authenticate('facebookProRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
+                if (res.data.token) {
+                    succesLogin(res.data);
+                } else if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
                     onPreRegisterOK(res.data);
                 }
             }).catch(function (res) {
@@ -226,10 +231,19 @@
             smoothScroll(element, scrollOptions);
         };
 
+        vm.deleteErrorIfSelected = function () {
+            $('button.dropdown-toggle.btn.btn-default').removeClass('c-red');
+        };
+
         vm.registerUser = function () {
             if (vm.formIsValid()) {
-
+                if (vm.newUser.referral == 'REFERRAL_OTHER' && vm.referralOther) {
+                    vm.newUser.referral = vm.referralOther;
+                }
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
+            } else {
+                vm.formRegisterError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -280,7 +294,12 @@
         };
 
         vm.login = function () {
-            networkService.login(vm.loginUser, succesLogin, errorLogin);
+            if (!vm.loginUser.email || !vm.loginUser.password) {
+                vm.formProLoginError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                networkService.login(vm.loginUser, succesLogin, errorLogin, true);
+            }
         };
 
         function succesLogin(res) {
@@ -352,6 +371,9 @@
         vm.forgottenPassword = function () {
             if (vm.isEmailValid(vm.forgottenPasswordUser.email)) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
+            } else {
+                vm.formLostPasswordError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
         };
 
@@ -362,6 +384,16 @@
         function failPasswordForgotten(err) {
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
+
+        $scope.getLocation = function(val) {
+            if(val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
+                    return response.data.map(function(item){
+                        return item.postalCode + " " + item.name;
+                    });
+                });
+            }
+        };
     }
 })
 ();

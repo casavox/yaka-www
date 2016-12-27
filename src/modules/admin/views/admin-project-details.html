@@ -52,7 +52,7 @@
 
         <div class="container">
 
-            <div class="card pointer hidden-xs" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
+            <div class="card pointer hidden-xs  m-b-10 height-fixed-pro-card" data-ui-sref="proposal({proposalId: vm.project.proposal.id})"
                  data-ng-if="vm.project.proposal">
                 <div class="card-body card-padding row proposalHeader">
 
@@ -117,8 +117,8 @@
             </div>
 
             <div class="yakaMain projectMainView">
-                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
-                    <div class="pm-body clearfix">
+                <div class="card m-b-15" id="profile-main" data-ng-class="{'no-scroll': vm.showChat && !vm.project.proposal, 'good-height' : vm.showChat && vm.project.proposal}"}">
+                    <div class="pm-body admin-chat clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
                             <li heading="Home"
@@ -138,7 +138,7 @@
                             </li>
                         </ul>
 
-                        <yaka-chat class="scrollViewChatProposal" data-ng-show="vm.showChat"
+                        <yaka-chat class="scrollViewChatProposalAdmin" data-ng-show="vm.showChat"
                                    scroll-bottom="{{vm.scrollBottom}}"
                                    chat-id="{{vm.project.supportChat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
@@ -220,7 +220,11 @@
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                        <span data-ng-if="tag == 'MATERIAL_FALSE'"
+                                                              uib-tooltip="Le Pro doit fournir les matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>
@@ -303,7 +307,7 @@
                                                         <i class="zmdi zmdi-comment-text-alt"></i>
                                                     </button>
 
-                                                    <div class="dropdown-menu stop-propagate">
+                                                    <div class="dropdown-menu stop-propagate commentPhotoBox">
                                                 <textarea placeholder="Ajouter un commentaire"
                                                           data-ng-model="image.description"
                                                           data-ng-maxlength="140"
@@ -377,10 +381,6 @@
                             data-sortable="'created'">
                             {{ project.created | date:"dd/MM/yyyy" }}
                         </td>
-                        <td data-title="'Relation'" filter="{relation: 'text'}"
-                            data-sortable="'relation'">
-                            {{ project.professional.user.contactRelation }}
-                        </td>
                         <td data-title="'Nom'" filter="{name: 'text'}"
                             data-sortable="'name'">
                             {{ project.name }}
@@ -406,17 +406,13 @@
             </div>
 
             <div class="card" data-ng-if="!vm.showChat">
-                <h4 class="p-15" data-ng-show="vm.project.proposalsRecommendations.length == 0">La liste des Pros compatibles est vide !</h4>
-                <table ng-table="usersTable" class="table table-striped" show-filter="true" data-ng-show="vm.project.proposalsRecommendations.length > 0">
-                    <h4 class="p-15" data-ng-show="vm.project.proposalsRecommendations.length > 0">Pros Compatibles avec le projet</h4>
+                <h4 class="p-15" data-ng-show="vm.project.compatiblePros.length == 0">La liste des Pros compatibles est vide !</h4>
+                <table ng-table="usersTable" class="table table-striped" show-filter="true" data-ng-show="vm.project.compatiblePros.length > 0">
+                    <h4 class="p-15" data-ng-show="vm.project.compatiblePros.length > 0">Pros Compatibles avec le projet</h4>
                     <tr data-ng-repeat="pro in $data | filter:search" class="t-center">
                         <td data-title="'Nom'" class="pointer c-blue" filter="{name: 'text'}" data-sortable="'name'"
                             data-ui-sref="admin-pro-details({professionnalId: pro.id})">
                             {{ pro.name }}
-                        </td>
-                        <td data-title="'Relation'" filter="{contactRelation: 'text'}"
-                            data-sortable="'contactRelation'">
-                            {{ pro.contactRelation }}
                         </td>
                         <td data-title="'Invité'" filter="{isInvited: 'text'}" data-sortable="'isInvited'">
                             {{ pro.isInvited }}

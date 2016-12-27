@@ -153,6 +153,9 @@
             projectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/' + data, ignoreLoading).success(success).error(error)
             },
+            localitiesGET : function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/localities/' + data, ignoreLoading).success(success).error(error)
+            },
             skillsGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/pro/availableactivities', ignoreLoading).success(success).error(error)
             },
@@ -225,6 +228,12 @@
             me: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/me', ignoreLoading).success(success).error(error)
             },
+            communitiesGET: function (success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/me/communities', ignoreLoading).success(success).error(error)
+            },
+            communitiesPUT: function (data, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/me/communities', data, ignoreLoading).success(success).error(error)
+            },
             proposalPUT: function (data, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/pro/proposals/' + data.id, data, ignoreLoading).success(success).error(error);
             },
@@ -282,8 +291,8 @@
             inviteProPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invite/pro', data, ignoreLoading).success(success).error(error)
             },
-            invitePOST: function (id, relation, success, error, ignoreLoading) {
-                httpService.post(baseUrl + '/invite/' + id + '/' + relation, null, ignoreLoading).success(success).error(error)
+            invitePOST: function (id, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/invite/' + id, null, ignoreLoading).success(success).error(error)
             },
             invitationsReceivedGET: function (success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/invitations/received', ignoreLoading).success(success).error(error)

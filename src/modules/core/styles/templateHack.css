@@ -1,3 +1,18 @@
+[data-ng-dropdown-multiselect] .btn {
+    color: #5E5E5E !important;
+}
+
+[data-ng-dropdown-multiselect].multi-select-red .btn {
+    color: #f44336 !important;
+}
+
+.fg-float .fg-label {
+    color: #5E5E5E;
+}
+
+.form-control {
+    color: #5E5E5E;
+}
 
 .card-hover:hover {
     opacity: 0.85;
@@ -428,4 +443,29 @@ section#main.yakaMain .content .card {
 
 body.sw-toggled #content.noMenu {
     padding-left: 0 !important;
+}
+
+.alert {
+    background-image: none;
+}
+
+.alert-success {
+    background-color: rgba(76, 175, 80, 0.9);
+}
+
+.alert-info {
+    background-color: rgba(33, 150, 243, 0.9);
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.9);
+}
+
+.alert-danger {
+    background-color: rgba(244, 67, 54, 0.9);
+}
+
+.alert-orange {
+    background-color: rgba(255, 152, 0, 0.9);
+    color: white;
 }

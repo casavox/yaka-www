@@ -16,6 +16,8 @@
         $rootScope.updateProfile();
         var vm = this;
 
+        vm.user = $localStorage.user;
+
         networkService.projectRecommendGET($stateParams.projectId,
             function (project) {
                 vm.project = project;
@@ -56,8 +58,7 @@
 
         vm.invitPro = {
             email: "",
-            firstName: "",
-            lastName: "",
+            name: "",
             phone: "",
             activities: [],
             address: {}
@@ -124,50 +125,46 @@
         });
 
         vm.formIsValid = function () {
-            vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
-            angular.forEach(vm.invitPro.activities, function (activity) {
-                activity.code = vm.multiChoiceInput.options[activity.id].label;
-                delete activity.id;
-            });
 
-            return (vm.invitPro.firstName &&
-                vm.invitPro.lastName &&
-                vm.invitPro.email &&
-                vm.invitPro.activities.length > 0 &&
-                vm.invitPro.relation &&
-                vm.invitPro.address.address
+            return (vm.invitPro.name &&
+                vm.invitPro.email
             );
         };
 
         vm.sendProInvit = function () {
-            networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
-                vm.invitPro = {
-                    email: "",
-                    firstName: "",
-                    lastName: "",
-                    phone: "",
-                    activities: [],
-                    address: {}
-                };
-                vm.phoneNumber = "";
-                vm.multiChoiceInput.selected = [];
-                vm.closeProPopup();
-                if ($localStorage.user && $localStorage.user.professional) {
-                    $state.go('pro-dashboard');
-                } else {
-                    $state.go('dashboard');
-                }
-                swal({
-                    title: "C'est fait !",
-                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
-                    type: "success",
-                    showConfirmButton: true,
-                    confirmButtonColor: "#03a9f4",
-                    confirmButtonText: "Fermer"
-                });
-            }, function (err) {
-                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-            }, true);
+            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+                vm.formProRecoInvitError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
+                    vm.formProRecoInvitError = false;
+                    vm.invitPro = {
+                        email: "",
+                        name: "",
+                        phone: "",
+                        activities: [],
+                        address: {}
+                    };
+                    vm.phoneNumber = "";
+                    vm.multiChoiceInput.selected = [];
+                    vm.closeProPopup();
+                    if ($localStorage.user && $localStorage.user.professional) {
+                        $state.go('pro-dashboard');
+                    } else {
+                        $state.go('dashboard');
+                    }
+                    swal({
+                        title: "C'est fait !",
+                        text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
+                        type: "success",
+                        showConfirmButton: true,
+                        confirmButtonColor: "#03a9f4",
+                        confirmButtonText: "Fermer"
+                    });
+                }, function (err) {
+                    alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+                }, true);
+            }
         };
 
         vm.showInvitProPopup = false;
@@ -212,5 +209,13 @@
             var element = document.getElementById('pro');
             smoothScroll(element, scrollOptions);
         };
+
+        vm.optionSelected = function () {
+            if (vm.user.professional) {
+                return 'COLLEAGUE';
+            } else {
+                return 'CLIENT';
+            }
+        }
     }
 })();

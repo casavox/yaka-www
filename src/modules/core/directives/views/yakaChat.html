@@ -1,4 +1,5 @@
 <div class="listview lv-message">
+    <div class="" data-ng-class="{'ChatMaskDuringSend' : newMessage.cloudinaryPublicId}"></div>
 
     <div class="lv-body" yaka-keep-scroll>
         <div class="m-t-10 m-b-10 moreMessagesLoading" data-ng-show="loadingMessages">
@@ -84,38 +85,39 @@
     <div class="clearfix"></div>
 
     <div class="imgPreview center" data-ng-if="newMessage.cloudinaryPublicId">
-        <img width="200" height="200" data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
-             alt=""
-             data-ng-if="newMessage.cloudinaryPublicId && newMessage.resourceType && newMessage.resourceType == 'image'"/>
-
-        <div class="chatFilePreview">
+        <div class="chatFilePreview ">
             <i class="zmdi zmdi-file"></i> {{newMessage.filename}}<span data-ng-if="newMessage.format">.{{newMessage.format}}</span><span
             data-ng-if="extension">.{{extension}}</span>
         </div>
-        <button class="btn bgm-red btn-icon waves-effect waves-circle"
-                data-ng-click="newMessage.cloudinaryPublicId = ''">
-            <i class="zmdi zmdi-close"></i>
-        </button>
+        <img width="200" height="200" data-ng-src="{{newMessage.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+             alt=""
+             data-ng-if="newMessage.cloudinaryPublicId && newMessage.resourceType && newMessage.resourceType == 'image'"/>
+        <div class="col-xs-12 m-t-10 m-b-10">
+            <button class="col-xs-12 col-sm-6 wl-95pe btn bgm-red waves-effect btn-xs m-b-5 m-t-5 p-relative"
+                    data-ng-click="cancelSending()">ANNULER
+            </button>
+            <button class="col-xs-12 col-sm-6 wl-95pe btn bgm-lightblue waves-effect btn-xs m-b-5 m-t-5 p-relative"
+                    data-ng-click="sendMessage()">ENVOYER
+            </button>
+        </div>
     </div>
 
     <div class="lv-footer ms-reply p-t-0" data-ng-class="{'pointer-not-allowed': disableSending}">
-        <button class="leftButton bgm-lightblue" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+        <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+                data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
                 ngf-max-size="20MB"
-                data-ng-disabled="disableSending"
-                data-ng-class="{'pointer-not-allowed': disableSending}">
-            <i class="zmdi zmdi-attachment-alt c-white"
-               data-ng-class="{'c-gray': disableSending}"></i>
+                data-ng-disabled="disableSending">
+            <i class="zmdi zmdi-attachment-alt c-white"></i>
         </button>
 
         <textarea data-ng-model="newMessage.text"
                   data-ng-placeholder="getPlaceholder()"
                   data-ng-disabled="disableSending"
-                  data-ng-class="{'pointer-not-allowed': disableSending, 'placeholder-red': userMe.professional && proposalStatus == 'RECOMMENDATION'}"></textarea>
+                  data-ng-class="{'pointer-not-allowed': disableSending, 'placeholder-red': userMe.professional && (proposalStatus == 'RECOMMENDATION') && (userOther != 'admin')}"></textarea>
 
-        <button class="bgm-lightblue"
+        <button data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
                 data-ng-click="sendMessage()"
-                data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)"
-                data-ng-class="{'pointer-not-allowed': disableSending}">
+                data-ng-disabled="disableSending || (!newMessage.text && !newMessage.cloudinaryPublicId)">
             <i class="zmdi zmdi-mail-send c-white"></i>
         </button>
     </div>

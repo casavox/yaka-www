@@ -1,3 +1,12 @@
+.ChatMaskDuringSend {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition:0.3s;
+}
+
 yaka-avatar {
     width: 36px;
     height: 36px;
@@ -31,11 +40,11 @@ yaka-chat .lv-message {
 }
 
 yaka-chat .lv-footer {
-    height: 76px;
+    height: 55px;
 }
 
 yaka-chat .lv-body {
-    height: calc(100% - 76px);
+    height: calc(100% - 55px);
     overflow-y: auto;
 }
 
@@ -51,23 +60,24 @@ yaka-chat .ms-reply .leftButton {
 yaka-chat .ms-reply textarea {
     padding: 8px 60px;
     line-height: normal;
-    height: 75px;
+    height: 54px;
 }
 
 yaka-chat .imgPreview {
+    width: 240px;
     position: absolute;
-    bottom: 76px;
+    bottom: 70px;
     z-index: 1;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
-    background: #f8f8f8;
+    background: #eee;
+    border: 1px #eee solid !important;
+    border-radius: 5px;
 }
 
-yaka-chat .imgPreview button {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+.img-preview-case {
+    width: 200px;
 }
 
 yaka-chat .ms-item.messageAuto {
@@ -88,6 +98,9 @@ yaka-chat .chatImg {
 }
 
 @media (max-width: 767px) {
+    yaka-chat .imgPreview {
+        bottom: 60px;
+    }
 
     yaka-chat .ms-item {
         padding: 8px 12px 8px;
@@ -112,8 +125,7 @@ yaka-chat .yakaMessageIcon {
 }
 
 yaka-chat .chatFilePreview {
-    margin-bottom: 20px;
-    margin-top: 25px;
+    margin-bottom: 10px;
     max-width: 200px;
     word-break: break-all;
 }
@@ -144,4 +156,10 @@ casa-contact .contactRelationIcon {
 
 .placeholder-red:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #F44336;
+}
+
+/* CommunityTag */
+
+casa-community-tag {
+    max-width: 100%;
 }

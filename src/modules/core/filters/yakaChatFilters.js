@@ -12,7 +12,7 @@ angular.module('Yaka')
                 case 'CUSTOMER_DATE_UPDATED':
                     return customerUser.firstName + " " + customerUser.lastName + " a mis à jour la date souhaitée de début de chantier";
                 case 'CUSTOMER_ADDRESS_UPDATED':
-                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour l'addresse du chantier au " + autoMessage.varAddress;
+                    return customerUser.firstName + " " + customerUser.lastName + " a mis à jour l'adresse du chantier au " + autoMessage.varAddress;
                 case 'CUSTOMER_DESCRIPTION_UPDATED':
                     return customerUser.firstName + " " + customerUser.lastName + " a mis à jour la description du projet";
                 case 'CUSTOMER_PHOTOS_UPDATED':
@@ -24,7 +24,7 @@ angular.module('Yaka')
                 case 'CUSTOMER_RATED_PRO':
                     return customerUser.firstName + " " + customerUser.lastName + " a indiqué la fin des travaux";
                 case 'FIRST_RECOMMENDATION':
-                    return "Vous avez été mis en relation grâce à une recommandation de " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
+                    return "Vous avez été mis en relation grâce à " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 case 'NEW_RECOMMENDATION':
                     return "Nouvelle recommandation de " + proUser.firstName + " " + proUser.lastName + ", par " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 default :

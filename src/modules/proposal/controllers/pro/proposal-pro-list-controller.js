@@ -22,7 +22,7 @@
             vm.proposals = res;
         }, function () {
         });
-        networkService.proProposalsGET('declined', function (res) {
+        networkService.proProposalsGET('declined_proposal', function (res) {
             vm.decline = res;
         }, function () {
         });
@@ -56,5 +56,30 @@
                     return 'dès que possible';
             }
         };
+
+        networkService.getProNetworkLeads(function (projects) {
+            vm.networkProjects = projects;
+        }, function (err) {
+            console.log("Impossible de récupérer les offres", "danger");
+        });
+
+        vm.showTopViewRecommendation = function () {
+            return getRecommendationNumber();
+        };
+
+        function getRecommendationNumber() {
+            if (vm.networkProjects) {
+                var recoNumber = 0;
+                for (var i = 0; i < vm.networkProjects.length; i++) {
+                    if (vm.networkProjects[i].recoProposals) {
+                        recoNumber++;
+                    }
+                }
+                return recoNumber;
+            } else
+                return 0;
+        }
     }
-})();
+
+})
+();

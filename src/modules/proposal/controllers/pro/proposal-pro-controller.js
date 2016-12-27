@@ -21,11 +21,12 @@
         vm.scrollBottom = 0;
 
         if ($stateParams.chat) {
-
             setTimeout(function() {
-
                 vm.showChat = true;
                 vm.scrollBottom = 1;
+                if ($stateParams.chat == 'assistance') {
+                    vm.chatWithAdmin = true;
+                }
             }, 500);
         }
 
@@ -361,6 +362,10 @@
         };
 
         vm.sendOffer = function () {
+            if (!vm.formIsValid()) {
+                vm.formProProposalError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            }
             if (vm.offer.comment && vm.offer.comment.length > 40 && vm.offer.comment.indexOf(' ') > -1) {
                 vm.offer.comment = vm.offer.comment || "";
                 var formData = {

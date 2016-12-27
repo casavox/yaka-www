@@ -27,7 +27,7 @@
                 controllerAs: 'vm'
             })
             .state('project', {
-                url: "/project/:projectId/details?chat",
+                url: "/project/:projectId/details?chat?incompleteAddress",
                 templateUrl: "/modules/project/views/customer/project.html",
                 controller: 'ProjectController',
                 controllerAs: 'vm'

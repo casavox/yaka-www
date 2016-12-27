@@ -7,18 +7,20 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
+    function ContactsController($rootScope, $scope, networkService, $localStorage, screenSize, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
 
 
-        $rootScope.pageName = "Mes contacts";
+        $rootScope.pageName = "Mon entourage";
         $rootScope.updateProfile();
 
         var vm = this;
 
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
             networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            vm.bigAlert = true;
             $localStorage.invitationId = '';
         }
+
 
         vm.MENU_ALL = "ALL";
         vm.MENU_PROS = "PROS";
@@ -51,6 +53,8 @@
                 return "Invitations envoyées";
             }
         };
+
+        vm.user = $localStorage.user;
 
         vm.getCurrentContactListNumber = function () {
             var count = 0;
@@ -85,6 +89,7 @@
             vm.contacts = res;
             vm.prosNumber = prosNum;
             vm.friendsNumber = friendsNum;
+            vm.myContacts = res;
         }
 
         function errorContactsGET(err) {
@@ -103,7 +108,22 @@
         function succesInvitationsReceivedGET(res) {
 
             vm.invitationsReceived = res;
+            if (vm.invitationsReceived.length == 0) {
+                networkService.setContactsRead(function () {
+                    vm.user.newContacts = false;
+                }, function () {
+                }, true);
+            }
+
+            if (vm.invitationsReceived.length == 1) {
+                alertMsg.send("Vous avez une invitation en attente", 'orange');
+
+            }
+            if (vm.invitationsReceived.length > 1) {
+                alertMsg.send("Vous avez plusieurs invitations en attente", 'orange');
+            }
         }
+
 
         function errorInvitationsReceivedGET(err) {
             if (err.error != undefined && err.error != "ERROR") {
@@ -174,21 +194,31 @@
         vm.invitCustomer = "";
 
         vm.sendCustomerInvit = function () {
-            vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
-            var invits = vm.invitCustomer.split(",");
-            for (var i = 0; i < invits.length; i++) {
-                invits[i] = invits[i].trim();
-                if (!vm.isEmailValid(invits[i])) {
-                    alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
+            if (!vm.invitCustomer) {
+                vm.formCustInvitError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                vm.invitCustomer = vm.invitCustomer.replace(/,\s*$/, "");
+                var invits = vm.invitCustomer.split(",");
+                for (var i = 0; i < invits.length; i++) {
+                    invits[i] = invits[i].trim();
+                    if (!vm.isEmailValid(invits[i])) {
+                        alertMsg.send(invits[i] + " n'est pas un email valide", "danger");
+                        return;
+                    }
+                }
+                if (hasDuplicates(invits)) {
+                    alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
                     return;
                 }
-            }
-            if (hasDuplicates(invits)) {
-                alertMsg.send("Vous avez saisi plusieurs fois la même adresse email. Merci de corriger votre saisie", "danger");
-                return;
-            }
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+                var invitation = {
+                    emails: invits,
+                    message: vm.invitMessage
+                };
+
+                networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            }
         };
 
         function hasDuplicates(array) {
@@ -204,6 +234,7 @@
         }
 
         function succesInviteCustomerPOST(res) {
+            vm.formCustInvitError = false;
             vm.invitCustomer = "";
             vm.closeFriendPopup();
             vm.closeGmailPopup();
@@ -221,23 +252,26 @@
 
         vm.invitPro = {
             email: "",
-            firstName: "",
-            lastName: "",
+            name: "",
             phone: "",
-            activities: [],
             address: {}
         };
 
         vm.sendProInvit = function () {
-            networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+                vm.formProInvitError = true;
+                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+            } else {
+                networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+            }
         };
 
         function succesInviteProPOST(res) {
+            vm.formProInvitError = false;
             vm.closeProPopup();
             vm.invitPro = {
                 email: "",
-                firstName: "",
-                lastName: "",
+                name: "",
                 phone: "",
                 activities: [],
                 address: {}
@@ -381,17 +415,8 @@
         }
 
         vm.formIsValid = function () {
-            vm.invitPro.activities = angular.copy(vm.multiChoiceInput.selected);
-            angular.forEach(vm.invitPro.activities, function (activity) {
-                activity.code = vm.multiChoiceInput.options[activity.id].label;
-                delete activity.id;
-            });
-
-            if (vm.invitPro.firstName == '' || !vm.isNameValid(vm.invitPro.firstName) ||
-                vm.invitPro.lastName == '' || !vm.isNameValid(vm.invitPro.lastName) ||
-                vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email) ||
-                vm.invitPro.activities.length == 0 || !vm.invitPro.relation ||
-                vm.invitPro.address.address == undefined || vm.invitPro.address.address == ''
+            if (vm.invitPro.name == '' || !vm.isNameValid(vm.invitPro.name) ||
+                vm.invitPro.email == '' || !vm.isEmailValid(vm.invitPro.email)
             ) {
                 return false;
             }
@@ -403,6 +428,7 @@
         };
 
         function succesRefuseInvitationPOST(res) {
+            vm.invitationRefused = true;
             reloadContactsAndInvitations();
             alertMsg.send("Invitation refusée avec succes", "success");
         }
@@ -420,8 +446,13 @@
         };
 
         function succesAcceptInvitationPOST(res) {
+            vm.invitationAccepted = true;
             reloadContactsAndInvitations();
-            alertMsg.send("Invitation acceptée avec succes", "success");
+            if (vm.bigAlert) {
+                alertMsg.send("Félicitations ! " + res.user.firstName + " " + res.user.lastName + " fait maintenant partie de votre réseau de bouche-à-oreille CasaVox", "success");
+            } else {
+                swal("Félicitations !", res.user.firstName + " " + res.user.lastName + " fait maintenant partie de votre réseau de bouche-à-oreille CasaVox", "success")
+            }
         }
 
         function errorAcceptInvitationPOST(err) {
@@ -512,8 +543,12 @@
                     invits.push(vm.gmailContacts[i].address);
                 }
             }
+            var invitation = {
+                emails: invits,
+                message: vm.invitMessage
+            };
 
-            networkService.inviteCustomerPOST(invits, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
+            networkService.inviteCustomerPOST(invitation, succesInviteCustomerPOST, errorInviteCustomerPOST, true);
         };
 
         vm.getFacebookIframeUrl = function () {
@@ -524,7 +559,6 @@
         };
 
         vm.deleteContact = function (id) {
-            console.log(id);
             swal({
                 title: "Supprimer un contact",
                 text: "Attention, vous ne pourrez plus bénéficier de son réseau de bouche-à-oreille !",
@@ -547,6 +581,44 @@
                 }
             });
         };
+        networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
+
+        function successCommunitiesGET(res) {
+            vm.communities = res;
+        }
+
+        vm.getCommunityByType = function (type) {
+            if (vm.communities) {
+                for (var i = 0; i < vm.communities.length; i++) {
+                    if (type == vm.communities[i].type) {
+                        if (!vm.communities[i].name && !vm.communities[i].address) {
+                            vm.communities[i].name = " ";
+                            vm.communities[i].address = " ";
+                        }
+                        return vm.communities[i];
+                    }
+                }
+            }
+        };
+
+        function errorCommunitiesGET(res) {
+            alertMsg.send("Impossible de récupérer les communautés", "danger");
+        }
+
+        vm.selectContactTab = "all";
+        vm.selectTab = "received";
+
+        vm.isXsmall = function () {
+            return screenSize.is('xs');
+        };
+
+        vm.optionSelected = function () {
+            if (vm.user.professional) {
+                return 'COLLEAGUE';
+            } else {
+                return 'CLIENT';
+            }
+        }
 
     }
 })

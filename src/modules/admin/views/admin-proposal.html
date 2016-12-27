@@ -186,19 +186,19 @@
                                                 <i class="zmdi zmdi-close"></i> Refuser
                                             </button>
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 fw-bold bgm-orange"
                                              data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED' || vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                             Refusé par le client
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 fw-bold bgm-orange"
                                              data-ng-if="vm.proposal.status == 'PRO_DECLINED' || vm.proposal.status == 'RECO_PRO_DECLINED'">
                                             Annulé par moi
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 fw-bold bgm-orange"
                                              data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                             Cloture client en cours
                                         </div>
-                                        <div class="m-t-15"
+                                        <div class="m-t-15 bgm-orange"
                                              data-ng-if="vm.proposal.status == 'COMPLETED'">
                                             Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                         </div>
@@ -208,7 +208,7 @@
                         </div>
                     </div>
 
-                    <div class="pm-body clearfix">
+                    <div class="pm-body admin-chat clearfix">
 
                         <ul class="tab-nav tab-nav-proposal tn-justified">
                             <li heading="Home"
@@ -228,7 +228,7 @@
                             </li>
                         </ul>
 
-                        <div class="col-xs-12 chatChoice no-padding bgm-white c-gray"
+                        <div class="col-xs-12 chatChoice no-padding bgm-white subtitle-color-forced"
                              data-ng-if="vm.showChat">
                             <div class="col-xs-12 col-sm-5 col-md-3 no-padding emptyCol">
                                 <div class="col-xs-6 chatTab p-b-5 t-center pointer emptyCol"
@@ -350,27 +350,27 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
-                                                <div class="col-xs-8 col-xs-offset-4 no-padding status"
+                                                <div class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 bgm-orange"
                                                      data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
@@ -417,12 +417,12 @@
                                         <button
                                             class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                             data-ui-sref="pro-profile">
-                                            Modifier mon profil
+                                            Compléter mon profil
                                         </button>
                                         <button
                                             class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
                                             data-ui-sref="project-recommend({'projectId': vm.project.id})">
-                                            Recommander à un pro
+                                            Recommander un collègue
                                         </button>
                                     </div>
                                 </div>
@@ -467,7 +467,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="pmbb-body p-l-30"
+                                <div class="pmbb-body p-l-30 c-red"
                                      data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                     Votre profil doit être validé afin de pouvoir répondre aux offres.
                                 </div>
@@ -547,7 +547,11 @@
                                                               uib-tooltip="Le client fournit certains matériaux">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
-                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE'">
+                                                        <span data-ng-if="tag == 'MATERIAL_FALSE'"
+                                                              uib-tooltip="Le Pro doit fournir les matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                        <span data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
                                                             {{'ACTIVITY_' + tag | translate}}
                                                         </span>
                                                     </li>

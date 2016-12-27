@@ -170,7 +170,7 @@
                                            required="required"
                                            placeholder=""
                                            id="address">
-                                    <label class="fg-label">Addresse principale</label>
+                                    <label class="fg-label">Adresse principale</label>
                                 </div>
                                 <div data-ng-messages="profileForm.address.$error">
                                     <small class="help-block" data-ng-message="required">Ce champ est requis</small>
@@ -205,7 +205,7 @@
                             </small>
                         </h2>
                     </div>
-                    <div class="col-xs-12 card-body m-t-20 m-b-20 c-gray">
+                    <div class="col-xs-12 card-body m-t-20 m-b-20 subtitle-color-forced">
 
                         <div class="row">
                             <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-facebook-box p-l-25"
@@ -389,20 +389,12 @@
                     </div>
                     <div class="col-xs-12 m-t-15 p-b-15" data-ng-if="vm.profile.contacts">
                         <div class="col-xs-6 col-sm-3 t-center">
-                            <h4>Clients</h4>
-                            <p>{{vm.contactClientNumber}}</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-3 t-center">
                             <h4>Amis</h4>
                             <p>{{vm.contactFriendNumber}}</p>
                         </div>
                         <div class="col-xs-6 col-sm-3 t-center">
-                            <h4>Famille</h4>
-                            <p>{{vm.contactFamilyNumber}}</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-3 t-center">
                             <h4>Pros</h4>
-                            <p>{{vm.contactColleagueNumber}}</p>
+                            <p>{{vm.contactProNumber}}</p>
                         </div>
                     </div>
                 </div>
@@ -419,20 +411,12 @@
                     </div>
                     <div class="col-xs-12 m-t-15 p-b-15" data-ng-if="vm.profile.invitations">
                         <div class="col-xs-6 col-sm-3 t-center">
-                            <h4>Clients</h4>
-                            <p>{{vm.invitationClientNumber}}</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-3 t-center">
                             <h4>Amis</h4>
                             <p>{{vm.invitationFriendNumber}}</p>
                         </div>
                         <div class="col-xs-6 col-sm-3 t-center">
-                            <h4>Famille</h4>
-                            <p>{{vm.invitationFamilyNumber}}</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-3 t-center">
                             <h4>Pros</h4>
-                            <p>{{vm.invitationColleagueNumber}}</p>
+                            <p>{{vm.invitationProNumber}}</p>
                         </div>
                     </div>
                 </div>
