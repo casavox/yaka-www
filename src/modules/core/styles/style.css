@@ -5636,6 +5636,10 @@ div.recaptcha.mobile > div {
     color: #5e5e5e !important;
 }
 
+.w-s-normal {
+    white-space: normal !important;
+}
+
 @media (max-width: 767px) {
     .logo-header-casavox {
         margin-top: 3px;

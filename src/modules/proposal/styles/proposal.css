@@ -1,3 +1,7 @@
+.width-auto {
+    width: auto !important;
+}
+
 .com-tag-proproposallist {
     float: right;
     max-width: 400px;
@@ -486,6 +490,7 @@
 
     .proposalProName.littleMargin button {
         margin-top: 20px !important;
+        width: 80px;
     }
 
     .proposalProName div.status {
