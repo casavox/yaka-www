@@ -113,7 +113,7 @@
         <textarea data-ng-model="newMessage.text"
                   data-ng-placeholder="getPlaceholder()"
                   data-ng-disabled="disableSending"
-                  data-ng-class="{'pointer-not-allowed': disableSending, 'placeholder-red': userMe.professional && proposalStatus == 'RECOMMENDATION'}"></textarea>
+                  data-ng-class="{'pointer-not-allowed': disableSending, 'placeholder-red': userMe.professional && (proposalStatus == 'RECOMMENDATION') && (userOther != 'admin')}"></textarea>
 
         <button data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
                 data-ng-click="sendMessage()"

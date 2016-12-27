@@ -127,6 +127,10 @@
     margin-bottom: 10px;
 }
 
+.contact-item-infos {
+    white-space: normal;
+}
+
 .contact-hr {
     width: 95%;
     clear: both;
@@ -312,17 +316,12 @@
     color: #626262;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .invitReceivedSpanHolder {
     margin-top: 5px;
     width: calc(100% - 190px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     float: left;
 }
 
@@ -633,6 +632,12 @@
 }
 
 @media (max-width: 767px) {
+    .modify-link {
+        position: absolute;
+        left: -58px;
+        top: 70px;
+    }
+
     .contact-item {
         margin-bottom: 0px;
     }
@@ -640,9 +645,7 @@
     .invitReceivedSpanHolder {
         margin-top: 5px;
         width: calc(100% - 135px);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: normal;
         float: left;
     }
 
@@ -807,6 +810,12 @@
 
     .contactItemName {
         margin-left: 10px;
+        display: inline-block;
+    }
+
+    .icon-position {
+        margin-right: 26px;
+        width: 20px;
     }
 
     .contactItemCity {
@@ -839,7 +848,7 @@
     }
 
     .contactItemNameInvitReceived {
-        width: calc(100% - 130px) !important;
+        width: calc(100% - 10px) !important;
     }
 
     .contactItemCityInvitReceived {

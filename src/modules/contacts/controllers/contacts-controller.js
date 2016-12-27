@@ -447,9 +447,9 @@
             vm.invitationAccepted = true;
             reloadContactsAndInvitations();
             if (vm.bigAlert) {
-                alertMsg.send("Félicitations ! " + res.user.firstName + " " + res.user.lastName + " fait maintenant partie de vos contacts CasaVox", "success");
+                alertMsg.send("Félicitations ! " + res.user.firstName + " " + res.user.lastName + " fait maintenant partie de votre réseau de bouche-à-oreille CasaVox", "success");
             } else {
-                swal("Félicitations !", res.user.firstName + " " + res.user.lastName + " fait maintenant partie de vos contacts CasaVox", "success")
+                swal("Félicitations !", res.user.firstName + " " + res.user.lastName + " fait maintenant partie de votre réseau de bouche-à-oreille CasaVox", "success")
             }
         }
 

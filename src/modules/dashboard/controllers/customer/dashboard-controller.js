@@ -86,14 +86,23 @@
         };
 
         vm.showTopViewUnreadMessages = function () {
+            if (!vm.data) {
+                return false;
+            }
             return vm.getUserchatsUnreadNumber() > 0;
         };
 
         vm.showTopViewNoProject = function () {
+            if (!vm.data) {
+                return false;
+            }
             return !vm.userOnGoingProjectNumber || vm.userOnGoingProjectNumber == 0;
         };
 
         vm.showTopViewNoContact = function () {
+            if (!vm.data) {
+                return false;
+            }
             return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
         };
 
