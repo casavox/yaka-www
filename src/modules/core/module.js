@@ -39,7 +39,7 @@ angular.module('Yaka', [
 
                 // www.casa-local.com : This allow to use the heroku backend from your computer (localhost http server)
                 // To use it, you need to add this line in your hosts file : "127.0.0.1   www.casa-local.com"
-                // Then you can access the site here : http://www.yaka-local.com:8000
+                // Then you can access the site here : http://www.casa-local.com:8000
 
                 switch (window.location.hostname) {
                     case 'www.casa-local.com':
