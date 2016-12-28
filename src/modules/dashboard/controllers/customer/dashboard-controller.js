@@ -25,13 +25,17 @@
         networkService.projectsToRecommendGET(function (projects) {
             vm.projectsToRecommend = projects;
         }, function (err) {
-            alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
+            if ($state.current.name == "dashboard") {
+                alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
+            }
         });
 
         networkService.dashboardDataGET(function (data) {
             vm.data = data;
         }, function (err) {
-            alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
+            if ($state.current.name == "dashboard") {
+                alertMsg.send("Oups ! une erreur s'est produite, merci de recharger la page depuis votre navigateur ('F5' ou 'cmd+R'), contactez le support CasaVox si nécessaire", "danger");
+            }
         });
 
         networkService.communitiesGET(successCommunitiesGET, errorCommunitiesGET);
@@ -55,7 +59,9 @@
         };
 
         function errorCommunitiesGET(res) {
-            alertMsg.send("Impossible de récupérer les communautés", "danger");
+            if ($state.current.name == "dashboard") {
+                alertMsg.send("Impossible de récupérer les communautés", "danger");
+            }
         }
 
         networkService.projectsGET("ongoing", 1, 2147483647, successProjectsGET, errorProjectsGET);

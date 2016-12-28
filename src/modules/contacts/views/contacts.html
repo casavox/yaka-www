@@ -54,7 +54,7 @@
                                         <button
                                             class="btn bgm-cyan btn-float waves-effect waves-circle button-community"
                                             data-ui-sref="profile"
-                                            data-ng-if="!vm.getCommunityByType('PROFILE_CITY').name && !vm.getCommunityByType('PROFILE_CITY').address.address">
+                                            data-ng-if="vm.getCommunityByType('PROFILE_CITY').name == ' ' && vm.getCommunityByType('PROFILE_CITY').address.address == ' '">
                                             <i class="zmdi zmdi-plus"></i></button>
                                     </div>
                                 </div>
