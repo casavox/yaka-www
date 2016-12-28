@@ -200,12 +200,12 @@
                                     <button
                                         class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                         data-ui-sref="pro-profile">
-                                        Modifier mon profil
+                                        Compléter mon profil
                                     </button>
                                     <button
                                         class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
                                         data-ui-sref="project-recommend({'projectId': vm.project.id})">
-                                        Recommander à un pro
+                                        Recommander un collègue
                                     </button>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                                                               placeholder=""
                                                               data-ng-model="vm.offer.comment"></textarea>
                                                     <label class="fg-label yakaEllipsis">
-                                                        Précisez votre proposition, posez vos questions,...</label>
+                                                        Contactez le client, posez vos questions</label>
                                                 </div>
                                                 <small class="help-block"
                                                        data-ng-show="vm.formProProjectError && !vm.offer.comment">
@@ -260,7 +260,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="pmbb-body"
+                            <div class="pmbb-body c-red"
                                  data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                 Votre profil doit être validé afin de pouvoir répondre aux offres.
                             </div>
