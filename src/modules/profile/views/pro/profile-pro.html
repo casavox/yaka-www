@@ -446,24 +446,14 @@
             <h2>Mes sites Web</h2>
             <small class="subtitle-color-forced">Indiquez les adresses de vos sites Web</small>
         </div>
-<<<<<<< HEAD
         <form class="col-xs-12 card-body m-t-20" name="websiteLinks">
             <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)}">
-=======
-        <div class="col-xs-12 card-body m-t-20">
-            <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error' : vm.formWebsiteError && (!vm.profile.myWebsite || vm.profile.myWebsite)}">
->>>>>>> development
                 <div class="fg-line">
                     <input type="text"
                            name="link1"
                            class="form-control fg-input"
                            data-ng-model="vm.profile.myWebsite" casa-input-website>
                     <label class="fg-label">Mon site Web</label>
-                </div>
-                <div data-ng-messages="websiteLinks.link1.$error">
-                    <small class="help-block c-red" data-ng-message="invalidWebsite">L'adresse n'est pas valide
-                    </small>
                 </div>
             </div>
 
@@ -475,6 +465,10 @@
                            data-ng-model="vm.profile.myLinkedin">
                     <label class="fg-label">Mon Linkedin</label>
                 </div>
+                <small class="help-block"
+                       data-ng-show="!vm.profile.myLinkedin">
+                    Copiez et collez ici l'adresse de votre profil Linkedin
+                </small>
                 <small class="help-block"
                        data-ng-show="vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)">
                     L'adresse indiquée n'est pas valide
@@ -489,10 +483,6 @@
                            class="form-control fg-input"
                            data-ng-model="vm.profile.myOtherSocial" casa-input-website>
                     <label class="fg-label">Autre (Google+, Viadeo, ...)</label>
-                </div>
-                <div data-ng-messages="websiteLinks.link3.$error">
-                    <small class="help-block c-red" data-ng-message="invalidWebsite">L'adresse n'est pas valide
-                    </small>
                 </div>
             </div>
 

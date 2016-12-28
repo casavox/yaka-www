@@ -323,13 +323,12 @@
 
         vm.updateLinks = function () {
             var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*/;
-            console.log($scope.websiteLinks.link3.$error.invalidWebsite);
 
-
-            if ($scope.invalidWebsite || (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin))) {
-                vm.formWebsiteError = true;
+            if (!linkedinReg.test(vm.profile.myLinkedin)) {
+                vm.formLinkedinError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
+                vm.formLinkedinError = false;
                 var data = {
                     "myWebsite": vm.profile.myWebsite,
                     "myLinkedin": vm.profile.myLinkedin,
