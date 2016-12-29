@@ -323,7 +323,8 @@
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
                                                             class="btn btn-xs btn-danger btn-icon-text width-auto waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close no-margin m-r-5"></i> Abandonner l'offre
+                                                        <i class="zmdi zmdi-close no-margin m-r-5"></i> Abandonner
+                                                        l'offre
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
@@ -497,7 +498,7 @@
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
-                                            <dt class="yakaDisableEllipsis">Mon prix</dt>
+                                            <dt class="yakaDisableEllipsis">Ma proposition</dt>
                                             <dd class="l-h-18">
                                                 {{vm.proposalTmp.price || '---'}} € <i
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
@@ -662,18 +663,16 @@
             <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
                 <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                      data-ng-click="vm.myPriceFlag = false" alt=""/>
-                <h4>Mon prix</h4>
+                <h4 class="t-right">Ma proposition de prix</h4>
 
                 <div class="row">
-                    <div class="col-xs-6 col-xs-offset-4">
+                    <div class="col-xs-6 col-xs-offset-5">
                         <input type="text" class="form-control t-right f-s-18" id="exampleInputEmail2"
                                placeholder="Entrer un prix"
                                data-ng-model="vm.myPrice"
                                yaka-input-numbers-only>
                     </div>
-                    <div class="col-xs-2">
-                        €
-                    </div>
+                    <div class="f-s-18">€</div>
                 </div>
                 <p class="error center my-price-error" data-ng-show="vm.error.price.flag">
                     {{vm.error.price.message}}
