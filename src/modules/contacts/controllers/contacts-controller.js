@@ -93,10 +93,12 @@
         }
 
         function errorContactsGET(err) {
-            if (err.error != undefined && err.error != "ERROR") {
-                alertMsg.send($translate.instant(err.error), 'danger');
-            } else {
-                alertMsg.send("Impossible de récupérer les contacts", 'danger');
+            if ($state.current.name == "contacts") {
+                if (err.error != undefined && err.error != "ERROR") {
+                    alertMsg.send($translate.instant(err.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de récupérer les contacts", 'danger');
+                }
             }
         }
 
@@ -126,10 +128,12 @@
 
 
         function errorInvitationsReceivedGET(err) {
-            if (err.error != undefined && err.error != "ERROR") {
-                alertMsg.send($translate.instant(err.error), 'danger');
-            } else {
-                alertMsg.send("Impossible de récupérer les invitations", 'danger');
+            if ($state.current.name == "contacts") {
+                if (err.error != undefined && err.error != "ERROR") {
+                    alertMsg.send($translate.instant(err.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de récupérer les invitations", 'danger');
+                }
             }
         }
 
@@ -140,10 +144,12 @@
         }
 
         function errorInvitationsSentGET(err) {
-            if (err.error != undefined && err.error != "ERROR") {
-                alertMsg.send($translate.instant(err.error), 'danger');
-            } else {
-                alertMsg.send("Impossible de récupérer les invitations", 'danger');
+            if ($state.current.name == "contacts") {
+                if (err.error != undefined && err.error != "ERROR") {
+                    alertMsg.send($translate.instant(err.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible de récupérer les invitations", 'danger');
+                }
             }
         }
 
@@ -243,10 +249,12 @@
         }
 
         function errorInviteCustomerPOST(err) {
-            if (err.error != undefined && err.error != "ERROR") {
-                alertMsg.send($translate.instant(err.error), 'danger');
-            } else {
-                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+            if ($state.current.name == "contacts") {
+                if (err.error != undefined && err.error != "ERROR") {
+                    alertMsg.send($translate.instant(err.error), 'danger');
+                } else {
+                    alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+                }
             }
         }
 
@@ -602,7 +610,9 @@
         };
 
         function errorCommunitiesGET(res) {
-            alertMsg.send("Impossible de récupérer les communautés", "danger");
+            if ($state.current.name == "contacts") {
+                alertMsg.send("Impossible de récupérer les communautés", "danger");
+            }
         }
 
         vm.selectContactTab = "all";
