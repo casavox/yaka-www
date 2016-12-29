@@ -280,18 +280,17 @@
                                             </div>
 
                                             <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                                <h2>
-                                                    <casa-name-and-contact user="vm.proposal.professional.user"
-                                                                           icon-color="c-white"></casa-name-and-contact>
+                                                <casa-name-and-contact class="f-s-15 fw-bold"
+                                                    user="vm.proposal.professional.user"
+                                                    icon-color="c-white"></casa-name-and-contact>
 
-                                                    <div
-                                                        class="col-xs-12 clearfix wall-attrs t-center bgm-orange c-white p-5 waitingReco f-13"
-                                                        data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-                                                        Recommandation en attente
-                                                    </div>
-                                                </h2>
+                                                <div
+                                                    class="col-xs-12 clearfix wall-attrs t-center bgm-orange c-white p-5 m-t-10 f-13"
+                                                    data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
+                                                    Recommandation en attente
+                                                </div>
 
-                                                <ul class="proposalCounters wall-attrs clearfix list-inline list-unstyled"
+                                                <ul class="wall-attrs clearfix list-inline list-unstyled c-gray-light m-t-10 m-b-5"
                                                     data-ng-if="vm.proposal.status != 'RECOMMENDATION'">
                                                     <li class="wa-stats center">
                                                         <span class="bgm-white">
@@ -309,29 +308,29 @@
                                                 </ul>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
                                                     <button data-ng-click="vm.declineProposal()"
-                                                            class="col-xs-8 col-xs-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                                            class="col-xs-8 col-xs-offset-2 btn btn-danger f-s-11 btn-icon-text waves-effect">
                                                         <i class="zmdi zmdi-close"></i> Refuser
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'START'">
                                                     <button data-ng-click="vm.acceptProposal()"
-                                                            class="col-xs-6 col-sm-8 col-sm-offset-2 btn btn-default btn-icon-text waves-effect">
+                                                            class="col-xs-6 col-sm-8 col-sm-offset-2 btn f-s-11 btn-default btn-icon-text waves-effect">
                                                         <i class="zmdi zmdi-check"></i> Accepter
                                                     </button>
                                                     <button data-ng-click="vm.declineProposal()"
-                                                            class="right col-xs-6 col-sm-8 col-sm-offset-2 btn btn-danger btn-icon-text waves-effect">
+                                                            class="right col-xs-6 col-sm-8 col-sm-offset-2 f-s-11 btn btn-danger btn-icon-text waves-effect">
                                                         <i class="zmdi zmdi-close"></i> Refuser
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
                                                     <button data-ng-click="vm.completeProposal()"
-                                                            class="col-xs-offset-1 col-xs-10 col-xs-10 btn btn-default btn-icon-text waves-effect">
+                                                            class="col-xs-offset-1 col-xs-10 col-xs-10 btn f-s-11 btn-default btn-icon-text waves-effect">
                                                         <i class="zmdi zmdi-check"></i> Travaux terminés
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     <button data-ng-click="vm.rateProposal()"
-                                                            class="col-xs-offset-1 col-xs-10 btn btn-warning btn-icon-text waves-effect">
+                                                            class="col-xs-offset-1 col-xs-10 btn btn-warning f-s-11 btn-icon-text waves-effect">
                                                         <i class="zmdi zmdi-account"></i> Noter ce pro
                                                     </button>
                                                 </div>
