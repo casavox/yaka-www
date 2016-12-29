@@ -86,87 +86,17 @@
         };
 
         vm.showTopViewUnreadMessages = function () {
-            if (!vm.data) {
-                return false;
-            }
             return vm.getUserchatsUnreadNumber() > 0;
         };
 
         vm.showTopViewNoProject = function () {
-            if (!vm.data) {
-                return false;
-            }
             return !vm.userOnGoingProjectNumber || vm.userOnGoingProjectNumber == 0;
         };
 
         vm.showTopViewNoContact = function () {
-            if (!vm.data) {
-                return false;
-            }
             return !vm.data.contactsNumber || vm.data.contactsNumber == 0;
         };
 
-        vm.recommandInfos = function () {
-            swal({
-                title: 'CLIQUEZ SUR "JE CONNAIS..."',
-                text: '\nC\'est le bouche-à-oreille CasaVox !\nRecommandez directement vos artisans préférés à votre entourage et gagnez 10€ de chèques-cadeaux à chaque fois que le client suit votre recommandation.\n\nInvitez vos meilleurs Pros directement depuis le menu "Mon entourage".\nConsultez les détails dans les CGU.',
-                confirmButtonColor: "#03a9f4",
-                confirmButtonText: "FERMER"
-            });
-        }
-
-        vm.displayActivity = function (codeactivity) {
-            switch (codeactivity) {
-                case "REN_500":
-                    return "LE BON PRO";
-                    break;
-                case "ELE_1000":
-                    return "UN ELECTRICIEN";
-                    break;
-                case "PLU_2000":
-                    return "UN PLOMBIER";
-                    break;
-                case "HEA_3000":
-                    return "UN CHAUFFAGISTE";
-                    break;
-                case "CAR_4000":
-                    return "UN MENUISIER";
-                    break;
-                case "LOC_5000":
-                    return "UN SERRURIER";
-                    break;
-                case "PAI_6000":
-                    return "LE BON PRO";
-                    break;
-                case "WAL_7000":
-                    return "LE BON PRO";
-                    break;
-                case "INS_8000":
-                    return "LE BON PRO";
-                    break;
-                case "BAT_10100":
-                    return "LE BON PRO";
-                    break;
-                case "KIT_10000":
-                    return "UN CUISINISTE";
-                    break;
-                case "ROO_11000":
-                    return "LE BON PRO";
-                    break;
-                case "GAT_12000":
-                    return "LE BON PRO";
-                    break;
-                case "GAR_13000":
-                    return "LE BON PRO";
-                    break;
-                case "COU_13900":
-                    return "LE BON PRO";
-                    break;
-                case "CON_14000":
-                    return "LE BON PRO";
-                    break;
-            }
-        }
     }
 })
 ();

@@ -195,11 +195,9 @@
                                 </label>
                             </div>
                             <div data-ng-messages="profileForm.firstName.$error">
-                                <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.firstName">Ce
-                                    champ est requis
+                                <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.firstName">Ce champ est requis
                                 </small>
-                                <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidName">Ce
-                                    prénom n'est
+                                <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidName">Ce prénom n'est
                                     pas
                                     valide
                                 </small>
@@ -214,11 +212,9 @@
                                 <label class="fg-label">Nom</label>
                             </div>
                             <div data-ng-messages="profileForm.lastName.$error">
-                                <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.lastName">Ce
-                                    champ est requis
+                                <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.user.lastName">Ce champ est requis
                                 </small>
-                                <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidName">Ce nom
-                                    n'est pas
+                                <small class="help-block" data-ng-if="vm.formError" data-ng-message="invalidName">Ce nom n'est pas
                                     valide
                                 </small>
                             </div>
@@ -234,7 +230,7 @@
                                class="form-control fg-input"
                                data-ng-model="vm.profileInfo.phoneNumber" yaka-input-phone>
                         <label class="fg-label fg-label-phone"">
-                        Téléphone
+                            Téléphone
                         </label>
                     </div>
                     <div data-ng-messages="profileForm.phoneNumber.$error">
@@ -288,9 +284,7 @@
                         </div>
                     </div>
                     <div data-ng-messages="profileForm.activityStartedYear.$error">
-                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.activityStartedYear">Ce
-                            champ est requis
-                        </small>
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.activityStartedYear">Ce champ est requis</small>
                     </div>
                 </div>
 
@@ -325,8 +319,7 @@
                            data-ng-if="!vm.profileInfo.company.siret"
                            data-ng-href="http://www.societe.com{{vm.siretInfo()}}" target="_blank">Retrouver rapidement
                             mon numéro de SIRET sur societe.com</a>
-                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.siret">Ce champ
-                            est
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.siret">Ce champ est
                             requis
                         </small>
                         <small class="help-block" data-ng-if="invalidSiret">Ce SIRET n'est pas
@@ -349,9 +342,7 @@
                         <label class="fg-label">Adresse de l'entreprise</label>
                     </div>
                     <div data-ng-messages="profileForm.address.$error">
-                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.address.address">
-                            Ce champ est requis
-                        </small>
+                        <small class="help-block" data-ng-if="vm.formError && !vm.profileInfo.company.address.address">Ce champ est requis</small>
                     </div>
                 </div>
 
@@ -457,8 +448,7 @@
                 </div>
             </div>
 
-            <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error' : vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)}">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)}">
                 <div class="fg-line">
                     <input type="text"
                            class="form-control fg-input"
@@ -475,8 +465,7 @@
                 </small>
             </div>
 
-            <div class="form-group fg-float m-b-30"
-                 data-ng-class="{'has-error' : vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)}">
+            <div class="form-group fg-float m-b-30" data-ng-class="{'has-error' : vm.formOtherSocialError && (!vm.profile.myOtherSocial || vm.profile.myOtherSocial)}">
                 <div class="fg-line">
                     <input type="text"
                            name="link3"
@@ -573,14 +562,14 @@
         <div class="col-xs-12 card-body m-t-15">
             <div>
                 <h2 class="community-h2 d-block">
-                    <i class="zmdi zmdi-account-circle c-neighboor m-r-5"></i> Mes voisins<br>
+                    <i class="zmdi zmdi-account-circle c-teal m-r-5"></i> Mes voisins<br>
                     <small class="m-l-25">Ville et quartier principal</small>
                 </h2>
             </div>
 
             <div class="col-xs-12 card-body m-l-10">
                 <div class="col-xs-12 card-body m-t-20 m-l-0 p-l-0 p-r-15">
-                    <div class="form-group fg-float has-neighboor"
+                    <div class="form-group fg-float has-success"
                          data-ng-class="{'has-error' : !vm.getCommunityByType('PROFILE_CITY').address.address}">
                         <div class="fg-line fg-toggled">
                             <input type="text"
@@ -589,22 +578,24 @@
                                    vs-google-autocomplete="vm.autocomplete.options"
                                    placeholder=""
                                    vs-autocomplete-validator>
-                            <label class="fg-label bold">Adresse
+                            <label class="fg-label bold"
+                                   data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').address.address}">Adresse
                                 principale</label>
+                            <small class="help-block c-red"
+                                   data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">
+                                Renseignez l'adresse complète, puis sélectionnez-la dans la liste
+                            </small>
                         </div>
-                        <small class="help-block c-red"
-                               data-ng-if="!vm.getCommunityByType('PROFILE_CITY').address.address">
-                            Renseignez l'adresse complète, puis sélectionnez-la dans la liste
-                        </small>
                     </div>
                 </div>
                 <div class="col-xs-12 card-body m-t-20 m-l-0 p-l-0 p-r-15">
-                    <div class="form-group fg-float has-neighboor">
+                    <div class="form-group fg-float has-success">
                         <div class="fg-line fg-toggled">
                             <input type="text"
                                    class="form-control fg-input"
                                    data-ng-model="vm.getCommunityByType('PROFILE_CITY').neighborhood">
-                            <label class="fg-label">Nom
+                            <label class="fg-label"
+                                   data-ng-class="{'c-green' : vm.getCommunityByType('PROFILE_CITY').neighborhood}">Nom
                                 du quartier/voisinnage (optionnel)</label>
                         </div>
                     </div>
@@ -614,7 +605,7 @@
         <div class="col-xs-12 card-body m-t-15">
             <div>
                 <h2 class="community-h2 pull-left">
-                    <i class="zmdi zmdi-account-circle c-colleagues m-r-5"></i> Mes collègues<br>
+                    <i class="zmdi zmdi-account-circle c-indigo m-r-5"></i> Mes collègues<br>
                     <small class="m-l-25">Nom et ville de mon entreprise</small>
                 </h2>
             </div>
@@ -637,19 +628,19 @@
         <div class="col-xs-12 card-body m-t-15">
             <div>
                 <h2 class="community-h2 pull-left p-t-5 communityTitleWithButton">
-                    <i class="zmdi zmdi-account-circle c-other m-r-5"></i> Autre communauté
+                    <i class="zmdi zmdi-account-circle c-bluegray m-r-5"></i> Autre communauté
                 </h2>
-                <span class="waves-effect invitRefuse m-t-0"
+                <span class="waves-effect pull-right"
                       tooltip-placement="left"
                       uib-tooltip="Supprimer cette communauté">
-                                <i class="zmdi zmdi-close-circle zmdi-hc-2x c-deeporange m-r-5"
-                                   data-ng-click="vm.getCommunityByType('OTHER').name = ''; vm.getCommunityByType('OTHER').address.address = ''">
-                                </i>
+                    <img class="invitRefuse m-t-0"
+                         src="icons/mdpi/ic_refuse_invitation.png"
+                         data-ng-click="vm.getCommunityByType('OTHER').name = ''; vm.getCommunityByType('OTHER').address.address = ''"/>
                 </span>
             </div>
             <div class=" col-xs-12 card-body m-l-10">
                 <div class="col-xs-12 col-md-6 card-body m-t-20 m-l-0  p-l-0 p-r-15">
-                    <div class="form-group fg-float m-l-0 has-other">
+                    <div class="form-group fg-float m-l-0">
                         <div class="fg-line">
                             <input type="texte"
                                    class="form-control fg-input"
@@ -660,7 +651,7 @@
                 </div>
                 <div class="col-xs-12 col-md-6 card-body m-t-20 m-l-0 p-l-0 p-r-15">
                     <div class="form-group fg-float"
-                         data-ng-class="{'has-error' : vm.formCommunitiesError && vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address, 'has-other' : !vm.formCommunitiesError}">
+                         data-ng-class="{'has-error' : vm.formCommunitiesError && vm.getCommunityByType('OTHER').name && !vm.getCommunityByType('OTHER').address.address}">
                         <div class="fg-line">
                             <input type="text"
                                    class="form-control fg-input"
@@ -669,11 +660,11 @@
                                    placeholder=""
                                    vs-autocomplete-validator>
                             <label class="fg-label">Ville</label>
+                            <small class="help-block c-red"
+                                   data-ng-if="vm.formCommunitiesError && !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
+                                Renseignez la ville, puis sélectionnez-la dans la liste
+                            </small>
                         </div>
-                        <small class="help-block c-red"
-                               data-ng-if="vm.formCommunitiesError && !vm.getCommunityByType('OTHER').address.address && vm.getCommunityByType('OTHER').name">
-                            Renseignez la ville, puis sélectionnez-la dans la liste
-                        </small>
                     </div>
                 </div>
             </div>
@@ -707,9 +698,7 @@
         </div>
         <div class="col-xs-12 card-body m-t-20">
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25"
-                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
-                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                <div class="col-xs-2 profile-verif p-l-25">
                     <input id="profile-back-verif-1" class="default-cursor" type="checkbox"
                            data-ng-checked="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0"
                            disabled="disabled">
@@ -741,9 +730,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25"
-                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
-                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                <div class="col-xs-2 profile-verif p-l-25">
                     <input id="profile-back-verif-2" type="checkbox"
                            data-ng-checked="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0"
                            disabled="disabled">
@@ -775,9 +762,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25"
-                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
-                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                <div class="col-xs-2 profile-verif p-l-25">
                     <input id="profile-back-verif-3" type="checkbox"
                            data-ng-checked="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0"
                            disabled="disabled">
@@ -809,9 +794,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-2 profile-verif p-l-25"
-                     ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
-                     ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                <div class="col-xs-2 profile-verif p-l-25">
                     <input id="profile-back-verif-4" type="checkbox"
                            data-ng-checked="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0"
                            disabled="disabled">

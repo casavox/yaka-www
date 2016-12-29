@@ -1,7 +1,3 @@
-.width-auto {
-    width: auto !important;
-}
-
 .com-tag-proproposallist {
     float: right;
     max-width: 400px;
@@ -465,9 +461,6 @@
     }
 
     .proposalProName {
-        max-width: 300px;
-        padding-left: 85px !important;
-        padding-top: 0px !important;
         background: #9E9E9E !important;
     }
 
@@ -490,7 +483,6 @@
 
     .proposalProName.littleMargin button {
         margin-top: 20px !important;
-        width: 80px;
     }
 
     .proposalProName div.status {
@@ -503,6 +495,8 @@
 
     .proposalProName button.cancelProposal {
         margin-top: 22px;
+        margin-left: 35%;
+        width: 60%;
     }
 
     .proposalProName h2 {
@@ -647,6 +641,8 @@
     }
 
     .proNetworkProjectButtonLabel {
+        margin-left: 30%;
+        width: 70%;
         margin-bottom: -10px;
     }
 

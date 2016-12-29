@@ -338,20 +338,18 @@
                 <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
                      data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.company.address.address}">
                     <div class="fg-line">
-                        <input type="text"
-                               class="form-control form-pro-register"
-                               name="address"
-                               id="address"
-                               ng-model="vm.newUser.professional.company.address.address"
-                               data-ng-maxlength="5"
-                               maxlength="5"
-                               placeholder=""
-                               uib-typeahead="address for address in getLocation($viewValue)"/>
-                        <label class="fg-label">Code postal de l'entreprise</label>
+                        <input
+                            vs-google-autocomplete="vm.autocomplete.options"
+                            vs-autocomplete-validator class="form-control form-pro-register"
+                            name="address"
+                            autocomplete="address-level2"
+                            data-ng-model="vm.newUser.professional.company.address.address"/>
+                        <label class="fg-label">Ville
+                            du siège de l'entreprise</label>
                     </div>
                     <small class="help-block t-left"
                            data-ng-if="vm.formRegisterError && !vm.newUser.professional.company.address.address">
-                        Merci d'indiquer le code postal puis de sélectionner la commune
+                        Veuillez saisir la ville, puis sélectionnez-la dans la liste
                     </small>
                 </div>
 
@@ -431,7 +429,7 @@
                             Gratuit et sans engagement
                         </div>
                         <div class="col-xs-12 proHomeSection3aPaidDesc m-b-15">
-                            Inscrivez-vous dès maintenant et profitez de tous les services CasaVox gratuitement
+                            Tous les services CasaVox sont 100% gratuits les deux premiers mois
                         </div>
                     </div>
                 </div>
@@ -449,7 +447,7 @@
             <img class="popupCloseButton" data-ng-if="!vm.noSocialAccountMessage" src="icons/mdpi/ic_popup_close.png"
                  data-ng-click="vm.closePopup()" alt=""/>
 
-            <div data-ng-if="!vm.noSocialAccountMessage">
+            <div class="oldFormControl" data-ng-if="!vm.noSocialAccountMessage">
                 <div class="loginPopupTabItem loginPopupTabItemActivePro col-xs-12">
                     CONNEXION
                 </div>
@@ -461,11 +459,12 @@
                     Google
                 </div>
 
-                <form name="loginPro" class="col-xs-12 no-padding">
+                <form name="loginPro">
                     <div class="form-group fg-float"
                          data-ng-class="{'has-error': vm.formProLoginError && !vm.loginUser.email}">
                         <div class="fg-line m-t-10">
-                            <input class="form-control fg-input"
+
+                            <input class="form-control form-pro-register"
                                    type="text"
                                    name="email"
                                    autocomplete="username"
@@ -479,16 +478,16 @@
                                    data-ng-show="vm.formProLoginError && vm.loginUser.email.length < 1">
                                 Ce champ est requis
                             </small>
-                            <small class="help-block" data-ng-message="invalidEmail">
+                            <small class="help-block c-red" data-ng-message="invalidEmail">
                                 Cette addresse Email n'est pas valide
                             </small>
                         </div>
                     </div>
 
-                    <div class="form-group fg-float m-b-10"
+                    <div class="form-group fg-float m-t-30 m-b-10"
                          data-ng-class="{'has-error': vm.formProLoginError && !vm.loginUser.password}">
-                        <div class="fg-line m-t-20">
-                            <input class="form-control"
+                        <div class="fg-line">
+                            <input class="form-control form-pro-register"
                                    type="password"
                                    name="password"
                                    autocomplete="current-password"
@@ -496,12 +495,11 @@
                                    data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
                             <label class="fg-label">Mot de
                                 passe</label>
-
-                            <small class="help-block"
-                                   data-ng-show="vm.formProLoginError && !vm.loginUser.password">
-                                Ce champs est requis
-                            </small>
                         </div>
+                        <small class="help-block t-left"
+                               data-ng-show="vm.formProLoginError && vm.loginUser.password.length < 1">
+                            Ce champ est requis
+                        </small>
                     </div>
                 </form>
 

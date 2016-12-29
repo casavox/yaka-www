@@ -55,7 +55,7 @@
                         <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Vous avez des invitations en attente, cliquez <span class="underline">ici</span> pour les accepter ou les refuser
+                        Vous avez des invitations en attente, cliquez ici pour les accepter ou les refuser
                     </div>
                 </div>
 
@@ -150,16 +150,6 @@
                                         {{vm.data.contactsProNumber}}
                                         <span data-ng-show="vm.data.contactsNumber < 2">Pro</span>
                                         <span data-ng-show="vm.data.contactsNumber > 1">Pros</span>
-                                    </div>
-                                    <div class="no-padding"
-                                         data-ng-if="vm.data.incomingInvitationNumber && vm.data.incomingInvitationNumber > 0">
-                                        <a class="pointer underline" data-ui-sref="contacts"><b>
-                                            {{vm.data.incomingInvitationNumber}}
-                                            <span
-                                                data-ng-show="vm.data.incomingInvitationNumber < 2">Invitation à valider</span>
-                                            <span
-                                                data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span></b>
-                                        </a>
                                     </div>
                                     <div class="c-lightblue pointer"
                                          data-ui-sref="contacts">Développer mon réseau +
@@ -704,13 +694,13 @@
             chantier.
             <div>
                 <button class="btn bgm-lightblue waves-effect m-t-30 center" data-ui-sref="pro-profile">
-                    Compléter mon profil
+                    Modifier mon profil
                 </button>
             </div>
             <div>
                 <button class="btn bgm-orange waves-effect m-t-15 center"
                         data-ui-sref="project-recommend({'projectId': vm.selectedProject.id})">
-                    Recommander un collègue
+                    Recommander à un pro
                 </button>
             </div>
         </div>

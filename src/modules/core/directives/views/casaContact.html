@@ -2,13 +2,10 @@
 <i class="zmdi zmdi-accounts" data-ng-class="{'c-lightblue': !iconColor, iconColor: iconColor}"
    data-ng-if="user.inContacts"></i>
 <span data-ng-if="user.inContacts">
-    <span data-ng-if="user.isPro && !app.getUser().professional" data-ng-class="{'c-red': clientRed, 'c-lightblue': clientBlue}">
-        Client
-    </span>
     <span data-ng-if="!user.isPro">
         Ami
     </span>
-    <span data-ng-if="user.isPro && app.getUser().professional">
+    <span data-ng-if="user.isPro">
         Collègue
     </span>
 </span>

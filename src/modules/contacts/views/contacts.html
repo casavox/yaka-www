@@ -101,7 +101,7 @@
                                     <div class="hidden-xs">
                                         Inscrit depuis le {{vm.user.created | date:"dd/MM/yyyy"}}
                                     </div>
-                                    <div class="modify-link">
+                                    <div>
                                         <a data-ng-if="app.isPro()"
                                            data-ui-sref="pro-profile"><u>Modifier</u></a>
                                         <a data-ng-if="!app.isPro()"
@@ -272,7 +272,7 @@
                                 {{contact.user.firstName[0] | uppercase}}.
                                 {{contact.user.lastName[0]| uppercase}}.
                             </div>
-                            <div class="col-xs-8 col-sm-5 m-t-5 p-l-0 p-r-0 contact-item-infos">
+                            <div class="col-xs-6 col-sm-5 m-t-5 p-l-0">
                                 <span class="contactItemName">
                                     {{contact.user.firstName}} {{contact.user.lastName}}
                                         <span class="c-orange m-l-5" data-ng-if="contact.user.professional"> PRO</span>
@@ -288,7 +288,7 @@
                                      </span>
                                 </div>
                             </div>
-                            <div class="no-padding visible-xs pull-right icon-position">
+                            <div class="no-padding visible-xs pull-right">
                                         <span class="waves-effect m-l-15 m-t-5"
                                               tooltip-placement="left"
                                               uib-tooltip="Supprimer le contact">

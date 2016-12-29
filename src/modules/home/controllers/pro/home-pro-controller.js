@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProHomeController', ProHomeController);
 
-    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams, $http, CONFIG) {
+    function ProHomeController($scope, $rootScope, networkService, $auth, alertMsg, $translate, $localStorage, $state, smoothScroll, $stateParams) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
@@ -73,22 +73,21 @@
                 dynamicButtonTextSuffix: "domaine(s) d'intervention"
             },
             options: [
-                {id: 0, label: "REN_500"},
-                {id: 1, label: "ELE_1000"},
-                {id: 2, label: "PLU_2000"},
-                {id: 3, label: "HEA_3000"},
-                {id: 4, label: "CAR_4000"},
-                {id: 5, label: "LOC_5000"},
-                {id: 6, label: "PAI_6000"},
-                {id: 7, label: "WAL_7000"},
-                {id: 8, label: "INS_8000"},
-                {id: 9, label: "BAT_10100"},
-                {id: 10, label: "KIT_10000"},
-                {id: 11, label: "ROO_11000"},
-                {id: 12, label: "GAT_12000"},
-                {id: 13, label: "GAR_13000"},
-                {id: 14, label: "COU_13900"},
-                {id: 15, label: "CON_14000"}
+                {id: 0, label: "ELE_1000"},
+                {id: 1, label: "PLU_2000"},
+                {id: 2, label: "HEA_3000"},
+                {id: 3, label: "CAR_4000"},
+                {id: 4, label: "LOC_5000"},
+                {id: 5, label: "PAI_6000"},
+                {id: 6, label: "WAL_7000"},
+                {id: 7, label: "INS_8000"},
+                {id: 8, label: "BAT_10100"},
+                {id: 9, label: "KIT_10000"},
+                {id: 10, label: "ROO_11000"},
+                {id: 11, label: "GAT_12000"},
+                {id: 12, label: "GAR_13000"},
+                {id: 13, label: "COU_13900"},
+                {id: 14, label: "CON_14000"}
             ],
             selected: []
         };
@@ -385,16 +384,6 @@
         function failPasswordForgotten(err) {
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
-
-        $scope.getLocation = function(val) {
-            if(val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
-                    return response.data.map(function(item){
-                        return item.postalCode + " " + item.name;
-                    });
-                });
-            }
-        };
     }
 })
 ();
