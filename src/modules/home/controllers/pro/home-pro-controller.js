@@ -39,7 +39,6 @@
             },
             firstName: "",
             lastName: "",
-            googleId: "",
             facebookId: "",
             referral: "",
             recaptchaResponse: "",
@@ -117,8 +116,7 @@
         };
 
         vm.isSocialRegister = function () {
-            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
+            return !!((!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
 
         };
 
@@ -128,8 +126,7 @@
             if (doNotHide) {
                 return false;
             }
-            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
+            if ((!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
                 if (vm.newUser.email == '') {
                     doNotHide = true;
                     return false;
@@ -141,29 +138,11 @@
         };
 
         vm.getSocialServiceName = function () {
-            if (!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") {
-                return "Google";
-            } else if (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "") {
+            if (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "") {
                 return "Facebook";
             } else {
                 return "";
             }
-        };
-
-        vm.googlePreRegister = function () {
-            $auth.authenticate('googleProRegister').then(function (res) {
-                if (res.data.token) {
-                    succesLogin(res.data);
-                } else if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
-                    onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Google", 'danger');
-                }
-            });
         };
 
         vm.facebookPreRegister = function () {
@@ -188,7 +167,6 @@
             if (user.email != undefined) {
                 vm.newUser.email = user.email;
             }
-            vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
             vm.newUser.avatar = user.avatar;
         }
@@ -328,21 +306,6 @@
                 alertMsg.send("Impossible de se connecter", 'danger');
             }
         }
-
-        vm.googleLogin = function () {
-            vm.socialNetwork = "Google";
-            $auth.authenticate('googleLogin').then(function (res) {
-                succesLogin(res.data);
-            }).catch(function (res) {
-                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
-                    vm.noSocialAccountMessage = true;
-                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Google", 'danger');
-                }
-            });
-        };
 
         vm.facebookLogin = function () {
             vm.socialNetwork = "Facebook";

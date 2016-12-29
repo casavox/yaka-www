@@ -178,7 +178,7 @@
                 </div>
 
                 <div class="col-xs-12 proHomeSection2RegisterFacebookGoogle p-l-0 p-r-0">
-                    <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
+                    <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook</span>
 
                     <div data-ng-if="vm.isSocialRegister()">
                         <div class="proHomeSection2RegisterSocialConfirm p-l-0 p-r-0">
@@ -187,14 +187,10 @@
                     </div>
                 </div>
 
-                <div class="col-xs-6 proHomeSection2RegisterFacebook waves-effect"
+                <div class="col-xs-6 col-xs-offset-3 proHomeSection2RegisterFacebook waves-effect"
                      data-ng-click="vm.facebookPreRegister()"
                      data-ng-if="!vm.isSocialRegister()">
                     Facebook
-                </div>
-                <div class="col-xs-6 proHomeSection2RegisterGoogle waves-effect" data-ng-click="vm.googlePreRegister()"
-                     data-ng-if="!vm.isSocialRegister()">
-                    Google
                 </div>
 
                 <div class="col-xs-4 col-xs-offset-4 proHomeSection2RegisterSeparator"/>
@@ -454,11 +450,8 @@
                     CONNEXION
                 </div>
 
-                <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
+                <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
                     Facebook
-                </div>
-                <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
-                    Google
                 </div>
 
                 <form name="loginPro" class="col-xs-12 no-padding">
