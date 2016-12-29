@@ -227,7 +227,8 @@
                                    chat-id="{{vm.proposal.chat.id}}"
                                    proposal-status="{{vm.proposal.status}}"
                                    user-me="app.getUser()"
-                                   user-other="vm.proposal.professional.user"></yaka-chat>
+                                   user-other="vm.proposal.professional.user"
+                                   proposal-professional="vm.proposal.professional"></yaka-chat>
 
                         <div data-ng-show="!vm.showChat">
 
@@ -495,7 +496,7 @@
                                         </dl>
                                         <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.phoneNumber">
                                             <dt>Téléphone</dt>
-                                            <dd>{{vm.proposal.professional.phoneNumber}}</dd>
+                                            <dd><a class="underline" href="tel:{{vm.proposal.professional.phoneNumber}}">{{vm.proposal.professional.phoneNumber}}</a></dd>
                                         </dl>
                                         <dl class="dl-horizontal" data-ng-if="vm.proposal.professional.user.email">
                                             <dt>Email</dt>

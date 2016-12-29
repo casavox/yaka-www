@@ -1,6 +1,9 @@
 .onGoing-find-buttons {
     width: 245px;
 }
+.no-float {
+    float: none !important
+}
 
 .button-community {
     left: 0;
@@ -9,6 +12,10 @@
     transform: translateX(-50%);
     background-color: transparent !important;
     box-shadow: none !important;
+}
+
+.button-recommend {
+    float: right;
 }
 
 .p-l-85 {
@@ -222,6 +229,10 @@ ul.yaka-chips li {
 }
 
 @media (max-width: 767px) {
+    .button-recommend {
+        float: none;
+    }
+
     .dashboard-avatar {
         float: left;
     }
