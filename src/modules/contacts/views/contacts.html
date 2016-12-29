@@ -186,11 +186,11 @@
             </div>
             <div class="col-xs-12 no-padding visible-xs m-b-20">
                 <button class="col-xs-5 btn btn-default waves-effect c-lightblue btn-xs"
-                        data-ng-click="vm.openFriendPopup()">
+                        data-ng-click="vm.openSMSorMailPopup('customer')">
                     Inviter un ami
                 </button>
                 <button class="col-xs-5 col-xs-offset-2 btn btn-default waves-effect c-orange btn-xs"
-                        data-ng-click="vm.openProPopup()">
+                        data-ng-click="vm.openSMSorMailPopup('pro')">
                     Inviter un pro
                 </button>
             </div>
@@ -492,77 +492,75 @@
 
 <div class="yakaPopup" data-ng-show="vm.showInvitFriendPopup" data-ng-click="vm.closeFriendPopup()" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img id="closePopupFriendImg" class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
-                 data-ng-click="vm.closeFriendPopup()"
-                 alt=""/>
-
-            <div class="col-xs-12 yakaPopupInvitTitle no-padding">
-                Invitez vos connaissances à faire partie de vos relations CasaVox
+        <div class="CasaPopupWindow col-xs-12 no-padding" data-ng-click="$event.stopPropagation()">
+            <div class="col-xs-12 invite-header bgm-lightblue">
+                <div><i class="zmdi zmdi-email-open c-white f-s-20"></i></div>
+                <div class="c-white m-l-15">INVITER DES AMIS</div>
+                <i class="zmdi zmdi-close c-white close-icon-invit zmdi-hc-lg pointer"
+                   data-ng-click="vm.closeFriendPopup()"></i>
             </div>
-
-            <button class="center btn bgm-blue btn-icon-text waves-effect"
-                    data-ng-click="vm.closeFriendPopup(); vm.loadGmailContacts()">
-                <img class="gmailButtonIcon" src="icons/ic_gmail.png" alt=""/>
-                <span class="gmailButtonText">Sélectionner mes contacts Gmail</span>
-            </button>
-
-            <h4 class="m-t-20 m-b-20 center t-center">
-                Ou
-            </h4>
-
-
-            <div class="form-group fg-float m-t-30 m-b-0"
-                 data-ng-class="{'has-error': vm.formCustInvitError && !vm.invitCustomer}">
-                <div class="fg-line">
-            <textarea class="col-xs-12 form-control m-t-10"
-                      rows="1"
+            <div class="m-b-0"
+            data-ng-class="{'destination': vm.mails.length < 1, 'destination-mails' : vm.mails.length > 0}">
+                <div class="p-20">A</div>
+                <div class="email-invite p-5 p-r-10">
+                    <ul class="yaka-chips" data-ng-if="vm.mails.length > 0">
+                        <li class="p-l-5 p-r-5 d-i-b"
+                            data-ng-class="{'m-t-10' : vm.mails.length < 2}"
+                            data-ng-repeat="mail in vm.mails track by $index">{{mail}}
+                            <i class="zmdi zmdi-close m-l-2 pointer"
+                               data-ng-click="vm.deleteMailFromList($index)"></i>
+                        </li>
+                    </ul>
+                    <textarea data-ng-if="vm.mails.length < 1"
+                              class="form-control no-form-border p-t-15"
+                              data-auto-size=""
+                              placeholder="Exemple1@mail.fr exemple2@mail.com..."
+                              data-autosize-on="true"
+                              style="overflow: hidden; word-wrap: break-word; height: 37px;"
+                              ng-keypress="vm.onKeyPress($event)"
+                              data-ng-model="vm.invitCustomer"></textarea>
+                    <small class="c-red"
+                           data-ng-if="vm.formCustInvitError && !vm.invitCustomer && vm.mails.length < 1">Veuillez saisir une ou plusieurs adresses mail</small>
+                </div>
+                <img src=".../../img/logoGmail.svg" class="pointer p-10 p-r-20" width="78px" height="64px" alt="invitation gmail"
+                     tooltip-placement="left"
+                     uib-tooltip="Inviter via Gmail"
+                     data-ng-click="vm.closeFriendPopup(); vm.loadGmailContacts()"/>
+            </div>
+            <textarea class="form-control p-t-15 p-l-53"
+                      data-ng-if="vm.mails.length > 0"
                       data-auto-size=""
+                      placeholder="Exemple1@mail.fr exemple2@mail.com..."
                       data-autosize-on="true"
+                      style="overflow: hidden; word-wrap: break-word; height: 37px;"
+                      ng-keypress="vm.onKeyPress($event)"
                       data-ng-model="vm.invitCustomer"></textarea>
-                    <label class="fg-label">exemple1@mail.fr,
-                        exemple2@mail.fr, ...</label>
-                </div>
-                <small class="help-block"
-                       data-ng-show="vm.formCustInvitError && !vm.invitCustomer">
-                    Ce champs est requis
-                </small>
-            </div>
-
-
-            <div class="col-xs-12 yakaPopupInvitSubTitle">
-                Vous pouvez ajouter plusieurs emails en les séparant par une virgule.
-            </div>
-
-            <div class="form-group fg-float m-t-30 m-b-0">
-                <div class="fg-line">
-            <textarea class="col-xs-12 form-control m-t-10"
-                      rows="1"
-                      data-auto-size=""
-                      data-autosize-on="true"
-                      data-ng-model="vm.invitMessage"></textarea>
-                    <label class="fg-label">Votre message... (facultatif)</label>
+            <div class="destination m-b-0 bgm-gray-lighter">
+                <div class="p-l-20 p-t-10 p-b-10 p-r-20">De</div>
+                <div class="p-t-10">
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} (via Casavox)
                 </div>
             </div>
-
-            <div class="col-xs-12 yakaPopupInvitSubTitle">
-                Accompagnez votre invitation d'un message personnalisé.
+            <div class="form-group destination m-b-0 bgm-gray-lighter">
+                <div class="fg-line form-object p-l-20 p-r-20">
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide
+                    Casavox
+                </div>
             </div>
-
-            <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
-                    data-ng-click="vm.sendCustomerInvit()">
-                Inviter
-            </button>
-
-            <div class="col-xs-12 no-padding center t-center m-t-20">
-                Étendez vos relations grâce à Facebook :
+            <div class="destination-message m-b-0">
+                <div class="invite-message p-t-20 p-r-20 p-l-20">
+                    <textarea class="form-control no-form-border message-body"
+                              data-auto-size=""
+                              placeholder="Rédigez votre message ici (facultatif)"
+                              data-autosize-on="true"
+                              data-ng-model="vm.invitMessage"
+                              style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                </div>
             </div>
-
-            <div class="col-xs-12 center t-center m-t-5">
-                <iframe
-                    ng-src="{{vm.getFacebookIframeUrl() | trusted}}"
-                    width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                    allowTransparency="true"></iframe>
+            <div class="col-xs-12 no-padding send-button-line">
+                <div class="btn bgm-lightblue c-white send-email-invitation"
+                     data-ng-click="vm.addContactToMail('send')">ENVOYER
+                </div>
             </div>
         </div>
     </div>
@@ -570,105 +568,107 @@
 
 <div class="yakaPopup" data-ng-show="vm.showInvitProPopup" data-ng-click="vm.closeProPopup()" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img id="closePopupProImg" class="popupCloseButton"
-                 src="icons/mdpi/ic_popup_close.png"
-                 data-ng-click="vm.closeProPopup()"
-                 alt=""/>
-
-            <div class="card-header p-l-0 p-r-0">
-                <h2>
-                    Invitez un professionnel
-                    <small>
-                        Cette invitation lui sera envoyée par email
-                    </small>
-                </h2>
+        <div class="CasaPopupWindow col-xs-12 no-padding" data-ng-click="$event.stopPropagation()">
+            <div class="col-xs-12 invite-header bgm-orange">
+                <div><i class="zmdi zmdi-email-open c-white f-s-20"></i></div>
+                <div class="c-white m-l-15">INVITER UN PRO</div>
+                <i class="zmdi zmdi-close c-white close-icon-invit-pro zmdi-hc-lg pointer"
+                   data-ng-click="vm.closeProPopup()"></i>
+            </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field">Nom</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           name="name"
+                           class="form-control no-form-border"
+                           data-ng-model="vm.invitPro.name"
+                           placeholder="Entrez le le Nom et le Prénom"
+                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                    <small class="c-red"
+                    data-ng-if="vm.formProInvitError && !vm.invitPro.name">Veuillez saisir le nom du professionnel</small>
+                </div>
+            </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field">Email</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           name="username"
+                           placeholder="Entrez l'e-mail du destinataire"
+                           data-ng-disabled="vm.isSocialRegister()"
+                           class="form-control no-form-border"
+                           data-ng-model="vm.invitPro.email" yaka-input-email>
+                    <small class="c-red"
+                           data-ng-if="vm.formProInvitError && !vm.invitPro.email">Veuillez saisir l'e-mail du professionnel</small>
+                </div>
             </div>
 
-            <form name="inviteForm">
-                <div class="col-xs-12 no-padding form-group fg-float m-t-15"
-                     data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.name}">
-                    <div class="fg-line">
-                        <input type="text" name="name" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.name"
-                               data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label">Nom</label>
-                    </div>
-                    <small class="help-block t-left"
-                           data-ng-show="vm.formProInvitError && vm.invitPro.name.length < 1">
-                        Ce champ est requis
-                    </small>
-                    <div data-ng-messages="inviteForm.name.$error">
-                        <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
-                            valide
-                        </small>
-                    </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field">Adresse</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           class="form-control no-form-border"
+                           vs-google-autocomplete="vm.autocomplete.options"
+                           vs-autocomplete-validator
+                           data-ng-model="vm.invitPro.address.address"
+                           type="text"
+                           name="address"
+                           placeholder="Entrez la ville du destinataire et sélectionnez la"
+                           id="address">
+                    <small class="c-red"
+                           data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">Veuillez saisir la ville du professionnel</small>
                 </div>
+            </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-20"
-                     data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.email}">
-                    <div class="fg-line">
-                        <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
-                               class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.email" yaka-input-email>
-                        <label class="fg-label">Email</label>
-                    </div>
-                    <small class="help-block t-left"
-                           data-ng-show="vm.formProInvitError && vm.invitPro.email.length < 1">
-                        Ce champ est requis
-                    </small>
-                    <div data-ng-messages="inviteForm.username.$error">
-                        <small class="help-block" data-ng-message="invalidEmail">
-                            Cet email n'est pas valide
-                        </small>
-                    </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field-phone">Tél.</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           name="phoneNumber"
+                           class="form-control no-form-border"
+                           placeholder="Numéro de téléphone (facultatif)"
+                           data-ng-model="vm.invitPro.phone" yaka-input-phone>
                 </div>
+            </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-20"
-                     data-ng-class="{'has-error': vm.formProInvitError && !vm.invitPro.address.address}">
-                    <div class="fg-line">
-                        <input type="text" class="form-control fg-input input-sm"
-                               vs-google-autocomplete="vm.autocomplete.options"
-                               vs-autocomplete-validator
-                               data-ng-model="vm.invitPro.address.address"
-                               type="text"
-                               name="address"
-                               placeholder=""
-                               id="address">
-                        <label class="fg-label">Ville</label>
-                        <small class="help-block c-red"
-                               data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">
-                            Veuillez saisir la ville, puis sélectionnez-la dans la liste
-                        </small>
-                    </div>
+            <div class="destination m-b-0 bgm-gray-lighter">
+                <div class="p-l-20 p-t-10 p-b-10 p-r-15 pro-form-field-from">De</div>
+                <div class="p-t-10">
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} (via Casavox)
                 </div>
-
-                <div class="col-xs-12 no-padding form-group fg-float">
-                    <div class="fg-line">
-                        <input type="text" name="phoneNumber"
-                               class="form-control fg-input"
-                               data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
-                    </div>
-                    <div data-ng-messages="inviteForm.phoneNumber.$error">
-                        <small class="help-block" data-ng-message="invalidPhone">
-                            Ce numéro de téléphone n'est pas valide
-                        </small>
-                    </div>
+            </div>
+            <div class="form-group destination m-b-0 bgm-gray-lighter">
+                <div class="fg-line form-object p-l-20 p-r-20">
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide
+                    Casavox
                 </div>
-
-                <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.sendProInvit()">
-                    Inviter
-                </button>
-            </form>
+            </div>
+            <div class="destination-message m-b-0">
+                <div class="invite-message p-t-20 p-r-20 p-l-20">
+                    <textarea class="form-control no-form-border message-body"
+                              data-auto-size=""
+                              placeholder="Rédigez votre message ici (facultatif)"
+                              data-autosize-on="true"
+                              data-ng-model="vm.invitProMessage"
+                              style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 no-padding send-button-line">
+                <div class="btn bgm-lightblue c-white send-email-invitation"
+                     data-ng-click="vm.sendProInvit()">ENVOYER
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+
+
+
+
+
 <div class="yakaPopup" data-ng-show="vm.showGmailPopup" data-ng-click="vm.closeGmailPopup()" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+        <div class="CasaPopupWindow gmail-window col-xs-12 no-padding" data-ng-click="$event.stopPropagation()">
             <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png" data-ng-click="vm.closeGmailPopup()"
                  alt=""/>
 
@@ -700,26 +700,11 @@
                 </div>
             </div>
 
-            <div class="form-group fg-float m-t-30 m-b-0">
-                <div class="fg-line">
-            <textarea class="col-xs-12 form-control m-t-10"
-                      rows="1"
-                      data-auto-size=""
-                      data-autosize-on="true"
-                      data-ng-model="vm.invitMessage"></textarea>
-                    <label class="fg-label">Votre message... (facultatif)</label>
-                </div>
-            </div>
-
-            <div class="col-xs-12 yakaPopupInvitSubTitle">
-                Accompagnez votre invitation d'un message personnalisé.
-            </div>
-
             <button class="col-xs-12 center btn bgm-lightblue btn-lg btn-icon-text waves-effect"
                     data-ng-disabled="!vm.showGmailInviteButton()"
                     data-ng-if="vm.gmailContacts && vm.gmailContacts.length > 0"
                     data-ng-click="vm.sendGoogleCustomerInvit()">
-                Inviter
+                Ajouter
             </button>
         </div>
     </div>

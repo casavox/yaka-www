@@ -9,6 +9,120 @@
     padding-right: 45px !important;
 }
 
+.p-l-53 {
+    padding-left: 53px !important;
+}
+
+.m-l-2 {
+    margin-left: 2px !important;
+}
+
+.pro-form-field {
+    width: 94px;
+}
+
+.pro-form-field-phone {
+    width: 85px;
+}
+
+.pro-form-field-from {
+    width: 82px;
+}
+
+.CasaPopupWindow {
+    margin-top: 5px;
+    width: 410px !important;
+    left: auto !important;
+    margin-left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding: 0px !important;
+}
+
+.gmail-window {
+    background-color: white;
+    padding: 20px !important;
+    border-radius: 5px;
+}
+
+.invite-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+    height: 40px;
+    line-height: 18px;
+    outline: 1px solid transparent;
+    padding: 11px 20px;
+    display: inline-flex;
+    font-size: 15px;
+}
+
+.destination {
+    width: 100%;
+    display: inline-flex;
+    background-color: white;
+    border-bottom: 1px #cecece solid;
+}
+
+.destination-mails {
+    width: 100%;
+    display: inline-flex;
+    background-color: white;
+    border-bottom: none;
+}
+
+.email-invite {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.form-object {
+    font-weight: bold;
+    padding: 10px;
+    text-align: justify;
+}
+
+.destination-message {
+    width: 100%;
+    display: inline-flex;
+    background-color: white;
+    min-height: 100px;
+    max-height: 250px;
+}
+
+.invite-message {
+    width: 100%;
+}
+
+.message-body {
+    max-height: 220px;
+}
+
+.send-button-line {
+    height: 50px;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.send-email-invitation {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.close-icon-invit {
+    margin-left: 198px;
+}
+
+.close-icon-invit-pro {
+    margin-left: 212px;
+}
+
+.no-form-border {
+    border-bottom: none !important;
+}
+
 .contact-item {
     margin-bottom: 10px;
 }
@@ -818,6 +932,22 @@
         padding-left: 20px !important;
         padding-right: 20px !important;
         transform: initial !important;
+    }
+
+    .CasaPopupWindow {
+        width: 310px !important;
+    }
+
+    .close-icon-invit {
+        margin-left: 93px;
+    }
+
+    .close-icon-invit-pro {
+        margin-left: 112px;
+    }
+
+    .gmail-window {
+        padding: 10px !important;
     }
 }
 
