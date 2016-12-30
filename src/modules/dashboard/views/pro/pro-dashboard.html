@@ -98,7 +98,10 @@
                         <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Cliquez sur « MON ENTOURAGE » dans le menu pour profiter du bouche-à-oreille CasaVox
+                        Faites-vous automatiquement recommander à de nouveaux clients : cliquez sur votre avatar (barre du haut) pour
+                        <span class="pointer underline" data-ng-if="!vm.getCommunityByType('JOB').name" data-ui-sref="pro-profile">compléter vos communautés et </span>
+                        <span class="pointer underline" data-ng-if="!app.getUser().facebookEmail" data-ui-sref="pro-profile">associer votre compte Facebook</span>
+                        <span class="pointer" data-ng-if="vm.data.contactsNumber < 2" data-ui-sref="contacts">, <span class="underline">cliquez sur le menu « MON ENTOURAGE » pour inviter vos proches (amis, clients, collègues) à rejoindre votre réseau</span></span>
                     </div>
                 </div>
 
