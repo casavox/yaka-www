@@ -518,99 +518,96 @@
 
 <div class="yakaPopup" data-ng-show="vm.showInvitProPopup" data-ng-click="vm.closeProPopup()" data-ng-cloak>
     <div class="container">
-        <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
-            <img class="popupCloseButton"
-                 src="icons/mdpi/ic_popup_close.png"
-                 data-ng-click="vm.closeProPopup()"
-                 alt=""/>
+        <div class="CasaPopupWindow col-xs-12 no-padding" data-ng-click="$event.stopPropagation()">
+            <div class="col-xs-12 invite-header bgm-orange">
+                <div><i class="zmdi zmdi-email-open c-white f-s-20"></i></div>
+                <div class="c-white m-l-15">INVITER UN PRO</div>
+                <i class="zmdi zmdi-close c-white close-icon-invit-pro zmdi-hc-lg pointer"
+                   data-ng-click="vm.closeProPopup()"></i>
+            </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-0 pro-form-field">Nom</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           name="name"
+                           class="form-control no-form-border"
+                           data-ng-model="vm.invitPro.name"
+                           placeholder="Entrez le le Nom et le Prénom"
+                           data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                    <small class="c-red"
+                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.name">Ce champs est requis</small>
+                </div>
+            </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-0 pro-form-field">Email</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           name="username"
+                           placeholder="Entrez l'e-mail du destinataire"
+                           data-ng-disabled="vm.isSocialRegister()"
+                           class="form-control no-form-border"
+                           data-ng-model="vm.invitPro.email">
+                    <small class="c-red"
+                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.email || vm.formProInvitEmailError">Ce champs est requis</small>
 
-            <div class="card-header p-l-0 p-r-0">
-                <h2>
-                    Invitez un professionnel
-                    <small>
-                        Il recevra votre recommandation par email
-                    </small>
-                </h2>
+                </div>
             </div>
 
-            <form name="inviteForm">
-                <div class="col-xs-12 no-padding form-group fg-float m-t-15"
-                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
-
-                    <div class="fg-line">
-                        <input type="text" name="name" class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.name"
-                               data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
-                        <label class="fg-label">Nom</label>
-                    </div>
-                    <small class="help-block t-left"
-                           data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
-                        Ce champ est requis
-                    </small>
-                    <div data-ng-messages="inviteForm.name.$error">
-                        <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
-                            valide
-                        </small>
-                    </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-5 p-r-0 pro-form-field-cp">Code Postal</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           class="form-control no-form-border"
+                           data-ng-model="vm.invitPro.address.postalCode"
+                           name="address"
+                           data-ng-maxlength="5"
+                           maxlength="5"
+                           placeholder="Entrez le code postal du professionnel"
+                           id="address">
+                    <small class="c-red"
+                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.address.postalCode">Ce champs est requis</small>
                 </div>
+            </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
-                    <div class="fg-line">
-                        <input type="text" class="form-control fg-input input-sm"
-                               vs-google-autocomplete="vm.autocomplete.options"
-                               vs-autocomplete-validator
-                               data-ng-model="vm.invitPro.address.address"
-                               type="text"
-                               name="address"
-                               placeholder=""
-                               id="address">
-                        <label class="fg-label">Ville</label>
-                        <small class="help-block" data-ng-show="vm.formProRecoInvitError && !vm.invitPro.address.address">
-                            Veuillez saisir la ville, puis sélectionnez-la dans la liste
-                        </small>
-                    </div>
+            <div class="destination m-b-0">
+                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field-phone">Tél.</div>
+                <div class="p-t-0 full-width">
+                    <input type="text"
+                           name="phoneNumber"
+                           class="form-control no-form-border"
+                           placeholder="Numéro de téléphone (facultatif)"
+                           data-ng-model="vm.invitPro.phone" yaka-input-phone>
                 </div>
+            </div>
 
-                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                     data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
-                    <div class="fg-line">
-                        <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
-                               class="form-control fg-input input-sm"
-                               data-ng-model="vm.invitPro.email"
-                               yaka-input-email>
-                        <label class="fg-label">Email</label>
-                    </div>
-                    <small class="help-block t-left"
-                           data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
-                        Ce champ est requis
-                    </small>
-                    <div data-ng-messages="inviteForm.username.$error">
-                        <small class="help-block" data-ng-message="invalidEmail">
-                            Cet email n'est pas valide
-                        </small>
-                    </div>
+            <div class="destination m-b-0 bgm-gray-lighter">
+                <div class="p-l-20 p-t-10 p-b-10 p-r-15 pro-form-field-from">De</div>
+                <div class="p-t-10">
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} (via Casavox)
                 </div>
-
-                <div class="col-xs-12 no-padding form-group fg-float">
-                    <div class="fg-line">
-                        <input type="text" name="phoneNumber"
-                               class="form-control fg-input"
-                               data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
-                    </div>
-                    <div data-ng-messages="inviteForm.phoneNumber.$error">
-                        <small class="help-block c-red" data-ng-message="invalidPhone">
-                            Ce numéro de téléphone n'est pas valide
-                        </small>
-                    </div>
+            </div>
+            <div class="form-group destination m-b-0 bgm-gray-lighter">
+                <div class="fg-line form-object p-l-20 p-r-20">
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide
+                    Casavox
                 </div>
-
-                <button class="btn bgm-orange btn-block btn-lg waves-effect m-t-20"
-                        data-ng-click="vm.sendProInvit()">
-                    Inviter
-                </button>
-            </form>
+            </div>
+            <div class="destination-message m-b-0">
+                <div class="invite-message p-t-20 p-r-20 p-l-20">
+                    <textarea class="form-control no-form-border message-body"
+                              data-auto-size=""
+                              placeholder="Rédigez votre message ici (facultatif)"
+                              data-autosize-on="true"
+                              data-ng-model="vm.invitProMessage"
+                              style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 no-padding send-button-line">
+                <div class="btn bgm-lightblue c-white send-email-invitation"
+                     data-ng-click="vm.sendProInvit()">ENVOYER
+                </div>
+            </div>
         </div>
     </div>
 </div>
+

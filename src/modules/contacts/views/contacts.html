@@ -596,9 +596,10 @@
                            placeholder="Entrez l'e-mail du destinataire"
                            data-ng-disabled="vm.isSocialRegister()"
                            class="form-control no-form-border"
-                           data-ng-model="vm.invitPro.email" yaka-input-email>
+                           data-ng-model="vm.invitPro.email">
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && !vm.invitPro.email">Ce champs est requis</small>
+                           data-ng-if="vm.formProInvitError && !vm.invitPro.email || vm.formProInvitEmailError">Ce champs est requis</small>
+
                 </div>
             </div>
 
@@ -659,11 +660,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <div class="yakaPopup" data-ng-show="vm.showGmailPopup" data-ng-click="vm.closeGmailPopup()" data-ng-cloak>
     <div class="container">

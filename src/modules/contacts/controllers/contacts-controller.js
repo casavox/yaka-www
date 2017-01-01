@@ -264,15 +264,18 @@
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.address.postalCode) {
+            if (!vm.invitPro.name || !vm.invitPro.address.postalCode || !vm.invitPro.email) {
                 vm.formProInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            }
-            if (!vm.isEmailValid(vm.invitPro.email)) {
-                alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
             } else {
-                networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+                if (!vm.isEmailValid(vm.invitPro.email)) {
+                    vm.formProInvitEmailError = true;
+                    alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
+                } else {
+                    networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+                }
             }
+
         };
 
         function succesInviteProPOST(res) {
