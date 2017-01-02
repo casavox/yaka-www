@@ -55,7 +55,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Vous avez des invitations en attente, cliquez <span class="underline">ici</span> pour les accepter ou les refuser
+                        Vous avez des invitations en attente, cliquez <span class="underline">ici</span> pour les
+                        accepter ou les refuser
                     </div>
                 </div>
 
@@ -91,17 +92,24 @@
                     </div>
                 </div>
 
-                <div class="card bgm-lightblue c-white p-15 pointer"
-                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits() && !vm.showTopViewRecommendation()"
-                     data-ui-sref="contacts">
+                <div class="card bgm-lightblue c-white p-15"
+                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewProfileNotValidated() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits() && !vm.showTopViewRecommendation()">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Faites-vous automatiquement recommander à de nouveaux clients : cliquez sur votre avatar (barre du haut) pour
-                        <span class="pointer underline" data-ng-if="!vm.getCommunityByType('JOB').name" data-ui-sref="pro-profile">compléter vos communautés et </span>
-                        <span class="pointer underline" data-ng-if="!app.getUser().facebookEmail" data-ui-sref="pro-profile">associer votre compte Facebook</span>
-                        <span class="pointer" data-ng-if="vm.data.contactsNumber < 2" data-ui-sref="contacts">, <span class="underline">cliquez sur le menu « MON ENTOURAGE » pour inviter vos proches (amis, clients, collègues) à rejoindre votre réseau</span></span>
+                        <span data-ng-if="!vm.getCommunityByType('JOB').name || !app.getUser().facebookEmail">Faites-vous automatiquement recommander à de nouveaux clients : cliquez sur votre avatar (barre du haut) pour
+                             <span class="pointer underline" data-ng-if="!vm.getCommunityByType('JOB').name"
+                                   data-ui-sref="pro-profile">compléter vos communautés</span>
+                             <span
+                                 data-ng-if="!vm.getCommunityByType('JOB').name && !app.getUser().facebookEmail">et</span>
+                             <span class="pointer underline" data-ng-if="!app.getUser().facebookEmail"
+                                   data-ui-sref="pro-profile">associer votre compte Facebook</span>
+                             ,
+                        </span>
+                        <span data-ng-if="vm.data.contactsNumber < 2"> cliquez sur le menu « <span
+                            class="pointer underline" data-ui-sref="contacts">MON ENTOURAGE</span> »</span> pour inviter
+                        vos proches à rejoindre votre réseau
                     </div>
                 </div>
 
@@ -122,10 +130,10 @@
                         <i class="zmdi zmdi-hc-2x zmdi-assignment-o"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Cliquez sur une offre dans la zone « OFFRES DANS MON RESEAU » ou sur le menu « CARTE DES OFFRES » pour contacter un client
+                        Cliquez sur une offre dans la zone « OFFRES DANS MON RESEAU » ou sur le menu « CARTE DES OFFRES
+                        » pour contacter un client
                     </div>
                 </div>
-
 
 
             </div>
