@@ -431,7 +431,7 @@
                     <div class="card-body card-padding clearfix">
                         <form name="inviteForm">
 
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-15"
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-20"
                                  data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
                                 <div class="fg-line">
                                     <input type="text" name="name" class="form-control fg-input input-sm"
@@ -451,7 +451,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-20"
                                  data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
                                 <div class="fg-line">
                                     <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
@@ -471,22 +471,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30"
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-20"
                                  data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
                                 <div class="fg-line">
-                                    <input type="text" class="form-control fg-input input-sm"
-                                           vs-google-autocomplete="vm.autocomplete.options"
-                                           vs-autocomplete-validator
-                                           data-ng-model="vm.invitPro.address.address"
-                                           type="text"
+                                    <input type="text"
+                                           class="form-control fg-input input-sm"
                                            name="address"
+                                           id="address"
+                                           data-ng-model="vm.invitPro.address.address"
+                                           data-ng-maxlength="5"
+                                           maxlength="5"
                                            placeholder=""
-                                           id="address">
-                                    <label class="fg-label">Ville</label>
-                                    <small class="help-block c-red" data-ng-if="!vm.invitPro.address.address">
-                                        Veuillez saisir la ville, puis sélectionnez-la dans la liste
-                                    </small>
+                                           uib-typeahead="address for address in getLocation($viewValue)"/>
+                                    <label class="fg-label">
+                                        Code postal</label>
                                 </div>
+                                <small class="help-block"
+                                       data-ng-if="!vm.invitPro.address.address">
+                                    Merci d'indiquer le code postal puis de sélectionner la commune
+                                </small>
                             </div>
 
 
