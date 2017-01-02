@@ -259,12 +259,12 @@
             email: "",
             name: "",
             phone: "",
-            address: {},
+            postalCode: "",
             message: vm.invitProMessage
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.address.postalCode || !vm.invitPro.email) {
+            if (!vm.invitPro.name || !vm.invitPro.postalCode || !vm.invitPro.email) {
                 vm.formProInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
@@ -286,7 +286,7 @@
                 name: "",
                 phone: "",
                 activities: [],
-                address: {}
+                postalCode: ""
             };
             vm.phoneNumber = "";
             vm.multiChoiceInput.selected = [];

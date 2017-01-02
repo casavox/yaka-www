@@ -608,14 +608,14 @@
                 <div class="p-t-0 full-width">
                     <input type="text"
                            class="form-control no-form-border"
-                           data-ng-model="vm.invitPro.address.postalCode"
+                           data-ng-model="vm.invitPro.postalCode"
                            name="address"
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
                            id="address">
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && !vm.invitPro.address.postalCode">Ce champs est requis</small>
+                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis</small>
                 </div>
             </div>
 
