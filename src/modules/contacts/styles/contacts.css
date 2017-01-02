@@ -18,15 +18,19 @@
 }
 
 .pro-form-field {
-    width: 94px;
+    width: 107px;
+}
+
+.pro-form-field-cp {
+    width: 109px;
 }
 
 .pro-form-field-phone {
-    width: 85px;
+    width: 90px;
 }
 
 .pro-form-field-from {
-    width: 82px;
+    width: 88px;
 }
 
 .CasaPopupWindow {

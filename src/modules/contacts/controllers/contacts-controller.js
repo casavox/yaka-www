@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ContactsController($rootScope, $scope, networkService, $localStorage, screenSize, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
+    function ContactsController($rootScope, $scope, networkService, $timeout, $localStorage, screenSize, $state, alertMsg, $translate, gmailContacts, CONFIG, $stateParams) {
 
 
         $rootScope.pageName = "Mon entourage";
@@ -202,7 +202,7 @@
             vm.formProInvitError = false;
             vm.invitPro.name = "";
             vm.invitPro.email = "";
-            vm.invitPro.address.address = "";
+            vm.invitPro.address.postalCode = "";
             vm.invitPro.phone = "";
             vm.invitProMessage = "";
         };
@@ -239,8 +239,8 @@
             vm.formCustInvitError = false;
             vm.invitCustomer = "";
             vm.mails = [];
-            vm.closeFriendPopup();
             vm.closeGmailPopup();
+            vm.showInvitFriendPopup = false;
             reloadContactsAndInvitations();
             alertMsg.send("Invitation(s) envoyée(s)", "success");
         }
@@ -259,17 +259,23 @@
             email: "",
             name: "",
             phone: "",
-            address: {},
+            postalCode: "",
             message: vm.invitProMessage
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+            if (!vm.invitPro.name || !vm.invitPro.postalCode || !vm.invitPro.email) {
                 vm.formProInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
-                networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+                if (!vm.isEmailValid(vm.invitPro.email)) {
+                    vm.formProInvitEmailError = true;
+                    alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
+                } else {
+                    networkService.inviteProPOST(vm.invitPro, succesInviteProPOST, errorInviteProPOST, true);
+                }
             }
+
         };
 
         function succesInviteProPOST(res) {
@@ -280,7 +286,7 @@
                 name: "",
                 phone: "",
                 activities: [],
-                address: {}
+                postalCode: ""
             };
             vm.phoneNumber = "";
             vm.multiChoiceInput.selected = [];
@@ -542,7 +548,6 @@
         };
 
         vm.sendGoogleCustomerInvit = function () {
-            console.log(vm.gmailContacts);
             if (vm.mails.length > 0) {
                 for (var i = 0; i < vm.gmailContacts.length; ++i) {
                     if (vm.gmailContacts[i].selected) {
@@ -637,10 +642,9 @@
 
         vm.onKeyPress = function (e) {
             vm.duplicateMail = false;
-            console.log(e.keyCode);
             if (e.keyCode == 32 || e.keyCode == 13 || e.keyCode == 44 || e.keyCode == 59) {
                 event.preventDefault();
-                vm.addContactToMail();
+                vm.addContactToMail('addOneContact');
             }
         };
 
@@ -655,7 +659,6 @@
                     }
                     if (!vm.duplicateMail) {
                         if (!vm.isEmailValid(vm.invitCustomer)) {
-                            vm.invitCustomer = "";
                             alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
                         } else {
                             vm.mails.push(vm.invitCustomer);
@@ -664,7 +667,11 @@
                     }
                 }
                 if (aim == 'send') {
-                    vm.sendCustomerInvit();
+                    if (vm.isEmailValid(vm.invitCustomer)) {
+                        vm.sendCustomerInvit();
+                    } else {
+                        alertMsg.send("L'email du destinataire n'est pas valide", "danger");
+                    }
                 }
             } else {
                 for (var i = 0; i < vm.mails.length; i++) {
@@ -675,11 +682,15 @@
                 }
                 if (!vm.duplicateMail) {
                     if (!vm.isEmailValid(vm.invitCustomer)) {
-                        vm.invitCustomer = "";
                         alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
                     } else {
                         vm.mails.push(vm.invitCustomer);
                         vm.invitCustomer = "";
+                        if (aim == "addOneContact") {
+                            $timeout(function() {
+                                $(".secondInputEmail").focus();
+                            });
+                        }
                         if (aim == "send") {
                             vm.sendCustomerInvit();
                         }

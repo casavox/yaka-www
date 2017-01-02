@@ -511,7 +511,7 @@
                                data-ng-click="vm.deleteMailFromList($index)"></i>
                         </li>
                     </ul>
-                    <textarea data-ng-if="vm.mails.length < 1"
+                    <textarea data-ng-show="vm.mails.length < 1"
                               class="form-control no-form-border p-t-15"
                               data-auto-size=""
                               placeholder="Exemple1@mail.fr exemple2@mail.com..."
@@ -527,8 +527,8 @@
                      uib-tooltip="Inviter via Gmail"
                      data-ng-click="vm.closeFriendPopup(); vm.loadGmailContacts()"/>
             </div>
-            <textarea class="form-control p-t-15 p-l-53"
-                      data-ng-if="vm.mails.length > 0"
+            <textarea class="form-control p-t-15 p-l-53 secondInputEmail"
+                      data-ng-show="vm.mails.length > 0"
                       data-auto-size=""
                       placeholder="Exemple1@mail.fr exemple2@mail.com..."
                       data-autosize-on="true"
@@ -576,7 +576,7 @@
                    data-ng-click="vm.closeProPopup()"></i>
             </div>
             <div class="destination m-b-0">
-                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field">Nom</div>
+                <div class="p-t-10 p-b-10 p-l-20 p-r-0 pro-form-field">Nom</div>
                 <div class="p-t-0 full-width">
                     <input type="text"
                            name="name"
@@ -585,37 +585,37 @@
                            placeholder="Entrez le le Nom et le Prénom"
                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                     <small class="c-red"
-                    data-ng-if="vm.formProInvitError && !vm.invitPro.name">Veuillez saisir le nom du professionnel</small>
+                    data-ng-if="vm.formProInvitError && !vm.invitPro.name">Ce champs est requis</small>
                 </div>
             </div>
             <div class="destination m-b-0">
-                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field">Email</div>
+                <div class="p-t-10 p-b-10 p-l-20 p-r-0 pro-form-field">Email</div>
                 <div class="p-t-0 full-width">
                     <input type="text"
                            name="username"
                            placeholder="Entrez l'e-mail du destinataire"
                            data-ng-disabled="vm.isSocialRegister()"
                            class="form-control no-form-border"
-                           data-ng-model="vm.invitPro.email" yaka-input-email>
+                           data-ng-model="vm.invitPro.email">
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && !vm.invitPro.email">Veuillez saisir l'e-mail du professionnel</small>
+                           data-ng-if="vm.formProInvitError && !vm.invitPro.email || vm.formProInvitEmailError">Ce champs est requis</small>
+
                 </div>
             </div>
 
             <div class="destination m-b-0">
-                <div class="p-t-10 p-b-10 p-l-20 p-r-15 pro-form-field">Adresse</div>
+                <div class="p-t-10 p-b-10 p-l-5 p-r-0 pro-form-field-cp">Code Postal</div>
                 <div class="p-t-0 full-width">
                     <input type="text"
                            class="form-control no-form-border"
-                           vs-google-autocomplete="vm.autocomplete.options"
-                           vs-autocomplete-validator
-                           data-ng-model="vm.invitPro.address.address"
-                           type="text"
+                           data-ng-model="vm.invitPro.postalCode"
                            name="address"
-                           placeholder="Entrez la ville du destinataire et sélectionnez la"
+                           data-ng-maxlength="5"
+                           maxlength="5"
+                           placeholder="Entrez le code postal du professionnel"
                            id="address">
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && !vm.invitPro.address.address">Veuillez saisir la ville du professionnel</small>
+                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis</small>
                 </div>
             </div>
 
@@ -660,11 +660,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <div class="yakaPopup" data-ng-show="vm.showGmailPopup" data-ng-click="vm.closeGmailPopup()" data-ng-cloak>
     <div class="container">
