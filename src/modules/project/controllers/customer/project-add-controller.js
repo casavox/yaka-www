@@ -75,13 +75,28 @@
         };
 
 
-        $scope.getLocation = function(val) {
-            if(val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
-                    return response.data.map(function(item){
-                        return item.postalCode + " " + item.name;
-                    });
-                });
+        vm.getLocation = function (val) {
+            if (val.length == 5) {
+                networkService.postalCodeGET(val, successPostalCodeGet, errorPostalCodeGet, true);
+            }
+        };
+
+        function successPostalCodeGet (response) {
+            vm.PostalCodeAndCities = response;
+        }
+
+        function errorPostalCodeGet (res) {
+            alertMsg.send("impossible de récupérer les communes", "danger");
+        }
+
+
+        vm.onKeyPress = function (e) {
+            if (e.keyCode < 48 && e.keyCode != 8 || e.keyCode > 57) {
+                event.preventDefault();
+            }
+            if ($scope.address.name.length > 5 && e.keyCode == 8) {
+                event.preventDefault();
+                $scope.address.name = $scope.address.name.substring(0, 5);
             }
         };
 
@@ -267,7 +282,7 @@
                     }, 0);
 
                 }
-                else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3) {
+                else if (angular.isUndefined(vm.newAddr) || !vm.newAddr.address || vm.newAddr.address.length < 3 || $scope.address.name.length < 6) {
                     vm.error.address.flag = true;
                     vm.error.address.message = "Merci de saisir le debut de l'adresse puis de choisir dans la liste";
                     $timeout(function () {
