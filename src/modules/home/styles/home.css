@@ -1,4 +1,24 @@
+.address-list.ng-enter {
+    transition: 0.1s linear all;
+    height: 0px;
+}
+
+.address-list.ng-enter.ng-enter-active {
+    height: 100%;
+}
+
+.address-list.ng-leave {
+    transition: 0.1s linear all;
+    height: 100px;
+}
+
+.address-list.ng-leave.ng-leave-active {
+    color: white;
+    height: 0px;
+}
+
 .address-list {
+    overflow: hidden;
     width: 99.5%;
     margin-left: 1px;
     padding-top: 5px;
