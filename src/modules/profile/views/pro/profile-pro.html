@@ -1114,10 +1114,10 @@
     <div class="col-xs-12 no-padding card">
         <div class="card-header ch-alt">
             <h2>
-                Comptes sociaux associés
+                Compte social associé
                 <div>
                     <small class="subtitle-color-forced">
-                        Associer votre compte Facebook ou Google vous permet de vous connecter plus rapidement et de
+                        Associer votre compte Facebook vous permet de vous connecter plus rapidement et de
                         retrouver plus facilement vos connaissances
                     </small>
                 </div>
@@ -1145,29 +1145,6 @@
                 <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
                    data-ng-if="app.getUser().facebookId"
                    data-ng-click="vm.detachFacebook()"></i>
-            </div>
-            <div class="row m-t-5">
-                <i class="col-xs-2 v-align-middle zmdi zmdi-hc-3x zmdi-google p-l-25"
-                   data-ng-class="{'c-google-red': app.getUser().googleId}"></i>
-
-                <div class="col-xs-8 v-align-middle m-t-1" data-ng-if="app.getUser().googleId">
-                    Compte Google associé
-                    <div>
-                        <small>
-                            {{app.getUser().googleEmail}}
-                        </small>
-                    </div>
-                </div>
-
-                <button class="btn btn-default waves-effect m-t-4 m-l-20"
-                        data-ng-if="!app.getUser().googleId"
-                        data-ng-click="vm.attachGoogle()">
-                    Associer
-                </button>
-
-                <i class="col-xs-2 v-align-middle zmdi zmdi-hc-2x zmdi-close m-t-5 t-right c-black pointer"
-                   data-ng-if="app.getUser().googleId"
-                   data-ng-click="vm.detachGoogle()"></i>
             </div>
         </div>
     </div>
