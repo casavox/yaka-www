@@ -1,3 +1,17 @@
+.animated-circle-proposal {
+    display: inline-block !important;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 0px;
+    margin-right: 10px;
+    text-align: left;
+}
+
+.book-img-margin {
+    margin-left: 3px;
+    padding-right: 3px;
+}
+
 .width-auto {
     width: auto !important;
 }
@@ -374,13 +388,22 @@
         float: left;
         text-align: left;
     }
+
     .recommend-infos {
         max-width: calc(100% - 20px);
         padding-left: 15px;
     }
+
+    .animated-circle-proposal {
+        margin-right: 30px;
+    }
 }
 
 @media (max-width: 767px) {
+    .animated-circle-proposal canvas {
+        margin-top: -83px;
+        margin-left: -28px;
+    }
 
     .yakaAvatarInitialsProposal {
         display: inline-block;
@@ -620,6 +643,7 @@
     }
 
     .pr-list-text {
+        margin-top: 20px !important;
         text-align: center;
         padding-right: 0px;
     }

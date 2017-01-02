@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll, smoothScroll) {
+    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, CONFIG, $http, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll, smoothScroll) {
 
         if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
             $state.go("home");
@@ -217,5 +217,15 @@
                 return 'CLIENT';
             }
         }
+
+        $scope.getLocation = function(val) {
+            if(val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
+                    return response.data.map(function(item){
+                        return item.postalCode + " " + item.name;
+                    });
+                });
+            }
+        };
     }
 })();
