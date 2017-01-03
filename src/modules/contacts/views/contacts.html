@@ -613,7 +613,7 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address">
+                           id="address" only-digits>
                     <small class="c-red"
                            data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis</small>
                 </div>

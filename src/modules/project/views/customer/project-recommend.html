@@ -481,7 +481,7 @@
                                            data-ng-maxlength="5"
                                            maxlength="5"
                                            placeholder=""
-                                           id="address">
+                                           id="address" only-digits>
                                     <label class="fg-label">
                                         Code postal</label>
                                 </div>
@@ -563,7 +563,7 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address">
+                           id="address"only-digits>
                     <small class="c-red"
                            data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
                 </div>
