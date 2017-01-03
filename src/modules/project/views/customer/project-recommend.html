@@ -486,7 +486,9 @@
                                         Code postal</label>
                                 </div>
                                 <small class="c-red"
-                                       data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode || vm.formProRecoInvitError && vm.invitPro.postalCode.length < 5">Ce champs est requis</small>
+                                       data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                                <small class="c-red"
+                                       data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                             </div>
 
 
@@ -566,6 +568,8 @@
                            id="address"only-digits>
                     <small class="c-red"
                            data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                    <small class="c-red"
+                           data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                 </div>
             </div>
 

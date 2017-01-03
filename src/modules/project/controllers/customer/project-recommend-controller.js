@@ -226,15 +226,5 @@
                 return 'CLIENT';
             }
         }
-
-        $scope.getLocation = function(val) {
-            if(val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
-                    return response.data.map(function(item){
-                        return item.postalCode + " " + item.name;
-                    });
-                });
-            }
-        };
     }
 })();
