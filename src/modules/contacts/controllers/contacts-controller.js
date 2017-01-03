@@ -648,7 +648,7 @@
             }
         };
 
-        vm.addContactToMail = function(aim) {
+        vm.addContactToMail = function (aim) {
             if (vm.mails.length > 0) {
                 if (vm.invitCustomer) {
                     for (var i = 0; i < vm.mails.length; i++) {
@@ -687,7 +687,7 @@
                         vm.mails.push(vm.invitCustomer);
                         vm.invitCustomer = "";
                         if (aim == "addOneContact") {
-                            $timeout(function() {
+                            $timeout(function () {
                                 $(".secondInputEmail").focus();
                             });
                         }
@@ -704,7 +704,7 @@
             vm.mails.splice(index, 1);
         };
 
-        vm.openSMSorMailPopup = function(invited) {
+        vm.openSMSorMailPopup = function (invited) {
             swal({
                 title: "Comment souhaitez-vous inviter votre destinataire ?",
                 text: "Choisissez d'inviter votre contact par SMS ou par Email !",
@@ -719,9 +719,9 @@
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-                        url = "sms:&body=Coucou Iphone :)";
+                        url = "sms:&body=Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, rejoins-moi et partageons nos meilleurs pros : " + "" //@todo : invite_id url;
                     } else {
-                        url = "sms:?body=Coucou Android :)";
+                        url = "sms:?body=Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, rejoins-moi et partageons nos meilleurs pros : " + "" //@todo : invite_id url;
                     }
                     location.href = url;
                 } else {
