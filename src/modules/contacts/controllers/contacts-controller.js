@@ -709,7 +709,7 @@
                 title: "Comment souhaitez-vous inviter votre destinataire ?",
                 text: "Choisissez d'inviter votre contact par SMS ou par Email !",
                 type: "info",
-                html: true,
+                allowOutsideClick: true,
                 showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Inviter par SMS",
@@ -719,6 +719,8 @@
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+
+                        // Todo Compléter message SMS
                         url = "sms:&body=Coucou Iphone :)";
                     } else {
                         url = "sms:?body=Coucou Android :)";

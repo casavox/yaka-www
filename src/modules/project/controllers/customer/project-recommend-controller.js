@@ -242,8 +242,8 @@
                 title: "Envoyer l'invitation par SMS",
                 text: "Etes-vous sûr ?",
                 type: "info",
-                html: true,
                 showCancelButton: true,
+                allowOutsideClick: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Oui",
                 cancelButtonText: "Non"
