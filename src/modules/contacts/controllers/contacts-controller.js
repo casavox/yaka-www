@@ -568,13 +568,6 @@
             vm.showInvitFriendPopup = true;
         };
 
-        vm.getFacebookIframeUrl = function () {
-            if ($localStorage.user) {
-                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.inviteId + "&layout=button&size=large&mobile_iframe=false&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
-            }
-            return "";
-        };
-
         vm.deleteContact = function (id) {
             swal({
                 title: "Supprimer un contact",
@@ -719,10 +712,11 @@
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-                        url = "sms:&body=Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, rejoins-moi et partageons nos meilleurs pros : " + "" //@todo : invite_id url;
+                        url = "sms:&body=" + getSmsBody();
                     } else {
-                        url = "sms:?body=Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, rejoins-moi et partageons nos meilleurs pros : " + "" //@todo : invite_id url;
+                        url = "sms:?body=" + getSmsBody();
                     }
+
                     location.href = url;
                 } else {
                     if (invited == "customer") {
@@ -734,6 +728,19 @@
                 }
             });
         };
+
+        function getSmsBody() {
+            return "Je suis sur CasaVox ! " +
+                "1er réseau de bouche-à-oreille pour tous nos travaux, " +
+                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl();
+        }
+
+        function getInviteUrl() {
+            if ($localStorage.user) {
+                return "https://" + window.location.hostname + "/?invitationId=" + $localStorage.user.inviteId;
+            }
+            return "";
+        }
 
     }
 })
