@@ -236,7 +236,7 @@
                         class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 row no-padding no-margin w-900 center addr">
                         <div class="no-padding mb-39" data-ng-class="col-xs-12">
                             <div class="col-xs-12 no-padding inner-addon right-addon form-group fg-float"
-                                 data-ng-class="{'has-error': vm.formAddAddressError && !address.name || vm.addressError && address.name.length < 6}">
+                                 data-ng-class="{'has-error': vm.formAddAddressError && !address.name || vm.formAddAddressError && address.name.length < 6}">
                                 <div data-ng-show="vm.disabledAddr"></div>
                                 <i class="glyphicon glyphicon-map-marker"></i>
                                 <div class="fg-line"
@@ -276,7 +276,7 @@
                                     </div>
                                 </div>
                                 <small class="help-block center"
-                                       data-ng-show="vm.formAddAddressError && !address.name || vm.addressError && address.name.length < 6">
+                                       data-ng-show="vm.formAddAddressError && address.name.length < 1 || vm.formAddAddressError && address.name.length < 6">
                                     Merci d'indiquer le code postal puis de sélectionner la commune
                                 </small>
 
