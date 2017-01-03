@@ -136,7 +136,7 @@
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.address.postalCode || !vm.invitPro.email) {
+            if (!vm.invitPro.name || !vm.invitPro.postalCode || !vm.invitPro.email || vm.invitPro.postalCode.length < 5) {
                 vm.formProRecoInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
