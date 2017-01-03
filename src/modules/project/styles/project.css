@@ -6,6 +6,11 @@
     margin-left: 49px;
 }
 
+.invite-by-mail {
+    margin-top: -30px;
+    text-align: left;
+}
+
 @media (min-width: 1200px) {
     .proposal-project-pm-body {
          padding-left: 300px !important;
@@ -34,12 +39,17 @@
     .proposal-project-pm-body {
         padding-left: 300px !important;
     }
+
     .customer-proposal-pm-body {
         padding-left: 0px !important;
     }
+
     .pro-proposal-project-pm-body {
         padding-left: 0px !important;
+    }
 
+    .invite-by-mail {
+        text-align: center;
     }
 }
 

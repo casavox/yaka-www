@@ -709,7 +709,7 @@
                 title: "Comment souhaitez-vous inviter votre destinataire ?",
                 text: "Choisissez d'inviter votre contact par SMS ou par Email !",
                 type: "info",
-                html: true,
+                allowOutsideClick: true,
                 showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Inviter par SMS",
