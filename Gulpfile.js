@@ -31,14 +31,16 @@ var through = require('through2');
 var sort = require('gulp-sort');
 var log = gutil.log;
 var colors = gutil.colors;
+var shell = require('gulp-shell');
+var exec = require('child_process').exec;
 
 var buildConfig = require("./build-config.json");
 
 gulp.task("build", function (cb) {
     if (argv.production) {
-        runSequence("clean", "build-prod", cb);
+        runSequence("clean", "clean-ionic", "build-prod", "copy-to-ionic", cb);
     } else {
-        runSequence("clean", "build-dev", cb);
+        runSequence("clean", "clean-ionic", "build-dev", "copy-to-ionic", cb);
     }
 });
 
@@ -52,6 +54,10 @@ gulp.task("build-prod", ["inject-prod", "copy-assets"], function () {
 
 gulp.task("clean", function (cb) {
     rimraf("dist", cb);
+});
+
+gulp.task("clean-ionic", function (cb) {
+    rimraf("ionic/www", cb);
 });
 
 gulp.task("compile-js", function () {
@@ -157,6 +163,10 @@ gulp.task("inject-prod", ["compile-js"], function () {
             }
         }))
         .pipe(gulp.dest("dist"));
+});
+
+gulp.task("copy-to-ionic", function () {
+    gulp.src(['dist/**/*']).pipe(gulp.dest('ionic/www'));
 });
 
 var rmOrig = function () {
@@ -305,4 +315,12 @@ gulp.task("create-service", function (cb) {
         });
 
     }
+});
+
+gulp.task('run-android', ["build"], function (cb) {
+    exec('cd ionic && ionic run android', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
 });
