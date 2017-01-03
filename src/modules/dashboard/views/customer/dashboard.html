@@ -15,7 +15,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-notifications-active"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Vous avez des invitations en attente, cliquez ici pour les accepter ou les refuser
+                        Vous avez des invitations en attente, cliquez <span class="underline">ici</span> pour les
+                        accepter ou les refuser
                     </div>
                 </div>
                 <div class="card bgm-orange c-white p-15"
@@ -39,14 +40,25 @@
                         Cliquez sur TROUVER UN PRO pour être contacté par les meilleurs professionnels
                     </div>
                 </div>
-                <div class="card bgm-lightblue c-white p-15 pointer"
-                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()"
-                     data-ui-sref="contacts">
+                <div class="card bgm-lightblue c-white p-15"
+                     data-ng-if="vm.showTopViewNoContact() && !vm.showTopViewNoProject() && !vm.showTopViewUnreadMessages() && !vm.showTopViewInvits()">
                     <div class="topViewProfileIcon">
                         <i class="zmdi zmdi-hc-2x zmdi-accounts-add"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Cliquez sur MON ENTOURAGE dans le menu pour profiter du bouche-à-oreille CasaVox
+                        Faites vous recommander automatiquement les Pros préférés de vos proches :
+                        <span
+                            datan-ng-if="vm.getCommunityByType('JOB').name.length < 2 || !app.getUser().facebookEmail">cliquez sur votre avatar (barre du haut) pour
+                            <span class="pointer underline" data-ng-if="vm.getCommunityByType('JOB').name.length < 2"
+                                  data-ui-sref="profile">compléter vos communautés</span>
+                            <span data-ng-if="vm.getCommunityByType('JOB').name.length < 2 && !app.getUser().facebookEmail">et</span>
+                            <span class="pointer underline" data-ng-if="!app.getUser().facebookEmail"
+                                  data-ui-sref="profile">associer votre compte Facebook</span>
+                            ,
+                        </span>
+                        <span data-ng-if="vm.data.contactsNumber < 2"> cliquez sur le menu « <span
+                            class="pointer underline" data-ui-sref="contacts">MON ENTOURAGE</span> »</span> pour inviter
+                        vos proches à rejoindre votre réseau
                     </div>
                 </div>
             </div>
@@ -269,7 +281,8 @@
                         Recommandez leur un Pro
                         <small>
                             Gagnez 10€ en recommandant vos meilleurs Pros <i
-                            class="zmdi zmdi-help zmdi-hc-lg pointer c-white" data-ng-click="vm.recommandInfos()"></i>
+                            class="zmdi zmdi-help zmdi-hc-lg question-zmdi pointer c-white"
+                            data-ng-click="vm.recommandInfos()"></i>
                         </small>
                     </h2>
                 </div>
@@ -297,14 +310,17 @@
                                 à {{project.address.locality}}
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 t-right pull-right no-padding actu-communities-tag">
+                        <div
+                            class="col-xs-12 col-sm-5 yaka-chips m-t-5 t-right pull-right no-padding actu-communities-tag">
                             <casa-community-tag class="contact-community-tag d-i-b no-float"
                                                 community="community"
                                                 ng-repeat="community in project.user.communities">
                             </casa-community-tag>
                         </div>
                         <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
-                            <button class="btn btn-sm button-recommend c-white bgm-lightblue">JE CONNAIS {{vm.displayActivity(project.mainActivity.code)}}</button>
+                            <button class="btn btn-sm button-recommend c-white bgm-lightblue">JE CONNAIS
+                                {{vm.displayActivity(project.mainActivity.code)}}
+                            </button>
                         </div>
                         <hr class="dash-board-actu-hr">
                     </div>

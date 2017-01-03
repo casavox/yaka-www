@@ -5109,6 +5109,10 @@ div.recaptcha.mobile > div {
     margin-top: 9px !important;
 }
 
+.m-t-40 {
+    margin-top: 40px !important;
+}
+
 .m-t-45 {
     margin-top: 45px !important;
 }
@@ -5634,6 +5638,10 @@ div.recaptcha.mobile > div {
 
 .text-muted {
     color: #5e5e5e !important;
+}
+
+.w-s-normal {
+    white-space: normal !important;
 }
 
 @media (max-width: 767px) {

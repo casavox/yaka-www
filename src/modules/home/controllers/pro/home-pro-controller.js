@@ -39,7 +39,6 @@
             },
             firstName: "",
             lastName: "",
-            googleId: "",
             facebookId: "",
             referral: "",
             recaptchaResponse: "",
@@ -73,21 +72,22 @@
                 dynamicButtonTextSuffix: "domaine(s) d'intervention"
             },
             options: [
-                {id: 0, label: "ELE_1000"},
-                {id: 1, label: "PLU_2000"},
-                {id: 2, label: "HEA_3000"},
-                {id: 3, label: "CAR_4000"},
-                {id: 4, label: "LOC_5000"},
-                {id: 5, label: "PAI_6000"},
-                {id: 6, label: "WAL_7000"},
-                {id: 7, label: "INS_8000"},
-                {id: 8, label: "BAT_10100"},
-                {id: 9, label: "KIT_10000"},
-                {id: 10, label: "ROO_11000"},
-                {id: 11, label: "GAT_12000"},
-                {id: 12, label: "GAR_13000"},
-                {id: 13, label: "COU_13900"},
-                {id: 14, label: "CON_14000"}
+                {id: 0, label: "REN_500"},
+                {id: 1, label: "ELE_1000"},
+                {id: 2, label: "PLU_2000"},
+                {id: 3, label: "HEA_3000"},
+                {id: 4, label: "CAR_4000"},
+                {id: 5, label: "LOC_5000"},
+                {id: 6, label: "PAI_6000"},
+                {id: 7, label: "WAL_7000"},
+                {id: 8, label: "INS_8000"},
+                {id: 9, label: "BAT_10100"},
+                {id: 10, label: "KIT_10000"},
+                {id: 11, label: "ROO_11000"},
+                {id: 12, label: "GAT_12000"},
+                {id: 13, label: "GAR_13000"},
+                {id: 14, label: "COU_13900"},
+                {id: 15, label: "CON_14000"}
             ],
             selected: []
         };
@@ -116,8 +116,7 @@
         };
 
         vm.isSocialRegister = function () {
-            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
+            return !!((!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
 
         };
 
@@ -127,8 +126,7 @@
             if (doNotHide) {
                 return false;
             }
-            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
+            if ((!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
                 if (vm.newUser.email == '') {
                     doNotHide = true;
                     return false;
@@ -140,29 +138,11 @@
         };
 
         vm.getSocialServiceName = function () {
-            if (!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") {
-                return "Google";
-            } else if (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "") {
+            if (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "") {
                 return "Facebook";
             } else {
                 return "";
             }
-        };
-
-        vm.googlePreRegister = function () {
-            $auth.authenticate('googleProRegister').then(function (res) {
-                if (res.data.token) {
-                    succesLogin(res.data);
-                } else if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
-                    onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Google", 'danger');
-                }
-            });
         };
 
         vm.facebookPreRegister = function () {
@@ -187,7 +167,6 @@
             if (user.email != undefined) {
                 vm.newUser.email = user.email;
             }
-            vm.newUser.googleId = user.googleId;
             vm.newUser.facebookId = user.facebookId;
             vm.newUser.avatar = user.avatar;
         }
@@ -327,21 +306,6 @@
                 alertMsg.send("Impossible de se connecter", 'danger');
             }
         }
-
-        vm.googleLogin = function () {
-            vm.socialNetwork = "Google";
-            $auth.authenticate('googleLogin').then(function (res) {
-                succesLogin(res.data);
-            }).catch(function (res) {
-                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
-                    vm.noSocialAccountMessage = true;
-                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Google", 'danger');
-                }
-            });
-        };
 
         vm.facebookLogin = function () {
             vm.socialNetwork = "Facebook";

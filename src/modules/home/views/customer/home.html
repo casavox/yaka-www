@@ -42,8 +42,7 @@
                     Votre entourage (famille, voisins, collègues...) vous recommandent leurs meilleurs Pros
                 </div>
 
-                <div
-                    class="circles-section col-xs-12 t-center">
+                <div class="circles-section col-xs-12 t-center">
                     <div class="chart chart1 col-xs-12 col-sm-3 no-padding circle-1-m-b" data-percent="0">
                         <i class="zmdi zmdi-assignment zmdi-hc-4x"></i>
                         <i class="zmdi zmdi-arrow-right zmdi-hc-3x subtitle-color-forced arrow-to-right"></i>
@@ -227,11 +226,8 @@
                 </div>
 
                 <div data-ng-show="vm.loginTab">
-                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
+                    <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
                         Facebook
-                    </div>
-                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googleLogin()">
-                        Google
                     </div>
                     <form name="loginForm" class="col-xs-12 no-padding">
                         <div class="form-group fg-float"
@@ -292,7 +288,7 @@
                 <div data-ng-show="!vm.loginTab">
 
                     <div class="col-xs-12 registerFacebookGoogle p-l-0 p-r-0">
-                        <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
+                        <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook</span>
 
                         <div data-ng-if="vm.isSocialRegister()">
                             <div class="registerSocialConfirm p-l-0 p-r-0">
@@ -301,13 +297,9 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 loginPopupFacebook waves-effect" data-ng-click="vm.facebookPreRegister()"
+                    <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect" data-ng-click="vm.facebookPreRegister()"
                          data-ng-if="!vm.isSocialRegister()">
                         Facebook
-                    </div>
-                    <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googlePreRegister()"
-                         data-ng-if="!vm.isSocialRegister()">
-                        Google
                     </div>
 
                     <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>

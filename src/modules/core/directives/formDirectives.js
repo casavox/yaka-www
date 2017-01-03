@@ -23,6 +23,29 @@ angular.module('Yaka')
         }
     })
 
+    .directive('casaInputWebsite', function ($q) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModel) {
+
+                ngModel.$asyncValidators.invalidWebsite = function (modelValue, viewValue) {
+                    var website = viewValue;
+                    var deferred = $q.defer();
+
+                    if (website && website != '') {
+                        if (!new RegExp("((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$").test(website)) {
+                            deferred.reject();
+                        }
+                    }
+
+                    deferred.resolve();
+                    return deferred.promise;
+                }
+            }
+        }
+    })
+
     .directive('yakaInputName', function ($q) {
         return {
             restrict: 'A',

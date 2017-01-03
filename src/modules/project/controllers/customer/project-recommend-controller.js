@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll, smoothScroll) {
+    function ProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, CONFIG, $http, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $location, $anchorScroll, smoothScroll) {
 
         if (angular.isUndefined($stateParams.projectId) || !$stateParams.projectId) {
             $state.go("home");
@@ -61,7 +61,7 @@
             name: "",
             phone: "",
             activities: [],
-            address: {}
+            postalCode: ""
         };
 
         vm.autocomplete = {
@@ -131,39 +131,48 @@
             );
         };
 
+        vm.isEmailValid = function (email) {
+            return new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}$").test(email);
+        };
+
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.email || !vm.invitPro.address.address) {
+            if (!vm.invitPro.name || !vm.invitPro.address.postalCode || !vm.invitPro.email) {
                 vm.formProRecoInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
-                networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
-                    vm.formProRecoInvitError = false;
-                    vm.invitPro = {
-                        email: "",
-                        name: "",
-                        phone: "",
-                        activities: [],
-                        address: {}
-                    };
-                    vm.phoneNumber = "";
-                    vm.multiChoiceInput.selected = [];
-                    vm.closeProPopup();
-                    if ($localStorage.user && $localStorage.user.professional) {
-                        $state.go('pro-dashboard');
-                    } else {
-                        $state.go('dashboard');
-                    }
-                    swal({
-                        title: "C'est fait !",
-                        text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
-                        type: "success",
-                        showConfirmButton: true,
-                        confirmButtonColor: "#03a9f4",
-                        confirmButtonText: "Fermer"
-                    });
-                }, function (err) {
-                    alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-                }, true);
+                if (!vm.isEmailValid(vm.invitPro.email)) {
+                    vm.formProInvitEmailError = true;
+                    alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
+                } else {
+                    networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
+                        vm.formProRecoInvitError = false;
+                        vm.invitPro = {
+                            email: "",
+                            name: "",
+                            phone: "",
+                            activities: [],
+                            postalCode: ""
+                        };
+                        vm.phoneNumber = "";
+                        vm.multiChoiceInput.selected = [];
+                        vm.closeProPopup();
+                        if ($localStorage.user && $localStorage.user.professional) {
+                            $state.go('pro-dashboard');
+                        } else {
+                            $state.go('dashboard');
+                        }
+                        swal({
+                            title: "C'est fait !",
+                            text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet de travaux lui à également été envoyé.",
+                            type: "success",
+                            showConfirmButton: true,
+                            confirmButtonColor: "#03a9f4",
+                            confirmButtonText: "Fermer"
+                        });
+                    }, function (err) {
+                        alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
+                    }, true);
+                }
             }
         };
 
@@ -217,5 +226,15 @@
                 return 'CLIENT';
             }
         }
+
+        $scope.getLocation = function(val) {
+            if(val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
+                    return response.data.map(function(item){
+                        return item.postalCode + " " + item.name;
+                    });
+                });
+            }
+        };
     }
 })();

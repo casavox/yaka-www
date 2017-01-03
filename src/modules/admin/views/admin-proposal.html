@@ -417,12 +417,12 @@
                                         <button
                                             class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                             data-ui-sref="pro-profile">
-                                            Modifier mon profil
+                                            Compléter mon profil
                                         </button>
                                         <button
                                             class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
                                             data-ui-sref="project-recommend({'projectId': vm.project.id})">
-                                            Recommander à un pro
+                                            Recommander un collègue
                                         </button>
                                     </div>
                                 </div>
@@ -467,7 +467,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="pmbb-body p-l-30"
+                                <div class="pmbb-body p-l-30 c-red"
                                      data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                     Votre profil doit être validé afin de pouvoir répondre aux offres.
                                 </div>
@@ -481,7 +481,7 @@
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
-                                            <dt class="yakaDisableEllipsis">Mon prix</dt>
+                                            <dt class="yakaDisableEllipsis">Ma proposition</dt>
                                             <dd class="l-h-18">
                                                 {{vm.proposalTmp.price || '---'}} € <i
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
@@ -628,7 +628,7 @@
             <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
                 <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                      data-ng-click="vm.myPriceFlag = false" alt=""/>
-                <h4>Mon prix</h4>
+                <h4>Ma propotision de prix</h4>
 
                 <div class="row">
                     <div class="col-xs-6 col-xs-offset-4">

@@ -39,19 +39,19 @@ angular.module('Yaka', [
 
                 // www.casa-local.com : This allow to use the heroku backend from your computer (localhost http server)
                 // To use it, you need to add this line in your hosts file : "127.0.0.1   www.casa-local.com"
-                // Then you can access the site here : http://www.yaka-local.com:8000
+                // Then you can access the site here : http://www.casa-local.com:8000
 
                 switch (window.location.hostname) {
-                    case 'fad2bced-1115-4049-8e43-e2e107.herokuapp.com':
                     case 'www.casa-local.com':
-                        return 'https://baeacb59-6f35-4d43-a16b-dc71d7.herokuapp.com';
+                        return 'http://localhost:8080';
                     case 'fb34936c-dd2e-4abd-bf29-4c7217.herokuapp.com':
                         return 'https://bbb5dfb4-a465-49b2-8d2f-0ee040.herokuapp.com';
                     case 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com':
                     case 'www.casavox.com':
                         return 'https://bc3a5ece-8b03-4ee0-82dd-ea944f.herokuapp.com';
+                    case 'fad2bced-1115-4049-8e43-e2e107.herokuapp.com':
                     default :
-                        return 'http://localhost:8080';
+                        return 'https://baeacb59-6f35-4d43-a16b-dc71d7.herokuapp.com';
                 }
             }()),
             'ENV': (function () {

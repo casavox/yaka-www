@@ -23,13 +23,17 @@
         networkService.projectsToRecommendGET(function (projects) {
             vm.projectsToRecommend = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les offres", "danger");
+            if ($state.current.name == "pro-dashboard") {
+                alertMsg.send("Impossible de récupérer les offres", "danger");
+            }
         });
 
         networkService.proDashboardDataGET(function (data) {
             vm.data = data;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les données", "danger");
+            if ($state.current.name == "pro-dashboard") {
+                alertMsg.send("Impossible de récupérer les données", "danger");
+            }
         });
 
         vm.getWhen = function (project) {
@@ -46,7 +50,9 @@
         networkService.getProNetworkLeads(function (projects) {
             vm.networkProjects = projects;
         }, function (err) {
-            alertMsg.send("Impossible de récupérer les offres", "danger");
+            if ($state.current.name == "pro-dashboard") {
+                alertMsg.send("Impossible de récupérer les offres", "danger");
+            }
         });
 
 
@@ -64,7 +70,9 @@
                 $state.go("pro-dashboard");
             }
         }, function (err) {
-            alertMsg.send("Impossible de récupérer le profil", "danger");
+            if ($state.current.name == "pro-dashboard") {
+                alertMsg.send("Impossible de récupérer le profil", "danger");
+            }
             $state.go("home", {'login': true});
         });
 
@@ -111,7 +119,9 @@
         };
 
         function errorCommunitiesGET(res) {
-            alertMsg.send("Impossible de récupérer les communautés", "danger");
+            if ($state.current.name == "pro-dashboard") {
+                alertMsg.send("Impossible de récupérer les communautés", "danger");
+            }
         }
 
         vm.getUserchatsUnreadNumber = function () {

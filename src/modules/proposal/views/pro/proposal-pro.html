@@ -151,7 +151,7 @@
                                     </div>
 
                                     <div class="col-xs-12 no-padding pmo-stat proposalProName">
-                                        <h2 class="yakaEllipsis">
+                                        <h2 class="">
                                             <casa-name-and-contact user="vm.project.user"
                                                                    icon-color="c-white"></casa-name-and-contact>
                                         </h2>
@@ -317,14 +317,14 @@
                                                 <casa-name-and-contact class="f-bold f-s-15"
                                                                        user="vm.project.user"
                                                                        icon-color="c-white"></casa-name-and-contact>
-
                                                 <div data-ng-if="vm.proposal.status == 'START'">
                                                     <div class="proNetworkProjectButtonLabel m-t-15">
                                                         Échange en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="btn btn-xs btn-danger btn-icon-text waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close"></i> Abandonner l'offre
+                                                            class="btn btn-xs btn-danger btn-icon-text width-auto waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close no-margin m-r-5"></i> Abandonner
+                                                        l'offre
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'SELECTED'">
@@ -332,50 +332,49 @@
                                                         Chantier en cours
                                                     </div>
                                                     <button data-ng-click="vm.cancelProposalModal()"
-                                                            class="btn btn-danger btn-icon-text waves-effect cancelProposal">
-                                                        <i class="zmdi zmdi-close"></i> Annuler chantier
+                                                            class="btn btn-danger width-auto f-s-10 btn-icon-text waves-effect cancelProposal">
+                                                        <i class="zmdi zmdi-close no-margin m-r-5"></i> Annuler chantier
                                                     </button>
                                                 </div>
                                                 <div data-ng-if="vm.proposal.status == 'RECOMMENDATION'">
-
-                                                    <div class="col-xs-12 m-t-45">
+                                                    <div class="m-t-0">
                                                         <button data-ng-click="vm.smoothScrollToSend()"
-                                                                class="col-xs-6 btn btn-primary btn-sm waves-effect zIndex1">
-                                                            CONTACTER !
+                                                                class="btn f-s-10 btn-primary btn-sm waves-effect zIndex1">
+                                                            CONTACTER
                                                         </button>
                                                         <button data-ng-click="vm.cancelRecommandationModal()"
-                                                                class="right col-xs-6 btn btn-danger btn-sm waves-effect btn-icon-text">
-                                                            <i class="zmdi zmdi-close"></i> Refuser
+                                                                class="right f-s-10 btn btn-danger btn-sm waves-effect btn-icon-text">
+                                                            <i class="zmdi zmdi-close no-margin"></i> Refuser
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'RECO_CUSTOMER_DECLINED'">
                                                     Refusé par le client
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'RECO_PRO_DECLINED'">
                                                     Annulé par moi
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 fw-bold bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 fw-bold bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'RATE_PRO'">
                                                     Cloture client en cours
                                                 </div>
                                                 <div
-                                                    class="col-xs-8 col-xs-offset-4 no-padding status m-b-15 bgm-orange"
+                                                    class="col-xs-8 col-xs-offset-2 no-padding status m-b-15 bgm-orange"
                                                     data-ng-if="vm.proposal.status == 'COMPLETED'">
                                                     Clos le {{ vm.proposal.updated | date: 'dd MMMM yyyy' }}
                                                 </div>
@@ -410,7 +409,7 @@
                             <div class="pmb-block"
                                  data-ng-if="vm.proposal.status && vm.proposal.status == 'RECOMMENDATION'">
                                 <div class="pmbb-header">
-                                    <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Prendre contact avec le client
+                                    <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Contacter le client
                                     </h2>
                                 </div>
                                 <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
@@ -422,18 +421,18 @@
                                         <button
                                             class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                             data-ui-sref="pro-profile">
-                                            Modifier mon profil
+                                            Compléter mon profil
                                         </button>
                                         <button
                                             class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
                                             data-ui-sref="project-recommend({'projectId': vm.project.id})">
-                                            Recommander à un pro
+                                            Recommander un collègue
                                         </button>
                                     </div>
                                 </div>
 
-                                <div class="pmbb-body p-l-30" data-ng-if="!vm.project.activityDoesntCorrespond"
-                                     data-ng-if="vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                <div class="pmbb-body p-l-30"
+                                     data-ng-if="!vm.project.activityDoesntCorrespond && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
                                             <dt class="yakaDisableEllipsis">Date d'intervention estimée</dt>
@@ -459,11 +458,11 @@
                                                 <div class="form-group fg-float"
                                                      data-ng-class="{'has-error': vm.formProProposalError && (!vm.offer.comment || vm.offer.comment.length < 40)}">
                                                     <div class="fg-line">
-                                                    <textarea class="form-control" data-auto-size=""
-                                                              data-autosize-on="true"
-                                                              data-ng-model="vm.offer.comment"></textarea>
-                                                        <label class="fg-label">Précisez
-                                                            votre proposition, posez vos questions,...</label>
+                                                        <textarea class="form-control" data-auto-size=""
+                                                                  data-autosize-on="true"
+                                                                  data-ng-model="vm.offer.comment"></textarea>
+                                                        <label class="fg-label">Présentez vous, posez une
+                                                            question</label>
                                                     </div>
                                                 </div>
                                             </dd>
@@ -473,14 +472,21 @@
                                             Message trop court (au moins 40 caractères)
                                         </p>
                                         <button class="btn btn-primary btn-block waves-effect"
+                                                data-ng-if="!vm.project.error"
                                                 data-ng-click="vm.sendOffer()">
                                             ENVOYER
                                         </button>
+
                                     </div>
                                 </div>
                                 <div class="pmbb-body p-l-30"
-                                     data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
-                                    Votre profil doit être validé afin de pouvoir répondre aux offres.
+                                     data-ng-if="!(vm.proposal.status && vm.proposal.status == 'RECOMMENDATION' && vm.project.activityDoesntCorrespond) && vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                    <button class="btn bgm-orange btn-block waves-effect"
+                                            data-ui-sref="pro-profile">
+                                        Compléter mon profil
+                                    </button>
+                                    <label class="fg-label center">Complétez votre profil pour contacter directement le
+                                        client.</label>
                                 </div>
                             </div>
 
@@ -492,7 +498,7 @@
                                 <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
-                                            <dt class="yakaDisableEllipsis">Mon prix</dt>
+                                            <dt class="yakaDisableEllipsis">Ma proposition</dt>
                                             <dd class="l-h-18">
                                                 {{vm.proposalTmp.price || '---'}} € <i
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
@@ -515,7 +521,7 @@
                                 <div class="pmbb-header">
                                     <h2><i class="zmdi zmdi-accounts zmdi-hc-fw"></i> Communautés</h2>
                                 </div>
-                                <div class="pmbb-body">
+                                <div class="pmbb-body p-l-30">
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal tag-margin-bottom">
                                             <casa-community-tag class="contact-community-tag pull-left"
@@ -545,7 +551,7 @@
                                             data-ng-if="vm.projectTmp.user.phoneNumber">
                                             <dt class="yakaDisableEllipsis">Téléphone</dt>
                                             <dd>
-                                                {{vm.projectTmp.user.phoneNumber}}
+                                                <a class="underline" href="tel:{{vm.projectTmp.user.phoneNumber}}">{{vm.projectTmp.user.phoneNumber}}</a>
                                             </dd>
                                         </dl>
                                     </div>
@@ -657,18 +663,16 @@
             <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
                 <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                      data-ng-click="vm.myPriceFlag = false" alt=""/>
-                <h4>Mon prix</h4>
+                <h4 class="t-right">Ma proposition de prix</h4>
 
                 <div class="row">
-                    <div class="col-xs-6 col-xs-offset-4">
+                    <div class="col-xs-6 col-xs-offset-5">
                         <input type="text" class="form-control t-right f-s-18" id="exampleInputEmail2"
                                placeholder="Entrer un prix"
                                data-ng-model="vm.myPrice"
                                yaka-input-numbers-only>
                     </div>
-                    <div class="col-xs-2">
-                        €
-                    </div>
+                    <div class="f-s-18">€</div>
                 </div>
                 <p class="error center my-price-error" data-ng-show="vm.error.price.flag">
                     {{vm.error.price.message}}
