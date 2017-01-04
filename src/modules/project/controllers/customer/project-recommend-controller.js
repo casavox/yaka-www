@@ -265,12 +265,12 @@
         function getSmsBody() {
             return "Je suis sur CasaVox ! " +
                 "1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl();
+                "rejoins-moi et partageons nos meilleurs pros : " + getInviteProUrl();
         }
 
-        function getInviteUrl() {
+        function getInviteProUrl() {
             if ($localStorage.user) {
-                return window.location.hostname + "/i/" + $localStorage.user.inviteId;
+                return window.location.hostname + "/p/i/" + $localStorage.user.inviteId;
             }
             return "";
         }

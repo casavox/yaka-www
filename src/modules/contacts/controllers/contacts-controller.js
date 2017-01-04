@@ -712,9 +712,9 @@
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-                        url = "sms:&body=" + getSmsBody();
+                        url = "sms:&body=" + getSmsBody(invited);
                     } else {
-                        url = "sms:?body=" + getSmsBody();
+                        url = "sms:?body=" + getSmsBody(invited);
                     }
 
                     location.href = url;
@@ -729,15 +729,19 @@
             });
         };
 
-        function getSmsBody() {
+        function getSmsBody(invited) {
             return "Je suis sur CasaVox ! " +
                 "1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl();
+                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited);
         }
 
         function getInviteUrl() {
             if ($localStorage.user) {
-                return window.location.hostname + "/i/" + $localStorage.user.inviteId;
+                if (invited == "customer") {
+                    return window.location.hostname + "/i/" + $localStorage.user.inviteId;
+                } else {
+                    return window.location.hostname + "/p/i/" + $localStorage.user.inviteId;
+                }
             }
             return "";
         }
