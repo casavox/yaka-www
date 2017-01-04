@@ -306,6 +306,13 @@ angular.module('Yaka')
                         }
                     }
                 }
+
+                function transformNumbers () {
+                    var phoneNumberReg = /(0|\\+33|0033)[1-9][0-9]{8}/;
+                    if (scope.message.text.indexOf(phoneNumberReg) != 1) {
+                        return 'bouyaka';
+                    }
+                }
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"
         }
