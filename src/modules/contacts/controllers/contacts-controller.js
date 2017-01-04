@@ -737,7 +737,7 @@
 
         function getInviteUrl() {
             if ($localStorage.user) {
-                return "https://" + window.location.hostname + "/?invitationId=" + $localStorage.user.inviteId;
+                return window.location.hostname + "/i/" + $localStorage.user.inviteId;
             }
             return "";
         }

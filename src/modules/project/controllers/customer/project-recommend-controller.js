@@ -225,19 +225,19 @@
             } else {
                 return 'CLIENT';
             }
-        }
+        };
 
-        $scope.getLocation = function(val) {
-            if(val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
-                    return response.data.map(function(item){
+        $scope.getLocation = function (val) {
+            if (val.length == 5) {
+                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
+                    return response.data.map(function (item) {
                         return item.postalCode + " " + item.name;
                     });
                 });
             }
         };
 
-        vm.inviteBySms = function(invited) {
+        vm.inviteBySms = function (invited) {
             swal({
                 title: "Envoyer l'invitation par SMS",
                 text: "Etes-vous sûr ?",
@@ -252,15 +252,27 @@
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-
-                        // Todo Compléter message SMS
-                        url = "sms:&body=Coucou Iphone :)";
+                        url = "sms:&body=" + getSmsBody();
                     } else {
-                        url = "sms:?body=Coucou Android :)";
+                        url = "sms:?body=" + getSmsBody();
                     }
+
                     location.href = url;
                 }
             });
         };
+
+        function getSmsBody() {
+            return "Je suis sur CasaVox ! " +
+                "1er réseau de bouche-à-oreille pour tous nos travaux, " +
+                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl();
+        }
+
+        function getInviteUrl() {
+            if ($localStorage.user) {
+                return window.location.hostname + "/i/" + $localStorage.user.inviteId;
+            }
+            return "";
+        }
     }
 })();

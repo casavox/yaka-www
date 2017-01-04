@@ -18,6 +18,15 @@
                 }
             })
 
+            .state('short-invite', {
+                url: "/i/:id",
+                onEnter: function ($state, $stateParams) {
+                    $state.go('home', {
+                        invitationId: $stateParams.id
+                    });
+                }
+            })
+
             //Customer
 
             .state('home', {
