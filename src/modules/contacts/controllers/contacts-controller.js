@@ -699,8 +699,8 @@
 
         vm.openSMSorMailPopup = function (invited) {
             swal({
-                title: "Comment souhaitez-vous inviter votre destinataire ?",
-                text: "Choisissez d'inviter votre contact par SMS ou par Email !",
+                title: "Comment souhaitez-vous envoyer l'invitation ?",
+                text: "Depuis mon téléphone par SMS ou via CasaVox par Email",
                 type: "info",
                 allowOutsideClick: true,
                 showCancelButton: true,

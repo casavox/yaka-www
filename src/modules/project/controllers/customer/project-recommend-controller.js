@@ -238,28 +238,15 @@
         };
 
         vm.inviteBySms = function (invited) {
-            swal({
-                title: "Envoyer l'invitation par SMS",
-                text: "Etes-vous sûr ?",
-                type: "info",
-                showCancelButton: true,
-                allowOutsideClick: true,
-                confirmButtonColor: "#03a9f4",
-                confirmButtonText: "Oui",
-                cancelButtonText: "Non"
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    var ua = navigator.userAgent.toLowerCase();
-                    var url;
-                    if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-                        url = "sms:&body=" + getSmsBody();
-                    } else {
-                        url = "sms:?body=" + getSmsBody();
-                    }
+            var ua = navigator.userAgent.toLowerCase();
+            var url;
+            if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+                url = "sms:&body=" + getSmsBody();
+            } else {
+                url = "sms:?body=" + getSmsBody();
+            }
 
-                    location.href = url;
-                }
-            });
+            location.href = url;
         };
 
         function getSmsBody() {
