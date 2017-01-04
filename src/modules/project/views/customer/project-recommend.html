@@ -169,8 +169,12 @@
                     </div>
                     <div class="projectRecommendGrayHeader"
                          data-ng-if="vm.professionals && vm.professionals.length > 0">
-                        <button class="btn btn-default waves-effect c-orange m-15"
+                        <button class="btn btn-default waves-effect c-orange m-15 hidden-xs"
                                 data-ng-click="vm.openProPopup()">
+                            Ajouter un Pro
+                        </button>
+                        <button class="btn btn-default waves-effect c-orange m-15 visible-xs"
+                                data-ng-click="vm.inviteBySms('PRO')">
                             Ajouter un Pro
                         </button>
                     </div>
