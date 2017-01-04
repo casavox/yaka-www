@@ -28,7 +28,7 @@
             })
 
             .state('short-invite-pro', {
-                url: "/p/i/:id",
+                url: "/r/:id",
                 onEnter: function ($state, $stateParams) {
                     $state.go('pro-home', {
                         invitationId: $stateParams.id

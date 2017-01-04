@@ -740,7 +740,7 @@
                 if (invited == "customer") {
                     return window.location.hostname + "/i/" + $localStorage.user.inviteId;
                 } else {
-                    return window.location.hostname + "/p/i/" + $localStorage.user.inviteId;
+                    return window.location.hostname + "/r/" + $localStorage.user.inviteId;
                 }
             }
             return "";

@@ -263,14 +263,19 @@
         };
 
         function getSmsBody() {
-            return "Je suis sur CasaVox ! " +
-                "1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                "rejoins-moi et partageons nos meilleurs pros : " + getInviteProUrl();
+            if (vm.project.address.locality) {
+                return "Un de mes proche à des travaux à faire à " + vm.project.address.locality +
+                    ", j'aimerais te recommander personnellement à lui grâce " +
+                    " au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl();
+            } else {
+                return "Un de mes proche à des travaux à faire, j'aimerais te recommander personnellement à lui grâce " +
+                    " au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl();
+            }
         }
 
         function getInviteProUrl() {
             if ($localStorage.user) {
-                return window.location.hostname + "/p/i/" + $localStorage.user.inviteId;
+                return window.location.hostname + "/r/" + $localStorage.user.inviteId;
             }
             return "";
         }
