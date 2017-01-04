@@ -27,6 +27,15 @@
                 }
             })
 
+            .state('short-invite-pro', {
+                url: "/p/i/:id",
+                onEnter: function ($state, $stateParams) {
+                    $state.go('pro-home', {
+                        invitationId: $stateParams.id
+                    });
+                }
+            })
+
             //Customer
 
             .state('home', {
