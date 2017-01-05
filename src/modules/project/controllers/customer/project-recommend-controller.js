@@ -256,14 +256,9 @@
                     } else {
                         url = "sms:?body=" + getSmsBody(invited);
                     }
-
                     location.href = url;
                 } else {
-                    if (invited == "customer") {
-                        vm.showInvitFriendPopup = true;
-                    } else {
-                        vm.showInvitProPopup = true;
-                    }
+                    vm.showInvitProPopup = true;
                     $scope.$applyAsync();
                 }
             });
@@ -277,7 +272,6 @@
             } else {
                 url = "sms:?body=" + getSmsBody();
             }
-
             location.href = url;
         };
 
