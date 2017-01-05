@@ -740,7 +740,8 @@
                     } else {
                         // un Pro invite un Pro
                         return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour les travaux, " +
-                            "ça me permet de rester en contact avec mes clients, d'en trouver de nouveau, ... " +
+                            "ça me permet de rester en contact avec mes clients, " +
+                            "de me faire recommander personnellement à de nouveaux prospects, ... " +
                             "Rejoins mon réseau de Pro du bâtiment : " + getInviteUrl(invited);
                     }
                 } else {
