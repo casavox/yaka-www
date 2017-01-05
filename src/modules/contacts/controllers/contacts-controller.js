@@ -15,10 +15,15 @@
 
         var vm = this;
 
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-            networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+        if ($localStorage.invitationId) {
+            if ($localStorage.projectShortId) {
+                networkService.acceptInvitationWithProjectPOST($localStorage.invitationId, $localStorage.projectShortId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            } else {
+                networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            }
             vm.bigAlert = true;
             $localStorage.invitationId = '';
+            $localStorage.projectShortId = '';
         }
 
 
