@@ -237,6 +237,38 @@
             }
         };
 
+        vm.openSMSorMailPopup = function (invited) {
+            swal({
+                title: "Comment souhaitez-vous envoyer l'invitation ?",
+                text: "Depuis mon téléphone par SMS ou via CasaVox par Email",
+                type: "info",
+                allowOutsideClick: true,
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Inviter par SMS",
+                cancelButtonText: "Inviter par Email"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    var ua = navigator.userAgent.toLowerCase();
+                    var url;
+                    if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+                        url = "sms:&body=" + getSmsBody(invited);
+                    } else {
+                        url = "sms:?body=" + getSmsBody(invited);
+                    }
+
+                    location.href = url;
+                } else {
+                    if (invited == "customer") {
+                        vm.showInvitFriendPopup = true;
+                    } else {
+                        vm.showInvitProPopup = true;
+                    }
+                    $scope.$applyAsync();
+                }
+            });
+        };
+
         vm.inviteBySms = function (invited) {
             var ua = navigator.userAgent.toLowerCase();
             var url;
