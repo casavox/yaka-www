@@ -735,12 +735,36 @@
         };
 
         function getSmsBody(invited) {
-            return "Je suis sur CasaVox ! " +
-                "1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited);
+            if ($localStorage.user) {
+                if ($localStorage.user.professional) {
+                    if (invited == "customer") {
+                        // un Pro invite un Particulier
+                        return "Je suis sur CasaVox ! " +
+                            "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
+                            + getInviteUrl(invited);
+                    } else {
+                        // un Pro invite un Pro
+                        return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour les travaux, " +
+                            "ça me permet de rester en contact avec mes clients, d'en trouver de nouveau, ... " +
+                            "Rejoins mon réseau de Pro du bâtiment : " + getInviteUrl(invited);
+                    }
+                } else {
+                    // un particulier invite un particulier
+                    if (invited == "customer") {
+                        return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, " +
+                            "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited);
+                    } else {
+                        // un particulier invite un Pro
+                        return "Je suis sur CasaVox ! " +
+                            "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
+                            + getInviteUrl(invited);
+                    }
+                }
+
+            }
         }
 
-        function getInviteUrl() {
+        function getInviteUrl(invited) {
             if ($localStorage.user) {
                 if (invited == "customer") {
                     return window.location.hostname + "/i/" + $localStorage.user.inviteId;
