@@ -57,8 +57,11 @@
                     </a>
 
                     <div class="m-b-20" data-ng-if="message.cloudinaryPublicId && message.text"></div>
-                    <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
-                    <span class="msg yaka" data-ng-if="message.author == 'CASAVOX'">{{message.text}}</span>
+                    <span class="msg"
+                          data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'"><casa-phone-to-links
+                        text="message.text" author="message.author" user="userMe"></casa-phone-to-links></span>
+                    <span class="msg yaka" data-ng-if="message.author == 'CASAVOX'"><casa-phone-to-links
+                        text="message.text" author="message.author" user="userMe"></casa-phone-to-links></span>
                     <span
                         data-ng-if="message.author == 'AUTO' && message.text != 'FIRST_RECOMMENDATION' && message.text != 'NEW_RECOMMENDATION'">
                         <i class="zmdi {{message | yakaAutoMsgIcon : getCustomerUser() : getProUser()}} yakaMessageIcon"></i>

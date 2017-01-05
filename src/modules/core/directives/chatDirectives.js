@@ -37,7 +37,7 @@ angular.module('Yaka')
                 };
 
                 scope.getProposalProfessionalCompany = function () {
-                  return scope.proposalProfessional.company.name;
+                    return scope.proposalProfessional.company.name;
                 };
 
                 scope.getCustomerUser = function () {
@@ -245,7 +245,7 @@ angular.module('Yaka')
                     });
                 };
 
-                scope.cancelSending = function() {
+                scope.cancelSending = function () {
                     scope.newMessage.cloudinaryPublicId = '';
                 };
 
@@ -305,14 +305,8 @@ angular.module('Yaka')
                             return 'Discutez en privé avec ' + scope.userOther.firstName + ' ' + scope.userOther.lastName;
                         }
                     }
-                }
+                };
 
-                function transformNumbers () {
-                    var phoneNumberReg = /(0|\\+33|0033)[1-9][0-9]{8}/;
-                    if (scope.message.text.indexOf(phoneNumberReg) != 1) {
-                        return 'bouyaka';
-                    }
-                }
             },
             templateUrl: "/modules/core/directives/views/yakaChat.html"
         }
