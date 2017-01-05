@@ -262,7 +262,7 @@
 
         function getInviteProUrl() {
             if ($localStorage.user) {
-                return window.location.hostname + "/r/" + $localStorage.user.inviteId;
+                return window.location.hostname + "/r/" + $localStorage.user.inviteId + "/" + vm.project.shortId;
             }
             return "";
         }
