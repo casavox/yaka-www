@@ -279,10 +279,12 @@
             if (vm.project.address.locality) {
                 return "Un de mes proche à des travaux à faire à " + vm.project.address.locality +
                     ", j'aimerais te recommander personnellement à lui grâce " +
-                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl();
+                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl()
+                    + "%0ABonne journée, " + $localStorage.user.firstName;;
             } else {
                 return "Un de mes proche à des travaux à faire, j'aimerais te recommander personnellement à lui grâce " +
-                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl();
+                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl()
+                    + "%0ABonne journée, " + $localStorage.user.firstName;;
             }
         }
 

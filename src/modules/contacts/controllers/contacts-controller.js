@@ -741,24 +741,26 @@
                         // un Pro invite un Particulier
                         return "Je suis sur CasaVox ! " +
                             "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
-                            + getInviteUrl(invited);
+                            + getInviteUrl(invited) + "%0ABonne journée, " + $localStorage.user.firstName;
                     } else {
                         // un Pro invite un Pro
                         return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour les travaux, " +
                             "ça me permet de rester en contact avec mes clients, " +
                             "de me faire recommander personnellement à de nouveaux prospects, ... " +
-                            "Rejoins mon réseau de Pro du bâtiment : " + getInviteUrl(invited);
+                            "Tu peux rejoindre mon réseau de Pro du bâtiment ici : " + getInviteUrl(invited) + "%0ABonne journée, "
+                            + $localStorage.user.firstName + " ;)";
                     }
                 } else {
                     // un particulier invite un particulier
                     if (invited == "customer") {
                         return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                            "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited);
+                            "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited) + "%0ABonne journée, "
+                            + $localStorage.user.firstName + " ;)";
                     } else {
                         // un particulier invite un Pro
                         return "Je suis sur CasaVox ! " +
                             "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
-                            + getInviteUrl(invited);
+                            + getInviteUrl(invited) + "%0ABonne journée, " + $localStorage.user.firstName;
                     }
                 }
 
