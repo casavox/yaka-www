@@ -494,24 +494,23 @@
                             </div>
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-20"
-                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.postalCode || vm.formProRecoInvitError && vm.invitPro.postalCode.length < 5}">
                                 <div class="fg-line">
                                     <input type="text"
                                            class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.postalCode"
                                            name="address"
-                                           id="address"
-                                           data-ng-model="vm.invitPro.address.address"
                                            data-ng-maxlength="5"
                                            maxlength="5"
                                            placeholder=""
-                                           uib-typeahead="address for address in getLocation($viewValue)"/>
+                                           id="address" only-digits>
                                     <label class="fg-label">
                                         Code postal</label>
                                 </div>
-                                <small class="help-block"
-                                       data-ng-if="!vm.invitPro.address.address">
-                                    Merci d'indiquer le code postal puis de sélectionner la commune
-                                </small>
+                                <small class="c-red"
+                                       data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                                <small class="c-red"
+                                       data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                             </div>
 
 
@@ -594,10 +593,11 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address">
+                           id="address"only-digits>
                     <small class="c-red"
-                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis
-                    </small>
+                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                    <small class="c-red"
+                           data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                 </div>
             </div>
 

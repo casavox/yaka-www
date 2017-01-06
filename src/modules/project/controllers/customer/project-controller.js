@@ -79,6 +79,7 @@
                 }
             };
         });
+
         vm.cleanAddress = angular.copy($scope.address);
 
         vm.deleteProject = function (message) {
@@ -182,20 +183,30 @@
             }
         };
 
-        $scope.getLocation = function (val) {
+        vm.getLocation = function (val) {
             if (val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
-                    return response.data.map(function (item) {
-                        return item.postalCode + " " + item.name;
-                    });
-                });
+                networkService.postalCodeGET(val, successPostalCodeGet, errorPostalCodeGet, true);
             }
         };
 
-        $('.inputAddress').click(function () {
-                vm.pcodeAndCity = "";
+        function successPostalCodeGet(response) {
+            vm.PostalCodeAndCities = response;
+        }
+
+        function errorPostalCodeGet(res) {
+            alertMsg.send("impossible de récupérer les communes", "danger");
+        }
+
+
+        vm.onKeyPress = function (e) {
+            if (e.keyCode < 48 && e.keyCode != 8 || e.keyCode > 57) {
+                event.preventDefault();
             }
-        );
+            if (vm.pcodeAndCity.length > 5 && e.keyCode == 8) {
+                event.preventDefault();
+                vm.pcodeAndCity = vm.pcodeAndCity.substring(0, 5);
+            }
+        };
 
         vm.changeWhere = function () {
             vm.tmpAddressName = $scope.address.name.split(' ');
@@ -204,8 +215,9 @@
             vm.projectTmp.address.postalCode = vm.postalCode;
             vm.projectTmp.address.route = vm.route.toString();
             if (vm.myAddress == "new") {
-                if (!vm.newAddr.name || !vm.pcodeAndCity) {
+                if (!vm.newAddr.name || !vm.pcodeAndCity || vm.pcodeAndCity.length < 6) {
                     vm.formProjectPlaceError = true;
+                    vm.addressError = true;
                     alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
                 } else {
                     if (vm.projectTmp.address.route) {
@@ -215,12 +227,14 @@
                     }
                     vm.projectTmp.address.name = vm.newAddr.name;
                     vm.whereFlag = false;
+                    vm.postalCodeAndCityEdited = true;
                 }
             } else {
-                if (!vm.pcodeAndCity) {
+                if (!vm.pcodeAndCity || vm.pcodeAndCity.length < 6) {
                     vm.formProjectPlaceError = true;
                     alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
                 } else {
+                    vm.postalCodeAndCityEdited = true;
                     for (var i = 0; i < vm.user.addresses.length; i++) {
                         if (vm.user.addresses[i].address == vm.myAddress) {
                             vm.projectTmp.address.name = vm.user.addresses[i].name;
@@ -281,7 +295,9 @@
         vm.editWhere = function () {
             vm.alertCorrectedAddress = false;
             vm.formProjectPlaceError = false;
-            vm.pcodeAndCity = vm.project.address.postalCode + " " + vm.project.address.locality;
+            if (!vm.postalCodeAndCityEdited) {
+                vm.pcodeAndCity = vm.project.address.postalCode + " " + vm.project.address.locality;
+            }
             vm.selectExistingAddress = vm.projectTmp.address.address.split(", ");
             if (vm.selectExistingAddress.length == 3) {
                 vm.route = vm.selectExistingAddress.slice(0, 1);
@@ -290,7 +306,6 @@
             }
             vm.whereFlag = true;
         };
-
 
 
         vm.changeWhen = function () {
@@ -602,16 +617,14 @@
             }, 500);
         }
 
-
         vm.reinitializeNewAddress = function () {
+            vm.postalCodeAndCityEdited = false;
             vm.whereFlag = false;
             vm.formProjectPlaceError = false;
             vm.newAddr.name = "";
             if (vm.myAddress == "new") {
                 $scope.address.name = "";
-
             }
-
         }
     }
 })();

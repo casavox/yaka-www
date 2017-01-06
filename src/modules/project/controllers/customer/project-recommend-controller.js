@@ -136,7 +136,7 @@
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.address.postalCode || !vm.invitPro.email) {
+            if (!vm.invitPro.name || !vm.invitPro.postalCode || !vm.invitPro.email || vm.invitPro.postalCode.length < 5) {
                 vm.formProRecoInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
@@ -224,16 +224,6 @@
                 return 'COLLEAGUE';
             } else {
                 return 'CLIENT';
-            }
-        };
-
-        $scope.getLocation = function (val) {
-            if (val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
-                    return response.data.map(function (item) {
-                        return item.postalCode + " " + item.name;
-                    });
-                });
             }
         };
 

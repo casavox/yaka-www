@@ -154,7 +154,8 @@
         vm.registerFormIsValid = function () {
             return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address || !vm.newUser.recaptchaResponse);
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering ||
+            !vm.newUser.defaultAddress.address || vm.newUser.defaultAddress.address.length < 6 || !vm.newUser.recaptchaResponse);
         };
 
         vm.loginFormIsValid = function () {
@@ -254,6 +255,9 @@
                 vm.registering = true;
                 networkService.register(vm.newUser, successRegister, failRegister, true);
             } else {
+                if (vm.newUser.defaultAddress.address.length < 6) {
+                    vm.addressError = true;
+                }
                 vm.formRegisterError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
@@ -425,13 +429,28 @@
 
         });
 
-        $scope.getLocation = function (val) {
+        vm.getLocation = function (val) {
             if (val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
-                    return response.data.map(function (item) {
-                        return item.postalCode + " " + item.name;
-                    });
-                });
+                networkService.postalCodeGET(val, successPostalCodeGet, errorPostalCodeGet, true);
+            }
+        };
+
+       function successPostalCodeGet (response) {
+           vm.PostalCodeAndCities = response;
+       }
+
+        function errorPostalCodeGet (res) {
+            alertMsg.send("impossible de récupérer les communes", "danger");
+        }
+
+
+        vm.onKeyPress = function (e) {
+            if (e.keyCode < 48 && e.keyCode != 8 || e.keyCode > 57) {
+                event.preventDefault();
+            }
+            if (vm.newUser.defaultAddress.address.length > 5 && e.keyCode == 8) {
+                event.preventDefault();
+                vm.newUser.defaultAddress.address = vm.newUser.defaultAddress.address.substring(0, 5);
             }
         };
 
