@@ -225,6 +225,61 @@
             } else {
                 return 'CLIENT';
             }
+          
+        vm.openSMSorMailPopup = function (invited) {
+            swal({
+                title: "Comment souhaitez-vous envoyer l'invitation ?",
+                text: "Depuis mon téléphone par SMS ou via CasaVox par Email",
+                type: "info",
+                allowOutsideClick: true,
+                showCancelButton: true,
+                confirmButtonColor: "#03a9f4",
+                confirmButtonText: "Inviter par SMS",
+                cancelButtonText: "Inviter par Email"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    var ua = navigator.userAgent.toLowerCase();
+                    var url;
+                    if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+                        url = "sms:&body=" + getSmsBody(invited);
+                    } else {
+                        url = "sms:?body=" + getSmsBody(invited);
+                    }
+                    location.href = url;
+                } else {
+                    vm.showInvitProPopup = true;
+                    $scope.$applyAsync();
+                }
+            });
+        };
+
+        vm.inviteBySms = function (invited) {
+            var ua = navigator.userAgent.toLowerCase();
+            var url;
+            if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+                url = "sms:&body=" + getSmsBody();
+            } else {
+                url = "sms:?body=" + getSmsBody();
+            }
+            location.href = url;
+        };
+
+        function getSmsBody() {
+            if (vm.project.address.locality) {
+                return "Un de mes proche à des travaux à faire à " + vm.project.address.locality +
+                    ", j'aimerais te recommander personnellement à lui grâce " +
+                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl();
+            } else {
+                return "Un de mes proche à des travaux à faire, j'aimerais te recommander personnellement à lui grâce " +
+                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl();
+            }
+        }
+
+        function getInviteProUrl() {
+            if ($localStorage.user) {
+                return window.location.hostname + "/r/" + $localStorage.user.inviteId + "/" + vm.project.shortId;
+            }
+            return "";
         }
     }
 })();

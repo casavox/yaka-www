@@ -451,7 +451,8 @@
                     <input type="text"
                            name="link1"
                            class="form-control fg-input"
-                           data-ng-model="vm.profile.myWebsite" casa-input-website>
+                           autocomplete="off"
+                           data-ng-model="vm.profile.myWebsite">
                     <label class="fg-label">Mon site Web</label>
                 </div>
             </div>
@@ -461,15 +462,17 @@
                 <div class="fg-line">
                     <input type="text"
                            class="form-control fg-input"
+                           autocomplete="off"
+                           data-ng-change="vm.isLinkedinEmpty()"
                            data-ng-model="vm.profile.myLinkedin">
                     <label class="fg-label">Mon Linkedin</label>
                 </div>
                 <small class="help-block"
                        data-ng-show="!vm.profile.myLinkedin">
-                    Copiez et collez ici l'adresse de votre profil Linkedin
+                    Copiez ici l'adresse de votre profil Linkedin
                 </small>
                 <small class="help-block"
-                       data-ng-show="vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)">
+                       data-ng-show="vm.formLinkedinError">
                     L'adresse indiquée n'est pas valide
                 </small>
             </div>
@@ -480,9 +483,13 @@
                     <input type="text"
                            name="link3"
                            class="form-control fg-input"
-                           data-ng-model="vm.profile.myOtherSocial" casa-input-website>
-                    <label class="fg-label">Autre (Google+, Viadeo, ...)</label>
+                           autocomplete="off"
+                           data-ng-model="vm.profile.myOtherSocial">
+                    <label class="fg-label"><strong>Mon Facebook</strong>, Google+, ...</label>
                 </div>
+                <small class="help-block">
+                    Copiez ici l'adresse de votre page Facebook, Google+, ...
+                </small>
             </div>
 
             <div class="profile-box-footer mt-12 m-b-20">

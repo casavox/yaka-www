@@ -11,6 +11,10 @@
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
+        if ($stateParams.projectId) {
+            $localStorage.projectShortId = $stateParams.projectId;
+        }
+
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('pro-dashboard');
