@@ -225,7 +225,8 @@
             } else {
                 return 'CLIENT';
             }
-          
+        };
+
         vm.openSMSorMailPopup = function (invited) {
             swal({
                 title: "Comment souhaitez-vous envoyer l'invitation ?",
