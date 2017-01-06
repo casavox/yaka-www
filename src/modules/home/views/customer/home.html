@@ -369,11 +369,11 @@
                                            autocomplete="off"
                                            id="address"
                                            ng-model="vm.newUser.defaultAddress.address"
-                                           ng-keydown="vm.onKeyPress($event)"
                                            data-ng-maxlength="5"
                                            maxlength="5"
                                            placeholder=""
-                                           uib-typeahead="address for address in vm.getLocation($viewValue)"/>
+                                           uib-typeahead="address for address in vm.getLocation($viewValue)"
+                                           only-digits/>
                                     <label class="fg-label">Code postal</label>
                                 </div>
                                 <div class="address-list"

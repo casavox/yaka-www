@@ -339,12 +339,12 @@
                                name="address"
                                id="address"
                                autocomplete="off"
-                               ng-keydown="vm.onKeyPress($event)"
                                ng-model="vm.newUser.professional.company.address.address"
                                data-ng-maxlength="5"
                                maxlength="5"
                                placeholder=""
-                               uib-typeahead="address for address in vm.getLocation($viewValue)"/>
+                               uib-typeahead="address for address in vm.getLocation($viewValue)"
+                               only-digits/>
                         <label class="fg-label">Code postal de l'entreprise</label>
                     </div>
                     <div class="address-list t-left"
