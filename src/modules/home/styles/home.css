@@ -1,3 +1,43 @@
+.address-list.ng-enter {
+    transition: 0.1s linear all;
+    height: 0px;
+}
+
+.address-list.ng-enter.ng-enter-active {
+    height: 100%;
+}
+
+.address-list.ng-leave {
+    transition: 0.1s linear all;
+    height: 100px;
+}
+
+.address-list.ng-leave.ng-leave-active {
+    color: white;
+    height: 0px;
+}
+
+.address-list {
+    overflow: hidden;
+    width: 99.5%;
+    margin-left: 1px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0px 0px 3px black;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.address-list-item {
+    padding: 7px 10px 7px 10px;
+    transition: 0.2s;
+}
+
+.address-list-item:hover {
+    padding-left: 20px;
+    background-color: #F9F9F9;
+}
+
 .intl-tel-input .country-list .iti-flag, .intl-tel-input .country-list .country-name {
     margin-top: 4px;
 }
@@ -833,6 +873,9 @@ body:after {
 }
 
 @media (max-width: 459px) {
+    .address-list {
+        width: 99.4%;
+    }
 
     .passwordForgottenButton {
         font-size: 13px;

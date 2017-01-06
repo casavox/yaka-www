@@ -604,9 +604,11 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address">
+                           id="address" only-digits>
                     <small class="c-red"
                            data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis</small>
+                    <small class="c-red"
+                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                 </div>
             </div>
 
