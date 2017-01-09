@@ -577,6 +577,11 @@
     .projectCreated .pti-header {
         padding: 20px 10px 60px !important;
     }
+
+    .customerNameOnProposal {
+        padding-left: 60px !important;
+        padding-top: 10px !important;
+    }
 }
 
 .proposalProjectTitle {
