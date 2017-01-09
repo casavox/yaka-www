@@ -150,6 +150,9 @@
             proRegister: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/pro/register', data, ignoreLoading).success(success).error(error)
             },
+            postalCodeGET: function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/localities/' + data, ignoreLoading).success(success).error(error)
+            },
             projectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/' + data, ignoreLoading).success(success).error(error)
             },
@@ -302,6 +305,9 @@
             },
             refuseInvitationPOST: function (id, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invitations/' + id + '/refuse', null, ignoreLoading).success(success).error(error)
+            },
+            acceptInvitationWithProjectPOST: function (id, projectShortId, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/invitations/' + id + '/' + projectShortId + '/accept', null, ignoreLoading).success(success).error(error)
             },
             acceptInvitationPOST: function (id, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invitations/' + id + '/accept', null, ignoreLoading).success(success).error(error)

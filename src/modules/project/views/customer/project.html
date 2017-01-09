@@ -427,7 +427,7 @@
                     </div>
                 </div>
                 <div class="form-group fg-float m-t-20 m-b-30"
-                     data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.pcodeAndCity}">
+                     data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.pcodeAndCity || vm.formProjectPlaceError && vm.pcodeAndCity.length < 6}">
                     <div class="fg-line">
                         <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
 
@@ -438,11 +438,20 @@
                                ng-model="vm.pcodeAndCity"
                                data-ng-maxlength="5"
                                maxlength="5"
+                               autocomplete="off"
+                               ng-keydown="vm.onKeyPress($event)"
                                placeholder=""
-                               uib-typeahead="address for address in getLocation($viewValue)"/>
+                               uib-typeahead="address for address in vm.getLocation($viewValue)"/>
                         <label class="fg-label">Indiquer le code postal</label>
                     </div>
-                    <small class="help-block" data-ng-if="!vm.pcodeAndCity">
+                    <div class="address-list"
+                         data-ng-if="vm.pcodeAndCity.length == 5">
+                        <div class="address-list-item pointer" data-ng-repeat="pCAndCity in vm.PostalCodeAndCities"
+                             data-ng-click="vm.pcodeAndCity = pCAndCity.postalCode + ' ' + pCAndCity.name; vm.citySelected = true">
+                            <span class="fw-bold">{{pCAndCity.postalCode}}</span> {{pCAndCity.name}}
+                        </div>
+                    </div>
+                    <small class="help-block" data-ng-if="!vm.pcodeAndCity  || vm.formProjectPlaceError && vm.pcodeAndCity.length < 6">
                         Veuillez saisir le code postal et sélectionner la ville dans la liste
                     </small>
                 </div>

@@ -167,11 +167,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="projectRecommendGrayHeader"
+                    <div class="projectRecommendGrayHeader t-center"
                          data-ng-if="vm.professionals && vm.professionals.length > 0">
-                        <button class="btn btn-default waves-effect c-orange m-15"
+                        <button class="btn btn-default waves-effect c-orange m-15 hidden-xs"
                                 data-ng-click="vm.openProPopup()">
-                            Ajouter un Pro
+                            Recommander un autre Pro
+                        </button>
+                        <button class="btn btn-default m-t-10 waves-effect c-orange full-width visible-xs"
+                                data-ng-click="vm.openSMSorMailPopup('pro')">
+                            Recommander un autre Pro
                         </button>
                     </div>
                     <div class="f-s-16 t-center p-t-30 p-b-30 p-relative p-l-10 p-r-10"
@@ -197,7 +201,7 @@
                         </span>
                         <span
                             data-ng-if="!vm.selectedProfessional && vm.professionals && vm.professionals.length == 0">
-                            Ajouter un Pro
+                            Recommander un autre Pro
                         </span>
                     </h2>
                 </div>
@@ -213,7 +217,6 @@
                     <div>
                         le résumé de son profil.
                     </div>
-                    <i class="zmdi zmdi-chevron-left leftArrow"></i>
                 </div>
 
                 <div class="card selectedProDetails" data-ng-if="vm.selectedProfessional">
@@ -265,6 +268,9 @@
                                           placeholder="Envoyer un message privé AU CLIENT {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
                                           data-autosize-on="true"></textarea>
                             </div>
+                            <small class="hidden-xs col-xs-12 p-0 m-b-5">
+                                Accédez à casavox.com depuis votre téléphone pour recommander par SMS
+                            </small>
                         </div>
 
                         <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
@@ -426,7 +432,7 @@
                         <h2>
                             Invitez un professionnel
                             <small class="visible-xs t-center m-t-20">
-                                Inviter un Pro par SMS
+                                Depuis mon téléphone par SMS
                             </small>
                         </h2>
                     </div>
@@ -434,20 +440,20 @@
                     <div class="card-body card-padding clearfix visible-xs">
                         <button class="btn bgm-lightblue btn-block btn-lg waves-effect"
                                 data-ng-click="vm.inviteBySms('PRO')">
-                            Inviter
+                            Inviter par SMS
                         </button>
-                        <h4 class="t-center m-t-25 m-b-0">- OU -</h4>
+                        <h4 class="t-center m-t-25 m-b-5">- OU -</h4>
                     </div>
 
                     <div class="card-body card-padding clearfix">
                         <h2 class="invite-by-mail">
                             <small>
-                                Inviter un Pro par Email
+                                Via CasaVox par Email
                             </small>
                         </h2>
                         <form name="inviteForm">
 
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-20"
+                            <div class="col-xs-12 no-padding form-group fg-float m-t-10 m-b-20"
                                  data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
                                 <div class="fg-line">
                                     <input type="text" name="name" class="form-control fg-input input-sm"
@@ -488,24 +494,23 @@
                             </div>
 
                             <div class="col-xs-12 no-padding form-group fg-float m-b-20"
-                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.address.address}">
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.postalCode || vm.formProRecoInvitError && vm.invitPro.postalCode.length < 5}">
                                 <div class="fg-line">
                                     <input type="text"
                                            class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.postalCode"
                                            name="address"
-                                           id="address"
-                                           data-ng-model="vm.invitPro.address.address"
                                            data-ng-maxlength="5"
                                            maxlength="5"
                                            placeholder=""
-                                           uib-typeahead="address for address in getLocation($viewValue)"/>
+                                           id="address" only-digits>
                                     <label class="fg-label">
                                         Code postal</label>
                                 </div>
-                                <small class="help-block"
-                                       data-ng-if="!vm.invitPro.address.address">
-                                    Merci d'indiquer le code postal puis de sélectionner la commune
-                                </small>
+                                <small class="c-red"
+                                       data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                                <small class="c-red"
+                                       data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                             </div>
 
 
@@ -525,8 +530,11 @@
 
                             <button class="btn bgm-orange btn-block btn-lg waves-effect"
                                     data-ng-click="vm.sendProInvit()">
-                                Inviter
+                                Inviter par Email
                             </button>
+                            <small class="hidden-xs col-xs-12 p-0 t-center">Accédez à casavox.com depuis votre
+                                téléphone pour inviter par SMS
+                            </small>
                         </form>
                     </div>
                 </div>
@@ -585,10 +593,11 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address">
+                           id="address"only-digits>
                     <small class="c-red"
-                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis
-                    </small>
+                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                    <small class="c-red"
+                           data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                 </div>
             </div>
 
@@ -611,8 +620,7 @@
             </div>
             <div class="form-group destination m-b-0 bgm-gray-lighter">
                 <div class="fg-line form-object p-l-20 p-r-20">
-                    {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide
-                    Casavox
+                    {{app.getUser().firstName}} {{app.getUser().lastName}} vous recommande à un nouveau client
                 </div>
             </div>
             <div class="destination-message m-b-0">

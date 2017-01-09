@@ -332,18 +332,27 @@
                 </div>
 
                 <div class="form-group fg-float m-b-20 col-xs-12 no-padding"
-                     data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.company.address.address}">
+                     data-ng-class="{'has-error' : vm.formRegisterError && !vm.newUser.professional.company.address.address || vm.addressError && vm.newUser.professional.company.address.address.length < 6}">
                     <div class="fg-line">
                         <input type="text"
                                class="form-control form-pro-register"
                                name="address"
                                id="address"
+                               autocomplete="off"
                                ng-model="vm.newUser.professional.company.address.address"
                                data-ng-maxlength="5"
                                maxlength="5"
                                placeholder=""
-                               uib-typeahead="address for address in getLocation($viewValue)"/>
+                               uib-typeahead="address for address in vm.getLocation($viewValue)"
+                               only-digits/>
                         <label class="fg-label">Code postal de l'entreprise</label>
+                    </div>
+                    <div class="address-list t-left"
+                         data-ng-if="vm.newUser.professional.company.address.address.length == 5">
+                        <div class="address-list-item pointer" data-ng-repeat="pCAndCity in vm.PostalCodeAndCities"
+                             data-ng-click="vm.newUser.professional.company.address.address = pCAndCity.postalCode + ' ' + pCAndCity.name; vm.citySelected = true">
+                            <span class="fw-bold">{{pCAndCity.postalCode}}</span> {{pCAndCity.name}}
+                        </div>
                     </div>
                     <small class="help-block t-left"
                            data-ng-if="vm.formRegisterError && !vm.newUser.professional.company.address.address">

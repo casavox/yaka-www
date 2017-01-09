@@ -190,7 +190,8 @@
                         DÉVELOPPEZ VOTRE RÉSEAU
                         <small class="c-obsidian-gray">
                             Faites fonctionner le bouche-à-oreille !<br>
-                            Invitez vos connaissances à vous retrouver sur CasaVox
+                            Invitez vos connaissances à vous retrouver sur CasaVox<br>
+                            <strong>Accédez à casavox.com depuis votre téléphone pour inviter par SMS</strong>
                         </small>
                     </h2>
                     <div class="col-sm-6 t-right m-t-5">
@@ -534,7 +535,7 @@
             <div class="form-group destination m-b-0 bgm-gray-lighter">
                 <div class="fg-line form-object p-l-20 p-r-20">
                     {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide
-                    Casavox
+                    CasaVox
                 </div>
             </div>
             <div class="destination-message m-b-0">
@@ -603,9 +604,11 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address">
+                           id="address" only-digits>
                     <small class="c-red"
                            data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis</small>
+                    <small class="c-red"
+                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
                 </div>
             </div>
 
@@ -629,7 +632,7 @@
             <div class="form-group destination m-b-0 bgm-gray-lighter">
                 <div class="fg-line form-object p-l-20 p-r-20">
                     {{app.getUser().firstName}} {{app.getUser().lastName}} vous invite à rejoindre son réseau d'entraide
-                    Casavox
+                    CasaVox
                 </div>
             </div>
             <div class="destination-message m-b-0">

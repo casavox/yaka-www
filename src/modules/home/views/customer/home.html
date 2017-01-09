@@ -229,6 +229,7 @@
                     <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
                         Facebook
                     </div>
+                    <h3 class="col-xs-12 m-t-10 m-b-20 c-gray-light t-center">OU</h3>
                     <form name="loginForm" class="col-xs-12 no-padding">
                         <div class="form-group fg-float"
                              data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.email}">
@@ -360,20 +361,30 @@
                             </div>
 
                             <div class="form-group fg-float m-b-30"
-                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.defaultAddress.address}">
+                                 data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.defaultAddress.address || vm.addressError && vm.newUser.defaultAddress.address.length < 6}">
                                 <div class="fg-line">
                                     <input type="text"
                                            class="form-control fg-input input-sm"
                                            name="address"
+                                           autocomplete="off"
                                            id="address"
                                            ng-model="vm.newUser.defaultAddress.address"
                                            data-ng-maxlength="5"
                                            maxlength="5"
                                            placeholder=""
-                                           uib-typeahead="address for address in getLocation($viewValue)"/>
-                                    <label class="fg-label">Votre code postal</label>
+                                           uib-typeahead="address for address in vm.getLocation($viewValue)"
+                                           only-digits/>
+                                    <label class="fg-label">Code postal</label>
                                 </div>
-                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
+                                <div class="address-list"
+                                     data-ng-if="vm.newUser.defaultAddress.address.length == 5">
+                                    <div class="address-list-item pointer" data-ng-repeat="pCAndCity in vm.PostalCodeAndCities"
+                                         data-ng-click="vm.newUser.defaultAddress.address = pCAndCity.postalCode + ' ' + pCAndCity.name; vm.citySelected = true">
+                                        <span class="fw-bold">{{pCAndCity.postalCode}}</span> {{pCAndCity.name}}
+                                    </div>
+                                </div>
+
+                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address || vm.addressError && vm.newUser.defaultAddress.address.length < 6">
                                     Merci d'indiquer le code postal puis de sélectionner la commune
                                 </small>
                             </div>

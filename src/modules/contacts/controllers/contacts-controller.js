@@ -15,10 +15,15 @@
 
         var vm = this;
 
-        if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-            networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+        if ($localStorage.invitationId) {
+            if ($localStorage.projectShortId) {
+                networkService.acceptInvitationWithProjectPOST($localStorage.invitationId, $localStorage.projectShortId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            } else {
+                networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            }
             vm.bigAlert = true;
             $localStorage.invitationId = '';
+            $localStorage.projectShortId = '';
         }
 
 
@@ -699,8 +704,8 @@
 
         vm.openSMSorMailPopup = function (invited) {
             swal({
-                title: "Comment souhaitez-vous inviter votre destinataire ?",
-                text: "Choisissez d'inviter votre contact par SMS ou par Email !",
+                title: "Comment souhaitez-vous envoyer l'invitation ?",
+                text: "Depuis mon téléphone par SMS ou via CasaVox par Email",
                 type: "info",
                 allowOutsideClick: true,
                 showCancelButton: true,
@@ -730,17 +735,44 @@
         };
 
         function getSmsBody(invited) {
-            return "Je suis sur CasaVox ! " +
-                "1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited);
+            if ($localStorage.user) {
+                if ($localStorage.user.professional) {
+                    if (invited == "customer") {
+                        // un Pro invite un Particulier
+                        return "Je suis sur CasaVox ! " +
+                            "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
+                            + getInviteUrl(invited) + "%0ABonne journée, " + $localStorage.user.firstName;
+                    } else {
+                        // un Pro invite un Pro
+                        return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour les travaux, " +
+                            "ça me permet de rester en contact avec mes clients, " +
+                            "de me faire recommander personnellement à de nouveaux prospects, ... " +
+                            "Tu peux rejoindre mon réseau de Pro du bâtiment ici : " + getInviteUrl(invited) + "%0ABonne journée, "
+                            + $localStorage.user.firstName + " ;)";
+                    }
+                } else {
+                    // un particulier invite un particulier
+                    if (invited == "customer") {
+                        return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, " +
+                            "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited) + "%0ABonne journée, "
+                            + $localStorage.user.firstName + " ;)";
+                    } else {
+                        // un particulier invite un Pro
+                        return "Je suis sur CasaVox ! " +
+                            "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
+                            + getInviteUrl(invited) + "%0ABonne journée, " + $localStorage.user.firstName;
+                    }
+                }
+
+            }
         }
 
-        function getInviteUrl() {
+        function getInviteUrl(invited) {
             if ($localStorage.user) {
                 if (invited == "customer") {
                     return window.location.hostname + "/i/" + $localStorage.user.inviteId;
                 } else {
-                    return window.location.hostname + "/p/i/" + $localStorage.user.inviteId;
+                    return window.location.hostname + "/r/" + $localStorage.user.inviteId;
                 }
             }
             return "";

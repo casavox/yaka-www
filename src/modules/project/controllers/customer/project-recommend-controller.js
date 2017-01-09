@@ -136,7 +136,7 @@
         };
 
         vm.sendProInvit = function () {
-            if (!vm.invitPro.name || !vm.invitPro.address.postalCode || !vm.invitPro.email) {
+            if (!vm.invitPro.name || !vm.invitPro.postalCode || !vm.invitPro.email || vm.invitPro.postalCode.length < 5) {
                 vm.formProRecoInvitError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
@@ -227,50 +227,60 @@
             }
         };
 
-        $scope.getLocation = function (val) {
-            if (val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function (response) {
-                    return response.data.map(function (item) {
-                        return item.postalCode + " " + item.name;
-                    });
-                });
-            }
-        };
-
-        vm.inviteBySms = function (invited) {
+        vm.openSMSorMailPopup = function (invited) {
             swal({
-                title: "Envoyer l'invitation par SMS",
-                text: "Etes-vous sûr ?",
+                title: "Comment souhaitez-vous envoyer l'invitation ?",
+                text: "Depuis mon téléphone par SMS ou via CasaVox par Email",
                 type: "info",
-                showCancelButton: true,
                 allowOutsideClick: true,
+                showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
-                confirmButtonText: "Oui",
-                cancelButtonText: "Non"
+                confirmButtonText: "Inviter par SMS",
+                cancelButtonText: "Inviter par Email"
             }, function (isConfirm) {
                 if (isConfirm) {
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-                        url = "sms:&body=" + getSmsBody();
+                        url = "sms:&body=" + getSmsBody(invited);
                     } else {
-                        url = "sms:?body=" + getSmsBody();
+                        url = "sms:?body=" + getSmsBody(invited);
                     }
-
                     location.href = url;
+                } else {
+                    vm.showInvitProPopup = true;
+                    $scope.$applyAsync();
                 }
             });
         };
 
+        vm.inviteBySms = function (invited) {
+            var ua = navigator.userAgent.toLowerCase();
+            var url;
+            if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+                url = "sms:&body=" + getSmsBody();
+            } else {
+                url = "sms:?body=" + getSmsBody();
+            }
+            location.href = url;
+        };
+
         function getSmsBody() {
-            return "Je suis sur CasaVox ! " +
-                "1er réseau de bouche-à-oreille pour tous nos travaux, " +
-                "rejoins-moi et partageons nos meilleurs pros : " + getInviteProUrl();
+            if (vm.project.address.locality) {
+                return "Un de mes proche à des travaux à faire à " + vm.project.address.locality +
+                    ", j'aimerais te recommander personnellement à lui grâce " +
+                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl()
+                    + "%0ABonne journée, " + $localStorage.user.firstName;;
+            } else {
+                return "Un de mes proche à des travaux à faire, j'aimerais te recommander personnellement à lui grâce " +
+                    "au réseau de bouche-à-oreille CasaVox, tu peux voir son besoin ici : " + getInviteProUrl()
+                    + "%0ABonne journée, " + $localStorage.user.firstName;;
+            }
         }
 
         function getInviteProUrl() {
             if ($localStorage.user) {
-                return window.location.hostname + "/p/i/" + $localStorage.user.inviteId;
+                return window.location.hostname + "/r/" + $localStorage.user.inviteId + "/" + vm.project.shortId;
             }
             return "";
         }
