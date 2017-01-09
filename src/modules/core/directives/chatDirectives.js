@@ -37,7 +37,7 @@ angular.module('Yaka')
                 };
 
                 scope.getProposalProfessionalCompany = function () {
-                  return scope.proposalProfessional.company.name;
+                    return scope.proposalProfessional.company.name;
                 };
 
                 scope.getCustomerUser = function () {
@@ -245,7 +245,7 @@ angular.module('Yaka')
                     });
                 };
 
-                scope.cancelSending = function() {
+                scope.cancelSending = function () {
                     scope.newMessage.cloudinaryPublicId = '';
                 };
 

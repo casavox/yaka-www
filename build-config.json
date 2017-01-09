@@ -79,7 +79,11 @@
             "modules/template/**/*.js",
             "modules/core/module.js",
             "modules/**/*.js",
-            "scripts/**/*.js"
+            "scripts/angular-locale_fr-fr.js",
+            "scripts/cordova.js",
+            "scripts/cordova_plugins.js",
+            "scripts/lib/ionic/js/ionic.bundle.js",
+            "scripts/plugins/**/*.js"
         ],
         "css": [
             "bower_components/lightgallery/light-gallery/css/lightGallery.css",

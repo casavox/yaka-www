@@ -1,33 +1,52 @@
-angular.module('Yaka', [
-        'ngRoute',
-        'ui.router',
-        'materialAdmin',
-        'ngStorage',
-        'pascalprecht.translate',
-        'ap.lateralSlideMenu',
-        'vsGoogleAutocomplete',
-        'cloudinary',
-        'ui.bootstrap',
-        'ngFileUpload',
-        'satellizer',
-        'uiGmapgoogle-maps',
-        'angular-carousel',
-        'monospaced.elastic',
-        'smoothScroll',
-        'angularMoment',
-        'ngStomp',
-        'luegg.directives',
-        'angularjs-dropdown-multiselect',
-        'angularTypewrite',
-        'ngCookies',
-        'angulartics',
-        'angulartics.google.analytics',
-        'bootstrapLightbox',
-        'ngMessages',
-        'vcRecaptcha',
-        'matchMedia'
-    ]
+var dependencies = [
+    'ngRoute',
+    'ui.router',
+    'materialAdmin',
+    'ngStorage',
+    'pascalprecht.translate',
+    'ap.lateralSlideMenu',
+    'vsGoogleAutocomplete',
+    'cloudinary',
+    'ui.bootstrap',
+    'ngFileUpload',
+    'satellizer',
+    'uiGmapgoogle-maps',
+    'angular-carousel',
+    'monospaced.elastic',
+    'smoothScroll',
+    'angularMoment',
+    'ngStomp',
+    'luegg.directives',
+    'angularjs-dropdown-multiselect',
+    'angularTypewrite',
+    'ngCookies',
+    'angulartics',
+    'angulartics.google.analytics',
+    'bootstrapLightbox',
+    'ngMessages',
+    'vcRecaptcha',
+    'matchMedia'
+];
+
+var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+if (isMobile) {
+    dependencies.push('ionic');
+}
+
+angular.module('Yaka', dependencies
 );
+
+if (isMobile) {
+    angular.module('Yaka').run(function ($ionicPlatform) {
+        $ionicPlatform.ready(function () {
+            // Anything native should go here, like StatusBar.styleLightContent()
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
+        });
+    });
+}
 
 (function () {
     'use strict';
