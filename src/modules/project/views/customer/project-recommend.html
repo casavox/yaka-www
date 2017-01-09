@@ -529,7 +529,7 @@
                             </div>
 
 
-                            <div class="col-xs-12 no-padding form-group fg-float m-b-30">
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-20">
                                 <div class="fg-line">
                                     <input type="text" name="phoneNumber"
                                            class="form-control fg-input"
@@ -540,6 +540,18 @@
                                     <small class="help-block" data-ng-message="invalidPhone">
                                         Ce numéro de téléphone n'est pas valide
                                     </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30">
+                                <div class="fg-line">
+                                    <textarea class="form-control fg-input"
+                                              data-auto-size=""
+                                              placeholder=""
+                                              data-autosize-on="true"
+                                              data-ng-model="vm.invitPro.message"
+                                              style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                                    <label class="fg-label">Rédigez votre message ici (facultatif)</label>
                                 </div>
                             </div>
 
@@ -647,7 +659,7 @@
                               data-auto-size=""
                               placeholder="Rédigez votre message ici (facultatif)"
                               data-autosize-on="true"
-                              data-ng-model="vm.invitProMessage"
+                              data-ng-model="vm.invitPro.message"
                               style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
                 </div>
             </div>
