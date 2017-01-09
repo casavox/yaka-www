@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AdminProDetailsController', AdminProDetailsController);
 
-    function AdminProDetailsController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $stateParams, screenSize, $auth, $localStorage, $timeout, $filter) {
+    function AdminProDetailsController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, $stateParams, screenSize, $auth, $localStorage, $timeout, $filter, ngTableParams) {
 
         if ($localStorage.user && !$localStorage.user.isAdmin) {
             $state.go("home");
@@ -388,7 +388,54 @@
             networkService.adminPartnerListGET(succesPartnerListGET, errorProfileGET, ignoreLoading);
         };
 
+        vm.getCompatiblesProjects = function (ignoreLoading) {
+            if ($stateParams.professionnalId) {
+                networkService.adminProCompatibleProjectsGET($stateParams.professionnalId, successCompatiblesProjectsGET, errorCompatiblesProjectsGET, ignoreLoading);
+            }
+        };
+
+        function successCompatiblesProjectsGET (res) {
+            vm.compatiblesProjectsList = res;
+
+            angular.forEach(vm.compatiblesProjectsList, function (project) {
+                project.user.name = project.user.firstName + " " + project.user.lastName;
+
+                project.place = project.address.postalCode + " " + project.address.locality;
+
+                project.distance = (project.distance / 1000).toFixed(2);
+                project.numberDistance = Number(project.distance);
+                project.status = $filter('casaProfessionalStatus')(project.status);
+
+            });
+            vm.tableData = [];
+
+            CompatibleProjectSorting();
+        }
+
+        function CompatibleProjectSorting() {
+            $scope.projectTable = new ngTableParams({
+                page: 1,
+                count: 99999999,
+                sorting: {numberDistance: "asc"}
+            }, {
+                total: vm.compatiblesProjectsList.length,
+                counts: [],
+                getData: function ($defer, params) {
+                    vm.tableData = vm.compatiblesProjectsList;
+                    vm.tableData = params.sorting() ? $filter('orderBy')(vm.tableData, params.orderBy()) : vm.tableData;
+                    vm.tableData = params.filter() ? $filter('filter')(vm.tableData, params.filter()) : vm.tableData;
+                    vm.tableData = vm.tableData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(vm.tableData);
+                }
+            });
+        }
+
+        function errorCompatiblesProjectsGET() {
+            alertMsg.send("Impossible de récupérer la liste des projets compatibles avec le professionnel", "danger");
+        }
+
         vm.getProDetails(false);
+        vm.getCompatiblesProjects(false);
 
         networkService.skillsGET(function (res) {
             vm.cat = res;

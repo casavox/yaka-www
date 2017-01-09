@@ -369,6 +369,9 @@
             adminProDetailsGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/pro/' + id, ignoreLoading).success(success).error(error)
             },
+            adminProCompatibleProjectsGET: function (id, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/admin/pro/' + id + '/leads', ignoreLoading).success(success).error(error)
+            },
             adminValidateProPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/admin/pro/validate', data, ignoreLoading).success(success).error(error)
             },
