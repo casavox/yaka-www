@@ -61,7 +61,8 @@
             name: "",
             phone: "",
             activities: [],
-            postalCode: ""
+            postalCode: "",
+            message: ""
         };
 
         vm.autocomplete = {
@@ -151,7 +152,8 @@
                             name: "",
                             phone: "",
                             activities: [],
-                            postalCode: ""
+                            postalCode: "",
+                            message: ""
                         };
                         vm.phoneNumber = "";
                         vm.multiChoiceInput.selected = [];
