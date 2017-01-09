@@ -1,3 +1,9 @@
+.proRecommendButton {
+    float: right;
+    background-color: #03a9f4;
+    color: white;
+}
+
 .p-l-56 {
     padding-left: 56px !important;
 }
@@ -449,6 +455,17 @@
 }
 
 @media (max-width: 767px) {
+    .proRecommendButton {
+        float: none;
+        white-space: normal;
+        background-color: white;
+        color: #03a9f4;
+    }
+
+    .proRecommendButton:hover {
+        color: #03a9f4;
+    }
+
     .map-findjob-communities .job-community-tag div {
         max-width: 100px;
     }

@@ -254,28 +254,39 @@
 
                         <div class="proSelectedPartner"
                              data-ng-if="!vm.selectedProfessional.mainPartner.cloudinaryPublicId">
-
                             <cl-image
                                 public-id="{{vm.selectedProfessional.mainPartner.cloudinaryPublicId}}" format="png">
                                 <cl-transformation height="40" width="40" crop="fill" radius="max"/>
                             </cl-image>
+                        </div>
 
+                        <div class="visible-xs m-t-25">
+                            <button class="btn bgm-lightblue btn-block w-s-normal waves-effect"
+                                    data-ng-click="vm.inviteBySms('PRO')">
+                                Envoyer la recommandation au Pro par SMS
+                            </button>
+                            <h4 class="t-center m-t-25 m-b-5">- OU -</h4>
                         </div>
 
                         <div class="form-group m-t-25">
                             <div class="fg-line">
-                                <textarea class="form-control" data-ng-model="vm.recommendMsg.text" data-auto-size=""
+                                <textarea class="form-control hidden-xs" data-ng-model="vm.recommendMsg.text"
+                                          data-auto-size=""
                                           placeholder="Envoyer un message privé AU CLIENT {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
+                                          data-autosize-on="true"></textarea>
+                                <textarea class="form-control visible-xs" data-ng-model="vm.recommendMsg.text"
+                                          data-auto-size=""
+                                          placeholder="Envoyer également un email AU CLIENT {{vm.project.user.firstName}} {{vm.project.user.lastName}} (le Pro ne le verra pas)"
                                           data-autosize-on="true"></textarea>
                             </div>
                             <small class="hidden-xs col-xs-12 p-0 m-b-5">
                                 Accédez à casavox.com depuis votre téléphone pour recommander par SMS
                             </small>
                         </div>
-
-                        <button class="btn bgm-lightblue waves-effect proRecommendButton f-right"
+                        <button class="btn waves-effect proRecommendButton"
                                 data-ng-click="vm.recommendPro(vm.selectedProfessional.id)">
-                            Lui recommander ce chantier
+                            <span class="hidden-xs">Lui recommander ce chantier</span>
+                            <span class="visible-xs">Envoyer la recommandation au Pro par Email</span>
                         </button>
                     </div>
 
@@ -508,9 +519,13 @@
                                         Code postal</label>
                                 </div>
                                 <small class="c-red"
-                                       data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                                       data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est
+                                    requis
+                                </small>
                                 <small class="c-red"
-                                       data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
+                                       data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">
+                                    Le code postal doit comporter 5 nombres
+                                </small>
                             </div>
 
 
@@ -593,11 +608,14 @@
                            data-ng-maxlength="5"
                            maxlength="5"
                            placeholder="Entrez le code postal du professionnel"
-                           id="address"only-digits>
+                           id="address" only-digits>
                     <small class="c-red"
-                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis</small>
+                           data-ng-if="vm.formProRecoInvitError && !vm.invitPro.postalCode">Ce champs est requis
+                    </small>
                     <small class="c-red"
-                           data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
+                           data-ng-if="vm.formProRecoInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">
+                        Le code postal doit comporter 5 nombres
+                    </small>
                 </div>
             </div>
 
