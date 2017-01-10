@@ -19,6 +19,25 @@
 
         $rootScope.pageName = "";
 
+        if (!$localStorage.user || ($localStorage.user && !$localStorage.user.isAdmin)) {
+            console.log("user or not but not admin");
+            if (document.location.hostname.search("casavox.com") !== -1) {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-84157460-1', 'auto');
+            }
+        }
+
         app.getPageName = function () {
             if (!$rootScope.pageName) {
                 return "CasaVox : Trouvez vos artisans en toute confiance";
