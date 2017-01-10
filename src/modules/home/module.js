@@ -20,12 +20,12 @@
 
             //Customer
 
-            .state('home', {
+            /*$.state('home', {
                 url: "/?invitationId&login&email&register",
                 templateUrl: "modules/home/views/customer/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
-            })
+            })*/
 
             //Pro
 
