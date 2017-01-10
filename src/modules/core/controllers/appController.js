@@ -20,7 +20,6 @@
         $rootScope.pageName = "";
 
         if (!$localStorage.user || ($localStorage.user && !$localStorage.user.isAdmin)) {
-            console.log("user or not but not admin");
             if (document.location.hostname.search("casavox.com") !== -1) {
                 (function (i, s, o, g, r, a, m) {
                     i['GoogleAnalyticsObject'] = r;
