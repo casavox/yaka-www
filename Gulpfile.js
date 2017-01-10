@@ -105,12 +105,14 @@ gulp.task("copy-js", function () {
                 standalone: false
             }))
     ).pipe(gulp.dest("dist"))
+        .pipe(gulp.dest("ionic/www"))
         .pipe(connect.reload());
 });
 
 gulp.task("copy-views", [], function () {
     return gulp.src("modules/**/*.html", {cwd: "src", base: "src"})
         .pipe(gulp.dest("dist"))
+        .pipe(gulp.dest("ionic/www"))
         .pipe(connect.reload());
 });
 
