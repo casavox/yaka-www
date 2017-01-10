@@ -217,8 +217,8 @@ var getCleanedCssSources = function () {
         .pipe(flatten())
         .pipe(gulpif(argv.production, rev()))
         .pipe(gulpif(argv.production, rmOrig()))
-        .pipe(gulp.dest("dist"))
         .pipe(gulp.dest("ionic/www"))
+        .pipe(gulp.dest("dist"))
 };
 
 gulp.task("css", function () {
