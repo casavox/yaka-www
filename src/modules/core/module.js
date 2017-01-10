@@ -25,7 +25,8 @@ var dependencies = [
     'bootstrapLightbox',
     'ngMessages',
     'vcRecaptcha',
-    'matchMedia'
+    'matchMedia',
+    'ionic'
 ];
 
 var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));

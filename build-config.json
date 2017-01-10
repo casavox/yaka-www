@@ -18,7 +18,16 @@
             "bower_components/outlayer/outlayer.js",
             "bower_components/masonry/masonry.js",
             "bower_components/imagesloaded/imagesloaded.js",
-            "bower_components/angular/angular.js",
+
+            "scripts/cordova.js",
+            "scripts/cordova_plugins.js",
+            "scripts/lib/ionic/js/ionic.bundle.js",
+            "scripts/plugins/cordova-plugin-device/www/device.js",
+            "scripts/plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "scripts/plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "scripts/plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+
+
             "bower_components/ng-stomp/src/ng-stomp.js",
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
             "bower_components/angular-scroll-glue/src/scrollglue.js",
@@ -79,11 +88,7 @@
             "modules/template/**/*.js",
             "modules/core/module.js",
             "modules/**/*.js",
-            "scripts/angular-locale_fr-fr.js",
-            "scripts/cordova.js",
-            "scripts/cordova_plugins.js",
-            "scripts/lib/ionic/js/ionic.bundle.js",
-            "scripts/plugins/**/*.js"
+            "scripts/angular-locale_fr-fr.js"
         ],
         "css": [
             "bower_components/lightgallery/light-gallery/css/lightGallery.css",
@@ -114,7 +119,8 @@
             "modules/proposal/styles/proposal.css",
             "modules/help/styles/help.css",
             "modules/dashboard/styles/dashboard.css",
-            "modules/admin/styles/admin.css"
+            "modules/admin/styles/admin.css",
+            "scripts/lib/ionic/css/ionic.css"
         ],
         "scss": [],
         "assets": [
