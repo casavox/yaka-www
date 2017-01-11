@@ -19,13 +19,9 @@
             "bower_components/masonry/masonry.js",
             "bower_components/imagesloaded/imagesloaded.js",
 
-            "scripts/cordova.js",
-            "scripts/cordova_plugins.js",
-            "scripts/lib/ionic/js/ionic.bundle.js",
-            "scripts/plugins/cordova-plugin-device/www/device.js",
-            "scripts/plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-            "scripts/plugins/cordova-plugin-statusbar/www/statusbar.js",
-            "scripts/plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+
+            "ionic/cordova.js",
+            "ionic/lib/ionic/js/ionic.bundle.js",
 
 
             "bower_components/ng-stomp/src/ng-stomp.js",
@@ -128,6 +124,8 @@
             "icons/**/*",
             "fonts/**/*",
             "favicon/**/*",
+            "ionic/plugins/**/*",
+            "ionic/cordova_plugins.js",
             "android-chrome-192x192.png",
             "android-chrome-512x512.png",
             "apple-touch-icon.png",

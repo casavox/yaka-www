@@ -29,25 +29,42 @@ var dependencies = [
     'ionic'
 ];
 
-var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
-if (isMobile) {
-    dependencies.push('ionic');
-}
+//var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+//if (isMobile) {
+//    dependencies.push('ionic');
+//}
 
 angular.module('Yaka', dependencies
 );
 
-if (isMobile) {
-    angular.module('Yaka').run(function ($ionicPlatform) {
-        $ionicPlatform.ready(function () {
-            // Anything native should go here, like StatusBar.styleLightContent()
-            if (window.StatusBar) {
-                // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
-            }
-        });
+//if (isMobile) {
+angular.module('Yaka').run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
+
+        console.log('READYYYYYYY');
+
+        // Anything native should go here, like StatusBar.styleLightContent()
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+
+        if (window.FCMPlugin) {
+            // org.apache.cordova.statusbar required
+            FCMPlugin.getToken(
+                function (token) {
+                    alert(token);
+                },
+                function (err) {
+                    console.log('error retrieving token: ' + err);
+                }
+            )
+        } else {
+            console.log("window.FCMPlugin not found");
+        }
     });
-}
+});
+//}
 
 (function () {
     'use strict';
