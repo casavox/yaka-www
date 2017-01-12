@@ -1,0 +1,33 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.casavox.app"
+        }
+    },
+    "dependent_plugins": {}
+}

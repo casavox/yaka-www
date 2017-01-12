@@ -57,7 +57,7 @@ gulp.task("clean", function (cb) {
 });
 
 gulp.task("clean-ionic", function (cb) {
-    rimraf("ionic/www", cb);
+    rimraf("src/ionic/www", cb);
 });
 
 gulp.task("compile-js", function () {
@@ -105,14 +105,14 @@ gulp.task("copy-js", function () {
                 standalone: false
             }))
     ).pipe(gulp.dest("dist"))
-        .pipe(gulp.dest("ionic/www"))
+        .pipe(gulp.dest("src/ionic/www"))
         .pipe(connect.reload());
 });
 
 gulp.task("copy-views", [], function () {
     return gulp.src("modules/**/*.html", {cwd: "src", base: "src"})
         .pipe(gulp.dest("dist"))
-        .pipe(gulp.dest("ionic/www"))
+        .pipe(gulp.dest("src/ionic/www"))
         .pipe(connect.reload());
 });
 
@@ -168,7 +168,7 @@ gulp.task("inject-prod", ["compile-js"], function () {
 });
 
 gulp.task("copy-to-ionic", function () {
-    gulp.src(['dist/**/*']).pipe(gulp.dest('ionic/www'));
+    gulp.src(['dist/**/*']).pipe(gulp.dest('src/ionic/www'));
 });
 
 var rmOrig = function () {
@@ -217,7 +217,7 @@ var getCleanedCssSources = function () {
         .pipe(flatten())
         .pipe(gulpif(argv.production, rev()))
         .pipe(gulpif(argv.production, rmOrig()))
-        .pipe(gulp.dest("ionic/www"))
+        .pipe(gulp.dest("src/ionic/www"))
         .pipe(gulp.dest("dist"))
 };
 
@@ -321,7 +321,7 @@ gulp.task("create-service", function (cb) {
 });
 
 gulp.task('run-android', ["build"], function (cb) {
-    exec('cd ionic && ionic run android', function (err, stdout, stderr) {
+    exec('cd src/ionic && ionic run android', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
