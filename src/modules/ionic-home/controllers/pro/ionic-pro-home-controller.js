@@ -7,7 +7,7 @@
 
     //
     //Controller login
-    function IonicProHomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize, $ionicModal) {
+    function IonicProHomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize, $ionicModal, $ionicPopup, $timeout) {
 
         var vm = this;
 
@@ -324,13 +324,38 @@
                     delete window.yakaRedirectUrl;
                 } else {
                     if ($localStorage.user && $localStorage.user.professional) {
+                        vm.login.hide();
                         $state.go('pro-dashboard');
                     } else {
-                        $state.go('dashboard');
+                        $localStorage.$reset();
+                        vm.notProUser();
                     }
                 }
             }
         }
+
+        vm.notProUser = function() {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Vous n\'êtes pas un professionnel',
+                template: 'Souhaitez-vous télécharger l\'application CasaVox dédiée aux particuliers ?',
+                cssClass: 'popupBadUser',
+                buttons: [{
+                    text: 'ANNULER',
+                    type: 'button-default',
+                    onTap: function(e) {
+                        console.log("annulé");
+                    }
+                }, {
+                    text: 'OUI',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        // TODO ajouter lien de téléchargement vers store ios/Android
+                        console.log('Télécharger');
+                    }
+                }]
+            });
+
+        };
 
         function errorLogin(err) {
             if (err.error != undefined && err.error != "ERROR") {

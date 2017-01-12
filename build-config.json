@@ -117,7 +117,7 @@
             "modules/dashboard/styles/dashboard.css",
             "modules/admin/styles/admin.css",
             "modules/ionic-home/styles/ionic-home.css",
-            "src/ionic/lib/ionic/css/ionic.css"
+            "ionic/lib/ionic/css/ionic.css"
         ],
         "scss": [],
         "assets": [
