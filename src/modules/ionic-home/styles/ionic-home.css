@@ -13,9 +13,13 @@
     padding-right: 40px !important;
 }
 
+.m-b-40 {
+    margin-bottom: 40px !important;
+}
+
 .box {
-    height: 53vh;
-    padding-top: 4vh !important;
+    height: auto !important;
+    padding-top: 0vh !important;
 }
 
 .slider-pager {

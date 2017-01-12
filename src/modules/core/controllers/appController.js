@@ -180,8 +180,12 @@
         };
 
         app.logout = function () {
+            if ($localStorage.user && $localStorage.user.professional) {
+                $state.go('ionic-pro-home');
+            } else {
+                $state.go('ionic-customer-home');
+            }
             $localStorage.$reset();
-            $state.go('home');
         };
 
         app.isPro = function () {
