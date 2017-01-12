@@ -229,11 +229,11 @@ gulp.task("css", function () {
 gulp.task("serve", ["build"], function () {
 
     if (!argv.production) {
-        var watchTranslate = gulp.watch(["src/i18n/**/*.json"], {interval: 500}, ["inject-dev"]);
-        var watchJS = gulp.watch(["src/**/*.js"], {interval: 500}, ["copy-js"]);
-        var watchViews = gulp.watch("src/**/*.html", {interval: 500}, ["copy-views"]);
-        var watchAssets = gulp.watch("src/assets/**/*.*", {interval: 500}, ["copy-assets"]);
-        var watchCSS = gulp.watch(["src/**/*.scss", "src/**/*.css"], {interval: 500}, ["css"]);
+        var watchTranslate = gulp.watch(["src/i18n/**/*.json", "!src/ionic/**/*.*"], {interval: 500}, ["inject-dev"]);
+        var watchJS = gulp.watch(["src/**/*.js", "!src/ionic/**/*.*"], {interval: 500}, ["copy-js"]);
+        var watchViews = gulp.watch(["src/**/*.html", "!src/ionic/**/*.*"], {interval: 500}, ["copy-views"]);
+        var watchAssets = gulp.watch(["src/assets/**/*.*", "!src/ionic/**/*.*"], {interval: 500}, ["copy-assets"]);
+        var watchCSS = gulp.watch(["src/**/*.scss", "src/**/*.css", "!src/ionic/**/*.*"], {interval: 500}, ["css"]);
 
         watchTranslate.on("change", function (evt) {
             console.log("JSON File " + evt.path + " was " + evt.type);
