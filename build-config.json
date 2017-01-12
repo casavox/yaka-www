@@ -116,7 +116,7 @@
             "modules/help/styles/help.css",
             "modules/dashboard/styles/dashboard.css",
             "modules/admin/styles/admin.css",
-            "scripts/lib/ionic/css/ionic.css"
+            "src/ionic/lib/ionic/css/ionic.css"
         ],
         "scss": [],
         "assets": [
