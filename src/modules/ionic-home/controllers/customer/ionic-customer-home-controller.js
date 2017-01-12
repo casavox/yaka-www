@@ -7,11 +7,36 @@
 
     //
     //Controller login
-    function IonicHomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize) {
+    function IonicHomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize, $ionicModal) {
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
         }
+
+        $ionicModal.fromTemplateUrl('login-popup.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            vm.login = modal;
+        });
+        $ionicModal.fromTemplateUrl('forgotten-password.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            vm.forgottenPassword = modal;
+        });
+        $scope.openLoginModal = function() {
+            vm.login.show();
+        };
+        $scope.closeLoginModal = function() {
+            vm.login.hide();
+        };
+        $scope.openForgottenPasswordModal = function() {
+            vm.forgottenPassword.show();
+        };
+        $scope.closeForgottenPasswordModal = function() {
+            vm.forgottenPassword.hide();
+        };
 
         var vm = this;
 
@@ -276,7 +301,7 @@
             email: ""
         };
 
-        vm.forgottenPassword = function () {
+        vm.reinitializePassword = function () {
             if (vm.forgottenPasswordUser.email) {
                 networkService.passwordForgottenPOST(vm.forgottenPasswordUser, successPasswordForgotten, failPasswordForgotten, true);
             } else {
@@ -300,118 +325,7 @@
          alertMsg.send("Impossible de récupérer les projets", "danger");
          });
          */
-        $(function () {
-            $('.chart').easyPieChart({
-                scaleColor: false,
-                lineWidth: 5,
-                lineCap: 'square',
-                barColor: '#FFFFFF',
-                trackColor: '#ededed',
-                size: 100,
-                animate: 500
-            });
 
-            function showPieCharts() {
-                if ($('.chart1').data('easyPieChart')) {
-                    $('.chart1').data('easyPieChart').update(25);
-                }
-                setTimeout(function () {
-                    if ($('.chart2').data('easyPieChart')) {
-                        $('.chart2').data('easyPieChart').update(50);
-                    }
-                }, 500);
-                setTimeout(function () {
-                    if ($('.chart3').data('easyPieChart')) {
-                        $('.chart3').data('easyPieChart').update(75);
-                    }
-                }, 1000);
-                setTimeout(function () {
-                    if ($('.chart4').data('easyPieChart')) {
-                        $('.chart4').data('easyPieChart').update(100);
-                    }
-                }, 1500);
-            }
-
-            $.fn.isOnScreen = function () {
-                var win = $(window);
-                var viewport = {
-                    top: win.scrollTop(),
-                    left: win.scrollLeft()
-                };
-                viewport.right = viewport.left + win.width();
-                viewport.bottom = viewport.top + win.height();
-                var bounds = this.offset();
-                bounds.right = bounds.left + this.outerWidth();
-                bounds.bottom = bounds.top + this.outerHeight();
-                return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
-            };
-
-            var pieChartsShown = false;
-            var pieChartsShown1 = false;
-            var pieChartsShown2 = false;
-            var pieChartsShown3 = false;
-            var pieChartsShown4 = false;
-
-
-            $scope.$watch(function () {
-                return document.readyState
-            }, function (newValue, oldValue) {
-                if (newValue == "complete") {
-                    animateCircles();
-                }
-            });
-
-
-            function animateCircles() {
-
-                if (!screenSize.is('xs')) { //Desktop
-                    $scope.$watch(function () {
-                        return $('.chart1 div').isOnScreen();
-                    }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown) {
-                            pieChartsShown = true;
-                            showPieCharts();
-                        }
-                    });
-                } else {  //Mobile
-                    $scope.$watch(function () {
-                        return $('.chart1 div').isOnScreen();
-                    }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown1) {
-                            pieChartsShown1 = true;
-                            $('.chart1').data('easyPieChart').update(25);
-                        }
-                    });
-
-                    $scope.$watch(function () {
-                        return $('.chart2 div').isOnScreen();
-                    }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown2) {
-                            pieChartsShown2 = true;
-                            $('.chart2').data('easyPieChart').update(50);
-                        }
-                    });
-
-                    $scope.$watch(function () {
-                        return $('.chart3 div').isOnScreen();
-                    }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown3) {
-                            pieChartsShown3 = true;
-                            $('.chart3').data('easyPieChart').update(75);
-                        }
-                    });
-                    $scope.$watch(function () {
-                        return $('.chart4 div').isOnScreen();
-                    }, function (newValue, oldValue) {
-                        if (newValue && !pieChartsShown4) {
-                            pieChartsShown4 = true;
-                            $('.chart4').data('easyPieChart').update(100);
-                        }
-                    });
-                }
-            }
-
-        });
 
         $scope.getLocation = function (val) {
             if (val.length == 5) {

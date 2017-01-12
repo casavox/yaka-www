@@ -7,6 +7,13 @@
 
     function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG) {
 
+        console.log(screen.height);
+
+        if(screen.height >= 640) {
+            // Change viewport for smaller devices
+            $('meta[name=viewport]').attr('content','width=device-width, initial-scale=1');
+        }
+
         var app = this;
         var vm = this;
         $rootScope.rate_watcher = true;
