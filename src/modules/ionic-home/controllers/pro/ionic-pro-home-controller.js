@@ -74,7 +74,6 @@
             lastName: "",
             facebookId: "",
             referral: "",
-            recaptchaResponse: "",
             avatar: {
                 cloudinaryPublicId: ""
             }
