@@ -101,6 +101,8 @@ if (isMobile) {
                         return 'local';
                 }
             }()),
+            'FRONT_ENV': "FRONT_ENV_DESKTOP",
+            'AIM' : '',
             'GOOGLE_CLIENT_ID': '554065486693-44tmlohldpk2105ki1g22q4o3cncj59b.apps.googleusercontent.com',
             'GOOGLE_API_KEY': 'AIzaSyDtq1oFK_ku6rSm9OHM8Q0MlHeOYzOWgr8',
             'FACEBOOK_CLIENT_ID': (function () {
