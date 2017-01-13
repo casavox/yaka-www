@@ -173,9 +173,7 @@
             return !(vm.loginUser.email == '' || vm.loginUser.password == '');
         };
 
-        vm.login = function () {
-
-
+        vm.userLogin = function () {
             if (vm.loginFormIsValid()) {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
             } else {
@@ -197,8 +195,10 @@
                         $state.go("project-recommend", {projectId: window.recoProjectId});
                     } else {
                         if ($localStorage.user && $localStorage.user.professional) {
-                            $state.go('pro-dashboard');
+                            $localStorage.$reset();
+                            vm.notProUser();
                         } else {
+                            vm.login.hide();
                             $state.go('dashboard');
                         }
                     }
