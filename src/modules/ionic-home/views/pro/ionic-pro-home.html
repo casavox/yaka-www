@@ -374,7 +374,9 @@
                                 <div class="col-xs-12 no-padding select m-b-15">
                                     <select class="form-control select-pro-register"
                                             data-ng-model="vm.newUser.referral">
-                                        <option value="" disabled="disabled">Comment nous avez-vous connu ? (facultatif)</option>
+                                        <option value="" disabled="disabled">Comment nous avez-vous connu ?
+                                            (facultatif)
+                                        </option>
                                         <option value="REFERRAL_SEARCH">Recherche internet</option>
                                         <option value="REFERRAL_FRIEND">Par connaissance</option>
                                         <option value="REFERRAL_SOCIAL">Réseaux sociaux</option>
@@ -400,21 +402,6 @@
 
                             </div>
                             <div>
-                    <span class="col-xs-12 subtitle-color-forced m-l-0"
-                          data-ng-class="{'c-red' : vm.formRegisterError && !vm.newUser.recaptchaResponse}">Cochez la case ci-dessous</span>
-                                <div
-                                    vc-recaptcha
-                                    data-ng-model="vm.newUser.recaptchaResponse"
-                                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                    class="hidden-xs col-xs-12 m-t-0"
-                                ></div>
-                                <div
-                                    vc-recaptcha
-                                    data-ng-model="vm.newUser.recaptchaResponse"
-                                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                    class="visible-xs col-xs-12 m-t-0"
-                                    style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
-                                ></div>
                                 <button
                                     class="col-xs-12 proHomeSection2Button btn btn-lg bgm-orange m-b-15 waves-effect"
                                     data-ng-click="vm.registerUser()">

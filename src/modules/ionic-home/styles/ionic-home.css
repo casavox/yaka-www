@@ -1,3 +1,13 @@
+@media (min-width: 680px) {
+    .modal {
+        top: 0px !important;
+        right: 0px !important;
+        bottom: 0px !important;
+        left: 0px !important;
+        width: 100% !important;
+    }
+}
+
 
 .ionic-background {
     width: 100%;

@@ -2,6 +2,7 @@
 <html ng-app="Yaka" ng-controller="AppController as app">
 <html lang="fr" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title ng-bind="app.getPageName()">Les meilleurs Pros du bâtiment autour de vous !</title>
@@ -44,6 +45,15 @@
 
     <base href="/">
 
+    <!-- ionic/angularjs js -->
+    <script src="ionic/lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- inject:js -->
+    <!-- endinject -->
+
 </head>
 
 <body class="sw-toggled">
@@ -66,9 +76,6 @@
 
 <script src="https://apis.google.com/js/client.js"></script>
 
-
-<!-- inject:js -->
-<!-- endinject -->
 
 <script>
     _.contains = _.includes;

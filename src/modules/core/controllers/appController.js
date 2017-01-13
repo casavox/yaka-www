@@ -9,6 +9,11 @@
 
         console.log(screen.height);
 
+        var deviceInformation = ionic.Platform.platform();
+
+
+        console.log(deviceInformation);
+
         if(screen.height >= 640) {
             // Change viewport for smaller devices
             $('meta[name=viewport]').attr('content','width=device-width, initial-scale=1');

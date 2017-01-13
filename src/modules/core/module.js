@@ -25,46 +25,42 @@ var dependencies = [
     'bootstrapLightbox',
     'ngMessages',
     'vcRecaptcha',
-    'matchMedia',
-    'ionic'
+    'matchMedia'
 ];
 
-//var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
-//if (isMobile) {
-//    dependencies.push('ionic');
-//}
+var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+if (isMobile) {
+    dependencies.push('ionic');
+}
 
-angular.module('Yaka', dependencies
-);
+angular.module('Yaka', dependencies);
 
-//if (isMobile) {
-angular.module('Yaka').run(function ($ionicPlatform) {
-    $ionicPlatform.ready(function () {
+if (isMobile) {
+    angular.module('Yaka').run(function ($ionicPlatform) {
 
-        console.log('READYYYYYYY');
+        $ionicPlatform.ready(function () {
 
-        // Anything native should go here, like StatusBar.styleLightContent()
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
+            // Anything native should go here, like StatusBar.styleLightContent()
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+                navigator.splashscreen.hide();
+            }
 
-        if (window.FCMPlugin) {
-            // org.apache.cordova.statusbar required
-            FCMPlugin.getToken(
-                function (token) {
-                    alert(token);
-                },
-                function (err) {
-                    console.log('error retrieving token: ' + err);
-                }
-            )
-        } else {
-            console.log("window.FCMPlugin not found");
-        }
+            if (window.FCMPlugin) {
+                // org.apache.cordova.statusbar required
+                FCMPlugin.getToken(
+                    function (token) {
+                        alert(token);
+                    },
+                    function (err) {
+                        console.log('error retrieving token: ' + err);
+                    }
+                )
+            }
+        });
     });
-});
-//}
+}
 
 (function () {
     'use strict';
