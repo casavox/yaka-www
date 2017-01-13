@@ -5121,6 +5121,10 @@ div.recaptcha.mobile > div {
     padding-left: 25px !important;
 }
 
+.p-l-60 {
+    padding-left: 60px !important;
+}
+
 .no-padding-right {
     padding-right: 0 !important;
 }

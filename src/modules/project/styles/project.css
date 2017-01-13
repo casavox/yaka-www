@@ -17,6 +17,7 @@
     text-align: left;
 }
 
+
 @media (min-width: 1200px) {
     .proposal-project-pm-body {
          padding-left: 300px !important;
