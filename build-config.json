@@ -18,12 +18,6 @@
             "bower_components/outlayer/outlayer.js",
             "bower_components/masonry/masonry.js",
             "bower_components/imagesloaded/imagesloaded.js",
-
-
-            "ionic/cordova.js",
-            "ionic/lib/ionic/js/ionic.bundle.js",
-
-
             "bower_components/ng-stomp/src/ng-stomp.js",
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
             "bower_components/angular-scroll-glue/src/scrollglue.js",
@@ -116,7 +110,7 @@
             "modules/help/styles/help.css",
             "modules/dashboard/styles/dashboard.css",
             "modules/admin/styles/admin.css",
-            "src/ionic/lib/ionic/css/ionic.css"
+            "ionic/lib/ionic/css/ionic.css"
         ],
         "scss": [],
         "assets": [
@@ -124,8 +118,7 @@
             "icons/**/*",
             "fonts/**/*",
             "favicon/**/*",
-            "ionic/plugins/**/*",
-            "ionic/cordova_plugins.js",
+            "ionic/lib/ionic/js/ionic.bundle.js",
             "android-chrome-192x192.png",
             "android-chrome-512x512.png",
             "apple-touch-icon.png",
