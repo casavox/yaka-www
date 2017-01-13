@@ -3,7 +3,6 @@
     "dist": "dist",
     "dependencies": {
         "js": [
-            "bower_components/jquery/dist/jquery.js",
             "bower_components/lodash/dist/lodash.js",
             "bower_components/intl-tel-input/build/js/intlTelInput.js",
             "bower_components/intl-tel-input/build/js/utils.js",
@@ -120,6 +119,7 @@
             "fonts/**/*",
             "favicon/**/*",
             "ionic/lib/ionic/js/ionic.bundle.js",
+            "bower_components/jquery/dist/jquery.js",
             "android-chrome-192x192.png",
             "android-chrome-512x512.png",
             "apple-touch-icon.png",
