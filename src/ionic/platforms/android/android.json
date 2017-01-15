@@ -31,6 +31,10 @@
                         {
                             "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusbarTransparent\"><param name=\"android-package\" value=\"net.ekuwang.cordova.plugin.statusbar.StatusbarTransparent\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -76,6 +80,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.casavox.app"
+        },
+        "net.ekuwang.cordova.plugin.statusbar": {
+            "PACKAGE_NAME": "com.casavox.app"
         }
     },
     "dependent_plugins": {},
@@ -120,6 +127,14 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "id": "net.ekuwang.cordova.plugin.statusbar.statusbar",
+            "file": "plugins/net.ekuwang.cordova.plugin.statusbar/www/statusbar.js",
+            "pluginId": "net.ekuwang.cordova.plugin.statusbar",
+            "clobbers": [
+                "window.statusbarTransparent"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -129,6 +144,7 @@
         "cordova-plugin-splashscreen": "4.0.1",
         "cordova-plugin-statusbar": "2.2.1",
         "cordova-plugin-whitelist": "1.3.1",
-        "ionic-plugin-keyboard": "2.2.1"
+        "ionic-plugin-keyboard": "2.2.1",
+        "net.ekuwang.cordova.plugin.statusbar": "1.0.0"
     }
 }

@@ -20,6 +20,14 @@ html {
     }
 }
 
+.platform-ios.has-translucent-status-bar .app-header-bar {
+    padding-top: 20px;
+}
+
+.platform-android.has-translucent-status-bar .app-header-bar  {
+    padding-top: 25px;
+}
+
 #loading-bar-spinner {
     display: none !important;
 }

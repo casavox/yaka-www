@@ -7,10 +7,21 @@
 
     function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG) {
 
-        if(screen.height >= 640) {
-            // Change viewport for smaller devices
-            $('meta[name=viewport]').attr('content','width=device-width, initial-scale=1');
-        }
+        document.addEventListener("deviceready", function onDeviceReady(w) {
+            // Should work on Andriod
+            if(StatusBar && statusbarTransparent) {
+                // Enable translucent statusbar
+                statusbarTransparent.enable();
+
+                // Get the bar back
+                StatusBar.show();
+            }
+            // iOS only
+            else if (StatusBar) {
+                // Get the bar back
+                StatusBar.show();
+            }
+        }, false);
 
         var app = this;
         var vm = this;

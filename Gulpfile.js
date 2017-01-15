@@ -322,25 +322,9 @@ gulp.task("create-service", function (cb) {
 });
 
 gulp.task('run-android', ["build"], function (cb) {
-    console.log(argv);
-    if (argv.pro) {
-        gulp.src(['src/ionic/www/modules/core/config/config.js'])
-            .pipe(replace(/'AIM' : ''/g, "'AIM' : 'PRO'"))
-            .pipe(gulp.dest('src/ionic/www/modules/core/config/'));
-        exec('cd src/ionic && ionic run android', function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
-    }
-    if (argv.cust) {
-        gulp.src(['src/ionic/www/modules/core/config/config.js'])
-            .pipe(replace(/'AIM' : ''/g, "'AIM' : 'CUSTOMER'"))
-            .pipe(gulp.dest('src/ionic/www/modules/core/config/'));
-        exec('cd src/ionic && ionic run android', function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
-    }
+    exec('cd src/ionic && ionic run android', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
 });

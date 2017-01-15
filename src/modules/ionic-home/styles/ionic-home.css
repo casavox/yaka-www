@@ -8,6 +8,26 @@
     }
 }
 
+.login-container {
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    height: 100%;
+    background-color: white !important;
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efad62), color-stop(100%,#f7d47c));
+    background: -webkit-linear-gradient(top, #efad62 0%,#f7d47c 100%);*/
+}
+
+.trust-icon-background {
+    background-color: #0a9dc7 !important;
+}
+
+.login-container > .header {
+    -webkit-flex: 2;
+}
+
+.casa-ionic-logo {
+    image-rendering: auto;
+}
 
 .ionic-background {
     width: 100%;
@@ -64,4 +84,21 @@
 
 .popupBadUser {
     text-align: center;
+}
+
+.tabbed-slidebox .tsb-icons:after {
+    display: none !important;
+}
+
+.tabbed-slidebox .slider-slide {
+    background-color: #fff !important;
+}
+
+.tabbed-slidebox .slider {
+    height: auto !important;
+}
+
+.flex-slide {
+    -webkit-box-flex: 3 !important;
+    flex: 3 !important;
 }
