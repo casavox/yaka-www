@@ -27,7 +27,7 @@
                     {"l": " "},
                     {"tags": ["Repeindre une chambre", "Peindre une façade", "Ravalement de façade", "Préparer un mur avant peinture", "Peindre des poutres", "Peindre du lambris", "Peinture crépi, tadelakt, sur carrelage, faïence, ...", "Peinture isolante et anti-humidité", "Peinture extérieure", "Peindre un sol de garage", "..."]},
                     {"b": "Le mieux est de faire appel à un peintre offrant toutes les garanties !"},
-                    {"p": "En effet, pour que vos travaux de peinture soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "En effet, pour que vos travaux de peinture soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des assurances, certifications et qualifications des peintres professionnels, preuves de leur expertise : "},
@@ -62,7 +62,7 @@
                     {"l": " "},
                     {"tags": ["Installation d'une cuisine", "Plan de travail", "Cuisine intégrée", "Cuisine américaine", "Console de cuisine", "Cuisine ouverte", "Crédence de cuisine", "Cuisine équipée", "Cuisine sur mesure", "..."]},
                     {"b": "Le mieux est de faire appel à un cuisiniste offrant toutes les garanties !"},
-                    {"p": "En effet, pour que les travaux dans votre cuisine soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "En effet, pour que les travaux dans votre cuisine soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des cuisinistes professionnels, preuves de leur expertise : "},
@@ -97,7 +97,7 @@
                     {"l": " "},
                     {"tags": ["Installation d'une douche", "Remplacement d'une baignoire", "Installation d'une baignoire balnéo", "Création d'une salle d'eau", "Douche à l'italienne", "Meubles de salle de bains", "Salle de bain ouverte", "Cabine de douche", "..."]},
                     {"b": "Le mieux est de faire appel à un professionnel du bâtiment offrant toutes les garanties !"},
-                    {"p": "Pour que les travaux dans votre salle de bain soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "Pour que les travaux dans votre salle de bain soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des professionnels spécialisés dans les travaux de salle de bain, preuves de leur expertise : "},
@@ -132,7 +132,7 @@
                     {"l": " "},
                     {"tags": ["Remplacer vos fusibles par des disjoncteurs différentiels", "Remplacer un interrupteur simple par un variateur", "Installer un éclairage extérieur", "Installer une prise de terre", "Installer une prise USB encastrée", "Poser un sèche-serviette", "Remettre aux normes son installation électrique", "..."]},
                     {"b": "Attention au bricolage sur votre installation électrique ! Le mieux est de ne pas prendre de risque."},
-                    {"p": "Pour que les travaux soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "Pour que les travaux soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des professionnels de l’électricité (RGE qualifelec®, Les pros de la performance énergétique®, ...) :"},
@@ -168,7 +168,7 @@
                     {"tags": ["Entretien installation d’une chaudière", "Changer un robinet", "Aménagement installation d’une salle de bain", "Poser un sèche-serviette", "Déboucher un évier", "Entretien installation d’un adoucisseur d’eau", "Installer une douche ou baignoire", "Installer un lavabo dans une salle de bain", "Installer des WC suspendus", "..."]},
                     {"b": "Attention au bricolage sur votre installation, le risque de dégât des eaux est grand !"},
                     {"l": "Le mieux est de ne pas prendre de risque !"},
-                    {"l": "En effet, pour que les travaux de plomberie soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"l": "En effet, pour que les travaux de plomberie soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des plombiers professionnels, preuves de l’expertise du plombier : "},
@@ -203,7 +203,7 @@
                     {"l": " "},
                     {"tags": ["Bilan thermique", "Convecteurs", "Chaudière", "Chauffage électrique", "Pompe à chaleur", "Chauffage fioul", "Climatisation réversible", "Chauffage au sol", "VMC", "Chauffage réversible", "..."]},
                     {"b": "Le mieux est de faire appel à un professionnel du bâtiment offrant toutes les garanties !"},
-                    {"p": "En effet, pour que l'entretien et les travaux de chauffage comme ceux de climatisation soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "En effet, pour que l'entretien et les travaux de chauffage comme ceux de climatisation soient de qualité et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des professionnels spécialisés dans les travaux de chauffage et les travaux de climatisation, preuves de leur expertise : "},
@@ -242,7 +242,7 @@
                     {"l": " "},
                     {"tags": ["Bilan thermique", "Porte-fenêtre", "Fenêtre en bois", "Baie-vitrée ", "Lucarnes", "Velux®", "Véranda en kit", "Double vitrage", "Porte fenêtre", "Véranda en alu", "..."]},
                     {"b": "Le mieux est de faire appel à un professionnel du bâtiment offrant toutes les garanties !"},
-                    {"p": "En effet, pour que l'entretien et les travaux de menuiserie soient de qualité, dure dans le temps et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : RGE, Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "En effet, pour que l'entretien et les travaux de menuiserie soient de qualité, dure dans le temps et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : RGE, Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des professionnels spécialisés dans les travaux de menuiserie, preuves de leur expertise : "},
@@ -281,7 +281,7 @@
                     {"l": " "},
                     {"tags": ["Serrure de portail", "Serrure électrique", "Serrure 2 points", "Porte blindée", "Serrure 3 points", "Porte renforcée", "Verrou", "Gâche électrique", "..."]},
                     {"b": "Le mieux est de faire appel à un professionnel offrant toutes les garanties !"},
-                    {"p": "En effet, pour que les travaux de serrurerie soient de qualité, dure dans le temps et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux réalisés : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
+                    {"p": "En effet, pour que les travaux de serrurerie soient de qualité, dure dans le temps et soient couverts par votre assurance, il n'y a qu'une seule solution, établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
                     {"l": "Au-delà des certifications, agréments et qualifications des serruriers spécialisés, preuves de leur sérieux : "},
@@ -310,40 +310,75 @@
             },
             {
                 "urlTitle": "revetement_sol",
-                "title1": "Revetement de sol",
+                "title1": "Revêtement de sol",
                 "imgUrl": "../../../img/works_categories/Sol_carrelage.jpg",
+                "title2": "Intérieur ou extérieur, parquet, dallage, terrasse, papier peint, ... Vous avez des travaux de revêtement ?",
                 "paragraphs": [
-                    {"p": "Que vous ayez besoin d'installer un nouveau plancher dans votre maison ou réparer le carrelage de votre cuisine, Casavox est là pour vous connecter avec les Pros dont vous avez besoin."},
-                    {"p": "Notre réseau national est constitué de professionnels agréés et vérifiés par nos soins mais aussi et surtout recommandés par la communauté Casavox pour la qualité de leurs interventions."},
-                    {"p": "Nos entrepreneurs travaillent avec une grande variété de types de revêtements de sol, que ce soit du sol stratifié, du parquet ou du carrelage. Peu importe que vous ayez besoin de rénover un parquet ou poser un sol en marbre, Casavox peut vous aider à choisir le meilleur professionnel dans votre région."},
-                    {"p": "Vous pouvez échanger très simplement avec chaque artisan susceptible d’intervenir chez vous par l’intermédiaire de notre messagerie privée. Vous pouvez alors choisir en toute confiance le Pro qui correspond le plus à vos attentes."},
-                    {"p": "La plupart de nos Pros offrent des services au-delà de la pose de sol, n’hésitez pas à leur poser vos questions lors de vos échanges."},
-                    {"p": "Notre objectif chez Casavox est de vous aider à trouver le meilleur professionnel proche de chez vous pour vos travaux de sol. Aucun projet n’est trop grand ou trop petit pour nos Pros de confiance."},
-                    {"q": "Vous avez un projet ? Démarrez dès maintenant votre recherche d’artisan."}
+                    {"l": "Quelle que soit l’ampleur des travaux à réaliser, poser une moquette, rénover un parquet, raffraichir un dallage, installer une terrasse, ... Que ce soit pour de petits ou gros travaux sur des revêtements de sols ou des revêtements de murs, ne vous improvisez pas professionnel des travaux, il existe des règles et des bonnes pratiques à suivre pour réaliser des travaux durables et de qualité :"},
+                    {"l": " "},
+                    {"tags": ["carrelage", "Vitrification d'un parquet", "Marbre", "Béton", "Moquette", "Pierres naturelles", "Lino.®", "Chape", "Terrasse", "Pierres reconstituées", "Margelle", "..."]},
+                    {"b": "Le mieux est de faire appel à un professionnel du bâtiment offrant toutes les garanties !"},
+                    {"p": "En effet, pour que l'entretien, la rénovation ou les travaux d'installation de vos revêtements soient de qualité et durent dans le temps, la meilleure solution est d'établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
-                    {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
-                    {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Carrelage", "Faïence", "Parquet", "Moquette", "Sol plastique (PVC)", "Pierre", "Béton", "Enduit"]}
+                    {"l": "Au-delà des certifications, agréments et qualifications des professionnels du bâtiment, preuves de leur sérieux : "},
+                    {"b": "- Comment faire confiance à un artisan pour des travaux sur des revêtements intérieurs ou extérieurs ?"},
+                    {"l": " "},
+                    {"q": "Avec CasaVox, contactez les meilleurs professionnels en toute confiance, grâce à un système unique de recommandation personnalisée entre proches."},
+                    {"p": "Il est très difficile de confier sereinement ses travaux à un artisan en le choisissant sur un site de type annuaire, devis en ligne ou service de mise en relation, uniquement à l’aide de notes moyennes (en générale de 0 à 5 étoiles) et de l’avis plus ou moins vérifiés de potentiels anciens clients dont vous ne connaissez rien, à commencer par leurs situations et leurs exigences particulières."},
+                    {"b": "« Connaissez-vous un bon artisan pour mes travaux ? »"},
+                    {"l": " "},
+                    {"l": "CasaVox s’inspire de la “vraie vie” en portant sur internet le principe de bouche-à-oreille :"},
+                    {"b": "Les artisans les plus sérieux dans votre région sont ceux recommandés par vos cercles de confiance."},
+                    {"l": " "},
+                    {"p": "Seul CasaVox vous permet d’entrer directement en contact avec les artisans préférés de votre entourage de confiance et qui bien sûr sont tous assurés et sérieux, vos travaux sont ainsi réalisés par de véritables Pros et surtout, ces artisans vous sont personnellement recommandés par vos amis, collègues et voisins."},
+                    {"p": "CasaVox est bien conscient de la problématique liée à la méfiance mutuelle entre particuliers et professionnels du batîment, cette méfiance est accentuée par de nombreux sites d'annuaire et plateformes de mise en relation, promettant d’obtenir rapidement des devis pour vos travaux et qui revendent ensuite vos coordonnées aux plus offrants."},
+                    {"q": "CasaVox vous permet d’échanger rapidement, en toute sécurité et très simplement avec chaque artisan susceptible d’intervenir pour poser vos nouveaux revêtment de sol, ou revêtement de murs et grâce à CasaVox, vous seul décidez à qui et quand vous diffusez vos coordonnées personnelles. Vous pouvez alors choisir en toute confiance l'artisan qui correspond le plus à vos attentes."},
+                    {"p": "CasaVox vous permet de conserver l’historique de vos échanges (messages, photos, devis, …) et de rester en contact avec le Pro que vous aurez retenu, pour de futurs travaux et pour le recommander à votre tour dans vos cercles d’amis, de collègues et de voisinage."},
+                    {"b": "CasaVox encourage la recommandation de professionnels du bâtiment entre proches, à chaque fois qu’un de vos proches suit votre recommandation : vous pouvez gagner 10€"},
+                    {"l": "(référez-vous aux CGU pour plus d'informations)."},
+                    {"l": " "},
+                    {"b": "Travaux de revêtement les plus courants dans votre région, réalisés par nos Pros CasaVox"},
+                    {"l": "Installation / Pose / Rénovation / Devis :"},
+                    {"l": " "},
+                    {"tags": ["Papier peint", "Carrelage", "Faïence", "Parquet", "Moquette", "Sol plastique", "Sol PVC", "Lambris", "Parement", "Pierre", "Béton", "Enduit", "..."]}
                 ]
             },
             {
                 "urlTitle": "cloison_plafond_combles",
                 "title1": "Cloison - Plafond - Combles",
                 "imgUrl": "../../../img/works_categories/Combles.jpg",
+                "title2": "Vous avez des cloisons à poser, un plafond à rénover, des combles à aménager, ... ?",
                 "paragraphs": [
-                    {"p": "Que vous ayez des cloisons à poser, un plafond à rénover ou des combles à aménager, Casavox est là pour vous connecter avec les Pros dont vous avez besoin."},
-                    {"p": "L'aménagement de ses combles permet de gagner en surface habitable. C’est devenu une opération courante. Si les avantages sont nombreux, pour bien réussir l'aménagement de vos combles il faut prendre en compte quatre éléments de conception essentiels : les escaliers, l'isolation, l'électricité et la plomberie."},
-                    {"p": "Casavox est constitué de professionnels agréés et vérifiés par nos soins mais aussi et surtout recommandés par la communauté Casavox pour la qualité de leurs interventions."},
-                    {"p": "Vous pouvez échanger très simplement avec chaque artisan susceptible d’intervenir chez vous par l’intermédiaire de notre messagerie privée. Vous pouvez alors choisir en toute confiance le Pro qui correspond le plus à vos attentes."},
-                    {"p": "La plupart de nos Pros offrent des services au-delà de la pose de cloison, plafond ou combles. N’hésitez pas à leur poser vos questions lors de vos échanges."},
-                    {"p": "Notre objectif chez Casavox est de vous aider à trouver le meilleur professionnel proche de chez vous pour vos travaux. Aucun projet n’est trop grand ou trop petit pour nos Pros de confiance."},
-                    {"q": "Vous avez un projet ? Démarrez dès maintenant votre recherche d’artisan."}
+                    {"l": "Quelle que soit l’ampleur des travaux à réaliser, isoler vos combles perdus, aménager vos combles habitables, créer une pièce en faisant poser des cloisons, habiller vos murs bruts, agrandir une pièce en ouvrant une cloison, ... Pour de petits ou gros travaux sur des cloisons, des combles ou plafonds, ne vous improvisez pas professionnel des travaux, il existe des règles et des bonnes pratiques à suivre pour réaliser des travaux durables et de qualité :"},
+                    {"l": " "},
+                    {"tags": ["Cloison", "Faux plafond" , "Plafond suspendu", "Isolation de combles", "Staff", "Stuc", "Aménagement de combles", "Grenier", "Mur porteur", "Cloison en placo plâtre", "..."]},
+                    {"b": "Le mieux est de faire appel à un professionnel du bâtiment offrant toutes les garanties !"},
+                    {"p": "En effet, pour que la rénovation ou les travaux d'installation de vos cloisons, plafonds ou combles soient de qualité et durent dans le temps, la meilleure solution est d'établir un contrat avec un professionnel offrant les assurances et garanties adaptées aux travaux à réaliser : Responsabilité civile de l'entreprise, garantie de parfait achèvement, garantie des équipements, assurance dommage-ouvrage, etc."}
                 ],
                 "subText": [
-                    {"q": "Travaux les plus courants réalisés par nos Pros Casavox dans votre secteur :"},
-                    {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
-                    {"tags": ["Cloisons", "Plafonds", "Combles"]}
+                    {"l": "Au-delà des certifications, agréments et qualifications des professionnels du bâtiment, preuves de leur sérieux : "},
+                    {"b": "- Comment faire confiance à un artisan pour des travaux sur des combles, cloisons ou un plafond ?"},
+                    {"l": " "},
+                    {"l": "Surtout quand cela touche à des considérations comme la qualité dans la durée des travaux de maçonnerie, de carrelage, d'électricité voir de plomberie, et le respect des plans pour au final atteindre la qualité et le bien-être recherchés dans votre logement !"},
+                    {"q": "Avec CasaVox, contactez les meilleurs professionnels en toute confiance, grâce à un système unique de recommandation personnalisée entre proches."},
+                    {"p": "Il est très difficile de confier sereinement ses travaux à un artisan en le choisissant sur un site de type annuaire, devis en ligne ou service de mise en relation, uniquement à l’aide de notes moyennes (en générale de 0 à 5 étoiles) et de l’avis plus ou moins vérifiés de potentiels anciens clients dont vous ne connaissez rien, à commencer par leurs situations et leurs exigences particulières."},
+                    {"b": "« Connaissez-vous un bon artisan pour mes travaux d'aménagement d'espace ? »"},
+                    {"l": " "},
+                    {"l": "CasaVox s’inspire de la “vraie vie” en portant sur internet le principe de bouche-à-oreille :"},
+                    {"b": "Les artisans les plus sérieux dans votre région sont ceux recommandés par vos cercles de confiance."},
+                    {"l": " "},
+                    {"p": "Seul CasaVox vous permet d’entrer directement en contact avec les artisans préférés de votre entourage de confiance et qui bien sûr sont tous assurés et sérieux, vos travaux sont ainsi réalisés par de véritables Pros et surtout, ces artisans vous sont personnellement recommandés par vos amis, collègues et voisins."},
+                    {"p": "CasaVox est bien conscient de la problématique liée à la méfiance mutuelle entre particuliers et professionnels du bâtiment, cette méfiance est accentuée par de nombreux sites d'annuaire et plateformes de mise en relation, promettant d’obtenir rapidement des devis pour vos travaux et qui revendent ensuite vos coordonnées aux plus offrants."},
+                    {"q": "CasaVox vous permet d’échanger rapidement, en toute sécurité et très simplement avec chaque artisan susceptible d’intervenir pour poser vos cloisons, aménager vos combles, ou intervenir sur vos plafonds et grâce à CasaVox, vous seul décidez à qui et quand vous diffusez vos coordonnées personnelles. Vous pouvez alors choisir en toute confiance l'artisan qui correspond le plus à vos attentes."},
+                    {"p": "CasaVox vous permet de conserver l’historique de vos échanges (messages, photos, devis, …) et de rester en contact avec le Pro que vous aurez retenu, pour de futurs travaux et pour le recommander à votre tour dans vos cercles d’amis, de collègues et de voisinage."},
+                    {"b": "CasaVox encourage la recommandation de professionnels du bâtiment entre proches, à chaque fois qu’un de vos proches suit votre recommandation : vous pouvez gagner 10€"},
+                    {"l": "(référez-vous aux CGU pour plus d'informations)."},
+                    {"l": " "},
+                    {"b": "Travaux d'aménagement d'espace de type cloison, plafond, combles..."},
+                    {"l": "Installation / Pose / Rénovation / Devis :"},
+                    {"l": " "},
+                    {"tags": ["Cloisons", "Plafonds", "Combles", "Plaques de platre", "Grenier", "..."]}
                 ]
             },
             {
@@ -493,7 +528,7 @@
                     {"q": "Vous avez un projet ? Démarrez dès maintenant votre recherche d’un artisan qualifié et recommandé par vos voisins et collègues."}
                 ],
                 "subText": [
-                    {"q": "Travaux les plus couramment réalisés par nos professionnels du batiment CasaVOX dans la région de Compiègne Oise :"},
+                    {"q": "Travaux les plus couramment réalisés par nos professionnels du bâtiment CasaVOX dans la région de Compiègne Oise :"},
                     {"small": "Les travaux concernent l’installation, le remplacement et/ou la réparation de matériel."},
                     {"tags": ["Porte simple", "Porte multipoints", "Fenêtre de toit - velux", "Fenêtre", "Porte-fenêtre", "Volets", "Escalier", "Mezzanine", "Placards-rangements", "Véranda"]}
                 ]
