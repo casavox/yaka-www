@@ -9,7 +9,6 @@ angular.module('Yaka')
                 userMe: '=',
                 userOther: '=',
                 userPro: '=',
-                proposalProfessional: "=",
                 proposalStatus: '@'
             },
             link: function (scope, element, attr) {
@@ -34,10 +33,6 @@ angular.module('Yaka')
                     } else {
                         return scope.userOther;
                     }
-                };
-
-                scope.getProposalProfessionalCompany = function () {
-                    return scope.proposalProfessional.company.name;
                 };
 
                 scope.getCustomerUser = function () {

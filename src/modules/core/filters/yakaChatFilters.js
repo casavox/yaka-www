@@ -1,6 +1,6 @@
 angular.module('Yaka')
     .filter('yakaAutoMsg', function ($filter) {
-        return function (autoMessage, customerUser, proUser, companyName) {
+        return function (autoMessage, customerUser, proUser) {
 
             switch (autoMessage.text) {
                 case 'PRO_PRICE_UPDATED':
@@ -24,11 +24,7 @@ angular.module('Yaka')
                 case 'CUSTOMER_RATED_PRO':
                     return customerUser.firstName + " " + customerUser.lastName + " a indiqué la fin des travaux";
                 case 'FIRST_RECOMMENDATION':
-                    if (companyName) {
-                        return autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName + " recommande " + proUser.firstName + " " + proUser.lastName + " (" + companyName +  ") pour ce projet";
-                    } else {
-                        return autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName + " recommande " + proUser.firstName + " " + proUser.lastName + " pour ce projet";
-                    }
+                    return "Vous avez été mis en relation grâce à " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 case 'NEW_RECOMMENDATION':
                     return "Nouvelle recommandation de " + proUser.firstName + " " + proUser.lastName + ", par " + autoMessage.varRecoUser.firstName + " " + autoMessage.varRecoUser.lastName;
                 default :
