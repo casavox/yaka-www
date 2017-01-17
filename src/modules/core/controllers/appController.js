@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG, $ionicPlatform) {
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG) {
 
         var app = this;
         var vm = this;
@@ -16,10 +16,6 @@
         $scope.rating = {positive: "", comment: "", criteria: []};
         var can = true;
         var connectHeaders = {token: $localStorage.token};
-
-
-        console.log($ionicPlatform);
-
 
         $rootScope.pageName = "";
 
@@ -309,5 +305,6 @@
         };
 
         app.showLoadingIcons = false;
+
     }
 })();

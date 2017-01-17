@@ -37,7 +37,7 @@ if (isMobile) {
 angular.module('Yaka', dependencies);
 
 if (isMobile) {
-    angular.module('Yaka').run(function ($ionicPlatform) {
+    angular.module('Yaka').run(function ($ionicPlatform, $rootScope) {
 
         $ionicPlatform.ready(function () {
 
@@ -49,7 +49,6 @@ if (isMobile) {
             }
 
             if (window.FCMPlugin) {
-                // org.apache.cordova.statusbar required
                 FCMPlugin.getToken(
                     function (token) {
                         alert(token);
@@ -58,6 +57,13 @@ if (isMobile) {
                         console.log('error retrieving token: ' + err);
                     }
                 )
+            }
+
+            if (cordova.getAppVersion) {
+                $rootScope.mobilePackageName = cordova.getAppVersion.getPackageName().then(function (packageName) {
+                    console.log(packageName);
+                    return packageName;
+                });
             }
         });
     });

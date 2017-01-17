@@ -27,6 +27,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "com.casavox.app"
         }
     },
     "dependent_plugins": {}
