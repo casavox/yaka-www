@@ -422,8 +422,6 @@
                 vm.project.proposals = [];
             }
 
-            console.log(vm.project.proposals);
-
             angular.forEach(vm.project.proposals, function (projectProposals) {
                 if (projectProposals.unreadMessages == true) {
                     vm.project.lastCustProMsg = projectProposals.updated;

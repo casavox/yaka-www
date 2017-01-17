@@ -8,7 +8,6 @@ angular.module('Yaka')
                 user: '='
             },
             link: function (scope) {
-                console.log(scope.author);
 
                 var phoneNumberReg = /(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}/g;
                 var textTmp = scope.text;
