@@ -438,6 +438,9 @@
             },
             adminSetChatRead: function (chatId, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/admin/chat/' + chatId + '/read', null, ignoreLoading).success(success).error(error)
+            },
+            adminSetChatUnread: function (chatId, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/admin/chat/' + chatId + '/unread', null, ignoreLoading).success(success).error(error)
             }
         };
     }

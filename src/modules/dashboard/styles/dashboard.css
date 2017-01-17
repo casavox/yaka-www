@@ -204,6 +204,10 @@ ul.yaka-chips li {
     float: right !important;
 }
 
+.commu-align {
+    text-align: right !important;
+}
+
 @media (min-width: 992px) {
     .reco-pro-tags {
         float: right;
@@ -229,6 +233,10 @@ ul.yaka-chips li {
 }
 
 @media (max-width: 767px) {
+    .commu-align {
+        text-align: left !important;
+    }
+
     .button-recommend {
         float: none;
     }
@@ -254,7 +262,7 @@ ul.yaka-chips li {
     }
 
     .dashboardRecommendProject {
-        max-height: 180px;
+        max-height: 208px;
     }
 
     .dashboardUserInfos {

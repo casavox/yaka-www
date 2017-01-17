@@ -311,16 +311,19 @@
                             </div>
                         </div>
                         <div
-                            class="col-xs-12 col-sm-5 yaka-chips m-t-5 t-right pull-right no-padding actu-communities-tag">
-                            <casa-community-tag class="contact-community-tag d-i-b no-float"
-                                                community="community"
-                                                ng-repeat="community in project.user.communities">
-                            </casa-community-tag>
-                        </div>
-                        <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 pull-right no-padding actu-communities-tag">
-                            <button class="btn btn-sm button-recommend c-white bgm-lightblue">JE CONNAIS
-                                {{vm.displayActivity(project.mainActivity.code)}}
-                            </button>
+                            class="col-xs-12 col-sm-5 yaka-chips m-t-5 commu-align t-right no-padding clearfix p-b-10 actu-communities-tag">
+                            <div class="full-width">
+                                <casa-community-tag class="contact-community-tag d-i-b no-float"
+                                                    community="community"
+                                                    ng-repeat="community in project.user.communities">
+                                </casa-community-tag>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-5 yaka-chips m-t-5 pull-right no-padding">
+                                <button class="btn btn-sm button-recommend c-white bgm-lightblue">JE CONNAIS
+                                    {{vm.displayActivity(project.mainActivity.code)}}
+                                </button>
+                            </div>
                         </div>
                         <hr class="dash-board-actu-hr">
                     </div>
