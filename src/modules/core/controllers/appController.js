@@ -5,23 +5,7 @@
         .module('Yaka')
         .controller('AppController', AppController);
 
-    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG) {
-
-        document.addEventListener("deviceready", function onDeviceReady(w) {
-            // Should work on Andriod
-            if(StatusBar && statusbarTransparent) {
-                // Enable translucent statusbar
-                statusbarTransparent.enable();
-
-                // Get the bar back
-                StatusBar.show();
-            }
-            // iOS only
-            else if (StatusBar) {
-                // Get the bar back
-                StatusBar.show();
-            }
-        }, false);
+    function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG, $ionicPlatform) {
 
         var app = this;
         var vm = this;
@@ -32,6 +16,10 @@
         $scope.rating = {positive: "", comment: "", criteria: []};
         var can = true;
         var connectHeaders = {token: $localStorage.token};
+
+
+        console.log($ionicPlatform);
+
 
         $rootScope.pageName = "";
 

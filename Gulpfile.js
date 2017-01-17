@@ -34,8 +34,12 @@ var log = gutil.log;
 var colors = gutil.colors;
 var shell = require('gulp-shell');
 var exec = require('child_process').exec;
+var ionicChannels = require('gulp-ionic-channels');
+var ngConstant = require('gulp-ng-constant');
 
 var buildConfig = require("./build-config.json");
+
+var args = require('yargs').default('channelTag', 'public-staging');
 
 gulp.task("build", function (cb) {
     if (argv.production) {
@@ -272,56 +276,26 @@ gulp.task("test", ["config-test"], function () {
     new karma(buildConfig.karmaConf).start()
 });
 
-gulp.task("create-module", function (cb) {
-    if (!argv.module) {
-        gutil.log(gutil.colors.red("ERROR : This task need the module parameter"));
-        cb();
-    } else {
-        if (argv.parent) {
-            path = "src/modules/" + argv.parent + "/modules/" + argv.module;
-        } else {
-            path = "src/modules/" + argv.module;
-        }
-        fs.stat(path, function (err, stat) {
-            if (err == null) {
-                gutil.log(gutil.colors.red("ERROR : the module already exist"));
-            } else {
-                var modules = _.template(buildConfig.fileContent.modules);
-                var js = _.template(buildConfig.fileContent.js);
-                file('modules.js', modules({
-                    'module': argv.module,
-                    'templatePath': path.substring(3, path.length) + '/views/' + argv.module + '-view.html'
-                }), {src: true}).pipe(gulp.dest(path + '/'));
-                mkdirp(path + "/controllers");
-                file(argv.module + '-controller.js', js({'module': argv.module}), {src: true}).pipe(gulp.dest(path + '/controllers'));
-                mkdirp(path + "/styles");
-                file(argv.module + '.scss', '', {src: true}).pipe(gulp.dest(path + '/styles'));
-                mkdirp(path + "/views");
-                file(argv.module + '-view.html', '', {src: true}).pipe(gulp.dest(path + '/views'));
-            }
-        });
+gulp.task('ionic-config', function () {
 
+    process.chdir('src/ionic');
+
+    var channelTag = "android-public";
+    if (argv.pro) {
+        channelTag = "android-pro";
     }
+
+    gulp.src('config.json')
+        .pipe(ionicChannels({
+            channelTag: channelTag
+        }))
+        .pipe(ngConstant())
+        .pipe(gulp.dest('./www/'))
+    ;
 });
 
-gulp.task("create-service", function (cb) {
-    if (!argv.service) {
-        gutil.log(gutil.colors.red("ERROR : This task need the service parameter"));
-        cb();
-    } else {
-        fs.stat('src/modules/core/modules/api/' + argv.service + '-service.js', function (err, stat) {
-            if (err == null) {
-                gutil.log(gutil.colors.red("ERROR : the service already exist"));
-            } else {
-                var service = _.template(buildConfig.fileContent.service);
-                file(argv.service + '-service.js', service({'service': argv.service}), {src: true}).pipe(gulp.dest('src/modules/core/modules/api/'));
-            }
-        });
+gulp.task('run-android', ["build", "ionic-config"], function (cb) {
 
-    }
-});
-
-gulp.task('run-android', ["build"], function (cb) {
     exec('cd src/ionic && ionic run android', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);

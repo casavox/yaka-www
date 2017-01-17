@@ -1,0 +1,12 @@
+{
+  "android-public": {
+    "appId": "com.casavox.app",
+    "appName": "CasaVox",
+    "description": "Confiez vos travaux aux artisans préférés de vos proches !"
+  },
+  "android-pro": {
+    "appId": "com.casavox.pro",
+    "appName": "CasaVox Pro",
+    "description": "Confiez vos travaux aux artisans préférés de vos proches !"
+  }
+}

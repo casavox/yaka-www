@@ -121,6 +121,7 @@
             "favicon/**/*",
             "ionic/lib/ionic/js/ionic.bundle.js",
             "bower_components/jquery/dist/jquery.js",
+            "config.js",
             "android-chrome-192x192.png",
             "android-chrome-512x512.png",
             "apple-touch-icon.png",
