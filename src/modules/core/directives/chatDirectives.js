@@ -290,6 +290,54 @@ angular.module('Yaka')
                     }, true);
                 }
 
+                scope.setRead = function () {
+                    swal({
+                        title: "Êtes-vous sûr ?",
+                        text: "La conversation sera considérée comme lue",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#03a9f4",
+                        confirmButtonText: "Confirmer",
+                        cancelButtonText: "Annuler"
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            networkService.adminSetChatRead(scope.chatId, successSetChatRead, errorSetChatRead, true);
+                        }
+                    });
+                };
+
+                scope.setUnread = function () {
+                    swal({
+                        title: "Êtes-vous sûr ?",
+                        text: "La conversation sera considérée comme NON lue",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#03a9f4",
+                        confirmButtonText: "Confirmer",
+                        cancelButtonText: "Annuler"
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            networkService.adminSetChatUnread(scope.chatId, successSetChatUnread, errorSetChatUnread, true);
+                        }
+                    });
+                };
+
+                function successSetChatRead() {
+                    alertMsg.send("La discussion est considérée comme lue", "success");
+                }
+
+                function errorSetChatRead() {
+                    alertMsg.send("Impossible de marquer la discussion comme lue", "danger");
+                }
+
+                function successSetChatUnread() {
+                    alertMsg.send("La discussion est considérée comme NON lue", "success");
+                }
+
+                function errorSetChatUnread() {
+                    alertMsg.send("Impossible de marquer la discussion comme NON lue", "danger");
+                }
+
                 scope.getPlaceholder = function () {
                     if (scope.disableSending && scope.userMe.professional && scope.proposalStatus == 'RECOMMENDATION') {
                         return 'Allez dans l\'onglet "Détails" pour prendre un 1er contact avec le client (si vous n\'êtes pas intéressé, cliquez sur le bouton "Refuser")';
