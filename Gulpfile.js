@@ -294,11 +294,15 @@ gulp.task('ionic-config', function () {
     ;
 });
 
-gulp.task('run-android', ["build", "ionic-config"], function (cb) {
+gulp.task('run-android', ["build"], function (cb) {
 
-    exec('cd src/ionic && ionic run android', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
+    runSequence('ionic-config', function () {
+        exec('ionic run android', function (err, stdout, stderr) {
+            console.log(stdout);
+            console.log(stderr);
+            cb(err);
+        });
+
     });
+
 });
