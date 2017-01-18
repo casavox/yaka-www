@@ -7,11 +7,27 @@
 
     function config($stateProvider) {
 
-        $stateProvider
+
+
+            $stateProvider
+                .state('home', {
+                    url: "/",
+                    templateUrl: function() {
+                            return "modules/home/views/pro/ionic-pro-home.html";
+                    },
+                    controller: function() {
+                            return 'IonicProHomeController';
+                    },
+                    controllerAs: 'vm'
+                })
+
+
+
+        //$stateProvider
 
         //Redirects
 
-            .state('concours', {
+        /*   .state('concours', {
                 url: "/concours",
                 onEnter: function ($window) {
                     $window.open('http://res.cloudinary.com/yaka/image/upload/v1481207905/casavox/Reglement_Concours_Dec2016.pdf', '_self');
@@ -29,7 +45,7 @@
 
             //Pro
 
-            .state('pro-home', {
+         /*   .state('pro-home', {
                 url: "/pro?invitationId&login&email&register",
                 templateUrl: "modules/home/views/pro/home-pro.html",
                 controller: 'ProHomeController',
@@ -44,5 +60,7 @@
                 controller: 'HelpActivityController',
                 controllerAs: 'vm'
             })
+
+            */
     }
 })();
