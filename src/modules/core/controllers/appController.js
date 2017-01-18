@@ -306,5 +306,12 @@
 
         app.showLoadingIcons = false;
 
+        $rootScope.isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+        $rootScope.isProApp = function () {
+            return $rootScope.mobilePackageName == "com.casavox.pro";
+        };
+
+        app.isMobile = $rootScope.isMobile;
+        app.isProApp = $rootScope.isProApp;
     }
 })();
