@@ -1,91 +1,80 @@
-<div class="ionic-background c-white" style="width: 100%; min-height: 100vh; height: 100vh;">
-<div class="col middle p-b-20 p-t-20">
-        <div class="row m-l-0 m-r-0 center row-center">
-            <div class="col"></div>
-            <div class="col t-center">
-                <img class="clean-img" width="100" height="100" src="img/logo.png" alt="Casavox"/>
+<ion-content scroll="false">
+    <section class="login-container">
+        <ion-slide-box class="ion-box" on-slide-changed="slideHasChanged($index)">
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span class="col">Trouvez des pros de confiance pour vos travaux</span></h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/h1-ionic.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span class="col">Postez votre besoin et recevez les offres de Pros recommandés par vos amis, collègues et
+                            voisins</span></h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/h2-ionic.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span
+                            class="col">Contactez directement les Pros par téléphone ou messagerie</br>
+                            Expérience garantie sans spam</span></h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/h3-ionic.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span class="col">Sélectionnez le Pro qui vous plait</br>
+                            et à la fin du chantier recommandez le à vos amis</span></h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/h4-ionic.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
             </div>
-            <div class="col"></div>
 
+        </ion-slide-box>
+        <div class="col button-row ion-flex-2">
+            <div class="col button-row text-center">
+                <button class="button button-small button-positive bgm-lightblue"
+                        data-ng-click="vm.facebookLogin()">
+                    POSTEZ VOTRE BESOIN
+                </button>
+            </div>
+            <div class="row m-r-0 m-l-0 center connect-register">
+                <div class="col text-center">
+                    <h5 class="t-center m-t-0 m-b-0 subtitle-color-forced underline"
+                        ng-click="vm.login.show(); vm.loginTab = true;">Se connecter</h5>
+                </div>
+                <div class="col text-center">
+                    <h5 class="t-center m-t-0 m-b-0 subtitle-color-forced underline"
+                        ng-click="vm.login.show(); vm.loginTab = false">S'inscrire</h5>
+                </div>
+            </div>
 
+            <div class="col text-center">
+                <h6 class="col t-center m-t-0 m-b-0 subtitle-color-forced">Vous êtes un <b><span
+                    class="c-orange">Pro</span></b>
+                    ?</br>
+                    <u><b>Télécharger l'application CasaVox pour les Professionnels</b></u></h6>
+            </div>
         </div>
-
-        <div class="row m-l-0 m-r-0">
-            <ion-slide-box on-slide-changed="slideHasChanged($index)">
-                <ion-slide>
-                    <div class="box blue full-width p-r-40">
-                        <h2 class="t-center subtitle-color-forced">Etape 1</h2>
-                        <div
-                            class="chart chart1 center col-xs-12 subtitle-color-forced col-sm-3 no-padding circle-1-m-b m-t-10"
-                            data-percent="0">
-                            <i class="zmdi zmdi-assignment zmdi-hc-4x subtitle-color-forced"></i>
-
-                            <div class="text-uppercase full-width subtitle-color-forced subtext-circle  ">
-                                Je publie <strong>mon besoin</strong></div>
-                        </div>
-                    </div>
-                </ion-slide>
-                <ion-slide>
-                    <div class="box blue full-width p-r-40">
-                        <h2 class="t-center subtitle-color-forced">Etape 2</h2>
-                        <div
-                            class="chart chart1 center col-xs-12 subtitle-color-forced col-sm-3 no-padding circle-1-m-b m-t-10"
-                            data-percent="0">
-                            <i class="zmdi zmdi-assignment zmdi-hc-4x subtitle-color-forced"></i>
-
-                            <div class="text-uppercase full-width  subtitle-color-forced subtext-circle ">
-                                CasaVOX et mon entourage me recommandent <strong>leurs meilleurs Pros</strong></div>
-                        </div>
-                    </div>
-                </ion-slide>
-                <ion-slide>
-                    <div class="box blue full-width p-r-40">
-                        <h2 class="t-center subtitle-color-forced">Etape 3</h2>
-                        <div
-                            class="chart chart1 center col-xs-12 subtitle-color-forced col-sm-3 no-padding circle-1-m-b m-t-10"
-                            data-percent="0">
-                            <i class="zmdi zmdi-assignment zmdi-hc-4x subtitle-color-forced"></i>
-
-                            <div class="text-uppercase full-width  subtitle-color-forced subtext-circle ">
-                                J'échange <strong>en privé avec les Pros de mon choix</strong><br>
-                                (Messages, photos, devis...)
-                            </div>
-                        </div>
-                    </div>
-                </ion-slide>
-                <ion-slide>
-                    <div class="box blue full-width p-r-40">
-                        <h2 class="t-center subtitle-color-forced">Etape 4</h2>
-                        <div
-                            class="chart chart1 center col-xs-12 subtitle-color-forced col-sm-3 no-padding circle-1-m-b m-t-10"
-                            data-percent="0">
-                            <i class="zmdi zmdi-assignment zmdi-hc-4x subtitle-color-forced"></i>
-
-                            <div class="text-uppercase full-width  subtitle-color-forced subtext-circle ">
-                                Je choisis mon Pro<br>
-                                <strong>Je suis mes travaux avec CasaVOX</strong></div>
-                        </div>
-                    </div>
-                </ion-slide>
-            </ion-slide-box>
-        </div>
-
-        <button class="button button-positive bgm-facebook center"
-                data-ng-click="vm.facebookLogin()">
-            Connexion via Facebook
-        </button>
-
-        <div class="row m-l-0 m-r-0 center">
-            <h5 class="col t-center subtitle-color-forced underline"
-                ng-click="vm.login.show()">Se connecter avec son Email</h5>
-        </div>
-
-        <div class="row m-l-0 m-r-0 center">
-            <h6 class="col t-center subtitle-color-forced">Vous êtes un <b><span class="c-orange">Pro</span></b> ?</br>
-                <u><b>Télécharger l'application CasaVox pour les Pros</b></u></h6>
-        </div>
-    </div>
-</div>
+    </section>
+</ion-content>
 
 
 <script id="login-popup.html" type="text/ng-template">

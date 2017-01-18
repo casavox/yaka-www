@@ -47,19 +47,20 @@
     margin-bottom: 40px !important;
 }
 
+.h-90 {
+    height: 90px !important
+}
+
 .box {
     height: auto !important;
     padding-top: 0vh !important;
 }
 
-.slider-pager {
-    bottom: 2vh !important;
-}
 
 .ion-record:before {
     content: "O" !important;
-    color: #0c7cd5;
-    background-color: #0c7cd5;
+    color: #d52d45;
+    background-color: #d52d45;
     border-radius: 50%;
     height: 12px;
     width: 12px;
@@ -101,4 +102,26 @@
 .flex-slide {
     -webkit-box-flex: 3 !important;
     flex: 3 !important;
+}
+
+.ion-box {
+    flex: 6;
+    -webkit-box-flex: 6;
+}
+
+.ion-flex-2 {
+    flex: 2 !important;
+}
+
+.ion-slide-item {
+    display: flex !important;
+    align-items: center;
+}
+
+.slider-pager {
+    bottom: 20px;
+}
+
+.connect-register {
+    width: 300px !important;
 }

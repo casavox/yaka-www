@@ -5,13 +5,13 @@
         .module('Yaka')
         .config(config);
 
-    function config($stateProvider, CONFIG) {
+    function config($stateProvider) {
 
         $stateProvider
 
-            .state('ionic-pro-home', {
+            .state('ionic-customer-home', {
                 url: "/",
-                templateUrl: "modules/ionic-home/views/pro/ionic-pro-home.html",
+                templateUrl: "modules/ionic-home/views/customer/ionic-customer-home.html",
                 controller: 'IonicProHomeController',
                 controllerAs: 'vm'
             })
