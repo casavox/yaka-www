@@ -69,7 +69,7 @@ if (isMobile) {
                 });
             }
 
-            if (cordova.getAppVersion) {
+            if (cordova && cordova.getAppVersion) {
                 $rootScope.mobilePackageName = cordova.getAppVersion.getPackageName().then(function (packageName) {
                     console.log(packageName);
                     return packageName;
