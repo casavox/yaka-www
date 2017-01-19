@@ -1,5 +1,5 @@
 www/
 build/
 .gradle/
-!/plugins/**/www
-!/plugins/**/build
+!**/plugins/**/www
+!**/plugins/**/build
