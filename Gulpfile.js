@@ -36,6 +36,7 @@ var shell = require('gulp-shell');
 var exec = require('child_process').exec;
 var ionicChannels = require('gulp-ionic-channels');
 var ngConstant = require('gulp-ng-constant');
+var filelist = require('gulp-filelist')
 
 var buildConfig = require("./build-config.json");
 
@@ -278,14 +279,13 @@ gulp.task("test", ["config-test"], function () {
 
 gulp.task('ionic-config', function () {
 
-    process.chdir('src/ionic');
-
     var channelTag = "android-public";
     if (argv.pro) {
         channelTag = "android-pro";
     }
 
     gulp.src('config.json')
+        .pipe(debug())
         .pipe(ionicChannels({
             channelTag: channelTag
         }))
@@ -294,10 +294,72 @@ gulp.task('ionic-config', function () {
     ;
 });
 
+gulp.task('ionic-base-url', function () {
+
+    var defaultBaseUrl = "<base href=\"/\">";
+    var androidBaseUrl = "<base href=\"/android_asset/www/\">";
+
+    gulp.src('www/*.html')
+        .pipe(debug())
+        .pipe(replace(defaultBaseUrl, androidBaseUrl))
+        .pipe(gulp.dest('www/index2.html'));
+});
+
 gulp.task('run-android', ["build"], function (cb) {
 
-    runSequence('ionic-config', function () {
+    process.chdir('src/ionic');
+
+    runSequence('ionic-config', 'ionic-base-url', function () {
+
         exec('ionic run android', function (err, stdout, stderr) {
+            console.log(stdout);
+            console.log(stderr);
+            cb(err);
+        });
+
+    });
+
+});
+
+gulp.task('build-android', ["build"], function (cb) {
+
+    process.chdir('src/ionic');
+
+    runSequence('ionic-config', 'ionic-base-url', function () {
+
+        exec('ionic build android', function (err, stdout, stderr) {
+            console.log(stdout);
+            console.log(stderr);
+            cb(err);
+        });
+
+    });
+
+});
+
+gulp.task('run-ios', ["build"], function (cb) {
+
+    process.chdir('src/ionic');
+
+    runSequence('ionic-config', 'ionic-base-url', function () {
+
+        exec('ionic run ios', function (err, stdout, stderr) {
+            console.log(stdout);
+            console.log(stderr);
+            cb(err);
+        });
+
+    });
+
+});
+
+gulp.task('build-ios', ["build"], function (cb) {
+
+    process.chdir('src/ionic');
+
+    runSequence('ionic-config', 'ionic-base-url', function () {
+
+        exec('ionic build ios', function (err, stdout, stderr) {
             console.log(stdout);
             console.log(stderr);
             cb(err);
