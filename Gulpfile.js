@@ -299,10 +299,10 @@ gulp.task('ionic-base-url', function () {
     var defaultBaseUrl = "<base href=\"/\">";
     var androidBaseUrl = "<base href=\"/android_asset/www/\">";
 
-    gulp.src('www/*.html')
-        .pipe(debug())
-        .pipe(replace(defaultBaseUrl, androidBaseUrl))
-        .pipe(gulp.dest('www/index2.html'));
+    gulp.src(['./www/*'])
+        .pipe(debug());
+        //.pipe(replace(defaultBaseUrl, androidBaseUrl))
+        //.pipe(gulp.dest('../'));
 });
 
 gulp.task('run-android', ["build"], function (cb) {
