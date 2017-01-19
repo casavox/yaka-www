@@ -276,6 +276,8 @@ gulp.task("test", ["config-test"], function () {
     new karma(buildConfig.karmaConf).start()
 });
 
+
+// Android
 gulp.task('ionic-config', function () {
 
     process.chdir('src/ionic');
@@ -305,4 +307,36 @@ gulp.task('run-android', ["build"], function (cb) {
 
     });
 
+});
+
+
+// ios
+gulp.task('ionic-config', function () {
+
+    process.chdir('src/ionic');
+
+    var channelTag = "ios-public";
+    if (argv.pro) {
+        channelTag = "ios-pro";
+    }
+
+    gulp.src('config.json')
+        .pipe(ionicChannels({
+            channelTag: channelTag
+        }))
+        .pipe(ngConstant())
+        .pipe(gulp.dest('./www/'))
+    ;
+});
+
+gulp.task('emulate-ios', function (cb) {
+
+    runSequence('ionic-config', function () {
+        exec('ionic emulate ios', function (err, stdout, stderr) {
+            console.log(stdout);
+            console.log(stderr);
+            cb(err);
+        });
+
+    });
 });
