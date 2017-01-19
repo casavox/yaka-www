@@ -416,10 +416,5 @@
                 });
             }
         };
-
-        vm.toto = function () {
-            console.log("bahahahah");
-        }
-
     }
 })();
