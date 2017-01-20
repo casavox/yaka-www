@@ -27,6 +27,7 @@
 
 .casa-ionic-logo {
     image-rendering: auto;
+    width:61%;
 }
 
 .ionic-background {
@@ -105,8 +106,8 @@
 }
 
 .ion-box {
-    flex: 6;
-    -webkit-box-flex: 6;
+    flex: 8;
+    -webkit-box-flex: 8;
 }
 
 .ion-flex-2 {
@@ -124,4 +125,41 @@
 
 .connect-register {
     width: 300px !important;
+}
+
+.logo-name {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+}
+
+.casa-ionic-name {
+    font-size: 30px;
+    margin-left: 2%;
+    font-weight: 300;
+}
+
+.card-ionic-home {
+    height: 70px;
+}
+
+.ion-home-icon {
+    font-size: 35px;
+    margin-left: 15px;
+    margin-top: 7px;
+}
+
+.ion-euro-icon-service {
+    padding-left: 12px;
+    padding-right: 15px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.ion-home-icon-historic {
+    padding-left: 10px !important;
+    font-size: 35px;
+    margin-left: 15px;
+    margin-top: 7px;
 }

@@ -1,24 +1,29 @@
 <ion-content scroll="false">
     <section class="login-container">
+        <div class="row logo-name m-0">
+            <img src="img/logo.png" class="clean-img" alt="Logo CasaVox" width="60px" height="60px"/>
+            <div class="c-lightblue casa-ionic-name">CASA<b>VOX</b></div>
+        </div>
         <ion-slide-box class="ion-box" on-slide-changed="slideHasChanged($index)">
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle"><span class="col">Trouvez des pros de confiance pour vos travaux</span></h4>
+                        <h4 class="middle"><span class="col f-w-300 f-s-17">Laissez vous <b>guider</b>, décrivez <b>votre projet en quelques clics</b></span>
+                        </h4>
                     </div>
                     <div class="col p-0 text-center">
-                        <img src="img/ionic-home/h1-ionic.png" class="casa-ionic-logo"/>
+                        <img src="img/ionic-home/customer/CLIENT_1.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
             </ion-slide>
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle"><span class="col">Postez votre besoin et recevez les offres de Pros recommandés par vos amis, collègues et
-                            voisins</span></h4>
+                        <h4 class="middle"><span class="col f-w-300 f-s-17">CasaVox et mon entourage me</br><b>recommandent leurs meilleurs Pros</b></span>
+                        </h4>
                     </div>
                     <div class="col p-0 text-center">
-                        <img src="img/ionic-home/h2-ionic.png" class="casa-ionic-logo"/>
+                        <img src="img/ionic-home/customer/CLIENT_2.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
             </ion-slide>
@@ -26,23 +31,72 @@
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
                         <h4 class="middle"><span
-                            class="col">Contactez directement les Pros par téléphone ou messagerie</br>
-                            Expérience garantie sans spam</span></h4>
+                            class="col f-w-300 f-s-17"><b>J'échange en privé avec les Pros</b></br>
+                            Je suis mes travaux avec CasaVox</span></h4>
                     </div>
                     <div class="col p-0 text-center">
-                        <img src="img/ionic-home/h3-ionic.png" class="casa-ionic-logo"/>
+                        <img src="img/ionic-home/customer/CLIENT_3.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
             </ion-slide>
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle"><span class="col">Sélectionnez le Pro qui vous plait</br>
-                            et à la fin du chantier recommandez le à vos amis</span></h4>
+                        <h4 class="middle"><span class="col f-w-300 f-s-17 fw-bold">L'esprit CasaVox</span></h4>
                     </div>
-                    <div class="col p-0 text-center">
-                        <img src="img/ionic-home/h4-ionic.png" class="casa-ionic-logo"/>
+                    <div class="col p-t-0">
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <div class="c-white bgm-lightblue icon-service ion-home-icon euro-icon-service ion-euro-icon-service pull-left">€</div>
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">100% gratuit</h2>
+                                    <strong>Tous les services CasaVOX sont gratuits pour les particuliers
+                                        !</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-eye-off zmdi-hc-3x zmdi-hc-fw icon-service ion-home-icon c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">Confidentialité</h2>
+                                    <strong>Ni spam ni partage de vos données privées !</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-comment-text-alt zmdi-hc-3x zmdi-hc-fw icon-service ion-home-icon c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">échanges optimisés</h2>
+                                    Fini les échanges par répondeurs interposés.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-thumb-up zmdi-hc-3x zmdi-hc-fw icon-service ion-home-icon c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">Entraide</h2>
+                                    <strong>Recommandez-vous vos meilleurs Pros</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-assignment zmdi-hc-3x zmdi-hc-fw historic-service icon-service ion-home-icon-historic c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">Historique des travaux</h2>
+                                    Retrouvez facilement tous vos documents, contacts et échanges
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </ion-slide>
             </div>
