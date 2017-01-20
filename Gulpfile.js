@@ -277,94 +277,81 @@ gulp.task("test", ["config-test"], function () {
     new karma(buildConfig.karmaConf).start()
 });
 
-gulp.task('ionic-config', function () {
+gulp.task('ionic-config', function (cb) {
 
     var channelTag = "android-public";
     if (argv.pro) {
         channelTag = "android-pro";
     }
 
-    gulp.src('config.json')
-        .pipe(debug())
+    return gulp.src('./config.json')
         .pipe(ionicChannels({
             channelTag: channelTag
         }))
         .pipe(ngConstant())
-        .pipe(gulp.dest('./www/'))
-    ;
+        .pipe(gulp.dest('./www/'));
 });
 
-gulp.task('ionic-base-url', function () {
+gulp.task('ionic-replaces', function (cb) {
 
     var defaultBaseUrl = "<base href=\"/\">";
     var androidBaseUrl = "<base href=\"/android_asset/www/\">";
 
-    gulp.src(['./www/*'])
-        .pipe(debug());
-        //.pipe(replace(defaultBaseUrl, androidBaseUrl))
-        //.pipe(gulp.dest('../'));
+    gulp.src(['./www/index.html'])
+        .pipe(debug())
+        .pipe(replace(defaultBaseUrl, androidBaseUrl))
+        .pipe(gulp.dest('./www/'));
+
+    var webPlatform = "PLATFORM_WEB";
+    var mobilePlatform = argv.build;
+    if (argv.run) {
+        mobilePlatform = argv.run;
+    }
+
+    var noPackageName = "DESKTOP_NO_PACKAGE_NAME";
+    var mobilePackageName = "com.casavox.app";
+    if (argv.pro) {
+        mobilePackageName = "com.casavox.pro";
+    }
+
+    return gulp.src(['./www/modules/core/module.js'])
+        .pipe(debug())
+        .pipe(replace(webPlatform, mobilePlatform))
+        .pipe(replace(noPackageName, mobilePackageName))
+        .pipe(gulp.dest('./www/modules/core/'));
 });
 
-gulp.task('run-android', ["build"], function (cb) {
+gulp.task('ionic', function () {
 
-    process.chdir('src/ionic');
+    console.log(argv.build);
 
-    runSequence('ionic-config', 'ionic-base-url', function () {
+    if ((!argv.build && !argv.run) ||
+        (argv.build && argv.build != 'android' && argv.build != 'ios') ||
+        (argv.run && argv.run != 'android' && argv.run != 'ios')) {
+        console.log("Examples:");
+        console.log("gulp ionic --run android");
+        console.log("gulp ionic --run ios --pro");
+        console.log("gulp ionic --build android --pro");
+        console.log("gulp ionic --build ios");
+        return;
+    }
 
-        exec('ionic run android', function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
+    var ionicAction = 'build';
+    var platform = argv.build;
+    if (argv.run) {
+        ionicAction = 'run';
+        platform = argv.run;
+    }
 
+    runSequence('build', function () {
+        setTimeout(function () {
+            process.chdir('src/ionic');
+            runSequence('ionic-config', 'ionic-replaces', function () {
+                exec('ionic ' + ionicAction + ' ' + platform, function (err, stdout, stderr) {
+                    console.log(stdout);
+                    console.log(stderr);
+                });
+            });
+        }, 1000);
     });
-
-});
-
-gulp.task('build-android', ["build"], function (cb) {
-
-    process.chdir('src/ionic');
-
-    runSequence('ionic-config', 'ionic-base-url', function () {
-
-        exec('ionic build android', function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
-
-    });
-
-});
-
-gulp.task('run-ios', ["build"], function (cb) {
-
-    process.chdir('src/ionic');
-
-    runSequence('ionic-config', 'ionic-base-url', function () {
-
-        exec('ionic run ios', function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
-
-    });
-
-});
-
-gulp.task('build-ios', ["build"], function (cb) {
-
-    process.chdir('src/ionic');
-
-    runSequence('ionic-config', 'ionic-base-url', function () {
-
-        exec('ionic build ios', function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
-
-    });
-
 });

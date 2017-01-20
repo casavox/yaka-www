@@ -39,6 +39,13 @@ angular.module('Yaka', dependencies);
 if (isMobile) {
     angular.module('Yaka').run(function ($ionicPlatform, $rootScope) {
 
+        $rootScope.isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+        $rootScope.mobilePlatform = "PLATFORM_WEB";
+        $rootScope.mobilePackageName = "DESKTOP_NO_PACKAGE_NAME";
+        $rootScope.isProApp = function () {
+            return $rootScope.mobilePackageName == "com.casavox.pro";
+        };
+
         $ionicPlatform.ready(function () {
 
             // Anything native should go here, like StatusBar.styleLightContent()
@@ -66,13 +73,6 @@ if (isMobile) {
                         //Notification was received in foreground. Maybe the user needs to be notified.
                         alert(JSON.stringify(data));
                     }
-                });
-            }
-
-            if (cordova && cordova.getAppVersion) {
-                $rootScope.mobilePackageName = cordova.getAppVersion.getPackageName().then(function (packageName) {
-                    console.log(packageName);
-                    return packageName;
                 });
             }
         });
@@ -301,32 +301,6 @@ if (isMobile) {
         .run(runBlock);
 
     function runBlock($rootScope, $localStorage, $injector, amMoment, moment, $state, $q) {
-
-        function sleep(milliseconds) {
-            var start = new Date().getTime();
-            for (var i = 0; i < 1e7; i++) {
-                if ((new Date().getTime() - start) > milliseconds) {
-                    break;
-                }
-            }
-        }
-
-        function waitForMobilePackageName() {
-
-            if ($rootScope.mobilePackageName) {
-                return true;
-            } else {
-                window.setTimeout(waitForMobilePackageName, 50);
-            }
-        }
-
-        $rootScope.isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
-        $rootScope.isProApp = function () {
-
-            console.log("isProApp()");
-
-            return $rootScope.mobilePackageName == "com.casavox.pro";
-        };
 
         $rootScope.$state = $state;
 
