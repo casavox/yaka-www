@@ -7,7 +7,19 @@
 
     //
     //Controller login
-    function IonicHomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize, $ionicModal) {
+    function IonicHomeController($scope, $rootScope, networkService, alertMsg, $http, CONFIG, $localStorage, $state, $translate, $auth, $stateParams, screenSize, $ionicModal, $ionicPlatform) {
+
+        var vm = this;
+
+        if ($rootScope.isMobile) {
+            if (window.outerHeight < 660) {
+                vm.xsMobile = true;
+                console.log("true");
+            } else {
+                vm.xsMobile = false;
+                console.log("false");
+            }
+        }
 
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
@@ -37,8 +49,6 @@
         $scope.closeForgottenPasswordModal = function() {
             vm.forgottenPassword.hide();
         };
-
-        var vm = this;
 
         $rootScope.pageName = "";
 

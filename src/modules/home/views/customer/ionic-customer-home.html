@@ -42,12 +42,16 @@
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle"><span class="col f-w-300 f-s-17 fw-bold">L'esprit CasaVox</span></h4>
+                        <h4 class="middle" data-ng-class="{'xs-title' : vm.xsMobile}"><span
+                            class="col f-w-300 f-s-17"><b>L'esprit CasaVox</b></span></h4>
                     </div>
-                    <div class="col p-t-0">
+                    <div class="col p-t-0" data-ng-class="{'xs-service' : vm.xsMobile}">
                         <div class="card m-t-5 m-b-5 card-ionic-home service-box">
                             <div class="card-header no-padding">
-                                <div class="c-white bgm-lightblue icon-service ion-home-icon euro-icon-service ion-euro-icon-service pull-left">€</div>
+                                <div
+                                    class="c-white bgm-lightblue icon-service ion-home-icon euro-icon-service ion-euro-icon-service pull-left">
+                                    €
+                                </div>
                                 <div class="p-b-0 p-t-5 p-l-80 p-r-15">
                                     <h2 class="c-lightblue text-uppercase m-b-2">100% gratuit</h2>
                                     <strong>Tous les services CasaVOX sont gratuits pour les particuliers
@@ -100,31 +104,26 @@
                 </div>
             </ion-slide>
             </div>
-
         </ion-slide-box>
+
         <div class="col button-row ion-flex-2">
             <div class="col button-row text-center">
-                <button class="button button-small button-positive bgm-lightblue"
+                <button class="button button-small button-positive bgm-lightblue ion-facebook-button"
                         data-ng-click="vm.facebookLogin()">
-                    POSTEZ VOTRE BESOIN
+                    SE CONNECTER AVEC FACEBOOK
                 </button>
             </div>
             <div class="row m-r-0 m-l-0 center connect-register">
                 <div class="col text-center">
                     <h5 class="t-center m-t-0 m-b-0 subtitle-color-forced underline"
-                        ng-click="vm.login.show(); vm.loginTab = true;">Se connecter</h5>
-                </div>
-                <div class="col text-center">
-                    <h5 class="t-center m-t-0 m-b-0 subtitle-color-forced underline"
-                        ng-click="vm.login.show(); vm.loginTab = false">S'inscrire</h5>
+                        ng-click="vm.login.show(); vm.loginTab = true;">- Ou par mail -</h5>
                 </div>
             </div>
 
             <div class="col text-center">
-                <h6 class="col t-center m-t-0 m-b-0 subtitle-color-forced">Vous êtes un <b><span
-                    class="c-orange">Pro</span></b>
-                    ?</br>
-                    <u><b>Télécharger l'application CasaVox pour les Professionnels</b></u></h6>
+                <h6 class="col t-center m-t-0 m-b-0 subtitle-color-forced">
+                    <b><span class="c-orange">Pro des travaux ?</b></br>
+                    <u><b>Télécharger CasaVox pour les Professionnels</b></u></h6>
             </div>
         </div>
     </section>
