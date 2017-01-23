@@ -60,8 +60,8 @@
 
 .ion-record:before {
     content: "O" !important;
-    color: #d52d45;
-    background-color: #d52d45;
+    color: #3B5998;
+    background-color: #3B5998;
     border-radius: 50%;
     height: 12px;
     width: 12px;
@@ -190,4 +190,8 @@
 .slider-pager {
     top: initial ;
     bottom: 2px ;
+}
+
+.sm-md-service {
+    transform: translateY(-10px);
 }

@@ -225,12 +225,16 @@
         }
 
         vm.facebookLogin = function () {
+            console.log("hahaha");
             vm.socialNetwork = "Facebook";
             $auth.authenticate('facebookLogin').then(function (res) {
+
                 succesLogin(res.data);
             }).catch(function (res) {
+                console.log(res);
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
+                    vm.login.show();
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
                     alertMsg.send($translate.instant(res.data.error), 'danger');
                 } else {
