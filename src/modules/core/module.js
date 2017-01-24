@@ -125,14 +125,13 @@ if (isMobile) {
             'FACEBOOK_CLIENT_ID': (function () {
 
                 switch (window.location.hostname) {
-                    case 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com':
-                    case 'casavox.com':
-                        return '847913895334564'; // Production
+                    case 'fad2bced-1115-4049-8e43-e2e107.herokuapp.com':
+                        return '921341561325130'; // Development
                     case 'fb34936c-dd2e-4abd-bf29-4c7217.herokuapp.com':
                         return '921338621325424'; // Staging
-                    case 'fad2bced-1115-4049-8e43-e2e107.herokuapp.com':
+                    case 'fc6310bf-0465-45a5-b3e4-88e905.herokuapp.com':
                     default:
-                        return '921341561325130'; // Development
+                        return '847913895334564'; // Production
                 }
 
             }())
