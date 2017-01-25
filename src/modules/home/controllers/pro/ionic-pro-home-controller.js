@@ -11,6 +11,14 @@
 
         var vm = this;
 
+        if ($rootScope.isMobile) {
+            if (window.outerHeight < 660) {
+                vm.xsMobile = true;
+            } else {
+                vm.xsMobile = false;
+            }
+        }
+
         if ($stateParams.invitationId) {
             $localStorage.invitationId = $stateParams.invitationId;
         }

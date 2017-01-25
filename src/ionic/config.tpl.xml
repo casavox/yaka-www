@@ -13,13 +13,15 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="SplashScreenDelay" value="1000"/>
-  <preference name="FadeSplashScreenDuration" value="7000"/>
+  <preference name="FadeSplashScreenDuration" value="1000"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="orientation" value="portrait"/>
   <preference name="Fullscreen" value="false"/>
   <preference name="StatusBarOverlaysWebView" value="true"/>
+  <preference name="AutoHideSplashScreen" value="false" />
+  <preference name="ShowSplashScreenSpinner" value="false" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

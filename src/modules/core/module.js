@@ -71,8 +71,11 @@ if (isMobile) {
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
-                navigator.splashscreen.hide();
             }
+            // Hide splash screen
+            setTimeout(function () {
+                navigator.splashscreen.hide();
+            }, 100);
 
             if (window.FCMPlugin) {
                 FCMPlugin.onNotification(function (data) {
@@ -145,6 +148,7 @@ if (isMobile) {
                     default:
                         return '847913895334564'; // Production
                 }
+
             }())
         })
         .config(config);

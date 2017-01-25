@@ -1,0 +1,17 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-facebook4": {
+            "APP_ID": "847913895334564",
+            "APP_NAME": "Casavox",
+            "PACKAGE_NAME": "com.casavox.pro"
+        }
+    },
+    "dependent_plugins": {}
+}

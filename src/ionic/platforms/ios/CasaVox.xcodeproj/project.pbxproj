@@ -16,6 +16,11 @@
 		3047A5131AB8059700498E2A /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5101AB8059700498E2A /* build-release.xcconfig */; };
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
+		1AE65703AD984859B7F02A94 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E17A0E9F5245A79BD7F8C3 /* FacebookConnectPlugin.m */; };
+		A24DB29721AD46609C6E7198 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4650B9A564514A44854DD38B /* Bolts.framework */; };
+		CA1D210F150C45E3A01C7770 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 896829C398374C07840121C6 /* FBSDKCoreKit.framework */; };
+		6DEB5BF669F744E0B8A2622F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70852DA7F9540AE9A04ABC1 /* FBSDKLoginKit.framework */; };
+		003627CDD8044299877CDCDE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700CA108360840CD8AA38CCD /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,12 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "CasaVox/config.xml"; sourceTree = "<group>"; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E0E17A0E9F5245A79BD7F8C3 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.m"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		1B693DE1026B4248A8A8A91D /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.h"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		4650B9A564514A44854DD38B /* Bolts.framework */ = {isa = PBXFileReference; name = "Bolts.framework"; path = "CasaVox/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		896829C398374C07840121C6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "CasaVox/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		C70852DA7F9540AE9A04ABC1 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "CasaVox/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		700CA108360840CD8AA38CCD /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "CasaVox/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +75,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				A24DB29721AD46609C6E7198 /* Bolts.framework in Frameworks */,
+				CA1D210F150C45E3A01C7770 /* FBSDKCoreKit.framework in Frameworks */,
+				6DEB5BF669F744E0B8A2622F /* FBSDKLoginKit.framework in Frameworks */,
+				003627CDD8044299877CDCDE /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +149,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4650B9A564514A44854DD38B /* Bolts.framework */,
+				896829C398374C07840121C6 /* FBSDKCoreKit.framework */,
+				C70852DA7F9540AE9A04ABC1 /* FBSDKLoginKit.framework */,
+				700CA108360840CD8AA38CCD /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,6 +178,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				E0E17A0E9F5245A79BD7F8C3 /* FacebookConnectPlugin.m */,
+				1B693DE1026B4248A8A8A91D /* FacebookConnectPlugin.h */,
 			);
 			name = Plugins;
 			path = "CasaVox/Plugins";
@@ -271,6 +292,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				1AE65703AD984859B7F02A94 /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +328,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "CasaVox";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+				);
 			};
 			name = Debug;
 		};
@@ -328,6 +361,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "CasaVox";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+					"\"CasaVox/Plugins/cordova-plugin-facebook4\"",
+				);
 			};
 			name = Release;
 		};

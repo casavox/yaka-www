@@ -60,8 +60,8 @@
 
 .ion-record:before {
     content: "O" !important;
-    color: #d52d45;
-    background-color: #d52d45;
+    color: #0a9dc7;
+    background-color: #0a9dc7;
     border-radius: 50%;
     height: 12px;
     width: 12px;
@@ -162,4 +162,50 @@
     font-size: 35px;
     margin-left: 15px;
     margin-top: 7px;
+}
+
+.xs-title {
+    transform: translateY(35px);
+}
+
+.xs-service {
+    width: 127% !important;
+    transform: scale(0.7) translateY(-46px) translateX(-60px);
+}
+
+.ion-facebook-button {
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 1px 1px 2px 0px black;
+}
+
+.emoji {
+    width: 225px;
+}
+
+.slider {
+    padding-bottom: 10px;
+}
+.slider-pager {
+    top: initial ;
+    bottom: 1px ;
+}
+
+.sm-md-service {
+    transform: translateY(-10px);
+}
+
+.img-pro-service {
+    height: 70px;
+    padding: 7px;
+}
+
+.pro-service-text {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.pro-service-text > h2 {
+    font-size: 12px;
 }
