@@ -277,7 +277,8 @@ gulp.task("test", ["config-test"], function () {
     new karma(buildConfig.karmaConf).start()
 });
 
-gulp.task('ionic-config', function (cb) {
+// Android
+gulp.task('ionic-config', function () {
 
     var channelTag = "android-public";
     if (argv.pro) {

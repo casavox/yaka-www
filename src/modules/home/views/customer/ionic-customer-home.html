@@ -1,0 +1,472 @@
+<ion-content scroll="false">
+    <section class="login-container">
+        <div class="row logo-name m-0">
+            <img src="img/logo.png" class="clean-img" alt="Logo CasaVox" width="60px" height="60px"/>
+            <div class="c-lightblue casa-ionic-name">CASA<b>VOX</b></div>
+        </div>
+        <ion-slide-box class="ion-box" on-slide-changed="slideHasChanged($index)">
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span class="col f-w-300 f-s-17">Laissez vous <b>guider</b>, décrivez <b>votre projet en quelques clics</b></span>
+                        </h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/customer/CLIENT_1.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span class="col f-w-300 f-s-17">CasaVox et mon entourage me</br><b>recommandent leurs meilleurs Pros</b></span>
+                        </h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/customer/CLIENT_2.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span
+                            class="col f-w-300 f-s-17"><b>J'échange en privé avec les Pros</b></br>
+                            Je suis mes travaux avec CasaVox</span></h4>
+                    </div>
+                    <div class="col p-0 text-center">
+                        <img src="img/ionic-home/customer/CLIENT_3.png" class="casa-ionic-logo"/>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="ion-slide-item">
+                <div class="center">
+                    <div class="col text-center h-90 p-l-10 p-r-10">
+                        <h4 class="middle"><span class="col f-w-300 f-s-17 fw-bold">L'esprit CasaVox</span></h4>
+                    </div>
+                    <div class="col p-t-0">
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <div class="c-white bgm-lightblue icon-service ion-home-icon euro-icon-service ion-euro-icon-service pull-left">€</div>
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">100% gratuit</h2>
+                                    <strong>Tous les services CasaVOX sont gratuits pour les particuliers
+                                        !</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-eye-off zmdi-hc-3x zmdi-hc-fw icon-service ion-home-icon c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">Confidentialité</h2>
+                                    <strong>Ni spam ni partage de vos données privées !</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-comment-text-alt zmdi-hc-3x zmdi-hc-fw icon-service ion-home-icon c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">échanges optimisés</h2>
+                                    Fini les échanges par répondeurs interposés.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-thumb-up zmdi-hc-3x zmdi-hc-fw icon-service ion-home-icon c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">Entraide</h2>
+                                    <strong>Recommandez-vous vos meilleurs Pros</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-t-5 m-b-5 card-ionic-home service-box">
+                            <div class="card-header no-padding">
+                                <i class="zmdi zmdi-assignment zmdi-hc-3x zmdi-hc-fw historic-service icon-service ion-home-icon-historic c-white bgm-lightblue pull-left"></i>
+
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15">
+                                    <h2 class="c-lightblue text-uppercase m-b-2">Historique des travaux</h2>
+                                    Retrouvez facilement tous vos documents, contacts et échanges
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ion-slide>
+            </div>
+
+        </ion-slide-box>
+        <div class="col button-row ion-flex-2">
+            <div class="col button-row text-center">
+                <button class="button button-small button-positive bgm-lightblue"
+                        data-ng-click="vm.facebookLogin()">
+                    POSTEZ VOTRE BESOIN
+                </button>
+            </div>
+            <div class="row m-r-0 m-l-0 center connect-register">
+                <div class="col text-center">
+                    <h5 class="t-center m-t-0 m-b-0 subtitle-color-forced underline"
+                        ng-click="vm.login.show(); vm.loginTab = true;">Se connecter</h5>
+                </div>
+                <div class="col text-center">
+                    <h5 class="t-center m-t-0 m-b-0 subtitle-color-forced underline"
+                        ng-click="vm.login.show(); vm.loginTab = false">S'inscrire</h5>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <h6 class="col t-center m-t-0 m-b-0 subtitle-color-forced">Vous êtes un <b><span
+                    class="c-orange">Pro</span></b>
+                    ?</br>
+                    <u><b>Télécharger l'application CasaVox pour les Professionnels</b></u></h6>
+            </div>
+        </div>
+    </section>
+</ion-content>
+
+
+<script id="login-popup.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">CASAVOX</h1>
+            <img class="popupCloseButton popupCloseIonic" data-ng-if="!vm.noSocialAccountMessage"
+                 src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.login.hide()" alt=""/>
+        </ion-header-bar>
+        <ion-content>
+            <div class="container">
+                <div id="loginPopup" class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+                    <div data-ng-if="!vm.noSocialAccountMessage">
+                        <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: vm.loginTab}"
+                             data-ng-click="vm.loginTab = true">
+                            CONNEXION
+                        </div>
+                        <div class="loginPopupTabItem col-xs-6" data-ng-class="{loginPopupTabItemActive: !vm.loginTab}"
+                             data-ng-click="vm.loginTab = false">
+                            INSCRIPTION
+                        </div>
+
+                        <div data-ng-show="vm.loginTab">
+                            <form name="loginForm" class="col-xs-12 no-padding">
+                                <div class="form-group fg-float"
+                                     data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.email}">
+                                    <div class="fg-line m-t-10">
+                                        <input class="form-control fg-input"
+                                               type="text"
+                                               name="email"
+                                               autocomplete="username"
+                                               data-ng-model="vm.loginUser.email"
+                                               data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"
+                                               yaka-input-email/>
+                                        <label class="fg-label">Email</label>
+                                    </div>
+                                    <small class="help-block"
+                                           data-ng-show="vm.formLoginError && vm.loginUser.email.length < 1">
+                                        Ce champs est requis
+                                    </small>
+                                    <div data-ng-messages="loginForm.email.$error">
+                                        <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                            valide
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group fg-float m-b-10"
+                                     data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.password}">
+                                    <div class="fg-line m-t-20">
+                                        <input class="form-control"
+                                               type="password"
+                                               name="password"
+                                               autocomplete="current-password"
+                                               data-ng-model="vm.loginUser.password"
+                                               data-ng-keyup="$event.keyCode == 13 && vm.loginFormIsValid() && vm.login()"/>
+                                        <label class="fg-label">Mot de
+                                            passe</label>
+                                        <small class="help-block"
+                                               data-ng-show="vm.formLoginError && !vm.loginUser.password">
+                                            Ce champs est requis
+                                        </small>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <button
+                                class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                                data-ng-click="vm.userLogin()"
+                                id="signInPopupButton">SE CONNECTER
+                            </button>
+
+                            <div class="col-xs-12 passwordForgotten underline">
+                        <span data-ng-click="vm.forgottenPassword.show();
+                         vm.forgottenPasswordUser.email = vm.loginUser.email;
+                         vm.showForgottenPasswordPopup = true">J'ai oublié mon mot de passe</span>
+                            </div>
+                        </div>
+
+                        <div data-ng-show="!vm.loginTab">
+
+                            <div class="col-xs-12 registerFacebookGoogle p-l-0 p-r-0">
+                                <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook</span>
+
+                                <div data-ng-if="vm.isSocialRegister()">
+                                    <div class="registerSocialConfirm p-l-0 p-r-0">
+                                        Inscription via {{vm.socialNetwork}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect"
+                                 data-ng-click="vm.facebookPreRegister()"
+                                 data-ng-if="!vm.isSocialRegister()">
+                                Facebook
+                            </div>
+
+                            <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
+
+                            <div class="col-xs-12 registerMail">
+                        <span class="registerWithEmailMessage pointer" data-ng-if="!vm.isSocialRegister()"
+                              data-ng-click="vm.showRegisterFields = true">- <span class="underline">Ou inscription par email</span> -</span>
+                                <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
+                            </div>
+                            <form name="registerForm">
+                                <div class="col-xs-12 showRegisterFields"
+                                     data-ng-class="{showRegisterFieldsVisible: vm.isSocialRegister() || vm.showRegisterFields}">
+
+                                    <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
+                                         data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.firstName}">
+
+                                        <div class="fg-line">
+                                            <input type="text"
+                                                   name="fname"
+                                                   autocomplete="given-name"
+                                                   class="form-control fg-input input-sm"
+                                                   data-ng-model="vm.newUser.firstName"
+                                                   data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                            <label class="fg-label">Prénom</label>
+                                        </div>
+                                        <small class="help-block"
+                                               data-ng-show="vm.formRegisterError && !vm.newUser.firstName">
+                                            Ce champs est requis
+                                        </small>
+                                        <div data-ng-messages="registerForm.fname.$error">
+                                            <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
+                                                valide
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
+                                        data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.lastName}">
+
+                                        <div class="fg-line">
+                                            <input type="text"
+                                                   name="lname"
+                                                   autocomplete="family-name"
+                                                   class="form-control fg-input input-sm"
+                                                   data-ng-model="vm.newUser.lastName"
+                                                   data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
+                                            <label class="fg-label">Nom</label>
+                                        </div>
+                                        <small class="help-block"
+                                               data-ng-show="vm.formRegisterError && !vm.newUser.lastName">
+                                            Ce champs est requis
+                                        </small>
+                                        <div data-ng-messages="registerForm.lname.$error">
+                                            <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                                valide
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group fg-float m-b-30"
+                                         data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.defaultAddress.address}">
+                                        <div class="fg-line">
+                                            <input type="text"
+                                                   class="form-control fg-input input-sm"
+                                                   name="address"
+                                                   id="address"
+                                                   ng-model="vm.newUser.defaultAddress.address"
+                                                   data-ng-maxlength="5"
+                                                   maxlength="5"
+                                                   placeholder=""
+                                                   uib-typeahead="address for address in getLocation($viewValue)"/>
+                                            <label class="fg-label">Votre code postal</label>
+                                        </div>
+                                        <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address">
+                                            Merci d'indiquer le code postal puis de sélectionner la commune
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group fg-float m-b-30"
+                                         data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.email}">
+                                        <div class="fg-line">
+                                            <input type="text"
+                                                   name="username"
+                                                   autocomplete="username"
+                                                   class="form-control fg-input input-sm"
+                                                   data-ng-model="vm.newUser.email" yaka-input-email>
+                                            <label class="fg-label">Email</label>
+                                        </div>
+                                        <small class="help-block"
+                                               data-ng-show="vm.formRegisterError && vm.newUser.email.length < 1">
+                                            Ce champs est requis
+                                        </small>
+                                        <div data-ng-messages="registerForm.username.$error">
+                                            <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                                valide
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group fg-float m-b-30"
+                                         data-ng-class="{'has-error': vm.formRegisterError && !vm.newUser.password}">
+                                        <div class="fg-line">
+                                            <input type="password"
+                                                   name="password"
+                                                   autocomplete="new-password"
+                                                   class="form-control fg-input input-sm"
+                                                   data-ng-model="vm.newUser.password"
+                                                   data-ng-minlength="6">
+                                            <label class="fg-label">Mot
+                                                de passe</label>
+                                        </div>
+                                        <small class="help-block"
+                                               data-ng-show="vm.formRegisterError && vm.newUser.password.length < 1">
+                                            Ce champs est requis
+                                        </small>
+                                        <div data-ng-messages="registerForm.password.$error">
+                                            <small class="help-block" data-ng-message="minlength">
+                                                Le mot de passe doit faire au moins 6 caractères
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group fg-float m-b-15"
+                                         data-ng-class="{'has-error': vm.formRegisterError && !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
+                                        <div class="fg-line">
+                                            <input type="password" class="form-control fg-input input-sm"
+                                                   data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
+                                            <label class="fg-label">Confirmation</label>
+                                        </div>
+                                        <small class="help-block"
+                                               data-ng-show="vm.formRegisterError && !vm.passwordConfirm">
+                                            Ce champs est requis
+                                        </small>
+                                        <small class="help-block"
+                                               data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
+                                            Les deux mots de passe ne correspondent pas
+                                        </small>
+                                    </div>
+
+                                    <div class="col-xs-12 no-padding select m-b-15">
+                                        <select class="form-control"
+                                                data-ng-model="vm.newUser.referral">
+                                            <option value="" disabled="disabled">Comment nous avez-vous connu ?
+                                                (facultatif)
+                                            </option>
+                                            <option value="REFERRAL_SEARCH">Recherche internet</option>
+                                            <option value="REFERRAL_FRIEND">Par connaissance</option>
+                                            <option value="REFERRAL_SOCIAL">Réseaux sociaux</option>
+                                            <option value="REFERRAL_LM">Leroy Merlin</option>
+                                            <option value="REFERRAL_INVITATION">Invitation CasaVOX</option>
+                                            <option value="REFERRAL_OTHER">Autre</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-xs-12 no-padding form-group fg-float m-b-10 m-t-10"
+                                         data-ng-if="vm.newUser.referral == 'REFERRAL_OTHER'">
+                                        <div class="fg-line">
+                                            <input type="text"
+                                                   name="BY_OTHER"
+                                                   autocomplete="given-name"
+                                                   class="form-control fg-input input-sm"
+                                                   data-ng-model="vm.referralOther">
+                                            <label class="fg-label">Entrez votre source</label>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton waves-effect"
+                                        data-ng-click="vm.register()">S'INSCRIRE
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="vm.noSocialAccountMessage">
+                        <div class="noSocialAccountMessage">
+                            Ce compte {{vm.socialNetwork}} nous est inconnu.<br/>
+                            Essayez de vous connecter avec votre email et votre mot de passe ou de créer un compte en
+                            cliquant
+                            sur <em>S'inscrire</em> puis <em>{{vm.socialNetwork}}</em>.
+                        </div>
+                        <button
+                            class="col-xs-12 btn btn-lg bgm-orange loginPopupButton waves-effect"
+                            data-ng-click="vm.noSocialAccountMessage = false">OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+
+<script id="forgotten-password.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">Mot de passe oublié ?</h1>
+            <img class="popupCloseButton popupCloseIonic" data-ng-if="!vm.noSocialAccountMessage"
+                 src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="vm.forgottenPassword.hide()" alt=""/>
+        </ion-header-bar>
+        <ion-content>
+            <div class="container">
+                <div class="yakaPopupWindow col-xs-12" data-ng-click="$event.stopPropagation()">
+                    <div data-ng-if="!vm.passwordForgottenMessageSent">
+
+                        <form name="recoverPassword">
+                            <div class="form-group fg-float m-t-30"
+                                 data-ng-class="{'has-error': vm.formLostPasswordError && !vm.forgottenPasswordUser.email}">
+                                <div class="fg-line">
+                                    <input type="text"
+                                           name="username"
+                                           autocomplete="username"
+                                           data-ng-disabled="vm.isSocialRegister()"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.forgottenPasswordUser.email"
+                                           yaka-input-email>
+                                    <label class="fg-label">Email</label>
+                                </div>
+                                <small class="help-block"
+                                       data-ng-show="vm.formLostPasswordError && vm.forgottenPasswordUser.email.length < 1">
+                                    Ce champs est requis
+                                </small>
+                                <div data-ng-messages="recoverPassword.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+                        </form>
+                        <button
+                            class="col-xs-12 btn btn-lg bgm-lightblue loginPopupButton passwordForgottenButton waves-effect"
+                            data-ng-click="vm.reinitializePassword()">RÉINITIALISER MON MOT DE PASSE
+                        </button>
+                    </div>
+                    <div class="passwordForgottenMessageSent" data-ng-if="vm.passwordForgottenMessageSent">
+                        Nous venons de vous envoyer un email contenant un lien qui vous permettra de réinitialiser votre
+                        mot de
+                        passe.
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

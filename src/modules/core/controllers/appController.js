@@ -175,9 +175,9 @@
 
         app.logout = function () {
             if ($localStorage.user && $localStorage.user.professional) {
-                $state.go('ionic-pro-home');
+                $state.go('pro-home');
             } else {
-                $state.go('ionic-customer-home');
+                $state.go('home');
             }
             $localStorage.$reset();
         };

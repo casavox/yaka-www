@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.casavox.app"
         },
@@ -26,9 +29,6 @@
             "PACKAGE_NAME": "com.casavox.app"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.casavox.app"
-        },
-        "cordova-plugin-app-version": {
             "PACKAGE_NAME": "com.casavox.app"
         }
     },

@@ -5189,6 +5189,10 @@ div.recaptcha.mobile > div {
     font-size: 16px !important;
 }
 
+.f-s-17 {
+    font-size: 17px !important;
+}
+
 .f-s-18 {
     font-size: 18px !important;
 }
@@ -5203,6 +5207,10 @@ div.recaptcha.mobile > div {
 
 .f-w-100 {
     font-weight: 100 !important;
+}
+
+.f-w-300 {
+    font-weight: 300 !important;
 }
 
 .l-h-100pc {

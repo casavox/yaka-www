@@ -109,9 +109,9 @@
             "modules/help/styles/help.css",
             "modules/dashboard/styles/dashboard.css",
             "modules/admin/styles/admin.css",
-            "modules/ionic-home/styles/ionic-home.css",
             "ionic/lib/ionic/css/ionic.css",
-            "modules/core/styles/tabSlideBox.css"
+            "modules/core/styles/tabSlideBox.css",
+            "modules/home/styles/ionic-home.css"
         ],
         "scss": [],
         "assets": [

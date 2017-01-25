@@ -1,0 +1,165 @@
+@media (min-width: 680px) {
+    .modal {
+        top: 0px !important;
+        right: 0px !important;
+        bottom: 0px !important;
+        left: 0px !important;
+        width: 100% !important;
+    }
+}
+
+.login-container {
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    height: 100%;
+    background-color: white !important;
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efad62), color-stop(100%,#f7d47c));
+    background: -webkit-linear-gradient(top, #efad62 0%,#f7d47c 100%);*/
+}
+
+.trust-icon-background {
+    background-color: #0a9dc7 !important;
+}
+
+.login-container > .header {
+    -webkit-flex: 2;
+}
+
+.casa-ionic-logo {
+    image-rendering: auto;
+    width:61%;
+}
+
+.ionic-background {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+}
+
+.bgm-facebook {
+    background-color: #3B5998 !important;
+}
+
+.p-r-40 {
+    padding-right: 40px !important;
+}
+
+.m-b-40 {
+    margin-bottom: 40px !important;
+}
+
+.h-90 {
+    height: 90px !important
+}
+
+.box {
+    height: auto !important;
+    padding-top: 0vh !important;
+}
+
+
+.ion-record:before {
+    content: "O" !important;
+    color: #d52d45;
+    background-color: #d52d45;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+}
+
+.clean-img {
+    image-rendering: auto;
+}
+
+.popupCloseIonic {
+    top: 4px;
+    right: 28px;
+}
+
+.form-control {
+    border-bottom: 2px solid rgb(224, 224, 224) !important;
+}
+
+.form-pro-register {
+    height: 24px !important;
+}
+
+.popupBadUser {
+    text-align: center;
+}
+
+.tabbed-slidebox .tsb-icons:after {
+    display: none !important;
+}
+
+.tabbed-slidebox .slider-slide {
+    background-color: #fff !important;
+}
+
+.tabbed-slidebox .slider {
+    height: auto !important;
+}
+
+.flex-slide {
+    -webkit-box-flex: 3 !important;
+    flex: 3 !important;
+}
+
+.ion-box {
+    flex: 8;
+    -webkit-box-flex: 8;
+}
+
+.ion-flex-2 {
+    flex: 2 !important;
+}
+
+.ion-slide-item {
+    display: flex !important;
+    align-items: center;
+}
+
+.slider-pager {
+    bottom: 20px;
+}
+
+.connect-register {
+    width: 300px !important;
+}
+
+.logo-name {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+}
+
+.casa-ionic-name {
+    font-size: 30px;
+    margin-left: 2%;
+    font-weight: 300;
+}
+
+.card-ionic-home {
+    height: 70px;
+}
+
+.ion-home-icon {
+    font-size: 35px;
+    margin-left: 15px;
+    margin-top: 7px;
+}
+
+.ion-euro-icon-service {
+    padding-left: 12px;
+    padding-right: 15px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.ion-home-icon-historic {
+    padding-left: 10px !important;
+    font-size: 35px;
+    margin-left: 15px;
+    margin-top: 7px;
+}
