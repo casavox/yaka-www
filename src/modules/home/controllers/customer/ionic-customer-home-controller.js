@@ -199,7 +199,6 @@
             };
 
             function succesLogin(res) {
-                console.log(res);
                 if (res.token && res.token != "") {
                     $localStorage.user = res;
                     $localStorage.token = res.token;
@@ -249,7 +248,6 @@
             }
 
             var fbLoginSuccess = function (res) {
-                console.log(res);
                 if (res.data.token) {
                     succesLogin(res.data);
                 } else if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {

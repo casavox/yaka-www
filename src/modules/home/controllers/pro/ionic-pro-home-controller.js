@@ -29,7 +29,6 @@
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function(modal) {
-            console.log("aaaaa");
             vm.login = modal;
         });
         $ionicModal.fromTemplateUrl('forgotten-password.html', {
