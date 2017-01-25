@@ -1,23 +1,25 @@
 <ion-content scroll="false">
     <section class="login-container">
         <div class="row logo-name m-0">
-            <img src="img/logoSansFond_PRO_40w.png" class="clean-img" alt="Logo CasaVox" width="60px" height="60px"/>
+            <img src="img/ionic-home/pro/ionic-pro-logo.png" class="clean-img p-10" alt="Logo CasaVox" width="65px" height="60px"/>
             <div class="c-orange casa-ionic-name">CASA<b>VOX</b></div>
         </div>
         <ion-slide-box class="ion-box" on-slide-changed="slideHasChanged($index)">
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle" data-ng-class="{'xs-title' : vm.xsMobile}"><span
-                            class="col f-w-300 f-s-17">Des services <b>pensés et validés par des Pros</b> du bâtiment</span></h4>
+                        <h4 class="middle" data-ng-class="{'xs-pro-title' : vm.xsMobile}"><span
+                            class="col f-w-300"
+                            data-ng-class="{'f-s-15' : vm.xsMobile, 'f-s-17' : !vm.xsMobile}">Des services <b>pensés et validés par des Pros</b> du bâtiment</span></h4>
                     </div>
-                    <div class="col p-t-0" data-ng-class="{'xs-service' : vm.xsMobile, 'sm-md-service' : !vm.xsMobile}">
+                    <div class="col p-t-0" data-ng-class="{'xs-pro-service' : vm.xsMobile, 'sm-md-service m-b-20' : !vm.xsMobile}">
                         <div class="card m-t-5 m-b-5 p-b-0 card-ionic-home service-box">
                             <div class="card-header no-padding">
                                 <div class="pull-left img-pro-service">
                                     <img src="img/ionic-home/pro/bao.png" width="55px" height="55px" alt="image réseau">
                                 </div>
-                                <div class="p-b-0 p-t-5 p-l-80 p-r-15 pro-service-text">
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15"
+                                     data-ng-class="{'xs-pro-service-text' : vm.xsMobile, 'pro-service-text' : !vm.xsMobile}">
                                     <h2 class="c-lightblue text-uppercase m-b-2">Bouche-à-oreille connecté</h2>
                                     <strong>CasaVox vous aide à étendre et faire vivre votre réseau de recommendation.</strong>
                                 </div>
@@ -28,7 +30,8 @@
                                 <div class="pull-left img-pro-service">
                                     <img src="img/ionic-home/pro/notifclient.png" width="55px" height="55px" alt="image notification">
                                 </div>
-                                <div class="p-b-0 p-t-5 p-l-80 p-r-15 pro-service-text">
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15"
+                                     data-ng-class="{'xs-pro-service-text' : vm.xsMobile, 'pro-service-text' : !vm.xsMobile}">
                                     <h2 class="c-lightblue text-uppercase m-b-2">Gestion de la relation client</h2>
                                     <strong>Vos anciens clients ont des travaux à réaliser : vous en êtes automatiquement informé !</strong>
                                 </div>
@@ -39,7 +42,8 @@
                                 <div class="pull-left img-pro-service">
                                     <img src="img/ionic-home/pro/likepro.png" width="55px" height="55px" alt="image recommendation">
                                 </div>
-                                <div class="p-b-0 p-t-5 p-l-80 p-r-15 pro-service-text">
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15"
+                                     data-ng-class="{'xs-pro-service-text' : vm.xsMobile, 'pro-service-text' : !vm.xsMobile}">
                                     <h2 class="c-lightblue text-uppercase m-b-2">Gestion de votre réputation</h2>
                                     Pas d'étoile, pas de note négative, les clients satisfaits vous recommandent à leurs proches.
                                 </div>
@@ -50,7 +54,8 @@
                                 <div class="pull-left img-pro-service">
                                     <img src="img/ionic-home/pro/start.png" width="55px" height="55px" alt="image gratuité">
                                 </div>
-                                <div class="p-b-0 p-t-5 p-l-80 p-r-15 pro-service-text">
+                                <div class="p-b-0 p-t-5 p-l-80 p-r-15"
+                                     data-ng-class="{'xs-pro-service-text' : vm.xsMobile, 'pro-service-text' : !vm.xsMobile}">
                                     <h2 class="c-lightblue text-uppercase m-b-2">Gratuit et sans engagement</h2>
                                     <strong>Ni RIB, ni CB, inscrivez-vous dès maintenant pour essayer tous les services librement.</strong>
                                 </div>
@@ -64,10 +69,12 @@
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle"><span class="col f-w-300 f-s-17">Répondez aux offres, suivez les besoins de vos clients et de leurs proches</span>
+                        <h4 class="middle"><span class="col f-w-300"
+                                                 data-ng-class="{'f-s-15' : vm.xsMobile, 'f-s-17' : !vm.xsMobile}">Répondez aux offres, suivez les besoins de vos clients et de leurs proches</span>
                         </h4>
                     </div>
-                    <div class="col p-0 text-center">
+                    <div class="col p-0 text-center"
+                         data-ng-class="{'m-b-0' : vm.xsMobile, 'm-b-20' : !vm.xsMobile}">
                         <img src="img/ionic-home/pro/PRO_2.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
@@ -75,10 +82,12 @@
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle"><span class="col f-w-300 f-s-17">Pas de temps à perdre : <b>discutez en direct avec le client</b>, partagez photos et devis...</span>
+                        <h4 class="middle"><span class="col f-w-300"
+                                                 data-ng-class="{'f-s-15' : vm.xsMobile, 'f-s-17' : !vm.xsMobile}">Pas de temps à perdre : <b>discutez en direct avec le client</b>, partagez photos et devis...</span>
                         </h4>
                     </div>
-                    <div class="col p-0 text-center">
+                    <div class="col p-0 text-center"
+                         data-ng-class="{'m-b-0' : vm.xsMobile, 'm-b-20' : !vm.xsMobile}">
                         <img src="img/ionic-home/pro/PRO_3.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
@@ -87,10 +96,12 @@
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
                         <h4 class="middle"><span
-                            class="col f-w-300 f-s-17">Développez votre réseau clients</br>
+                            class="col f-w-300"
+                            data-ng-class="{'f-s-15' : vm.xsMobile, 'f-s-17' : !vm.xsMobile}">Développez votre réseau clients</br>
                             <b>Gagnez de nouveaux chantiers</b></span></h4>
                     </div>
-                    <div class="col p-0 text-center">
+                    <div class="col p-0 text-center"
+                         data-ng-class="{'m-b-0' : vm.xsMobile, 'm-b-20' : !vm.xsMobile}">
                         <img src="img/ionic-home/pro/PRO_4.png" class="casa-ionic-logo"/>
                     </div>
                 </div>

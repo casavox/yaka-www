@@ -1,7 +1,7 @@
 <ion-content scroll="false">
     <section class="login-container">
         <div class="row logo-name m-0">
-            <img src="img/logo.png" class="clean-img" alt="Logo CasaVox" width="60px" height="60px"/>
+            <img src="img/ionic-home/customer/ionic-logo.png" class="clean-img p-10" alt="Logo CasaVox" width="65px" height="60px"/>
             <div class="c-lightblue casa-ionic-name">CASA<b>VOX</b></div>
         </div>
         <ion-slide-box class="ion-box" on-slide-changed="slideHasChanged($index)">
@@ -11,7 +11,8 @@
                         <h4 class="middle"><span class="col f-w-300 f-s-17">Laissez vous <b>guider</b>, décrivez <b>votre projet en quelques clics</b></span>
                         </h4>
                     </div>
-                    <div class="col p-0 text-center">
+                    <div class="col p-0 text-center"
+                         data-ng-class="{'m-b-0' : vm.xsMobile, 'm-b-25' : !vm.xsMobile}">
                         <img src="img/ionic-home/customer/CLIENT_1.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
@@ -22,7 +23,8 @@
                         <h4 class="middle"><span class="col f-w-300 f-s-17">CasaVox et mon entourage me</br><b>recommandent leurs meilleurs Pros</b></span>
                         </h4>
                     </div>
-                    <div class="col p-0 text-center">
+                    <div class="col p-0 text-center"
+                         data-ng-class="{'m-b-0' : vm.xsMobile, 'm-b-25' : !vm.xsMobile}">
                         <img src="img/ionic-home/customer/CLIENT_2.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
@@ -34,7 +36,8 @@
                             class="col f-w-300 f-s-17"><b>J'échange en privé avec les Pros</b></br>
                             Je suis mes travaux avec CasaVox</span></h4>
                     </div>
-                    <div class="col p-0 text-center">
+                    <div class="col p-0 text-center"
+                         data-ng-class="{'m-b-0' : vm.xsMobile, 'm-b-25' : !vm.xsMobile}">
                         <img src="img/ionic-home/customer/CLIENT_3.png" class="casa-ionic-logo"/>
                     </div>
                 </div>
@@ -42,10 +45,10 @@
             <ion-slide class="ion-slide-item">
                 <div class="center">
                     <div class="col text-center h-90 p-l-10 p-r-10">
-                        <h4 class="middle" data-ng-class="{'xs-title' : vm.xsMobile}"><span
+                        <h4 class="middle" data-ng-class="{'xs-title' : vm.xsMobile || vm.smMobile}"><span
                             class="col f-w-300 f-s-17"><b>L'esprit CasaVox</b></span></h4>
                     </div>
-                    <div class="col p-t-0" data-ng-class="{'xs-service' : vm.xsMobile, 'sm-md-service' : !vm.xsMobile}">
+                    <div class="col p-t-0" data-ng-class="{'xs-service' : vm.xsMobile, 'sm-service m-b-25' : vm.smMobile, 'sm-md-service m-b-25' : !vm.xsMobile && !vm.smMobile}">
                         <div class="card m-t-5 m-b-5 card-ionic-home service-box">
                             <div class="card-header no-padding">
                                 <div

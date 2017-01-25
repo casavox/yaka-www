@@ -12,7 +12,7 @@
         var vm = this;
 
         if ($rootScope.isMobile) {
-            if (window.outerHeight < 660) {
+            if (window.outerHeight < 550) {
                 vm.xsMobile = true;
             } else {
                 vm.xsMobile = false;

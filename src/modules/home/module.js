@@ -5,9 +5,7 @@
         .module('Yaka')
         .config(config)
         .run(function ($rootScope, $location, $state) {
-            $rootScope.isProApp = function () {
-                return true;
-            }
+
             $rootScope.$on('$stateChangeStart',
                 function (event, toState, toParams, fromState, fromParams, options) {
                     if (toState.name == "home") {

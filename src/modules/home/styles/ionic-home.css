@@ -168,9 +168,18 @@
     transform: translateY(35px);
 }
 
+.xs-pro-title {
+    transform: translateY(0px);
+}
+
 .xs-service {
     width: 127% !important;
     transform: scale(0.7) translateY(-46px) translateX(-60px);
+}
+
+.xs-pro-service {
+    width: 113% !important;
+    transform: scale(0.8) translateY(-30px) translateX(-25px);
 }
 
 .ion-facebook-button {
@@ -189,11 +198,16 @@
 }
 .slider-pager {
     top: initial ;
-    bottom: 1px ;
+    bottom: 2px ;
 }
 
 .sm-md-service {
     transform: translateY(-10px);
+}
+
+.sm-service {
+    width: 127% !important;
+    transform: scale(0.7) translateY(-46px) translateX(-60px);
 }
 
 .img-pro-service {
@@ -202,10 +216,20 @@
 }
 
 .pro-service-text {
-    font-size: 11px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.xs-pro-service-text {
+    font-size: 12px;
     line-height: 14px;
 }
 
 .pro-service-text > h2 {
     font-size: 12px;
+}
+
+.xs-pro-service-text > h2 {
+    font-size: 12px;
+    line-height: 14px;
 }

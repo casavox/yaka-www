@@ -7,6 +7,8 @@
 
     function AppController($scope, networkService, alertMsg, $rootScope, $state, $stomp, $localStorage, $cookies, $stateParams, $analytics, CONFIG) {
 
+        console.log(window.outerHeight);
+
         var app = this;
         var vm = this;
         $rootScope.rate_watcher = true;
