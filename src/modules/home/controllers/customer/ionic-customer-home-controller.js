@@ -14,10 +14,8 @@
             if ($rootScope.isMobile) {
                 if (window.outerHeight < 660) {
                     vm.xsMobile = true;
-                    console.log("true");
                 } else {
                     vm.xsMobile = false;
-                    console.log("false");
                 }
             }
 
