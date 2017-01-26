@@ -150,6 +150,9 @@
             proRegister: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/pro/register', data, ignoreLoading).success(success).error(error)
             },
+            fcmRegister: function (data, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/fcm/register', data, ignoreLoading).success(success).error(error)
+            },
             projectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/' + data, ignoreLoading).success(success).error(error)
             },

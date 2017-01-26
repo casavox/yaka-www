@@ -37,13 +37,32 @@ if (isMobile) {
 angular.module('Yaka', dependencies);
 
 if (isMobile) {
-    angular.module('Yaka').run(function ($ionicPlatform, $rootScope) {
+    angular.module('Yaka').run(function ($ionicPlatform, $rootScope, $localStorage, networkService) {
 
         $rootScope.isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
         $rootScope.mobilePlatform = "PLATFORM_WEB";
         $rootScope.mobilePackageName = "DESKTOP_NO_PACKAGE_NAME";
         $rootScope.isProApp = function () {
             return $rootScope.mobilePackageName == "com.casavox.pro";
+        };
+
+        $rootScope.fcmRegisterToken = function () {
+            if (window.FCMPlugin && $localStorage.user) {
+                FCMPlugin.getToken(
+                    function (token) {
+                        networkService.fcmRegister({
+                                token: token
+                            },
+                            function () {
+
+                            }, function () {
+
+                            }, true);
+                    },
+                    function (err) {
+                    }
+                );
+            }
         };
 
         $ionicPlatform.ready(function () {
@@ -59,23 +78,19 @@ if (isMobile) {
             }, 100);
 
             if (window.FCMPlugin) {
-                FCMPlugin.getToken(
-                    function (token) {
-                        alert(token);
-                    },
-                    function (err) {
-                        console.log('error retrieving token: ' + err);
-                    }
-                );
-
                 FCMPlugin.onNotification(function (data) {
+                    alert("A");
                     if (data.wasTapped) {
                         //Notification was received on device tray and tapped by the user.
                         alert(JSON.stringify(data));
+                        console.log(data);
                     } else {
                         //Notification was received in foreground. Maybe the user needs to be notified.
                         alert(JSON.stringify(data));
+                        console.log(data);
                     }
+                }, function (msg) {
+                }, function (err) {
                 });
             }
         });
