@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		0061271806684F8E93E746BB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85751F0CE1D94B4FBF0E2654 /* Security.framework */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
@@ -34,6 +35,7 @@
 		C86190C112AB4F3F8E6395C4 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6132CEDC2F5E408D9B359837 /* GoogleUtilities.framework */; };
 		DCAA90B1EFC34217AB506ED9 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3030388468844C28029DCDB /* FBSDKCoreKit.framework */; };
 		EFAB6F8D7655404191FCBC59 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F01F56817114EC5BDE8F112 /* CDVLogger.m */; };
+		F33467DF1E3B9BDB00D2060D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F33467DE1E3B9BDB00D2060D /* GoogleService-Info.plist */; };
 		F3D4796D1E39FD7300ACA2D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D4796C1E39FD7300ACA2D7 /* GoogleService-Info.plist */; };
 		F47707DAE03C4C88BDB983F7 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A79CA51F39C44849542E310 /* FirebaseInstanceID.framework */; };
 /* End PBXBuildFile section */
@@ -103,6 +105,7 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F0B2F9C1691F4EAC88FAC692 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = "CasaVox/Plugins/cordova-plugin-fcm/FirebaseAnalytics.framework"; sourceTree = "<group>"; };
+		F33467DE1E3B9BDB00D2060D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "CasaVox/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D4796C1E39FD7300ACA2D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = CasaVox/config.xml; sourceTree = "<group>"; };
 		FDF35B1F2567448A8A5FE77E /* AppVersion.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AppVersion.m; path = "cordova-plugin-app-version/AppVersion.m"; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D4796C1E39FD7300ACA2D7 /* GoogleService-Info.plist */,
+				F33467DE1E3B9BDB00D2060D /* GoogleService-Info.plist */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF31871DA8E0020F90C /* www */,
 				EB87FDF11871DA420020F90C /* Staging */,
@@ -338,6 +342,7 @@
 			files = (
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				F3D4796D1E39FD7300ACA2D7 /* GoogleService-Info.plist in Resources */,
+				F33467DF1E3B9BDB00D2060D /* GoogleService-Info.plist in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 			);
