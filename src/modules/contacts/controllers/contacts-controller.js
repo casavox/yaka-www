@@ -15,6 +15,26 @@
 
         var vm = this;
 
+        if ($rootScope.isMobile) {
+            vm.isMobile = true;
+        }
+
+        vm.shareOnFacebook = function() {
+            var shareFacebookOptions = {
+                method: "share",
+                href: "http://www.casavox.com"
+            };
+            facebookConnectPlugin.showDialog(shareFacebookOptions, successShareFacebook, errorShareFacebook);
+        };
+
+        function successShareFacebook (res) {
+            console.log("partagé");
+        }
+
+        function errorShareFacebook (err) {
+            console.log("partagé");
+        }
+
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
             networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
             vm.bigAlert = true;
