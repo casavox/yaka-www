@@ -185,22 +185,6 @@
             }
         };
 
-        vm.facebookPreRegister = function () {
-            $auth.authenticate('facebookProRegister').then(function (res) {
-                if (res.data.token) {
-                    succesLogin(res.data);
-                } else if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
-                    onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
-                }
-            });
-        };
-
         function onPreRegisterOK(user) {
             vm.newUser.firstName = user.firstName;
             vm.newUser.lastName = user.lastName;
@@ -374,18 +358,40 @@
 
         vm.facebookLogin = function () {
             vm.socialNetwork = "Facebook";
-            $auth.authenticate('facebookLogin').then(function (res) {
-                succesLogin(res.data);
-            }).catch(function (res) {
-                if (res.data.error == "ERROR_BAD_CREDENTIALS") {
-                    vm.noSocialAccountMessage = true;
-                } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
-                }
-            });
+            facebookConnectPlugin.login(["public_profile", "email"], function (res) {
+                    if (res.authResponse.accessToken) {
+                        var data = {
+                            access_token: res.authResponse.accessToken
+                        };
+                        networkService.registerFacebookIonic(data, successIonicSocialLogin, errorIonicSocialLogin, true);
+                    } else {
+                        alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+                    }
+                },
+                errorIonicSocialLogin
+            );
         };
+
+        function successIonicSocialLogin(res) {
+            if (res.token) {
+                succesLogin(res);
+            } else if (!angular.isUndefined(res.facebookId) && res.facebookId && res.facebookId != "") {
+                vm.login.show();
+                vm.loginTab = false;
+                onPreRegisterOK(res);
+            }
+        }
+
+        function errorIonicSocialLogin(res) {
+            if (res.error == "ERROR_BAD_CREDENTIALS") {
+                vm.noSocialAccountMessage = true;
+                vm.login.show();
+            } else if (res != undefined && res.error != undefined && res.error != "ERROR") {
+                alertMsg.send($translate.instant(res.error), 'danger');
+            } else {
+                alertMsg.send("Impossible de se connecter via Facebook", 'danger');
+            }
+        }
 
         /* Forgot password */
 

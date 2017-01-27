@@ -144,8 +144,14 @@
             loginFacebookDetach: function (success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/login/facebook/detach', null, ignoreLoading).success(success).error(error)
             },
+            loginFacebookIonic: function (data, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/login/ionic/facebook', data, ignoreLoading).success(success).error(error)
+            },
             register: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/register', data, ignoreLoading).success(success).error(error)
+            },
+            registerFacebookIonic: function (data, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/register/ionic/facebook', data, ignoreLoading).success(success).error(error)
             },
             proRegister: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/pro/register', data, ignoreLoading).success(success).error(error)
