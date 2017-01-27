@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <widget id="com.casavox.app" version="1.1.1" xmlns="http://www.w3.org/ns/widgets">
   <name>CasaVox</name>
   <description>&#xD;
     Confiez vos travaux aux artisans préférés de vos proches !&#xD;
+=======
+<widget id="com.casavox.pro" version="1.1.1" xmlns="http://www.w3.org/ns/widgets">
+  <name>CasaVox Pro</name>
+  <description>
+    Confiez vos travaux aux artisans préférés de vos proches !
+>>>>>>> ionic-connect-pro-cust
   </description>
   <author email="contact@casavox.com" href="https://www.casavox.com/">&#xD;
     CasaVox&#xD;

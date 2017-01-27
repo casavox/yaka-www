@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.casavox.app;
+package com.casavox.pro;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
