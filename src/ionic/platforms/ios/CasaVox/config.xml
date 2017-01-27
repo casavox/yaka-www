@@ -44,9 +44,10 @@
     <author email="contact@casavox.com" href="https://www.casavox.com/">
     CasaVox
   </author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.1.100.115:8100" />
     <access origin="*" />
     <allow-navigation href="*" />
+    <allow-navigation href="http://10.1.100.115:8100" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="true" />
