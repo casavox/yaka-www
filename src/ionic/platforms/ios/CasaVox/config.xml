@@ -52,7 +52,7 @@
     <author email="contact@casavox.com" href="https://www.casavox.com/">
     CasaVox
   </author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.1.100.115:8100" />
     <access origin="*" />
     <allow-navigation href="*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -85,6 +85,7 @@
     <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
     <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
     <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
+    <allow-navigation href="http://10.1.100.115:8100" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="true" />

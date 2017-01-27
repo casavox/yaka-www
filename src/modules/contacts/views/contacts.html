@@ -185,6 +185,13 @@
                 </small>
             </div>
             <div class="col-xs-12 no-padding visible-xs m-b-20">
+                <div class="col-xs-12 t-center m-t-5 m-b-10" data-ng-if="vm.isMobile">
+                    <button id="invite-friend-button"
+                            class="btn btn-default waves-effect c-white bgm-lightblue m-r-15"
+                            data-ng-click="vm.shareOnFacebook()">
+                        Inviter par Facebook
+                    </button>
+                </div>
                 <button class="col-xs-5 btn btn-default waves-effect c-lightblue btn-xs"
                         data-ng-click="vm.openSMSorMailPopup('customer')">
                     Inviter un ami
