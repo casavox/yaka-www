@@ -47,6 +47,17 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-facebook4": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-facebook4@~1.7.4"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "847913895334564",
+            "APP_NAME": "CasaVox"
+        }
+    },
     "ionic-plugin-keyboard": {
         "source": {
             "type": "registry",
@@ -54,24 +65,5 @@
         },
         "is_top_level": true,
         "variables": {}
-    },
-    "cordova-plugin-app-version": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-app-version"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-facebook4": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-facebook4"
-        },
-        "is_top_level": true,
-        "variables": {
-            "APP_ID": "847913895334564",
-            "APP_NAME": "Casavox"
-        }
     }
 }

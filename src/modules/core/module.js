@@ -37,7 +37,7 @@ if (isMobile) {
 angular.module('Yaka', dependencies);
 
 if (isMobile) {
-    angular.module('Yaka').run(function ($ionicPlatform, $rootScope, $localStorage, networkService) {
+    angular.module('Yaka').run(function ($ionicPlatform, $rootScope, $localStorage, networkService, $state) {
 
         $rootScope.isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
         $rootScope.mobilePlatform = "PLATFORM_WEB";
@@ -79,16 +79,53 @@ if (isMobile) {
 
             if (window.FCMPlugin) {
                 FCMPlugin.onNotification(function (data) {
-                    alert("A");
                     if (data.wasTapped) {
                         //Notification was received on device tray and tapped by the user.
-                        alert(JSON.stringify(data));
-                        console.log(data);
                     } else {
                         //Notification was received in foreground. Maybe the user needs to be notified.
-                        alert(JSON.stringify(data));
-                        console.log(data);
                     }
+
+                    console.log(data);
+
+                    if (data.action) {
+                        switch (data.action) {
+                            case 'NEW_CHAT_MESSAGE':
+                                if (data.isAssistanceChat && data.isAssistanceChat == "true") {
+                                    //Chat assistance
+                                    if (data.proposalId) {
+                                        if (data.recipientIsPro && data.recipientIsPro == "true") {
+                                            $state.go('pro-proposal', {
+                                                proposalId: data.proposalId,
+                                                chat: 'assistance'
+                                            });
+                                        }
+                                    } else if (data.projectId) {
+                                        if (!data.recipientIsPro || data.recipientIsPro != "true") {
+                                            $state.go('project', {
+                                                projectId: data.projectId,
+                                                chat: 'assistance'
+                                            });
+                                        }
+                                    }
+                                } else {
+                                    if (data.proposalId) {
+                                        if (data.recipientIsPro && data.recipientIsPro == "true") {
+                                            $state.go('pro-proposal', {
+                                                proposalId: data.proposalId,
+                                                chat: true
+                                            });
+                                        } else {
+                                            $state.go('proposal', {
+                                                proposalId: data.proposalId,
+                                                chat: true
+                                            });
+                                        }
+                                    }
+                                }
+                                break;
+                        }
+                    }
+
                 }, function (msg) {
                 }, function (err) {
                 });

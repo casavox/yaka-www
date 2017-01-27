@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "com.casavox.app"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.casavox.app"
         },
@@ -18,10 +15,22 @@
         },
         "cordova-plugin-facebook4": {
             "APP_ID": "847913895334564",
-            "APP_NAME": "Casavox",
+            "APP_NAME": "CasaVox",
             "PACKAGE_NAME": "com.casavox.app"
         },
         "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.casavox.app"
         }
     },

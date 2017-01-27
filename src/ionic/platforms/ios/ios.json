@@ -9,10 +9,6 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         },
@@ -51,6 +47,26 @@
                         {
                             "xml": "<feature name=\"FCMPlugin\"><param name=\"ios-package\" value=\"FCMPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -65,7 +81,7 @@
                     ],
                     "FacebookDisplayName": [
                         {
-                            "xml": "<string>Casavox</string>",
+                            "xml": "<string>CasaVox</string>",
                             "count": 1
                         }
                     ],
@@ -88,13 +104,30 @@
                         }
                     ]
                 }
+            },
+            "*/Entitlements-Debug.plist": {
+                "parents": {
+                    "aps-environment": [
+                        {
+                            "xml": "<string>development</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "*/Entitlements-Release.plist": {
+                "parents": {
+                    "aps-environment": [
+                        {
+                            "xml": "<string>production</string>",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
     "installed_plugins": {
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "com.casavox.app"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.casavox.app"
         },
@@ -103,23 +136,27 @@
         },
         "cordova-plugin-facebook4": {
             "APP_ID": "847913895334564",
-            "APP_NAME": "Casavox",
+            "APP_NAME": "CasaVox",
             "PACKAGE_NAME": "com.casavox.app"
         },
         "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.casavox.app"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.casavox.app"
         }
     },
     "dependent_plugins": {},
     "modules": [
-        {
-            "id": "cordova-plugin-app-version.AppVersionPlugin",
-            "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-            "pluginId": "cordova-plugin-app-version",
-            "clobbers": [
-                "cordova.getAppVersion"
-            ]
-        },
         {
             "id": "cordova-plugin-console.console",
             "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
@@ -159,13 +196,41 @@
             "clobbers": [
                 "FCMPlugin"
             ]
+        },
+        {
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "pluginId": "cordova-plugin-splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
+        },
+        {
+            "id": "cordova-plugin-statusbar.statusbar",
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "pluginId": "cordova-plugin-statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
+        },
+        {
+            "id": "ionic-plugin-keyboard.keyboard",
+            "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
+            "pluginId": "ionic-plugin-keyboard",
+            "clobbers": [
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-app-version": "0.1.9",
         "cordova-plugin-console": "1.0.5",
         "cordova-plugin-device": "1.1.4",
         "cordova-plugin-facebook4": "1.7.4",
-        "cordova-plugin-fcm": "1.1.5"
+        "cordova-plugin-fcm": "2.1.1",
+        "cordova-plugin-splashscreen": "4.0.1",
+        "cordova-plugin-statusbar": "2.2.1",
+        "cordova-plugin-whitelist": "1.3.1",
+        "ionic-plugin-keyboard": "2.2.1"
     }
 }

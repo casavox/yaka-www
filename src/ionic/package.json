@@ -21,6 +21,7 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-splashscreen",
     "cordova-plugin-fcm",
+    "cordova-plugin-facebook4",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []
