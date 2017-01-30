@@ -50,6 +50,11 @@
       <true/>
       <key>NSExceptionDomains</key>
       <dict>
+        <key>10.1.100.115</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
         <key>m.facebook.com</key>
         <dict/>
         <key>graph.facebook.com</key>
