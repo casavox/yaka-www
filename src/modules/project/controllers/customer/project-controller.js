@@ -358,6 +358,7 @@
             vm.projectTmp.tags = vm.projectTmp.tags || [];
             vm.projectTmp.images = vm.projectTmp.images || [];
             vm.projectTmp.availabilities = vm.projectTmp.availabilities || [];
+
             networkService.projectPUT(vm.projectTmp, succesProfilePUT, errorProfilePUT, true);
         };
 
@@ -431,6 +432,9 @@
             vm.editFlag = true;
             $rootScope.editMode = true;
             wherePopupDisplayed = true;
+            if (vm.projectTmp.desiredDate) {
+                vm.checkProjectDesiredDate();
+            }
         };
 
         vm.getTags = function () {
@@ -589,22 +593,51 @@
                 vm.formProjectDetailsError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
-                swal({
-                    title: "Êtes-vous sûr ?",
-                    text: "Si des propositions vous ont déjà été faites, les Pros concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
-                    type: "warning",
-                    confirmButtonColor: "#f44336",
-                    confirmButtonText: "Oui, mettre à jour mon projet",
-                    showCancelButton: true,
-                    cancelButtonText: "Non"
-                }, function (isConfirm) {
-                    if (isConfirm) {
-                        vm.update();
-                        vm.formProjectPlaceError = false;
-                        vm.newAddr.name = "";
-                    }
-                });
+                if (vm.dateType == "SPECIFIC" && vm.projectTmp.desiredDate) {
+                    vm.checkProjectDesiredDate('save');
+                } else {
+                    vm.confirmUpdate();
+                }
             }
+        };
+
+        vm.checkProjectDesiredDate = function (action) {
+            // date du projet
+            var projectDate = vm.projectTmp.desiredDate;
+            projectDate = projectDate.split("-");
+            var TmpNewProjectDate = projectDate[1] + "," + projectDate[2] + "," + projectDate[0];
+            var projectTimestamp = new Date(TmpNewProjectDate).getTime();
+
+            // Date actuelle
+            var currentDate = new Date();
+            var currentTimeStamp = currentDate.getTime();
+
+            if (projectTimestamp < currentTimeStamp) {
+                vm.errorPastDate = true;
+                vm.editWhen();
+            } else {
+                if (action == 'save') {
+                    vm.confirmUpdate();
+                }
+            }
+        };
+
+        vm.confirmUpdate = function () {
+            swal({
+                title: "Êtes-vous sûr ?",
+                text: "Si des propositions vous ont déjà été faites, les Pros concernés en seront notifiés, et en fonction de vos modifications ils pourront décider de modifier ou retirer leur proposition.",
+                type: "warning",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Oui, mettre à jour mon projet",
+                showCancelButton: true,
+                cancelButtonText: "Non"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    vm.update();
+                    vm.formProjectPlaceError = false;
+                    vm.newAddr.name = "";
+                }
+            });
         };
 
         vm.showChat = false;

@@ -493,10 +493,20 @@
                 <img class="popupCloseButton" src="icons/mdpi/ic_popup_close.png"
                      data-ng-click="vm.whenFlag = false" alt=""/>
 
-                <h4>Quand voulez-vous que les travaux commencent ?</h4>
+                <h4 data-ng-if="!vm.errorPastDate">Quand voulez-vous que les travaux commencent ?</h4>
+
+
+                <div class="row" data-ng-if="vm.errorPastDate">
+                    <div class="col-xs-2">
+                        <i class="zmdi zmdi-alert-circle zmdi-hc-4x m-t-10 c-red"></i>
+                    </div>
+                    <div class="col-xs-10">
+                        <h4>La date souhaitée des travaux est dépassée, merci de la mettre à jour</h4>
+                    </div>
+                </div>
 
                 <div class="dateEdit">
-                    <ul class="questions-ul center no-padding">
+                    <ul class="questions-ul no-padding">
                         <li class="question-li center" data-ng-class="vm.child3"
                             data-ng-click="vm.selectDateType('NONE'); vm.child0 = ''; vm.child1 = ''; vm.child2 = ''; vm.child3 = 'activate'">
                             Dès que possible
@@ -509,11 +519,11 @@
                             class="col-xs-12 col-sm-8 custom-li-date question-li center date m-b-10">
                             Avant le {{vm.projectTmp.desiredDate | date:'dd MMMM'}}
                         </li>
-                        <li class="question-li center" data-ng-class="vm.child0"
+                        <li class="question-li col-xs-12 center" data-ng-class="vm.child0"
                             data-ng-click="vm.selectDateType('SPECIFIC'); vm.selectDate(); vm.child0 = 'activate'; vm.child1 = ''; vm.child2 = ''; vm.child3 = ''">
                             À partir d'une date
                         </li>
-                        <li data-ng-show="vm.dateSelected" class="custom-li-date question-li center"
+                        <li data-ng-show="vm.dateSelected" class="col-xs-12 custom-li-date question-li center"
                             data-ng-click="vm.unSelectdate()">
                             {{vm.dt | date:'dd-MM-yyyy'}}
                         </li>
