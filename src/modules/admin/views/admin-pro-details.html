@@ -323,6 +323,28 @@
             <div class="col-xs-12 no-padding card">
                 <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
                     <h2>
+                        Projets compatibles ayant moins de 4 propositions
+                    </h2>
+                </div>
+                <div class="col-xs-12 m-t-15 p-b-15 t-center" data-ng-if="!vm.compatiblesProjectsList">
+                    <h4>Aucun projet compatible avec les capacités du Pro</h4>
+                </div>
+                <div class="col-xs-12 m-t-15 p-b-15" data-ng-if="vm.compatiblesProjectsList">
+                    <table ng-table="projectTable" class="table table-striped" show-filter="true">
+                        <tr class="t-center pointer" data-ng-repeat="project in $data"
+                            data-ui-sref="admin-project-details({projectId: project.id})">
+                            <td data-title="'ID'">{{project.id}}</td>
+                            <td data-title="'Titre'">{{project.title}}</td>
+                            <td data-title="'Nom du client'">{{project.user.name}}</td>
+                            <td data-title="'Distance'" data-sortable="'numberDistance'">{{project.numberDistance}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-xs-12 no-padding card">
+                <div class="card-header ch-alt" data-ng-class="{'bgm-lightblue': vm.infosCardIsComplete()}">
+                    <h2>
                         Contacts
                     </h2>
                 </div>

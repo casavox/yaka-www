@@ -44,10 +44,38 @@
                 }
             })
 
+            .state('short-invite', {
+                url: "/i/:id",
+                onEnter: function ($state, $stateParams) {
+                    $state.go('home', {
+                        invitationId: $stateParams.id
+                    });
+                }
+            })
+
+            .state('short-invite-pro', {
+                url: "/r/:id",
+                onEnter: function ($state, $stateParams) {
+                    $state.go('pro-home', {
+                        invitationId: $stateParams.id
+                    });
+                }
+            })
+
+            .state('short-invite-pro-reco', {
+                url: "/r/:id/:projectShortId",
+                onEnter: function ($state, $stateParams) {
+                    $state.go('pro-home', {
+                        invitationId: $stateParams.id,
+                        projectId: $stateParams.projectShortId
+                    });
+                }
+            })
+
             //Customer
 
             .state('home', {
-                url: "/?invitationId&login&email&register",
+                url: "/?invitationId&projectId&login&email&register",
                 templateUrl: "modules/home/views/customer/home.html",
                 controller: 'HomeController',
                 controllerAs: 'vm'
@@ -63,7 +91,7 @@
             //Pro
 
             .state('pro-home', {
-                url: "/pro?invitationId&login&email&register",
+                url: "/pro?invitationId&projectId&login&email&register",
                 templateUrl: "modules/home/views/pro/home-pro.html",
                 controller: 'ProHomeController',
                 controllerAs: 'vm'

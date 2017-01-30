@@ -11,6 +11,10 @@
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
+        if ($stateParams.projectId) {
+            $localStorage.projectShortId = $stateParams.projectId;
+        }
+
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('pro-dashboard');
@@ -193,7 +197,7 @@
             vm.newUser.password == '' || vm.newUser.password < 6 ||
             vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm ||
             vm.newUser.professional.activities.length == 0 ||
-            vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == '' || !vm.newUser.recaptchaResponse);
+            vm.newUser.professional.company.address.address == undefined || vm.newUser.professional.company.address.address == '' || vm.newUser.professional.company.address.address.length < 6 || !vm.newUser.recaptchaResponse);
         };
 
         var scrollOptions = {
@@ -221,6 +225,9 @@
                 }
                 networkService.proRegister(vm.newUser, successProRegister, failProRegister, true);
             } else {
+                if (vm.newUser.professional.company.address.address.length < 6) {
+                    vm.addressError = true;
+                }
                 vm.formRegisterError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             }
@@ -349,13 +356,27 @@
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
         }
 
-        $scope.getLocation = function(val) {
-            if(val.length == 5) {
-                return $http.get(CONFIG.API_BASE_URL + '/localities/' + val).then(function(response){
-                    return response.data.map(function(item){
-                        return item.postalCode + " " + item.name;
-                    });
-                });
+        vm.getLocation = function (val) {
+            if (val.length == 5) {
+                networkService.postalCodeGET(val, successPostalCodeGet, errorPostalCodeGet, true);
+            }
+        };
+
+        function successPostalCodeGet (response) {
+            vm.PostalCodeAndCities = response;
+        }
+
+        function errorPostalCodeGet (res) {
+            alertMsg.send("impossible de récupérer les communes", "danger");
+        }
+
+        vm.onKeyPress = function (e) {
+            if (e.keyCode < 48 && e.keyCode != 8 || e.keyCode > 57) {
+                event.preventDefault();
+            }
+            if (vm.newUser.professional.company.address.address.length > 5 && e.keyCode == 8) {
+                event.preventDefault();
+                vm.newUser.professional.company.address.address = vm.newUser.professional.company.address.address.substring(0, 5);
             }
         };
     }

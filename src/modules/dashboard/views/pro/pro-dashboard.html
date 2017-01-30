@@ -172,7 +172,7 @@
                                                 data-ng-show="vm.data.incomingInvitationNumber > 1">Invitations à valider</span></b>
                                         </a>
                                     </div>
-                                    <div class="c-lightblue pointer"
+                                    <div class="c-lightblue underline pointer"
                                          data-ui-sref="contacts">Développer mon réseau +
                                     </div>
                                 </div>
@@ -314,25 +314,25 @@
                                     <input type="checkbox" onclick="return false" value=""
                                            data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                                     <i class="input-helper"></i>
-                                    <span>Voir mon profil (validation en cours)</span>
+                                    <span class="underline">Voir mon profil (validation en cours)</span>
                                 </label>
                             </div>
                         </div>
                         <div class="checkbox" data-ui-sref="pro-profile">
                             <label
-                                data-ng-class="{'c-lightblue': vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name}">
+                                data-ng-class="{'c-lightblue underline': vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name}">
                                 <input type="checkbox" onclick="return false" value=""
                                        data-ng-checked="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">
                                 <i class="input-helper"></i>
                                 <span
                                     data-ng-show="!vm.getCommunityByType('JOB').name || !vm.getCommunityByType('PROFILE_CITY').name"
-                                    class="c-orange underline">Compléter mon entourage</span>
+                                    class="c-orange underline">Compléter mes communautés</span>
                                 <span
-                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mon entourage</span>
+                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mes communautés</span>
                             </label>
                         </div>
                         <div class="checkbox" data-ui-sref="contacts">
-                            <label data-ng-class="{'c-lightblue': vm.pro.step2}">
+                            <label data-ng-class="{'c-lightblue underline': vm.pro.step2}">
                                 <input type="checkbox" onclick="return false" value="" data-ng-checked="vm.pro.step2">
                                 <i class="input-helper"></i>
                                 <span data-ng-show="!vm.pro.step2"
@@ -341,7 +341,7 @@
                             </label>
                         </div>
                         <div class="checkbox m-b-15" data-ui-sref="findjobs">
-                            <label data-ng-class="{'c-lightblue': vm.pro.step3}">
+                            <label data-ng-class="{'c-lightblue underline': vm.pro.step3}">
                                 <input type="checkbox" onclick="return false" value=""
                                        data-ng-checked="vm.pro && vm.pro.step3">
                                 <i class="input-helper"></i>
@@ -351,7 +351,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="c-lightblue pointer t-right m-r-15 p-b-5" data-ui-sref="help({'card': 'tuto'})">
+                    <div class="c-lightblue pointer underline t-right m-r-15 p-b-5" data-ui-sref="help({'card': 'tuto'})">
                         Aide
                     </div>
                 </div>
@@ -384,17 +384,17 @@
                         </div>
                         <div class="m-t-10 clearfix" data-ng-show="vm.data.availableLeadsNumber >= 1">
                             <button
-                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 btn btn-default waves-effect c-lightblue m-t-10"
+                                class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 btn btn-default waves-effect bgm-lightblue m-t-10"
                                 data-ui-sref="contacts">
                                 Développer mon réseau
                             </button>
                             <button data-ng-show="vm.data.availableLeadsNumber == 1"
-                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect bgm-orange m-t-10"
                                     data-ui-sref="findjobs">
                                 Voir les offres disponibles
                             </button>
                             <button data-ng-show="vm.data.availableLeadsNumber > 1"
-                                    class="yakaEllipsis col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect c-orange m-t-10"
+                                    class="yakaEllipsis col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-2 btn btn-default waves-effect bgm-orange m-t-10"
                                     data-ui-sref="findjobs">
                                 Voir les {{vm.data.availableLeadsNumber}} offres disponibles
                             </button>
@@ -490,7 +490,7 @@
                                 class="proposalIconBackground lv-img v-icon-{{project.mainActivity.code}}-white d-i-b m-t-5">
                             </div>
                             <div class="proNetworkProjectInfos d-i-b f-s-14 m-l-5">
-                                <div class="c-lightblue">
+                                <div class="c-lightblue underline">
                                     {{project.title}}
                                 </div>
                                 <div class="yakaEllipsis">
@@ -586,7 +586,7 @@
                                     <input type="checkbox" onclick="return false" value=""
                                            data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                                     <i class="input-helper"></i>
-                                    <span>Accéder à mon profil</span>
+                                    <span class="underline">Accéder à mon profil</span>
                                 </label>
                             </div>
                         </div>
@@ -608,7 +608,7 @@
                                     <input type="checkbox" onclick="return false" value=""
                                            data-ng-checked="vm.pro && vm.pro.status && (vm.pro.status == 'VALIDATED' || vm.pro.status == 'COMPLETED')">
                                     <i class="input-helper"></i>
-                                    <span>Voir mon profil (validation en cours)</span>
+                                    <span class="underline">Voir mon profil (validation en cours)</span>
                                 </label>
                             </div>
                         </div>
@@ -620,9 +620,9 @@
                                 <i class="input-helper"></i>
                                 <span
                                     data-ng-show="!vm.getCommunityByType('JOB').name || !vm.getCommunityByType('PROFILE_CITY').name"
-                                    class="c-orange underline">Compléter mon entourage</span>
-                                <span
-                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mon entourage</span>
+                                    class="c-orange underline">Compléter mes communautés</span>
+                                <span class="underline"
+                                    data-ng-show="vm.getCommunityByType('JOB').name && vm.getCommunityByType('PROFILE_CITY').name">Compléter mes communautés</span>
                             </label>
                         </div>
                         <div class="checkbox" data-ui-sref="contacts">
@@ -631,7 +631,7 @@
                                 <i class="input-helper"></i>
                                 <span data-ng-show="!vm.pro.step2"
                                       class="c-orange underline">Développer mon réseau</span>
-                                <span data-ng-show="vm.pro.step2">Développer mon réseau</span>
+                                <span class="underline" data-ng-show="vm.pro.step2">Développer mon réseau</span>
                             </label>
                         </div>
                         <div class="checkbox m-b-15" data-ui-sref="findjobs">
@@ -641,12 +641,12 @@
                                 <i class="input-helper"></i>
                                 <span data-ng-show="!vm.pro.step3"
                                       class="c-orange underline">Répondre aux offres</span>
-                                <span data-ng-show="vm.pro.step3">Répondre aux offres</span>
+                                <span class="underline" data-ng-show="vm.pro.step3">Répondre aux offres</span>
                             </label>
                         </div>
                     </div>
                     <div class="c-lightblue t-right m-r-15 p-b-5">
-                        <span class="pointer" data-ui-sref="help({'card': 'tuto'})">Aide</span>
+                        <span class="pointer underline" data-ui-sref="help({'card': 'tuto'})">Aide</span>
                     </div>
                 </div>
 
@@ -677,7 +677,7 @@
                             data-ui-sref="project-recommend({'projectId': project.id})">
                             <yaka-avatar class="pull-left" size="45" user="project.user"></yaka-avatar>
                             <div class="col-xs-9 p-r-0 m-t-15">
-                                <div class="c-lightblue">
+                                <div class="c-lightblue underline">
                                     {{project.title}}
                                 </div>
                                 <div class="yakaEllipsis">

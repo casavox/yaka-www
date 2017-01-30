@@ -159,6 +159,9 @@
             fcmRegister: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/fcm/register', data, ignoreLoading).success(success).error(error)
             },
+            postalCodeGET: function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/localities/' + data, ignoreLoading).success(success).error(error)
+            },
             projectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/' + data, ignoreLoading).success(success).error(error)
             },
@@ -312,6 +315,9 @@
             refuseInvitationPOST: function (id, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invitations/' + id + '/refuse', null, ignoreLoading).success(success).error(error)
             },
+            acceptInvitationWithProjectPOST: function (id, projectShortId, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/invitations/' + id + '/' + projectShortId + '/accept', null, ignoreLoading).success(success).error(error)
+            },
             acceptInvitationPOST: function (id, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/invitations/' + id + '/accept', null, ignoreLoading).success(success).error(error)
             },
@@ -371,6 +377,9 @@
             },
             adminProDetailsGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/admin/pro/' + id, ignoreLoading).success(success).error(error)
+            },
+            adminProCompatibleProjectsGET: function (id, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/admin/pro/' + id + '/leads', ignoreLoading).success(success).error(error)
             },
             adminValidateProPOST: function (data, success, error, ignoreLoading) {
                 httpService.post(baseUrl + '/admin/pro/validate', data, ignoreLoading).success(success).error(error)
@@ -438,6 +447,9 @@
             },
             adminSetChatRead: function (chatId, success, error, ignoreLoading) {
                 httpService.put(baseUrl + '/admin/chat/' + chatId + '/read', null, ignoreLoading).success(success).error(error)
+            },
+            adminSetChatUnread: function (chatId, success, error, ignoreLoading) {
+                httpService.put(baseUrl + '/admin/chat/' + chatId + '/unread', null, ignoreLoading).success(success).error(error)
             }
         };
     }

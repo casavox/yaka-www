@@ -324,7 +324,7 @@
         vm.updateLinks = function () {
             var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*/;
 
-            if (!linkedinReg.test(vm.profile.myLinkedin)) {
+            if (vm.profile.myLinkedin && !linkedinReg.test(vm.profile.myLinkedin)) {
                 vm.formLinkedinError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
@@ -341,7 +341,12 @@
                     alertMsg.send("Impossible de modifier les liens", "danger");
                 }, true);
             }
+        };
 
+        vm.isLinkedinEmpty = function () {
+            if (vm.profile.myLinkedin.length == 0) {
+                vm.formLinkedinError = false;
+            }
         };
 
         vm.uploadVerifications = function (files, invalides, index, verifName) {

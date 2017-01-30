@@ -36,9 +36,14 @@
         }
 
         if (!angular.isUndefined($localStorage.invitationId) && $localStorage.invitationId && $localStorage.invitationId != '') {
-            networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            if ($localStorage.projectShortId) {
+                networkService.acceptInvitationWithProjectPOST($localStorage.invitationId, $localStorage.projectShortId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            } else {
+                networkService.acceptInvitationPOST($localStorage.invitationId, succesAcceptInvitationPOST, errorAcceptInvitationPOST);
+            }
             vm.bigAlert = true;
             $localStorage.invitationId = '';
+            $localStorage.projectShortId = '';
         }
 
 
@@ -588,13 +593,6 @@
             vm.showInvitFriendPopup = true;
         };
 
-        vm.getFacebookIframeUrl = function () {
-            if ($localStorage.user) {
-                return "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + window.location.hostname + "%2F%23%2F%3FinvitationId%3D" + $localStorage.user.inviteId + "&layout=button&size=large&mobile_iframe=false&appId=" + CONFIG.FACEBOOK_CLIENT_ID + "&width=89&height=28";
-            }
-            return "";
-        };
-
         vm.deleteContact = function (id) {
             swal({
                 title: "Supprimer un contact",
@@ -668,7 +666,7 @@
             }
         };
 
-        vm.addContactToMail = function(aim) {
+        vm.addContactToMail = function (aim) {
             if (vm.mails.length > 0) {
                 if (vm.invitCustomer) {
                     for (var i = 0; i < vm.mails.length; i++) {
@@ -707,7 +705,7 @@
                         vm.mails.push(vm.invitCustomer);
                         vm.invitCustomer = "";
                         if (aim == "addOneContact") {
-                            $timeout(function() {
+                            $timeout(function () {
                                 $(".secondInputEmail").focus();
                             });
                         }
@@ -724,12 +722,12 @@
             vm.mails.splice(index, 1);
         };
 
-        vm.openSMSorMailPopup = function(invited) {
+        vm.openSMSorMailPopup = function (invited) {
             swal({
-                title: "Comment souhaitez-vous inviter votre destinataire ?",
-                text: "Choisissez d'inviter votre contact par SMS ou par Email !",
+                title: "Comment souhaitez-vous envoyer l'invitation ?",
+                text: "Depuis mon téléphone par SMS ou via CasaVox par Email",
                 type: "info",
-                html: true,
+                allowOutsideClick: true,
                 showCancelButton: true,
                 confirmButtonColor: "#03a9f4",
                 confirmButtonText: "Inviter par SMS",
@@ -739,10 +737,11 @@
                     var ua = navigator.userAgent.toLowerCase();
                     var url;
                     if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
-                        url = "sms:&body=Coucou Iphone :)";
+                        url = "sms:&body=" + getSmsBody(invited);
                     } else {
-                        url = "sms:?body=Coucou Android :)";
+                        url = "sms:?body=" + getSmsBody(invited);
                     }
+
                     location.href = url;
                 } else {
                     if (invited == "customer") {
@@ -754,6 +753,50 @@
                 }
             });
         };
+
+        function getSmsBody(invited) {
+            if ($localStorage.user) {
+                if ($localStorage.user.professional) {
+                    if (invited == "customer") {
+                        // un Pro invite un Particulier
+                        return "Je suis sur CasaVox ! " +
+                            "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
+                            + getInviteUrl(invited) + "%0ABonne journée, " + $localStorage.user.firstName;
+                    } else {
+                        // un Pro invite un Pro
+                        return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour les travaux, " +
+                            "ça me permet de rester en contact avec mes clients, " +
+                            "de me faire recommander personnellement à de nouveaux prospects, ... " +
+                            "Tu peux rejoindre mon réseau de Pro du bâtiment ici : " + getInviteUrl(invited) + "%0ABonne journée, "
+                            + $localStorage.user.firstName + " ;)";
+                    }
+                } else {
+                    // un particulier invite un particulier
+                    if (invited == "customer") {
+                        return "Je suis sur CasaVox ! 1er réseau de bouche-à-oreille pour tous nos travaux, " +
+                            "rejoins-moi et partageons nos meilleurs pros : " + getInviteUrl(invited) + "%0ABonne journée, "
+                            + $localStorage.user.firstName + " ;)";
+                    } else {
+                        // un particulier invite un Pro
+                        return "Je suis sur CasaVox ! " +
+                            "Rejoignez-moi sur le 1er réseau de bouche-à-oreille et d'entraide pour tous les travaux : "
+                            + getInviteUrl(invited) + "%0ABonne journée, " + $localStorage.user.firstName;
+                    }
+                }
+
+            }
+        }
+
+        function getInviteUrl(invited) {
+            if ($localStorage.user) {
+                if (invited == "customer") {
+                    return window.location.hostname + "/i/" + $localStorage.user.inviteId;
+                } else {
+                    return window.location.hostname + "/r/" + $localStorage.user.inviteId;
+                }
+            }
+            return "";
+        }
 
     }
 })

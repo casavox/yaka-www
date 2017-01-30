@@ -1,3 +1,9 @@
+.proRecommendButton {
+    float: right;
+    background-color: #03a9f4;
+    color: white;
+}
+
 .p-l-56 {
     padding-left: 56px !important;
 }
@@ -5,6 +11,12 @@
 .m-l-49 {
     margin-left: 49px;
 }
+
+.invite-by-mail {
+    margin-top: -45px;
+    text-align: left;
+}
+
 
 @media (min-width: 1200px) {
     .proposal-project-pm-body {
@@ -34,12 +46,17 @@
     .proposal-project-pm-body {
         padding-left: 300px !important;
     }
+
     .customer-proposal-pm-body {
         padding-left: 0px !important;
     }
+
     .pro-proposal-project-pm-body {
         padding-left: 0px !important;
+    }
 
+    .invite-by-mail {
+        text-align: center;
     }
 }
 
@@ -439,6 +456,17 @@
 }
 
 @media (max-width: 767px) {
+    .proRecommendButton {
+        float: none;
+        white-space: normal;
+        background-color: white;
+        color: #03a9f4;
+    }
+
+    .proRecommendButton:hover {
+        color: #03a9f4;
+    }
+
     .map-findjob-communities .job-community-tag div {
         max-width: 100px;
     }

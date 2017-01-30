@@ -451,7 +451,8 @@
                     <input type="text"
                            name="link1"
                            class="form-control fg-input"
-                           data-ng-model="vm.profile.myWebsite" casa-input-website>
+                           autocomplete="off"
+                           data-ng-model="vm.profile.myWebsite">
                     <label class="fg-label">Mon site Web</label>
                 </div>
             </div>
@@ -461,15 +462,17 @@
                 <div class="fg-line">
                     <input type="text"
                            class="form-control fg-input"
+                           autocomplete="off"
+                           data-ng-change="vm.isLinkedinEmpty()"
                            data-ng-model="vm.profile.myLinkedin">
                     <label class="fg-label">Mon Linkedin</label>
                 </div>
                 <small class="help-block"
                        data-ng-show="!vm.profile.myLinkedin">
-                    Copiez et collez ici l'adresse de votre profil Linkedin
+                    Copiez ici l'adresse de votre profil Linkedin
                 </small>
                 <small class="help-block"
-                       data-ng-show="vm.formLinkedinError && (!vm.profile.myLinkedin || vm.profile.myLinkedin)">
+                       data-ng-show="vm.formLinkedinError">
                     L'adresse indiquée n'est pas valide
                 </small>
             </div>
@@ -480,9 +483,13 @@
                     <input type="text"
                            name="link3"
                            class="form-control fg-input"
-                           data-ng-model="vm.profile.myOtherSocial" casa-input-website>
-                    <label class="fg-label">Autre (Google+, Viadeo, ...)</label>
+                           autocomplete="off"
+                           data-ng-model="vm.profile.myOtherSocial">
+                    <label class="fg-label"><strong>Mon Facebook</strong>, Google+, ...</label>
                 </div>
+                <small class="help-block">
+                    Copiez ici l'adresse de votre page Facebook, Google+, ...
+                </small>
             </div>
 
             <div class="profile-box-footer mt-12 m-b-20">
@@ -721,19 +728,21 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Ajouter
                             </a>
                             </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
-                            <a class="pointer"
+                            <a class="pointer underline"
                                data-ng-href="{{vm.getVerification('BUSINESS_REGISTRATION').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
                     </p>
@@ -755,19 +764,21 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Ajouter
                             </a>
                             </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
-                            <a class="pointer"
+                            <a class="pointer underline"
                                data-ng-href="{{vm.getVerification('INSURANCE').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
                     </p>
@@ -789,19 +800,21 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Ajouter
                             </a>
                             </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
-                            <a class="pointer"
+                            <a class="pointer underline"
                                data-ng-href="{{vm.getVerification('RGE').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
                     </p>
@@ -823,19 +836,21 @@
                     <p class="m-b-5">
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Ajouter
                             </a>
                         </span>
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">
-                            <a ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
+                            <a class="underline"
+                               ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
                                 Modifier
                             </a>
                             <span class="m-r-5 m-l-5">-</span>
-                            <a class="pointer"
+                            <a class="pointer underline"
                                data-ng-href="{{vm.getVerification('PARTNER').cloudinaryPublicId | yakaCloudinaryDownload}}">Télécharger</a>
                         </span>
                     </p>
@@ -1136,7 +1151,7 @@
                     </small>
                 </div>
 
-                <button class="btn btn-default waves-effect m-t-4 m-l-20"
+                <button class="btn btn-default bgm-lightblue waves-effect m-t-4 m-l-20"
                         data-ng-if="!app.getUser().facebookId"
                         data-ng-click="vm.attachFacebook()">
                     Associer

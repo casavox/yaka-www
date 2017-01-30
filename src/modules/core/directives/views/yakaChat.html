@@ -57,8 +57,11 @@
                     </a>
 
                     <div class="m-b-20" data-ng-if="message.cloudinaryPublicId && message.text"></div>
-                    <span class="msg" data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'">{{message.text}}</span>
-                    <span class="msg yaka" data-ng-if="message.author == 'CASAVOX'">{{message.text}}</span>
+                    <span class="msg"
+                          data-ng-if="message.author == 'CUSTOMER' || message.author == 'PRO'"><casa-phone-to-links
+                        text="message.text" author="message.author" user="userMe"></casa-phone-to-links></span>
+                    <span class="msg yaka" data-ng-if="message.author == 'CASAVOX'"><casa-phone-to-links
+                        text="message.text" author="message.author" user="userMe"></casa-phone-to-links></span>
                     <span
                         data-ng-if="message.author == 'AUTO' && message.text != 'FIRST_RECOMMENDATION' && message.text != 'NEW_RECOMMENDATION'">
                         <i class="zmdi {{message | yakaAutoMsgIcon : getCustomerUser() : getProUser()}} yakaMessageIcon"></i>
@@ -103,6 +106,11 @@
     </div>
 
     <div class="lv-footer ms-reply p-t-0" data-ng-class="{'pointer-not-allowed': disableSending}">
+        <div class="col-xs-12 readOrUnreadAdmin" data-ng-if="userMe == 'admin'">
+            Marquer comme :
+            <span class="m-l-10 m-r-10 read-button" data-ng-click="setRead()">Lu</span>
+            <span class="m-l-10 m-r-10 unread-button" data-ng-click="setUnread()">Non-Lu</span>
+        </div>
         <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
                 data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
                 ngf-max-size="20MB"

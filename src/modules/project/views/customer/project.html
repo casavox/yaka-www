@@ -166,11 +166,12 @@
                             <div class="row no-margin" data-ng-if="vm.project">
                                 <div class="card-header col-md-12 p-b-10">
                                     <div><h2 class="pull-left p-t-5 m-b-10">{{vm.project.title}}</h2></div>
-                                    <div class="col-xs-9 col-sm-4 pull-right p-0"
+                                    <div class="col-xs-12 col-sm-4 pull-right p-0"
                                          data-ng-if="vm.project.status != 'CANCELED'">
-                                        <button class="btn btn-default waves-effect pull-right m-l-10 m-b-10"
+                                        <button class="btn bgm-red waves-effect pull-right m-l-10 m-b-10"
                                                 data-ng-show="vm.editFlag"
                                                 data-ng-click="vm.cancel()">
+                                            Annuler
                                             <i class="zmdi zmdi-close"></i>
                                         </button>
 
@@ -426,7 +427,7 @@
                     </div>
                 </div>
                 <div class="form-group fg-float m-t-20 m-b-30"
-                     data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.pcodeAndCity}">
+                     data-ng-class="{'has-error': vm.formProjectPlaceError && !vm.pcodeAndCity || vm.formProjectPlaceError && vm.pcodeAndCity.length < 6}">
                     <div class="fg-line">
                         <i class="glyphicon glyphicon-map-marker address-marker-project"></i>
 
@@ -437,11 +438,20 @@
                                ng-model="vm.pcodeAndCity"
                                data-ng-maxlength="5"
                                maxlength="5"
+                               autocomplete="off"
+                               ng-keydown="vm.onKeyPress($event)"
                                placeholder=""
-                               uib-typeahead="address for address in getLocation($viewValue)"/>
+                               uib-typeahead="address for address in vm.getLocation($viewValue)"/>
                         <label class="fg-label">Indiquer le code postal</label>
                     </div>
-                    <small class="help-block" data-ng-if="!vm.pcodeAndCity">
+                    <div class="address-list"
+                         data-ng-if="vm.pcodeAndCity.length == 5">
+                        <div class="address-list-item pointer" data-ng-repeat="pCAndCity in vm.PostalCodeAndCities"
+                             data-ng-click="vm.pcodeAndCity = pCAndCity.postalCode + ' ' + pCAndCity.name; vm.citySelected = true">
+                            <span class="fw-bold">{{pCAndCity.postalCode}}</span> {{pCAndCity.name}}
+                        </div>
+                    </div>
+                    <small class="help-block" data-ng-if="!vm.pcodeAndCity  || vm.formProjectPlaceError && vm.pcodeAndCity.length < 6">
                         Veuillez saisir le code postal et sélectionner la ville dans la liste
                     </small>
                 </div>
