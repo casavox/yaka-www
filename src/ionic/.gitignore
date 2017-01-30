@@ -3,3 +3,6 @@ build/
 .gradle/
 !**/plugins/**/www
 !**/plugins/**/build
+node_modules
+platforms
+plugins
