@@ -277,7 +277,24 @@ gulp.task("test", ["config-test"], function () {
     new karma(buildConfig.karmaConf).start()
 });
 
-// Android
+gulp.task('ionic-ios-rm-add', function (done) {
+    var mobilePlatform = argv.build;
+    if (argv.run) {
+        mobilePlatform = argv.run;
+    }
+
+    if (mobilePlatform != "ios") {
+        done();
+        return;
+    }
+
+    exec('ionic platform rm ios && ionic platform add ios', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        done();
+    });
+});
+
 gulp.task('ionic-config', function () {
 
     var channelTag = "android-public";
@@ -291,6 +308,7 @@ gulp.task('ionic-config', function () {
         }))
         .pipe(ngConstant())
         .pipe(gulp.dest('./www/'));
+
 });
 
 gulp.task('ionic-replaces', function (cb) {
@@ -347,7 +365,7 @@ gulp.task('ionic', function () {
     runSequence('build', function () {
         setTimeout(function () {
             process.chdir('src/ionic');
-            runSequence('ionic-config', 'ionic-replaces', function () {
+            runSequence('ionic-config', 'ionic-replaces', 'ionic-ios-rm-add', function () {
                 console.log("Launching " + 'ionic ' + ionicAction + ' ' + platform);
                 exec('ionic ' + ionicAction + ' ' + platform, function (err, stdout, stderr) {
                     console.log(stdout);
