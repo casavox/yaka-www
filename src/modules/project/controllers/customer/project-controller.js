@@ -630,6 +630,31 @@
             }
         };
 
+        vm.isProjectDesiredDateOk = function () {
+            if (vm.projectTmp.desiredDate && vm.dateType == "SPECIFIC") {
+                // date du projet
+                var projectDate = vm.projectTmp.desiredDate;
+
+                projectDate = projectDate.split("-");
+                var TmpNewProjectDate = projectDate[1] + "," + projectDate[2] + "," + projectDate[0];
+                var projectTimestamp = new Date(TmpNewProjectDate).getTime();
+
+                // Date actuelle
+                var currentDate = new Date();
+                var currentTimeStamp = currentDate.getTime();
+
+                if (projectTimestamp < currentTimeStamp) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            if (vm.dateType != "SPECIFIC") {
+                return true
+            }
+            return false;
+        };
+
         vm.confirmUpdate = function () {
             swal({
                 title: "Êtes-vous sûr ?",
@@ -668,8 +693,8 @@
             }
         }
 
-        vm.autoFocusCommentPhoto = function(index) {
-            $('#photo-comment-'+ index).focus();
+        vm.autoFocusCommentPhoto = function (index) {
+            $('#photo-comment-' + index).focus();
         };
     }
 })();
