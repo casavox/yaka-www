@@ -530,7 +530,7 @@
                             {{vm.dt | date:'dd-MM-yyyy'}}
                         </li>
                         <li data-ng-show="vm.dateFlag" class="list-style-none">
-                            <div style="display:inline-block; min-height:290px;" class="center custom-picker">
+                            <div style="display:inline-block; min-height:240px;" class="center custom-picker">
                                 <uib-datepicker data-ng-model="vm.dt" datepicker-options="vm.datepickerOptions"
                                                 class="well well-sm custom-date"
                                                 custom-class="getDayClass(date, mode)"></uib-datepicker>
@@ -543,10 +543,10 @@
                 </div>
 
                 <div class="t-right">
-                    <button class="btn btn-link waves-effect c-red" data-ng-click="vm.whenFlag = false">
+                    <button class="btn btn-link waves-effect c-red p-t-15" data-ng-click="vm.whenFlag = false">
                         ANNULER
                     </button>
-                    <button class="btn btn-link waves-effect c-lightblue" data-ng-click="vm.changeWhen()">
+                    <button class="btn btn-link waves-effect c-lightblue p-t-15" data-ng-click="vm.changeWhen()">
                         CONFIRMER
                     </button>
                 </div>
