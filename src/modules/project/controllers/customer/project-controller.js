@@ -309,6 +309,8 @@
 
 
         vm.changeWhen = function () {
+            vm.projectTmp.desiredDatePeriod = vm.projectTmp.tmpDesiredDatePeriod;
+            vm.projectTmp.desiredDate = vm.projectTmp.tmpDesiredDate;
             vm.projectTmp.desiredDatePeriod = vm.dateType;
             if (vm.dateType == "SPECIFIC") {
                 vm.projectTmp.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
@@ -331,16 +333,16 @@
             vm.dateType = type;
             switch (vm.dateType) {
                 case "SPECIFIC":
-                    vm.projectTmp.desiredDatePeriod = "SPECIFIC";
-                    vm.projectTmp.desiredDate = vm.dt;
+                    vm.projectTmp.tmpDesiredDatePeriod = "SPECIFIC";
+                    vm.projectTmp.tmpDesiredDate = vm.dt;
                     break;
                 case "WITHIN_A_MONTH":
-                    vm.projectTmp.desiredDatePeriod = "WITHIN_A_MONTH";
-                    vm.projectTmp.desiredDate = new Date(moment().add(1, 'months'));
+                    vm.projectTmp.tmpDesiredDatePeriod = "WITHIN_A_MONTH";
+                    vm.projectTmp.tmpDesiredDate = new Date(moment().add(1, 'months'));
                     break;
                 case "NONE":
-                    vm.projectTmp.desiredDatePeriod = "NONE";
-                    vm.projectTmp.desiredDate = null;
+                    vm.projectTmp.tmpDesiredDatePeriod = "NONE";
+                    vm.projectTmp.tmpDesiredDate = null;
                     break;
             }
         };
@@ -659,5 +661,9 @@
                 $scope.address.name = "";
             }
         }
+
+        vm.autoFocusCommentPhoto = function(index) {
+            $('#photo-comment-'+ index).focus();
+        };
     }
 })();

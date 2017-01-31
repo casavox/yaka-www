@@ -219,7 +219,7 @@
                                             <dd id="description-content" data-ng-if="!vm.editFlag">
                                                 {{vm.projectTmp.description}}
                                             </dd>
-                                            <dd data-ng-if="vm.editFlag">
+                                            <dd data-ng-if="vm.editFlag" class="m-t-15">
                                                 <div class="form-group fg-float"
                                                      data-ng-class="{'has-error': vm.formProjectDetailsError && vm.projectTmp.description.length < 50}">
                                                     <div class="fg-line">
@@ -333,12 +333,14 @@
 
                                                 <div class="dropdown pmop-message pmop-message-icon-left" uib-dropdown>
                                                     <button uib-dropdown-toggle
-                                                            class="btn bgm-lightblue btn-float floatingButtonImage ">
+                                                            class="button-comment btn bgm-lightblue btn-float floatingButtonImage"
+                                                            data-ng-click="vm.autoFocusCommentPhoto($index)">
                                                         <i class="zmdi zmdi-comment-text-alt"></i>
                                                     </button>
 
                                                     <div class="dropdown-menu stop-propagate commentPhotoBox">
-                                                <textarea placeholder="Ajouter un commentaire"
+                                                <textarea id="photo-comment-{{$index}}"
+                                                          placeholder="Ajouter un commentaire"
                                                           data-ng-model="image.description"
                                                           data-ng-maxlength="140"
                                                           maxlength="140"
