@@ -94,6 +94,7 @@
             "bower_components/angular-loading-bar/src/loading-bar.css",
             "bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
             "bower_components/ng-table/dist/ng-table.css",
+            "ionic/lib/ionic/css/ionic.css",
             "modules/core/styles/style.css",
             "modules/core/styles/ui_kit.css",
             "modules/core/styles/app.css",
@@ -109,7 +110,6 @@
             "modules/help/styles/help.css",
             "modules/dashboard/styles/dashboard.css",
             "modules/admin/styles/admin.css",
-            "ionic/lib/ionic/css/ionic.css",
             "modules/core/styles/tabSlideBox.css",
             "modules/home/styles/ionic-home.css"
         ],
