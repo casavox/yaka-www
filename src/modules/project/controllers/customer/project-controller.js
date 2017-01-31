@@ -314,6 +314,10 @@
             vm.projectTmp.desiredDatePeriod = vm.dateType;
             if (vm.dateType == "SPECIFIC") {
                 vm.projectTmp.desiredDate = $filter('date')(vm.dt, "yyyy-MM-dd");
+                vm.checkProjectDesiredDate();
+            }
+            if (vm.dateType == "NONE" || vm.dateType == "WITHIN_A_MONTH") {
+                vm.errorPastDate = false;
             }
             vm.whenFlag = false;
         };
@@ -618,6 +622,7 @@
                 vm.errorPastDate = true;
                 vm.editWhen();
             } else {
+                vm.errorPastDate = false;
                 if (action == 'save') {
                     vm.confirmUpdate();
                 }
