@@ -47,4 +47,8 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
+  <plugin name="cordova-plugin-facebook4" spec="https://github.com/jeduan/cordova-plugin-facebook4">
+    <variable name="APP_ID" value="921341561325130" />
+    <variable name="APP_NAME" value="Casavox" />
+  </plugin>
 </widget>
