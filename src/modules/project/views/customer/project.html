@@ -260,7 +260,7 @@
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt class="yakaDisableEllipsis">Date souhaitée des travaux</dt>
-                                            <dd>
+                                            <dd data-ng-class="{'c-red': !vm.isProjectDesiredDateOk()}">
                                                 Début souhaité {{vm.getWhen()}} <i
                                                 data-ng-show="vm.editFlag"
                                                 class="zmdi zmdi-edit c-lightblue pointer f-s-20 v-align-bottom m-l-10"
