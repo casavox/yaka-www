@@ -288,7 +288,7 @@ gulp.task('ionic-ios-rm-add', function (done) {
         return;
     }
 
-    exec('ionic platform rm ios && ionic platform add ios', function (err, stdout, stderr) {
+    exec('ionic platform rm ios && ionic platform add ios && cordova plugin add https://github.com/jeduan/cordova-plugin-facebook4 --save --variable APP_ID="921341561325130" --variable APP_NAME="Casavox"', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         done();
