@@ -441,6 +441,7 @@
             if (vm.projectTmp.desiredDate) {
                 vm.checkProjectDesiredDate();
             }
+            vm.projectTmp.tmpDesiredDate = new Date(moment().add(1, 'months'));
         };
 
         vm.getTags = function () {
