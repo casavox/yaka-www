@@ -5686,3 +5686,11 @@ div.recaptcha.mobile > div {
 .bar {
     border: none;
 }
+
+ion-modal-view.modal {
+    display: block;
+}
+
+.modal-backdrop {
+    background-color: transparent !important;
+}
