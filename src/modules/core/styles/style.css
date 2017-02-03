@@ -24,7 +24,7 @@ html {
     padding-top: 20px;
 }
 
-.platform-android.has-translucent-status-bar .app-header-bar  {
+.platform-android.has-translucent-status-bar .app-header-bar {
     padding-top: 25px;
 }
 
@@ -4979,7 +4979,6 @@ ul[rn-carousel-buffered] > li {
     }
 }
 
-
 .yakaHeaderMessagesDropdown {
     margin-top: 1px !important;
 }
@@ -5371,11 +5370,11 @@ div.recaptcha.mobile > div {
 
 /*/*---------------------------- Texts styles ----------------------------*/
 
-.subtitle-color{
+.subtitle-color {
     color: #5e5e5e;
 }
 
-.subtitle-color-forced{
+.subtitle-color-forced {
     color: #5e5e5e !important;
 }
 
@@ -5506,7 +5505,6 @@ div.recaptcha.mobile > div {
     color: #1565c0 !important;
 }
 
-
 /* form Other Community */
 .has-other .help-block,
 .has-other .control-label,
@@ -5567,7 +5565,6 @@ div.recaptcha.mobile > div {
 .c-other {
     color: #447daf !important;
 }
-
 
 /* form filled */
 .has-filled .help-block,
@@ -5630,7 +5627,6 @@ div.recaptcha.mobile > div {
 .fg-line:not([class=has-filled]):after {
     background: #2196f3;
 }
-
 
 .top-25 {
     top: 25px !important;
