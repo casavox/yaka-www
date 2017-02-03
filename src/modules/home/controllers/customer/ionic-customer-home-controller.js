@@ -31,6 +31,14 @@
             $localStorage.invitationId = $stateParams.invitationId;
         }
 
+        if ($localStorage.token && $localStorage.token != '') {
+            if ($localStorage.user && $localStorage.user.professional) {
+                $state.go('pro-dashboard');
+            } else {
+                $state.go('dashboard');
+            }
+        }
+
         $ionicModal.fromTemplateUrl('login-popup.html', {
             scope: $scope,
             animation: 'slide-in-up'
