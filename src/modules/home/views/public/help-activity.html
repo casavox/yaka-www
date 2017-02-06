@@ -9,7 +9,7 @@
     <div class="homeSection homeSection3">
         <div class="container">
             <div class="col-xs-12 homeSection3Items">
-                <div class="col-xs-12 col-sm-6 homeSection3Item">
+                <div class="col-xs-12 col-sm-6 homeSection3Item p-l-5 p-r-5">
                     <div class="col-xs-12 homeSection3ItemTitle f-bold">
                         Contacter les meilleurs professionnels autour de vous
                     </div>
@@ -17,19 +17,19 @@
                         Mes travaux sont réalisés par les professionnels du batiment préférés de mes proches
                     </div>
                     <button
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
+                        class="col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-lightblue waves-effect"
                         ui-sref="home">DÉCOUVRIR LA MEILLEURE<br>FAÇON DE TROUVER UN PROFESSIONNEL
                     </button>
                 </div>
                 <div class="col-xs-12 col-sm-6 homeSection3Item">
-                    <div class="col-xs-12 homeSection3ItemTitle f-bold">
+                    <div class="col-xs-12 homeSection3ItemTitle f-bold p-l-5 p-r-5">
                         Professionnel du bâtiment - Trouver de nouveaux clients
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 homeSection3ItemDescription">
                         Utiliser des services internet réellement efficaces pour trouver de nouveaux clients
                     </div>
                     <button
-                        class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
+                        class="col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1 homeSection3ItemButton btn btn-lg bgm-orange waves-effect"
                         ui-sref="pro-home">DÉCOUVRIR LA MEILLEURE<br>FAÇON DE TROUVER DES CLIENTS
                     </button>
                 </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="p-10 p-l-30 p-r-30 s-p-button text-justify">
                             <h4>{{vm.getActivity().title2}}</h4>
-                            <div data-ng-repeat="text in vm.getActivity().paragraphs">
+                            <div data-ng-repeat="text in vm.getActivity().paragraphs" class="f-s-15">
                                 <p data-ng-if="text.p">{{text.p}}</p>
                                 <p data-ng-if="text.q"><b>{{text.q}}</b></p>
                                 <span data-ng-if="text.l">{{text.l}}<br></span>
@@ -64,10 +64,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-13 m-b-15"
+                            <button class="col-xs-12 btn btn-lg bgm-lightblue waves-effect f-s-14 m-b-15"
                                     data-ui-sref="new-project"><strong>Trouver le bon Pro !</strong>
                             </button>
-                            <div data-ng-repeat="text in vm.getActivity().subText">
+                            <div data-ng-repeat="text in vm.getActivity().subText" class="f-s-15">
                                 <p data-ng-if="text.p">{{text.p}}</p>
                                 <p data-ng-if="text.q"><b>{{text.q}}</b></p>
                                 <span data-ng-if="text.l">{{text.l}}<br></span>
@@ -83,7 +83,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <button class="col-xs-12 btn btn-sm bgm-lightblue waves-effect f-s-12 m-t-0 m-b-15"
+                            <button class="col-xs-12 btn btn-sm bgm-lightblue waves-effect f-s-13 m-t-0 m-b-15"
                                     data-ui-sref="new-project"><strong>Découvrir CasaVox</strong>
                             </button>
                         </div>
@@ -94,7 +94,7 @@
                 <div class="hidden-xs card col-sm-3 col-sm-offset-1 m-t-25">
                     <div class="m-t-10">
                         <h2 class="p-l-15 m-b-0">Catégories</h2>
-                        <ol class="card-body card-padding list-unstyled f-s-10 p-t-10 p-b-0">
+                        <ol class="card-body card-padding list-unstyled f-s-12 p-t-10 p-b-0">
                             <li class=" pointer"><a data-ui-sref="help-activities({activity: 'peinture'})"
                                                     data-ui-sref-active="activeClass">Peinture</a></li>
                             <li class="m-t-5 pointer"><a data-ui-sref="help-activities({activity: 'salle_de_bain'})"

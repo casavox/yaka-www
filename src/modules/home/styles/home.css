@@ -263,7 +263,7 @@
 
 .homeSection3ItemDescription {
     margin-top: 11px;
-    font-size: 16px;
+    font-size: 17px;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -272,6 +272,7 @@
     margin-top: 25px;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    font-size: 14px !important;
 }
 
 .homeSection4 {
@@ -568,14 +569,6 @@ body:after {
         height: 62px;
     }
 
-    .homeSection3ItemDescription {
-        font-size: 15px;
-    }
-
-    .homeSection3ItemButton {
-        font-size: 13px !important;
-    }
-
     .homeSection1Title {
         margin-top: 110px;
         font-size: 42px;
@@ -718,16 +711,11 @@ body:after {
         height: auto;
     }
 
-    .homeSection3ItemDescription {
-        font-size: 14px;
-    }
-
     .homeSection3ItemButton {
         margin-top: 15px;
         height: auto !important;
         padding-top: 12px !important;
         padding-bottom: 12px !important;
-        font-size: 12px !important;
     }
 
     .homeSection3 {
@@ -925,14 +913,9 @@ body:after {
         font-size: 18px;
     }
 
-    .homeSection3ItemDescription {
-        font-size: 12px;
-    }
-
     .homeSection3ItemButton {
-        margin-left: 5% !important;
-        width: 90% !important;
-        font-size: 11px !important;
+        margin-left: 0px !important;
+        width: 100% !important;
     }
 
     .homeSection2ItemIconTitle {
