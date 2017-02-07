@@ -17,7 +17,7 @@ angular.module('Yaka')
                     scope.text = textTmp.replace(phoneNumberReg, "<a class='underline' data-ng-class=\"{\'c-white\' : (author == \'CUSTOMER\' && user.professional) || (author == \'PRO\' && !user.professional)}\"  ng-href=\"tel:" + numberPhone + "\"><strong>" + numberPhone  + "</strong></a>");
                 }
             },
-            templateUrl: "/modules/core/directives/views/casaPhoneLinks.html"
+            templateUrl: "modules/core/directives/views/casaPhoneLinks.html"
 
         }
     });
