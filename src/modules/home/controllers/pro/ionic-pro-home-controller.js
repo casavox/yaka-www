@@ -253,6 +253,7 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
+            vm.login.hide();
             $state.go("help", {'card': 'tuto'});
         }
 
