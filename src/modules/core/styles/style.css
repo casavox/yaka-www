@@ -5690,3 +5690,8 @@ ion-modal-view.modal {
 .modal-backdrop {
     background-color: transparent !important;
 }
+
+html {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+}
