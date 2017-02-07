@@ -174,14 +174,14 @@
                     Utilisez le bouche-à-oreille CasaVox !
                 </small>
             </div>
+            <div class="col-xs-12 visible-xs t-center p-5 m-t-5 m-b-10" data-ng-if="vm.isMobile">
+                <button id="invite-friend-button"
+                        class="btn btn-default waves-effect c-white bgm-lightblue full-width m-r-15"
+                        data-ng-click="vm.shareOnFacebook()">
+                    Inviter par Facebook
+                </button>
+            </div>
             <div class="col-xs-6 visible-xs p-5 m-b-20">
-                <div class="col-xs-12 t-center m-t-5 m-b-10" data-ng-if="vm.isMobile">
-                    <button id="invite-friend-button"
-                            class="btn btn-default waves-effect c-white bgm-lightblue m-r-15"
-                            data-ng-click="vm.shareOnFacebook()">
-                        Inviter par Facebook
-                    </button>
-                </div>
                 <button class="btn c-lightblue bgm-white full-width"
                         data-ng-click="vm.openSMSorMailPopup('customer')">
                     Inviter un ami
