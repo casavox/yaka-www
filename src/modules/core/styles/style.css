@@ -5695,3 +5695,7 @@ html {
     overflow-x: auto !important;
     overflow-y: auto !important;
 }
+
+.card, .list-inset {
+    overflow: initial;
+}
