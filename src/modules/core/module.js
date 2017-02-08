@@ -323,7 +323,6 @@ if (isMobile) {
         // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise("/");
 
-
         //
         //Interceptor to put the token in the header for each http request
         $httpProvider.interceptors.push(['$q', '$injector', '$localStorage', function ($q, $injector, $localStorage) {

@@ -31,7 +31,9 @@
             networkService.me(function (res) {
                 app.setUser(res);
                 $analytics.setUsername($localStorage.user.id);
-                $rootScope.fcmRegisterToken();
+                if ($rootScope.fcmRegisterToken) {
+                    $rootScope.fcmRegisterToken();
+                }
             }, function () {
             }, ignoreLoading);
         };
