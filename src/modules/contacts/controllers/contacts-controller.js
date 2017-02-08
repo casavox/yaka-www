@@ -678,6 +678,7 @@
                     if (!vm.duplicateMail) {
                         if (!vm.isEmailValid(vm.invitCustomer)) {
                             alertMsg.send("L'email que vous souhaitez ajouter n'est pas valide", "danger");
+                            return;
                         } else {
                             vm.mails.push(vm.invitCustomer);
                             vm.invitCustomer = "";
@@ -685,10 +686,10 @@
                     }
                 }
                 if (aim == 'send') {
-                    if (vm.isEmailValid(vm.invitCustomer)) {
-                        vm.sendCustomerInvit();
-                    } else {
+                    if (vm.invitCustomer && !vm.isEmailValid(vm.invitCustomer)){
                         alertMsg.send("L'email du destinataire n'est pas valide", "danger");
+                    } else {
+                        vm.sendCustomerInvit();
                     }
                 }
             } else {
@@ -796,6 +797,59 @@
                 }
             }
             return "";
+        }
+
+        vm.socialShare = function(audience) {
+            if ($localStorage.user) {
+                if ($localStorage.user.professional) {
+                    if (audience == "customer") {
+                        // Un pro s'addresse à un particulier
+                        var options = {
+                            message: '**** Amine Message ****',
+                            subject: '**** Amine subject ****',
+                            url: '**** Amine URL ****',
+                            chooserTitle: 'Choisir l\'Application'
+                        };
+                    } else {
+                        // Un pro s'addresse à un pro
+                        var options = {
+                            message: '**** Amine Message ****',
+                            subject: '**** Amine subject ****',
+                            url: '**** Amine URL ****',
+                            chooserTitle: 'Choisir l\'Application'
+                        };
+                    }
+                } else {
+                    if (audience == "customer") {
+                        // Un particulier s'addresse à un particulier
+                        var options = {
+                            message: '**** Amine Message ****',
+                            subject: '**** Amine subject ****',
+                            url: '**** Amine URL ****',
+                            chooserTitle: 'Choisir l\'Application'
+                        };
+                    } else {
+                        // Un particulier s'addresse à un pro
+                        var options = {
+                            message: '**** Amine Message ****',
+                            subject: '**** Amine subject ****',
+                            url: '**** Amine URL ****',
+                            chooserTitle: 'Choisir l\'Application'
+                        };
+                    }
+                }
+            }
+
+            var onSuccess = function(result) {
+                console.log("Partage effectué" + result.completed);
+                console.log("Partagé aux applications suivantes : " + result.app);
+            };
+
+            var onError = function(msg) {
+                console.log("Partage échoué avec le message : " + msg);
+            };
+
+            window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
         }
 
     }

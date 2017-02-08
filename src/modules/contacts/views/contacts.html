@@ -174,24 +174,34 @@
                     Utilisez le bouche-à-oreille CasaVox !
                 </small>
             </div>
-            <div class="col-xs-12 visible-xs t-center p-5 m-t-5 m-b-10" data-ng-if="vm.isMobile">
-                <button id="invite-friend-button"
-                        class="btn btn-default waves-effect c-white bgm-lightblue full-width m-r-15"
-                        data-ng-click="vm.shareOnFacebook()">
-                    Inviter par Facebook
-                </button>
+            <div class="col-xs-12 no-padding" data-ng-if="vm.isMobile">
+                <div class="col-xs-6 visible-xs p-5 m-b-20">
+                    <button class="btn c-lightblue bgm-white full-width"
+                            data-ng-click="vm.socialShare('customer')">
+                        Inviter un ami
+                    </button>
+                </div>
+                <div class="col-xs-6 visible-xs p-5 m-b-20">
+                    <button class="btn bgm-white c-orange full-width"
+                            data-ng-click="vm.socialShare('pro')">
+                        Inviter un pro
+                    </button>
+                </div>
             </div>
-            <div class="col-xs-6 visible-xs p-5 m-b-20">
-                <button class="btn c-lightblue bgm-white full-width"
-                        data-ng-click="vm.openSMSorMailPopup('customer')">
-                    Inviter un ami
-                </button>
-            </div>
-            <div class="col-xs-6 visible-xs p-5 m-b-20">
-                <button class="btn bgm-white c-orange full-width"
-                        data-ng-click="vm.openSMSorMailPopup('pro')">
-                    Inviter un pro
-                </button>
+
+            <div class="col-xs-12 no-padding" data-ng-if="!vm.isMobile">
+                <div class="col-xs-6 visible-xs p-5 m-b-20">
+                    <button class="btn c-lightblue bgm-white full-width"
+                            data-ng-click="vm.openSMSorMailPopup('customer')">
+                        Inviter un ami
+                    </button>
+                </div>
+                <div class="col-xs-6 visible-xs p-5 m-b-20">
+                    <button class="btn bgm-white c-orange full-width"
+                            data-ng-click="vm.openSMSorMailPopup('pro')">
+                        Inviter un pro
+                    </button>
+                </div>
             </div>
 
 
@@ -502,7 +512,7 @@
                    data-ng-click="vm.closeFriendPopup()"></i>
             </div>
             <div class="m-b-0"
-            data-ng-class="{'destination': vm.mails.length < 1, 'destination-mails' : vm.mails.length > 0}">
+                 data-ng-class="{'destination': vm.mails.length < 1, 'destination-mails' : vm.mails.length > 0}">
                 <div class="p-20">A</div>
                 <div class="email-invite p-5 p-r-10">
                     <ul class="yaka-chips" data-ng-if="vm.mails.length > 0">
@@ -522,9 +532,12 @@
                               ng-keypress="vm.onKeyPress($event)"
                               data-ng-model="vm.invitCustomer"></textarea>
                     <small class="c-red"
-                           data-ng-if="vm.formCustInvitError && !vm.invitCustomer && vm.mails.length < 1">Veuillez saisir une ou plusieurs adresses mail</small>
+                           data-ng-if="vm.formCustInvitError && !vm.invitCustomer && vm.mails.length < 1">Veuillez
+                        saisir une ou plusieurs adresses mail
+                    </small>
                 </div>
-                <img src=".../../img/logoGmail.svg" class="pointer p-10 p-r-20" width="78px" height="64px" alt="invitation gmail"
+                <img src=".../../img/logoGmail.svg" class="pointer p-10 p-r-20" width="78px" height="64px"
+                     alt="invitation gmail"
                      tooltip-placement="left"
                      uib-tooltip="Inviter via Gmail"
                      data-ng-click="vm.closeFriendPopup(); vm.loadGmailContacts()"/>
@@ -587,7 +600,8 @@
                            placeholder="Entrez le le Nom et le Prénom"
                            data-ng-disabled="vm.isSocialRegister()" yaka-input-name>
                     <small class="c-red"
-                    data-ng-if="vm.formProInvitError && !vm.invitPro.name">Ce champs est requis</small>
+                           data-ng-if="vm.formProInvitError && !vm.invitPro.name">Ce champs est requis
+                    </small>
                 </div>
             </div>
             <div class="destination m-b-0">
@@ -600,7 +614,9 @@
                            class="form-control no-form-border"
                            data-ng-model="vm.invitPro.email">
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && !vm.invitPro.email || vm.formProInvitEmailError">Ce champs est requis</small>
+                           data-ng-if="vm.formProInvitError && !vm.invitPro.email || vm.formProInvitEmailError">Ce
+                        champs est requis
+                    </small>
 
                 </div>
             </div>
@@ -617,9 +633,12 @@
                            placeholder="Entrez le code postal du professionnel"
                            id="address" only-digits>
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis</small>
+                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length < 1">Ce champs est requis
+                    </small>
                     <small class="c-red"
-                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">Le code postal doit comporter 5 nombres</small>
+                           data-ng-if="vm.formProInvitError && vm.invitPro.postalCode.length > 0 && vm.invitPro.postalCode.length < 5">
+                        Le code postal doit comporter 5 nombres
+                    </small>
                 </div>
             </div>
 
