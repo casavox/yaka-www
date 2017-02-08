@@ -314,6 +314,7 @@
                 window.location.href = $localStorage.urlRedirect;
                 delete $localStorage.urlRedirect;
             } else {
+                vm.login.hide();
                 $state.go('dashboard');
             }
         }
