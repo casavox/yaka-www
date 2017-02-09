@@ -31,7 +31,7 @@ var dependencies = [
 
 var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
 if (isMobile) {
-    dependencies.push('ionic');
+    dependencies.push('ionic, ngCordova');
 }
 
 angular.module('Yaka', dependencies);
