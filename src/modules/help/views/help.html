@@ -648,22 +648,26 @@
                                 </div>
                             </div>
 
-                            <span class="c-red" m-b-20>Cochez la case ci-dessous avant d'<i>Envoyer</i></span>
 
-                            <div
-                                vc-recaptcha
-                                data-ng-model="vm.supportMessage.recaptchaResponse"
-                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                class="hidden-xs"
-                            ></div>
+                            <div data-ng-if="!vm.isMobile">
+                                <span class="c-red">Cochez la case ci-dessous avant d'<i>Envoyer</i></span>
 
-                            <div
-                                vc-recaptcha
-                                data-ng-model="vm.supportMessage.recaptchaResponse"
-                                key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                class="visible-xs"
-                                style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
-                            ></div>
+                                <div
+                                    vc-recaptcha
+                                    data-ng-model="vm.supportMessage.recaptchaResponse"
+                                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                    class="hidden-xs"
+                                ></div>
+                                <div
+                                    vc-recaptcha
+                                    data-ng-model="vm.supportMessage.recaptchaResponse"
+                                    key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
+                                    class="visible-xs"
+                                    style="-moz-transform:scale(0.77); -ms-transform:scale(0.77); -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"
+                                ></div>
+                            </div>
+
+
 
                             <button class="btn bgm-lightblue waves-effect m-t-20"
                                     data-ng-click="vm.sendSupportMessage()">

@@ -27,6 +27,10 @@
 
         var vm = this;
 
+        if ($rootScope.isMobile) {
+            vm.isMobile = true;
+        }
+
         $rootScope.pageName = "";
 
         vm.jobs = [
@@ -267,7 +271,7 @@
             vm.registering = false;
             $localStorage.token = res.token;
             $localStorage.user = res;
-            if ($localStorage.urlRedirect != undefined) {
+            if ($localStorage.urlRedirect != undefined && !vm.isMobile) {
                 window.location.href = $localStorage.urlRedirect;
                 delete $localStorage.urlRedirect;
             } else {

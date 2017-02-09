@@ -19,6 +19,10 @@
 
         var vm = this;
 
+        if ($rootScope.isMobile) {
+          vm.isMobile = true;
+        }
+
         vm.showTuto = false;
         vm.showBoucheAOreille = false;
         vm.showSupport = true;
@@ -58,7 +62,6 @@
             email: '',
             message: '',
             recaptchaResponse: '',
-            url: $localStorage.lastUrlBeforeSupport,
             userAgent: navigator.userAgent
         };
 
@@ -92,7 +95,10 @@
                 !vm.supportMessage.lastName ||
                 !vm.supportMessage.email || 
                 !vm.supportMessage.message ||
-                !vm.supportMessage.recaptchaResponse) {
+                (
+                    !vm.isMobile &&
+                    !vm.supportMessage.recaptchaResponse
+                )) {
                 vm.formSupportError = true;
                 alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
             } else {
@@ -105,11 +111,7 @@
                             confirmButtonText: "OK",
                             closeOnConfirm: true
                         });
-                        if ($localStorage.lastUrlBeforeSupport) {
-                            window.location.href = $localStorage.lastUrlBeforeSupport;
-                        } else {
-                            $state.go("home");
-                        }
+                        $state.go("dashboard");
                     }, function error() {
                         vm.loading = false;
                         alertMsg.send("Impossible d'envoyer le message", "danger");
