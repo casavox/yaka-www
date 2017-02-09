@@ -402,10 +402,7 @@
             $scope.files = files;
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
-                console.log(file);
-
                 if (file && !file.$error) {
-
                     var fileData = file;
                     if (vm.isMobile) {
                         fileData = file.data;

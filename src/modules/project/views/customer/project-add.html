@@ -182,6 +182,22 @@
                         </div>
 
                         <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
+                             data-ng-if="app.isMobile"
+                             ngf-drop="vm.uploadFiles($files)"
+                             ngf-drag-over-class="dragOverClass($event)"
+                             data-ng-model="files"
+                             data-ng-multiple="false">
+                            <div class="galleryUpload lightbox-item p-item"
+                                 data-ng-click="vm.takeOrSelectPhoto()"
+                                 ngf-accept="'image/*'" ngf-max-size="20MB">
+                                <div class="content">
+                                    <i class="zmdi zmdi-plus-circle-o"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-sm-3 col-xs-4 no-padding"
+                             data-ng-if="!app.isMobile"
                              ngf-drop="vm.uploadFiles($files)"
                              ngf-drag-over-class="dragOverClass($event)"
                              data-ng-model="files"

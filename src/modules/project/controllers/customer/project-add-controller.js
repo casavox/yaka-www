@@ -152,7 +152,7 @@
         };
 
         vm.uploadFiles = function (files, invalides, index) {
-            if (invalides.length > 0) {
+            if (invalides && invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
@@ -160,13 +160,18 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    var fileData = file;
+                    if ($rootScope.isMobile) {
+                        fileData = file.data;
+                    }
+
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'project',
                             context: 'photo=' + $scope.title,
-                            file: file,
+                            file: fileData,
                             resource_type: 'image'
                         }
                     }).progress(function (e) {
@@ -878,6 +883,55 @@
 
         function failPasswordForgotten(err) {
             alertMsg.send("Impossible de réinitialiser le mot de passe", 'danger');
+        }
+
+        vm.takeOrSelectPhoto = function () {
+            swal({
+                title: "Choisir une photo",
+                type: "info",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Appareil Photo",
+                showCancelButton: true,
+                cancelButtonText: "Gallerie Photo"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    getDirectPhoto();
+                } else {
+                    getGalleryPhoto();
+                }
+            });
+        };
+
+        function getGalleryPhoto() {
+            navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                encodingType: Camera.EncodingType.JPEG,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false
+            });
+        }
+
+        function getDirectPhoto() {
+            navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                quality: 25,
+                destinationType: Camera.DestinationType.DATA_URL
+            });
+        }
+
+        function base64UploadCloudinary(imageData) {
+            var imagesData = [
+                {
+                    "data": "data:image/png;base64," + imageData
+                }
+            ];
+
+            vm.uploadFiles(imagesData);
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
         }
     }
 })();
