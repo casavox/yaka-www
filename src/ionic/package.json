@@ -23,7 +23,8 @@
     "cordova-plugin-fcm",
     "cordova-plugin-facebook4",
     "cordova-plugin-camera",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-x-socialsharing"
   ],
   "cordovaPlatforms": []
 }
