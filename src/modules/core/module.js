@@ -29,7 +29,7 @@ var dependencies = [
     'tabSlideBox'
 ];
 
-var isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+var isMobile = false;//GULP
 if (isMobile) {
     dependencies.push('ionic');
 }
@@ -39,7 +39,7 @@ angular.module('Yaka', dependencies);
 if (isMobile) {
     angular.module('Yaka').run(function ($ionicPlatform, $rootScope, $localStorage, networkService, $state) {
 
-        $rootScope.isMobile = typeof(ionic) !== 'undefined' && (ionic.Platform.is("ios") || ionic.Platform.is("android"));
+        $rootScope.isMobile = true;
         $rootScope.mobilePlatform = "PLATFORM_WEB";
         $rootScope.mobilePackageName = "DESKTOP_NO_PACKAGE_NAME";
         $rootScope.isProApp = function () {
@@ -74,53 +74,24 @@ if (isMobile) {
             }
             // Hide splash screen
             setTimeout(function () {
-                navigator.splashscreen.hide();
+                if (navigator.splashscreen) {
+                    navigator.splashscreen.hide();
+                }
             }, 100);
 
             if (window.FCMPlugin) {
                 FCMPlugin.onNotification(function (data) {
-                    if (data.wasTapped) {
-                        //Notification was received on device tray and tapped by the user.
-                    } else {
-                        //Notification was received in foreground. Maybe the user needs to be notified.
-                    }
-
-                    console.log(data);
 
                     if (data.action) {
                         switch (data.action) {
                             case 'NEW_CHAT_MESSAGE':
-                                if (data.isAssistanceChat && data.isAssistanceChat == "true") {
-                                    //Chat assistance
-                                    if (data.proposalId) {
-                                        if (data.recipientIsPro && data.recipientIsPro == "true") {
-                                            $state.go('pro-proposal', {
-                                                proposalId: data.proposalId,
-                                                chat: 'assistance'
-                                            });
-                                        }
-                                    } else if (data.projectId) {
-                                        if (!data.recipientIsPro || data.recipientIsPro != "true") {
-                                            $state.go('project', {
-                                                projectId: data.projectId,
-                                                chat: 'assistance'
-                                            });
-                                        }
-                                    }
-                                } else {
-                                    if (data.proposalId) {
-                                        if (data.recipientIsPro && data.recipientIsPro == "true") {
-                                            $state.go('pro-proposal', {
-                                                proposalId: data.proposalId,
-                                                chat: true
-                                            });
-                                        } else {
-                                            $state.go('proposal', {
-                                                proposalId: data.proposalId,
-                                                chat: true
-                                            });
-                                        }
-                                    }
+                                if (data.wasTapped) { // System Notification
+                                    goToCorrectChatPage(data);
+                                } else { // App on Foreground
+                                    $rootScope.createSnackbar("Nouveau message de " + data.author, "Voir le message", function () {
+                                        goToCorrectChatPage(data);
+                                    });
+                                    $rootScope.updateProfile(true);
                                 }
                                 break;
                         }
@@ -129,6 +100,41 @@ if (isMobile) {
                 }, function (msg) {
                 }, function (err) {
                 });
+            }
+
+            function goToCorrectChatPage(data) {
+                if (data.isAssistanceChat && data.isAssistanceChat == "true") {
+                    //Chat assistance
+                    if (data.proposalId) {
+                        if (data.recipientIsPro && data.recipientIsPro == "true") {
+                            $state.go('pro-proposal', {
+                                proposalId: data.proposalId,
+                                chat: 'assistance'
+                            });
+                        }
+                    } else if (data.projectId) {
+                        if (!data.recipientIsPro || data.recipientIsPro != "true") {
+                            $state.go('project', {
+                                projectId: data.projectId,
+                                chat: 'assistance'
+                            });
+                        }
+                    }
+                } else {
+                    if (data.proposalId) {
+                        if (data.recipientIsPro && data.recipientIsPro == "true") {
+                            $state.go('pro-proposal', {
+                                proposalId: data.proposalId,
+                                chat: true
+                            });
+                        } else {
+                            $state.go('proposal', {
+                                proposalId: data.proposalId,
+                                chat: true
+                            });
+                        }
+                    }
+                }
             }
         });
     });
