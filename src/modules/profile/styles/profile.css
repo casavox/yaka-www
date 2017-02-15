@@ -74,3 +74,22 @@
 .isChecked {
     border-color: red;
 }
+
+.modal-flex-header {
+    margin-top: 60px;
+}
+
+.modal-flex-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.option-file {
+    width: 200px;
+    height: 50px;
+    margin: 20px;
+    line-height: 40px;
+}

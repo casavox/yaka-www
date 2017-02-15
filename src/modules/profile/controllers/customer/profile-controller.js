@@ -16,6 +16,10 @@
 
         var vm = this;
 
+        if ($rootScope.isMobile) {
+            vm.isMobile = true;
+        }
+
         vm.isXsmall = function () {
             return screenSize.is('xs');
         };
@@ -88,7 +92,7 @@
 
 
         vm.uploadProfileImg = function (files, invalides, index) {
-            if (invalides.length > 0) {
+            if (invalides && invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
@@ -96,13 +100,18 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    var fileData = file;
+                    if (vm.isMobile) {
+                        fileData = file.data;
+                    }
+
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: file,
+                            file: fileData,
                             resource_type: 'image'
                         }
                     }).progress(function (e) {
@@ -313,5 +322,54 @@
             ((!vm.getCommunityByType('JOB').name && !(vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) &&
             ((!vm.getCommunityByType('OTHER').name && !(vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address)) || (vm.getCommunityByType('OTHER').name && (vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address))));
         };
+
+        vm.takeOrSelectPhoto = function () {
+            swal({
+                title: "Choisir une photo",
+                type: "info",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Appareil Photo",
+                showCancelButton: true,
+                cancelButtonText: "Gallerie Photo"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    getDirectPhoto();
+                } else {
+                    getGalleryPhoto();
+                }
+            });
+        };
+
+        function getGalleryPhoto() {
+            navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                encodingType: Camera.EncodingType.JPEG,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false
+            });
+        }
+
+        function getDirectPhoto() {
+            navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                quality: 25,
+                destinationType: Camera.DestinationType.DATA_URL
+            });
+        }
+
+        function base64UploadCloudinary(imageData) {
+            var imagesData = [
+                {
+                    "data": "data:image/png;base64," + imageData
+                }
+            ];
+
+            vm.uploadProfileImg(imagesData);
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
     }
 })();

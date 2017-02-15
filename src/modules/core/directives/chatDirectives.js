@@ -1,6 +1,6 @@
 angular.module('Yaka')
 
-    .directive('yakaChat', function ($rootScope, networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG) {
+    .directive('yakaChat', function ($rootScope, networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG, $timeout) {
         return {
             restrict: 'E',
             scope: {
@@ -13,6 +13,10 @@ angular.module('Yaka')
                 proposalStatus: '@'
             },
             link: function (scope, element, attr) {
+
+                if ($rootScope.isMobile) {
+                    scope.isMobile = true;
+                }
 
                 scope.$on('$destroy', function () {
                     $stomp.disconnect();
@@ -202,7 +206,8 @@ angular.module('Yaka')
                 }
 
                 scope.uploadFiles = function (files, invalides) {
-                    if (invalides.length > 0) {
+                    scope.fileOption = false;
+                    if (invalides && invalides.length > 0) {
                         if (invalides[0].$error == "maxSize")
                             alertMsg.send("Taille maximum : 20Mo", "danger");
                     }
@@ -211,13 +216,17 @@ angular.module('Yaka')
                     }
                     angular.forEach(files, function (file) {
                         if (file && !file.$error) {
+                            var fileData = file;
+                            if (scope.isMobile && !scope.deviceFile) {
+                                fileData = file.data;
+                            }
                             file.upload = Upload.upload({
                                 url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                                 data: {
                                     upload_preset: cloudinary.config().upload_preset,
                                     tags: 'chat',
                                     context: 'photo=' + "Chat : " + scope.chatId,
-                                    file: file
+                                    file: fileData
                                 }
                             }).progress(function (e) {
                                 file.progress = Math.round((e.loaded * 100.0) / e.total);
@@ -354,6 +363,48 @@ angular.module('Yaka')
                         }
                     }
                 };
+
+                scope.takeOrSelectPhoto = function () {
+                    swal({
+                        title: "Que désirez-vous ?",
+                        type: "info",
+                        confirmButtonColor: "#f44336",
+                        confirmButtonText: "Prendre une photo",
+                        showCancelButton: true,
+                        cancelButtonText: "Choisir mon document"
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            getDirectPhoto();
+                        } else {
+                            scope.fileOption = true;
+                            scope.deviceFile = true;
+                            $timeout(function(){
+                                angular.element('#chooseFile').trigger('click');
+                            });
+                        }
+                    });
+                };
+
+                function getDirectPhoto() {
+                    navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                        quality: 25,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    });
+                }
+
+                function base64UploadCloudinary(imageData) {
+                    var imagesData = [
+                        {
+                            "data": "data:image/png;base64," + imageData
+                        }
+                    ];
+                    scope.deviceFile = false;
+                    scope.uploadFiles(imagesData);
+                }
+
+                function onFail(message) {
+                    alert('Failed because: ' + message);
+                }
 
             },
             templateUrl: "modules/core/directives/views/yakaChat.html"

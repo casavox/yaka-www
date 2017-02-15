@@ -933,5 +933,9 @@
         function onFail(message) {
             alert('Failed because: ' + message);
         }
+
+        vm.autoFocusCommentPhoto = function (index) {
+            $('#photo-comment-' + index).focus();
+        }
     }
 })();

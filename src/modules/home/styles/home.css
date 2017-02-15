@@ -1245,7 +1245,7 @@ body:after {
 
 .icon-service {
     padding: 10px 7px 10px 7px;
-    margin: 15px;
+    /*margin: 15px;*/
     border-radius: 5px;
     font-size: 40px;
 }

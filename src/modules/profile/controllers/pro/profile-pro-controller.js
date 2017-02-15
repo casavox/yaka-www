@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage, $timeout) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage, $timeout, $ionicModal) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -15,6 +15,11 @@
         $rootScope.updateProfile();
 
         var vm = this;
+
+        if ($rootScope.isMobile) {
+            vm.isMobile = true;
+        }
+
 
         vm.isXsmall = function () {
             return screenSize.is('xs');
@@ -320,7 +325,6 @@
         };
 
 
-
         vm.updateLinks = function () {
             var linkedinReg = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*/;
 
@@ -349,9 +353,81 @@
             }
         };
 
-        vm.uploadVerifications = function (files, invalides, index, verifName) {
+        // Ionic
+        if (vm.isMobile) {
+            vm.defaultUpload = false;
+        }
 
-            if (invalides.length > 0) {
+        $ionicModal.fromTemplateUrl('document-modal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            vm.takeOrPick = modal;
+        });
+
+
+        vm.openTakeOrPickModal = function (docName, action) {
+            vm.docName = docName;
+            vm.action = action;
+            vm.takeOrPick.show();
+        };
+
+        vm.closeTakeOrPickModal = function () {
+            vm.takeOrPick.hide();
+        };
+
+
+        /* vm.takePhotoOrChoose = function (type, action) {
+         swal({
+         title: "Que désirez-vous ?",
+         type: "info",
+         confirmButtonColor: "#f44336",
+         confirmButtonText: "Prendre une photo",
+         showCancelButton: true,
+         cancelButtonText: "Choisir mon document"
+         }, function (isConfirm) {
+         if (isConfirm) {
+         vm.getDirectPhoto();
+         } else {
+         vm.defaultUpload = true;
+         $timeout(function () {
+         console.log("hahahaha");
+         console.log("hahahaha");
+         console.log("hahahaha");
+         console.log("hahahaha");
+         $('#haha').css("background-color", "red").click();
+         }, 5000);
+         }
+         });
+         };*/
+
+        var typeTmp;
+
+        vm.getDirectPhoto = function (type) {
+            typeTmp = type;
+            navigator.camera.getPicture(vm.base64UploadCloudinary, vm.onFail, {
+                quality: 25,
+                destinationType: Camera.DestinationType.DATA_URL
+            });
+        };
+
+        vm.base64UploadCloudinary = function (imageData) {
+            var imagesData = [
+                {
+                    "data": "data:image/png;base64," + imageData
+                }
+            ];
+            vm.uploadVerifications(imagesData, null, null, typeTmp, false);
+        };
+
+        vm.onFail = function (message) {
+            alert('Failed because: ' + message);
+        };
+
+
+        vm.uploadVerifications = function (files, invalides, index, verifName, isMobileDefaultUpload) {
+            vm.defaultUpload = isMobileDefaultUpload;
+            if (invalides && invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
@@ -359,6 +435,11 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    var fileData = file;
+                    if (vm.isMobile && !vm.defaultUpload) {
+                        fileData = file.data;
+                    }
+                    console.log(file);
                     vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
@@ -366,12 +447,13 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: file
+                            file: fileData
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
+                        vm.defaultUpload = false;
                         vm.updating = false;
                         vm.verifications = vm.verifications || [];
                         data.context = {custom: {photo: $scope.title}};
@@ -384,6 +466,7 @@
                         }
                         vm.verifications.push({name: verifName, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
+                        vm.defaultUpload = false;
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer ce fichier", "danger");
                     });
@@ -398,6 +481,7 @@
             }
             $scope.files = files;
             if (!$scope.files) return;
+            console.log(files);
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
                     file.upload = Upload.upload({
@@ -413,6 +497,7 @@
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
+                        console.log(data);
                         vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
                         data.context = {custom: {photo: $scope.title}};
                         file.result = data;
@@ -489,7 +574,6 @@
                 vm.formDescError = true;
             }
         }
-
 
 
         function errorProfileGET(res) {
@@ -881,26 +965,26 @@
                     control: {}
                 };
                 vm.circle =
-                {
-                    id: 1,
-                    center: {
-                        latitude: 0,
-                        longitude: 0
-                    },
-                    radius: 10,
-                    stroke: {
-                        color: '#03A9F4',
-                        weight: 2,
-                        opacity: 1
-                    },
-                    fill: {
-                        color: '#03A9F4',
-                        opacity: 0.15
-                    },
-                    visible: false,
-                    control: {},
-                    bounds: {}
-                };
+                    {
+                        id: 1,
+                        center: {
+                            latitude: 0,
+                            longitude: 0
+                        },
+                        radius: 10,
+                        stroke: {
+                            color: '#03A9F4',
+                            weight: 2,
+                            opacity: 1
+                        },
+                        fill: {
+                            color: '#03A9F4',
+                            opacity: 0.15
+                        },
+                        visible: false,
+                        control: {},
+                        bounds: {}
+                    };
                 vm.mapOptions = {
                     minZoom: 6,
                     maxZoom: 13,

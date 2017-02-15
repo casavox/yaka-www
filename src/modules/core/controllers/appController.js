@@ -311,5 +311,6 @@
 
         app.isMobile = $rootScope.isMobile;
         app.isProApp = $rootScope.isProApp;
+
     }
 })();

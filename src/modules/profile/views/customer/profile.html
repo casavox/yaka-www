@@ -65,7 +65,14 @@
 
                                         <yaka-avatar size="65" user="vm.profileInfo"></yaka-avatar>
 
-                                        <button
+                                        <button  data-ng-if="vm.isMobile"
+                                            class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
+                                                 data-ng-click="vm.takeOrSelectPhoto()"
+                                            ngf-accept="'image/*'" ngf-max-size="20MB">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+
+                                        <button  data-ng-if="!vm.isMobile"
                                             class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
                                             ngf-select="vm.uploadProfileImg($files, $invalidFiles, 0)"
                                             ngf-accept="'image/*'" ngf-max-size="20MB">

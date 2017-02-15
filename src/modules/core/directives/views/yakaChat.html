@@ -111,7 +111,26 @@
             <span class="m-l-10 m-r-10 read-button" data-ng-click="setRead()">Lu</span>
             <span class="m-l-10 m-r-10 unread-button" data-ng-click="setUnread()">Non-Lu</span>
         </div>
-        <button class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+
+        <button data-ng-show="isMobile"
+                class="leftButton" ng-click="takeOrSelectPhoto()"
+                data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
+                ngf-max-size="20MB"
+                data-ng-disabled="disableSending">
+            <i class="zmdi zmdi-attachment-alt c-white"></i>
+        </button>
+
+        <button data-ng-show="isMobile && fileOption"
+                id="chooseFile"
+                class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
+                data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
+                ngf-max-size="20MB"
+                data-ng-disabled="disableSending">
+            <i class="zmdi zmdi-attachment-alt c-white"></i>
+        </button>
+
+        <button data-ng-if="!isMobile"
+                class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
                 data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
                 ngf-max-size="20MB"
                 data-ng-disabled="disableSending">
