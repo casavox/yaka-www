@@ -325,6 +325,9 @@ gulp.task('ionic-replaces', function (cb) {
         mobilePackageName = "com.casavox.pro";
     }
 
+    var isMobileBefore = "var isMobile = false;//GULP";
+    var isMobileAfter = "var isMobile = true;//GULP";
+
     var defaultBaseUrl = "<base href=\"/\">";
     var androidBaseUrl = "<base href=\"/android_asset/www/\">";
 
@@ -337,12 +340,11 @@ gulp.task('ionic-replaces', function (cb) {
     return gulp.src(['./www/modules/core/module.js'])
         .pipe(replace(webPlatform, mobilePlatform))
         .pipe(replace(noPackageName, mobilePackageName))
+        .pipe(replace(isMobileBefore, isMobileAfter))
         .pipe(gulp.dest('./www/modules/core/'));
 });
 
 gulp.task('ionic', function () {
-
-    console.log(argv.build);
 
     if ((!argv.build && !argv.run) ||
         (argv.build && argv.build != 'android' && argv.build != 'ios') ||
