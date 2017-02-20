@@ -173,10 +173,17 @@
                     <div class="col-xs-3">
                         <div class=" m-t-0 p-t-0 img-profile img-profile-pro">
                             <yaka-avatar size="65" user="vm.profileInfo.user"></yaka-avatar>
-                            <button
-                                class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
-                                ngf-select="vm.uploadProfile($files, $invalidFiles, 0)"
-                                ngf-accept="'image/*'" ngf-max-size="20MB">
+                            <button  data-ng-if="vm.isMobile"
+                                     class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
+                                     data-ng-click="vm.takeOrSelectPhoto('avatar')"
+                                     ngf-accept="'image/*'" ngf-max-size="20MB">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+
+                            <button  data-ng-if="!vm.isMobile"
+                                     class="profileAvatarEditButton btn bgm-lightblue btn-icon waves-effect waves-circle"
+                                     ngf-select="vm.uploadProfileImg($files, $invalidFiles, 0)"
+                                     ngf-accept="'image/*'" ngf-max-size="20MB">
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
                         </div>
@@ -717,7 +724,7 @@
             <div class="row">
 
                 <div class="col-xs-2 profile-verif p-l-25"
-                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('BUSINESS_REGISTRATION', 'add')"
+                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('BUSINESS_REGISTRATION')"
                      ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
                      ngf-select-disabled="!vm.defaultUpload"
                      ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -735,7 +742,7 @@
                               data-ng-if="vm.indexOfObject('BUSINESS_REGISTRATION', 'name', vm.verifications).length == 0">
                             <a id="ADD_BUSINESS_REGISTRATION"
                                class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('BUSINESS_REGISTRATION', 'add')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('BUSINESS_REGISTRATION')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -748,7 +755,7 @@
                                data-tap-disabled="true"
 
                                class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('BUSINESS_REGISTRATION', 'edit')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('BUSINESS_REGISTRATION')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'BUSINESS_REGISTRATION')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -763,7 +770,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-2 profile-verif p-l-25"
-                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('INSURANCE', 'add')"
+                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('INSURANCE')"
                      ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
                      ngf-select-disabled="!vm.defaultUpload"
                      ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -780,7 +787,7 @@
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length == 0">
                             <a class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('INSURANCE', 'add')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('INSURANCE')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -790,7 +797,7 @@
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('INSURANCE', 'name', vm.verifications).length > 0">
                             <a class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('INSURANCE', 'edit')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('INSURANCE')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'INSURANCE')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -805,7 +812,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-2 profile-verif p-l-25"
-                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('RGE', 'add')"
+                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('RGE')"
                      ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
                      ngf-select-disabled="!vm.defaultUpload"
                      ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -822,7 +829,7 @@
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length == 0">
                             <a class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('RGE', 'add')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('RGE')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -832,7 +839,7 @@
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('RGE', 'name', vm.verifications).length > 0">
                             <a class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('RGE', 'edit')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('RGE')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'RGE')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -847,7 +854,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-2 profile-verif p-l-25"
-                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('PARTNER', 'add')"
+                     data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('PARTNER')"
                      ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
                      ngf-select-disabled="!vm.defaultUpload"
                      ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -864,7 +871,7 @@
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length == 0">
                             <a class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('PARTNER', 'add')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('PARTNER')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -874,7 +881,7 @@
                         <span class="pointer"
                               data-ng-if="vm.indexOfObject('PARTNER', 'name', vm.verifications).length > 0">
                             <a class="underline"
-                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('PARTNER', 'edit')"
+                               data-ng-click="!vm.defaultUpload && vm.openTakeOrPickModal('PARTNER')"
                                ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, 'PARTNER')"
                                ngf-select-disabled="!vm.defaultUpload"
                                ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
@@ -1067,7 +1074,18 @@
                  ngf-drag-over-class="dragOverClass($event)"
                  data-ng-model="files"
                  data-ng-multiple="false" data-ng-if="vm.portfolio.length < 8 && vm.editFlag">
-                <div class="galleryUpload lightbox-item p-item"
+
+                <div data-ng-if="vm.isMobile"
+                    class="galleryUpload lightbox-item p-item"
+                     data-ng-click="vm.takeOrSelectPhoto('portfolio')"
+                     ngf-accept="'image/*'" ngf-max-size="20MB">
+                    <div class="content">
+                        <i class="zmdi zmdi-plus-circle-o"></i>
+                    </div>
+                </div>
+
+                <div data-ng-if="!vm.isMobile"
+                    class="galleryUpload lightbox-item p-item"
                      ngf-select="vm.uploadPortfolio($files, $invalidFiles, 0)"
                      ngf-accept="'image/*'" ngf-max-size="20MB">
                     <div class="content">
@@ -1211,7 +1229,7 @@
                 <div class="yakaPopupWindow col-xs-12 modal-flex-content" data-ng-click="$event.stopPropagation()">
                     <div class="btn btn-default bgm-lightblue option-file"
                          ngf-select="vm.uploadVerifications($files, $invalidFiles, 0, vm.docName, true)"
-                         ngf-accept="'image/*,application/pdf'" ngf-max-size="20MB">
+                         ngf-accept="'*'" ngf-max-size="20MB">
                         Gallerie
                     </div>
 

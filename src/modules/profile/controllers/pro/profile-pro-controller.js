@@ -5,7 +5,7 @@
         .module('Yaka')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage, $timeout, $ionicModal) {
+    function ProfileController($rootScope, $scope, networkService, alertMsg, Upload, cloudinary, uiGmapGoogleMapApi, $state, screenSize, $auth, $localStorage, $timeout, $injector, $filter) {
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
@@ -18,6 +18,7 @@
 
         if ($rootScope.isMobile) {
             vm.isMobile = true;
+            var $ionicModal = $injector.get('$ionicModal');
         }
 
 
@@ -163,7 +164,6 @@
 
         vm.updatePortfolio = function () {
             vm.updating = true;
-            console.log(vm.portfolio);
             networkService.proPortfolioPUT(vm.portfolio, function (res) {
                 vm.portfolio = res.portfolio || [];
                 vm.profile.portfolio = res.portfolio || [];
@@ -209,7 +209,7 @@
         };
 
         vm.uploadPortfolio = function (files, invalides, index) {
-            if (invalides.length > 0) {
+            if (invalides && invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
@@ -217,6 +217,10 @@
             if (!$scope.files) return;
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    var fileData = file;
+                    if (vm.isMobile) {
+                        fileData = file.data;
+                    }
                     vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
@@ -224,7 +228,7 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'myPortfolio',
                             context: 'photo=' + $scope.title,
-                            file: file,
+                            file: fileData,
                             resource_type: 'image'
                         }
                     }).progress(function (e) {
@@ -264,6 +268,7 @@
                     foundVerification = verification;
                 }
             });
+            foundVerification = $filter('yakaCloudinaryDownload')(foundVerification.cloudinaryPublicId);
             return foundVerification;
         };
 
@@ -356,50 +361,28 @@
         // Ionic
         if (vm.isMobile) {
             vm.defaultUpload = false;
+        } else {
+            vm.defaultUpload = true;
         }
-
-        $ionicModal.fromTemplateUrl('document-modal.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            vm.takeOrPick = modal;
-        });
 
 
         vm.openTakeOrPickModal = function (docName, action) {
-            vm.docName = docName;
-            vm.action = action;
-            vm.takeOrPick.show();
+            if (vm.isMobile) {
+                $ionicModal.fromTemplateUrl('document-modal.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up'
+                }).then(function (modal) {
+                    vm.takeOrPick = modal;
+                    vm.docName = docName;
+                    vm.action = action;
+                    vm.takeOrPick.show();
+                });
+            }
         };
 
         vm.closeTakeOrPickModal = function () {
             vm.takeOrPick.hide();
         };
-
-
-        /* vm.takePhotoOrChoose = function (type, action) {
-         swal({
-         title: "Que désirez-vous ?",
-         type: "info",
-         confirmButtonColor: "#f44336",
-         confirmButtonText: "Prendre une photo",
-         showCancelButton: true,
-         cancelButtonText: "Choisir mon document"
-         }, function (isConfirm) {
-         if (isConfirm) {
-         vm.getDirectPhoto();
-         } else {
-         vm.defaultUpload = true;
-         $timeout(function () {
-         console.log("hahahaha");
-         console.log("hahahaha");
-         console.log("hahahaha");
-         console.log("hahahaha");
-         $('#haha').css("background-color", "red").click();
-         }, 5000);
-         }
-         });
-         };*/
 
         var typeTmp;
 
@@ -417,7 +400,7 @@
                     "data": "data:image/png;base64," + imageData
                 }
             ];
-            vm.uploadVerifications(imagesData, null, null, typeTmp, false);
+            vm.uploadVerifications(imagesData, false, 0, typeTmp, false);
         };
 
         vm.onFail = function (message) {
@@ -436,10 +419,9 @@
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
                     var fileData = file;
-                    if (vm.isMobile && !vm.defaultUpload) {
+                    if (!vm.defaultUpload) {
                         fileData = file.data;
                     }
-                    console.log(file);
                     vm.updating = true;
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
@@ -447,26 +429,43 @@
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: fileData
+                            file: fileData,
+                            resource_type:'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        vm.defaultUpload = false;
-                        vm.updating = false;
-                        vm.verifications = vm.verifications || [];
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        if (vm.verifications.length > 0 && verifName) {
-                            var removeExistingVerificationIndex = vm.verifications.map(function (v) {
-                                return v.name;
-                            }).indexOf(verifName);
-                            ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
+                        if (vm.isMobile &&
+                            data.resource_type != "image" &&
+                            data.resource_type != "pdf") {
+                            alertMsg.send("Le fichier selectionné n'est pas une image ou un PDF", "danger");
+                        } else {
+                            if (vm.isMobile) {
+                                vm.defaultUpload = false;
+                                vm.takeOrPick.hide();
+                            } else {
+                                vm.defaultUpload = true;
+                            }
+                            vm.updating = false;
+                            vm.verifications = vm.verifications || [];
+                            data.context = {custom: {photo: $scope.title}};
+                            file.result = data;
+                            if (vm.verifications.length > 0 && verifName) {
+                                var removeExistingVerificationIndex = vm.verifications.map(function (v) {
+                                    return v.name;
+                                }).indexOf(verifName);
+                                ~removeExistingVerificationIndex && vm.verifications.splice(removeExistingVerificationIndex, 1);
+                            }
+                            vm.verifications.push({name: verifName, cloudinaryPublicId: data.public_id});
+                            alertMsg.send("Le fichier a bien été envoyé", "success");
                         }
-                        vm.verifications.push({name: verifName, cloudinaryPublicId: data.public_id});
                     }).error(function (data, status, headers, config) {
-                        vm.defaultUpload = false;
+                        if (vm.isMobile) {
+                            vm.defaultUpload = false;
+                        } else {
+                            vm.defaultUpload = true;
+                        }
                         vm.updating = false;
                         alertMsg.send("Impossible d'envoyer ce fichier", "danger");
                     });
@@ -475,37 +474,43 @@
         };
 
         vm.uploadProfile = function (files, invalides, index) {
-            if (invalides.length > 0) {
+            if (invalides && invalides.length > 0) {
                 if (invalides[0].$error == "maxSize")
                     alertMsg.send("Taille maximum : 20Mo.", "danger");
             }
             $scope.files = files;
             if (!$scope.files) return;
-            console.log(files);
             angular.forEach(files, function (file) {
                 if (file && !file.$error) {
+                    var fileData = file;
+                    if (vm.isMobile) {
+                        fileData = file.data;
+                    }
                     file.upload = Upload.upload({
                         url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                         data: {
                             upload_preset: cloudinary.config().upload_preset,
                             tags: 'verifications',
                             context: 'file=' + $scope.title,
-                            file: file,
+                            file: fileData,
                             resource_type: 'image'
                         }
                     }).progress(function (e) {
                         file.progress = Math.round((e.loaded * 100.0) / e.total);
                         file.status = "Uploading... " + file.progress + "%";
                     }).success(function (data, status, headers, config) {
-                        console.log(data);
-                        vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
-                        data.context = {custom: {photo: $scope.title}};
-                        file.result = data;
-                        var res = null;
-                        vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
-                        networkService.updateAvatarPUT(vm.profileInfo.user, function (res) {
-                            alertMsg.send("La photo a été mise à jour", "success");
-                        }, errorAvatarPUT, true);
+                        if (data.resource_type != "image") {
+                            alertMsg.send("Le fichier selectionné n'est pas une image", "danger");
+                        } else {
+                            vm.profileInfo.user.avatar = vm.profileInfo.user.avatar || {};
+                            data.context = {custom: {photo: $scope.title}};
+                            file.result = data;
+                            var res = null;
+                            vm.profileInfo.user.avatar.cloudinaryPublicId = data.public_id;
+                            networkService.updateAvatarPUT(vm.profileInfo.user, function (res) {
+                                alertMsg.send("La photo a été mise à jour", "success");
+                            }, errorAvatarPUT, true);
+                        }
                     }).error(function (data, status, headers, config) {
                         alertMsg.send("Impossible d'envoyer l'image", "danger");
                     });
@@ -1187,6 +1192,60 @@
             ((!vm.getCommunityByType('JOB').name && !(vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) || (vm.getCommunityByType('JOB').name && vm.getCommunityByType('JOB').address && vm.getCommunityByType('JOB').address.address)) &&
             ((!vm.getCommunityByType('OTHER').name && !(vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address)) || (vm.getCommunityByType('OTHER').name && (vm.getCommunityByType('OTHER').address && vm.getCommunityByType('OTHER').address.address))));
         };
+
+        vm.takeOrSelectPhoto = function (aim) {
+            vm.aim = aim;
+            swal({
+                title: "Choisir une photo",
+                type: "info",
+                confirmButtonColor: "#f44336",
+                confirmButtonText: "Appareil Photo",
+                showCancelButton: true,
+                cancelButtonText: "Gallerie Photo"
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    getDirectPhoto();
+                } else {
+                    getGalleryPhoto();
+                }
+            });
+        };
+
+        function getGalleryPhoto() {
+            navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                encodingType: Camera.EncodingType.JPEG,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false
+            });
+        }
+
+        function getDirectPhoto() {
+            navigator.camera.getPicture(base64UploadCloudinary, onFail, {
+                quality: 25,
+                destinationType: Camera.DestinationType.DATA_URL
+            });
+        }
+
+        function base64UploadCloudinary(imageData) {
+            var imagesData = [
+                {
+                    "data": "data:image/png;base64," + imageData
+                }
+            ];
+
+            if (vm.aim == 'avatar') {
+                vm.uploadProfile(imagesData);
+            } else if (vm.aim == 'portfolio') {
+                vm.uploadPortfolio(imagesData);
+            }
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
 
     }
 })();
