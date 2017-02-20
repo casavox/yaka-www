@@ -112,20 +112,9 @@
             <span class="m-l-10 m-r-10 unread-button" data-ng-click="setUnread()">Non-Lu</span>
         </div>
 
-        <button data-ng-show="isMobile"
-                class="leftButton" ng-click="takeOrSelectPhoto()"
-                data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
-                ngf-max-size="20MB"
-                data-ng-disabled="disableSending">
-            <i class="zmdi zmdi-attachment-alt c-white"></i>
-        </button>
-
-        <button data-ng-show="isMobile && fileOption"
-                id="chooseFile"
-                class="leftButton" ngf-select="uploadFiles($files, $invalidFiles, 0)"
-                data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}"
-                ngf-max-size="20MB"
-                data-ng-disabled="disableSending">
+        <button data-ng-if="isMobile"
+                class="leftButton" ng-click="openTakeOrPickModal()"
+                data-ng-class="{'bgm-lightblue' : !disableSending, 'bgm-gray pointer-not-allowed' : disableSending}">
             <i class="zmdi zmdi-attachment-alt c-white"></i>
         </button>
 
@@ -149,3 +138,30 @@
         </button>
     </div>
 </div>
+
+<script id="document-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="modal-flex-header">
+            <h1 class="title">Choisir source</h1>
+            <img class="popupCloseButton popupCloseIonic"
+                 src="icons/mdpi/ic_popup_close.png"
+                 data-ng-click="closeTakeOrPickModal()" alt=""/>
+        </ion-header-bar>
+        <ion-content>
+            <div class="container">
+                <div class="yakaPopupWindow col-xs-12 modal-flex-content" data-ng-click="$event.stopPropagation()">
+                    <div class="btn btn-default bgm-lightblue option-file"
+                         ngf-select="uploadFiles($files, $invalidFiles, 0)"
+                         ngf-max-size="20MB">
+                        Gallerie
+                    </div>
+
+                    <div class="btn btn-default bgm-crimson option-file"
+                         data-ng-click="getDirectPhoto()">
+                        Appareil Photo
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

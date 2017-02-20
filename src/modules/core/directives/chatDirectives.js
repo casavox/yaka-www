@@ -1,6 +1,6 @@
 angular.module('Yaka')
 
-    .directive('yakaChat', function ($rootScope, networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG, $timeout) {
+    .directive('yakaChat', function ($rootScope, networkService, alertMsg, $stomp, $localStorage, Upload, cloudinary, CONFIG, $injector) {
         return {
             restrict: 'E',
             scope: {
@@ -16,6 +16,7 @@ angular.module('Yaka')
 
                 if ($rootScope.isMobile) {
                     scope.isMobile = true;
+                    var $ionicModal = $injector.get('$ionicModal');
                 }
 
                 scope.$on('$destroy', function () {
@@ -206,7 +207,6 @@ angular.module('Yaka')
                 }
 
                 scope.uploadFiles = function (files, invalides) {
-                    scope.fileOption = false;
                     if (invalides && invalides.length > 0) {
                         if (invalides[0].$error == "maxSize")
                             alertMsg.send("Taille maximum : 20Mo", "danger");
@@ -217,7 +217,7 @@ angular.module('Yaka')
                     angular.forEach(files, function (file) {
                         if (file && !file.$error) {
                             var fileData = file;
-                            if (scope.isMobile && !scope.deviceFile) {
+                            if (scope.isMobile && scope.apn) {
                                 fileData = file.data;
                             }
                             file.upload = Upload.upload({
@@ -232,10 +232,19 @@ angular.module('Yaka')
                                 file.progress = Math.round((e.loaded * 100.0) / e.total);
                                 file.status = "Uploading... " + file.progress + "%";
                             }).success(function (data, status, headers, config) {
+                                console.log(data);
                                 data.context = {custom: {photo: "Chat : " + scope.chatId}};
                                 file.result = data;
+                                console.log(data);
                                 scope.newMessage.cloudinaryPublicId = data.public_id;
                                 scope.newMessage.filename = data.original_filename;
+                                if (scope.isMobile) {
+                                    if (scope.apn) {
+                                        scope.newMessage.filename = "photo";
+                                        scope.apn = false;
+                                    }
+                                    scope.takeOrPick.hide();
+                                }
                                 scope.newMessage.resourceType = data.resource_type;
                                 scope.newMessage.format = data.format;
 
@@ -364,33 +373,28 @@ angular.module('Yaka')
                     }
                 };
 
-                scope.takeOrSelectPhoto = function () {
-                    swal({
-                        title: "Que désirez-vous ?",
-                        type: "info",
-                        confirmButtonColor: "#f44336",
-                        confirmButtonText: "Prendre une photo",
-                        showCancelButton: true,
-                        cancelButtonText: "Choisir mon document"
-                    }, function (isConfirm) {
-                        if (isConfirm) {
-                            getDirectPhoto();
-                        } else {
-                            scope.fileOption = true;
-                            scope.deviceFile = true;
-                            $timeout(function(){
-                                angular.element('#chooseFile').trigger('click');
-                            });
-                        }
-                    });
+                scope.openTakeOrPickModal = function () {
+                    if (scope.isMobile) {
+                        $ionicModal.fromTemplateUrl('document-modal.html', {
+                            scope: scope,
+                            animation: 'slide-in-up'
+                        }).then(function (modal) {
+                            scope.takeOrPick = modal;
+                            scope.takeOrPick.show();
+                        });
+                    }
                 };
 
-                function getDirectPhoto() {
+                scope.closeTakeOrPickModal = function () {
+                    scope.takeOrPick.hide();
+                };
+
+                scope.getDirectPhoto = function () {
                     navigator.camera.getPicture(base64UploadCloudinary, onFail, {
                         quality: 25,
                         destinationType: Camera.DestinationType.DATA_URL
                     });
-                }
+                };
 
                 function base64UploadCloudinary(imageData) {
                     var imagesData = [
@@ -398,7 +402,7 @@ angular.module('Yaka')
                             "data": "data:image/png;base64," + imageData
                         }
                     ];
-                    scope.deviceFile = false;
+                    scope.apn = true;
                     scope.uploadFiles(imagesData);
                 }
 
