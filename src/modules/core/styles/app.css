@@ -1659,6 +1659,10 @@ mark,
     padding: .2em;
 }
 
+.text-left-i {
+    text-align: left !important;
+}
+
 .text-left {
     text-align: left;
 }
@@ -9257,6 +9261,10 @@ a.waves-effect .waves-ripple {
  * Generate Margin Class
  * margin, margin-top, margin-bottom, margin-left, margin-right
  */
+.m-l-m-7 {
+    margin-left: -7px !important;
+}
+
 .m-l-m-15 {
     margin-left: -15px !important;
 }
@@ -15933,10 +15941,6 @@ body.login-content:before {
     left: 88px;
 }
 
-#profile-main .pmb-block {
-    margin-bottom: 20px;
-}
-
 @media (min-width: 1200px) {
     #profile-main .pmb-block {
         padding: 40px 42px 0;
@@ -15953,8 +15957,14 @@ body.login-content:before {
     margin-bottom: 50px;
 }
 
+@media (max-width: 767px) {
+    .pmb-block .pmbb-header {
+        margin-left: -7px !important;
+    }
+}
+
 #profile-main .pmb-block .pmbb-header {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     position: relative;
 }
 

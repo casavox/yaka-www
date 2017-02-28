@@ -3,7 +3,7 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="home"
-                    title="Recommander un pro"></yaka-mobile-header>
+                    title="Transmettre le chantier"></yaka-mobile-header>
 
 <section id="main">
 
@@ -22,335 +22,226 @@
 
         <div class="container no-padding-mobile">
 
-            <div class="col-sm-6">
-                <div class="block-header">
-                    <h2>Recommander à</h2>
+            <div class="visible-xs col-sm-12">
+                <div class="block-header m-b-10">
+                    <h2>DESCRIPTION DU PROJET</h2>
                 </div>
-                <div class="projectRecommendTopCard card">
-                    <div class="clearfix">
+                <div class="card">
+                    <div class="card-body projectRecommendTopCard p-l-20 p-b-5">
+                        <div class="clearfix vertical-center-not-justified">
 
-                        <yaka-avatar size="50" user="vm.project.user"></yaka-avatar>
+                            <yaka-avatar class="col-xs-3 no-padding" size="50" user="vm.project.user"></yaka-avatar>
 
-                        <div class="dashboardRecommendProjectText f-s-14 fw-bold">
-                            {{vm.project.user.firstName}} {{vm.project.user.lastName}}
+                            <div class="col-xs-8 col-sm-9 p-r-0 p-l-0 m-l-15">
+                                <casa-name-and-contact class="pull-left fw-bold"
+                                                       user="vm.project.user"></casa-name-and-contact>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr class="m-0 p-0">
+                    <div class="card-body projectRecommendTopCard p-l-20 p-b-5">
+                        <div class="clearfix">
+
+                            <div
+                                class="proposalIconBackground pull-left lv-img v-icon-{{vm.project.mainActivity.code}}-white m-t-5">
+                            </div>
+
+                            <div class="right p-l-60 p-b-10">
+                                <div class="f-s-15">
+                                    {{vm.project.title}}
+                                </div>
+
+                                <div class="yakaEllipsis">
+                                    {{vm.project.address.locality}} - {{vm.project.address.postalCode}}
+                                </div>
+
+                                <div class="yakaEllipsis">
+                                    {{vm.getWhen()}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="block-header">
-                    <h2>POUR SON PROJET</h2>
-                </div>
-                <div class="projectRecommendTopCard card">
-                    <div class="clearfix">
+            <div class="hidden-xs">
+                <div class="col-sm-6">
+                    <div class="block-header m-b-10">
+                        <h2>PROJET DE</h2>
+                    </div>
+                    <div class="card projectRecommendTopCard p-l-20 p-t-20 p-b-5">
+                        <div class="clearfix  vertical-center-not-justified">
 
-                        <div class="proposalIconBackground lv-img v-icon-{{vm.project.mainActivity.code}}-white">
+                            <yaka-avatar class="col-xs-3 no-padding" size="50" user="vm.project.user"></yaka-avatar>
+
+                            <div class="col-xs-8 col-sm-9 p-r-0 p-l-0 m-l-15">
+                                <div>
+                                    <casa-name-and-contact class="pull-left fw-bold l-h-24"
+                                                           user="vm.project.user"></casa-name-and-contact>
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="block-header m-b-10">
+                        <h2>RÉSUMÉ</h2>
+                    </div>
+                    <div class="projectRecommendTopCard card">
+                        <div class="clearfix">
 
-                        <div class="dashboardRecommendProjectText right">
-                            <div class="yakaEllipsis f-s-16">
-                                {{vm.project.title}}
+                            <div
+                                class="proposalIconBackground pull-left lv-img v-icon-{{vm.project.mainActivity.code}}-white">
                             </div>
 
-                            <div class="yakaEllipsis" data-ng-if="vm.project.address.address">
-                                {{vm.project.address.address}}
-                            </div>
-                            <div class="yakaEllipsis" data-ng-if="!vm.project.address.address">
-                                {{vm.project.address.postalCode}} {{vm.project.address.locality}}
-                            </div>
+                            <div class="right p-l-60 p-b-10">
+                                <div class="f-s-15">
+                                    {{vm.project.title}}
+                                </div>
 
-                            <div class="yakaEllipsis">
-                                {{vm.getWhen()}}
+                                <div class="yakaEllipsis">
+                                    {{vm.project.address.locality}} - {{vm.project.address.postalCode}}
+                                </div>
+
+                                <div class="yakaEllipsis">
+                                    {{vm.getWhen()}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12">
-                <div class="block-header">
-                    <h2>
-                        Recommander un professionnel
+                <div class="card">
+
+                    <div class="card-header p-b-0">
+                        <h2>
+                            Recommander ce projet à un Pro
+                            <small class="visible-xs t-center c-black m-t-20">
+                                Depuis mon téléphone
+                            </small>
+                        </h2>
+                    </div>
+
+                    <div class="card-body card-padding p-b-0 clearfix visible-xs">
+                        <button class="btn bgm-lightblue btn-block btn-lg waves-effect"
+                                data-ng-click="vm.inviteBySms('PRO')">
+                            Envoyer par SMS
+                        </button>
+                        <h4 class="t-center m-t-25">- OU -</h4>
+                    </div>
+
+                    <div class="card-header p-b-0 p-t-0">
+                        <h2 class="invite-by-mail">
+                        <small class="c-black">
+                            Via CasaVox par Email
+                        </small>
                     </h2>
-                </div>
-
-                <div class="card selectedProDetails">
-
+                    </div>
                     <div class="card-body card-padding clearfix">
+                        <form name="inviteForm">
 
-                        <div class="col-sm-6">
-
-                            <div class="f-18 c-orange">
-                                Mon Pro
-                            </div>
-
-                            <form name="inviteForm" class="m-t-20">
-
-                                <div class="col-xs-12 no-padding form-group fg-float m-t-15"
-                                     data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.name}">
-
-                                    <div class="fg-line">
-                                        <input type="text" name="name" class="form-control fg-input input-sm"
-                                               data-ng-model="vm.invitPro.name"
-                                               data-ng-disabled="vm.isSocialRegister()"
-                                               yaka-input-name>
-                                        <label class="fg-label">Nom</label>
-                                    </div>
-                                    <small class="help-block t-left"
-                                           data-ng-show="vm.formPublicRecoError && vm.invitPro.name.length < 1">
-                                        Ce champ est requis
+                            <div class="col-xs-12 no-padding form-group fg-float m-t-10 m-b-20"
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.name}">
+                                <div class="fg-line">
+                                    <input type="text" name="name" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.name"
+                                           data-ng-disabled="vm.isSocialRegister()"
+                                           yaka-input-name>
+                                    <label class="fg-label">Nom du Pro</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.invitPro.name.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="inviteForm.name.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                        valide
                                     </small>
-                                    <div data-ng-messages="inviteForm.name.$error">
-                                        <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
-                                            valide
-                                        </small>
-                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.email}">
-                                    <div class="fg-line">
-                                        <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
-                                               class="form-control fg-input input-sm"
-                                               data-ng-model="vm.invitPro.email"
-                                               yaka-input-email>
-                                        <label class="fg-label">Email</label>
-                                    </div>
-                                    <small class="help-block t-left"
-                                           data-ng-show="vm.formPublicRecoError && vm.invitPro.email.length < 1">
-                                        Ce champ est requis
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-20"
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.invitPro.email}">
+                                <div class="fg-line">
+                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.invitPro.email"
+                                           yaka-input-email>
+                                    <label class="fg-label">Email du Pro</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.invitPro.email.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="inviteForm.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">
+                                        Cet email n'est pas valide
                                     </small>
-                                    <div data-ng-messages="inviteForm.username.$error">
-                                        <small class="help-block" data-ng-message="invalidEmail">
-                                            Cet email n'est pas valide
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 no-padding form-group fg-float m-b-30"
-                                     data-ng-class="{'has-error': vm.formPublicRecoError && !vm.invitPro.address.address}">
-                                    <div class="fg-line">
-                                        <input type="text" class="form-control fg-input input-sm"
-                                               vs-google-autocomplete="vm.autocomplete.options"
-                                               vs-autocomplete-validator
-                                               data-ng-model="vm.invitPro.address.address"
-                                               type="text"
-                                               name="address"
-                                               placeholder=""
-                                               id="address">
-                                        <label class="fg-label">Ville</label>
-                                        <small class="help-block c-red" data-ng-if="vm.formPublicRecoError && !vm.invitPro.address.address">
-                                            Veuillez saisir la ville, puis sélectionnez-la dans la liste
-                                        </small>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-xs-12 no-padding form-group fg-float">
-                                    <div class="fg-line">
-                                        <input type="text" name="phoneNumber"
-                                               class="form-control fg-input"
-                                               data-ng-model="vm.invitPro.phone" yaka-input-phone>
-                                        <label class="fg-label fg-label-phone">Téléphone (facultatif)</label>
-                                    </div>
-                                    <div data-ng-messages="inviteForm.phoneNumber.$error">
-                                        <small class="help-block c-red" data-ng-message="invalidPhone">
-                                            Ce numéro de téléphone n'est pas valide
-                                        </small>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-sm-6">
-
-                            <div class="col-xs-12 visible-xs m-t-20"></div>
-
-                            <div class="f-18 c-lightblue">
-                                Moi
-                            </div>
-
-                            <div class="col-xs-12 registerFacebookGoogle m-t-5 p-l-0 p-r-0">
-                                <span
-                                    data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook ou Google</span>
-
-                                <div data-ng-if="vm.isSocialRegister()">
-                                    <div class="registerSocialConfirm m-t-0 p-l-0 p-r-0">
-                                        Inscription via {{vm.socialNetwork}}
-                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-xs-6 loginPopupFacebook waves-effect"
-                                 data-ng-click="vm.facebookPreRegister()"
-                                 data-ng-if="!vm.isSocialRegister()">
-                                Facebook
-                            </div>
-                            <div class="col-xs-6 loginPopupGoogle waves-effect" data-ng-click="vm.googlePreRegister()"
-                                 data-ng-if="!vm.isSocialRegister()">
-                                Google
-                            </div>
-
-                            <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
-
-                            <div class="col-xs-12 registerMail">
-                                <span class="registerWithEmailMessage pointer" data-ng-if="!vm.isSocialRegister()"
-                                      data-ng-click="vm.showRegisterFields = true">- Ou inscription par email -</span>
-                                <span data-ng-if="vm.isSocialRegister()">Complétez les champs ci-dessous pour finaliser votre inscription</span>
-                            </div>
-                            <form name="registerForm">
-                                <div class="col-xs-12 showRegisterFieldsReco"
-                                     data-ng-class="{showRegisterFieldsRecoVisible: vm.isSocialRegister() || vm.showRegisterFields}">
-
-                                    <div class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput"
-                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.firstName}">
-
-                                        <div class="fg-line">
-                                            <input type="text" name="firstName" class="form-control fg-input input-sm"
-                                                   data-ng-model="vm.newUser.firstName"
-                                                   data-ng-disabled="vm.isSocialRegister()"
-                                                   yaka-input-name>
-                                            <label class="fg-label">Prénom</label>
-                                        </div>
-                                        <small class="help-block t-left"
-                                               data-ng-show="vm.formPublicRecoError && vm.newUser.firstName.length < 1">
-                                            Ce champ est requis
-                                        </small>
-                                        <div data-ng-messages="registerForm.firstName.$error">
-                                            <small class="help-block" data-ng-message="invalidName">Ce prénom n'est pas
-                                                valide
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        class="col-xs-6 no-padding form-group fg-float m-b-30 m-t-30 halfInput halfInputRight"
-                                        data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.lastName}">
-
-                                        <div class="fg-line">
-                                            <input type="text" name="lastName" class="form-control fg-input input-sm"
-                                                   data-ng-model="vm.newUser.lastName"
-                                                   data-ng-disabled="vm.isSocialRegister()"
-                                                   yaka-input-name>
-                                            <label class="fg-label">Nom</label>
-                                        </div>
-                                        <small class="help-block t-left"
-                                               data-ng-show="vm.formPublicRecoError && vm.newUser.lastName.length < 1">
-                                            Ce champ est requis
-                                        </small>
-                                        <div data-ng-messages="registerForm.lastName.$error">
-                                            <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
-                                                valide
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group fg-float m-b-30"
-                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.email}">
-                                        <div class="fg-line">
-                                            <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
-                                                   class="form-control fg-input input-sm"
-                                                   data-ng-model="vm.newUser.email"
-                                                   yaka-input-email>
-                                            <label class="fg-label">Email</label>
-                                        </div>
-                                        <small class="help-block t-left"
-                                               data-ng-show="vm.formPublicRecoError && vm.newUser.email.length < 1">
-                                            Ce champ est requis
-                                        </small>
-                                        <div data-ng-messages="registerForm.username.$error">
-                                            <small class="help-block" data-ng-message="invalidEmail">Cet email n'est pas
-                                                valide
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group fg-float m-b-30"
-                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.defaultAddress.address}">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control fg-input input-sm"
-                                                   vs-google-autocomplete="vm.autocomplete.options"
-                                                   vs-autocomplete-validator
-                                                   data-ng-model="vm.newUser.defaultAddress.address"
-                                                   type="text"
-                                                   name="address"
-                                                   placeholder=""
-                                                   id="address">
-                                            <label class="fg-label">Ville</label>
-                                            <small class="help-block c-red" data-ng-if="vm.formPublicRecoError && !vm.newUser.defaultAddress.address">
-                                                Veuillez saisir la ville, puis sélectionnez-la dans la liste
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group fg-float m-b-30"
-                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.newUser.password}">
-                                        <div class="fg-line">
-                                            <input type="password" name="password"
-                                                   class="form-control fg-input input-sm"
-                                                   data-ng-model="vm.newUser.password" data-ng-minlength="6">
-                                            <label class="fg-label">Mot de passe</label>
-                                        </div>
-                                        <small class="help-block t-left"
-                                               data-ng-show="vm.formPublicRecoError && vm.newUser.password.length < 1">
-                                            Ce champ est requis
-                                        </small>
-                                        <div data-ng-messages="registerForm.password.$error">
-                                            <small class="help-block" data-ng-message="minlength">Le mot de passe doit
-                                                faire au
-                                                moins
-                                                6 caractères
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group fg-float m-b-30"
-                                         data-ng-class="{'has-error': vm.formPublicRecoError && !vm.passwordConfirm || (vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm))}">
-                                        <div class="fg-line">
-                                            <input type="password" class="form-control fg-input input-sm"
-                                                   data-ng-model="vm.passwordConfirm" data-ng-minlength="6">
-                                            <label class="fg-label">Confirmation</label>
-                                        </div>
-                                        <small class="help-block t-left"
-                                               data-ng-show="vm.formPublicRecoError && vm.passwordConfirm.length < 1">
-                                            Ce champ est requis
-                                        </small>
-                                        <small class="help-block"
-                                               data-ng-show="vm.newUser.password && vm.passwordConfirm && (vm.newUser.password != vm.passwordConfirm)">
-                                            Les deux mots de passe ne correspondent pas
-                                        </small>
-                                    </div>
-
-                                    <div class="c-red center m-b-0 t-center">
-                                        Cochez la case ci-dessous
-                                    </div>
-                                    <div
-                                        vc-recaptcha
-                                        data-ng-model="vm.newUser.recaptchaResponse"
-                                        key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                        class="visible-lg visible-md col-xs-12 m-t-0 center recaptcha"
-                                    ></div>
-                                    <div
-                                        vc-recaptcha
-                                        data-ng-model="vm.newUser.recaptchaResponse"
-                                        key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                        class="visible-sm col-xs-12 m-t-0 center recaptcha mobile"
-                                        style="-moz-transform:scale(0.85); -ms-transform:scale(0.85); -o-transform:scale(0.85); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.85); transform:scale(0.85); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.85,M12=0,M21=0,M22=0.85,SizingMethod='auto expand');"
-                                    ></div>
-                                    <div
-                                        vc-recaptcha
-                                        data-ng-model="vm.newUser.recaptchaResponse"
-                                        key="'6LcFnCQTAAAAAGU0Wowjk1y_fsaItUZ3lfftgH7U'"
-                                        class="visible-xs col-xs-12 m-t-0 center recaptcha mobile"
-                                        style="-moz-transform:scale(0.74); -ms-transform:scale(0.74); -o-transform:scale(0.74); -moz-transform-origin:0; -ms-transform-origin:0; -o-transform-origin:0; -webkit-transform:scale(0.74); transform:scale(0.74); -webkit-transform-origin:0 0; transform-origin:0; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.74,M12=0,M21=0,M22=0.74,SizingMethod='auto expand');"
-                                    ></div>
-
-                                    <button class="btn bgm-lightblue btn-lg waves-effect center m-t-10 w-s-normal"
-                                            data-ng-click="vm.register()">
-                                        S'INSCRIRE ET RECOMMANDER
-                                    </button>
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-30">
+                                <div class="fg-line">
+                                    <textarea class="form-control fg-input"
+                                              data-auto-size=""
+                                              placeholder=""
+                                              data-autosize-on="true"
+                                              data-ng-model="vm.invitPro.message"
+                                              style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                                    <label class="fg-label">Votre message à ce Pro (facultatif)</label>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-t-10 m-b-20"
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.sender.name}">
+                                <div class="fg-line">
+                                    <input type="text" name="name" class="form-control fg-input input-sm"
+                                           data-ng-model="vm.sender.name"
+                                           data-ng-disabled="vm.isSocialRegister()"
+                                           yaka-input-name>
+                                    <label class="fg-label">Votre nom/prénom</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.sender.name.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="inviteForm.name.$error">
+                                    <small class="help-block" data-ng-message="invalidName">Ce nom n'est pas
+                                        valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding form-group fg-float m-b-20"
+                                 data-ng-class="{'has-error': vm.formProRecoInvitError && !vm.sender.email}">
+                                <div class="fg-line">
+                                    <input type="text" name="username" data-ng-disabled="vm.isSocialRegister()"
+                                           class="form-control fg-input input-sm"
+                                           data-ng-model="vm.sender.email"
+                                           yaka-input-email>
+                                    <label class="fg-label">Votre email</label>
+                                </div>
+                                <small class="help-block t-left"
+                                       data-ng-show="vm.formProRecoInvitError && vm.sender.email.length < 1">
+                                    Ce champ est requis
+                                </small>
+                                <div data-ng-messages="inviteForm.username.$error">
+                                    <small class="help-block" data-ng-message="invalidEmail">
+                                        Cet email n'est pas valide
+                                    </small>
+                                </div>
+                            </div>
+
+                            <button class="btn bgm-orange btn-block btn-lg waves-effect"
+                                    data-ng-click="vm.sendProInvit()">
+                                ENVOYER par Email
+                            </button>
+                            <small class="hidden-xs col-xs-12 p-t-5  c-blue t-center">Accédez à casavox.com depuis votre
+                                téléphone pour envoyer directement par SMS
+                            </small>
+                        </form>
                     </div>
                 </div>
             </div>
