@@ -9,10 +9,12 @@
 
         if (!$stateParams.projectId) {
             $state.go("home");
+            return;
         }
 
         if ($localStorage.user) {
             $state.go("project-recommend", {'projectId': $stateParams.projectId});
+            return;
         }
 
         var vm = this;
@@ -40,177 +42,89 @@
             }
         };
 
-        vm.invitPro = {
-            email: "",
-            firstName: "",
-            lastName: "",
-            phone: "",
-            activities: [],
-            address: {}
+        vm.recommendationData = {
+            toName: "",
+            toEmail: "",
+            fromName: "",
+            fromEmail: "",
+            fromMessage: ""
         };
 
-        angular.forEach(vm.multiChoiceInput.options, function (value) {
-            value.labelTranslated = $translate.instant('ACTIVITY_' + value.label);
-        });
+        vm.isEmailValid = function (email) {
+            return new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,99}$").test(email);
+        };
 
-
-
-        vm.sendProInvit = function () {
-            console.log("sendProInvit");
-            networkService.recommendAndInviteProPOST(vm.project.id, vm.invitPro, function (res) {
-                vm.invitPro = {
-                    email: "",
-                    firstName: "",
-                    lastName: "",
-                    phone: "",
-                    activities: [],
-                    address: {}
-                };
-                vm.phoneNumber = "";
-                vm.multiChoiceInput.selected = [];
-                if ($localStorage.user && $localStorage.user.professional) {
-                    $state.go('pro-dashboard');
-                } else {
-                    $state.go('dashboard');
+        vm.sendPublicRecoByEmail = function () {
+            if (!vm.recommendationData.toName || !vm.recommendationData.toEmail || !vm.recommendationData.fromName || !vm.recommendationData.fromEmail) {
+                vm.formProRecoInvitError = true;
+                var errorText = "";
+                if (!vm.isEmailValid(vm.recommendationData.fromEmail)) {
+                    vm.formProInvitEmailError = true;
+                    errorText = "Votre email n'est pas valide.<br>";
                 }
-                swal({
-                    title: "C'est fait !",
-                    text: "Ce professionnel vient d'être invité à rejoindre vos contacts, un résumé du projet lui à également été envoyé.",
-                    type: "success",
-                    showConfirmButton: true,
-                    confirmButtonColor: "#03a9f4",
-                    confirmButtonText: "Fermer"
-                });
-            }, function (err) {
-                alertMsg.send("Impossible d'envoyer l'invitation", 'danger');
-            }, true);
-        };
+                if (!vm.isEmailValid(vm.recommendationData.toEmail)) {
+                    vm.formProInvitEmailError = true;
+                    errorText += "L'email du Pro n'est pas valide.<br>";
+                }
 
-        vm.recommendMsg = {
-            text: ""
-        };
+                alertMsg.send(errorText + "Merci de vérifier tous les champs en rouge !", "danger");
 
-        vm.newUser = {
-            password: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            googleId: "",
-            facebookId: "",
-            defaultAddress: {
-                address: ""
-            },
-            recaptchaResponse: "",
-            avatar: {
-                cloudinaryPublicId: ""
+            } else {
+                networkService.publicProjectRecommendPOST(vm.project.id, vm.recommendationData, function (res) {
+                    vm.formProRecoInvitError = false;
+                    vm.recommendationData = {
+                        toName: "",
+                        toEmail: "",
+                        fromName: "",
+                        fromEmail: "",
+                        fromMessage: ""
+                    };
+                    swal({
+                        title: "C'est fait !",
+                        text: "Un résumé de ce projet de travaux a été envoyé au Pro, merci !",
+                        type: "success",
+                        showConfirmButton: true,
+                        confirmButtonColor: "#03a9f4",
+                        confirmButtonText: "Fermer"
+                    });
+                    $state.go('pro-home');
+                }, function (err) {
+                    alertMsg.send("Impossible d'envoyer la recommandation, vérifiez votre saisie et votre connection internet puis réessayer, si le problème persiste contactez le support", 'danger');
+                }, true);
+
             }
         };
 
-        vm.autocomplete = {
-            options: {
-                types: ['(cities)'],
-                componentRestrictions: {country: 'fr'}
+        vm.sendPublicRecoBySms = function (invited) {
+            var ua = navigator.userAgent.toLowerCase();
+            var url;
+            if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+                url = "sms:&body=" + getSmsBody();
+            } else {
+                url = "sms:?body=" + getSmsBody();
             }
+            location.href = url;
         };
 
-        var doNotHide = false;
-
-        vm.needToHideEmail = function () {
-            if (doNotHide) {
-                return false;
-            }
-            if ((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-                (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != "")) {
-                if (vm.newUser.email == '') {
-                    doNotHide = true;
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-            return false;
-        };
-
-        vm.isSocialRegister = function () {
-            return !!((!angular.isUndefined(vm.newUser.googleId) && vm.newUser.googleId && vm.newUser.googleId != "") ||
-            (!angular.isUndefined(vm.newUser.facebookId) && vm.newUser.facebookId && vm.newUser.facebookId != ""));
-
-        };
-
-        vm.registerFormIsValid = function () {
-            return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
-            vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address || !vm.newUser.recaptchaResponse);
-        };
-
-
-        vm.googlePreRegister = function () {
-            vm.socialNetwork = "Google";
-            $auth.authenticate('googleRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.googleId) && res.data.googleId && res.data.googleId != "") {
-                    onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Google", 'danger');
-                }
-            });
-        };
-
-        vm.facebookPreRegister = function () {
-            vm.socialNetwork = "Facebook";
-            $auth.authenticate('facebookRegister').then(function (res) {
-                if (!angular.isUndefined(res.data.facebookId) && res.data.facebookId && res.data.facebookId != "") {
-                    onPreRegisterOK(res.data);
-                }
-            }).catch(function (res) {
-                if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {
-                    alertMsg.send($translate.instant(res.data.error), 'danger');
-                } else {
-                    alertMsg.send("Impossible de se connecter via Facebook", 'danger');
-                }
-            });
-        };
-
-        function onPreRegisterOK(user) {
-            vm.newUser.firstName = user.firstName;
-            vm.newUser.lastName = user.lastName;
-            if (user.email != undefined) {
-                vm.newUser.email = user.email.toLowerCase();
-            }
-            vm.newUser.googleId = user.googleId;
-            vm.newUser.facebookId = user.facebookId;
-            vm.newUser.avatar = user.avatar;
+        function getSmsBody() {
+            return "J'ai vu sur CasaVox.com un chantier qui pourrait t'intéresser, '"
+                + vm.project.title + "' "
+                + "à " + vm.project.address.locality + " (" + vm.project.address.postalCode + ") "
+                + ", tu peux voir le détail ici : " + getInviteProUrl()
+                + "%0AA+, " + $localStorage.user.firstName;
+            ;
         }
 
-        vm.registering = false;
-
-        vm.register = function () {
-            if (vm.registerFormIsValid()) {
-                vm.registering = true;
-                networkService.register(vm.newUser, successRegister, failRegister, true);
-            } else {
-                vm.formPublicRecoError = true;
-                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
+        function getInviteProUrl() {
+            if ($localStorage.user) {
+                return window.location.hostname + "/p/" + $stateParams.projectId;
             }
-        };
-
-        function successRegister(res) {
-            vm.registering = false;
-            $localStorage.token = res.token;
-            $localStorage.user = res;
-            vm.sendProInvit();
+            return "";
         }
 
-        function failRegister(err) {
-            vm.registering = false;
-            if (err.error != undefined && err.error != "ERROR") {
-                alertMsg.send($translate.instant(err.error), 'danger');
-            } else {
-                alertMsg.send("Impossible de créer le compte", 'danger');
-            }
+        vm.goUpState = function() {
+            $state.go("public-project-proposal", {'projectId': $stateParams.projectId});
+            return;
         }
     }
 })();

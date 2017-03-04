@@ -351,6 +351,9 @@
             publicProjectRecommendGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/public/recommend/projects/' + id, ignoreLoading).success(success).error(error)
             },
+            publicProjectRecommendPOST: function (id, data, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/public/recommend/project/' + id, data, ignoreLoading).success(success).error(error)
+            },
             projectRecommendMyProsGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros', ignoreLoading).success(success).error(error)
             },

@@ -42,22 +42,22 @@
 
         uiGmapGoogleMapApi.then(function (maps) {
             vm.circle =
-            {
-                id: 1,
-                center: {
-                    latitude: 0,
-                    longitude: 0
-                },
-                radius: 150,
-                stroke: {
-                    color: '#03A9F4',
-                    weight: 2,
-                    opacity: 1
-                },
-                visible: false,
-                control: {},
-                bounds: {}
-            };
+                {
+                    id: 1,
+                    center: {
+                        latitude: 0,
+                        longitude: 0
+                    },
+                    radius: 150,
+                    stroke: {
+                        color: '#03A9F4',
+                        weight: 2,
+                        opacity: 1
+                    },
+                    visible: false,
+                    control: {},
+                    bounds: {}
+                };
 
             $scope.map = {
                 center: {
@@ -233,6 +233,11 @@
 
             vm.project = res;
 
+            if (vm.project.proposal) {
+                $state.go('pro-proposal', {'proposalId': vm.project.proposal.id});
+                return;
+            }
+
             if (vm.project.address.address) {
                 vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
             }
@@ -247,7 +252,8 @@
         }
 
         function errorProjectGET(err) {
-            $state.go("pro-dashboard");
+            alertMsg.send("Vous ne pouvez plus faire d'offre sur ce projet, consultez les autres offres disponibles en ce moment dans vos compétences", "warning");
+            $state.go("findjobs");
         }
 
         vm.getStringLength = function (str) {

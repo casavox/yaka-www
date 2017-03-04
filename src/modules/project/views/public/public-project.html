@@ -28,22 +28,22 @@
 
 <section id="main">
 
-    <div id="content noMenu" class="content">
+    <div id="content noMenu" class="content m-t-M30">
 
-        <div class="container">
+        <div class="container p-l-0 p-r-0">
 
-            <div class="block-header">
-                <h2>{{vm.project.title}}</h2>
+            <div class="hidden-xs block-header block-header-nomargin-mobile">
+                <h2 class="f-s-20">{{vm.project.title}}</h2>
             </div>
 
             <div class="yakaMain proposalMainView proMakeOffer">
-                <div class="card m-b-15 pro" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                <div class="card pro m-b-0" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
                     <div class="pm-overview pro hidden-xs">
                         <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
                              tabindex="0">
                             <div
                                 style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
-                                <div class="pmo-pic">
+                                <div class="pmo-pic m-t-0">
                                     <div class="p-relative">
                                         <img class="img-responsive proAvatarProposalImage"
                                              data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
@@ -62,7 +62,6 @@
                                             data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
                                             <cl-transformation height="55" width="55" crop="fill" radius="max"/>
                                         </cl-image>
-
                                     </div>
 
                                     <div class="col-xs-12 no-padding pmo-stat proposalProName">
@@ -228,12 +227,12 @@
                                     <dl class="dl-horizontal m-b-0">
                                         <span class="yakaDisableEllipsis">Ce chantier est encore libre : Créez votre
                                             profil Pro pour permettre au client d'en savoir plus sur vos compétences,
-                                            puis contactez le directement !
+                                            puis contactez le gratuitement !
                                         </span>
                                     </dl>
                                     <button class="btn bgm-orange btn-block waves-effect m-t-10 m-b-10"
-                                            data-ng-click="vm.sendOffer()">
-                                        Contactez gratuitement le client
+                                            data-ng-click="vm.publicContactLogin()">
+                                        Contactez directement le client
                                     </button>
                                 </div>
                             </div>
@@ -248,7 +247,8 @@
                                 <div class="pmbb-view">
                                     <dl class="dl-horizontal">
                                         <span class="m-t-5 fw-norm">Pas dispo, pas intéressé ? <a
-                                            ui-sref="public-project-recommend({projectId : vm.project.id})"> Recommandez un
+                                            ui-sref="public-project-recommend({projectId : vm.project.id})"
+                                            class="underline"> Recommandez un
                                             collègue</a></span>
                                     </dl>
                                 </div>
@@ -264,10 +264,108 @@
                             </div>
                             <div class="pmbb-body">
                                 <div class="pmbb-view">
-                                    <dl class="dl-horizontal">
+                                    <dl class="dl-horizontal m-b-10">
                                         <span class="m-t-5 fw-norm">1er réseau de bouche-à-oreille pour les travaux : <a
-                                            ui-sref="pro-home"> <strong>en savoir plus...</strong></a></span>
+                                            ui-sref="pro-home" class="underline"> en savoir plus...</a></span>
                                     </dl>
+                                    <div class="hidden-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="col-sm-6 p-0 p-r-5">
+                                            <div class="c-bluegray"><strong>100% Gratuit</strong></div>
+
+                                            <div class="subtitle-color">Des chantiers totalement gratuits,
+                                                inscrivez-vous dès maintenant pour essayer CasaVox (ni RIB, ni CB)
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-0 p-l-5">
+                                            <div class="c-bluegray"><strong>Acc&egrave;s directs aux offres</strong>
+                                            </div>
+
+                                            <div class="subtitle-color">Contactez directement les clients partout en
+                                                France et proposez vos services
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hidden-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="col-sm-6 p-0 p-r-5">
+                                            <div class="c-bluegray"><strong>Ni &eacute;toiles ni notes
+                                                n&eacute;gatives</strong></div>
+
+                                            <div class="subtitle-color">Maîtriser votre r&eacute;putation sur
+                                                Internet en g&eacute;rant efficacement votre relation client
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-0 p-l-5">
+                                            <div class="c-bluegray"><strong>Recommandations automatiques</strong>
+                                            </div>
+
+                                            <div class="subtitle-color">Gardez le contact avec vos anciens clients,
+                                                faites-vous automatiquement recommander &agrave; leurs proches
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hidden-xs col-sm-12 bgm-gray-lighter p-t-10 p-b-10">
+                                        <div class="col-sm-6 p-0 p-r-5">
+                                            <div class="c-bluegray"><strong>&Eacute;changes directs et
+                                                s&ucirc;rs</strong></div>
+
+                                            <div class="subtitle-color">Finies les conversations par r&eacute;pondeur,
+                                                discutez directement avec les clients et conservez tous les échanges
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-0 p-l-5">
+                                            <div class="c-bluegray"><strong>Entraide entre Pros</strong>
+                                            </div>
+                                            <div class="subtitle-color">Vos confr&egrave;res&nbsp;vous
+                                                recommandent &agrave; leurs clients &agrave; la recherche de vos
+                                                comp&eacute;tences
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>100% Gratuit</strong></div>
+
+                                        <div class="subtitle-color">Inscrivez-vous dès maintenant pour essayer
+                                            CasaVox...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>Acc&egrave;s directs aux offres</strong>
+                                        </div>
+
+                                        <div class="subtitle-color">Contactez directement les clients de votre
+                                            choix...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>Ni &eacute;toiles ni notes
+                                            n&eacute;gatives</strong></div>
+
+                                        <div class="subtitle-color">Maîtriser votre r&eacute;putation sur Internet...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>Recommandations automatiques</strong>
+                                        </div>
+
+                                        <div class="subtitle-color">Vos anciens clients vous recommandent
+                                            automatiquement &agrave; leurs proches ...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>&Eacute;changes directs</strong></div>
+
+                                        <div class="subtitle-color">Finies les conversations entre
+                                            r&eacute;pondeurs...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10 p-b-5">
+                                        <div class="c-bluegray"><strong>Entraide entre Pros</strong>
+                                        </div>
+                                        <div class="subtitle-color">Échanges de clients dans vos comp&eacute;tences...
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 bgm-white p-b-5">&nbsp;</div>
                                 </div>
                             </div>
                         </div>

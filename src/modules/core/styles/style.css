@@ -5673,3 +5673,34 @@ div.recaptcha.mobile > div {
         width: 35px;
     }
 }
+
+.sfb {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 25px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    vertical-align: middle;
+    background: #3B5998;
+    color: white;
+    max-width: 230px;
+}
+
+.sfb-separator {
+    width: 1px;
+    background-color: white;
+    float: left;
+    height: 30px;
+    margin-left: 5px !important;
+    margin-top: 3px;
+}
+
+.sfb:hover {
+    opacity: 0.8;
+}
+
+.zIndex-1000 {
+    z-index: 1000;
+}

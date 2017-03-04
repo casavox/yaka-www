@@ -8,19 +8,21 @@
     //
     //Controller login
     function PublicProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
-/*
-        if ($localStorage.user && !$localStorage.user.professional) {
-            $state.go("home");
-        }
-*/
 
         if (!$stateParams.projectId) {
             $state.go("home");
         }
-        if ($stateParams.projectId) {
+
+        if (!$localStorage.user) {
             networkService.publicProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("home");
+            if (!$localStorage.user.professional) {
+                $state.go("project-recommend", {'projectId': $stateParams.projectId});
+                return;
+            } else if ($localStorage.user.professional) {
+                $state.go('pro-project-proposal-new', {'projectId': $stateParams.projectId});
+                return;
+            }
         }
 
         var vm = this;
@@ -30,7 +32,6 @@
         vm.selectImagePreview = selectImagePreview;
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
-        vm.sendOffer = sendOffer;
         vm.imagePreviewFlag = false;
         vm.myPriceFlag = false;
         vm.myDateFlag = false;
@@ -50,22 +51,22 @@
 
         uiGmapGoogleMapApi.then(function (maps) {
             vm.circle =
-            {
-                id: 1,
-                center: {
-                    latitude: 0,
-                    longitude: 0
-                },
-                radius: 150,
-                stroke: {
-                    color: '#03A9F4',
-                    weight: 2,
-                    opacity: 1
-                },
-                visible: false,
-                control: {},
-                bounds: {}
-            };
+                {
+                    id: 1,
+                    center: {
+                        latitude: 0,
+                        longitude: 0
+                    },
+                    radius: 150,
+                    stroke: {
+                        color: '#03A9F4',
+                        weight: 2,
+                        opacity: 1
+                    },
+                    visible: false,
+                    control: {},
+                    bounds: {}
+                };
 
             $scope.map = {
                 center: {
@@ -81,54 +82,8 @@
         });
 
 
-        function sendOffer() {
-            if (!vm.formIsValid()) {
-                vm.formProProjectError = true;
-                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            } else {
-                if (vm.offer.comment &&
-                    vm.offer.comment.length > 40 &&
-                    vm.offer.comment.indexOf(' ') > -1) {
-                    vm.offer.comment = vm.offer.comment || "";
-                    var formData = {
-                        project: {id: vm.projectTmp.id},
-                        comment: vm.offer.comment
-                    };
-                    if (vm.offer.price && vm.offer.price) {
-                        formData.price = parseInt(vm.offer.price);
-                    }
-                    if (vm.offer.date && vm.offer.date) {
-                        formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
-                    }
-                    if (!vm.offer.date && !vm.offer.price) {
-                        swal({
-                            title: "Vous n'avez pas indiqué d'estimation de date ni de prix",
-                            text: "Augmentez vos chances d'être retenu en indiquant une date et/ou un prix même estimatif dès que cela vous est possible",
-                            type: "warning",
-                            confirmButtonColor: "#f44336",
-                            confirmButtonText: "Envoyer quand même",
-                            showCancelButton: true,
-                            cancelButtonText: "Modifier avant envoi"
-                        }, function (isConfirm) {
-                            if (isConfirm) {
-                                networkService.proposalPOST(formData, function (res) {
-                                    alertMsg.send("Prise de contact envoyée avec succès", "success");
-                                    $state.go('pro-proposals');
-                                }, function (res) {
-                                    alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                                }, true);
-                            }
-                        });
-                    } else {
-                        networkService.proposalPOST(formData, function (res) {
-                            alertMsg.send("Prise de contact envoyée avec succès", "success");
-                            $state.go('pro-proposals');
-                        }, function (res) {
-                            alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                        }, true);
-                    }
-                }
-            }
+        vm.publicContactLogin = function () {
+            $state.go("pro-home", {'register': true, 'projectId': vm.project.id});
         }
 
         function setMinMaxDate() {

@@ -18,8 +18,10 @@
         if ($localStorage.token && $localStorage.token != '') {
             if ($localStorage.user && $localStorage.user.professional) {
                 $state.go('pro-dashboard');
+                return;
             } else {
                 $state.go('dashboard');
+                return;
             }
         }
 
@@ -201,12 +203,15 @@
         };
 
         var scrollOptions = {
-            containerId: 'main-scroll-container'
+            containerId: 'main-scroll-container',
         };
 
         vm.smoothScrollRegister = function () {
             var element = document.getElementById('registerForm');
-            smoothScroll(element, scrollOptions);
+            smoothScroll(element, {
+                containerId: 'main-scroll-container',
+                offset: 50
+            });
         };
 
         vm.smoothScrollAbout = function () {
@@ -236,7 +241,11 @@
         function successProRegister(res) {
             $localStorage.token = res.token;
             $localStorage.user = res;
-            $state.go("help", {'card': 'tuto'});
+            if ($localStorage.projectShortId) {
+                $state.go("pro-project-proposal-new", {'projectId': $localStorage.projectShortId});
+            } else {
+                $state.go("help", {'card': 'tuto'});
+            }
         }
 
         function failProRegister(err) {
@@ -362,11 +371,11 @@
             }
         };
 
-        function successPostalCodeGet (response) {
+        function successPostalCodeGet(response) {
             vm.PostalCodeAndCities = response;
         }
 
-        function errorPostalCodeGet (res) {
+        function errorPostalCodeGet(res) {
             alertMsg.send("impossible de récupérer les communes", "danger");
         }
 
