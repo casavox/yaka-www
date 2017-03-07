@@ -158,7 +158,6 @@
 
         vm.updatePortfolio = function () {
             vm.updating = true;
-            console.log(vm.portfolio);
             networkService.proPortfolioPUT(vm.portfolio, function (res) {
                 vm.portfolio = res.portfolio || [];
                 vm.profile.portfolio = res.portfolio || [];

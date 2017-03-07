@@ -20,7 +20,7 @@ angular.module('Yaka')
                         },
                         spacing: 10,
                         z_index: 1031,
-                        delay: 5000
+                        delay: 7000
                     });
 
                 },

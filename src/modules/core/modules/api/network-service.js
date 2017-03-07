@@ -165,6 +165,12 @@
             proProjectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/pro/projects/' + data, ignoreLoading).success(success).error(error)
             },
+            publicProjectGET: function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/p/' + data, ignoreLoading).success(success).error(error)
+            },
+            sId2IdProjectGET: function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/sId2Id/' + data, ignoreLoading).success(success).error(error)
+            },
             projectsGET: function (status, page, limit, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/me?page=' + page + '&limit=' + limit + '&status=' + status, ignoreLoading).success(success).error(error)
             },
@@ -347,6 +353,9 @@
             },
             publicProjectRecommendGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/public/recommend/projects/' + id, ignoreLoading).success(success).error(error)
+            },
+            publicProjectRecommendPOST: function (id, data, success, error, ignoreLoading) {
+                httpService.post(baseUrl + '/public/recommend/project/' + id, data, ignoreLoading).success(success).error(error)
             },
             projectRecommendMyProsGET: function (id, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/recommend/projects/' + id + '/mypros', ignoreLoading).success(success).error(error)

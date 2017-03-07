@@ -52,6 +52,15 @@
                 templateUrl: "/modules/project/views/pro/pro-project.html",
                 controller: 'ProProjectController',
                 controllerAs: 'vm'
+            })
+
+            //Public
+
+            .state('public-project-proposal', {
+                url: "/p/:shortId",
+                templateUrl: "/modules/project/views/public/public-project.html",
+                controller: 'PublicProjectController',
+                controllerAs: 'vm'
             });
     }
 })();

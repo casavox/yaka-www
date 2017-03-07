@@ -7,12 +7,20 @@
 
     function ProDashboardController($rootScope, $scope, networkService, $localStorage, $state, alertMsg, $translate, gmailContacts, CONFIG) {
 
+
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("dashboard");
+            return;
         }
 
         if ($localStorage.invitationId) {
             $state.go("contacts");
+            return;
+        }
+
+        if ($localStorage.projectShortId) {
+            $state.go("pro-project-proposal-new", {'projectId': $localStorage.projectShortId});
+            return;
         }
 
         $rootScope.pageName = "Accueil";
@@ -177,7 +185,7 @@
             return getRecommendationNumber();
         };
 
-        function getRecommendationNumber () {
+        function getRecommendationNumber() {
             if (vm.networkProjects) {
                 var recoNumber = 0;
                 for (var i = 0; i < vm.networkProjects.length; i++) {

@@ -12,7 +12,7 @@
             </div>
             <div class="button-connexion"
                  data-ng-click="vm.openPopup(true)">
-                CONNEXION
+                <strong class="underline">CONNEXION</strong>
             </div>
         </div>
         <div class="animation-and-background-image clearfix">
@@ -226,10 +226,17 @@
                 </div>
 
                 <div data-ng-show="vm.loginTab">
-                    <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect" data-ng-click="vm.facebookLogin()">
-                        Facebook
+                    <div class="col-xs-12 t-center m-t-10 c-facebook-blue">CONNEXION RAPIDE</div>
+                    <div class="col-xs-12 center m-b-10" data-ng-click="vm.facebookLogin()">
+                        <div class="sfb center waves-effect waves-light waves-ripple">
+                            <i class="zmdi zmdi-facebook zmdi-hc-fw c-white pull-left p-l-10 p-t-5 p-b-5"></i>
+                            <div class="sfb-separator"></div>
+                            facebook
+                        </div>
+                        <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>
                     </div>
-                    <h3 class="col-xs-12 m-t-10 m-b-20 c-gray-light t-center">OU</h3>
+
+                    <div class="m-b-10 f-s-16 t-center c-black">- OU -</div>
                     <form name="loginForm" class="col-xs-12 no-padding">
                         <div class="form-group fg-float"
                              data-ng-class="{'has-error' : vm.formLoginError && !vm.loginUser.email}">
@@ -288,19 +295,13 @@
 
                 <div data-ng-show="!vm.loginTab">
 
-                    <div class="col-xs-12 registerFacebookGoogle p-l-0 p-r-0">
-                        <span data-ng-if="!vm.isSocialRegister()">Inscription rapide via Facebook</span>
-
-                        <div data-ng-if="vm.isSocialRegister()">
-                            <div class="registerSocialConfirm p-l-0 p-r-0">
-                                Inscription via {{vm.socialNetwork}}
-                            </div>
+                    <div class="col-xs-12 t-center m-t-10 c-facebook-blue">INSCRIPTION RAPIDE</div>
+                    <div class="col-xs-12 center" data-ng-click="vm.facebookPreRegister()">
+                        <div class="sfb center waves-effect waves-light waves-ripple">
+                            <i class="zmdi zmdi-facebook zmdi-hc-fw c-white pull-left p-l-10 p-t-5 p-b-5"></i>
+                            <div class="sfb-separator"></div>
+                            facebook
                         </div>
-                    </div>
-
-                    <div class="col-xs-6 col-xs-offset-3 loginPopupFacebook waves-effect" data-ng-click="vm.facebookPreRegister()"
-                         data-ng-if="!vm.isSocialRegister()">
-                        Facebook
                     </div>
 
                     <div class="col-xs-4 col-xs-offset-4 registerSeparator"/>

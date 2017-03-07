@@ -1,0 +1,398 @@
+<style type="text/css">
+    #map_canvas {
+        height: 120px;
+        margin: 0px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+
+<header id="header" class="hidden-xs" data-current-skin="orange"
+        data-ng-include="'/modules/core/views/header.html'"></header>
+
+<yaka-mobile-header id="header" class="visible-xs" data-current-skin="orange"
+                    up-state="pro-home"
+                    title="{{vm.project.title}} - {{vm.projectTmp.address.postalCode.substr(0, 2)}}"></yaka-mobile-header>
+
+<section id="main">
+
+    <div id="content noMenu" class="content m-t-M30">
+
+        <div class="container p-l-0 p-r-0">
+
+            <div class="hidden-xs block-header block-header-nomargin-mobile">
+                <h2 class="f-s-20">{{vm.project.title}}</h2>
+            </div>
+
+            <div class="yakaMain proposalMainView proMakeOffer">
+                <div class="card pro m-b-0" id="profile-main" data-ng-class="{'no-scroll': vm.showChat}">
+                    <div class="pm-overview pro hidden-xs">
+                        <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                             tabindex="0">
+                            <div
+                                style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                <div class="pmo-pic m-t-0">
+                                    <div class="p-relative">
+                                        <img class="img-responsive proAvatarProposalImage"
+                                             data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
+                                             data-ng-src="{{vm.project.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                             alt=""/>
+
+                                        <div class="yakaAvatarInitialsProposal"
+                                             data-ng-if="!vm.project.user.avatar.cloudinaryPublicId">
+                                            {{vm.project.user.firstName[0] | uppercase}}.
+                                            {{vm.project.user.lastName[0]| uppercase}}.
+                                        </div>
+
+                                        <cl-image
+                                            public-id="{{vm.proposal.professional.mainPartner.cloudinaryPublicId}}"
+                                            class="proposalProMainPartnerImg" format="png"
+                                            data-ng-if="vm.proposal.professional.mainPartner.cloudinaryPublicId">
+                                            <cl-transformation height="55" width="55" crop="fill" radius="max"/>
+                                        </cl-image>
+                                    </div>
+
+                                    <div class="col-xs-12 no-padding pmo-stat proposalProName">
+                                        <h2 class="yakaEllipsis">
+                                            <casa-name-and-contact user="vm.project.user"
+                                                                   icon-color="c-white"></casa-name-and-contact>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pm-body customer-proposal-pm-body clearfix">
+
+                        <div class="pm-overview h-a pro visible-xs">
+                            <div class="mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                                 tabindex="0">
+                                <div
+                                    style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                    <div class="pmo-pic">
+                                        <div class="p-relative">
+                                            <img class="img-responsive proAvatarProposalImage"
+                                                 data-ng-if="vm.project.user.avatar.cloudinaryPublicId"
+                                                 data-ng-src="{{vm.project.user.avatar.cloudinaryPublicId | yakaCloudinaryUrl:true:259}}"
+                                                 alt=""/>
+
+                                            <div class="yakaAvatarInitialsProposal"
+                                                 data-ng-if="!vm.project.user.avatar.cloudinaryPublicId">
+                                                {{vm.project.user.firstName[0] | uppercase}}.
+                                                {{vm.project.user.lastName[0]| uppercase}}.
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="col-xs-9 col-xs-offset-3 text-left-i no-padding pmo-stat proposalProName customerNameOnProposal">
+                                            <div class="d-i-b v-align-middle">
+                                                <casa-name-and-contact class="f-s-20"
+                                                                       user="vm.project.user"
+                                                                       icon-color="c-white"></casa-name-and-contact>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row no-margin">
+                            <div class="col-xs-12 ">
+                                <div id="map_canvas">
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="mapOptions"
+                                                        dragging="false">
+                                        <ui-gmap-circle
+                                            data-ng-if="!vm.project.address.address"
+                                            center="vm.circle.center" stroke="vm.circle.stroke"
+                                            fill="vm.circle.fill" radius="vm.circle.radius"
+                                            bounds="vm.circle.bounds"
+                                            visible="vm.circle.visible" geodesic="true" editable="false"
+                                            draggable="false" clickable="true" control="vm.circle.control"
+                                            events="vm.circle.events"></ui-gmap-circle>
+                                        <ui-gmap-marker
+                                            data-ng-if="vm.project.address.address" idKey='1'
+                                            coords='vm.marker.coords' options="vm.marker.options"></ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header m-b-10">
+                                <h2><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Fiche chantier</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Message du client</dt>
+                                        <dd>
+                                            {{vm.projectTmp.description}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal"
+                                        data-ng-if="vm.getTags() && vm.getTags().length > 0">
+                                        <dt class="yakaDisableEllipsis">Mots clés</dt>
+                                        <dd>
+                                            <ul class="yaka-chips">
+                                                <li data-ng-class="{'c-white bgm-green' : tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'}"
+                                                    data-ng-repeat="tag in vm.getTags()">
+                                                        <span data-ng-if="tag == 'MATERIAL_TRUE'"
+                                                              uib-tooltip="Le client fournit certains matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                    <span data-ng-if="tag == 'MATERIAL_FALSE'"
+                                                          uib-tooltip="Le Pro doit fournir les matériaux">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                    <span
+                                                        data-ng-hide="tag == 'MATERIAL_TRUE' || tag == 'MATERIAL_FALSE'">
+                                                            {{'ACTIVITY_' + tag | translate}}
+                                                        </span>
+                                                </li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Date des travaux</dt>
+                                        <dd>
+                                            Début souhaité {{vm.getWhen()}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt class="yakaDisableEllipsis">Ville du chantier</dt>
+                                        <dd>
+                                            <span class="whiteSpacePre">{{vm.projectTmp.address.locality}} ({{vm.projectTmp.address.postalCode}})</span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block p-t-10 clearfix"
+                             data-ng-if="vm.projectTmp.images && vm.projectTmp.images.length > 0">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-collection-image zmdi-hc-fw"></i> Photos</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <div class="lightbox photos projectImageTooltip" data-ng-show="!vm.editFlag">
+                                        <div data-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl}}"
+                                             data-sub-html="#caption{{$index}}"
+                                             class="lightboxItemAngular col-md-3 col-md-2 col-sm-3 col-xs-4"
+                                             data-ng-repeat="image in vm.projectTmp.images">
+                                            <div class="lightbox-item p-item"
+                                                 tooltip-placement="top"
+                                                 uib-tooltip="{{image.description}}">
+                                                <img
+                                                    data-ng-src="{{image.cloudinaryPublicId | yakaCloudinaryUrl:true}}"
+                                                    alt=""/>
+                                                <div data-ng-if="image.description"
+                                                     class="btn bgm-lightblue btn-float floatingButtonImage icon-comment">
+                                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                                </div>
+                                            </div>
+                                            <div id="caption{{$index}}" style="display:none">
+                                                <div class="galleryCaption">
+                                                    <p>{{image.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr style="margin-top: 40px;">
+
+                        <div class="pmb-block p-t-0"
+                             data-ng-if="!(vm.project.status == 'ONGOING_PROPOSITIONS_RECEIVED' || vm.project.status == 'ONGOING_WAITING_FOR_PROPOSITIONS') || vm.project.proposals.length >= 4">
+                            <div class="pmbb-header ">
+                                <h2><i class="zmdi zmdi-map zmdi-hc-fw"></i> Consultez les offres</h2>
+                            </div>
+                            <div class="pmbb-body"
+                                 data-ng-if="vm.project && !vm.project.activityDoesntCorrespond && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' && vm.project.error != 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal m-b-0">
+                                        <span class="yakaDisableEllipsis">Ce chantier n'est plus disponible.
+                                            <br>D'autres chantiers sont toujours attentes, créez votre profil Pro pour permettre aux clients d'en savoir plus sur vos compétences, puis contactez-les gratuitement !
+                                        </span>
+                                    </dl>
+                                    <button class="btn bgm-orange btn-block waves-effect m-t-10 m-b-10"
+                                            data-ng-click="vm.publicContactLogin()">
+                                        Contactez les clients
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block p-t-0"
+                             data-ng-if="(vm.project.status == 'ONGOING_PROPOSITIONS_RECEIVED' || vm.project.status == 'ONGOING_WAITING_FOR_PROPOSITIONS') && (!vm.project.proposals.length || vm.project.proposals.length < 4)">
+                            <div class="pmbb-header ">
+                                <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Contacter le client</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal m-b-0">
+                                        <span class="yakaDisableEllipsis">Ce chantier est encore libre : Créez votre
+                                            profil Pro pour permettre au client d'en savoir plus sur vos compétences,
+                                            puis contactez-le gratuitement !
+                                        </span>
+                                    </dl>
+                                    <button class="btn bgm-orange btn-block waves-effect m-t-10 m-b-10"
+                                            data-ng-click="vm.publicContactLogin()">
+                                        Contactez directement le client
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pmb-block p-t-15">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw subtitle-color-forced"></i>
+                                    Entraide entre Pros</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <span class="m-t-5 fw-norm">Pas dispo, pas intéressé ? <a
+                                            ui-sref="public-project-recommend({projectId : vm.project.id})"
+                                            class="underline"> Recommandez un
+                                            collègue</a></span>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="pmb-block p-t-0 m-t-0 m-b-0">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-plus-square zmdi-hc-fw subtitle-color-forced"></i>
+                                    Découvrir CasaVox Pro</h2>
+                            </div>
+                            <div class="pmbb-body">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal m-b-10">
+                                        <span class="m-t-5 fw-norm">1er réseau de bouche-à-oreille pour les travaux : <a
+                                            ui-sref="pro-home" class="underline"> en savoir plus...</a></span>
+                                    </dl>
+                                    <div class="hidden-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="col-sm-6 p-0 p-r-5">
+                                            <div class="c-bluegray"><strong>100% Gratuit</strong></div>
+
+                                            <div class="subtitle-color">Des chantiers totalement gratuits,
+                                                inscrivez-vous dès maintenant pour essayer CasaVox (ni RIB, ni CB)
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-0 p-l-5">
+                                            <div class="c-bluegray"><strong>Acc&egrave;s directs aux offres</strong>
+                                            </div>
+
+                                            <div class="subtitle-color">Contactez directement les clients partout en
+                                                France et proposez vos services
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hidden-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="col-sm-6 p-0 p-r-5">
+                                            <div class="c-bluegray"><strong>Ni &eacute;toiles ni notes
+                                                n&eacute;gatives</strong></div>
+
+                                            <div class="subtitle-color">Maîtriser votre r&eacute;putation sur
+                                                Internet en g&eacute;rant efficacement votre relation client
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-0 p-l-5">
+                                            <div class="c-bluegray"><strong>Recommandations automatiques</strong>
+                                            </div>
+
+                                            <div class="subtitle-color">Gardez le contact avec vos anciens clients,
+                                                faites-vous automatiquement recommander &agrave; leurs proches
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hidden-xs col-sm-12 bgm-gray-lighter p-t-10 p-b-10">
+                                        <div class="col-sm-6 p-0 p-r-5">
+                                            <div class="c-bluegray"><strong>&Eacute;changes directs et
+                                                s&ucirc;rs</strong></div>
+
+                                            <div class="subtitle-color">Finies les conversations par r&eacute;pondeur,
+                                                discutez directement avec les clients et conservez tous les échanges
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-0 p-l-5">
+                                            <div class="c-bluegray"><strong>Entraide entre Pros</strong>
+                                            </div>
+                                            <div class="subtitle-color">Vos confr&egrave;res&nbsp;vous
+                                                recommandent &agrave; leurs clients &agrave; la recherche de vos
+                                                comp&eacute;tences
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>100% Gratuit</strong></div>
+
+                                        <div class="subtitle-color">Inscrivez-vous dès maintenant pour essayer
+                                            CasaVox...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>Acc&egrave;s directs aux offres</strong>
+                                        </div>
+
+                                        <div class="subtitle-color">Contactez directement les clients de votre
+                                            choix...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>Ni &eacute;toiles ni notes
+                                            n&eacute;gatives</strong></div>
+
+                                        <div class="subtitle-color">Maîtriser votre r&eacute;putation sur Internet...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>Recommandations automatiques</strong>
+                                        </div>
+
+                                        <div class="subtitle-color">Vos anciens clients vous recommandent
+                                            automatiquement &agrave; leurs proches ...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10">
+                                        <div class="c-bluegray"><strong>&Eacute;changes directs</strong></div>
+
+                                        <div class="subtitle-color">Finies les conversations entre
+                                            r&eacute;pondeurs...
+                                        </div>
+                                    </div>
+                                    <div class="visible-xs col-sm-12 bgm-gray-lighter p-t-10 p-b-5">
+                                        <div class="c-bluegray"><strong>Entraide entre Pros</strong>
+                                        </div>
+                                        <div class="subtitle-color">Échanges de clients dans vos comp&eacute;tences...
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 bgm-white p-b-5">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

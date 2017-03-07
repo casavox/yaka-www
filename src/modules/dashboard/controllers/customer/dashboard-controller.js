@@ -11,10 +11,12 @@
 
         if ($localStorage.user && $localStorage.user.professional) {
             $state.go("pro-dashboard");
+            return;
         }
 
         if ($localStorage.invitationId) {
             $state.go("contacts");
+            return;
         }
 
         $rootScope.pageName = "Accueil";

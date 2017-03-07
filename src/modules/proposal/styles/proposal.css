@@ -579,7 +579,7 @@
     }
 
     .customerNameOnProposal {
-        padding-left: 60px !important;
+        padding-left: 0px !important;
         padding-top: 10px !important;
     }
 }

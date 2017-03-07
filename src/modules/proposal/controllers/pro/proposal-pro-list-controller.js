@@ -60,7 +60,7 @@
         networkService.getProNetworkLeads(function (projects) {
             vm.networkProjects = projects;
         }, function (err) {
-            console.log("Impossible de récupérer les offres", "danger");
+            alertMsg.send("Impossible de récupérer les offres, vérifiez votre connexion, contactez le support si nécessaire", "danger");
         });
 
         vm.showTopViewRecommendation = function () {

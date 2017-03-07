@@ -154,8 +154,7 @@
         vm.registerFormIsValid = function () {
             return !(!vm.newUser.firstName || !vm.newUser.lastName || !vm.newUser.email ||
             vm.newUser.password == '' || vm.newUser.password < 6 ||
-            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering ||
-            !vm.newUser.defaultAddress.address || vm.newUser.defaultAddress.address.length < 6 || !vm.newUser.recaptchaResponse);
+            vm.passwordConfirm == '' || vm.newUser.password != vm.passwordConfirm || vm.registering || !vm.newUser.defaultAddress.address || vm.newUser.defaultAddress.address.length < 6 || !vm.newUser.recaptchaResponse);
         };
 
         vm.loginFormIsValid = function () {
@@ -163,8 +162,6 @@
         };
 
         vm.login = function () {
-
-
             if (vm.loginFormIsValid()) {
                 networkService.login(vm.loginUser, succesLogin, errorLogin, true);
             } else {
@@ -435,11 +432,11 @@
             }
         };
 
-       function successPostalCodeGet (response) {
-           vm.PostalCodeAndCities = response;
-       }
+        function successPostalCodeGet(response) {
+            vm.PostalCodeAndCities = response;
+        }
 
-        function errorPostalCodeGet (res) {
+        function errorPostalCodeGet(res) {
             alertMsg.send("impossible de récupérer les communes", "danger");
         }
 
