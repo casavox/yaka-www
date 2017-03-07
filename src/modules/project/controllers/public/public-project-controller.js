@@ -45,7 +45,7 @@
             });
         }
 
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0); //bug angular : sinon l'écran se positionne sur le scroll de l'écran d'avant
 
         var vm = this;
         vm.getWhen = getWhen;
