@@ -209,6 +209,7 @@
         vm.smoothScrollRegister = function () {
             var element = document.getElementById('freeRegister');
             smoothScroll(element, {
+                duration: '300',
                 containerId: 'main-scroll-container',
                 offset: 70
             });
