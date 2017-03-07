@@ -3,25 +3,49 @@
 
     angular
         .module('Yaka')
-        .controller('ProProjectController', ProProjectController);
+        .controller('PublicProjectController', PublicProjectController);
 
     //
     //Controller login
-    function ProProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
+    function PublicProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
 
-        if ($localStorage.user && !$localStorage.user.professional) {
-            $state.go("home");
-            return;
+        if (!$stateParams.shortId) {
+            $state.go("pro-home");
         }
 
-        $rootScope.updateProfile();
-
-        if ($stateParams.projectId) {
-            networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
+        if (!$localStorage.user) {
+            networkService.publicProjectGET($stateParams.shortId, succesProjectGET, errorProjectGET);
         } else {
-            $state.go("pro-dashboard");
-            return;
+            networkService.sId2IdProjectGET($stateParams.shortId, function (res) {
+                if (!res) {
+                    if ($localStorage.user.professional) {
+                        $state.go("pro-dashboard");
+                        return;
+                    } else {
+                        $state.go("dashboard");
+                        return;
+                    }
+                } else {
+                    if (!$localStorage.user.professional) {
+                        $state.go("project-recommend", {'projectId': res});
+                        return;
+                    } else if ($localStorage.user.professional) {
+                        $state.go('pro-project-proposal-new', {'projectId': res});
+                        return;
+                    }
+                }
+            }, function (err) {
+                if ($localStorage.user.professional) {
+                    $state.go("pro-dashboard");
+                    return;
+                } else {
+                    $state.go("dashboard");
+                    return;
+                }
+            });
         }
+
+        window.scrollTo(0, 0); //bug angular : sinon l'écran se positionne sur le scroll de l'écran d'avant
 
         var vm = this;
         vm.getWhen = getWhen;
@@ -30,7 +54,6 @@
         vm.selectImagePreview = selectImagePreview;
         vm.selectPrice = selectPrice;
         vm.selectDate = selectDate;
-        vm.sendOffer = sendOffer;
         vm.imagePreviewFlag = false;
         vm.myPriceFlag = false;
         vm.myDateFlag = false;
@@ -80,54 +103,9 @@
             };
         });
 
-        function sendOffer() {
-            if (!vm.formIsValid()) {
-                vm.formProProjectError = true;
-                alertMsg.send("Merci de vérifier les champs indiqués en rouge", "danger");
-            } else {
-                if (vm.offer.comment &&
-                    vm.offer.comment.length > 40 &&
-                    vm.offer.comment.indexOf(' ') > -1) {
-                    vm.offer.comment = vm.offer.comment || "";
-                    var formData = {
-                        project: {id: vm.projectTmp.id},
-                        comment: vm.offer.comment
-                    };
-                    if (vm.offer.price && vm.offer.price) {
-                        formData.price = parseInt(vm.offer.price);
-                    }
-                    if (vm.offer.date && vm.offer.date) {
-                        formData.startDate = $filter('date')(vm.offer.date, "yyyy-MM-dd");
-                    }
-                    if (!vm.offer.date && !vm.offer.price) {
-                        swal({
-                            title: "Vous n'avez pas indiqué d'estimation de date ni de prix",
-                            text: "Augmentez vos chances d'être retenu en indiquant une date et/ou un prix même estimatif dès que cela vous est possible",
-                            type: "warning",
-                            confirmButtonColor: "#f44336",
-                            confirmButtonText: "Envoyer quand même",
-                            showCancelButton: true,
-                            cancelButtonText: "Modifier avant envoi"
-                        }, function (isConfirm) {
-                            if (isConfirm) {
-                                networkService.proposalPOST(formData, function (res) {
-                                    alertMsg.send("Prise de contact envoyée avec succès", "success");
-                                    $state.go('pro-proposals');
-                                }, function (res) {
-                                    alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                                }, true);
-                            }
-                        });
-                    } else {
-                        networkService.proposalPOST(formData, function (res) {
-                            alertMsg.send("Prise de contact envoyée avec succès", "success");
-                            $state.go('pro-proposals');
-                        }, function (res) {
-                            alertMsg.send("Impossible d'envoyer la prise de contact", "danger");
-                        }, true);
-                    }
-                }
-            }
+
+        vm.publicContactLogin = function () {
+            $state.go("pro-home", {'register': true, 'projectId': vm.project.id});
         }
 
         function setMinMaxDate() {
@@ -235,11 +213,6 @@
 
             vm.project = res;
 
-            if (vm.project.proposal) {
-                $state.go('pro-proposal', {'proposalId': vm.project.proposal.id});
-                return;
-            }
-
             if (vm.project.address.address) {
                 vm.project.address.address = vm.project.address.address.replace(/, /g, "\n");
             }
@@ -254,8 +227,7 @@
         }
 
         function errorProjectGET(err) {
-            alertMsg.send("Vous ne pouvez plus faire de proposition sur ce projet, déplacez-vous sur la carte pour voir les offres disponibles dans vos compétences", "success");
-            $state.go("findjobs");
+            $state.go("pro-home");
         }
 
         vm.getStringLength = function (str) {

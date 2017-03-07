@@ -760,7 +760,6 @@
             $auth.authenticate('googleLogin').then(function (res) {
                 succesLogin(res.data);
             }).catch(function (res) {
-                console.log(res);
                 if (res.data.error == "ERROR_BAD_CREDENTIALS") {
                     vm.noSocialAccountMessage = true;
                 } else if (res.data != undefined && res.data.error != undefined && res.data.error != "ERROR") {

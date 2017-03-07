@@ -469,3 +469,25 @@ body.sw-toggled #content.noMenu {
     background-color: rgba(255, 152, 0, 0.9);
     color: white;
 }
+
+.block-header-nomargin-mobile{
+    background: #f8f8f8 !important;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.waves-effect-hack {
+    position: relative;
+    cursor: pointer;
+    /*display: inline-block;*/
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}

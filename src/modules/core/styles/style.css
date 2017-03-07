@@ -5043,6 +5043,25 @@ ul.yaka-chips li {
     justify-content: center;
 }
 
+.vertical-center-not-justified {
+    min-height: 100%;
+    /* Make it a flex container */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    /* Align the bootstrap's container vertically */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* In legacy web browsers such as Firefox 9
+       we need to specify the width of the flex container */
+    width: 100%;
+}
+
 .floatingButtonImage {
     width: 35px !important;
     height: 35px !important;
@@ -5653,4 +5672,35 @@ div.recaptcha.mobile > div {
         margin-top: 3px;
         width: 35px;
     }
+}
+
+.sfb {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 25px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    vertical-align: middle;
+    background: #3B5998;
+    color: white;
+    max-width: 230px;
+}
+
+.sfb-separator {
+    width: 1px;
+    background-color: white;
+    float: left;
+    height: 30px;
+    margin-left: 5px !important;
+    margin-top: 3px;
+}
+
+.sfb:hover {
+    opacity: 0.8;
+}
+
+.zIndex-1000 {
+    z-index: 1000;
 }

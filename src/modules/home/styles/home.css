@@ -403,7 +403,7 @@ body:after {
     padding-left: 0 !important;
     padding-right: 0 !important;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     color: #9B9B9B;
     border-bottom: solid 1px #C6C6C6;
     height: 35px;
@@ -417,13 +417,14 @@ body:after {
 }
 
 .loginPopupTabItemActive {
-    border-bottom: solid 3px #03A9F4;
+    border-bottom: solid 2px #03A9F4;
     cursor: default;
     color: black;
 }
 
 .loginPopupTabItemActivePro {
-    border-bottom: solid 3px #FBB832;
+    border-bottom: solid 1px #FBB832;
+    margin-top: -18px;
     cursor: default;
     color: black;
 }

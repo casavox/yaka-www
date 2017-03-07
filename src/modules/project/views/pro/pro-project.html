@@ -58,8 +58,8 @@
                         <i class="zmdi zmdi-hc-2x zmdi-info-outline"></i>
                     </div>
                     <div class="topViewProfileContent">
-                        Attention, <b>votre profil est incomplet</b>. Merci de compléter les champs manquants dans votre
-                        profil afin de pouvoir répondre aux offres.
+                        Attention, <b>votre profil est incomplet</b>. Merci de <span class="underline">compléter votre profil</span>
+                        afin de pouvoir répondre aux offres.
                     </div>
                 </div>
 
@@ -153,9 +153,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-12 no-padding pmo-stat proposalProName customerNameOnProposal">
+                                        <div
+                                            class="col-xs-9 col-xs-offset-3 text-left-i no-padding pmo-stat proposalProName customerNameOnProposal">
                                             <div class="d-i-b v-align-middle">
-                                                <casa-name-and-contact class="f-s-15"
+                                                <casa-name-and-contact class="f-s-20"
                                                                        user="vm.project.user"
                                                                        icon-color="c-white"></casa-name-and-contact>
                                             </div>
@@ -190,19 +191,35 @@
                             <div class="pmbb-header">
                                 <h2><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Contacter le client</h2>
                             </div>
-                            <div class="m-b-10 clearfix" data-ng-if="vm.project.activityDoesntCorrespond">
-                                <div class="col-xs-12">
-                                    Les compétences que vous avez renseignées dans votre profil ne vous permettent pas
-                                    de faire une offre pour ce chantier.
+                            <div class="clearfix"
+                                 data-ng-if="vm.project.activityDoesntCorrespond || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
+                                <div class="pmbb-body c-black" data-ng-if="vm.project.activityDoesntCorrespond">
+                                    Les compétences indiquées dans votre profil ne correspondent pas à ce type de
+                                    chantier.
                                 </div>
-                                <div class="col-xs-12 m-t-20 m-b-5 no-padding">
+                                <div class="pmbb-body c-black" data-ng-if="!vm.project.activityDoesntCorrespond">
+                                    Votre profil doit être validé avant de pouvoir répondre aux offres.
+                                </div>
+                                <div class="hidden-xs m-t-10 m-b-5 no-padding">
                                     <button
-                                        class="col-xs-12 col-sm-4 col-sm-offset-1 btn bgm-lightblue waves-effect m-t-5 f-s-10"
+                                        class="col-xs-12 col-sm-5 m-l-30 btn bgm-lightblue waves-effect m-t-5 f-s-10"
                                         data-ui-sref="pro-profile">
-                                        Compléter mon profil
+                                        <strong>Mettre à jour mon profil</strong>
                                     </button>
                                     <button
-                                        class="col-xs-12 col-sm-5 col-sm-offset-1 btn bgm-orange waves-effect m-t-5 f-s-10"
+                                        class="col-xs-12 col-sm-5 m-l-20 btn bgm-orange waves-effect m-t-5 f-s-10"
+                                        data-ui-sref="project-recommend({'projectId': vm.project.id})">
+                                        Recommander un collègue
+                                    </button>
+                                </div>
+                                <div class="visible-xs m-t-10 m-b-5 no-padding">
+                                    <button
+                                        class="col-xs-12 col-sm-5 btn bgm-lightblue waves-effect m-t-5 f-s-11"
+                                        data-ui-sref="pro-profile">
+                                        <strong>Mettre à jour mon profil</strong>
+                                    </button>
+                                    <button
+                                        class="col-xs-12 col-sm-5 btn bgm-orange waves-effect m-t-5 f-s-10"
                                         data-ui-sref="project-recommend({'projectId': vm.project.id})">
                                         Recommander un collègue
                                     </button>
@@ -258,10 +275,6 @@
                                         Prendre contact
                                     </button>
                                 </div>
-                            </div>
-                            <div class="pmbb-body c-red"
-                                 data-ng-if="vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REGISTERED' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_WAITING' || vm.project.error == 'ERROR_FORBIDDEN_PRO_STATUS_REFUSED'">
-                                Votre profil doit être validé afin de pouvoir répondre aux offres.
                             </div>
                         </div>
 
@@ -367,22 +380,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pmb-block">
+                        <div class="pmb-block m-b-25">
                             <div class="pmbb-header">
-                                <h2><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw subtitle-color-forced"></i>
+                                <h2><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw"></i>
                                     Entraide entre Pros</h2>
                             </div>
                             <div class="pmbb-body">
-                                <div class="pmbb-view">
-                                    <dl class="dl-horizontal">
-                                        <dt class="m-t-5">Pas dispo, pas intéressé ?</dt>
-                                        <button
-                                            class="col-sm-6 col-md-4 col-lg-5 btn bgm-orange waves-effect btn-sm m-b-10"
-                                            ui-sref="project-recommend({projectId : vm.project.id})">
-                                            Recommander un collègue
-                                        </button>
-                                    </dl>
-                                </div>
+                                <span class="m-t-5 fw-norm">Pas dispo, pas intéressé ? <a
+                                    ui-sref="project-recommend({'projectId': vm.project.id})" class="underline"> Recommandez un
+                                            collègue</a></span>
                             </div>
                         </div>
                     </div>
