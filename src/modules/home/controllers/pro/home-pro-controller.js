@@ -207,10 +207,10 @@
         };
 
         vm.smoothScrollRegister = function () {
-            var element = document.getElementById('registerForm');
+            var element = document.getElementById('freeRegister');
             smoothScroll(element, {
                 containerId: 'main-scroll-container',
-                offset: 50
+                offset: 70
             });
         };
 

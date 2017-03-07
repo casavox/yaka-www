@@ -43,8 +43,9 @@
                     return;
                 }
             });
-
         }
+
+        window.scrollTo(0, 0);
 
         var vm = this;
         vm.getWhen = getWhen;

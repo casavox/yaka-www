@@ -17,6 +17,11 @@ angular.module('Yaka')
                                 projectId: scope.upStateId
                             });
                             break;
+                        case "public-project-proposal":
+                            $state.go(scope.upState, {
+                                shortId: scope.upStateId
+                            });
+                            break;
                         default :
                             $state.go(scope.upState);
                             break;

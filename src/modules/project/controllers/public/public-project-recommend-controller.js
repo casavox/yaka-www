@@ -7,6 +7,8 @@
 
     function PublicProjectRecommendController($scope, $localStorage, $state, networkService, alertMsg, Upload, cloudinary, $filter, $stateParams, Lightbox, $rootScope, uiGmapGoogleMapApi, modalService, $translate, $auth) {
 
+        window.scrollTo(0, 0);
+
         if (!$stateParams.projectId) {
             $state.go("home");
             return;
@@ -109,15 +111,16 @@
         };
 
         function getSmsBody() {
-            return "Bonjour, j'ai vu sur CasaVox.com un chantier qui pourrait t'intéresser, '"
+            return "Bonjour, j'ai vu sur CasaVox.com/pro un chantier qui pourrait t'intéresser, '"
                 + vm.project.title + "' "
                 + "à " + vm.project.address.locality + " (" + vm.project.address.postalCode + "),"
-                + " tu peux voir directement le détail ici : " + getInviteProUrl()
-                ;
+                + " tu peux voir directement le détail ici : " + vm.getInviteProUrl();
         }
 
-        function getInviteProUrl() {
-            return window.location.hostname + "/p/" + vm.project.shortId;
+        vm.getInviteProUrl = function () {
+            if (vm.project) {
+                return window.location.hostname + "/p/" + vm.project.shortId;
+            }
         }
 
         vm.goUpState = function () {
