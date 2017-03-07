@@ -3,14 +3,14 @@
 
 <yaka-mobile-header id="header" class="visible-xs" data-current-skin="{{app.getTheme()}}"
                     up-state="public-project-proposal"
-                    up-state-id="vm.project.id"
+                    up-state-id="vm.project.shortId"
                     title="Transmettre un projet"></yaka-mobile-header>
 
 <section id="main">
 
     <div class="container p-l-25 p-r-25">
         <ol class="breadcrumb hidden-xs noMenu">
-            <li class="pointer" data-ui-sref="public-project-proposal({'projectId': vm.project.id})">
+            <li class="pointer" data-ui-sref="public-project-proposal({'shortId': vm.project.shortId})">
                 Détail du projet
             </li>
             <li class="active">

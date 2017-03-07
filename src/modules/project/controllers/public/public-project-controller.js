@@ -9,20 +9,41 @@
     //Controller login
     function PublicProjectController($rootScope, $scope, $localStorage, $state, $timeout, networkService, alertMsg, $filter, $stateParams, uiGmapGoogleMapApi) {
 
-        if (!$stateParams.projectId) {
-            $state.go("home");
+        if (!$stateParams.shortId) {
+            $state.go("pro-home");
         }
 
         if (!$localStorage.user) {
-            networkService.publicProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
+            networkService.publicProjectGET($stateParams.shortId, succesProjectGET, errorProjectGET);
         } else {
-            if (!$localStorage.user.professional) {
-                $state.go("project-recommend", {'projectId': $stateParams.projectId});
-                return;
-            } else if ($localStorage.user.professional) {
-                $state.go('pro-project-proposal-new', {'projectId': $stateParams.projectId});
-                return;
-            }
+            networkService.sId2IdProjectGET($stateParams.shortId, function (res) {
+                if (!res) {
+                    if ($localStorage.user.professional) {
+                        $state.go("pro-dashboard");
+                        return;
+                    } else {
+                        $state.go("dashboard");
+                        return;
+                    }
+                } else {
+                    if (!$localStorage.user.professional) {
+                        $state.go("project-recommend", {'projectId': res});
+                        return;
+                    } else if ($localStorage.user.professional) {
+                        $state.go('pro-project-proposal-new', {'projectId': res});
+                        return;
+                    }
+                }
+            }, function (err) {
+                if ($localStorage.user.professional) {
+                    $state.go("pro-dashboard");
+                    return;
+                } else {
+                    $state.go("dashboard");
+                    return;
+                }
+            });
+
         }
 
         var vm = this;
@@ -205,7 +226,7 @@
         }
 
         function errorProjectGET(err) {
-            $state.go("pro-dashboard");
+            $state.go("pro-home");
         }
 
         vm.getStringLength = function (str) {

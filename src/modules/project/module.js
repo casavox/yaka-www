@@ -57,7 +57,7 @@
             //Public
 
             .state('public-project-proposal', {
-                url: "/p/:projectId",
+                url: "/p/:shortId",
                 templateUrl: "/modules/project/views/public/public-project.html",
                 controller: 'PublicProjectController',
                 controllerAs: 'vm'

@@ -25,6 +25,8 @@
                 $rootScope.pageName = vm.project.title;
             }, function (err) {
                 alertMsg.send("Impossible de récupérer le projet", "danger");
+                $state.go("pro-home");
+                return;
             }
         );
 
@@ -107,22 +109,18 @@
         };
 
         function getSmsBody() {
-            return "J'ai vu sur CasaVox.com un chantier qui pourrait t'intéresser, '"
+            return "Bonjour, j'ai vu sur CasaVox.com un chantier qui pourrait t'intéresser, '"
                 + vm.project.title + "' "
-                + "à " + vm.project.address.locality + " (" + vm.project.address.postalCode + ") "
-                + ", tu peux voir le détail ici : " + getInviteProUrl()
-                + "%0AA+, " + $localStorage.user.firstName;
-            ;
+                + "à " + vm.project.address.locality + " (" + vm.project.address.postalCode + "),"
+                + " tu peux voir directement le détail ici : " + getInviteProUrl()
+                ;
         }
 
         function getInviteProUrl() {
-            if ($localStorage.user) {
-                return window.location.hostname + "/p/" + $stateParams.projectId;
-            }
-            return "";
+            return window.location.hostname + "/p/" + vm.project.shortId;
         }
 
-        vm.goUpState = function() {
+        vm.goUpState = function () {
             $state.go("public-project-proposal", {'projectId': $stateParams.projectId});
             return;
         }

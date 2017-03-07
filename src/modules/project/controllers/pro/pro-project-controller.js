@@ -11,9 +11,17 @@
 
         if ($localStorage.user && !$localStorage.user.professional) {
             $state.go("home");
+            return;
         }
 
         $rootScope.updateProfile();
+
+        if ($stateParams.projectId) {
+            networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
+        } else {
+            $state.go("pro-dashboard");
+            return;
+        }
 
         var vm = this;
         vm.getWhen = getWhen;
@@ -71,12 +79,6 @@
                 scrollwheel: false
             };
         });
-
-        if ($stateParams.projectId) {
-            networkService.proProjectGET($stateParams.projectId, succesProjectGET, errorProjectGET);
-        } else {
-            $state.go("pro-dashboard");
-        }
 
         function sendOffer() {
             if (!vm.formIsValid()) {
@@ -252,7 +254,7 @@
         }
 
         function errorProjectGET(err) {
-            alertMsg.send("Vous ne pouvez plus faire d'offre sur ce projet, consultez les autres offres disponibles en ce moment dans vos compétences", "warning");
+            alertMsg.send("Vous ne pouvez plus faire de proposition sur ce projet, déplacez-vous sur la carte pour voir les offres disponibles dans vos compétences", "success");
             $state.go("findjobs");
         }
 

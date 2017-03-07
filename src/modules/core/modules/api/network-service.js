@@ -168,6 +168,9 @@
             publicProjectGET: function (data, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/p/' + data, ignoreLoading).success(success).error(error)
             },
+            sId2IdProjectGET: function (data, success, error, ignoreLoading) {
+                httpService.get(baseUrl + '/sId2Id/' + data, ignoreLoading).success(success).error(error)
+            },
             projectsGET: function (status, page, limit, success, error, ignoreLoading) {
                 httpService.get(baseUrl + '/projects/me?page=' + page + '&limit=' + limit + '&status=' + status, ignoreLoading).success(success).error(error)
             },
