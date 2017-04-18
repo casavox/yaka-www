@@ -5,7 +5,8 @@
                 <img class="logo-img" src="../../../img/logoSansFond_40w.png" alt="CasaVox"/>
             </div>
             <div class="navbar-casavox m-l-5 c-blue" ui-sref="home">
-                <span class="navbar-casa">CASA</span><span class="navbar-vox">VOX</span>
+                <span class="navbar-casa">CASA</span><span class="navbar-vox">VOX</span><span
+                class="navbar-casa hidden-xs">&nbsp;&nbsp;-&nbsp;&nbsp;Le bouche à oreille des travaux</span>
             </div>
             <div class="button-pro-access c-orange waves-effect" ui-sref="pro-home">
                 ACCES PRO
@@ -77,16 +78,26 @@
             </div>
             <div class="homepage-background-color LM-section">
                 <div class="container m-t-15 p-b-15 p-l-15 p-r-15 t-center homepage-background-color">
-                    <div class="find-my-pro LM-info m-b-30">
-                        Vous êtes dans la région de Compiègne ? </br> Venez nous rencontrer chez notre partenaire Leroy
-                        Merlin de Compiègne et tentez de gagner 300€ sur vos prochains travaux
+                    <div class="find-my-pro LM-info">
+                        <span class="f-s-22" style="font-weight: bold;">
+                            Partagez vos meilleurs Pros sur <span
+                            style="white-space: nowrap;">CasaVox et gagnez 10€</span>
+                        </span>
+                        <br>Vous avez déjà eu affaire à des artisans de qualité ? Vous avez de bons artisans parmi vos
+                        <span style="white-space: nowrap;">proches ? ... </span>
+                        Recommandez les aux personnes autour de vous à la recherche de leurs <span
+                        style="white-space: nowrap;">compétences !</span>
+                        <br>
+                        <span style="font-weight: bold;">
+                            CasaVox est un réseau de confiance et de recommandation dédié aux
+                            <span style="white-space: nowrap;">travaux !</span>
+                        </span>
+                        <hr>
                     </div>
-                    <img class="LM-logo" src="../../../img/lm-logo.png" alt="Leroy Merlin"/>
-                    <hr>
                 </div>
             </div>
             <div class="col-xs-12 p-b-15 p-l-0 p-r-0 translateY homepage-background-color">
-                <div class="find-my-pro c-white">L'esprit <strong>CasaVox</strong></div>
+                <div class="find-my-pro m-t-0 c-white">L'esprit <strong>CasaVox</strong></div>
             </div>
             <div class="col-xs-12 p-l-0 p-r-0 homepage-background-color">
                 <div class="container">
@@ -379,13 +390,15 @@
                                 </div>
                                 <div class="address-list"
                                      data-ng-if="vm.newUser.defaultAddress.address.length == 5">
-                                    <div class="address-list-item pointer" data-ng-repeat="pCAndCity in vm.PostalCodeAndCities"
+                                    <div class="address-list-item pointer"
+                                         data-ng-repeat="pCAndCity in vm.PostalCodeAndCities"
                                          data-ng-click="vm.newUser.defaultAddress.address = pCAndCity.postalCode + ' ' + pCAndCity.name; vm.citySelected = true">
                                         <span class="fw-bold">{{pCAndCity.postalCode}}</span> {{pCAndCity.name}}
                                     </div>
                                 </div>
 
-                                <small class="help-block" data-ng-if="!vm.newUser.defaultAddress.address || vm.addressError && vm.newUser.defaultAddress.address.length < 6">
+                                <small class="help-block"
+                                       data-ng-if="!vm.newUser.defaultAddress.address || vm.addressError && vm.newUser.defaultAddress.address.length < 6">
                                     Merci d'indiquer le code postal puis de sélectionner la commune
                                 </small>
                             </div>
